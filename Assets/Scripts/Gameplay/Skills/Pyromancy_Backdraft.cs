@@ -65,6 +65,16 @@ namespace CavesOfOoo.Skills
             List<Entity> targets = SpellTargeting.GetCreaturesInCone(
                 ctx.Zone, actor, actorPos.x, actorPos.y, dx, dy, DRAFT_LENGTH);
 
+            // PALIMPSEST: a flamethrower must light an oil slick. Heat
+            // goes on the GROUND along the spray, not only into bodies —
+            // the same gap that made FlamingHands unable to ignite tile
+            // oil (reported from play).
+            ZoneTileStateSystem.ApplyFireToTiles(
+                ctx.Zone,
+                SkillLine.CollectCells(ctx.Zone, actor, actorPos.x, actorPos.y, dx, dy, DRAFT_LENGTH),
+                actor, Name);
+
+
             if (targets.Count == 0)
             {
                 EmitSkillRejectedDiag(ctx, "no_target");

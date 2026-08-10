@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
@@ -148,6 +149,39 @@ namespace CavesOfOoo.Core
             if (zone == null) return;
             zone.TileState.AddCold(x, y, amount);
             Emit(zone, x, y, "energy", "cold", amount, source, ability);
+        }
+
+        /// <summary>
+        /// A fire ability touching the ground. Writes heat and resolves
+        /// immediately, so oil lying there ignites ON THE CAST.
+        ///
+        /// <para><b>Why this exists.</b> Every fire ability in the game
+        /// applied heat to CREATURES — an <c>ApplyHeat</c> event on the
+        /// entity — and wrote nothing to the tile layer. Tile oil was
+        /// therefore invisible to all of them, including the new
+        /// Pyromancy powers: a flamethrower could not light an oil
+        /// slick. Reported from play, 2026-08-09.</para>
+        ///
+        /// <para>Every fire ability routes through here rather than
+        /// writing heat itself, so a sixth one cannot quietly forget.</para>
+        /// </summary>
+        public static void ApplyFireToTile(Zone zone, int x, int y,
+            Entity source = null, string ability = "")
+        {
+            if (zone == null) return;
+            AddHeat(zone, x, y, 1, source, ability);
+        }
+
+        /// <summary>Fire across several cells, resolved once at the end
+        /// rather than per cell — a slick should go up as one event, not
+        /// as a cascade of separate ignitions.</summary>
+        public static void ApplyFireToTiles(Zone zone, IEnumerable<Point> cells,
+            Entity source = null, string ability = "")
+        {
+            if (zone == null || cells == null) return;
+            foreach (var c in cells)
+                AddHeat(zone, c.X, c.Y, 1, source, ability);
+            ResolveAfterAbility(zone, source);
         }
 
         private static void Emit(Zone zone, int x, int y, string layer,

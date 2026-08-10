@@ -71,6 +71,15 @@ namespace CavesOfOoo.Core
             AsciiFxBus.EmitBurst(zone, targetCell.X, targetCell.Y, AsciiFxTheme.Fire,
                 blocksTurnAdvance: true, delay: 0.15f);
 
+            // PALIMPSEST: put heat on the GROUND, not only on bodies.
+            // Without this the tile layer is invisible to fire and an
+            // oil slick cannot be lit. Resolved immediately so the oil
+            // goes up on the cast, and P4's propagation then runs the
+            // fire down the rest of the slick.
+            ZoneTileStateSystem.ApplyFireToTile(
+                zone, targetCell.X, targetCell.Y, ParentEntity, Name);
+            ZoneTileStateSystem.ResolveAfterAbility(zone, ParentEntity);
+
             // Get all creatures in the target cell
             List<Entity> creatures = targetCell.GetObjectsWithTag("Creature");
 

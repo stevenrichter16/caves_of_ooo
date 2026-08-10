@@ -255,6 +255,84 @@ namespace CavesOfOoo.Tests
                 TilePropagationSystem.ChargeRange);
         }
 
+        // ── User-reported: fire abilities must ignite tile oil ──
+
+        [Test]
+        public void FlamingHands_IgnitesOilOnTheTile()
+        {
+            // USER REPORT (2026-08-09): "when oil is laid on tiles from
+            // the skill, when i do FH it doesn't let me. i should be able
+            // to ignite the oil with FH".
+            //
+            // The cause: every pre-existing fire ability applies heat to
+            // CREATURES (an ApplyHeat event on the entity) and writes
+            // NOTHING to the tile layer, so tile oil was invisible to
+            // all of them. P2 introduced the layer; P3 gave oil+heat a
+            // reaction; nothing connected fire to the ground.
+            var zone = new Zone();
+            var caster = Creature(zone, "caster", 5, 5);
+            caster.AddPart(new MutationsPart());
+            var fh = new FlamingHandsMutation();
+            caster.AddPart(fh);
+            fh.Mutate(caster, 1);
+
+            zone.TileState.WriteCoating(6, 5, "oil", 8);
+
+            fh.Cast(zone.GetCell(6, 5), zone, new System.Random(0));
+
+            Assert.IsFalse(zone.TileState.HasCoating(6, 5, "oil"),
+                "the oil should have gone up");
+            Assert.IsTrue(zone.TileState.HasResidue(6, 5, "embers"),
+                "and left embers behind");
+        }
+
+        [Test]
+        public void IgnitedOil_SpreadsToAdjacentOil()
+        {
+            // The second half of the report: "which will ignite all
+            // adjacent tiles containing oil".
+            var zone = new Zone();
+            var caster = Creature(zone, "caster", 5, 5);
+            caster.AddPart(new MutationsPart());
+            var fh = new FlamingHandsMutation();
+            caster.AddPart(fh);
+            fh.Mutate(caster, 1);
+
+            // A slick running away from the caster.
+            for (int x = 6; x <= 9; x++) zone.TileState.WriteCoating(x, 5, "oil", 8);
+
+            fh.Cast(zone.GetCell(6, 5), zone, new System.Random(0));
+
+            Assert.IsFalse(zone.TileState.HasCoating(7, 5, "oil"),
+                "the fire ran down the slick");
+            Assert.IsTrue(zone.TileState.HasResidue(7, 5, "embers"));
+        }
+
+        [Test]
+        public void FlameJet_AlsoIgnitesTileOil()
+        {
+            // The same gap existed in the NEW Pyromancy powers: only
+            // Ember Spit wrote to tiles. A flamethrower that could not
+            // light an oil slick was the clearest possible sign the
+            // connection was missing.
+            var zone = new Zone();
+            var caster = Creature(zone, "caster", 5, 5);
+            caster.AddPart(new CavesOfOoo.Skills.SkillsPart());
+            var jet = new CavesOfOoo.Skills.Pyromancy_FlameJet();
+            caster.GetPart<CavesOfOoo.Skills.SkillsPart>().AddSkill(jet, source: "test");
+
+            zone.TileState.WriteCoating(6, 5, "oil", 8);
+
+            jet.OnCommand(new CavesOfOoo.Skills.SkillEventContext
+            {
+                Attacker = caster, Defender = caster, Zone = zone,
+                Rng = new System.Random(0), DirectionX = 1, DirectionY = 0,
+            });
+
+            Assert.IsFalse(zone.TileState.HasCoating(6, 5, "oil"),
+                "a flamethrower lights an oil slick");
+        }
+
         // ── Guards ───────────────────────────────────────────────
 
         [Test]
