@@ -129,6 +129,91 @@ namespace CavesOfOoo.Core
                 Mechanics   = "Waters crops \u2022 Radius 3 \u2022 CD 5",
                 Signature   = "Soaks soil for 40 ticks \u2022 darkens wet earth"
             } },
+
+            // \u2500\u2500 Rites (SM7-SM9) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+            // All eleven, not just the six SM9 added. The five older
+            // rites shipped without rows too, so every rite in the game
+            // was invisible in the grimoire picker; a cold-eye audit
+            // caught it on the new ones and the same fix covers the old.
+            // GrimoireTooltipDataCompletenessTests now enforces the
+            // docstring's "must" so the next rite cannot forget.
+            { nameof(StormAnvilMutation), new GrimoireTooltip {
+                DisplayName = "Storm Anvil",
+                ColorCode   = "&Y",
+                Flavor      = "Thunder pools in the gutter of the page.",
+                Mechanics   = "Nova 2 \u2022 spends 2 statuses \u2022 CD 25",
+                Signature   = "Consumes Wet/Electrified/Frozen for huge damage"
+            } },
+            { nameof(HangingBoltMutation), new GrimoireTooltip {
+                DisplayName = "Hanging Bolt",
+                ColorCode   = "&Y",
+                Flavor      = "The bolt waits, patient, overhead.",
+                Mechanics   = "Line 6 \u2022 spends 2 statuses \u2022 CD 30",
+                Signature   = "Each mark becomes no-save Paralysis, not damage"
+            } },
+            { nameof(RenderedSteamMutation), new GrimoireTooltip {
+                DisplayName = "Rendered Steam",
+                ColorCode   = "&W",
+                Flavor      = "Water and fire, made to agree at last.",
+                Mechanics   = "Radius 2 \u2022 spends 2 statuses \u2022 CD 30",
+                Signature   = "Wants Wet AND Burning together \u2022 blinds"
+            } },
+            { nameof(ScaldingVeilMutation), new GrimoireTooltip {
+                DisplayName = "Scalding Veil",
+                ColorCode   = "&W",
+                Flavor      = "You wear your own drenching as armour.",
+                Mechanics   = "Self \u2022 spends YOUR Wet \u2022 CD 35",
+                Signature   = "Retaliation aura \u2022 scalds and confuses attackers"
+            } },
+            { nameof(FulminationMutation), new GrimoireTooltip {
+                DisplayName = "Fulmination",
+                ColorCode   = "&Y",
+                Flavor      = "Charge left in the ground, for the world to spend.",
+                Mechanics   = "Line 5 \u2022 spends 1 status \u2022 CD 25",
+                Signature   = "Writes Charge to the tile \u2022 water and metal carry it"
+            } },
+            { nameof(ShatteredRimeMutation), new GrimoireTooltip {
+                DisplayName = "Shattered Rime",
+                ColorCode   = "&C",
+                Flavor      = "What is frozen is not armoured. It is brittle.",
+                Mechanics   = "Cone 3 \u2022 spends 2 statuses \u2022 CD 40",
+                Signature   = "Untyped shatter \u2022 breaks ice creatures too"
+            } },
+            { nameof(StillHeartMutation), new GrimoireTooltip {
+                DisplayName = "Still Heart",
+                ColorCode   = "&c",
+                Flavor      = "A heart taught to forget to hurry.",
+                Mechanics   = "Single 5 \u2022 spends 2 statuses \u2022 CD 45",
+                Signature   = "Sleeps an elite 8 turns per mark \u2022 wakes on damage"
+            } },
+            { nameof(VerdigrisBloomMutation), new GrimoireTooltip {
+                DisplayName = "Verdigris Bloom",
+                ColorCode   = "&g",
+                Flavor      = "Green rot flowers across the margin.",
+                Mechanics   = "Radius 2 \u2022 spends 2 statuses \u2022 CD 40",
+                Signature   = "Strips armour and re-seeds acid across the radius"
+            } },
+            { nameof(HollowCoinMutation), new GrimoireTooltip {
+                DisplayName = "Hollow Coin",
+                ColorCode   = "&W",
+                Flavor      = "Whatever is owed, it pays.",
+                Mechanics   = "Single 4 \u2022 spends 3 of ANY \u2022 CD 50",
+                Signature   = "Untyped burst \u2022 no elemental ward stops it"
+            } },
+            { nameof(SunderingWordMutation), new GrimoireTooltip {
+                DisplayName = "Sundering Word",
+                ColorCode   = "&K",
+                Flavor      = "One word, written far too many times.",
+                Mechanics   = "Radius 2 \u2022 spends 2 of ANY \u2022 CD 45",
+                Signature   = "Broken + Weakened on everything \u2022 barely hurts"
+            } },
+            { nameof(BloodletterLedgerMutation), new GrimoireTooltip {
+                DisplayName = "Bloodletter's Ledger",
+                ColorCode   = "&r",
+                Flavor      = "Two columns, in two different inks.",
+                Mechanics   = "Single 5 \u2022 spends 2 of ANY \u2022 CD 40",
+                Signature   = "Deep bleed \u2022 heals YOU 4 per mark spent"
+            } },
         };
 
         /// <summary>

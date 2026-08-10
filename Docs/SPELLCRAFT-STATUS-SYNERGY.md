@@ -988,8 +988,8 @@ from "broken."
 
 **A shared spine, because five longhand rites had already drifted.**
 `ConsumingRiteBase` owns targeting, the ink check, the resonance spend,
-the damage roll and the diag trail; a concrete rite declares six
-properties and overrides `ApplyPayoff`. It enforces two invariants for
+the damage roll and the diag trail; a concrete rite declares eight
+properties and overrides `ApplyPayoff` and `CastMessage`. It enforces two invariants for
 everyone rather than five times each:
 
 - **Ink is checked AFTER targets.** A rite that can do nothing must
@@ -1002,11 +1002,12 @@ everyone rather than five times each:
 **The `Any` table is new content, not a special case in code.** §7.4
 promised Hollow Coin would consume "any three statuses of *any* kind",
 but the four existing tables are elemental — Burning appears on none of
-Electric/Cold/Acid, so a wildcard rite reading Electric would silently
+Electric/Cold/Acid (it IS on Heat at 0.75, which Rendered Steam and
+Scalding Veil read), so a wildcard rite reading Electric would silently
 refuse to spend a burning target. Rather than branch in the rite, the
 fifth table went in `Resonance.json` listing all five resonant statuses.
-It pays **0.5 per mark against a matched table's 0.75**, so building
-around an element still beats stacking at random — pinned by
+It pays **0.4 per mark against a matched table's 0.5–0.75**, so building
+around an element strictly beats stacking at random — pinned by
 `WildcardTable_PaysLessPerMarkThanAMatchedRite`, and the reason three
 rites can share it without obsoleting the elemental four.
 
@@ -1108,7 +1109,7 @@ Shattered Rime hitting both on-axis and off-axis targets and damaging a
 cold-immune creature; Verdigris Bloom being fully absorbed by acid
 immunity (the counter-check that untyped is an exception, not the house
 style); Hollow Coin damaging a target immune to all four elements and
-consuming Burning, which no other rite can reach; the wildcard table
+consuming Burning, which no Cold or Acid rite can reach; the wildcard table
 paying strictly less per mark than the matched one; Bloodletter's Ledger
 healing when fed and healing nothing when cold; all six grimoires
 spawning inked with a mutation class that resolves; each having ≥2 real
@@ -1117,10 +1118,164 @@ container sources; ≥15 container types carrying at least one rite.
 *Cannot verify without a human:* whether the multiplier ceiling is
 actually reachable in a real fight without the enemy killing you during
 setup; whether finding a rite in a vault reads as a discovery or as
-clutter alongside the 20 grimoires that already exist; whether Hollow
+clutter alongside the 25 grimoires that already exist; whether Hollow
 Coin's untyped burst is too safe an answer to hard enemies; whether the
 0.5-vs-0.75 wildcard penalty is enough to keep the elemental rites
 relevant. **None of these six have been exercised in Play mode** — the
 EditMode suite proves the mechanics, not the feel.
 
 Tests: 6291 → 6332 (+41: 20 feature, 21 adversarial). All green.
+
+### SM9 cold-eye audit — the pass that caught what green tests could not
+
+Run AFTER `0ca70a2e` merged with 6332/6332 green and a 21-test
+adversarial sweep reporting 0 bugs. Six independent lenses over the
+whole diff at once; every finding put through three DISTINCT refutation
+angles (is the claim factually accurate / is the state actually
+reachable / does an existing test already cover it) and kept only on a
+majority survival. **29 findings survived, 5 were refuted.**
+
+The headline: **tests-green-feels-clean is exactly the state where the
+worst bug was hiding.**
+
+#### 🔴 Still Heart ran the mechanic backwards
+
+`HibernatingEffect` is a **self-buff**. Its only other caller is
+`Cryomancy_Hibernate` applying it to the *caster*. It heals 5% of max HP
+every turn, forces Heat AND Cold resistance to 100, and has no
+wake-on-damage hook at all. Still Heart handed it to an **enemy**.
+
+Cast at a primed elite, the anti-elite rite therefore: healed the elite
+up to ~80% of its max HP over the sleep, made it immune to the rite's
+own Cold damage and to every Cryomancy and Pyromancy spell the player
+owned, and could not be woken by hitting it. The rite's own docstring
+promised "a long sleep that breaks on damage." Every word of that was
+false.
+
+`AsleepByGasEffect` is the hostile sleep — blocks action, wakes on
+damage, buffs nothing — and **its docstring explicitly warns against
+this exact substitution**: *"Distinct from HibernatingEffect (which is a
+self-buff: heals + max resistances)"*. The warning was sitting in the
+file the whole time.
+
+Why the shipped test missed it: `StillHeart_RemovesAnEliteInsteadOfKilling
+It` asserted only `HasEffect<HibernatingEffect>()` and `HP > 0`. Both
+were true. It never ticked a turn, never read a resistance, never struck
+the sleeper. A test that asserts the presence of an effect proves
+nothing about what the effect *does*.
+
+#### 🔴 The baker was eating rite books
+
+All eleven rite grimoires declared `"Inherits": "GrimoireCopy"` — and
+tags merge parent-first with no removal syntax
+(`BlueprintLoader.cs:201-204`), so all eleven silently carried the
+`GrimoireCopy` **tag**. That tag means "a disposable copy the scribe
+made," and it is consumed destructively: the Farmer's oven dialogue
+fires `TakeItemWithTag: GrimoireCopy`, which removes the first matching
+item in the pack. Finish the oven quest holding a rite you just pulled
+out of a sealed vault and the book is gone — no confirmation, no undo,
+and the rite becomes permanently uncastable because `GrimoireInk` reads
+charges off the carried book.
+
+The same tag ran the other way too: `CopyGrimoire` skips anything
+carrying it, so the scribe *offered* to copy rite grimoires and then
+reported "You don't have a grimoire to copy" while the dialogue narrated
+handing over an item that was never created.
+
+The tell was there in the content: **all 20 non-rite grimoires inherit
+`Item` directly and carry no such tag.** Only the rites inherited the
+*copy* blueprint. Fixed with a `RiteGrimoire` base — same shape, without
+the tag — and all eleven repointed.
+
+#### 🟡 The rest
+
+| Finding | Fix |
+|---|---|
+| Bloodletter's heal lived in `ApplyPayoff`, which the base skips when the target dies — so the better your setup, the more likely the sustain silently vanished | new `OnCastResolved` hook that always runs; riders stay survivor-gated, earnings do not |
+| All eleven rites missing from `GrimoireTooltipData` — the picker's own docstring says a missing row makes a mutation **invisible** there | eleven rows added; a completeness test now enumerates every `ConsumingRiteBase` subclass so the next rite cannot forget |
+| The three new single-target rites filed their `RiteCast` diag under the *caster*, unlike the two older single-target rites which file under the victim | single-target now files under the victim, with a counter-check that radius still files under the caster |
+| `AlchemyShelfT2` is unreachable — villages hardcode tier 1 — so one re-homed entry was dead content | moved to `AlchemyShelfT1` |
+| The wildcard table shipped at 0.5, which **tied** three matched entries (Electric/Frozen, Heat/Frozen, Acid/Wet), making "matching still beats stacking at random" false for them | wildcard lowered to 0.4, strictly worse than every matched entry |
+| Six mutations survived paper mutation-testing — Shattered Rime's ShatterArmor, Verdigris' acid re-seed, Hollow Coin's third slot and `>=3` branch, the entire Bleeding payoff, and every rider guard on a cold cast | six payoff-pin tests |
+| Doc/commit claimed "Burning is on no elemental table" — **false**, Heat carries it at 0.75 and two shipped rites read it | corrected to "no Cold or Acid rite can reach"; the narrower claim was the one that actually justified the `Any` table |
+
+#### What this says about the earlier gates
+
+The per-feature suite, the counter-checks, and the 21-test adversarial
+sweep were all green and all honest — and all six lenses of this pass
+still found real defects. The adversarial sweep in particular probed
+atomicity, cross-actor flows and boundary inputs thoroughly and found
+nothing, because **none of those categories asks "is this the right
+effect?"** A bug-class taxonomy cannot see a semantic substitution; only
+reading the effect's own source next to the rite's intent does.
+
+That is the empirical case for running the audit angles as separate
+passes rather than one merged checklist — and for treating "0 bugs
+found" as the trigger for the next pass rather than the end of the work.
+
+Tests: 6332 → 6346 (+14 cold-eye regressions and payoff pins).
+
+### SM9 hypothesis-driven pass — the audit's own blind spot
+
+The cold-eye pass ran six re-reading lenses. CLAUDE.md mandates one more
+when a sweep declares few or no bugs, and it is deliberately *not* more
+re-reading: generate player-flow hypotheses, write a RED test for each,
+and classify the results honestly.
+
+The framing that produced results: **the grimoire is a physical object.**
+Every test in the suite builds one caster holding exactly one full book
+in a fresh Zone and casts once. Real play has the player carrying two
+books, running one dry, finding a duplicate in a chest, stacking them,
+selling one.
+
+**1 confirmed bug, 6 pinned-as-correct.**
+
+#### 🔴 Confirmed — a found duplicate was worthless
+
+Rite grimoires inherit `Stacker` from `Item`, and `CanStackWith` matches
+on blueprint + display name only. A dry book and a fresh one look
+identical, so picking up the fresh one merged it into the dry stack and
+its ten charges vanished. The player ends up holding "two" books and
+still unable to cast — and the single most likely reason to pick up a
+duplicate is that the first one ran dry.
+
+`StackerPart`'s own docstring already records this exact bug class biting
+brews in live play (2026-07-19): blueprint-only stacking merged a fresh
+flask into an older stack and the new item's payload silently vanished.
+That fix was per-case. This is the general rule it implied:
+**individually-consumed state and stacking are incompatible.** Charged
+items now never stack — even when counts match, one shared counter
+across a stack of N would sell N books' worth of ink for one book's
+worth of casts.
+
+Two RED tests pin it: total ink must rise by ten on pickup, and — the
+version that actually matters to a player — a dry book plus a found book
+must make the rite castable again.
+
+#### 🟢 Pinned as correct
+
+| Hypothesis | Outcome |
+|---|---|
+| A radius rite catching your own follower flips them into `PersonalEnemies`, which FactionManager ranks above party alignment — one AoE permanently turns your companion hostile | does not happen; pinned so a future targeting change cannot introduce it silently |
+| Splitting a stack of rite books duplicates ink | cannot occur now that charged items refuse to stack; kept as the guard |
+| Ink is drawn from whichever book is first in the pack, not the casting rite's own book | **true, and pinned as deliberate** — ink is fungible across grimoires. Now stated out loud so a future move to per-rite ink is a visible decision |
+| Re-casting Still Heart on a nearly-woken sleeper silently eats the charge | fixed as a side effect of the Hibernating→Asleep swap: `AsleepByGasEffect.OnStack` refreshes to the larger duration, where `HibernatingEffect` discarded the incoming effect |
+| A two-slot rite eats all three primed statuses, leaving nothing for the follow-up | eats exactly two; the third is the player's |
+| `GrimoireChargePart.Refill` works | the API works — **but nothing in the game calls it.** See below |
+
+#### ⚪ Reachability gap, documented not fixed
+
+`Refill(int)` has **zero production callers** and every rite blueprint
+sets `ChargesPerVial: 5`. That config is currently decoration: a rite
+book is a strictly finite ten casts and there is no way to re-ink one.
+Whether ink should be renewable is a design decision, not a bug fix, so
+this is flagged rather than resolved — but the eleven blueprints
+advertise a refill amount the game never honours, and one of the two has
+to change.
+
+**Honesty bound:** this methodology is bounded by the hypotheses the
+author generates. Six of seven were already correct, which is the
+expected shape — the value is the one that was not, plus six permanent
+regression pins for contracts nothing else asserted.
+
+Tests: 6346 → 6354 (+8).

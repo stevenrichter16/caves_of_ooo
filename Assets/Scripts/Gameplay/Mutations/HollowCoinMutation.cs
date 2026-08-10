@@ -25,9 +25,12 @@ namespace CavesOfOoo.Core
 
         /// <summary>
         /// Reads the wildcard table: this rite has no element loyalty and
-        /// spends whatever it finds. That table pays 0.5 per mark against
-        /// a matched table's 0.75, so building around an element still
-        /// beats stacking at random.
+        /// spends whatever it finds. That table pays 0.4 per mark against
+        /// a matched table's 0.5-0.75, so building around an element
+        /// strictly beats stacking at random. (It shipped at 0.5, which
+        /// TIED three matched entries — Electric/Frozen, Heat/Frozen,
+        /// Acid/Wet — and made this comment false for them. Caught by a
+        /// cold-eye audit.)
         /// </summary>
         public override string Element => "Any";
         public override RiteShape Shape => RiteShape.SingleTarget;

@@ -52,6 +52,22 @@ namespace CavesOfOoo.Core
         protected abstract void ApplyPayoff(
             Entity target, ResonanceSystem.Result res, Zone zone);
 
+        /// <summary>
+        /// CASTER-side reward, called once after every target resolves,
+        /// unconditionally — including when the rite killed everything
+        /// it hit.
+        ///
+        /// <para>This exists because <see cref="ApplyPayoff"/> is gated
+        /// on the target surviving, which is right for riders and wrong
+        /// for anything the CASTER earns. Bloodletter's Ledger shipped
+        /// with its heal inside ApplyPayoff and silently paid nothing
+        /// whenever its own damage finished the target — so the better
+        /// your setup, the more likely the reward vanished. Marks and
+        /// ink are spent either way; what they buy must be too.</para>
+        /// </summary>
+        /// <param name="totalMarks">Statuses consumed across all targets.</param>
+        protected virtual void OnCastResolved(int totalMarks, Zone zone) { }
+
         /// <summary>Line the player sees. <paramref name="marks"/> is the
         /// total consumed across all targets.</summary>
         protected abstract string CastMessage(Entity caster, int targets, int marks);
@@ -143,7 +159,21 @@ namespace CavesOfOoo.Core
                     ApplyPayoff(target, res, zone);
             }
 
-            Diag.Record("spell", "RiteCast", caster, caster,
+            // Caster-side rewards run unconditionally — see the hook's
+            // docstring. Riders are survivor-gated; earnings are not.
+            OnCastResolved(marks, zone);
+
+            // A SingleTarget rite files its record under the VICTIM, so
+            // "which rites were cast at this creature?" is answerable by
+            // `diag_query target=<id>`. Radius and Cone have no single
+            // victim, so those stay filed under the caster. This matches
+            // the two older single-target rites (HangingBoltMutation.cs
+            // and FulminationMutation.cs both pass `target`); the three
+            // new ones disagreed with them until a cold-eye audit
+            // caught it.
+            Entity diagTarget = Shape == RiteShape.SingleTarget ? targets[0] : caster;
+
+            Diag.Record("spell", "RiteCast", caster, diagTarget,
                 new
                 {
                     rite = Name, element = Element, shape = Shape.ToString(),

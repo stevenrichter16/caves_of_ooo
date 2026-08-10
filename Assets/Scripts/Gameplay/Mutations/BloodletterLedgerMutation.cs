@@ -22,9 +22,12 @@ namespace CavesOfOoo.Core
 
         /// <summary>
         /// Reads the wildcard table: this rite has no element loyalty and
-        /// spends whatever it finds. That table pays 0.5 per mark against
-        /// a matched table's 0.75, so building around an element still
-        /// beats stacking at random.
+        /// spends whatever it finds. That table pays 0.4 per mark against
+        /// a matched table's 0.5-0.75, so building around an element
+        /// strictly beats stacking at random. (It shipped at 0.5, which
+        /// TIED three matched entries — Electric/Frozen, Heat/Frozen,
+        /// Acid/Wet — and made this comment false for them. Caught by a
+        /// cold-eye audit.)
         /// </summary>
         public override string Element => "Any";
         public override RiteShape Shape => RiteShape.SingleTarget;
@@ -51,17 +54,31 @@ namespace CavesOfOoo.Core
                     saveTarget: 14 + 4 * res.Consumed.Count,
                     damageDice: res.Consumed.Count >= 2 ? "1d6" : "1d4"),
                 ParentEntity, zone);
+        }
 
-            // The credit side of the ledger. Heals the CASTER, and only
-            // for marks actually spent.
+        /// <summary>
+        /// The credit side of the ledger — heals the CASTER, per mark
+        /// spent.
+        ///
+        /// <para>This lives in <see cref="OnCastResolved"/> rather than
+        /// <see cref="ApplyPayoff"/> because the base skips ApplyPayoff
+        /// when the target dies. It shipped in ApplyPayoff and so paid
+        /// nothing whenever the rite's own damage finished the target —
+        /// which meant the better your setup, the more likely the
+        /// sustain silently vanished, exactly inverting the design. The
+        /// marks and the ink are spent either way.</para>
+        /// </summary>
+        protected override void OnCastResolved(int totalMarks, Zone zone)
+        {
+            if (totalMarks <= 0) return;
+
             var hp = ParentEntity?.GetStat("Hitpoints");
-            if (hp != null)
-            {
-                int heal = 4 * res.Consumed.Count;
-                hp.BaseValue = Math.Min(hp.Max, hp.BaseValue + heal);
-                MessageLog.Add(ParentEntity.GetDisplayName()
-                    + " balances the ledger and closes " + heal + " of their own wounds.");
-            }
+            if (hp == null) return;
+
+            int heal = 4 * totalMarks;
+            hp.BaseValue = Math.Min(hp.Max, hp.BaseValue + heal);
+            MessageLog.Add(ParentEntity.GetDisplayName()
+                + " balances the ledger and closes " + heal + " of their own wounds.");
         }
 
         protected override string CastMessage(Entity caster, int targets, int marks)

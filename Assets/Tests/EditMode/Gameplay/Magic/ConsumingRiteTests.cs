@@ -178,7 +178,7 @@ namespace CavesOfOoo.Tests
 
             rite.Cast(zone, 1, 0);
 
-            Assert.IsTrue(elite.GetPart<StatusEffectsPart>().HasEffect<HibernatingEffect>(),
+            Assert.IsTrue(elite.GetPart<StatusEffectsPart>().HasEffect<AsleepByGasEffect>(),
                 "it takes them out of the fight");
             Assert.Greater(elite.GetStatValue("Hitpoints"), 0,
                 "without killing them — that is the trade");
@@ -199,8 +199,8 @@ namespace CavesOfOoo.Tests
 
                 rite.Cast(zone, 1, 0);
 
-                var hib = target.GetPart<StatusEffectsPart>().GetEffect<HibernatingEffect>();
-                return hib?.Duration ?? 0;
+                var sleep = target.GetPart<StatusEffectsPart>().GetEffect<AsleepByGasEffect>();
+                return sleep?.Duration ?? 0;
             }
 
             int one = DurationWith(new WetEffect(1.0f));
@@ -295,8 +295,9 @@ namespace CavesOfOoo.Tests
         public void HollowCoin_SpendsStatusesNoOtherRiteCanReach()
         {
             // The plan's promise: "any three statuses of any kind".
-            // Burning is on no Electric/Cold/Acid table — only the
-            // wildcard reaches it.
+            // Burning is on no Electric/Cold/Acid table — of the six
+            // SM9 rites, only the wildcard reaches it. (Heat DOES
+            // carry Burning at 0.75; no SM9 rite reads Heat.)
             var zone = new Zone();
             var rite = Caster<HollowCoinMutation>(zone, 5, 5, out var caster);
             var target = Creature(zone, "target", 6, 5);
@@ -384,6 +385,273 @@ namespace CavesOfOoo.Tests
 
             Assert.Less(warded.GetStatValue("Hitpoints"), hp,
                 "no elemental ward stops the coin");
+        }
+
+        // ── Cold-eye regressions (all RED before the fix) ───────
+
+        [Test]
+        public void StillHeart_DoesNotBuffTheEnemyItPutsToSleep()
+        {
+            // THE bug this rite shipped with. HibernatingEffect is a
+            // SELF-buff — 5% max-HP regen per turn and Heat+Cold
+            // resistance forced to 100 — so Still Heart healed the elite
+            // it was meant to neutralise and made it immune to its own
+            // Cold damage. AsleepByGasEffect is the hostile sleep.
+            var zone = new Zone();
+            var rite = Caster<StillHeartMutation>(zone, 5, 5, out var caster);
+            var elite = Creature(zone, "elite", 6, 5);
+            elite.ApplyEffect(new WetEffect(1.0f), caster, zone);
+
+            rite.Cast(zone, 1, 0);
+
+            var fx = elite.GetPart<StatusEffectsPart>();
+            Assert.IsTrue(fx.HasEffect<AsleepByGasEffect>(), "it sleeps");
+            Assert.IsFalse(fx.HasEffect<HibernatingEffect>(),
+                "and must NOT be handed the self-buff");
+            Assert.AreEqual(0, elite.GetStatValue("ColdResistance"),
+                "no resistance buff — this rite deals Cold");
+            Assert.AreEqual(0, elite.GetStatValue("HeatResistance"));
+        }
+
+        [Test]
+        public void StillHeart_SleeperWakesWhenStruck()
+        {
+            // The rite's docstring promised "breaks on damage" and the
+            // shipped effect had no wake hook at all.
+            var zone = new Zone();
+            var rite = Caster<StillHeartMutation>(zone, 5, 5, out var caster);
+            var elite = Creature(zone, "elite", 6, 5);
+            elite.ApplyEffect(new WetEffect(1.0f), caster, zone);
+            rite.Cast(zone, 1, 0);
+
+            var sleep = elite.GetPart<StatusEffectsPart>().GetEffect<AsleepByGasEffect>();
+            Assert.IsNotNull(sleep);
+            Assert.Greater(sleep.Duration, 0);
+
+            CombatSystem.ApplyDamage(elite, new Damage(1), caster, zone);
+
+            Assert.AreEqual(0, sleep.Duration, "anyone touching them ends it");
+        }
+
+        [Test]
+        public void BloodletterLedger_StillPays_WhenItsOwnDamageKills()
+        {
+            // The heal lived inside ApplyPayoff, which the base skips on
+            // a dead target — so the better the setup, the more likely
+            // the sustain silently vanished.
+            var zone = new Zone();
+            var rite = Caster<BloodletterLedgerMutation>(zone, 5, 5, out var caster);
+            var doomed = Creature(zone, "doomed", 6, 5, hp: 1);
+            doomed.ApplyEffect(new WetEffect(1.0f), caster, zone);
+
+            var hp = caster.GetStat("Hitpoints");
+            hp.BaseValue = 100;
+            rite.Cast(zone, 1, 0);
+
+            Assert.LessOrEqual(doomed.GetStatValue("Hitpoints"), 0, "the rite killed it");
+            Assert.Greater(hp.BaseValue, 100,
+                "marks and ink were spent, so the ledger must still post");
+        }
+
+        [Test]
+        public void SingleTargetRite_FilesItsDiagUnderTheVictim()
+        {
+            // "Which rites were cast at this creature?" must be
+            // answerable by diag_query target=<id>. The two older
+            // single-target rites already did this; the three new ones
+            // filed everything under the caster.
+            var zone = new Zone();
+            var rite = Caster<HollowCoinMutation>(zone, 5, 5, out var caster);
+            var victim = Creature(zone, "victim", 6, 5);
+            Diag.ResetAll();
+
+            rite.Cast(zone, 1, 0);
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "spell", Kind = "RiteCast", Limit = 5 }).Records;
+            Assert.GreaterOrEqual(recs.Count, 1);
+            Assert.AreEqual(victim.ID, recs[0].TargetId);
+        }
+
+        [Test]
+        public void RadiusRite_StillFilesItsDiagUnderTheCaster()
+        {
+            // Counter-check: a radius cast has no single victim, so the
+            // caster remains the right filing. Without this, "always use
+            // targets[0]" would pass the test above.
+            var zone = new Zone();
+            var rite = Caster<SunderingWordMutation>(zone, 10, 10, out var caster);
+            Creature(zone, "victim", 11, 10);
+            Diag.ResetAll();
+
+            rite.Cast(zone, 0, 0);
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "spell", Kind = "RiteCast", Limit = 5 }).Records;
+            Assert.GreaterOrEqual(recs.Count, 1);
+            Assert.AreEqual(caster.ID, recs[0].TargetId);
+        }
+
+        [Test]
+        public void RiteGrimoires_AreNotScribeCopies()
+        {
+            // The six inherited the GrimoireCopy blueprint and with it
+            // the GrimoireCopy TAG, which marks "a disposable copy the
+            // scribe made". The baker's dialogue destroys the first item
+            // carrying that tag, so finishing the oven quest while
+            // holding a rite book ate the book — and CopyGrimoire
+            // refuses to copy anything carrying it, so the scribe
+            // offered a service it then declined to perform.
+            foreach (var bp in RiteGrimoires)
+            {
+                var book = _factory.CreateEntity(bp);
+                Assert.IsNotNull(book, bp);
+                Assert.IsTrue(book.HasTag("Grimoire"), bp + " is still a grimoire");
+                Assert.IsFalse(book.HasTag("GrimoireCopy"),
+                    bp + " must not be marked as a scribe copy — the baker eats those");
+            }
+        }
+
+        [Test]
+        public void TheScribesOwnCopy_IsStillMarkedAsACopy()
+        {
+            // Counter-check: stripping the tag everywhere would let the
+            // player copy a copy forever and break the baker quest.
+            var copy = _factory.CreateEntity("GrimoireCopy");
+            Assert.IsNotNull(copy);
+            Assert.IsTrue(copy.HasTag("GrimoireCopy"),
+                "the scribe's product is the thing that tag is for");
+        }
+
+        [Test]
+        public void EveryRiteAppearsInTheGrimoirePicker()
+        {
+            // GrimoireTooltipData's own docstring: "a grimoire-taught
+            // mutation missing from this table is INVISIBLE in the
+            // picker". All eleven rites were missing. This turns that
+            // "must" into something enforced for the next one too.
+            foreach (var t in typeof(BaseMutation).Assembly.GetTypes())
+            {
+                if (t.IsAbstract || !typeof(ConsumingRiteBase).IsAssignableFrom(t)) continue;
+                Assert.IsTrue(GrimoireTooltipData.IsGrimoireMutation(t.Name),
+                    t.Name + " has no GrimoireTooltipData row, so it cannot be bound"
+                    + " from the grimoire picker");
+            }
+        }
+
+        // ── Payoff pins (cold-eye Q3: these mutations survived) ──
+
+        [Test]
+        public void ShatteredRime_ShattersArmour_AndOnlyWhenFed()
+        {
+            // Mutation "delete ShatteredRime.ApplyPayoff body" survived
+            // every original test — the rite's entire non-damage payoff
+            // was unasserted.
+            var zone = new Zone();
+            var rite = Caster<ShatteredRimeMutation>(zone, 10, 10, out var caster);
+            var fed = Creature(zone, "fed", 11, 10);
+            fed.ApplyEffect(new WetEffect(1.0f), caster, zone);
+
+            rite.Cast(zone, 1, 0);
+            Assert.IsTrue(fed.GetPart<StatusEffectsPart>().HasEffect<ShatterArmorEffect>());
+
+            var coldZone = new Zone();
+            var coldRite = Caster<ShatteredRimeMutation>(coldZone, 10, 10, out _);
+            var cold = Creature(coldZone, "cold", 11, 10);
+            coldRite.Cast(coldZone, 1, 0);
+            Assert.IsFalse(cold.GetPart<StatusEffectsPart>().HasEffect<ShatterArmorEffect>(),
+                "nothing spent, nothing shattered — the rider guard must hold");
+        }
+
+        [Test]
+        public void VerdigrisBloom_ReSeedsAcid_AndOnlyWhenFed()
+        {
+            // The shipped answer to §7.4's "spread", never asserted.
+            var zone = new Zone();
+            var rite = Caster<VerdigrisBloomMutation>(zone, 10, 10, out var caster);
+            var fed = Creature(zone, "fed", 11, 10);
+            fed.ApplyEffect(new WetEffect(1.0f), caster, zone);
+
+            rite.Cast(zone, 0, 0);
+            Assert.IsTrue(fed.GetPart<StatusEffectsPart>().HasEffect<AcidicEffect>(),
+                "the bloom re-seeds acid on what it caught");
+
+            var coldZone = new Zone();
+            var coldRite = Caster<VerdigrisBloomMutation>(coldZone, 10, 10, out _);
+            var cold = Creature(coldZone, "cold", 11, 10);
+            coldRite.Cast(coldZone, 0, 0);
+            Assert.IsFalse(cold.GetPart<StatusEffectsPart>().HasEffect<AcidicEffect>());
+        }
+
+        [Test]
+        public void SunderingWord_RiderGuard_HoldsOnAColdCast()
+        {
+            // "Cast cold is nearly worthless" was pinned for DAMAGE
+            // only; the rider guards all survived deletion.
+            var zone = new Zone();
+            var rite = Caster<SunderingWordMutation>(zone, 10, 10, out _);
+            var cold = Creature(zone, "cold", 11, 10);
+
+            rite.Cast(zone, 0, 0);
+
+            Assert.IsFalse(cold.GetPart<StatusEffectsPart>().HasEffect<BrokenEffect>());
+            Assert.IsFalse(cold.GetPart<StatusEffectsPart>().HasEffect<WeakenedEffect>());
+        }
+
+        [Test]
+        public void StillHeart_ColdCast_PutsNobodyToSleep()
+        {
+            var zone = new Zone();
+            var rite = Caster<StillHeartMutation>(zone, 5, 5, out _);
+            var cold = Creature(zone, "cold", 6, 5);
+
+            rite.Cast(zone, 1, 0);
+
+            Assert.IsFalse(cold.GetPart<StatusEffectsPart>().HasEffect<AsleepByGasEffect>());
+        }
+
+        [Test]
+        public void HollowCoin_SpendsThreeStatuses_NotTwo()
+        {
+            // Slots => 3 and the ">= 3" Broken branch were unreachable
+            // in every original test: nothing ever primed three.
+            var zone = new Zone();
+            var rite = Caster<HollowCoinMutation>(zone, 5, 5, out var caster);
+            var target = Creature(zone, "target", 6, 5);
+            target.ApplyEffect(new WetEffect(1.0f), caster, zone);
+            target.ApplyEffect(new FrozenEffect(), caster, zone);
+            target.ApplyEffect(new BurningEffect(), caster, zone);
+
+            rite.Cast(zone, 1, 0);
+
+            var fx = target.GetPart<StatusEffectsPart>();
+            Assert.IsFalse(fx.HasEffect<WetEffect>(), "all three spent");
+            Assert.IsFalse(fx.HasEffect<FrozenEffect>());
+            Assert.IsFalse(fx.HasEffect<BurningEffect>());
+            Assert.IsTrue(fx.HasEffect<BrokenEffect>(),
+                "three marks is the coin's Broken threshold");
+        }
+
+        [Test]
+        public void BloodletterLedger_OpensBleeding_ScaledByMarks()
+        {
+            // The entire Bleeding payoff was untested.
+            int SaveTargetWith(params Effect[] primed)
+            {
+                var zone = new Zone();
+                var rite = Caster<BloodletterLedgerMutation>(zone, 5, 5, out var caster);
+                var target = Creature(zone, "target", 6, 5);
+                foreach (var e in primed) target.ApplyEffect(e, caster, zone);
+                rite.Cast(zone, 1, 0);
+                return target.GetPart<StatusEffectsPart>()
+                    .GetEffect<BleedingEffect>()?.SaveTarget ?? 0;
+            }
+
+            int one = SaveTargetWith(new WetEffect(1.0f));
+            int two = SaveTargetWith(new WetEffect(1.0f), new FrozenEffect());
+
+            Assert.Greater(one, 0, "one mark opens a bleed");
+            Assert.Greater(two, one, "two marks bleed harder to staunch");
         }
 
         // ── Reachability: found in the world, not bought ────────
