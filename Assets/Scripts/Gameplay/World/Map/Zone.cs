@@ -150,6 +150,15 @@ namespace CavesOfOoo.Core
             cell.AddObject(entity);
             _entityCells[entity] = cell;
 
+            // PALIMPSEST P2b — a liquid pool entity PROJECTS into the
+            // tile layer, so gameplay has one place to ask "is there
+            // water here?". The entity is kept because four systems key
+            // off it — the shoreline sprite family, river flow, three
+            // worldgen placement vetoes, and MaterialReactionResolver's
+            // fire+ice product — but it is no longer the thing that
+            // ANSWERS the question.
+            ProjectPool(entity, cell);
+
             if (isFreshAdd)
                 IndexEntityTags(entity);
 
@@ -162,6 +171,8 @@ namespace CavesOfOoo.Core
         /// </summary>
         public bool RemoveEntity(Entity entity)
         {
+            // Un-project first: the cell lookup still works here.
+            UnprojectPool(entity);
             if (_entityCells.TryGetValue(entity, out Cell cell))
             {
                 cell.RemoveObject(entity);
@@ -409,6 +420,36 @@ namespace CavesOfOoo.Core
         public override string ToString()
         {
             return $"Zone({ZoneID}) [{EntityCount} entities]";
+        }
+
+        /// <summary>
+        /// PALIMPSEST P2b — mirrors a <see cref="LiquidPoolPart"/>
+        /// entity's liquid into <see cref="TileState"/> as a permanent
+        /// coating.
+        ///
+        /// <para>Written with <see cref="ZoneTileState.Permanent"/>
+        /// rather than a duration because the ENTITY owns the pool's
+        /// lifetime — a river does not evaporate on a six-turn clock.
+        /// Decay must not delete a projection out from under its
+        /// source.</para>
+        /// </summary>
+        private void ProjectPool(Entity entity, Cell cell)
+        {
+            if (entity == null || cell == null) return;
+            var pool = entity.GetPart<LiquidPoolPart>();
+            if (pool == null || string.IsNullOrEmpty(pool.LiquidId)) return;
+            TileState.WriteCoating(cell.X, cell.Y, pool.LiquidId, ZoneTileState.Permanent);
+        }
+
+        /// <summary>Removes the projection when its pool entity leaves.</summary>
+        private void UnprojectPool(Entity entity)
+        {
+            if (entity == null) return;
+            var pool = entity.GetPart<LiquidPoolPart>();
+            if (pool == null || string.IsNullOrEmpty(pool.LiquidId)) return;
+            var pos = GetEntityPosition(entity);
+            if (pos.x < 0) return;
+            TileState.RemoveCoating(pos.x, pos.y, pool.LiquidId);
         }
     }
 }

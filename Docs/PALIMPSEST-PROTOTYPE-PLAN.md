@@ -133,7 +133,7 @@ justification for a sparse store — was killed by exactly
 That is P2's job, and keeping P1 inert is what made it independently
 testable.
 
-### P2 — Abilities write to tiles (spec POC 2) ✅ SHIPPED (gameplay half)
+### P2 — Abilities write to tiles (spec POC 2) ✅ SHIPPED (P2 + P2b)
 
 The spec's "Environmental Technique". Existing skills gain the ability
 to leave a mark:
@@ -157,15 +157,42 @@ still scorches the ground), **Ground Surge** → charge along the whole
 line, and **`Pyromancy_Oilmark`** — new, and the skill that finally
 makes `oil` reachable. 15 tests.
 
-**DEFERRED to P2b — rendering.** The player cannot yet *see* the marks,
-so the POC test above cannot actually be run. Both obvious approaches
+**P2b shipped 2026-08-09 — rendering, projection, and the P3 unblock.**
+The POC test above can now actually be run. Both obvious approaches
 were verified to fail: `RenderPart.BackgroundColor` paints the bg
 tilemap at sortingOrder −1, which `EnvironmentSpriteRenderer.ClaimCell`
 covers with an opaque ground sprite at order 3; and a glyph override on
 the main tilemap is erased because `ResolveCell` resolves ground from
 the *blueprint name* before it reads the glyph. The working approach is
 a dedicated tilemap at **sortingOrder 5** — the only free slot below the
-popups, since `WorldCursorRenderer` holds 4.
+popups, since `WorldCursorRenderer` holds 4. Shipped exactly that.
+
+**One mark per cell, by priority** — embers, then oil, then any coating,
+then charge, then heat/cold, then cloud. Legibility beats completeness
+on an 80×25 grid; a tile rendered four ways is noise. The dangerous
+thing reads first. Inspect Mode (P8) is where the full layer list
+belongs. Marks are hidden under fog, so they cannot leak information
+about rooms the player has not seen.
+
+**Pool projection — plan risk 2 closed.** `Zone.AddEntity` /
+`RemoveEntity` mirror any `LiquidPoolPart` entity into the layer as a
+**permanent** coating. The entity stays, because four systems key off it
+(the shoreline sprite family, river flow, three worldgen placement
+vetoes, and `MaterialReactionResolver`'s fire+ice product) — but it is
+no longer the thing that *answers* "is there water here?". Permanent
+rather than timed because the entity owns the lifetime: a river must not
+evaporate on a six-turn clock.
+
+**The P3 blocker is cleared.** `Tick()` now snapshots its keys before
+iterating, so a reaction writing a tile from inside the tick cannot
+throw `InvalidOperationException`. Pinned by a test that writes during
+decay.
+
+**Live-verified:** the tilemap is created at sortingOrder 5; the render
+hook is bound; the live starting zone carries **350** written tiles
+(pool projection working at scale — and 350 of 2000, so the sparse store
+is earning its keep); and **51 tiles painted against 51
+written-and-visible cells, an exact match**, confirming the fog gate.
 
 **DECISION — tile state is not persisted** (user, 2026-08-09). Saving it
 needs `FormatVersion` 4→5, and `SaveSystem.cs:133` is a strict-equality

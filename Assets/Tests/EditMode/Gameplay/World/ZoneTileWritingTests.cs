@@ -265,6 +265,97 @@ namespace CavesOfOoo.Tests
             Assert.DoesNotThrow(() => ZoneTileStateSystem.OnPlayerTurnEnd(null));
         }
 
+        // ── Pool projection: one source of truth ────────────────
+
+        [Test]
+        public void APoolEntity_ProjectsIntoTheTileLayer()
+        {
+            // Plan risk 2 closed. Four systems key off the pool ENTITY
+            // (shoreline sprites, river flow, three worldgen vetoes,
+            // and the fire+ice reaction product), so the entity stays —
+            // but gameplay now has ONE place to ask "is there water
+            // here?".
+            var zone = new Zone();
+            var puddle = new Entity { ID = "p", BlueprintName = "WaterPuddle" };
+            puddle.AddPart(new RenderPart { DisplayName = "puddle" });
+            puddle.AddPart(new LiquidPoolPart { LiquidId = "water", Volume = 5 });
+
+            zone.AddEntity(puddle, 4, 4);
+
+            Assert.IsTrue(zone.TileState.HasCoating(4, 4, "water"),
+                "the pool answers through the tile layer");
+        }
+
+        [Test]
+        public void AProjectedPool_DoesNotDecayAway()
+        {
+            // The ENTITY owns a river's lifetime. A six-turn decay clock
+            // must not delete the projection out from under it.
+            var zone = new Zone();
+            var puddle = new Entity { ID = "p", BlueprintName = "WaterPuddle" };
+            puddle.AddPart(new RenderPart { DisplayName = "puddle" });
+            puddle.AddPart(new LiquidPoolPart { LiquidId = "water", Volume = 5 });
+            zone.AddEntity(puddle, 4, 4);
+
+            for (int i = 0; i < 20; i++) ZoneTileStateSystem.OnPlayerTurnEnd(zone);
+
+            Assert.IsTrue(zone.TileState.HasCoating(4, 4, "water"),
+                "a river does not evaporate on a turn counter");
+        }
+
+        [Test]
+        public void RemovingThePool_RemovesTheProjection()
+        {
+            var zone = new Zone();
+            var puddle = new Entity { ID = "p", BlueprintName = "WaterPuddle" };
+            puddle.AddPart(new RenderPart { DisplayName = "puddle" });
+            puddle.AddPart(new LiquidPoolPart { LiquidId = "water", Volume = 5 });
+            zone.AddEntity(puddle, 4, 4);
+            Assert.IsTrue(zone.TileState.HasCoating(4, 4, "water"));
+
+            zone.RemoveEntity(puddle);
+
+            Assert.IsFalse(zone.TileState.HasCoating(4, 4, "water"),
+                "no orphaned projection left behind");
+        }
+
+        [Test]
+        public void ANonPoolEntity_ProjectsNothing()
+        {
+            // Counter-check: only pools project. If every entity wrote a
+            // coating the layer would be meaningless.
+            var zone = new Zone();
+            var rock = new Entity { ID = "r", BlueprintName = "Rock" };
+            rock.AddPart(new RenderPart { DisplayName = "rock" });
+
+            zone.AddEntity(rock, 4, 4);
+
+            Assert.AreEqual(0, zone.TileState.WrittenCount);
+        }
+
+        // ── Tick safety: the P3 blocker ─────────────────────────
+
+        [Test]
+        public void WritingATileFromInsideTheTick_DoesNotThrow()
+        {
+            // P3's reactions run inside Tick and WRITE. A plain foreach
+            // over the dictionary would throw InvalidOperationException
+            // — the same bug class CLAUDE.md flags for
+            // Zone.GetReadOnlyEntities. Fixed before it could bite.
+            var zone = new Zone();
+            for (int i = 0; i < 5; i++)
+                zone.TileState.WriteCoating(10 + i, 10, "water", 3);
+
+            zone.TileState.OnCellChanged = (x, y) =>
+            {
+                // Simulates a reaction spreading to a neighbour mid-tick.
+                if (x < 40) zone.TileState.WriteCoating(x + 20, y, "oil", 2);
+            };
+
+            Assert.DoesNotThrow(() => zone.TileState.Tick(),
+                "a reaction writing during decay must not break enumeration");
+        }
+
         // ── Observability ────────────────────────────────────────
 
         [Test]

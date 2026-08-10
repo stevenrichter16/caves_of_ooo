@@ -285,6 +285,30 @@ namespace CavesOfOoo.Rendering
             fxRenderer.sortingOrder = 2; // bumped from 1 to make room for fine water at 1
             _asciiFxRenderer = new AsciiFxRenderer(_fxTilemap);
 
+            // PALIMPSEST P2b — tile-state marks (puddles, oil, embers,
+            // charge) get their OWN tilemap.
+            //
+            // The two obvious approaches were both verified to fail:
+            //   - RenderPart.BackgroundColor paints _bgTilemap at
+            //     sortingOrder -1, which EnvironmentSpriteRenderer.ClaimCell
+            //     covers with an opaque ground sprite at order 3.
+            //   - A glyph override on _tilemap is erased, because
+            //     ResolveCell resolves ground from the BLUEPRINT NAME
+            //     before it ever reads a glyph.
+            // A dedicated tilemap is immune: the sprite pass only ever
+            // writes _mainTilemap, _bgTilemap and _overlayTilemap.
+            //
+            // Order 5 specifically: -1 bg, 0 main, 1 fine water, 2
+            // animated env, 3 FX + env-sprite overlay, 4 WorldCursor's
+            // LineRenderer, 6/7 popups. 5 is the only free slot below
+            // the popups.
+            var tileStateObj = new GameObject("TileStateTilemap");
+            tileStateObj.transform.SetParent(gridParent, false);
+            GameplayRenderLayers.SetLayerRecursive(tileStateObj, GameplayRenderLayers.WorldLayer);
+            _tileStateTilemap = tileStateObj.AddComponent<Tilemap>();
+            var tileStateRenderer = tileStateObj.AddComponent<TilemapRenderer>();
+            tileStateRenderer.sortingOrder = 5;
+
             // GLYPHS-ONLY GATE: Pass 5-11 visual layers are gated
             // behind GraphicsPolish.IsEnabled. When the master flag is
             // false (the shipping default), none of these renderers
@@ -474,6 +498,11 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public void SetZone(Zone zone)
         {
+            // PALIMPSEST P2b — point this zone's tile-state writes at the
+            // renderer. Bound on becoming the shown zone rather than in
+            // the Zone constructor, so a cached-but-inactive zone never
+            // dirties cells in the one actually on screen.
+            ZoneTileStateSystem.BindRenderHook(zone);
             CurrentZone = zone;
             _asciiFxRenderer?.SetZone(zone);
             _worldCursorRenderer?.SetZone(zone);
@@ -962,6 +991,89 @@ namespace CavesOfOoo.Rendering
             RenderCellCore(x, y);
         }
 
+        /// <summary>Tile-state marks live here (sortingOrder 5), above
+        /// the environment sprite pass so they are never covered.</summary>
+        private Tilemap _tileStateTilemap;
+
+        /// <summary>
+        /// PALIMPSEST P2b — paints one glyph for whatever is written on
+        /// this tile, so the player can actually SEE that they left
+        /// something behind.
+        ///
+        /// <para>One mark per cell by priority, not a stack: legibility
+        /// beats completeness on an 80×25 ASCII grid, and a tile with
+        /// four layers rendered four ways is noise. Fire beats water
+        /// beats charge because the dangerous thing should read first.
+        /// Inspect Mode (P8) is where the full layer list belongs.</para>
+        /// </summary>
+        private void PaintTileStateMark(int x, int y, Vector3Int tilePos, Cell cell)
+        {
+            if (_tileStateTilemap == null) return;
+
+            // Never reveal state through fog — it would leak information
+            // about rooms the player has not seen.
+            if (CurrentZone == null || !cell.Explored || !cell.IsVisible)
+            {
+                _tileStateTilemap.SetTile(tilePos, null);
+                return;
+            }
+
+            var state = CurrentZone.TileState.Get(x, y);
+            if (state == null)
+            {
+                _tileStateTilemap.SetTile(tilePos, null);
+                return;
+            }
+
+            char glyph;
+            Color color;
+            if (state.Residues.Count > 0 && HasLayer(state.Residues, "embers"))
+            {
+                glyph = '"'; color = new Color(1.0f, 0.45f, 0.10f);      // embers
+            }
+            else if (HasLayer(state.Coatings, "oil"))
+            {
+                glyph = '~'; color = new Color(0.35f, 0.25f, 0.45f);     // oil
+            }
+            else if (state.Coatings.Count > 0)
+            {
+                glyph = '~'; color = new Color(0.30f, 0.55f, 0.95f);     // water & co
+            }
+            else if (state.Charge > 0)
+            {
+                glyph = '*'; color = new Color(1.0f, 0.95f, 0.35f);      // charge
+            }
+            else if (state.Heat > 0)
+            {
+                glyph = '^'; color = new Color(1.0f, 0.35f, 0.15f);
+            }
+            else if (state.Cold > 0)
+            {
+                glyph = '^'; color = new Color(0.65f, 0.90f, 1.0f);
+            }
+            else if (!string.IsNullOrEmpty(state.Cloud))
+            {
+                glyph = '\''; color = new Color(0.80f, 0.80f, 0.85f);
+            }
+            else
+            {
+                _tileStateTilemap.SetTile(tilePos, null);
+                return;
+            }
+
+            Tile tile = CP437TilesetGenerator.GetTile(glyph);
+            _tileStateTilemap.SetTile(tilePos, tile);
+            _tileStateTilemap.SetTileFlags(tilePos, TileFlags.None);
+            _tileStateTilemap.SetColor(tilePos, color);
+        }
+
+        private static bool HasLayer(System.Collections.Generic.List<ZoneTileState.Layer> layers, string id)
+        {
+            for (int i = 0; i < layers.Count; i++)
+                if (layers[i].Id == id) return true;
+            return false;
+        }
+
         private void RenderCellCore(int x, int y)
         {
             Cell cell = CurrentZone.GetCell(x, y);
@@ -969,6 +1081,10 @@ namespace CavesOfOoo.Rendering
 
             // Unity tilemap Y is inverted relative to our grid (0=bottom in Unity, 0=top in roguelike)
             Vector3Int tilePos = new Vector3Int(x, Zone.Height - 1 - y, 0);
+
+            // Painted before the fog/entity branches below, all of which
+            // early-return. The mark layer has its own fog check.
+            PaintTileStateMark(x, y, tilePos, cell);
 
             // Fog of war: unexplored cells use a solid bg block tinted with UnexploredColor
             // (alpha supported — the bg SolidBlock is fully opaque pixels so the tint shows)

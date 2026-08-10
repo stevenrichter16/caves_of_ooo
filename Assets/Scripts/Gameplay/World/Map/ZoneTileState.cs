@@ -41,6 +41,11 @@ namespace CavesOfOoo.Core
         /// <summary>Ceiling for the coarse energy channels (design §8).</summary>
         public const int MaxEnergy = 2;
 
+        /// <summary>A layer that never decays. Used for projections whose
+        /// lifetime is owned by something else — a river's water is
+        /// bounded by its pool entity, not by a turn counter.</summary>
+        public const int Permanent = int.MaxValue;
+
         [System.Serializable]
         public class Layer
         {
@@ -73,6 +78,10 @@ namespace CavesOfOoo.Core
         /// <summary>Reusable scratch for decay so Tick allocates nothing
         /// in the common case (PERF-FOUNDATION §Pattern 1).</summary>
         private readonly List<int> _reclaimScratch = new List<int>(8);
+
+        /// <summary>Key snapshot so Tick can survive a reaction writing
+        /// new tiles mid-loop (P3). Reused, never reallocated.</summary>
+        private readonly List<int> _keyScratch = new List<int>(16);
 
         /// <summary>Tiles currently carrying anything. The cost of this
         /// whole system, in one number.</summary>
@@ -170,6 +179,29 @@ namespace CavesOfOoo.Core
         {
             var state = Get(x, y);
             return state != null && LayerTurns(state.Residues, residueId) > 0;
+        }
+
+        /// <summary>Removes a specific coating. Used when a projected
+        /// pool entity leaves its cell.</summary>
+        public bool RemoveCoating(int x, int y, string liquidId)
+            => RemoveLayer(Get(x, y)?.Coatings, liquidId, x, y);
+
+        /// <summary>Removes a specific residue.</summary>
+        public bool RemoveResidue(int x, int y, string residueId)
+            => RemoveLayer(Get(x, y)?.Residues, residueId, x, y);
+
+        private bool RemoveLayer(List<Layer> layers, string id, int x, int y)
+        {
+            if (layers == null || string.IsNullOrEmpty(id)) return false;
+            for (int i = 0; i < layers.Count; i++)
+            {
+                if (layers[i].Id != id) continue;
+                layers.RemoveAt(i);
+                Changed(x, y);
+                DropIfEmpty(x, y);
+                return true;
+            }
+            return false;
         }
 
         // ── Energy ───────────────────────────────────────────────
@@ -298,10 +330,21 @@ namespace CavesOfOoo.Core
             _reclaimScratch.Clear();
             int visited = 0;
 
-            foreach (var pair in _states)
+            // Snapshot the keys before iterating. Decay alone would be
+            // safe with a plain foreach, but P3's reactions run INSIDE
+            // this loop and write to tiles — mutating the dictionary
+            // mid-enumeration throws InvalidOperationException. This is
+            // the same bug class CLAUDE.md flags for
+            // Zone.GetReadOnlyEntities, fixed before it can bite rather
+            // than after.
+            _keyScratch.Clear();
+            foreach (var key in _states.Keys) _keyScratch.Add(key);
+
+            for (int ki = 0; ki < _keyScratch.Count; ki++)
             {
+                int stateKey = _keyScratch[ki];
+                if (!_states.TryGetValue(stateKey, out var s)) continue;  // removed mid-loop
                 visited++;
-                var s = pair.Value;
 
                 DecayLayers(s.Coatings);
                 DecayLayers(s.Residues);
@@ -318,7 +361,7 @@ namespace CavesOfOoo.Core
                     if (s.CloudTurns <= 0) { s.Cloud = ""; s.CloudTurns = 0; }
                 }
 
-                if (s.IsEmpty) _reclaimScratch.Add(pair.Key);
+                if (s.IsEmpty) _reclaimScratch.Add(stateKey);
             }
 
             for (int i = 0; i < _reclaimScratch.Count; i++)
@@ -335,6 +378,9 @@ namespace CavesOfOoo.Core
         {
             for (int i = layers.Count - 1; i >= 0; i--)
             {
+                // Permanent layers are owned by something else and must
+                // not be aged away underneath it.
+                if (layers[i].Turns == Permanent) continue;
                 layers[i].Turns--;
                 if (layers[i].Turns <= 0) layers.RemoveAt(i);
             }
