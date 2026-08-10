@@ -72,7 +72,7 @@ namespace CavesOfOoo.Core
                 return false;
             }
 
-            var grimoire = StormAnvilMutation.FindInkedGrimoire(caster);
+            var grimoire = GrimoireInk.FindInked(caster);
             if (grimoire == null)
             {
                 Diag.Record("spell", "RiteRejected", caster, caster,

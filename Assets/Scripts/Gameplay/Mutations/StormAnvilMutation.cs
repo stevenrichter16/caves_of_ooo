@@ -80,25 +80,6 @@ namespace CavesOfOoo.Core
             return false;
         }
 
-        /// <summary>
-        /// Finds an inked grimoire in the caster's pack. A rite is cast
-        /// FROM the book, so a depleted or absent grimoire is a real
-        /// refusal.
-        /// </summary>
-        internal static GrimoireChargePart FindInkedGrimoire(Entity caster)
-        {
-            var inv = caster?.GetPart<InventoryPart>();
-            if (inv == null) return null;
-            for (int i = 0; i < inv.Objects.Count; i++)
-            {
-                var item = inv.Objects[i];
-                if (item == null) continue;
-                var charge = item.GetPart<GrimoireChargePart>();
-                if (charge != null && charge.HasCharge) return charge;
-            }
-            return null;
-        }
-
         public bool Cast(Zone zone, Cell sourceCell)
         {
             var caster = ParentEntity;
@@ -124,7 +105,7 @@ namespace CavesOfOoo.Core
                 return false;
             }
 
-            var grimoire = FindInkedGrimoire(caster);
+            var grimoire = GrimoireInk.FindInked(caster);
             if (grimoire == null)
             {
                 Diag.Record("spell", "RiteRejected", caster, caster,

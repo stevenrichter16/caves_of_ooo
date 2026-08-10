@@ -231,15 +231,23 @@ resonance-consuming** rite. Names are placeholders.
 - **Rite of Rendered Steam** — the only rite that *wants* two opposed statuses. Consumes Wet **and** Burning together for a steam burst: heavy damage in radius 2, Confused on all. This is the game's clearest "two statuses beat one" teaching moment.
 - **Rite of the Scalding Veil** — self-centred. Consumes Wet **on yourself** to become wreathed in steam: attackers take damage and are Confused. Turns a debuff you're suffering into an asset.
 
-### 7.3 Shattered Rime (Cold)
+### 7.3 Shattered Rime (Cold) — ✅ shipped SM9
 
 - **Rite of the Shattered Rime** — cone 3. Consumes Frozen for massive physical shatter damage; consumes Wet to Freeze first, *then* shatter — a one-cast two-step if you primed with water.
 - **Rite of the Still Heart** — single. Consumes Frozen to inflict Hibernating (long, breaks on damage). Removes an elite from a fight instead of killing it.
 
-### 7.4 Verdigris Bloom (Acid)
+### 7.4 Verdigris Bloom (Acid) — ✅ shipped SM9
 
 - **Rite of the Verdigris Bloom** — radius 2. Consumes Acidic for ShatterArmor on all; consumes Wet to *spread* Acidic to everything in radius instead. Armour-stripping setup for the party's physical damage.
 - **Rite of the Hollow Coin** — single. Consumes any three statuses of *any* kind for a flat execute-style burst. The universal cash-out for players who stacked without planning — deliberately less efficient than a matched rite, so matching still matters.
+
+### 7.5 Sundering Word / Bloodletter's Ledger — ✅ shipped SM9 (CoO-original)
+
+Not planned here; added in SM9 because the six-rite slate was otherwise
+all damage. See the SM9 implementation log for both.
+
+- **Rite of the Sundering Word** — radius 2, wildcard table. Spends marks on Broken + Weakened across everything caught. Barely hurts. Turns a dangerous pack into a survivable one.
+- **Rite of the Bloodletter's Ledger** — single, wildcard table. Deep Bleeding on the target and a heal for the caster, per mark spent. The only rite that gives something back — and it gives nothing when cast cold, so it can never be a rest button.
 
 ---
 
@@ -794,7 +802,14 @@ melting / not-burying / not-stacking / graceful null-factory, Cold Snap
 radius and caster exclusion, no-damage on both utility powers, diag
 reasons on every reject path. Live: all three register with correct
 modes and ranges, the factory is wired at boot, and `IceWall` spawns
-solid with an 8-turn lifespan. *Cannot verify without a human:* whether
+solid with an 8-turn lifespan. **Known consequence, not fixed here.** Six more actives lands on the
+already-noted hotbar overflow (22+ actives, 10 slots) and makes it
+sharper rather than causing it. These are rites, so they arrive on a
+found grimoire rather than a skill tree, and a player will rarely hold
+more than two or three at once — but the ceiling is real and still
+deferred.
+
+*Cannot verify without a human:* whether
 8 turns of ice is the right number, and whether Cold Snap's 6-turn
 hobble feels like tempo or like tedium.
 
@@ -938,3 +953,174 @@ whether arranging Wet+Burning is achievable often enough in practice to
 be worth a whole rite.
 
 Tests: 6189 → 6205 (+16).
+
+### SM9 — six world-found rites ✅
+
+**Request:** *"add a slew of new grimoires/rites to the game that are
+available randomly throughout the map in chests, containers, barrels,
+etc. these grimoires consume status effects and are very powerful."*
+
+Two halves, and the second half is the one with teeth. The first five
+rites (SM7–SM8) were **bought** — stocked on the Arcanist, Scribe, Pale
+Curator and Palimpsest Echo. These six are **found**, which changes what
+they are allowed to be. A rite you buy has to be priced; a rite you dig
+out of a sealed vault only has to be worth the trip.
+
+| Rite | Shape | Table | Slots | What the marks buy |
+|---|---|---|---|---|
+| **Shattered Rime** | cone 3 | Cold | 2 | untyped shatter + ShatterArmor |
+| **Still Heart** | single, 5 | Cold | 2 | Hibernating, 8 turns **per mark** |
+| **Verdigris Bloom** | radius 2 | Acid | 2 | ShatterArmor + Acidic on everything |
+| **Hollow Coin** | single, 4 | **Any** | 3 | flat untyped burst; Broken at 3 marks |
+| **Sundering Word** | radius 2 | **Any** | 2 | Broken + Weakened on everything |
+| **Bloodletter's Ledger** | single, 5 | **Any** | 2 | deep Bleeding **and heals the caster** |
+
+**"Very powerful" had to be paid for somewhere, so it is paid for in
+setup.** Every one of these carries a small base number — 2 to 6 — and
+gets its power entirely from the resonance multiplier. Cast cold into an
+unprepared enemy, the best of them does about as much as a dagger. Cast
+into a target you spent two turns priming, they are the hardest hits in
+the game. That is the whole design, and it is pinned by a matched pair
+of tests: `EveryRite_CastCold_IsNearlyWorthless` caps every rite at 10
+damage with nothing consumed, and `EveryRite_HitsHarderWhenFed` is its
+counter-check — without the second, "weak" would be indistinguishable
+from "broken."
+
+**A shared spine, because five longhand rites had already drifted.**
+`ConsumingRiteBase` owns targeting, the ink check, the resonance spend,
+the damage roll and the diag trail; a concrete rite declares six
+properties and overrides `ApplyPayoff`. It enforces two invariants for
+everyone rather than five times each:
+
+- **Ink is checked AFTER targets.** A rite that can do nothing must
+  never take a charge for it. This was already true in four of the five
+  earlier rites and is now structurally impossible to get wrong.
+- **Riders never land on the dead.** `ApplyPayoff` runs only for
+  survivors, so nothing walks away wearing a debuff it did not live
+  through.
+
+**The `Any` table is new content, not a special case in code.** §7.4
+promised Hollow Coin would consume "any three statuses of *any* kind",
+but the four existing tables are elemental — Burning appears on none of
+Electric/Cold/Acid, so a wildcard rite reading Electric would silently
+refuse to spend a burning target. Rather than branch in the rite, the
+fifth table went in `Resonance.json` listing all five resonant statuses.
+It pays **0.5 per mark against a matched table's 0.75**, so building
+around an element still beats stacking at random — pinned by
+`WildcardTable_PaysLessPerMarkThanAMatchedRite`, and the reason three
+rites can share it without obsoleting the elemental four.
+
+**Two rites answer problems the catalog didn't have an answer for.**
+Sundering Word and Bloodletter's Ledger are not in §7 — they were added
+because the six-rite slate was otherwise all damage. Sundering Word
+spends marks on Broken + Weakened across a radius and barely hurts;
+turning a dangerous pack into a survivable one is a different kind of
+power from killing it. Bloodletter's Ledger is the only rite that gives
+something back, healing the caster per mark spent — and
+`BloodletterLedger_CastCold_HealsNothing` exists specifically so it can
+never become a rest button between fights.
+
+**Scattered, not stocked.** 32 entries across 22 world container types —
+bookshelves, reliquaries, strongboxes, urns, crates, tomb vaults, cult
+caches, the ziggurat vault, the sealed vault, the alchemy shelf. Weighted by
+tier, so a T1 bookshelf might yield Shattered Rime and only a T3 sealed
+vault is likely to hold Hollow Coin. Each rite ended up with 5-6
+independent sources.
+
+`VillageGrimoireChest` was deliberately left OUT after the first run:
+`BiomeLootTableTests.GrimoireChest_StockedFromTable_SameThreeRites`
+asserts that chest holds exactly the three utility rites, and it is a
+designed village fixture rather than a random world container — never
+in scope for "randomly throughout the map". The three displaced entries
+were re-homed to CrateT2, UrnT2 and AlchemyShelfT2. Every rite has **at least two independent
+container sources**, asserted through the game's own `LootTableRegistry`
+rather than by grepping the JSON — with
+`ContainerNamesUsedByThoseAssertions_AreRealTables` as the counter-check,
+because a misspelled table name would make the coverage assertion pass
+while pointing at nothing.
+
+#### Verification-sweep corrections (logged before writing code)
+
+| Premise | Reality | Fix |
+|---|---|---|
+| `BleedingEffect(duration:)` | **No duration parameter.** Bleeding is indefinite; recovery is a Toughness save that eases by 1/turn | Marks scale `saveTarget` (14 + 4/mark) and `damageDice` (1d4 → 1d6) — the two knobs it actually has |
+| Shattered Rime deals Cold | `CombatSystem.cs:1181` — resistance 100 **zeroes** the hit, so a cold-immune target would absorb its own shattering | Untyped physical. Matches the fiction ("frozen flesh is brittle") and is the only version that works on an ice creature |
+| Hollow Coin can read Electric for "any status" | Electric table is {Wet, Electrified, Frozen} — Burning unreachable | New `Any` table in `Resonance.json` |
+
+The Bleeding one is the same trap the on-hit adversarial sweep caught
+(`OnHitEffectFactory.cs`, Magnitude-vs-DurationTurns). It compiled fine
+in my head and would not have compiled at all in Unity; the sweep caught
+it first, which is the entire argument for the sweep.
+
+#### Adversarial sweep (CLAUDE.md §Adversarial test sweep)
+
+Five taxonomy surfaces apply — state atomicity, cross-actor flows,
+stacking semantics, anti-exploit gates, boundary inputs — well past the
+two-surface trigger. `ConsumingRiteAdversarialTests.cs`, 21 tests:
+
+| Surface | Probed with |
+|---|---|
+| Boundary inputs | null zone; zero direction on a directional rite (and the counter-check that a radius rite must ACCEPT zero direction); caster with no inventory; empty book |
+| State atomicity | no-target cast leaves ink and bystander statuses untouched; an ink-less cast must not have eaten the target's setup first; one cast spends exactly one charge across six targets |
+| Anti-exploit | the Ledger farmed five times on a status-free target heals nothing; the Ledger cannot heal past maximum; a second cast on the same target is measurably weaker |
+| Cross-actor | two casters do not share a book; a radius rite never hits its own caster, riders included |
+| Stacking / mid-execution death | re-cast onto an already-debuffed target; a target killed by the damage gets no riders; one dying victim does not stop the rest of the radius resolving |
+| Diag contracts | a success emits `RiteCast` carrying `statusesConsumed` and `inkLeft`; a refusal emits no `RiteCast` at all |
+| Content integrity | six distinct mutation classes, six distinct command strings, and every declared element resolving to a table that actually resonates |
+
+The last three content-integrity tests exist because six near-identical
+blueprints and six near-identical classes are exactly where a
+copy-paste slip hides: a duplicated command string would make one rite
+permanently uncastable, and an element naming no table would make a rite
+permanently cold — powerful on paper, useless in play, and silent about
+it.
+
+**Honesty bound:** the sweep found 0 bugs beyond the two the per-feature
+run caught. That does not prove the rites are bug-free — adversarial
+tests are bounded by the bug classes the author imagined. Surfaces NOT
+probed: save/load round-tripping of a mid-cooldown rite, and multi-zone
+casting; neither has a code path distinct from the five earlier rites.
+
+#### Scope divergence from §7
+
+- **§7.3 Shattered Rime** planned "consumes Wet to Freeze first, *then*
+  shatter — a one-cast two-step." Shipped: Wet resonates on the Cold
+  table and multiplies directly. The two-step would need resonance to
+  apply an intermediate status mid-spend, which `ResonanceSystem` has no
+  path for; adding one for a single rite was not worth the coupling.
+  The player-visible result — soak, then shatter harder — is the same.
+- **§7.4 Verdigris Bloom** planned "consumes Wet to *spread* Acidic to
+  everything in radius instead." Shipped: the radius shape already hits
+  everything, and every hit target that spent a mark gets Acidic, so the
+  spread happens without a special Wet branch.
+- **Sundering Word** and **Bloodletter's Ledger** are CoO-original, not
+  from the §7 catalog. Classified per §4.2 as neither Qud-parity nor
+  plan-derived.
+
+#### Honesty bounds
+
+*Can verify (script-observable):* every rite capped at ≤10 damage cast
+cold; four rites measurably harder when fed a single Wet; ink spent on a
+cast and **not** spent on a miss, for all six; Still Heart producing
+Hibernating on a living target; Sundering Word applying Broken +
+Weakened across a radius; Verdigris Bloom applying ShatterArmor;
+Shattered Rime hitting both on-axis and off-axis targets and damaging a
+cold-immune creature; Verdigris Bloom being fully absorbed by acid
+immunity (the counter-check that untyped is an exception, not the house
+style); Hollow Coin damaging a target immune to all four elements and
+consuming Burning, which no other rite can reach; the wildcard table
+paying strictly less per mark than the matched one; Bloodletter's Ledger
+healing when fed and healing nothing when cold; all six grimoires
+spawning inked with a mutation class that resolves; each having ≥2 real
+container sources; ≥15 container types carrying at least one rite.
+
+*Cannot verify without a human:* whether the multiplier ceiling is
+actually reachable in a real fight without the enemy killing you during
+setup; whether finding a rite in a vault reads as a discovery or as
+clutter alongside the 20 grimoires that already exist; whether Hollow
+Coin's untyped burst is too safe an answer to hard enemies; whether the
+0.5-vs-0.75 wildcard penalty is enough to keep the elemental rites
+relevant. **None of these six have been exercised in Play mode** — the
+EditMode suite proves the mechanics, not the feel.
+
+Tests: 6291 → 6332 (+41: 20 feature, 21 adversarial). All green.
