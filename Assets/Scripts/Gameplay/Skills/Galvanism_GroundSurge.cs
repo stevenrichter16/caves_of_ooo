@@ -41,6 +41,10 @@ namespace CavesOfOoo.Skills
         /// already Wet — the soak-then-shock payoff.</summary>
         public const float ELECTRIFY_CHARGE = 1.0f;
 
+        /// <summary>Charge left in the ground (the coarse 0..2 tile
+        /// channel, not ElectrifiedEffect's float).</summary>
+        public const int GroundCharge = 1;
+
         public override ActivatedAbilitySpec DeclareActivatedAbility(Entity actor)
         {
             return new ActivatedAbilitySpec
@@ -69,6 +73,20 @@ namespace CavesOfOoo.Skills
             // Collect the whole line BEFORE touching anything. Pushing a
             // target mid-walk would move it into a cell the walk has not
             // reached yet and hit it a second time from one cast.
+            // PALIMPSEST P2 — the surge leaves charge in the ground it
+            // rolled across, not only in the bodies it hit. Written
+            // BEFORE the no-target check on purpose: a wave that hits
+            // nobody still crosses the floor, and a charged puddle with
+            // no one standing in it is exactly the setup this system
+            // exists to allow. (The first draft wrote this after the
+            // early return, so a miss charged nothing — caught by
+            // GroundSurge_ChargesTheGroundItRollsAcross.)
+            var lineCells = SkillLine.CollectCells(
+                ctx.Zone, actor, actorPos.x, actorPos.y, dx, dy, SURGE_RANGE);
+            for (int i = 0; i < lineCells.Count; i++)
+                ZoneTileStateSystem.AddCharge(ctx.Zone, lineCells[i].X, lineCells[i].Y,
+                    GroundCharge, actor, Name);
+
             bool blockedByWall;
             var targets = SkillLine.Collect(
                 ctx.Zone, actor, actorPos.x, actorPos.y, dx, dy, SURGE_RANGE,

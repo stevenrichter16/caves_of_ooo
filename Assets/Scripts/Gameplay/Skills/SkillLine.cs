@@ -40,6 +40,32 @@ namespace CavesOfOoo.Skills
         /// first. The walk stops at a solid cell and at the zone edge;
         /// <paramref name="actor"/> is never included.
         /// </summary>
+        /// <summary>
+        /// PALIMPSEST P2 — the CELLS a line passes through, using the
+        /// identical stop rules as <see cref="Collect"/>: the zone edge,
+        /// a null cell, or stone. Abilities that write to the ground
+        /// need coordinates, not occupants.
+        /// </summary>
+        internal static List<Point> CollectCells(
+            Zone zone, Entity actor, int startX, int startY,
+            int dx, int dy, int range)
+        {
+            var cells = new List<Point>();
+            if (zone == null || range <= 0 || (dx == 0 && dy == 0)) return cells;
+
+            int x = startX, y = startY;
+            for (int step = 0; step < range; step++)
+            {
+                x += dx; y += dy;
+                if (!zone.InBounds(x, y)) break;
+                var cell = zone.GetCell(x, y);
+                if (cell == null) break;
+                if (cell.IsSolid()) break;
+                cells.Add(new Point(x, y));
+            }
+            return cells;
+        }
+
         internal static List<Entity> Collect(
             Zone zone, Entity actor, int startX, int startY,
             int dx, int dy, int range)

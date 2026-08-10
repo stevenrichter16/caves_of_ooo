@@ -133,7 +133,7 @@ justification for a sparse store — was killed by exactly
 That is P2's job, and keeping P1 inert is what made it independently
 testable.
 
-### P2 — Abilities write to tiles (spec POC 2)
+### P2 — Abilities write to tiles (spec POC 2) ✅ SHIPPED (gameplay half)
 
 The spec's "Environmental Technique". Existing skills gain the ability
 to leave a mark:
@@ -146,6 +146,39 @@ to leave a mark:
 
 **POC test:** does leaving marks change where the player chooses to
 fight? Ship it and play it before building P3.
+
+**Shipped 2026-08-09 — the gameplay half.** `Zone.TileState` owns a
+layer; `ZoneTileStateSystem` is the only sanctioned write path so the
+`tile/TileWritten` diag fires uniformly; decay ticks from
+`InputHandler.EndTurnAndProcess`. Writes: **Jet Blast** → water where
+the target *lands* (position read back, since a push can be refused),
+**Ember Spit** → embers from the pre-damage cell (a target that dies
+still scorches the ground), **Ground Surge** → charge along the whole
+line, and **`Pyromancy_Oilmark`** — new, and the skill that finally
+makes `oil` reachable. 15 tests.
+
+**DEFERRED to P2b — rendering.** The player cannot yet *see* the marks,
+so the POC test above cannot actually be run. Both obvious approaches
+were verified to fail: `RenderPart.BackgroundColor` paints the bg
+tilemap at sortingOrder −1, which `EnvironmentSpriteRenderer.ClaimCell`
+covers with an opaque ground sprite at order 3; and a glyph override on
+the main tilemap is erased because `ResolveCell` resolves ground from
+the *blueprint name* before it reads the glyph. The working approach is
+a dedicated tilemap at **sortingOrder 5** — the only free slot below the
+popups, since `WorldCursorRenderer` holds 4.
+
+**DECISION — tile state is not persisted** (user, 2026-08-09). Saving it
+needs `FormatVersion` 4→5, and `SaveSystem.cs:133` is a strict-equality
+check with no migration path, so every existing save would stop loading.
+Marks decay in 2–8 turns, so the inconsistency is small against that
+cost. Revisit if P7's Scrape economy makes a tile worth more.
+
+**The tick cadence was the trap.** `TickEnd` fires once per **actor**,
+not per player turn — hooking it would have made a 6-turn coating
+evaporate in roughly one player turn in a crowded zone and last the full
+six in an empty one. Duration would have become a function of local
+population. `InputHandler.EndTurnAndProcess` is the per-player-turn
+funnel.
 
 ### P3 — Tile reactions (spec POC 3)
 

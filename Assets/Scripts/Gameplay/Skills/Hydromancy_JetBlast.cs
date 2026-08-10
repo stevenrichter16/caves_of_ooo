@@ -39,6 +39,15 @@ namespace CavesOfOoo.Skills
 
         public const int BLAST_PUSH_CELLS = 1;
 
+        /// <summary>Liquid written to the ground. Reuses the shipped
+        /// `water` LiquidDefinition rather than inventing an id.</summary>
+        public const string GroundLiquid = "water";
+
+        /// <summary>Turns the puddle lasts. Long enough to still be
+        /// there when a lightning follow-up comes off cooldown, which is
+        /// the entire tactical point of leaving it.</summary>
+        public const int GroundTurns = 6;
+
         public override ActivatedAbilitySpec DeclareActivatedAbility(Entity actor)
         {
             return new ActivatedAbilitySpec
@@ -70,6 +79,10 @@ namespace CavesOfOoo.Skills
             if (targets.Count == 0)
             {
                 EmitSkillRejectedDiag(ctx, "no_target");
+                // PALIMPSEST P2 — a miss is not a nothing. The water
+                // still lands, which is the whole point of writing to
+                // the world instead of only to creatures.
+                WetTheGround(ctx, actor, actorPos.x, actorPos.y, dx, dy);
                 MessageLog.Add(actor.GetDisplayName() + "'s jet blast splashes across bare ground.");
                 return;
             }
@@ -107,6 +120,18 @@ namespace CavesOfOoo.Skills
                     shoved++;
             }
 
+            // PALIMPSEST P2 — water lands where the target ENDS UP.
+            // Read each position back rather than computing it: the push
+            // above may have been refused for some of them.
+            for (int i = 0; i < targets.Count; i++)
+            {
+                var pos = ctx.Zone.GetEntityPosition(targets[i]);
+                if (pos.x < 0) continue;
+                ZoneTileStateSystem.WriteCoating(ctx.Zone, pos.x, pos.y,
+                    GroundLiquid, GroundTurns, actor, Name);
+            }
+            WetTheGround(ctx, actor, actorPos.x, actorPos.y, dx, dy);
+
             if (shoved == 0 && survivors > 0)
                 EmitSkillRejectedDiag(ctx, "push_blocked");
             else if (survivors == 0)
@@ -114,6 +139,21 @@ namespace CavesOfOoo.Skills
 
             MessageLog.Add(actor.GetDisplayName() + "'s jet blast drenches "
                 + soaked + " target" + (soaked == 1 ? "" : "s") + "!");
+        }
+
+        /// <summary>Lays water along the cone's centre line. A
+        /// simplification of the cone's full widening geometry — the
+        /// spray soaks what it passes over, not the entire fan — kept
+        /// deliberately cheap because P2 is about proving marks matter,
+        /// not about puddle shape.</summary>
+        private void WetTheGround(SkillEventContext ctx, Entity actor,
+            int fromX, int fromY, int dx, int dy)
+        {
+            var cells = SkillLine.CollectCells(
+                ctx.Zone, actor, fromX, fromY, dx, dy, BLAST_LENGTH);
+            for (int i = 0; i < cells.Count; i++)
+                ZoneTileStateSystem.WriteCoating(ctx.Zone, cells[i].X, cells[i].Y,
+                    GroundLiquid, GroundTurns, actor, Name);
         }
     }
 }

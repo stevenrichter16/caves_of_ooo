@@ -34,6 +34,11 @@ namespace CavesOfOoo.Skills
         /// effect.</summary>
         public const float SPIT_INTENSITY = 0.6f;
 
+        /// <summary>Residue left on the ground. A weak heat source in
+        /// its own right once P3's reactions exist.</summary>
+        public const string EmberResidue = "embers";
+        public const int EmberTurns = 4;
+
         public override ActivatedAbilitySpec DeclareActivatedAbility(Entity actor)
         {
             return new ActivatedAbilitySpec
@@ -73,6 +78,15 @@ namespace CavesOfOoo.Skills
 
             // FIRST body only. SkillLine returns nearest-first.
             var target = line[0];
+
+            // PALIMPSEST P2 — embers stay on the ground after the
+            // target is gone, and are what Oil ignites off in P3.
+            // Written from the PRE-damage cell: a target that dies still
+            // leaves a scorched tile behind it.
+            var mark = ctx.Zone.GetEntityPosition(target);
+            if (mark.x >= 0)
+                ZoneTileStateSystem.WriteResidue(ctx.Zone, mark.x, mark.y,
+                    EmberResidue, EmberTurns, actor, Name);
 
             var dmg = new Damage(SPIT_DAMAGE);
             dmg.AddAttribute("Fire");

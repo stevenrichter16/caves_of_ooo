@@ -870,6 +870,11 @@ namespace CavesOfOoo.Rendering
                 TurnManager.ForceYieldToPlayer();
             }
             MaterialSimSystem.TickMaterialEntities(CurrentZone);
+            // PALIMPSEST P2 — decay tile state once per PLAYER turn.
+            // Deliberately here and not on TickEnd, which fires once per
+            // ACTOR: that would make a coating's lifetime depend on how
+            // many creatures happen to share the zone.
+            ZoneTileStateSystem.OnPlayerTurnEnd(CurrentZone);
             // No `RequestZoneRedraw("Turn.Advance")` — the per-cell dirty
             // hooks (MovementSystem, CombatSystem) flag exactly the cells
             // that changed during the turn cycle. Player movement upgrades

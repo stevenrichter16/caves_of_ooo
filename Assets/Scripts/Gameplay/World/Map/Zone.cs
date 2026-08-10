@@ -83,6 +83,27 @@ namespace CavesOfOoo.Core
         /// time) and irrelevant to loaded zones.
         /// </summary>
         public readonly HashSet<(int x, int y)> GenReservedCells = new HashSet<(int x, int y)>();
+        /// <summary>
+        /// PALIMPSEST P2 — durable per-tile state (coatings, residues,
+        /// energy, clouds). Sparse: an untouched zone costs one empty
+        /// Dictionary against the 2000 Cells the constructor already
+        /// allocates.
+        ///
+        /// <para><b>NOT serialized</b> — like <c>GenReservedCells</c>
+        /// above. Persisting it would need SaveWriter.FormatVersion
+        /// 4→5, and SaveSystem.cs:133 is a strict-equality check with no
+        /// migration path, so every existing save would stop loading.
+        /// Tile state decays in 2–8 turns, so losing it across a save is
+        /// a small inconsistency against a large cost. Revisit if P7's
+        /// Scrape economy makes a tile worth more than a few turns.</para>
+        ///
+        /// <para>Ticked once per PLAYER turn by
+        /// <see cref="ZoneTileStateSystem"/> — deliberately NOT by
+        /// TickEnd, which fires once per ACTOR and would make a
+        /// coating's lifetime a function of how crowded the zone is.</para>
+        /// </summary>
+        public readonly ZoneTileState TileState = new ZoneTileState();
+
 
         public Zone(string zoneID = null)
         {
