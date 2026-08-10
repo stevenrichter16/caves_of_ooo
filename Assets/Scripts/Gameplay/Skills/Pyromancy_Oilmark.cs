@@ -89,6 +89,11 @@ namespace CavesOfOoo.Skills
             for (int i = 0; i < caught.Count; i++)
                 caught[i].ApplyEffect(new LiquidCoveredEffect(OilLiquid, 1), actor, ctx.Zone);
 
+            // P3 — resolve what the writes just created, now rather than
+            // at end of turn: lightning into a puddle must electrify it
+            // on the cast, or the rule reads as a bug.
+            ZoneTileStateSystem.ResolveAfterAbility(ctx.Zone, actor);
+
             MessageLog.Add(actor.GetDisplayName() + " lays a slick of oil across "
                 + cells.Count + " pace" + (cells.Count == 1 ? "" : "s") + ".");
         }

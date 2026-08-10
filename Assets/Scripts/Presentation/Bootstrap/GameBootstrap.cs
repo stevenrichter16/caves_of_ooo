@@ -228,6 +228,10 @@ namespace CavesOfOoo
                 // rite gets for spending a status. Loaded here so it is
                 // ready before any zone (and any caster) exists.
                 Core.ResonanceSystem.EnsureInitialized();
+                // PALIMPSEST P3 — tile reactions are data too.
+                Core.TileReactionSystem.EnsureInitialized();
+                if (!Core.TileReactionSystem.IsInitialized)
+                    Debug.LogWarning("[Bootstrap] Tile reaction table missing — tiles will not react.");
                 if (!Core.ResonanceSystem.IsInitialized)
                     Debug.LogWarning("[Bootstrap] Resonance table missing — rites will resonate with nothing.");
 

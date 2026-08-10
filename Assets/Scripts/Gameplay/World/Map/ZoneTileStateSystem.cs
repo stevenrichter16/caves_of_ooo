@@ -31,7 +31,25 @@ namespace CavesOfOoo.Core
         public static void OnPlayerTurnEnd(Zone zone)
         {
             if (zone == null) return;
+
+            // P3: react BEFORE decaying. A coating on its last turn
+            // should still get its chance — otherwise a puddle you
+            // charged on the turn it expired would silently do nothing.
+            TileReactionSystem.ResolveZone(zone);
+
             zone.TileState.Tick();
+        }
+
+        /// <summary>
+        /// Resolves reactions immediately after an ability finishes
+        /// writing. Without this, casting lightning into a puddle would
+        /// not electrify it until the END of the turn, which reads as a
+        /// bug rather than a rule.
+        /// </summary>
+        public static void ResolveAfterAbility(Zone zone, Entity caster = null)
+        {
+            if (zone == null) return;
+            TileReactionSystem.ResolveZone(zone, caster);
         }
 
         /// <summary>

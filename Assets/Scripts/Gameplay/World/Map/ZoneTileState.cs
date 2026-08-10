@@ -315,6 +315,19 @@ namespace CavesOfOoo.Core
                 _states.Remove(k);
         }
 
+        /// <summary>
+        /// Appends every written tile's packed key into
+        /// <paramref name="into"/>. PALIMPSEST P3 uses this to seed a
+        /// reaction sweep: the written set IS the interesting set, which
+        /// is the payoff of storing state sparsely rather than scanning
+        /// 2000 cells looking for something to react.
+        /// </summary>
+        public void CollectWrittenKeys(List<int> into)
+        {
+            if (into == null) return;
+            foreach (var key in _states.Keys) into.Add(key);
+        }
+
         // ── Decay ────────────────────────────────────────────────
 
         /// <summary>

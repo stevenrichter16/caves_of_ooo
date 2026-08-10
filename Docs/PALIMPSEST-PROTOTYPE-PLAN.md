@@ -207,7 +207,7 @@ six in an empty one. Duration would have become a function of local
 population. `InputHandler.EndTurnAndProcess` is the per-player-turn
 funnel.
 
-### P3 — Tile reactions (spec POC 3)
+### P3 — Tile reactions (spec POC 3) ✅ SHIPPED
 
 Data-driven, in the shape `MaterialReactions/` already uses. Five to
 start: **Electrify** (Water+Charge), **Steam** (Water+Heat), **Freeze**
@@ -219,6 +219,47 @@ Also from spec §12/§26/§27, and non-negotiable: **energy cancellation**
 the guards a chain reaction can hang the turn.
 
 **POC test:** five rules producing situations players set up on purpose.
+
+**Shipped 2026-08-09.** Six reactions in
+`Content/Data/TileReactions/Reactions.json`, resolved by
+`TileReactionSystem`. **No ability contains combo logic** — Oilmark
+knows nothing about fire, Ember Spit knows nothing about oil, and the
+data decides what their combination means. Live-verified: Oilmark writes
+oil, Ember Spit writes embers on the same tile, and the pair ignites for
+8 fire damage plus smoke, with neither ability aware of the other.
+
+| Reaction | Inputs | Result |
+|---|---|---|
+| `ignite_oil_heat` / `_embers` | oil + heat *or* embers | 8 Fire, embers, smoke; oil consumed |
+| `electrify_water` | water + charge | 5 Electric + Electrified; **water survives**, charge spent |
+| `steam` | water + heat | water consumed → steam cloud |
+| `freeze_water` | water + cold | → ice, occupants Frozen |
+| `melt_ice` | ice + heat | → water (reversible, so experimenting is safe) |
+
+**Water survives being charged.** A puddle is *terrain*, not a one-shot:
+it has to still be there to charge again, or preparing a tile would not
+be worth doing.
+
+**Resolution runs twice**: immediately after an ability writes (so
+lightning into a puddle electrifies *on the cast*, not at end of turn —
+otherwise the rule reads as a bug), and once per player turn *before*
+decay, so a coating on its last turn still gets its chance.
+
+**Energy cancellation turns out to be a loop guard.** The obvious
+runaway is ice+heat→water, water+cold→ice oscillating forever. It is
+structurally impossible: a tile cannot hold both heat and cold, so the
+two halves of the loop can never both be available. Discovered by a test
+that was *passing for the wrong reason* — see the self-review.
+
+**Explicit guards on top:** the same reaction cannot fire twice on a
+tile within one action, generations cap at 4, and total reactions per
+action cap at 32. Every refusal emits `ReactionSuppressed` with a
+reason, because a chain that silently stops is indistinguishable from
+one that never started.
+
+**`ice` is a tile-only coating** with no `LiquidDefinition` — it is
+terrain, not a liquid. Worth stating so a future reader does not go
+looking for the missing file.
 
 ### P4 — Propagation (spec POC 4)
 

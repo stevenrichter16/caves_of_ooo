@@ -137,6 +137,11 @@ namespace CavesOfOoo.Skills
             else if (survivors == 0)
                 EmitSkillRejectedDiag(ctx, "all_targets_died");
 
+            // P3 — resolve what the writes just created, now rather than
+            // at end of turn: lightning into a puddle must electrify it
+            // on the cast, or the rule reads as a bug.
+            ZoneTileStateSystem.ResolveAfterAbility(ctx.Zone, actor);
+
             MessageLog.Add(actor.GetDisplayName() + "'s jet blast drenches "
                 + soaked + " target" + (soaked == 1 ? "" : "s") + "!");
         }

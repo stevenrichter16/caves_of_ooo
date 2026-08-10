@@ -104,6 +104,11 @@ namespace CavesOfOoo.Skills
                 target, SPIT_INTENSITY, actor, ctx.Zone, ctx.Rng);
             if (!lit) EmitSkillRejectedDiag(ctx, "target_too_wet");
 
+            // P3 — resolve what the writes just created, now rather than
+            // at end of turn: lightning into a puddle must electrify it
+            // on the cast, or the rule reads as a bug.
+            ZoneTileStateSystem.ResolveAfterAbility(ctx.Zone, actor);
+
             MessageLog.Add(actor.GetDisplayName() + "'s ember spatters across "
                 + target.GetDisplayName() + (lit ? ", and catches!" : "."));
         }
