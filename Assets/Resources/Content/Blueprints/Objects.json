@@ -25158,6 +25158,69 @@
       ],
       "Stats": [],
       "Tags": []
+    },
+    {
+      "Name": "FulminationGrimoire",
+      "Inherits": "GrimoireCopy",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "Fulmination"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "+"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&Y"
+            }
+          ]
+        },
+        {
+          "Name": "Grimoire",
+          "Params": [
+            {
+              "Key": "MutationClassName",
+              "Value": "FulminationMutation"
+            },
+            {
+              "Key": "MutationLevel",
+              "Value": "1"
+            },
+            {
+              "Key": "LearnMessage",
+              "Value": "The page holds a single instruction: put the charge down, and let it find its own way."
+            },
+            {
+              "Key": "AlreadyKnownMessage",
+              "Value": "You already know fulmination."
+            }
+          ]
+        },
+        {
+          "Name": "GrimoireCharge",
+          "Params": [
+            {
+              "Key": "Charges",
+              "Value": "10"
+            },
+            {
+              "Key": "MaxCharges",
+              "Value": "10"
+            },
+            {
+              "Key": "ChargesPerVial",
+              "Value": "5"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
     }
   ]
 }

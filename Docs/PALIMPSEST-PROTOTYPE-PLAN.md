@@ -304,7 +304,7 @@ electricity would consume a room before a player could respond. A dry
 tile breaks a circuit and a firebreak stops a burn; both are things a
 player can arrange.
 
-### P5 — Rites read tiles
+### P5 — Rites read tiles ✅ SHIPPED (core)
 
 The payoff. Extend `ResonanceSystem` to accept a tile as a resonance
 source, then rewrite rites in the spec's idiom: a rite **writes Charge 2
@@ -313,6 +313,32 @@ water, a charged grate, or nothing. Folds in old SM10's two rites.
 
 **POC test:** does one rite produce different outcomes in different
 rooms without the rite knowing why?
+
+**Answered, live, 2026-08-09 — yes.** `FulminationMutation` consumes
+the target's water, deals a small hit, writes **Charge 2 to the tile**,
+and stops. Same rite, same cast, three rooms:
+
+| Room | Bystander |
+|---|---|
+| dry stone | 300 → **300** — the charge has nowhere to run |
+| flooded (connected puddle) | 300 → **290** — the water carried it |
+| metal grating + a puddle 4 tiles out | 300 → **290** — metal carried it further |
+
+**The rite contains no knowledge of any of that**, and a test enforces
+it: `TheRiteItself_ContainsNoKnowledgeOfAnyOfThis` greps the source and
+fails if `HasCoating`, `IsConductive` or the string `"water"` ever
+appears in it. If a future edit makes the rite ask what it is standing
+on, the world stops owning the consequences and the architecture is
+gone — so that has to be a deliberate act, not a drift.
+
+Nothing on a dry floor is a **correct outcome**, not a failure. That is
+what makes the flooded room a decision rather than a bonus.
+
+**Not done in P5:** old SM10's Shattered Rime and Verdigris Bloom
+families, and a general tile-reading path in `ResonanceSystem` (rites
+still resonate off creature statuses only). Fulmination proves the
+write-and-walk-away idiom, which was the phase's actual question; the
+extra rites are content that can follow it.
 
 ### P6 — Terrain creation (spec POC 5)
 
