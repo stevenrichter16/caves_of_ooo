@@ -124,6 +124,7 @@ namespace CavesOfOoo.Core
             var pipeline = ZoneGenerationPipeline.CreateCavePipeline(PopulationTable.GetBiomeTable(BiomeType.Cave, tier));
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
             pipeline.AddBuilder(new LandmarkBuilder(BiomeType.Cave, tier));
+            pipeline.AddBuilder(new HazardTerrainBuilder(BiomeType.Cave));
             pipeline.AddBuilder(new StartingNeighborhoodBuilder());
             // LOOT OVERHAUL SM6 — every zone type gets containers now.
             pipeline.AddBuilder(new ContainerBuilder(BiomeType.Cave, tier,
@@ -163,6 +164,7 @@ namespace CavesOfOoo.Core
             int undergroundTier = System.Math.Min(depth / 3 + 1, 8);
             pipeline.AddBuilder(new LandmarkBuilder(BiomeType.Cave,
                 undergroundTier, StampCatalog.Underground(depth)));
+            pipeline.AddBuilder(new HazardTerrainBuilder(BiomeType.Cave, underground: true));
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.UndergroundTier(depth)));
             pipeline.AddBuilder(new ContainerBuilder(BiomeType.Cave, undergroundTier,
                 ContainerPlacementService.ZoneKind.Underground));
@@ -176,6 +178,7 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
             pipeline.AddBuilder(new LandmarkBuilder(BiomeType.Desert, tier));
+            pipeline.AddBuilder(new HazardTerrainBuilder(BiomeType.Desert));
             pipeline.AddBuilder(new ContainerBuilder(BiomeType.Desert, tier,
                 ContainerPlacementService.ZoneKind.Wilderness));
             pipeline.AddBuilder(new StartingNeighborhoodBuilder());
@@ -191,6 +194,7 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
             pipeline.AddBuilder(new LandmarkBuilder(BiomeType.Jungle, tier));
+            pipeline.AddBuilder(new HazardTerrainBuilder(BiomeType.Jungle));
             pipeline.AddBuilder(new ContainerBuilder(BiomeType.Jungle, tier,
                 ContainerPlacementService.ZoneKind.Wilderness));
             pipeline.AddBuilder(new StartingNeighborhoodBuilder());
@@ -206,6 +210,7 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new ConnectivityBuilder());
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
             pipeline.AddBuilder(new LandmarkBuilder(BiomeType.Ruins, tier));
+            pipeline.AddBuilder(new HazardTerrainBuilder(BiomeType.Ruins));
             pipeline.AddBuilder(new ContainerBuilder(BiomeType.Ruins, tier,
                 ContainerPlacementService.ZoneKind.Wilderness));
             pipeline.AddBuilder(new StartingNeighborhoodBuilder());
