@@ -106,11 +106,20 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 bool foodOnly = preview.Kind == BrewOutcomeKind.Brew
                     && string.Equals(preview.Form, "Food", StringComparison.OrdinalIgnoreCase);
 
-                if (!foodOnly && !AlchemyStillPart.IsNearStill(context.Actor, context.Zone))
+                // CRAFTING-FROM-THE-PACK C2: a single brew can be mixed
+                // anywhere. Food-only mixes already worked in the field
+                // before this change — that exception is now the rule,
+                // and the still's remaining job is BATCHES, where you
+                // genuinely need vessels and a heat source you can leave
+                // running. `foodOnly` stays in the signature because a
+                // food batch is still legal in the field: nobody needs a
+                // still to make three sandwiches.
+                if (!foodOnly && _requestedCount > 1
+                    && !AlchemyStillPart.IsNearStill(context.Actor, context.Zone))
                 {
                     return InventoryValidationResult.Invalid(
                         InventoryValidationErrorCode.BlockedByRule,
-                        "This mix needs an alchemy still. Only simple foods can be brewed in the field.");
+                        "Brewing a batch needs an alchemy still. One flask, you can manage here.");
                 }
             }
 

@@ -365,22 +365,51 @@ namespace CavesOfOoo.Core
         ///   OnHitEffectsRaw   = non-empty quirks joined with ';'
         ///   DisplayName       = haft + binding + blade name fragments
         /// </summary>
-        private static void ApplyComponentStats(
-            Entity weapon,
+        /// <summary>
+        /// Pure, read-only: what this blade/haft/binding WOULD become.
+        /// Consumes nothing, creates nothing, logs nothing — the Crafting
+        /// panel recomputes it on every selection change.
+        ///
+        /// <para>This is the single source of the combination math (§7.1
+        /// L1). <see cref="ApplyComponentStats"/> calls it and copies the
+        /// answer onto the weapon, so preview and product cannot drift.
+        /// Any component may be null; the result is then marked
+        /// incomplete and names what is missing.</para>
+        /// </summary>
+        public static ForgePreview PreviewForge(
             WeaponComponentPart blade,
             WeaponComponentPart haft,
             WeaponComponentPart binding)
         {
-            MeleeWeaponPart melee = weapon.GetPart<MeleeWeaponPart>();
-            if (melee == null)
+            var preview = new ForgePreview
             {
-                melee = new MeleeWeaponPart();
-                weapon.AddPart(melee);
+                Attributes = string.Empty,
+                OnHitEffectsRaw = string.Empty,
+                DisplayName = string.Empty,
+                BaseDamage = string.Empty,
+                Missing = string.Empty,
+                MaxStrengthBonus = -1,
+            };
+
+            // Name the gaps before doing any math — the panel shows this
+            // while the player is still assembling.
+            var missing = new List<string>(3);
+            if (blade == null) missing.Add("a blade");
+            if (haft == null) missing.Add("a haft");
+            if (binding == null) missing.Add("a binding");
+            if (missing.Count > 0)
+            {
+                preview.IsComplete = false;
+                preview.Missing = JoinWithAnd(missing);
+                return preview;
             }
+
+            preview.IsComplete = true;
 
             WeaponComponentPart[] parts = { blade, haft, binding };
 
-            melee.BaseDamage = string.IsNullOrWhiteSpace(blade.BaseDamage) ? "1d2" : blade.BaseDamage;
+            preview.BaseDamage = string.IsNullOrWhiteSpace(blade.BaseDamage)
+                ? "1d2" : blade.BaseDamage;
 
             int pen = 0, hit = 0, maxStr = -1;
             var attributes = new List<string>();
@@ -423,22 +452,66 @@ namespace CavesOfOoo.Core
                 }
             }
 
-            melee.PenBonus = pen;
-            melee.HitBonus = hit;
-            melee.MaxStrengthBonus = maxStr;
-            melee.Attributes = string.Join(" ", attributes);
-            melee.OnHitEffectsRaw = quirks.ToString();
+            preview.PenBonus = pen;
+            preview.HitBonus = hit;
+            preview.MaxStrengthBonus = maxStr;
+            preview.Attributes = string.Join(" ", attributes);
+            preview.OnHitEffectsRaw = quirks.ToString();
+
+            var nameParts = new List<string>(3);
+            if (!string.IsNullOrWhiteSpace(haft.NameFragment)) nameParts.Add(haft.NameFragment.Trim());
+            if (!string.IsNullOrWhiteSpace(binding.NameFragment)) nameParts.Add(binding.NameFragment.Trim());
+            if (!string.IsNullOrWhiteSpace(blade.NameFragment)) nameParts.Add(blade.NameFragment.Trim());
+            preview.DisplayName = nameParts.Count > 0 ? string.Join(" ", nameParts) : string.Empty;
+
+            return preview;
+        }
+
+        /// <summary>"a haft" / "a haft and a binding" / "a blade, a haft and a binding".</summary>
+        private static string JoinWithAnd(List<string> items)
+        {
+            if (items.Count == 0) return string.Empty;
+            if (items.Count == 1) return items[0];
+            var sb = new StringBuilder();
+            for (int i = 0; i < items.Count - 1; i++)
+            {
+                if (i > 0) sb.Append(", ");
+                sb.Append(items[i]);
+            }
+            sb.Append(" and ").Append(items[items.Count - 1]);
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Writes <see cref="PreviewForge"/>'s answer onto the weapon.
+        /// Deliberately contains no math of its own — see ForgePreview's
+        /// anti-drift note.
+        /// </summary>
+        private static void ApplyComponentStats(
+            Entity weapon,
+            WeaponComponentPart blade,
+            WeaponComponentPart haft,
+            WeaponComponentPart binding)
+        {
+            ForgePreview preview = PreviewForge(blade, haft, binding);
+
+            MeleeWeaponPart melee = weapon.GetPart<MeleeWeaponPart>();
+            if (melee == null)
+            {
+                melee = new MeleeWeaponPart();
+                weapon.AddPart(melee);
+            }
+
+            melee.BaseDamage = preview.BaseDamage;
+            melee.PenBonus = preview.PenBonus;
+            melee.HitBonus = preview.HitBonus;
+            melee.MaxStrengthBonus = preview.MaxStrengthBonus;
+            melee.Attributes = preview.Attributes;
+            melee.OnHitEffectsRaw = preview.OnHitEffectsRaw;
 
             RenderPart render = weapon.GetPart<RenderPart>();
-            if (render != null)
-            {
-                var nameParts = new List<string>(3);
-                if (!string.IsNullOrWhiteSpace(haft.NameFragment)) nameParts.Add(haft.NameFragment.Trim());
-                if (!string.IsNullOrWhiteSpace(binding.NameFragment)) nameParts.Add(binding.NameFragment.Trim());
-                if (!string.IsNullOrWhiteSpace(blade.NameFragment)) nameParts.Add(blade.NameFragment.Trim());
-                if (nameParts.Count > 0)
-                    render.DisplayName = string.Join(" ", nameParts);
-            }
+            if (render != null && !string.IsNullOrEmpty(preview.DisplayName))
+                render.DisplayName = preview.DisplayName;
         }
 
         private static WeaponComponentPart InstantiateComponentPart(EntityFactory factory, string blueprintName)

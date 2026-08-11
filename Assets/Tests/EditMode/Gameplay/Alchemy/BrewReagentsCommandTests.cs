@@ -161,7 +161,13 @@ namespace CavesOfOoo.Tests
         private static InventoryCommandResult Run(
             Entity crafter, EntityFactory factory, Zone zone, params Entity[] reagents)
         {
-            var command = new BrewReagentsCommand(new List<Entity>(reagents), factory);
+            return RunCount(crafter, factory, zone, 1, reagents);
+        }
+
+        private static InventoryCommandResult RunCount(
+            Entity crafter, EntityFactory factory, Zone zone, int count, params Entity[] reagents)
+        {
+            var command = new BrewReagentsCommand(new List<Entity>(reagents), factory, count);
             return InventorySystem.ExecuteCommand(command, crafter, zone);
         }
 
@@ -196,8 +202,12 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void NoStill_NonFoodBrew_Rejected_NothingConsumed()
+        public void NoStill_SingleNonFoodBrew_MixedFromThePack()
         {
+            // CONTRACT CHANGED (CRAFTING-FROM-THE-PACK C2): one flask can
+            // be mixed anywhere. Food-only mixes were already legal in
+            // the field before this; that exception is now the rule. The
+            // batch counter-check below carries the still requirement.
             var factory = CreateFactory();
             var crafter = CreateCrafter();
             var moss = GiveItem(crafter, factory, "FireMoss");
@@ -206,7 +216,27 @@ namespace CavesOfOoo.Tests
 
             var result = Run(crafter, factory, zone, moss, oil);
 
-            Assert.IsFalse(result.Success);
+            Assert.IsTrue(result.Success, result.ErrorMessage);
+            Assert.IsFalse(crafter.GetPart<InventoryPart>().Contains(moss),
+                "the reagents went into the flask");
+            Assert.IsFalse(crafter.GetPart<InventoryPart>().Contains(oil));
+        }
+
+        [Test]
+        public void NoStill_BatchBrew_StillRejected_NothingConsumed()
+        {
+            // The counter-check that keeps C2 honest: ungating one flask
+            // must NOT ungate batches, or every still in the world
+            // becomes scenery.
+            var factory = CreateFactory();
+            var crafter = CreateCrafter();
+            var moss = GiveItem(crafter, factory, "FireMoss");
+            var oil = GiveItem(crafter, factory, "LampOil");
+            var zone = MakeZone(crafter, factory); // no still
+
+            var result = RunCount(crafter, factory, zone, 3, moss, oil);
+
+            Assert.IsFalse(result.Success, "a batch away from a still is refused");
             StringAssert.Contains("still", result.ErrorMessage);
             Assert.IsTrue(crafter.GetPart<InventoryPart>().Contains(moss),
                 "a validation rejection must consume nothing.");
@@ -214,16 +244,18 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void FarStill_TwoCellsAway_Rejected()
+        public void FarStill_TwoCellsAway_DoesNotCountForABatch()
         {
             // Counter-check on the 3×3 box: distance 2 is NOT adjacent.
+            // Expressed as a BATCH now, since that is the only thing the
+            // adjacency still gates after C2.
             var factory = CreateFactory();
             var crafter = CreateCrafter();
             var moss = GiveItem(crafter, factory, "FireMoss");
             var oil = GiveItem(crafter, factory, "LampOil");
             var zone = MakeZone(crafter, factory, stillDx: 2, stillDy: 0);
 
-            Assert.IsFalse(Run(crafter, factory, zone, moss, oil).Success);
+            Assert.IsFalse(RunCount(crafter, factory, zone, 3, moss, oil).Success);
         }
 
         [Test]

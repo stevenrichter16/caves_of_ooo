@@ -170,10 +170,13 @@ namespace CavesOfOoo.Tests.Gameplay.Weaponcraft
         }
 
         [Test]
-        public void Forge_AwayFromForge_RejectedAndNothingConsumed()
+        public void Forge_AwayFromForge_MakesOneWeaponFromThePack()
         {
-            // Counter-check: no forge in the zone → legible rejection and the
-            // components stay exactly where they were.
+            // CONTRACT CHANGED (CRAFTING-FROM-THE-PACK C2): a single
+            // weapon can be assembled anywhere — the components are in
+            // your hands. This test previously asserted the opposite;
+            // the batch counter-check below is what now carries the
+            // forge requirement.
             var factory = CreateFactory();
             var smith = CreateSmith();
             var blade = GiveItem(smith, factory, "SteelBlade");
@@ -184,7 +187,33 @@ namespace CavesOfOoo.Tests.Gameplay.Weaponcraft
             var result = InventorySystem.ExecuteCommand(
                 new ForgeWeaponCommand(blade, haft, binding, factory), smith, zone);
 
-            Assert.IsFalse(result.Success);
+            Assert.IsTrue(result.Success, result.ErrorMessage);
+            Assert.IsFalse(Carried(smith).Contains(blade), "blade consumed");
+            Assert.IsFalse(Carried(smith).Contains(haft), "haft consumed");
+            Assert.IsFalse(Carried(smith).Contains(binding), "binding consumed");
+            Assert.IsNotNull(Carried(smith).Find(e => e.HasPart<WeaponAssemblyPart>()),
+                "and a weapon came out of it");
+        }
+
+        [Test]
+        public void ForgeBatch_AwayFromForge_StillRejected_AndNothingConsumed()
+        {
+            // The counter-check that keeps C2 honest: ungating a single
+            // craft must NOT ungate batches, or every forge in the world
+            // becomes scenery.
+            var factory = CreateFactory();
+            var smith = CreateSmith();
+            var blade = GiveItem(smith, factory, "SteelBlade");
+            var haft = GiveItem(smith, factory, "OakHaft");
+            var binding = GiveItem(smith, factory, "LeatherBinding");
+            var zone = MakeZone(smith, factory, withForge: false);
+
+            var result = InventorySystem.ExecuteCommand(
+                new ForgeWeaponCommand(blade, haft, binding, factory, count: 3), smith, zone);
+
+            Assert.IsFalse(result.Success, "a batch away from a forge is refused");
+            StringAssert.Contains("forge", result.ErrorMessage ?? "",
+                "and the refusal names what is missing");
             Assert.IsTrue(Carried(smith).Contains(blade), "blade untouched");
             Assert.IsTrue(Carried(smith).Contains(haft), "haft untouched");
             Assert.IsTrue(Carried(smith).Contains(binding), "binding untouched");
@@ -193,7 +222,7 @@ namespace CavesOfOoo.Tests.Gameplay.Weaponcraft
         }
 
         [Test]
-        public void Forge_NullZone_RejectedLegiblyNotCrash()
+        public void Forge_NullZone_ForgesFromThePackWithoutCrashing()
         {
             var factory = CreateFactory();
             var smith = CreateSmith();
@@ -201,10 +230,14 @@ namespace CavesOfOoo.Tests.Gameplay.Weaponcraft
             var haft = GiveItem(smith, factory, "OakHaft");
             var binding = GiveItem(smith, factory, "LeatherBinding");
 
-            var result = InventorySystem.ExecuteCommand(
-                new ForgeWeaponCommand(blade, haft, binding, factory), smith, null);
+            InventoryCommandResult result = null;
+            Assert.DoesNotThrow(() => result = InventorySystem.ExecuteCommand(
+                new ForgeWeaponCommand(blade, haft, binding, factory), smith, null));
 
-            Assert.IsFalse(result.Success, "no zone = not near a forge, never a crash");
+            // A pack craft does not consult the zone at all, so a null
+            // one is simply irrelevant rather than a rejection. The
+            // no-crash guarantee is the part that still matters.
+            Assert.IsTrue(result.Success, result.ErrorMessage);
         }
 
         [Test]

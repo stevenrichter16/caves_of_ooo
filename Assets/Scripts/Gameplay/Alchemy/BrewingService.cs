@@ -349,7 +349,102 @@ namespace CavesOfOoo.Core
 
             RenderPart render = brew.GetPart<RenderPart>();
             if (render != null && nameParts.Count > 0)
-                render.DisplayName = string.Join(" & ", nameParts) + " " + FormNoun(result.Form);
+                render.DisplayName = ComposeBrewName(result);
+        }
+
+        /// <summary>
+        /// Pure, read-only: what this mix WOULD brew into. Consumes
+        /// nothing, creates nothing, logs nothing — the Crafting panel
+        /// recomputes it on every selection change
+        /// (Docs/CRAFTING-FROM-THE-PACK.md §C1).
+        ///
+        /// <para>This is the change that stops alchemy being a slot
+        /// machine: the player sees the resolved effects and form BEFORE
+        /// the reagents are gone.</para>
+        ///
+        /// <para>Naming routes through <see cref="ComposeBrewName"/>, the
+        /// same helper the real brew stamps on the item, so preview and
+        /// product cannot disagree about what the thing is called.</para>
+        /// </summary>
+        public static BrewPreview PreviewBrew(IReadOnlyList<Entity> reagentItems)
+        {
+            var preview = new BrewPreview
+            {
+                Reason = string.Empty,
+                DisplayName = string.Empty,
+                Form = string.Empty,
+                Properties = string.Empty,
+                Effects = System.Array.Empty<BrewPropertyAmount>(),
+            };
+
+            if (reagentItems == null || reagentItems.Count == 0)
+            {
+                preview.Reason = "Pick reagents to see what they make.";
+                return preview;
+            }
+
+            var propertyLists = new List<IReadOnlyList<BrewPropertyAmount>>(reagentItems.Count);
+            for (int i = 0; i < reagentItems.Count; i++)
+            {
+                var reagent = reagentItems[i]?.GetPart<ReagentPart>();
+                if (reagent == null)
+                {
+                    preview.Reason = (reagentItems[i]?.GetDisplayName() ?? "That")
+                        + " is not a reagent.";
+                    return preview;
+                }
+
+                propertyLists.Add(reagent.GetProperties());
+            }
+
+            BrewResult result = BrewResolver.Resolve(propertyLists);
+            if (result == null || !result.IsBrew)
+            {
+                preview.Reason = string.IsNullOrEmpty(result?.Reason)
+                    ? "These reagents make nothing." : result.Reason;
+                return preview;
+            }
+
+            preview.IsValid = true;
+            preview.Form = result.Form;
+            preview.DisplayName = ComposeBrewName(result);
+
+            var effects = new List<BrewPropertyAmount>(result.Effects.Count);
+            var flat = new StringBuilder();
+            for (int i = 0; i < result.Effects.Count; i++)
+            {
+                BrewEffect effect = result.Effects[i];
+                int potency = Math.Max(1, effect.Potency);
+                effects.Add(new BrewPropertyAmount(effect.Effect, potency));
+                if (flat.Length > 0) flat.Append(' ');
+                flat.Append(effect.Effect).Append(':').Append(potency);
+            }
+
+            preview.Effects = effects;
+            preview.Properties = flat.ToString();
+            return preview;
+        }
+
+        /// <summary>
+        /// The brew's display name, derived from its resolved effects.
+        /// Shared by <see cref="PreviewBrew"/> and the real brew so the
+        /// two cannot drift.
+        /// </summary>
+        private static string ComposeBrewName(BrewResult result)
+        {
+            var nameParts = new List<string>(result.Effects.Count);
+            for (int i = 0; i < result.Effects.Count; i++)
+            {
+                BrewEffect effect = result.Effects[i];
+                nameParts.Add(
+                    string.Equals(effect.Effect, HealingEffectName, StringComparison.OrdinalIgnoreCase)
+                        ? "mending"
+                        : effect.Effect.ToLowerInvariant());
+            }
+
+            return nameParts.Count > 0
+                ? string.Join(" & ", nameParts) + " " + FormNoun(result.Form)
+                : string.Empty;
         }
 
         private static string FormNoun(string form)

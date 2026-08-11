@@ -77,11 +77,18 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Requested forge count must be positive.");
             }
 
-            if (!ForgePart.IsNearForge(context.Actor, context.Zone))
+            // CRAFTING-FROM-THE-PACK C2: a single weapon can be assembled
+            // anywhere — the components are in your hands and the player
+            // asked to craft from the menu. A forge is what lets you work
+            // a BATCH: repeat heats, a fixed anvil, somewhere to put the
+            // finished ones down. That keeps every forge already placed
+            // in the world worth walking to without gating the ordinary
+            // case behind furniture.
+            if (_requestedCount > 1 && !ForgePart.IsNearForge(context.Actor, context.Zone))
             {
                 return InventoryValidationResult.Invalid(
                     InventoryValidationErrorCode.BlockedByRule,
-                    "Weapons are forged at a tinker's forge.");
+                    "Forging a batch needs a tinker's forge. One at a time, you can manage here.");
             }
 
             return InventoryValidationResult.Valid();

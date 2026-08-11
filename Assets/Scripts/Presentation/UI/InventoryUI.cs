@@ -17,7 +17,7 @@ namespace CavesOfOoo.Rendering
     /// Equipment/Inventory preserve the paperdoll + list layout.
     /// Tinkering uses a Qud-inspired build/mod split with recipe list + bit locker panel.
     /// </summary>
-    public class InventoryUI : MonoBehaviour
+    public partial class InventoryUI : MonoBehaviour
     {
         public Tilemap Tilemap;
         public Entity PlayerEntity;
@@ -39,6 +39,7 @@ namespace CavesOfOoo.Rendering
         private const int PANEL_INVENTORY = 1;
         private const int PANEL_TINKERING = 2;
         private const int PANEL_ABILITIES = 3;
+        private const int PANEL_CRAFTING = 4;
 
         // Abilities tab layout
         private const int ABILITIES_INFO_X = 6;              // where name/flavor/mechanics/signature start
@@ -354,6 +355,8 @@ namespace CavesOfOoo.Rendering
                 HandleInventoryPanelInput();
             else if (_panel == PANEL_TINKERING)
                 HandleTinkeringPanelInput();
+            else if (_panel == PANEL_CRAFTING)
+                HandleCraftingPanelInput();
             else
                 HandleAbilitiesPanelInput();
 
@@ -1605,6 +1608,7 @@ namespace CavesOfOoo.Rendering
             _rows.Clear();
             BuildItemRows();
             BuildTinkeringRows();
+            BuildCraftingRows();
 
             _equipSlots = _state.Equipment;
             if (_equipSlots.Count > 0 && _equipCursorIndex >= _equipSlots.Count)
@@ -2115,6 +2119,7 @@ namespace CavesOfOoo.Rendering
                 DrawText(13, 0, "Inventory", _panel == PANEL_INVENTORY ? QudColorParser.White : QudColorParser.DarkGray);
                 DrawText(25, 0, "Tinkering", _panel == PANEL_TINKERING ? QudColorParser.White : QudColorParser.DarkGray);
                 DrawText(37, 0, "Abilities", _panel == PANEL_ABILITIES ? QudColorParser.White : QudColorParser.DarkGray);
+                DrawText(49, 0, "Crafting", _panel == PANEL_CRAFTING ? QudColorParser.White : QudColorParser.DarkGray);
 
                 // Weight, drams, and ink on right side of header.
                 // Ink is the rental currency (Docs/WEAPON-RENTAL-SYSTEM.md);
@@ -2129,7 +2134,25 @@ namespace CavesOfOoo.Rendering
                 DrawHLine(0, 1, W, QudColorParser.DarkGray);
                 DrawHLine(0, CONTENT_END, W, QudColorParser.DarkGray);
 
-                if (_panel == PANEL_TINKERING)
+                // Every panel gets a legend on the same row; the panels
+                // that draw their own overwrite this.
+                if (_panel == PANEL_EQUIPMENT)
+                    DrawKeyHints(CONTENT_END + 1,
+                        "enter", "equip", "E", "unequip", "T", "tinker",
+                        "tab", "panel", "esc", "close");
+                else if (_panel == PANEL_INVENTORY)
+                    DrawKeyHints(CONTENT_END + 1,
+                        "enter", "use", "E", "equip", "D", "drop",
+                        "tab", "panel", "esc", "close");
+                else if (_panel == PANEL_ABILITIES)
+                    DrawKeyHints(CONTENT_END + 1,
+                        "enter", "bind", "tab", "panel", "esc", "close");
+
+                if (_panel == PANEL_CRAFTING)
+                {
+                    RenderCraftingPanel();
+                }
+                else if (_panel == PANEL_TINKERING)
                 {
                     RenderTinkeringPanel();
                 }
@@ -2266,7 +2289,13 @@ namespace CavesOfOoo.Rendering
                 var row = _rows[i];
                 bool selected = (i == _cursorIndex) && _panel == PANEL_INVENTORY;
 
-                if (selected && !row.IsHeader)
+                if (row.IsHeader)
+                {
+                    // Same section rule the Crafting panel uses, so the
+                    // two lists read as the same kind of thing.
+                    DrawSectionRule(x0, y, row.Text, RIGHT_W - 2);
+                }
+                else if (selected)
                 {
                     DrawChar(x0, y, '>', QudColorParser.White);
                     DrawText(x0 + 1, y, row.Text, QudColorParser.White);
@@ -2286,15 +2315,23 @@ namespace CavesOfOoo.Rendering
 
         private void RenderTinkeringPanel()
         {
-            for (int y = 0; y < CONTENT_END; y++)
-                DrawChar(TINKER_DIVIDER_X, y, '|', QudColorParser.DarkGray);
+            for (int y = 1; y < CONTENT_END; y++)
+                DrawChar(TINKER_DIVIDER_X, y, '│', QudColorParser.DarkGray);
 
-            DrawHLine(0, 16, TINKER_DIVIDER_X, QudColorParser.DarkGray);
-            DrawText(2, 2,
-                _tinkeringMode == TinkeringMode.Build
-                    ? "> Build    Mod"
-                    : "  Build  > Mod",
-                QudColorParser.White);
+            bool build = _tinkeringMode == TinkeringMode.Build;
+            DrawText(2, 2, build ? "> Build" : "  Build",
+                build ? QudColorParser.White : QudColorParser.Gray);
+            DrawText(12, 2, build ? "  Mod" : "> Mod",
+                build ? QudColorParser.Gray : QudColorParser.White);
+
+            DrawSectionRule(1, 3, build ? "Build recipes" : "Mod recipes",
+                TINKER_DIVIDER_X - 3);
+
+            DrawKeyHints(CONTENT_END + 1,
+                "enter", build ? "craft" : "apply",
+                "B/M", "mode",
+                "tab", "panel",
+                "esc", "close");
 
             RenderTinkeringRecipeList();
             RenderBitLockerPanel();
@@ -2350,7 +2387,11 @@ namespace CavesOfOoo.Rendering
         private void RenderBitLockerPanel()
         {
             int x0 = TINKER_DIVIDER_X + 2;
-            DrawText(x0, 2, "Bit Locker", QudColorParser.BrightYellow);
+            // Sized to its contents: rows start at y=3, one per bit, plus
+            // the two edges. A fixed height drew the bottom edge THROUGH
+            // the last two bit rows.
+            DrawTitledBox(TINKER_DIVIDER_X + 1, 1, W - TINKER_DIVIDER_X - 2,
+                TinkerBitOrder.Length + 3, "BIT LOCKER");
 
             var bitLocker = PlayerEntity?.GetPart<BitLockerPart>();
             var selected = GetSelectedTinkeringRow();
@@ -3086,14 +3127,14 @@ namespace CavesOfOoo.Rendering
 
             if (InputHelper.GetKeyDown(KeyCode.RightArrow) || InputHelper.GetKeyDown(KeyCode.L))
             {
-                _panel = PANEL_EQUIPMENT;
+                _panel = PANEL_CRAFTING;
                 Render();
                 return;
             }
 
             if (InputHelper.GetKeyDown(KeyCode.Tab))
             {
-                _panel = PANEL_EQUIPMENT;
+                _panel = PANEL_CRAFTING;
                 Render();
                 return;
             }
