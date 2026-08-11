@@ -92,9 +92,16 @@ namespace CavesOfOoo.Rendering
             float sizeForHeight = halfHeight;
             float sizeForWidth = halfWidth / _camera.aspect;
 
-            // Small padding prevents edge tiles from bleeding off-screen
-            // due to aspect ratio rounding or sub-pixel alignment
-            _camera.orthographicSize = Mathf.Max(sizeForHeight, sizeForWidth) + 0.15f;
+            // Padding prevents edge tiles from bleeding off-screen due to
+            // aspect-ratio rounding or sub-pixel alignment.
+            //
+            // 0.15 was not enough in practice: the tab bar on row 0 and
+            // the detail line on the last row were both sliced in half
+            // on screen, even though the camera arithmetic said they
+            // were inside the frustum by 0.15 of a cell. Half a cell top
+            // and bottom is a margin you can actually see, and it costs
+            // nothing but a slightly smaller glyph.
+            _camera.orthographicSize = Mathf.Max(sizeForHeight, sizeForWidth) + 0.65f;
         }
 
         /// <summary>

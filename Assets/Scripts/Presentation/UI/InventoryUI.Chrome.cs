@@ -12,6 +12,15 @@ namespace CavesOfOoo.Rendering
     /// look the same way (Docs/CRAFTING-FROM-THE-PACK.md §C8). Every rule
     /// about how the screen looks should live here, once.</para>
     ///
+    /// <para><b>ASCII only, deliberately.</b> The UI font atlas is ~95
+    /// hand-authored hex bitmaps covering ASCII; CP437 box-drawing bytes
+    /// (0xCD, 0xC4, 0xB3, 0xDA…) have <i>no bitmap at all</i>, so a rule
+    /// drawn with U+2550 renders as literally nothing on screen. This
+    /// shipped once and was invisible to the whole test suite — no test
+    /// rasterises. Everything here uses <c>=</c>, <c>-</c>, <c>|</c> and
+    /// <c>+</c>, the same characters the equipment doll already draws
+    /// its slots with.</para>
+    ///
     /// <para><b>The colour language</b>, applied everywhere:</para>
     /// <list type="bullet">
     /// <item><c>DarkGray</c> — chrome: rules, dividers, box edges, unpicked marks.</item>
@@ -24,52 +33,97 @@ namespace CavesOfOoo.Rendering
     public partial class InventoryUI
     {
         /// <summary>
-        /// A section rule: <c>══ Title ═══════════════</c>. The em-rule
+        /// A section rule: <c>== Title =================</c>. The rule
         /// runs to <paramref name="width"/> so stacked sections line up
         /// down the column.
         /// </summary>
         private void DrawSectionRule(int x, int y, string title, int width)
         {
-            DrawText(x, y, "══ ", QudColorParser.DarkGray);
+            DrawChar(x, y, '=', QudColorParser.DarkGray);
+            DrawChar(x + 1, y, '=', QudColorParser.DarkGray);
+
             int titleX = x + 3;
             DrawText(titleX, y, title, QudColorParser.Gray);
 
             int fillStart = titleX + title.Length + 1;
             int fillEnd = x + width;
-            if (fillEnd <= fillStart) return;
-
             for (int i = fillStart; i < fillEnd; i++)
-                DrawChar(i, y, '═', QudColorParser.DarkGray);
+                DrawChar(i, y, '=', QudColorParser.DarkGray);
         }
 
         /// <summary>
         /// A box whose title sits inside its top edge:
-        /// <c>┌ TITLE ─────────┐</c>. Draws edges only — the caller fills
+        /// <c>+- TITLE --------+</c>. Draws edges only — the caller fills
         /// the interior, which starts at (x+2, y+1).
         /// </summary>
         private void DrawTitledBox(int x, int y, int width, int height, string title)
         {
             Color chrome = QudColorParser.DarkGray;
 
-            DrawChar(x, y, '┌', chrome);
-            DrawText(x + 2, y, title, QudColorParser.BrightYellow);
-            int afterTitle = x + 2 + title.Length + 1;
-            for (int i = x + 1; i < x + width - 1; i++)
-                if (i < x + 2 || i >= afterTitle)
-                    DrawChar(i, y, '─', chrome);
-            DrawChar(x + width - 1, y, '┐', chrome);
+            DrawChar(x, y, '+', chrome);
+            DrawChar(x + 1, y, '-', chrome);
+            DrawText(x + 3, y, title, QudColorParser.BrightYellow);
+            int afterTitle = x + 3 + title.Length + 1;
+            for (int i = x + 2; i < x + width - 1; i++)
+                if (i < x + 3 || i >= afterTitle)
+                    DrawChar(i, y, '-', chrome);
+            DrawChar(x + width - 1, y, '+', chrome);
 
             for (int row = y + 1; row < y + height - 1; row++)
             {
-                DrawChar(x, row, '│', chrome);
-                DrawChar(x + width - 1, row, '│', chrome);
+                DrawChar(x, row, '|', chrome);
+                DrawChar(x + width - 1, row, '|', chrome);
             }
 
             int bottom = y + height - 1;
-            DrawChar(x, bottom, '└', chrome);
+            DrawChar(x, bottom, '+', chrome);
             for (int i = x + 1; i < x + width - 1; i++)
-                DrawChar(i, bottom, '─', chrome);
-            DrawChar(x + width - 1, bottom, '┘', chrome);
+                DrawChar(i, bottom, '-', chrome);
+            DrawChar(x + width - 1, bottom, '+', chrome);
+        }
+
+        /// <summary>
+        /// Word-wraps <paramref name="text"/> into at most
+        /// <paramref name="maxLines"/> lines of <paramref name="width"/>
+        /// columns, breaking on spaces.
+        ///
+        /// <para>The RESULT box explains itself in sentences — "Pick a
+        /// blade, a haft and a binding to finish the weapon", "The
+        /// volatile mix has no stable form". Hard truncation turned
+        /// those into "Pick a blade, a haft and~", which reads as a bug
+        /// rather than an explanation.</para>
+        ///
+        /// <para>Returns the row after the last one written.</para>
+        /// </summary>
+        private int DrawWrapped(int x, int y, int width, int maxLines, string text, Color color)
+        {
+            if (string.IsNullOrEmpty(text) || width <= 0) return y;
+
+            string[] words = text.Split(' ');
+            var line = new System.Text.StringBuilder();
+            int row = y, used = 0;
+
+            for (int i = 0; i < words.Length && used < maxLines; i++)
+            {
+                string w = words[i];
+                if (line.Length > 0 && line.Length + 1 + w.Length > width)
+                {
+                    DrawText(x, row++, line.ToString(), color);
+                    used++;
+                    line.Clear();
+                    if (used >= maxLines) break;
+                }
+
+                if (line.Length > 0) line.Append(' ');
+                line.Append(w.Length > width ? w.Substring(0, width) : w);
+            }
+
+            if (line.Length > 0 && used < maxLines)
+            {
+                DrawText(x, row++, line.ToString(), color);
+            }
+
+            return row;
         }
 
         /// <summary>
@@ -115,19 +169,33 @@ namespace CavesOfOoo.Rendering
         }
 
         /// <summary>
-        /// The footer key hints. Keys render brighter than their verbs so
-        /// the line scans as a legend rather than a sentence.
+        /// Draws an action-bar string like
+        /// <c>[Enter]equip [e]unequip [Esc]close</c> two-tone: the
+        /// bracketed KEY brighter than the verb after it, so the row
+        /// scans as a legend rather than a sentence.
+        ///
+        /// <para>There is exactly one action bar on this screen, at row
+        /// <c>H-2</c>. A second hint row was briefly drawn at
+        /// <c>CONTENT_END+1</c> — the same cell — and the two printed
+        /// over each other. Everything routes here now.</para>
         /// </summary>
-        private void DrawKeyHints(int y, params string[] pairs)
+        private void DrawKeyLegend(int x, int y, string actions)
         {
-            int x = 1;
-            for (int i = 0; i + 1 < pairs.Length; i += 2)
+            if (string.IsNullOrEmpty(actions)) return;
+
+            bool inKey = false;
+            for (int i = 0; i < actions.Length && x + i < W; i++)
             {
-                DrawText(x, y, pairs[i], QudColorParser.Gray);
-                x += pairs[i].Length + 1;
-                DrawText(x, y, pairs[i + 1], QudColorParser.DarkGray);
-                x += pairs[i + 1].Length + 3;
+                char c = actions[i];
+                if (c == '[') inKey = true;
+                else if (c == ']') { inKey = false; DrawChar(x + i, y, c, QudColorParser.DarkGray); continue; }
+
+                DrawChar(x + i, y, c,
+                    c == '[' ? QudColorParser.DarkGray
+                    : inKey ? QudColorParser.White
+                    : QudColorParser.Gray);
             }
         }
+
     }
 }

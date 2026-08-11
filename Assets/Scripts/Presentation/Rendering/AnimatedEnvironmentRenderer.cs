@@ -120,6 +120,30 @@ namespace CavesOfOoo.Rendering
         /// appropriate overlay tilemap, clears the main tilemap cell
         /// so the overlay is the sole render for that cell.
         /// </summary>
+        /// <summary>
+        /// Wipe the three animated overlays.
+        ///
+        /// <para>ZoneRenderer calls this on its <c>Paused</c> transition,
+        /// alongside the bg/fx clears and the sprite-claim release, so a
+        /// fullscreen UI opens over a clean slate.</para>
+        ///
+        /// <para><b>Why this was needed.</b> These overlays sort at
+        /// order 2; the fullscreen UIs paint the main tilemap at order 0.
+        /// Without this clear, 264 grass tiles and a fire tile kept
+        /// rendering ON TOP of the inventory screen — world terrain
+        /// glyphs scattered across the panels. Measured live via a
+        /// tilemap census while the inventory was open. The sibling
+        /// overlays (EnvironmentSprite, GlyphGhost) already had their
+        /// own release for exactly this reason; these three were simply
+        /// missed.</para>
+        /// </summary>
+        public void ClearAll()
+        {
+            _waterTilemap?.ClearAllTiles();
+            _grassTilemap?.ClearAllTiles();
+            _fireTilemap?.ClearAllTiles();
+        }
+
         public void PostRender(Zone zone, int width, int height)
         {
             if (!IsInitialized || zone == null || _mainTilemap == null) return;

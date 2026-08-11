@@ -193,6 +193,15 @@ namespace CavesOfOoo.Rendering
         {
             if (PlayerEntity == null) return;
             _isOpen = true;
+            // The world is still on the shared tilemap during the frame
+            // this screen opens: ZoneRenderer.Paused is set by the
+            // caller AFTER Open(), so whatever the two components'
+            // execution order, one of them can still paint terrain
+            // after our clear. Measured live — 1626 stale world tiles
+            // survived the opening frame and vanished on the next
+            // render. Redrawing once on the following tick costs one
+            // frame's work and makes the open deterministic.
+            _needsPostOpenRedraw = true;
             PerformanceDiagnostics.BeginInventorySession();
             _panel = PANEL_EQUIPMENT;
             _cursorIndex = 0;
@@ -260,9 +269,20 @@ namespace CavesOfOoo.Rendering
 
         // ===== Input =====
 
+        /// <summary>Set by <see cref="Open"/>, consumed on the next
+        /// input tick — see the comment there.</summary>
+        private bool _needsPostOpenRedraw;
+
         public bool HandleInput()
         {
             if (!_isOpen) return false;
+
+            if (_needsPostOpenRedraw)
+            {
+                _needsPostOpenRedraw = false;
+                Render();
+            }
+
 
             // Update selection to follow mouse hover
             UpdateMouseHover();
@@ -2134,19 +2154,6 @@ namespace CavesOfOoo.Rendering
                 DrawHLine(0, 1, W, QudColorParser.DarkGray);
                 DrawHLine(0, CONTENT_END, W, QudColorParser.DarkGray);
 
-                // Every panel gets a legend on the same row; the panels
-                // that draw their own overwrite this.
-                if (_panel == PANEL_EQUIPMENT)
-                    DrawKeyHints(CONTENT_END + 1,
-                        "enter", "equip", "E", "unequip", "T", "tinker",
-                        "tab", "panel", "esc", "close");
-                else if (_panel == PANEL_INVENTORY)
-                    DrawKeyHints(CONTENT_END + 1,
-                        "enter", "use", "E", "equip", "D", "drop",
-                        "tab", "panel", "esc", "close");
-                else if (_panel == PANEL_ABILITIES)
-                    DrawKeyHints(CONTENT_END + 1,
-                        "enter", "bind", "tab", "panel", "esc", "close");
 
                 if (_panel == PANEL_CRAFTING)
                 {
@@ -2164,8 +2171,12 @@ namespace CavesOfOoo.Rendering
                 }
                 else
                 {
-                    // Vertical divider
-                    for (int y = 0; y < H; y++)
+                    // Vertical divider — starts BELOW the tab bar and
+                    // its rule, and stops above the action bar. Running
+                    // it from y=0 to y=H drew a '|' straight through the
+                    // word "Tinkering" in the tab bar and through the
+                    // footer.
+                    for (int y = 2; y < CONTENT_END; y++)
                         DrawChar(DIVIDER_X, y, '|', QudColorParser.DarkGray);
 
                     // Top-left character stats strip (Qud-style quick reference).
@@ -2205,10 +2216,14 @@ namespace CavesOfOoo.Rendering
                         : " [Enter]craft [B]/[M]mode [<]inventory [Tab]cycle [Esc]close";
                 else if (_panel == PANEL_ABILITIES)
                     actions = " [Enter]assign [X]clear [<]tinkering [Tab]cycle [Esc]close";
+                else if (_panel == PANEL_CRAFTING)
+                    actions = _craftingMode == CraftingMode.Forge
+                        ? " [Space]pick [Enter]craft [C]clear [F]/[B]mode [Tab]cycle [Esc]close"
+                        : " [Space]pick [Enter]brew [C]clear [F]/[B]mode [Tab]cycle [Esc]close";
                 else
                     actions = " [d]rop [Enter]actions [<]equipment [>]tinkering [Esc]close";
 
-                DrawText(0, H - 2, actions, QudColorParser.Gray);
+                DrawKeyLegend(0, H - 2, actions);
 
                 // Detail line
                 RenderDetailLine();
@@ -2315,8 +2330,8 @@ namespace CavesOfOoo.Rendering
 
         private void RenderTinkeringPanel()
         {
-            for (int y = 1; y < CONTENT_END; y++)
-                DrawChar(TINKER_DIVIDER_X, y, '│', QudColorParser.DarkGray);
+            for (int y = 2; y < CONTENT_END; y++)
+                DrawChar(TINKER_DIVIDER_X, y, '|', QudColorParser.DarkGray);
 
             bool build = _tinkeringMode == TinkeringMode.Build;
             DrawText(2, 2, build ? "> Build" : "  Build",
@@ -2327,11 +2342,6 @@ namespace CavesOfOoo.Rendering
             DrawSectionRule(1, 3, build ? "Build recipes" : "Mod recipes",
                 TINKER_DIVIDER_X - 3);
 
-            DrawKeyHints(CONTENT_END + 1,
-                "enter", build ? "craft" : "apply",
-                "B/M", "mode",
-                "tab", "panel",
-                "esc", "close");
 
             RenderTinkeringRecipeList();
             RenderBitLockerPanel();
@@ -4036,7 +4046,7 @@ namespace CavesOfOoo.Rendering
         {
             if (Tilemap == null || x < 0 || x >= W || y < 0 || y >= H) return;
             var tilePos = new Vector3Int(x, H - 1 - y, 0);
-            var tile = CP437TilesetGenerator.GetUiTile(c);
+            var tile = CP437TilesetGenerator.GetUiTile(Cp437.Map(c));
             if (tile == null) return;
             Tilemap.SetTile(tilePos, tile);
             Tilemap.SetTileFlags(tilePos, TileFlags.None);
@@ -4053,7 +4063,11 @@ namespace CavesOfOoo.Rendering
                 if (c == ' ') continue;
 
                 var tilePos = new Vector3Int(x + i, H - 1 - y, 0);
-                var tile = CP437TilesetGenerator.GetUiTile(c);
+                // Mapped, not raw: the atlas is byte-indexed, so an
+                // unmapped '═' renders as '?'. DrawText has its own loop
+                // rather than calling DrawChar, so it needs this too —
+                // which is exactly how the section rules shipped broken.
+                var tile = CP437TilesetGenerator.GetUiTile(Cp437.Map(c));
                 if (tile == null) continue;
 
                 Tilemap.SetTile(tilePos, tile);

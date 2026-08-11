@@ -704,21 +704,6 @@ namespace CavesOfOoo.Rendering
                 }
 
                 Camera cam = _mainCamera;
-                _asciiFxRenderer?.Update(Time.deltaTime);
-                if (_asciiFxRenderer != null)
-                {
-                    PerformanceDiagnostics.RecordAsciiFxCounts(
-                        _asciiFxRenderer.ActiveProjectileCount,
-                        _asciiFxRenderer.ActiveBurstCount,
-                        _asciiFxRenderer.ActiveParticleCount,
-                        _asciiFxRenderer.ActiveAuraCount,
-                        _asciiFxRenderer.ActiveBeamCount,
-                        _asciiFxRenderer.ActiveChargeOrbitCount,
-                        _asciiFxRenderer.ActiveRingWaveCount,
-                        _asciiFxRenderer.ActiveChainArcCount,
-                        _asciiFxRenderer.ActiveColumnRiseCount,
-                        _asciiFxRenderer.ActiveDustMoteCount);
-                }
 
                 if (Paused)
                 {
@@ -733,6 +718,26 @@ namespace CavesOfOoo.Rendering
                         // the restore guard sees pre-clear state.
                         _envSpriteRenderer?.ReleaseAllClaims();
                         _glyphGhostRenderer?.ClearGhosts();
+
+                        // The animated water/grass/fire overlays sort at
+                        // order 2, above the order-0 main tilemap the
+                        // fullscreen UIs paint on. Missing this clear
+                        // left world terrain glyphs scattered across the
+                        // inventory screen.
+                        _animatedEnvRenderer?.ClearAll();
+
+                        // Fine water sorts at order 1 and tile-state
+                        // marks at order 5 — both above the order-0 main
+                        // tilemap the fullscreen UIs paint on. Neither
+                        // had a clear here, so the last frame's river
+                        // (its foam glyphs are White '*' at half scale —
+                        // the "scattered white dots") and any puddle or
+                        // ember marks stayed frozen on top of the UI.
+                        // Both repaint on unpause: fine water from
+                        // UpdateAmbientAnimations unconditionally, tile
+                        // state via the _fullDirty full redraw below.
+                        _fineWaterTilemap?.ClearAllTiles();
+                        _tileStateTilemap?.ClearAllTiles();
 
                         if (_bgTilemap != null)
                         {
@@ -760,6 +765,29 @@ namespace CavesOfOoo.Rendering
                     PerformanceDiagnostics.EndFrame(
                         PerformanceDiagnostics.ElapsedMilliseconds(frameStart, Stopwatch.GetTimestamp()));
                     return;
+                }
+
+                // FX ticks only while the world is actually on screen.
+                // AsciiFxRenderer.Render clears and repaints _fxTilemap
+                // (sortingOrder 2) whenever anything is alive, which is
+                // ABOVE the order-0 main tilemap a fullscreen UI paints
+                // on — ticking it above the Paused check let live
+                // effects keep drawing over the inventory for as long as
+                // they lasted.
+                _asciiFxRenderer?.Update(Time.deltaTime);
+                if (_asciiFxRenderer != null)
+                {
+                    PerformanceDiagnostics.RecordAsciiFxCounts(
+                        _asciiFxRenderer.ActiveProjectileCount,
+                        _asciiFxRenderer.ActiveBurstCount,
+                        _asciiFxRenderer.ActiveParticleCount,
+                        _asciiFxRenderer.ActiveAuraCount,
+                        _asciiFxRenderer.ActiveBeamCount,
+                        _asciiFxRenderer.ActiveChargeOrbitCount,
+                        _asciiFxRenderer.ActiveRingWaveCount,
+                        _asciiFxRenderer.ActiveChainArcCount,
+                        _asciiFxRenderer.ActiveColumnRiseCount,
+                        _asciiFxRenderer.ActiveDustMoteCount);
                 }
 
                 // Re-enable embers on transition from paused to unpaused

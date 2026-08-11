@@ -373,19 +373,16 @@ namespace CavesOfOoo.Rendering
 
         private void RenderCraftingPanel()
         {
-            for (int y = 1; y < CONTENT_END; y++)
-                DrawChar(CRAFT_DIVIDER_X, y, '│', QudColorParser.DarkGray);
+            for (int y = 2; y < CONTENT_END; y++)
+                DrawChar(CRAFT_DIVIDER_X, y, '|', QudColorParser.DarkGray);
 
             RenderCraftingModeHeader();
             RenderCraftingList();
             RenderCraftingAnvil();
 
-            DrawKeyHints(CONTENT_END + 1,
-                "space", _craftingMode == CraftingMode.Forge ? "pick" : "pick",
-                "enter", _craftingMode == CraftingMode.Forge ? "craft" : "brew",
-                "C", "clear",
-                "F/B", "mode",
-                "tab", "panel");
+            // The action bar at row H-2 is drawn once, centrally, by the
+            // shared render block — not here. Two footers on one row
+            // printed over each other.
         }
 
         private void RenderCraftingModeHeader()
@@ -493,9 +490,9 @@ namespace CavesOfOoo.Rendering
 
             if (!_forgePreview.IsComplete)
             {
-                DrawText(ix, iy + 1, "Pick " + Truncate(_forgePreview.Missing, 20),
+                DrawWrapped(ix, iy + 1, CRAFT_RESULT_W - 4, 4,
+                    "Pick " + _forgePreview.Missing + " to finish the weapon.",
                     QudColorParser.Gray);
-                DrawText(ix, iy + 2, "to finish the weapon.", QudColorParser.Gray);
                 return;
             }
 
@@ -522,8 +519,8 @@ namespace CavesOfOoo.Rendering
 
             if (!_brewPreview.IsValid)
             {
-                DrawText(ix, iy + 1, Truncate(_brewPreview.Reason, CRAFT_RESULT_W - 4),
-                    QudColorParser.Gray);
+                DrawWrapped(ix, iy + 1, CRAFT_RESULT_W - 4, H - 4,
+                    _brewPreview.Reason, QudColorParser.Gray);
                 return;
             }
 
@@ -563,7 +560,7 @@ namespace CavesOfOoo.Rendering
         }
 
         private static string NameOrDash(Entity e)
-            => e == null ? "—" : Truncate(e.GetDisplayName(), 24);
+            => e == null ? "-" : Truncate(e.GetDisplayName(), 24);
 
         private static Color SlotColor(Entity e)
             => e == null ? QudColorParser.DarkGray : QudColorParser.White;
