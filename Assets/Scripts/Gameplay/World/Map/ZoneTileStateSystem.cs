@@ -33,12 +33,49 @@ namespace CavesOfOoo.Core
         {
             if (zone == null) return;
 
+            // Terrain asserts its own status BEFORE anything reacts, so
+            // a brine pool can be electrified on the same turn the bolt
+            // lands rather than the turn after.
+            SeedTerrainSources(zone);
+
             // P3: react BEFORE decaying. A coating on its last turn
             // should still get its chance — otherwise a puddle you
             // charged on the turn it expired would silently do nothing.
             ResolveWorld(zone);
 
             zone.TileState.Tick();
+        }
+
+        /// <summary>
+        /// Let every <see cref="TileStateSourcePart"/> in the zone push
+        /// its status onto the cell it occupies.
+        ///
+        /// <para>This is what makes the world's own terrain part of the
+        /// status system: without it, tile state only ever existed where
+        /// the player had just cast something.</para>
+        ///
+        /// <para>Iterates <c>GetAllEntities</c>, not the live key
+        /// collection — seeding writes to TileState, and the read-only
+        /// view is documented as unsafe to iterate while mutating
+        /// (Zone.cs:141, and the same trap is called out in
+        /// CLAUDE.md).</para>
+        /// </summary>
+        public static void SeedTerrainSources(Zone zone)
+        {
+            if (zone?.TileState == null) return;
+
+            var entities = zone.GetAllEntities();
+            for (int i = 0; i < entities.Count; i++)
+            {
+                Entity e = entities[i];
+                var source = e?.GetPart<TileStateSourcePart>();
+                if (source == null) continue;
+
+                (int x, int y) = zone.GetEntityPosition(e);
+                if (x < 0 || y < 0) continue;
+
+                source.Seed(zone, x, y);
+            }
         }
 
         /// <summary>

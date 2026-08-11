@@ -17540,6 +17540,19 @@
               "Value": "1.5"
             }
           ]
+        },
+        {
+          "Name": "TileStateSource",
+          "Params": [
+            {
+              "Key": "Coating",
+              "Value": "oil"
+            },
+            {
+              "Key": "CoatingTurns",
+              "Value": "4"
+            }
+          ]
         }
       ]
     },
@@ -25673,6 +25686,882 @@
             {
               "Key": "ChargesPerVial",
               "Value": "5"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "CopperPipe",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "copper pipe"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Copper"
+            },
+            {
+              "Key": "Conductivity",
+              "Value": "100"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Metal,Conductor"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Runs overhead and underfoot. Charge takes it and keeps going."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "BrinePool",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "brine pool"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "~"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&c"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Brine"
+            },
+            {
+              "Key": "Conductivity",
+              "Value": "95"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Liquid,Water,Conductor"
+            }
+          ]
+        },
+        {
+          "Name": "LiquidPool",
+          "Params": [
+            {
+              "Key": "LiquidId",
+              "Value": "brine"
+            },
+            {
+              "Key": "Volume",
+              "Value": "90"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "Temperature",
+              "Value": "15"
+            },
+            {
+              "Key": "FreezeTemperature",
+              "Value": "-8"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "2.0"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Salt water. Conducts better than fresh and freezes later."
+            }
+          ]
+        },
+        {
+          "Name": "TileStateSource",
+          "Params": [
+            {
+              "Key": "Coating",
+              "Value": "water"
+            },
+            {
+              "Key": "CoatingTurns",
+              "Value": "4"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "RustedRailing",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "rusted railing"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "|"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&r"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "RustedIron"
+            },
+            {
+              "Key": "Conductivity",
+              "Value": "70"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Metal,Conductor"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Corroded, but iron still carries a charge."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "TarSeep",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "tar seep"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "~"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&K"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Tar"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "95"
+            },
+            {
+              "Key": "Conductivity",
+              "Value": "0"
+            },
+            {
+              "Key": "Volatility",
+              "Value": "30"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Liquid,Tar,Fuel"
+            }
+          ]
+        },
+        {
+          "Name": "LiquidPool",
+          "Params": [
+            {
+              "Key": "LiquidId",
+              "Value": "oil"
+            },
+            {
+              "Key": "Volume",
+              "Value": "95"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "Temperature",
+              "Value": "20"
+            },
+            {
+              "Key": "FlameTemperature",
+              "Value": "200"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "2.5"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Slow, thick and very willing to burn."
+            }
+          ]
+        },
+        {
+          "Name": "TileStateSource",
+          "Params": [
+            {
+              "Key": "Coating",
+              "Value": "oil"
+            },
+            {
+              "Key": "CoatingTurns",
+              "Value": "5"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "DryBrush",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "dry brush"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "\""
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "DryPlant"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "85"
+            },
+            {
+              "Key": "Conductivity",
+              "Value": "0"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Plant,Fuel"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "Temperature",
+              "Value": "25"
+            },
+            {
+              "Key": "FlameTemperature",
+              "Value": "180"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "0.4"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Catches from almost nothing and burns out fast."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "AshBed",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "bed of hot ash"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "."
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&r"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Ash"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "20"
+            },
+            {
+              "Key": "Conductivity",
+              "Value": "0"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Ash"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "Temperature",
+              "Value": "180"
+            },
+            {
+              "Key": "FlameTemperature",
+              "Value": "400"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "3.0"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Still hot. Water poured on it comes back up as steam."
+            }
+          ]
+        },
+        {
+          "Name": "TileStateSource",
+          "Params": [
+            {
+              "Key": "Heat",
+              "Value": "1"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "PeatBog",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "peat bog"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "~"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&g"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Peat"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "60"
+            },
+            {
+              "Key": "Conductivity",
+              "Value": "55"
+            },
+            {
+              "Key": "Porosity",
+              "Value": "80"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Liquid,Water,Plant,Fuel"
+            }
+          ]
+        },
+        {
+          "Name": "LiquidPool",
+          "Params": [
+            {
+              "Key": "LiquidId",
+              "Value": "water"
+            },
+            {
+              "Key": "Volume",
+              "Value": "70"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "Temperature",
+              "Value": "12"
+            },
+            {
+              "Key": "FlameTemperature",
+              "Value": "320"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "2.2"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Wet AND flammable — the one tile that answers to either school."
+            }
+          ]
+        },
+        {
+          "Name": "TileStateSource",
+          "Params": [
+            {
+              "Key": "Coating",
+              "Value": "water"
+            },
+            {
+              "Key": "CoatingTurns",
+              "Value": "4"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "FrostVent",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "frost vent"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "^"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&C"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Rime"
+            },
+            {
+              "Key": "Conductivity",
+              "Value": "40"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0"
+            },
+            {
+              "Key": "Brittleness",
+              "Value": "70"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Ice"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "Temperature",
+              "Value": "-25"
+            },
+            {
+              "Key": "FreezeTemperature",
+              "Value": "0"
+            },
+            {
+              "Key": "BrittleTemperature",
+              "Value": "-60"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "1.2"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Breathes cold. Standing water near it will not stay liquid."
+            }
+          ]
+        },
+        {
+          "Name": "TileStateSource",
+          "Params": [
+            {
+              "Key": "Cold",
+              "Value": "1"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "IceSheet",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "sheet ice"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "-"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&C"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Ice"
+            },
+            {
+              "Key": "Conductivity",
+              "Value": "60"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0"
+            },
+            {
+              "Key": "Brittleness",
+              "Value": "90"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Ice,Conductor"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "Temperature",
+              "Value": "-5"
+            },
+            {
+              "Key": "FreezeTemperature",
+              "Value": "0"
+            },
+            {
+              "Key": "BrittleTemperature",
+              "Value": "-40"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "2.0"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Frozen water still carries a charge — and it is brittle."
+            }
+          ]
+        },
+        {
+          "Name": "TileStateSource",
+          "Params": [
+            {
+              "Key": "Cold",
+              "Value": "1"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "SteamVent",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "steam vent"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "^"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&W"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Steam"
+            },
+            {
+              "Key": "Conductivity",
+              "Value": "65"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0"
+            },
+            {
+              "Key": "Porosity",
+              "Value": "100"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Vapor,Water"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "Temperature",
+              "Value": "95"
+            },
+            {
+              "Key": "VaporTemperature",
+              "Value": "100"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "1.8"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Wet and hot at once. Carries charge like the water it came from."
+            }
+          ]
+        },
+        {
+          "Name": "TileStateSource",
+          "Params": [
+            {
+              "Key": "Coating",
+              "Value": "water"
+            },
+            {
+              "Key": "CoatingTurns",
+              "Value": "2"
+            },
+            {
+              "Key": "Heat",
+              "Value": "1"
             }
           ]
         }

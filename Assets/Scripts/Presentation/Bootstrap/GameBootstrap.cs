@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using CavesOfOoo.Skills;
 using CavesOfOoo.Core;
 using CavesOfOoo.Data;
 using CavesOfOoo.Diagnostics;
@@ -331,6 +332,7 @@ namespace CavesOfOoo
                         Debug.Log($"[Bootstrap] New-game loadout granted ({granted} entries).");
                     }
                     GivePlayerFarmingStarterKit();
+                    GivePlayerStartingSpells();
                     PlacePlayerInOpenCell();
                     EnsureFarmPlotAtSpawn();
                     if (DevMode.Enabled)
@@ -1098,6 +1100,30 @@ namespace CavesOfOoo
         /// harvest) is player-exercisable from turn one. Mirrors the
         /// tonic-grant shape. See Docs/CROPS-WATERING-GRIMOIRE.md.
         /// </summary>
+        /// <summary>
+        /// One elemental primer per school at character start — see
+        /// <see cref="StartingSpellKit"/> for why these four.
+        ///
+        /// <para>Granted on BOTH the dev and new-game paths, unlike the
+        /// crafting kit: the status system's central idea is that two
+        /// statuses beat one, and a player who starts with one element
+        /// cannot find that out.</para>
+        /// </summary>
+        private void GivePlayerStartingSpells()
+        {
+            if (_player == null) return;
+
+            if (_player.GetPart<SkillsPart>() == null)
+            {
+                Debug.LogWarning("[Bootstrap/Spells] Player has no SkillsPart; starting spells skipped.");
+                return;
+            }
+
+            int granted = StartingSpellKit.GrantAll(_player);
+            Debug.Log($"[Bootstrap] Starting spells granted ({granted} of "
+                + $"{StartingSpellKit.SpellClasses.Length}).");
+        }
+
         private void GivePlayerFarmingStarterKit()
         {
             if (_player == null || _factory == null)
