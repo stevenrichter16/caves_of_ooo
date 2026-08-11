@@ -62,6 +62,30 @@ namespace CavesOfOoo.Core
         public int Charge = 0;
 
         /// <summary>
+        /// Push this source's ENERGY into the four orthogonally adjacent
+        /// tiles as well as its own — a vent breathes outward.
+        ///
+        /// <para>Coatings never radiate: a pool does not spread, and a
+        /// tar seep that oiled its neighbours would creep across the
+        /// zone. Only heat, cold and charge cross the boundary.</para>
+        ///
+        /// <para><b>Why this exists.</b> AshBed and FrostVent both
+        /// described interactions they could not perform — "still hot,
+        /// water poured on it comes back up as steam" and "breathes
+        /// cold, standing water near it will not stay liquid". Neither
+        /// was true: heat only propagates from `embers` residue and
+        /// there is no cold propagation at all, so a vent could never
+        /// touch the puddle beside it. Same defect as the live pipe that
+        /// shocked nobody — terrain advertising a rule the engine had no
+        /// path to run.</para>
+        ///
+        /// <para>Energy is capped at <c>ZoneTileState.MaxEnergy</c> by
+        /// <c>AddHeat</c>/<c>AddCold</c>/<c>AddCharge</c>, so radiating
+        /// every turn saturates rather than accumulating.</para>
+        /// </summary>
+        public bool RadiatesEnergy = false;
+
+        /// <summary>
         /// Push this source's status onto <paramref name="zone"/> at
         /// (<paramref name="x"/>, <paramref name="y"/>).
         ///
@@ -77,6 +101,20 @@ namespace CavesOfOoo.Core
             if (!string.IsNullOrEmpty(Coating) && CoatingTurns > 0)
                 zone.TileState.WriteCoating(x, y, Coating, CoatingTurns);
 
+            SeedEnergyAt(zone, x, y);
+
+            if (!RadiatesEnergy) return;
+
+            // Orthogonal only — a vent warms what it touches, not the
+            // diagonals behind a corner.
+            SeedEnergyAt(zone, x + 1, y);
+            SeedEnergyAt(zone, x - 1, y);
+            SeedEnergyAt(zone, x, y + 1);
+            SeedEnergyAt(zone, x, y - 1);
+        }
+
+        private void SeedEnergyAt(Zone zone, int x, int y)
+        {
             if (Heat > 0) zone.TileState.AddHeat(x, y, Heat);
             if (Cold > 0) zone.TileState.AddCold(x, y, Cold);
             if (Charge > 0) zone.TileState.AddCharge(x, y, Charge);
