@@ -13,6 +13,25 @@ namespace CavesOfOoo.Core
 
         // Blueprint-configurable fields
         public string MaterialID = "Generic";
+
+        /// <summary>
+        /// ALL of these are on a <b>0-100</b> scale, matching how they are
+        /// authored in Objects.json — oil is Combustibility 90, copper is
+        /// Conductivity 100.
+        ///
+        /// <para>This was undocumented, and the codebase drifted into two
+        /// conventions as a result. <c>TilePropagationSystem</c> and
+        /// <c>LiquidCoveredEffect</c> read 0-100; the electricity chain
+        /// here read 0-1 and multiplied charge by the raw value, turning
+        /// every hop along a copper pipe into a hundredfold amplifier
+        /// (a 2.0 source reached "Infinity" in play). A material-reaction
+        /// blueprint had also been authored with MinConductivity 0.5,
+        /// which on the real scale is a gate nothing could ever fail.
+        ///
+        /// If you add a consumer, compare against
+        /// <see cref="ConductiveThreshold"/> (50) or divide by 100 —
+        /// never treat these as fractions.</para>
+        /// </summary>
         public float Combustibility = 0f;
         public float Conductivity = 0f;
         public float Porosity = 0f;
@@ -139,12 +158,33 @@ namespace CavesOfOoo.Core
         /// (Conductivity > 0.5 or Metal tag) propagate the charge to adjacent
         /// conductive entities.
         /// </summary>
+        /// <summary>
+        /// Does this material carry a charge?
+        ///
+        /// <para>Threshold 50 on the authored 0-100 scale, matching
+        /// <c>TilePropagationSystem.ConductiveThreshold</c>. The old test
+        /// here was <c>Conductivity &gt; 0.5f</c>, which on a 0-100 scale
+        /// means "anything above half a percent" — a rubber mat at 5
+        /// counted as a conductor. Two systems disagreeing about what
+        /// conducts is worse than either answer.</para>
+        /// </summary>
+        internal static bool IsConductiveMaterial(MaterialPart mat)
+        {
+            if (mat == null) return false;
+            return mat.Conductivity >= ConductiveThreshold
+                || mat.HasMaterialTag("Metal")
+                || mat.HasMaterialTag("Conductor");
+        }
+
+        /// <summary>Mirror of TilePropagationSystem.ConductiveThreshold.</summary>
+        internal const float ConductiveThreshold = 50f;
+
         private bool HandleTryChainElectricity(GameEvent e)
         {
             if (ParentEntity == null)
                 return true;
 
-            bool isConductor = Conductivity > 0.5f || HasMaterialTag("Metal") || HasMaterialTag("Conductor");
+            bool isConductor = IsConductiveMaterial(this);
             if (!isConductor)
                 return true;
 
@@ -158,9 +198,25 @@ namespace CavesOfOoo.Core
             if (sourceCell == null)
                 return true;
 
-            // Scale propagated charge by our own conductivity — better conductors
-            // pass the charge on more effectively.
-            float passCharge = charge * (Conductivity > 0f ? Conductivity : 0.5f);
+            // Scale propagated charge by our own conductivity — better
+            // conductors pass the charge on more effectively.
+            //
+            // CONDUCTIVITY IS AUTHORED 0-100, NOT 0-1. CopperGrate and
+            // CopperPipe are both 100. This line used to multiply the
+            // charge by that raw value, so every hop AMPLIFIED it a
+            // hundredfold: a 2.0 source read 2E+16 after a few hops and
+            // "Infinity" shortly after — reported from play once pipe
+            // runs (lines of adjacent conductors) started generating.
+            //
+            // The other two readers of this field already use the 0-100
+            // scale (TilePropagationSystem compares against 50,
+            // LiquidCoveredEffect divides by 100); this was the odd one
+            // out. Efficiency is capped at 1.0 because a transmission
+            // line must never output more than it took in.
+            float efficiency = Conductivity > 0f
+                ? UnityEngine.Mathf.Clamp01(Conductivity / 100f)
+                : 0.5f;
+            float passCharge = charge * efficiency;
             if (passCharge < 0.05f)
                 return true;
 
@@ -180,10 +236,7 @@ namespace CavesOfOoo.Core
                     if (mat == null)
                         continue;
 
-                    bool targetConducts = mat.Conductivity > 0.5f
-                        || mat.HasMaterialTag("Metal")
-                        || mat.HasMaterialTag("Conductor");
-                    if (!targetConducts)
+                    if (!IsConductiveMaterial(mat))
                         continue;
 
                     if (!target.HasEffect<ElectrifiedEffect>())

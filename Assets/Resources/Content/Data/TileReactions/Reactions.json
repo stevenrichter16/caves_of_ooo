@@ -18,7 +18,9 @@
       "OccupantEffect": "",
       "OccupantDamage": 8,
       "DamageAttribute": "Fire",
-      "Priority": 10
+      "Priority": 10,
+      "RequiresConductor": false,
+      "ForbidCoating": ""
     },
     {
       "ID": "ignite_oil_embers",
@@ -38,7 +40,9 @@
       "OccupantEffect": "",
       "OccupantDamage": 8,
       "DamageAttribute": "Fire",
-      "Priority": 11
+      "Priority": 11,
+      "RequiresConductor": false,
+      "ForbidCoating": ""
     },
     {
       "ID": "electrify_water",
@@ -58,7 +62,9 @@
       "OccupantEffect": "Electrified",
       "OccupantDamage": 5,
       "DamageAttribute": "Electric",
-      "Priority": 20
+      "Priority": 20,
+      "RequiresConductor": false,
+      "ForbidCoating": ""
     },
     {
       "ID": "steam",
@@ -78,7 +84,9 @@
       "OccupantEffect": "",
       "OccupantDamage": 0,
       "DamageAttribute": "",
-      "Priority": 30
+      "Priority": 30,
+      "RequiresConductor": false,
+      "ForbidCoating": ""
     },
     {
       "ID": "freeze_water",
@@ -98,7 +106,9 @@
       "OccupantEffect": "Frozen",
       "OccupantDamage": 0,
       "DamageAttribute": "",
-      "Priority": 40
+      "Priority": 40,
+      "RequiresConductor": false,
+      "ForbidCoating": ""
     },
     {
       "ID": "melt_ice",
@@ -118,7 +128,31 @@
       "OccupantEffect": "",
       "OccupantDamage": 0,
       "DamageAttribute": "",
-      "Priority": 45
+      "Priority": 45,
+      "RequiresConductor": false,
+      "ForbidCoating": ""
+    },
+    {
+      "ID": "electrify_conductor",
+      "InputCoating": "",
+      "InputResidue": "",
+      "InputEnergy": "charge",
+      "MinEnergy": 1,
+      "ConsumeCoating": false,
+      "ConsumeResidue": false,
+      "ConsumeEnergy": 1,
+      "OutputCoating": "",
+      "OutputCoatingTurns": 0,
+      "OutputResidue": "",
+      "OutputResidueTurns": 0,
+      "OutputCloud": "",
+      "OutputCloudTurns": 0,
+      "OccupantEffect": "Electrified",
+      "OccupantDamage": 4,
+      "DamageAttribute": "Electric",
+      "Priority": 22,
+      "RequiresConductor": true,
+      "ForbidCoating": "water"
     }
   ]
 }

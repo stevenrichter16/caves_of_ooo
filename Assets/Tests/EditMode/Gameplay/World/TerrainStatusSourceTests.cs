@@ -143,11 +143,14 @@ namespace CavesOfOoo.Tests
 
             ZoneTileStateSystem.SeedTerrainSources(zone);
             zone.TileState.AddCharge(12, 12, 2);
+            int chargeBefore = zone.TileState.Charge(12, 12);
             ZoneTileStateSystem.ResolveAfterAbility(zone);
 
-            Assert.IsTrue(zone.TileState.HasResidue(12, 12, "electrified")
-                          || zone.TileState.Charge(12, 12) > 0,
-                "charge met water and the tile reacted");
+            // The reaction CONSUMES charge — that is the observable. The
+            // original assertion allowed "charge still sitting there",
+            // which passes just as well when nothing reacts at all.
+            Assert.Less(zone.TileState.Charge(12, 12), chargeBefore,
+                "charge met water and nothing consumed it — no reaction fired");
         }
 
         [Test]

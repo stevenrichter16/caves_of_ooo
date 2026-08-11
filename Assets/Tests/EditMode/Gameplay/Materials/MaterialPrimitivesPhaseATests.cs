@@ -529,8 +529,8 @@ namespace CavesOfOoo.Tests
         {
             var zone = new Zone("TestZone");
 
-            var source = CreateEntity(tags: "Metal", conductivity: 0.9f);
-            var neighbor = CreateEntity(tags: "Metal", conductivity: 0.9f);
+            var source = CreateEntity(tags: "Metal", conductivity: 90f);
+            var neighbor = CreateEntity(tags: "Metal", conductivity: 90f);
             zone.AddEntity(source, 40, 12);
             zone.AddEntity(neighbor, 41, 12);
 
@@ -553,7 +553,7 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("TestZone");
 
             // Source is metal, neighbor is plain wood — no chain.
-            var source = CreateEntity(tags: "Metal", conductivity: 0.9f);
+            var source = CreateEntity(tags: "Metal", conductivity: 90f);
             var neighbor = CreateEntity(tags: "Organic", conductivity: 0f);
             zone.AddEntity(source, 40, 12);
             zone.AddEntity(neighbor, 41, 12);

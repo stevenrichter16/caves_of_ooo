@@ -672,7 +672,7 @@ namespace CavesOfOoo.Tests
             metalGolem.AddPart(new MaterialPart
             {
                 MaterialID = "Iron",
-                Conductivity = 0.9f,
+                Conductivity = 90f,   // 0-100 scale — see MaterialPart.ConductiveThreshold
                 MaterialTagsRaw = "Metal,Conductor"
             });
 
@@ -683,7 +683,7 @@ namespace CavesOfOoo.Tests
             wire.AddPart(new MaterialPart
             {
                 MaterialID = "Copper",
-                Conductivity = 0.9f,
+                Conductivity = 90f,   // 0-100 scale — see MaterialPart.ConductiveThreshold
                 MaterialTagsRaw = "Metal,Conductor"
             });
 
@@ -791,7 +791,7 @@ namespace CavesOfOoo.Tests
             ironRod.AddPart(new MaterialPart
             {
                 MaterialID = "Iron",
-                Conductivity = 0.9f,
+                Conductivity = 90f,   // 0-100 scale — see MaterialPart.ConductiveThreshold
                 MaterialTagsRaw = "Metal,Conductor"
             });
 

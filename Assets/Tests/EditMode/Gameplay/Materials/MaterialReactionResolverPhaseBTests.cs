@@ -297,11 +297,11 @@ namespace CavesOfOoo.Tests
             LoadSingleReaction("lightning_plus_conductor.json");
 
             var zone = new Zone("TestZone");
-            var source = MakeEntity(tags: "Metal,Conductor", conductivity: 0.8f);
+            var source = MakeEntity(tags: "Metal,Conductor", conductivity: 80f);
             zone.AddEntity(source, 5, 5);
             source.ApplyEffect(new ElectrifiedEffect(charge: 1.0f));
 
-            var neighbor = MakeEntity(tags: "Metal,Conductor", conductivity: 0.8f);
+            var neighbor = MakeEntity(tags: "Metal,Conductor", conductivity: 80f);
             zone.AddEntity(neighbor, 6, 5);
             var neighborThermal = neighbor.GetPart<ThermalPart>();
             float tempBefore = neighborThermal.Temperature;
@@ -319,11 +319,11 @@ namespace CavesOfOoo.Tests
 
             var zone = new Zone("TestZone");
             // Source has Conductor tag but fails the MinConductivity 0.5 gate.
-            var source = MakeEntity(tags: "Metal,Conductor", conductivity: 0.2f);
+            var source = MakeEntity(tags: "Metal,Conductor", conductivity: 20f);
             zone.AddEntity(source, 5, 5);
             source.ApplyEffect(new ElectrifiedEffect(charge: 1.0f));
 
-            var neighbor = MakeEntity(tags: "Metal,Conductor", conductivity: 0.8f);
+            var neighbor = MakeEntity(tags: "Metal,Conductor", conductivity: 80f);
             zone.AddEntity(neighbor, 6, 5);
             var neighborThermal = neighbor.GetPart<ThermalPart>();
             float tempBefore = neighborThermal.Temperature;
@@ -340,11 +340,11 @@ namespace CavesOfOoo.Tests
             LoadSingleReaction("lightning_plus_conductor.json");
 
             var zone = new Zone("TestZone");
-            var source = MakeEntity(tags: "Metal,Conductor", conductivity: 0.8f);
+            var source = MakeEntity(tags: "Metal,Conductor", conductivity: 80f);
             zone.AddEntity(source, 5, 5);
             // No ElectrifiedEffect — should fail SourceState check.
 
-            var neighbor = MakeEntity(tags: "Metal,Conductor", conductivity: 0.8f);
+            var neighbor = MakeEntity(tags: "Metal,Conductor", conductivity: 80f);
             zone.AddEntity(neighbor, 6, 5);
             var neighborThermal = neighbor.GetPart<ThermalPart>();
             float tempBefore = neighborThermal.Temperature;
@@ -590,11 +590,11 @@ namespace CavesOfOoo.Tests
         {
             var zone = new Zone("TestZone");
 
-            var source = MakeEntity(tags: "Metal,Conductor", conductivity: 0.9f);
+            var source = MakeEntity(tags: "Metal,Conductor", conductivity: 90f);
             zone.AddEntity(source, 5, 5);
             source.ApplyEffect(new ElectrifiedEffect(charge: 1.0f), null, zone);
 
-            var neighbor = MakeEntity(tags: "Metal,Conductor", conductivity: 0.9f);
+            var neighbor = MakeEntity(tags: "Metal,Conductor", conductivity: 90f);
             zone.AddEntity(neighbor, 6, 5);
 
             Assert.IsFalse(neighbor.HasEffect<ElectrifiedEffect>(),

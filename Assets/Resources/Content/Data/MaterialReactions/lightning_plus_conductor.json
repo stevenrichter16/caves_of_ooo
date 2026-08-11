@@ -6,10 +6,14 @@
       "Conditions": {
         "SourceState": "Electrified",
         "TargetMaterialTag": "Conductor",
-        "MinConductivity": 0.5
+        "MinConductivity": 50.0
       },
       "Effects": [
-        { "Type": "PropagateAlongTag", "FloatValue": 30.0, "StringValue": "Conductor" }
+        {
+          "Type": "PropagateAlongTag",
+          "FloatValue": 30.0,
+          "StringValue": "Conductor"
+        }
       ]
     }
   ]

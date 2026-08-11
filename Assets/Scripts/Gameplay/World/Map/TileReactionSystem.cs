@@ -52,6 +52,27 @@ namespace CavesOfOoo.Core
             public string InputEnergy = "";
             public int MinEnergy = 1;
 
+            /// <summary>
+            /// Require the CELL to be electrically conductive — a pipe, a
+            /// railing, sheet ice, a brine pool.
+            ///
+            /// <para>Every other input asks about tile STATE (what has
+            /// been written here); this one asks about what the tile IS.
+            /// Without it the only rule that could shock anyone was
+            /// electrify_water, which needs a coating — so a live copper
+            /// pipe with no puddle on it was completely safe to stand on,
+            /// reported from play.</para>
+            /// </summary>
+            public bool RequiresConductor;
+
+            /// <summary>
+            /// Skip this reaction when the cell carries this coating.
+            /// Lets electrify_conductor be the DRY-conductor fallback:
+            /// without it, a wet pipe matched both it and
+            /// electrify_water and the occupant took both hits.
+            /// </summary>
+            public string ForbidCoating = "";
+
             // What the reaction eats.
             public bool ConsumeCoating;
             public bool ConsumeResidue;
@@ -213,7 +234,7 @@ namespace CavesOfOoo.Core
             for (int i = 0; i < _reactions.Count; i++)
             {
                 var r = _reactions[i];
-                if (!Matches(state, x, y, r)) continue;
+                if (!Matches(zone, state, x, y, r)) continue;
 
                 long guard = GuardKey(i, x, y);
                 if (!_firedThisAction.Add(guard))
@@ -237,8 +258,14 @@ namespace CavesOfOoo.Core
         private static long GuardKey(int reactionIndex, int x, int y)
             => ((long)reactionIndex << 32) | (uint)(y * Zone.Width + x);
 
-        private static bool Matches(ZoneTileState state, int x, int y, TileReaction r)
+        private static bool Matches(Zone zone, ZoneTileState state, int x, int y, TileReaction r)
         {
+            if (r.RequiresConductor
+                && !TilePropagationSystem.IsConductive(zone, x, y)) return false;
+
+            if (!string.IsNullOrEmpty(r.ForbidCoating)
+                && state.HasCoating(x, y, r.ForbidCoating)) return false;
+
             if (!string.IsNullOrEmpty(r.InputCoating)
                 && !state.HasCoating(x, y, r.InputCoating)) return false;
             if (!string.IsNullOrEmpty(r.InputResidue)
@@ -251,7 +278,10 @@ namespace CavesOfOoo.Core
             }
 
             // A reaction with no inputs at all would fire on every tile
-            // forever. Refuse to treat that as a match.
+            // forever. Refuse to treat that as a match. RequiresConductor
+            // alone is NOT enough — it is a property of the terrain, not
+            // something that changes, so a rule gated only on it would
+            // fire on every pipe every turn regardless of state.
             return !string.IsNullOrEmpty(r.InputCoating)
                 || !string.IsNullOrEmpty(r.InputResidue)
                 || !string.IsNullOrEmpty(r.InputEnergy);
