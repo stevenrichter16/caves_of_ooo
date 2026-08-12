@@ -95,6 +95,37 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
+        /// True when something here would stop a move into this cell.
+        ///
+        /// <para><b>Not the same as <see cref="IsSolid"/>,</b> which tests
+        /// the <c>Solid</c> TAG only. The rule the movement gate actually
+        /// enforces is two-clause — <c>PhysicsPart.Solid || HasTag("Solid")</c>
+        /// (<c>PhysicsPart.cs:69-71</c>) — and blueprints use both spellings:
+        /// walls and trees carry the tag, while the haulable furniture sets
+        /// only the Part field. A caller that asks <c>IsSolid</c> when it
+        /// means "can I move here" silently walks through the second group.
+        /// </para>
+        ///
+        /// <para>Four private copies of this rule already exist
+        /// (<c>DisposeOfCorpseGoal</c>, <c>AILayRunePart</c>,
+        /// <c>LandmarkBuilder</c>, <c>SkillCombatHelpers</c>). This is the
+        /// first shared one; consolidating those is deliberately left out of
+        /// the slice that introduced it.</para>
+        /// </summary>
+        public bool BlocksMovement(Entity ignoring = null)
+        {
+            for (int i = 0; i < Objects.Count; i++)
+            {
+                var o = Objects[i];
+                if (o == null || o == ignoring) continue;
+                if (o.HasTag("Solid")) return true;
+                var physics = o.GetPart<PhysicsPart>();
+                if (physics != null && physics.Solid) return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Returns true if any entity in this cell has the "Wall" tag.
         /// </summary>
         public bool IsWall()

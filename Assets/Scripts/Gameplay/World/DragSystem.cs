@@ -22,6 +22,41 @@ namespace CavesOfOoo.Core
         /// <summary>The load. Serialized by ID via the save graph's entity
         /// reference support — never a raw object graph.</summary>
         public Entity Dragged;
+
+        /// <summary>
+        /// The follow rule (D3). When the hauler finishes a move, the load
+        /// is pulled into the cell the hauler just left.
+        ///
+        /// <para>Hooked on <c>AfterMove</c> rather than <c>BeforeMove</c> so
+        /// the hauler has actually arrived — the vacated cell is only empty
+        /// once the move is real, and a vetoed move must not drag anything.
+        /// <c>ForceMoveTo</c> fires the same event, so being shoved while
+        /// hauling takes the load along too, which is the behaviour a
+        /// knockback should have.</para>
+        /// </summary>
+        public override bool HandleEvent(GameEvent e)
+        {
+            if (e.ID != "AfterMove") return true;
+            if (Dragged == null || ParentEntity == null) return true;
+
+            int oldX = e.GetIntParameter("OldX");
+            int oldY = e.GetIntParameter("OldY");
+            int newX = e.GetIntParameter("NewX");
+            int newY = e.GetIntParameter("NewY");
+
+            // First placement (old = -1) and a move to the cell you already
+            // occupy both mean "no cell was vacated". Following either would
+            // stack the load on top of the hauler.
+            if (oldX < 0 || oldY < 0) return true;
+            if (oldX == newX && oldY == newY) return true;
+
+            // The zone comes from the cell the mover arrived in — the event
+            // is the only thing here that knows which zone this happened in,
+            // and an entity has no back-pointer to one.
+            var zone = e.GetParameter<Cell>("Cell")?.ParentZone;
+            DragSystem.FollowInto(ParentEntity, Dragged, zone, oldX, oldY);
+            return true;
+        }
     }
 
     /// <summary>Attached to the load while it is being dragged.</summary>
@@ -158,6 +193,71 @@ namespace CavesOfOoo.Core
             int dx = ax - tx; if (dx < 0) dx = -dx;
             int dy = ay - ty; if (dy < 0) dy = -dy;
             return dx <= GrabReach && dy <= GrabReach;
+        }
+
+        // ════════════════════════════════════════════════════════
+        // Following (D3)
+        // ════════════════════════════════════════════════════════
+
+        /// <summary>
+        /// Pull <paramref name="load"/> into the cell the hauler just left.
+        /// If it cannot go there, the grip breaks.
+        ///
+        /// <para><b>Why the vacated cell.</b> It needs no pathfinding and it
+        /// cannot pick an illegal destination: the hauler was standing in it
+        /// one tick ago. It also gives the right feel for free — the load
+        /// trails behind, and turning a corner swings it around rather than
+        /// sliding it sideways through a wall.</para>
+        ///
+        /// <para><b>Why breaking is the failure mode.</b> The alternatives
+        /// are worse: teleporting the load is a lie, stacking it on another
+        /// entity corrupts the cell, and silently keeping the link lets a
+        /// hauler walk off with a rope tied to something across the map.
+        /// Dropping it is the one outcome the player can see and
+        /// understand.</para>
+        /// </summary>
+        internal static void FollowInto(Entity hauler, Entity load, Zone zone, int x, int y)
+        {
+            if (zone == null) { Slip(hauler, load, "no zone"); return; }
+
+            var destination = zone.GetCell(x, y);
+            if (destination == null) { Slip(hauler, load, "off the map"); return; }
+
+            // BlocksMovement, not IsSolid: the latter tests the Solid tag
+            // alone, and the haulable furniture sets only PhysicsPart.Solid.
+            // Asking the weaker question here would slide a millstone
+            // straight through another millstone.
+            if (destination.BlocksMovement(load)) { Slip(hauler, load, "blocked"); return; }
+
+            if (!MovementSystem.ForceMoveTo(load, zone, x, y))
+                Slip(hauler, load, "could not move");
+        }
+
+        /// <summary>Lose the grip, and say so. One record, one message.</summary>
+        private static void Slip(Entity hauler, Entity load, string reason)
+        {
+            Diag.Record(
+                category: "drag",
+                kind: "Slipped",
+                actor: hauler,
+                target: load,
+                payload: new
+                {
+                    reason,
+                    blueprintName = load?.BlueprintName,
+                });
+
+            // Break the link WITHOUT the Released record and message — this
+            // is not the player letting go, and conflating the two would
+            // make "did they drop it or lose it?" unanswerable by query.
+            var dragPart = hauler?.GetPart<DragPart>();
+            if (dragPart != null) hauler.RemovePart(dragPart);
+            var draggedPart = load?.GetPart<DraggedPart>();
+            if (draggedPart != null && ReferenceEquals(draggedPart.Dragger, hauler))
+                load.RemovePart(draggedPart);
+
+            if (load != null)
+                MessageLog.Add($"{load.GetDisplayName()} slips from your grip.");
         }
 
         // ════════════════════════════════════════════════════════

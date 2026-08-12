@@ -501,3 +501,85 @@ trace full of phantom records stops meaning anything.
   D3.** Grabbing something today links it and then it sits there.
 - The six heavy blueprints are still **placed in no worldgen**, so the
   verb is unreachable in normal play. D3/D5 or a later content pass.
+
+---
+
+## 13. D3 — the follow rule ✅ shipped
+
+`DragPart` now listens for `AfterMove`; 12 tests in `DragFollowTests.cs`.
+**Hauling is a thing you can actually do in the world now** — grab a
+millstone and it comes with you.
+
+**The rule:** the load moves into the cell the hauler just left.
+
+Chosen over "keep the relative offset" for three reasons, all of which
+fall out for free:
+
+1. **No pathfinding, and no illegal destination.** The hauler was
+   standing in that cell one tick ago.
+2. **Corners work.** Turning swings the load around behind you instead
+   of sliding it sideways through a wall
+   (`ItSwingsAroundACorner` pins this).
+3. **It reads correctly.** The load is always exactly one step behind,
+   which is what hauling looks like.
+
+**Hooked on `AfterMove`, not `BeforeMove`** — the vacated cell is only
+empty once the move is real, and a vetoed move must not drag anything.
+`ForceMoveTo` fires the same event, so a knockback takes your load with
+you rather than quietly severing the link.
+
+**When the load cannot follow, the grip breaks** (`drag/Slipped` +
+"slips from your grip"). The alternatives are all worse: teleporting is
+a lie, stacking corrupts the cell, and keeping the link lets a hauler
+walk off with a rope tied to something across the map. Slipping is
+deliberately *not* the same record as `Released` — "did they drop it or
+lose it?" has to stay answerable by query.
+
+### 🔴 Finding: `Cell.IsSolid()` is not the movement rule
+
+The first implementation used `Cell.IsSolid()` for "can the load go
+there", and two tests failed. `IsSolid` tests the **`Solid` tag only**
+(`Cell.cs:87-95`), while the rule the movement gate actually enforces is
+two-clause: `PhysicsPart.Solid || HasTag("Solid")`
+(`PhysicsPart.cs:69-71`).
+
+Blueprints use both spellings — walls and trees carry the tag, the six
+haulables set only the Part field — so a caller that asks `IsSolid` when
+it means "can I move here" **silently walks through the second group**.
+A millstone would have slid straight through another millstone.
+
+Fixed by adding `Cell.BlocksMovement(ignoring)`, the first *shared*
+implementation of the real rule. Four private copies already exist
+(`DisposeOfCorpseGoal`, `AILayRunePart`, `LandmarkBuilder`,
+`SkillCombatHelpers`); consolidating them is deliberately out of scope
+here, and `IsSolid` is left alone because 12 call sites depend on its
+current, weaker meaning.
+
+**This is the sweep paying off twice.** §11 recorded the verifier's
+finding that the codebase has five divergent solidity predicates and no
+shared helper. That note is why the two failing tests were diagnosed in
+one read instead of being "fixed" by making the test agree with the bug.
+
+### Self-review (§5)
+
+> 🟡 **1 — `IsSolid` vs `BlocksMovement`.** Above. Caught by tests, not
+> by reading — I wrote the weaker predicate despite having documented
+> the distinction myself a few hours earlier.
+>
+> 🔵 **2 — `Slipped` breaks the link inline** rather than calling
+> `Release`, because `Release` emits `Released` and a "you let go"
+> message, both of which would be false. The duplication is three lines
+> and the alternative is a bool parameter that makes `Release` lie.
+>
+> 🧪 **3 — the load is not yet slowed by its weight.** D4.
+
+### Honesty bounds
+
+- **Unit-verified only.** 6544/6544 EditMode green. No live Play run;
+  no screenshot. The feel of hauling — whether trailing-behind reads
+  correctly on a CP437 grid at speed — is unverified and unverifiable
+  from tests.
+- **Render dirtying is inherited, not asserted.** The load moves via
+  `MovementSystem.ForceMoveTo`, which calls `DirtyForMove`. No test
+  here pins that the cells repaint; that is a visual claim.
+- The six heavy blueprints are still **placed in no worldgen**.
