@@ -50,29 +50,70 @@ Two findings worth stating plainly:
 
 ## 3. The three weights of a thing
 
-One rule, read off Strength, producing three different verbs:
+> ⚠️ **This section was wrong in its first draft and is corrected here.**
+> It read `Strength × 15` — the **pack capacity** — as the carry/drag
+> boundary. That is not the gate the game enforces on picking a single
+> thing up. `PickupCommand.cs:60` and `TakeFromContainerCommand.cs:69`
+> gate on `HandlingService.GetLiftStrengthRequirement`, which is
+> `max(ceil(weight/2) + 1, MinLiftStrength)` for a one-handed grip.
+>
+> The two numbers are wildly different: at Strength 16 the pack holds
+> **240** but a single lift caps near **30**. Building the drag boundary
+> on the pack number would have reported "just pick it up" for every
+> object the feature exists for, while the pickup path refused them —
+> **objects reachable by no verb at all.** Caught by reading the pickup
+> path during D1, before the verb existed to expose it.
+
+Two different questions, and the code must ask each of them once:
 
 ```
-carryCap = Strength × 15          (shipped: WEIGHT_PER_STRENGTH)
-dragCap  = Strength × 45          (proposed: DRAG_PER_STRENGTH = 45)
+can you lift it?   HandlingService.CanLift(actor, target)   ← shipped, delegated to
+can you haul it?   weight ≤ Strength × 8                    ← new: DRAG_PER_STRENGTH
 ```
 
 | Condition | Verb | Feel |
 |---|---|---|
-| `weight ≤ remaining carry capacity` | **Take** (ships) | it goes in your pack |
-| `weight > capacity` but `≤ dragCap` | **Drag** (new) | it comes with you, slowly |
+| the shipped pickup path accepts it | **Take** (ships) | it goes in your pack |
+| it refuses, but `weight ≤ dragCap` | **Drag** (new) | it comes with you, slowly |
 | `weight > dragCap` | *refused* | "You set your shoulder against it. It does not care." |
 
-**Why 3×.** A person can drag substantially more than they can carry —
-that is the entire physical intuition the feature trades on. 3× keeps
-the boundary legible: if you can carry a thing at Strength 10, you can
-drag it at Strength 4.
+**Why 8.** The shipped lift ceiling works out to `2 × (Strength − 1)`,
+so a drag cap of `Strength × 8` is about **4.3× the lift ceiling** — and
+stays there across the whole stat range (Str 10: 18 vs 80; Str 20: 38 vs
+160). A person hauls substantially more than they lift; 4× is the honest
+version of that intuition at this game's weight scale, where a heavy
+weapon weighs 30, not 300.
+
+**Pack capacity is deliberately not consulted.** A pebble does not
+become draggable because your bag is full — that would be an infinite-
+haul exploit and a nonsense sentence. Full-pack is a different problem
+with a different fix.
 
 **The gate is `MinLiftStrength`, not weight, where a blueprint says so.**
 `HandlingPart.MinLiftStrength` (`:21`) already exists to say "you need
 this much Strength regardless of arithmetic" — an anvil is not hard
-because it is heavy, it is hard because it has nowhere to hold. Drag
-checks weight; a blueprint may additionally require Strength.
+because it is heavy, it is hard because it has nowhere to hold. To do
+independent work the value must exceed the weight-implied requirement
+(`ceil(weight/8)`); below that it is inert. `SmithAnvil` is the shipped
+example: weight 120 implies Strength 15, `MinLiftStrength 18` overrides.
+
+### Scenery is not cargo
+
+A third refusal that is not about weight: some things are *attached*.
+The rule is **no `HandlingPart` and not `Takeable` → rooted**, and it
+partitions shipped content exactly — of the 62 blueprints marked
+`Solid`, the only ones carrying a `HandlingPart` are the six authored to
+be hauled. Walls, standing trees, ore veins, chests and grass all fall
+out as scenery without a single new tag.
+
+The direction matters: **haulable is opt-in.** A future author makes a
+piece of furniture draggable by giving it a `HandlingPart`, and
+forgetting to fails safe (immovable) rather than dangerous (the player
+drags a wall).
+
+*(The first draft invented `Rooted` and `Fixture` tags for this. Neither
+existed in any blueprint or anywhere else in the codebase — the branch
+protected nothing.)*
 
 ---
 
@@ -203,10 +244,106 @@ drag into a zone edge; drag a container that is *also* a shop's stock.
 
 ---
 
-## 9. Honesty bounds
+## 9. Implementation log
 
-- **Nothing is built.** This is a design read against the code, not a
+### D1 — the arithmetic ✅ shipped
+
+`Assets/Scripts/Gameplay/World/DragRules.cs` + 19 tests in
+`Assets/Tests/EditMode/Gameplay/World/DragRulesTests.cs`, plus the six
+heavy blueprints §8.4 said the slice could not ship without.
+
+**Divergences from the §7 sketch (all deliberate):**
+
+| Planned | Shipped | Why |
+|---|---|---|
+| verdict `Alive` | `Living` | reads better in the refusal string, and `Alive` invites confusion with an HP check |
+| — | `NoActor` / `NoTarget` split | a null actor and a null target are different bugs upstream; one enum value would have hidden which |
+| — | `CarryInstead` | "too light to drag" is not a refusal — the right response is to offer *take*. Without this branch the only honest reply to a pebble would have been "you cannot drag that", which is true and useless |
+| `dragCap = Strength × 45` | **× 8** | see §3 — 45 was scaled against the wrong carry number |
+| `Rooted`/`Fixture` tags | `HandlingPart`-absent + `!Takeable` | the tags did not exist in any blueprint; the shipped markers partition the content exactly |
+
+**Corrections table (the sweep, run mid-slice rather than before it):**
+
+| Believed | Actually | Consequence |
+|---|---|---|
+| carry gate is `Strength × 15` | that is *pack capacity*; the per-item gate is `ceil(w/2)+1` (`PickupCommand.cs:60`) | 🔴 would have made every heavy object unreachable by any verb — see §3 |
+| "34 blueprints author `Handling`, none author both weights" | **0** author `Handling.Weight` alone, 119 author `Physics.Weight` alone, and 7 author both (`Bone` + the six new) | the "which weight wins" question is real but nearly untested by content; `Bone` is the only pre-existing case and both its values agree |
+| no shipped weight resolver | `HandlingService.GetWeight` already exists and is used by `InventoryPart` and `ThrowItemCommand` | `WeightOf` had been a verbatim reimplementation; now delegates |
+| `Rooted`/`Fixture` are meaningful tags | neither appears in any blueprint or anywhere in `Assets/Scripts` | the refusal branch protected nothing |
+
+**The six heavy things** (`Objects.json`), rescaled to this game's actual
+weight scale (a heavy weapon is ~30, not ~300):
+
+| Blueprint | Weight | MinLift | Needs Strength |
+|---|---:|---:|---:|
+| FallenBeam | 60 | — | 8 |
+| HaulBarrel | 75 | — | 10 |
+| SaltCuredBody | 90 | — | 12 |
+| StoneCoffer | 110 | — | 14 |
+| SmithAnvil | 120 | **18** | 18 *(grip, not weight)* |
+| MillStone | 150 | — | 19 |
+
+At the shipped Strength 16 that is four haulable, two aspirational, and
+the two refusals arrive for visibly different reasons. All six are
+`Carryable: false`, so they are never mistaken for pack contents.
+**They are placed in no worldgen yet** — D2 or later; until then they
+exist for tests and the console only.
+
+**Self-review (§5):**
+
+> 🔴 **Finding 1 — the carry rung asked the wrong question.** Detailed in
+> §3. `CanDrag` compared weight against pack capacity, so at Strength 16
+> a 150-weight beam returned `CarryInstead` while `PickupCommand`
+> refused it at `ceil(150/2)+1 = 76`. Net effect: **the objects the
+> feature exists for were reachable by no verb at all.** Fixed by
+> delegating to `HandlingService.CanLift` — the same call the pickup
+> path makes — and pinned by
+> `CarryInstead_TracksTheRealPickupGate_NotPackCapacity`, which asserts
+> both preconditions explicitly so it cannot pass vacuously.
+>
+> Worth naming as a pattern: this bug lived *between* two correct units.
+> `InventoryPart` is right about packs, `HandlingService` is right about
+> lifts, and the defect was reading one and meaning the other. Both
+> per-file reviews would have passed it.
+>
+> 🟡 **Finding 2 — a test asserted a branch it never reached.**
+> `MinLiftStrength_GatesIndependentlyOfWeight` first used a 200-weight
+> anvil, which the stronger actor could simply *carry* — so the passing
+> assertion hit `CarryInstead` and never evaluated the gate. Caught by
+> the run, not by reading. **Same vacuous-precondition class as the W0.2
+> counter-check**, twice in this stream, so: *a fixture chosen for the
+> fiction rather than the arithmetic can pass through a branch it did
+> not mean to test.* Every boundary fixture in the file now states its
+> arithmetic in a comment.
+>
+> 🟡 **Finding 3 — `WeightOf` was a copy of `HandlingService.GetWeight`.**
+> Identical logic, independently written, which is exactly how hauling
+> and carrying end up disagreeing about how heavy a thing is after a
+> future edit to one of them. Now a delegation, with a test asserting
+> the two agree.
+>
+> 🔵 **Finding 4 — refusal precedence is unstated design.** A thing both
+> too heavy and too awkward reports `TooHeavy`. That is deliberate — it
+> is the refusal the player can answer by levelling — but it was
+> implicit in branch order until `WeightRefusalOutranksTheGripRefusal`
+> pinned it.
+>
+> 🧪 **Finding 5 — no diag records.** D1 is a pure function with no call
+> site, so there is no gate to instrument yet. The observability rule
+> lands in D2, where `drag/Grabbed` + `drag/Refused{reason}` carry the
+> verdict enum as the reason field — which is why the enum is
+> per-branch rather than a bool.
+
+---
+
+## 10. Honesty bounds
+
+- **Only D1 is built.** D2–D6 below the arithmetic are unwritten; the
+  rest of this document is a design read against the code, not a
   measured feature.
+- **D1 is unit-verified only.** 6496/6496 EditMode green. No live Play
+  run — there is nothing to play yet, since no verb calls into
+  `DragRules` and the heavy blueprints are not placed in any zone.
 - **Verified:** the weight/Strength formula and constant, `HandlingPart`'s
   fields, `PhysicsPart`'s fields, the world-action menu signature, and
   that `Slippery`/`Sticky` have no consumer. Each is cited above.
