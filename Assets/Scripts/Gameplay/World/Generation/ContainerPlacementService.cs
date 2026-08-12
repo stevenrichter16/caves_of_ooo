@@ -237,6 +237,12 @@ namespace CavesOfOoo.Core
                 case BiomeType.Desert: return DesertPool;
                 case BiomeType.Jungle: return JunglePool;
                 case BiomeType.Ruins:  return RuinsPool;
+                case BiomeType.Spread: return JunglePool;
+                case BiomeType.Sodden: return JunglePool;
+                case BiomeType.Beating: return DesertPool;
+                case BiomeType.Grovelands: return JunglePool;
+                case BiomeType.Overwrit: return RuinsPool;
+                case BiomeType.Stump: return CavePool;
                 default:               return CavePool;
             }
         }

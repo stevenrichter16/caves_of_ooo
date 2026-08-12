@@ -70,6 +70,12 @@ namespace CavesOfOoo.Core
                 case BiomeType.Desert: return Desert;
                 case BiomeType.Jungle: return Jungle;
                 case BiomeType.Ruins: return Ruins;
+                case BiomeType.Spread: return For(BiomeType.Jungle);
+                case BiomeType.Sodden: return For(BiomeType.Jungle);
+                case BiomeType.Beating: return For(BiomeType.Desert);
+                case BiomeType.Grovelands: return For(BiomeType.Jungle);
+                case BiomeType.Overwrit: return For(BiomeType.Ruins);
+                case BiomeType.Stump: return For(BiomeType.Cave);
                 default: return System.Array.Empty<StructureStamp>();
             }
         }
@@ -237,6 +243,12 @@ namespace CavesOfOoo.Core
                 case BiomeType.Desert: wall = "SandstoneWall"; name = "Caravanserai"; break;
                 case BiomeType.Jungle: wall = "VineWall"; name = "TrapperCamp"; break;
                 case BiomeType.Ruins: wall = "StoneWall"; name = "SalvageCamp"; break;
+                case BiomeType.Spread: wall = "VineWall"; name = "TrapperCamp"; break;
+                case BiomeType.Sodden: wall = "VineWall"; name = "TrapperCamp"; break;
+                case BiomeType.Beating: wall = "SandstoneWall"; name = "Caravanserai"; break;
+                case BiomeType.Grovelands: wall = "VineWall"; name = "TrapperCamp"; break;
+                case BiomeType.Overwrit: wall = "StoneWall"; name = "SalvageCamp"; break;
+                case BiomeType.Stump: wall = "Wall"; name = "ProspectorCamp"; break;
                 case BiomeType.Cave:
                 default: wall = "Wall"; name = "ProspectorCamp"; break;
             }

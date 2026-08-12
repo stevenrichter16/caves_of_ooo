@@ -55,6 +55,36 @@ namespace CavesOfOoo.Core
                     _wallBlueprint = "StoneWall";
                     _pathBlueprint = "StoneFloor";
                     break;
+                case BiomeType.Spread:
+                    _floorBlueprint = "Grass";
+                    _wallBlueprint = "VineWall";
+                    _pathBlueprint = "Grass";
+                    break;
+                case BiomeType.Sodden:
+                    _floorBlueprint = "Grass";
+                    _wallBlueprint = "VineWall";
+                    _pathBlueprint = "Grass";
+                    break;
+                case BiomeType.Beating:
+                    _floorBlueprint = "Sand";
+                    _wallBlueprint = "SandstoneWall";
+                    _pathBlueprint = "Sand";
+                    break;
+                case BiomeType.Grovelands:
+                    _floorBlueprint = "Grass";
+                    _wallBlueprint = "VineWall";
+                    _pathBlueprint = "Grass";
+                    break;
+                case BiomeType.Overwrit:
+                    _floorBlueprint = "StoneFloor";
+                    _wallBlueprint = "StoneWall";
+                    _pathBlueprint = "StoneFloor";
+                    break;
+                case BiomeType.Stump:
+                    _floorBlueprint = "Floor";
+                    _wallBlueprint = "Wall";
+                    _pathBlueprint = "Floor";
+                    break;
                 case BiomeType.Cave:
                 default:
                     _floorBlueprint = "Floor";
@@ -141,9 +171,7 @@ namespace CavesOfOoo.Core
                             zone.RemoveEntity(cell.Objects[i]);
                     }
 
-                    var floor = factory.CreateEntity(_floorBlueprint);
-                    if (floor != null)
-                        zone.AddEntity(floor, x, y);
+                    BuilderSpawn.TryPlace(zone, factory, _floorBlueprint, x, y);
                 }
             }
         }
@@ -162,9 +190,7 @@ namespace CavesOfOoo.Core
 
                     if (isEdge)
                     {
-                        var wall = factory.CreateEntity(_wallBlueprint);
-                        if (wall != null)
-                            zone.AddEntity(wall, x, y);
+                        BuilderSpawn.TryPlace(zone, factory, _wallBlueprint, x, y);
                     }
                     else
                     {
@@ -197,9 +223,7 @@ namespace CavesOfOoo.Core
                     var chairCell = zone.GetCell(chairX, chairY);
                     if (chairCell != null && chairCell.IsPassable())
                     {
-                        var chair = factory.CreateEntity("Chair");
-                        if (chair != null)
-                            zone.AddEntity(chair, chairX, chairY);
+                        BuilderSpawn.TryPlace(zone, factory, "Chair", chairX, chairY);
                     }
                 }
             }
@@ -215,9 +239,7 @@ namespace CavesOfOoo.Core
                     var bedCell = zone.GetCell(bedX, bedY);
                     if (bedCell != null && bedCell.IsPassable())
                     {
-                        var bed = factory.CreateEntity("Bed");
-                        if (bed != null)
-                            zone.AddEntity(bed, bedX, bedY);
+                        BuilderSpawn.TryPlace(zone, factory, "Bed", bedX, bedY);
                     }
                 }
             }
@@ -279,9 +301,7 @@ namespace CavesOfOoo.Core
                     }
                     if (!hasFloor)
                     {
-                        var floor = factory.CreateEntity(_pathBlueprint);
-                        if (floor != null)
-                            zone.AddEntity(floor, cx, cy);
+                        BuilderSpawn.TryPlace(zone, factory, _pathBlueprint, cx, cy);
                     }
                 }
 
@@ -304,9 +324,7 @@ namespace CavesOfOoo.Core
                 if (cell.Objects[i].HasTag("Wall") || cell.Objects[i].HasTag("Terrain"))
                     zone.RemoveEntity(cell.Objects[i]);
             }
-            var floor = factory.CreateEntity(floorBP);
-            if (floor != null)
-                zone.AddEntity(floor, x, y);
+            BuilderSpawn.TryPlace(zone, factory, floorBP, x, y);
         }
 
         private bool Overlaps(Room r, int bx, int by, int bw, int bh)

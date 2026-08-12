@@ -76,6 +76,27 @@ namespace CavesOfOoo.Core
                     return CreateJunglePipeline(tier);
                 case BiomeType.Ruins:
                     return CreateRuinsPipeline(tier);
+
+                // The Felling world. W0.6 gives every canon biome a
+                // PLAYABLE zone by borrowing its nearest legacy terrain
+                // generator; each biome's own formations land in its own
+                // phase (W1 Spread, W2 Beating, W3 Sodden, W4 Grovelands,
+                // W6 Stump, W7 Overwrit). The point of W0 is that the
+                // authored map ships walkable, not that it ships
+                // finished.
+                case BiomeType.Spread:
+                    return CreateSpreadPipeline(tier);
+                case BiomeType.Sodden:
+                    return CreateSoddenPipeline(tier);
+                case BiomeType.Beating:
+                    return CreateBeatingPipeline(tier);
+                case BiomeType.Grovelands:
+                    return CreateGrovelandsPipeline(tier);
+                case BiomeType.Overwrit:
+                    return CreateOverwritPipeline(tier);
+                case BiomeType.Stump:
+                    return CreateStumpPipeline(tier);
+
                 case BiomeType.Cave:
                 default:
                     return CreateCavePipeline(tier);
@@ -98,6 +119,12 @@ namespace CavesOfOoo.Core
                 case BiomeType.Desert: pipeline = CreateDesertPipeline(tier); break;
                 case BiomeType.Jungle: pipeline = CreateJunglePipeline(tier); break;
                 case BiomeType.Ruins: pipeline = CreateRuinsPipeline(tier); break;
+                case BiomeType.Spread: pipeline = CreateSpreadPipeline(tier); break;
+                case BiomeType.Sodden: pipeline = CreateSoddenPipeline(tier); break;
+                case BiomeType.Beating: pipeline = CreateBeatingPipeline(tier); break;
+                case BiomeType.Grovelands: pipeline = CreateGrovelandsPipeline(tier); break;
+                case BiomeType.Overwrit: pipeline = CreateOverwritPipeline(tier); break;
+                case BiomeType.Stump: pipeline = CreateStumpPipeline(tier); break;
                 case BiomeType.Cave:
                 default: pipeline = CreateCavePipeline(tier); break;
             }
@@ -109,15 +136,20 @@ namespace CavesOfOoo.Core
             return pipeline;
         }
 
+        /// <summary>
+        /// The zone's Strangeness Tier, read from the authored table
+        /// (Felling W0.6). This used to be a Manhattan-distance formula
+        /// duplicated here AND in WorldGenerator — and tier was computed
+        /// twice per zone besides (stamped into the POI at generation,
+        /// recomputed at pipeline time), so the two could drift. One
+        /// table now answers both.
+        ///
+        /// <para>Canon's rule, kept: tier is authored, not radial. Slip
+        /// is a Tier-3 wound a day's walk from Tier-1 farmland, and that
+        /// is the point (Lore/History/02_Geography.md).</para>
+        /// </summary>
         private int GetTierForCoords(int wx, int wy)
-        {
-            int centerX = WorldMap.Width / 2;
-            int centerY = WorldMap.Height / 2;
-            int dist = System.Math.Abs(wx - centerX) + System.Math.Abs(wy - centerY);
-            if (dist <= 4) return 1;
-            if (dist <= 8) return 2;
-            return 3;
-        }
+            => WorldMapAuthoring.TierAt(wx, wy);
 
         private ZoneGenerationPipeline CreateCavePipeline(int tier = 1)
         {
@@ -211,6 +243,81 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new ContainerBuilder(BiomeType.Ruins, tier,
                 ContainerPlacementService.ZoneKind.Wilderness));
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.GetBiomeTable(BiomeType.Ruins, tier)));
+            pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
+            return pipeline;
+        }
+
+        // ════════════════════════════════════════════════════════
+        // The Felling biomes — W0.6 placeholders
+        // ════════════════════════════════════════════════════════
+        //
+        // Each borrows a shipped terrain generator, tuned toward the
+        // canon description, so the authored map is WALKABLE today. The
+        // formations that make each biome itself (a hedgerow lane, a
+        // salt pan, a duckboard causeway, a grove colonnade, a bleed)
+        // belong to the biome's own phase.
+
+        /// <summary>The Spread — recovered river country. Open meadow
+        /// and coppice: grass with the tree density turned down.</summary>
+        private ZoneGenerationPipeline CreateSpreadPipeline(int tier = 1)
+            => CreateSurfacePipeline(BiomeType.Spread, tier,
+                new JungleBuilder { SeedChance = 40, TreeChance = 0.04f });
+
+        /// <summary>The Sodden — the flood's country. Wetter and more
+        /// choked than the Spread; W3 brings the mires and the
+        /// Bog-Taken.</summary>
+        private ZoneGenerationPipeline CreateSoddenPipeline(int tier = 1)
+            => CreateSurfacePipeline(BiomeType.Sodden, tier,
+                new JungleBuilder { SeedChance = 52, TreeChance = 0.14f });
+
+        /// <summary>The Beating — raw sun and salt. Open, exposed, and
+        /// stony.</summary>
+        private ZoneGenerationPipeline CreateBeatingPipeline(int tier = 1)
+            => CreateSurfacePipeline(BiomeType.Beating, tier,
+                new DesertBuilder { WallThreshold = 0.88f, RockChance = 0.06f });
+
+        /// <summary>The Grovelands — Choir country. Dense growth with
+        /// open cathedral floors between.</summary>
+        private ZoneGenerationPipeline CreateGrovelandsPipeline(int tier = 1)
+            => CreateSurfacePipeline(BiomeType.Grovelands, tier,
+                new JungleBuilder { SeedChance = 50, TreeChance = 0.16f });
+
+        /// <summary>
+        /// The Overwrit — the scraped region. Near-empty ground with
+        /// almost nothing on it, which is the horror: a region this old
+        /// should be FULL. W7 adds the bleeds; the emptiness is already
+        /// the point.
+        /// </summary>
+        private ZoneGenerationPipeline CreateOverwritPipeline(int tier = 1)
+            => CreateSurfacePipeline(BiomeType.Overwrit, tier,
+                new DesertBuilder { WallThreshold = 0.97f, RockChance = 0.005f });
+
+        /// <summary>The Stump — the petrified tepui. Rock and
+        /// fissure.</summary>
+        private ZoneGenerationPipeline CreateStumpPipeline(int tier = 1)
+            => CreateSurfacePipeline(BiomeType.Stump, tier,
+                new CaveBuilder { SeedChance = 50, NoiseThreshold = 0.44f });
+
+        /// <summary>
+        /// The shared surface-wilderness spine: terrain, connectivity,
+        /// a cave mouth, landmarks, hazards, containers, population,
+        /// trade stock. Identical in shape to the four legacy biome
+        /// pipelines — extracted so the six new ones cannot drift out of
+        /// step with them by omission.
+        /// </summary>
+        private ZoneGenerationPipeline CreateSurfacePipeline(
+            BiomeType biome, int tier, IZoneBuilder terrain)
+        {
+            var pipeline = new ZoneGenerationPipeline();
+            pipeline.AddBuilder(terrain);
+            pipeline.AddBuilder(new ConnectivityBuilder());
+            pipeline.AddBuilder(new CaveEntranceBuilder(this));
+            pipeline.AddBuilder(new LandmarkBuilder(biome, tier));
+            pipeline.AddBuilder(new HazardTerrainBuilder(biome));
+            pipeline.AddBuilder(new ContainerBuilder(biome, tier,
+                ContainerPlacementService.ZoneKind.Wilderness));
+            pipeline.AddBuilder(new PopulationBuilder(
+                PopulationTable.GetBiomeTable(biome, tier)));
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
             return pipeline;
         }
@@ -400,6 +507,14 @@ namespace CavesOfOoo.Core
                 case BiomeType.Desert:  return new Color(1.0f, 0.93f, 0.8f);
                 case BiomeType.Jungle:  return new Color(0.85f, 1.0f, 0.85f);
                 case BiomeType.Ruins:   return new Color(0.9f, 0.85f, 0.95f);
+                // Felling W0.6 — see Docs/FELLING-WORLD-DESIGN.md §6.
+                case BiomeType.Spread:     return new Color(1.0f, 1.0f, 0.94f);
+                case BiomeType.Sodden:     return new Color(0.82f, 0.86f, 0.80f);
+                case BiomeType.Beating:    return new Color(1.0f, 0.98f, 0.88f);
+                case BiomeType.Grovelands: return new Color(0.88f, 0.92f, 0.85f);
+                // The Overwrit is grey on purpose: a scraped page.
+                case BiomeType.Overwrit:   return new Color(0.9f, 0.9f, 0.9f);
+                case BiomeType.Stump:      return new Color(0.98f, 0.93f, 0.92f);
                 default:                return Color.white;
             }
         }

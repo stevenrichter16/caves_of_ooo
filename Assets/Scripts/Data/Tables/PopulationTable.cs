@@ -66,9 +66,15 @@ namespace CavesOfOoo.Data
                 switch (biome)
                 {
                     case BiomeType.Cave: return CaveTier3();
+                    case BiomeType.Stump: return CaveTier3();
                     case BiomeType.Desert: return DesertTier3();
+                    case BiomeType.Beating: return DesertTier3();
                     case BiomeType.Jungle: return JungleTier3();
+                    case BiomeType.Grovelands: return JungleTier3();
+                    case BiomeType.Sodden: return JungleTier3();
+                    case BiomeType.Spread: return JungleTier3();
                     case BiomeType.Ruins: return RuinsTier3();
+                    case BiomeType.Overwrit: return RuinsTier3();
                 }
             }
 
@@ -77,18 +83,30 @@ namespace CavesOfOoo.Data
                 switch (biome)
                 {
                     case BiomeType.Cave: return CaveTier2();
+                    case BiomeType.Stump: return CaveTier2();
                     case BiomeType.Desert: return DesertTier2();
+                    case BiomeType.Beating: return DesertTier2();
                     case BiomeType.Jungle: return JungleTier2();
+                    case BiomeType.Grovelands: return JungleTier2();
+                    case BiomeType.Sodden: return JungleTier2();
+                    case BiomeType.Spread: return JungleTier2();
                     case BiomeType.Ruins: return RuinsTier2();
+                    case BiomeType.Overwrit: return RuinsTier2();
                 }
             }
 
             switch (biome)
             {
                 case BiomeType.Cave: return CaveTier1();
+                case BiomeType.Stump: return CaveTier1();
                 case BiomeType.Desert: return DesertTier1();
+                case BiomeType.Beating: return DesertTier1();
                 case BiomeType.Jungle: return JungleTier1();
+                case BiomeType.Grovelands: return JungleTier1();
+                case BiomeType.Sodden: return JungleTier1();
+                case BiomeType.Spread: return JungleTier1();
                 case BiomeType.Ruins: return RuinsTier1();
+                case BiomeType.Overwrit: return RuinsTier1();
                 default: return CaveTier1();
             }
         }
@@ -478,6 +496,14 @@ namespace CavesOfOoo.Data
                             new PopulationEntry { BlueprintName = "RuinScavenger", Weight = 3, MinCount = 1, MaxCount = 2 },
                         }
                     };
+                // Felling W0.6 — the canon biomes borrow their nearest
+                // legacy roster until their own phase authors one.
+                case BiomeType.Spread:     return LairGuards(BiomeType.Jungle);
+                case BiomeType.Sodden:     return LairGuards(BiomeType.Jungle);
+                case BiomeType.Beating:    return LairGuards(BiomeType.Desert);
+                case BiomeType.Grovelands: return LairGuards(BiomeType.Jungle);
+                case BiomeType.Overwrit:   return LairGuards(BiomeType.Ruins);
+                case BiomeType.Stump:      return LairGuards(BiomeType.Cave);
                 default:
                     return LairGuards(BiomeType.Cave);
             }

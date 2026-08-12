@@ -43,6 +43,30 @@ namespace CavesOfOoo.Core
                     _wallBlueprint = "StoneWall";
                     _floorBlueprint = "StoneFloor";
                     break;
+                case BiomeType.Spread:
+                    _wallBlueprint = "VineWall";
+                    _floorBlueprint = "Grass";
+                    break;
+                case BiomeType.Sodden:
+                    _wallBlueprint = "VineWall";
+                    _floorBlueprint = "Grass";
+                    break;
+                case BiomeType.Beating:
+                    _wallBlueprint = "SandstoneWall";
+                    _floorBlueprint = "Sand";
+                    break;
+                case BiomeType.Grovelands:
+                    _wallBlueprint = "VineWall";
+                    _floorBlueprint = "Grass";
+                    break;
+                case BiomeType.Overwrit:
+                    _wallBlueprint = "StoneWall";
+                    _floorBlueprint = "StoneFloor";
+                    break;
+                case BiomeType.Stump:
+                    _wallBlueprint = "Wall";
+                    _floorBlueprint = "Floor";
+                    break;
                 case BiomeType.Cave:
                 default:
                     _wallBlueprint = "Wall";

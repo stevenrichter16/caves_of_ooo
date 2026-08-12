@@ -1,11 +1,43 @@
 namespace CavesOfOoo.Core
 {
+    /// <summary>
+    /// <para><b>Append only, never reorder.</b> Biome is serialized as a
+    /// raw int with a strict save-version check that cannot detect a
+    /// remap — inserting a member would silently relabel every tile in
+    /// every existing save.</para>
+    ///
+    /// <para>The first four are the pre-Felling prototype biomes. They
+    /// are no longer placed on the surface (the authored map uses the six
+    /// canon biomes) but remain live: underground zones, villages, lairs
+    /// and every test fixture still route through them, and old saves
+    /// still contain them.</para>
+    /// </summary>
     public enum BiomeType
     {
         Cave,
         Desert,
         Jungle,
-        Ruins
+        Ruins,
+
+        // The Felling world (Docs/FELLING-WORLD-DESIGN.md §3).
+        /// <summary>Recovered river country; the material frame of
+        /// disbelief, where the Tree is a children's story.</summary>
+        Spread,
+        /// <summary>Where the flood never fully drained — peat, black
+        /// water, and the Bog-Taken still surfacing after a thousand
+        /// years.</summary>
+        Sodden,
+        /// <summary>The wasteland the raw sun hit first, where the
+        /// canopy was thinnest. Salt pans and exposed pre-Felling
+        /// ruins.</summary>
+        Beating,
+        /// <summary>Choir country, thickening toward the Stump.</summary>
+        Grovelands,
+        /// <summary>The scraped region. Not empty — faint.</summary>
+        Overwrit,
+        /// <summary>The petrified stump of the god-tree, and its
+        /// slopes.</summary>
+        Stump,
     }
 
     /// <summary>

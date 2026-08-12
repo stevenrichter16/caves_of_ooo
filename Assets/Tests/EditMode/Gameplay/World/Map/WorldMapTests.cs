@@ -709,57 +709,67 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void WorldGenerator_DifferentSeeds_DifferentMaps()
+        public void WorldGenerator_DifferentSeeds_DifferentPOIs()
         {
+            // RE-BASELINED by Felling W0.6. This used to demand that two
+            // seeds produce different TILES — true of a noise map, and
+            // now false by design: the biome table is authored, so every
+            // world has the same geography. What still varies is what
+            // happens in it, so the invariant moves to the opportunistic
+            // layer (lairs and merchant camps).
             var map1 = WorldGenerator.Generate(42);
             var map2 = WorldGenerator.Generate(43);
 
             bool anyDifferent = false;
-            for (int x = 0; x < WorldMap.Width; x++)
+            for (int x = 0; x < WorldMap.Width && !anyDifferent; x++)
             {
                 for (int y = 0; y < WorldMap.Height; y++)
                 {
-                    if (map1.Tiles[x, y] != map2.Tiles[x, y])
+                    var a = map1.GetPOI(x, y);
+                    var b = map2.GetPOI(x, y);
+                    if ((a == null) != (b == null) ||
+                        (a != null && b != null && a.Type != b.Type))
                     {
                         anyDifferent = true;
                         break;
                     }
                 }
-                if (anyDifferent) break;
             }
-            Assert.IsTrue(anyDifferent, "Two different seeds should produce at least one different tile");
+            Assert.IsTrue(anyDifferent,
+                "two seeds should still place lairs and camps differently");
         }
 
         [Test]
-        public void WorldGenerator_CenterIsCave()
+        public void WorldGenerator_CenterIsTheSpread()
         {
+            // RE-BASELINED (W0.6): Sill stands in the Spread — recovered
+            // river country, where the Felling is a children's story.
             var map = WorldGenerator.Generate(42);
-            Assert.AreEqual(BiomeType.Cave, map.Tiles[10, 10]);
+            Assert.AreEqual(BiomeType.Spread, map.Tiles[10, 10]);
         }
 
         [Test]
-        public void WorldGenerator_AllBiomesPresent()
+        public void WorldGenerator_AllCanonBiomesPresent()
         {
+            // RE-BASELINED (W0.6): the surface is the six Felling biomes.
+            // The four legacy biomes are no longer PLACED on the
+            // overworld — they remain live for underground zones,
+            // villages, lairs and old saves.
             var map = WorldGenerator.Generate(42);
-
-            bool hasCave = false, hasDesert = false, hasJungle = false, hasRuins = false;
+            var seen = new HashSet<BiomeType>();
             for (int x = 0; x < WorldMap.Width; x++)
-            {
                 for (int y = 0; y < WorldMap.Height; y++)
-                {
-                    switch (map.Tiles[x, y])
-                    {
-                        case BiomeType.Cave: hasCave = true; break;
-                        case BiomeType.Desert: hasDesert = true; break;
-                        case BiomeType.Jungle: hasJungle = true; break;
-                        case BiomeType.Ruins: hasRuins = true; break;
-                    }
-                }
-            }
-            Assert.IsTrue(hasCave, "Cave biome should be present");
-            Assert.IsTrue(hasDesert, "Desert biome should be present");
-            Assert.IsTrue(hasJungle, "Jungle biome should be present");
-            Assert.IsTrue(hasRuins, "Ruins biome should be present");
+                    seen.Add(map.Tiles[x, y]);
+
+            foreach (var b in new[]
+            {
+                BiomeType.Spread, BiomeType.Sodden, BiomeType.Beating,
+                BiomeType.Grovelands, BiomeType.Overwrit, BiomeType.Stump,
+            })
+                Assert.IsTrue(seen.Contains(b), $"{b} missing from the authored map");
+
+            Assert.IsFalse(seen.Contains(BiomeType.Cave),
+                "the prototype biomes are retired from the surface");
         }
 
         [Test]
@@ -1217,47 +1227,47 @@ namespace CavesOfOoo.Tests
         // ================================================================
 
         [Test]
-        public void OverworldZoneManager_RoutesCaveBiome()
+        public void OverworldZoneManager_RoutesStumpBiome()
         {
             var manager = CreateManager(42);
             var worldMap = manager.WorldMap;
 
-            // The starting POI (previously Village, now RiverChunk) bypasses
-            // the cave pipeline — even though the center tile's BIOME is Cave.
-            // Pick any other Cave-biome tile without a POI for this routing test.
+            // RE-BASELINED (W0.6): the surface is the six canon biomes.
+            // The Stump borrows the cave generator for now, so it is the
+            // biome that proves Wall-terrain routing still works.
             (int x, int y)? cavePos = null;
             for (int y = 0; y < WorldMap.Height && cavePos == null; y++)
             {
                 for (int x = 0; x < WorldMap.Width && cavePos == null; x++)
                 {
-                    if (worldMap.GetBiome(x, y) == BiomeType.Cave && !worldMap.HasPOI(x, y))
+                    if (worldMap.GetBiome(x, y) == BiomeType.Stump && !worldMap.HasPOI(x, y))
                         cavePos = (x, y);
                 }
             }
-            Assert.IsNotNull(cavePos, "Expected at least one Cave-biome tile without a POI.");
+            Assert.IsNotNull(cavePos, "Expected at least one Stump-biome tile without a POI.");
 
             string caveID = WorldMap.ToZoneID(cavePos.Value.x, cavePos.Value.y);
             Zone zone = manager.GetZone(caveID);
             Assert.IsNotNull(zone);
 
-            // Cave zones use Wall blueprint (gray: &K), not SandstoneWall/VineWall/StoneWall
             Assert.IsTrue(ZoneHasBlueprint(zone, "Wall"),
-                "Cave zone should contain Wall entities");
+                "Stump zones use the rock palette");
         }
 
         [Test]
-        public void OverworldZoneManager_RoutesDesertBiome()
+        public void OverworldZoneManager_RoutesBeatingBiome()
         {
             var manager = CreateManager(42);
             var worldMap = manager.WorldMap;
 
-            // Find a desert tile
+            // RE-BASELINED (W0.6): the Beating is the authored
+            // wasteland; it borrows the sand palette for now.
             string desertID = null;
             for (int x = 0; x < WorldMap.Width; x++)
             {
                 for (int y = 0; y < WorldMap.Height; y++)
                 {
-                    if (worldMap.GetBiome(x, y) == BiomeType.Desert)
+                    if (worldMap.GetBiome(x, y) == BiomeType.Beating)
                     {
                         desertID = WorldMap.ToZoneID(x, y);
                         break;
@@ -1265,7 +1275,7 @@ namespace CavesOfOoo.Tests
                 }
                 if (desertID != null) break;
             }
-            Assert.IsNotNull(desertID, "World map should have at least one Desert tile");
+            Assert.IsNotNull(desertID, "the authored map must contain the Beating");
 
             Zone zone = manager.GetZone(desertID);
             Assert.IsNotNull(zone);

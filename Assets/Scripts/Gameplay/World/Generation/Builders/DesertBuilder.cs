@@ -33,31 +33,23 @@ namespace CavesOfOoo.Core
                     if (noise[x, y] >= WallThreshold)
                     {
                         // High noise peaks become sandstone walls
-                        var wall = factory.CreateEntity(SandstoneWallBlueprint);
-                        if (wall != null)
-                            zone.AddEntity(wall, x, y);
+                        BuilderSpawn.TryPlace(zone, factory, SandstoneWallBlueprint, x, y);
                     }
                     else
                     {
                         // Place sand terrain
-                        var sand = factory.CreateEntity(SandBlueprint);
-                        if (sand != null)
-                            zone.AddEntity(sand, x, y);
+                        BuilderSpawn.TryPlace(zone, factory, SandBlueprint, x, y);
 
                         // Scatter rocks
                         if (rng.NextDouble() < RockChance)
                         {
-                            var rock = factory.CreateEntity(RockBlueprint);
-                            if (rock != null)
-                                zone.AddEntity(rock, x, y);
+                            BuilderSpawn.TryPlace(zone, factory, RockBlueprint, x, y);
                         }
 
                         // Scatter cacti
                         if (rng.NextDouble() < 0.03)
                         {
-                            var cactus = factory.CreateEntity("Cactus");
-                            if (cactus != null)
-                                zone.AddEntity(cactus, x, y);
+                            BuilderSpawn.TryPlace(zone, factory, "Cactus", x, y);
                         }
                     }
                 }

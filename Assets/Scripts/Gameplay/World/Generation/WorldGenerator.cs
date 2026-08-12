@@ -29,118 +29,53 @@ namespace CavesOfOoo.Core
             var map = new WorldMap(seed);
             var rng = new Random(seed);
 
-            // Generate noise field for biome assignment
-            var noise = SimpleNoise.GenerateField(WorldMap.Width, WorldMap.Height, rng, octaves: 2);
-
-            int centerX = WorldMap.Width / 2;
-            int centerY = WorldMap.Height / 2;
-
-            // Assign biomes based on noise thresholds
+            // The map is AUTHORED (Felling W0.6). It used to be one
+            // 2-octave noise field quartiled into four biome names —
+            // which is why the lore could only ever be a label on it:
+            // nothing in a bucket of one scalar is a consequence of
+            // anything, and canon's geography is entirely consequence
+            // (a tree was felled; the stump, the flood, the raw sun and
+            // the salt all follow). Canon also settled the SHAPE of the
+            // answer: a hand-authored network of named places, after it
+            // committed a concentric ring world and deliberately dropped
+            // it (Lore/History/02_Geography.md §Phase 2 v2).
+            //
+            // So biome and tier are tables now. The seed still varies
+            // what happens INSIDE every chunk, and still rolls lairs and
+            // merchant camps below — those are opportunistic, not
+            // historical.
             for (int x = 0; x < WorldMap.Width; x++)
-            {
                 for (int y = 0; y < WorldMap.Height; y++)
-                {
-                    float n = noise[x, y];
-                    if (n < 0.25f)
-                        map.Tiles[x, y] = BiomeType.Cave;
-                    else if (n < 0.50f)
-                        map.Tiles[x, y] = BiomeType.Desert;
-                    else if (n < 0.75f)
-                        map.Tiles[x, y] = BiomeType.Jungle;
-                    else
-                        map.Tiles[x, y] = BiomeType.Ruins;
-                }
-            }
+                    map.Tiles[x, y] = WorldMapAuthoring.BiomeAt(x, y);
 
-            // Sill's own cell stays Cave — the starting village pipeline
-            // and its five shop stamps are built against that palette.
-            // The four cardinal pins are GONE with the Elemental
-            // Crossroads (Felling W0.5): they existed only so the themed
-            // set-piece builder could rely on a known biome under each
-            // neighbour, and there is no themed builder any more.
-            map.Tiles[centerX, centerY] = BiomeType.Cave;
-
-            // Ensure all 4 biomes are present
-            EnsureAllBiomes(map, noise, centerX, centerY);
-
-            // Place points of interest
-            PlacePOIs(map, rng, centerX, centerY);
+            PlacePOIs(map, rng);
 
             return map;
         }
 
         /// <summary>
-        /// If any biome is missing, find the tile closest to its threshold range
-        /// and flip it to that biome.
+        /// Places the authored settlements, then rolls the opportunistic
+        /// ones. Villages are canon and hand-placed; lairs and merchant
+        /// camps are still seed-varied, because a warband den or a
+        /// trader's camp is a thing that happens, not a thing the world
+        /// is made of.
         /// </summary>
-        private static void EnsureAllBiomes(WorldMap map, float[,] noise, int centerX, int centerY)
-        {
-            var biomes = (BiomeType[])Enum.GetValues(typeof(BiomeType));
-
-            foreach (var target in biomes)
-            {
-                if (HasBiome(map, target)) continue;
-
-                // Find the tile whose noise is closest to the target range center
-                float targetCenter = GetBiomeCenter(target);
-                float bestDist = float.MaxValue;
-                int bestX = 0, bestY = 0;
-
-                for (int x = 0; x < WorldMap.Width; x++)
-                {
-                    for (int y = 0; y < WorldMap.Height; y++)
-                    {
-                        // Don't overwrite Sill's cell.
-                        if (x == centerX && y == centerY) continue;
-
-                        float dist = Math.Abs(noise[x, y] - targetCenter);
-                        if (dist < bestDist)
-                        {
-                            bestDist = dist;
-                            bestX = x;
-                            bestY = y;
-                        }
-                    }
-                }
-
-                map.Tiles[bestX, bestY] = target;
-            }
-        }
-
-        private static void PlacePOIs(WorldMap map, Random rng, int centerX, int centerY)
+        private static void PlacePOIs(WorldMap map, Random rng)
         {
             var placed = new List<(int x, int y)>();
 
-            // 1. Starting village at center. The village pipeline includes
-            // a narrow HTML-style water channel (see CreateVillagePipeline)
-            // so the river is visible without displacing village content.
-            map.SetPOI(centerX, centerY, new PointOfInterest(
-                POIType.Village, VillageNames[0], "Villagers", 1));
-            placed.Add((centerX, centerY));
-
-            // 2. Place 4-6 additional villages spread across the map
-            int villageCount = rng.Next(4, 7);
-            int nameIdx = 1;
-            for (int attempt = 0; attempt < 200 && nameIdx <= villageCount; attempt++)
+            // 1. The canon places. Sill is Places[0] and is the start.
+            foreach (var place in WorldMapAuthoring.Places)
             {
-                int x = rng.Next(1, WorldMap.Width - 1);
-                int y = rng.Next(1, WorldMap.Height - 1);
-
-                if (!IsSpacedFrom(x, y, placed, 4)) continue;
-
-                BiomeType biome = map.GetBiome(x, y);
-                string faction = GetFactionForBiome(biome);
-                int tier = GetTierByDistance(x, y, centerX, centerY);
-
-                map.SetPOI(x, y, new PointOfInterest(
-                    POIType.Village,
-                    nameIdx < VillageNames.Length ? VillageNames[nameIdx] : $"Village_{nameIdx}",
-                    faction, tier));
-                placed.Add((x, y));
-                nameIdx++;
+                map.SetPOI(place.X, place.Y, new PointOfInterest(
+                    POIType.Village, place.Name, place.Faction,
+                    WorldMapAuthoring.TierAt(place.X, place.Y)));
+                placed.Add((place.X, place.Y));
             }
 
-            // 3. Place 3-5 lairs
+            // 2. Lairs. Not in the Overwrit: nobody dens in a scraped
+            // region, and "no ruins where ruins should be" is the whole
+            // horror of the place.
             int lairCount = rng.Next(3, 6);
             int lairIdx = 0;
             for (int attempt = 0; attempt < 200 && lairIdx < lairCount; attempt++)
@@ -149,20 +84,20 @@ namespace CavesOfOoo.Core
                 int y = rng.Next(0, WorldMap.Height);
 
                 if (!IsSpacedFrom(x, y, placed, 3)) continue;
-
                 BiomeType biome = map.GetBiome(x, y);
-                string boss = GetBossForBiome(biome);
-                int tier = GetTierByDistance(x, y, centerX, centerY);
+                if (biome == BiomeType.Overwrit) continue;
 
                 map.SetPOI(x, y, new PointOfInterest(
                     POIType.Lair,
                     lairIdx < LairNames.Length ? LairNames[lairIdx] : $"Lair_{lairIdx}",
-                    null, tier, boss));
+                    null, WorldMapAuthoring.TierAt(x, y), GetBossForBiome(biome)));
                 placed.Add((x, y));
                 lairIdx++;
             }
 
-            // 4. Place 2-3 merchant camps
+            // 3. Merchant camps. Also not in the Overwrit — the Concord
+            // does not guarantee delivery there, which is a joke its own
+            // frontier outpost makes.
             int campCount = rng.Next(2, 4);
             int campIdx = 0;
             for (int attempt = 0; attempt < 200 && campIdx < campCount; attempt++)
@@ -171,14 +106,11 @@ namespace CavesOfOoo.Core
                 int y = rng.Next(1, WorldMap.Height - 1);
 
                 if (!IsSpacedFrom(x, y, placed, 3)) continue;
-
-                BiomeType biome = map.GetBiome(x, y);
-                int tier = GetTierByDistance(x, y, centerX, centerY);
+                if (map.GetBiome(x, y) == BiomeType.Overwrit) continue;
 
                 map.SetPOI(x, y, new PointOfInterest(
-                    POIType.MerchantCamp,
-                    $"Merchant Camp",
-                    "Villagers", tier));
+                    POIType.MerchantCamp, "Merchant Camp", "Villagers",
+                    WorldMapAuthoring.TierAt(x, y)));
                 placed.Add((x, y));
                 campIdx++;
             }
@@ -192,14 +124,6 @@ namespace CavesOfOoo.Core
                     return false;
             }
             return true;
-        }
-
-        private static int GetTierByDistance(int x, int y, int centerX, int centerY)
-        {
-            int dist = Math.Abs(x - centerX) + Math.Abs(y - centerY);
-            if (dist <= 4) return 1;
-            if (dist <= 8) return 2;
-            return 3;
         }
 
         private static string GetFactionForBiome(BiomeType biome)
@@ -226,24 +150,5 @@ namespace CavesOfOoo.Core
             }
         }
 
-        private static bool HasBiome(WorldMap map, BiomeType biome)
-        {
-            for (int x = 0; x < WorldMap.Width; x++)
-                for (int y = 0; y < WorldMap.Height; y++)
-                    if (map.Tiles[x, y] == biome) return true;
-            return false;
-        }
-
-        private static float GetBiomeCenter(BiomeType biome)
-        {
-            switch (biome)
-            {
-                case BiomeType.Cave: return 0.125f;
-                case BiomeType.Desert: return 0.375f;
-                case BiomeType.Jungle: return 0.625f;
-                case BiomeType.Ruins: return 0.875f;
-                default: return 0.5f;
-            }
-        }
     }
 }

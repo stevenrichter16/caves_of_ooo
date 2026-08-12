@@ -54,16 +54,12 @@ namespace CavesOfOoo.Core
                         // Scatter trees in some open cells
                         if (rng.NextDouble() < TreeChance)
                         {
-                            var tree = factory.CreateEntity(TreeBlueprint);
-                            if (tree != null)
-                                zone.AddEntity(tree, x, y);
+                            BuilderSpawn.TryPlace(zone, factory, TreeBlueprint, x, y);
                         }
                         // Scatter bushes
                         else if (rng.NextDouble() < 0.08)
                         {
-                            var bush = factory.CreateEntity("Bush");
-                            if (bush != null)
-                                zone.AddEntity(bush, x, y);
+                            BuilderSpawn.TryPlace(zone, factory, "Bush", x, y);
                         }
                     }
                 }
@@ -81,9 +77,7 @@ namespace CavesOfOoo.Core
                     var cell = zone.GetCell(x, y);
                     if (cell.IsWall()) continue;
 
-                    var wall = factory.CreateEntity(VineWallBlueprint);
-                    if (wall != null)
-                        zone.AddEntity(wall, x, y);
+                    BuilderSpawn.TryPlace(zone, factory, VineWallBlueprint, x, y);
                 }
             }
         }
@@ -101,9 +95,7 @@ namespace CavesOfOoo.Core
 
         private void PlaceGrass(Zone zone, EntityFactory factory, int x, int y)
         {
-            var grass = factory.CreateEntity(GrassBlueprint);
-            if (grass != null)
-                zone.AddEntity(grass, x, y);
+            BuilderSpawn.TryPlace(zone, factory, GrassBlueprint, x, y);
         }
     }
 }

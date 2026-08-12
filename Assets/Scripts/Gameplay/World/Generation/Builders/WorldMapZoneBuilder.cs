@@ -139,6 +139,14 @@ namespace CavesOfOoo.Core
                 case BiomeType.Desert: return (".", "&Y", "desert region");
                 case BiomeType.Jungle: return ("%", "&g", "jungle region");
                 case BiomeType.Ruins:  return ("o", "&y", "ruins region");
+                // The Felling world (W0.6). Glyph + Qud colour code +
+                // the name shown when the player examines the cell.
+                case BiomeType.Spread:     return (",", "&g", "the Spread");
+                case BiomeType.Sodden:     return ("~", "&c", "the Sodden");
+                case BiomeType.Beating:    return (".", "&Y", "the Beating");
+                case BiomeType.Grovelands: return ("%", "&m", "the Grovelands");
+                case BiomeType.Overwrit:   return (" ", "&K", "the Overwrit");
+                case BiomeType.Stump:      return ("^", "&w", "the Stump");
                 default:               return ("?", "&w", "unknown region");
             }
         }

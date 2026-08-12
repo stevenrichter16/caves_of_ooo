@@ -75,9 +75,7 @@ namespace CavesOfOoo.Core
                     var cell = zone.GetCell(x, y);
                     if (cell.IsWall()) continue;
 
-                    Entity wall = factory.CreateEntity(WallBlueprint);
-                    if (wall != null)
-                        zone.AddEntity(wall, x, y);
+                    BuilderSpawn.TryPlace(zone, factory, WallBlueprint, x, y);
                 }
             }
         }
@@ -100,9 +98,7 @@ namespace CavesOfOoo.Core
             int roll = rng.Next(100);
             string blueprint = roll < 80 ? FloorBlueprint : RubbleBlueprint;
 
-            Entity terrain = factory.CreateEntity(blueprint);
-            if (terrain != null)
-                zone.AddEntity(terrain, x, y);
+            BuilderSpawn.TryPlace(zone, factory, blueprint, x, y);
         }
     }
 }

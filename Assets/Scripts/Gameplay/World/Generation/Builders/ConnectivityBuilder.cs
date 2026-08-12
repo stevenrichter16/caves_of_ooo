@@ -257,9 +257,7 @@ namespace CavesOfOoo.Core
             // Place floor if cell is now empty
             if (cell.IsEmpty())
             {
-                Entity floor = factory.CreateEntity(FloorBlueprint);
-                if (floor != null)
-                    zone.AddEntity(floor, x, y);
+                BuilderSpawn.TryPlace(zone, factory, FloorBlueprint, x, y);
             }
         }
     }

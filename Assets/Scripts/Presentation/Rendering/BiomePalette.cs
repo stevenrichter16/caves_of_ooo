@@ -54,6 +54,12 @@ namespace CavesOfOoo.Presentation.Rendering
                 case BiomeType.Desert: return Desert;
                 case BiomeType.Jungle: return Jungle;
                 case BiomeType.Ruins:  return Ruins;
+                case BiomeType.Spread: return Jungle;
+                case BiomeType.Sodden: return Jungle;
+                case BiomeType.Beating: return Desert;
+                case BiomeType.Grovelands: return Jungle;
+                case BiomeType.Overwrit: return Ruins;
+                case BiomeType.Stump: return Cave;
                 default:               return Cave;
             }
         }

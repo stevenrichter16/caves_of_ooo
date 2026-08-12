@@ -133,6 +133,12 @@ namespace CavesOfOoo.Core
                 case BiomeType.Desert: return DesertEntries;
                 case BiomeType.Jungle: return JungleEntries;
                 case BiomeType.Ruins: return RuinsEntries;
+                case BiomeType.Spread: return JungleEntries;
+                case BiomeType.Sodden: return JungleEntries;
+                case BiomeType.Beating: return DesertEntries;
+                case BiomeType.Grovelands: return JungleEntries;
+                case BiomeType.Overwrit: return RuinsEntries;
+                case BiomeType.Stump: return CaveEntries;
                 default: return CaveEntries;
             }
         }

@@ -139,7 +139,13 @@ namespace CavesOfOoo.Tests
 
             Assert.GreaterOrEqual(CountByBlueprint(zone, "Merchant"), 1,
                 "the $ on the map finally means a merchant — " + diag);
-            Assert.AreEqual(1, CountByBlueprint(zone, "Campfire"), "camp hearth");
+            // RE-BASELINED (W0.6): was AreEqual(1). The invariant is
+            // that the camp HAS a hearth, not that the zone has exactly
+            // one fire — under the authored map a camp can share its
+            // chunk with an ambient stamp that brings its own (a hermit
+            // hut, say). The camp's presence is asserted above.
+            Assert.GreaterOrEqual(CountByBlueprint(zone, "Campfire"), 1,
+                "camp hearth — " + diag);
         }
 
         [Test]

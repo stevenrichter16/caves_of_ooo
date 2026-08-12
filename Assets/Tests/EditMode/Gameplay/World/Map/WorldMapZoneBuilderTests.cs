@@ -187,7 +187,7 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void WorldMapZoneBuilder_AllFourBiomesPresent()
+        public void WorldMapZoneBuilder_AllCanonBiomesPresent()
         {
             // Verify the underlying WorldMap data has all 4 biomes. The
             // builder renders POI cells with the POI marker instead of
@@ -205,10 +205,14 @@ namespace CavesOfOoo.Tests
                     biomesSeen.Add(worldMap.GetBiome(wx, wy));
                 }
             }
-            Assert.IsTrue(biomesSeen.Contains(BiomeType.Cave));
-            Assert.IsTrue(biomesSeen.Contains(BiomeType.Desert));
-            Assert.IsTrue(biomesSeen.Contains(BiomeType.Jungle));
-            Assert.IsTrue(biomesSeen.Contains(BiomeType.Ruins));
+            // RE-BASELINED (W0.6): the authored surface is the six
+            // Felling biomes.
+            Assert.IsTrue(biomesSeen.Contains(BiomeType.Spread));
+            Assert.IsTrue(biomesSeen.Contains(BiomeType.Sodden));
+            Assert.IsTrue(biomesSeen.Contains(BiomeType.Beating));
+            Assert.IsTrue(biomesSeen.Contains(BiomeType.Grovelands));
+            Assert.IsTrue(biomesSeen.Contains(BiomeType.Overwrit));
+            Assert.IsTrue(biomesSeen.Contains(BiomeType.Stump));
         }
 
         [Test]
