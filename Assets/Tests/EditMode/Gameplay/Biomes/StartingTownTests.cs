@@ -36,10 +36,32 @@ namespace CavesOfOoo.Tests
             MessageLog.Clear();
             LootTableRegistry.Initialize(File.ReadAllText(Path.Combine(
                 Application.dataPath, "Resources/Content/Data/Loot/LootTables.json")));
+
+            // ShopRestock_RefillsAnEmptyShelf_FactoryGated asserts a
+            // freshly created keeper starts with a bare shelf. That is
+            // only true while TraderPart.Factory is null — it is the
+            // static that makes TraderPart.Apply stock on ObjectCreated
+            // (TraderPart.cs:77), and it is a DIFFERENT static from the
+            // TraderRestockSystem.Factory the test sets itself.
+            //
+            // Nothing in this fixture sets it, so the precondition was
+            // borrowed from whatever ran before us. It held for a long
+            // time and then did not: a full-suite run on 2026-08-12
+            // failed with "shelf starts bare / Expected: 0 But was: 8",
+            // and an immediate re-run passed. Owning the global here
+            // turns an inherited assumption into a controlled one.
+            _savedTraderFactory = TraderPart.Factory;
+            TraderPart.Factory = null;
         }
 
         [TearDown]
-        public void TearDown() => LootTableRegistry.ResetForTests();
+        public void TearDown()
+        {
+            LootTableRegistry.ResetForTests();
+            TraderPart.Factory = _savedTraderFactory;
+        }
+
+        private EntityFactory _savedTraderFactory;
 
         private static readonly (string keeper, int wallet, string conv, string table)[] Shops =
         {
