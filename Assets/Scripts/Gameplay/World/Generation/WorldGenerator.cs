@@ -52,17 +52,13 @@ namespace CavesOfOoo.Core
                 }
             }
 
-            // Force center to Cave (player starting zone) and pin the four
-            // cardinal neighbours so the Elemental Crossroads zone builders
-            // can rely on a known biome under each themed chunk. Without
-            // this, the noise lottery can put e.g. Ruins in the west slot
-            // and the themed builder's set piece would land on the wrong
-            // terrain.
+            // Sill's own cell stays Cave — the starting village pipeline
+            // and its five shop stamps are built against that palette.
+            // The four cardinal pins are GONE with the Elemental
+            // Crossroads (Felling W0.5): they existed only so the themed
+            // set-piece builder could rely on a known biome under each
+            // neighbour, and there is no themed builder any more.
             map.Tiles[centerX, centerY] = BiomeType.Cave;
-            map.Tiles[centerX, centerY - 1] = BiomeType.Ruins;   // N — Sparkwright
-            map.Tiles[centerX + 1, centerY] = BiomeType.Desert;  // E — Saltglass Dunes
-            map.Tiles[centerX, centerY + 1] = BiomeType.Jungle;  // S — Verdant Rotbog
-            map.Tiles[centerX - 1, centerY] = BiomeType.Cave;    // W — Frostfang Grotto
 
             // Ensure all 4 biomes are present
             EnsureAllBiomes(map, noise, centerX, centerY);
@@ -94,14 +90,8 @@ namespace CavesOfOoo.Core
                 {
                     for (int y = 0; y < WorldMap.Height; y++)
                     {
-                        // Don't overwrite the center Cave or the four
-                        // Elemental Crossroads cardinal pins — the themed
-                        // zone builders rely on their biomes being fixed.
+                        // Don't overwrite Sill's cell.
                         if (x == centerX && y == centerY) continue;
-                        if (x == centerX && y == centerY - 1) continue;
-                        if (x == centerX + 1 && y == centerY) continue;
-                        if (x == centerX && y == centerY + 1) continue;
-                        if (x == centerX - 1 && y == centerY) continue;
 
                         float dist = Math.Abs(noise[x, y] - targetCenter);
                         if (dist < bestDist)

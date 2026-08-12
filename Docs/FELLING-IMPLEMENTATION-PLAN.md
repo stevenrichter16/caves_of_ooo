@@ -501,3 +501,45 @@ the UI, not crash it); article-stripping both ways.
   content retirement, W1's natural moment, and a user call (plan §6).
 
 **Tests: 6455 → 6460 (+5). All green.**
+
+### W0.4 — Canon factions ✅ · AT retirement ✅ · W0.5 crossroads ✅
+
+**W0.4** added TentRight, CatacombFolk, BowerFolk and ImminentArchive
+to `Factions.json` — all at reputation 0, because the save graph
+restores the rep dictionary wholesale and a faction added later never
+re-seeds on an existing save. The **Driving Bloom deliberately gets no
+entry** (canon: no mind, no rep track, ever), with a counter-check test
+that fails if someone adds one. Plus a ghost-faction guard: every ID
+named in any Feelings block must resolve. **6460 → 6465.**
+
+**The Adventure-Time retirement** (user-requested, slotted here).
+Survey first — five parallel readers over blueprints, dialogue, quests,
+code/tables, and the canon voice register. It found a **blocker the
+plan had no idea about**: `StoryletPart.DisplayNameFor` returned the
+raw quest id and `QuestLogUI` drew `e.QuestId`, so quest IDs *were* the
+player-visible text ("Quest accepted: RootBeerGuyCase."). Freeze-IDs/
+rename-text was impossible for quests until that seam existed — so
+`QuestData.Name` shipped first (the fix the code's own comment had
+anticipated), then the rename pass. Full was/is/frozen register in
+`Docs/LEGACY-CONTENT.md`. **6465 → 6469.**
+
+**W0.5** retired the Elemental Crossroads: the builder and its four
+pipeline registrations, the four cardinal biome pins and their
+EnsureAllBiomes skip-guards, the compass stones, and the Scribe's four
+region-dialogue nodes — which were wired into *every* village Scribe in
+the world, so leaving them would have had every scribe describing four
+places that no longer exist. Five tests deleted with the feature.
+**6469 → 6464.**
+
+**Self-review (§5):**
+- 🟡 *found by the survey, not the plan* — the quest-ID display
+  blocker. The plan asserted a frozen/visible separation that did not
+  exist for quests. Recorded because it is the second time this phase
+  that a verification pass caught a false premise before code.
+- 🔵 Themed crossroads blueprints (TemporalShard, EchoKnife, the
+  crossroads mutants) stay in circulation via tier and loot tables —
+  retiring the builder does not retire the content. TemporalShard
+  loses its only *guaranteed* worldgen placement; accepted and noted.
+- ⚪ Deferred: the six village quests still have no `[Decline]` choice.
+  The closure-ledger makes a spoken no a closure and silence entropy,
+  so every quest wants one — W8 system work, not a rename.

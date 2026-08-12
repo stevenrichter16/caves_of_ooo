@@ -125,7 +125,6 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new CaveEntranceBuilder(this));
             pipeline.AddBuilder(new LandmarkBuilder(BiomeType.Cave, tier));
             pipeline.AddBuilder(new HazardTerrainBuilder(BiomeType.Cave));
-            pipeline.AddBuilder(new StartingNeighborhoodBuilder());
             // LOOT OVERHAUL SM6 — every zone type gets containers now.
             pipeline.AddBuilder(new ContainerBuilder(BiomeType.Cave, tier,
                 ContainerPlacementService.ZoneKind.Wilderness));
@@ -181,7 +180,6 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new HazardTerrainBuilder(BiomeType.Desert));
             pipeline.AddBuilder(new ContainerBuilder(BiomeType.Desert, tier,
                 ContainerPlacementService.ZoneKind.Wilderness));
-            pipeline.AddBuilder(new StartingNeighborhoodBuilder());
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.GetBiomeTable(BiomeType.Desert, tier)));
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
             return pipeline;
@@ -197,7 +195,6 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new HazardTerrainBuilder(BiomeType.Jungle));
             pipeline.AddBuilder(new ContainerBuilder(BiomeType.Jungle, tier,
                 ContainerPlacementService.ZoneKind.Wilderness));
-            pipeline.AddBuilder(new StartingNeighborhoodBuilder());
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.GetBiomeTable(BiomeType.Jungle, tier)));
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
             return pipeline;
@@ -213,7 +210,6 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new HazardTerrainBuilder(BiomeType.Ruins));
             pipeline.AddBuilder(new ContainerBuilder(BiomeType.Ruins, tier,
                 ContainerPlacementService.ZoneKind.Wilderness));
-            pipeline.AddBuilder(new StartingNeighborhoodBuilder());
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.GetBiomeTable(BiomeType.Ruins, tier)));
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
             return pipeline;

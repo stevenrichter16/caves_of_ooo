@@ -88,7 +88,6 @@ namespace CavesOfOoo.Core
             {
                 if (CavesOfOoo.Core.DevMode.Enabled)
                     PlaceDebugMaterialSandbox(zone, factory, rng, openCells);
-                PlaceCompassStones(zone, factory, openCells, grimoireChest);
             }
 
             // Gather interior cells (building floors) for NPC placement.
@@ -362,46 +361,6 @@ namespace CavesOfOoo.Core
             return entity;
         }
 
-        // Elemental Crossroads spawn hub polish: 4 compass stones around the
-        // grimoire chest, one per cardinal direction. Each is its own blueprint
-        // (CompassStoneNorth/East/South/West) so the look query picks up the
-        // direction via DisplayName — no per-instance description plumbing.
-        // Walks 2 cells outward from the chest in each cardinal; if that tile
-        // is blocked, silently skips (compass stones are decorative, missing
-        // one is harmless).
-        private static readonly (int dx, int dy, string blueprint)[] CompassStoneOffsets =
-        {
-            ( 0, -2, "CompassStoneNorth"),
-            ( 2,  0, "CompassStoneEast"),
-            ( 0,  2, "CompassStoneSouth"),
-            (-2,  0, "CompassStoneWest"),
-        };
-
-        private void PlaceCompassStones(Zone zone, EntityFactory factory,
-            List<(int x, int y)> openCells, Entity anchor)
-        {
-            if (zone == null || factory == null || anchor == null) return;
-
-            Cell anchorCell = zone.GetEntityCell(anchor);
-            if (anchorCell == null) return;
-
-            for (int i = 0; i < CompassStoneOffsets.Length; i++)
-            {
-                var (dx, dy, blueprint) = CompassStoneOffsets[i];
-                int x = anchorCell.X + dx;
-                int y = anchorCell.Y + dy;
-                if (!zone.InBounds(x, y)) continue;
-
-                Cell cell = zone.GetCell(x, y);
-                if (cell == null || !cell.IsPassable()) continue;
-
-                Entity stone = TryCreateEntity(factory, blueprint);
-                if (stone == null) continue;
-
-                zone.AddEntity(stone, x, y);
-                openCells.Remove((x, y));
-            }
-        }
 
         // Wooden barrel layouts for fire-propagation showcase. Each layout is a list
         // of (dx, dy) offsets from an anchor cell. Layouts are placed with a buffer

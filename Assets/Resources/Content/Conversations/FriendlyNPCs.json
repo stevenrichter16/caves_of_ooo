@@ -22,7 +22,12 @@
             {
               "Text": "I've met beings called the Rot Choir.",
               "Target": "HeardOfChoir",
-              "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetChoir" }]
+              "Predicates": [
+                {
+                  "Key": "IfHaveProperty",
+                  "Value": "MetChoir"
+                }
+              ]
             },
             {
               "Text": "Farewell.",
@@ -83,17 +88,32 @@
             {
               "Text": "The mushrooms might be connected to something called the Rot Choir.",
               "Target": "VillagerChoir",
-              "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetChoir" }]
+              "Predicates": [
+                {
+                  "Key": "IfHaveProperty",
+                  "Value": "MetChoir"
+                }
+              ]
             },
             {
               "Text": "The vision of the dead man -- that sounds like a temporal distortion.",
               "Target": "VillagerTemporal",
-              "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetPalimpsest" }]
+              "Predicates": [
+                {
+                  "Key": "IfHaveProperty",
+                  "Value": "MetPalimpsest"
+                }
+              ]
             },
             {
               "Text": "That is strange. I'll look into it.",
               "Target": "Start",
-              "Actions": [{ "Key": "SetProperty", "Value": "VillagerStrangeThings:true" }]
+              "Actions": [
+                {
+                  "Key": "SetProperty",
+                  "Value": "VillagerStrangeThings:true"
+                }
+              ]
             },
             {
               "Text": "Farewell.",
@@ -168,7 +188,12 @@
             {
               "Text": "Something like that. Be careful near the caves.",
               "Target": "Start",
-              "Actions": [{ "Key": "SetProperty", "Value": "VillagerWarned:true" }]
+              "Actions": [
+                {
+                  "Key": "SetProperty",
+                  "Value": "VillagerWarned:true"
+                }
+              ]
             },
             {
               "Text": "Farewell.",
@@ -218,7 +243,12 @@
             {
               "Text": "I've heard of a faction called the Pale Curation.",
               "Target": "PaleCuration",
-              "Predicates": [{ "Key": "IfHaveProperty", "Value": "CurationContact" }]
+              "Predicates": [
+                {
+                  "Key": "IfHaveProperty",
+                  "Value": "CurationContact"
+                }
+              ]
             },
             {
               "Text": "Farewell.",
@@ -261,7 +291,12 @@
             {
               "Text": "I've learned that the old world cracked the substrate of reality.",
               "Target": "SubstrateInfo",
-              "Predicates": [{ "Key": "IfHaveProperty", "Value": "HeardFactionSummary" }]
+              "Predicates": [
+                {
+                  "Key": "IfHaveProperty",
+                  "Value": "HeardFactionSummary"
+                }
+              ]
             },
             {
               "Text": "Changed the rules how?",
@@ -284,7 +319,12 @@
             {
               "Text": "Be careful with what you find. Some of it might be dangerous.",
               "Target": "Start",
-              "Actions": [{ "Key": "SetProperty", "Value": "TinkerWarned:true" }]
+              "Actions": [
+                {
+                  "Key": "SetProperty",
+                  "Value": "TinkerWarned:true"
+                }
+              ]
             }
           ]
         },
@@ -355,7 +395,12 @@
             {
               "Text": "Those mushrooms are the Rot Choir.",
               "Target": "TinkerChoir",
-              "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetChoir" }]
+              "Predicates": [
+                {
+                  "Key": "IfHaveProperty",
+                  "Value": "MetChoir"
+                }
+              ]
             },
             {
               "Text": "Back to my other questions.",
@@ -380,7 +425,12 @@
             {
               "Text": "That sounds like it might contain temporal impressions.",
               "Target": "TemporalDisc",
-              "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetPalimpsest" }]
+              "Predicates": [
+                {
+                  "Key": "IfHaveProperty",
+                  "Value": "MetPalimpsest"
+                }
+              ]
             },
             {
               "Text": "Creepy. Where did you find it?",
@@ -399,7 +449,12 @@
             {
               "Text": "The old world did things to time that they shouldn't have.",
               "Target": "Start",
-              "Actions": [{ "Key": "AddMessage", "Value": "The tinker looks shaken but thoughtful." }]
+              "Actions": [
+                {
+                  "Key": "AddMessage",
+                  "Value": "The tinker looks shaken but thoughtful."
+                }
+              ]
             }
           ]
         },
@@ -438,7 +493,12 @@
             {
               "Text": "I'll see what I can do.",
               "Target": "Start",
-              "Actions": [{ "Key": "SetProperty", "Value": "TinkerWantsCuration:true" }]
+              "Actions": [
+                {
+                  "Key": "SetProperty",
+                  "Value": "TinkerWantsCuration:true"
+                }
+              ]
             },
             {
               "Text": "Farewell.",
@@ -470,7 +530,12 @@
             {
               "Text": "I've met the Saccharine Concord.",
               "Target": "KnowsConcord",
-              "Predicates": [{ "Key": "IfHaveProperty", "Value": "ConcordCaveTips" }]
+              "Predicates": [
+                {
+                  "Key": "IfHaveProperty",
+                  "Value": "ConcordCaveTips"
+                }
+              ]
             },
             {
               "Text": "Farewell.",
@@ -499,12 +564,22 @@
             {
               "Text": "That was probably a Rot Choir weapon.",
               "Target": "MerchantChoir",
-              "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetChoir" }]
+              "Predicates": [
+                {
+                  "Key": "IfHaveProperty",
+                  "Value": "MetChoir"
+                }
+              ]
             },
             {
               "Text": "Crystals that hum? Could be temporal fragments.",
               "Target": "MerchantTemporal",
-              "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetPalimpsest" }]
+              "Predicates": [
+                {
+                  "Key": "IfHaveProperty",
+                  "Value": "MetPalimpsest"
+                }
+              ]
             },
             {
               "Text": "Interesting. I'll keep an eye out for similar items.",
@@ -533,7 +608,12 @@
             {
               "Text": "You might want to keep an eye on that compost.",
               "Target": "Start",
-              "Actions": [{ "Key": "AddMessage", "Value": "The merchant looks nervously toward the back of the shop." }]
+              "Actions": [
+                {
+                  "Key": "AddMessage",
+                  "Value": "The merchant looks nervously toward the back of the shop."
+                }
+              ]
             }
           ]
         },
@@ -600,7 +680,12 @@
             {
               "Text": "That could be the substrate leaking through.",
               "Target": "MerchantSubstrate",
-              "Predicates": [{ "Key": "IfHaveProperty", "Value": "HeardFactionSummary" }]
+              "Predicates": [
+                {
+                  "Key": "IfHaveProperty",
+                  "Value": "HeardFactionSummary"
+                }
+              ]
             },
             {
               "Text": "That's unsettling.",
@@ -629,7 +714,12 @@
             {
               "Text": "Paid in memories? That sounds like Choir business. Or the scribes.",
               "Target": "MerchantWeirdTrade",
-              "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetPalimpsest" }]
+              "Predicates": [
+                {
+                  "Key": "IfHaveProperty",
+                  "Value": "MetPalimpsest"
+                }
+              ]
             },
             {
               "Text": "Shadows that didn't match? That's concerning.",
@@ -658,7 +748,12 @@
             {
               "Text": "That might have been one of the Glassblown Remnant.",
               "Target": "MerchantRemnant",
-              "Predicates": [{ "Key": "IfHaveProperty", "Value": "HeardFactionSummary" }]
+              "Predicates": [
+                {
+                  "Key": "IfHaveProperty",
+                  "Value": "HeardFactionSummary"
+                }
+              ]
             },
             {
               "Text": "Strange. Back to my other questions.",
@@ -736,28 +831,58 @@
             {
               "Text": "Tell me what the well is doing.",
               "Target": "Fouled",
-              "Predicates": [{ "Key": "IfSettlementSiteStage", "Value": "MainWell:Fouled" }]
+              "Predicates": [
+                {
+                  "Key": "IfSettlementSiteStage",
+                  "Value": "MainWell:Fouled"
+                }
+              ]
             },
             {
               "Text": "The water is clear for now. How bad was it before?",
               "Target": "Temporary",
-              "Predicates": [{ "Key": "IfSettlementSiteStage", "Value": "MainWell:TemporarilyPurified" }]
+              "Predicates": [
+                {
+                  "Key": "IfSettlementSiteStage",
+                  "Value": "MainWell:TemporarilyPurified"
+                }
+              ]
             },
             {
               "Text": "The ring is repaired. Want me to show you how to keep it that way?",
               "Target": "Stable",
-              "Predicates": [{ "Key": "IfSettlementSiteStage", "Value": "MainWell:StableRepair" }]
+              "Predicates": [
+                {
+                  "Key": "IfSettlementSiteStage",
+                  "Value": "MainWell:StableRepair"
+                }
+              ]
             },
             {
               "Text": "How's the well holding up now?",
               "Target": "Improved",
-              "Predicates": [{ "Key": "IfSettlementSiteStage", "Value": "MainWell:ImprovedWithCaretaker" }]
+              "Predicates": [
+                {
+                  "Key": "IfSettlementSiteStage",
+                  "Value": "MainWell:ImprovedWithCaretaker"
+                }
+              ]
             },
             {
               "Text": "I have a copy of the purification rite. You should learn it.",
               "Target": "AfterGiveGrimoire",
-              "Predicates": [{ "Key": "IfHaveItemWithTag", "Value": "GrimoireCopy" }],
-              "Actions": [{ "Key": "TakeItemWithTag", "Value": "GrimoireCopy" }]
+              "Predicates": [
+                {
+                  "Key": "IfHaveItemWithTag",
+                  "Value": "GrimoireCopy"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "TakeItemWithTag",
+                  "Value": "GrimoireCopy"
+                }
+              ]
             },
             {
               "Text": "Farewell.",
@@ -782,17 +907,38 @@
             {
               "Text": "I know a purification rite. It should buy the village some time.",
               "Target": "AfterPurify",
-              "Predicates": [{ "Key": "IfHaveProperty", "Value": "KnowsPurifyWater" }],
-              "Actions": [{ "Key": "ResolveSettlementSite", "Value": "MainWell:PurifySpell" }]
+              "Predicates": [
+                {
+                  "Key": "IfHaveProperty",
+                  "Value": "KnowsPurifyWater"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "ResolveSettlementSite",
+                  "Value": "MainWell:PurifySpell"
+                }
+              ]
             },
             {
               "Text": "I have the manual and silver sand. Let's rebuild the ring properly.",
               "Target": "AfterRepair",
               "Predicates": [
-                { "Key": "IfHaveItem", "Value": "WellMaintenanceManual" },
-                { "Key": "IfHaveItem", "Value": "SilverSand" }
+                {
+                  "Key": "IfHaveItem",
+                  "Value": "WellMaintenanceManual"
+                },
+                {
+                  "Key": "IfHaveItem",
+                  "Value": "SilverSand"
+                }
               ],
-              "Actions": [{ "Key": "ResolveSettlementSite", "Value": "MainWell:ManualRepair" }]
+              "Actions": [
+                {
+                  "Key": "ResolveSettlementSite",
+                  "Value": "MainWell:ManualRepair"
+                }
+              ]
             },
             {
               "Text": "What do you need for a proper repair?",
@@ -812,10 +958,21 @@
               "Text": "Then let's finish the real repair.",
               "Target": "AfterRepair",
               "Predicates": [
-                { "Key": "IfHaveItem", "Value": "WellMaintenanceManual" },
-                { "Key": "IfHaveItem", "Value": "SilverSand" }
+                {
+                  "Key": "IfHaveItem",
+                  "Value": "WellMaintenanceManual"
+                },
+                {
+                  "Key": "IfHaveItem",
+                  "Value": "SilverSand"
+                }
               ],
-              "Actions": [{ "Key": "ResolveSettlementSite", "Value": "MainWell:ManualRepair" }]
+              "Actions": [
+                {
+                  "Key": "ResolveSettlementSite",
+                  "Value": "MainWell:ManualRepair"
+                }
+              ]
             },
             {
               "Text": "What do you need for a proper repair?",
@@ -864,7 +1021,12 @@
             {
               "Text": "I'll teach you the maintenance cycle.",
               "Target": "AfterTeach",
-              "Actions": [{ "Key": "ResolveSettlementSite", "Value": "MainWell:TeachCaretaker" }]
+              "Actions": [
+                {
+                  "Key": "ResolveSettlementSite",
+                  "Value": "MainWell:TeachCaretaker"
+                }
+              ]
             },
             {
               "Text": "Later.",
@@ -916,38 +1078,67 @@
             {
               "Text": "What happened to the oven?",
               "Target": "OvenTrouble",
-              "Predicates": [{ "Key": "IfSettlementSiteStage", "Value": "VillageOven:Fouled" }]
+              "Predicates": [
+                {
+                  "Key": "IfSettlementSiteStage",
+                  "Value": "VillageOven:Fouled"
+                }
+              ]
             },
             {
               "Text": "I can mend the oven's firebox with a rite I learned.",
               "Target": "OvenMendingRite",
               "Predicates": [
-                { "Key": "IfHaveProperty", "Value": "KnowsMendingRite" },
-                { "Key": "IfSettlementSiteStage", "Value": "VillageOven:Fouled" }
+                {
+                  "Key": "IfHaveProperty",
+                  "Value": "KnowsMendingRite"
+                },
+                {
+                  "Key": "IfSettlementSiteStage",
+                  "Value": "VillageOven:Fouled"
+                }
               ]
             },
             {
               "Text": "I can mend the oven again.",
               "Target": "OvenMendingRite",
               "Predicates": [
-                { "Key": "IfHaveProperty", "Value": "KnowsMendingRite" },
-                { "Key": "IfSettlementSiteStage", "Value": "VillageOven:TemporarilyPurified" }
+                {
+                  "Key": "IfHaveProperty",
+                  "Value": "KnowsMendingRite"
+                },
+                {
+                  "Key": "IfSettlementSiteStage",
+                  "Value": "VillageOven:TemporarilyPurified"
+                }
               ]
             },
             {
               "Text": "I have the guide and fire clay to rebuild the firebox properly.",
               "Target": "OvenRebuild",
               "Predicates": [
-                { "Key": "IfHaveItem", "Value": "OvenBuildersGuide" },
-                { "Key": "IfHaveItem", "Value": "FireClay" }
+                {
+                  "Key": "IfHaveItem",
+                  "Value": "OvenBuildersGuide"
+                },
+                {
+                  "Key": "IfHaveItem",
+                  "Value": "FireClay"
+                }
               ]
             },
             {
               "Text": "Let me teach you how to maintain the oven yourself.",
               "Target": "TeachBaker",
               "Predicates": [
-                { "Key": "IfSettlementSiteStage", "Value": "VillageOven:StableRepair" },
-                { "Key": "IfHaveItemWithTag", "Value": "GrimoireCopy" }
+                {
+                  "Key": "IfSettlementSiteStage",
+                  "Value": "VillageOven:StableRepair"
+                },
+                {
+                  "Key": "IfHaveItemWithTag",
+                  "Value": "GrimoireCopy"
+                }
               ]
             },
             {
@@ -963,7 +1154,12 @@
             {
               "Text": "So the trouble starts uphill.",
               "Target": "Start",
-              "Actions": [{ "Key": "SetProperty", "Value": "HeardWellSeep:true" }]
+              "Actions": [
+                {
+                  "Key": "SetProperty",
+                  "Value": "HeardWellSeep:true"
+                }
+              ]
             }
           ]
         },
@@ -974,7 +1170,12 @@
             {
               "Text": "That's useful. Thanks.",
               "Target": "Start",
-              "Actions": [{ "Key": "SetProperty", "Value": "HeardWellSeep:true" }]
+              "Actions": [
+                {
+                  "Key": "SetProperty",
+                  "Value": "HeardWellSeep:true"
+                }
+              ]
             }
           ]
         },
@@ -995,7 +1196,12 @@
             {
               "Text": "I'll cast the mending rite now.",
               "Target": "AfterOvenMend",
-              "Actions": [{ "Key": "ResolveSettlementSite", "Value": "VillageOven:MendingRite" }]
+              "Actions": [
+                {
+                  "Key": "ResolveSettlementSite",
+                  "Value": "VillageOven:MendingRite"
+                }
+              ]
             },
             {
               "Text": "Not yet.",
@@ -1020,7 +1226,12 @@
             {
               "Text": "Let's rebuild the firebox.",
               "Target": "AfterOvenRebuild",
-              "Actions": [{ "Key": "ResolveSettlementSite", "Value": "VillageOven:OvenRebuild" }]
+              "Actions": [
+                {
+                  "Key": "ResolveSettlementSite",
+                  "Value": "VillageOven:OvenRebuild"
+                }
+              ]
             },
             {
               "Text": "Not yet.",
@@ -1035,7 +1246,12 @@
             {
               "Text": "Glad to help.",
               "Target": "Start",
-              "Actions": [{ "Key": "ChangeFactionFeeling", "Value": "Villagers:Player:10" }]
+              "Actions": [
+                {
+                  "Key": "ChangeFactionFeeling",
+                  "Value": "Villagers:Player:10"
+                }
+              ]
             }
           ]
         },
@@ -1047,8 +1263,14 @@
               "Text": "Here — study this copy. It explains the stress fractures and how to re-clay before they spread.",
               "Target": "AfterTeachBaker",
               "Actions": [
-                { "Key": "ResolveSettlementSite", "Value": "VillageOven:TeachBaker" },
-                { "Key": "TakeItemWithTag", "Value": "GrimoireCopy" }
+                {
+                  "Key": "ResolveSettlementSite",
+                  "Value": "VillageOven:TeachBaker"
+                },
+                {
+                  "Key": "TakeItemWithTag",
+                  "Value": "GrimoireCopy"
+                }
               ]
             },
             {
@@ -1064,7 +1286,12 @@
             {
               "Text": "You've earned it.",
               "Target": "End",
-              "Actions": [{ "Key": "ChangeFactionFeeling", "Value": "Villagers:Player:15" }]
+              "Actions": [
+                {
+                  "Key": "ChangeFactionFeeling",
+                  "Value": "Villagers:Player:15"
+                }
+              ]
             }
           ]
         }
@@ -1080,7 +1307,12 @@
             {
               "Text": "I'd like a copy of this grimoire.",
               "Target": "CopyConfirm",
-              "Predicates": [{ "Key": "IfHaveItemWithTag", "Value": "Grimoire" }]
+              "Predicates": [
+                {
+                  "Key": "IfHaveItemWithTag",
+                  "Value": "Grimoire"
+                }
+              ]
             },
             {
               "Text": "What exactly do you do?",
@@ -1113,7 +1345,12 @@
             {
               "Text": "Please, make the copy.",
               "Target": "AfterCopy",
-              "Actions": [{ "Key": "CopyGrimoire", "Value": "" }]
+              "Actions": [
+                {
+                  "Key": "CopyGrimoire",
+                  "Value": ""
+                }
+              ]
             },
             {
               "Text": "Not right now.",
@@ -1135,39 +1372,10 @@
           "ID": "RegionOverview",
           "Text": "Four places, four warnings. Which one do you want to hear?",
           "Choices": [
-            { "Text": "To the north?", "Target": "RegionNorth" },
-            { "Text": "To the east?",  "Target": "RegionEast"  },
-            { "Text": "To the south?", "Target": "RegionSouth" },
-            { "Text": "To the west?",  "Target": "RegionWest"  },
-            { "Text": "Back.",         "Target": "Start"       }
-          ]
-        },
-        {
-          "ID": "RegionNorth",
-          "Text": "The Ruins of Sparkwright. Brass husks still walk there, and the old capacitors haven't all discharged. Water conducts their spark — so do chains. A little arc goes a long way.",
-          "Choices": [
-            { "Text": "And elsewhere?", "Target": "RegionOverview" }
-          ]
-        },
-        {
-          "ID": "RegionEast",
-          "Text": "The Saltglass Dunes. Glass scorpions scuttle between oil seeps. One match is all it takes to cook a whole canyon. Beware the dunes on still nights — a single spark travels further than you'd think.",
-          "Choices": [
-            { "Text": "And elsewhere?", "Target": "RegionOverview" }
-          ]
-        },
-        {
-          "ID": "RegionSouth",
-          "Text": "The Verdant Rotbog. Shambling fungus-folk, acid ponds that drink iron. Fire spreads cleanly through the fungal crowns — so if one catches, they all do. Try not to fall in the green water.",
-          "Choices": [
-            { "Text": "And elsewhere?", "Target": "RegionOverview" }
-          ]
-        },
-        {
-          "ID": "RegionWest",
-          "Text": "The Frostfang Grotto. Ice wights that refuse to thaw on their own — but bring a flame inside, and the ceiling weeps, and the wights weep with it. Kindle is a kinder weapon than a blade in that place.",
-          "Choices": [
-            { "Text": "And elsewhere?", "Target": "RegionOverview" }
+            {
+              "Text": "Back.",
+              "Target": "Start"
+            }
           ]
         }
       ]
