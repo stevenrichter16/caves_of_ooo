@@ -22,6 +22,33 @@ namespace CavesOfOoo.Core
         public Color AmbientTint = Color.white;
 
         /// <summary>
+        /// The brightness of a cell this zone does not light itself —
+        /// 0.0 pitch black, 1.0 full daylight.
+        ///
+        /// <para><b>Ambient is a property of the place</b> (Felling W0.2).
+        /// It used to be one number on the renderer, which is fine for a
+        /// world of meadows and caves and impossible for the canon one:
+        /// a catacomb village lit by a single cultivated fungal patch, a
+        /// dead zone of true dark where the light-ecology collapsed, and
+        /// a salt pan at noon are not the same brightness, and the
+        /// difference is gameplay — light is the underground's terrain
+        /// (Docs/FELLING-WORLD-DESIGN.md §6).</para>
+        ///
+        /// <para>The default is load-bearing: <c>OnZoneGenerated</c> runs
+        /// only at generation time and only for Overworld IDs, so village
+        /// interiors, the world-map zone and every test fixture take this
+        /// value and nothing else.</para>
+        /// </summary>
+        public float AmbientLevel = DefaultAmbientLevel;
+
+        /// <summary>
+        /// The brightness of an un-authored zone. Shared with
+        /// <see cref="LightMap"/> so the renderer and the world can never
+        /// disagree about what "ordinary" looks like.
+        /// </summary>
+        public const float DefaultAmbientLevel = 0.4f;
+
+        /// <summary>
         /// G.10 — prevailing wind strength, 0-100. Biases gas dispersal
         /// (frequency, attempt count, direction, thin-gas dissipation) in
         /// <see cref="GasSystem.ProcessGasBehavior"/>. Mirrors Qud's

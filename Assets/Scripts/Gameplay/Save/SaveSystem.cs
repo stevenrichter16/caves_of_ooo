@@ -20,9 +20,15 @@ namespace CavesOfOoo.Core
     {
         public const int Magic = 0x304F4F43; // COO0
         // v3 → v4: added WorldMap.Visited[,] fog-of-war bitmap.
-        // Bumping is acceptable on the world-map-UI feature branch;
+        // v4 → v5: added Zone.AmbientLevel (Felling W0.2) — ambient
+        //   light became a property of the place, so it has to survive
+        //   the zone that owns it. ReadHeader's check is strict
+        //   equality, so this rejects every v4 save; accepted pre-1.0,
+        //   and the Felling overhaul is a new-world change regardless
+        //   (an old save carries the old noise-generated map).
+        // Bumping is acceptable on a feature branch;
         // older saves will be rejected by ReadHeader's strict check.
-        public const int FormatVersion = 4;
+        public const int FormatVersion = 5;
 
         private readonly BinaryWriter _writer;
         private readonly Dictionary<Entity, int> _entityTokens = new Dictionary<Entity, int>();
@@ -944,6 +950,10 @@ namespace CavesOfOoo.Core
         {
             writer.WriteString(zone.ZoneID);
             writer.WriteColor(zone.AmbientTint);
+            // W0.2 — ambient is per-zone now, and OnZoneGenerated runs
+            // only at generation: without this, every loaded zone would
+            // silently revert to the default brightness.
+            writer.Write(zone.AmbientLevel);
             writer.Write(zone.EntityVersion);
             for (int x = 0; x < Zone.Width; x++)
             {
@@ -957,6 +967,7 @@ namespace CavesOfOoo.Core
             string zoneID = reader.ReadString();
             var zone = new Zone(zoneID);
             zone.AmbientTint = reader.ReadColor();
+            zone.AmbientLevel = reader.ReadFloat();
             int version = reader.ReadInt();
             for (int x = 0; x < Zone.Width; x++)
             {

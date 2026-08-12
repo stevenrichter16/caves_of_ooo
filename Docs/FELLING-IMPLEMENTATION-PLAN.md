@@ -384,3 +384,71 @@ turn-taking would freeze through a night's sleep).
   no consumer until W1 (dusk glow) and W2 (Height glare).
 
 **Tests: 6429 → 6444 (+15). All green.**
+
+### W0.2 — Per-zone ambient + LightMap cache fix ✅ (2026-08-11)
+
+**Shipped.** `Zone.AmbientLevel` (+ `Zone.DefaultAmbientLevel = 0.4f`,
+shared with LightMap so the world and the renderer can't disagree
+about "ordinary"). `LightMap.Compute` reads it; the public
+`AmbientLevel` became a get-only property echoing the last computed
+zone (keeps `ZoneRenderer.cs:2162`'s mote gate and all 9 existing
+assertion sites working, now more correct — gate and brightness
+finally describe the same zone). `GetBrightness` OOB returns the
+zone's ambient, not a renderer constant.
+
+**The cache-key fix — two latent bugs closed** (plan §1 C3). The key
+was EntityVersion + EquipmentVersion; it is now also zone reference +
+AmbientLevel + AmbientTint, compared **by value** so the day-cycle
+can't force a recompute every turn:
+- Ambient/tint changes rendered *nothing* until some creature moved.
+  The entire catacomb light-economy and the whole day-cycle would
+  have been silently inert.
+- The renderer keeps ONE LightMap across zone transitions. Two zones
+  with equal EntityVersion — trivially, two freshly-loaded ones —
+  rendered each other's light. Harmless while every zone shared 0.4;
+  a showstopper the moment ambient varies. Fixed before it could
+  ever be seen.
+
+`OverworldZoneManager.OnZoneGenerated` assigns ambient (surface and
+`GetDepthAmbient(depth)`), and save/load mirrors it —
+**FormatVersion 4 → 5**, which rejects every existing save. Accepted
+pre-1.0 per the tripwire's own policy note, and moot in practice: an
+old save carries the old noise-generated map, so the overhaul is a
+new-world change regardless.
+
+**No visual change ships.** Every zone is still 0.4; `GetDepthAmbient`
+deliberately returns the historical flat value. The shape exists and
+is tested so W5 replaces one method body instead of also inventing
+where the number comes from.
+
+**Tests:** 11 new — 9 in `ZoneAmbientLevelTests.cs` (field default,
+LightMap reads the zone, a bright-vs-dark counter-check, OOB, the
+property echo, the two cache bugs, tint invalidation, and an
+early-out counter-check) + 2 save round-trips
+(`Gap_Zone_AmbientLevel_RoundTrips` and an unset-defaults
+counter-check guarding a pitch-black-world failure mode).
+
+**Self-review (§5):**
+- 🟡 *fixed pre-commit* — my own `Compute_NothingChanged_StillEarlyOuts`
+  was **vacuous**: it built a light-source entity and never added it
+  to the zone, so recompute-or-not produced the same answer. It
+  certified the perf contract without testing it. Rewritten to mutate
+  a light Part **in place** — a change no cache input can see — so a
+  lost early-out now shows up as the cell going dark.
+- 🟡 *methodology, disclosed* — the RED step was **compressed**: tests
+  and implementation landed in one pass, so I never observed the two
+  cache tests fail. Their RED is provable by construction (the old
+  key holds EntityVersion and EquipmentVersion constant in both
+  fixtures, so the early-out was unavoidable), but that is a proof,
+  not an observation. Recorded rather than glossed.
+- 🔵 `GetDepthAmbient` is a constant function today. Deliberate (W5
+  owns the ladder) and documented in-method with the two constraints
+  W5 inherits: the introspection doc's quit-trigger warning, and the
+  `RememberedColor` 0.2 floor below which visible cells render darker
+  than remembered ones.
+- ⚪ Deferred to W5: reconciling the *second* ambient system
+  (`LightSourceSpriteHook`'s Light2D global dim, gated by a ZoneID
+  substring heuristic whose Cave/Ruins branch is dead for all
+  `Overworld.*` IDs). Left alone here so nothing double-dims.
+
+**Tests: 6444 → 6455 (+11). All green.**

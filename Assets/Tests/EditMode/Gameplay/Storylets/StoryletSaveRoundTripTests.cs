@@ -24,7 +24,8 @@ namespace CavesOfOoo.Tests
             // deliberately + review save migration whenever the constant
             // changes. (Refreshed from a stale "==3" pin that had been red
             // on main since the 3→4 bump — unrelated to the Q3 quest work.)
-            Assert.AreEqual(4, SaveWriter.FormatVersion);
+            // 4→5: Felling W0.2 put Zone.AmbientLevel in the zone record.
+            Assert.AreEqual(5, SaveWriter.FormatVersion);
         }
 
         // counter-check: a fabricated v2-version header must reject on load

@@ -304,9 +304,43 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
         }
 
         /// <summary>
+        /// Pins Zone.AmbientLevel round-trip (Felling W0.2). Ambient
+        /// became a property of the place, and <c>OnZoneGenerated</c>
+        /// runs only at generation time — so without persistence every
+        /// loaded catacomb would silently come back at meadow
+        /// brightness.
+        /// </summary>
+        [Test]
+        public void Gap_Zone_AmbientLevel_RoundTrips()
+        {
+            var (player, zone, mgr, turns) = MakeMinimalState();
+            zone.AmbientLevel = 0.12f;      // a lit catacomb chamber
+
+            var loaded = RoundTrip(player, mgr, turns);
+
+            Assert.AreEqual(0.12f, loaded.ZoneManager.ActiveZone.AmbientLevel, 1e-5f);
+        }
+
+        /// <summary>
+        /// Counter-check for the above: a zone that never sets ambient
+        /// must come back at the shared default, not at 0 (a silently
+        /// pitch-black world would be the failure mode if the field
+        /// were written but never read).
+        /// </summary>
+        [Test]
+        public void Gap_Zone_UnsetAmbientLevel_RoundTripsAsDefault()
+        {
+            var (player, zone, mgr, turns) = MakeMinimalState();
+
+            var loaded = RoundTrip(player, mgr, turns);
+
+            Assert.AreEqual(Zone.DefaultAmbientLevel,
+                loaded.ZoneManager.ActiveZone.AmbientLevel, 1e-5f);
+        }
+
+        /// <summary>
         /// Pins Zone.AmbientTint Color round-trip via
-        /// <c>WriteColor</c>/<c>ReadColor</c> (production line 826,
-        /// 838).
+        /// <c>WriteColor</c>/<c>ReadColor</c> (SaveZone/LoadZone).
         /// </summary>
         [Test]
         public void Gap_Zone_AmbientTint_ColorRoundTrips()

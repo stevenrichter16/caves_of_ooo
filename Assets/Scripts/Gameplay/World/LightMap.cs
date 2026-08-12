@@ -18,11 +18,31 @@ namespace CavesOfOoo.Core
         // — closes the T2.2 cache-staleness 🟡 finding (commit cd355b5).
         private int _lastEquipmentVersion = -1;
 
+        // W0.2 — the rest of the cache key. Two bugs lived in its
+        // absence:
+        //   (a) ambient/tint changes rendered NOTHING until some entity
+        //       happened to move, which would have made the catacomb
+        //       light-economy and the day-cycle silently inert;
+        //   (b) the renderer keeps ONE LightMap across zone transitions
+        //       (ZoneRenderer.SetZone never replaces it), so two zones
+        //       with equal EntityVersion — trivially, two freshly-loaded
+        //       ones — rendered each other's light. Latent while every
+        //       zone shared 0.4; a showstopper the moment it doesn't.
+        private Zone _lastZone;
+        private float _lastAmbientLevel = float.NaN;
+        private Color _lastAmbientTint;
+
         /// <summary>
-        /// Ambient light level for cells not reached by any light source.
+        /// Ambient light level of the zone this map was last computed
+        /// for — the brightness of a cell no light source reaches.
         /// 0.0 = pitch black, 1.0 = fully lit.
+        ///
+        /// <para>Authored per-zone on <see cref="Zone.AmbientLevel"/>;
+        /// this is the renderer-side echo of the last Compute, kept so
+        /// callers like the mote-spawn gate can ask "is this cell
+        /// brighter than the room it's in?" without a Zone reference.</para>
         /// </summary>
-        public float AmbientLevel = 0.4f;
+        public float AmbientLevel { get; private set; } = Zone.DefaultAmbientLevel;
 
         public LightMap()
         {
@@ -38,11 +58,21 @@ namespace CavesOfOoo.Core
         public void Compute(Zone zone)
         {
             int currentEquipmentVersion = EquipmentChangeBus.GlobalVersion;
-            if (zone.EntityVersion == _lastEntityVersion
-                && currentEquipmentVersion == _lastEquipmentVersion)
+            // Compare the ambient inputs by VALUE, not by bumping a
+            // version — the day-cycle would otherwise force a full
+            // recompute every turn whether or not the light changed.
+            if (ReferenceEquals(zone, _lastZone)
+                && zone.EntityVersion == _lastEntityVersion
+                && currentEquipmentVersion == _lastEquipmentVersion
+                && zone.AmbientLevel == _lastAmbientLevel
+                && zone.AmbientTint == _lastAmbientTint)
                 return;
+            _lastZone = zone;
             _lastEntityVersion = zone.EntityVersion;
             _lastEquipmentVersion = currentEquipmentVersion;
+            _lastAmbientLevel = zone.AmbientLevel;
+            _lastAmbientTint = zone.AmbientTint;
+            AmbientLevel = zone.AmbientLevel;
 
             // Reset to ambient with biome tint
             Color baseTint = zone.AmbientTint;

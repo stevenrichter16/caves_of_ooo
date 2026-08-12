@@ -335,6 +335,7 @@ namespace CavesOfOoo.Core
                 // Underground: deeper = cooler blue tint
                 float depth = Mathf.Min(wz * 0.03f, 0.15f);
                 zone.AmbientTint = new Color(0.85f - depth, 0.9f - depth * 0.5f, 1f);
+                zone.AmbientLevel = GetDepthAmbient(wz);
 
                 // Mark all cells as interior. Extracted so a future zone-
                 // hydration path (save/load) can call it too without
@@ -347,6 +348,31 @@ namespace CavesOfOoo.Core
                 return;
 
             zone.AmbientTint = GetBiomeTint(WorldMap.GetBiome(wx, wy));
+            zone.AmbientLevel = Zone.DefaultAmbientLevel;
+        }
+
+        /// <summary>
+        /// How dark it is down there, by depth (Felling W0.2).
+        ///
+        /// <para>W0 is plumbing: this returns the historical flat value
+        /// so nothing changes on screen yet. The shape is here — and
+        /// tested — because W5 (catacombs) replaces the body with the
+        /// authored ladder from Docs/FELLING-WORLD-DESIGN.md §6
+        /// (surface 0.40 → sinkhole floor 0.22 → catacomb 0.12 → dead
+        /// zone 0.02), and that phase must not also be inventing where
+        /// the number comes from.</para>
+        ///
+        /// <para>Two constraints W5 inherits: the introspection doc's
+        /// quit-trigger warning (a room the player cannot navigate at
+        /// all is a bad room, so the floor stays navigable and the
+        /// *content* is what demands carried light), and the
+        /// remembered-cell floor — <c>RememberedColor</c> is a flat 0.2
+        /// gray applied unmodulated, so an ambient below it renders
+        /// visible cells darker than remembered ones.</para>
+        /// </summary>
+        private static float GetDepthAmbient(int depth)
+        {
+            return Zone.DefaultAmbientLevel;
         }
 
         /// <summary>
