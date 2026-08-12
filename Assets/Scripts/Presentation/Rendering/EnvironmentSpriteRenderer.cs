@@ -354,6 +354,16 @@ namespace CavesOfOoo.Rendering
                 case "QuartziteFloor": return GroundMaterial.Quartzite;
                 case "ObsidianFloor":  return GroundMaterial.Obsidian;
                 case "WaterPuddle":    return GroundMaterial.Water;
+
+                // W1 formations. A packed road IS a ground surface — the
+                // old stone under the earth — so it paints as floor rather
+                // than leaving a hole in the flowing field for a '=' glyph
+                // to sit in. Rubble and ash are likewise surfaces, not
+                // objects standing on one.
+                case "RoadStone":      return GroundMaterial.Floor;
+                case "Rubble":         return GroundMaterial.Floor;
+                case "AshPile":        return GroundMaterial.Floor;
+                case "AshBed":         return GroundMaterial.Floor;
                 default:               return GroundMaterial.None;
             }
         }
