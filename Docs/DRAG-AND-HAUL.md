@@ -583,3 +583,93 @@ one read instead of being "fixed" by making the test agree with the bug.
   `MovementSystem.ForceMoveTo`, which calls `DirtyForMove`. No test
   here pins that the cells repaint; that is a visual claim.
 - The six heavy blueprints are still **placed in no worldgen**.
+
+---
+
+## 14. D4/D5 + placement ✅ shipped — the mechanic is complete
+
+Hauling now costs something, survives the rest of the game, and — the
+part that actually mattered — **exists in the world**.
+
+**The cost is a Speed penalty**, `weight × 4 / 10`, floored so hauling
+can never drop you below Speed 20. Not a per-action charge: §11 found
+there is no per-action cost in `TurnManager` to multiply. Carried weight
+already says "this is slowing me down" through `speed.Penalty`
+(`InventoryPart.RefreshHandlingCarryPenalty`), so hauling pulls the same
+lever. A 120 millstone costs 48 Speed — you feel it immediately.
+
+**The penalty is stored, not recomputed.** `DragPart.AppliedPenalty`
+records what actually landed after clamping, and lifting reads that
+number back. Recomputing on release would leave a residue any time the
+clamp bit or a load's weight changed mid-haul — a character quietly
+carrying a fraction of a debuff forever.
+
+**Three exits, all of which lift it:** letting go, slipping, and dying.
+Death drops the load so a corpse cannot keep a millstone reserved
+forever.
+
+**`ValidateLink`** drops the link when either end leaves the zone or the
+load is re-taken. Cheap, and it covers zone transition and despawn
+without either of them needing to know about dragging.
+
+**Save/load is now proven, not cited.** `TheLinkSurvivesASaveAndLoad`
+round-trips the hauler through the token graph and asserts the load
+comes back. §11's claim that Entity fields persist by ID was correct —
+but it took the right helper: `RoundTripEntityViaTokenGraph`, not
+`RoundTripEntity`, which saves a single entity and resolves any
+cross-entity reference to null.
+
+### Placement — the thing that made it real
+
+`HaulablePropBuilder` at priority 4200 in the surface pipeline. ~1 in 3
+zones grows one heavy object, chosen from a per-biome pool: barrels and
+beams in the Spread, salt-cured bodies out in the Beating, a single
+anvil in all the emptiness of the Overwrit.
+
+Two guards: it never places into a cell that lacks open ground on both
+axes (a solid object in a one-cell corridor can seal a zone, and the
+only verb that would clear it is the drag the player may be too weak to
+use), and `EveryBiomeHasAPool` fails loudly if a future biome is added
+without one.
+
+**Everything before this commit was unreachable.** D1–D5 were correct
+and the player could not have met a single haulable object.
+
+### Self-review (§5)
+
+> 🔴 **1 — I broke zone generation.** `IZoneBuilder.BuildZone` returns
+> false to mean *"this zone failed, throw it away and retry with a new
+> seed"* (`ZoneGenerationPipeline.cs:36-40`), not *"I placed nothing"*.
+> My builder returned false on a failed roll — about two thirds of
+> zones — and 11 `WorldMapTests` went red with "Failed to generate
+> zone". Caught immediately by the suite. A decorative pass that
+> declines to act has still succeeded; it now always returns true, with
+> the contract written down at the method.
+>
+> 🟡 **2 — two fixtures were wrong before the code was.**
+> `AHeavierLoadSlowsYouMore` compared 60 against 150, but 150 exceeds
+> the drag cap at Strength 16, so the heavier grab was refused and the
+> test proved nothing. And the save test used `RoundTripEntity`, which
+> cannot carry a referenced entity — it reported a save bug that does
+> not exist. **Third time in this feature** that a fixture chosen for
+> the fiction rather than the arithmetic passed through a branch it did
+> not mean to test.
+>
+> 🔵 **3 — `PenaltyPerTenWeight = 4` and `MinimumHaulingSpeed = 20` are
+> invented and unplayed.** They are legible starting numbers, not tuned
+> ones.
+
+### Honesty bounds
+
+- **Unit-verified only.** 6561/6561 EditMode green. **No live Play
+  run.** Nobody has hauled anything in a running game — whether a
+  48-point Speed hit feels like effort or like punishment is exactly
+  the kind of claim these tests cannot make, and it is the first thing
+  a playtest should check.
+- `ValidateLink` **has no caller in production yet.** It is tested and
+  correct, but nothing invokes it on turn boundaries or zone change, so
+  the despawn/zone-change cases it covers are still theoretical in a
+  live game. Wiring it is a one-line change at a turn hook and is the
+  obvious next thing if drag bugs show up.
+- Ground modifiers (`Slippery`/`Sticky`) are **not** built. The dead
+  schema stays dead; §5 remains a proposal.

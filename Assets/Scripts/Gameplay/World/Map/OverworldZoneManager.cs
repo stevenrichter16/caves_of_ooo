@@ -319,6 +319,9 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new PopulationBuilder(
                 PopulationTable.GetBiomeTable(biome, tier)));
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
+            // The heavy things the drag verb exists for. Sparse by design —
+            // see HaulablePropBuilder.
+            pipeline.AddBuilder(new HaulablePropBuilder(biome));
             return pipeline;
         }
 

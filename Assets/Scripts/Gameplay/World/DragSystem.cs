@@ -23,6 +23,16 @@ namespace CavesOfOoo.Core
         /// reference support — never a raw object graph.</summary>
         public Entity Dragged;
 
+        /// <summary>The Speed penalty this load imposes, computed once at
+        /// grab time.</summary>
+        public int SpeedPenalty;
+
+        /// <summary>How much of <see cref="SpeedPenalty"/> was actually
+        /// applied after clamping. Stored rather than recomputed so that
+        /// lifting it can never leave a residue — the bug where a character
+        /// keeps a fraction of a debuff forever.</summary>
+        public int AppliedPenalty;
+
         /// <summary>
         /// The follow rule (D3). When the hauler finishes a move, the load
         /// is pulled into the cell the hauler just left.
@@ -36,6 +46,13 @@ namespace CavesOfOoo.Core
         /// </summary>
         public override bool HandleEvent(GameEvent e)
         {
+            if (e.ID == "Died")
+            {
+                // A corpse must not keep a millstone reserved forever.
+                DragSystem.Release(ParentEntity);
+                return true;
+            }
+
             if (e.ID != "AfterMove") return true;
             if (Dragged == null || ParentEntity == null) return true;
 
@@ -132,10 +149,11 @@ namespace CavesOfOoo.Core
                 return verdict;
             }
 
-            var dragPart = new DragPart { Dragged = target };
+            var dragPart = new DragPart { Dragged = target, SpeedPenalty = PenaltyFor(target) };
             var draggedPart = new DraggedPart { Dragger = actor };
             actor.AddPart(dragPart);
             target.AddPart(draggedPart);
+            dragPart.AppliedPenalty = ApplySpeedPenalty(actor, dragPart.SpeedPenalty);
 
             Diag.Record(
                 category: "drag",
@@ -196,6 +214,92 @@ namespace CavesOfOoo.Core
         }
 
         // ════════════════════════════════════════════════════════
+        // What it costs to haul (D4)
+        // ════════════════════════════════════════════════════════
+
+        /// <summary>Speed lost per 10 units of load.</summary>
+        public const int PenaltyPerTenWeight = 4;
+
+        /// <summary>Speed a hauler always keeps. A load must never pin the
+        /// player in place — that is unrecoverable without the menu.</summary>
+        public const int MinimumHaulingSpeed = 20;
+
+        /// <summary>
+        /// The Speed penalty a load imposes.
+        ///
+        /// <para><b>A Speed penalty, not an action cost.</b> There is no
+        /// per-action cost in <c>TurnManager</c> to multiply — every action
+        /// deducts the same fixed <c>ActionThreshold</c>. Carried weight
+        /// already says "this is slowing me down" through
+        /// <c>speed.Penalty</c> (<c>InventoryPart.RefreshHandlingCarryPenalty</c>),
+        /// so hauling pulls the same lever rather than inventing a parallel
+        /// one.</para>
+        /// </summary>
+        public static int PenaltyFor(Entity load)
+        {
+            int weight = DragRules.WeightOf(load);
+            if (weight <= 0) return 0;
+            return weight * PenaltyPerTenWeight / 10;
+        }
+
+        /// <summary>Apply (positive) or lift (negative) a speed penalty,
+        /// clamped so hauling never reduces Speed below
+        /// <see cref="MinimumHaulingSpeed"/>.</summary>
+        private static int ApplySpeedPenalty(Entity actor, int delta)
+        {
+            var speed = actor?.GetStat("Speed");
+            if (speed == null || delta <= 0) return 0;
+
+            int headroom = speed.Value - MinimumHaulingSpeed;
+            if (headroom <= 0) return 0;
+            if (delta > headroom) delta = headroom;
+
+            speed.Penalty += delta;
+            return delta;
+        }
+
+        /// <summary>Remove whatever penalty this DragPart actually applied.
+        /// Reads the stored amount rather than recomputing it, so a load
+        /// whose weight changed mid-haul cannot leave a residue.</summary>
+        private static void LiftSpeedPenalty(Entity actor, DragPart part)
+        {
+            var speed = actor?.GetStat("Speed");
+            if (speed == null || part == null || part.AppliedPenalty == 0) return;
+            speed.Penalty -= part.AppliedPenalty;
+            part.AppliedPenalty = 0;
+        }
+
+        // ════════════════════════════════════════════════════════
+        // Keeping the link honest (D5)
+        // ════════════════════════════════════════════════════════
+
+        /// <summary>
+        /// Drop the load if the link no longer makes sense: either end gone
+        /// from <paramref name="zone"/>, or the load re-taken by someone
+        /// else. Cheap enough to call on turn boundaries and after anything
+        /// that removes entities.
+        ///
+        /// <para>Without this, a hauler who dies, changes zone, or whose
+        /// load burns up keeps a reference to it forever — and the load
+        /// stays reserved so nobody else can ever take it.</para>
+        /// </summary>
+        public static void ValidateLink(Entity actor, Zone zone)
+        {
+            var dragPart = actor?.GetPart<DragPart>();
+            if (dragPart == null) return;
+
+            Entity load = dragPart.Dragged;
+            bool broken =
+                load == null
+                || zone == null
+                || zone.GetEntityPosition(actor).x < 0
+                || zone.GetEntityPosition(load).x < 0
+                || !ReferenceEquals(GetDragger(load), actor);
+
+            if (broken) Slip(actor, load, "link no longer valid");
+        }
+
+        // ════════════════════════════════════════════════════════
         // Following (D3)
         // ════════════════════════════════════════════════════════
 
@@ -251,7 +355,11 @@ namespace CavesOfOoo.Core
             // is not the player letting go, and conflating the two would
             // make "did they drop it or lose it?" unanswerable by query.
             var dragPart = hauler?.GetPart<DragPart>();
-            if (dragPart != null) hauler.RemovePart(dragPart);
+            if (dragPart != null)
+            {
+                LiftSpeedPenalty(hauler, dragPart);
+                hauler.RemovePart(dragPart);
+            }
             var draggedPart = load?.GetPart<DraggedPart>();
             if (draggedPart != null && ReferenceEquals(draggedPart.Dragger, hauler))
                 load.RemovePart(draggedPart);
@@ -275,6 +383,7 @@ namespace CavesOfOoo.Core
             if (dragPart == null) return false;
 
             Entity load = dragPart.Dragged;
+            LiftSpeedPenalty(actor, dragPart);
             actor.RemovePart(dragPart);
 
             // Clear the far side only if it still points back at us. A load
