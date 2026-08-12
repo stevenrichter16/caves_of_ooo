@@ -27056,6 +27056,175 @@
       ],
       "Stats": [],
       "Tags": []
+    },
+    {
+      "Name": "Hedge",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "hedgerow"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "#"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&g"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            },
+            {
+              "Key": "Weight",
+              "Value": "30"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A wall of hawthorn and bramble, laid and woven by somebody's grandparents. It marks a boundary that no longer has a court to argue it."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "CropRow",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "crop row"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "\""
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&W"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Barley, planted in the old strips. Someone is coming back for this."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "RoadStone",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "packed road"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Packed earth over old stone, rutted by cartwheels. It goes somewhere, which is more than most things here do."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "CharmFlowers",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "charm-flowers"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "*"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&M"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Pale bells on thin stems, growing where nobody sowed them. They are said to keep. Nobody in the Spread can tell you what they keep away."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
     }
   ]
 }

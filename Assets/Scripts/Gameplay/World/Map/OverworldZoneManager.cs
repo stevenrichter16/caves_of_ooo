@@ -257,11 +257,25 @@ namespace CavesOfOoo.Core
         // salt pan, a duckboard causeway, a grove colonnade, a bleed)
         // belong to the biome's own phase.
 
-        /// <summary>The Spread — recovered river country. Open meadow
-        /// and coppice: grass with the tree density turned down.</summary>
+        /// <summary>
+        /// The Spread — recovered river country, and the first biome with
+        /// real FORMATIONS (W1): each chunk is a hedged field, crop strips,
+        /// the old road, a flower meadow, gone-back scrub, or water-meadow,
+        /// picked deterministically from the zone ID.
+        ///
+        /// <para>The base terrain is still open meadow-and-coppice; the
+        /// formation runs on top of it at priority 2500 and decides what
+        /// KIND of place this chunk is. That is the fix for the complaint
+        /// that started the overhaul: every Spread chunk used to be the
+        /// same clearing with the grass moved around.</para>
+        /// </summary>
         private ZoneGenerationPipeline CreateSpreadPipeline(int tier = 1)
-            => CreateSurfacePipeline(BiomeType.Spread, tier,
+        {
+            var pipeline = CreateSurfacePipeline(BiomeType.Spread, tier,
                 new JungleBuilder { SeedChance = 40, TreeChance = 0.04f });
+            pipeline.AddBuilder(new SpreadFormationBuilder());
+            return pipeline;
+        }
 
         /// <summary>The Sodden — the flood's country. Wetter and more
         /// choked than the Spread; W3 brings the mires and the
