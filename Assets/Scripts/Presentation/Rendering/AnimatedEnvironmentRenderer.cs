@@ -174,6 +174,10 @@ namespace CavesOfOoo.Rendering
                     Tilemap target = ChooseOverlay(glyph);
                     if (target == null) continue;
 
+                    // The glyph is a fast pre-filter, NOT the decision.
+                    // Ask what the thing actually IS before animating it.
+                    if (!IsAnimatableEnvironment(zone, x, y, target)) continue;
+
                     // Re-route: paint the same tile + color onto the
                     // overlay, clear from the main.
                     target.SetTile(pos, existingTile);
@@ -183,6 +187,62 @@ namespace CavesOfOoo.Rendering
                     _claimedThisFrame.Add(pos);
                 }
             }
+        }
+
+
+        /// <summary>
+        /// Whether the entity on this cell is genuinely animated
+        /// environment, rather than merely something that happens to draw
+        /// the same letter.
+        ///
+        /// <para><b>This gate is the fix for a real, shipped bug.</b> The
+        /// overlay used to claim cells by CP437 glyph ALONE: <c>~ = -</c>
+        /// meant water, <c>,</c> and <c>;</c> meant grass, <c>*</c> meant
+        /// fire. Roughly fifty blueprints collide with those characters —
+        /// a packed road and a copper pipe draw <c>=</c>, a peat bog draws
+        /// <c>~</c>, charm-flowers draw <c>*</c>, and chests, beds, ore
+        /// veins and even a Viper draw one of them too. All were being
+        /// re-parented onto a scrolling overlay.</para>
+        ///
+        /// <para>The water material scrolls its UVs with no per-cell phase
+        /// offset (<c>AnimatedEnvironment.shader</c>, the <c>_ENABLE_SCROLL</c>
+        /// path — unlike sway and flicker, which do offset per cell), so
+        /// every claimed cell scrolled in lockstep. A run of roads therefore
+        /// produced a coherent band of glyph fragments marching across the
+        /// terrain: the "wave of ASCII characters" a player reported.</para>
+        ///
+        /// <para>Fixing the shader phase would only have made the wave
+        /// incoherent. The road should not be animating at all.</para>
+        /// </summary>
+        private bool IsAnimatableEnvironment(Zone zone, int x, int y, Tilemap target)
+        {
+            if (zone == null) return false;
+            var cell = zone.GetCell(x, y);
+            var top = cell?.GetTopVisibleObject();
+            if (top == null) return false;
+
+            // Never animate anything alive. A Viper renders '~'.
+            if (top.HasTag("Creature")) return false;
+
+            if (target == _waterTilemap)
+                return top.GetPart<LiquidPoolPart>() != null
+                    || EnvironmentSpriteRenderer.ResolveGroundMaterial(top.BlueprintName)
+                       == EnvironmentSpriteRenderer.GroundMaterial.Water;
+
+            if (target == _grassTilemap)
+                return EnvironmentSpriteRenderer.ResolveGroundMaterial(top.BlueprintName)
+                       == EnvironmentSpriteRenderer.GroundMaterial.Grass;
+
+            // Fire is an explicit short list. Fourteen blueprints draw
+            // '*' and only these are actually alight — the rest are ore
+            // veins, salt, quartz and charm-flowers, all of which were
+            // flickering like flame.
+            if (target == _fireTilemap)
+                return top.BlueprintName == "Campfire"
+                    || top.BlueprintName == "RuneOfFlame"
+                    || top.HasTag("Fire");
+
+            return false;
         }
 
         /// <summary>
