@@ -2,18 +2,44 @@
   "Storylets": [
     {
       "ID": "StrongestInOoo",
-      "OneShot": false, "Tracked": true, "Triggers": [], "Effects": [],
+      "OneShot": false,
+      "Tracked": true,
+      "Triggers": [],
+      "Effects": [],
       "Quest": {
-        "Accomplishment": "You lifted the fallen gumdrop boulder and freed the trapped candy citizen.",
+        "Name": "The Mill-Stone",
+        "Accomplishment": "You lifted the fallen mill-stone and freed the miller's daughter.",
         "Stages": [
           {
-            "ID": "prove", "Triggers": [], "OnEnter": [],
+            "ID": "prove",
+            "Triggers": [],
+            "OnEnter": [],
             "Objectives": [
-              { "ID": "free_them", "Text": "Lift the gumdrop boulder (needs Strength 18)", "Optional": false, "Hidden": false,
-                "Triggers": [ { "Key": "IfFact", "Value": "strongman_lifted:>=:1" } ], "OnEnter": [] }
+              {
+                "ID": "free_them",
+                "Text": "Lift the mill-stone (needs Strength 18)",
+                "Optional": false,
+                "Hidden": false,
+                "Triggers": [
+                  {
+                    "Key": "IfFact",
+                    "Value": "strongman_lifted:>=:1"
+                  }
+                ],
+                "OnEnter": []
+              }
             ]
           },
-          { "ID": "report", "Triggers": [ { "Key": "IfFact", "Value": "strongman_report_guard:>=:1" } ], "OnEnter": [] }
+          {
+            "ID": "report",
+            "Triggers": [
+              {
+                "Key": "IfFact",
+                "Value": "strongman_report_guard:>=:1"
+              }
+            ],
+            "OnEnter": []
+          }
         ]
       }
     }

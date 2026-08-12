@@ -5,7 +5,7 @@
       "Nodes": [
         {
           "ID": "Start",
-          "Text": "Help — please! A gumdrop boulder rolled off the candy cliffs and pinned my friend against the wall. It's far too heavy for me. You look strong... could you lift it off her?",
+          "Text": "Help — please! A mill-stone rolled off the mill-race and pinned my friend against the wall. It's far too heavy for me. You look strong... could you lift it off her?",
           "Choices": [
             { "Text": "[Accept] I'll try to lift it.", "Target": "Accepted",
               "Predicates": [ { "Key": "IfQuestNotStarted", "Value": "StrongestInOoo" } ],
@@ -30,9 +30,9 @@
           ]
         },
         { "ID": "Accepted", "Text": "Oh, thank you! She's just over there under the boulder. Grab it low and heave — if you've got the strength for it.", "Choices": [ { "Text": "Stand back.", "Target": "End" } ] },
-        { "ID": "Lifted", "Text": "With a roar you get your shoulder under the gumdrop boulder and HEAVE — it rolls aside! She scrambles free, gasping her thanks. Go tell her brother you did it.", "Choices": [ { "Text": "Glad I could help.", "Target": "End" } ] },
+        { "ID": "Lifted", "Text": "With a roar you get your shoulder under the mill-stone and HEAVE — it rolls aside! She scrambles free, gasping her thanks. Go tell her brother you did it.", "Choices": [ { "Text": "Glad I could help.", "Target": "End" } ] },
         { "ID": "TooWeak", "Text": "You strain against it, but the boulder won't budge — not yet. Come back when you've built more muscle, please. She can breathe, but only just.", "Choices": [ { "Text": "I'll get stronger.", "Target": "End" } ] },
-        { "ID": "Grateful", "Text": "You're a hero of the Saccharine Concord today. Take this for your trouble — and know the candy folk won't forget it.", "Choices": [ { "Text": "Take care of her.", "Target": "End" } ] },
+        { "ID": "Grateful", "Text": "You're a hero of the Saccharine Concord today. Take this for your trouble — and know the folk hereabouts won't forget it.", "Choices": [ { "Text": "Take care of her.", "Target": "End" } ] },
         { "ID": "Done", "Text": "She's resting easy now, thanks to you. The Concord remembers its friends.", "Choices": [ { "Text": "Bye.", "Target": "End" } ] }
       ]
     }

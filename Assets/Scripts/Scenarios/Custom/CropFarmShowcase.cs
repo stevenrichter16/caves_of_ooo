@@ -27,9 +27,9 @@ namespace CavesOfOoo.Scenarios.Custom
     ///         its normal look.</item>
     ///   <item>Wait ~40 turns: the wet backgrounds fade (soil dries)
     ///         and dry crops stop growing.</item>
-    ///   <item>Keep watering the candy carrots (~40 moist ticks total):
+    ///   <item>Keep watering the gladroot (~40 moist ticks total):
     ///         seed '.' → sprout 't' glyph/color swap, then the crop
-    ///         disappears and an orange '%' candy carrot lies there.
+    ///         disappears and an orange '%' gladroot lies there.
     ///         Walk over and pick it up.</item>
     ///   <item>Plant a seed from inventory ("plant" action) on grass —
     ///         works; try it on plain stone floor — rejected with a
@@ -72,7 +72,7 @@ namespace CavesOfOoo.Scenarios.Custom
             }
 
             // === Pre-planted middle row (dry, mid-growth: paused) ===
-            // Three candy carrots part-way through the seed stage and one
+            // Three gladroot part-way through the seed stage and one
             // emberwheat, so one rain cast visibly resumes several crops.
             for (int i = 0; i < 3; i++)
             {

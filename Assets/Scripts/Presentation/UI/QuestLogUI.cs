@@ -120,7 +120,10 @@ namespace CavesOfOoo.Rendering
                 for (int i = 0; i < _snapshot.Active.Count && y < H - 4; i++)
                 {
                     var e = _snapshot.Active[i];
-                    DrawText(3, y, e.QuestId, ColQuest); y++;
+                    // Same answer as the message log — two surfaces
+                    // disagreeing about a quest's name is the bug the
+                    // display-name seam exists to remove.
+                    DrawText(3, y, StoryletPart.QuestDisplayName(e.QuestId), ColQuest); y++;
                     if (e.Stages.Count == 0)
                     {
                         // Unresolved blueprint (content removed) — show index.

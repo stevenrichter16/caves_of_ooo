@@ -169,11 +169,25 @@ namespace CavesOfOoo.Storylets
         /// <summary>Display text for quest lifecycle messages: the
         /// registry quest's Name when known, else the raw id.</summary>
         private static string DisplayNameFor(string questId)
+            => QuestDisplayName(questId);
+
+        /// <summary>
+        /// The player-facing title of a quest: its authored
+        /// <see cref="QuestData.Name"/> when it has one, else the raw id.
+        ///
+        /// <para>Public because the quest-log UI needs the same answer
+        /// as the message log — two surfaces disagreeing about what a
+        /// quest is called is exactly the bug this seam removes.</para>
+        ///
+        /// <para>Never blank for a non-empty id: unknown quests (a save
+        /// referencing removed content) fall back to the id rather than
+        /// rendering nothing.</para>
+        /// </summary>
+        public static string QuestDisplayName(string questId)
         {
-            // QuestData carries no display name today — the id doubles as
-            // the display string (seam kept so a future Name field slots
-            // in here without touching the emit sites).
-            return questId;
+            if (string.IsNullOrEmpty(questId)) return questId;
+            var quest = StoryletRegistry.FindQuest(questId);
+            return string.IsNullOrEmpty(quest?.Name) ? questId : quest.Name;
         }
 
         public bool CompleteQuest(string questId, Entity actor = null)

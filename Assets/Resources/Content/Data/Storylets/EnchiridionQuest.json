@@ -7,7 +7,8 @@
       "Triggers": [],
       "Effects": [],
       "Quest": {
-        "Accomplishment": "You recovered the Enchiridion and returned it to its rightful guardian.",
+        "Name": "The Sealed Hand",
+        "Accomplishment": "You recovered the Sealed Hand and saw it entered where it belonged.",
         "Stages": [
           {
             "ID": "recover",
@@ -16,18 +17,33 @@
             "Objectives": [
               {
                 "ID": "find_enchiridion",
-                "Text": "Find the Enchiridion",
+                "Text": "Find the Sealed Hand",
                 "Optional": false,
                 "Hidden": false,
-                "Triggers": [ { "Key": "IfHaveItem", "Value": "Enchiridion" } ],
-                "OnEnter": [ { "Key": "AwardXP", "Value": "150" } ]
+                "Triggers": [
+                  {
+                    "Key": "IfHaveItem",
+                    "Value": "Enchiridion"
+                  }
+                ],
+                "OnEnter": [
+                  {
+                    "Key": "AwardXP",
+                    "Value": "150"
+                  }
+                ]
               },
               {
                 "ID": "best_the_guardian",
                 "Text": "Best the guardian of the tomb",
                 "Optional": false,
                 "Hidden": false,
-                "Triggers": [ { "Key": "IfFact", "Value": "guardian_bested:>=:1" } ],
+                "Triggers": [
+                  {
+                    "Key": "IfFact",
+                    "Value": "guardian_bested:>=:1"
+                  }
+                ],
                 "OnEnter": []
               },
               {
@@ -35,8 +51,18 @@
                 "Text": "Loot the hidden vault",
                 "Optional": true,
                 "Hidden": false,
-                "Triggers": [ { "Key": "IfHaveItem", "Value": "VaultKey" } ],
-                "OnEnter": [ { "Key": "GiveDrams", "Value": "25" } ]
+                "Triggers": [
+                  {
+                    "Key": "IfHaveItem",
+                    "Value": "VaultKey"
+                  }
+                ],
+                "OnEnter": [
+                  {
+                    "Key": "GiveDrams",
+                    "Value": "25"
+                  }
+                ]
               }
             ]
           },
@@ -44,8 +70,14 @@
             "ID": "return_to_guardian",
             "Triggers": [],
             "OnEnter": [
-              { "Key": "AwardXP", "Value": "300" },
-              { "Key": "GiveDrams", "Value": "100" }
+              {
+                "Key": "AwardXP",
+                "Value": "300"
+              },
+              {
+                "Key": "GiveDrams",
+                "Value": "100"
+              }
             ],
             "Objectives": []
           }

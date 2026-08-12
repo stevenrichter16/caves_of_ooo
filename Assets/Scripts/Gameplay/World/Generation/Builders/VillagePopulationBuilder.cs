@@ -942,7 +942,7 @@ namespace CavesOfOoo.Core
             SetConversation(giver, "RootBeerGuy_Quest");
             giver.AddPart(new CavesOfOoo.Storylets.QuestBeaconPart { Quest = "RootBeerGuyCase" });
             var render = giver.GetPart<RenderPart>();
-            if (render != null) { render.DisplayName = "Root Beer Guy"; render.RenderString = "r"; render.ColorString = "&r"; }
+            if (render != null) { render.DisplayName = "Hallun"; render.RenderString = "r"; render.ColorString = "&r"; }
 
             // The lost notebook — built directly (no blueprint) so it carries the
             // quest Part. BlueprintName "DetectiveNotebook" makes IfHaveItem match.
@@ -953,7 +953,7 @@ namespace CavesOfOoo.Core
 
             var notebook = new Entity { ID = "DetectiveNotebook", BlueprintName = "DetectiveNotebook" };
             notebook.Tags["Item"] = "";
-            notebook.AddPart(new RenderPart { DisplayName = "detective notebook", RenderString = "=", ColorString = "&w" });
+            notebook.AddPart(new RenderPart { DisplayName = "witness-book", RenderString = "=", ColorString = "&w" });
             notebook.AddPart(new PhysicsPart { Takeable = true, Weight = 1 });
             notebook.AddPart(new CavesOfOoo.Storylets.CompleteObjectiveOnTaken { Quest = "RootBeerGuyCase", Objective = "find_notebook" });
             zone.AddEntity(notebook, nx, ny);
@@ -993,7 +993,7 @@ namespace CavesOfOoo.Core
             SetConversation(bmo, "BMO_Quest");
             bmo.AddPart(new CavesOfOoo.Storylets.QuestBeaconPart { Quest = "BmoCartridge" });
             var br = bmo.GetPart<RenderPart>();
-            if (br != null) { br.DisplayName = "BMO"; br.RenderString = "b"; br.ColorString = "&c"; }
+            if (br != null) { br.DisplayName = "Ellun"; br.RenderString = "b"; br.ColorString = "&c"; }
 
             // The "old stump" — a reach-location marker. Non-solid so the player
             // can step onto its cell; QuestMarkerTriggerPart (player-gated,
@@ -1052,7 +1052,7 @@ namespace CavesOfOoo.Core
             SetConversation(giver, "Crunchy_Quest");
             giver.AddPart(new CavesOfOoo.Storylets.QuestBeaconPart { Quest = "CrunchyLocket" });
             var r = giver.GetPart<RenderPart>();
-            if (r != null) { r.DisplayName = "Crunchy"; r.RenderString = "c"; r.ColorString = "&w"; }
+            if (r != null) { r.DisplayName = "Belis"; r.RenderString = "c"; r.ColorString = "&w"; }
 
             if (openCells.Count == 0) return;
             int idx = rng.Next(openCells.Count);
@@ -1060,7 +1060,7 @@ namespace CavesOfOoo.Core
             openCells.RemoveAt(idx);
             var locket = new Entity { ID = "CrunchyLocket", BlueprintName = "CrunchyLocket" };
             locket.Tags["Item"] = "";
-            locket.AddPart(new RenderPart { DisplayName = "silver locket", RenderString = "*", ColorString = "&Y" });
+            locket.AddPart(new RenderPart { DisplayName = "carved name-token", RenderString = "*", ColorString = "&Y" });
             locket.AddPart(new PhysicsPart { Takeable = true, Weight = 1 });
             locket.AddPart(new CavesOfOoo.Storylets.CompleteObjectiveOnTaken { Quest = "CrunchyLocket", Objective = "find_locket" });
             zone.AddEntity(locket, x, y);
@@ -1125,7 +1125,7 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>Pool quest — The Candy Tax (collect-N via dialogue). Giver
-        /// (Peppermint Butler) + THREE "candy citizen" NPCs that SHARE the
+        /// (Peppermint Butler) + THREE "villager" NPCs that SHARE the
         /// <c>CandyCitizen</c> conversation. Each citizen's collect choice is
         /// gated <c>IfNotSpeakerHaveProperty:candy_taxed</c> and sets that
         /// property on collect, so each ENTITY contributes to the
@@ -1141,7 +1141,7 @@ namespace CavesOfOoo.Core
             SetConversation(giver, "CandyTax_Quest");
             giver.AddPart(new CavesOfOoo.Storylets.QuestBeaconPart { Quest = "TheCandyTax" });
             var r = giver.GetPart<RenderPart>();
-            if (r != null) { r.DisplayName = "Peppermint Butler"; r.RenderString = "P"; r.ColorString = "&W"; }
+            if (r != null) { r.DisplayName = "Clerk Padok"; r.RenderString = "P"; r.ColorString = "&W"; }
 
             for (int i = 0; i < 4; i++)  // BETA AUDIT #13: 4 citizens, threshold stays 3 — one death no longer wedges the quest
             {
@@ -1149,7 +1149,7 @@ namespace CavesOfOoo.Core
                 if (citizen == null) return;
                 SetConversation(citizen, "CandyCitizen");
                 var cr = citizen.GetPart<RenderPart>();
-                if (cr != null) { cr.DisplayName = "candy citizen"; cr.RenderString = "c"; cr.ColorString = "&m"; }
+                if (cr != null) { cr.DisplayName = "villager"; cr.RenderString = "c"; cr.ColorString = "&m"; }
             }
         }
 
@@ -1195,7 +1195,7 @@ namespace CavesOfOoo.Core
             SetConversation(giver, "Strongman_Quest");
             giver.AddPart(new CavesOfOoo.Storylets.QuestBeaconPart { Quest = "StrongestInOoo" });
             var r = giver.GetPart<RenderPart>();
-            if (r != null) { r.DisplayName = "panicked candy citizen"; r.RenderString = "p"; r.ColorString = "&R"; }
+            if (r != null) { r.DisplayName = "panicked villager"; r.RenderString = "p"; r.ColorString = "&R"; }
         }
 
         private List<(int x, int y)> GatherOpenCells(Zone zone)

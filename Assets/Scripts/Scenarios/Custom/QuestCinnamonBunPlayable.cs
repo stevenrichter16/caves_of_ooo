@@ -4,17 +4,17 @@ using CavesOfOoo.Storylets;
 namespace CavesOfOoo.Scenarios.Custom
 {
     /// <summary>
-    /// PLAYABLE QUEST showcase — "Cinnamon Bun's Favor" (Docs/QUEST-PLAYABLE-CINNAMONBUN.md).
+    /// PLAYABLE QUEST showcase — "The Baker's Keepsake" (Docs/QUEST-PLAYABLE-CINNAMONBUN.md).
     /// A complete, player-exercisable quest that wires the Q5 world-object
     /// Parts into a live NPC-driven loop:
     ///
-    ///   1. Talk to Cinnamon Bun (press 'c' toward him) → "[Accept]" runs the
+    ///   1. Talk to Rullok (press 'c' toward him) → "[Accept]" runs the
     ///      conversation StartQuest action → quest begins (stage "errands").
     ///   2. Walk east. Pick up the scorched keepsake → its CompleteObjectiveOnTaken
     ///      Part finishes "recover_keepsake" the instant you take it (Q5.2).
     ///   3. Kill the soot gremlin → its FinishObjectiveWhenSlain Part finishes
     ///      "drive_off_gremlin" (Q5.1). Both required done → stage → "report".
-    ///   4. Return to Cinnamon Bun → "[Report]" is now available → CompleteQuest
+    ///   4. Return to Rullok → "[Report]" is now available → CompleteQuest
     ///      + 250 XP + 100 drams, and the Q7 accomplishment is logged.
     ///
     /// Content (real, auto-loaded — NOT inlined here):
@@ -33,7 +33,7 @@ namespace CavesOfOoo.Scenarios.Custom
     /// quest/StageAdvanced, quest/Completed, quest/Accomplishment.
     /// </summary>
     [Scenario(
-        name: "Playable Quest — Cinnamon Bun's Favor",
+        name: "Playable Quest — The Baker's Keepsake",
         category: "Quest",
         description: "A complete player-driven quest: NPC gives it (dialogue StartQuest), pick up the keepsake (CompleteObjectiveOnTaken) + slay the gremlin (FinishObjectiveWhenSlain), report back (dialogue CompleteQuest + rewards).")]
     public class QuestCinnamonBunPlayable : IScenario
@@ -61,7 +61,7 @@ namespace CavesOfOoo.Scenarios.Custom
             for (int dx = 1; dx <= 7; dx++)
                 ctx.World.ClearCell(p.x + dx, p.y);
 
-            // Cinnamon Bun — the quest-giver. Villager already has a
+            // Rullok — the quest-giver. Villager already has a
             // ConversationPart; point it at our dialogue tree.
             var cinnamonBun = ctx.Spawn("Villager")
                 .WithStatMax("Hitpoints", 40)
@@ -70,7 +70,7 @@ namespace CavesOfOoo.Scenarios.Custom
             var convo = cinnamonBun.GetPart<ConversationPart>();
             if (convo != null) convo.ConversationID = ConversationId;
             var bunRender = cinnamonBun.GetPart<RenderPart>();
-            if (bunRender != null) { bunRender.DisplayName = "Cinnamon Bun"; bunRender.RenderString = "b"; bunRender.ColorString = "&Y"; }
+            if (bunRender != null) { bunRender.DisplayName = "Rullok"; bunRender.RenderString = "b"; bunRender.ColorString = "&Y"; }
 
             // The soot gremlin — slaying it finishes "drive_off_gremlin" (Q5.1).
             var gremlin = ctx.Spawn("Snapjaw")
@@ -101,8 +101,8 @@ namespace CavesOfOoo.Scenarios.Custom
             if (StoryletRegistry.FindQuest(QuestId) == null)
                 MessageLog.Add($"[Scenario] WARNING: quest '{QuestId}' not in registry — is CinnamonBunFavor.json present?");
 
-            MessageLog.Add("Playable Quest: Cinnamon Bun's Favor.");
-            MessageLog.Add("Press 'c' toward Cinnamon Bun (the 'b' just east) to talk and take the quest.");
+            MessageLog.Add("Playable Quest: The Baker's Keepsake.");
+            MessageLog.Add("Press 'c' toward Rullok (the 'b' just east) to talk and take the quest.");
             MessageLog.Add("Then take the keepsake (*) and slay the soot gremlin, and report back.");
         }
     }

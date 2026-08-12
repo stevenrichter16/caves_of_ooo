@@ -2,18 +2,44 @@
   "Storylets": [
     {
       "ID": "TheCandyTax",
-      "OneShot": false, "Tracked": true, "Triggers": [], "Effects": [],
+      "OneShot": false,
+      "Tracked": true,
+      "Triggers": [],
+      "Effects": [],
       "Quest": {
-        "Accomplishment": "You collected the candy tax from the townsfolk for the treasury.",
+        "Name": "Three Outstanding Accounts",
+        "Accomplishment": "You settled three outstanding accounts for the Concord's ledger.",
         "Stages": [
           {
-            "ID": "collect", "Triggers": [], "OnEnter": [],
+            "ID": "collect",
+            "Triggers": [],
+            "OnEnter": [],
             "Objectives": [
-              { "ID": "collect_taxes", "Text": "Collect the candy tax from the townsfolk", "Optional": false, "Hidden": false,
-                "Triggers": [ { "Key": "IfFact", "Value": "candy_taxes_collected:>=:3" } ], "OnEnter": [] }
+              {
+                "ID": "collect_taxes",
+                "Text": "Settle the three outstanding accounts",
+                "Optional": false,
+                "Hidden": false,
+                "Triggers": [
+                  {
+                    "Key": "IfFact",
+                    "Value": "candy_taxes_collected:>=:3"
+                  }
+                ],
+                "OnEnter": []
+              }
             ]
           },
-          { "ID": "report", "Triggers": [ { "Key": "IfFact", "Value": "candy_tax_report_guard:>=:1" } ], "OnEnter": [] }
+          {
+            "ID": "report",
+            "Triggers": [
+              {
+                "Key": "IfFact",
+                "Value": "candy_tax_report_guard:>=:1"
+              }
+            ],
+            "OnEnter": []
+          }
         ]
       }
     }

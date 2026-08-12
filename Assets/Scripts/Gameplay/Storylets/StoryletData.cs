@@ -27,6 +27,24 @@ namespace CavesOfOoo.Storylets
     [Serializable]
     public class QuestData
     {
+        /// <summary>
+        /// The quest's title as the player reads it — in the quest log
+        /// and in every "Quest accepted / complete / failed" line.
+        ///
+        /// <para><b>Why this exists.</b> Until it did, the quest ID WAS
+        /// the player-visible text: the log printed "Quest accepted:
+        /// RootBeerGuyCase." and the quest screen drew the raw id. That
+        /// made it impossible to retire prototype names without renaming
+        /// ids, and ids are frozen — they live in saves, in the village
+        /// quest-pool dispatch, and in property keys
+        /// (<c>Lore/TERMS.md</c>, <c>Docs/LEGACY-CONTENT.md</c>).</para>
+        ///
+        /// <para>Optional: absent or empty falls back to the id, so
+        /// every quest authored before this field keeps working
+        /// unchanged. JsonUtility-deserialized.</para>
+        /// </summary>
+        public string Name;
+
         public List<QuestStageData> Stages = new List<QuestStageData>();
         /// <summary>Q7 (Docs/QUEST-ACCOMPLISHMENTS.md) — flavor "deed" text
         /// recorded into the narrative event log when the quest completes

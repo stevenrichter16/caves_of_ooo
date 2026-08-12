@@ -5,9 +5,9 @@
       "Nodes": [
         {
           "ID": "Start",
-          "Text": "Oh — is it tax time already? Peppermint Butler sent you, didn't he. Always something with that treasury.",
+          "Text": "Oh — is it tax time already? Clerk Padok sent you, didn't he. Always something with that treasury.",
           "Choices": [
-            { "Text": "[Collect] Your candy tax, please.", "Target": "Paid",
+            { "Text": "[Collect] Your levy, please.", "Target": "Paid",
               "Predicates": [
                 { "Key": "IfQuestActive", "Value": "TheCandyTax" },
                 { "Key": "IfNotSpeakerHaveProperty", "Value": "candy_taxed" }
@@ -21,7 +21,7 @@
             { "Text": "Goodbye.", "Target": "End" }
           ]
         },
-        { "ID": "Paid", "Text": "Fine, fine — here's my share. Tell the Princess I paid first, would you?", "Choices": [ { "Text": "Noted.", "Target": "End" } ] },
+        { "ID": "Paid", "Text": "Fine, fine — here's my share. Tell the Factor I paid first, would you?", "Choices": [ { "Text": "Noted.", "Target": "End" } ] },
         { "ID": "AlreadyPaid", "Text": "I already paid! Honestly, the bookkeeping in this town.", "Choices": [ { "Text": "So you did.", "Target": "End" } ] }
       ]
     }

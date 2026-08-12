@@ -7,7 +7,8 @@
       "Triggers": [],
       "Effects": [],
       "Quest": {
-        "Accomplishment": "You cracked the Case of the Missing Notebook and returned it to Root Beer Guy.",
+        "Name": "The Witness-Book",
+        "Accomplishment": "You found the witness-book and put it back in Hallun's hands.",
         "Stages": [
           {
             "ID": "find",
@@ -16,10 +17,15 @@
             "Objectives": [
               {
                 "ID": "find_notebook",
-                "Text": "Find Root Beer Guy's detective notebook",
+                "Text": "Find Hallun's witness-book",
                 "Optional": false,
                 "Hidden": false,
-                "Triggers": [ { "Key": "IfHaveItem", "Value": "DetectiveNotebook" } ],
+                "Triggers": [
+                  {
+                    "Key": "IfHaveItem",
+                    "Value": "DetectiveNotebook"
+                  }
+                ],
                 "OnEnter": []
               },
               {
@@ -27,14 +33,24 @@
                 "Text": "Drive off the soot gremlin",
                 "Optional": false,
                 "Hidden": false,
-                "Triggers": [ { "Key": "IfFact", "Value": "rbg_gremlin_routed:>=:1" } ],
+                "Triggers": [
+                  {
+                    "Key": "IfFact",
+                    "Value": "rbg_gremlin_routed:>=:1"
+                  }
+                ],
                 "OnEnter": []
               }
             ]
           },
           {
             "ID": "report",
-            "Triggers": [ { "Key": "IfFact", "Value": "rbg_report_guard:>=:1" } ],
+            "Triggers": [
+              {
+                "Key": "IfFact",
+                "Value": "rbg_report_guard:>=:1"
+              }
+            ],
             "OnEnter": []
           }
         ]

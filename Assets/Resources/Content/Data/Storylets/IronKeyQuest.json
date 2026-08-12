@@ -7,11 +7,15 @@
       "Triggers": [],
       "Effects": [],
       "Quest": {
+        "Name": "The Iron Key",
         "Stages": [
           {
             "ID": "find_iron_key",
             "Triggers": [
-              { "Key": "IfHaveItem", "Value": "IronKey" }
+              {
+                "Key": "IfHaveItem",
+                "Value": "IronKey"
+              }
             ],
             "OnEnter": []
           },
@@ -19,8 +23,14 @@
             "ID": "deliver_to_marceline",
             "Triggers": [],
             "OnEnter": [
-              { "Key": "AwardXP", "Value": "100" },
-              { "Key": "GiveDrams", "Value": "50" }
+              {
+                "Key": "AwardXP",
+                "Value": "100"
+              },
+              {
+                "Key": "GiveDrams",
+                "Value": "50"
+              }
             ]
           }
         ]

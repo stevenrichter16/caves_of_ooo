@@ -5,69 +5,113 @@
       "Nodes": [
         {
           "ID": "Start",
-          "Text": "Oh no oh no. BMO lost a game cartridge! I think it rolled away to the old stump, east past the edge of the village. Will you go look for BMO? Please?",
+          "Text": "I lost the pith out of my tell. It's a little bone pin — it goes in the side and makes the tell sing. I think it rolled off toward the old stump, east past the edge of the village. I'm not allowed to go that far.",
           "Choices": [
             {
-              "Text": "[Accept] I'll search the old stump.",
+              "Text": "[Accept] I'll walk out to the stump.",
               "Target": "Accepted",
               "Predicates": [
-                { "Key": "IfQuestNotStarted", "Value": "BmoCartridge" }
+                {
+                  "Key": "IfQuestNotStarted",
+                  "Value": "BmoCartridge"
+                }
               ],
               "Actions": [
-                { "Key": "StartQuest", "Value": "BmoCartridge" }
+                {
+                  "Key": "StartQuest",
+                  "Value": "BmoCartridge"
+                }
               ]
             },
             {
               "Text": "[Status] Still looking.",
               "Target": "Looking",
               "Predicates": [
-                { "Key": "IfQuestStage", "Value": "BmoCartridge:search" }
+                {
+                  "Key": "IfQuestStage",
+                  "Value": "BmoCartridge:search"
+                }
               ]
             },
             {
-              "Text": "[Report] Found it at the stump!",
+              "Text": "[Report] Found it, out by the stump.",
               "Target": "Found",
               "Predicates": [
-                { "Key": "IfQuestStage", "Value": "BmoCartridge:report" }
+                {
+                  "Key": "IfQuestStage",
+                  "Value": "BmoCartridge:report"
+                }
               ],
               "Actions": [
-                { "Key": "CompleteQuest", "Value": "BmoCartridge" },
-                { "Key": "AwardXP", "Value": "120" },
-                { "Key": "GiveDrams", "Value": "40" }
+                {
+                  "Key": "CompleteQuest",
+                  "Value": "BmoCartridge"
+                },
+                {
+                  "Key": "AwardXP",
+                  "Value": "120"
+                },
+                {
+                  "Key": "GiveDrams",
+                  "Value": "40"
+                }
               ]
             },
             {
-              "Text": "[Done] Hi again, BMO.",
+              "Text": "[Done] Hello again, Ellun.",
               "Target": "Done",
               "Predicates": [
-                { "Key": "IfQuestCompleted", "Value": "BmoCartridge" }
+                {
+                  "Key": "IfQuestCompleted",
+                  "Value": "BmoCartridge"
+                }
               ]
             },
             {
-              "Text": "Goodbye, BMO.",
+              "Text": "Goodbye, Ellun.",
               "Target": "End"
             }
           ]
         },
         {
           "ID": "Accepted",
-          "Text": "Yay! The stump is east, just past the buildings. BMO will wait right here. Be careful!",
-          "Choices": [ { "Text": "I'll be back.", "Target": "End" } ]
+          "Text": "The stump's east, just past the buildings. I'll wait here. Mind the reeds, they're deeper than they look.",
+          "Choices": [
+            {
+              "Text": "I'll be back.",
+              "Target": "End"
+            }
+          ]
         },
         {
           "ID": "Looking",
-          "Text": "The old stump, east of here! BMO believes in you.",
-          "Choices": [ { "Text": "Okay.", "Target": "End" } ]
+          "Text": "East, past the buildings. It's small and pale, like a tooth.",
+          "Choices": [
+            {
+              "Text": "All right.",
+              "Target": "End"
+            }
+          ]
         },
         {
           "ID": "Found",
-          "Text": "You found it! BMO is so happy! Here, take this — and some game time on the house.",
-          "Choices": [ { "Text": "Anytime, BMO.", "Target": "End" } ]
+          "Text": "You found it! Here — take this, it's mine to give. Ma says I'm to say thank you properly, so: thank you properly.",
+          "Choices": [
+            {
+              "Text": "Any time.",
+              "Target": "End"
+            }
+          ]
         },
         {
           "ID": "Done",
-          "Text": "Who wants to play video games? ...Later, maybe. Thank you, friend!",
-          "Choices": [ { "Text": "Bye, BMO.", "Target": "End" } ]
+          "Text": "It sings again. Not a song exactly. But it's the one it makes.",
+          "Choices": [
+            {
+              "Text": "Bye, Ellun.",
+              "Target": "End"
+            }
+          ]
         }
       ]
     }

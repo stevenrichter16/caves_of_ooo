@@ -138,7 +138,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 StoryletPart.Current = new StoryletPart();
 
             MessageLog.Add("Quest Showcase: a 2-stage IronKey fetch quest.");
-            MessageLog.Add("Pick up the iron key east, then talk to Marceline.");
+            MessageLog.Add("Pick up the iron key east, then talk to Ondis.");
             MessageLog.Add("Use the diag_query MCP tool to inspect quest/* records.");
         }
     }
