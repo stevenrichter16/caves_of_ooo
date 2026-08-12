@@ -68,10 +68,10 @@ namespace CavesOfOoo.Core
         /// waiting in the next room.</summary>
         private static void Hedgerow(Zone zone, EntityFactory factory, System.Random rng)
         {
-            // Two or three long hedges with deliberate gaps. Gaps are wide
-            // enough (2 cells) that connectivity never has to rescue us and
-            // the player is never funnelled into a single choke.
-            int lines = 2 + rng.Next(2);
+            // Four to six lines, roughly half of them partial-length. Two
+            // full-width bands across an 80x25 zone read as scratches, not
+            // as rooms — you need corners for the eye to close a shape.
+            int lines = 4 + rng.Next(3);
             for (int i = 0; i < lines; i++)
             {
                 bool horizontal = rng.Next(2) == 0;
@@ -81,18 +81,35 @@ namespace CavesOfOoo.Core
 
                 int span = horizontal ? Zone.Width : Zone.Height;
 
-                // TWO gaps, both guaranteed to land INSIDE the drawn span.
-                //
-                // The first version rolled one gap anywhere in [0, span) while
-                // drawing over [1, span-1) — so a gap rolled at the far end
-                // fell outside the hedge entirely and the line came out
-                // solid. Seed 6 built a sealed chunk. Two gaps also reads
-                // better: a real hedgerow has more than one gate.
-                int lo = 2, hi = span - 4;
-                int gapA = lo + rng.Next(hi - lo);
-                int gapB = lo + rng.Next(hi - lo);
+                // Half the hedges are partial: they run from one edge and
+                // stop, which is what actually makes a corner.
+                int from = 1, to = span - 1;
+                if (rng.Next(2) == 0)
+                {
+                    int cut = span / 3 + rng.Next(span / 3);
+                    if (rng.Next(2) == 0) to = cut; else from = cut;
+                }
 
-                for (int t = 1; t < span - 1; t++)
+                // TWO gaps, both guaranteed to land inside the RUN THAT IS
+                // ACTUALLY DRAWN — [from, to), not the full span.
+                //
+                // This bug has now been made twice. First: one gap rolled
+                // over [0, span) while drawing [1, span-1), so a gap at the
+                // far end fell outside the hedge and the line came out
+                // solid. Fixed — and then partial hedges were added, which
+                // reintroduced exactly the same mistake in a new coordinate
+                // system, because the gaps were still rolled over the full
+                // span while the draw range had narrowed. Seed 6 caught it
+                // both times.
+                //
+                // The lesson: a gap must be expressed in the same
+                // coordinates as the thing it is a gap in.
+                int run = to - from;
+                if (run < 6) continue;          // too short to be worth a hedge
+                int gapA = from + 1 + rng.Next(run - 3);
+                int gapB = from + 1 + rng.Next(run - 3);
+
+                for (int t = from; t < to; t++)
                 {
                     if (t >= gapA && t < gapA + 2) continue;   // a way through
                     if (t >= gapB && t < gapB + 2) continue;   // and another
@@ -102,6 +119,94 @@ namespace CavesOfOoo.Core
                     BuilderSpawn.TryPlace(zone, factory, "Hedge", x, y);
                 }
             }
+
+            EnsureCrossable(zone);
+        }
+
+        /// <summary>
+        /// Guarantee the chunk can still be crossed west-to-east, breaching
+        /// hedges where it cannot.
+        ///
+        /// <para><b>Why a post-pass rather than smarter placement.</b> Every
+        /// individual hedge has two gaps, and that is still not enough:
+        /// crossing hedges box off corners in combinations no per-line rule
+        /// sees. Seeds 6 and 36 each found one. Enumerating those cases is a
+        /// losing game, so the builder checks the property it actually cares
+        /// about and repairs it — hedges may be inconvenient, never
+        /// sealing.</para>
+        ///
+        /// <para>Connectivity (priority 3000) would probably rescue this
+        /// too, but a builder that relies on a later pass to clean up after
+        /// it is one reorder away from shipping unreachable zones.</para>
+        /// </summary>
+        private static void EnsureCrossable(Zone zone)
+        {
+            // Bounded: each breach opens at least one cell, and there are
+            // finitely many hedges.
+            for (int attempt = 0; attempt < 40; attempt++)
+            {
+                var reached = FloodFromWest(zone, out bool crossed);
+                if (crossed) return;
+
+                // Breach the frontier hedge FURTHEST EAST.
+                //
+                // Taking the first one found scanning x-ascending does not
+                // work: it chews through the westernmost wall cell by cell
+                // and never gets anywhere, because that wall is 22 cells
+                // tall and the budget runs out inside it. Seed 36 spent all
+                // 40 attempts eating a single column. Picking the
+                // easternmost frontier hedge drives every breach toward the
+                // edge we are trying to reach, so this converges in a
+                // handful of steps.
+                Entity breach = null;
+                int breachX = -1;
+                for (int x = 1; x < Zone.Width - 1; x++)
+                    for (int y = 1; y < Zone.Height - 1; y++)
+                    {
+                        if (!reached[x, y]) continue;
+                        for (int dx = -1; dx <= 1; dx++)
+                            for (int dy = -1; dy <= 1; dy++)
+                            {
+                                int nx = x + dx, ny = y + dy;
+                                if (nx <= breachX) continue;
+                                var cell = zone.GetCell(nx, ny);
+                                if (cell == null) continue;
+                                for (int i = 0; i < cell.Objects.Count; i++)
+                                    if (cell.Objects[i] != null
+                                        && cell.Objects[i].BlueprintName == "Hedge")
+                                    { breach = cell.Objects[i]; breachX = nx; break; }
+                            }
+                    }
+
+                if (breach == null) return;   // sealed by something not ours
+                zone.RemoveEntity(breach);
+            }
+        }
+
+        private static bool[,] FloodFromWest(Zone zone, out bool crossed)
+        {
+            var seen = new bool[Zone.Width, Zone.Height];
+            var queue = new System.Collections.Generic.Queue<(int x, int y)>();
+            crossed = false;
+
+            for (int y = 1; y < Zone.Height - 1; y++)
+                if (IsOpenGround(zone, 1, y)) { seen[1, y] = true; queue.Enqueue((1, y)); }
+
+            while (queue.Count > 0)
+            {
+                var (x, y) = queue.Dequeue();
+                if (x >= Zone.Width - 2) crossed = true;
+                for (int dx = -1; dx <= 1; dx++)
+                    for (int dy = -1; dy <= 1; dy++)
+                    {
+                        int nx = x + dx, ny = y + dy;
+                        if (nx < 1 || ny < 1 || nx >= Zone.Width - 1 || ny >= Zone.Height - 1) continue;
+                        if (seen[nx, ny] || !IsOpenGround(zone, nx, ny)) continue;
+                        seen[nx, ny] = true;
+                        queue.Enqueue((nx, ny));
+                    }
+            }
+            return seen;
         }
 
         /// <summary>Worked ground: parallel crop strips with lanes between
@@ -110,15 +215,26 @@ namespace CavesOfOoo.Core
         /// because it is busy.</summary>
         private static void FieldStrips(Zone zone, EntityFactory factory, System.Random rng)
         {
-            int stripWidth = 3 + rng.Next(3);
+            // Wide strips, narrow lanes, and NEAR-SOLID planting inside a
+            // strip. At 72% the rows came out moth-eaten and read as noise;
+            // a worked field is a solid block of crop with a clear path
+            // beside it. The ragged ends are what make it look sown by hand.
+            int stripWidth = 5 + rng.Next(3);
+            int laneWidth = 2;
+            int period = stripWidth + laneWidth;
+            int phase = rng.Next(period);
+
             for (int x = 2; x < Zone.Width - 2; x++)
             {
-                bool lane = (x / stripWidth) % 2 == 0;
-                if (lane) continue;
-                for (int y = 2; y < Zone.Height - 2; y++)
+                if ((x + phase) % period >= stripWidth) continue;   // the lane
+                // Each strip ends a little short of the headland, and not
+                // all at the same place.
+                int top = 2 + rng.Next(2);
+                int bottom = Zone.Height - 3 - rng.Next(2);
+                for (int y = top; y < bottom; y++)
                 {
                     if (!IsOpenGround(zone, x, y)) continue;
-                    if (rng.Next(100) < 72)
+                    if (rng.Next(100) < 94)
                         BuilderSpawn.TryPlace(zone, factory, "CropRow", x, y);
                 }
             }
@@ -129,7 +245,7 @@ namespace CavesOfOoo.Core
         private static void OldRoad(Zone zone, EntityFactory factory, System.Random rng)
         {
             int y = Zone.Height / 2 + rng.Next(5) - 2;
-            for (int x = 0; x < Zone.Width; x++)
+            for (int x = 1; x < Zone.Width - 1; x++)
             {
                 int wobble = y + (rng.Next(10) == 0 ? rng.Next(3) - 1 : 0);
                 for (int dy = 0; dy <= 1; dy++)
