@@ -452,3 +452,52 @@ counter-check guarding a pitch-black-world failure mode).
   `Overworld.*` IDs). Left alone here so nothing double-dims.
 
 **Tests: 6444 → 6455 (+11). All green.**
+
+### W0.3 — Housekeeping ✅ (2026-08-11)
+
+**Shipped.** Four small things the later phases would otherwise trip
+over:
+
+1. **One starting-zone symbol.** `WorldMap.StartingZoneID`. The string
+   had been declared three times independently and written raw twice
+   more — including once in the file that declared its own constant
+   for it. Each copy gated something different (repairable sites, the
+   five-shop town pipeline, the compass stones, boot-into-zone), so a
+   single-site edit desynced the rest silently.
+2. **`RiverBuilder` deleted** — 196 lines, registered in no pipeline,
+   superseded by `RiverChunkBuilder`. It was one of the five places
+   holding the starting-zone literal; the plan said "edit", the sweep
+   said "it's dead" (C8).
+3. **Kyakukya → Sill.** One production line (`VillageNames[0]`), plus
+   a coherence sweep of five test files and two stale comments. Canon
+   names the Tier-1 river village Sill.
+4. **The faction-display leak closed.** Every player-facing surface —
+   standings UI, reputation lines, NPC-relations lines — has said "the
+   Recension" since the M6 rename. The dialogue **portrait panel** did
+   not: it printed the raw internal ID, live in every conversation
+   with a faction-tagged NPC. Now routed through `GetDisplayName`, with
+   the leading article stripped so the eight-column panel shows
+   "Recensio" rather than "the Rece".
+
+**Tests:** 5 new (`FactionDisplayNameTests.cs`) — and they are the
+*first* tests anywhere to assert a faction display name. The sweep
+found the ID/display split shipped in data and prose with zero
+coverage, which is exactly how the portrait leak survived. Pins:
+Palimpsest→"the Recension"; every shipped faction has a DisplayName
+that isn't just its ID (the failure mode when an entry is added
+without one); unknown-ID fallback (a Feelings typo should look odd in
+the UI, not crash it); article-stripping both ways.
+
+**Self-review (§5):**
+- 🔵 `StripLeadingArticle` is `public` rather than `internal` — the
+  test assembly can't see internals across the asmdef split, and
+  `InternalsVisibleTo` plumbing for one pure string helper is worse
+  than the wider modifier.
+- 🔵 The portrait still truncates at 8 columns ("Recensio"). Widening
+  it is a UI-pass decision, flagged in the plan's open questions
+  rather than smuggled in here.
+- ⚪ Not done, deliberately: the Adventure-Time **pool quests** still
+  place candy-citizen content in every non-starting village. That's
+  content retirement, W1's natural moment, and a user call (plan §6).
+
+**Tests: 6455 → 6460 (+5). All green.**

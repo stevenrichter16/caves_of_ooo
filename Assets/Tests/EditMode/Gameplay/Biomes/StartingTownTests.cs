@@ -184,7 +184,7 @@ namespace CavesOfOoo.Tests
                 Entity found = null;
                 foreach (var e in zone.GetAllEntities())
                     if (e.BlueprintName == keeper) { found = e; break; }
-                Assert.IsNotNull(found, $"{keeper} keeps shop in Kyakukya");
+                Assert.IsNotNull(found, $"{keeper} keeps shop in Sill");
                 Assert.Greater(found.GetPart<InventoryPart>().Objects.Count, 0,
                     $"{keeper}: open for business");
             }
@@ -310,7 +310,7 @@ namespace CavesOfOoo.Tests
         [Test]
         public void LargeTown_BuildsMoreHouses()
         {
-            var poi = new PointOfInterest(POIType.Village, "Kyakukya", "Villagers");
+            var poi = new PointOfInterest(POIType.Village, "Sill", "Villagers");
             int smallBeds = CountBeds(new VillageBuilder(BiomeType.Cave, poi));
             int largeBeds = CountBeds(new VillageBuilder(BiomeType.Cave, poi, largeTown: true));
             Assert.Greater(largeBeds, smallBeds,

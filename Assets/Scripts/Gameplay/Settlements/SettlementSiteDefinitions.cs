@@ -7,7 +7,7 @@ namespace CavesOfOoo.Core
         public const string MainWellSiteId = "MainWell";
         public const string StartingVillageKnowledgeProperty = "KnowsPurifyWater";
         public const string ImprovedWellCondition = "ImprovedWell";
-        public const string StartingVillageZoneId = "Overworld.10.10.0";
+        public const string StartingVillageZoneId = WorldMap.StartingZoneID;
 
         public const string VillageOvenSiteId = "VillageOven";
         public const string OvenKnowledgeProperty = "KnowsMendingRite";

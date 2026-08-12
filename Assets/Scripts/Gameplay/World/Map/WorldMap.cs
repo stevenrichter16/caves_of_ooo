@@ -34,6 +34,22 @@ namespace CavesOfOoo.Core
         public const string WorldMapZoneID = "WorldMap";
 
         /// <summary>
+        /// The zone the player wakes in — Sill, the river village at
+        /// the centre of the map.
+        ///
+        /// <para><b>One symbol, because there used to be five</b>
+        /// (Felling W0.3). This string was independently declared in
+        /// <c>SettlementSiteDefinitions</c>, <c>VillagePopulationBuilder</c>
+        /// and the dead <c>RiverBuilder</c>, and written as a raw
+        /// literal twice more — including once in the very file that
+        /// declared a constant for it. Each copy gates something
+        /// different (the repairable-sites system, the five-shop town
+        /// pipeline, the compass stones, the boot-into-zone call), so
+        /// any single-site edit desynced the others silently.</para>
+        /// </summary>
+        public const string StartingZoneID = "Overworld.10.10.0";
+
+        /// <summary>
         /// Horizontal offset where the 20-wide logical world map starts
         /// inside the 80-wide world-map zone. The 20×20 region occupies
         /// cells [30..49] × [3..22], surrounded by impassable walls.

@@ -18,8 +18,8 @@ namespace CavesOfOoo.Tests
             ConversationActions.Reset();
             SettlementRuntime.Reset();
 
-            _manager = new SettlementManager(() => 0, _ => new PointOfInterest(POIType.Village, "Kyakukya", "Villagers", 1));
-            _manager.GetOrCreateSettlement(SettlementId, new PointOfInterest(POIType.Village, "Kyakukya", "Villagers", 1));
+            _manager = new SettlementManager(() => 0, _ => new PointOfInterest(POIType.Village, "Sill", "Villagers", 1));
+            _manager.GetOrCreateSettlement(SettlementId, new PointOfInterest(POIType.Village, "Sill", "Villagers", 1));
 
             _speaker = new Entity { BlueprintName = "WellKeeper" };
             _speaker.Properties["SettlementId"] = SettlementId;

@@ -11,7 +11,7 @@ namespace CavesOfOoo.Tests
     /// marker for each POI type.
     ///
     /// <para>The flagship surface: <see cref="WorldGenerator"/> hard-
-    /// pins (10,10) to be a Village (Kyakukya). The worldmap zone
+    /// pins (10,10) to be a Village (Sill). The worldmap zone
     /// renders that cell with '!' in yellow.</para>
     /// </summary>
     public class WorldMapPOIRenderingTests
@@ -21,11 +21,11 @@ namespace CavesOfOoo.Tests
         [Test]
         public void GetPOIRender_Village_ReturnsExclamation()
         {
-            var poi = new PointOfInterest(POIType.Village, "Kyakukya");
+            var poi = new PointOfInterest(POIType.Village, "Sill");
             var (glyph, color, name) = WorldMapZoneBuilder.GetPOIRender(poi);
             Assert.AreEqual("!", glyph);
             Assert.AreEqual("&Y", color);
-            StringAssert.Contains("Kyakukya", name);
+            StringAssert.Contains("Sill", name);
             StringAssert.Contains("village", name);
         }
 
@@ -97,7 +97,7 @@ namespace CavesOfOoo.Tests
         public void WorldMapZoneBuilder_CenterCell_RendersWithVillageMarker()
         {
             // WorldGenerator hard-pins center (10,10) to be a Village
-            // (Kyakukya). The terrain entity at the corresponding
+            // (Sill). The terrain entity at the corresponding
             // zone cell must render with '!' in &Y.
             var (zone, _) = BuildWorldMapZone();
             var (zx, zy) = WorldMap.WorldCellToZoneCell(10, 10);
@@ -110,7 +110,7 @@ namespace CavesOfOoo.Tests
                 var render = obj.GetPart<RenderPart>();
                 if (render == null) continue;
                 Assert.AreEqual("!", render.RenderString,
-                    "Center (10,10) is Kyakukya village; should render with '!'.");
+                    "Center (10,10) is Sill village; should render with '!'.");
                 Assert.AreEqual("&Y", render.ColorString);
                 StringAssert.Contains("village", render.DisplayName);
                 foundVillageMarker = true;

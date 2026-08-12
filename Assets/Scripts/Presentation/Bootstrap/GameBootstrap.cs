@@ -271,7 +271,7 @@ namespace CavesOfOoo
                 bool zoneGenerated = PerformanceDiagnostics.MeasureStartupPhase("GenerateZone", PerformanceMarkers.Bootstrap.GenerateZone, () =>
                 {
                     _zoneManager = new OverworldZoneManager(_factory);
-                    _zone = _zoneManager.GetZone("Overworld.10.10.0");
+                    _zone = _zoneManager.GetZone(WorldMap.StartingZoneID);
                     _zoneManager.SetActiveZone(_zone);
                     if (_zone == null)
                     {

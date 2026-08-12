@@ -17,8 +17,8 @@ namespace CavesOfOoo.Tests
             _turn = 0;
             MessageLog.Clear();
             AsciiFxBus.Clear();
-            _manager = new SettlementManager(() => _turn, _ => new PointOfInterest(POIType.Village, "Kyakukya", "Villagers", 1));
-            _manager.GetOrCreateSettlement(SettlementId, new PointOfInterest(POIType.Village, "Kyakukya", "Villagers", 1));
+            _manager = new SettlementManager(() => _turn, _ => new PointOfInterest(POIType.Village, "Sill", "Villagers", 1));
+            _manager.GetOrCreateSettlement(SettlementId, new PointOfInterest(POIType.Village, "Sill", "Villagers", 1));
             _zone = new Zone(SettlementId);
             SettlementRuntime.ActiveZone = _zone;
         }

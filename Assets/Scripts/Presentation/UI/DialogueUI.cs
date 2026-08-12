@@ -543,7 +543,21 @@ namespace CavesOfOoo.Rendering
                     int glyphCol = 1 + (panelInnerWidth - 1) / 2;
                     DrawChar(glyphCol, glyphRow, speakerGlyph, speakerGlyphColor);
 
-                    string faction = speaker != null ? FactionManager.GetFaction(speaker) : null;
+                    // The portrait panel was the last surface in the game
+                    // printing a raw internal faction ID at the player —
+                    // "Palimpsest" where every other surface (standings
+                    // UI, reputation lines, NPC-relations lines) has long
+                    // said "the Recension". IDs are frozen for save
+                    // compat (Lore/TERMS.md); display names are not, and
+                    // this panel never got the memo. Felling W0.3.
+                    //
+                    // The panel is eight characters wide, so the leading
+                    // article is dropped before truncation: "Recension"
+                    // fits where "the Recen" would not have.
+                    string factionId = speaker != null ? FactionManager.GetFaction(speaker) : null;
+                    string faction = string.IsNullOrEmpty(factionId)
+                        ? null
+                        : StripLeadingArticle(FactionManager.GetDisplayName(factionId));
                     if (!string.IsNullOrEmpty(faction))
                     {
                         int maxFacLen = panelInnerWidth;
@@ -713,6 +727,20 @@ namespace CavesOfOoo.Rendering
             }
 
             _fgDrawn = false;
+        }
+
+        /// <summary>
+        /// Drops a leading "the " so a faction's display name fits the
+        /// portrait panel's eight columns. Display-only — the caller
+        /// still holds the real name, and every wider surface prints it
+        /// in full.
+        /// </summary>
+        public static string StripLeadingArticle(string name)
+        {
+            if (string.IsNullOrEmpty(name)) return name;
+            return name.StartsWith("the ", System.StringComparison.OrdinalIgnoreCase)
+                ? name.Substring(4)
+                : name;
         }
 
         private void DrawChar(int gx, int gy, char c, Color color)

@@ -16,7 +16,7 @@ namespace CavesOfOoo.Core
         public int Priority => 4000;
         // Public since STARTING TOWN: OverworldZoneManager gates the
         // shop-stamp pipeline on this ID.
-        public const string StartingVillageZoneId = "Overworld.10.10.0";
+        public const string StartingVillageZoneId = WorldMap.StartingZoneID;
 
         private PointOfInterest _poi;
         private SettlementManager _settlementManager;
@@ -84,7 +84,7 @@ namespace CavesOfOoo.Core
             if (CavesOfOoo.Core.DevMode.Enabled)
                 PlaceBarrelLayouts(zone, factory, rng, openCells);
 
-            if (zone.ZoneID == "Overworld.10.10.0")
+            if (zone.ZoneID == StartingVillageZoneId)
             {
                 if (CavesOfOoo.Core.DevMode.Enabled)
                     PlaceDebugMaterialSandbox(zone, factory, rng, openCells);

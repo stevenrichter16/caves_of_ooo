@@ -7,10 +7,10 @@ namespace CavesOfOoo.Scenarios.Custom
     /// player-exercisable world map shipped across WM.2–WM.8:
     ///
     ///   1. The game boots the player into the surface ground zone
-    ///      "Overworld.10.10.0" (GameBootstrap.cs:163).
+    ///      "Overworld.10.10.0" (GameBootstrap.cs:274).
     ///   2. Press <b>&lt;</b> (Shift+Comma) with no stairs underfoot →
     ///      the player ascends to the world-map zone, arriving on the
-    ///      embedded cell for parasang (10,10) — the Kyakukya village
+    ///      embedded cell for parasang (10,10) — the Sill village
     ///      marker ('!').
     ///   3. Walk cell-to-cell with normal movement. Each step burns
     ///      10 game ticks (WorldMapTravelCostPart, auto-attached on

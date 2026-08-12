@@ -10,8 +10,11 @@ namespace CavesOfOoo.Core
     /// </summary>
     public static class WorldGenerator
     {
+        // [0] is the starting village. Canon names it Sill — a Tier-1
+        // river village where the Felling is a children's story
+        // (Lore/History/02_Geography.md:57). Felling W0.3.
         private static readonly string[] VillageNames = {
-            "Kyakukya", "Ezra", "Brinestone", "Grit Gate",
+            "Sill", "Ezra", "Brinestone", "Grit Gate",
             "Shimmerwell", "Dusthaven", "Thornwall", "Roothollow",
             "Ashveil", "Palesanctum"
         };

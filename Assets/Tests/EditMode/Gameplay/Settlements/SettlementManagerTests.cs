@@ -14,7 +14,7 @@ namespace CavesOfOoo.Tests
         {
             _turn = 0;
             MessageLog.Clear();
-            _manager = new SettlementManager(() => _turn, _ => new PointOfInterest(POIType.Village, "Kyakukya", "Villagers", 1));
+            _manager = new SettlementManager(() => _turn, _ => new PointOfInterest(POIType.Village, "Sill", "Villagers", 1));
         }
 
         [TearDown]
@@ -29,7 +29,7 @@ namespace CavesOfOoo.Tests
         {
             var player = CreatePlayer();
             player.Properties[SettlementSiteDefinitions.StartingVillageKnowledgeProperty] = "true";
-            _manager.GetOrCreateSettlement(SettlementId, new PointOfInterest(POIType.Village, "Kyakukya", "Villagers", 1));
+            _manager.GetOrCreateSettlement(SettlementId, new PointOfInterest(POIType.Village, "Sill", "Villagers", 1));
 
             bool applied = _manager.ApplyRepairMethod(SettlementId, SettlementSiteDefinitions.MainWellSiteId, RepairMethodId.PurifySpell, player);
 
@@ -51,7 +51,7 @@ namespace CavesOfOoo.Tests
             var inventory = player.GetPart<InventoryPart>();
             inventory.AddObject(CreateItem(SettlementRepairDefinitions.WellMaintenanceManualBlueprint));
             inventory.AddObject(CreateItem(SettlementRepairDefinitions.SilverSandBlueprint));
-            _manager.GetOrCreateSettlement(SettlementId, new PointOfInterest(POIType.Village, "Kyakukya", "Villagers", 1));
+            _manager.GetOrCreateSettlement(SettlementId, new PointOfInterest(POIType.Village, "Sill", "Villagers", 1));
 
             bool applied = _manager.ApplyRepairMethod(SettlementId, SettlementSiteDefinitions.MainWellSiteId, RepairMethodId.ManualRepair, player);
 
@@ -68,7 +68,7 @@ namespace CavesOfOoo.Tests
             var inventory = player.GetPart<InventoryPart>();
             inventory.AddObject(CreateItem(SettlementRepairDefinitions.WellMaintenanceManualBlueprint));
             inventory.AddObject(CreateItem(SettlementRepairDefinitions.SilverSandBlueprint));
-            _manager.GetOrCreateSettlement(SettlementId, new PointOfInterest(POIType.Village, "Kyakukya", "Villagers", 1));
+            _manager.GetOrCreateSettlement(SettlementId, new PointOfInterest(POIType.Village, "Sill", "Villagers", 1));
 
             Assert.IsFalse(_manager.ApplyRepairMethod(SettlementId, SettlementSiteDefinitions.MainWellSiteId, RepairMethodId.TeachCaretaker, player));
             Assert.IsTrue(_manager.ApplyRepairMethod(SettlementId, SettlementSiteDefinitions.MainWellSiteId, RepairMethodId.ManualRepair, player));
