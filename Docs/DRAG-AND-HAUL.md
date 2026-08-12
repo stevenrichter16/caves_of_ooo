@@ -33,7 +33,7 @@ somewhere. After this it is a thing you can put somewhere.
 | Carry capacity | `InventoryPart.GetMaxCarryWeight()` `:414` | `Strength.Value × 15` (`WEIGHT_PER_STRENGTH`, `:24` — Qud parity) |
 | Overburden | `InventoryPart.IsOverburdened()` `:427` | player-only, per Qud |
 | Context verbs | `WorldActionMenuUI.Open(actor, target, cell, actions)` `:88` | the menu the drag verb joins |
-| Turn energy | `TurnManager` | actions cost energy; slow actions cost more |
+| Turn energy | `TurnManager` | ⚠️ **corrected in §11** — every action costs the same fixed `ActionThreshold`; there is no per-action cost. Being slower means a **Speed penalty** |
 | Per-cell dirty | `ZoneRenderHooks.MarkCellDirty` | required for any visible move |
 | **`Slippery` / `Sticky`** | `LiquidDefinition.cs` | **declared, never consumed — no consumer ships** |
 
@@ -131,14 +131,18 @@ moves to **A** — the cell the dragger just left. It trails you. This is
 the classic haul feel and it needs no pathfinding: the destination is
 always a cell that was passable one tick ago.
 
-**Cost.** Dragging multiplies move cost by how overmatched you are:
+**Cost.** ⚠️ **The formula below is superseded — see §11 correction 1.**
+There is no per-action cost in `TurnManager` to multiply: every action
+deducts the same fixed `ActionThreshold`. Being slower is expressed as a
+**Speed penalty**, the way carried weight already does it
+(`InventoryPart.cs:350-362`). D4 mirrors that. The intent survives
+unchanged — a light crate barely slows you; a Salt-Cured body is a
+decision — only the mechanism moves.
 
-```
-ratio    = weight / carryCap            // 1.0 = a full pack's worth
-moveCost = baseCost × (1 + ratio)       // clamped to ≤ 3× base
-```
-
-So a light crate barely slows you; a Salt-Cured body is a decision.
+~~```~~
+~~ratio    = weight / carryCap~~
+~~moveCost = baseCost × (1 + ratio)       // clamped to ≤ 3× base~~
+~~```~~
 
 **It ends when:** you let go (the verb toggles), the object can't follow
 (the cell you left got occupied), you change zone, you're stunned or
@@ -208,9 +212,11 @@ vacated cell; `MarkCellDirty` both cells. Tests: follows on move,
 doesn't teleport, breaks cleanly when the vacated cell is occupied,
 survives a diagonal.
 
-**D4 — cost and ground.** Move-cost multiplier; Slippery/Sticky/water
-lookups. This is where the dead schema wakes up. Tests: cost scales
-with ratio, ice halves it, tar doubles it, cap holds at 3×.
+**D4 — cost and ground.** ~~Move-cost multiplier~~ → **a Speed penalty
+while hauling** (see §11 — there is no per-action cost to multiply);
+Slippery/Sticky/water lookups. This is where the dead schema wakes up.
+Tests: the penalty scales with weight, applies on grab and lifts on
+release, ice halves it, tar doubles it, the floor holds.
 
 **D5 — the edges.** Zone transition, stairs, death, stun, knockback,
 save/load round-trip of both parts. **Save is the risk** — a dragged
@@ -354,3 +360,68 @@ exist for tests and the console only.
   — the kind of assumption this project's sweep step exists to catch.
 - **The 3× drag multiplier and the ground multipliers are invented**
   and unplayed. They are legible starting numbers, not tuned ones.
+
+---
+
+## 11. Verification sweep for D2–D4 (run before writing D2)
+
+Five subsystems read in parallel, each report then re-read by a second
+pass told to falsify it. The falsification pass earned its keep: it
+overturned claims in four of the five reports, including two that would
+have sent D2 down the wrong path.
+
+### 🔴 Corrections that change the design
+
+| # | Believed | Actually | Consequence |
+|---|---|---|---|
+| 1 | Drag costs "more turn energy" — multiply the move cost | **There is no per-action cost.** `TurnManager.EndTurn` takes no cost parameter (`:361`) and `SpendEnergy` always deducts a fixed `ActionThreshold = 1000` (`:422-427`). Nothing anywhere carries an action cost — a repo-wide grep for `EnergyCost\|TurnCost\|ActionCost\|MoveCost` finds only TurnManager's own private members | **§4/§5's `baseCost × (1 + weight/carryCap)` is unimplementable as written.** The shipped way to be slower is a **Speed penalty**, and there is already a precedent doing exactly this for weight: `InventoryPart.cs:350-362` does `speed.Penalty += delta` from carried weight. D4 mirrors it. Armor (`EquipBonusUtility.cs:44-54`) and a tinker mod do the same |
+| 2 | The six haulables were fine as `Terrain` children | `WorldInteractionSystem.ResolveTarget` (`:45-63`) returns the highest-layer **non-terrain** entity and only falls back to terrain when the cell holds nothing else; `IsTerrain` is tag-based (`:237-243`) and `Terrain` carries that tag | **The drag verb would have been unreachable** on a millstone sharing a cell with any loose item. Also: `Terrain` sets `RenderLayer 0` (the floor band), and `VillageBuilder.cs:300` reads the Terrain tag as *"a floor exists here"* — a barrel would have counted as flooring. Fixed: all six now inherit `PhysicalObject` at layer 1, matching `Chest`/`Crate`/`Urn`/`Pillar`/`Well`/`Bookshelf`/`Tree`. Pinned by `HaulableContentTests` |
+| 3 | D3 must hand-roll the follow rule | **`SkillCombatHelpers.DragAlong` already exists** (`:278`), used by `TryPush` (`:203`) and `TryPull` (`:237`), routing through `MovementSystem.ForceMoveTo` and already implementing the destination guards (solid / other creature / zone edge / stop-before) | D3 should reuse or mirror this rather than write a fifth copy. `ForceMoveTo`'s own docstring points at it (`MovementSystem.cs:175`) |
+| 4 | `Part.Initialize()` runs on load | It does **not**. `Entity.AddPart` calls it (`Entity.cs:48`), but `LoadEntityBody` bypasses `AddPart` entirely — `SaveSystem.cs:772-773` does `part.ParentEntity = entity; entity.Parts.Add(part);` | Anything D2's parts set up in `Initialize()` silently does not happen for a loaded game. Put it in `OnAfterLoad`/`FinalizeLoad`, or call it from both |
+
+### 🟡 Constraints to design around
+
+- **No adjacency gate exists on the world action menu.** `OpenWorldActionMenu`
+  (`InputHandler.cs:2197-2232`) checks only that the cell and target are
+  non-null. Verbs that need proximity self-gate — `ForgePart.IsNearForge`
+  (`:287-319`) is the template. D2's grab must do its own adjacency check.
+- **`GetInventoryActions` carries `Actions` and `Actor` — not `Zone`**
+  (`WorldInteractionSystem.cs:96-98`). A declaration-time gate can only
+  see the actor; `Zone` arrives later on the `InventoryAction` event
+  (`InputHandler.cs:2435`). `SeedPart.cs:33-44` is the worked example.
+- **Routing is on the `command` string, not the action name.**
+  `ExecuteWorldActionSelection` is an if-chain of special cases followed
+  by a generic dispatch of an `InventoryAction` event onto the target
+  (`InputHandler.cs:2426-2436`). A Part-declared verb needs no
+  InputHandler change **unless** it needs UI (Throw is special-cased at
+  `:2411` precisely because it needs an aiming popup). Grab does not.
+- **`InventoryAction.fireOnActor` is dead on the world path** —
+  `ExecuteWorldActionSelection` never reads it and always fires on the
+  target. Do not rely on it.
+- **Free hotkeys: `g`, `i`, `l`, `m`, `n`, `v`, `w`, `y`, `z`.** Note `j`
+  and `k` are swallowed by the menu's own cursor nav before the hotkey
+  scan (`WorldActionMenuUI.cs:161,172`), and the scan lowercases
+  (`:242`), so `F` is unreachable behind `f` — a live collision already
+  hides `ForgePart`'s ForgeBatch. **D2 takes `g`.**
+- **Entity-typed fields DO round-trip**, by ID, via `WriteEntityReference`;
+  identity across fields is pinned in `SharedReferenceIdentityTests.cs`.
+  So `DragPart` may hold a real `Entity`. But `CanSerializeType` does
+  **not** recurse into generic collection element types
+  (`SaveSystem.cs:1790-1793`), so a `List<Entity>` is a trap — keep it
+  to a single reference.
+- **`FireCellEnteredEvents` has a cell-change-only guard**
+  (`MovementSystem.cs:279-282`): a move whose source and target coords
+  match fires nothing. Relevant to any "re-place in the same cell" path.
+- **`MovementSystem.ForceMoveTo` has zero test coverage** — `grep -rn
+  "ForceMoveTo" Assets/Tests` returns 0 hits. D3 will be the first thing
+  pinning it.
+
+### Honesty bound on this sweep
+
+Every 🔴 above was verified by me directly against the cited source, not
+taken on the agents' word — the Terrain/ResolveTarget chain and the
+`EndTurn` signature especially. The 🟡 list is reported as the verifiers
+left it: each item carries a citation, but I re-read only the ones D2
+depends on immediately (adjacency, hotkeys, command routing). The
+save/load and turn-cost details matter to D4/D5 and should be
+re-confirmed at the top of those slices rather than trusted from here.
