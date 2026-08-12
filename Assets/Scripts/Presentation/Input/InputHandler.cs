@@ -875,6 +875,13 @@ namespace CavesOfOoo.Rendering
             // ACTOR: that would make a coating's lifetime depend on how
             // many creatures happen to share the zone.
             ZoneTileStateSystem.OnPlayerTurnEnd(CurrentZone);
+            // FELLING W0.1 — hour-band diff. AFTER the tile tick (band-
+            // driven terrain in later phases must see the band the turn
+            // ENDED in) and outside TurnManager.EndTurn (which fires per
+            // actor and owns the message-log turn divider). A rest's +60
+            // or a world-map crossing can jump several bands in this one
+            // call; the clock reports one transition either way.
+            WorldClock.NotifyPlayerTurnEnd(TurnManager.TickCount);
             // No `RequestZoneRedraw("Turn.Advance")` — the per-cell dirty
             // hooks (MovementSystem, CombatSystem) flag exactly the cells
             // that changed during the turn cycle. Player movement upgrades

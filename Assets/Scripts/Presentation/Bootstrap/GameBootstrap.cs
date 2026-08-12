@@ -81,6 +81,11 @@ namespace CavesOfOoo
                 // ALPHA save-lifeline SM2: a restarted run must not open
                 // with the previous life's "You are dead" spam.
                 MessageLog.Clear();
+                // FELLING W0.1 — clear the hour-band diff. Domain reload
+                // is off, so without this a restarted session would
+                // compare its first turn against the previous session's
+                // last band and could announce a spurious transition.
+                WorldClock.Reset();
 
                 Debug.Log("[Bootstrap] Step 1/9: Initializing factions...");
                 PerformanceDiagnostics.MeasureStartupPhase("LoadFactions", PerformanceMarkers.Bootstrap.LoadFactions, () =>
