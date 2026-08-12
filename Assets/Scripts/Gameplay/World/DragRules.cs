@@ -22,6 +22,19 @@ namespace CavesOfOoo.Core
         /// Strength this actor does not have — an anvil is not hard because
         /// it is heavy, it is hard because there is nowhere to hold it.</summary>
         NotStrongEnough,
+
+        // ── World-state refusals (D2) ────────────────────────────
+        // CanDrag never returns these: they are properties of the world at
+        // a moment rather than of the two entities, and DragSystem.TryGrab
+        // is what checks them. They share this enum so the message log and
+        // the diag payload have one vocabulary for "why not".
+
+        /// <summary>Out of reach. Hauling starts from arm's length.</summary>
+        NotAdjacent,
+        /// <summary>This actor is already hauling something else.</summary>
+        HandsFull,
+        /// <summary>Someone else has hold of it.</summary>
+        TakenByAnother,
     }
 
     /// <summary>

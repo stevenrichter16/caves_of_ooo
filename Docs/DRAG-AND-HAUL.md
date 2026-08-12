@@ -425,3 +425,79 @@ left it: each item carries a citation, but I re-read only the ones D2
 depends on immediately (adjacency, hotkeys, command routing). The
 save/load and turn-cost details matter to D4/D5 and should be
 re-confirmed at the top of those slices rather than trusted from here.
+
+---
+
+## 12. D2 — grab and release ✅ shipped
+
+`DragSystem` + `DragPart`/`DraggedPart` + `DragMessages`, the haul verb on
+`HandlingPart`, and 23 tests in `DragGrabTests.cs`.
+
+**The link is two-sided.** `DragPart` on the hauler names the load;
+`DraggedPart` on the load names the hauler. Both, because the game asks
+from both ends — *"what am I dragging?"* when the hauler moves (D3), and
+*"is anyone holding this?"* when something happens to the load (D5). A
+one-sided link turns half of those into a zone scan.
+
+**Presence of the Part IS the state.** No `IsDragging` bool to drift out
+of sync; `Release` removes the Parts rather than nulling their fields.
+
+**Atomic by construction.** `Evaluate` runs every gate before a single
+Part is attached, so a refused grab leaves nothing on either entity —
+pinned by `ReachingAcrossTheRoom_IsRefused_AndLeavesNothingBehind`. The
+alternative (attach, validate, unwind) is how a hauler ends up linked to
+a millstone three rooms away after an edge case nobody tested.
+
+**Gate order is a design decision, not an accident.** What the thing IS
+(the D1 verdict) is checked before where it is, and where it is before
+who is busy. So a creature across the room reports `Living`, not
+`NotAdjacent` — because walking closer will not help. The verdict the
+player sees is always the one they can act on.
+
+**Adjacency is enforced at execution, not declaration.** The
+`GetInventoryActions` event carries `Actions` and `Actor` but no `Zone`
+(§11), so reach cannot be evaluated when the menu row is built.
+`DragSystem.TryGrab` has the zone and enforces it — the same split
+`SeedPart` uses for "is this seed carried?".
+
+**Verdicts added:** `NotAdjacent`, `HandsFull`, `TakenByAnother`. They
+share `DragVerdict` with D1's answers so the message log and the diag
+payload have one vocabulary for "why not", but `DragRules.CanDrag` never
+returns them — they are properties of the world at a moment.
+
+**Observability:** `drag/Grabbed`, `drag/Refused{reason}`,
+`drag/Released`. `drag` added to `Diag.DefaultOnCategories`. A no-op
+release emits nothing, pinned by `ReleasingNothing_EmitsNothing` — a
+trace full of phantom records stops meaning anything.
+
+### Self-review (§5)
+
+> 🟡 **1 — `Refused` payload omitted the blueprint name.** Found by the
+> cold-eye Q2 pass (cross-feature payload consistency): `Grabbed`
+> carried `blueprintName`, `Refused` did not. "Why did hauling the
+> millstone fail?" is exactly the query this record exists for, and it
+> could not name the millstone. Added.
+>
+> 🟡 **2 — an unreachable branch had no test.** `Release` deliberately
+> refuses to clear the far side when the load's `DraggedPart` names
+> somebody else. Nothing can reach that today. Pinned anyway by
+> `ReleasingDoesNotStealBackALoadSomeoneElseNowHolds`, because the day
+> a transfer path exists, that test states what the contract was.
+>
+> 🔵 **3 — `Released` carries a thinner payload** than the other two
+> (blueprint name only). Deliberate: weight and capacity answer "could
+> this happen", which is not a question letting go asks.
+>
+> 🧪 **4 — save/load is untested for both Parts.** They hold `Entity`
+> fields, which §11 established do round-trip by ID via
+> `WriteEntityReference`. Not verified here. **D5 owns this**, and it
+> is the slice's stated risk.
+
+### Honesty bounds
+
+- **Unit-verified only.** 6531/6531 EditMode green. No live Play run —
+  the verb is reachable in the menu but nothing has hauled anything in
+  a running game yet, and **the load does not follow the hauler until
+  D3.** Grabbing something today links it and then it sits there.
+- The six heavy blueprints are still **placed in no worldgen**, so the
+  verb is unreachable in normal play. D3/D5 or a later content pass.
