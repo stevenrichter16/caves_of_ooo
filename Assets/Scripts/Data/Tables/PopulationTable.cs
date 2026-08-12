@@ -72,7 +72,7 @@ namespace CavesOfOoo.Data
                     case BiomeType.Jungle: return JungleTier3();
                     case BiomeType.Grovelands: return JungleTier3();
                     case BiomeType.Sodden: return JungleTier3();
-                    case BiomeType.Spread: return JungleTier3();
+                    case BiomeType.Spread: return SpreadTier3();
                     case BiomeType.Ruins: return RuinsTier3();
                     case BiomeType.Overwrit: return RuinsTier3();
                 }
@@ -89,7 +89,7 @@ namespace CavesOfOoo.Data
                     case BiomeType.Jungle: return JungleTier2();
                     case BiomeType.Grovelands: return JungleTier2();
                     case BiomeType.Sodden: return JungleTier2();
-                    case BiomeType.Spread: return JungleTier2();
+                    case BiomeType.Spread: return SpreadTier2();
                     case BiomeType.Ruins: return RuinsTier2();
                     case BiomeType.Overwrit: return RuinsTier2();
                 }
@@ -104,11 +104,97 @@ namespace CavesOfOoo.Data
                 case BiomeType.Jungle: return JungleTier1();
                 case BiomeType.Grovelands: return JungleTier1();
                 case BiomeType.Sodden: return JungleTier1();
-                case BiomeType.Spread: return JungleTier1();
+                case BiomeType.Spread: return SpreadTier1();
                 case BiomeType.Ruins: return RuinsTier1();
                 case BiomeType.Overwrit: return RuinsTier1();
                 default: return CaveTier1();
             }
+        }
+
+
+        // ── The Spread (W1) ────────────────────────────────────────────
+        //
+        // The Spread borrowed the jungle's bestiary, which is the retrofit
+        // the world overhaul exists to undo: settled river country was
+        // spawning rotlings and giant spiders in somebody's barley.
+        //
+        // What makes the Spread ITSELF is that the danger here is not the
+        // wilderness. It is the road, and the hedge, and whatever has come
+        // down out of the hills because the fields are easier. So: plenty
+        // of ordinary fauna, plenty to forage, and a thin, sharp thread of
+        // human trouble that thickens with tier.
+
+        public static PopulationTable SpreadTier1()
+        {
+            return new PopulationTable
+            {
+                Name = "SpreadTier1",
+                Entries = new List<PopulationEntry>
+                {
+                    // Lived-in country: birds and strays before monsters.
+                    new PopulationEntry { BlueprintName = "Magpie", Weight = 5, MinCount = 1, MaxCount = 4 },
+                    new PopulationEntry { BlueprintName = "PetDog", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    // The hedge is where the snake is.
+                    new PopulationEntry { BlueprintName = "Viper", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    // Roadside trouble — present, but thin at tier 1.
+                    new PopulationEntry { BlueprintName = "Snapjaw", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    // Worked country feeds you.
+                    new PopulationEntry { BlueprintName = "BerryBush", Weight = 4, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "Beehive", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "HollowStump", Weight = 2, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Signpost", Weight = 2, MinCount = 0, MaxCount = 1 },
+                    // Dropped tools rather than dropped weapons.
+                    new PopulationEntry { BlueprintName = "Hatchet", Weight = 2, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Cudgel", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "LeatherBoots", Weight = 1, MinCount = 0, MaxCount = 1 },
+                }
+            };
+        }
+
+        public static PopulationTable SpreadTier2()
+        {
+            return new PopulationTable
+            {
+                Name = "SpreadTier2",
+                Entries = new List<PopulationEntry>
+                {
+                    new PopulationEntry { BlueprintName = "Magpie", Weight = 3, MinCount = 1, MaxCount = 3 },
+                    // Further out, the road stops being safe.
+                    new PopulationEntry { BlueprintName = "Snapjaw", Weight = 4, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "SnapjawScavenger", Weight = 3, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Viper", Weight = 3, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "GiantSpider", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "BerryBush", Weight = 3, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Beehive", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "ShortSword", Weight = 2, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Hatchet", Weight = 2, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "LeatherCap", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "LeatherGloves", Weight = 1, MinCount = 0, MaxCount = 1 },
+                }
+            };
+        }
+
+        public static PopulationTable SpreadTier3()
+        {
+            return new PopulationTable
+            {
+                Name = "SpreadTier3",
+                Entries = new List<PopulationEntry>
+                {
+                    // The far Spread: the fields thin out and what walks
+                    // them is organised.
+                    new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 4, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "Snapjaw", Weight = 3, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "SnapjawScavenger", Weight = 2, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "GiantSpider", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Viper", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Magpie", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "BerryBush", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "LongSword", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "ShortSword", Weight = 2, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "LeatherArmor", Weight = 1, MinCount = 0, MaxCount = 1 },
+                }
+            };
         }
 
         // ── Tier 1 Tables ──────────────────────────────────────────────

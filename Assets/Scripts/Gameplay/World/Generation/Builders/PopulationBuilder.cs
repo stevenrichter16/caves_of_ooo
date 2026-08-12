@@ -47,9 +47,15 @@ namespace CavesOfOoo.Core
                 int idx = rng.Next(openCells.Count);
                 var (x, y) = openCells[idx];
 
-                Entity entity = factory.CreateEntity(blueprintName);
-                if (entity != null)
-                    zone.AddEntity(entity, x, y);
+                // BuilderSpawn rather than CreateEntity directly: a table
+                // entry naming a blueprint this factory does not have is a
+                // content problem, not a crash-or-log-spam problem. Test
+                // fixtures deliberately load reduced blueprint sets, and
+                // every other builder in worldgen already guards this way
+                // (see BuilderSpawn, added when a stray 'Grass' entry did
+                // the same thing). Missing blueprints in SHIPPED content are
+                // caught by the per-biome table tests instead.
+                BuilderSpawn.TryPlace(zone, factory, blueprintName, x, y);
 
                 // Remove used cell to prevent double-placement of solid entities
                 openCells.RemoveAt(idx);
