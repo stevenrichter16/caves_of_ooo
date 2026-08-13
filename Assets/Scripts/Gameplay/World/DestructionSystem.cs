@@ -120,6 +120,15 @@ namespace CavesOfOoo.Core
             var part = target.GetPart<DestructiblePart>();
             if (part != null && part.Indestructible) return DestroyVerdict.Indestructible;
 
+            // Idempotency, first — the port of Qud's IsInGraveyard() check,
+            // which opens its Destroy() (XRL.World/GameObject.cs:3306-3311).
+            // A second destroy (a listener re-entering on the Destroyed
+            // notification, or two damage sources in one turn both taking it
+            // below zero) would otherwise fire the event twice and spawn a
+            // SECOND pile of wreckage. Reports Destroyed, as Qud returns
+            // true: the caller's intent is satisfied.
+            if (part != null && part.Gone) return DestroyVerdict.Destroyed;
+
             // Vetoable, per Qud's BeforeDestroyObjectEvent. A Part can
             // refuse — a sealed vault that must survive its own explosion,
             // a quest object mid-script.
@@ -132,6 +141,11 @@ namespace CavesOfOoo.Core
                 Record("Refused", target, source, new { reason = "vetoed", cause });
                 return DestroyVerdict.Vetoed;
             }
+
+            // Past the veto, so it is going to happen. Flag it BEFORE firing
+            // Destroyed, so a listener that re-enters finds the guard set
+            // rather than recursing.
+            if (part != null) part.Gone = true;
 
             // Position must be read BEFORE removal — it is where the
             // contents land and which cell needs repainting.

@@ -57,6 +57,22 @@ namespace CavesOfOoo.Core
 
         public bool IsDestroyed => HP <= 0;
 
+        /// <summary>
+        /// Set once <see cref="DestructionSystem.Destroy"/> has actually run
+        /// on this object. The port of Qud's <c>IsInGraveyard()</c> check,
+        /// which is the first line of its <c>Destroy()</c>
+        /// (<c>XRL.World/GameObject.cs:3306-3311</c>) and makes destruction
+        /// idempotent.
+        ///
+        /// <para>Without it, a second destroy — a listener re-entering on
+        /// the <c>Destroyed</c> notification, or two damage sources in one
+        /// turn both taking it below zero — fires the event again and
+        /// <b>spawns a second pile of wreckage</b>. Distinct from
+        /// <see cref="IsDestroyed"/>, which only says the HP pool is
+        /// empty.</para>
+        /// </summary>
+        public bool Gone = false;
+
         /// <summary>The world-action command this Part's menu row fires.</summary>
         public const string BreakCommand = "Break";
 

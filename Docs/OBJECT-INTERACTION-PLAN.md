@@ -343,6 +343,52 @@ checking finding 1: the "Take" row has the same unbounded-from-look-mode
 property, and predates this work. Not fixed here because it is a
 different feature's contract and changing it needs its own tests.
 
+### Adversarial sweep + cold-eye (both angles)
+
+`DestructionAdversarialTests.cs`. Taxonomy surfaces present: state
+atomicity, save/load reach, anti-exploit gates, cross-actor flows,
+boundary inputs, duplicate operations, iterator-vs-mutation. No parser
+and no RNG-gated behaviour beyond the damage roll, which
+`DestructionSystemTests` already pins with one-sided dice.
+
+**Angle A (bug-class taxonomy) — 0 bugs found.** Save/load was the
+suspected hole and turned out already correct: `DestructiblePart`
+round-trips HP, MaxHP, Hardness, WreckageBlueprint and Indestructible
+through the reflection fall-through. The tests are now regression pins
+— a half-broken wall healing to full on reload would be invisible
+otherwise, since it looks fine in every unit test.
+
+**Angle B (Qud-parity-first) — 1 real bug found.** ⚠
+
+Reading `DestructionSystem.Destroy` beside Qud's `GameObject.Destroy`
+line by line, Qud's opens with:
+
+```csharp
+// XRL.World/GameObject.cs:3306-3311
+public bool Destroy(...)
+{
+    if (IsInGraveyard()) return true;     // ← CoO had no equivalent
+    if (!BeforeDestroyObjectEvent.Check(...)) return false;
+```
+
+CoO went straight to the veto. **Consequence: a second destroy re-fired
+`Destroyed` and spawned the wreckage AGAIN** — one wall, two piles of
+rubble — reachable either by a listener re-entering on the
+notification or by two damage sources in one turn both taking the
+object below zero. Fixed with `DestructiblePart.Gone`, set after the
+veto passes but *before* the notification fires, so a re-entrant
+listener finds the guard already set rather than recursing.
+
+This is exactly the pattern the methodology predicts: Angle A had just
+declared 0 bugs, and the taxonomy checklist has no entry that asks
+"what guard does Qud have at the top of this method that we don't?".
+
+**⚪ Documented divergence — no `Broken` effect at 25% HP.** Qud applies
+one for non-creatures (`Physics.cs:4236-4239`). CoO has a
+`BrokenEffect` and the matrix permits it on objects, but nothing
+applies it yet. Deliberate: it needs a visual state to be worth
+anything, and there is no cracked-sprite variant.
+
 ### Divergence from §4.2 — damage is NOT shared
 
 §4.2's reconciliation proposed sharing the damage pipeline and forking
