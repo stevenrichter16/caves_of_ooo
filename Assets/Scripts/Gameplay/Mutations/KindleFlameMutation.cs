@@ -60,7 +60,10 @@ namespace CavesOfOoo.Core
                     continue;
 
                 var heatEvent = GameEvent.New("ApplyHeat");
-                heatEvent.SetParameter("Joules", (object)50f);
+                // The weakest fire in the game — but 50 joules could not light
+                // tinder inside 30 casts. Cantrip still takes 3, which is
+                // what "weakest" should mean rather than "inert".
+                heatEvent.SetParameter("Joules", (object)FireDose.Cantrip);
                 heatEvent.SetParameter("Radiant", (object)false);
                 heatEvent.SetParameter("Source", (object)ParentEntity);
                 heatEvent.SetParameter("Zone", (object)zone);

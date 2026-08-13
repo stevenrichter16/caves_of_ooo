@@ -120,7 +120,8 @@ namespace CavesOfOoo.Core
                     if (entity.HasPart<ThermalPart>())
                     {
                         var heatEvent = GameEvent.New("ApplyHeat");
-                        heatEvent.SetParameter("Joules", (object)150f);
+                        // A beam that scorches a whole line — a real fire attack.
+                        heatEvent.SetParameter("Joules", (object)FireDose.Attack);
                         heatEvent.SetParameter("Radiant", (object)false);
                         heatEvent.SetParameter("Source", (object)ParentEntity);
                         heatEvent.SetParameter("Zone", (object)zone);

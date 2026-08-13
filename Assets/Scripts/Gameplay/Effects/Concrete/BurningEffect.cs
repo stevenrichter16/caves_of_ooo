@@ -159,12 +159,22 @@ namespace CavesOfOoo.Core
                 MessageLog.Add(target.GetDisplayName() + " takes " + landed + " fire damage.");
             }
 
-            // 3. Emit heat to self (small reinforcement keeping temperature up)
+            // 3. Emit heat to self, enough to actually stay alight.
+            //
+            // Ambient decay pulls a burning thing back toward room
+            // temperature every turn. The old flat Intensity * 20 did not
+            // cover that on anything heavy — a burning tree (capacity 2.5)
+            // lost about 7 degrees a turn and would drop below its own
+            // flame point, so ThermalPart.TryExtinguish put the fire out
+            // from underneath the effect. FireDose.SelfSustain offsets the
+            // decay it is actually losing, plus a little for intensity.
             var thermal = target.GetPart<ThermalPart>();
             if (thermal != null)
             {
                 var selfHeat = GameEvent.New("ApplyHeat");
-                selfHeat.SetParameter("Joules", (object)(Intensity * 20f));
+                selfHeat.SetParameter("Joules", (object)FireDose.SelfSustain(
+                    Intensity, thermal.HeatCapacity, thermal.Temperature,
+                    thermal.AmbientTemperature, thermal.AmbientDecayRate));
                 selfHeat.SetParameter("Radiant", (object)false);
                 selfHeat.SetParameter("Source", (object)target);
                 target.FireEvent(selfHeat);
@@ -174,9 +184,21 @@ namespace CavesOfOoo.Core
             // 4. Evaluate material reactions (data-driven bonuses)
             MaterialReactionResolver.EvaluateReactions(target, zone, this);
 
-            // 5. Emit heat to adjacent cells for spatial propagation
+            // 5. Emit heat to adjacent cells for spatial propagation.
+            //
+            // Intensity * 30 was 3.75 joules per neighbour once
+            // EmitHeatToAdjacent split it eight ways, which put an adjacent
+            // bush's EQUILIBRIUM temperature at 100 degrees against a flame
+            // point of 320 — fire could not spread at all, at any
+            // intensity, for any duration. (An earlier commit claimed the
+            // thermal model provided an inherent rate limit against a fire
+            // eating a whole zone; it did, but only because nothing ever
+            // caught.) At FireDose.SpreadTotal an adjacent bush catches in
+            // about three turns: visible, and slow enough to walk away
+            // from.
             if (zone != null)
-                MaterialSimSystem.EmitHeatToAdjacent(target, zone, Intensity * 30f);
+                MaterialSimSystem.EmitHeatToAdjacent(
+                    target, zone, Intensity * FireDose.SpreadTotal);
         }
 
         public override bool OnStack(Effect incoming)

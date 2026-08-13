@@ -533,7 +533,30 @@ either a great story or a bug depending on whether it was intended.
 **Spread wants a rate limit and a test that a fire cannot consume a
 whole zone in one turn.**
 
-### ⚠ §5.3 — spread already exists; nothing new was built
+### ⚠⚠ CORRECTION — the §5.3 claim below is WRONG
+
+**The section immediately below claimed fire spread already worked and
+needed nothing built. It did not work at all.** Kept, struck through, as
+the record of a false "it already works" — the same failure mode as the
+false "it's already broken here" corrections elsewhere in this doc, and
+worse, because it closed an item instead of opening one.
+
+`BurningEffect` emitted `Intensity * 30` joules to its neighbours, which
+`EmitHeatToAdjacent` divides across eight directions: **3.75 joules
+each**. A bush's equilibrium temperature under that input is 100°
+against a flame point of 320°. Not slow — *unreachable*, at any
+intensity, for any duration.
+
+The reasoning that produced the wrong claim is worth naming: I read the
+propagation code, saw a physically-shaped model with a threshold, and
+concluded the threshold provided a sensible rate limit. It did — by
+never being crossed. **Reading a mechanism is not measuring it.** The
+numbers took one short script (see §8) and would have caught it
+immediately.
+
+Corrected in §8 along with the ignition doses, which were the same bug.
+
+### ~~§5.3 — spread already exists; nothing new was built~~ (WRONG, see above)
 
 `BurningEffect.OnTurnStart` step 5 already calls
 `MaterialSimSystem.EmitHeatToAdjacent(target, zone, Intensity * 30f)`,
@@ -641,6 +664,92 @@ off the end reads as belonging to the list.
 with no `RenderPart` — it is not in the visible-objects list at all.
 The first version of `HealthOnScreenTests` omitted it and even the
 *creature* control failed, which is what identified the cause.
+
+---
+
+## 8. Fire that never lit anything ✅
+
+**Symptom.** "Flammable materials do not seem to light on fire when hit
+with fire, despite being hit multiple times."
+
+**Root cause — one number, wrong everywhere.**
+`ThermalPart.HandleApplyHeat` converts joules to degrees as
+`delta = joules / HeatCapacity`. Igniting something from ambient
+therefore costs about `(FlameTemperature − 25) × HeatCapacity` joules —
+**hundreds**. Every fire ability had a hand-picked figure that had never
+been checked against that:
+
+| Source | Delivered | Casts to light a bush | …a tree |
+|---|---|---|---|
+| Flaming Hands (L1) | `damage × 5` = 5–20 | **never** | **never** |
+| Flaming Hands (L5) | ~62 | 6 | 19 |
+| KindleFlame | 50 | 7 | 28 |
+| EmberVein | 150 | 3 | 7 |
+| Kindle | 200 | 2 | 5 |
+| Conflagration | 250 + `damage × 8` | 1 | 3 |
+| *Spread, per neighbour* | 3.75 | **never** | **never** |
+
+At level 1 Flaming Hands could not ignite **anything, ever** — per-turn
+ambient decay ate the 12.5 joules faster than they accumulated. That is
+exactly what was reported.
+
+### Why it survived every previous pass — the scale is asymmetric
+
+Cold has to cross **25 degrees** (ambient 25 → freeze 0). Every cold
+dose, even −100, freezes its target in one cast and looks perfectly
+healthy. Heat has to cross **295–475**. The joule figures were sized
+against the cold half of the scale and never re-checked against the hot
+half, and nothing in the code says what a joule is worth.
+
+### The fix — `FireDose`, anchored and measured
+
+One anchor, `TinderIgnition = 300` — the dose that takes dry tinder
+(bush, flame 320, capacity 1.0) from ambient to alight in one
+application. Every tier is a multiple of it, so re-tuning the family
+means moving one number. Measured against shipped blueprints:
+
+```
+dose               Bush  Hedge  Tree  Chest  Creature  Wall
+Cantrip   (0.5x)      3      3     7      4         8  never
+Attack    (1.0x)      1      2     3      2         4  never
+Ignition  (2.0x)      1      1     2      1         2  never
+Blast     (3.0x)      1      1     1      1         2  never
+```
+
+Assignments by role: KindleFlame → Cantrip, Flaming Hands / EmberVein →
+Attack (Flaming Hands adds a Cantrip per level), Kindle → Ignition (its
+entire purpose), Conflagration → Blast.
+
+**Spread** → `SpreadTotal` (4× anchor, ÷8 directions = 150 each): an
+adjacent bush catches in ~3 turns. Visible, and slow enough to walk away
+from.
+
+**Self-sustain** → `FireDose.SelfSustain` offsets the decay the object
+is actually losing, rather than a flat 20. A burning tree lost ~7°/turn
+under the old figure and would drop below its own flame point, so
+`TryExtinguish` put the fire out from underneath the effect — which is
+why nothing ever finished burning down.
+
+### What did NOT change, deliberately
+
+- **Stone still never burns**, at any dose — masonry is authored
+  `Combustibility 0` and `MaterialPart.HandleTryIgnite` vetoes it
+  regardless of temperature. Pinned by a test at `Blast`.
+- **Water still beats fire.** `TryIgnite` refuses a target above 0.35
+  moisture and boils some off instead. Raising the doses must not buy
+  past the grammar the element system teaches; pinned by a test.
+- **Cold doses untouched.** Measured, and every one of them already
+  freezes in a single cast.
+
+### The methodology note
+
+This is the third correction in this doc caused by *reading* a mechanism
+instead of *measuring* it. The grep-for-the-shape habit found the
+call sites (`SetParameter("Joules"` — 14 of them, in one command); it
+was the arithmetic that found the bug. For anything numeric, the cheap
+move is a dozen-line script that computes the outcome from the shipped
+content, and it is what turned "flaming hands feels weak" into "flaming
+hands is arithmetically incapable of igniting anything".
 
 ---
 

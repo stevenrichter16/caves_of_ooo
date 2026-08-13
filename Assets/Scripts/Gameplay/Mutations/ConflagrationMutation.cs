@@ -99,7 +99,9 @@ namespace CavesOfOoo.Core
                     if (damage > 0)
                     {
                         var heatEvent = GameEvent.New("ApplyHeat");
-                        heatEvent.SetParameter("Joules", (object)(damage * 8f));
+                        // The family's big AoE. damage * 8 was 8-64 joules, an order of
+                        // magnitude short of any flame point.
+                        heatEvent.SetParameter("Joules", (object)FireDose.Blast);
                         heatEvent.SetParameter("Radiant", (object)false);
                         heatEvent.SetParameter("Source", (object)ParentEntity);
                         heatEvent.SetParameter("Zone", (object)zone);

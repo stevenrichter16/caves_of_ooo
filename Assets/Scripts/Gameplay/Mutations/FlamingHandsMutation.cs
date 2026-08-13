@@ -126,7 +126,13 @@ namespace CavesOfOoo.Core
 
                         // Participate in the material system: emit heat to the target
                         var heatEvent = GameEvent.New("ApplyHeat");
-                        heatEvent.SetParameter("Joules", (object)(totalDamage * 5f));
+                        // FireDose.Attack, not damage-scaled. The old figure was
+                        // totalDamage * 5 = 5-20 joules at level 1, which
+                        // ambient decay ate faster than it accumulated: the
+                        // spell could not ignite ANYTHING, ever, however many
+                        // times it was cast. Higher levels burn hotter.
+                        heatEvent.SetParameter("Joules",
+                            (object)(FireDose.Attack + (Level - 1) * FireDose.Cantrip));
                         heatEvent.SetParameter("Radiant", (object)false);
                         heatEvent.SetParameter("Source", (object)ParentEntity);
                         heatEvent.SetParameter("Zone", (object)zone);

@@ -28,7 +28,10 @@ namespace CavesOfOoo.Core
             // Apply 200J direct heat — triggers ThermalPart ignition pipeline
             // (FlameTemperature check → TryIgnite → MaterialPart veto → WetEffect suppression → BurningEffect)
             var heatEvent = GameEvent.New("ApplyHeat");
-            heatEvent.SetParameter("Joules", (object)200f);
+            // A spell whose entire purpose is setting things alight, so it
+            // gets the dose named for that. 200 lit dry tinder in 2 casts
+            // and a tree in 5, which read as "the fire spell does not work".
+            heatEvent.SetParameter("Joules", (object)FireDose.Ignition);
             heatEvent.SetParameter("Radiant", (object)false);
             heatEvent.SetParameter("Source", (object)ParentEntity);
             heatEvent.SetParameter("Zone", (object)zone);
