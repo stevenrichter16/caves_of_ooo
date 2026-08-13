@@ -64,8 +64,7 @@ namespace CavesOfOoo.Skills
                 for (int i = 0; i < cell.Objects.Count; i++)
                 {
                     var e = cell.Objects[i];
-                    if (e == null || e == actor) continue;
-                    if (!e.Tags.ContainsKey("Creature")) continue;
+                    if (!AbilityTargeting.IsElementalTarget(e, actor)) continue;
                     var sep = e.GetPart<StatusEffectsPart>();
                     if (sep != null && sep.HasEffect<BurningEffect>())
                     {
@@ -113,12 +112,16 @@ namespace CavesOfOoo.Skills
                     for (int i = 0; i < cell.Objects.Count; i++)
                     {
                         var e = cell.Objects[i];
-                        if (e == null || e == actor) continue;
-                        if (!e.Tags.ContainsKey("Creature")) continue;
+                        if (!AbilityTargeting.IsElementalTarget(e, actor)) continue;
                         var fireDmg = new Damage(aoeAmount);
                         fireDmg.AddAttribute("Fire");
                         fireDmg.AddAttribute("Heat");
-                        CombatSystem.ApplyDamage(e, fireDmg, actor, ctx.Zone);
+                        // RouteDamage, not ApplyDamage: scenery keeps its
+                        // hitpoints on a DestructiblePart, and ApplyDamage
+                        // deliberately early-returns on anything with no
+                        // Hitpoints stat — so elemental damage aimed at a
+                        // tree or a barrel was silently discarded.
+                        DestructionSystem.RouteDamage(e, fireDmg, actor, ctx.Zone);
                         hits++;
                     }
                 }

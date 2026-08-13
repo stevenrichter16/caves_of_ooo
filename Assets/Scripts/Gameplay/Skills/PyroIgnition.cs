@@ -63,10 +63,15 @@ namespace CavesOfOoo.Skills
                 return false;
             }
 
-            target.ApplyEffect(
+            // Through the matrix, not straight to ApplyEffect: a target
+            // that is not a creature has to be made of something that
+            // burns. Setting a stone wall alight because a fire spell
+            // touched it would make the material rules decorative.
+            // ObjectStatusMatrix passes creatures through unchanged, so
+            // this is a no-op for the living.
+            return ObjectStatusMatrix.TryApply(
                 new BurningEffect(intensity: intensity, source: source, rng: rng),
-                source, zone);
-            return true;
+                target, source, zone);
         }
     }
 }

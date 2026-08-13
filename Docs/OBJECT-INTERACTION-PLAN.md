@@ -560,6 +560,90 @@ in the matrix.
 
 ---
 
+## 6. Reported from play — the spells still missed ✅
+
+**Symptom.** Fire bolt and ember spit did nothing to a tree standing
+directly in front of the player, nothing to a bush elsewhere, and the
+electric spell "found no conductors" fired into water.
+
+### ⚠ §5's fix was real but INCOMPLETE — three more filters
+
+The §5 work fixed the path through `LineTargeting` +
+`DirectionalProjectileMutationBase`. That is the **mutations** family.
+The powers the player actually reported are **skills**, which have their
+own targeting code that §5 never touched. Three separate creature-only
+filters:
+
+| # | Where | What it did |
+|---|---|---|
+| 1 | `SkillLine.Collect` | Collected only creatures, **and** tested `cell.IsSolid()` BEFORE looking at the cell's contents. A `Tree` carries the `Solid` tag, so the walk broke out having never considered it → `line_blocked`, tree untouched, "your ember sputters out". A `Bush` is not solid, so the walk passed straight over it → `no_target`. Feeds EmberSpit, FlameJet, GroundSurge, RailSpike, RimeGrip, Undertow, Oilmark. |
+| 2 | `FlamingHandsMutation.Cast` | `targetCell.GetObjectsWithTag("Creature")` → a tree got "blasts the empty space with flames!". |
+| 3 | `Galvanism_Overload` | Creature-only cell scan, so a `BrinePool` was skipped entirely → "finds no conductors". |
+
+**The lesson, third time in this doc:** fixing *a* path is not fixing
+*the* path. When a symptom has a plausible single cause, check whether
+the same decision is made in more than one place before declaring it
+fixed. A `grep` for the filter shape would have found all four at once.
+
+### The target rule — and why it is not "breakable"
+
+`AbilityTargeting.IsElementalTarget`. The obvious rule was "creature or
+breakable", and it is **wrong**: a `BrinePool` has no `PhysicsPart` and
+no `DestructiblePart` — you cannot break a puddle — but it is
+95%-conductive salt water and shocking it is the entire point of the
+water/lightning grammar. The rule is therefore *"takes part in the
+physical simulation"*: a creature, or something with structural HP, a
+material, or a temperature. `ObjectStatusMatrix` then decides which
+effects that material actually accepts.
+
+`AbilityTargeting.IsCreatureTarget` sits beside it as the stricter rule
+the **weapon** skills keep (Disarm, Backstab, Flurry, Lunge, Vault,
+Tumble). Deliberate: "backstab a wall" has no meaning to define, and
+objects are already reachable by melee through bump-to-break and the
+interact menu's Break row.
+
+### Also fixed in passing
+
+- **Every elemental damage call now uses `RouteDamage`** (7 skills +
+  Flaming Hands). They called `CombatSystem.ApplyDamage` directly, which
+  early-returns on anything with no `Hitpoints` stat — so even once a
+  tree became a *target*, the damage would have gone nowhere.
+- **`PyroIgnition.TryIgnite` routes through the matrix**, so a fire
+  skill cannot light a stone wall. It previously called `ApplyEffect`
+  directly.
+- **`Water` added to the matrix's conductive tags.** `WaterPuddle` is
+  authored `Liquid,Water` with no `Conductor` tag at all, so the
+  commonest instance of the rule — shock the puddle you are standing in
+  — would still have been refused. `BrinePool` has both and qualified
+  either way. Oil is `Liquid,Oil` and correctly still does not conduct.
+- **The line stop-order.** Solidity is now checked *after* the cell's
+  contents are collected, so a tree is hit and *then* stops the bolt.
+  Previously it stopped the bolt and was never hit.
+
+## 7. Health on screen ✅
+
+`HealthReadout.Describe` — one string shared by look mode
+(`LookQueryService`) and the interact menu (`WorldActionMenuUI`), so the
+two cannot drift into disagreeing about the same barrel.
+
+`LookQueryService.BuildPrimaryDetail` gated its whole HP block on
+`HasTag("Creature")`, so objects reported nothing: a half-smashed barrel
+looked identical to a fresh one. Now creatures read their `Hitpoints`
+stat and scenery reads `DestructiblePart`, with `Indestructible` shown
+as **unbreakable** rather than a number — "HP 40/40" on a staircase is a
+lie of omission that would have the player keep hitting it.
+
+The menu appends the readout only for a single-target menu: on a pile
+the title is "A pile of items, including: …" and a health figure hanging
+off the end reads as belonging to the list.
+
+**Test-fixture note.** `LookQueryService` will not report on an entity
+with no `RenderPart` — it is not in the visible-objects list at all.
+The first version of `HealthOnScreenTests` omitted it and even the
+*creature* control failed, which is what identified the cause.
+
+---
+
 ## Build order
 
 1. **§1 ghost trails** (option B) — small, isolated, visible immediately.

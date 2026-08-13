@@ -93,7 +93,11 @@ namespace CavesOfOoo.Skills
                 var dmg = new Damage(JET_DAMAGE);
                 dmg.AddAttribute("Fire");
                 dmg.AddAttribute("Heat");
-                CombatSystem.ApplyDamage(target, dmg, actor, ctx.Zone);
+                // RouteDamage, not ApplyDamage: scenery keeps its hitpoints on a
+                // DestructiblePart, and ApplyDamage deliberately early-returns
+                // on anything with no Hitpoints stat — so elemental damage aimed
+                // at a tree or a barrel was silently discarded.
+                DestructionSystem.RouteDamage(target, dmg, actor, ctx.Zone);
 
                 // Only the living catch fire.
                 if (target.GetStatValue("Hitpoints") <= 0) continue;

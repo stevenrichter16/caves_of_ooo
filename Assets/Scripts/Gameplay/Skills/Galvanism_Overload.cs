@@ -67,26 +67,47 @@ namespace CavesOfOoo.Skills
                 if (cell == null) break;
                 if (cell.IsSolid()) break;
 
-                // Find a creature in this cell.
+                // Find something the charge can pass through in this cell.
+                // Creatures first, then scenery — a brine pool is 95%
+                // conductive salt water and is exactly what a player expects
+                // to shock, but it is not a creature, so the old
+                // creature-only scan skipped straight over it and the chain
+                // reported "finds no conductors".
                 Entity creature = null;
                 for (int i = 0; i < cell.Objects.Count; i++)
                 {
                     var e = cell.Objects[i];
-                    if (e == null || e == actor) continue;
-                    if (e.Tags.ContainsKey("Creature")) { creature = e; break; }
+                    if (AbilityTargeting.IsCreatureTarget(e, actor)) { creature = e; break; }
+                }
+                if (creature == null)
+                {
+                    for (int i = 0; i < cell.Objects.Count; i++)
+                    {
+                        var e = cell.Objects[i];
+                        if (e != null && !e.Tags.ContainsKey("Creature")
+                            && AbilityTargeting.IsElementalTarget(e, actor))
+                        { creature = e; break; }
+                    }
                 }
 
                 if (creature == null)
                 {
-                    // No creature here — chain continues through empty cells.
+                    // Nothing here — chain continues through empty cells.
                     x = nx; y = ny;
                     continue;
                 }
 
-                // Conductivity check.
+                // Conductivity check. Two ways to qualify: soaked or
+                // already charged (the creature route), or MADE of
+                // something that conducts (the scenery route — copper
+                // pipe, brine pool). The second is what the matrix
+                // already encodes, so ask it rather than restating the
+                // tag list here and letting the two drift.
                 var sep = creature.GetPart<StatusEffectsPart>();
-                bool conductive = sep != null
-                    && (sep.HasEffect<WetEffect>() || sep.HasEffect<ElectrifiedEffect>());
+                bool conductive = (sep != null
+                        && (sep.HasEffect<WetEffect>() || sep.HasEffect<ElectrifiedEffect>()))
+                    || ObjectStatusMatrix.Evaluate(new ElectrifiedEffect(), creature)
+                        == ObjectStatusVerdict.Applies && !creature.HasTag("Creature");
                 if (!conductive)
                 {
                     // First non-conductor breaks the chain. Diag emit
@@ -99,7 +120,7 @@ namespace CavesOfOoo.Skills
                 var elecDmg = new Damage(OVERLOAD_DAMAGE);
                 elecDmg.AddAttribute("Electric");
                 elecDmg.AddAttribute("Lightning");
-                CombatSystem.ApplyDamage(creature, elecDmg, actor, ctx.Zone);
+                DestructionSystem.RouteDamage(creature, elecDmg, actor, ctx.Zone);
                 hits++;
                 x = nx; y = ny;
             }

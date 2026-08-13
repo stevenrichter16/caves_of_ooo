@@ -46,9 +46,20 @@ namespace CavesOfOoo.Core
         private static readonly string[] Flammable =
             { "Flammable", "Organic", "Wood", "Plant", "Cloth", "Paper", "Fungal" };
 
-        /// <summary>Things that carry a charge.</summary>
+        /// <summary>
+        /// Things that carry a charge.
+        ///
+        /// <para><c>Water</c> is in the list because the status grammar
+        /// this game teaches is "water douses flame, conducts shock", and
+        /// a plain <c>WaterPuddle</c> is authored with only
+        /// <c>Liquid,Water</c> — no <c>Conductor</c> tag. Without it the
+        /// commonest possible instance of the rule (shock the puddle the
+        /// player is standing in) would be refused, which reads as a bug
+        /// rather than as a material distinction. <c>BrinePool</c> carries
+        /// both tags and qualifies either way.</para>
+        /// </summary>
         private static readonly string[] Conductive =
-            { "Conductor", "Metal" };
+            { "Conductor", "Metal", "Water" };
 
         /// <summary>Things with water in or on them.</summary>
         private static readonly string[] Freezable =

@@ -80,8 +80,17 @@ namespace CavesOfOoo.Core
                 zone, targetCell.X, targetCell.Y, ParentEntity, Name);
             ZoneTileStateSystem.ResolveAfterAbility(zone, ParentEntity);
 
-            // Get all creatures in the target cell
-            List<Entity> creatures = targetCell.GetObjectsWithTag("Creature");
+            // Everything in the cell that fire can mean anything to — not
+            // just creatures. Blasting a tree used to report "blasts the
+            // empty space with flames!" and leave it standing, because this
+            // read GetObjectsWithTag("Creature").
+            List<Entity> creatures = new List<Entity>();
+            for (int i = 0; i < targetCell.Objects.Count; i++)
+            {
+                var candidate = targetCell.Objects[i];
+                if (AbilityTargeting.IsElementalTarget(candidate, ParentEntity))
+                    creatures.Add(candidate);
+            }
 
             if (creatures.Count == 0)
             {
@@ -104,9 +113,16 @@ namespace CavesOfOoo.Core
                     if (totalDamage > 0)
                     {
                         string targetName = target.GetDisplayName();
-                        MessageLog.Add($"{attackerName} blasts {targetName} with flames for {totalDamage} damage!");
                         // WSP7.4 — tag with Heat so HeatResistance applies.
-                        CombatSystem.ApplyDamage(target, totalDamage, "Heat", ParentEntity, zone);
+                        // RouteDamage, not ApplyDamage: scenery keeps its
+                        // hitpoints on a DestructiblePart and ApplyDamage
+                        // early-returns on anything without a Hitpoints
+                        // stat, so this was a no-op against a tree.
+                        var heatDmg = new Damage(totalDamage);
+                        heatDmg.AddAttribute("Heat");
+                        int landed = DestructionSystem.RouteDamage(
+                            target, heatDmg, ParentEntity, zone);
+                        MessageLog.Add($"{attackerName} blasts {targetName} with flames for {landed} damage!");
 
                         // Participate in the material system: emit heat to the target
                         var heatEvent = GameEvent.New("ApplyHeat");

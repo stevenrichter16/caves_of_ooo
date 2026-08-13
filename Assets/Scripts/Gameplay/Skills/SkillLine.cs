@@ -31,7 +31,13 @@ namespace CavesOfOoo.Skills
     /// empty cells. Merging the two would mean a walk with a behaviour
     /// flag, which is harder to read than two honest walks.</para>
     /// </summary>
-    internal static class SkillLine
+    /// <remarks>
+    /// Public rather than internal so the walk can be tested directly:
+    /// the project has no <c>InternalsVisibleTo</c>, and the stop-order
+    /// rule below (collect the cell, THEN check solidity) is exactly the
+    /// kind of thing that regresses invisibly through a caller.
+    /// </remarks>
+    public static class SkillLine
     {
         /// <summary>
         /// Every Creature in the <paramref name="range"/> cells ahead of
@@ -46,7 +52,7 @@ namespace CavesOfOoo.Skills
         /// a null cell, or stone. Abilities that write to the ground
         /// need coordinates, not occupants.
         /// </summary>
-        internal static List<Point> CollectCells(
+        public static List<Point> CollectCells(
             Zone zone, Entity actor, int startX, int startY,
             int dx, int dy, int range)
         {
@@ -66,7 +72,7 @@ namespace CavesOfOoo.Skills
             return cells;
         }
 
-        internal static List<Entity> Collect(
+        public static List<Entity> Collect(
             Zone zone, Entity actor, int startX, int startY,
             int dx, int dy, int range)
         {
@@ -81,7 +87,7 @@ namespace CavesOfOoo.Skills
         /// the way" in their reject diag — two very different answers to
         /// a player asking why a cast did nothing.
         /// </summary>
-        internal static List<Entity> Collect(
+        public static List<Entity> Collect(
             Zone zone, Entity actor, int startX, int startY,
             int dx, int dy, int range, out bool blockedByWall)
         {
@@ -97,15 +103,30 @@ namespace CavesOfOoo.Skills
 
                 var cell = zone.GetCell(x, y);
                 if (cell == null) break;
-                if (cell.IsSolid()) { blockedByWall = true; break; }
 
+                // Creatures first WITHIN the cell, so a monster standing in
+                // a bush is what a single-target power like Ember Spit
+                // picks — you aim at the thing that can hit back.
                 for (int i = 0; i < cell.Objects.Count; i++)
                 {
                     var e = cell.Objects[i];
-                    if (e == null || e == actor) continue;
-                    if (!e.Tags.ContainsKey("Creature")) continue;
-                    found.Add(e);
+                    if (AbilityTargeting.IsCreatureTarget(e, actor)) found.Add(e);
                 }
+                for (int i = 0; i < cell.Objects.Count; i++)
+                {
+                    var e = cell.Objects[i];
+                    if (e != null && !e.Tags.ContainsKey("Creature")
+                        && AbilityTargeting.IsElementalTarget(e, actor))
+                        found.Add(e);
+                }
+
+                // Stone stops the line — but AFTER the cell's contents have
+                // been collected, not before. A tree carries the Solid tag,
+                // so the old order meant the walk broke out having never
+                // looked at it: a fire bolt aimed point-blank at a tree
+                // reported "line_blocked" and left the tree untouched.
+                // Now the tree is hit, and THEN the line stops on it.
+                if (cell.IsSolid()) { blockedByWall = true; break; }
             }
 
             return found;
