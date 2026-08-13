@@ -2450,6 +2450,25 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            // Special case: Take → the exact same command path (and failure
+            // messaging: strength gate, "you can't carry that") the
+            // standalone pickup key (G / ,) already uses, so picking a sword
+            // up through the interact menu behaves identically to standing
+            // on it and pressing G. This is what makes PhysicsPart's "Take"
+            // row (see PhysicsPart.HandleGetInventoryActions) more than a
+            // label — without this branch it would fall into the generic
+            // InventoryAction dispatch below, which no Part listens for.
+            if (action.Command == "Take")
+            {
+                if (TryPickupViaCommand(target))
+                {
+                    EndTurnAndProcess();
+                    RequestZoneRedraw("Inventory.Pickup");
+                }
+                _inputState = _worldActionMenuReturnState;
+                return;
+            }
+
             // Fire the InventoryAction event on the target. Parts that
             // declared this command handle it: ExaminablePart for Examine,
             // ContainerPart for OpenContainer, ConversationPart for Chat,
@@ -3249,48 +3268,60 @@ namespace CavesOfOoo.Rendering
             if (!GetDirectionKeyDown(out dx, out dy))
                 return;
 
-            _inputState = InputState.Normal;
             _lastMoveTime = Time.time;
+            InteractInDirection(dx, dy);
+        }
+
+        /// <summary>
+        /// The 'c' interact key's actual behaviour, separated from
+        /// <see cref="HandleAwaitingTalkDirection"/>'s input polling so it is
+        /// callable — and testable — without a real keypress
+        /// (<c>InputHelper.GetKeyDown</c> has no fake-input seam in this
+        /// codebase; every EditMode test in this file family drives
+        /// behaviour methods directly, per <c>InputHandlerLookModeTests</c>).
+        ///
+        /// <para>INTERACT, not talk. This opens the SAME world-action menu
+        /// the look-mode cursor opens, so one key reaches everything a thing
+        /// can do — examine, take, throw, haul, open, chat — instead of a
+        /// hardcoded talk-then-container ladder that could only ever reach
+        /// two verbs and silently ignored a sword on the floor.</para>
+        ///
+        /// <para>Chat is not special-cased: <c>ConversationPart</c> already
+        /// contributes a "chat" row (<c>ConversationPart.cs:41</c>), so
+        /// talking is one row among the rest — a deliberate extra keystroke
+        /// versus the old direct-to-dialogue behaviour.</para>
+        /// </summary>
+        private void InteractInDirection(int dx, int dy)
+        {
+            _inputState = InputState.Normal;
 
             var playerCell = CurrentZone.GetEntityCell(PlayerEntity);
             if (playerCell == null) return;
 
             int tx = playerCell.X + dx;
             int ty = playerCell.Y + dy;
-            var targetCell = CurrentZone.GetCell(tx, ty);
-            if (targetCell == null)
+            if (CurrentZone.GetCell(tx, ty) == null)
             {
                 MessageLog.Add("There's nothing there to interact with.");
                 return;
             }
 
-            // INTERACT, not talk. 'c' opens the SAME world-action menu the
-            // look-mode cursor opens, so one key reaches everything a thing
-            // can do — examine, take, throw, haul, open, chat — instead of
-            // a hardcoded talk-then-container ladder that could only ever
-            // reach two verbs and silently ignored a sword on the floor.
-            //
-            // Chat is not special-cased any more: ConversationPart already
-            // contributes a "chat" row (ConversationPart.cs:41), so talking
-            // is one row among the rest. That is a deliberate extra
-            // keystroke versus the old behaviour.
-            var target = WorldInteractionSystem.ResolveTarget(targetCell);
-            if (target == null)
-            {
-                MessageLog.Add("There's nothing there to interact with.");
-                return;
-            }
-
-            // True entry point #2: the interact key. Unlike the cursor path
-            // above, 'c' never calls EnterLookMode — no world cursor is
-            // activated — so the chain must land back in Normal, not
-            // LookMode, or Escape from the menu leaves the player one more
-            // Escape away from being able to move.
+            // True entry point #2 of the world-action-menu chain (see
+            // _worldActionMenuReturnState). Unlike the cursor path, 'c'
+            // never calls EnterLookMode — no world cursor is activated — so
+            // the chain must land back in Normal, or Escape from the menu
+            // leaves the player one more Escape away from being able to move.
             _worldActionMenuReturnState = InputState.Normal;
 
-            // includeBackRow: a cell can hold several things, and "<< everything
-            // here" is how the player reaches the ones the cursor did not pick.
-            OpenWorldActionMenuFor(target, targetCell, includeBackRow: true);
+            // Delegate to the SAME helper the look-mode cursor uses, rather
+            // than resolving a single target directly. OpenWorldActionMenu is
+            // where the pile check lives (WorldInteractionSystem.IsPileCell
+            // -> BuildTargetPickerActions) — resolving straight to the
+            // top-most entity here, as this method originally did, silently
+            // hid the rest of a loot pile. A dead NPC's drops would show
+            // Examine for whichever single item happened to render on top,
+            // with no way to reach the others: exactly the reported bug.
+            OpenWorldActionMenu(tx, ty);
         }
 
         private void OpenDialogue()

@@ -52,6 +52,43 @@ namespace CavesOfOoo.Core
         {
             if (e.ID == "BeforeMove")
                 return HandleBeforeMove(e);
+            if (e.ID == "GetInventoryActions")
+                return HandleGetInventoryActions(e);
+            return true;
+        }
+
+        /// <summary>
+        /// The universal "Take" row. <c>PhysicsPart</c> is on every physical
+        /// object (the <c>PhysicalObject</c> base blueprint), so this is
+        /// where a takeable item declares itself pick-uppable regardless of
+        /// whether it also carries a <c>HandlingPart</c> — most loose items
+        /// (Bone, GoldCoin, a dropped sword) do not.
+        ///
+        /// <para>Before this existed, the world-action menu offered NOTHING
+        /// but Examine (+ Throw, if <c>HandlingPart.Throwable</c>) for a
+        /// plain item — picking one up was reachable only by standing on it
+        /// and pressing the dedicated pickup key (G / ,). The interact key
+        /// ('c') can target an ADJACENT cell, which the dedicated key
+        /// cannot, so without this row 'c' could show you a sword one tile
+        /// away and offer no way to take it.</para>
+        ///
+        /// <para>Gated on <see cref="Takeable"/> and not already held —
+        /// deliberately NOT on Strength. A row that vanishes when you are
+        /// overburdened is confusing; <c>PickupCommand</c>'s own strength
+        /// check already produces a clear failure message on attempt, which
+        /// is how every other pickup path in this game already fails.</para>
+        /// </summary>
+        private bool HandleGetInventoryActions(GameEvent e)
+        {
+            if (Takeable && InInventory == null && Equipped == null)
+            {
+                var actions = e.GetParameter<InventoryActionList>("Actions");
+                // Priority 25 — below Open (30: a container you can open
+                // outranks taking it), above Throw (15) and Examine (0):
+                // taking is usually the point of interacting with a loose
+                // item. Hotkey 'g' matches the standalone pickup key.
+                actions?.AddAction("Take", "take", "Take", 'g', 25);
+            }
             return true;
         }
 
