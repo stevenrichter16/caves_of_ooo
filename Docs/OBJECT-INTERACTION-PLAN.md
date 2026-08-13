@@ -142,10 +142,16 @@ Qud's behaviour: break a wall to make a shortcut or escape.
 Most objects have no `Hitpoints`. Options: a `DestructiblePart` holding
 HP + material hardness, or plain `Hitpoints` stats on blueprints.
 
-**Prefer a Part.** It carries more than a number — what it drops, what
-it sounds like, whether it can be destroyed at all (a quest door should
-not be breakable by accident) — and it keeps "has HP" from implying
-"is a creature" everywhere HP is currently read.
+**Qud puts HP on the stat and the flags on Physics** — `Physics` owns a
+packed bitfield (`Solid`, `Takeable`, `IsReal`, `Organic`, `WasAflame`,
+`WasFrozen`) plus temperature thresholds, while HP lives in
+`Statistics["Hitpoints"]` with a `Penalty` channel
+(`GameObject.cs:1177-1208`).
+
+**Still prefer a Part here**, because CoO's `Hitpoints` is read in
+creature-shaped places and a `DestructiblePart` carries what a bare
+number cannot: what it drops, what replaces it, and whether it may be
+destroyed at all.
 
 ### 4.2 Let attacks reach non-creatures
 
@@ -156,9 +162,80 @@ perform an attack rather than silently refusing.
 **Risk — this is the one to be careful about.** `ApplyDamage` and the
 death path are creature-shaped: corpses, XP, faction reputation, the
 `Died` event with its listeners. Routing a barrel through that path
-unchanged would try to give it a corpse and award XP for a fence. A
-**separate destruction path** for objects is safer than widening the
-creature one.
+unchanged would try to give it a corpse and award XP for a fence.
+
+### ⚠ What Qud actually does — and where my plan was wrong
+
+Read from `/Users/steven/qud-decompiled-project/`. **Qud has ONE
+hitpoint-depletion path, not two**, which is the opposite of what §4.2
+assumed:
+
+```
+damage → Physics.ProcessTakeDamage        (Physics.cs:3301)
+       → stat.Penalty += amount
+       → StatChangeEvent("Hitpoints") → Physics.CheckHP
+       → hp <= 0 → GameObject.Die(...)          ← creature AND chest AND wall
+                    ├ BeforeDieEvent.Check           ← veto point 1
+                    ├ AfterDieEvent.Send
+                    ├ KilledEvent / AwardXPTo
+                    ├ BeforeDeathRemovalEvent        ← inventory + corpse drop
+                    ├ DeathEvent
+                    └ Destroy(...)
+                         ├ IsInGraveyard() → return   (idempotent)
+                         ├ BeforeDestroyObjectEvent.Check  ← veto point 2
+                         ├ OnDestroyObjectEvent.Send       ← not vetoable
+                         └ Physics.TeardownForDestroy()
+```
+
+`Die()` is shared; the creature/object difference is handled by
+**branches inside it** and by `IsCreature` checks at the points that
+matter. `Destroy()` is the lower-level **removal primitive**, callable
+directly (Obliterate, ReplaceWith, Explode, ~240 sites) — and calling it
+directly fires **no death events at all**.
+
+There is no `AfterDestroyObjectEvent` and no `ObjectDestroyed` event.
+Only `BeforeDestroyObjectEvent` (vetoable) and `OnDestroyObjectEvent`
+(notification).
+
+**Destructibility is OPT-IN, not opt-out.** Qud gates on a `Breakable`
+tag/property:
+
+```csharp
+// XRL.World.Effects/Broken.cs:41-48
+if (!Object.HasTagOrProperty("Breakable")) return false;
+```
+
+and applies a `Broken` effect at ≤25% HP, **only for non-creatures**:
+
+```csharp
+// Physics.cs:4236-4239
+if (CurrentHP <= (MaxHP ?? baseHitpoints) / 4 && !ParentObject.IsCreature
+    && ParentObject.HasTagOrProperty("Breakable"))
+    ParentObject.ForceApplyEffect(new Broken(FromDamage: true));
+```
+
+### Reconciling this with "build a separate path"
+
+The instruction and Qud's design are compatible, because **Qud's
+`Destroy()` IS the object path**. The port should therefore be:
+
+- **`DestroyObject(entity, cause)`** — mirrors Qud's `Destroy()`. No
+  corpse, no XP, no faction rep, no `Died`. Fires a vetoable
+  `BeforeDestroy` and a non-vetoable `Destroyed` notification. This is
+  what objects use.
+- **The existing creature death path stays untouched.** Nothing about
+  NPC death changes.
+- **Damage itself can be shared** — it is only the *consequence of
+  reaching zero* that must fork. That is a smaller change than
+  duplicating the damage pipeline, and it is what Qud does.
+
+**Opt-in, per Qud.** A thing is breakable because its blueprint says so.
+That answers the indestructible-staircase requirement from the other
+direction and more safely: anything not explicitly marked is immune by
+default, so a staircase is protected by omission rather than by
+remembering to flag it. An explicit `Indestructible` marker is still
+worth having for things that ARE breakable-shaped but must never break
+(a quest door), and the register test still applies.
 
 ### 4.3 Destruction consequences
 
