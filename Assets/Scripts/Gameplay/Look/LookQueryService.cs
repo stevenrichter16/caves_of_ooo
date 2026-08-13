@@ -219,15 +219,16 @@ namespace CavesOfOoo.Core
 
             List<string> parts = new List<string>();
 
-            if (primary.HasTag("Creature"))
-            {
-                Stat hp = primary.GetStat("Hitpoints");
-                if (hp != null)
-                    parts.Add("HP " + hp.Value + "/" + hp.Max);
+            // Shared with the interact menu. Covers structural HP too, so
+            // the player can see how much a barrel has left before it
+            // breaks — this used to be gated on the Creature tag, which
+            // meant objects reported nothing at all.
+            string health = HealthReadout.Describe(primary);
+            if (health.Length > 0)
+                parts.Add(health);
 
-                if (player != null && primary != player)
-                    parts.Add(GetRelationLabel(player, primary));
-            }
+            if (primary.HasTag("Creature") && player != null && primary != player)
+                parts.Add(GetRelationLabel(player, primary));
 
             return parts.Count > 0 ? string.Join(" | ", parts) : string.Empty;
         }

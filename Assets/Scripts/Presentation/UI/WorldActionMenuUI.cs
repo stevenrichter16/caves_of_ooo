@@ -257,6 +257,31 @@ namespace CavesOfOoo.Rendering
         //   └──────────────────────────────────────────────┘
         //     [Enter]select [Esc]cancel
 
+        /// <summary>
+        /// The title bar: what the cell holds, plus how much health the
+        /// thing you are pointing at has left.
+        ///
+        /// <para>The readout is appended only for a single-target menu.
+        /// On a pile cell the description is "A pile of items,
+        /// including: …", and one member's hitpoints hanging off the end
+        /// of that would read as belonging to the list.</para>
+        ///
+        /// <para>Public and static rather than private so it can be tested
+        /// without a Tilemap — <see cref="Render"/> needs Unity objects
+        /// this string does not. (Tests are a separate assembly, so
+        /// <c>internal</c> would not be visible to them.)</para>
+        /// </summary>
+        public static string BuildTitleFor(Cell cell, Entity target)
+        {
+            string title = WorldInteractionSystem.DescribeCell(cell);
+            if (cell != null && WorldInteractionSystem.IsPileCell(cell)) return title;
+
+            string health = HealthReadout.Describe(target);
+            return health.Length > 0 ? title + "  [" + health + "]" : title;
+        }
+
+        private string BuildTitle() => BuildTitleFor(_cell, _target);
+
         private void Render()
         {
             if (Tilemap == null) return;
@@ -272,8 +297,9 @@ namespace CavesOfOoo.Rendering
             DrawBgFill(0, 0, POPUP_W, borderH);
             DrawPopupBorder(0, 0, POPUP_W, borderH, visibleCount);
 
+
             // Title = cell description (pile / single / terrain / empty)
-            string title = WorldInteractionSystem.DescribeCell(_cell);
+            string title = BuildTitle();
             int maxTitleLen = POPUP_W - 4;
             if (!string.IsNullOrEmpty(title) && title.Length > maxTitleLen)
                 title = title.Substring(0, maxTitleLen - 1) + "~";
