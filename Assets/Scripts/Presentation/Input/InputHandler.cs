@@ -124,6 +124,25 @@ namespace CavesOfOoo.Rendering
         }
         private InputState _inputState = InputState.Normal;
 
+        /// <summary>
+        /// Where the world-action-menu chain (menu itself, "what's here"
+        /// picker, crafting-station reopen loops) should land once it fully
+        /// closes. Set ONLY at the chain's two true entry points —
+        /// <see cref="OpenWorldActionMenuOrThrow"/> (look-mode Enter/click →
+        /// LookMode) and <see cref="HandleAwaitingTalkDirection"/> (the 'c'
+        /// interact key → Normal) — and read everywhere inside the chain
+        /// instead of hardcoding LookMode.
+        ///
+        /// <para>Before this field existed every closing branch in
+        /// <c>HandleWorldActionMenuInput</c>/<c>ExecuteWorldActionSelection</c>
+        /// hardcoded <c>InputState.LookMode</c>, which is correct for the
+        /// cursor entry but not for 'c': that key never calls
+        /// <c>EnterLookMode</c> (no world cursor is activated), so landing in
+        /// LookMode put the player one Escape away from Normal rather than
+        /// zero — the "need two Escapes to move again" bug.</para>
+        /// </summary>
+        private InputState _worldActionMenuReturnState = InputState.LookMode;
+
         // State we should return to when the announcement queue drains.
         // Captured at the moment the FIRST announcement in a burst opens so
         // that chained Opens (popup N → popup N+1) don't overwrite it. If an
@@ -2179,6 +2198,11 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private void OpenWorldActionMenuOrThrow(int tileX, int tileY)
         {
+            // True entry point #1: the look-mode cursor. The chain must
+            // land back in LookMode when it closes, matching every caller
+            // here (both are inside HandleLookModeInput).
+            _worldActionMenuReturnState = InputState.LookMode;
+
             // The world action menu is now the single entry point for look-
             // mode clicks. Throwable items surface "Throw" as a menu action
             // (declared by HandlingPart's GetInventoryActions handler); the
@@ -2236,8 +2260,7 @@ namespace CavesOfOoo.Rendering
         /// <paramref name="includeBackRow"/> is true (entered from the
         /// "what's here" picker), a bottom row returns to the picker.
         /// </summary>
-        private void OpenWorldActionMenuFor(Entity target, Cell cell, bool includeBackRow,
-            InputState emptyState = InputState.LookMode)
+        private void OpenWorldActionMenuFor(Entity target, Cell cell, bool includeBackRow)
         {
             if (WorldActionMenuUI == null || target == null) return;
 
@@ -2247,9 +2270,9 @@ namespace CavesOfOoo.Rendering
             if (actions.Count == 0)
             {
                 MessageLog.Add(WorldInteractionSystem.DescribeCell(cell));
-                // The interact key returns to Normal; look-mode callers stay
-                // in look mode so the cursor survives an empty cell.
-                _inputState = emptyState;
+                // Land wherever the chain's true entry point said to — see
+                // _worldActionMenuReturnState.
+                _inputState = _worldActionMenuReturnState;
                 return;
             }
 
@@ -2274,8 +2297,9 @@ namespace CavesOfOoo.Rendering
         {
             if (WorldActionMenuUI == null)
             {
-                // UI disappeared mid-state — bail cleanly back to look mode.
-                _inputState = InputState.LookMode;
+                // UI disappeared mid-state — bail cleanly back to wherever
+                // this chain started.
+                _inputState = _worldActionMenuReturnState;
                 return;
             }
 
@@ -2285,7 +2309,7 @@ namespace CavesOfOoo.Rendering
             {
                 WorldActionMenuUI.ConsumeSelection();
                 ExitCenteredPopupOverlayViewToGameplay(); // pair with the Enter on open
-                _inputState = InputState.LookMode;
+                _inputState = _worldActionMenuReturnState;
                 return;
             }
 
@@ -2316,7 +2340,7 @@ namespace CavesOfOoo.Rendering
             if (action == null || target == null)
             {
                 ExitCenteredPopupOverlayViewToGameplay();
-                _inputState = InputState.LookMode;
+                _inputState = _worldActionMenuReturnState;
                 return;
             }
 
@@ -2339,7 +2363,7 @@ namespace CavesOfOoo.Rendering
                 }
                 else
                 {
-                    _inputState = InputState.LookMode;
+                    _inputState = _worldActionMenuReturnState;
                 }
                 return;
             }
@@ -2350,7 +2374,7 @@ namespace CavesOfOoo.Rendering
                 if (cell != null)
                     OpenWorldActionMenu(cell.X, cell.Y);
                 else
-                    _inputState = InputState.LookMode;
+                    _inputState = _worldActionMenuReturnState;
                 return;
             }
 
@@ -2364,7 +2388,7 @@ namespace CavesOfOoo.Rendering
                     OpenWorldActionMenuFor(target, cell,
                         includeBackRow: WorldInteractionSystem.IsPileCell(cell));
                 else
-                    _inputState = InputState.LookMode;
+                    _inputState = _worldActionMenuReturnState;
                 return;
             }
 
@@ -2393,7 +2417,7 @@ namespace CavesOfOoo.Rendering
                 }
                 else
                 {
-                    _inputState = InputState.LookMode;
+                    _inputState = _worldActionMenuReturnState;
                 }
                 return;
             }
@@ -2403,7 +2427,7 @@ namespace CavesOfOoo.Rendering
             if (isPileCell && action.Command == "Examine")
             {
                 MessageLog.Add(WorldInteractionSystem.DescribeCell(cell));
-                _inputState = InputState.LookMode;
+                _inputState = _worldActionMenuReturnState;
                 return;
             }
 
@@ -2417,7 +2441,7 @@ namespace CavesOfOoo.Rendering
                 if (pos.x < 0 || pos.y < 0)
                 {
                     MessageLog.Add($"{target.GetDisplayName()} can't be thrown from here.");
-                    _inputState = InputState.LookMode;
+                    _inputState = _worldActionMenuReturnState;
                     return;
                 }
                 OpenWorldThrowActionPopup(target, pos.x, pos.y);
@@ -2460,7 +2484,7 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
-            _inputState = InputState.LookMode;
+            _inputState = _worldActionMenuReturnState;
         }
 
         /// <summary>
@@ -3257,10 +3281,16 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            // True entry point #2: the interact key. Unlike the cursor path
+            // above, 'c' never calls EnterLookMode — no world cursor is
+            // activated — so the chain must land back in Normal, not
+            // LookMode, or Escape from the menu leaves the player one more
+            // Escape away from being able to move.
+            _worldActionMenuReturnState = InputState.Normal;
+
             // includeBackRow: a cell can hold several things, and "<< everything
             // here" is how the player reaches the ones the cursor did not pick.
-            OpenWorldActionMenuFor(target, targetCell, includeBackRow: true,
-                emptyState: InputState.Normal);
+            OpenWorldActionMenuFor(target, targetCell, includeBackRow: true);
         }
 
         private void OpenDialogue()
