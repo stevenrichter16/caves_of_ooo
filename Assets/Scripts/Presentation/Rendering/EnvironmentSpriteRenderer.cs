@@ -1090,6 +1090,19 @@ namespace CavesOfOoo.Rendering
         /// glyph the cell currently paints. Returns null otherwise.
         /// (Pass 15 R5: takes the already-fetched top entity.)
         /// </summary>
+        /// <summary>
+        /// Whether this entity will be drawn as a SPRITE rather than as a
+        /// CP437 glyph.
+        ///
+        /// <para>Exposed for <c>GlyphGhostRenderer</c>, which must not smear
+        /// an ASCII glyph behind an actor the player sees as pixel art. It
+        /// cannot infer this from the main tilemap: the ghost pass runs
+        /// BEFORE the sprite pass claims the cell, so the tilemap still
+        /// holds the glyph at that moment.</para>
+        /// </summary>
+        public bool WillRenderAsSprite(Entity entity)
+            => entity != null && TryEntityBasedTile(entity) != null;
+
         private Tile TryEntityBasedTile(Entity topEntity)
         {
             string bp = topEntity?.BlueprintName;

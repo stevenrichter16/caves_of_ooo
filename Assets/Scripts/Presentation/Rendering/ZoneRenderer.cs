@@ -904,7 +904,7 @@ namespace CavesOfOoo.Rendering
                 // env so ghosts can render over animated overlays.
                 // See Docs/GRAPHICS-PASS6.md §6A.
                 if (_glyphGhostRenderer != null)
-                    _glyphGhostRenderer.PostRender(_tilemap);
+                    _glyphGhostRenderer.PostRender(_tilemap, _envSpriteRenderer != null ? _envSpriteRenderer.WillRenderAsSprite : (System.Func<Entity, bool>)null);
 
                 // Pass 7 §7B.1: hybrid sprite environment. Runs
                 // LAST so it can claim wall/floor/water glyphs

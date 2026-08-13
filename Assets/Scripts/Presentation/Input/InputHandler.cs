@@ -2236,7 +2236,8 @@ namespace CavesOfOoo.Rendering
         /// <paramref name="includeBackRow"/> is true (entered from the
         /// "what's here" picker), a bottom row returns to the picker.
         /// </summary>
-        private void OpenWorldActionMenuFor(Entity target, Cell cell, bool includeBackRow)
+        private void OpenWorldActionMenuFor(Entity target, Cell cell, bool includeBackRow,
+            InputState emptyState = InputState.LookMode)
         {
             if (WorldActionMenuUI == null || target == null) return;
 
@@ -2246,7 +2247,9 @@ namespace CavesOfOoo.Rendering
             if (actions.Count == 0)
             {
                 MessageLog.Add(WorldInteractionSystem.DescribeCell(cell));
-                _inputState = InputState.LookMode;
+                // The interact key returns to Normal; look-mode callers stay
+                // in look mode so the cursor survives an empty cell.
+                _inputState = emptyState;
                 return;
             }
 
@@ -3237,53 +3240,27 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Dispatch by what's in the target cell. Priority order:
-            //   1. ConversationPart → talk (matches original 'c' behavior)
-            //   2. ContainerPart    → open chest
-            // We loop once and keep the first match of each kind; talk wins
-            // if the same cell somehow has both (unlikely but well-defined).
-            Entity talkTarget = null;
-            Entity containerTarget = null;
-            for (int i = 0; i < targetCell.Objects.Count; i++)
+            // INTERACT, not talk. 'c' opens the SAME world-action menu the
+            // look-mode cursor opens, so one key reaches everything a thing
+            // can do — examine, take, throw, haul, open, chat — instead of
+            // a hardcoded talk-then-container ladder that could only ever
+            // reach two verbs and silently ignored a sword on the floor.
+            //
+            // Chat is not special-cased any more: ConversationPart already
+            // contributes a "chat" row (ConversationPart.cs:41), so talking
+            // is one row among the rest. That is a deliberate extra
+            // keystroke versus the old behaviour.
+            var target = WorldInteractionSystem.ResolveTarget(targetCell);
+            if (target == null)
             {
-                var obj = targetCell.Objects[i];
-                if (talkTarget == null && obj.GetPart<ConversationPart>() != null)
-                    talkTarget = obj;
-                else if (containerTarget == null && obj.GetPart<ContainerPart>() != null)
-                    containerTarget = obj;
-            }
-
-            if (talkTarget != null)
-            {
-                // Start conversation
-                bool started = ConversationManager.StartConversation(talkTarget, PlayerEntity);
-                if (!started)
-                {
-                    // ALPHA narrative-feedback SM2: a failed conversation
-                    // start used to be a silent no-op — indistinguishable
-                    // from a dead key.
-                    MessageLog.Add($"{talkTarget.GetDisplayName()} has nothing to say.");
-                    return;
-                }
-                OpenDialogue();
+                MessageLog.Add("There's nothing there to interact with.");
                 return;
             }
 
-            if (containerTarget != null)
-            {
-                // Fire the InventoryAction event on the container with the OpenContainer
-                // command — reuses ContainerPart.HandleEvent's existing open flow
-                // (locked-check, contents message, OpenContainer event broadcast).
-                // End the turn so the open action consumes a tick, matching talk.
-                var openAction = GameEvent.New("InventoryAction");
-                openAction.SetParameter("Command", "OpenContainer");
-                openAction.SetParameter("Actor", (object)PlayerEntity);
-                containerTarget.FireEventAndRelease(openAction);
-                EndTurnAndProcess();
-                return;
-            }
-
-            MessageLog.Add("There's nothing there to interact with.");
+            // includeBackRow: a cell can hold several things, and "<< everything
+            // here" is how the player reaches the ones the cursor did not pick.
+            OpenWorldActionMenuFor(target, targetCell, includeBackRow: true,
+                emptyState: InputState.Normal);
         }
 
         private void OpenDialogue()

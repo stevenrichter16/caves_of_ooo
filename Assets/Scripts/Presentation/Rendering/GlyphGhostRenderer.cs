@@ -113,7 +113,7 @@ namespace CavesOfOoo.Rendering
         /// Detects entity moves, spawns ghosts at previous cells,
         /// decays existing ghosts, and clears expired ones.
         /// </summary>
-        public void PostRender(Tilemap mainTilemap)
+        public void PostRender(Tilemap mainTilemap, System.Func<Entity, bool> isSpriteRendered = null)
         {
             if (!IsInitialized || _zone == null || mainTilemap == null) return;
 
@@ -162,8 +162,19 @@ namespace CavesOfOoo.Rendering
                 _seenThisScan.Add(entity);
 
                 if (_lastKnown.TryGetValue(entity, out var prev)
-                    && (prev.X != cell.X || prev.Y != cell.Y))
+                    && (prev.X != cell.X || prev.Y != cell.Y)
+                    && !(isSpriteRendered != null && isSpriteRendered(entity)))
                 {
+                    // Sprite-rendered actors leave NO ghost.
+                    //
+                    // The guard below ("Tile stays null and SpawnGhost
+                    // skips") was written believing the sprite pass had
+                    // already nulled the main tilemap by now. It has not:
+                    // RenderZone runs this pass at :907 and the sprite pass
+                    // at :915, so the capture above reads the actor's CP437
+                    // glyph and a pixel-art player smeared an '@' behind
+                    // itself. The renderer cannot infer this from the
+                    // tilemap; it has to ask.
                     SpawnGhost(prev.X, prev.Y, prev.Tile, prev.Color);
                 }
 

@@ -8,7 +8,7 @@
 
 ---
 
-## 1. ASCII ghost trails over sprite tiles 🔨
+## 1. ASCII ghost trails over sprite tiles ✅ (partial)
 
 **Symptom.** Walking over a walkable ground sprite — bush, copper pipe,
 peat bog — leaves the player's ASCII glyph on the tile, fading over a
@@ -41,9 +41,31 @@ tile rather than on more ASCII.
 | B | Ghost only when the entity genuinely renders as a glyph — ask the sprite layer whether it will claim this entity, rather than inferring from a tilemap that has not been written yet | small | needs a query the sprite renderer may not expose |
 | **C** | **Ghost the entity's sprite when it has one, its glyph when it does not** | medium | best result: trails work for everyone |
 
-**Chosen: B first, C later.** B removes the wrong behaviour immediately
-and is the minimum correct change. C is the feature the trail was
-presumably meant to be, and is a separate slice.
+**Shipped: B.** `EnvironmentSpriteRenderer.WillRenderAsSprite` is now
+public and `GlyphGhostRenderer` asks it before spawning. The renderer
+could not infer this from the tilemap — the ghost pass runs at
+`ZoneRenderer:907` and the sprite pass at `:915`, so at capture time the
+tilemap still holds the glyph.
+
+### ⚠ A SECOND cause, found by survey and NOT yet fixed
+
+`PostRender` is the ghost renderer's **only clock** — there is no
+`Update`. And `ZoneRenderer` calls it **only from the full-redraw path**,
+which fires once per **player move** (`MovementSystem.cs:226`
+`MarkFullDirty("Move.Player")`). So a lifetime written as "6 frames ≈
+100ms" is really **6 player turns**, and a fresh ghost sits at 100% alpha
+until you take your next step.
+
+That explains the reported "fades over the course of a few **ticks**" —
+ticks, not frames, exactly as described. It also means NPC moves never
+tick the decay at all (they use the dirty path), so an NPC ghost can sit
+at a stale position reading as a duplicate monster.
+
+Gating on sprites removes the symptom for everything that has a sprite,
+which is the player and the named roster. **Any purely-ASCII actor still
+leaves a 6-turn trail.** Fixing the clock is its own slice and needs a
+decision: a real per-frame decay (costs an `Update` on a renderer, see
+`Docs/PERF-FOUNDATION.md`) or dropping the feature.
 
 **Counter-check that matters:** a purely-ASCII actor must still leave a
 trail, or B has silently deleted the feature instead of fixing it.
@@ -64,7 +86,7 @@ sprites of their own.
 
 ---
 
-## 3. `c` as a general interact key 📋
+## 3. `c` as a general interact key ✅
 
 **Want.** Press `c`, then a direction, and the world-action popup opens
 for whatever is that way — barrel, tree, hedgerow, basket, dog, sword on
@@ -88,11 +110,18 @@ existing menu opens. Escape cancels.
   you are standing on without opening the full pile picker.
 - **Nothing there.** Direction with an empty cell should say so and
   cancel, not open an empty menu.
-- **Chat must keep working.** Today `c` talks immediately to an
-  adjacent NPC. Making `c` a two-keystroke verb is a real cost to
-  anyone used to it. Mitigation: if the menu's only meaningful row is
-  Chat, the direction press can go straight into conversation.
-  **Flagged as a judgement call — worth confirming before building.**
+- **Chat is NOT special-cased.** Decided: `c` always opens the menu,
+  even for a talkable NPC. `ConversationPart` already contributes a
+  "chat" row, so talking is one row among the rest — a deliberate extra
+  keystroke, in exchange for one key that reaches everything.
+
+**Shipped.** The mode already existed (`InputState.AwaitingTalkDirection`,
+armed by `c`, message "Interact — choose a direction"); it just resolved
+through a hardcoded talk-then-container ladder that could reach exactly
+two verbs and ignored a sword on the floor. It now resolves through
+`WorldInteractionSystem.ResolveTarget` into the same
+`OpenWorldActionMenuFor` the look-mode cursor uses, with the
+"<< everything here" row for cells holding several things.
 
 **Risk.** `InputHandler` is large and modal state is scattered. The
 throw-aim popup is the closest existing precedent for "suspend normal
