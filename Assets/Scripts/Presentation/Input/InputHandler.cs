@@ -2237,15 +2237,19 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Stacked cell → "what's here" picker: one row per object, each
-            // opening THAT entity's own action menu (user request,
-            // 2026-07-19). Single-object cells go straight to the actions.
+            // Stacked cell → the PILE SUMMARY: "take items (N)" / examine /
+            // "<< everything here". Not the raw one-row-per-object picker,
+            // which this used to open directly: a heap of loot is something
+            // the player wants to TAKE, and a wall of item names with no
+            // take verb on any of them made the commonest case (a dead NPC's
+            // drops) the most awkward. The per-object picker is still one
+            // keystroke away for the things that are not simple loot.
             if (WorldInteractionSystem.IsPileCell(cell))
             {
-                var pickerRows = WorldInteractionSystem.BuildTargetPickerActions(cell);
-                if (pickerRows.Count > 0)
+                var pileRows = WorldInteractionSystem.BuildPileSummaryActions(cell, PlayerEntity);
+                if (pileRows.Count > 0)
                 {
-                    WorldActionMenuUI.Open(PlayerEntity, target, cell, pickerRows);
+                    WorldActionMenuUI.Open(PlayerEntity, target, cell, pileRows);
                     _inputState = InputState.WorldActionMenuOpen;
                     EnterCenteredPopupOverlayView();
                     return;
@@ -2253,6 +2257,40 @@ namespace CavesOfOoo.Rendering
             }
 
             OpenWorldActionMenuFor(target, cell, includeBackRow: false);
+        }
+
+        /// <summary>
+        /// The "what's here" picker: one row per object in the cell, each
+        /// opening THAT entity's own action menu.
+        ///
+        /// <para>Split out of <see cref="OpenWorldActionMenu"/> because the
+        /// pile branch there now opens the summary instead. The
+        /// "&lt;&lt; everything here" row routes here, so it must be
+        /// reachable WITHOUT going through the summary — otherwise that row
+        /// would reopen the very menu it was selected from.</para>
+        /// </summary>
+        private void OpenTargetPicker(Cell cell)
+        {
+            if (WorldActionMenuUI == null || cell == null) return;
+
+            Entity target = WorldInteractionSystem.ResolveTarget(cell);
+            if (target == null)
+            {
+                MessageLog.Add(WorldInteractionSystem.DescribeCell(cell));
+                _inputState = _worldActionMenuReturnState;
+                return;
+            }
+
+            var pickerRows = WorldInteractionSystem.BuildTargetPickerActions(cell);
+            if (pickerRows.Count == 0)
+            {
+                OpenWorldActionMenuFor(target, cell, includeBackRow: false);
+                return;
+            }
+
+            WorldActionMenuUI.Open(PlayerEntity, target, cell, pickerRows);
+            _inputState = InputState.WorldActionMenuOpen;
+            EnterCenteredPopupOverlayView();
         }
 
         /// <summary>
@@ -2368,13 +2406,40 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Special case: back row — return to the "what's here" picker.
+            // Special case: back row — open the "what's here" picker.
+            // OpenTargetPicker, NOT OpenWorldActionMenu: on a pile cell the
+            // latter now opens the pile SUMMARY, which is where this row was
+            // selected from, so routing there would just reopen the same
+            // menu and the row would do nothing.
             if (action.Command == WorldInteractionSystem.PickCellCommand)
             {
                 if (cell != null)
-                    OpenWorldActionMenu(cell.X, cell.Y);
+                    OpenTargetPicker(cell);
                 else
                     _inputState = _worldActionMenuReturnState;
+                return;
+            }
+
+            // Special case: "take items (N)" → the persistent pickup list.
+            // PickupUI already implements exactly the loop wanted here:
+            // Enter takes the highlighted item, the item leaves the list,
+            // THE LIST STAYS OPEN, and it closes only when empty or on
+            // Escape (PickupUI.PickupItem / HandleInput). Tab takes
+            // everything at once. Reusing it means the pile flow and the
+            // standalone pickup key share one tested implementation.
+            if (action.Command == WorldInteractionSystem.ViewPileCommand)
+            {
+                var pileItems = InventorySystem.GetTakeableItemsInCell(cell, PlayerEntity);
+                if (pileItems.Count == 0)
+                {
+                    MessageLog.Add("There's nothing here to pick up.");
+                    _inputState = _worldActionMenuReturnState;
+                    return;
+                }
+                OpenPickup(pileItems);
+                // OpenPickup transitions to PickupOpen and enters the
+                // overlay camera itself; ClosePickup ends the turn if
+                // anything was actually taken.
                 return;
             }
 

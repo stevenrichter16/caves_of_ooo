@@ -130,14 +130,26 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static List<Entity> GetTakeableItemsAtFeet(Entity actor, Zone zone)
         {
+            return GetTakeableItemsInCell(zone?.GetEntityCell(actor), actor);
+        }
+
+        /// <summary>
+        /// Takeable items lying in an ARBITRARY cell, not just the actor's
+        /// own. The interact key ('c') can target an adjacent cell, which
+        /// the standalone pickup key cannot, so the pile-loot flow needs a
+        /// cell-addressed version of the at-feet query.
+        /// </summary>
+        /// <param name="excludeActor">Omitted from the result — the actor
+        /// standing in the cell is not loot.</param>
+        public static List<Entity> GetTakeableItemsInCell(Cell cell, Entity excludeActor = null)
+        {
             var result = new List<Entity>();
-            var cell = zone.GetEntityCell(actor);
             if (cell == null) return result;
 
             for (int i = 0; i < cell.Objects.Count; i++)
             {
                 var obj = cell.Objects[i];
-                if (obj == actor) continue;
+                if (obj == null || obj == excludeActor) continue;
                 var physics = obj.GetPart<PhysicsPart>();
                 if (physics != null && physics.Takeable)
                     result.Add(obj);

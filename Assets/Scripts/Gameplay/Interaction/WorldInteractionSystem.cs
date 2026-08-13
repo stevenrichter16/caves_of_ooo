@@ -188,11 +188,55 @@ namespace CavesOfOoo.Core
         public const string PickCellCommand = "PickCell";
 
         /// <summary>
+        /// Command that opens the pile's takeable items in the pickup list —
+        /// the persistent one, where taking an item leaves the rest on
+        /// screen. This is what a loot pile is FOR, so it is the row the
+        /// pile menu leads with.
+        /// </summary>
+        public const string ViewPileCommand = "ViewPile";
+
+        /// <summary>
         /// Build the "what's here" picker for a clicked cell: one row per
         /// object, non-terrain first (top-most leading, matching what the
         /// player visually clicked), terrain (the floor) last so it stays
         /// reachable. Each row's command is PickTarget:&lt;ID&gt;.
         /// </summary>
+        /// <summary>
+        /// The menu a PILE cell opens with: what you can do about the pile
+        /// as a whole, rather than a wall of one-row-per-object.
+        ///
+        /// <para>Ordered by what a player actually wants from a heap of
+        /// loot: take the items, look at them, then — for the things that
+        /// are not simple loot (a chest, a corpse, a signpost sharing the
+        /// cell) — the full per-object picker.</para>
+        ///
+        /// <para>The "take items" row is omitted when nothing in the cell is
+        /// takeable, so a cell holding two pieces of scenery does not offer
+        /// an empty list.</para>
+        /// </summary>
+        public static List<InventoryAction> BuildPileSummaryActions(Cell cell, Entity actor)
+        {
+            // InventoryActionList, not a bare List — InventoryAction is not
+            // IComparable, so List.Sort() would throw. The list type owns the
+            // priority/hotkey comparer that GatherActions already uses.
+            var rows = new InventoryActionList();
+            if (cell == null) return rows.Actions;
+
+            int takeable = InventorySystem.GetTakeableItemsInCell(cell, actor).Count;
+            if (takeable > 0)
+            {
+                rows.AddAction("ViewPile",
+                    takeable == 1 ? "take item (1)" : $"take items ({takeable})",
+                    ViewPileCommand, 'g', 40);
+            }
+
+            rows.AddAction("Examine", "examine", "Examine", 'x', 0);
+            rows.AddAction("PickCell", "<< everything here", PickCellCommand, '\0', -1);
+
+            rows.Sort();
+            return rows.Actions;
+        }
+
         public static List<InventoryAction> BuildTargetPickerActions(Cell cell)
         {
             var rows = new List<InventoryAction>();
