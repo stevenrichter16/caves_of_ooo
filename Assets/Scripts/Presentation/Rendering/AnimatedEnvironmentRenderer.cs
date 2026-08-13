@@ -224,9 +224,17 @@ namespace CavesOfOoo.Rendering
             // Never animate anything alive. A Viper renders '~'.
             if (top.HasTag("Creature")) return false;
 
+            // Water animation requires the cell to actually render as a
+            // WATER SPRITE, not merely to be a liquid.
+            //
+            // LiquidPoolPart is not sufficient: BrinePool, PeatBog,
+            // AcidPool and TarSeep all carry it while rendering as a bare
+            // '~' glyph, and scrolling a LETTER is the bug this whole gate
+            // exists to stop. Only WaterPuddle resolves a water ground
+            // material and has a tile to scroll. The rest stay static until
+            // they have sprites of their own.
             if (target == _waterTilemap)
-                return top.GetPart<LiquidPoolPart>() != null
-                    || EnvironmentSpriteRenderer.ResolveGroundMaterial(top.BlueprintName)
+                return EnvironmentSpriteRenderer.ResolveGroundMaterial(top.BlueprintName)
                        == EnvironmentSpriteRenderer.GroundMaterial.Water;
 
             if (target == _grassTilemap)
