@@ -8,7 +8,7 @@
 
 ---
 
-## 1. ASCII ghost trails over sprite tiles ✅ (partial)
+## 1. ASCII ghost trails over sprite tiles ✅ (feature removed)
 
 **Symptom.** Walking over a walkable ground sprite — bush, copper pipe,
 peat bog — leaves the player's ASCII glyph on the tile, fading over a
@@ -61,14 +61,20 @@ ticks, not frames, exactly as described. It also means NPC moves never
 tick the decay at all (they use the dirty path), so an NPC ghost can sit
 at a stale position reading as a duplicate monster.
 
-Gating on sprites removes the symptom for everything that has a sprite,
-which is the player and the named roster. **Any purely-ASCII actor still
-leaves a 6-turn trail.** Fixing the clock is its own slice and needs a
-decision: a real per-frame decay (costs an `Update` on a renderer, see
-`Docs/PERF-FOUNDATION.md`) or dropping the feature.
+### Resolution: the feature is gone
 
-**Counter-check that matters:** a purely-ASCII actor must still leave a
-trail, or B has silently deleted the feature instead of fixing it.
+Asked whether the trail should decay properly or be dropped, the answer
+was that the ghost should not appear at all. So `GlyphGhostRenderer`,
+its `ZoneRenderer` wiring (5 sites) and its two test files are deleted
+rather than left disabled — a fully-tested renderer that nothing calls
+is dead code, and the sprite-gate from the earlier partial fix was only
+ever a workaround for a feature that is no longer wanted.
+
+The `WillRenderAsSprite` query added to `EnvironmentSpriteRenderer` for
+that gate is **kept**: "will this entity draw as a sprite?" is a
+generally useful question about the render pipeline, and it is the only
+correct way to ask it (the tilemap cannot answer it before the sprite
+pass runs).
 
 ---
 
