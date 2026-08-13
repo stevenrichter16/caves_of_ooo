@@ -135,10 +135,14 @@ namespace CavesOfOoo.Tests
             var chest = _factory.CreateEntity("Chest");
             var actions = WorldInteractionSystem.GatherActions(chest);
 
-            Assert.AreEqual(2, actions.Count, "Chest declares Open + Examine.");
-            // Sort is priority DESC, so Open (30) comes before Examine (0).
+            Assert.AreEqual(3, actions.Count, "Chest declares Open + Break + Examine.");
+            // Sort is priority DESC: Open (30), Break (5), Examine (0).
+            // Break sits deliberately below Open — smashing a chest must
+            // never be the row the cursor lands on when opening it is an
+            // option. See DestructiblePart.HandleEvent.
             Assert.AreEqual("OpenContainer", actions[0].Command);
-            Assert.AreEqual("Examine", actions[1].Command);
+            Assert.AreEqual(DestructiblePart.BreakCommand, actions[1].Command);
+            Assert.AreEqual("Examine", actions[2].Command);
         }
 
         [Test]

@@ -19,7 +19,7 @@ namespace CavesOfOoo.Core
 
         protected override void ApplyOnHitEffect(Entity target, Zone zone, System.Random rng)
         {
-            target.ApplyEffect(new BurningEffect(intensity: 1.0f, source: ParentEntity, rng: rng), ParentEntity, zone);
+            ObjectStatusMatrix.TryApply(new BurningEffect(intensity: 1.0f, source: ParentEntity, rng: rng), target, ParentEntity, zone);
         }
     }
 }

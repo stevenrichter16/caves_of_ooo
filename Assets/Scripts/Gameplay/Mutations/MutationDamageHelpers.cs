@@ -76,10 +76,11 @@ namespace CavesOfOoo.Core
             if (!string.IsNullOrEmpty(elementAttribute))
                 dmg.AddAttribute(elementAttribute);
 
-            int hpBefore = target.GetStatValue("Hitpoints", 0);
-            CombatSystem.ApplyDamage(target, dmg, attacker, zone);
-            int hpAfter = target.GetStatValue("Hitpoints", 0);
-            return System.Math.Max(0, hpBefore - hpAfter);
+            // RouteDamage, not ApplyDamage: a non-living target has no
+            // Hitpoints stat, so ApplyDamage early-outs on it and a fire
+            // bolt aimed at a hedgerow did nothing at all. Structural HP is
+            // a separate pool with a separate death path.
+            return DestructionSystem.RouteDamage(target, dmg, attacker, zone);
         }
     }
 }

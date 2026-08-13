@@ -31,7 +31,7 @@ namespace CavesOfOoo.Core
             // ElectrifiedEffect does the work: OnApply amplifies charge/duration
             // on wet targets and stuns creatures for one turn. The conductor
             // chain propagation resolves on the next EndTurn via OnTurnEnd.
-            target.ApplyEffect(new ElectrifiedEffect(charge: 1.0f), ParentEntity, zone);
+            ObjectStatusMatrix.TryApply(new ElectrifiedEffect(charge: 1.0f), target, ParentEntity, zone);
         }
     }
 }

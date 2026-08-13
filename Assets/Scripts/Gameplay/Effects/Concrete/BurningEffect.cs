@@ -143,8 +143,20 @@ namespace CavesOfOoo.Core
             {
                 var fireDmg = new Damage(rolledAmount);
                 fireDmg.AddAttribute("Fire");
-                CombatSystem.ApplyDamage(target, fireDmg, IgnitionSource, zone);
-                MessageLog.Add(target.GetDisplayName() + " takes " + fireDmg.Amount + " fire damage.");
+                // RouteDamage rather than ApplyDamage: a burning hedgerow
+                // has structural HP, not a Hitpoints stat, and ApplyDamage
+                // early-outs on those. Before this, scenery could be set
+                // alight and then burn indefinitely without ever being
+                // consumed.
+                int landed = DestructionSystem.RouteDamage(target, fireDmg, IgnitionSource, zone);
+                // Report the returned figure, not fireDmg.Amount. The
+                // creature path mutates Amount in place via ApplyResistances
+                // so reading it back was correct there — but the object path
+                // subtracts Hardness inside DestructionSystem and never
+                // touches the Damage object, so a stone wall would have been
+                // reported as taking the full pre-hardness roll. Same class
+                // of lying-message bug this block already exists to fix.
+                MessageLog.Add(target.GetDisplayName() + " takes " + landed + " fire damage.");
             }
 
             // 3. Emit heat to self (small reinforcement keeping temperature up)

@@ -220,6 +220,8 @@ namespace CavesOfOoo
                 LootDropSystem.Factory = _factory;
                 ContainerPlacementService.Factory = _factory;
                 TraderPart.Factory = _factory;
+                // Wreckage: a smashed wall leaves rubble behind.
+                DestructionSystem.EntityFactoryRef = _factory;
                 // SPELLCRAFT SM6: Glacial Wall spawns IceWall entities.
                 Skills.Cryomancy_GlacialWall.Factory = _factory;
                 LayRuneGoal.Factory = _factory;
@@ -878,6 +880,7 @@ namespace CavesOfOoo
             LootDropSystem.Factory = _factory;
             ContainerPlacementService.Factory = _factory;
             TraderPart.Factory = _factory;
+            DestructionSystem.EntityFactoryRef = _factory;
             Skills.Cryomancy_GlacialWall.Factory = _factory;
             LayRuneGoal.Factory = _factory;
             AlchemyStillPart.Factory = _factory;

@@ -25,7 +25,7 @@ namespace CavesOfOoo.Core
         protected override void ApplyOnHitEffect(Entity target, Zone zone, System.Random rng)
         {
             // Apply WetEffect — suppresses ignition when Moisture > 0.35
-            target.ApplyEffect(new WetEffect(moisture: 0.8f), ParentEntity, zone);
+            ObjectStatusMatrix.TryApply(new WetEffect(moisture: 0.8f), target, ParentEntity, zone);
 
             // Cool the target: negative Joules in direct mode subtracts temperature
             // This can drop temperature below FlameTemperature, causing ThermalPart

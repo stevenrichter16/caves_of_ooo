@@ -705,6 +705,28 @@ namespace CavesOfOoo.Rendering
                     CombatSystem.PerformMeleeAttack(PlayerEntity, blockedBy, CurrentZone, _combatRng);
                     EndTurnAndProcess();
                 }
+                else if (DestructionSystem.IsBreakable(blockedBy))
+                {
+                    // Bump-to-BREAK: the Qud behaviour of smashing through a
+                    // barrel or a hedge to make a shortcut.
+                    //
+                    // Routed through DestructionSystem, NOT
+                    // CombatSystem.PerformMeleeAttack: the latter ends in
+                    // HandleDeath, which awards kill XP, spawns a corpse,
+                    // splatters blood and alerts nearby NPCs. None of that
+                    // should happen for a fence.
+                    //
+                    // IsBreakable is the whole gate — it requires a
+                    // DestructiblePart and refuses Indestructible ones, so
+                    // walls and staircases without that Part fall through to
+                    // the ordinary "you can't go there" outcome exactly as
+                    // before.
+                    DestructionSystem.Damage(
+                        blockedBy,
+                        DestructionSystem.ComputeStructuralBlow(PlayerEntity, _combatRng),
+                        PlayerEntity, CurrentZone);
+                    EndTurnAndProcess();
+                }
                 else if (blockedBy == null && ZoneManager != null && WorldMap != null)
                 {
                     // Out-of-bounds move — zone transition (no border walls, like Qud)
@@ -2530,6 +2552,37 @@ namespace CavesOfOoo.Rendering
                     EndTurnAndProcess();
                     RequestZoneRedraw("Inventory.Pickup");
                 }
+                _inputState = _worldActionMenuReturnState;
+                return;
+            }
+
+            // Special case: Break → one swing at a non-living thing. Needs
+            // the zone and the combat RNG, neither of which reaches a Part
+            // through the InventoryAction event, so it is dispatched here
+            // rather than handled inside DestructiblePart.
+            //
+            // The menu stays CLOSED afterwards rather than reopening: one
+            // press is one swing, so the player can see the message log and
+            // decide whether to keep going.
+            if (action.Command == DestructiblePart.BreakCommand)
+            {
+                // Reach check: this menu is reachable from look mode too,
+                // whose cursor can sit anywhere on the map. Without this the
+                // player could demolish a wall across the zone by pointing
+                // at it. The bump path needs no such check — it is adjacent
+                // by construction.
+                if (!DestructionSystem.IsWithinStrikeReach(PlayerEntity, target, CurrentZone))
+                {
+                    MessageLog.Add($"{target.GetDisplayName()} is out of reach.");
+                    _inputState = _worldActionMenuReturnState;
+                    return;
+                }
+
+                DestructionSystem.Damage(
+                    target,
+                    DestructionSystem.ComputeStructuralBlow(PlayerEntity, _combatRng),
+                    PlayerEntity, CurrentZone);
+                EndTurnAndProcess();
                 _inputState = _worldActionMenuReturnState;
                 return;
             }

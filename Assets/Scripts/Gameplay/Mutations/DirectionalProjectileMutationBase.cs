@@ -137,7 +137,18 @@ namespace CavesOfOoo.Core
                     }
                 }
 
-                if (target.GetStatValue("Hitpoints", 0) > 0)
+                // Alive things get their on-hit effect while they are still
+                // alive (see the B1 timing fix). Non-living things have no
+                // Hitpoints stat at all, so this gate used to close on every
+                // one of them — which is why a fire bolt could never set a
+                // hedgerow alight. A breakable object that survived the hit
+                // is just as valid an effect target; what the effect MEANS
+                // for it is ObjectStatusMatrix's decision, not this gate's.
+                var structural = target.GetPart<DestructiblePart>();
+                bool objectStillStanding = !target.HasTag("Creature")
+                    && structural != null && !structural.IsDestroyed;
+
+                if (target.GetStatValue("Hitpoints", 0) > 0 || objectStillStanding)
                     ApplyOnHitEffect(target, zone, rng);
             }
             else if (trace.BlockedBySolid)

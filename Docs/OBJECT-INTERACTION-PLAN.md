@@ -261,6 +261,102 @@ carry it.
 
 ---
 
+## §4 as shipped ✅
+
+`DestructiblePart` (structural HP, `Hardness`, `WreckageBlueprint`,
+`Indestructible`) + `DestructionSystem` (`IsBreakable` / `Damage` /
+`Destroy` / `RouteDamage` / `ComputeStructuralBlow`). 47 tests.
+
+**Two ways in.** Bumping a breakable obstacle swings at it —
+that is the shortcut-making case, and it only fires on things that
+were already blocking the move. The interact key (`c`) contributes a
+**Break** row at priority 5, for the barrel you could simply walk
+around; deliberately below `Open` (30) so smashing a chest is never
+what the cursor lands on when opening it is available.
+
+**Damage.** `ComputeStructuralBlow` is weapon dice + the wielder's stat
+modifier, floored at 1. No to-hit roll, no penetration ladder, no hit
+location — a barrel has no dodge value and no armour, and `Hardness`
+stands in for AV. Hardness never absorbs a hit entirely, so nothing is
+unbreakable by arithmetic; that is what `Indestructible` is for.
+
+**The register** — `DestructibleRegisterTests` asserts it against the
+real blueprint file, in both directions:
+
+| | HP | Hardness | Leaves |
+|---|---|---|---|
+| `Wall` (+ inheriting stone walls) | 28-70 | 2-6 | `Rubble` |
+| `Pillar` | 50 | 4 | `Rubble` |
+| `Hedge` / `Bush` / `BerryBush` | 6-10 | 0 | — |
+| `Tree` | 30 | 1 | — |
+| `IceWall` / `VineWall` | 14-18 | 0 | — |
+| `WoodenBarrel` / `HaulBarrel` / `Crate` | 8-10 | 0 | — |
+| `Chest` / `LockedChest` / `LockedDoor` | 14-22 | 1-2 | — |
+
+`Rubble` is walkable, so breaking a wall genuinely opens the path.
+**`Tree` leaves nothing** — the obvious `HollowStump` is `Solid`, so
+using it as wreckage would keep the cell blocked and make felling the
+tree pointless. There is a test for that specifically.
+
+**Staircases are safe by omission**, which is the direction that
+survives someone forgetting. `StairsDown`/`StairsUp` have no
+`DestructiblePart`, and `IsBreakable` returns false for anything
+lacking one. `Indestructible` exists on top of that for things which
+need the Part's other behaviour but must never break.
+
+**`MimicChest` is excluded** because it inherits `Creature` — it looks
+like the most breakable thing in the game and must not be, or killing
+one would skip its XP and loot.
+
+### §4/§5 self-review (Methodology Template §5)
+
+Three findings, all fixed before commit.
+
+**🟡 1 — the Break row could reach across the whole map.**
+`InputHandler.ExecuteWorldActionSelection`. The row is contributed by
+`DestructiblePart` and dispatched without any distance test. The bump
+path is adjacent by construction so this was invisible there, but the
+same menu opens from **look mode**, whose cursor is unbounded — so the
+player could point at a wall on the far side of the zone and demolish
+it a swing at a time.
+**Fixed:** `DestructionSystem.IsWithinStrikeReach` (adjacent, diagonals
+count), checked in the Break branch, with an "out of reach" message
+rather than a silent no-op. Two tests.
+
+**🟡 2 — the burning message reported the wrong number on objects.**
+`BurningEffect.OnTurnStart` read `fireDmg.Amount` back after the call,
+which is correct on the creature path because `ApplyResistances`
+mutates it in place — but the object path subtracts `Hardness` inside
+`DestructionSystem` and never touches the `Damage` object. A burning
+stone-adjacent object would report the full pre-hardness roll. This is
+the same lying-message bug class the surrounding comment block already
+exists to document a fix for.
+**Fixed:** report `RouteDamage`'s return value.
+
+**🟡 3 — "You strike the hedgerow." once per turn while it burned.**
+`DestructionSystem.Damage` narrated unconditionally, but it is also the
+per-turn damage path for anything on fire, and for NPC-caused damage.
+**Fixed:** narrate only when the source is the player.
+
+**🔵 Deferred — `PickupCommand` has no reach check either.** Found while
+checking finding 1: the "Take" row has the same unbounded-from-look-mode
+property, and predates this work. Not fixed here because it is a
+different feature's contract and changing it needs its own tests.
+
+### Divergence from §4.2 — damage is NOT shared
+
+§4.2's reconciliation proposed sharing the damage pipeline and forking
+only at the "reached zero" point, on the grounds that this is what Qud
+does. As built, the fork is one step earlier: `RouteDamage` picks the
+pool up front. The reason is that CoO's `ApplyDamage` reads and writes
+a `Hitpoints` **stat** throughout — resistances, the `Penalty` channel,
+death checks — and objects have no such stat. Sharing it would have
+meant giving every barrel a `Hitpoints` stat, which is precisely what
+`DestructiblePart`'s docstring argues against, since that stat is what
+opts an entity into the creature death path.
+
+---
+
 ## 5. Status effects and skills on objects 📋
 
 **Want.** Fire spells ignite flammable things — hedgerows, trees. And
@@ -281,6 +377,47 @@ through a hedgerow today. That filter is the first thing to change, and
 it must stay deliberate: a fireball should be stopped by a wall but not
 by grass.
 
+### ⚠ §5.1 was wrong — targeting was never the problem
+
+The pre-implementation sweep read the filter against the actual
+blueprint tags and it does not do what the paragraph above says.
+`Hedge`, `Tree` and `Bush` carry **no** `Wall` or `Terrain` tag
+(`Tree` has only `Solid`; `Hedge` has none at all), and the filter
+admits anything with a `PhysicsPart`. So spells were already hitting
+hedgerows and trees. `Wall` **is** tagged `Wall`, is skipped, and then
+stops the trace via `cell.IsSolid()` — which is exactly the
+"stopped by a wall, not by grass" behaviour §5.1 wanted built. **No
+change to `LineTargeting` was needed or made.**
+
+The real reason a fire bolt did nothing to a hedgerow is two gates
+further downstream, both invisible:
+
+1. **`CombatSystem.ApplyDamage` early-returns on any target with no
+   `Hitpoints` stat** (`CombatSystem.cs:832-840` — deliberate, so props
+   and statues are not damageable creatures). Scenery has structural HP
+   on a `DestructiblePart`, not a `Hitpoints` stat, so every point of
+   spell damage aimed at it was silently discarded.
+2. **`DirectionalProjectileMutationBase` gated the on-hit effect on
+   `target.GetStatValue("Hitpoints", 0) > 0`** (line ~139). For a
+   non-creature that is always 0, so the gate closed on every object
+   unconditionally — `BurningEffect` could never be applied to anything
+   that was not alive.
+
+`BurningEffect` had the same bug in its own tick: it dealt its
+per-turn fire damage through `ApplyDamage`, so scenery that *was*
+somehow set alight would burn indefinitely and never be consumed.
+
+**Fix:** `DestructionSystem.RouteDamage(target, damage, source, zone)`
+— one helper that sends damage to whichever pool the target actually
+has, used by `MutationDamageHelpers.ApplySpellDamage` and
+`BurningEffect` alike. Plus widening the on-hit gate to admit a
+breakable object that survived the hit.
+
+**The lesson, repeated:** "a spell passes through a hedgerow" is a
+symptom. The first plausible mechanism found near it (a targeting
+filter that mentions `Terrain`) was not the mechanism. Read the tags
+the filter actually tests against the content that actually exists.
+
 ### 5.2 An effect-to-material matrix
 
 The honest way to scope this is a table, authored explicitly rather
@@ -299,6 +436,47 @@ must be a no-op with a sensible message, not a silent success that puts
 a bleed timer on furniture. A rule of "effects apply to objects unless
 listed" fails open; the matrix must be opt-in per effect.
 
+### 5.2 as shipped — `ObjectStatusMatrix`
+
+`Assets/Scripts/Gameplay/World/ObjectStatusMatrix.cs`. A
+`Dictionary<Type, Func<Entity, bool>>`: the key is the effect type, the
+value asks whether THIS object is made of the right stuff. Absent from
+the table ⇒ `Meaningless`; present but the material gate fails ⇒
+`WrongMaterial`. Both refusals emit
+`effect/ObjectEffectRefused` with the reason, because "nothing
+happened" is the hardest bug class to chase and the two refusals have
+different fixes (author a material tag vs. add a row).
+
+| Effect | Gate |
+|---|---|
+| `Burning`, `Smoldering`, `Charred` | Flammable, Organic, Wood, Plant, Cloth, Paper, Fungal |
+| `Electrified` | Conductor, Metal |
+| `Frozen` | Wet, Water, Liquid, Ice, Organic |
+| `Wet`, `Acidic`, `Broken` | anything |
+| everything else | refused |
+
+**Divergence from the proposed table:** the "Liquid" and "Ice" columns
+are not implemented as separate behaviours — a liquid pool either
+accepts an effect or does not. Boiling-off, dilution and melting are
+existing `ThermalPart` / `MaterialReactionResolver` behaviour and were
+left where they are rather than duplicated into the matrix.
+
+**Divergence — the gates read TAGS, not the numeric fields.**
+`MaterialPart.Combustibility` and `Conductivity` are authored on two
+different scales in the same content file: 84 blueprints use 0-1
+(steel is `Conductivity 0.8`) and a handful use 0-100 (`OldWorldPipe`
+is 100), despite `MaterialPart`'s own docstring declaring 0-100
+canonical and warning consumers to compare against a threshold of 50.
+Any threshold chosen here would be correct for one group and silently
+wrong for the other. `MaterialTagsRaw` is authored consistently, so the
+gates read that. **This is pre-existing content drift, not something
+this slice introduced** — spun off as its own task.
+
+**Content added:** `Hedge`, `Tree`, `Bush`, `BerryBush`, `VineWall`,
+`HaulBarrel`, `Chest`, `LockedChest`, `LockedDoor`, `IceWall`, `Wall`
+and `Pillar` had no `MaterialPart` at all, so nothing about them was
+flammable, conductive or freezable. Each now carries one.
+
 ### 5.3 Fire spread
 
 Ignited flammables should spread to adjacent flammables and eventually
@@ -308,6 +486,31 @@ entirely, or a fire that runs through crop strips into a village, is
 either a great story or a bug depending on whether it was intended.
 **Spread wants a rate limit and a test that a fire cannot consume a
 whole zone in one turn.**
+
+### ⚠ §5.3 — spread already exists; nothing new was built
+
+`BurningEffect.OnTurnStart` step 5 already calls
+`MaterialSimSystem.EmitHeatToAdjacent(target, zone, Intensity * 30f)`,
+and `ThermalPart`'s ignition pipeline (FlameTemperature check →
+`TryIgnite` → `MaterialPart` veto → `WetEffect` suppression →
+`BurningEffect`) is what decides whether a neighbour catches. That is a
+physical propagation model with its own rate limit — heat has to
+accumulate past a threshold — rather than a graph flood, so the
+"consumes a whole zone in one turn" failure mode the plan feared is
+not reachable by construction.
+
+**What changed instead is that fire can now finish the job.** Before
+this slice, scenery could be heated and lit but never consumed
+(`BurningEffect` dealt its damage through `ApplyDamage`, which
+early-returns on objects). Now a burning hedgerow loses structural HP
+each turn and is destroyed at zero, which is what makes spread
+*terminate*: the fuel goes away.
+
+**Deliberately deferred:** no zone-scale burn budget, because none is
+needed yet given the thermal gate. If playtesting shows a hedgerow
+field going up wholesale and that reads as a bug rather than a story,
+the rate limit belongs in `MaterialSimSystem.EmitHeatToAdjacent`, not
+in the matrix.
 
 ---
 

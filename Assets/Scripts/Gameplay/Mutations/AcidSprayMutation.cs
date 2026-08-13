@@ -30,7 +30,7 @@ namespace CavesOfOoo.Core
             // organic combustibility and deals flat damage; OnTurnEnd decays
             // the corrosion. Reactions (acid_plus_organic) layer in the
             // fuel-consumption acceleration on burning acidic organics.
-            target.ApplyEffect(new AcidicEffect(corrosion: 0.8f), ParentEntity, zone);
+            ObjectStatusMatrix.TryApply(new AcidicEffect(corrosion: 0.8f), target, ParentEntity, zone);
         }
     }
 }
