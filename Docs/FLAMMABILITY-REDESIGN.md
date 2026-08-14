@@ -1,6 +1,19 @@
 # Flammability — Stock-Take and Redesign Plan
 
-> Status: **PROPOSED** — awaiting user green-light.
+> Status: **REVISION REQUIRED** — do NOT implement as written.
+> A 13-agent audit (`Docs/SYSTEMS-AUDIT-2026-08.md` §1) confirmed four
+> critical defects in this plan: M2's derivation attaches
+> DestructiblePart to 67 creatures (incl. Player) and ~24 items; M1's
+> RED tests are vacuous on the 70-blueprint gap they claim to measure;
+> old saves bypass EntityFactory so already-explored zones never
+> receive the fix; and the premise that the mutations targeting family
+> was already fixed is false (LineTargeting still skips Wall/Terrain).
+> Plus: unknown MaterialIDs (28 ship, sketch covers ~9) silently derive
+> nothing; freeze/shock keep the dual-authority shape; no live-bench
+> milestone; "authored values win" is unimplementable post-bake.
+> The audit's §6 P2 lists the required revisions.
+>
+> Original text below, unchanged, as the record.
 > Trigger: charm flowers wreathed in fire FX while provably not burning
 > (diag: one `BurningEffect` in the whole buffer, zero refusals).
 > Companion docs: `Docs/OBJECT-INTERACTION-PLAN.md` §5/§8 (the effect
