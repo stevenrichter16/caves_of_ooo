@@ -416,15 +416,20 @@ namespace CavesOfOoo.Tests
             caster.AddPart(new RenderPart { DisplayName = "caster" });
             caster.AddPart(new PhysicsPart { Solid = true });
             caster.AddPart(new ActivatedAbilitiesPart());
-            caster.AddPart(new MutationsPart());
+            caster.AddPart(new CavesOfOoo.Skills.SkillsPart());
             zone.AddEntity(caster, 10, 10);
-            var rain = new ConjureRainMutation();
-            caster.GetPart<MutationsPart>().AddMutation(rain, 1);
+            // Migration M4: Conjure Rain is a skill — cast through the dispatcher.
+            caster.GetPart<CavesOfOoo.Skills.SkillsPart>()
+                .AddSkill(new CavesOfOoo.Skills.Hydromancy_ConjureRain());
             int cropY = 10;
             var cropEntity = _factory.CreateEntity("CandyCarrotCrop");
             zone.AddEntity(cropEntity, 12, cropY);
 
-            rain.Cast(zone, zone.GetCell(10, 10));
+            var cmd = GameEvent.New("CommandConjureRain");
+            cmd.SetParameter("Zone", (object)zone);
+            cmd.SetParameter("SourceCell", (object)zone.GetCell(10, 10));
+            caster.FireEvent(cmd);
+            cmd.Release();
 
             var requests = AsciiFxBus.Drain();
             int fallingDrops = 0;

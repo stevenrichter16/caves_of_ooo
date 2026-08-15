@@ -212,7 +212,7 @@ namespace CavesOfOoo.Tests
         // ============================================================
 
         [Test]
-        public void CalmMutation_OnHit_AlreadyPacified_LogsAlreadyAtPeace()
+        public void Calm_OnHit_AlreadyPacified_LogsAlreadyAtPeace()
         {
             // User-visible feedback: re-casting Calm on an already-pacified
             // target should log "X is already at peace." The mutation does
@@ -228,12 +228,11 @@ namespace CavesOfOoo.Tests
             var brain = target.GetPart<BrainPart>();
             brain.PushGoal(new NoFightGoal(duration: 100));
 
-            var mutations = caster.GetPart<MutationsPart>();
-            mutations.AddMutation(new CalmMutation(), 1);
-            var calm = mutations.GetMutation<CalmMutation>();
+            caster.GetPart<CavesOfOoo.Skills.SkillsPart>()
+                .AddSkill(new CavesOfOoo.Skills.Spellcraft_Calm());
 
             MessageLog.Clear();
-            calm.Cast(zone, zone.GetCell(5, 5), 1, 0, new Random(42));
+            CastCalm(caster, zone, 1, 0);
 
             // Search the recent messages for the expected feedback. (Cast
             // may emit "X target gets calmed" or similar before our
@@ -256,35 +255,8 @@ namespace CavesOfOoo.Tests
                 "silently confusing.");
         }
 
-        [Test]
-        public void CalmMutation_MutationType_IsMental()
-        {
-            // Pins the mutation's category. Codepaths that filter by
-            // MutationType (e.g., a future mental-resistance check) rely
-            // on this being exactly "Mental".
-            var mutation = new CalmMutation();
-            Assert.AreEqual("Mental", mutation.MutationType);
-        }
 
-        [Test]
-        public void CalmMutation_DisplayName_IsCalm()
-        {
-            // UI contract.
-            var mutation = new CalmMutation();
-            Assert.AreEqual("Calm", mutation.DisplayName);
-        }
 
-        [Test]
-        public void CalmMutation_BaseDuration_IsForty()
-        {
-            // Pins the tuning constant. The level-scaling formula is
-            // Duration = BaseDuration + Level*10, so a change here
-            // shifts EVERY level's duration. Make this intentional.
-            var mutation = new CalmMutation();
-            Assert.AreEqual(40, mutation.BaseDuration,
-                "BaseDuration must remain 40 — the formula and existing " +
-                "Level-scaling tests assume this anchor.");
-        }
 
         // ============================================================
         // WitnessedEffect — Qud-type bitmask + UI contracts
@@ -376,8 +348,26 @@ namespace CavesOfOoo.Tests
         {
             var entity = CreateCalmCreatureBase("caster", hp: 20);
             entity.AddPart(new ActivatedAbilitiesPart());
-            entity.AddPart(new MutationsPart());
+            entity.AddPart(new CavesOfOoo.Skills.SkillsPart());
             return entity;
+        }
+
+        /// <summary>Migration M4: Calm is a skill — cast through the
+        /// dispatcher with the InputHandler's parameter shapes.</summary>
+        private static void CastCalm(Entity caster, Zone zone, int dx, int dy)
+        {
+            var abilities = caster.GetPart<ActivatedAbilitiesPart>();
+            for (int i = 0; i < abilities.AbilityList.Count; i++)
+                if (abilities.AbilityList[i].Command == "CommandCalm")
+                    abilities.AbilityList[i].CooldownRemaining = 0;
+            var cmd = GameEvent.New("CommandCalm");
+            cmd.SetParameter("Zone", (object)zone);
+            cmd.SetParameter("RNG", (object)new Random(42));
+            cmd.SetParameter("SourceCell", (object)zone.GetEntityCell(caster));
+            cmd.SetParameter("DirectionX", dx);
+            cmd.SetParameter("DirectionY", dy);
+            caster.FireEvent(cmd);
+            cmd.Release();
         }
 
         private static Entity CreateCalmTargetWithBrain()

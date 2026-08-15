@@ -54,15 +54,15 @@ namespace CavesOfOoo.Tests
             e.Tags["Creature"] = "";
             e.AddPart(new RenderPart { DisplayName = "caster" });
             e.AddPart(new ActivatedAbilitiesPart());
-            e.AddPart(new MutationsPart());
+            e.AddPart(new CavesOfOoo.Skills.SkillsPart());
             zone.AddEntity(e, x, y);
             return e;
         }
 
-        private static ConjureRainMutation GrantRain(Entity caster)
+        private static CavesOfOoo.Skills.Hydromancy_ConjureRain GrantRain(Entity caster)
         {
-            var rain = new ConjureRainMutation();
-            caster.GetPart<MutationsPart>().AddMutation(rain, 1);
+            var rain = new CavesOfOoo.Skills.Hydromancy_ConjureRain();
+            caster.GetPart<CavesOfOoo.Skills.SkillsPart>().AddSkill(rain);
             return rain;
         }
 
@@ -482,4 +482,5 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(int.MaxValue, loadedPart.MoistureTicks);
         }
     }
+
 }

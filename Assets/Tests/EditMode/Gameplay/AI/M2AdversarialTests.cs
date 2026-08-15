@@ -130,7 +130,7 @@ namespace CavesOfOoo.Tests
         /// to be single-target, but I haven't verified it isn't piercing.
         /// </summary>
         [Test]
-        public void CalmMutation_TwoTargetsInLine_OnlyFirstIsPacified()
+        public void Calm_TwoTargetsInLine_OnlyFirstIsPacified()
         {
             var zone = new Zone("CalmZone");
             var caster = CreateCalmCaster();
@@ -140,11 +140,10 @@ namespace CavesOfOoo.Tests
             zone.AddEntity(t1, 7, 5);
             zone.AddEntity(t2, 9, 5);
 
-            var mutations = caster.GetPart<MutationsPart>();
-            mutations.AddMutation(new CalmMutation(), 1);
-            var calm = mutations.GetMutation<CalmMutation>();
+            caster.GetPart<CavesOfOoo.Skills.SkillsPart>()
+                .AddSkill(new CavesOfOoo.Skills.Spellcraft_Calm());
 
-            calm.Cast(zone, zone.GetCell(5, 5), 1, 0, new Random(42));
+            CastCalm(caster, zone, 1, 0);
 
             bool t1Pacified = t1.GetPart<BrainPart>().HasGoal<NoFightGoal>();
             bool t2Pacified = t2.GetPart<BrainPart>().HasGoal<NoFightGoal>();
@@ -165,7 +164,7 @@ namespace CavesOfOoo.Tests
         /// CONFIDENCE: high.
         /// </summary>
         [Test]
-        public void CalmMutation_AfterPriorNoFightGoalRemoved_PushesNewOne()
+        public void Calm_AfterPriorNoFightGoalRemoved_PushesNewOne()
         {
             var zone = new Zone("CalmZone");
             var caster = CreateCalmCaster();
@@ -181,11 +180,10 @@ namespace CavesOfOoo.Tests
             Assume.That(brain.HasGoal<NoFightGoal>(), Is.False,
                 "Setup: prior goal should be cleared.");
 
-            var mutations = caster.GetPart<MutationsPart>();
-            mutations.AddMutation(new CalmMutation(), 1);
-            var calm = mutations.GetMutation<CalmMutation>();
+            caster.GetPart<CavesOfOoo.Skills.SkillsPart>()
+                .AddSkill(new CavesOfOoo.Skills.Spellcraft_Calm());
 
-            calm.Cast(zone, zone.GetCell(5, 5), 1, 0, new Random(42));
+            CastCalm(caster, zone, 1, 0);
 
             Assert.IsTrue(brain.HasGoal<NoFightGoal>(),
                 "After a prior NoFightGoal was removed, a fresh Calm cast " +
@@ -193,37 +191,6 @@ namespace CavesOfOoo.Tests
                 "the ability to re-pacify after manual goal cleanup.");
         }
 
-        /// <summary>
-        /// PREDICTION: BaseDuration field can be changed at runtime and
-        /// affects the next cast.
-        /// CONFIDENCE: medium. The mutation might cache it.
-        /// </summary>
-        [Test]
-        public void CalmMutation_BaseDurationRuntimeChange_AffectsNextCast()
-        {
-            var zone = new Zone("CalmZone");
-            var caster = CreateCalmCaster();
-            var target = CreateCalmTargetWithBrain();
-            zone.AddEntity(caster, 5, 5);
-            zone.AddEntity(target, 7, 5);
-
-            var mutations = caster.GetPart<MutationsPart>();
-            mutations.AddMutation(new CalmMutation(), 1);
-            var calm = mutations.GetMutation<CalmMutation>();
-
-            // Mutate the base duration before casting.
-            calm.BaseDuration = 100;
-
-            calm.Cast(zone, zone.GetCell(5, 5), 1, 0, new Random(42));
-
-            var brain = target.GetPart<BrainPart>();
-            var goal = brain.FindGoal<NoFightGoal>();
-            Assert.IsNotNull(goal);
-            // Level=1 → expected = 100 + 10 = 110
-            Assert.AreEqual(110, goal.Duration,
-                "Runtime change to BaseDuration must affect the next cast. " +
-                "If the value is cached at construction, this test catches it.");
-        }
 
         // ============================================================
         // WitnessedEffect — adversarial edges
@@ -348,8 +315,26 @@ namespace CavesOfOoo.Tests
         {
             var entity = CreateCalmCreatureBase("caster", hp: 20);
             entity.AddPart(new ActivatedAbilitiesPart());
-            entity.AddPart(new MutationsPart());
+            entity.AddPart(new CavesOfOoo.Skills.SkillsPart());
             return entity;
+        }
+
+        /// <summary>Migration M4: Calm is a skill — cast through the
+        /// dispatcher with the InputHandler's parameter shapes.</summary>
+        private static void CastCalm(Entity caster, Zone zone, int dx, int dy)
+        {
+            var abilities = caster.GetPart<ActivatedAbilitiesPart>();
+            for (int i = 0; i < abilities.AbilityList.Count; i++)
+                if (abilities.AbilityList[i].Command == "CommandCalm")
+                    abilities.AbilityList[i].CooldownRemaining = 0;
+            var cmd = GameEvent.New("CommandCalm");
+            cmd.SetParameter("Zone", (object)zone);
+            cmd.SetParameter("RNG", (object)new Random(42));
+            cmd.SetParameter("SourceCell", (object)zone.GetEntityCell(caster));
+            cmd.SetParameter("DirectionX", dx);
+            cmd.SetParameter("DirectionY", dy);
+            caster.FireEvent(cmd);
+            cmd.Release();
         }
 
         private static Entity CreateCalmTargetWithBrain()

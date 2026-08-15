@@ -49,15 +49,15 @@ namespace CavesOfOoo.Tests
             e.AddPart(new RenderPart { DisplayName = "caster" });
             e.AddPart(new PhysicsPart { Solid = true });
             e.AddPart(new ActivatedAbilitiesPart());
-            e.AddPart(new MutationsPart());
+            e.AddPart(new CavesOfOoo.Skills.SkillsPart());
             zone.AddEntity(e, x, y);
             return e;
         }
 
-        private static ConjureRainMutation GrantRain(Entity caster)
+        private static CavesOfOoo.Skills.Hydromancy_ConjureRain GrantRain(Entity caster)
         {
-            var rain = new ConjureRainMutation();
-            caster.GetPart<MutationsPart>().AddMutation(rain, 1);
+            var rain = new CavesOfOoo.Skills.Hydromancy_ConjureRain();
+            caster.GetPart<CavesOfOoo.Skills.SkillsPart>().AddSkill(rain);
             return rain;
         }
 
@@ -83,7 +83,7 @@ namespace CavesOfOoo.Tests
 
             Assert.IsTrue(cast);
             var crop = cropEntity.GetPart<CropPart>();
-            Assert.AreEqual(ConjureRainMutation.MOISTURE_TICKS, crop.MoistureTicks);
+            Assert.AreEqual(CavesOfOoo.Skills.Hydromancy_ConjureRain.MOISTURE_TICKS, crop.MoistureTicks);
             Assert.AreEqual(CropPart.WET_SOIL_BG,
                 cropEntity.GetPart<RenderPart>().BackgroundColor,
                 "watered crop's soil darkens (wet bg block)");
@@ -135,7 +135,7 @@ namespace CavesOfOoo.Tests
             rain.Cast(zone, zone.GetCell(10, 10));
             rain.Cast(zone, zone.GetCell(10, 10));
 
-            Assert.AreEqual(ConjureRainMutation.MOISTURE_TICKS, crop.MoistureTicks,
+            Assert.AreEqual(CavesOfOoo.Skills.Hydromancy_ConjureRain.MOISTURE_TICKS, crop.MoistureTicks,
                 "double-cast tops up to the cap, never stacks additively");
         }
 
@@ -271,12 +271,37 @@ namespace CavesOfOoo.Tests
             var abilities = caster.GetPart<ActivatedAbilitiesPart>();
             ActivatedAbility rainAbility = null;
             for (int i = 0; i < abilities.AbilityList.Count; i++)
-                if (abilities.AbilityList[i].Command == ConjureRainMutation.COMMAND)
+                if (abilities.AbilityList[i].Command == "CommandConjureRain")
                     rainAbility = abilities.AbilityList[i];
 
             Assert.IsNotNull(rainAbility, "Conjure Rain appears as an activated ability");
-            Assert.AreEqual("Grimoire Spells", rainAbility.Class);
+            Assert.AreEqual("Hydromancy", rainAbility.Class);
             Assert.AreEqual(AbilityTargetingMode.SelfCentered, rainAbility.TargetingMode);
+        }
+    }
+
+    /// <summary>Migration M4: Conjure Rain is a skill. This adapter keeps
+    /// the mutation-era `rain.Cast(zone, cell)` call sites verbatim while
+    /// routing through the dispatcher with the InputHandler's parameter
+    /// shapes (cooldown zeroed first — the old direct-Cast path never
+    /// checked its own cooldown either).</summary>
+    internal static class ConjureRainTestCast
+    {
+        public static bool Cast(this CavesOfOoo.Skills.Hydromancy_ConjureRain rain,
+            Zone zone, Cell sourceCell)
+        {
+            var caster = rain.ParentEntity;
+            var abilities = caster.GetPart<ActivatedAbilitiesPart>();
+            for (int i = 0; i < abilities.AbilityList.Count; i++)
+                if (abilities.AbilityList[i].Command == "CommandConjureRain")
+                    abilities.AbilityList[i].CooldownRemaining = 0;
+            var cmd = GameEvent.New("CommandConjureRain");
+            cmd.SetParameter("Zone", (object)zone);
+            cmd.SetParameter("SourceCell", (object)sourceCell);
+            caster.FireEvent(cmd);
+            bool handled = cmd.Handled;
+            cmd.Release();
+            return handled;
         }
     }
 }

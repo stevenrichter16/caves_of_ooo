@@ -241,7 +241,7 @@ namespace CavesOfOoo.Tests
         // ════════════════════════════════════════════════════════════
 
         [Test]
-        public void FireBolt_FullResistance_LogsZeroDamage_DiagShowsZeroActualDamage()
+        public void Kindle_FullResistance_LogsZeroDamage_DiagShowsZeroActualDamage()
         {
             // Boundary the SM6 tests never exercised: 100% HeatResistance
             // zeroes actualDamage entirely (not just reduces it). The fix
@@ -257,14 +257,12 @@ namespace CavesOfOoo.Tests
             zone.AddEntity(caster, 5, 5);
             zone.AddEntity(target, 7, 5);
 
-            var mutations = caster.GetPart<MutationsPart>();
-            mutations.AddMutation(new FireBoltMutation(), 1);
-            var fireBolt = mutations.GetMutation<FireBoltMutation>();
+            caster.GetPart<SkillsPart>().AddSkill(new Pyromancy_Kindle());
 
-            int rawRoll = DiceRoller.Roll("2d4", new Random(42));
+            int rawRoll = DiceRoller.Roll(Pyromancy_Kindle.DAMAGE_DICE, new Random(42));
             int hpBefore = target.GetStatValue("Hitpoints", 20);
 
-            bool cast = fireBolt.Cast(zone, zone.GetCell(5, 5), 1, 0, new Random(42));
+            bool cast = CastSpell(caster, zone, "CommandKindle", 1, 0);
 
             Assert.IsTrue(cast);
             Assert.AreEqual(hpBefore, target.GetStatValue("Hitpoints", 20), "100% resistance must fully absorb the hit.");
@@ -272,7 +270,7 @@ namespace CavesOfOoo.Tests
                 $"Messages: {string.Join(" | ", MessageLog.GetMessages())}");
 
             var recs = DiagQuery.Apply(new DiagQuery.Filter
-            { Category = "damage", Kind = "MutationDamage", Limit = 5 }).Records;
+            { Category = "damage", Kind = "SpellDamage", Limit = 5 }).Records;
             Assert.AreEqual(1, recs.Count);
             StringAssert.Contains("\"actualDamage\":0", recs[0].PayloadJson);
             StringAssert.Contains($"\"rawRoll\":{rawRoll}", recs[0].PayloadJson);
@@ -280,7 +278,7 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void FireBolt_WithSpellcraftEmpower_MessageAndDiagReflectSkillBonus_NotJustResistance()
+        public void Kindle_WithSpellcraftEmpower_MessageAndDiagReflectSkillBonus_NotJustResistance()
         {
             // SM6's commit message claimed the fix "closes both
             // discrepancies (resistance AND skill bonus) -- one fix closes
@@ -292,21 +290,18 @@ namespace CavesOfOoo.Tests
             // resistance reduction.
             var zone = new Zone("Adversarial.SkillBonus");
             var caster = CreateMutationCaster();
-            caster.AddPart(new SkillsPart());
             caster.GetPart<SkillsPart>().AddSkill(new Spellcraft_Empower(), source: "test");
             var target = CreateMutationTarget("snapjaw", 20); // no resistance -- isolates the skill-bonus effect
 
             zone.AddEntity(caster, 5, 5);
             zone.AddEntity(target, 7, 5);
 
-            var mutations = caster.GetPart<MutationsPart>();
-            mutations.AddMutation(new FireBoltMutation(), 1);
-            var fireBolt = mutations.GetMutation<FireBoltMutation>();
+            caster.GetPart<SkillsPart>().AddSkill(new Pyromancy_Kindle());
 
-            int rawRoll = DiceRoller.Roll("2d4", new Random(42));
+            int rawRoll = DiceRoller.Roll(Pyromancy_Kindle.DAMAGE_DICE, new Random(42));
             int expectedDamage = rawRoll + Spellcraft_Empower.EMPOWER_BONUS;
 
-            bool cast = fireBolt.Cast(zone, zone.GetCell(5, 5), 1, 0, new Random(42));
+            bool cast = CastSpell(caster, zone, "CommandKindle", 1, 0);
 
             Assert.IsTrue(cast);
             int hpAfter = target.GetStatValue("Hitpoints", 20);
@@ -315,12 +310,12 @@ namespace CavesOfOoo.Tests
                 $"Messages: {string.Join(" | ", MessageLog.GetMessages())}");
 
             var recs = DiagQuery.Apply(new DiagQuery.Filter
-            { Category = "damage", Kind = "MutationDamage", Limit = 5 }).Records;
+            { Category = "damage", Kind = "SpellDamage", Limit = 5 }).Records;
             StringAssert.Contains($"\"actualDamage\":{expectedDamage}", recs[0].PayloadJson);
         }
 
         [Test]
-        public void MutationDamageDiag_MutationClassField_ReflectsConcreteSubclass_NotHardcoded()
+        public void SpellDamageDiag_PowerClassField_ReflectsConcreteSubclass_NotHardcoded()
         {
             // Q2 cross-feature-consistency check: mutationClass must be
             // GetType().Name, genuinely varying per concrete subclass, not
@@ -332,17 +327,15 @@ namespace CavesOfOoo.Tests
             zone.AddEntity(caster, 5, 5);
             zone.AddEntity(target, 7, 5);
 
-            var mutations = caster.GetPart<MutationsPart>();
-            mutations.AddMutation(new IceShardMutation(), 1);
-            var iceShard = mutations.GetMutation<IceShardMutation>();
+            caster.GetPart<SkillsPart>().AddSkill(new Cryomancy_IceLance());
 
-            iceShard.Cast(zone, zone.GetCell(5, 5), 1, 0, new Random(42));
+            CastSpell(caster, zone, "CommandIceLance", 1, 0);
 
             var recs = DiagQuery.Apply(new DiagQuery.Filter
-            { Category = "damage", Kind = "MutationDamage", Limit = 5 }).Records;
+            { Category = "damage", Kind = "SpellDamage", Limit = 5 }).Records;
             Assert.AreEqual(1, recs.Count);
-            StringAssert.Contains("\"mutationClass\":\"IceShardMutation\"", recs[0].PayloadJson);
-            StringAssert.DoesNotContain("FireBoltMutation", recs[0].PayloadJson);
+            StringAssert.Contains("\"powerClass\":\"Cryomancy_IceLance\"", recs[0].PayloadJson);
+            StringAssert.DoesNotContain("Pyromancy_Kindle", recs[0].PayloadJson);
         }
 
         // ════════════════════════════════════════════════════════════
@@ -382,7 +375,7 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void RealMutationCast_AgainstNeutralNpc_ProvokesRetaliation_EndToEnd()
+        public void RealSpellCast_AgainstNeutralNpc_ProvokesRetaliation_EndToEnd()
         {
             var zone = new Zone("Adversarial.MutationRetaliation");
             var caster = CreateMutationCaster();
@@ -394,14 +387,12 @@ namespace CavesOfOoo.Tests
             zone.AddEntity(caster, 5, 5);
             zone.AddEntity(npc, 7, 5);
 
-            var mutations = caster.GetPart<MutationsPart>();
-            mutations.AddMutation(new FireBoltMutation(), 1);
-            var fireBolt = mutations.GetMutation<FireBoltMutation>();
+            caster.GetPart<SkillsPart>().AddSkill(new Pyromancy_Kindle());
 
             var brain = npc.GetPart<BrainPart>();
             Assert.IsFalse(brain.IsPersonallyHostileTo(caster));
 
-            bool cast = fireBolt.Cast(zone, zone.GetCell(5, 5), 1, 0, new Random(42));
+            bool cast = CastSpell(caster, zone, "CommandKindle", 1, 0);
 
             Assert.IsTrue(cast);
             Assert.Less(npc.GetStatValue("Hitpoints", 100), 100, "sanity: real damage must have landed.");
@@ -440,7 +431,7 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void MutationFullyResisted_DoesNotProvokeRetaliation()
+        public void SpellFullyResisted_DoesNotProvokeRetaliation()
         {
             // Same design principle as the test above, via the mutation
             // path: 100% HeatResistance means CombatSystem.ApplyDamage's own
@@ -459,11 +450,9 @@ namespace CavesOfOoo.Tests
             zone.AddEntity(caster, 5, 5);
             zone.AddEntity(npc, 7, 5);
 
-            var mutations = caster.GetPart<MutationsPart>();
-            mutations.AddMutation(new FireBoltMutation(), 1);
-            var fireBolt = mutations.GetMutation<FireBoltMutation>();
+            caster.GetPart<SkillsPart>().AddSkill(new Pyromancy_Kindle());
 
-            fireBolt.Cast(zone, zone.GetCell(5, 5), 1, 0, new Random(42));
+            CastSpell(caster, zone, "CommandKindle", 1, 0);
 
             Assert.AreEqual(20, npc.GetStatValue("Hitpoints", 20), "sanity: 100% resistance must fully absorb the hit.");
             Assert.IsFalse(npc.GetPart<BrainPart>().IsPersonallyHostileTo(caster),
@@ -714,8 +703,24 @@ namespace CavesOfOoo.Tests
             entity.AddPart(new ArmorPart());
             entity.AddPart(new InventoryPart { MaxWeight = 150 });
             entity.AddPart(new ActivatedAbilitiesPart());
-            entity.AddPart(new MutationsPart());
+            entity.AddPart(new SkillsPart());
             return entity;
+        }
+
+        /// <summary>Migration M4: spells are skills — cast through the
+        /// dispatcher with the InputHandler's parameter shapes.</summary>
+        private static bool CastSpell(Entity caster, Zone zone, string command, int dx, int dy)
+        {
+            var cmd = GameEvent.New(command);
+            cmd.SetParameter("Zone", (object)zone);
+            cmd.SetParameter("RNG", (object)new Random(42));
+            cmd.SetParameter("SourceCell", (object)zone.GetEntityCell(caster));
+            cmd.SetParameter("DirectionX", dx);
+            cmd.SetParameter("DirectionY", dy);
+            caster.FireEvent(cmd);
+            bool handled = cmd.Handled;
+            cmd.Release();
+            return handled;
         }
 
         private static Entity CreateMutationTarget(string name, int hp)
