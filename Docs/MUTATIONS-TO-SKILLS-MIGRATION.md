@@ -142,6 +142,85 @@ and `ScenarioTestHarness`.
 
 ---
 
+## 4b. Inventory-sweep additions (v2.1)
+
+The 4-agent port-dossier sweep landed after v2 was written
+(`Docs/MUTATIONS-PORT-DOSSIERS.md`, 79 dossiers). It confirmed the
+critics and added these:
+
+**Changes a decision:**
+
+- **S6 has a better answer than a new flag.** Teach-only nodes are
+  achievable **with zero code changes**: author the row with
+  `"Requires": "<sentinel that matches no class>"` + `"Flags": 2`
+  (FLAG_OBFUSCATED). It renders `???` in dark gray, is unbuyable
+  (MissingPrereq), and correctly flips to the real name + "owned" once a
+  grimoire teaches it, because `EvaluateRowState` checks `isOwned`
+  first. **Adopt this instead of the `TeachOnly` flag.** Still add the
+  `cost < 0` guard — the SP faucet is real regardless.
+
+**New blockers:**
+
+- **B7 — M4 is all-or-nothing and mid-migration greenness is
+  unobservable.** `EditModeTests.asmdef` is the *only* test assembly. A
+  single dangling `MutationsPart` reference yields **zero test results,
+  not 26 failures**. All 26 breaking test files must be fixed in the
+  same commit as the deletion.
+- **B8 — `MutationSystemTests.cs` is 24% not-a-mutation-test.** Lines
+  55–427 are 22 `ActivatedAbilitiesPart` tests (slot binding, cooldown
+  ticking, legacy migration, overflow). `ActivatedAbilitiesPart`
+  **survives**. Deleting the file wholesale silently drops live hotbar
+  infrastructure coverage — split it first.
+- **B9 — 6 rites are dead from the keybind, not 4, and 2,487 lines of
+  green rite tests never noticed** because every test calls
+  `rite.Cast(zone, dx, dy)` directly, bypassing `HandleEvent`. Zero
+  `FireEvent`/`GameEvent.New` calls exist in the rite tests. **The port
+  must add end-to-end event-dispatch tests** or the same bug class
+  recurs behind the same blind spot.
+
+**Pre-existing bugs surfaced (fix during the port, or file separately):**
+
+- **6 of the 27 grimoire powers are ALREADY invisible in the grimoire
+  picker** — `GrimoireTooltipData` has 21 records for 27 grimoires
+  (missing: ChillDraft, ConjureWater, DryingBreeze, Hearthwarm,
+  KindleFlame, WardGleam). S4's re-keying should close this.
+- **Grimoires cannot be re-inked.** `GrimoireChargePart.Refill()` and
+  `ChargesPerVial` have **zero production callers** — every rite book is
+  a hard 10-cast consumable, contradicting its own docstring. *This
+  answers backlog task #72 (grimoire ink renewability): today the answer
+  is "not renewable, and not by design."*
+- Rites are **element-blind about which book they drain** — casting
+  Shattered Rime can drain the Storm Anvil book (pinned as known).
+- `SkillsScreenUI.FormatFailure` prints `CostPaid` on the
+  InsufficientSP path, which is only set on success → "You need 0sp".
+- Tooltip cooldowns for Rendered Steam / Scalding Veil are **swapped**
+  vs the code.
+
+**Scope/UX warnings:**
+
+- **Skills-screen UX cliff.** The screen already renders 79 rows
+  (12 trees + 67 powers) into a **14-row viewport with single-row-step
+  navigation only** — no paging, no collapse. +29 powers and a Rites
+  tree takes it to ~108 rows ≈ 8 screenfuls. **Budget paging/collapse
+  work into M5 or accept a real regression.**
+- **Balance is the larger risk than mechanics.** Mutations were tuned in
+  isolation and are systematically cheaper than their skill
+  counterparts: EmberVein CD 12 vs RailSpike 45 / FlameJet 35;
+  Conflagration CD 15 vs FlameJet 35; RimeNova CD 15 vs ColdSnap 30
+  (and RimeNova delivers a ~24-turn lockout vs a 6-turn slow);
+  Thunderclap CD 18 vs Overload. Porting numbers verbatim imports a
+  power spike.
+- **`ConsumingRiteBase` needs ~5 new hooks** before all 11 rites fit —
+  chiefly multi-attribute damage (`DamageAttribute` is a single string
+  but StormAnvil/HangingBolt/Fulmination need Electric+Lightning).
+- **Do NOT global-rename `Mutation`.** The diag kind
+  `"PreDamageMutation"` (`CombatSystem.cs:898`) is unrelated and is a
+  live contract; ~31 further files use "mutation" as ordinary prose.
+- **Opportunity:** `ActivatedAbility.Class` has exactly one reader (the
+  ability-manager sort column). Setting `ActivatedAbilitySpec.Class` to
+  the **tree name** ("Pyromancy", "Rites") instead of the flat "Skills"
+  makes that screen group meaningfully for free.
+
 ## 5. Open questions for the user
 
 1. **Level-scaling (D5)** — freeze, rebalance flat, or tiered rows?
