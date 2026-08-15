@@ -209,7 +209,7 @@ namespace CavesOfOoo.Tests
             player.AddPart(new RenderPart { DisplayName = "you" });
             player.AddPart(new InventoryPart { MaxWeight = 500 });
             player.AddPart(new ActivatedAbilitiesPart());
-            player.AddPart(new MutationsPart());
+            player.AddPart(new CavesOfOoo.Skills.SkillsPart());
             return player;
         }
 
@@ -257,7 +257,8 @@ namespace CavesOfOoo.Tests
             // farming access exists (rain + any future seed source), and
             // re-granting a free grimoire would dupe its trade value.
             var player = MakeLoadedPlayer();
-            player.GetPart<MutationsPart>().AddMutation(new ConjureRainMutation(), 1);
+            Assert.IsTrue(player.GetPart<CavesOfOoo.Skills.SkillsPart>()
+                .AddSkill("Hydromancy_ConjureRain"));
             Assert.IsFalse(FarmingAccessGrant.ShouldGrantOnLoad(player));
         }
 
@@ -292,9 +293,9 @@ namespace CavesOfOoo.Tests
             // missing row made Conjure Rain invisible and strandable
             // (reassign its hotbar slot once and only the M-key ability
             // manager could re-bind it).
-            Assert.IsTrue(GrimoireTooltipData.IsGrimoireMutation("ConjureRainMutation"),
+            Assert.IsTrue(GrimoireTooltipData.IsGrimoireMutation("Hydromancy_ConjureRain"),
                 "Conjure Rain must be visible to the grimoire picker");
-            Assert.IsTrue(GrimoireTooltipData.TryGet("ConjureRainMutation", out var tip));
+            Assert.IsTrue(GrimoireTooltipData.TryGet("Hydromancy_ConjureRain", out var tip));
             Assert.AreEqual("Conjure Rain", tip.DisplayName);
             Assert.IsFalse(string.IsNullOrEmpty(tip.Mechanics));
             Assert.IsFalse(string.IsNullOrEmpty(tip.ColorCode));
@@ -343,9 +344,8 @@ namespace CavesOfOoo.Tests
                     if (inv.Objects[i].BlueprintName == "GrimoireCopy") copy = inv.Objects[i];
                 Assert.IsNotNull(copy, "the scribe produced a copy");
                 var copyPart = copy.GetPart<GrimoirePart>();
-                Assert.AreEqual("ConjureRainMutation", copyPart.MutationClassName,
+                Assert.AreEqual("Hydromancy_ConjureRain", copyPart.SkillClassName,
                     "the copy must teach the same spell, not read as blank pages");
-                Assert.AreEqual(1, copyPart.MutationLevel);
             }
             finally
             {

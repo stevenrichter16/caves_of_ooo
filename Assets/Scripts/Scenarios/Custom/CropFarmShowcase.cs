@@ -53,7 +53,7 @@ namespace CavesOfOoo.Scenarios.Custom
             ctx.Player
                 .SetStatMax("Hitpoints", 200)
                 .SetHp(200)
-                .AddMutation(nameof(ConjureRainMutation), 1)
+                .AddSkill("Hydromancy_ConjureRain")
                 .GiveItem("WateringGrimoire")
                 .GiveItem("CandyCarrotSeed", 4)
                 .GiveItem("EmberwheatSeed", 2);

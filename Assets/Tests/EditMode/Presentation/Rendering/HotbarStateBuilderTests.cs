@@ -26,7 +26,7 @@ namespace CavesOfOoo.Tests
                 "Spell",
                 AbilityTargetingMode.AdjacentCell,
                 5,
-                nameof(QuenchMutation));
+                "Hydromancy_Quench"); // tooltip row re-keyed to the ported skill (migration M1)
 
             abilities.CooldownAbility(kindleId, 3);
 

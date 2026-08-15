@@ -33,7 +33,7 @@ namespace CavesOfOoo.Scenarios.Custom
     {
         public void Apply(ScenarioContext ctx)
         {
-            ctx.Player.AddMutation("CalmMutation", level: 3);
+            ctx.Player.AddSkill("Spellcraft_Calm");
 
             // Clear the east row so the Calm projectile can reach the Warden.
             // The starting zone's West compass stone sits at player+2,0 and

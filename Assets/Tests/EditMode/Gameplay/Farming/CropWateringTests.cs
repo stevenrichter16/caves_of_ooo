@@ -218,9 +218,12 @@ namespace CavesOfOoo.Tests
         [Test]
         public void Content_WateringGrimoire_TeachesConjureRain_OnRead()
         {
+            // Migration: the grimoire teaches the Hydromancy_ConjureRain
+            // SKILL now (mutations→skills port); same read flow.
             var zone = new Zone("z");
             var caster = CreateCaster(zone, 5, 5);
             caster.AddPart(new InventoryPart { MaxWeight = 150 });
+            caster.AddPart(new CavesOfOoo.Skills.SkillsPart());
             var grimoire = _factory.CreateEntity("WateringGrimoire");
             Assert.IsNotNull(grimoire, "WateringGrimoire blueprint must exist");
             caster.GetPart<InventoryPart>().AddObject(grimoire);
@@ -229,7 +232,8 @@ namespace CavesOfOoo.Tests
                 new PerformInventoryActionCommand(grimoire, "ReadGrimoire"), caster, zone);
 
             Assert.IsTrue(result.Success, result.ErrorMessage);
-            Assert.IsTrue(caster.GetPart<MutationsPart>().HasMutation("ConjureRainMutation"),
+            Assert.IsTrue(caster.GetPart<CavesOfOoo.Skills.SkillsPart>()
+                    .HasSkill("Hydromancy_ConjureRain"),
                 "reading the grimoire teaches Conjure Rain");
             Assert.IsTrue(caster.GetPart<InventoryPart>().Objects.Contains(grimoire),
                 "grimoires are never consumed on read");
@@ -241,6 +245,7 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("z");
             var caster = CreateCaster(zone, 5, 5);
             caster.AddPart(new InventoryPart { MaxWeight = 150 });
+            caster.AddPart(new CavesOfOoo.Skills.SkillsPart());
             var grimoire = _factory.CreateEntity("WateringGrimoire");
             caster.GetPart<InventoryPart>().AddObject(grimoire);
 
@@ -250,9 +255,9 @@ namespace CavesOfOoo.Tests
                 new PerformInventoryActionCommand(grimoire, "ReadGrimoire"), caster, zone);
 
             int count = 0;
-            var mutations = caster.GetPart<MutationsPart>().MutationList;
-            for (int i = 0; i < mutations.Count; i++)
-                if (mutations[i] is ConjureRainMutation) count++;
+            var skillList = caster.GetPart<CavesOfOoo.Skills.SkillsPart>().SkillList;
+            for (int i = 0; i < skillList.Count; i++)
+                if (skillList[i] is CavesOfOoo.Skills.Hydromancy_ConjureRain) count++;
             Assert.AreEqual(1, count, "re-reading must not grant a second instance");
         }
 

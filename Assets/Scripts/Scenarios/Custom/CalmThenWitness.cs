@@ -40,7 +40,7 @@ namespace CavesOfOoo.Scenarios.Custom
     {
         public void Apply(ScenarioContext ctx)
         {
-            ctx.Player.AddMutation("CalmMutation", level: 3);
+            ctx.Player.AddSkill("Spellcraft_Calm");
 
             // Clear the east row so the Calm projectile reaches the Scribe
             // and the player can reach the Snapjaw. Starting zone otherwise

@@ -42,19 +42,21 @@ namespace CavesOfOoo.Skills
     public static class StartingSpellKit
     {
         /// <summary>
-        /// The four class names, one per element. Order is the order
-        /// they land on the hotbar: fire, water, electric, cold.
+        /// The starting class names. The first four are the one-primer-
+        /// per-element set; FlamingHands and Calm joined when the two
+        /// former StartingMutations were ported to skills. Order is the
+        /// order they land on the hotbar.
         /// </summary>
         public static readonly string[] SpellClasses =
         {
             "Pyromancy_EmberSpit",   // fire     — CD 8
-            // Migration: the two former StartingMutations move here as
-            // the mutations are ported. FlamingHands landed with the
-            // Pyromancy batch; Calm follows with Spellcraft.
+            // Migration: the two former StartingMutations live here now —
+            // FlamingHands (Pyromancy batch) and Calm (Spellcraft batch).
             "Pyromancy_FlamingHands", // fire, point-blank — CD 10
             "Hydromancy_JetBlast",   // water    — CD 20
             "Galvanism_GroundSurge", // electric — CD 30
             "Cryomancy_RimeGrip",    // cold     — CD 35
+            "Spellcraft_Calm",       // pacify   — CD 20
         };
 
         /// <summary>

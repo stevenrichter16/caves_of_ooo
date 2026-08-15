@@ -159,6 +159,30 @@ namespace CavesOfOoo.Scenarios.Builders
             return this;
         }
 
+        /// <summary>
+        /// Grant a skill to the player by CLASS NAME (e.g.
+        /// <c>"Hydromancy_ConjureRain"</c>). Uses
+        /// <see cref="CavesOfOoo.Skills.SkillsPart.AddSkill(string, string)"/>,
+        /// which attaches the skill Part and declares its activated
+        /// ability; already-known skills no-op with a false return.
+        ///
+        /// Logs + skips if the player has no SkillsPart or the class name
+        /// doesn't resolve.
+        /// </summary>
+        public PlayerBuilder AddSkill(string skillClassName)
+        {
+            var skills = _ctx.PlayerEntity.GetPart<CavesOfOoo.Skills.SkillsPart>();
+            if (skills == null)
+            {
+                Debug.LogWarning($"[Scenario] Player.AddSkill('{skillClassName}'): player has no SkillsPart — skipping.");
+                return this;
+            }
+            bool added = skills.AddSkill(skillClassName, source: "scenario");
+            if (!added)
+                Debug.LogWarning($"[Scenario] Player.AddSkill('{skillClassName}'): SkillsPart.AddSkill returned false (unknown class or already known).");
+            return this;
+        }
+
         // ======================================================
         // Inventory
         // ======================================================

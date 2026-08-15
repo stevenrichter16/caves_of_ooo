@@ -87,11 +87,11 @@ namespace CavesOfOoo.Core
                 Mechanics   = "1d4 fire \u2022 Range 5 \u2022 CD 6",
                 Signature   = "Ignites combustibles via a 600J heat pulse"
             } },
-            { nameof(QuenchMutation), new GrimoireTooltip {
+            { "Hydromancy_Quench", new GrimoireTooltip {
                 DisplayName = "Quench",
                 ColorCode   = "&B",
                 Flavor      = "A burst of conjured water.",
-                Mechanics   = "1d4 cold \u2022 Range 5 \u2022 CD 4",
+                Mechanics   = "1d3 \u2022 Range 5 \u2022 CD 6",
                 Signature   = "Soaks targets - amplifies later electricity"
             } },
             { "Pyromancy_Conflagration", new GrimoireTooltip {
@@ -101,35 +101,35 @@ namespace CavesOfOoo.Core
                 Mechanics   = "2d6 fire AoE \u2022 Radius 2 \u2022 CD 18",
                 Signature   = "Ignites every combustible in radius"
             } },
-            { nameof(IceLanceMutation), new GrimoireTooltip {
+            { "Cryomancy_IceLance", new GrimoireTooltip {
                 DisplayName = "Ice Lance",
                 ColorCode   = "&C",
                 Flavor      = "A lance of bitter cold.",
                 Mechanics   = "1d6 cold \u2022 Range 6 \u2022 CD 8",
                 Signature   = "Shatters brittle frozen metal"
             } },
-            { nameof(AcidSprayMutation), new GrimoireTooltip {
+            { "Corrosion_AcidSpray", new GrimoireTooltip {
                 DisplayName = "Acid Spray",
                 ColorCode   = "&g",
                 Flavor      = "Corrosive vapor coats the target.",
                 Mechanics   = "1d4 acid \u2022 Range 4 \u2022 CD 10",
                 Signature   = "Degrades organic combustibility over time"
             } },
-            { nameof(ArcBoltMutation), new GrimoireTooltip {
+            { "Galvanism_ArcBolt", new GrimoireTooltip {
                 DisplayName = "Arc Bolt",
                 ColorCode   = "&Y",
                 Flavor      = "A snapping bolt of charge.",
                 Mechanics   = "1d8 lightning \u2022 Range 5 \u2022 CD 7",
                 Signature   = "Doubles damage on wet \u2022 chains conductors"
             } },
-            { nameof(RimeNovaMutation), new GrimoireTooltip {
+            { "Cryomancy_RimeNova", new GrimoireTooltip {
                 DisplayName = "Rime Nova",
                 ColorCode   = "&b",
                 Flavor      = "Frost detonates outward.",
                 Mechanics   = "1d6 cold AoE \u2022 Radius 2 \u2022 CD 15",
                 Signature   = "Extinguishes burning props \u2022 freezes creatures"
             } },
-            { nameof(ThunderclapMutation), new GrimoireTooltip {
+            { "Galvanism_Thunderclap", new GrimoireTooltip {
                 DisplayName = "Thunderclap",
                 ColorCode   = "&W",
                 Flavor      = "Thunder rolls from your hands.",
@@ -143,12 +143,47 @@ namespace CavesOfOoo.Core
                 Mechanics   = "2d6 fire beam \u2022 Range 7 \u2022 CD 12",
                 Signature   = "Heat pulse ignites every combustible in line"
             } },
-            { nameof(ConjureRainMutation), new GrimoireTooltip {
+            { "Hydromancy_ConjureRain", new GrimoireTooltip {
                 DisplayName = "Conjure Rain",
                 ColorCode   = "&B",
                 Flavor      = "Clouds gather at your quiet call.",
                 Mechanics   = "Waters crops \u2022 Radius 3 \u2022 CD 5",
                 Signature   = "Soaks soil for 40 ticks \u2022 darkens wet earth"
+            } },
+            { "Hydromancy_ConjureWater", new GrimoireTooltip {
+                DisplayName = "Conjure Water",
+                ColorCode   = "&B",
+                Flavor      = "A stream that seeks the flame.",
+                Mechanics   = "Spawns a puddle \u2022 Range 2 \u2022 CD 4",
+                Signature   = "Lands on burning things first \u2022 soaks the cell"
+            } },
+            { "Hydromancy_DryingBreeze", new GrimoireTooltip {
+                DisplayName = "Drying Breeze",
+                ColorCode   = "&b",
+                Flavor      = "A warm breath against the damp.",
+                Mechanics   = "Strips Wet \u2022 Radius 1 \u2022 CD 3",
+                Signature   = "Dries everything adjacent, yourself included"
+            } },
+            { "Cryomancy_ChillDraft", new GrimoireTooltip {
+                DisplayName = "Chill Draft",
+                ColorCode   = "&c",
+                Flavor      = "A soft exhalation of cold.",
+                Mechanics   = "\u2212100J \u2022 Radius 1 \u2022 CD 5",
+                Signature   = "Snuffs embers \u2022 cools overheating gear"
+            } },
+            { "Spellcraft_WardGleam", new GrimoireTooltip {
+                DisplayName = "Ward Gleam",
+                ColorCode   = "&M",
+                Flavor      = "A gleam that scours the ruin from your gear.",
+                Mechanics   = "Cleanses equipment \u2022 Self \u2022 CD 15",
+                Signature   = "Strips Acidic + Charred \u2022 free if nothing to cleanse"
+            } },
+            { "Spellcraft_Calm", new GrimoireTooltip {
+                DisplayName = "Calm",
+                ColorCode   = "&M",
+                Flavor      = "A word that unclenches the fist.",
+                Mechanics   = "Pacifies 50 turns \u2022 Range 6 \u2022 CD 20",
+                Signature   = "No damage \u2022 does not stack on the peaceful"
             } },
 
             // \u2500\u2500 Rites (SM7-SM9) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500

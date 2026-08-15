@@ -32,7 +32,7 @@ namespace CavesOfOoo.Scenarios.Custom
     {
         public void Apply(ScenarioContext ctx)
         {
-            ctx.Player.AddMutation("CalmMutation", level: 3);
+            ctx.Player.AddSkill("Spellcraft_Calm");
 
             // Clear the east row so Calm's projectile can reach each Snapjaw
             // individually and the player can reach any of them in melee

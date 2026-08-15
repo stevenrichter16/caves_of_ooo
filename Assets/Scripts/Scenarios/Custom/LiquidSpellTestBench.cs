@@ -113,10 +113,10 @@ namespace CavesOfOoo.Scenarios.Custom
                 .SetHp(999)
                 .SetStatMax("Strength", 30)
                 .SetStat("Strength", 24)
-                .AddMutation("ArcBoltMutation", level: 5)
-                .AddMutation("ConflagrationMutation", level: 5)
-                .AddMutation("IceLanceMutation", level: 5)
-                .AddMutation("AcidSprayMutation", level: 5)
+                .AddSkill("Galvanism_ArcBolt")
+                .AddSkill("Pyromancy_Conflagration")
+                .AddSkill("Cryomancy_IceLance")
+                .AddSkill("Corrosion_AcidSpray")
                 .GiveItem("HealingTonic", 5);
 
             // v3.1: clear the corridor BEFORE spawning. v3's hardcoded

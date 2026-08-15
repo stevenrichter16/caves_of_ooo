@@ -60,8 +60,8 @@ namespace CavesOfOoo.Core
                 }
             }
 
-            var mutations = player.GetPart<MutationsPart>();
-            if (mutations != null && mutations.HasMutation("ConjureRainMutation"))
+            var skills = player.GetPart<CavesOfOoo.Skills.SkillsPart>();
+            if (skills != null && skills.HasSkill("Hydromancy_ConjureRain"))
                 return true;
 
             return false;
