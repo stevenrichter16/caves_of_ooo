@@ -277,20 +277,49 @@ namespace CavesOfOoo.Rendering
         public static string BuildTitleFor(Cell cell, Entity target)
             => BuildTitleFor(cell, target, null);
 
-        /// <summary>Zone-aware title: an empty-but-wet cell titles as
-        /// "You see water on the ground." instead of "You see nothing
-        /// here." (status study step 2 — one readout for every text
-        /// surface).</summary>
+        /// <summary>
+        /// One-line title composed from the SAME readout look mode uses
+        /// (CellStatusReadout — status study "one snapshot, three
+        /// renderers"): name, then [HP], then the target's afflictions,
+        /// then ground state.
+        ///
+        /// <para>The title row clips at <see cref="POPUP_W"/>-4 chars,
+        /// so suffix groups are appended in PRIORITY ORDER and a group
+        /// that would not fit is dropped WHOLE rather than mid-cut:
+        /// name &gt; HP &gt; afflictions &gt; ground. A frozen viper on
+        /// wet ground therefore always names "frozen over" and may drop
+        /// "water underfoot" — the FOCUS panel carries the full picture.
+        /// The affliction list itself is capped ("frozen over, soaked,
+        /// +2") by <see cref="CellStatusReadout.AfflictionSummary"/>.</para>
+        /// </summary>
         public static string BuildTitleFor(Cell cell, Entity target, Zone zone)
         {
-            string title = zone != null
-                ? WorldInteractionSystem.DescribeCell(cell, zone)
-                : WorldInteractionSystem.DescribeCell(cell);
-            if (cell != null && WorldInteractionSystem.IsPileCell(cell)) return title;
+            const int maxLen = POPUP_W - 4;
+            string title = WorldInteractionSystem.DescribeCell(cell);
+            bool pile = cell != null && WorldInteractionSystem.IsPileCell(cell);
 
-            string health = HealthReadout.Describe(target);
-            return health.Length > 0 ? title + "  [" + health + "]" : title;
+            if (!pile)
+            {
+                string health = HealthReadout.Describe(target);
+                if (health.Length > 0)
+                    title = AppendIfFits(title, "  [" + health + "]", maxLen);
+
+                string afflicted = CellStatusReadout.AfflictionSummary(target);
+                if (!string.IsNullOrEmpty(afflicted))
+                    title = AppendIfFits(title, " (" + afflicted + ")", maxLen);
+            }
+
+            if (zone != null && cell != null)
+            {
+                string ground = CellStatusReadout.GroundSummary(zone, cell, cell.X, cell.Y);
+                if (!string.IsNullOrEmpty(ground))
+                    title = AppendIfFits(title, " (" + ground + " underfoot)", maxLen);
+            }
+            return title;
         }
+
+        private static string AppendIfFits(string title, string suffix, int maxLen)
+            => title.Length + suffix.Length <= maxLen ? title + suffix : title;
 
         private string BuildTitle() => BuildTitleFor(_cell, _target, _zone);
 

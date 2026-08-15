@@ -85,27 +85,14 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// Append "Afflicted:" plus one line per live status effect on the
-        /// primary entity. No-op for null primaries and clean targets, so
-        /// the common hover contributes zero lines.
+        /// Append the "Afflicted:" block for the primary entity — now a
+        /// straight delegation to <see cref="CellStatusReadout"/>, the
+        /// single source of status text for every surface (the 'c' menu
+        /// reads the same readout, so a frozen viper can no longer show
+        /// its status in one surface and not the other).
         /// </summary>
         private static void AppendEffectLines(Entity primary, List<string> details)
-        {
-            var effectsPart = primary?.GetPart<StatusEffectsPart>();
-            if (effectsPart == null)
-                return;
-
-            IReadOnlyList<Effect> effects = effectsPart.GetAllEffects();
-            if (effects == null || effects.Count == 0)
-                return;
-
-            details.Add("Afflicted:");
-            for (int i = 0; i < effects.Count; i++)
-            {
-                if (effects[i] != null)
-                    details.Add("- " + EffectDescriber.Describe(effects[i]));
-            }
-        }
+            => CellStatusReadout.AppendAfflictionLines(primary, details);
 
         /// <summary>
         /// Phase 10 — populate goal-stack + last-thought fields for the primary

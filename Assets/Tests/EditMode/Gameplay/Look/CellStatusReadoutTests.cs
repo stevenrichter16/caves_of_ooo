@@ -168,6 +168,115 @@ namespace CavesOfOoo.Tests
                 WorldInteractionSystem.DescribeCell(zone.GetCell(7, 5), zone));
         }
 
+        // ── Entity afflictions: one wording source, two lengths ──────
+
+        private static Entity Viper(Zone zone, int x, int y)
+        {
+            var v = new Entity { ID = "viper", BlueprintName = "Viper" };
+            v.Tags["Creature"] = "";
+            v.AddPart(new RenderPart { DisplayName = "viper" });
+            v.Statistics["Hitpoints"] = new Stat
+            { Owner = v, Name = "Hitpoints", BaseValue = 10, Min = 0, Max = 10 };
+            zone.AddEntity(v, x, y);
+            return v;
+        }
+
+        [Test]
+        public void AfflictionSummary_SharesWordingWithTheLongForm()
+        {
+            // The divergence contract: the compact form is derived from
+            // EffectDescriber's own lines, so a label in the summary
+            // must appear verbatim at the head of a long-form line.
+            var zone = new Zone("Z");
+            var viper = Viper(zone, 7, 5);
+            viper.ApplyEffect(new FrozenEffect(cold: 0.6f));
+            viper.ApplyEffect(new WetEffect(0.5f));
+
+            string summary = CellStatusReadout.AfflictionSummary(viper);
+            var lines = new System.Collections.Generic.List<string>();
+            CellStatusReadout.AppendAfflictionLines(viper, lines);
+            string joined = string.Join(" | ", lines).ToLowerInvariant();
+
+            Assert.AreEqual("frozen over, soaked", summary);
+            foreach (var label in summary.Split(new[] { ", " }, System.StringSplitOptions.None))
+                StringAssert.Contains(label, joined,
+                    "every short label must exist inside the long form — one wording source");
+        }
+
+        [Test]
+        public void AfflictionSummary_CapsWithPlusN()
+        {
+            var zone = new Zone("Z");
+            var viper = Viper(zone, 7, 5);
+            viper.ApplyEffect(new FrozenEffect(cold: 0.6f));
+            viper.ApplyEffect(new WetEffect(0.5f));
+            viper.ApplyEffect(new HobbledEffect(3));
+
+            Assert.AreEqual("frozen over, soaked, +1",
+                CellStatusReadout.AfflictionSummary(viper));
+        }
+
+        // ── The menu title: same readout as look mode ────────────────
+
+        [Test]
+        public void MenuTitle_NamesTheFrozenStatus_TheViperRepro()
+        {
+            // The reported bug: a frozen viper showed "Frozen over" in
+            // look mode and NOTHING in the 'c' menu.
+            var zone = new Zone("Z");
+            Reveal(zone, 7, 5);
+            var viper = Viper(zone, 7, 5);
+            viper.ApplyEffect(new FrozenEffect(cold: 0.6f));
+
+            string title = CavesOfOoo.Rendering.WorldActionMenuUI
+                .BuildTitleFor(zone.GetCell(7, 5), viper, zone);
+
+            StringAssert.Contains("viper", title);
+            StringAssert.Contains("HP", title);
+            StringAssert.Contains("frozen over", title);
+        }
+
+        [Test]
+        public void MenuTitle_DropsWholeGroupsByPriority_NeverMidCuts()
+        {
+            // The title row clips at 44 chars; suffix groups must drop
+            // WHOLE, in priority order (afflictions beat ground): a
+            // frozen viper on wet ground names "frozen over" and drops
+            // "underfoot" entirely rather than clipping mid-word.
+            var zone = new Zone("Z");
+            Reveal(zone, 7, 5);
+            zone.TileState.WriteCoating(7, 5, "water", 5);
+            var viper = Viper(zone, 7, 5);
+            viper.ApplyEffect(new FrozenEffect(cold: 0.6f));
+
+            string title = CavesOfOoo.Rendering.WorldActionMenuUI
+                .BuildTitleFor(zone.GetCell(7, 5), viper, zone);
+
+            StringAssert.Contains("frozen over", title,
+                "the target's own status outranks ground state");
+            StringAssert.DoesNotContain("underfoot", title,
+                "the group that does not fit drops whole");
+            Assert.LessOrEqual(title.Length, 44, "never hand the renderer a mid-cut");
+        }
+
+        [Test]
+        public void MenuTitle_GroundStillShowsOnTerrainTargets()
+        {
+            // The grass repro, now pinned through the TITLE path.
+            var zone = new Zone("Z");
+            Reveal(zone, 7, 5);
+            zone.TileState.WriteCoating(7, 5, "water", 6);
+            var grass = new Entity { ID = "grass", BlueprintName = "Grass" };
+            grass.Tags["Terrain"] = "";
+            grass.AddPart(new RenderPart { DisplayName = "grass" });
+            zone.AddEntity(grass, 7, 5);
+
+            string title = CavesOfOoo.Rendering.WorldActionMenuUI
+                .BuildTitleFor(zone.GetCell(7, 5), grass, zone);
+
+            Assert.AreEqual("You see the grass. (water underfoot)", title);
+        }
+
         // ── Delegation: look mode reads the same readout ─────────────
 
         [Test]
