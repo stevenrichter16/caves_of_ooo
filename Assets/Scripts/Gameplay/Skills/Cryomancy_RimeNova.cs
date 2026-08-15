@@ -90,7 +90,12 @@ namespace CavesOfOoo.Skills
             }
 
             // Chill EVERY ThermalPart entity in radius — puddles skin
-            // over, braziers gutter, kettles stop singing.
+            // over, braziers gutter, kettles stop singing. And the GROUND
+            // (Docs/COLD-TILE-BRIDGE.md): every cell in radius takes tile
+            // cold, so Jet Blast water becomes ice on the cast. The nova
+            // already Frozen(0.6)s every creature in radius directly, so
+            // the ground pass adds board state, not new lockdown.
+            var groundCells = new System.Collections.Generic.List<Point>();
             int minX = Math.Max(0, sourceCell.X - RADIUS);
             int maxX = Math.Min(Zone.Width - 1, sourceCell.X + RADIUS);
             int minY = Math.Max(0, sourceCell.Y - RADIUS);
@@ -107,6 +112,7 @@ namespace CavesOfOoo.Skills
                     Cell cell = zone.GetCell(x, y);
                     if (cell == null)
                         continue;
+                    groundCells.Add(new Point(x, y));
 
                     for (int i = cell.Objects.Count - 1; i >= 0; i--)
                     {
@@ -129,6 +135,7 @@ namespace CavesOfOoo.Skills
                 }
             }
 
+            ZoneTileStateSystem.ApplyColdToTiles(zone, groundCells, actor, Name);
             return true;
         }
     }

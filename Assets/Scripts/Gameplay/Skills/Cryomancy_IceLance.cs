@@ -40,6 +40,16 @@ namespace CavesOfOoo.Skills
             heatEvent.SetParameter("Zone", (object)zone);
             target.FireEvent(heatEvent);
             heatEvent.Release();
+
+            // The lance ices the ground where it lands
+            // (Docs/COLD-TILE-BRIDGE.md): water under the target freezes
+            // on the cast. Single cell — the lance is a point weapon.
+            var tpos = zone.GetEntityPosition(target);
+            if (tpos.x >= 0)
+            {
+                ZoneTileStateSystem.ApplyColdToTile(zone, tpos.x, tpos.y, ParentEntity, Name);
+                ZoneTileStateSystem.ResolveAfterAbility(zone, ParentEntity);
+            }
         }
     }
 }

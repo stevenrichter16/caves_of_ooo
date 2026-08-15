@@ -221,6 +221,43 @@ namespace CavesOfOoo.Core
             ResolveAfterAbility(zone, source);
         }
 
+        /// <summary>
+        /// A cold ability touching the ground — the twin of
+        /// <see cref="ApplyFireToTile"/>. Writes cold and resolves
+        /// immediately, so water lying there freezes ON THE CAST
+        /// (<c>freeze_water</c>: water + cold → ice, Frozen on the
+        /// occupant).
+        ///
+        /// <para><b>Why this exists.</b> Same story as fire, a year later:
+        /// every cold ability chilled CREATURES (a negative ApplyHeat, or
+        /// FrozenEffect directly) and wrote nothing to the tile layer, so
+        /// Jet Blast's water was invisible to all of them — Rime Grip at
+        /// a puddle "closed on nothing". The tile universe had both halves
+        /// of the freeze authored and shipped (freeze_water / melt_ice) and
+        /// no spell that could reach them. Reported from play, 2026-08-15
+        /// (Docs/COLD-TILE-BRIDGE.md).</para>
+        ///
+        /// <para>Every cold ability routes through here rather than
+        /// writing cold itself, so the next one cannot quietly forget.</para>
+        /// </summary>
+        public static void ApplyColdToTile(Zone zone, int x, int y,
+            Entity source = null, string ability = "")
+        {
+            if (zone == null) return;
+            AddCold(zone, x, y, 1, source, ability);
+        }
+
+        /// <summary>Cold across several cells, resolved once at the end —
+        /// a wet stretch should freeze as one event.</summary>
+        public static void ApplyColdToTiles(Zone zone, IEnumerable<Point> cells,
+            Entity source = null, string ability = "")
+        {
+            if (zone == null || cells == null) return;
+            foreach (var c in cells)
+                AddCold(zone, c.X, c.Y, 1, source, ability);
+            ResolveAfterAbility(zone, source);
+        }
+
         private static void Emit(Zone zone, int x, int y, string layer,
             string id, int magnitude, Entity source, string ability)
         {
