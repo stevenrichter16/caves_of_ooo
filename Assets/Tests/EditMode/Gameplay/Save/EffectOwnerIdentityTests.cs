@@ -26,6 +26,7 @@ namespace CavesOfOoo.Tests
         public void Effect_Owner_IsSame_AsLoadedHostEntity()
         {
             var actor = new Entity { ID = "host", BlueprintName = "Host" };
+            actor.Tags["Creature"] = "";
             actor.ForceApplyEffect(new RootedEffect(duration: 4));
 
             var loaded = PartRoundTripHelper.RoundTripEntityViaTokenGraph(actor);
@@ -44,6 +45,7 @@ namespace CavesOfOoo.Tests
             // Three effects on one actor. Pin all three Owner pointers
             // resolve to the SAME loaded instance.
             var actor = new Entity { ID = "host", BlueprintName = "Host" };
+            actor.Tags["Creature"] = "";
             actor.ForceApplyEffect(new RootedEffect(duration: 4));
             actor.ForceApplyEffect(new StunnedEffect(duration: 2));
             actor.ForceApplyEffect(new ConfusedEffect(duration: 3));
@@ -69,6 +71,7 @@ namespace CavesOfOoo.Tests
             // burn-attribution.
             var attacker = new Entity { ID = "atk", BlueprintName = "Attacker" };
             var defender = new Entity { ID = "def", BlueprintName = "Defender" };
+            defender.Tags["Creature"] = "";
             defender.ForceApplyEffect(new BurningEffect(intensity: 1f, source: attacker));
 
             var loaded = PartRoundTripHelper.RoundTripEntityViaTokenGraph(defender);
@@ -98,6 +101,7 @@ namespace CavesOfOoo.Tests
             // ref fields with the host (which would be wrong for
             // most Tier-A effects).
             var actor = new Entity { ID = "host", BlueprintName = "Host" };
+            actor.Tags["Creature"] = "";
             actor.ForceApplyEffect(new RootedEffect(duration: 4));
 
             var loaded = PartRoundTripHelper.RoundTripEntityViaTokenGraph(actor);

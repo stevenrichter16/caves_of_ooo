@@ -188,7 +188,12 @@ namespace CavesOfOoo.Tests
         [Test]
         public void ElectrifiedEffect_WetTarget_AmplifiesCharge()
         {
+            // The wet-amplifies-shock rule is a CREATURE mechanic (soak
+            // the target, then shock it). Through the step-3 door, a wet
+            // wooden OBJECT is still not conductive — so this test's
+            // subject is tagged Creature, which is what it always modeled.
             var e = CreateEntity();
+            e.Tags["Creature"] = "";
             e.ApplyEffect(new WetEffect(moisture: 0.5f));
 
             var zap = new ElectrifiedEffect(charge: 1.0f);

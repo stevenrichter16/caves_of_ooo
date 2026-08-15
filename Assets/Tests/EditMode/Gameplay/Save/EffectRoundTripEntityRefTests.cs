@@ -38,6 +38,7 @@ namespace CavesOfOoo.Tests
             // queued + ReadEntityReference resolved the back-pointer.
             var attacker = new Entity { ID = "attacker-id", BlueprintName = "Attacker" };
             var defender = new Entity { ID = "defender-id", BlueprintName = "Defender" };
+            defender.Tags["Creature"] = "";
             defender.ForceApplyEffect(new BurningEffect(intensity: 1.5f, source: attacker));
 
             // Pre-condition: the live effect knows who lit it.
@@ -65,6 +66,7 @@ namespace CavesOfOoo.Tests
             // the float field reads garbage.
             var attacker = new Entity { ID = "atk", BlueprintName = "Attacker" };
             var defender = new Entity { ID = "def", BlueprintName = "Defender" };
+            defender.Tags["Creature"] = "";
             defender.ForceApplyEffect(new BurningEffect(intensity: 2.75f, source: attacker));
 
             var loaded = PartRoundTripHelper.RoundTripEntityViaTokenGraph(defender);
@@ -82,6 +84,7 @@ namespace CavesOfOoo.Tests
             // IgnitionSource still null — NOT spuriously resolved to
             // some other entity ID.
             var defender = new Entity { ID = "self-lit", BlueprintName = "Defender" };
+            defender.Tags["Creature"] = "";
             defender.ForceApplyEffect(new BurningEffect(intensity: 1f, source: null));
 
             var loaded = PartRoundTripHelper.RoundTripEntityViaTokenGraph(defender);
@@ -141,6 +144,7 @@ namespace CavesOfOoo.Tests
             var attacker = new Entity { ID = "atk", BlueprintName = "Attacker" };
             var puller = new Entity { ID = "pul", BlueprintName = "Puller" };
             var victim = new Entity { ID = "vic", BlueprintName = "Victim" };
+            victim.Tags["Creature"] = "";
             victim.ForceApplyEffect(new BurningEffect(intensity: 1f, source: attacker));
             victim.ForceApplyEffect(new HookedEffect(duration: 4, hooker: puller));
 

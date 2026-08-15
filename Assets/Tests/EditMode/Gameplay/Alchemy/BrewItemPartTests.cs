@@ -20,6 +20,7 @@ namespace CavesOfOoo.Tests
         private static Entity MakeDrinker(bool withStatusEffects = true)
         {
             var e = new Entity { ID = "drinker", BlueprintName = "drinker" };
+            e.Tags["Creature"] = "";
             e.Statistics["Hitpoints"] = new Stat
             {
                 Owner = e, Name = "Hitpoints", BaseValue = 50, Min = 0, Max = 50

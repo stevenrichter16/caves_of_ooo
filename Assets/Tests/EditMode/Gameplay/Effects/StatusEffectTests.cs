@@ -18,6 +18,7 @@ namespace CavesOfOoo.Tests
         {
             var e = new Entity();
             e.BlueprintName = "TestCreature";
+            e.Tags["Creature"] = "";
             e.Statistics["HP"] = new Stat { BaseValue = hp, Max = hp, Owner = e };
             e.Statistics["Hitpoints"] = new Stat { BaseValue = hp, Max = hp, Owner = e };
             e.Statistics["DV"] = new Stat { BaseValue = dv, Owner = e };

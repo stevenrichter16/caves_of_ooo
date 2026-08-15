@@ -35,7 +35,9 @@ namespace CavesOfOoo.Tests
     {
         private static Entity NewActor(string id = "actor")
         {
-            return new Entity { ID = id, BlueprintName = "Test" };
+            var e = new Entity { ID = id, BlueprintName = "Test" };
+            e.Tags["Creature"] = "";
+            return e;
         }
 
         // ── WetEffect.Moisture ───────────────────────────────────

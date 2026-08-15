@@ -62,14 +62,18 @@ namespace CavesOfOoo.Core
             { "Conductor", "Metal", "Water" };
 
         /// <summary>
-        /// Things with water in or on them — plus Metal, which freezes
-        /// BRITTLE rather than solid: cold_plus_metal.json and Ice
-        /// Lance's shatter setup both depend on frozen metal, and the
-        /// cooling path (ThermalPart.TryFreeze) now routes through this
-        /// row (Docs/STATUS-EFFECTS-STUDY-2026-08.md §4 violator #3).
+        /// Things with water in or on them — plus the materials that
+        /// freeze BRITTLE rather than solid: Metal, Crystal, Chitinous.
+        /// The authority is shipped content: cold_plus_metal.json,
+        /// cold_plus_crystal.json and cold_plus_chitinous.json each
+        /// require SourceState Frozen on that material, and Ice Lance's
+        /// shatter identity depends on frozen metal. Metal joined in step 1
+        /// (study §4 violator #3); Crystal and Chitinous were found dead
+        /// through the door in step 3 — a gated path could never freeze
+        /// them, so two shipped reactions could never fire.
         /// </summary>
         private static readonly string[] Freezable =
-            { "Wet", "Water", "Liquid", "Ice", "Organic", "Metal" };
+            { "Wet", "Water", "Liquid", "Ice", "Organic", "Metal", "Crystal", "Chitinous" };
 
         /// <summary>
         /// THE conduction answer for entity-side gates, exposed so the
@@ -110,6 +114,13 @@ namespace CavesOfOoo.Core
                 // Freezing needs water — in the thing, or on it.
                 { typeof(FrozenEffect),      e => HasAnyMaterialTag(e, Freezable) },
 
+                // A liquid coat is prep for what the liquid does next —
+                // oil on a hedge is a fire waiting to happen, oil on a
+                // stone wall is a mess. Follows the fire rule
+                // (Pyromancy_Oilmark was reaching past the matrix to coat
+                // scenery — study §4 violator #1, closed by this row).
+                { typeof(LiquidCoveredEffect), e => HasAnyMaterialTag(e, Flammable) },
+
                 // Anything can get wet, and anything can be etched.
                 { typeof(WetEffect),         e => true },
                 { typeof(AcidicEffect),      e => true },
@@ -140,35 +151,67 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// Apply an effect to a non-living object, if the matrix allows it.
-        /// The single door for effects reaching scenery — callers should not
-        /// reach past it to <c>Entity.ApplyEffect</c>.
+        /// The universal door, consulted by <see cref="Entity.ApplyEffect"/>
+        /// on EVERY application (status study step 3). Behavior-preserving
+        /// rule: creatures pass; objects with a matrix row get the row's
+        /// verdict (WrongMaterial refused + diag'd); objects with NO row
+        /// pass — today's ungated behavior, kept because twenty shipped
+        /// effect types (Broken on equipment, Recruited on followers, gas
+        /// statuses on statted props) legitimately land on non-creatures.
+        /// </summary>
+        public static bool PassesTheDoor(Effect effect, Entity target, Entity source)
+            => Gate(effect, target, source, strict: false);
+
+        /// <summary>
+        /// The STRICT door — the original TryApply contract, unchanged:
+        /// callers who name this entry point are saying "this target may
+        /// be scenery; be fail-closed", so an effect with NO matrix row
+        /// is refused as Meaningless (a barrel cannot bleed) and diag'd.
+        /// Both doors read the SAME table, so they can never disagree on
+        /// a WrongMaterial verdict — they differ only on the no-row case.
         /// </summary>
         /// <returns>True if the effect landed.</returns>
         public static bool TryApply(Effect effect, Entity target, Entity source, Zone zone)
         {
-            var verdict = Evaluate(effect, target);
-            if (verdict != ObjectStatusVerdict.Applies)
-            {
-                if (Diag.IsChannelEnabled("effect"))
-                {
-                    Diag.Record(
-                        category: "effect",
-                        kind: "ObjectEffectRefused",
-                        actor: source,
-                        target: target,
-                        payload: new
-                        {
-                            effect = effect?.GetType().Name,
-                            reason = verdict == ObjectStatusVerdict.Meaningless
-                                ? "meaningless_on_objects" : "wrong_material",
-                            blueprintName = target?.BlueprintName,
-                        });
-                }
+            if (!Gate(effect, target, source, strict: true))
                 return false;
-            }
-
+            // ApplyEffect re-runs the lenient door; a strict pass implies a
+            // lenient pass, so this is one table read, not two verdicts.
             return target.ApplyEffect(effect, source, zone);
+        }
+
+        private static bool Gate(Effect effect, Entity target, Entity source, bool strict)
+        {
+            if (effect == null || target == null)
+                return !strict; // lenient: substrate null-guards downstream; strict: refuse
+            if (target.HasTag("Creature")) return true;
+
+            string reason;
+            if (!Table.TryGetValue(effect.GetType(), out var materialGate))
+            {
+                if (!strict) return true;
+                reason = "meaningless_on_objects";
+            }
+            else if (materialGate(target))
+                return true;
+            else
+                reason = "wrong_material";
+
+            if (Diag.IsChannelEnabled("effect"))
+            {
+                Diag.Record(
+                    category: "effect",
+                    kind: "ObjectEffectRefused",
+                    actor: source,
+                    target: target,
+                    payload: new
+                    {
+                        effect = effect.GetType().Name,
+                        reason,
+                        blueprintName = target.BlueprintName,
+                    });
+            }
+            return false;
         }
 
         private static bool HasAnyMaterialTag(Entity target, string[] tags)

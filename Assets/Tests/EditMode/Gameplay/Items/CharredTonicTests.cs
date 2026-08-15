@@ -134,6 +134,7 @@ namespace CavesOfOoo.Tests
         private static Entity MakeDrinker(int hp = 50)
         {
             var entity = new Entity { ID = "drinker", BlueprintName = "TestDrinker" };
+            entity.Tags["Creature"] = "";
             entity.Statistics["Hitpoints"] = new Stat
                 { Owner = entity, Name = "Hitpoints", BaseValue = hp, Min = 0, Max = hp };
             entity.AddPart(new RenderPart { DisplayName = "drinker" });

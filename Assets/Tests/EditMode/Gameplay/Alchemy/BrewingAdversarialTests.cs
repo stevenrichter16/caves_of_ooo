@@ -133,6 +133,7 @@ namespace CavesOfOoo.Tests
         private static Entity CreateCrafter()
         {
             var crafter = new Entity { ID = "crafter", BlueprintName = "Player" };
+            crafter.Tags["Creature"] = "";
             crafter.AddPart(new RenderPart { DisplayName = "crafter" });
             crafter.AddPart(new InventoryPart());
             return crafter;
@@ -674,6 +675,7 @@ namespace CavesOfOoo.Tests
         private static Entity MakeTarget(string id)
         {
             var e = new Entity { ID = id, BlueprintName = id };
+            e.Tags["Creature"] = "";
             e.Statistics["Hitpoints"] = new Stat
             {
                 Owner = e, Name = "Hitpoints", BaseValue = 30, Min = 0, Max = 30

@@ -698,7 +698,7 @@ namespace CavesOfOoo.Core
                     return; // TryRest already messaged + diag'd; no charge.
 
                 listener.SetIntProperty(TradeSystem.CURRENCY_PROP, drams - cost);
-                listener.GetPart<StatusEffectsPart>()?.ForceApplyEffect(new WellRestedEffect());
+                listener.ForceApplyEffect(new WellRestedEffect());
                 MessageLog.Add($"You pay {cost} drams.");
             });
 

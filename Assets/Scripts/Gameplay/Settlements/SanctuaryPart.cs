@@ -55,8 +55,7 @@ namespace CavesOfOoo.Core
                 else
                 {
                     actor.SetIntProperty(TradeSystem.CURRENCY_PROP, drams - DonationCost);
-                    var effects = actor.GetPart<StatusEffectsPart>();
-                    effects?.ForceApplyEffect(new StoneskinEffect(BlessingReduction, BlessingDuration));
+                    actor.ForceApplyEffect(new StoneskinEffect(BlessingReduction, BlessingDuration));
                     MessageLog.Add("You leave a small offering. A quiet blessing settles over you.");
                     if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("furniture"))
                     {

@@ -91,6 +91,7 @@ namespace CavesOfOoo.Tests
         public void LightningTonic_NoStatusEffectsPart_DoesNotCrash()
         {
             var dummy = new Entity { ID = "dummy", BlueprintName = "TestDummy" };
+            dummy.Tags["Creature"] = "";
             dummy.Statistics["Hitpoints"] = new Stat
                 { Owner = dummy, Name = "Hitpoints", BaseValue = 10, Min = 0, Max = 10 };
             dummy.AddPart(new RenderPart { DisplayName = "dummy" });
@@ -103,6 +104,7 @@ namespace CavesOfOoo.Tests
         private static Entity MakeDrinker(int hp = 50)
         {
             var entity = new Entity { ID = "drinker", BlueprintName = "TestDrinker" };
+            entity.Tags["Creature"] = "";
             entity.Statistics["Hitpoints"] = new Stat
                 { Owner = entity, Name = "Hitpoints", BaseValue = hp, Min = 0, Max = hp };
             entity.AddPart(new RenderPart { DisplayName = "drinker" });

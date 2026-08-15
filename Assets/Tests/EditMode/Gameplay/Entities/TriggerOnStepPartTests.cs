@@ -37,6 +37,7 @@ namespace CavesOfOoo.Tests
         private static Entity CreateStepper(Zone zone, int x, int y, int hp = 20, string faction = null)
         {
             var e = new Entity { BlueprintName = "TestStepper", ID = "stepper-1" };
+            e.Tags["Creature"] = "";
             e.AddPart(new RenderPart { DisplayName = "stepper" });
             e.AddPart(new PhysicsPart { Solid = false });
             e.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = hp, Min = 0, Max = hp };

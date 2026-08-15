@@ -304,18 +304,47 @@ namespace CavesOfOoo.Core
         // --- Status Effects ---
 
         /// <summary>
-        /// Apply a status effect. Auto-creates StatusEffectsPart if needed.
+        /// THE application door for status effects (status study step 3,
+        /// Docs/STATUS-EFFECTS-STUDY-2026-08.md §6 Option 2). Every
+        /// production caller comes through here, so the scenery gate is
+        /// an INVARIANT rather than a convention:
+        /// <list type="bullet">
+        /// <item>Creature target → passes through unchanged.</item>
+        /// <item>Non-creature target + an effect the
+        /// <see cref="ObjectStatusMatrix"/> has a row for → the matrix
+        /// verdict; WrongMaterial is refused (and diag'd as
+        /// <c>effect/ObjectEffectRefused</c>) — a stone wall cannot be set
+        /// ablaze through this door.</item>
+        /// <item>Non-creature target + an effect with NO matrix row →
+        /// passes through, exactly as before this door existed. Twenty of
+        /// the shipped effect types are creature/item statuses (Broken on
+        /// equipment, Recruited on followers, gas statuses on statted
+        /// props) that legitimately land on non-creatures; failing closed
+        /// here would silently kill every one of them.</item>
+        /// </list>
+        /// The bypass — <c>StatusEffectsPart.ApplyEffect</c> called
+        /// directly — is pinned to zero production users by
+        /// <c>StatusApplicationFacadeTests.NoProductionCode_BypassesTheFacade</c>.
+        /// Auto-creates StatusEffectsPart if needed.
         /// </summary>
         public bool ApplyEffect(Effect effect, Entity source = null, Zone zone = null)
         {
+            if (!ObjectStatusMatrix.PassesTheDoor(effect, this, source))
+                return false;
             return EnsureStatusEffectsPart().ApplyEffect(effect, source, zone);
         }
 
         /// <summary>
         /// Force-apply a status effect, bypassing standard CanApply checks.
+        /// "Force" skips the effect's own CanBeAppliedTo — it does NOT skip
+        /// the material door: the matrix answers a different question
+        /// (can this material carry this status at all?), and forcing fire
+        /// onto a stone wall is still fire onto a stone wall.
         /// </summary>
         public bool ForceApplyEffect(Effect effect, Entity source = null, Zone zone = null)
         {
+            if (!ObjectStatusMatrix.PassesTheDoor(effect, this, source))
+                return false;
             return EnsureStatusEffectsPart().ForceApplyEffect(effect, source, zone);
         }
 
