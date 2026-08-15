@@ -48,9 +48,9 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
-            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return;
+            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;
             var actor = ctx.Attacker;
 
             // Require an Axe-class weapon equipped.
@@ -59,20 +59,20 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(actor.GetDisplayName() + " needs an axe equipped to hook.");
                 EmitSkillRejectedDiag(ctx, "no_weapon");
-                return;
+                return false;
             }
 
             // Need Zone for adjacency lookup + the drag mechanic later.
             if (ctx.Zone == null)
             {
                 EmitSkillRejectedDiag(ctx, "no_zone");
-                return;
+                return false;
             }
             var actorPos = ctx.Zone.GetEntityPosition(actor);
             if (actorPos.x < 0)
             {
                 EmitSkillRejectedDiag(ctx, "actor_not_in_zone");
-                return;
+                return false;
             }
 
             // Find adjacent Creature (mirrors Cudgel_Slam's pattern).
@@ -95,7 +95,7 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(actor.GetDisplayName() + " has nothing to hook.");
                 EmitSkillRejectedDiag(ctx, "no_target");
-                return;
+                return false;
             }
 
             // Swing + apply Hooked. The swing always happens (so on-hit
@@ -111,6 +111,8 @@ namespace CavesOfOoo.Skills
             target.ApplyEffect(
                 new HookedEffect(HOOK_DURATION, actor, HOOK_SAVE_TARGET, ctx.Rng),
                 actor, ctx.Zone);
+        
+            return true;
         }
     }
 }

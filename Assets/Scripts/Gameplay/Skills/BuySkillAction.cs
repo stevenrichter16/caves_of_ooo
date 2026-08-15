@@ -37,7 +37,10 @@ namespace CavesOfOoo.Skills
             InsufficientSP,
             StatMinNotMet,
             MissingPrereq,
-            Exclusion
+            Exclusion,
+            /// <summary>The row's Cost is negative — not-for-sale
+            /// (grimoire-taught / quest-granted). M0 S6.</summary>
+            NotPurchasable
         }
 
         /// <summary>
@@ -58,6 +61,14 @@ namespace CavesOfOoo.Skills
             /// </summary>
             public string Detail = "";
             public int CostPaid;
+
+            /// <summary>The row's cost as RESOLVED, set on every path
+            /// that got far enough to know it — unlike
+            /// <see cref="CostPaid"/>, which is only set on success.
+            /// The InsufficientSP failure message reads this (it used
+            /// to print CostPaid and told the player they needed
+            /// 0sp).</summary>
+            public int Cost;
             public int SpBefore;
             public int SpAfter;
         }
@@ -103,6 +114,21 @@ namespace CavesOfOoo.Skills
             {
                 return EmitAndReturn(actor, result, skillClassName,
                     FailureReason.UnknownSkillClass, "");
+            }
+            result.Cost = cost;
+
+            // 1b. M0 S6 — a negative cost is NEVER purchasable. The gate
+            // below is `SpBefore < cost` and the commit is
+            // `BaseValue -= cost`, so a negative cost would pass the gate
+            // unconditionally and then GRANT the player SP — and
+            // SkillData.Cost DEFAULTS to -999, meaning a JSON row that
+            // merely omits Cost would hand out +999 SP per purchase.
+            // Rows authored with a negative cost are treated as
+            // not-for-sale (grimoire-taught, quest-granted, etc.).
+            if (cost < 0)
+            {
+                return EmitAndReturn(actor, result, skillClassName,
+                    FailureReason.NotPurchasable, "");
             }
 
             // 2. Actor must have a SkillsPart (the manager).

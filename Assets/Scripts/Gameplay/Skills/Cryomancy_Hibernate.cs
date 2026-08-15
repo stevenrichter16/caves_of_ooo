@@ -40,11 +40,13 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
-            if (ctx == null || ctx.Attacker == null) return;
+            if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
             actor.ApplyEffect(new HibernatingEffect(HIBERNATE_DURATION), actor, ctx.Zone);
+        
+            return true;
         }
     }
 }

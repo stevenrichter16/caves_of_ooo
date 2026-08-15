@@ -70,7 +70,7 @@ namespace CavesOfOoo.Tests
                 Range = 1,
                 CooldownRemaining = 4,
                 MaxCooldown = 6,
-                SourceMutationClass = "",
+                SourcePowerClass = "",
             };
             part.AbilityList.Add(ability);
             part.AbilityByGuid[ability.ID] = ability;

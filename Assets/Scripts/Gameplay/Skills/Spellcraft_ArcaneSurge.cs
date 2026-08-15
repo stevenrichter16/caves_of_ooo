@@ -43,15 +43,15 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
-            if (ctx == null || ctx.Attacker == null) return;
+            if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
             var abilities = actor.GetPart<ActivatedAbilitiesPart>();
             if (abilities == null || abilities.AbilityList == null)
             {
                 EmitSkillRejectedDiag(ctx, "no_abilities");
-                return;
+                return false;
             }
 
             // Reset every cooldown except this skill's own. The Surge's
@@ -75,6 +75,8 @@ namespace CavesOfOoo.Skills
 
             MessageLog.Add(actor.GetDisplayName() + " surges with arcane energy! "
                 + reset + " ability cooldown" + (reset == 1 ? "" : "s") + " reset.");
+        
+            return true;
         }
     }
 }

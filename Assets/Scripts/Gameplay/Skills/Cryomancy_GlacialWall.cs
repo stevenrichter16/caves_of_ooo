@@ -52,14 +52,14 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
-            if (ctx == null || ctx.Attacker == null) return;
+            if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
-            if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return; }
+            if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return false; }
 
             int dx = ctx.DirectionX, dy = ctx.DirectionY;
-            if (dx == 0 && dy == 0) { EmitSkillRejectedDiag(ctx, "no_direction"); return; }
+            if (dx == 0 && dy == 0) { EmitSkillRejectedDiag(ctx, "no_direction"); return false; }
 
             if (Factory == null)
             {
@@ -67,11 +67,11 @@ namespace CavesOfOoo.Skills
                 // rather than throw — and say WHY, because "my wall did
                 // nothing" is otherwise unanswerable.
                 EmitSkillRejectedDiag(ctx, "no_factory");
-                return;
+                return false;
             }
 
             var actorPos = ctx.Zone.GetEntityPosition(actor);
-            if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return; }
+            if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return false; }
 
             int raised = 0, skipped = 0;
             int x = actorPos.x, y = actorPos.y;
@@ -112,11 +112,13 @@ namespace CavesOfOoo.Skills
             {
                 EmitSkillRejectedDiag(ctx, skipped > 0 ? "line_obstructed" : "no_room");
                 MessageLog.Add(actor.GetDisplayName() + "'s glacial wall finds no ground to take.");
-                return;
+                return false;
             }
 
             MessageLog.Add(actor.GetDisplayName() + " raises a wall of ice, "
                 + raised + " pace" + (raised == 1 ? "" : "s") + " wide!");
+        
+            return true;
         }
     }
 }

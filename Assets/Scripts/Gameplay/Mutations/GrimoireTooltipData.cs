@@ -42,7 +42,7 @@ namespace CavesOfOoo.Core
     /// <summary>
     /// Static lookup of inline tooltip text for the grimoire-granted
     /// activated mutations. Keys match the mutation class name exactly so that
-    /// <see cref="ActivatedAbility.SourceMutationClass"/> can be used as the
+    /// <see cref="ActivatedAbility.SourcePowerClass"/> can be used as the
     /// lookup key directly.
     ///
     /// <para><b>Load-bearing beyond tooltips:</b> InventoryUI's grimoire

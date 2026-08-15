@@ -56,7 +56,7 @@ namespace CavesOfOoo.Core
         /// to look up tooltip data via <see cref="GrimoireTooltipData"/>.
         /// Empty for abilities that aren't sourced from a mutation.
         /// </summary>
-        public string SourceMutationClass = "";
+        public string SourcePowerClass = "";
 
         /// <summary>
         /// Whether the ability is currently usable (off cooldown).

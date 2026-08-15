@@ -45,17 +45,17 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
-            if (ctx == null || ctx.Attacker == null) return;
+            if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
-            if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return; }
+            if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return false; }
 
             // NOTE: no direction check. A self-centred power must not
             // reject on a zero direction — requiring a facing would mean
             // aiming the panic button.
             var actorPos = ctx.Zone.GetEntityPosition(actor);
-            if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return; }
+            if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return false; }
 
             // Snapshot the ring before shoving anyone: each push moves a
             // creature out of the ring, and reading the ring lazily
@@ -87,7 +87,7 @@ namespace CavesOfOoo.Skills
                 EmitSkillRejectedDiag(ctx, "no_target");
                 MessageLog.Add(actor.GetDisplayName()
                     + "'s coil discharges into empty air.");
-                return;
+                return false;
             }
 
             int thrown = 0, survivors = 0;
@@ -124,6 +124,8 @@ namespace CavesOfOoo.Skills
             MessageLog.Add(actor.GetDisplayName() + "'s backlash coil blasts "
                 + ring.Count + " attacker" + (ring.Count == 1 ? "" : "s")
                 + (thrown > 0 ? ", hurling " + thrown + " clear!" : " — but nothing gives!"));
+        
+            return true;
         }
     }
 }

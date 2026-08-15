@@ -59,11 +59,11 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
             // Determinism: bail on null Rng instead of falling back to a
             // wall-clock-seeded one — mirrors Slam's WSP4.4 fix.
-            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return;
+            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;
             var actor = ctx.Attacker;
 
             // Require a LongBlades-class weapon equipped (mirrors Slam's
@@ -76,7 +76,7 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(actor.GetDisplayName() + " needs a long-blade-class weapon to lunge.");
                 EmitSkillRejectedDiag(ctx, "no_weapon");
-                return;
+                return false;
             }
 
             // Lunge needs Zone for line-trace + position lookup. Defense-
@@ -85,7 +85,7 @@ namespace CavesOfOoo.Skills
             if (ctx.Zone == null)
             {
                 EmitSkillRejectedDiag(ctx, "no_zone");
-                return;
+                return false;
             }
 
             // Direction was set by SkillsPart.HandleEvent from the
@@ -101,14 +101,14 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(actor.GetDisplayName() + " hesitates — no direction chosen.");
                 EmitSkillRejectedDiag(ctx, "no_direction");
-                return;
+                return false;
             }
 
             var actorPos = ctx.Zone.GetEntityPosition(actor);
             if (actorPos.x < 0)
             {
                 EmitSkillRejectedDiag(ctx, "actor_not_in_zone");
-                return;
+                return false;
             }
 
             // Line-trace LUNGE_RANGE cells in the chosen direction.
@@ -132,7 +132,7 @@ namespace CavesOfOoo.Skills
                 // stopped the trace, "no_target" if the line was empty.
                 MessageLog.Add(actor.GetDisplayName() + "'s lunge finds nothing.");
                 EmitSkillRejectedDiag(ctx, target != null ? "line_blocked" : "no_target");
-                return;
+                return false;
             }
 
             // Normal swing. PerformSingleAttack handles to-hit roll,
@@ -146,6 +146,8 @@ namespace CavesOfOoo.Skills
                 weapon: weapon, isPrimary: true,
                 zone: ctx.Zone, rng: ctx.Rng,
                 attackSourceDesc: "(Lunge)");
+        
+            return true;
         }
     }
 }

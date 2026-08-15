@@ -43,9 +43,9 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
-            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return;
+            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;
             var actor = ctx.Attacker;
 
             var weapon = SkillCombatHelpers.FindEquippedWeaponOfClass(actor, "Piercing");
@@ -53,15 +53,15 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(actor.GetDisplayName() + " needs a piercing-class weapon to disengage.");
                 EmitSkillRejectedDiag(ctx, "no_weapon");
-                return;
+                return false;
             }
-            if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return; }
+            if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return false; }
 
             int dx = ctx.DirectionX, dy = ctx.DirectionY;
-            if (dx == 0 && dy == 0) { EmitSkillRejectedDiag(ctx, "no_direction"); return; }
+            if (dx == 0 && dy == 0) { EmitSkillRejectedDiag(ctx, "no_direction"); return false; }
 
             var actorPos = ctx.Zone.GetEntityPosition(actor);
-            if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return; }
+            if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return false; }
 
             int x = actorPos.x, y = actorPos.y;
             int cellsMoved = 0;
@@ -90,6 +90,8 @@ namespace CavesOfOoo.Skills
 
             MessageLog.Add(actor.GetDisplayName() + " disengages " + cellsMoved + " cell"
                 + (cellsMoved == 1 ? "" : "s") + ".");
+        
+            return true;
         }
     }
 }

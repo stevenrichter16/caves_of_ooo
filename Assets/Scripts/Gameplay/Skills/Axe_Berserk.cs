@@ -35,9 +35,9 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
-            if (ctx == null || ctx.Attacker == null) return;
+            if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
 
             // Require an Axe-class weapon equipped.
@@ -46,10 +46,12 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(actor.GetDisplayName() + " needs an axe equipped to go berserk.");
                 EmitSkillRejectedDiag(ctx, "no_weapon");
-                return;
+                return false;
             }
 
             actor.ApplyEffect(new BerserkEffect(DURATION), actor, ctx.Zone);
+        
+            return true;
         }
     }
 }

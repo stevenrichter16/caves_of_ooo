@@ -112,7 +112,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
             // Veto #1 — null context (defense-in-depth; should be unreachable
             // via normal dispatch, but caught by EmitSkillRejectedDiag's
@@ -120,7 +120,7 @@ namespace CavesOfOoo.Skills
             if (ctx == null || ctx.Attacker == null || ctx.Rng == null || ctx.Zone == null)
             {
                 EmitSkillRejectedDiag(ctx, "null_context");
-                return;
+                return false;
             }
             var actor = ctx.Attacker;
 
@@ -129,7 +129,7 @@ namespace CavesOfOoo.Skills
             if (target == null)
             {
                 EmitSkillRejectedDiag(ctx, "no_target");
-                return;
+                return false;
             }
 
             // Veto #3 — self (defense-in-depth; FindAdjacentCleaveTarget
@@ -138,7 +138,7 @@ namespace CavesOfOoo.Skills
             if (target == actor)
             {
                 EmitSkillRejectedDiag(ctx, "self_target");
-                return;
+                return false;
             }
 
             // Veto #4 — target has no Brain (creature without AI; can't be
@@ -147,7 +147,7 @@ namespace CavesOfOoo.Skills
             if (brain == null)
             {
                 EmitSkillRejectedDiag(ctx, "target_no_brain");
-                return;
+                return false;
             }
 
             // Veto #5 — already recruited by anyone. F.2 v1 simplification:
@@ -156,7 +156,7 @@ namespace CavesOfOoo.Skills
             if (target.GetEffect<RecruitedEffect>() != null)
             {
                 EmitSkillRejectedDiag(ctx, "already_recruited");
-                return;
+                return false;
             }
 
             // Veto #6 — already following someone else (PartyLeader set
@@ -165,7 +165,7 @@ namespace CavesOfOoo.Skills
             if (brain.PartyLeader != null && brain.PartyLeader != actor)
             {
                 EmitSkillRejectedDiag(ctx, "follows_another");
-                return;
+                return false;
             }
 
             // Veto #7 — target is hostile (faction or personal grudge,
@@ -184,7 +184,7 @@ namespace CavesOfOoo.Skills
             if (FactionManager.GetFeeling(target, actor) <= FactionManager.HOSTILE_THRESHOLD)
             {
                 EmitSkillRejectedDiag(ctx, "target_hostile");
-                return;
+                return false;
             }
 
             // Veto #8 — at companion limit. F.3.3 enforcement. Counts
@@ -204,7 +204,7 @@ namespace CavesOfOoo.Skills
             if (currentRecruits >= limit)
             {
                 EmitSkillRejectedDiag(ctx, "at_companion_limit");
-                return;
+                return false;
             }
 
             // Roll: d20 + StatUtils.GetModifier(actor, "Ego")
@@ -242,7 +242,9 @@ namespace CavesOfOoo.Skills
                         });
                 }
                 MessageLog.Add(target.GetDisplayName() + " is unconvinced.");
-                return;
+                // A FAILED roll is still a real attempt — the gamble must
+                // cost the cooldown, or the player just retries each turn.
+                return true;
             }
 
             // Success — apply the effect. RecruitedEffect.OnApply handles
@@ -265,6 +267,8 @@ namespace CavesOfOoo.Skills
                         dc = dc
                     });
             }
+        
+            return true;
         }
 
         /// <summary>

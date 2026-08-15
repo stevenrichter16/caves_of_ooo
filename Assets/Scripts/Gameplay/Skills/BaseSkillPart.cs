@@ -291,8 +291,24 @@ namespace CavesOfOoo.Skills
         /// populated by the caller (input system or scenario test);
         /// skills can use them for adjacency lookups, dice rolls, etc.</para>
         /// </summary>
-        public virtual void OnCommand(SkillEventContext ctx)
+        /// <summary>
+        /// Execute this skill's activated command.
+        ///
+        /// <para><b>The return value is the whole contract</b>
+        /// (M0 S1, Docs/MUTATIONS-TO-SKILLS-MIGRATION.md §2): return
+        /// <c>true</c> when the cast actually happened — the dispatcher
+        /// then applies the cooldown and the InputHandler consumes the
+        /// turn. Return <c>false</c> on every refusal path (no target,
+        /// no ink, nothing to cleanse, invalid direction) — a refused
+        /// cast costs the player NOTHING: no cooldown, no turn. Before
+        /// this existed the dispatcher applied the cooldown
+        /// unconditionally, so a mis-press ate the full cooldown; a
+        /// docstring claimed OnCommand could zero it out, which was
+        /// false — the dispatcher overwrote it on the next line.</para>
+        /// </summary>
+        public virtual bool OnCommand(SkillEventContext ctx)
         {
+            return false;
         }
 
         /// <summary>

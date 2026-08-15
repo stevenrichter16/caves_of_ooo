@@ -46,9 +46,9 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
-            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return;
+            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;
             var actor = ctx.Attacker;
 
             var weapon = SkillCombatHelpers.FindEquippedWeaponOfClass(actor, "Axe");
@@ -56,19 +56,19 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(actor.GetDisplayName() + " needs an axe equipped to rend armor.");
                 EmitSkillRejectedDiag(ctx, "no_weapon");
-                return;
+                return false;
             }
 
             if (ctx.Zone == null)
             {
                 EmitSkillRejectedDiag(ctx, "no_zone");
-                return;
+                return false;
             }
             var actorPos = ctx.Zone.GetEntityPosition(actor);
             if (actorPos.x < 0)
             {
                 EmitSkillRejectedDiag(ctx, "actor_not_in_zone");
-                return;
+                return false;
             }
 
             Entity target = null;
@@ -90,7 +90,7 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(actor.GetDisplayName() + " has nothing to rend.");
                 EmitSkillRejectedDiag(ctx, "no_target");
-                return;
+                return false;
             }
 
             // Apply REND_STACKS as a single effect with StackCount set
@@ -100,6 +100,8 @@ namespace CavesOfOoo.Skills
             // for the AV reduction.
             var effect = new ShatterArmorEffect(REND_DURATION) { StackCount = REND_STACKS };
             target.ApplyEffect(effect, actor, ctx.Zone);
+        
+            return true;
         }
     }
 }

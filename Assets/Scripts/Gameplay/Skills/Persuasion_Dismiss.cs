@@ -47,12 +47,12 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null || ctx.Zone == null)
             {
                 EmitSkillRejectedDiag(ctx, "null_context");
-                return;
+                return false;
             }
             var actor = ctx.Attacker;
 
@@ -60,7 +60,7 @@ namespace CavesOfOoo.Skills
             if (target == null)
             {
                 EmitSkillRejectedDiag(ctx, "no_target");
-                return;
+                return false;
             }
 
             // Target must have a RecruitedEffect installed by THIS actor.
@@ -72,12 +72,12 @@ namespace CavesOfOoo.Skills
             if (effect == null)
             {
                 EmitSkillRejectedDiag(ctx, "no_recruited_effect");
-                return;
+                return false;
             }
             if (effect.Recruiter != actor)
             {
                 EmitSkillRejectedDiag(ctx, "not_your_follower");
-                return;
+                return false;
             }
 
             // Authorized dismiss — delegate to the effect's dispatcher,
@@ -99,6 +99,8 @@ namespace CavesOfOoo.Skills
             }
 
             MessageLog.Add(target.GetDisplayName() + " is dismissed from " + actor.GetDisplayName() + "'s service.");
+        
+            return true;
         }
     }
 }

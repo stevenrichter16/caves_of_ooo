@@ -484,10 +484,11 @@ namespace CavesOfOoo.Tests
                     Range = 1, Cooldown = 5,
                 };
             }
-            public override void OnCommand(SkillEventContext ctx)
+            public override bool OnCommand(SkillEventContext ctx)
             {
                 OnCommandCallCount++;
                 LastCtx = ctx;
+                return true;
             }
         }
 

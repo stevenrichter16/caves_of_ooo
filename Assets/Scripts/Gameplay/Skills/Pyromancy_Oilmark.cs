@@ -53,17 +53,17 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
-            if (ctx == null || ctx.Attacker == null) return;
+            if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
-            if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return; }
+            if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return false; }
 
             int dx = ctx.DirectionX, dy = ctx.DirectionY;
-            if (dx == 0 && dy == 0) { EmitSkillRejectedDiag(ctx, "no_direction"); return; }
+            if (dx == 0 && dy == 0) { EmitSkillRejectedDiag(ctx, "no_direction"); return false; }
 
             var actorPos = ctx.Zone.GetEntityPosition(actor);
-            if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return; }
+            if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return false; }
 
             List<Point> cells = SkillLine.CollectCells(
                 ctx.Zone, actor, actorPos.x, actorPos.y, dx, dy, OILMARK_RANGE);
@@ -73,7 +73,7 @@ namespace CavesOfOoo.Skills
                 // Walled in immediately — nowhere to pour.
                 EmitSkillRejectedDiag(ctx, "line_blocked");
                 MessageLog.Add(actor.GetDisplayName() + " has nowhere to pour.");
-                return;
+                return false;
             }
 
             for (int i = 0; i < cells.Count; i++)
@@ -96,6 +96,8 @@ namespace CavesOfOoo.Skills
 
             MessageLog.Add(actor.GetDisplayName() + " lays a slick of oil across "
                 + cells.Count + " pace" + (cells.Count == 1 ? "" : "s") + ".");
+        
+            return true;
         }
     }
 }

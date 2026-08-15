@@ -38,15 +38,15 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
-            if (ctx == null || ctx.Attacker == null) return;
+            if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
             var sep = actor.GetPart<StatusEffectsPart>();
             if (sep == null)
             {
                 EmitSkillRejectedDiag(ctx, "no_status_part");
-                return;
+                return false;
             }
 
             // Priority order: action-blockers first (highest impact to
@@ -70,7 +70,7 @@ namespace CavesOfOoo.Skills
                 {
                     MessageLog.Add(actor.GetDisplayName() + " rolls free of "
                         + prioritized[i].Name.Replace("Effect", "").ToLower() + "!");
-                    return;
+                    return true; // cleansed something — a real cast
                 }
             }
 
@@ -80,10 +80,12 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(actor.GetDisplayName() + " has nothing to roll free of.");
                 EmitSkillRejectedDiag(ctx, "no_negative_effect");
-                return;
+                return false;
             }
 
             MessageLog.Add(actor.GetDisplayName() + " rolls free of a negative effect!");
+        
+            return true;
         }
     }
 }

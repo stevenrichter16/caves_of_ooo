@@ -52,9 +52,9 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
-            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return;
+            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;
             var actor = ctx.Attacker;
 
             var weapon = SkillCombatHelpers.FindEquippedWeaponOfClass(actor, "Cudgel");
@@ -62,19 +62,19 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(actor.GetDisplayName() + " needs a cudgel-class weapon to ground pound.");
                 EmitSkillRejectedDiag(ctx, "no_weapon");
-                return;
+                return false;
             }
 
             if (ctx.Zone == null)
             {
                 EmitSkillRejectedDiag(ctx, "no_zone");
-                return;
+                return false;
             }
             var actorPos = ctx.Zone.GetEntityPosition(actor);
             if (actorPos.x < 0)
             {
                 EmitSkillRejectedDiag(ctx, "actor_not_in_zone");
-                return;
+                return false;
             }
 
             // Snapshot adjacent creatures + their direction-from-actor
@@ -99,7 +99,7 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(actor.GetDisplayName() + " pounds the ground — nothing nearby!");
                 EmitSkillRejectedDiag(ctx, "no_target");
-                return;
+                return false;
             }
 
             // Damage roll per target (independent rolls keep the per-
@@ -139,6 +139,8 @@ namespace CavesOfOoo.Skills
             }
 
             MessageLog.Add(actor.GetDisplayName() + " pounds the ground!");
+        
+            return true;
         }
 
     }

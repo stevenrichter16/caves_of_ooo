@@ -49,8 +49,27 @@ namespace CavesOfOoo.Core
             string abilityClass,
             AbilityTargetingMode targetingMode = AbilityTargetingMode.AdjacentCell,
             int range = 1,
-            string sourceMutationClass = "")
+            string sourcePowerClass = "")
         {
+            // M0 S5 — duplicate-Command guard. Dispatch is keyed on the
+            // command STRING (InputHandler fires GameEvent.New(Command)
+            // with no ability id in the payload), and FireEvent
+            // short-circuits on the first Part that handles it. Two
+            // abilities sharing a Command would occupy two hotbar slots
+            // while only ONE ever cools down — an infinite-cast exploit.
+            // Reject the second registration loudly.
+            for (int i = 0; i < AbilityList.Count; i++)
+            {
+                if (AbilityList[i].Command == command)
+                {
+                    UnityEngine.Debug.LogError(
+                        $"[ActivatedAbilities] duplicate Command '{command}' " +
+                        $"(existing: '{AbilityList[i].DisplayName}', rejected: '{displayName}') " +
+                        "— two powers may not share a command string.");
+                    return Guid.Empty;
+                }
+            }
+
             var ability = new ActivatedAbility
             {
                 ID = Guid.NewGuid(),
@@ -61,7 +80,7 @@ namespace CavesOfOoo.Core
                 Range = range < 1 ? 1 : range,
                 CooldownRemaining = 0,
                 MaxCooldown = 0,
-                SourceMutationClass = sourceMutationClass ?? ""
+                SourcePowerClass = sourcePowerClass ?? ""
             };
             AbilityByGuid[ability.ID] = ability;
             AbilityList.Add(ability);

@@ -131,7 +131,12 @@ namespace CavesOfOoo.Skills
                         abilityClass: string.IsNullOrEmpty(spec.Class) ? "Skills" : spec.Class,
                         targetingMode: spec.TargetingMode,
                         range: spec.Range,
-                        sourceMutationClass: "");
+                        // M0 S4 — the power's class name is the key the
+                        // hotbar tooltip, ability-panel tooltip, and the
+                        // grimoire slot-picker all look up. The old ""
+                        // would have made every ported power colourless
+                        // and invisible in the picker.
+                        sourcePowerClass: skill.GetType().Name);
                     var entry = abilities.GetAbility(skill.ActivatedAbilityID);
                     if (entry != null)
                         entry.MaxCooldown = spec.Cooldown;
@@ -234,6 +239,23 @@ namespace CavesOfOoo.Skills
         public bool TryRouteSkillCommand(string command, Zone zone = null,
             System.Random rng = null, int directionX = 0, int directionY = 0)
         {
+            return TryRouteSkillCommand(command, zone, rng, directionX, directionY,
+                sourceCell: null, targetCell: null, range: 0, out _);
+        }
+
+        /// <summary>
+        /// Full-context routing overload (M0 S1/S2/S3,
+        /// Docs/MUTATIONS-TO-SKILLS-MIGRATION.md §2). Returns true only
+        /// when the skill's <see cref="BaseSkillPart.OnCommand"/> reported
+        /// the cast actually happened — which is when (and only when) the
+        /// cooldown is applied. A refusal costs the player nothing.
+        /// </summary>
+        public bool TryRouteSkillCommand(string command, Zone zone,
+            System.Random rng, int directionX, int directionY,
+            Cell sourceCell, Cell targetCell, int range,
+            out bool blocksTurnAdvance)
+        {
+            blocksTurnAdvance = false;
             if (string.IsNullOrEmpty(command) || ParentEntity == null) return false;
             var abilities = ParentEntity.GetPart<ActivatedAbilitiesPart>();
             if (abilities == null) return false;
@@ -274,17 +296,32 @@ namespace CavesOfOoo.Skills
                     Attacker = ParentEntity, Defender = ParentEntity,
                     Zone = zone, Rng = rng ?? new System.Random(),
                     DirectionX = directionX, DirectionY = directionY,
+                    SourceCell = sourceCell, TargetCell = targetCell,
+                    Range = range,
                 };
-                skill.OnCommand(ctx);
+                bool consumed = skill.OnCommand(ctx);
+                blocksTurnAdvance = ctx.BlocksTurnAdvance;
 
-                // Apply cooldown after successful invocation. (If
-                // OnCommand wants to suppress the cooldown — e.g. on a
-                // failed targeting popup — it can manually set
-                // ability.CooldownRemaining = 0 before returning.)
-                ability.CooldownRemaining = ability.MaxCooldown;
-
+                // Diag contract (unchanged, adversarially pinned):
+                // reaching the skill emits CommandRouted whether or not
+                // the skill then refused — the record is the dispatch
+                // trace, and the refusal's own SkillRejected record
+                // carries the reason.
                 EmitCommandRoutedDiag(command, skill);
-                return true;
+
+                // M0 S1 — the cooldown is applied ONLY when the cast
+                // actually happened. A refusal (no target, no ink,
+                // nothing to cleanse) costs the player nothing: no
+                // cooldown here, and the false return leaves the command
+                // event unhandled so the InputHandler neither ends the
+                // turn nor charges the miss. The old dispatcher applied
+                // the cooldown unconditionally, and its claim that
+                // OnCommand could zero it out was false — this line
+                // used to overwrite whatever OnCommand set.
+                if (consumed)
+                    ability.CooldownRemaining = ability.MaxCooldown;
+
+                return consumed;
             }
 
             // No owned skill claims this command. Could be a mutation
@@ -404,19 +441,33 @@ namespace CavesOfOoo.Skills
             int dx = e.GetIntParameter("DirectionX");
             int dy = e.GetIntParameter("DirectionY");
 
-            // Route to the existing skill-command dispatcher. Returns
-            // true if a skill consumed the command. Cooldown failures
-            // return false — that's the correct semantic (the player
-            // already saw the cooldown gate in TryActivateAbility, but
-            // a defense-in-depth path here means the event still goes
-            // unhandled, which surfaces "The rite fails to resolve."
-            // — better than silently swallowing the input).
-            if (TryRouteSkillCommand(e.ID, zone, rng, dx, dy))
+            // M0 S2 — the cell-targeting inputs. SourceCell/TargetCell
+            // arrive via the object dictionary ((object) casts in
+            // ResolveAbilityCommand), Range via the int overload — the
+            // split-dictionary trap that killed four rites lives exactly
+            // here, so the read sides must match the write sides.
+            Cell sourceCell = e.GetParameter<Cell>("SourceCell");
+            Cell targetCell = e.GetParameter<Cell>("TargetCell");
+            int range = e.GetIntParameter("Range");
+
+            // Route to the skill-command dispatcher. True = the cast
+            // actually happened (cooldown applied inside). False covers
+            // three distinct cases that all correctly leave the event
+            // unhandled: not our command, cooldown-blocked, or the skill
+            // refused (no target / no ink / …) — the InputHandler then
+            // prints the generic failure line and does NOT end the turn,
+            // matching what the mutation path always did.
+            if (TryRouteSkillCommand(e.ID, zone, rng, dx, dy,
+                    sourceCell, targetCell, range, out bool blocksTurnAdvance))
             {
                 e.Handled = true;
+                // M0 S3 — FX/turn interlock. Same parameter, same
+                // dictionary, as the mutation path writes.
+                if (blocksTurnAdvance)
+                    e.SetParameter("BlocksTurnAdvance", (object)true);
                 return false; // stop propagation — the skill consumed it
             }
-            return true; // not a skill command (or cooldown blocked) — let other Parts try
+            return true; // let other Parts try
         }
 
         // ── Queries ──────────────────────────────────────────────────────

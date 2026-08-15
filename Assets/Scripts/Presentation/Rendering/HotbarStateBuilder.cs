@@ -21,7 +21,7 @@ namespace CavesOfOoo.Rendering
                 ActivatedAbility ability = abilities?.GetAbilityBySlot(slot);
                 bool occupied = ability != null;
                 GrimoireTooltip tooltip = occupied
-                    ? GrimoireTooltipData.GetOrDefault(ability.SourceMutationClass)
+                    ? GrimoireTooltipData.GetOrDefault(ability.SourcePowerClass)
                     : default;
                 string displayName = occupied
                     ? (!string.IsNullOrEmpty(tooltip.DisplayName) ? tooltip.DisplayName : ability.DisplayName)

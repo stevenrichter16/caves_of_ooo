@@ -39,14 +39,14 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
             // Determinism: bail on null Rng instead of falling back to a
             // wall-clock-seeded one — matches the early-out pattern of
             // every other skill (Bludgeon/Hammer/ShatteringBlows/etc.).
             // Cold-eye finding 🟡 #2: the previous `?? new System.Random()`
             // injected nondeterminism asymmetric to siblings.
-            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return;
+            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;
             var actor = ctx.Attacker;
 
             // Require a Cudgel-class weapon equipped.
@@ -55,7 +55,7 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(actor.GetDisplayName() + " needs a cudgel-class weapon to conk.");
                 EmitSkillRejectedDiag(ctx, "no_weapon");
-                return;
+                return false;
             }
 
             // Conk needs Zone for the adjacency lookup. (Berserk's
@@ -64,14 +64,14 @@ namespace CavesOfOoo.Skills
             if (ctx.Zone == null)
             {
                 EmitSkillRejectedDiag(ctx, "no_zone");
-                return;
+                return false;
             }
             var target = SkillCombatHelpers.FindAdjacentCleaveTarget(actor, actor, ctx.Zone);
             if (target == null)
             {
                 MessageLog.Add(actor.GetDisplayName() + " swings at nothing.");
                 EmitSkillRejectedDiag(ctx, "no_target");
-                return;
+                return false;
             }
 
             // Swing + always apply Stunned (the targeted-strike effect).
@@ -81,6 +81,8 @@ namespace CavesOfOoo.Skills
                 zone: ctx.Zone, rng: ctx.Rng,
                 attackSourceDesc: "(Conk)");
             target.ApplyEffect(new StunnedEffect(STUN_DURATION), actor, ctx.Zone);
+        
+            return true;
         }
     }
 }

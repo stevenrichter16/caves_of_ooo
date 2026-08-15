@@ -207,7 +207,12 @@ namespace CavesOfOoo.Rendering
                 case BuySkillAction.FailureReason.AlreadyOwned:
                     return $"You already have {display}.";
                 case BuySkillAction.FailureReason.InsufficientSP:
-                    return $"You need {r.CostPaid}sp to learn {display} ({r.SpBefore} available).";
+                    // r.Cost, not r.CostPaid — CostPaid is only set on the
+                    // success path, so this message used to say "You need
+                    // 0sp" while refusing the purchase.
+                    return $"You need {r.Cost}sp to learn {display} ({r.SpBefore} available).";
+                case BuySkillAction.FailureReason.NotPurchasable:
+                    return $"{display} cannot be bought — it must be found.";
                 case BuySkillAction.FailureReason.StatMinNotMet:
                     return $"You don't have the {r.Detail} for {display}.";
                 case BuySkillAction.FailureReason.MissingPrereq:

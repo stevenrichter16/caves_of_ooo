@@ -46,14 +46,14 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
-            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return;
+            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;
             var actor = ctx.Attacker;
-            if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return; }
+            if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return false; }
 
             var actorPos = ctx.Zone.GetEntityPosition(actor);
-            if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return; }
+            if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return false; }
 
             // Find adjacent creature with BurningEffect.
             Entity target = null;
@@ -78,7 +78,7 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(actor.GetDisplayName() + " finds no burning target adjacent.");
                 EmitSkillRejectedDiag(ctx, "no_target");
-                return;
+                return false;
             }
 
             // Consume the Burning effect, capture its remaining Duration.
@@ -96,7 +96,7 @@ namespace CavesOfOoo.Skills
             if (targetPos.x < 0)
             {
                 EmitSkillRejectedDiag(ctx, "target_not_in_zone");
-                return;
+                return false;
             }
 
             int hits = 0;
@@ -129,6 +129,8 @@ namespace CavesOfOoo.Skills
 
             MessageLog.Add(actor.GetDisplayName() + "'s pyroclasm detonates! "
                 + hits + " caught in the blast (" + aoeAmount + " Fire damage each).");
+        
+            return true;
         }
     }
 }

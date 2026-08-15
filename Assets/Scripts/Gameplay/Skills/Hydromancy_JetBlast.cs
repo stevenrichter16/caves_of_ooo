@@ -61,17 +61,17 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
-            if (ctx == null || ctx.Attacker == null) return;
+            if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
-            if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return; }
+            if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return false; }
 
             int dx = ctx.DirectionX, dy = ctx.DirectionY;
-            if (dx == 0 && dy == 0) { EmitSkillRejectedDiag(ctx, "no_direction"); return; }
+            if (dx == 0 && dy == 0) { EmitSkillRejectedDiag(ctx, "no_direction"); return false; }
 
             var actorPos = ctx.Zone.GetEntityPosition(actor);
-            if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return; }
+            if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return false; }
 
             List<Entity> targets = SpellTargeting.GetCreaturesInCone(
                 ctx.Zone, actor, actorPos.x, actorPos.y, dx, dy, BLAST_LENGTH);
@@ -84,7 +84,7 @@ namespace CavesOfOoo.Skills
                 // the world instead of only to creatures.
                 WetTheGround(ctx, actor, actorPos.x, actorPos.y, dx, dy);
                 MessageLog.Add(actor.GetDisplayName() + "'s jet blast splashes across bare ground.");
-                return;
+                return true; // the ground got wet — a real cast
             }
 
             float moisture = HydromancySkill.ApplyMoistureBonus(actor, BLAST_MOISTURE);
@@ -144,6 +144,8 @@ namespace CavesOfOoo.Skills
 
             MessageLog.Add(actor.GetDisplayName() + "'s jet blast drenches "
                 + soaked + " target" + (soaked == 1 ? "" : "s") + "!");
+        
+            return true;
         }
 
         /// <summary>Lays water along the cone's centre line. A

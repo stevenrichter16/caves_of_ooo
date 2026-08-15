@@ -223,7 +223,7 @@ namespace CavesOfOoo.Core
                 abilityClass,
                 targetingMode,
                 range,
-                sourceMutationClass: GetType().Name);
+                sourcePowerClass: GetType().Name);
         }
 
         /// <summary>

@@ -45,17 +45,17 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
-            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return;
+            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;
             var actor = ctx.Attacker;
-            if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return; }
+            if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return false; }
 
             int dx = ctx.DirectionX, dy = ctx.DirectionY;
-            if (dx == 0 && dy == 0) { EmitSkillRejectedDiag(ctx, "no_direction"); return; }
+            if (dx == 0 && dy == 0) { EmitSkillRejectedDiag(ctx, "no_direction"); return false; }
 
             var actorPos = ctx.Zone.GetEntityPosition(actor);
-            if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return; }
+            if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return false; }
 
             int x = actorPos.x, y = actorPos.y;
             int hits = 0;
@@ -129,10 +129,12 @@ namespace CavesOfOoo.Skills
             {
                 EmitSkillRejectedDiag(ctx, "no_target");
                 MessageLog.Add(actor.GetDisplayName() + "'s overload finds no conductors.");
-                return;
+                return false;
             }
             MessageLog.Add(actor.GetDisplayName() + "'s overload chains through "
                 + hits + " conductor" + (hits == 1 ? "" : "s") + "!");
+        
+            return true;
         }
     }
 }

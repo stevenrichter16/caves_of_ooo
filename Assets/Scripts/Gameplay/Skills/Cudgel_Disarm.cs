@@ -42,9 +42,9 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
-            if (ctx == null || ctx.Attacker == null) return;
+            if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
 
             var weapon = SkillCombatHelpers.FindEquippedWeaponOfClass(actor, "Cudgel");
@@ -52,12 +52,12 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(actor.GetDisplayName() + " needs a cudgel-class weapon to disarm.");
                 EmitSkillRejectedDiag(ctx, "no_weapon");
-                return;
+                return false;
             }
 
-            if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return; }
+            if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return false; }
             var actorPos = ctx.Zone.GetEntityPosition(actor);
-            if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return; }
+            if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return false; }
 
             // Find adjacent target.
             Entity target = null;
@@ -78,7 +78,7 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(actor.GetDisplayName() + " has nothing to disarm.");
                 EmitSkillRejectedDiag(ctx, "no_target");
-                return;
+                return false;
             }
 
             // Find the target's first equipped melee weapon (preferring
@@ -99,7 +99,7 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(target.GetDisplayName() + " has no weapon to disarm.");
                 EmitSkillRejectedDiag(ctx, "target_unarmed");
-                return;
+                return false;
             }
 
             // Unequip + drop on target's cell. UnequipItem returns to
@@ -109,7 +109,7 @@ namespace CavesOfOoo.Skills
             {
                 EmitSkillRejectedDiag(ctx, "unequip_failed");
                 MessageLog.Add("The disarm fails.");
-                return;
+                return false;
             }
             var targetInventory = target.GetPart<InventoryPart>();
             if (targetInventory != null) targetInventory.RemoveObject(weaponEntity);
@@ -120,6 +120,8 @@ namespace CavesOfOoo.Skills
 
             MessageLog.Add(actor.GetDisplayName() + " disarms " + target.GetDisplayName()
                 + "! The " + weaponEntity.GetDisplayName() + " clatters to the ground.");
+        
+            return true;
         }
     }
 }

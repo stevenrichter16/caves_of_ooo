@@ -59,26 +59,26 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
             // Tumble doesn't roll dice for the swap (it's deterministic
             // movement) — but ConfusedEffect's CanApply path doesn't need
             // an Rng either, and the determinism rule is universal: a
             // null Rng signals a misconfigured caller. Bail like the
             // other actives.
-            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return;
+            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;
             var actor = ctx.Attacker;
 
             if (ctx.Zone == null)
             {
                 EmitSkillRejectedDiag(ctx, "no_zone");
-                return;
+                return false;
             }
             var actorPos = ctx.Zone.GetEntityPosition(actor);
             if (actorPos.x < 0)
             {
                 EmitSkillRejectedDiag(ctx, "actor_not_in_zone");
-                return;
+                return false;
             }
 
             // Find adjacent creature (mirrors Slam's 8-dir lookup).
@@ -105,28 +105,28 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(actor.GetDisplayName() + " has no one to tumble with.");
                 EmitSkillRejectedDiag(ctx, "no_target");
-                return;
+                return false;
             }
 
             var targetPos = ctx.Zone.GetEntityPosition(target);
             if (targetPos.x < 0)
             {
                 EmitSkillRejectedDiag(ctx, "target_not_in_zone");
-                return;
+                return false;
             }
 
             // Three-phase swap. Pull target OUT first so the actor's
             // destination is vacant; move actor; then re-add target on
             // the (now vacant) old actor cell. If any phase fails, undo
             // the prior phase to keep the zone in a consistent state.
-            if (!ctx.Zone.RemoveEntity(target)) return;
+            if (!ctx.Zone.RemoveEntity(target)) return false;
             if (!ctx.Zone.MoveEntity(actor, targetPos.x, targetPos.y))
             {
                 // Rollback: actor couldn't move (defense-in-depth — this
                 // shouldn't fire because we just vacated the cell, but
                 // future Zone changes might add validation that rejects).
                 ctx.Zone.AddEntity(target, targetPos.x, targetPos.y);
-                return;
+                return false;
             }
             ctx.Zone.AddEntity(target, actorPos.x, actorPos.y);
 
@@ -141,6 +141,8 @@ namespace CavesOfOoo.Skills
 
             MessageLog.Add(actor.GetDisplayName() + " tumbles past "
                 + target.GetDisplayName() + ".");
+        
+            return true;
         }
     }
 }

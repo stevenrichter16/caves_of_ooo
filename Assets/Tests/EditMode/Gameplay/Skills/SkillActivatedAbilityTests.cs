@@ -36,10 +36,11 @@ namespace CavesOfOoo.Tests
                 };
             }
 
-            public override void OnCommand(SkillEventContext ctx)
+            public override bool OnCommand(SkillEventContext ctx)
             {
                 OnCommandCount++;
                 LastCommandActor = ctx?.Attacker;
+                return true;
             }
         }
 

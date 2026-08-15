@@ -61,9 +61,9 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
-            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return;
+            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;
             var actor = ctx.Attacker;
 
             var weapon = SkillCombatHelpers.FindEquippedWeaponOfClass(actor, "Piercing");
@@ -71,19 +71,19 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(actor.GetDisplayName() + " needs a piercing-class weapon to backstab.");
                 EmitSkillRejectedDiag(ctx, "no_weapon");
-                return;
+                return false;
             }
 
             if (ctx.Zone == null)
             {
                 EmitSkillRejectedDiag(ctx, "no_zone");
-                return;
+                return false;
             }
             var actorPos = ctx.Zone.GetEntityPosition(actor);
             if (actorPos.x < 0)
             {
                 EmitSkillRejectedDiag(ctx, "actor_not_in_zone");
-                return;
+                return false;
             }
 
             // Find adjacent target + remember the direction we found
@@ -109,7 +109,7 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(actor.GetDisplayName() + " has nothing to backstab.");
                 EmitSkillRejectedDiag(ctx, "no_target");
-                return;
+                return false;
             }
 
             // Flanking check: the "opposite" cell from actor through
@@ -169,6 +169,8 @@ namespace CavesOfOoo.Skills
                     MessageLog.Add(actor.GetDisplayName() + " strikes from a flank! +" + bonus + " damage.");
                 }
             }
+        
+            return true;
         }
     }
 }

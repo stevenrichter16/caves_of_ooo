@@ -67,12 +67,12 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
-            if (ctx == null || ctx.Attacker == null) return;
+            if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
             var hp = actor.GetStat("Hitpoints");
-            if (hp == null) { EmitSkillRejectedDiag(ctx, "no_hitpoints"); return; }
+            if (hp == null) { EmitSkillRejectedDiag(ctx, "no_hitpoints"); return false; }
 
             int sacrifice = (hp.BaseValue * HP_SACRIFICE_PERCENT) / 100;
             if (sacrifice < 1) sacrifice = 1;
@@ -81,7 +81,7 @@ namespace CavesOfOoo.Skills
             if (sacrifice < 1)
             {
                 EmitSkillRejectedDiag(ctx, "insufficient_hp");
-                return;
+                return false;
             }
             hp.BaseValue -= sacrifice;
 
@@ -91,6 +91,8 @@ namespace CavesOfOoo.Skills
             MessageLog.Add(actor.GetDisplayName() + " burns own heart for power! "
                 + sacrifice + " HP sacrificed; next " + BUFF_CHARGES
                 + " fire spells deal +" + DAMAGE_BONUS_PERCENT + "% damage.");
+        
+            return true;
         }
 
         public override int OnGetSpellDamageModifier(Entity attacker, Entity defender,

@@ -74,9 +74,9 @@ namespace CavesOfOoo.Skills
             return _activePenBonus;
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
-            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return;
+            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;
             var actor = ctx.Attacker;
 
             // Require a Piercing-class weapon equipped.
@@ -85,20 +85,20 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(actor.GetDisplayName() + " needs a piercing-class weapon to shank.");
                 EmitSkillRejectedDiag(ctx, "no_weapon");
-                return;
+                return false;
             }
 
             // Need Zone to find adjacent target.
             if (ctx.Zone == null)
             {
                 EmitSkillRejectedDiag(ctx, "no_zone");
-                return;
+                return false;
             }
             var actorPos = ctx.Zone.GetEntityPosition(actor);
             if (actorPos.x < 0)
             {
                 EmitSkillRejectedDiag(ctx, "actor_not_in_zone");
-                return;
+                return false;
             }
 
             // Find adjacent Creature (mirrors Cudgel_Slam's lookup).
@@ -121,7 +121,7 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(actor.GetDisplayName() + " has nothing to shank.");
                 EmitSkillRejectedDiag(ctx, "no_target");
-                return;
+                return false;
             }
 
             // Count negative effects on target. Qud uses `effect.IsOfType(33554432)`
@@ -146,6 +146,8 @@ namespace CavesOfOoo.Skills
             {
                 _activePenBonus = 0;
             }
+        
+            return true;
         }
 
         /// <summary>

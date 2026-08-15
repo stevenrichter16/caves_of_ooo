@@ -3868,7 +3868,7 @@ namespace CavesOfOoo.Rendering
             if (ability == null)
                 return "That rite";
 
-            GrimoireTooltip tooltip = GrimoireTooltipData.GetOrDefault(ability.SourceMutationClass);
+            GrimoireTooltip tooltip = GrimoireTooltipData.GetOrDefault(ability.SourcePowerClass);
             return !string.IsNullOrEmpty(tooltip.DisplayName)
                 ? tooltip.DisplayName
                 : ability.DisplayName;

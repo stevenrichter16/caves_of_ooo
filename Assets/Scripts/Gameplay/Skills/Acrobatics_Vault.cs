@@ -42,17 +42,17 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
-            if (ctx == null || ctx.Attacker == null) return;
+            if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
-            if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return; }
+            if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return false; }
 
             int dx = ctx.DirectionX, dy = ctx.DirectionY;
-            if (dx == 0 && dy == 0) { EmitSkillRejectedDiag(ctx, "no_direction"); return; }
+            if (dx == 0 && dy == 0) { EmitSkillRejectedDiag(ctx, "no_direction"); return false; }
 
             var actorPos = ctx.Zone.GetEntityPosition(actor);
-            if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return; }
+            if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return false; }
 
             int landX = actorPos.x + dx * VAULT_DISTANCE;
             int landY = actorPos.y + dy * VAULT_DISTANCE;
@@ -60,14 +60,14 @@ namespace CavesOfOoo.Skills
             {
                 EmitSkillRejectedDiag(ctx, "out_of_bounds");
                 MessageLog.Add(actor.GetDisplayName() + "'s vault would land off the map.");
-                return;
+                return false;
             }
             var landCell = ctx.Zone.GetCell(landX, landY);
             if (landCell == null || landCell.IsSolid())
             {
                 EmitSkillRejectedDiag(ctx, "landing_blocked");
                 MessageLog.Add(actor.GetDisplayName() + "'s vault has no clear landing.");
-                return;
+                return false;
             }
             // Creature at landing cell? Vault doesn't displace.
             for (int i = 0; i < landCell.Objects.Count; i++)
@@ -78,7 +78,7 @@ namespace CavesOfOoo.Skills
                 {
                     EmitSkillRejectedDiag(ctx, "landing_occupied");
                     MessageLog.Add(actor.GetDisplayName() + "'s vault is blocked by " + e.GetDisplayName() + ".");
-                    return;
+                    return false;
                 }
             }
 
@@ -86,6 +86,8 @@ namespace CavesOfOoo.Skills
             // distance 1 (which is the whole point of Vault).
             ctx.Zone.MoveEntity(actor, landX, landY);
             MessageLog.Add(actor.GetDisplayName() + " vaults forward!");
+        
+            return true;
         }
     }
 }

@@ -221,7 +221,33 @@ critics and added these:
   the **tree name** ("Pyromancy", "Rites") instead of the flat "Skills"
   makes that screen group meaningfully for free.
 
-## 5. Open questions for the user
+## 5. DECIDED (user, 2026-08-15) — implementation underway
+
+1. **Level-scaling: simplest.** Freeze at level-1 numbers: Flaming
+   Hands = flat 1d4 (was Level×1d4), Calm duration = BaseDuration + 10
+   (was + Level×10). Documented rebalance; the two level-scaling tests
+   are replaced by flat pins, deliberately.
+2. **No new utility tree.** Only elemental trees — Conjure Rain /
+   Drying Breeze → Hydromancy, Hearthwarm → Pyromancy, per D3's
+   original table.
+3. **Rite ink convergence: converge.** All 11 rites port onto the one
+   skill rite base and inherit its two invariants (ink is checked after
+   target-gathering so a whiffed rite never burns ink; cold-cast
+   multiplier semantics). The 5 hand-rolled rites change behaviour
+   where they diverged — strictly player-friendly, documented per rite.
+4. **Grimoire powers are also SP-buyable.** Normal tree rows with real
+   costs; grimoires are an alternate acquisition route ("already
+   known" if bought first, and vice versa). Found-only can be added
+   later via the S6 NotPurchasable gate if wanted.
+
+**Execution latitude (user, same date):** implement in whatever way is
+best, even against stated project process. In practice: batch commits
+per tree instead of 29 per-power ceremonies; grimoire repointing folded
+into each batch; one consolidated verification pass at the end; the
+substrate/tests/compile-green-commit discipline stays because it is
+what makes the migration safe, not because doctrine demands it.
+
+## 5b. Original open questions (retained for the record)
 
 1. **Level-scaling (D5)** — freeze, rebalance flat, or tiered rows?
 2. **Utility tree (D3)** — new `Husbandry`/`Weatherwork` tree, or keep the

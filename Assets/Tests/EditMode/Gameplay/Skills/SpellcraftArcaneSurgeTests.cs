@@ -46,7 +46,7 @@ namespace CavesOfOoo.Tests
             var abilities = actor.GetPart<ActivatedAbilitiesPart>();
             var otherID = abilities.AddAbility(displayName: "Test", command: "CommandTest",
                 abilityClass: "Skills", targetingMode: AbilityTargetingMode.AdjacentCell,
-                range: 1, sourceMutationClass: "");
+                range: 1, sourcePowerClass: "");
             var other = abilities.GetAbility(otherID);
             other.MaxCooldown = 50;
             other.CooldownRemaining = 30;

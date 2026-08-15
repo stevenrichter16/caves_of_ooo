@@ -3297,7 +3297,7 @@ namespace CavesOfOoo.Rendering
 
                     if (occupied)
                     {
-                        GrimoireTooltipData.TryGet(ability.SourceMutationClass, out var tooltip);
+                        GrimoireTooltipData.TryGet(ability.SourcePowerClass, out var tooltip);
                         string displayName = !string.IsNullOrEmpty(tooltip.DisplayName)
                             ? tooltip.DisplayName
                             : ability.DisplayName;
@@ -3331,7 +3331,7 @@ namespace CavesOfOoo.Rendering
 
                 if (occupied)
                 {
-                    GrimoireTooltipData.TryGet(ability.SourceMutationClass, out var tooltip);
+                    GrimoireTooltipData.TryGet(ability.SourcePowerClass, out var tooltip);
                     bool anyTooltip = !string.IsNullOrEmpty(tooltip.DisplayName)
                         || !string.IsNullOrEmpty(tooltip.Flavor)
                         || !string.IsNullOrEmpty(tooltip.Mechanics)
@@ -3440,7 +3440,7 @@ namespace CavesOfOoo.Rendering
                 var ab = abilities.AbilityList[i];
                 if (ab == null)
                     continue;
-                if (GrimoireTooltipData.IsGrimoireMutation(ab.SourceMutationClass))
+                if (GrimoireTooltipData.IsGrimoireMutation(ab.SourcePowerClass))
                     grimoires.Add(ab);
             }
 
@@ -3652,7 +3652,7 @@ namespace CavesOfOoo.Rendering
                 var ability = picker.Grimoires[idx];
                 bool selected = idx == picker.CursorIndex;
 
-                GrimoireTooltipData.TryGet(ability.SourceMutationClass, out var tooltip);
+                GrimoireTooltipData.TryGet(ability.SourcePowerClass, out var tooltip);
                 string displayName = !string.IsNullOrEmpty(tooltip.DisplayName)
                     ? tooltip.DisplayName
                     : ability.DisplayName;

@@ -55,12 +55,12 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
-            if (ctx == null || ctx.Attacker == null) return;
+            if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
             var hp = actor.GetStat("Hitpoints");
-            if (hp == null) { EmitSkillRejectedDiag(ctx, "no_hitpoints"); return; }
+            if (hp == null) { EmitSkillRejectedDiag(ctx, "no_hitpoints"); return false; }
 
             int drain = (hp.BaseValue * HP_DRAIN_PERCENT) / 100;
             if (drain < 1) drain = 1;
@@ -68,7 +68,7 @@ namespace CavesOfOoo.Skills
             if (drain < 1)
             {
                 EmitSkillRejectedDiag(ctx, "insufficient_hp");
-                return;
+                return false;
             }
             hp.BaseValue -= drain;
 
@@ -77,6 +77,8 @@ namespace CavesOfOoo.Skills
 
             MessageLog.Add(actor.GetDisplayName() + " taps the leylines! "
                 + drain + " HP drained; next spell deals +" + _pendingBonus + " bonus damage.");
+        
+            return true;
         }
 
         public override int OnGetSpellDamageModifier(Entity attacker, Entity defender,

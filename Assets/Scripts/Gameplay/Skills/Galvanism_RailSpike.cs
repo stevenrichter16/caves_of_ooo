@@ -51,17 +51,17 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
-            if (ctx == null || ctx.Attacker == null) return;
+            if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
-            if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return; }
+            if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return false; }
 
             int dx = ctx.DirectionX, dy = ctx.DirectionY;
-            if (dx == 0 && dy == 0) { EmitSkillRejectedDiag(ctx, "no_direction"); return; }
+            if (dx == 0 && dy == 0) { EmitSkillRejectedDiag(ctx, "no_direction"); return false; }
 
             var actorPos = ctx.Zone.GetEntityPosition(actor);
-            if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return; }
+            if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return false; }
 
             bool blockedByWall;
             var targets = SkillLine.Collect(
@@ -76,7 +76,7 @@ namespace CavesOfOoo.Skills
                 EmitSkillRejectedDiag(ctx, blockedByWall ? "line_blocked" : "no_target");
                 MessageLog.Add(actor.GetDisplayName()
                     + "'s rail spike finds nothing to ground against.");
-                return;
+                return false;
             }
 
             // The charge grounds in the furthest body the spike REACHED
@@ -127,6 +127,8 @@ namespace CavesOfOoo.Skills
                     + body + ", but " + ground.GetDisplayName()
                     + " falls before the charge can ground!");
             }
+        
+            return true;
         }
     }
 }

@@ -86,5 +86,37 @@ namespace CavesOfOoo.Skills
         /// <summary>Y-axis component of the player-chosen direction.
         /// See <see cref="DirectionX"/> for the full contract.</summary>
         public int DirectionY = 0;
+
+        // ── M0 substrate for the mutations→skills migration ─────────────
+        // (Docs/MUTATIONS-TO-SKILLS-MIGRATION.md §2 S2/S3). Before these
+        // fields existed, an AdjacentCell or SelfCentered power could not
+        // read its own targeting input through the skill path — the
+        // InputHandler puts SourceCell/TargetCell/Range on the command
+        // event, but the dispatcher lifted only Zone/RNG/direction.
+
+        /// <summary>The caster's cell at cast time. Set for every routed
+        /// command. Self-centered powers (novas, auras) radiate from
+        /// here.</summary>
+        public Cell SourceCell;
+
+        /// <summary>The player-chosen cell for
+        /// <see cref="AbilityTargetingMode.AdjacentCell"/> powers; null
+        /// for other targeting modes. Flaming Hands paints fire on THIS
+        /// cell — including deliberately empty ones, so a null check is
+        /// a targeting-mode check, not a validity check.</summary>
+        public Cell TargetCell;
+
+        /// <summary>The ability's declared range, as the InputHandler
+        /// passed it. 0 when the event carried none.</summary>
+        public int Range;
+
+        /// <summary>Set by OnCommand when it emitted blocking ASCII FX
+        /// (projectiles, ring waves, beams). The dispatcher copies it
+        /// back onto the command event, where the InputHandler holds the
+        /// turn in <c>WaitingForFxResolution</c> until the FX drain —
+        /// without it, monsters act while the projectile is still
+        /// animating. Mutations wrote the event parameter directly; the
+        /// ctx field is the skill path's equivalent.</summary>
+        public bool BlocksTurnAdvance;
     }
 }

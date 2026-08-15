@@ -56,11 +56,11 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override void OnCommand(SkillEventContext ctx)
+        public override bool OnCommand(SkillEventContext ctx)
         {
             // Determinism: bail on null Rng instead of falling back to a
             // wall-clock-seeded one — mirrors Cudgel_Conk's WSP4.4 fix.
-            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return;
+            if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;
             var actor = ctx.Attacker;
 
             // Require a Cudgel-class weapon equipped (mirrors Conk).
@@ -69,20 +69,20 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(actor.GetDisplayName() + " needs a cudgel-class weapon to slam.");
                 EmitSkillRejectedDiag(ctx, "no_weapon");
-                return;
+                return false;
             }
 
             // Slam needs Zone for adjacency lookup + push movement.
             if (ctx.Zone == null)
             {
                 EmitSkillRejectedDiag(ctx, "no_zone");
-                return;
+                return false;
             }
             var actorPos = ctx.Zone.GetEntityPosition(actor);
             if (actorPos.x < 0)
             {
                 EmitSkillRejectedDiag(ctx, "actor_not_in_zone");
-                return;
+                return false;
             }
 
             // Find adjacent target + remember which direction to slam in.
@@ -110,7 +110,7 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(actor.GetDisplayName() + " has nothing to slam.");
                 EmitSkillRejectedDiag(ctx, "no_target");
-                return;
+                return false;
             }
 
             // Push target up to SLAM_DISTANCE cells in slamDir.
@@ -184,6 +184,8 @@ namespace CavesOfOoo.Skills
             else msg += " (immobile)";
             msg += "!";
             MessageLog.Add(msg);
+        
+            return true;
         }
 
         /// <summary>
