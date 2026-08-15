@@ -43,10 +43,8 @@ namespace CavesOfOoo.Rendering
 
         // ---- Open state ----
         private bool _isOpen;
-        private Entity _actor;
         private Entity _target;
         private Cell _cell;
-        private Zone _zone;
         private readonly List<string> _statusLines = new List<string>();
 
         /// <summary>Status rows render between the title divider and the
@@ -86,23 +84,24 @@ namespace CavesOfOoo.Rendering
         public Entity SelectedTarget => _target;
         public Cell SelectedCell => _cell;
         public bool SelectedCellIsPile => _cellIsPile;
-        public Entity Actor => _actor;
 
         /// <summary>
-        /// Show the menu. Caller is responsible for having run target
+        /// Show the menu. <paramref name="actor"/> is accepted for call-site
+        /// symmetry but unused (the menu never needed the actor; the dead
+        /// field that stored it was removed in the 2026-08 simplification
+        /// pass). <paramref name="zone"/> is REQUIRED — the status section
+        /// reads tile state through it. Caller is responsible for having run target
         /// resolution + action gathering (via <see cref="WorldInteractionSystem"/>).
         /// An empty/null actions list means the menu renders a single row
         /// reading "(no actions available)" — caller can check emptiness
         /// beforehand and skip opening if they prefer.
         /// </summary>
         public void Open(Entity actor, Entity target, Cell cell, List<InventoryAction> actions,
-            Zone zone = null)
+            Zone zone)
         {
             _isOpen = true;
-            _actor = actor;
             _target = target;
             _cell = cell;
-            _zone = zone;
             _statusLines.Clear();
             _statusLines.AddRange(BuildStatusLinesFor(target, cell, zone));
             _cellIsPile = WorldInteractionSystem.IsPileCell(cell);
@@ -331,7 +330,7 @@ namespace CavesOfOoo.Rendering
 
             if (zone != null && cell != null)
             {
-                string ground = CellStatusReadout.GroundLine(zone, cell, cell.X, cell.Y);
+                string ground = CellStatusReadout.GroundLine(zone, cell);
                 if (!string.IsNullOrEmpty(ground))
                     lines.Add(ground);
             }
