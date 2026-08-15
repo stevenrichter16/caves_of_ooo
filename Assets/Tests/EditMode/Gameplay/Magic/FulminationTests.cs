@@ -69,10 +69,11 @@ namespace CavesOfOoo.Tests
         }
 
         /// <summary>A caster who knows the rite and carries an inked book.</summary>
-        private static (Entity caster, FulminationMutation rite) Caster(Zone zone, int x, int y)
+        private static (Entity caster, CavesOfOoo.Skills.Rites_Fulmination rite) Caster(Zone zone, int x, int y)
         {
             var c = Creature(zone, "caster", x, y);
-            c.AddPart(new MutationsPart());
+            c.AddPart(new ActivatedAbilitiesPart());
+            c.AddPart(new CavesOfOoo.Skills.SkillsPart());
             var inv = new InventoryPart { MaxWeight = 500 };
             c.AddPart(inv);
             var book = new Entity { ID = "book", BlueprintName = "FulminationGrimoire" };
@@ -80,9 +81,8 @@ namespace CavesOfOoo.Tests
             book.AddPart(new GrimoireChargePart { Charges = 10, MaxCharges = 10 });
             inv.AddObject(book);
 
-            var rite = new FulminationMutation();
-            c.AddPart(rite);
-            rite.Mutate(c, 1);
+            var rite = new CavesOfOoo.Skills.Rites_Fulmination();
+            c.GetPart<CavesOfOoo.Skills.SkillsPart>().AddSkill(rite);
             return (c, rite);
         }
 
@@ -159,7 +159,7 @@ namespace CavesOfOoo.Tests
             // stops owning the consequences and the architecture is gone.
             string src = File.ReadAllText(Path.Combine(
                 Application.dataPath,
-                "Scripts/Gameplay/Mutations/FulminationMutation.cs"));
+                "Scripts/Gameplay/Skills/Rites_Fulmination.cs"));
 
             StringAssert.DoesNotContain("HasCoating", src,
                 "a rite must not inspect the tile it writes to");

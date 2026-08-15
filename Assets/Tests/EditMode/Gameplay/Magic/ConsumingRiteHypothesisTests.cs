@@ -59,17 +59,17 @@ namespace CavesOfOoo.Tests
         }
 
         private T Rite<T>(Zone zone, int x, int y, out Entity caster, string bookBlueprint)
-            where T : ConsumingRiteBase, new()
+            where T : CavesOfOoo.Skills.ConsumingRiteSkillBase, new()
         {
             caster = Creature(zone, "caster", x, y);
-            caster.AddPart(new MutationsPart());
+            caster.AddPart(new ActivatedAbilitiesPart());
+            caster.AddPart(new CavesOfOoo.Skills.SkillsPart());
             var inv = new InventoryPart { MaxWeight = 500 };
             caster.AddPart(inv);
             inv.AddObject(_factory.CreateEntity(bookBlueprint));
 
             var rite = new T();
-            caster.AddPart(rite);
-            rite.Mutate(caster, 1);
+            caster.GetPart<CavesOfOoo.Skills.SkillsPart>().AddSkill(rite);
             return rite;
         }
 
@@ -87,7 +87,7 @@ namespace CavesOfOoo.Tests
             // AoE permanently turns your companion hostile, with no
             // in-game way to notice why.
             var zone = new Zone();
-            var rite = Rite<SunderingWordMutation>(zone, 10, 10, out var caster,
+            var rite = Rite<CavesOfOoo.Skills.Rites_SunderingWord>(zone, 10, 10, out var caster,
                 "SunderingWordGrimoire");
 
             var follower = Creature(zone, "follower", 11, 10);
@@ -114,7 +114,7 @@ namespace CavesOfOoo.Tests
             // and the player's most likely reason for picking up a
             // duplicate is that their first one ran dry.
             var zone = new Zone();
-            var rite = Rite<HollowCoinMutation>(zone, 5, 5, out var caster,
+            var rite = Rite<CavesOfOoo.Skills.Rites_HollowCoin>(zone, 5, 5, out var caster,
                 "HollowCoinGrimoire");
             var inv = caster.GetPart<InventoryPart>();
 
@@ -137,7 +137,7 @@ namespace CavesOfOoo.Tests
             // The player-visible version of the same question, which is
             // what actually matters: dry book + found book = can I cast?
             var zone = new Zone();
-            var rite = Rite<HollowCoinMutation>(zone, 5, 5, out var caster,
+            var rite = Rite<CavesOfOoo.Skills.Rites_HollowCoin>(zone, 5, 5, out var caster,
                 "HollowCoinGrimoire");
             var inv = caster.GetPart<InventoryPart>();
             inv.Objects[0].GetPart<GrimoireChargePart>().Charges = 0;
@@ -158,7 +158,7 @@ namespace CavesOfOoo.Tests
             // and SplitStack clones it, splitting a stack of 2 could
             // hand the player two full books from one — free casts.
             var zone = new Zone();
-            var rite = Rite<HollowCoinMutation>(zone, 5, 5, out var caster,
+            var rite = Rite<CavesOfOoo.Skills.Rites_HollowCoin>(zone, 5, 5, out var caster,
                 "HollowCoinGrimoire");
             var inv = caster.GetPart<InventoryPart>();
             inv.AddObject(_factory.CreateEntity("HollowCoinGrimoire"));
@@ -228,7 +228,7 @@ namespace CavesOfOoo.Tests
             // deliberate design, and this test says so out loud; if it
             // is not, this is where it surfaces.
             var zone = new Zone();
-            var rite = Rite<HollowCoinMutation>(zone, 5, 5, out var caster,
+            var rite = Rite<CavesOfOoo.Skills.Rites_HollowCoin>(zone, 5, 5, out var caster,
                 "StormAnvilGrimoire");                       // WRONG book first
             var inv = caster.GetPart<InventoryPart>();
             inv.AddObject(_factory.CreateEntity("HollowCoinGrimoire"));
@@ -256,7 +256,7 @@ namespace CavesOfOoo.Tests
             // line, and changed nothing. AsleepByGasEffect refreshes to
             // the larger duration instead.
             var zone = new Zone();
-            var rite = Rite<StillHeartMutation>(zone, 5, 5, out var caster,
+            var rite = Rite<CavesOfOoo.Skills.Rites_StillHeart>(zone, 5, 5, out var caster,
                 "StillHeartGrimoire");
             var elite = Creature(zone, "elite", 6, 5);
 
@@ -290,7 +290,7 @@ namespace CavesOfOoo.Tests
             // have one left to detonate with. This pins that a two-slot
             // rite genuinely spends TWO — not all three.
             var zone = new Zone();
-            var rite = Rite<SunderingWordMutation>(zone, 10, 10, out var caster,
+            var rite = Rite<CavesOfOoo.Skills.Rites_SunderingWord>(zone, 10, 10, out var caster,
                 "SunderingWordGrimoire");
             var target = Creature(zone, "target", 11, 10);
             target.ApplyEffect(new WetEffect(1.0f), caster, zone);

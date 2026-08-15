@@ -58,10 +58,11 @@ namespace CavesOfOoo.Tests
         }
 
         private static T Caster<T>(Zone zone, int x, int y, out Entity caster)
-            where T : ConsumingRiteBase, new()
+            where T : CavesOfOoo.Skills.ConsumingRiteSkillBase, new()
         {
             caster = Creature(zone, "caster", x, y);
-            caster.AddPart(new MutationsPart());
+            caster.AddPart(new ActivatedAbilitiesPart());
+            caster.AddPart(new CavesOfOoo.Skills.SkillsPart());
             var inv = new InventoryPart { MaxWeight = 500 };
             caster.AddPart(inv);
             var book = new Entity { ID = "book", BlueprintName = "AnyRite" };
@@ -70,8 +71,7 @@ namespace CavesOfOoo.Tests
             inv.AddObject(book);
 
             var rite = new T();
-            caster.AddPart(rite);
-            rite.Mutate(caster, 1);
+            caster.GetPart<CavesOfOoo.Skills.SkillsPart>().AddSkill(rite);
             return rite;
         }
 
@@ -83,7 +83,7 @@ namespace CavesOfOoo.Tests
             // The rule that keeps six powerful rites from being six
             // better skills. With nothing to spend, resonance returns
             // x1.0 and every base number here is small.
-            void Check<T>(int allowance) where T : ConsumingRiteBase, new()
+            void Check<T>(int allowance) where T : CavesOfOoo.Skills.ConsumingRiteSkillBase, new()
             {
                 var zone = new Zone();
                 var rite = Caster<T>(zone, 5, 5, out var caster);
@@ -97,12 +97,12 @@ namespace CavesOfOoo.Tests
                     typeof(T).Name + " hits far too hard with nothing consumed");
             }
 
-            Check<ShatteredRimeMutation>(10);
-            Check<StillHeartMutation>(10);
-            Check<VerdigrisBloomMutation>(10);
-            Check<HollowCoinMutation>(10);
-            Check<SunderingWordMutation>(10);
-            Check<BloodletterLedgerMutation>(10);
+            Check<CavesOfOoo.Skills.Rites_ShatteredRime>(10);
+            Check<CavesOfOoo.Skills.Rites_StillHeart>(10);
+            Check<CavesOfOoo.Skills.Rites_VerdigrisBloom>(10);
+            Check<CavesOfOoo.Skills.Rites_HollowCoin>(10);
+            Check<CavesOfOoo.Skills.Rites_SunderingWord>(10);
+            Check<CavesOfOoo.Skills.Rites_BloodletterLedger>(10);
         }
 
         [Test]
@@ -110,7 +110,7 @@ namespace CavesOfOoo.Tests
         {
             // The counter-check to the above: if these were ALSO weak
             // when fed, the rites would simply be bad.
-            void Check<T>() where T : ConsumingRiteBase, new()
+            void Check<T>() where T : CavesOfOoo.Skills.ConsumingRiteSkillBase, new()
             {
                 var coldZone = new Zone();
                 var coldRite = Caster<T>(coldZone, 5, 5, out _);
@@ -132,16 +132,16 @@ namespace CavesOfOoo.Tests
             }
 
             // Wet resonates with every element, so it feeds all of them.
-            Check<ShatteredRimeMutation>();
-            Check<VerdigrisBloomMutation>();
-            Check<HollowCoinMutation>();
-            Check<SunderingWordMutation>();
+            Check<CavesOfOoo.Skills.Rites_ShatteredRime>();
+            Check<CavesOfOoo.Skills.Rites_VerdigrisBloom>();
+            Check<CavesOfOoo.Skills.Rites_HollowCoin>();
+            Check<CavesOfOoo.Skills.Rites_SunderingWord>();
         }
 
         [Test]
         public void EveryRite_SpendsInkOnACast_AndNoneOnAMiss()
         {
-            void Check<T>() where T : ConsumingRiteBase, new()
+            void Check<T>() where T : CavesOfOoo.Skills.ConsumingRiteSkillBase, new()
             {
                 var zone = new Zone();
                 var rite = Caster<T>(zone, 5, 5, out var caster);
@@ -158,12 +158,12 @@ namespace CavesOfOoo.Tests
                     typeof(T).Name + " did not spend its charge");
             }
 
-            Check<ShatteredRimeMutation>();
-            Check<StillHeartMutation>();
-            Check<VerdigrisBloomMutation>();
-            Check<HollowCoinMutation>();
-            Check<SunderingWordMutation>();
-            Check<BloodletterLedgerMutation>();
+            Check<CavesOfOoo.Skills.Rites_ShatteredRime>();
+            Check<CavesOfOoo.Skills.Rites_StillHeart>();
+            Check<CavesOfOoo.Skills.Rites_VerdigrisBloom>();
+            Check<CavesOfOoo.Skills.Rites_HollowCoin>();
+            Check<CavesOfOoo.Skills.Rites_SunderingWord>();
+            Check<CavesOfOoo.Skills.Rites_BloodletterLedger>();
         }
 
         // ── What makes each one different ────────────────────────
@@ -172,7 +172,7 @@ namespace CavesOfOoo.Tests
         public void StillHeart_RemovesAnEliteInsteadOfKillingIt()
         {
             var zone = new Zone();
-            var rite = Caster<StillHeartMutation>(zone, 5, 5, out var caster);
+            var rite = Caster<CavesOfOoo.Skills.Rites_StillHeart>(zone, 5, 5, out var caster);
             var elite = Creature(zone, "elite", 6, 5);
             elite.ApplyEffect(new WetEffect(1.0f), caster, zone);
 
@@ -193,7 +193,7 @@ namespace CavesOfOoo.Tests
             int DurationWith(params Effect[] primed)
             {
                 var zone = new Zone();
-                var rite = Caster<StillHeartMutation>(zone, 5, 5, out var caster);
+                var rite = Caster<CavesOfOoo.Skills.Rites_StillHeart>(zone, 5, 5, out var caster);
                 var target = Creature(zone, "target", 6, 5);
                 foreach (var e in primed) target.ApplyEffect(e, caster, zone);
 
@@ -215,7 +215,7 @@ namespace CavesOfOoo.Tests
         public void SunderingWord_DebuffsTheWholeRadius()
         {
             var zone = new Zone();
-            var rite = Caster<SunderingWordMutation>(zone, 10, 10, out var caster);
+            var rite = Caster<CavesOfOoo.Skills.Rites_SunderingWord>(zone, 10, 10, out var caster);
             var a = Creature(zone, "a", 11, 10);
             var b = Creature(zone, "b", 9, 10);
             a.ApplyEffect(new WetEffect(1.0f), caster, zone);
@@ -234,7 +234,7 @@ namespace CavesOfOoo.Tests
         public void BloodletterLedger_HealsTheCaster_ButOnlyForMarksSpent()
         {
             var zone = new Zone();
-            var rite = Caster<BloodletterLedgerMutation>(zone, 5, 5, out var caster);
+            var rite = Caster<CavesOfOoo.Skills.Rites_BloodletterLedger>(zone, 5, 5, out var caster);
             var target = Creature(zone, "target", 6, 5);
             target.ApplyEffect(new WetEffect(1.0f), caster, zone);
 
@@ -251,7 +251,7 @@ namespace CavesOfOoo.Tests
             // Counter-check: otherwise it is a free top-up between
             // fights, which would be the most abusable thing here.
             var zone = new Zone();
-            var rite = Caster<BloodletterLedgerMutation>(zone, 5, 5, out var caster);
+            var rite = Caster<CavesOfOoo.Skills.Rites_BloodletterLedger>(zone, 5, 5, out var caster);
             Creature(zone, "target", 6, 5);
 
             var hp = caster.GetStat("Hitpoints");
@@ -266,7 +266,7 @@ namespace CavesOfOoo.Tests
         public void VerdigrisBloom_StripsArmourAcrossTheRadius()
         {
             var zone = new Zone();
-            var rite = Caster<VerdigrisBloomMutation>(zone, 10, 10, out var caster);
+            var rite = Caster<CavesOfOoo.Skills.Rites_VerdigrisBloom>(zone, 10, 10, out var caster);
             var target = Creature(zone, "target", 11, 10);
             target.ApplyEffect(new WetEffect(1.0f), caster, zone);
 
@@ -279,7 +279,7 @@ namespace CavesOfOoo.Tests
         public void ShatteredRime_IsACone_AndCatchesAClump()
         {
             var zone = new Zone();
-            var rite = Caster<ShatteredRimeMutation>(zone, 10, 10, out var caster);
+            var rite = Caster<CavesOfOoo.Skills.Rites_ShatteredRime>(zone, 10, 10, out var caster);
             var centre = Creature(zone, "centre", 12, 10);
             var offAxis = Creature(zone, "offAxis", 12, 11);
             int c = centre.GetStatValue("Hitpoints");
@@ -299,7 +299,7 @@ namespace CavesOfOoo.Tests
             // SM9 rites, only the wildcard reaches it. (Heat DOES
             // carry Burning at 0.75; no SM9 rite reads Heat.)
             var zone = new Zone();
-            var rite = Caster<HollowCoinMutation>(zone, 5, 5, out var caster);
+            var rite = Caster<CavesOfOoo.Skills.Rites_HollowCoin>(zone, 5, 5, out var caster);
             var target = Creature(zone, "target", 6, 5);
             target.ApplyEffect(new BurningEffect(), caster, zone);
 
@@ -338,7 +338,7 @@ namespace CavesOfOoo.Tests
             // shattering — which is both wrong and the exact opposite of
             // what a player expects from this rite.
             var zone = new Zone();
-            var rite = Caster<ShatteredRimeMutation>(zone, 10, 10, out var caster);
+            var rite = Caster<CavesOfOoo.Skills.Rites_ShatteredRime>(zone, 10, 10, out var caster);
             var iceThing = Creature(zone, "iceThing", 11, 10);
             iceThing.Statistics["ColdResistance"].BaseValue = 100;
 
@@ -356,7 +356,7 @@ namespace CavesOfOoo.Tests
             // exception, not the house style. A rite that corrodes
             // SHOULD do nothing to something that cannot corrode.
             var zone = new Zone();
-            var rite = Caster<VerdigrisBloomMutation>(zone, 10, 10, out var caster);
+            var rite = Caster<CavesOfOoo.Skills.Rites_VerdigrisBloom>(zone, 10, 10, out var caster);
             var inert = Creature(zone, "inert", 11, 10);
             inert.Statistics["AcidResistance"].BaseValue = 100;
             inert.ApplyEffect(new WetEffect(1.0f), caster, zone);
@@ -373,7 +373,7 @@ namespace CavesOfOoo.Tests
         {
             // The answer to an enemy you have no answer for.
             var zone = new Zone();
-            var rite = Caster<HollowCoinMutation>(zone, 5, 5, out var caster);
+            var rite = Caster<CavesOfOoo.Skills.Rites_HollowCoin>(zone, 5, 5, out var caster);
             var warded = Creature(zone, "warded", 6, 5);
             foreach (var r in new[] { "ElectricResistance", "HeatResistance",
                                       "ColdResistance", "AcidResistance" })
@@ -398,7 +398,7 @@ namespace CavesOfOoo.Tests
             // it was meant to neutralise and made it immune to its own
             // Cold damage. AsleepByGasEffect is the hostile sleep.
             var zone = new Zone();
-            var rite = Caster<StillHeartMutation>(zone, 5, 5, out var caster);
+            var rite = Caster<CavesOfOoo.Skills.Rites_StillHeart>(zone, 5, 5, out var caster);
             var elite = Creature(zone, "elite", 6, 5);
             elite.ApplyEffect(new WetEffect(1.0f), caster, zone);
 
@@ -419,7 +419,7 @@ namespace CavesOfOoo.Tests
             // The rite's docstring promised "breaks on damage" and the
             // shipped effect had no wake hook at all.
             var zone = new Zone();
-            var rite = Caster<StillHeartMutation>(zone, 5, 5, out var caster);
+            var rite = Caster<CavesOfOoo.Skills.Rites_StillHeart>(zone, 5, 5, out var caster);
             var elite = Creature(zone, "elite", 6, 5);
             elite.ApplyEffect(new WetEffect(1.0f), caster, zone);
             rite.Cast(zone, 1, 0);
@@ -440,7 +440,7 @@ namespace CavesOfOoo.Tests
             // a dead target — so the better the setup, the more likely
             // the sustain silently vanished.
             var zone = new Zone();
-            var rite = Caster<BloodletterLedgerMutation>(zone, 5, 5, out var caster);
+            var rite = Caster<CavesOfOoo.Skills.Rites_BloodletterLedger>(zone, 5, 5, out var caster);
             var doomed = Creature(zone, "doomed", 6, 5, hp: 1);
             doomed.ApplyEffect(new WetEffect(1.0f), caster, zone);
 
@@ -461,7 +461,7 @@ namespace CavesOfOoo.Tests
             // single-target rites already did this; the three new ones
             // filed everything under the caster.
             var zone = new Zone();
-            var rite = Caster<HollowCoinMutation>(zone, 5, 5, out var caster);
+            var rite = Caster<CavesOfOoo.Skills.Rites_HollowCoin>(zone, 5, 5, out var caster);
             var victim = Creature(zone, "victim", 6, 5);
             Diag.ResetAll();
 
@@ -480,7 +480,7 @@ namespace CavesOfOoo.Tests
             // caster remains the right filing. Without this, "always use
             // targets[0]" would pass the test above.
             var zone = new Zone();
-            var rite = Caster<SunderingWordMutation>(zone, 10, 10, out var caster);
+            var rite = Caster<CavesOfOoo.Skills.Rites_SunderingWord>(zone, 10, 10, out var caster);
             Creature(zone, "victim", 11, 10);
             Diag.ResetAll();
 
@@ -551,7 +551,7 @@ namespace CavesOfOoo.Tests
             // every original test — the rite's entire non-damage payoff
             // was unasserted.
             var zone = new Zone();
-            var rite = Caster<ShatteredRimeMutation>(zone, 10, 10, out var caster);
+            var rite = Caster<CavesOfOoo.Skills.Rites_ShatteredRime>(zone, 10, 10, out var caster);
             var fed = Creature(zone, "fed", 11, 10);
             fed.ApplyEffect(new WetEffect(1.0f), caster, zone);
 
@@ -559,7 +559,7 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(fed.GetPart<StatusEffectsPart>().HasEffect<ShatterArmorEffect>());
 
             var coldZone = new Zone();
-            var coldRite = Caster<ShatteredRimeMutation>(coldZone, 10, 10, out _);
+            var coldRite = Caster<CavesOfOoo.Skills.Rites_ShatteredRime>(coldZone, 10, 10, out _);
             var cold = Creature(coldZone, "cold", 11, 10);
             coldRite.Cast(coldZone, 1, 0);
             Assert.IsFalse(cold.GetPart<StatusEffectsPart>().HasEffect<ShatterArmorEffect>(),
@@ -571,7 +571,7 @@ namespace CavesOfOoo.Tests
         {
             // The shipped answer to §7.4's "spread", never asserted.
             var zone = new Zone();
-            var rite = Caster<VerdigrisBloomMutation>(zone, 10, 10, out var caster);
+            var rite = Caster<CavesOfOoo.Skills.Rites_VerdigrisBloom>(zone, 10, 10, out var caster);
             var fed = Creature(zone, "fed", 11, 10);
             fed.ApplyEffect(new WetEffect(1.0f), caster, zone);
 
@@ -580,7 +580,7 @@ namespace CavesOfOoo.Tests
                 "the bloom re-seeds acid on what it caught");
 
             var coldZone = new Zone();
-            var coldRite = Caster<VerdigrisBloomMutation>(coldZone, 10, 10, out _);
+            var coldRite = Caster<CavesOfOoo.Skills.Rites_VerdigrisBloom>(coldZone, 10, 10, out _);
             var cold = Creature(coldZone, "cold", 11, 10);
             coldRite.Cast(coldZone, 0, 0);
             Assert.IsFalse(cold.GetPart<StatusEffectsPart>().HasEffect<AcidicEffect>());
@@ -592,7 +592,7 @@ namespace CavesOfOoo.Tests
             // "Cast cold is nearly worthless" was pinned for DAMAGE
             // only; the rider guards all survived deletion.
             var zone = new Zone();
-            var rite = Caster<SunderingWordMutation>(zone, 10, 10, out _);
+            var rite = Caster<CavesOfOoo.Skills.Rites_SunderingWord>(zone, 10, 10, out _);
             var cold = Creature(zone, "cold", 11, 10);
 
             rite.Cast(zone, 0, 0);
@@ -605,7 +605,7 @@ namespace CavesOfOoo.Tests
         public void StillHeart_ColdCast_PutsNobodyToSleep()
         {
             var zone = new Zone();
-            var rite = Caster<StillHeartMutation>(zone, 5, 5, out _);
+            var rite = Caster<CavesOfOoo.Skills.Rites_StillHeart>(zone, 5, 5, out _);
             var cold = Creature(zone, "cold", 6, 5);
 
             rite.Cast(zone, 1, 0);
@@ -619,7 +619,7 @@ namespace CavesOfOoo.Tests
             // Slots => 3 and the ">= 3" Broken branch were unreachable
             // in every original test: nothing ever primed three.
             var zone = new Zone();
-            var rite = Caster<HollowCoinMutation>(zone, 5, 5, out var caster);
+            var rite = Caster<CavesOfOoo.Skills.Rites_HollowCoin>(zone, 5, 5, out var caster);
             var target = Creature(zone, "target", 6, 5);
             target.ApplyEffect(new WetEffect(1.0f), caster, zone);
             target.ApplyEffect(new FrozenEffect(), caster, zone);
@@ -642,7 +642,7 @@ namespace CavesOfOoo.Tests
             int SaveTargetWith(params Effect[] primed)
             {
                 var zone = new Zone();
-                var rite = Caster<BloodletterLedgerMutation>(zone, 5, 5, out var caster);
+                var rite = Caster<CavesOfOoo.Skills.Rites_BloodletterLedger>(zone, 5, 5, out var caster);
                 var target = Creature(zone, "target", 6, 5);
                 foreach (var e in primed) target.ApplyEffect(e, caster, zone);
                 rite.Cast(zone, 1, 0);

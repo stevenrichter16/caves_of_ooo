@@ -60,10 +60,11 @@ namespace CavesOfOoo.Tests
         }
 
         private static T Rite<T>(Zone zone, int x, int y, out Entity caster, int charges = 10)
-            where T : ConsumingRiteBase, new()
+            where T : CavesOfOoo.Skills.ConsumingRiteSkillBase, new()
         {
             caster = Creature(zone, "caster" + x + "_" + y, x, y);
-            caster.AddPart(new MutationsPart());
+            caster.AddPart(new ActivatedAbilitiesPart());
+            caster.AddPart(new CavesOfOoo.Skills.SkillsPart());
             var inv = new InventoryPart { MaxWeight = 500 };
             caster.AddPart(inv);
             var book = new Entity { ID = "book" + x + "_" + y, BlueprintName = "AnyRite" };
@@ -72,8 +73,7 @@ namespace CavesOfOoo.Tests
             inv.AddObject(book);
 
             var rite = new T();
-            caster.AddPart(rite);
-            rite.Mutate(caster, 1);
+            caster.GetPart<CavesOfOoo.Skills.SkillsPart>().AddSkill(rite);
             return rite;
         }
 
@@ -88,7 +88,7 @@ namespace CavesOfOoo.Tests
         public void Adversarial_NullZone_RefusesWithoutThrowing()
         {
             var zone = new Zone();
-            var rite = Rite<HollowCoinMutation>(zone, 5, 5, out var caster);
+            var rite = Rite<CavesOfOoo.Skills.Rites_HollowCoin>(zone, 5, 5, out var caster);
             Assert.DoesNotThrow(() => rite.Cast(null, 1, 0));
             Assert.AreEqual(10, Book(caster).Charges, "a null zone must not cost ink");
         }
@@ -99,7 +99,7 @@ namespace CavesOfOoo.Tests
             // A SingleTarget/Cone rite with no facing has nothing to aim
             // at. Radius rites legitimately take (0,0) — see below.
             var zone = new Zone();
-            var rite = Rite<ShatteredRimeMutation>(zone, 5, 5, out var caster);
+            var rite = Rite<CavesOfOoo.Skills.Rites_ShatteredRime>(zone, 5, 5, out var caster);
             Creature(zone, "target", 6, 5);
 
             Assert.IsFalse(rite.Cast(zone, 0, 0));
@@ -113,7 +113,7 @@ namespace CavesOfOoo.Tests
             // NOT fire for a self-centred shape, or radius rites become
             // uncastable.
             var zone = new Zone();
-            var rite = Rite<SunderingWordMutation>(zone, 10, 10, out var caster);
+            var rite = Rite<CavesOfOoo.Skills.Rites_SunderingWord>(zone, 10, 10, out var caster);
             Creature(zone, "target", 11, 10);
 
             Assert.IsTrue(rite.Cast(zone, 0, 0));
@@ -125,10 +125,10 @@ namespace CavesOfOoo.Tests
         {
             var zone = new Zone();
             var caster = Creature(zone, "bookless", 5, 5);
-            caster.AddPart(new MutationsPart());
-            var rite = new HollowCoinMutation();
-            caster.AddPart(rite);
-            rite.Mutate(caster, 1);
+            caster.AddPart(new ActivatedAbilitiesPart());
+            caster.AddPart(new CavesOfOoo.Skills.SkillsPart());
+            var rite = new CavesOfOoo.Skills.Rites_HollowCoin();
+            caster.GetPart<CavesOfOoo.Skills.SkillsPart>().AddSkill(rite);
             Creature(zone, "target", 6, 5);
 
             Assert.DoesNotThrow(() => rite.Cast(zone, 1, 0));
@@ -139,7 +139,7 @@ namespace CavesOfOoo.Tests
         public void Adversarial_EmptyBook_RefusesAndSaysWhy()
         {
             var zone = new Zone();
-            var rite = Rite<VerdigrisBloomMutation>(zone, 10, 10, out var caster, charges: 0);
+            var rite = Rite<CavesOfOoo.Skills.Rites_VerdigrisBloom>(zone, 10, 10, out var caster, charges: 0);
             Creature(zone, "target", 11, 10);
             Diag.ResetAll();
 
@@ -162,7 +162,7 @@ namespace CavesOfOoo.Tests
             // that finds nothing must leave ink, statuses and the world
             // exactly as it found them.
             var zone = new Zone();
-            var rite = Rite<ShatteredRimeMutation>(zone, 5, 5, out var caster);
+            var rite = Rite<CavesOfOoo.Skills.Rites_ShatteredRime>(zone, 5, 5, out var caster);
             var bystander = Creature(zone, "bystander", 5, 12);   // off the cone axis
             bystander.ApplyEffect(new WetEffect(1.0f), caster, zone);
 
@@ -180,7 +180,7 @@ namespace CavesOfOoo.Tests
             // AFTER resonance already spent the statuses. The player
             // would lose their whole setup for nothing.
             var zone = new Zone();
-            var rite = Rite<HollowCoinMutation>(zone, 5, 5, out var caster, charges: 0);
+            var rite = Rite<CavesOfOoo.Skills.Rites_HollowCoin>(zone, 5, 5, out var caster, charges: 0);
             var target = Creature(zone, "target", 6, 5);
             target.ApplyEffect(new WetEffect(1.0f), caster, zone);
 
@@ -196,7 +196,7 @@ namespace CavesOfOoo.Tests
             // Ink is per CAST, not per target. A radius rite hitting six
             // creatures must not drain the book six times.
             var zone = new Zone();
-            var rite = Rite<SunderingWordMutation>(zone, 10, 10, out var caster);
+            var rite = Rite<CavesOfOoo.Skills.Rites_SunderingWord>(zone, 10, 10, out var caster);
             for (int i = 0; i < 6; i++) Creature(zone, "t" + i, 9 + (i % 3), 9 + (i / 3));
 
             rite.Cast(zone, 0, 0);
@@ -216,7 +216,7 @@ namespace CavesOfOoo.Tests
             // with nothing to spend heals the caster nothing, however
             // many times you cast.
             var zone = new Zone();
-            var rite = Rite<BloodletterLedgerMutation>(zone, 5, 5, out var caster);
+            var rite = Rite<CavesOfOoo.Skills.Rites_BloodletterLedger>(zone, 5, 5, out var caster);
             Creature(zone, "target", 6, 5);
 
             var hp = caster.GetStat("Hitpoints");
@@ -230,7 +230,7 @@ namespace CavesOfOoo.Tests
         public void Adversarial_LedgerCannotHealAboveMaximum()
         {
             var zone = new Zone();
-            var rite = Rite<BloodletterLedgerMutation>(zone, 5, 5, out var caster);
+            var rite = Rite<CavesOfOoo.Skills.Rites_BloodletterLedger>(zone, 5, 5, out var caster);
             var target = Creature(zone, "target", 6, 5);
             target.ApplyEffect(new WetEffect(1.0f), caster, zone);
 
@@ -248,7 +248,7 @@ namespace CavesOfOoo.Tests
             // second cast must be a cold cast, because the first ate
             // everything.
             var zone = new Zone();
-            var rite = Rite<HollowCoinMutation>(zone, 5, 5, out var caster);
+            var rite = Rite<CavesOfOoo.Skills.Rites_HollowCoin>(zone, 5, 5, out var caster);
             var target = Creature(zone, "target", 6, 5);
             target.ApplyEffect(new WetEffect(1.0f), caster, zone);
 
@@ -270,8 +270,8 @@ namespace CavesOfOoo.Tests
         public void Adversarial_TwoCastersDoNotShareEachOthersInk()
         {
             var zone = new Zone();
-            var riteA = Rite<HollowCoinMutation>(zone, 5, 5, out var casterA);
-            var riteB = Rite<HollowCoinMutation>(zone, 5, 7, out var casterB);
+            var riteA = Rite<CavesOfOoo.Skills.Rites_HollowCoin>(zone, 5, 5, out var casterA);
+            var riteB = Rite<CavesOfOoo.Skills.Rites_HollowCoin>(zone, 5, 7, out var casterB);
             Creature(zone, "target", 6, 5);
             Creature(zone, "targetB", 6, 7);
 
@@ -287,7 +287,7 @@ namespace CavesOfOoo.Tests
             // A radius rite centred on the caster is the obvious way to
             // suicide by friendly fire.
             var zone = new Zone();
-            var rite = Rite<SunderingWordMutation>(zone, 10, 10, out var caster);
+            var rite = Rite<CavesOfOoo.Skills.Rites_SunderingWord>(zone, 10, 10, out var caster);
             Creature(zone, "target", 11, 10);
 
             int hp = caster.GetStatValue("Hitpoints");
@@ -306,7 +306,7 @@ namespace CavesOfOoo.Tests
         public void Adversarial_ReCastOntoAlreadyDebuffedTarget_DoesNotThrow()
         {
             var zone = new Zone();
-            var rite = Rite<SunderingWordMutation>(zone, 10, 10, out var caster);
+            var rite = Rite<CavesOfOoo.Skills.Rites_SunderingWord>(zone, 10, 10, out var caster);
             var target = Creature(zone, "target", 11, 10);
             target.ApplyEffect(new BrokenEffect(), caster, zone);
             target.ApplyEffect(new WeakenedEffect(), caster, zone);
@@ -323,7 +323,7 @@ namespace CavesOfOoo.Tests
             // wearing a fresh debuff reads as a bug to the player and
             // can keep a dead entity ticking.
             var zone = new Zone();
-            var rite = Rite<SunderingWordMutation>(zone, 10, 10, out var caster);
+            var rite = Rite<CavesOfOoo.Skills.Rites_SunderingWord>(zone, 10, 10, out var caster);
             var doomed = Creature(zone, "doomed", 11, 10, hp: 1);
             doomed.ApplyEffect(new WetEffect(1.0f), caster, zone);
 
@@ -340,7 +340,7 @@ namespace CavesOfOoo.Tests
             // Snapshot stability: a radius rite whose first victim dies
             // must still resolve everyone else.
             var zone = new Zone();
-            var rite = Rite<SunderingWordMutation>(zone, 10, 10, out var caster);
+            var rite = Rite<CavesOfOoo.Skills.Rites_SunderingWord>(zone, 10, 10, out var caster);
             var doomed = Creature(zone, "doomed", 11, 10, hp: 1);
             var survivor = Creature(zone, "survivor", 9, 10);
             doomed.ApplyEffect(new WetEffect(1.0f), caster, zone);
@@ -360,7 +360,7 @@ namespace CavesOfOoo.Tests
         public void Adversarial_SuccessfulCastEmitsRiteCast_WithMarksAndInk()
         {
             var zone = new Zone();
-            var rite = Rite<HollowCoinMutation>(zone, 5, 5, out var caster);
+            var rite = Rite<CavesOfOoo.Skills.Rites_HollowCoin>(zone, 5, 5, out var caster);
             var target = Creature(zone, "target", 6, 5);
             target.ApplyEffect(new WetEffect(1.0f), caster, zone);
             Diag.ResetAll();
@@ -382,7 +382,7 @@ namespace CavesOfOoo.Tests
             // the diag stream, or every future "why didn't my rite
             // fire?" query answers wrong.
             var zone = new Zone();
-            var rite = Rite<HollowCoinMutation>(zone, 5, 5, out _);
+            var rite = Rite<CavesOfOoo.Skills.Rites_HollowCoin>(zone, 5, 5, out _);
             Diag.ResetAll();
 
             rite.Cast(zone, 1, 0);
@@ -422,15 +422,15 @@ namespace CavesOfOoo.Tests
             // Two rites sharing a command string would make one of them
             // permanently uncastable — and HandleEvent would fire both.
             var seen = new System.Collections.Generic.HashSet<string>();
-            foreach (var r in new ConsumingRiteBase[]
+            foreach (var r in new CavesOfOoo.Skills.ConsumingRiteSkillBase[]
             {
-                new ShatteredRimeMutation(), new StillHeartMutation(),
-                new VerdigrisBloomMutation(), new HollowCoinMutation(),
-                new SunderingWordMutation(), new BloodletterLedgerMutation(),
+                new CavesOfOoo.Skills.Rites_ShatteredRime(), new CavesOfOoo.Skills.Rites_StillHeart(),
+                new CavesOfOoo.Skills.Rites_VerdigrisBloom(), new CavesOfOoo.Skills.Rites_HollowCoin(),
+                new CavesOfOoo.Skills.Rites_SunderingWord(), new CavesOfOoo.Skills.Rites_BloodletterLedger(),
             })
             {
-                Assert.IsFalse(string.IsNullOrEmpty(r.Command), r.Name);
-                Assert.IsTrue(seen.Add(r.Command), r.Name + " reuses " + r.Command);
+                Assert.IsFalse(string.IsNullOrEmpty(r.CommandName), r.Name);
+                Assert.IsTrue(seen.Add(r.CommandName), r.Name + " reuses " + r.CommandName);
             }
         }
 
@@ -441,11 +441,11 @@ namespace CavesOfOoo.Tests
             // permanently cold — powerful on paper, useless in play, and
             // silent about it.
             var zone = new Zone();
-            foreach (var r in new ConsumingRiteBase[]
+            foreach (var r in new CavesOfOoo.Skills.ConsumingRiteSkillBase[]
             {
-                new ShatteredRimeMutation(), new StillHeartMutation(),
-                new VerdigrisBloomMutation(), new HollowCoinMutation(),
-                new SunderingWordMutation(), new BloodletterLedgerMutation(),
+                new CavesOfOoo.Skills.Rites_ShatteredRime(), new CavesOfOoo.Skills.Rites_StillHeart(),
+                new CavesOfOoo.Skills.Rites_VerdigrisBloom(), new CavesOfOoo.Skills.Rites_HollowCoin(),
+                new CavesOfOoo.Skills.Rites_SunderingWord(), new CavesOfOoo.Skills.Rites_BloodletterLedger(),
             })
             {
                 var target = Creature(zone, "probe_" + r.Name, 2, 2);

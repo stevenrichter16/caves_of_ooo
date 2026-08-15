@@ -52,7 +52,7 @@ namespace CavesOfOoo.Tests
             e.AddPart(new RenderPart { DisplayName = name });
             e.AddPart(new StatusEffectsPart());
             e.AddPart(new ActivatedAbilitiesPart());
-            e.AddPart(new MutationsPart());
+            e.AddPart(new CavesOfOoo.Skills.SkillsPart());
             return e;
         }
 
@@ -73,11 +73,10 @@ namespace CavesOfOoo.Tests
         private static GrimoireChargePart BookOf(Entity caster)
             => caster.GetPart<InventoryPart>().Objects[0].GetPart<GrimoireChargePart>();
 
-        private static T Learn<T>(Entity caster) where T : BaseMutation, new()
+        private static T Learn<T>(Entity caster) where T : CavesOfOoo.Skills.BaseSkillPart, new()
         {
             var m = new T();
-            caster.AddPart(m);
-            m.Mutate(caster, 1);
+            caster.GetPart<CavesOfOoo.Skills.SkillsPart>().AddSkill(m);
             return m;
         }
 
@@ -103,7 +102,7 @@ namespace CavesOfOoo.Tests
             zone.AddEntity(Creature("victim"), 11, 10);
             int before = BookOf(caster).Charges;
 
-            Learn<StormAnvilMutation>(caster).Cast(zone, zone.GetEntityCell(caster));
+            Learn<CavesOfOoo.Skills.Rites_StormAnvil>(caster).Cast(zone, zone.GetEntityCell(caster));
 
             Assert.AreEqual(before - 1, BookOf(caster).Charges);
         }
@@ -119,7 +118,7 @@ namespace CavesOfOoo.Tests
             int hp = victim.GetStatValue("Hitpoints");
             Diag.ResetAll();
 
-            Learn<StormAnvilMutation>(caster).Cast(zone, zone.GetEntityCell(caster));
+            Learn<CavesOfOoo.Skills.Rites_StormAnvil>(caster).Cast(zone, zone.GetEntityCell(caster));
 
             Assert.AreEqual(hp, victim.GetStatValue("Hitpoints"), "a dry book casts nothing");
             StringAssert.Contains("no_ink", Reasons());
@@ -136,7 +135,7 @@ namespace CavesOfOoo.Tests
             int before = BookOf(caster).Charges;
             Diag.ResetAll();
 
-            Learn<StormAnvilMutation>(caster).Cast(zone, zone.GetEntityCell(caster));
+            Learn<CavesOfOoo.Skills.Rites_StormAnvil>(caster).Cast(zone, zone.GetEntityCell(caster));
 
             Assert.AreEqual(before, BookOf(caster).Charges,
                 "no target means no charge spent");
@@ -167,11 +166,11 @@ namespace CavesOfOoo.Tests
             zone.AddEntity(victim, 7, 5);
             victim.ApplyEffect(new WetEffect(1.0f), null, zone);
 
-            Learn<HangingBoltMutation>(caster).Cast(zone, 1, 0);
+            Learn<CavesOfOoo.Skills.Rites_HangingBolt>(caster).Cast(zone, 1, 0);
 
             var par = victim.GetPart<StatusEffectsPart>().GetEffect<ParalyzedEffect>();
             Assert.IsNotNull(par, "a mark spent becomes paralysis");
-            Assert.GreaterOrEqual(par.Duration, HangingBoltMutation.PARALYSIS_PER_MARK);
+            Assert.GreaterOrEqual(par.Duration, CavesOfOoo.Skills.Rites_HangingBolt.PARALYSIS_PER_MARK);
         }
 
         [Test]
@@ -185,7 +184,7 @@ namespace CavesOfOoo.Tests
             var victim = Creature("victim");
             zone.AddEntity(victim, 7, 5);
 
-            Learn<HangingBoltMutation>(caster).Cast(zone, 1, 0);
+            Learn<CavesOfOoo.Skills.Rites_HangingBolt>(caster).Cast(zone, 1, 0);
 
             Assert.IsFalse(victim.GetPart<StatusEffectsPart>().HasEffect<ParalyzedEffect>(),
                 "no marks, no paralysis");
@@ -205,7 +204,7 @@ namespace CavesOfOoo.Tests
             two.ApplyEffect(new WetEffect(1.0f), null, zone);
             two.ApplyEffect(new FrozenEffect(0.5f), null, zone);
 
-            var bolt = Learn<HangingBoltMutation>(caster);
+            var bolt = Learn<CavesOfOoo.Skills.Rites_HangingBolt>(caster);
             bolt.Cast(zone, 1, 0);
             bolt.Cast(zone, 0, 1);
 
@@ -229,7 +228,7 @@ namespace CavesOfOoo.Tests
             victim.ApplyEffect(new WetEffect(1.0f), null, zone);
             victim.ApplyEffect(new BurningEffect(1.0f, null, new Random(0)), null, zone);
 
-            Learn<RenderedSteamMutation>(caster).Cast(zone, zone.GetEntityCell(caster));
+            Learn<CavesOfOoo.Skills.Rites_RenderedSteam>(caster).Cast(zone, zone.GetEntityCell(caster));
 
             Assert.IsTrue(victim.GetPart<StatusEffectsPart>().HasEffect<ConfusedEffect>(),
                 "a real steam burst blinds");
@@ -249,7 +248,7 @@ namespace CavesOfOoo.Tests
             wetOnly.ApplyEffect(new WetEffect(1.0f), null, zone);
             int hp = wetOnly.GetStatValue("Hitpoints");
 
-            Learn<RenderedSteamMutation>(caster).Cast(zone, zone.GetEntityCell(caster));
+            Learn<CavesOfOoo.Skills.Rites_RenderedSteam>(caster).Cast(zone, zone.GetEntityCell(caster));
 
             Assert.Less(wetOnly.GetStatValue("Hitpoints"), hp, "it still hurts");
             Assert.IsFalse(wetOnly.GetPart<StatusEffectsPart>().HasEffect<ConfusedEffect>(),
@@ -272,7 +271,7 @@ namespace CavesOfOoo.Tests
 
             int pairHp = pair.GetStatValue("Hitpoints");
             int singleHp = single.GetStatValue("Hitpoints");
-            Learn<RenderedSteamMutation>(caster).Cast(zone, zone.GetEntityCell(caster));
+            Learn<CavesOfOoo.Skills.Rites_RenderedSteam>(caster).Cast(zone, zone.GetEntityCell(caster));
 
             int pairLost = pairHp - pair.GetStatValue("Hitpoints");
             int singleLost = singleHp - single.GetStatValue("Hitpoints");
@@ -292,7 +291,7 @@ namespace CavesOfOoo.Tests
             zone.AddEntity(caster, 10, 10);
             caster.ApplyEffect(new WetEffect(1.0f), null, zone);
 
-            Learn<ScaldingVeilMutation>(caster).Cast(zone);
+            Learn<CavesOfOoo.Skills.Rites_ScaldingVeil>(caster).Cast(zone);
 
             Assert.IsFalse(caster.GetPart<StatusEffectsPart>().HasEffect<WetEffect>(),
                 "your own soaking is what it spends");
@@ -308,7 +307,7 @@ namespace CavesOfOoo.Tests
             int before = BookOf(caster).Charges;
             Diag.ResetAll();
 
-            Learn<ScaldingVeilMutation>(caster).Cast(zone);
+            Learn<CavesOfOoo.Skills.Rites_ScaldingVeil>(caster).Cast(zone);
 
             Assert.AreEqual(before, BookOf(caster).Charges,
                 "a rite that can do nothing must not take your ink");
@@ -325,7 +324,7 @@ namespace CavesOfOoo.Tests
             var attacker = Creature("attacker");
             zone.AddEntity(attacker, 11, 10);
             caster.ApplyEffect(new WetEffect(1.0f), null, zone);
-            Learn<ScaldingVeilMutation>(caster).Cast(zone);
+            Learn<CavesOfOoo.Skills.Rites_ScaldingVeil>(caster).Cast(zone);
 
             int attackerHp = attacker.GetStatValue("Hitpoints");
             var blow = new Damage(5);
@@ -347,7 +346,7 @@ namespace CavesOfOoo.Tests
             var zone = new Zone();
             zone.AddEntity(caster, 10, 10);
             caster.ApplyEffect(new WetEffect(1.0f), null, zone);
-            Learn<ScaldingVeilMutation>(caster).Cast(zone);
+            Learn<CavesOfOoo.Skills.Rites_ScaldingVeil>(caster).Cast(zone);
 
             int hp = caster.GetStatValue("Hitpoints");
             Assert.DoesNotThrow(() =>
