@@ -377,13 +377,17 @@ namespace CavesOfOoo.Tests
 
                 var grim = book.GetPart<GrimoirePart>();
                 Assert.IsNotNull(grim, bp + " must be readable");
-                Assert.IsFalse(string.IsNullOrEmpty(grim.MutationClassName));
+                // Migration: rite grimoires teach SKILLS now.
+                Assert.IsFalse(string.IsNullOrEmpty(grim.SkillClassName));
 
-                var type = System.Type.GetType(
-                    "CavesOfOoo.Core." + grim.MutationClassName + ", CavesOfOoo")
-                    ?? System.Type.GetType("CavesOfOoo.Core." + grim.MutationClassName);
+                System.Type type = null;
+                foreach (var t in typeof(CavesOfOoo.Skills.BaseSkillPart).Assembly.GetTypes())
+                    if (!t.IsAbstract
+                        && typeof(CavesOfOoo.Skills.BaseSkillPart).IsAssignableFrom(t)
+                        && t.Name == grim.SkillClassName)
+                    { type = t; break; }
                 Assert.IsNotNull(type,
-                    bp + " names " + grim.MutationClassName + ", which must resolve");
+                    bp + " names " + grim.SkillClassName + ", which must resolve");
             }
         }
 

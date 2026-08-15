@@ -410,8 +410,9 @@ namespace CavesOfOoo.Tests
             {
                 var grim = _factory.CreateEntity(bp)?.GetPart<GrimoirePart>();
                 Assert.IsNotNull(grim, bp);
-                Assert.IsTrue(seen.Add(grim.MutationClassName),
-                    bp + " duplicates " + grim.MutationClassName);
+                // Migration: rite grimoires teach SKILLS now.
+                Assert.IsTrue(seen.Add(grim.SkillClassName),
+                    bp + " duplicates " + grim.SkillClassName);
             }
         }
 

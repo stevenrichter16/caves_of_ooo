@@ -527,12 +527,15 @@ namespace CavesOfOoo.Tests
         public void EveryRiteAppearsInTheGrimoirePicker()
         {
             // GrimoireTooltipData's own docstring: "a grimoire-taught
-            // mutation missing from this table is INVISIBLE in the
-            // picker". All eleven rites were missing. This turns that
-            // "must" into something enforced for the next one too.
-            foreach (var t in typeof(BaseMutation).Assembly.GetTypes())
+            // power missing from this table is INVISIBLE in the
+            // picker". All eleven rites were missing once. This turns
+            // that "must" into something enforced for the next one too.
+            // Migration: the picker keys on the SKILL class names now.
+            foreach (var t in typeof(CavesOfOoo.Skills.BaseSkillPart).Assembly.GetTypes())
             {
-                if (t.IsAbstract || !typeof(ConsumingRiteBase).IsAssignableFrom(t)) continue;
+                if (t.IsAbstract
+                    || !typeof(CavesOfOoo.Skills.ConsumingRiteSkillBase).IsAssignableFrom(t))
+                    continue;
                 Assert.IsTrue(GrimoireTooltipData.IsGrimoireMutation(t.Name),
                     t.Name + " has no GrimoireTooltipData row, so it cannot be bound"
                     + " from the grimoire picker");
@@ -668,19 +671,20 @@ namespace CavesOfOoo.Tests
 
                 var grim = book.GetPart<GrimoirePart>();
                 Assert.IsNotNull(grim, bp + " must be readable");
-                // Resolve exactly the way MutationsPart.CreateMutationByName
-                // does (MutationsPart.cs:1196) — scan the assembly that
-                // owns BaseMutation. A bare Type.GetType() from the test
-                // assembly cannot see game types and returns null for
-                // every name, correct or not.
+                // Migration: rite grimoires teach SKILLS. Resolve the
+                // way SkillsPart.AddSkill does — scan the assembly that
+                // owns BaseSkillPart. A bare Type.GetType() from the
+                // test assembly cannot see game types and returns null
+                // for every name, correct or not.
                 System.Type type = null;
-                foreach (var t in typeof(BaseMutation).Assembly.GetTypes())
-                    if (!t.IsAbstract && typeof(BaseMutation).IsAssignableFrom(t)
-                        && t.Name == grim.MutationClassName)
+                foreach (var t in typeof(CavesOfOoo.Skills.BaseSkillPart).Assembly.GetTypes())
+                    if (!t.IsAbstract
+                        && typeof(CavesOfOoo.Skills.BaseSkillPart).IsAssignableFrom(t)
+                        && t.Name == grim.SkillClassName)
                     { type = t; break; }
 
                 Assert.IsNotNull(type,
-                    bp + " names " + grim.MutationClassName
+                    bp + " names " + grim.SkillClassName
                     + ", which the game could not instantiate");
             }
         }

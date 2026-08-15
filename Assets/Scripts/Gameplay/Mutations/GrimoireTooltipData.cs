@@ -193,77 +193,77 @@ namespace CavesOfOoo.Core
             // caught it on the new ones and the same fix covers the old.
             // GrimoireTooltipDataCompletenessTests now enforces the
             // docstring's "must" so the next rite cannot forget.
-            { nameof(StormAnvilMutation), new GrimoireTooltip {
+            { "Rites_StormAnvil", new GrimoireTooltip {
                 DisplayName = "Storm Anvil",
                 ColorCode   = "&Y",
                 Flavor      = "Thunder pools in the gutter of the page.",
                 Mechanics   = "Nova 2 \u2022 spends 2 statuses \u2022 CD 25",
                 Signature   = "Consumes Wet/Electrified/Frozen for huge damage"
             } },
-            { nameof(HangingBoltMutation), new GrimoireTooltip {
+            { "Rites_HangingBolt", new GrimoireTooltip {
                 DisplayName = "Hanging Bolt",
                 ColorCode   = "&Y",
                 Flavor      = "The bolt waits, patient, overhead.",
                 Mechanics   = "Line 6 \u2022 spends 2 statuses \u2022 CD 30",
                 Signature   = "Each mark becomes no-save Paralysis, not damage"
             } },
-            { nameof(RenderedSteamMutation), new GrimoireTooltip {
+            { "Rites_RenderedSteam", new GrimoireTooltip {
                 DisplayName = "Rendered Steam",
                 ColorCode   = "&W",
                 Flavor      = "Water and fire, made to agree at last.",
                 Mechanics   = "Radius 2 \u2022 spends 2 statuses \u2022 CD 30",
                 Signature   = "Wants Wet AND Burning together \u2022 blinds"
             } },
-            { nameof(ScaldingVeilMutation), new GrimoireTooltip {
+            { "Rites_ScaldingVeil", new GrimoireTooltip {
                 DisplayName = "Scalding Veil",
                 ColorCode   = "&W",
                 Flavor      = "You wear your own drenching as armour.",
                 Mechanics   = "Self \u2022 spends YOUR Wet \u2022 CD 35",
                 Signature   = "Retaliation aura \u2022 scalds and confuses attackers"
             } },
-            { nameof(FulminationMutation), new GrimoireTooltip {
+            { "Rites_Fulmination", new GrimoireTooltip {
                 DisplayName = "Fulmination",
                 ColorCode   = "&Y",
                 Flavor      = "Charge left in the ground, for the world to spend.",
                 Mechanics   = "Line 5 \u2022 spends 1 status \u2022 CD 25",
                 Signature   = "Writes Charge to the tile \u2022 water and metal carry it"
             } },
-            { nameof(ShatteredRimeMutation), new GrimoireTooltip {
+            { "Rites_ShatteredRime", new GrimoireTooltip {
                 DisplayName = "Shattered Rime",
                 ColorCode   = "&C",
                 Flavor      = "What is frozen is not armoured. It is brittle.",
                 Mechanics   = "Cone 3 \u2022 spends 2 statuses \u2022 CD 40",
                 Signature   = "Untyped shatter \u2022 breaks ice creatures too"
             } },
-            { nameof(StillHeartMutation), new GrimoireTooltip {
+            { "Rites_StillHeart", new GrimoireTooltip {
                 DisplayName = "Still Heart",
                 ColorCode   = "&c",
                 Flavor      = "A heart taught to forget to hurry.",
                 Mechanics   = "Single 5 \u2022 spends 2 statuses \u2022 CD 45",
                 Signature   = "Sleeps an elite 8 turns per mark \u2022 wakes on damage"
             } },
-            { nameof(VerdigrisBloomMutation), new GrimoireTooltip {
+            { "Rites_VerdigrisBloom", new GrimoireTooltip {
                 DisplayName = "Verdigris Bloom",
                 ColorCode   = "&g",
                 Flavor      = "Green rot flowers across the margin.",
                 Mechanics   = "Radius 2 \u2022 spends 2 statuses \u2022 CD 40",
                 Signature   = "Strips armour and re-seeds acid across the radius"
             } },
-            { nameof(HollowCoinMutation), new GrimoireTooltip {
+            { "Rites_HollowCoin", new GrimoireTooltip {
                 DisplayName = "Hollow Coin",
                 ColorCode   = "&W",
                 Flavor      = "Whatever is owed, it pays.",
                 Mechanics   = "Single 4 \u2022 spends 3 of ANY \u2022 CD 50",
                 Signature   = "Untyped burst \u2022 no elemental ward stops it"
             } },
-            { nameof(SunderingWordMutation), new GrimoireTooltip {
+            { "Rites_SunderingWord", new GrimoireTooltip {
                 DisplayName = "Sundering Word",
                 ColorCode   = "&K",
                 Flavor      = "One word, written far too many times.",
                 Mechanics   = "Radius 2 \u2022 spends 2 of ANY \u2022 CD 45",
                 Signature   = "Broken + Weakened on everything \u2022 barely hurts"
             } },
-            { nameof(BloodletterLedgerMutation), new GrimoireTooltip {
+            { "Rites_BloodletterLedger", new GrimoireTooltip {
                 DisplayName = "Bloodletter's Ledger",
                 ColorCode   = "&r",
                 Flavor      = "Two columns, in two different inks.",
