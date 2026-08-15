@@ -118,6 +118,33 @@ namespace CavesOfOoo.Core
         /// Examine command, fire an <c>InventoryAction</c> event with
         /// <c>Command = "Examine"</c>; ExaminablePart will log there.
         /// </summary>
+        /// <summary>
+        /// Zone-aware overload: whatever the cell names, the GROUND
+        /// speaks too (Jet Blast water, oil, embers) — the 'c' menu on a
+        /// visibly wet tile saying nothing about the water was half of
+        /// the bug that triggered the status-system study.
+        ///
+        /// <para>The suffix applies on EVERY branch, not just empty
+        /// cells: terrain (grass, floor) exists on nearly every cell in
+        /// the shipped world, so an empty-only append never fires in
+        /// real play — caught live on the first playtest ("You see the
+        /// grass." over visibly blue water).</para>
+        /// </summary>
+        public static string DescribeCell(Cell cell, Zone zone)
+        {
+            string baseText = DescribeCell(cell);
+            if (zone == null || cell == null)
+                return baseText;
+
+            string ground = CellStatusReadout.GroundSummary(zone, cell, cell.X, cell.Y);
+            if (string.IsNullOrEmpty(ground))
+                return baseText;
+
+            if (baseText == "You see nothing here.")
+                return "You see " + ground + " on the ground.";
+            return baseText + " (" + ground + " underfoot)";
+        }
+
         public static string DescribeCell(Cell cell)
         {
             if (cell == null || cell.Objects.Count == 0)

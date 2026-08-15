@@ -46,6 +46,7 @@ namespace CavesOfOoo.Rendering
         private Entity _actor;
         private Entity _target;
         private Cell _cell;
+        private Zone _zone;
         private bool _cellIsPile;
         private readonly List<InventoryAction> _actions = new List<InventoryAction>();
         private int _cursorIndex;
@@ -85,12 +86,14 @@ namespace CavesOfOoo.Rendering
         /// reading "(no actions available)" — caller can check emptiness
         /// beforehand and skip opening if they prefer.
         /// </summary>
-        public void Open(Entity actor, Entity target, Cell cell, List<InventoryAction> actions)
+        public void Open(Entity actor, Entity target, Cell cell, List<InventoryAction> actions,
+            Zone zone = null)
         {
             _isOpen = true;
             _actor = actor;
             _target = target;
             _cell = cell;
+            _zone = zone;
             _cellIsPile = WorldInteractionSystem.IsPileCell(cell);
             _actions.Clear();
             if (actions != null)
@@ -272,15 +275,24 @@ namespace CavesOfOoo.Rendering
         /// <c>internal</c> would not be visible to them.)</para>
         /// </summary>
         public static string BuildTitleFor(Cell cell, Entity target)
+            => BuildTitleFor(cell, target, null);
+
+        /// <summary>Zone-aware title: an empty-but-wet cell titles as
+        /// "You see water on the ground." instead of "You see nothing
+        /// here." (status study step 2 — one readout for every text
+        /// surface).</summary>
+        public static string BuildTitleFor(Cell cell, Entity target, Zone zone)
         {
-            string title = WorldInteractionSystem.DescribeCell(cell);
+            string title = zone != null
+                ? WorldInteractionSystem.DescribeCell(cell, zone)
+                : WorldInteractionSystem.DescribeCell(cell);
             if (cell != null && WorldInteractionSystem.IsPileCell(cell)) return title;
 
             string health = HealthReadout.Describe(target);
             return health.Length > 0 ? title + "  [" + health + "]" : title;
         }
 
-        private string BuildTitle() => BuildTitleFor(_cell, _target);
+        private string BuildTitle() => BuildTitleFor(_cell, _target, _zone);
 
         private void Render()
         {

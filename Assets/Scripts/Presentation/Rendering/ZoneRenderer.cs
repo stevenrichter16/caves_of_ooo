@@ -1045,9 +1045,17 @@ namespace CavesOfOoo.Rendering
 
             char glyph;
             Color color;
-            if (state.Residues.Count > 0 && HasLayer(state.Residues, "embers"))
+            if (state.Residues.Count > 0)
             {
-                glyph = '"'; color = new Color(1.0f, 0.45f, 0.10f);      // embers
+                // Generalized (status study §7 fix 6): the old check
+                // matched the literal id "embers", so any NEW residue id
+                // shipped invisible even on the map. Known residues keep
+                // their authored marks; unknown ones get a readable
+                // default instead of nothing.
+                glyph = '"';
+                color = state.Residues[0].Id == "embers"
+                    ? new Color(1.0f, 0.45f, 0.10f)                      // embers
+                    : new Color(0.60f, 0.60f, 0.60f);                    // unnamed residue
             }
             else if (HasLayer(state.Coatings, "oil"))
             {
@@ -1055,7 +1063,12 @@ namespace CavesOfOoo.Rendering
             }
             else if (state.Coatings.Count > 0)
             {
-                glyph = '~'; color = new Color(0.30f, 0.55f, 0.95f);     // water & co
+                // Per-liquid tint: ice used to paint the same blue as
+                // water — indistinguishable even on the map (study §1).
+                glyph = '~';
+                color = HasLayer(state.Coatings, "ice")
+                    ? new Color(0.85f, 0.95f, 1.0f)                      // ice — pale
+                    : new Color(0.30f, 0.55f, 0.95f);                    // water & co
             }
             else if (state.Charge > 0)
             {

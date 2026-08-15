@@ -2235,7 +2235,7 @@ namespace CavesOfOoo.Rendering
             Entity target = WorldInteractionSystem.ResolveTarget(cell);
             if (target == null)
             {
-                MessageLog.Add(WorldInteractionSystem.DescribeCell(cell));
+                MessageLog.Add(WorldInteractionSystem.DescribeCell(cell, CurrentZone));
                 return;
             }
 
@@ -2251,7 +2251,7 @@ namespace CavesOfOoo.Rendering
                 var pileRows = WorldInteractionSystem.BuildPileSummaryActions(cell, PlayerEntity);
                 if (pileRows.Count > 0)
                 {
-                    WorldActionMenuUI.Open(PlayerEntity, target, cell, pileRows);
+                    WorldActionMenuUI.Open(PlayerEntity, target, cell, pileRows, CurrentZone);
                     _inputState = InputState.WorldActionMenuOpen;
                     EnterCenteredPopupOverlayView();
                     return;
@@ -2278,7 +2278,7 @@ namespace CavesOfOoo.Rendering
             Entity target = WorldInteractionSystem.ResolveTarget(cell);
             if (target == null)
             {
-                MessageLog.Add(WorldInteractionSystem.DescribeCell(cell));
+                MessageLog.Add(WorldInteractionSystem.DescribeCell(cell, CurrentZone));
                 _inputState = _worldActionMenuReturnState;
                 return;
             }
@@ -2290,7 +2290,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            WorldActionMenuUI.Open(PlayerEntity, target, cell, pickerRows);
+            WorldActionMenuUI.Open(PlayerEntity, target, cell, pickerRows, CurrentZone);
             _inputState = InputState.WorldActionMenuOpen;
             EnterCenteredPopupOverlayView();
         }
@@ -2309,7 +2309,7 @@ namespace CavesOfOoo.Rendering
             var actions = WorldInteractionSystem.GatherActions(target, PlayerEntity);
             if (actions.Count == 0)
             {
-                MessageLog.Add(WorldInteractionSystem.DescribeCell(cell));
+                MessageLog.Add(WorldInteractionSystem.DescribeCell(cell, CurrentZone));
                 // Land wherever the chain's true entry point said to — see
                 // _worldActionMenuReturnState.
                 _inputState = _worldActionMenuReturnState;
@@ -2323,7 +2323,7 @@ namespace CavesOfOoo.Rendering
                     WorldInteractionSystem.PickCellCommand, '\0', 0));
             }
 
-            WorldActionMenuUI.Open(PlayerEntity, target, cell, actions);
+            WorldActionMenuUI.Open(PlayerEntity, target, cell, actions, CurrentZone);
             _inputState = InputState.WorldActionMenuOpen;
             EnterCenteredPopupOverlayView(); // swap to popup camera so the menu is actually visible
         }
@@ -2493,7 +2493,7 @@ namespace CavesOfOoo.Rendering
             // target's individual Examine.
             if (isPileCell && action.Command == "Examine")
             {
-                MessageLog.Add(WorldInteractionSystem.DescribeCell(cell));
+                MessageLog.Add(WorldInteractionSystem.DescribeCell(cell, CurrentZone));
                 _inputState = _worldActionMenuReturnState;
                 return;
             }
