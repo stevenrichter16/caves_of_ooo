@@ -61,9 +61,31 @@ namespace CavesOfOoo.Core
         private static readonly string[] Conductive =
             { "Conductor", "Metal", "Water" };
 
-        /// <summary>Things with water in or on them.</summary>
+        /// <summary>
+        /// Things with water in or on them — plus Metal, which freezes
+        /// BRITTLE rather than solid: cold_plus_metal.json and Ice
+        /// Lance's shatter setup both depend on frozen metal, and the
+        /// cooling path (ThermalPart.TryFreeze) now routes through this
+        /// row (Docs/STATUS-EFFECTS-STUDY-2026-08.md §4 violator #3).
+        /// </summary>
         private static readonly string[] Freezable =
-            { "Wet", "Water", "Liquid", "Ice", "Organic" };
+            { "Wet", "Water", "Liquid", "Ice", "Organic", "Metal" };
+
+        /// <summary>
+        /// THE conduction answer for entity-side gates, exposed so the
+        /// electric chain (MaterialPart) asks the same question the
+        /// Electrified row answers. Tag-based per the class-level note:
+        /// the numeric Conductivity field is authored on two scales and
+        /// cannot be trusted as a gate — it remains a STRENGTH input
+        /// (how well charge passes), never a capability test.
+        /// </summary>
+        public static bool IsConductiveMaterial(MaterialPart mat)
+        {
+            if (mat == null) return false;
+            for (int i = 0; i < Conductive.Length; i++)
+                if (mat.HasMaterialTag(Conductive[i])) return true;
+            return false;
+        }
 
         /// <summary>
         /// The matrix. Key is the effect type; the value answers "is THIS

@@ -69,6 +69,10 @@ namespace CavesOfOoo.Core
             if (!string.IsNullOrEmpty(flags))
                 details.Add(flags);
 
+            string ground = BuildGroundLine(zone, cell, x, y);
+            if (!string.IsNullOrEmpty(ground))
+                details.Add(ground);
+
             // Phase 10 — AI goal-stack + last-thought inspector fields. Populated
             // only when the debug toggle is on AND the primary is a Creature with
             // a BrainPart. All three gates must pass or both fields stay null.
@@ -78,6 +82,53 @@ namespace CavesOfOoo.Core
             return new LookSnapshot(x, y, header, summary, details, primary, cell,
                 goalStackLines: goalLines,
                 lastThought: lastThought);
+        }
+
+        /// <summary>
+        /// One line naming the tile-layer state under the cursor —
+        /// coatings, residues, energy, cloud. The map already paints
+        /// these (blue '~' for water, etc.); before this line no TEXT
+        /// surface could name them, so Jet Blast's ground water read as
+        /// "empty ground" while the map showed the glyph
+        /// (Docs/STATUS-EFFECTS-STUDY-2026-08.md §1).
+        ///
+        /// <para>Mirrors the renderer's fog rule
+        /// (ZoneRenderer.PaintTileStateMark): never reveal state the
+        /// glyph layer hides. Permanent pool projections
+        /// (Turns == ZoneTileState.Permanent) print no turns count.</para>
+        /// </summary>
+        private static string BuildGroundLine(Zone zone, Cell cell, int x, int y)
+        {
+            if (zone == null || cell == null || !cell.Explored || !cell.IsVisible)
+                return null;
+
+            var state = zone.TileState.Get(x, y);
+            if (state == null)
+                return null;
+
+            var parts = new List<string>();
+            for (int i = 0; i < state.Coatings.Count; i++)
+                parts.Add(DescribeTileLayer(state.Coatings[i]));
+            for (int i = 0; i < state.Residues.Count; i++)
+                parts.Add(DescribeTileLayer(state.Residues[i]));
+            if (state.Heat > 0) parts.Add("hot");
+            if (state.Cold > 0) parts.Add("cold");
+            if (state.Charge > 0) parts.Add("charged");
+            if (!string.IsNullOrEmpty(state.Cloud))
+                parts.Add(state.Cloud + " cloud (" + state.CloudTurns
+                    + (state.CloudTurns == 1 ? " turn)" : " turns)"));
+
+            if (parts.Count == 0)
+                return null;
+            return "On the ground: " + string.Join(", ", parts);
+        }
+
+        private static string DescribeTileLayer(ZoneTileState.Layer layer)
+        {
+            if (layer.Turns == ZoneTileState.Permanent)
+                return layer.Id;
+            return layer.Id + " (" + layer.Turns
+                + (layer.Turns == 1 ? " turn)" : " turns)");
         }
 
         /// <summary>

@@ -256,10 +256,28 @@ namespace CavesOfOoo.Core
         {
             for (int i = 0; i < Parts.Count; i++)
             {
-                if (!Parts[i].HandleEvent(e))
+                var part = Parts[i];
+                if (!part.HandleEvent(e))
                     return false;
                 if (e.Handled)
                     return false;
+
+                // A handler may mutate the Parts list mid-dispatch — the
+                // shipped case is a first ApplyEffect lazily creating
+                // StatusEffectsPart, whose Initialize front-inserts it at
+                // Parts[0]. That shifts every index up by one, so the
+                // naive walk RE-VISITS the part it just ran (audit F18:
+                // double-applied ApplyHeat doses). The mirror case is a
+                // part removing itself, which slides its successor into
+                // the current slot and SKIPS it. Re-anchor on the part we
+                // just ran; if it is gone, the next unvisited part now
+                // occupies our slot. IndexOf only runs on the rare
+                // mutation path — the steady state stays allocation-free.
+                if (i >= Parts.Count || !ReferenceEquals(Parts[i], part))
+                {
+                    int at = Parts.IndexOf(part);
+                    i = at >= 0 ? at : i - 1;
+                }
             }
             return true;
         }

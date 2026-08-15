@@ -163,7 +163,14 @@ namespace CavesOfOoo.Core
             {
                 Entity source = sourceEvent.GetParameter<Entity>("Source");
                 var zone = sourceEvent.GetParameter<Zone>("Zone");
-                ParentEntity.ApplyEffect(new FrozenEffect(cold: 1.0f), source, zone);
+                // Through the matrix, not past it: creatures pass through
+                // unchanged, but scenery is gated on the Freezable row —
+                // the cooling path used to freeze stone walls the matrix
+                // calls WrongMaterial, the freeze-side twin of the ignite
+                // side's Combustibility veto (study §4 violator #3).
+                // Refusals emit effect/ObjectEffectRefused.
+                ObjectStatusMatrix.TryApply(new FrozenEffect(cold: 1.0f),
+                    ParentEntity, source, zone);
             }
         }
 

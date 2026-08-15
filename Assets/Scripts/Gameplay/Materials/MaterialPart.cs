@@ -28,9 +28,10 @@ namespace CavesOfOoo.Core
         /// blueprint had also been authored with MinConductivity 0.5,
         /// which on the real scale is a gate nothing could ever fail.
         ///
-        /// If you add a consumer, compare against
-        /// <see cref="ConductiveThreshold"/> (50) or divide by 100 —
-        /// never treat these as fractions.</para>
+        /// If you add a consumer, treat these as STRENGTH inputs on the
+        /// 0-100 scale (divide by 100) — never as a capability gate.
+        /// Capability is answered by material TAGS via
+        /// <see cref="ObjectStatusMatrix.IsConductiveMaterial"/>.</para>
         /// </summary>
         public float Combustibility = 0f;
         public float Conductivity = 0f;
@@ -170,14 +171,18 @@ namespace CavesOfOoo.Core
         /// </summary>
         internal static bool IsConductiveMaterial(MaterialPart mat)
         {
-            if (mat == null) return false;
-            return mat.Conductivity >= ConductiveThreshold
-                || mat.HasMaterialTag("Metal")
-                || mat.HasMaterialTag("Conductor");
+            // Delegates to the matrix so the chain and the Electrified
+            // row answer conduction from ONE vocabulary (Conductor /
+            // Metal / Water tags). The numeric Conductivity field stays
+            // a STRENGTH input (pass-through efficiency below), never a
+            // capability gate — it is authored on two scales and already
+            // bit twice (study §4 violator #4: Thunderclap could
+            // electrify a WaterPuddle the chain then refused to pass
+            // charge into; MetalGrate conducted at 100 with no tag).
+            // Tile-side conduction keeps its own numeric threshold —
+            // tile liquids are strings and have no tags to ask.
+            return ObjectStatusMatrix.IsConductiveMaterial(mat);
         }
-
-        /// <summary>Mirror of TilePropagationSystem.ConductiveThreshold.</summary>
-        internal const float ConductiveThreshold = 50f;
 
         private bool HandleTryChainElectricity(GameEvent e)
         {
@@ -239,8 +244,12 @@ namespace CavesOfOoo.Core
                     if (!IsConductiveMaterial(mat))
                         continue;
 
+                    // Through the matrix door: with the vocabularies
+                    // unified the verdicts agree, and refusals become
+                    // diag-visible instead of silent.
                     if (!target.HasEffect<ElectrifiedEffect>())
-                        target.ApplyEffect(new ElectrifiedEffect(charge: passCharge), source ?? ParentEntity, zone);
+                        ObjectStatusMatrix.TryApply(new ElectrifiedEffect(charge: passCharge),
+                            target, source ?? ParentEntity, zone);
                 }
             }
             return true;
