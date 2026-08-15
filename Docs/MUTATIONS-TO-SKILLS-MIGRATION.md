@@ -279,3 +279,72 @@ construction). All asserted as verified in v1; all wrong. The pattern:
 **I grepped for a symbol and inferred meaning from the match count
 without reading each match.** `grep -l IRankedMutation` returned 3 files
 and I concluded "no implementers" without opening them.
+
+## 9. Execution log + M4 checklist (2026-08-15)
+
+Shipped so far (each verified green before commit):
+- **M0 substrate** `01ea6674` — S1-S6, 6713 tests.
+- **M1 Pyromancy** `11a79a16` — 6 powers, 6727 tests.
+- **M1 elemental batch 2** `25b28ad6` — the last 12 elemental powers
+  (Cryomancy/Galvanism/Hydromancy/Corrosion/Spellcraft), 11 grimoires
+  repointed, Player StartingMutations cleared, Calm into the kit,
+  6742 tests.
+- **M2 Rites** `99e610b7` — ConsumingRiteSkillBase converges all 11
+  rites (hooks: DamageAttributes, ComputeDamage, RiteShape.Self +
+  ValidateBeforeInk, OnTargetResolved, CastMessage(targets)); Rites
+  tree JSON; last 11 grimoires repointed — **zero MutationClassName
+  left in content**; 6751 tests.
+
+### M4 survey — verified by grep on 2026-08-15, post-`99e610b7`
+
+**Delete (Gameplay/Mutations/, all .cs+.meta) EXCEPT `GrimoireInk.cs`
+and `GrimoireTooltipData.cs`** (both live substrate: ink lookup used by
+ConsumingRiteSkillBase; tooltip table keyed by skill classes). That is:
+42 concrete mutations + BaseMutation + ConsumingRiteBase +
+DirectionalProjectileMutationBase + IRankedMutation +
+MutationCategoryDefinition + MutationDefinition + MutationRegistry +
+MutationSourceType + MutationsPart + MutationGeneratedEquipmentTracker
++ MutationModifierTracker. `MutationDamageHelpers.cs` MOVES: new file
+`Assets/Scripts/Gameplay/Skills/SpellDamageHelpers.cs`, class renamed
+`SpellDamageHelpers`, namespace `CavesOfOoo.Skills`; call site
+`ProjectileSpellSkillBase.cs:95` + docstring crefs in BaseSkillPart /
+SkillEventDispatcher / SpellcraftSkill follow.
+
+**Production edits (all verified by grep, line numbers post-99e610b7):**
+- `GrimoirePart.cs` — delete the mutation-teaching branch (~:100-140)
+  + `MutationClassName`/`MutationLevel` fields; keep skill branch.
+- `ConversationActions.cs` CopyGrimoire — drop the two mutation-field
+  copies (SkillClassName copy stays).
+- `SaveSystem.cs:1256,1285,1676,1693` — MutationsPart dispatch +
+  Save/LoadMutationsPart bodies.
+- `GameBootstrap.cs:187` MutationRegistry.EnsureInitialized init entry;
+  `:1040` showcase-grant block (GrantShowcaseSpellMutations et al) —
+  the 6 DevMode showcase mutations (FireBolt/IceShard/PoisonSpit/
+  PrismaticBeam/FrostNova/ChainLightning) die unported, by plan.
+- `InputHandler.cs:1329` GetMutationListSummary + its call site(s).
+- `PlayerBuilder.cs` AddMutation (all scenario callers already
+  repointed to AddSkill in 25b28ad6).
+- Player blueprint in Objects.json: remove the Mutations part entry
+  (StartingMutations "" already); remove EntityFactory's "Mutations"
+  part-name mapping (factory file is NOT Assets/Scripts/Data/
+  EntityFactory.cs — locate via `grep -rn "\"Mutations\"" Assets/Scripts`).
+- No Mutations.json content file exists (checked). MP/MutationPoints
+  display remnants: only inside MutationsPart/IrritableGenome (die with
+  the deletion) — sidebar/sheet grep found nothing else.
+
+**Test files referencing doomed types (32, verified list):** the M2/AI
+pair, ThrownMutationCombatAdversarialTests, Rental×2 (check — may be
+incidental MutationsPart-part adds), farming ×3, InventorySystemTests,
+EnhancementLacqueredTests, Magic ×5 (ConsumingRite×3 + Rite +
+Fulmination), GasPoolPartTests, Mutations folder ×4 (CalmMutationTests,
+GrimoireSpellTests, MutationSystemTests — 22 ActivatedAbilitiesPart
+tests survive the split into a new ActivatedAbilitiesPartTests.cs —
+ProjectileMutationTests), Save ×4 (Tier1MutationsPartTests deletes
+whole), PlayerBuilderTests, SkillsPartTests, Wsp7MagicSkillsTests,
+TilePropagationTests, TestSupport ×3 + VerifierTests.
+
+**Strategy: prep commits first** (rewrite tests onto skill fixtures
+while mutation classes still compile — each prep commit is
+independently green), then one final deletion commit touching only
+the last direct references. This honors the one-asmdef constraint
+without a 32-file mega-diff.
