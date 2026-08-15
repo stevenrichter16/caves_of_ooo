@@ -19,7 +19,7 @@ namespace CavesOfOoo.Tests
                 "Spell",
                 AbilityTargetingMode.AdjacentCell,
                 5,
-                nameof(KindleMutation));
+                "Pyromancy_Kindle"); // tooltip row re-keyed to the ported skill (migration M1)
             var quenchId = abilities.AddAbility(
                 "Quench Water",
                 "CommandQuench",

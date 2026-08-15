@@ -59,12 +59,33 @@ namespace CavesOfOoo.Core
         private static readonly Dictionary<string, GrimoireTooltip> _data =
             new Dictionary<string, GrimoireTooltip>
         {
-            { nameof(KindleMutation), new GrimoireTooltip {
+            { "Pyromancy_KindleFlame", new GrimoireTooltip {
+                DisplayName = "Kindle Flame",
+                ColorCode   = "&r",
+                Flavor      = "The smallest flame, coaxed rather than commanded.",
+                Mechanics   = "Warms adjacent tinder \u2022 CD 2",
+                Signature   = "150J to low-flashpoint scenery; free if nothing catches"
+            } },
+            { "Pyromancy_Hearthwarm", new GrimoireTooltip {
+                DisplayName = "Hearthwarm",
+                ColorCode   = "&r",
+                Flavor      = "A hearth's kindness, carried in the palm.",
+                Mechanics   = "3-turn warming aura \u2022 CD 4",
+                Signature   = "60J per pulse to a chosen adjacent cell"
+            } },
+            { "Pyromancy_FlamingHands", new GrimoireTooltip {
+                DisplayName = "Flaming Hands",
+                ColorCode   = "&R",
+                Flavor      = "Fire answers an open hand.",
+                Mechanics   = "1d4 fire, point-blank cell \u2022 CD 10",
+                Signature   = "Lights the ground itself \u2014 oil slicks catch"
+            } },
+            { "Pyromancy_Kindle", new GrimoireTooltip {
                 DisplayName = "Kindle",
                 ColorCode   = "&R",
                 Flavor      = "A spark of summoned flame.",
-                Mechanics   = "1d4 fire \u2022 Range 5 \u2022 CD 4",
-                Signature   = "Ignites combustibles via +200J heat pulse"
+                Mechanics   = "1d4 fire \u2022 Range 5 \u2022 CD 6",
+                Signature   = "Ignites combustibles via a 600J heat pulse"
             } },
             { nameof(QuenchMutation), new GrimoireTooltip {
                 DisplayName = "Quench",
@@ -73,7 +94,7 @@ namespace CavesOfOoo.Core
                 Mechanics   = "1d4 cold \u2022 Range 5 \u2022 CD 4",
                 Signature   = "Soaks targets - amplifies later electricity"
             } },
-            { nameof(ConflagrationMutation), new GrimoireTooltip {
+            { "Pyromancy_Conflagration", new GrimoireTooltip {
                 DisplayName = "Conflagration",
                 ColorCode   = "&r",
                 Flavor      = "Roaring flame engulfs you.",
@@ -115,7 +136,7 @@ namespace CavesOfOoo.Core
                 Mechanics   = "2d6 lightning AoE \u2022 Radius 2 \u2022 CD 18",
                 Signature   = "Doubles damage on wet \u2022 electrifies metal props"
             } },
-            { nameof(EmberVeinMutation), new GrimoireTooltip {
+            { "Pyromancy_EmberVein", new GrimoireTooltip {
                 DisplayName = "Ember Vein",
                 ColorCode   = "&r",
                 Flavor      = "A vein of fire traces the path.",

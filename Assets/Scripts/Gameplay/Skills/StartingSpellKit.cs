@@ -48,6 +48,10 @@ namespace CavesOfOoo.Skills
         public static readonly string[] SpellClasses =
         {
             "Pyromancy_EmberSpit",   // fire     — CD 8
+            // Migration: the two former StartingMutations move here as
+            // the mutations are ported. FlamingHands landed with the
+            // Pyromancy batch; Calm follows with Spellcraft.
+            "Pyromancy_FlamingHands", // fire, point-blank — CD 10
             "Hydromancy_JetBlast",   // water    — CD 20
             "Galvanism_GroundSurge", // electric — CD 30
             "Cryomancy_RimeGrip",    // cold     — CD 35

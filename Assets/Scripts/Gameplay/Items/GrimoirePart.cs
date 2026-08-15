@@ -13,11 +13,21 @@ namespace CavesOfOoo.Core
         /// <summary>Property key granted to the reader (e.g., "KnowsPurifyWater").</summary>
         public string KnowledgeProperty = "";
 
-        /// <summary>If set, grants this mutation (spell) when read instead of a knowledge property.</summary>
+        /// <summary>If set, grants this mutation (spell) when read instead of a knowledge property.
+        /// LEGACY — the mutations→skills migration replaces these with
+        /// <see cref="SkillClassName"/> batch by batch; this field dies in M4.</summary>
         public string MutationClassName = "";
 
-        /// <summary>Level to grant the mutation at.</summary>
+        /// <summary>Level to grant the mutation at. LEGACY, dies in M4.</summary>
         public int MutationLevel = 1;
+
+        /// <summary>If set, teaches this SKILL when read — the migration-era
+        /// replacement for <see cref="MutationClassName"/>. Skills are flat,
+        /// so there is no level field. The skill is also SP-buyable in the
+        /// tree (user decision, plan §5): reading a book you already know
+        /// prints <see cref="AlreadyKnownMessage"/>, buying then finding is
+        /// the same in reverse.</summary>
+        public string SkillClassName = "";
 
         /// <summary>Announcement text shown when the reader learns from this grimoire.</summary>
         public string LearnMessage = "";
@@ -51,6 +61,42 @@ namespace CavesOfOoo.Core
 
         private bool DoRead(Entity actor, GameEvent e)
         {
+            // Skill-teaching grimoire — the migration-era path. Mirrors the
+            // mutation branch below one-for-one: HasSkill ≙ HasMutation,
+            // AddSkill ≙ AddMutation, same messages, same Handled semantics.
+            if (!string.IsNullOrEmpty(SkillClassName))
+            {
+                var skills = actor.GetPart<CavesOfOoo.Skills.SkillsPart>();
+                if (skills == null)
+                {
+                    MessageLog.Add("The symbols are beyond your comprehension.");
+                    e.Handled = true;
+                    return false;
+                }
+
+                if (skills.HasSkill(SkillClassName))
+                {
+                    MessageLog.Add(AlreadyKnownMessage);
+                    e.Handled = true;
+                    return false;
+                }
+
+                if (skills.AddSkill(SkillClassName, source: "grimoire"))
+                {
+                    if (!string.IsNullOrEmpty(LearnMessage))
+                        MessageLog.AddAnnouncement(LearnMessage);
+                    else
+                        MessageLog.AddAnnouncement($"You study {ParentEntity.GetDisplayName()} and learn a new rite.");
+                }
+                else
+                {
+                    MessageLog.Add("The symbols are beyond your comprehension.");
+                }
+
+                e.Handled = true;
+                return false;
+            }
+
             // Spell-granting grimoire: teaches a mutation when read
             if (!string.IsNullOrEmpty(MutationClassName))
             {
