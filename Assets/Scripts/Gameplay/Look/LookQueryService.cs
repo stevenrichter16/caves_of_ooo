@@ -56,10 +56,11 @@ namespace CavesOfOoo.Core
             if (!string.IsNullOrEmpty(subjectDetail))
                 details.Add(subjectDetail);
 
-            // Live afflictions on the hovered target: one exact line per
-            // status effect (shared EffectDescriber wording, same as the
-            // tonic Examine popup).
-            AppendEffectLines(primary, details);
+            // Live afflictions on the hovered target — from CellStatusReadout,
+            // the single source of status text for every surface (the 'c'
+            // menu reads the same readout, so a frozen viper can no longer
+            // show its status in one surface and not the other).
+            CellStatusReadout.AppendAfflictionLines(primary, details);
 
             string contents = BuildContentsLine(visibleObjects);
             if (!string.IsNullOrEmpty(contents))
@@ -69,7 +70,7 @@ namespace CavesOfOoo.Core
             if (!string.IsNullOrEmpty(flags))
                 details.Add(flags);
 
-            string ground = CellStatusReadout.GroundLine(zone, cell, x, y);
+            string ground = CellStatusReadout.GroundLine(zone, cell);
             if (!string.IsNullOrEmpty(ground))
                 details.Add(ground);
 
@@ -83,16 +84,6 @@ namespace CavesOfOoo.Core
                 goalStackLines: goalLines,
                 lastThought: lastThought);
         }
-
-        /// <summary>
-        /// Append the "Afflicted:" block for the primary entity — now a
-        /// straight delegation to <see cref="CellStatusReadout"/>, the
-        /// single source of status text for every surface (the 'c' menu
-        /// reads the same readout, so a frozen viper can no longer show
-        /// its status in one surface and not the other).
-        /// </summary>
-        private static void AppendEffectLines(Entity primary, List<string> details)
-            => CellStatusReadout.AppendAfflictionLines(primary, details);
 
         /// <summary>
         /// Phase 10 — populate goal-stack + last-thought fields for the primary
