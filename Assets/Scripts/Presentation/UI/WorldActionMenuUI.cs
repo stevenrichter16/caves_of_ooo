@@ -47,6 +47,15 @@ namespace CavesOfOoo.Rendering
         private Entity _target;
         private Cell _cell;
         private Zone _zone;
+        private readonly List<string> _statusLines = new List<string>();
+
+        /// <summary>Status rows render between the title divider and the
+        /// action rows; a second divider closes the block. Every layout
+        /// consumer (render, border, hit-test, height) derives from HERE
+        /// so the four can never disagree.</summary>
+        private int StatusBlockRows => _statusLines.Count > 0 ? _statusLines.Count + 1 : 0;
+        private int ContentY => 3 + StatusBlockRows;
+        private const int MAX_STATUS_ROWS = 6;
         private bool _cellIsPile;
         private readonly List<InventoryAction> _actions = new List<InventoryAction>();
         private int _cursorIndex;
@@ -94,6 +103,8 @@ namespace CavesOfOoo.Rendering
             _target = target;
             _cell = cell;
             _zone = zone;
+            _statusLines.Clear();
+            _statusLines.AddRange(BuildStatusLinesFor(target, cell, zone));
             _cellIsPile = WorldInteractionSystem.IsPileCell(cell);
             _actions.Clear();
             if (actions != null)
@@ -274,54 +285,67 @@ namespace CavesOfOoo.Rendering
         /// this string does not. (Tests are a separate assembly, so
         /// <c>internal</c> would not be visible to them.)</para>
         /// </summary>
+        /// <summary>Title stays short — name + [HP]. Status lives in
+        /// its own SECTION (see <see cref="BuildStatusLinesFor"/>): the
+        /// title-suffix experiment died on first contact with real
+        /// content, because "You see Rotwood Herbalist. [HP 14/20]" is
+        /// 38 of the 44-char title budget and the affliction group was
+        /// silently fit-dropped every time.</summary>
         public static string BuildTitleFor(Cell cell, Entity target)
-            => BuildTitleFor(cell, target, null);
+        {
+            string title = WorldInteractionSystem.DescribeCell(cell);
+            if (cell != null && WorldInteractionSystem.IsPileCell(cell)) return title;
+
+            string health = HealthReadout.Describe(target);
+            return health.Length > 0 ? title + "  [" + health + "]" : title;
+        }
 
         /// <summary>
-        /// One-line title composed from the SAME readout look mode uses
-        /// (CellStatusReadout — status study "one snapshot, three
-        /// renderers"): name, then [HP], then the target's afflictions,
-        /// then ground state.
+        /// The status SECTION rendered between the title and the action
+        /// rows — the 'c'-menu view of the same CellStatusReadout that
+        /// feeds look mode ("one snapshot, three renderers").
         ///
-        /// <para>The title row clips at <see cref="POPUP_W"/>-4 chars,
-        /// so suffix groups are appended in PRIORITY ORDER and a group
-        /// that would not fit is dropped WHOLE rather than mid-cut:
-        /// name &gt; HP &gt; afflictions &gt; ground. A frozen viper on
-        /// wet ground therefore always names "frozen over" and may drop
-        /// "water underfoot" — the FOCUS panel carries the full picture.
-        /// The affliction list itself is capped ("frozen over, soaked,
-        /// +2") by <see cref="CellStatusReadout.AfflictionSummary"/>.</para>
+        /// <para><b>Attribution rule:</b> statuses are never pooled. The
+        /// target's afflictions render under an "Afflicted:" header (on
+        /// pile cells the header carries the target's NAME, because the
+        /// pile title doesn't), and the CELL's tile state renders as its
+        /// own "On the ground:" line — an NPC's frozen status and the
+        /// tile's water can share a cell without sharing a line.</para>
+        ///
+        /// <para>Capped at <see cref="MAX_STATUS_ROWS"/> rows with an
+        /// "...and N more" tail — look mode always carries the full
+        /// list.</para>
         /// </summary>
-        public static string BuildTitleFor(Cell cell, Entity target, Zone zone)
+        public static List<string> BuildStatusLinesFor(Entity target, Cell cell, Zone zone)
         {
-            const int maxLen = POPUP_W - 4;
-            string title = WorldInteractionSystem.DescribeCell(cell);
-            bool pile = cell != null && WorldInteractionSystem.IsPileCell(cell);
+            var lines = new List<string>();
+            CellStatusReadout.AppendAfflictionLines(target, lines);
 
-            if (!pile)
+            if (lines.Count > 0 && cell != null && WorldInteractionSystem.IsPileCell(cell)
+                && target != null)
             {
-                string health = HealthReadout.Describe(target);
-                if (health.Length > 0)
-                    title = AppendIfFits(title, "  [" + health + "]", maxLen);
-
-                string afflicted = CellStatusReadout.AfflictionSummary(target);
-                if (!string.IsNullOrEmpty(afflicted))
-                    title = AppendIfFits(title, " (" + afflicted + ")", maxLen);
+                // Pile titles name the pile, not the target — re-own the
+                // header so the afflictions cannot be misattributed.
+                lines[0] = target.GetDisplayName() + " - afflicted:";
             }
 
             if (zone != null && cell != null)
             {
-                string ground = CellStatusReadout.GroundSummary(zone, cell, cell.X, cell.Y);
+                string ground = CellStatusReadout.GroundLine(zone, cell, cell.X, cell.Y);
                 if (!string.IsNullOrEmpty(ground))
-                    title = AppendIfFits(title, " (" + ground + " underfoot)", maxLen);
+                    lines.Add(ground);
             }
-            return title;
+
+            if (lines.Count > MAX_STATUS_ROWS)
+            {
+                int extra = lines.Count - (MAX_STATUS_ROWS - 1);
+                lines.RemoveRange(MAX_STATUS_ROWS - 1, extra);
+                lines.Add("...and " + extra + " more (see look mode)");
+            }
+            return lines;
         }
 
-        private static string AppendIfFits(string title, string suffix, int maxLen)
-            => title.Length + suffix.Length <= maxLen ? title + suffix : title;
-
-        private string BuildTitle() => BuildTitleFor(_cell, _target, _zone);
+        private string BuildTitle() => BuildTitleFor(_cell, _target);
 
         private void Render()
         {
@@ -332,11 +356,11 @@ namespace CavesOfOoo.Rendering
 
             int totalRows = _actions.Count;
             int visibleCount = Mathf.Min(totalRows > 0 ? totalRows : 1, POPUP_MAX_VISIBLE);
-            int borderH = visibleCount + 4;
+            int borderH = visibleCount + 4 + StatusBlockRows;
 
             ClearRegion(0, 0, POPUP_W, _popupH);
             DrawBgFill(0, 0, POPUP_W, borderH);
-            DrawPopupBorder(0, 0, POPUP_W, borderH, visibleCount);
+            DrawPopupBorder(0, 0, POPUP_W, borderH, _statusLines.Count, visibleCount);
 
 
             // Title = cell description (pile / single / terrain / empty)
@@ -352,7 +376,21 @@ namespace CavesOfOoo.Rendering
             if (hintX > title.Length + 4)
                 DrawText(hintX, 1, hint, QudColorParser.DarkGray);
 
-            int contentY = 3;
+            // Status section: the target's afflictions + the cell's
+            // ground state, between the title divider and the actions
+            // (attribution rule: two owners, two labeled groups).
+            for (int si = 0; si < _statusLines.Count; si++)
+            {
+                string line = _statusLines[si];
+                int maxLineLen = POPUP_W - 4;
+                if (line.Length > maxLineLen)
+                    line = line.Substring(0, maxLineLen - 1) + "~";
+                bool isGround = line.StartsWith("On the ground:");
+                DrawText(2, 3 + si, line,
+                    isGround ? QudColorParser.BrightCyan : QudColorParser.Gray);
+            }
+
+            int contentY = ContentY;
             if (totalRows == 0)
             {
                 DrawText(2, contentY, "(no actions available)", QudColorParser.DarkGray);
@@ -397,7 +435,7 @@ namespace CavesOfOoo.Rendering
         {
             int totalRows = _actions.Count;
             int visibleCount = Mathf.Min(totalRows > 0 ? totalRows : 1, POPUP_MAX_VISIBLE);
-            _popupH = visibleCount + 5;
+            _popupH = visibleCount + 5 + StatusBlockRows;
             _worldOriginX = CenteredPopupLayout.GetCenteredOriginX(POPUP_W);
             _worldTopY = CenteredPopupLayout.GetCenteredTopY(_popupH);
         }
@@ -413,7 +451,7 @@ namespace CavesOfOoo.Rendering
 
             int totalRows = _actions.Count;
             int visibleCount = Mathf.Min(totalRows, POPUP_MAX_VISIBLE);
-            int contentY = 3;
+            int contentY = ContentY;
 
             if (gx > 0 && gx < POPUP_W - 1 && gy >= contentY && gy < contentY + visibleCount)
             {
@@ -484,7 +522,7 @@ namespace CavesOfOoo.Rendering
             _bgDrawn = false;
         }
 
-        private void DrawPopupBorder(int x, int y, int w, int h, int contentRows)
+        private void DrawPopupBorder(int x, int y, int w, int h, int statusRows, int contentRows)
         {
             DrawChar(x, y, CP437TilesetGenerator.BoxTopLeft, QudColorParser.Gray);
             for (int i = 1; i < w - 1; i++)
@@ -499,13 +537,29 @@ namespace CavesOfOoo.Rendering
                 DrawChar(x + i, y + 2, CP437TilesetGenerator.BoxHorizontal, QudColorParser.Gray);
             DrawChar(x + w - 1, y + 2, CP437TilesetGenerator.BoxTeeRight, QudColorParser.Gray);
 
-            for (int r = 0; r < contentRows; r++)
+            int rowY = y + 3;
+            for (int r = 0; r < statusRows; r++, rowY++)
             {
-                DrawChar(x, y + 3 + r, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
-                DrawChar(x + w - 1, y + 3 + r, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
+                DrawChar(x, rowY, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
+                DrawChar(x + w - 1, rowY, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
+            }
+            if (statusRows > 0)
+            {
+                // Second divider closes the status block.
+                DrawChar(x, rowY, CP437TilesetGenerator.BoxTeeLeft, QudColorParser.Gray);
+                for (int i = 1; i < w - 1; i++)
+                    DrawChar(x + i, rowY, CP437TilesetGenerator.BoxHorizontal, QudColorParser.Gray);
+                DrawChar(x + w - 1, rowY, CP437TilesetGenerator.BoxTeeRight, QudColorParser.Gray);
+                rowY++;
             }
 
-            int botY = y + 3 + contentRows;
+            for (int r = 0; r < contentRows; r++, rowY++)
+            {
+                DrawChar(x, rowY, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
+                DrawChar(x + w - 1, rowY, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
+            }
+
+            int botY = rowY;
             DrawChar(x, botY, CP437TilesetGenerator.BoxBottomLeft, QudColorParser.Gray);
             for (int i = 1; i < w - 1; i++)
                 DrawChar(x + i, botY, CP437TilesetGenerator.BoxHorizontal, QudColorParser.Gray);

@@ -168,7 +168,7 @@ namespace CavesOfOoo.Tests
                 WorldInteractionSystem.DescribeCell(zone.GetCell(7, 5), zone));
         }
 
-        // ── Entity afflictions: one wording source, two lengths ──────
+        // ── Entity afflictions + the menu status section ─────────────
 
         private static Entity Viper(Zone zone, int x, int y)
         {
@@ -182,100 +182,131 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void AfflictionSummary_SharesWordingWithTheLongForm()
+        public void MenuStatusBlock_ListsAfflictions_TheHerbalistRepro()
         {
-            // The divergence contract: the compact form is derived from
-            // EffectDescriber's own lines, so a label in the summary
-            // must appear verbatim at the head of a long-form line.
-            var zone = new Zone("Z");
-            var viper = Viper(zone, 7, 5);
-            viper.ApplyEffect(new FrozenEffect(cold: 0.6f));
-            viper.ApplyEffect(new WetEffect(0.5f));
-
-            string summary = CellStatusReadout.AfflictionSummary(viper);
-            var lines = new System.Collections.Generic.List<string>();
-            CellStatusReadout.AppendAfflictionLines(viper, lines);
-            string joined = string.Join(" | ", lines).ToLowerInvariant();
-
-            Assert.AreEqual("frozen over, soaked", summary);
-            foreach (var label in summary.Split(new[] { ", " }, System.StringSplitOptions.None))
-                StringAssert.Contains(label, joined,
-                    "every short label must exist inside the long form — one wording source");
-        }
-
-        [Test]
-        public void AfflictionSummary_CapsWithPlusN()
-        {
-            var zone = new Zone("Z");
-            var viper = Viper(zone, 7, 5);
-            viper.ApplyEffect(new FrozenEffect(cold: 0.6f));
-            viper.ApplyEffect(new WetEffect(0.5f));
-            viper.ApplyEffect(new HobbledEffect(3));
-
-            Assert.AreEqual("frozen over, soaked, +1",
-                CellStatusReadout.AfflictionSummary(viper));
-        }
-
-        // ── The menu title: same readout as look mode ────────────────
-
-        [Test]
-        public void MenuTitle_NamesTheFrozenStatus_TheViperRepro()
-        {
-            // The reported bug: a frozen viper showed "Frozen over" in
-            // look mode and NOTHING in the 'c' menu.
+            // The reported bug, round two: "Rotwood Herbalist" + [HP]
+            // consumed the 44-char title budget, so the title-suffix
+            // design silently dropped the afflictions for any real
+            // creature name. The dedicated SECTION has no name budget.
             var zone = new Zone("Z");
             Reveal(zone, 7, 5);
-            var viper = Viper(zone, 7, 5);
-            viper.ApplyEffect(new FrozenEffect(cold: 0.6f));
+            var herbalist = Viper(zone, 7, 5);
+            herbalist.GetPart<RenderPart>().DisplayName = "Rotwood Herbalist";
+            herbalist.ApplyEffect(new FrozenEffect(cold: 0.73f));
+            herbalist.ApplyEffect(new WetEffect(0.78f));
 
-            string title = CavesOfOoo.Rendering.WorldActionMenuUI
-                .BuildTitleFor(zone.GetCell(7, 5), viper, zone);
+            var lines = CavesOfOoo.Rendering.WorldActionMenuUI
+                .BuildStatusLinesFor(herbalist, zone.GetCell(7, 5), zone);
 
-            StringAssert.Contains("viper", title);
-            StringAssert.Contains("HP", title);
-            StringAssert.Contains("frozen over", title);
+            Assert.AreEqual("Afflicted:", lines[0]);
+            Assert.IsTrue(lines.Exists(l => l.Contains("Frozen over")),
+                "the frozen status must be in the 'c' menu, name length be damned");
+            Assert.IsTrue(lines.Exists(l => l.Contains("Soaked")));
         }
 
         [Test]
-        public void MenuTitle_DropsWholeGroupsByPriority_NeverMidCuts()
+        public void MenuStatusBlock_AttributesGroundSeparately()
         {
-            // The title row clips at 44 chars; suffix groups must drop
-            // WHOLE, in priority order (afflictions beat ground): a
-            // frozen viper on wet ground names "frozen over" and drops
-            // "underfoot" entirely rather than clipping mid-word.
+            // The two-owners answer: the NPC's afflictions and the
+            // CELL's tile state are separate labeled groups that never
+            // pool into one ambiguous list.
             var zone = new Zone("Z");
             Reveal(zone, 7, 5);
             zone.TileState.WriteCoating(7, 5, "water", 5);
-            var viper = Viper(zone, 7, 5);
-            viper.ApplyEffect(new FrozenEffect(cold: 0.6f));
+            var herbalist = Viper(zone, 7, 5);
+            herbalist.ApplyEffect(new FrozenEffect(cold: 0.73f));
 
-            string title = CavesOfOoo.Rendering.WorldActionMenuUI
-                .BuildTitleFor(zone.GetCell(7, 5), viper, zone);
+            var lines = CavesOfOoo.Rendering.WorldActionMenuUI
+                .BuildStatusLinesFor(herbalist, zone.GetCell(7, 5), zone);
 
-            StringAssert.Contains("frozen over", title,
-                "the target's own status outranks ground state");
-            StringAssert.DoesNotContain("underfoot", title,
-                "the group that does not fit drops whole");
-            Assert.LessOrEqual(title.Length, 44, "never hand the renderer a mid-cut");
+            Assert.IsTrue(lines.Exists(l => l.Contains("Frozen over")));
+            string ground = lines.Find(l => l.StartsWith("On the ground:"));
+            Assert.IsNotNull(ground, "the cell's state is its own labeled line");
+            StringAssert.Contains("water (5 turns)", ground);
+            StringAssert.DoesNotContain("Frozen", ground,
+                "the NPC's status never bleeds into the tile's line");
         }
 
         [Test]
-        public void MenuTitle_GroundStillShowsOnTerrainTargets()
+        public void MenuStatusBlock_CapsWithASeeLookModeTail()
         {
-            // The grass repro, now pinned through the TITLE path.
             var zone = new Zone("Z");
             Reveal(zone, 7, 5);
-            zone.TileState.WriteCoating(7, 5, "water", 6);
-            var grass = new Entity { ID = "grass", BlueprintName = "Grass" };
-            grass.Tags["Terrain"] = "";
-            grass.AddPart(new RenderPart { DisplayName = "grass" });
-            zone.AddEntity(grass, 7, 5);
+            zone.TileState.WriteCoating(7, 5, "water", 5);
+            var v = Viper(zone, 7, 5);
+            v.ApplyEffect(new FrozenEffect(cold: 0.5f));
+            v.ApplyEffect(new WetEffect(0.5f));
+            v.ApplyEffect(new HobbledEffect(3));
+            v.ApplyEffect(new StunnedEffect(duration: 3));
+            v.ApplyEffect(new BleedingEffect(saveTarget: 14, damageDice: "1d4"));
+
+            var lines = CavesOfOoo.Rendering.WorldActionMenuUI
+                .BuildStatusLinesFor(v, zone.GetCell(7, 5), zone);
+
+            Assert.AreEqual(6, lines.Count, "the popup block is bounded");
+            StringAssert.Contains("more", lines[5]);
+        }
+
+        [Test]
+        public void MenuStatusBlock_CleanEverything_IsEmpty()
+        {
+            var zone = new Zone("Z");
+            Reveal(zone, 7, 5);
+            var v = Viper(zone, 7, 5);
+
+            var lines = CavesOfOoo.Rendering.WorldActionMenuUI
+                .BuildStatusLinesFor(v, zone.GetCell(7, 5), zone);
+
+            Assert.AreEqual(0, lines.Count, "no stray header on clean targets");
+        }
+
+        [Test]
+        public void MenuStatusBlock_PileCell_NamesTheOwner()
+        {
+            // On pile cells the title names the pile, not the target —
+            // the affliction header carries the owner's name so the
+            // status cannot be misattributed.
+            var zone = new Zone("Z");
+            Reveal(zone, 7, 5);
+            var rock = new Entity { ID = "rock", BlueprintName = "Rock" };
+            rock.AddPart(new RenderPart { DisplayName = "rock" });
+            zone.AddEntity(rock, 7, 5);
+            var coin = new Entity { ID = "coin", BlueprintName = "Coin" };
+            coin.AddPart(new RenderPart { DisplayName = "coin" });
+            zone.AddEntity(coin, 7, 5);
+            rock.ApplyEffect(new AcidicEffect(0.8f));
+
+            var lines = CavesOfOoo.Rendering.WorldActionMenuUI
+                .BuildStatusLinesFor(rock, zone.GetCell(7, 5), zone);
+
+            StringAssert.Contains("rock", lines[0]);
+            StringAssert.Contains("afflicted", lines[0]);
+        }
+
+        [Test]
+        public void MenuTitle_StaysNameAndHp()
+        {
+            // The title is short on purpose; status lives in the block.
+            var zone = new Zone("Z");
+            Reveal(zone, 7, 5);
+            var herbalist = Viper(zone, 7, 5);
+            herbalist.GetPart<RenderPart>().DisplayName = "Rotwood Herbalist";
+            herbalist.ApplyEffect(new FrozenEffect(cold: 0.73f));
 
             string title = CavesOfOoo.Rendering.WorldActionMenuUI
-                .BuildTitleFor(zone.GetCell(7, 5), grass, zone);
+                .BuildTitleFor(zone.GetCell(7, 5), herbalist);
 
-            Assert.AreEqual("You see the grass. (water underfoot)", title);
+            StringAssert.Contains("Rotwood Herbalist", title);
+            StringAssert.Contains("HP", title);
+            StringAssert.DoesNotContain("rozen", title);
         }
+
+
+
+        // ── The menu title: same readout as look mode ────────────────
+
+
+
 
         // ── Delegation: look mode reads the same readout ─────────────
 

@@ -76,55 +76,6 @@ namespace CavesOfOoo.Core
             }
         }
 
-        /// <summary>
-        /// Compact comma list for one-line surfaces: "frozen over,
-        /// soaked" (capped at <paramref name="maxNamed"/> names, then
-        /// "+N"). Null when the entity is clean.
-        ///
-        /// <para>Labels are derived from <see cref="EffectDescriber"/>'s
-        /// own lines — the text before each "Label - detail" separator —
-        /// so the short and long forms share ONE wording source and can
-        /// never disagree.</para>
-        /// </summary>
-        public static string AfflictionSummary(Entity entity, int maxNamed = 2)
-        {
-            var effectsPart = entity?.GetPart<StatusEffectsPart>();
-            if (effectsPart == null)
-                return null;
-
-            IReadOnlyList<Effect> effects = effectsPart.GetAllEffects();
-            if (effects == null || effects.Count == 0)
-                return null;
-
-            var labels = new List<string>();
-            for (int i = 0; i < effects.Count; i++)
-            {
-                if (effects[i] != null)
-                    labels.Add(ShortLabel(effects[i]));
-            }
-            if (labels.Count == 0)
-                return null;
-
-            if (labels.Count > maxNamed)
-            {
-                int extra = labels.Count - maxNamed;
-                labels.RemoveRange(maxNamed, extra);
-                return string.Join(", ", labels) + ", +" + extra;
-            }
-            return string.Join(", ", labels);
-        }
-
-        private static string ShortLabel(Effect effect)
-        {
-            string full = EffectDescriber.Describe(effect);
-            int cut = full.IndexOf(" - ", System.StringComparison.Ordinal);
-            // Lines without the separator ("Drenched in oil (3).") fall
-            // back to the whole sentence minus its period.
-            string label = cut > 0 ? full.Substring(0, cut) : full.TrimEnd('.');
-            if (label.Length > 0 && char.IsUpper(label[0]))
-                label = char.ToLowerInvariant(label[0]) + label.Substring(1);
-            return label;
-        }
 
         private static List<string> Collect(
             Zone zone, Cell cell, int x, int y, bool withCounts)
