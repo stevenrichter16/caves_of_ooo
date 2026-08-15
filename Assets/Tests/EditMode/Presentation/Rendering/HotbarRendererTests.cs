@@ -106,7 +106,7 @@ namespace CavesOfOoo.Tests
                 "Spell",
                 AbilityTargetingMode.AdjacentCell,
                 5,
-                nameof(KindleMutation));
+                "Pyromancy_Kindle");
 
             return player;
         }

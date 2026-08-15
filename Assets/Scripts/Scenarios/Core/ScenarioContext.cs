@@ -111,7 +111,7 @@ namespace CavesOfOoo.Scenarios
         /// <summary>
         /// Fluent player-modification builder. Lazy-initialized on first access,
         /// cached for subsequent calls so repeated chaining touches the same instance.
-        /// Example: <c>ctx.Player.Teleport(50, 20).SetHpMax().AddMutation("CalmMutation");</c>
+        /// Example: <c>ctx.Player.Teleport(50, 20).SetHpMax().AddSkill("Spellcraft_Calm");</c>
         /// </summary>
         public PlayerBuilder Player
         {

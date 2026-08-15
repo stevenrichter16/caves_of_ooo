@@ -16,10 +16,8 @@ namespace CavesOfOoo.Core
         /// <summary>If set, grants this mutation (spell) when read instead of a knowledge property.
         /// LEGACY — the mutations→skills migration replaces these with
         /// <see cref="SkillClassName"/> batch by batch; this field dies in M4.</summary>
-        public string MutationClassName = "";
 
         /// <summary>Level to grant the mutation at. LEGACY, dies in M4.</summary>
-        public int MutationLevel = 1;
 
         /// <summary>If set, teaches this SKILL when read — the migration-era
         /// replacement for <see cref="MutationClassName"/>. Skills are flat,
@@ -82,40 +80,6 @@ namespace CavesOfOoo.Core
                 }
 
                 if (skills.AddSkill(SkillClassName, source: "grimoire"))
-                {
-                    if (!string.IsNullOrEmpty(LearnMessage))
-                        MessageLog.AddAnnouncement(LearnMessage);
-                    else
-                        MessageLog.AddAnnouncement($"You study {ParentEntity.GetDisplayName()} and learn a new rite.");
-                }
-                else
-                {
-                    MessageLog.Add("The symbols are beyond your comprehension.");
-                }
-
-                e.Handled = true;
-                return false;
-            }
-
-            // Spell-granting grimoire: teaches a mutation when read
-            if (!string.IsNullOrEmpty(MutationClassName))
-            {
-                var mutations = actor.GetPart<MutationsPart>();
-                if (mutations == null)
-                {
-                    MessageLog.Add("The symbols are beyond your comprehension.");
-                    e.Handled = true;
-                    return false;
-                }
-
-                if (mutations.HasMutation(MutationClassName))
-                {
-                    MessageLog.Add(AlreadyKnownMessage);
-                    e.Handled = true;
-                    return false;
-                }
-
-                if (mutations.AddMutation(MutationClassName, MutationLevel))
                 {
                     if (!string.IsNullOrEmpty(LearnMessage))
                         MessageLog.AddAnnouncement(LearnMessage);

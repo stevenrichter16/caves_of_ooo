@@ -15,7 +15,7 @@ namespace CavesOfOoo.Scenarios.Builders
     /// ctx.Player
     ///    .Teleport(50, 20)
     ///    .SetHpMax()
-    ///    .AddMutation("CalmMutation", level: 5)
+    ///    .AddSkill("Spellcraft_Calm")
     ///    .GiveItem("HealingTonic", count: 3)
     ///    .Equip("ChainMail");
     /// </code>
@@ -124,38 +124,6 @@ namespace CavesOfOoo.Scenarios.Builders
                 return this;
             }
             stat.Max = max;
-            return this;
-        }
-
-        // ======================================================
-        // Mutations
-        // ======================================================
-
-        /// <summary>
-        /// Grant a mutation to the player by CLASS NAME (not DisplayName or blueprint
-        /// Name) — e.g., <c>"FireBoltMutation"</c>, not <c>"FireBolt"</c>. Uses
-        /// <see cref="MutationsPart.AddMutation"/>'s reflection lookup on
-        /// <c>Type.Name</c>.
-        ///
-        /// Default level is 3 (boosted relative to blueprint starting-mutation level 1).
-        /// If the player already has the mutation, <c>IRankedMutation</c> implementations
-        /// stack level; non-ranked mutations no-op with a false return.
-        ///
-        /// Logs + skips if the player has no <see cref="MutationsPart"/> or the
-        /// class name doesn't resolve. MutationsPart itself logs when the class
-        /// isn't found, so tests may need <c>LogAssert.Expect</c> for that log.
-        /// </summary>
-        public PlayerBuilder AddMutation(string mutationClassName, int level = 3)
-        {
-            var mutations = _ctx.PlayerEntity.GetPart<MutationsPart>();
-            if (mutations == null)
-            {
-                Debug.LogWarning($"[Scenario] Player.AddMutation('{mutationClassName}'): player has no MutationsPart — skipping.");
-                return this;
-            }
-            bool added = mutations.AddMutation(mutationClassName, level);
-            if (!added)
-                Debug.LogWarning($"[Scenario] Player.AddMutation('{mutationClassName}'): MutationsPart.AddMutation returned false (unknown class or already present + non-ranked).");
             return this;
         }
 

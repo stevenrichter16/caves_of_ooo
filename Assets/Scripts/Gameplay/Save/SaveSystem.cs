@@ -1253,8 +1253,6 @@ namespace CavesOfOoo.Core
                 SaveBody(body, writer);
             else if (part is BrainPart brain)
                 SaveBrainPart(brain, writer);
-            else if (part is MutationsPart mutations)
-                SaveMutationsPart(mutations, writer);
             else if (part is ISaveSerializable serializable)
                 serializable.Save(writer);
             else
@@ -1282,8 +1280,6 @@ namespace CavesOfOoo.Core
                 LoadBody(body, reader);
             else if (part is BrainPart brain)
                 LoadBrainPart(brain, reader);
-            else if (part is MutationsPart mutations)
-                LoadMutationsPart(mutations, reader);
             else if (part is ISaveSerializable serializable)
                 serializable.Load(reader);
             else
@@ -1671,51 +1667,6 @@ namespace CavesOfOoo.Core
             goal.Age = reader.ReadInt();
             ReadPublicFields(goal, reader);
             return goal;
-        }
-
-        private static void SaveMutationsPart(MutationsPart part, SaveWriter writer)
-        {
-            writer.WriteString(part.StartingMutations);
-
-            writer.Write(part.MutationList.Count);
-            for (int i = 0; i < part.MutationList.Count; i++)
-                writer.WriteString(GetTypeName(part.MutationList[i].GetType()));
-
-            writer.Write(part.MutationMods.Count);
-            for (int i = 0; i < part.MutationMods.Count; i++)
-                WritePublicFields(part.MutationMods[i], writer);
-
-            writer.Write(part.MutationGeneratedEquipment.Count);
-            for (int i = 0; i < part.MutationGeneratedEquipment.Count; i++)
-                WritePublicFields(part.MutationGeneratedEquipment[i], writer);
-        }
-
-        private static void LoadMutationsPart(MutationsPart part, SaveReader reader)
-        {
-            part.StartingMutations = reader.ReadString();
-            part.MutationList.Clear();
-
-            int mutationCount = reader.ReadInt();
-            for (int i = 0; i < mutationCount; i++)
-                reader.ReadString();
-
-            part.MutationMods.Clear();
-            int modCount = reader.ReadInt();
-            for (int i = 0; i < modCount; i++)
-            {
-                var tracker = new MutationModifierTracker();
-                ReadPublicFields(tracker, reader);
-                part.MutationMods.Add(tracker);
-            }
-
-            part.MutationGeneratedEquipment.Clear();
-            int generatedCount = reader.ReadInt();
-            for (int i = 0; i < generatedCount; i++)
-            {
-                var tracker = new MutationGeneratedEquipmentTracker();
-                ReadPublicFields(tracker, reader);
-                part.MutationGeneratedEquipment.Add(tracker);
-            }
         }
 
         private static void WritePublicFields(object obj, SaveWriter writer, Func<FieldInfo, bool> include = null)

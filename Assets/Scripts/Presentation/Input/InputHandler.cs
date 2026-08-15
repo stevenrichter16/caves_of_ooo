@@ -1326,26 +1326,6 @@ namespace CavesOfOoo.Rendering
             }
         }
 
-        private static string GetMutationListSummary(MutationsPart mutations)
-        {
-            if (mutations == null || mutations.MutationList.Count == 0)
-                return "(none)";
-
-            string summary = "";
-            for (int i = 0; i < mutations.MutationList.Count; i++)
-            {
-                BaseMutation mutation = mutations.MutationList[i];
-                if (mutation == null)
-                    continue;
-
-                if (summary.Length > 0)
-                    summary += ", ";
-                summary += mutation.DisplayName + " L" + mutation.Level;
-            }
-
-            return string.IsNullOrEmpty(summary) ? "(none)" : summary;
-        }
-
         /// <summary>
         /// Pick up items at the player's feet.
         /// Single item: auto-pickup immediately.

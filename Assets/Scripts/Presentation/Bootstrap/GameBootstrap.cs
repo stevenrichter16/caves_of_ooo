@@ -180,12 +180,6 @@ namespace CavesOfOoo
                 // reloads every file, guaranteeing the full set at game start.
                 Data.ConversationLoader.LoadAll();
 
-                Debug.Log("[Bootstrap] Step 2/9: Initializing mutations...");
-                PerformanceDiagnostics.MeasureStartupPhase(
-                    "InitializeMutations",
-                    PerformanceMarkers.Bootstrap.InitializeMutations,
-                    MutationRegistry.EnsureInitialized);
-
                 MessageLog.OnMessage = msg => Debug.Log($"[Combat] {msg}");
 
                 Debug.Log("[Bootstrap] Step 3/9: Creating EntityFactory...");
@@ -328,7 +322,6 @@ namespace CavesOfOoo
                     // it is a designed feature loop, not a debug grant.
                     if (DevMode.Enabled)
                     {
-                        GrantShowcaseSpellMutations();
                         InitializePlayerStartingTinkering();
                         GivePlayerStartingTonics();
                         GivePlayerCraftingStarterKit();
@@ -1024,48 +1017,6 @@ namespace CavesOfOoo
                 "[Bootstrap/Tinkering] " +
                 $"Learned {learnedNow} recipe(s), total known: {bitLocker.GetKnownRecipes().Count}. " +
                 $"Granted {startingAmountPerBit} of each bit type.");
-        }
-
-        /// <summary>
-        /// Debug-first mutation grant so projectile/spell FX is reachable immediately.
-        /// Keeps the player blueprint stable while the progression loop is unfinished.
-        /// </summary>
-        private void GrantShowcaseSpellMutations()
-        {
-            if (_player == null)
-                return;
-
-            // KnowsPurifyWater is now learned by reading the Water-Keeper's Grimoire
-
-            var mutations = _player.GetPart<MutationsPart>();
-            if (mutations == null)
-            {
-                Debug.LogWarning("[Bootstrap/Mutations] Player has no MutationsPart; showcase spell grant skipped.");
-                return;
-            }
-
-            string[] showcaseMutations =
-            {
-                "FireBoltMutation",
-                "IceShardMutation",
-                "PoisonSpitMutation",
-                "PrismaticBeamMutation",
-                "FrostNovaMutation",
-                "ChainLightningMutation"
-            };
-
-            int granted = 0;
-            for (int i = 0; i < showcaseMutations.Length; i++)
-            {
-                string className = showcaseMutations[i];
-                if (mutations.HasMutation(className))
-                    continue;
-
-                if (mutations.AddMutation(className, 1))
-                    granted++;
-            }
-
-            Debug.Log("[Bootstrap/Mutations] Granted " + granted + " showcase projectile mutation(s).");
         }
 
         /// <summary>
