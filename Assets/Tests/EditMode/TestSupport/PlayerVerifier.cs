@@ -109,23 +109,24 @@ namespace CavesOfOoo.Tests.TestSupport
         }
 
         // =========================================================
-        // Mutations
+        // Skills
         // =========================================================
 
         /// <summary>
-        /// Assert the player has a mutation with the given class name (matches
-        /// <c>Type.Name</c> — e.g. <c>"FireBoltMutation"</c>, not
-        /// <c>"FireBolt"</c>).
+        /// Assert the player has a skill with the given class name (matches
+        /// <c>Type.Name</c> — e.g. <c>"Pyromancy_EmberSpit"</c>, not
+        /// <c>"Ember Spit"</c>). Replaces the mutation-era HasMutation
+        /// (mutations→skills migration M4).
         /// </summary>
-        public PlayerVerifier HasMutation(string mutationClassName)
+        public PlayerVerifier HasSkill(string skillClassName)
         {
-            var mutations = Player.GetPart<MutationsPart>();
-            if (mutations == null)
-                Assert.Fail("Verify.Player.HasMutation: player has no MutationsPart.");
-            if (!mutations.HasMutation(mutationClassName))
+            var skills = Player.GetPart<CavesOfOoo.Skills.SkillsPart>();
+            if (skills == null)
+                Assert.Fail("Verify.Player.HasSkill: player has no SkillsPart.");
+            if (!skills.HasSkill(skillClassName))
                 Assert.Fail(
-                    $"Verify.Player.HasMutation('{mutationClassName}'): " +
-                    "mutation not attached to player.");
+                    $"Verify.Player.HasSkill('{skillClassName}'): " +
+                    "skill not attached to player.");
             return this;
         }
 

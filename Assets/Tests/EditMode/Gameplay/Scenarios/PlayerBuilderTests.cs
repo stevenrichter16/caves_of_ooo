@@ -138,49 +138,27 @@ namespace CavesOfOoo.Tests.Scenarios
         // ======================================================
 
         [Test]
-        public void AddMutation_AttachesMutationAsPart()
+        public void AddSkill_AttachesSkillAsPart()
         {
-            // FireBoltMutation is a real class (player doesn't start with it —
-            // the starting mutation is FlamingHandsMutation). After AddMutation,
-            // the mutation should be an attached Part on the player.
-            //
-            // Note: we check BaseLevel, not Level. Level is CAPPED by the player's
-            // Level stat via GetMutationCap (level/2+1 at Level 1 = 1). BaseLevel
-            // is the raw level the scenario library asked for, unaffected by the
-            // player-level cap — which is what the library's contract covers.
+            // Migration M4: the builder grants SKILLS. Ember Spit is a
+            // real class the player also starts with via the kit — use a
+            // non-kit power so the attach is unambiguous.
             var (ctx, _, player) = BuildContext();
-            ctx.Player.AddMutation("FireBoltMutation", level: 2);
-            var mutation = player.GetPart<FireBoltMutation>();
-            Assert.IsNotNull(mutation, "FireBoltMutation should be attached after AddMutation.");
-            Assert.AreEqual(2, mutation.BaseLevel,
-                "BaseLevel should match the requested level (Level is separately capped by player Level).");
+            ctx.Player.AddSkill("Pyromancy_Kindle");
+            var skill = player.GetPart<CavesOfOoo.Skills.Pyromancy_Kindle>();
+            Assert.IsNotNull(skill, "Pyromancy_Kindle should be attached after AddSkill.");
         }
 
         [Test]
-        public void AddMutation_DefaultLevel3_WhenOmitted()
+        public void AddSkill_UnknownClass_LogsAndSkips()
         {
-            // Phase 2c default level = 3 (boosted vs. blueprint level 1).
-            // Check BaseLevel — see note on AddMutation_AttachesMutationAsPart.
-            var (ctx, _, player) = BuildContext();
-            ctx.Player.AddMutation("FireBoltMutation");
-            var mutation = player.GetPart<FireBoltMutation>();
-            Assert.IsNotNull(mutation);
-            Assert.AreEqual(3, mutation.BaseLevel,
-                "Default BaseLevel should be 3 per Phase 2c decision.");
-        }
-
-        [Test]
-        public void AddMutation_UnknownClass_LogsAndSkips()
-        {
-            // MutationsPart logs internally for unknown class; our wrapper also warns.
             LogAssert.Expect(LogType.Warning,
-                new System.Text.RegularExpressions.Regex(@"AddMutation returned false"));
-            // MutationsPart may also emit a log of its own — accept any log during the call.
+                new System.Text.RegularExpressions.Regex(@"AddSkill returned false"));
             LogAssert.ignoreFailingMessages = true;
             try
             {
                 var (ctx, _, _) = BuildContext();
-                Assert.DoesNotThrow(() => ctx.Player.AddMutation("DefinitelyFakeMutation"));
+                Assert.DoesNotThrow(() => ctx.Player.AddSkill("DefinitelyFakeSkill"));
             }
             finally
             {

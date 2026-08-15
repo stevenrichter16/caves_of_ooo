@@ -92,7 +92,7 @@ namespace CavesOfOoo.Skills
                 int damage = DiceRoller.Roll(DamageDice, ctx.Rng);
                 if (damage > 0)
                 {
-                    int actualDamage = MutationDamageHelpers.ApplySpellDamage(
+                    int actualDamage = SpellDamageHelpers.ApplySpellDamage(
                         target, damage, ElementAttribute, actor, ctx.Zone);
 
                     MessageLog.Add(actor.GetDisplayName() + " " + ImpactVerb + " " +

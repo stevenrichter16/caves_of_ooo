@@ -29,7 +29,7 @@ namespace CavesOfOoo.Tests.TestSupport
     ///         .HasHpFraction(0.20f)
     ///     .Back()
     ///     .Player()
-    ///         .HasMutation("FireBoltMutation")
+    ///         .HasSkill("Pyromancy_EmberSpit")
     ///     .Back()
     ///     .EntityCount(withTag: "Creature", expected: 3);
     /// </code>

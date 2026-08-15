@@ -55,32 +55,7 @@ namespace CavesOfOoo.Core
         /// event firing.</param>
         public static int ApplySpellDamage(Entity target, int baseDamage,
             string elementAttribute, Entity attacker, Zone zone)
-        {
-            if (target == null || baseDamage <= 0) return 0;
-
-            // Skill modifier — Spellcraft_Empower returns +1 universally,
-            // Pyromancy_Conflagration returns +damage when Heat hits a
-            // Burning target, etc. The dispatcher iterates owned skills
-            // and sums their contributions (additive across skills).
-            int skillBonus = SkillEventDispatcher.GetSpellDamageModifier(
-                attacker, target, elementAttribute, baseDamage);
-            int finalDamage = baseDamage + skillBonus;
-            if (finalDamage <= 0) return 0;
-
-            // Build typed Damage with Spell attribute + element attribute.
-            // The element string here is what AddAttribute consumes —
-            // "Fire" maps to the Heat flag, "Cold" maps to Cold flag, etc.
-            // (see DamageAttributeFlags aliases in Damage.cs:22-28).
-            var dmg = new Damage(finalDamage);
-            dmg.AddAttribute("Spell");
-            if (!string.IsNullOrEmpty(elementAttribute))
-                dmg.AddAttribute(elementAttribute);
-
-            // RouteDamage, not ApplyDamage: a non-living target has no
-            // Hitpoints stat, so ApplyDamage early-outs on it and a fire
-            // bolt aimed at a hedgerow did nothing at all. Structural HP is
-            // a separate pool with a separate death path.
-            return DestructionSystem.RouteDamage(target, dmg, attacker, zone);
-        }
+            => CavesOfOoo.Skills.SpellDamageHelpers.ApplySpellDamage(
+                target, baseDamage, elementAttribute, attacker, zone);
     }
 }

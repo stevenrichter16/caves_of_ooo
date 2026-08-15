@@ -27,12 +27,12 @@ namespace CavesOfOoo.Skills
     /// Pyromancy_Conflagration's +25%-of-base on Burning targets).</para>
     ///
     /// <para>Hook fires from
-    /// <see cref="MutationDamageHelpers.ApplySpellDamage"/> — the
+    /// <see cref="SpellDamageHelpers.ApplySpellDamage"/> — the
     /// shared damage path that all migrated mutations use (FireBolt,
     /// IceLance, IceShard, ArcBolt, AcidSpray, Kindle as of WSP7.0).
     /// Pre-WSP7 mutations didn't tag damage with element/Spell
     /// attributes, so neither resistances NOR magic skills could fire.
-    /// The MutationDamageHelpers migration fixed both.</para>
+    /// The SpellDamageHelpers migration fixed both.</para>
     /// </summary>
     public class SpellcraftSkill : BaseSkillPart
     {

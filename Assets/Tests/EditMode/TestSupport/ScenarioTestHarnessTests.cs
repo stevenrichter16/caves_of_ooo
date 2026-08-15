@@ -56,13 +56,13 @@ namespace CavesOfOoo.Tests.TestSupport
         }
 
         [Test]
-        public void CreateContext_WithRealPlayerBlueprint_HasMutationsPart()
+        public void CreateContext_WithRealPlayerBlueprint_HasSkillsPart()
         {
             using (var harness = new ScenarioTestHarness())
             {
                 var ctx = harness.CreateContext(playerBlueprint: "Player");
-                Assert.IsNotNull(ctx.PlayerEntity.GetPart<MutationsPart>(),
-                    "Real Player blueprint should include MutationsPart (the stub doesn't).");
+                Assert.IsNotNull(ctx.PlayerEntity.GetPart<CavesOfOoo.Skills.SkillsPart>(),
+                    "Real Player blueprint should include SkillsPart (the stub doesn't).");
                 Assert.IsNotNull(ctx.PlayerEntity.GetPart<InventoryPart>(),
                     "Real Player blueprint should include InventoryPart.");
             }

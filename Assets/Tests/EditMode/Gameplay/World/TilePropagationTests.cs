@@ -67,6 +67,19 @@ namespace CavesOfOoo.Tests
             return e;
         }
 
+        /// <summary>Migration: Flaming Hands is a skill — cast through
+        /// the dispatcher with the InputHandler's parameter shapes.</summary>
+        private static void CastFlamingHands(Entity caster, Zone zone, Cell targetCell)
+        {
+            var cmd = GameEvent.New("CommandFlamingHands");
+            cmd.SetParameter("Zone", (object)zone);
+            cmd.SetParameter("RNG", (object)new System.Random(0));
+            cmd.SetParameter("SourceCell", (object)zone.GetEntityCell(caster));
+            cmd.SetParameter("TargetCell", (object)targetCell);
+            caster.FireEvent(cmd);
+            cmd.Release();
+        }
+
         // ── What conducts ────────────────────────────────────────
 
         [Test]
@@ -271,14 +284,14 @@ namespace CavesOfOoo.Tests
             // reaction; nothing connected fire to the ground.
             var zone = new Zone();
             var caster = Creature(zone, "caster", 5, 5);
-            caster.AddPart(new MutationsPart());
-            var fh = new FlamingHandsMutation();
-            caster.AddPart(fh);
-            fh.Mutate(caster, 1);
+            caster.AddPart(new ActivatedAbilitiesPart());
+            caster.AddPart(new CavesOfOoo.Skills.SkillsPart());
+            caster.GetPart<CavesOfOoo.Skills.SkillsPart>()
+                .AddSkill(new CavesOfOoo.Skills.Pyromancy_FlamingHands());
 
             zone.TileState.WriteCoating(6, 5, "oil", 8);
 
-            fh.Cast(zone.GetCell(6, 5), zone, new System.Random(0));
+            CastFlamingHands(caster, zone, zone.GetCell(6, 5));
 
             Assert.IsFalse(zone.TileState.HasCoating(6, 5, "oil"),
                 "the oil should have gone up");
@@ -293,15 +306,15 @@ namespace CavesOfOoo.Tests
             // adjacent tiles containing oil".
             var zone = new Zone();
             var caster = Creature(zone, "caster", 5, 5);
-            caster.AddPart(new MutationsPart());
-            var fh = new FlamingHandsMutation();
-            caster.AddPart(fh);
-            fh.Mutate(caster, 1);
+            caster.AddPart(new ActivatedAbilitiesPart());
+            caster.AddPart(new CavesOfOoo.Skills.SkillsPart());
+            caster.GetPart<CavesOfOoo.Skills.SkillsPart>()
+                .AddSkill(new CavesOfOoo.Skills.Pyromancy_FlamingHands());
 
             // A slick running away from the caster.
             for (int x = 6; x <= 9; x++) zone.TileState.WriteCoating(x, 5, "oil", 8);
 
-            fh.Cast(zone.GetCell(6, 5), zone, new System.Random(0));
+            CastFlamingHands(caster, zone, zone.GetCell(6, 5));
 
             Assert.IsFalse(zone.TileState.HasCoating(7, 5, "oil"),
                 "the fire ran down the slick");

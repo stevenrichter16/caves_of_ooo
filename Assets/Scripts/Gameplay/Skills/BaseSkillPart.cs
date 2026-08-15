@@ -198,7 +198,7 @@ namespace CavesOfOoo.Skills
         /// Summed across all owned skills by
         /// <see cref="SkillEventDispatcher.GetSpellDamageModifier"/>.
         /// Hook fires from
-        /// <see cref="CavesOfOoo.Core.MutationDamageHelpers.ApplySpellDamage"/>
+        /// <see cref="SpellDamageHelpers.ApplySpellDamage"/>
         /// before damage is applied — added to the rolled
         /// <paramref name="baseDamage"/> before resistance is applied.
         ///

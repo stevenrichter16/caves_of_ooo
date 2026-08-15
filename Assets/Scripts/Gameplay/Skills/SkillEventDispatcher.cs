@@ -167,7 +167,7 @@ namespace CavesOfOoo.Skills
         /// Returns the SUM of
         /// <see cref="BaseSkillPart.OnGetSpellDamageModifier"/> across all
         /// owned skills. Used by
-        /// <see cref="CavesOfOoo.Core.MutationDamageHelpers.ApplySpellDamage"/>
+        /// <see cref="SpellDamageHelpers.ApplySpellDamage"/>
         /// to fold magic-skill bonuses into the rolled spell damage
         /// before resistance + delivery.
         ///

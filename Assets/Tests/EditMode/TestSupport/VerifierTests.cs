@@ -302,19 +302,19 @@ namespace CavesOfOoo.Tests.TestSupport
         }
 
         [Test]
-        public void Player_HasMutation_Passes()
+        public void Player_HasSkill_Passes()
         {
             var ctx = _harness.CreateContext(playerBlueprint: "Player");
-            ctx.Player.AddMutation("FireBoltMutation");
-            ctx.Verify().Player().HasMutation("FireBoltMutation");
+            ctx.Player.AddSkill("Pyromancy_EmberSpit");
+            ctx.Verify().Player().HasSkill("Pyromancy_EmberSpit");
         }
 
         [Test]
-        public void Player_HasMutation_Missing_Fails()
+        public void Player_HasSkill_Missing_Fails()
         {
             var ctx = _harness.CreateContext(playerBlueprint: "Player");
             Assert.Throws<AssertionException>(
-                () => ctx.Verify().Player().HasMutation("FireBoltMutation"));
+                () => ctx.Verify().Player().HasSkill("Pyromancy_EmberSpit"));
         }
 
         [Test]
@@ -575,16 +575,16 @@ namespace CavesOfOoo.Tests.TestSupport
         public void Player_HasPartOfType_Passes()
         {
             var ctx = _harness.CreateContext(playerBlueprint: "Player");
-            ctx.Verify().Player().HasPartOfType<MutationsPart>();
+            ctx.Verify().Player().HasPartOfType<CavesOfOoo.Skills.SkillsPart>();
         }
 
         [Test]
         public void Player_HasPartOfType_Missing_Fails()
         {
-            // Stub player has no MutationsPart.
+            // Stub player has no SkillsPart.
             var ctx = _harness.CreateContext();
             Assert.Throws<AssertionException>(
-                () => ctx.Verify().Player().HasPartOfType<MutationsPart>());
+                () => ctx.Verify().Player().HasPartOfType<CavesOfOoo.Skills.SkillsPart>());
         }
 
         [Test]

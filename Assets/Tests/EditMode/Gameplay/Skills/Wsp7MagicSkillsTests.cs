@@ -267,7 +267,7 @@ namespace CavesOfOoo.Tests
                 { Owner = target, Name = "HeatResistance", BaseValue = 50, Min = -100, Max = 100 };
 
             int hpBefore = target.GetStatValue("Hitpoints");
-            int landed = MutationDamageHelpers.ApplySpellDamage(
+            int landed = SpellDamageHelpers.ApplySpellDamage(
                 target, baseDamage: 20, elementAttribute: "Fire",
                 attacker: caster, zone: null);
 
@@ -286,7 +286,7 @@ namespace CavesOfOoo.Tests
         [Test]
         public void ApplySpellDamage_NoTarget_ReturnsZero_NoCrash()
         {
-            int landed = MutationDamageHelpers.ApplySpellDamage(
+            int landed = SpellDamageHelpers.ApplySpellDamage(
                 target: null, baseDamage: 10, elementAttribute: "Fire",
                 attacker: MakeCaster(), zone: null);
             Assert.AreEqual(0, landed,
@@ -296,7 +296,7 @@ namespace CavesOfOoo.Tests
         [Test]
         public void ApplySpellDamage_ZeroBaseDamage_ReturnsZero()
         {
-            int landed = MutationDamageHelpers.ApplySpellDamage(
+            int landed = SpellDamageHelpers.ApplySpellDamage(
                 MakeTarget(), baseDamage: 0, "Fire", MakeCaster(), zone: null);
             Assert.AreEqual(0, landed,
                 "ApplySpellDamage on baseDamage=0 returns 0 (no skill query, no damage).");
@@ -313,7 +313,7 @@ namespace CavesOfOoo.Tests
             var target = MakeTarget();
             int hpBefore = target.GetStatValue("Hitpoints");
 
-            MutationDamageHelpers.ApplySpellDamage(
+            SpellDamageHelpers.ApplySpellDamage(
                 target, baseDamage: 10, elementAttribute: "",
                 attacker: caster, zone: null);
             int hpAfter = target.GetStatValue("Hitpoints");
