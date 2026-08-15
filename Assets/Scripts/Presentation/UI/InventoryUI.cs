@@ -3440,7 +3440,7 @@ namespace CavesOfOoo.Rendering
                 var ab = abilities.AbilityList[i];
                 if (ab == null)
                     continue;
-                if (GrimoireTooltipData.IsGrimoireMutation(ab.SourcePowerClass))
+                if (GrimoireTooltipData.IsGrimoirePower(ab.SourcePowerClass))
                     grimoires.Add(ab);
             }
 

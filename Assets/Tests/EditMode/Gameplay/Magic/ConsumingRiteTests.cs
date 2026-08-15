@@ -536,7 +536,7 @@ namespace CavesOfOoo.Tests
                 if (t.IsAbstract
                     || !typeof(CavesOfOoo.Skills.ConsumingRiteSkillBase).IsAssignableFrom(t))
                     continue;
-                Assert.IsTrue(GrimoireTooltipData.IsGrimoireMutation(t.Name),
+                Assert.IsTrue(GrimoireTooltipData.IsGrimoirePower(t.Name),
                     t.Name + " has no GrimoireTooltipData row, so it cannot be bound"
                     + " from the grimoire picker");
             }

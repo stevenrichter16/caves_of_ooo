@@ -10,7 +10,7 @@ namespace CavesOfOoo.Rendering
     /// MonoBehaviour setup.
     ///
     /// <para>Sort order: by <see cref="ActivatedAbility.Class"/> first
-    /// (so all "Skills" group together, then "Grimoire Spells", etc.),
+    /// (so all "Pyromancy" group together, then "Rites", etc.),
     /// then by <see cref="ActivatedAbility.DisplayName"/> within the
     /// class for deterministic ordering. Mirrors Qud's
     /// <c>AbilityManagerScreen.SortMode.Class</c> default

@@ -316,7 +316,7 @@ namespace CavesOfOoo.Tests
                     found = abilities.AbilityList[i];
             Assert.IsNotNull(found, "the ability registered");
             Assert.AreEqual("Pyromancy_Kindle", found.SourcePowerClass);
-            Assert.IsTrue(GrimoireTooltipData.IsGrimoireMutation(found.SourcePowerClass),
+            Assert.IsTrue(GrimoireTooltipData.IsGrimoirePower(found.SourcePowerClass),
                 "and the picker filter recognizes it");
         }
 

@@ -348,3 +348,34 @@ while mutation classes still compile — each prep commit is
 independently green), then one final deletion commit touching only
 the last direct references. This honors the one-asmdef constraint
 without a 32-file mega-diff.
+
+## 10. CLOSE-OUT (2026-08-15) — migration complete
+
+- **M4 deletion** `0d6dd700` — the mutation system is gone: 52
+  production files (42 concrete mutations, 3 bases, MutationsPart,
+  registry, definitions, trackers, IRankedMutation) + 5 mutation-era
+  test files; −10,223 lines. Preceded by three green prep commits
+  (`d03e96f1` SpellDamageHelpers move + light fixtures, `8599b6e6`
+  farming/AI/spell-combat suites, `131be665` rite suites + the
+  22-test ActivatedAbilitiesPart extraction) so the deletion commit
+  touched only direct references.
+- **Final sweep** — GrimoireInk + GrimoireTooltipData moved to
+  Gameplay/Magic (the Mutations folder no longer exists);
+  IsGrimoireMutation → IsGrimoirePower; stale "Grimoire Spells" /
+  "Mental Mutations" doc examples updated.
+- **Verification** — EditMode 6610/6610 green post-deletion and
+  post-sweep (the pre-existing FungalInfectionContagion flake failed
+  once, passed on rerun). Live PlayMode probe (read-only,
+  execute_code): player bootstraps with skills=6 abilities=6,
+  HasSkill(Spellcraft_Calm)=true, HasSkill(Pyromancy_FlamingHands)=true,
+  SkillRegistry.TryGetPowerByClass(Rites_StormAnvil)=true, zero
+  console errors.
+- **Honesty bounds:** script-observable claims only — grants, ability
+  registration, registry rows, diag contracts, test suite. Visual/feel
+  of casts in live play (FX timing, hotbar display of the re-keyed
+  tooltip rows) was not eyeballed this session; the tooltip re-key is
+  pinned by tests but a human squint at the grimoire picker is the
+  remaining unverified surface.
+- Deferred, tracked elsewhere: grimoire-ink renewability (task #72),
+  balance pass on ported cooldowns, skills-screen UX cliff, the
+  flammability redesign (audit P1).

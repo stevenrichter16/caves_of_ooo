@@ -41,13 +41,13 @@ namespace CavesOfOoo.Core
 
     /// <summary>
     /// Static lookup of inline tooltip text for the grimoire-granted
-    /// activated mutations. Keys match the mutation class name exactly so that
+    /// activated powers. Keys match the SKILL class name exactly so that
     /// <see cref="ActivatedAbility.SourcePowerClass"/> can be used as the
     /// lookup key directly.
     ///
     /// <para><b>Load-bearing beyond tooltips:</b> InventoryUI's grimoire
     /// picker filters the "learned grimoires" list with
-    /// <see cref="IsGrimoireMutation"/> — a grimoire-taught mutation
+    /// <see cref="IsGrimoirePower"/> — a grimoire-taught power
     /// missing from this table is INVISIBLE in the picker, and once its
     /// hotbar slot is reassigned it can only be re-bound through the
     /// M-key ability manager. Every new grimoire spell must add a row
@@ -305,7 +305,7 @@ namespace CavesOfOoo.Core
         /// True if the given mutation class name has an inline grimoire tooltip.
         /// Used by UI code to filter the "learned grimoires" list in the picker.
         /// </summary>
-        public static bool IsGrimoireMutation(string mutationClassName)
+        public static bool IsGrimoirePower(string mutationClassName)
         {
             if (string.IsNullOrEmpty(mutationClassName))
                 return false;

@@ -47,7 +47,7 @@ namespace CavesOfOoo.Rendering
         /// (e.g. "Slam", "Conk", "Fire Bolt").</summary>
         public readonly string DisplayName;
 
-        /// <summary>Source class (e.g. "Skills", "Grimoire Spells",
+        /// <summary>Source class (e.g. "Pyromancy", "Rites",
         /// "Stances"). Used as the sort-group header in the UI.</summary>
         public readonly string SourceClass;
 

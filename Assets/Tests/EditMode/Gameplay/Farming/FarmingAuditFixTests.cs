@@ -289,18 +289,18 @@ namespace CavesOfOoo.Tests
         [Test]
         public void Sm7d_ConjureRain_HasGrimoirePickerEntry()
         {
-            // F3: the grimoire picker filters by IsGrimoireMutation — a
+            // F3: the grimoire picker filters by IsGrimoirePower — a
             // missing row made Conjure Rain invisible and strandable
             // (reassign its hotbar slot once and only the M-key ability
             // manager could re-bind it).
-            Assert.IsTrue(GrimoireTooltipData.IsGrimoireMutation("Hydromancy_ConjureRain"),
+            Assert.IsTrue(GrimoireTooltipData.IsGrimoirePower("Hydromancy_ConjureRain"),
                 "Conjure Rain must be visible to the grimoire picker");
             Assert.IsTrue(GrimoireTooltipData.TryGet("Hydromancy_ConjureRain", out var tip));
             Assert.AreEqual("Conjure Rain", tip.DisplayName);
             Assert.IsFalse(string.IsNullOrEmpty(tip.Mechanics));
             Assert.IsFalse(string.IsNullOrEmpty(tip.ColorCode));
             // Counter-check: the filter still rejects unknown classes.
-            Assert.IsFalse(GrimoireTooltipData.IsGrimoireMutation("NoSuchMutation"));
+            Assert.IsFalse(GrimoireTooltipData.IsGrimoirePower("NoSuchMutation"));
         }
 
         [Test]

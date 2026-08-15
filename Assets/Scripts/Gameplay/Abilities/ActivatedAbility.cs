@@ -26,7 +26,7 @@ namespace CavesOfOoo.Core
         public string Command;
 
         /// <summary>
-        /// Category for grouping (e.g. "Physical Mutations", "Mental Mutations").
+        /// Category for grouping (e.g. "Pyromancy", "Rites", "Skills").
         /// </summary>
         public string Class;
 
