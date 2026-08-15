@@ -92,7 +92,7 @@ namespace CavesOfOoo.Tests
             zone.TileState.WriteResidue(7, 5, "embers", 3);
 
             Assert.AreEqual("water, embers",
-                CellStatusReadout.GroundSummary(zone, zone.GetCell(7, 5), 7, 5));
+                CellStatusReadout.GroundSummary(zone, zone.GetCell(7, 5)));
         }
 
         [Test]
@@ -100,11 +100,11 @@ namespace CavesOfOoo.Tests
         {
             var zone = new Zone("Z");
             zone.TileState.WriteCoating(7, 5, "water", 5);
-            Assert.IsNull(CellStatusReadout.GroundSummary(zone, zone.GetCell(7, 5), 7, 5),
+            Assert.IsNull(CellStatusReadout.GroundSummary(zone, zone.GetCell(7, 5)),
                 "fogged cells reveal nothing");
 
             Reveal(zone, 9, 5);
-            Assert.IsNull(CellStatusReadout.GroundSummary(zone, zone.GetCell(9, 5), 9, 5),
+            Assert.IsNull(CellStatusReadout.GroundSummary(zone, zone.GetCell(9, 5)),
                 "clean cells say nothing");
         }
 
@@ -322,7 +322,7 @@ namespace CavesOfOoo.Tests
             Reveal(zone, 7, 5);
             zone.TileState.WriteCoating(7, 5, "water", 5);
 
-            string direct = CellStatusReadout.GroundLine(zone, zone.GetCell(7, 5), 7, 5);
+            string direct = CellStatusReadout.GroundLine(zone, zone.GetCell(7, 5));
             var snapshot = LookQueryService.BuildSnapshot(player, zone, 7, 5);
 
             Assert.AreEqual("On the ground: water (5 turns)", direct);

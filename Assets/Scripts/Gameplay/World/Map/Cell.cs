@@ -9,8 +9,12 @@ namespace CavesOfOoo.Core
     /// </summary>
     public class Cell
     {
-        public int X;
-        public int Y;
+        // Readonly: the tile-state readout keys the sparse store by these
+        // and trusts they match the zone's array index (Zone.cs fills
+        // Cells[x,y] = new Cell(x,y)). Nothing ever mutated them; making
+        // that a compile-time fact keeps it true (adversarial review S1).
+        public readonly int X;
+        public readonly int Y;
         public Zone ParentZone;
 
         /// <summary>

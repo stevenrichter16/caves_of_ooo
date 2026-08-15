@@ -107,18 +107,6 @@ namespace CavesOfOoo.Core
         // =========================================================
 
         /// <summary>
-        /// Human-readable one-line description of what a player sees in a cell.
-        ///   - 2+ non-terrain entities → "A pile of items, including: a, b, c."
-        ///   - 1 non-terrain entity    → "You see a {name}."
-        ///   - Only terrain            → "You see the {top terrain name}."
-        ///   - Empty or null cell      → "You see nothing here."
-        ///
-        /// Pure function. No MessageLog side effects — use this for previews,
-        /// tooltips, and the pile-summary fast path. For the side-effecting
-        /// Examine command, fire an <c>InventoryAction</c> event with
-        /// <c>Command = "Examine"</c>; ExaminablePart will log there.
-        /// </summary>
-        /// <summary>
         /// Zone-aware overload: whatever the cell names, the GROUND
         /// speaks too (Jet Blast water, oil, embers) — the 'c' menu on a
         /// visibly wet tile saying nothing about the water was half of
@@ -136,7 +124,7 @@ namespace CavesOfOoo.Core
             if (zone == null || cell == null)
                 return baseText;
 
-            string ground = CellStatusReadout.GroundSummary(zone, cell, cell.X, cell.Y);
+            string ground = CellStatusReadout.GroundSummary(zone, cell);
             if (string.IsNullOrEmpty(ground))
                 return baseText;
 
@@ -145,6 +133,18 @@ namespace CavesOfOoo.Core
             return baseText + " (" + ground + " underfoot)";
         }
 
+        /// <summary>
+        /// Human-readable one-line description of what a player sees in a cell.
+        ///   - 2+ non-terrain entities → "A pile of items, including: a, b, c."
+        ///   - 1 non-terrain entity    → "You see a {name}."
+        ///   - Only terrain            → "You see the {top terrain name}."
+        ///   - Empty or null cell      → "You see nothing here."
+        ///
+        /// Pure function. No MessageLog side effects — use this for previews,
+        /// tooltips, and the pile-summary fast path. For the side-effecting
+        /// Examine command, fire an <c>InventoryAction</c> event with
+        /// <c>Command = "Examine"</c>; ExaminablePart will log there.
+        /// </summary>
         public static string DescribeCell(Cell cell)
         {
             if (cell == null || cell.Objects.Count == 0)

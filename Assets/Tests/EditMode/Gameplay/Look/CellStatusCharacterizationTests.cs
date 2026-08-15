@@ -109,7 +109,7 @@ namespace CavesOfOoo.Tests
             zone.TileState.AddCharge(7, 5, 1);
             zone.TileState.WriteCloud(7, 5, "smoke", 3);
 
-            string line = CellStatusReadout.GroundLine(zone, zone.GetCell(7, 5), 7, 5);
+            string line = CellStatusReadout.GroundLine(zone, zone.GetCell(7, 5));
 
             Assert.AreEqual("On the ground: hot, cold, charged, smoke cloud (3 turns)", line);
         }
@@ -122,7 +122,7 @@ namespace CavesOfOoo.Tests
             zone.TileState.WriteCoating(7, 5, "water", 1);
             zone.TileState.WriteCloud(7, 5, "steam", 1);
 
-            string line = CellStatusReadout.GroundLine(zone, zone.GetCell(7, 5), 7, 5);
+            string line = CellStatusReadout.GroundLine(zone, zone.GetCell(7, 5));
 
             Assert.AreEqual("On the ground: water (1 turn), steam cloud (1 turn)", line);
         }
@@ -141,9 +141,9 @@ namespace CavesOfOoo.Tests
             zone.TileState.WriteCloud(7, 5, "smoke", 2);
             var cell = zone.GetCell(7, 5);
 
-            string line = CellStatusReadout.GroundLine(zone, cell, 7, 5)
+            string line = CellStatusReadout.GroundLine(zone, cell)
                 .Substring("On the ground: ".Length);
-            string summary = CellStatusReadout.GroundSummary(zone, cell, 7, 5);
+            string summary = CellStatusReadout.GroundSummary(zone, cell);
 
             // Strip "(N turns)" groups from the line: what remains must be
             // exactly the summary, token for token, in order.
@@ -211,6 +211,22 @@ namespace CavesOfOoo.Tests
             string title = WorldActionMenuUI.BuildTitleFor(zone.GetCell(7, 5), null);
 
             Assert.AreEqual("You see the grass.", title, "no target, no [HP] suffix");
+        }
+
+        // ── H9: permanent cloud prints no count (was a latent trap) ──
+
+        [Test]
+        public void H9_PermanentCloud_PrintsNoTurnsCount()
+        {
+            // Coatings already special-cased ZoneTileState.Permanent (the
+            // "water (2147483647 turns)" trap from step 1); the cloud
+            // branch did not. One shared formatter now.
+            var zone = new Zone("Z");
+            Reveal(zone, 7, 5);
+            zone.TileState.WriteCloud(7, 5, "smoke", ZoneTileState.Permanent);
+
+            Assert.AreEqual("On the ground: smoke cloud",
+                CellStatusReadout.GroundLine(zone, zone.GetCell(7, 5)));
         }
 
         // ── S3 gap: afflictions reach the look snapshot ──────────────

@@ -24,9 +24,9 @@ namespace CavesOfOoo.Core
         /// Null when there is nothing to say (sparse store: absent means
         /// clean) or the cell is fogged.
         /// </summary>
-        public static string GroundLine(Zone zone, Cell cell, int x, int y)
+        public static string GroundLine(Zone zone, Cell cell)
         {
-            var parts = Collect(zone, cell, x, y, withCounts: true);
+            var parts = Collect(zone, cell, withCounts: true);
             if (parts == null || parts.Count == 0)
                 return null;
             return "On the ground: " + string.Join(", ", parts);
@@ -36,9 +36,9 @@ namespace CavesOfOoo.Core
         /// Compact name list for titles and messages: "water, embers".
         /// Same visibility rules as <see cref="GroundLine"/>, no counts.
         /// </summary>
-        public static string GroundSummary(Zone zone, Cell cell, int x, int y)
+        public static string GroundSummary(Zone zone, Cell cell)
         {
-            var parts = Collect(zone, cell, x, y, withCounts: false);
+            var parts = Collect(zone, cell, withCounts: false);
             if (parts == null || parts.Count == 0)
                 return null;
             return string.Join(", ", parts);
@@ -77,13 +77,16 @@ namespace CavesOfOoo.Core
         }
 
 
-        private static List<string> Collect(
-            Zone zone, Cell cell, int x, int y, bool withCounts)
+        private static List<string> Collect(Zone zone, Cell cell, bool withCounts)
         {
             if (zone == null || cell == null || !cell.Explored || !cell.IsVisible)
                 return null;
 
-            var state = zone.TileState.Get(x, y);
+            // Coordinates come from the cell itself, read only after the
+            // null guard: the free x,y that used to ride alongside could
+            // never legitimately differ from them (adversarial review S1),
+            // so the signature no longer offers a way to desync.
+            var state = zone.TileState.Get(cell.X, cell.Y);
             if (state == null)
                 return null;
 
@@ -96,23 +99,24 @@ namespace CavesOfOoo.Core
             if (state.Cold > 0) parts.Add("cold");
             if (state.Charge > 0) parts.Add("charged");
             if (!string.IsNullOrEmpty(state.Cloud))
-            {
-                string cloud = TileStateCatalog.DisplayName(state.Cloud) + " cloud";
-                if (withCounts)
-                    cloud += " (" + state.CloudTurns
-                        + (state.CloudTurns == 1 ? " turn)" : " turns)");
-                parts.Add(cloud);
-            }
+                parts.Add(TileStateCatalog.DisplayName(state.Cloud) + " cloud"
+                    + FormatTurns(state.CloudTurns, withCounts));
             return parts;
         }
 
         private static string DescribeLayer(ZoneTileState.Layer layer, bool withCounts)
+            => TileStateCatalog.DisplayName(layer.Id) + FormatTurns(layer.Turns, withCounts);
+
+        /// <summary>" (N turns)" / " (1 turn)" — or nothing, when counts
+        /// are off or the layer is a permanent projection
+        /// (<see cref="ZoneTileState.Permanent"/>: rivers, pools). One
+        /// formatter for coatings, residues AND clouds — the cloud branch
+        /// used to lack the Permanent guard (adversarial review H9).</summary>
+        private static string FormatTurns(int turns, bool withCounts)
         {
-            string name = TileStateCatalog.DisplayName(layer.Id);
-            if (!withCounts || layer.Turns == ZoneTileState.Permanent)
-                return name;
-            return name + " (" + layer.Turns
-                + (layer.Turns == 1 ? " turn)" : " turns)");
+            if (!withCounts || turns == ZoneTileState.Permanent)
+                return "";
+            return " (" + turns + (turns == 1 ? " turn)" : " turns)");
         }
     }
 }
