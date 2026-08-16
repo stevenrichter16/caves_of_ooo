@@ -26,6 +26,13 @@ namespace CavesOfOoo.Core
         // listener triggers a nested move. If a future listener DOES need to
         // re-enter movement, switch to ArrayPool<Entity> or gate re-entrance
         // explicitly.
+        //
+        // The one thing that DOES re-enter movement — LiquidSlipSystem's
+        // slide (a ForceMoveTo) — is called by the three move methods AFTER
+        // FireCellEnteredEvents has returned, precisely so it never runs
+        // while this list is in use. Do not move the slip into an
+        // EntityEnteredCell handler (LiquidPoolPart's, say): the chained
+        // slide would corrupt this list. Docs/LIQUID-SLIP.md §8 R2.
         private static readonly List<Entity> _enteredCellScratch = new List<Entity>(8);
 
         /// <summary>
@@ -100,6 +107,7 @@ namespace CavesOfOoo.Core
             entity.FireEventAndRelease(afterMove);
 
             FireCellEnteredEvents(entity, currentCell, targetCell);
+            LiquidSlipSystem.ResolveAfterMove(entity, zone, targetCell);
 
             return (true, null);
         }
@@ -149,6 +157,7 @@ namespace CavesOfOoo.Core
             entity.FireEventAndRelease(afterMove);
 
             FireCellEnteredEvents(entity, currentCell, targetCell);
+            LiquidSlipSystem.ResolveAfterMove(entity, zone, targetCell);
 
             return true;
         }
@@ -179,7 +188,11 @@ namespace CavesOfOoo.Core
         /// decided here — answering it by reusing the voluntary-movement
         /// veto would have silently roped in Stunned too.</para>
         /// </summary>
-        public static bool ForceMoveTo(Entity entity, Zone zone, int x, int y)
+        /// <param name="slipChain">Slides already taken by the slip that
+        /// is calling this (<see cref="LiquidSlipSystem"/>). External
+        /// callers — knockbacks, pulls — pass nothing: a shove onto ice
+        /// starts a fresh chain, which is correct and delicious.</param>
+        public static bool ForceMoveTo(Entity entity, Zone zone, int x, int y, int slipChain = 0)
         {
             if (entity == null || zone == null) return false;
             if (!zone.InBounds(x, y)) return false;
@@ -205,6 +218,7 @@ namespace CavesOfOoo.Core
             entity.FireEventAndRelease(afterMove);
 
             FireCellEnteredEvents(entity, currentCell, targetCell);
+            LiquidSlipSystem.ResolveAfterMove(entity, zone, targetCell, slipChain);
             return true;
         }
 

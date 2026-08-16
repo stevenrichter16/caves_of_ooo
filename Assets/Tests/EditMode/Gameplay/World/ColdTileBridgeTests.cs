@@ -299,7 +299,7 @@ namespace CavesOfOoo.Tests
 
             Cast(caster, zone, "CommandRimeGrip", dx: 1);
 
-            Assert.AreEqual("On the ground: ice (4 turns)",
+            Assert.AreEqual("On the ground: ice (4 turns, slippery)",
                 CellStatusReadout.GroundLine(zone, cell));
         }
 

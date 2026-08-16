@@ -104,8 +104,21 @@ namespace CavesOfOoo.Core
             return parts;
         }
 
+        /// <summary>"ice (4 turns, slippery)" / "ice (slippery)" / "oil".
+        /// The slippery flag rides inside the same parenthetical as the
+        /// turn count so a coating never grows two brackets. Residues
+        /// share this path; their ids are not liquids, so the registry
+        /// answers null and they are never flagged.</summary>
         private static string DescribeLayer(ZoneTileState.Layer layer, bool withCounts)
-            => TileStateCatalog.DisplayName(layer.Id) + FormatTurns(layer.Turns, withCounts);
+        {
+            string name = TileStateCatalog.DisplayName(layer.Id);
+            string turns = FormatTurns(layer.Turns, withCounts);   // "" or " (N turns)"
+            var def = LiquidRegistry.IsInitialized ? LiquidRegistry.Get(layer.Id) : null;
+            bool slippery = def != null && def.Slippery;
+            if (!slippery) return name + turns;
+            if (turns.Length == 0) return name + " (slippery)";
+            return name + turns.Substring(0, turns.Length - 1) + ", slippery)";
+        }
 
         /// <summary>" (N turns)" / " (1 turn)" — or nothing, when counts
         /// are off or the layer is a permanent projection

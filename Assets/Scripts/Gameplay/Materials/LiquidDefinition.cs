@@ -65,8 +65,20 @@ namespace CavesOfOoo.Core
         /// now so the data shape is stable).</summary>
         public int Staining;
 
-        /// <summary>Pool applies a slip on enter (LQ.5).</summary>
+        /// <summary>Stepping onto this liquid can slide you one random
+        /// cell (Qud's <c>SlipperyWhenWet/Frozen</c>; the roll lives in
+        /// <see cref="LiquidSlipSystem"/>, Docs/LIQUID-SLIP.md). The gate;
+        /// <see cref="SlipChance"/> is the odds.</summary>
         public bool Slippery;
+
+        /// <summary>Percent chance to slip per step onto the liquid when
+        /// <see cref="Slippery"/>. Absent from JSON ⇒ 50, deliberately
+        /// not 0: a row that says slippery must BE slippery, never a
+        /// silent flag (the fail-silent shape the status study kept
+        /// finding). Flat for now — the Agility save is a documented
+        /// follow-up that will modify this base, not replace it
+        /// (Docs/LIQUID-SLIP.md §7). Clamped to [0,100] at read time.</summary>
+        public int SlipChance = 50;
 
         /// <summary>Pool applies stuck/slow on enter (honey-class,
         /// LQ.5/LQ.6).</summary>
