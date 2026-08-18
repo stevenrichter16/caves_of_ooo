@@ -68,7 +68,7 @@ namespace CavesOfOoo.Tests
             // claims the cell for the ground tile and the glyph disappears,
             // so a flower meadow would become a lawn and a tar seep would
             // become clean stone. They need their own 16×16 tiles.
-            "CropRow", "CharmFlowers", "Reeds",
+            "CropRow", "CharmFlowers", "FlowerField", "Reeds",
             "CopperPipe", "PeatBog", "TarSeep", "OilSeep", "OilSlick",
             "BrinePool", "AcidPool", "AcidPond", "IceSheet",
             "ConvalescencePool", "MemoryBathPool", "MirrorMucilagePool",

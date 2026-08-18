@@ -27860,6 +27860,66 @@
       ],
       "Stats": [],
       "Tags": []
+    },
+    {
+      "Name": "FlowerField",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "conjured flowers"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "*"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&M"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Petals someone hummed up for the season, a carved token half-buried underneath for whichever river-god still gets the offerings here. It won't last."
+            }
+          ]
+        },
+        {
+          "Name": "TileStateSource",
+          "Params": [
+            {
+              "Key": "Residue",
+              "Value": "petals"
+            },
+            {
+              "Key": "ResidueTurns",
+              "Value": "200"
+            }
+          ]
+        },
+        {
+          "Name": "Lifespan",
+          "Params": [
+            {
+              "Key": "TurnsRemaining",
+              "Value": "200"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
     }
   ]
 }

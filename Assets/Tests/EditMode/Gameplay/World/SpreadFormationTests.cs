@@ -141,7 +141,10 @@ namespace CavesOfOoo.Tests
                 (Formation.Hedgerow, "Hedge"),
                 (Formation.FieldStrips, "CropRow"),
                 (Formation.OldRoad, "RoadStone"),
-                (Formation.FlowerMeadow, "CharmFlowers"),
+                // FlowerMeadow places FlowerField, not CharmFlowers, since
+                // Docs/FELLING-W1-W2-PLAN.md SM3 — see FlowerFieldTests.cs
+                // for the bleed-wilt instrument's own coverage.
+                (Formation.FlowerMeadow, "FlowerField"),
                 (Formation.RiverMeadow, "Reeds"),
             };
 
@@ -166,7 +169,7 @@ namespace CavesOfOoo.Tests
                 .BuildZone(zone, _factory, new Random(7));
 
             Assert.AreEqual(0, CountOf(zone, "RoadStone"), "crop strips laid a road");
-            Assert.AreEqual(0, CountOf(zone, "CharmFlowers"), "crop strips grew a meadow");
+            Assert.AreEqual(0, CountOf(zone, "FlowerField"), "crop strips grew a meadow");
         }
 
         [Test]
