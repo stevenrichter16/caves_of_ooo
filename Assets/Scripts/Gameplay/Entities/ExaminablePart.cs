@@ -38,6 +38,19 @@ namespace CavesOfOoo.Core
         /// </summary>
         public string Text = "";
 
+        /// <summary>
+        /// Alias for <see cref="Text"/>. 40 shipped blueprints author their
+        /// examine copy under the JSON key <c>"Description"</c> — a name
+        /// that reads more naturally in content — but
+        /// <c>EntityFactory.ApplyParameters</c> binds blueprint params by
+        /// exact field/property name via reflection and silently no-ops on
+        /// a miss, so every one of those 40 objects examined as a bare
+        /// "You see a {name}." with the authored prose dropped on the
+        /// floor. A property, not a rename, so blueprints already using
+        /// either spelling keep working (Docs/FELLING-W1-W2-PLAN.md SM0).
+        /// </summary>
+        public string Description { get => Text; set => Text = value; }
+
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID == "GetInventoryActions")

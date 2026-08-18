@@ -246,5 +246,60 @@ namespace CavesOfOoo.Tests
 
             StringAssert.DoesNotContain("Afflicted", MessageLog.GetLast() ?? string.Empty);
         }
+
+        // ==========================================================
+        // Docs/FELLING-W1-W2-PLAN.md SM0 — the Description/Text bind.
+        // 40 shipped blueprints author their examine copy under the
+        // JSON key "Description"; EntityFactory.ApplyParameters binds
+        // params by exact field/property name via reflection and
+        // silently no-ops on a miss, so every one of those 40 objects
+        // examined as a bare "You see a {name}." with the authored
+        // prose dropped on the floor.
+        // ==========================================================
+
+        [Test]
+        public void DescriptionProperty_IsAnAliasForText()
+        {
+            // Direct part-level proof, independent of blueprint loading:
+            // setting Description must be indistinguishable from setting
+            // Text, since real content authors both spellings.
+            var part = new ExaminablePart { Description = "Salt water." };
+            Assert.AreEqual("Salt water.", part.Text,
+                "Description must write straight through to Text, not a separate field.");
+        }
+
+        [Test]
+        public void Blueprint_BrinePool_ExamineIncludesTheAuthoredDescription()
+        {
+            // End-to-end: a real shipped blueprint (BrinePool) whose
+            // Examinable part is authored with a "Description" JSON key.
+            // Before the fix this asserted "You see a brine pool." with
+            // the flavor text silently missing.
+            var pool = _factory.CreateEntity("BrinePool");
+            Assert.IsNotNull(pool, "BrinePool should resolve.");
+
+            pool.FireEvent(BuildCommand("Examine"));
+
+            Assert.That(MessageLog.GetMessages(),
+                Does.Contain("You see a brine pool. Salt water. Conducts better than fresh and freezes later."));
+        }
+
+        [Test]
+        public void ExamineCommand_TextKey_StillWorksAfterTheFix()
+        {
+            // Counter-check: the fix is an ADDITIVE alias, not a rename —
+            // blueprints/tests that already author the Text field directly
+            // must be unaffected. (Pinned already by
+            // ExamineCommand_AppendsFlavorTextWhenSet above; restated here
+            // as an explicit SM0 regression pin next to the new tests.)
+            var entity = new Entity { BlueprintName = "Chest" };
+            entity.AddPart(new RenderPart { DisplayName = "chest" });
+            entity.AddPart(new ExaminablePart { Text = "It smells faintly of mildew." });
+
+            entity.FireEvent(BuildCommand("Examine"));
+
+            Assert.That(MessageLog.GetMessages(),
+                Does.Contain("You see a chest. It smells faintly of mildew."));
+        }
     }
 }
