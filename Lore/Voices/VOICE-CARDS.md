@@ -226,6 +226,46 @@ card with their own modes; see `ROTCHOIR_VOICES.md`.)*
   > *Dohren (in dream):* "You are lying on my chest. It's all right. Everyone does, eventually."
   > *Selen (through the substrate):* "You came all the way down! And your boots full of our spores already — oh, you are half introduced."
 
+## 11. Recovered-world folk (Sill and kin)
+
+- **Register:** warm, oral, addresses a listener directly (usually a
+  child) as if telling, not writing. Plain, concrete, domestic nouns —
+  geese, an axe, chores, bedtime. No cosmology vocabulary; the Six are
+  a children's-story detail, not a subject.
+- **Syntax:** the telling deflects the cosmic question back to the
+  listener rather than answering it ("That's the question, isn't it.
+  That's the question the whole world downriver still fights about").
+  Rhythmic repetition used as a closing device, not for emphasis
+  ("saying nothing, saying nothing, saying nothing"). Asides that
+  puncture the story's own antiquity ("that's how you know it's an
+  old story, nobody shares an axe anymore").
+- **Lexicon:** downriver, the tree (lowercase — a story-object, not a
+  proper noun here), the story says, in you go.
+- **Taboos:** never confirms or denies the story it's telling —
+  Naro's reason stays unresolved even inside a bedtime story told to
+  a child (Mystery Ledger §1: the grandmother doesn't know either,
+  and the telling must not pretend otherwise); never uses the Six's
+  names or the Recension's vocabulary — this register doesn't have
+  access to either.
+- **Never sounds like:** a village elder delivering a moral, a
+  storybook narrator, or design-doc prose dressed as folklore. The
+  teller believes none of it and enforces all of it — the practical
+  instruction ("you come inside") survives the story's own denial of
+  itself ("none of it's true").
+- **Lines:**
+  > "Long ago and downriver, when the world was one tall tree — yes, a tree, don't make that face, this was before faces."
+  > "Why didn't he? Ah. That's the question, isn't it."
+  > "No, it doesn't mean anything. It's the sound a name makes letting go."
+  > "And none of it's true, and you'll hear the river all night same as always, saying nothing, saying nothing, saying nothing. In you go."
+  > "Old [name] stops mid-sentence — something in the water said her grandmother's word for it, and doesn't say it again."
+
+  *(Gate note: this card is derived from the one shipped specimen —
+  `Lore/Codex/12_SariStory_Sill.md` — rather than authored fresh and
+  then blind-reviewed. It has not yet run the fresh-context attribution
+  gate the other ten cards passed (`Lore/Codex/README.md`'s 2026-07-14/
+  15 runs). Flagged honestly per Docs/FELLING-W1-W2-PLAN.md SM6 rather
+  than presented as gate-equal to its siblings.)*
+
 ---
 
 ## The gate
