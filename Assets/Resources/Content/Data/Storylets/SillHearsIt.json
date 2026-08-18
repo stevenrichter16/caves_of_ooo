@@ -1,0 +1,15 @@
+{
+  "Storylets": [
+    {
+      "ID": "SillHearsIt",
+      "OneShot": true, "Tracked": false,
+      "Triggers": [
+        { "Key": "IfPlayerInZone", "Value": "Overworld.10.10.0" }
+      ],
+      "Effects": [
+        { "Key": "AddMessage", "Value": "The elder stops mid-sentence -- something in the water said her grandmother's word for it, and doesn't say it again." },
+        { "Key": "SetFact", "Value": "sill_sari_heard:1" }
+      ]
+    }
+  ]
+}

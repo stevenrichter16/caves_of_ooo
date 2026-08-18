@@ -83,6 +83,17 @@ namespace CavesOfOoo.Core
 
         private static void RegisterDefaults()
         {
+            // Location check — is the player currently in zone `arg`
+            // (matched against Zone.ZoneID)? SettlementRuntime.ActiveZone
+            // is kept current by every zone-transition site (GameBootstrap
+            // init, InputHandler zone transitions), so this is a live read,
+            // not a stale cache. Added for Docs/FELLING-W1-W2-PLAN.md SM7
+            // (the Sill inciting storylet) but generically reusable — any
+            // place-specific storylet wants exactly this.
+            Register("IfPlayerInZone", (speaker, listener, arg) =>
+                SettlementRuntime.ActiveZone != null
+                && SettlementRuntime.ActiveZone.ZoneID == arg);
+
             // Tag checks (on listener/player)
             Register("IfHaveTag", (speaker, listener, arg) =>
                 listener != null && listener.HasTag(arg));

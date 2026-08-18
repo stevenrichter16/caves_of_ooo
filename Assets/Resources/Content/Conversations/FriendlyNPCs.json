@@ -1323,8 +1323,28 @@
               "Target": "RegionOverview"
             },
             {
+              "Text": "Something's been said, down by the water.",
+              "Target": "AboutTheSound",
+              "Predicates": [
+                {
+                  "Key": "IfFact",
+                  "Value": "sill_sari_heard:>=:1"
+                }
+              ]
+            },
+            {
               "Text": "Farewell.",
               "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "AboutTheSound",
+          "Text": "I copy what's put in front of me — I don't chase rumors. But if the elder went quiet at a sound like that, I'd sooner have it written down before it wears smooth in the telling. Sari, was it? Twice, or once? ...No matter. I've made a note. If it comes again, tell me the hour.",
+          "Choices": [
+            {
+              "Text": "I will.",
+              "Target": "Start"
             }
           ]
         },
