@@ -61,6 +61,19 @@ namespace CavesOfOoo.Core
         /// blueprint uses it yet.</summary>
         public int Charge = 0;
 
+        /// <summary>Non-liquid mark to keep on the cell — "petals",
+        /// "ash". Empty for none. A separate layer from
+        /// <see cref="Coating"/> because <see cref="ZoneTileState"/>
+        /// itself keeps them separate (residues are not liquids); this
+        /// part had no writer for that layer until
+        /// Docs/FELLING-W1-W2-PLAN.md SM1 gave it one, for FlowerField's
+        /// petal mark.</summary>
+        public string Residue = "";
+
+        /// <summary>Turns of residue asserted per refresh. Same lease
+        /// model as <see cref="CoatingTurns"/>.</summary>
+        public int ResidueTurns = 0;
+
         /// <summary>
         /// Push this source's ENERGY into the four orthogonally adjacent
         /// tiles as well as its own — a vent breathes outward.
@@ -100,6 +113,9 @@ namespace CavesOfOoo.Core
 
             if (!string.IsNullOrEmpty(Coating) && CoatingTurns > 0)
                 zone.TileState.WriteCoating(x, y, Coating, CoatingTurns);
+
+            if (!string.IsNullOrEmpty(Residue) && ResidueTurns > 0)
+                zone.TileState.WriteResidue(x, y, Residue, ResidueTurns);
 
             SeedEnergyAt(zone, x, y);
 
