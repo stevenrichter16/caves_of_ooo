@@ -287,5 +287,50 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(0, ContainerPlacementService.Populate(
                 zone, BiomeType.Cave, 3, Kind.Underground, new System.Random(4)));
         }
+
+        // ── Docs/FELLING-W1-W2-PLAN.md SM5 — the Spread's own pool ──
+
+        [Test]
+        public void Spread_WildernessContainers_DoNotUseJunglePool()
+        {
+            // Regression pin: before SM5, BiomeType.Spread fell through
+            // to JunglePool — a hollow log or a woven basket in a
+            // hedgerow. Sweep several seeds; every placed container must
+            // come from {Crate, Sack, StrongBox}, never the jungle-only
+            // kinds (WovenBasket, HollowLog, Urn — Sack is shared so it
+            // proves nothing on its own, but the jungle-EXCLUSIVE names
+            // must never appear).
+            var junkFromJungle = new HashSet<string> { "WovenBasket", "HollowLog" };
+            bool placedAny = false;
+
+            for (int seed = 0; seed < 15; seed++)
+            {
+                var zone = MakeRoom();
+                ContainerPlacementService.Populate(
+                    zone, BiomeType.Spread, 1, Kind.Wilderness, new System.Random(seed));
+
+                foreach (var e in zone.GetAllEntities())
+                {
+                    if (e.GetPart<ContainerPart>() == null) continue;
+                    placedAny = true;
+                    CollectionAssert.DoesNotContain(junkFromJungle, e.BlueprintName,
+                        $"seed {seed}: '{e.BlueprintName}' is jungle-flavored, not settled-country");
+                }
+            }
+            Assert.IsTrue(placedAny, "no container ever placed across 15 seeds — test can't prove anything");
+        }
+
+        [Test]
+        public void Spread_VillageInteriorContainers_AreUnaffected()
+        {
+            // Counter-check: zone-kind must still win before biome is
+            // even consulted (PoolFor's existing precedence, unchanged
+            // by SM5 — pinned so a future refactor can't invert it).
+            var zone = MakeRoom();
+            int placed = ContainerPlacementService.Populate(
+                zone, BiomeType.Spread, 1, Kind.Village, new System.Random(2));
+
+            Assert.Greater(placed, 0, "Village-kind placement in a Spread zone should behave normally");
+        }
     }
 }

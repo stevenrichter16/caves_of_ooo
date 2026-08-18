@@ -68,6 +68,19 @@ namespace CavesOfOoo.Core
             new ContainerKind("Urn", "UrnT", 2),
             new ContainerKind("Sack", "SackT", 2),
         };
+        /// <summary>Docs/FELLING-W1-W2-PLAN.md SM5 — settled-country
+        /// containers for wilderness cells in the Spread (village
+        /// interiors already use SettlementPool before biome is even
+        /// consulted). A woven basket or a hollow log reads as jungle;
+        /// a crate or a sack in a hedgerow reads as a farm. Reuses the
+        /// existing generic CrateT/SackT/StrongBoxT tables — zero new
+        /// loot content.</summary>
+        private static readonly ContainerKind[] SpreadPool =
+        {
+            new ContainerKind("Crate", "CrateT", 4),
+            new ContainerKind("Sack", "SackT", 3),
+            new ContainerKind("StrongBox", "StrongBoxT", 1),
+        };
         private static readonly ContainerKind[] RuinsPool =
         {
             new ContainerKind("StrongBox", "StrongBoxT", 3),
@@ -237,7 +250,7 @@ namespace CavesOfOoo.Core
                 case BiomeType.Desert: return DesertPool;
                 case BiomeType.Jungle: return JunglePool;
                 case BiomeType.Ruins:  return RuinsPool;
-                case BiomeType.Spread: return JunglePool;
+                case BiomeType.Spread: return SpreadPool;
                 case BiomeType.Sodden: return JunglePool;
                 case BiomeType.Beating: return DesertPool;
                 case BiomeType.Grovelands: return JunglePool;
