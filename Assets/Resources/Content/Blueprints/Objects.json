@@ -27920,6 +27920,62 @@
       ],
       "Stats": [],
       "Tags": []
+    },
+    {
+      "Name": "RiverShrine",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "river-shrine"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "_"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&Y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A worn stone by the water, carved tokens left in its lap for whichever river-god still gets the offerings here. The Tree is a children's story in a place like this."
+            }
+          ]
+        },
+        {
+          "Name": "Sanctuary",
+          "Params": []
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Furniture",
+          "Value": ""
+        }
+      ]
     }
   ]
 }

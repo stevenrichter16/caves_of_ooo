@@ -70,7 +70,7 @@ namespace CavesOfOoo.Core
                 case BiomeType.Desert: return Desert;
                 case BiomeType.Jungle: return Jungle;
                 case BiomeType.Ruins: return Ruins;
-                case BiomeType.Spread: return For(BiomeType.Jungle);
+                case BiomeType.Spread: return Spread;
                 case BiomeType.Sodden: return For(BiomeType.Jungle);
                 case BiomeType.Beating: return For(BiomeType.Desert);
                 case BiomeType.Grovelands: return For(BiomeType.Jungle);
@@ -538,6 +538,84 @@ namespace CavesOfOoo.Core
                     { '#', "VineWall" },
                     { 'c', "chest:HunterCacheT1" },
                     { '+', "" },
+                },
+            },
+        };
+
+        /// <summary>
+        /// The Spread's own catalog (Docs/FELLING-W1-W2-PLAN.md SM4) —
+        /// before this, <c>For(BiomeType.Spread)</c> delegated to
+        /// <see cref="Jungle"/> wholesale, so a Ziggurat or a Rot-Choir
+        /// GroveShrine could turn up in a hedgerow. Three stamps, each
+        /// "a lived-in place" rather than a threat
+        /// (Docs/FELLING-WORLD-DESIGN.md §3.1): a folk river-shrine, a
+        /// farmstead, and the conjured festival meadow.
+        /// </summary>
+        private static readonly StructureStamp[] Spread =
+        {
+            // The material frame of disbelief in miniature: a worn stone
+            // by the water, carved tokens, no god's name spoken.
+            new StructureStamp
+            {
+                Name = "RiverShrine",
+                Chance = 20,
+                MinTier = 1,
+                Rows = new[]
+                {
+                    ".r.",
+                    "rSr",
+                    ".r.",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { 'r', "Reeds" },
+                    { 'S', "RiverShrine" },
+                },
+            },
+            // "One big stamp... a lived-in place; owners; doors."
+            // Reuses the same walled-footprint idiom every other camp
+            // stamp already uses (door gap in the top row).
+            new StructureStamp
+            {
+                Name = "MillStead",
+                Chance = 20,
+                MinTier = 1,
+                Rows = new[]
+                {
+                    "##.##",
+                    "#...#",
+                    "#.F.#",
+                    "#..c#",
+                    "#####",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { '#', "Wall" },
+                    { 'F', "spawn:Farmer" },
+                    { 'c', "chest:CampGoodsT1" },
+                },
+            },
+            // A denser conjured bloom than the wilderness FlowerMeadow
+            // formation rolls, with a signpost — the festival gathering
+            // spot. Deliberately no contract/quest content (the design
+            // doc's "festival contracts" has no canon source,
+            // Docs/FELLING-W1-W2-PLAN.md §1.2); purely atmospheric,
+            // "gone by morning" (Lore/History/09_Magic.md:42).
+            new StructureStamp
+            {
+                Name = "FestivalField",
+                Chance = 15,
+                MinTier = 1,
+                Rows = new[]
+                {
+                    ".f.f.",
+                    "f.p.f",
+                    ".f.f.",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { 'f', "FlowerField" },
+                    { 'p', "Signpost" },
                 },
             },
         };

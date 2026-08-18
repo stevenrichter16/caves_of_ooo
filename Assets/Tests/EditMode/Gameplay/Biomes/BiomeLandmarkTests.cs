@@ -189,7 +189,7 @@ namespace CavesOfOoo.Tests
         [Test]
         public void ShippedCatalogs_AllBiomesHaveStamps()
         {
-            foreach (var biome in new[] { BiomeType.Cave, BiomeType.Desert, BiomeType.Jungle, BiomeType.Ruins })
+            foreach (var biome in new[] { BiomeType.Cave, BiomeType.Desert, BiomeType.Jungle, BiomeType.Ruins, BiomeType.Spread })
                 Assert.Greater(StampCatalog.For(biome).Count, 0, biome.ToString());
         }
 
@@ -199,7 +199,7 @@ namespace CavesOfOoo.Tests
             // Every legend blueprint must exist; every chest table must
             // be in the shipped loot JSON. This is the gate that keeps
             // future stamp content honest.
-            foreach (var biome in new[] { BiomeType.Cave, BiomeType.Desert, BiomeType.Jungle, BiomeType.Ruins })
+            foreach (var biome in new[] { BiomeType.Cave, BiomeType.Desert, BiomeType.Jungle, BiomeType.Ruins, BiomeType.Spread })
             {
                 foreach (var stamp in StampCatalog.For(biome))
                 {
@@ -245,6 +245,75 @@ namespace CavesOfOoo.Tests
                 if (entry.Blueprint != null && grimoires.Contains(entry.Blueprint))
                     anyGrimoire = true;
             Assert.IsTrue(anyGrimoire, "the library shelf carries the orphaned utility grimoires");
+        }
+
+        // ── 3. Docs/FELLING-W1-W2-PLAN.md SM4 — the Spread's own catalog ──
+
+        private static Zone OpenSpreadField(string id = "Overworld.6.5.0")
+        {
+            var factory = new EntityFactory();
+            factory.LoadBlueprints(File.ReadAllText(Path.Combine(
+                Application.dataPath, "Resources/Content/Blueprints/Objects.json")));
+            var zone = new Zone(id);
+            for (int x = 1; x < Zone.Width - 1; x++)
+                for (int y = 1; y < Zone.Height - 1; y++)
+                {
+                    var grass = factory.CreateEntity("Grass");
+                    if (grass != null) zone.AddEntity(grass, x, y);
+                }
+            return zone;
+        }
+
+        [Test]
+        public void SpreadCatalog_DoesNotDelegateToJungle()
+        {
+            // The regression pin for the bug this SM fixes: a Ziggurat or
+            // a Rot-Choir GroveShrine reachable in farmland. Before the
+            // fix, StampCatalog.For(Spread) RETURNED For(Jungle) — the
+            // same array reference.
+            Assert.AreNotSame(StampCatalog.For(BiomeType.Jungle), StampCatalog.For(BiomeType.Spread));
+
+            var spreadNames = new HashSet<string>();
+            foreach (var s in StampCatalog.For(BiomeType.Spread)) spreadNames.Add(s.Name);
+            CollectionAssert.DoesNotContain(spreadNames, "Ziggurat");
+            CollectionAssert.DoesNotContain(spreadNames, "GroveShrine");
+        }
+
+        [TestCase("RiverShrine", "RiverShrine")]
+        [TestCase("MillStead", "Farmer")]
+        [TestCase("FestivalField", "FlowerField")]
+        public void SpreadStamp_PlacesItsSignatureBlueprint(string stampName, string expectedBlueprint)
+        {
+            StructureStamp target = null;
+            foreach (var s in StampCatalog.For(BiomeType.Spread))
+                if (s.Name == stampName) target = s;
+            Assert.IsNotNull(target, $"'{stampName}' should be in the Spread catalog");
+
+            var forced = new StructureStamp
+            {
+                Name = target.Name, Chance = 100, MinTier = target.MinTier,
+                Rows = target.Rows, Legend = target.Legend,
+            };
+
+            var zone = OpenSpreadField();
+            var builder = new LandmarkBuilder(BiomeType.Spread, tier: 1,
+                new List<StructureStamp> { forced });
+            Assert.IsTrue(builder.BuildZone(zone, _factory, new Random(3)));
+
+            Assert.Greater(FindByBlueprint(zone, expectedBlueprint).Count, 0,
+                $"{stampName} placed no {expectedBlueprint}");
+        }
+
+        [Test]
+        public void RiverShrine_DonatingAtIt_WorksLikeAnyOtherShrine()
+        {
+            // RiverShrine reuses SanctuaryPart wholesale (zero new
+            // mechanics) — pin that the donate action is really there.
+            var factory = new EntityFactory();
+            factory.LoadBlueprints(File.ReadAllText(Path.Combine(
+                Application.dataPath, "Resources/Content/Blueprints/Objects.json")));
+            var shrine = factory.CreateEntity("RiverShrine");
+            Assert.IsNotNull(shrine.GetPart<SanctuaryPart>());
         }
     }
 }
