@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using CavesOfOoo.Core;
 using CavesOfOoo.Data;
+using CavesOfOoo.Diagnostics;
 using CavesOfOoo.Storylets;
 using NUnit.Framework;
 
@@ -24,6 +25,7 @@ namespace CavesOfOoo.Tests
         {
             StoryletRegistry.Reset();
             MessageLog.Clear();
+            Diag.ResetAll();
 
             _narrativeState = new NarrativeStatePart();
             NarrativeStatePart.Current = _narrativeState;
@@ -370,6 +372,44 @@ namespace CavesOfOoo.Tests
             Tick();
             Assert.AreEqual(2, MessageLog.Count,
                 "Already-fired OneShots must be omitted from subsequent ticks");
+        }
+
+        // ── Docs/FELLING-W1-W2-PLAN.md SM8 cold-eye finding ────────────────
+        // Pass 2A had zero diag emission — invisible until SillHearsIt
+        // became the first non-quest storylet ever to exercise this path
+        // (all 11 prior storylet files are quests; pass 2B/2C already diag).
+
+        [Test]
+        public void OnTickEnd_FiringStorylet_EmitsEventStoryletFiredDiag()
+        {
+            StoryletRegistry.Register(MakeStorylet(
+                "door_open", oneShot: true,
+                triggers: new List<ConversationParam>(),
+                effects: One("AddMessage", "the door creaks open")));
+
+            Tick();
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "event", Kind = "StoryletFired", Limit = 5 }).Records;
+            Assert.AreEqual(1, recs.Count);
+            StringAssert.Contains("\"storyletId\":\"door_open\"", recs[0].PayloadJson);
+            StringAssert.Contains("\"oneShot\":true", recs[0].PayloadJson);
+        }
+
+        // counter-check
+        [Test]
+        public void OnTickEnd_IneligibleStorylet_EmitsNoDiag()
+        {
+            StoryletRegistry.Register(MakeStorylet(
+                "door_open", oneShot: true,
+                triggers: One("IfFact", "door:>=:1"), // never set -> ineligible
+                effects: One("AddMessage", "the door creaks open")));
+
+            Tick();
+
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "event", Kind = "StoryletFired", Limit = 5 }).Records;
+            Assert.AreEqual(0, recs.Count);
         }
     }
 }

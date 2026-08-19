@@ -46,6 +46,7 @@ namespace CavesOfOoo.Tests
             StoryletPart.Current = null;
             StoryletRegistry.Reset();
             ConversationPredicates.Reset();
+            ConversationLoader.Reset();
             MessageLog.Clear();
             SettlementRuntime.Reset();
         }
@@ -180,8 +181,7 @@ namespace CavesOfOoo.Tests
         //    "the first NPC who can explain the sari... sari...")
         // ════════════════════════════════════════════════════════════
 
-        [Test]
-        public void ScribeConversation_GainsTheSariTopic_OnlyAfterTheFactIsSet()
+        private static ChoiceData LoadTheScribesSariChoice()
         {
             ConversationLoader.Reset();
             string path = Path.Combine(Application.dataPath,
@@ -190,31 +190,45 @@ namespace CavesOfOoo.Tests
 
             var conv = ConversationLoader.Get("Scribe_1");
             Assert.IsNotNull(conv, "Scribe_1 should load");
-            var start = conv.GetStartNode();
 
             ChoiceData sariChoice = null;
-            foreach (var c in start.Choices)
+            foreach (var c in conv.GetStartNode().Choices)
                 if (c.Target == "AboutTheSound") sariChoice = c;
-
             Assert.IsNotNull(sariChoice, "the new choice should exist in the data");
             Assert.IsNotNull(sariChoice.Predicates, "it must be gated, not always-on");
-            Assert.AreEqual("IfFact", sariChoice.Predicates[0].Key);
-            Assert.AreEqual("sill_sari_heard:>=:1", sariChoice.Predicates[0].Value);
+            return sariChoice;
+        }
+
+        [Test]
+        public void ScribeConversation_GainsTheSariTopic_OnlyAfterTheFactIsSet()
+        {
+            var sariChoice = LoadTheScribesSariChoice();
+            SettlementRuntime.ActiveZone = new Zone(WorldMap.StartingZoneID);   // in Sill
 
             // Counter-check: before the fact is set, the gate fails.
             _narrativeState.SetFact("sill_sari_heard", 0);
-            Assert.IsFalse(ConversationPredicates.CheckAll(
-                new List<ConversationParam> { new ConversationParam
-                    { Key = sariChoice.Predicates[0].Key, Value = sariChoice.Predicates[0].Value } },
-                null, null));
+            Assert.IsFalse(ConversationPredicates.CheckAll(sariChoice.Predicates, null, null));
 
             _narrativeState.SetFact("sill_sari_heard", 1);
-            Assert.IsTrue(ConversationPredicates.CheckAll(
-                new List<ConversationParam> { new ConversationParam
-                    { Key = sariChoice.Predicates[0].Key, Value = sariChoice.Predicates[0].Value } },
-                null, null));
+            Assert.IsTrue(ConversationPredicates.CheckAll(sariChoice.Predicates, null, null));
+        }
 
-            ConversationLoader.Reset();
+        [Test]
+        public void ScribeConversation_SariTopic_IsSillsScribeOnly()
+        {
+            // Scribe_1 is the conversation of EVERY village's scribe. Canon
+            // names "Sill's seasonal scribe" as the first who can explain
+            // the sound (Lore/Factions/02_Recension.md:270) — Gantry's
+            // scribe should not be talking about Sill's elder.
+            var sariChoice = LoadTheScribesSariChoice();
+            _narrativeState.SetFact("sill_sari_heard", 1);
+
+            SettlementRuntime.ActiveZone = new Zone("Overworld.7.8.0");   // Gantry
+            Assert.IsFalse(ConversationPredicates.CheckAll(sariChoice.Predicates, null, null),
+                "another village's scribe must not offer Sill's topic");
+
+            SettlementRuntime.ActiveZone = new Zone(WorldMap.StartingZoneID);
+            Assert.IsTrue(ConversationPredicates.CheckAll(sariChoice.Predicates, null, null));
         }
     }
 }

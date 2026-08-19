@@ -339,6 +339,37 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
         }
 
         /// <summary>
+        /// Pins Zone.UrquBleedLevel round-trip (Felling W1, cold-eye
+        /// finding — Docs/FELLING-W1-W2-PLAN.md §2.3). The field was
+        /// documented as "mirroring AmbientLevel exactly", and AmbientLevel
+        /// is persisted; a field that reads as persisted but resets to 0
+        /// on every load is a data-loss trap for the day W7 writes it.
+        /// Nothing sets it above 0 yet, so this pins the CONTRACT before
+        /// anyone relies on it.
+        /// </summary>
+        [Test]
+        public void Gap_Zone_UrquBleedLevel_RoundTrips()
+        {
+            var (player, zone, mgr, turns) = MakeMinimalState();
+            zone.UrquBleedLevel = 0.7f;      // a bleeding place, once W7 makes one
+
+            var loaded = RoundTrip(player, mgr, turns);
+
+            Assert.AreEqual(0.7f, loaded.ZoneManager.ActiveZone.UrquBleedLevel, 1e-5f);
+        }
+
+        // counter-check: an unset zone comes back at the clean baseline
+        [Test]
+        public void Gap_Zone_UnsetUrquBleedLevel_RoundTripsAsZero()
+        {
+            var (player, zone, mgr, turns) = MakeMinimalState();
+
+            var loaded = RoundTrip(player, mgr, turns);
+
+            Assert.AreEqual(0f, loaded.ZoneManager.ActiveZone.UrquBleedLevel, 1e-5f);
+        }
+
+        /// <summary>
         /// Pins Zone.AmbientTint Color round-trip via
         /// <c>WriteColor</c>/<c>ReadColor</c> (SaveZone/LoadZone).
         /// </summary>

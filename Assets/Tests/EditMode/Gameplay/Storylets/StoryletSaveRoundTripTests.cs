@@ -25,7 +25,10 @@ namespace CavesOfOoo.Tests
             // changes. (Refreshed from a stale "==3" pin that had been red
             // on main since the 3→4 bump — unrelated to the Q3 quest work.)
             // 4→5: Felling W0.2 put Zone.AmbientLevel in the zone record.
-            Assert.AreEqual(5, SaveWriter.FormatVersion);
+            // 5→6: Felling W1 put Zone.UrquBleedLevel beside it — a field
+            //      documented as mirroring AmbientLevel has to actually
+            //      survive a save (Docs/FELLING-W1-W2-PLAN.md §2.3).
+            Assert.AreEqual(6, SaveWriter.FormatVersion);
         }
 
         // counter-check: a fabricated v2-version header must reject on load

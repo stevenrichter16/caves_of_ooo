@@ -258,36 +258,18 @@ namespace CavesOfOoo.Core
             }
         }
 
-        /// <summary>Base flower-charm lifespan on a clean (UrquBleedLevel
-        /// == 0) zone — the design doc's "gone by morning" number tuned to
-        /// a season rather than a night; a duration constant, not a lore
-        /// claim.</summary>
-        public const int FlowerBaseDuration = 200;
-
-        /// <summary>Turns shaved off per unit of zone bleed. Content-feel,
-        /// diag'd so it's auditable once W7 gives UrquBleedLevel a real
-        /// writer (Docs/FELLING-W1-W2-PLAN.md SM3).</summary>
-        public const int FlowerWiltPerBleedUnit = 150;
-
-        /// <summary>Never below this — canon's own Consume-ending line
-        /// ("charms still bloom, briefly, in the few unconsumed pockets")
-        /// says a wilting charm still blooms; it does not simply fail to
-        /// spawn.</summary>
-        public const int FlowerMinDuration = 10;
-
         /// <summary>Flower-charm meadow — the conjured bloom canon frames
         /// as the Thinning's most intimate symptom (Lore/History/
-        /// 09_Magic.md:157: "Festival-flowers wilt before noon"). Each
-        /// flower's lifespan is rolled against the zone's Urqu-bleed: at
-        /// today's baseline (UrquBleedLevel == 0 everywhere) every flower
-        /// gets the full season, which is correct — the instrument exists
-        /// and is wired, but has nothing to react to yet.</summary>
+        /// 09_Magic.md:157: "Festival-flowers wilt before noon"). The
+        /// builder only SITES the flowers; how long each lives against the
+        /// zone's Urqu-bleed is the flower's own business
+        /// (<see cref="FlowerCharmPart"/>), so the FestivalField stamp and
+        /// this formation cannot drift apart.</summary>
         private static void FlowerMeadow(Zone zone, EntityFactory factory, System.Random rng)
         {
             int cx = 12 + rng.Next(Zone.Width - 24);
             int cy = 5 + rng.Next(Zone.Height - 10);
             int radius = 4 + rng.Next(4);
-            int duration = ComputeFlowerDuration(zone.UrquBleedLevel);
 
             for (int x = cx - radius; x <= cx + radius; x++)
             {
@@ -296,39 +278,10 @@ namespace CavesOfOoo.Core
                     int dx = x - cx, dy = y - cy;
                     if (dx * dx + dy * dy > radius * radius) continue;
                     if (!IsOpenGround(zone, x, y)) continue;
-                    if (rng.Next(100) >= 55) continue;
-
-                    Entity flower = BuilderSpawn.TryPlace(zone, factory, "FlowerField", x, y);
-                    if (flower == null) continue;
-
-                    var source = flower.GetPart<TileStateSourcePart>();
-                    if (source != null) source.ResidueTurns = duration;
-                    var lifespan = flower.GetPart<LifespanPart>();
-                    if (lifespan != null) lifespan.TurnsRemaining = duration;
+                    if (rng.Next(100) < 55)
+                        BuilderSpawn.TryPlace(zone, factory, "FlowerField", x, y);
                 }
             }
-
-            if (Diag.IsChannelEnabled("worldgen"))
-            {
-                Diag.Record("worldgen", "FlowerFieldWilted", payload: new
-                {
-                    zoneID = zone.ZoneID,
-                    bleedLevel = zone.UrquBleedLevel,
-                    baseDuration = FlowerBaseDuration,
-                    wiltPerUnit = FlowerWiltPerBleedUnit,
-                    finalDuration = duration,
-                });
-            }
-        }
-
-        /// <summary>The bleed-wilt formula. A minimum floor rather than a
-        /// hard zero — canon's Consume-ending line says a wilting charm
-        /// still blooms, briefly, never simply fails to grow.</summary>
-        private static int ComputeFlowerDuration(float bleedLevel)
-        {
-            int shaved = (int)(bleedLevel * FlowerWiltPerBleedUnit);
-            int duration = FlowerBaseDuration - shaved;
-            return duration < FlowerMinDuration ? FlowerMinDuration : duration;
         }
 
         /// <summary>Gone-back ground. Scrub and volunteer growth over a

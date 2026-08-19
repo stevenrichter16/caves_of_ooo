@@ -26,9 +26,14 @@ namespace CavesOfOoo.Core
         //   equality, so this rejects every v4 save; accepted pre-1.0,
         //   and the Felling overhaul is a new-world change regardless
         //   (an old save carries the old noise-generated map).
+        // v5 → v6: added Zone.UrquBleedLevel (Felling W1, cold-eye
+        //   finding). Documented as mirroring AmbientLevel, and AmbientLevel
+        //   persists — a field that silently reset to 0 on every load would
+        //   be a data-loss trap the day W7 gives it a writer. Same pre-1.0
+        //   acceptance as v4→v5.
         // Bumping is acceptable on a feature branch;
         // older saves will be rejected by ReadHeader's strict check.
-        public const int FormatVersion = 5;
+        public const int FormatVersion = 6;
 
         private readonly BinaryWriter _writer;
         private readonly Dictionary<Entity, int> _entityTokens = new Dictionary<Entity, int>();
@@ -954,6 +959,11 @@ namespace CavesOfOoo.Core
             // only at generation: without this, every loaded zone would
             // silently revert to the default brightness.
             writer.Write(zone.AmbientLevel);
+            // W1 — Urqu-bleed is a property of the place too. Persisted
+            // now, while it is still always 0, so the W7 writer inherits a
+            // field that keeps its value rather than one that looks like it
+            // does (Docs/FELLING-W1-W2-PLAN.md §2.3).
+            writer.Write(zone.UrquBleedLevel);
             writer.Write(zone.EntityVersion);
             for (int x = 0; x < Zone.Width; x++)
             {
@@ -968,6 +978,7 @@ namespace CavesOfOoo.Core
             var zone = new Zone(zoneID);
             zone.AmbientTint = reader.ReadColor();
             zone.AmbientLevel = reader.ReadFloat();
+            zone.UrquBleedLevel = reader.ReadFloat();
             int version = reader.ReadInt();
             for (int x = 0; x < Zone.Width; x++)
             {

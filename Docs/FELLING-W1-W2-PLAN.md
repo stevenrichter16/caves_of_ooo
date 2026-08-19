@@ -1,7 +1,7 @@
 # W1 (finish) + W2 — The Spread & Sill close-out, then The Beating
 
-> **Status: W1-remainder planned in full, ready to implement. W2
-> scoped at content-readiness level; detailed sub-milestones written
+> **Status: W1-remainder ✅ SHIPPED 2026-08-18 (SM0–SM8, log in §2.3).
+> W2 scoped at content-readiness level; detailed sub-milestones written
 > at W2's start per `Docs/FELLING-IMPLEMENTATION-PLAN.md` §3's own
 > convention ("detailed at phase start").**
 >
@@ -35,7 +35,7 @@ differentiated places, salt economy, the tenth fire, the Last Counter.
 | W0 — authored map, biome enum, tier table, WorldClock, factions, crossroads retired | ✅ shipped | commits through `f155380e~1` |
 | W1.1 — Spread formations (Hedgerow, FieldStrips, OldRoad, FlowerMeadow, Fallow, RiverMeadow) | ✅ shipped | `8c2aecf0`, `ffe01efa` |
 | W1.2 — Spread population tables (not loot) | ✅ shipped | `f155380e` |
-| W1 remainder (this doc, §2) | 🔲 planned here | — |
+| W1 remainder (this doc, §2) | ✅ shipped 2026-08-18 | `31b2247d`…SM8, log §2.3 |
 | W2 (this doc, §7) | 🔲 scoped, not detailed | — |
 
 ### 1.2 Design doc vs. canon — corrections table
@@ -184,6 +184,13 @@ folding this into SM3's commit rather than a bare field-add commit
 with no behavior to test. **Decision: SM2 merges into SM3.**
 
 #### SM3 — FlowerField blueprint + the bleed-wilt instrument
+
+> **As shipped, this differs from the text below in two ways** (§2.3
+> SM8 F1/F2): the residue is a 4-turn lease, not the flower's duration;
+> and the formula lives on the entity (`FlowerCharmPart`, numbers in
+> `Objects.json`), not in the formation builder — so stamp-placed and
+> formation-placed flowers wilt identically. The plan text is kept as
+> written so the correction is visible.
 
 New blueprint `FlowerField` (`Objects.json`, `Inherits: Terrain`,
 additive — `CharmFlowers` is untouched, still exists for anything
@@ -406,7 +413,107 @@ through SM7; SM8 is the closing commit with the full self-review.
 
 ### 2.3 Implementation log
 
-(filled after each SM)
+**Status: W1 remainder ✅ shipped 2026-08-18** — seven commits SM0–SM7
+(`31b2247d` … `65ccb2e9`) plus the SM8 cold-eye commit. Tests 6702 →
+6743. Full suite green at each step.
+
+| SM | Commit | Tests | Notes |
+|---|---|---|---|
+| SM0 examine binding | `31b2247d` | +3 | 40 shipped blueprints' text un-broke |
+| SM1+SM2 residue + bleed field | `978fd045` | +5 | folded per R1 |
+| SM3 FlowerField + instrument | `36cbf465` | +6 | first cut; revised in SM8 (below) |
+| SM4 Spread stamps | `f4c7e0f5` | +5 | RiverShrine / MillStead / FestivalField |
+| SM5 container pool | `4ced558e` | +2 | |
+| SM6 voice card | `060429a9` | — | lore only |
+| SM7 inciting storylet | `65ccb2e9` | +9 | scope correction: Scribe_1, not PalimpsestEcho_1 |
+| SM8 cold-eye | (this commit) | +10 | four findings, below |
+
+#### SM7 — a plan premise corrected before content was written
+
+The plan assumed the reactive dialogue belonged on `Palimpsest.json`'s
+`PalimpsestEcho_1` ("the itinerant Recension scribe"). Verified false
+at implementation: that conversation belongs to a separate
+`PalimpsestEcho` blueprint that `VillagePopulationBuilder` never
+places. The NPC actually reachable at Sill is the generic village
+`Scribe` (Faction Villagers), conversation `Scribe_1` in
+`FriendlyNPCs.json`. The topic was written there, in a plainer
+village-copyist register — canon's beat survives, the plan's guess at
+the NPC did not.
+
+#### SM8 — the cold-eye pass, and what it caught
+
+Run as CLAUDE.md prescribes: all seven diffs read together, then the
+hypothesis-driven pass ("what does the player/engine do that the
+per-SM tests don't simulate?"). Four findings, all fixed in one commit,
+each with a RED test first:
+
+**🟡 F1 — ghost petals.** `TileStateSourcePart.Seed` re-asserts every
+player turn and `ZoneTileState.WriteLayer` keeps the LONGER lease on
+refresh. SM3 set the petal residue's lease to the flower's whole
+duration, so the residue was pinned at full for the flower's life and
+then decayed for another full duration *after the flowers were gone* —
+200 turns of "petals" on bare ground at bleed 0. Every other source
+uses a 4-turn lease for exactly this reason. Fixed: `ResidueTurns: 4`;
+the builder no longer touches it. Pinned by
+`PetalsFadeShortlyAfterTheFlowersAreGone`. The old test
+`ResidueDurationMatchesTheEntitysOwnLifespan` pinned the wrong
+invariant and was removed.
+
+**🟡 F2 — two placement paths, one formula.** The wilt math lived in
+`SpreadFormationBuilder.FlowerMeadow`; the FestivalField STAMP places
+the same blueprint through the generic `LandmarkBuilder`, which knows
+nothing about bleed — so stamp flowers never wilted. One object, two
+behaviours, keyed on which builder happened to place it. Fixed by
+moving the formula onto the entity: new `FlowerCharmPart` (roots on
+its first `EndTurn`, which is the first event that carries a Zone;
+`Rooted` is a public field so it survives save/load and does not
+re-hand a saved flower a fresh season). Numbers became content
+(`BaseDuration/WiltPerBleedUnit/MinDuration` in `Objects.json`).
+`ComputeDuration` compares in float before the int cast — a
+pathological bleed would otherwise overflow the cast into a wrapped
+bonus season — and reads negative/NaN bleed as 0. Pinned by
+`AStampPlacedFlower_WiltsExactlyLikeAFormationFlower`,
+`RootsOnce_ASecondTurnDoesNotResetTheSeason`,
+`ComputeDuration_NeverGoesBelowTheFloor_AndNeverOverflows`,
+`ComputeDuration_NegativeOrNaNBleed_ReadsAsZero`.
+
+**🟡 F3 — a "mirror" that didn't persist.** `Zone.UrquBleedLevel`'s
+docstring said it mirrors `AmbientLevel` exactly; `AmbientLevel` is
+written by `SaveZone` (v5), the new field was not. Zero effect today
+(always 0) — a data-loss trap the day W7 writes it and trusts the
+docstring. Fixed: persisted beside `AmbientLevel`, **save FormatVersion
+5 → 6** (strict-equality reader; existing saves are rejected — the
+same pre-1.0 acceptance recorded for v4→v5, restated in the ledger).
+Pinned by `Gap_Zone_UrquBleedLevel_RoundTrips` + the unset-default
+counter-check; the version tripwire test bumped deliberately.
+
+**🟡 F4 — a dispatch path with no diag.** `StoryletPart.OnTickEnd`
+pass 2A (non-quest storylets) emitted nothing — never noticed because
+no non-quest storylet had ever fired. `event/StoryletFired` added,
+pinned with a fire/no-fire pair.
+
+**🔵 F5 — every scribe, everywhere.** `Scribe_1` is the conversation
+of every village's scribe; the sari topic was offered in Gantry too.
+Gated additionally on `IfPlayerInZone: Sill` — canon names Sill's
+scribe specifically (`02_Recension.md:270`). Pinned by
+`ScribeConversation_SariTopic_IsSillsScribeOnly`.
+
+Not found (checked, clean): `Description` alias vs the save reflection
+(fields only — invisible to save ✓); FlowerField actually receives
+`EndTurn` (the MaterialSim passive tick includes every LifespanPart
+bearer ✓); `SettlementRuntime.ActiveZone` is written on both zone-change
+paths (bootstrap + InputHandler transition ✓); Reeds are walkable, so
+the RiverShrine's centre is reachable ✓; village buildings use the same
+`Wall` blueprint MillStead does ✓; `Farmer` carries Conversation +
+Trader ✓; new Part types are reflection-discovered with a `Part`-suffix
+fallback ✓.
+
+Honesty bounds: unit-verified + one earlier live probe (SillHearsIt
+fired in Play mode via the exact `TryMoveEx` path); no screenshot of
+any new stamp — whether RiverShrine/MillStead/FestivalField *read* on
+an 80×25 grid is unverified, same bound the W1.1 formations carried
+until their ASCII-dump pass. The Sill voice card + storylet line are
+self-graded, not gate-reviewed (R4).
 
 ---
 
@@ -432,15 +539,21 @@ field, same cost class as the shipped `AmbientLevel`.
 
 ## 5. W1 observability
 
-New diag: `worldgen/FlowerFieldWilted` (or fold into the existing
-`worldgen/FormationApplied` category — decide at implementation time
-which reads better) carrying `{baseDuration, bleedLevel, wiltPerUnit,
-finalDuration}` so the (currently-dormant) instrument is auditable
-the moment W7 gives it a real writer. `SillHearsIt`'s firing is
-already covered by the existing storylet dispatch's own diag path (no
-new category needed — confirm at implementation time whether
-`StoryletPart` diag's a fire event already; add one if not, mirroring
-the quest-stage-advance diag pattern at `StoryletPart.cs`'s pass 2B).
+*(As shipped — see §2.3 for how this changed from the plan.)*
+
+- `event/CharmWilted` — emitted by `FlowerCharmPart` when a flower
+  roots into a zone whose bleed actually shortened its season
+  (`finalDuration < baseDuration`), payload `{zoneID, bleedLevel,
+  baseDuration, wiltPerUnit, finalDuration}`. Deliberately silent at
+  bleed 0: eighty flowers saying "nothing wilted" eighty times is
+  noise, not observability. The plan's `worldgen/FlowerFieldWilted`
+  (one record per formation build) went away with the builder-side
+  formula.
+- `event/StoryletFired` — emitted by `StoryletPart.OnTickEnd` pass 2A
+  for every non-quest storylet that fires, payload `{storyletId,
+  oneShot}`. **Did not exist before this phase** — pass 2A had zero
+  diag, invisible until SillHearsIt became the first content to ever
+  reach it (quest passes 2B/2C already diag'd). Cold-eye finding.
 
 ## 6. Critical review of the W1-remainder plan (before implementation)
 

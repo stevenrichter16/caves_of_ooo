@@ -53,14 +53,14 @@ namespace CavesOfOoo.Core
         /// corpus's own Tier-1 baseline (canon: Urqu-bleed is
         /// "distributed, not a region"; the surface starts clean).
         ///
-        /// <para>Mirrors <see cref="AmbientLevel"/>'s shape exactly: a
-        /// field seeded now, with a real WRITER arriving in a later
-        /// phase (W7's per-cell bleed mask,
-        /// Docs/FELLING-WORLD-DESIGN.md §7.2). Nothing sets this above 0
-        /// in W1/W2 — the flower-charm instrument that reads it
-        /// (Docs/FELLING-W1-W2-PLAN.md SM3) is therefore provably
-        /// dormant right now, which is thematically correct: the
-        /// Thinning has not escalated yet at game start.</para>
+        /// <para>Mirrors <see cref="AmbientLevel"/>'s shape exactly — a
+        /// field seeded now and PERSISTED (SaveSystem v6, beside
+        /// AmbientLevel), with a real WRITER arriving in a later phase
+        /// (W7's per-cell bleed mask, Docs/FELLING-WORLD-DESIGN.md §7.2).
+        /// Nothing sets this above 0 in W1/W2 — the flower-charm
+        /// instrument that reads it (<see cref="FlowerCharmPart"/>) is
+        /// therefore provably dormant right now, which is thematically
+        /// correct: the Thinning has not escalated yet at game start.</para>
         /// </summary>
         public float UrquBleedLevel = 0f;
 

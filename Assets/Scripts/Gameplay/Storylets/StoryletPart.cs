@@ -566,6 +566,19 @@ namespace CavesOfOoo.Storylets
                 ConversationActions.ExecuteAll(s.Effects, null, player);
                 if (s.OneShot)
                     _firedStorylets.Add(s.ID);
+
+                // Cold-eye finding, Docs/FELLING-W1-W2-PLAN.md SM8: this
+                // dispatch had ZERO diag emission — invisible until
+                // SillHearsIt became the first non-quest storylet ever to
+                // exercise it (all 11 prior storylet files are quests,
+                // handled in pass 2B/2C below, which already diag).
+                if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("event"))
+                {
+                    CavesOfOoo.Diagnostics.Diag.Record(
+                        category: "event", kind: "StoryletFired",
+                        actor: player,
+                        payload: new { storyletId = s.ID, oneShot = s.OneShot });
+                }
             }
 
             // Pass 2B (QS.4): quest stage-advance dispatch. Goes through
