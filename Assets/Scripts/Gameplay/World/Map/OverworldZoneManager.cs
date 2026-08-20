@@ -90,6 +90,8 @@ namespace CavesOfOoo.Core
                 case BiomeType.Sodden:
                     return CreateSoddenPipeline(tier);
                 case BiomeType.Beating:
+                    if (zoneID == TenthFireZoneID)
+                        return CreateTenthFirePipeline(tier);
                     return CreateBeatingPipeline(tier, zoneID);
                 case BiomeType.Grovelands:
                     return CreateGrovelandsPipeline(tier);
@@ -317,13 +319,27 @@ namespace CavesOfOoo.Core
                     new List<StructureStamp> { StampCatalog.AbandonedCounter() },
                     priority: 3790, maxStructures: 1));
             }
-            // W2.8: the tenth fire. Placed, burning, unexamined.
-            if (zoneID == TenthFireZoneID)
-            {
-                pipeline.AddBuilder(new LandmarkBuilder(BiomeType.Beating, tier,
-                    new List<StructureStamp> { StampCatalog.TenthFire() },
-                    priority: 3790, maxStructures: 1));
-            }
+            return pipeline;
+        }
+
+        /// <summary>W2.8: the tenth fire's zone is built BARE on purpose.
+        /// The first look pass placed the fire in a zone that had rolled
+        /// a hermit's hut (a TENDED fire thirty cells from the untended
+        /// one) and a sentried tomb — the mystery needs emptiness. So:
+        /// the open pan formation forced, NO ambient stamps, no
+        /// containers — crust, salt, distance, and one fire.</summary>
+        private ZoneGenerationPipeline CreateTenthFirePipeline(int tier)
+        {
+            var pipeline = new ZoneGenerationPipeline();
+            pipeline.AddBuilder(new DesertBuilder { WallThreshold = 0.88f, RockChance = 0.06f });
+            pipeline.AddBuilder(new ConnectivityBuilder());
+            pipeline.AddBuilder(new BeatingFormationBuilder
+            { Override = Formation.SaltPan, OmitSaltVeins = true });
+            pipeline.AddBuilder(new LandmarkBuilder(BiomeType.Beating, tier,
+                new List<StructureStamp> { StampCatalog.TenthFire() },
+                priority: 3790, maxStructures: 1));
+            pipeline.AddBuilder(new PopulationBuilder(
+                PopulationTable.GetBiomeTable(BiomeType.Beating, tier)));
             return pipeline;
         }
 

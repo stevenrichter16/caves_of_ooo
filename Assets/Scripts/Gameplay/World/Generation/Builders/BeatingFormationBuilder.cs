@@ -33,6 +33,12 @@ namespace CavesOfOoo.Core
         /// from the zone ID.</summary>
         public Formation Override = Formation.None;
 
+        /// <summary>Authored-zone knob: the tenth fire's pan carries no
+        /// salt veins — every vein shares the fire's '*' glyph (the
+        /// house vein convention), and THAT zone's one glyph must mean
+        /// one thing. Set only by CreateTenthFirePipeline.</summary>
+        public bool OmitSaltVeins = false;
+
         public Formation LastFormation { get; private set; }
 
         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
@@ -46,7 +52,7 @@ namespace CavesOfOoo.Core
 
             switch (formation)
             {
-                case Formation.SaltPan: SaltPan(zone, factory, rng); break;
+                case Formation.SaltPan: SaltPan(zone, factory, rng, OmitSaltVeins); break;
                 case Formation.RuinField: RuinField(zone, factory, rng); break;
                 case Formation.DuneBelt: DuneBelt(zone, factory, rng); break;
                 case Formation.CaravanRoad: CaravanRoad(zone, factory, rng); break;
@@ -71,7 +77,8 @@ namespace CavesOfOoo.Core
         /// CLEARED (the pan's identity is exposure), crust ridges mark the
         /// polygon cracks, and the salt itself stands in minable outcrops
         /// — the supply half of the W2.7 economy.</summary>
-        private static void SaltPan(Zone zone, EntityFactory factory, System.Random rng)
+        private static void SaltPan(Zone zone, EntityFactory factory, System.Random rng,
+            bool omitVeins = false)
         {
             for (int x = 2; x < Zone.Width - 2; x++)
                 for (int y = 2; y < Zone.Height - 2; y++)
@@ -95,7 +102,7 @@ namespace CavesOfOoo.Core
             }
 
             // The outcrops: 2-4, wherever the pan allows.
-            int veins = 2 + rng.Next(3);
+            int veins = omitVeins ? 0 : 2 + rng.Next(3);
             for (int v = 0; v < veins; v++)
             {
                 for (int attempt = 0; attempt < 20; attempt++)
