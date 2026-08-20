@@ -161,6 +161,23 @@ namespace CavesOfOoo.Core
                     else if (roll < 30)
                         zone.TileState.WriteCoating(x, y, "water", ZoneTileState.Permanent);
                 }
+
+            // W3.4 — the copse is the den: 1-2 maw-toads sitting among
+            // the dead trees (they do not chase; they have never needed
+            // to). The population tables can roll more anywhere in the
+            // Sodden; the copse GUARANTEES its residents.
+            int toads = 1 + rng.Next(2);
+            for (int t = 0; t < toads; t++)
+            {
+                for (int attempt = 0; attempt < 40; attempt++)
+                {
+                    int x = 3 + rng.Next(Zone.Width - 6);
+                    int y = 3 + rng.Next(Zone.Height - 6);
+                    if (!IsOpenGround(zone, x, y)) continue;
+                    BuilderSpawn.TryPlace(zone, factory, "MawToad", x, y);
+                    break;
+                }
+            }
         }
 
         /// <summary>THE safe line. One duckboard walk, west to east,

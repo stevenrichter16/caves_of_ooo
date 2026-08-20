@@ -28708,6 +28708,265 @@
       ],
       "Stats": [],
       "Tags": []
+    },
+    {
+      "Name": "Reedfrog",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "reedfrog" },
+            { "Key": "RenderString", "Value": "f" },
+            { "Key": "ColorString", "Value": "&G" },
+            { "Key": "RenderLayer", "Value": "10" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "Brain",
+          "Params": [
+            { "Key": "SightRadius", "Value": "8" },
+            { "Key": "Wanders", "Value": "true" },
+            { "Key": "WandersRandomly", "Value": "true" },
+            { "Key": "Passive", "Value": "true" },
+            { "Key": "FleeThreshold", "Value": "0.9" }
+          ]
+        },
+        {
+          "Name": "Corpse",
+          "Params": [
+            { "Key": "HarvestBlueprint", "Value": "FrogOil" },
+            { "Key": "HarvestMin", "Value": "1" },
+            { "Key": "HarvestMax", "Value": "2" },
+            { "Key": "HarvestChance", "Value": "80" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Fat, green, and unbothered until you are close enough to matter. The peat-cutters render them for lamp oil. In W5 terms: the slime pools it breeds in are an ecology, not a backdrop." }
+          ]
+        }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 5, "Min": 0, "Max": 5 },
+        { "Name": "Strength", "Value": 4 },
+        { "Name": "Agility", "Value": 16 },
+        { "Name": "Toughness", "Value": 5 },
+        { "Name": "XPValue", "Value": 5 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Beasts" },
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" },
+        { "Key": "BloodColor", "Value": "&G" }
+      ]
+    },
+    {
+      "Name": "Bandfrog",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "bandfrog" },
+            { "Key": "RenderString", "Value": "f" },
+            { "Key": "ColorString", "Value": "&R" },
+            { "Key": "RenderLayer", "Value": "10" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "Brain",
+          "Params": [
+            { "Key": "SightRadius", "Value": "9" },
+            { "Key": "Wanders", "Value": "true" }
+          ]
+        },
+        {
+          "Name": "CausticSkin",
+          "Params": [
+            { "Key": "ReflectDamage", "Value": "2" },
+            { "Key": "PoisonChance", "Value": "25" },
+            { "Key": "PoisonDuration", "Value": "3" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Banded scarlet over black, and the bands are not decoration. Everything in the bog knows not to touch it; the lesson is the skin." }
+          ]
+        }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 9, "Min": 0, "Max": 9 },
+        { "Name": "Strength", "Value": 8 },
+        { "Name": "Agility", "Value": 15 },
+        { "Name": "Toughness", "Value": 8 },
+        { "Name": "XPValue", "Value": 15 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Beasts" },
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "BloodColor", "Value": "&G" }
+      ]
+    },
+    {
+      "Name": "MawToad",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "maw-toad" },
+            { "Key": "RenderString", "Value": "t" },
+            { "Key": "ColorString", "Value": "&w" },
+            { "Key": "RenderLayer", "Value": "10" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "Brain",
+          "Params": [
+            { "Key": "SightRadius", "Value": "10" },
+            { "Key": "Wanders", "Value": "false" },
+            { "Key": "Staying", "Value": "true" }
+          ]
+        },
+        { "Name": "Armor", "Params": [ { "Key": "AV", "Value": "2" }, { "Key": "DV", "Value": "-2" } ] },
+        {
+          "Name": "Corpse",
+          "Params": [
+            { "Key": "HarvestBlueprint", "Value": "FrogOil" },
+            { "Key": "HarvestMin", "Value": "2" },
+            { "Key": "HarvestMax", "Value": "4" },
+            { "Key": "HarvestChance", "Value": "90" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Mostly mouth. It sits where the dead trees stand in the water and it does not chase, because it has never needed to." }
+          ]
+        }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 22, "Min": 0, "Max": 22 },
+        { "Name": "Strength", "Value": 16 },
+        { "Name": "Agility", "Value": 8 },
+        { "Name": "Toughness", "Value": 14 },
+        { "Name": "XPValue", "Value": 40 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Beasts" },
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "BloodColor", "Value": "&G" }
+      ]
+    },
+    {
+      "Name": "GinFrog",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "gin frog" },
+            { "Key": "RenderString", "Value": "f" },
+            { "Key": "ColorString", "Value": "&Y" },
+            { "Key": "RenderLayer", "Value": "10" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "Brain",
+          "Params": [
+            { "Key": "SightRadius", "Value": "8" },
+            { "Key": "Wanders", "Value": "true" },
+            { "Key": "WandersRandomly", "Value": "true" },
+            { "Key": "Passive", "Value": "true" },
+            { "Key": "FleeThreshold", "Value": "0.9" }
+          ]
+        }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 4, "Min": 0, "Max": 4 },
+        { "Name": "Strength", "Value": 3 },
+        { "Name": "Agility", "Value": 18 },
+        { "Name": "Toughness", "Value": 4 },
+        { "Name": "XPValue", "Value": 3 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Beasts" },
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" },
+        { "Key": "BloodColor", "Value": "&Y" }
+      ]
+    },
+    {
+      "Name": "Greatdew",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "greatdew" },
+            { "Key": "RenderString", "Value": "(" },
+            { "Key": "ColorString", "Value": "&C" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" }, { "Key": "Takeable", "Value": "false" } ] },
+        {
+          "Name": "GreatdewSnare",
+          "Params": [
+            { "Key": "GrabChance", "Value": "55" },
+            { "Key": "HoldTurns", "Value": "4" },
+            { "Key": "Corrosion", "Value": "1.0" }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            { "Key": "MaterialID", "Value": "Plant" },
+            { "Key": "MaterialTagsRaw", "Value": "Plant,Organic" }
+          ]
+        },
+        { "Name": "Destructible", "Params": [ { "Key": "HP", "Value": "10" }, { "Key": "MaxHP", "Value": "10" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A bent stem strung with beads of something clearer than water. The beads do not fall. Things that thrash in it stay; things that wait walk away thinner." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "FrogOil",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "frog oil" },
+            { "Key": "RenderString", "Value": "!" },
+            { "Key": "ColorString", "Value": "&w" },
+            { "Key": "RenderLayer", "Value": "3" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" } ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "8" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Rendered fat in a stoppered gourd. Burns slow, smells like the bog it came from. Sumphold lamps run on it." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Commerce", "Value": "" } ]
     }
   ]
 }

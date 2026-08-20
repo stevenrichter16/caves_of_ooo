@@ -1,3 +1,5 @@
+using CavesOfOoo.Diagnostics;
+
 namespace CavesOfOoo.Core
 {
     /// <summary>
@@ -412,6 +414,61 @@ namespace CavesOfOoo.Core
 
             actor.ApplyEffect(new StunnedEffect(StunDuration), ParentEntity, zone);
             actor.ApplyEffect(new BleedingEffect(BleedSaveTarget, BleedDice), ParentEntity, zone);
+        }
+    }
+
+    /// <summary>
+    /// W3.4 (Docs/FELLING-W3-PLAN.md §3, R4) — the Greatdew's snare.
+    /// A glistening dew-plant that holds what walks into it: chance-
+    /// gated grab (RootedEffect) plus a slow acid burn (AcidicEffect).
+    /// NOT attacking it and waiting out the hold is the escape —
+    /// "stillness passes" — which is RootedEffect's ordinary expiry, no
+    /// special plumbing.
+    ///
+    /// <para>R4's gate held: the full adjacency design (grab on ENTERING
+    /// a neighboring cell) has no shipped substrate, so v1 is a
+    /// step-snare — the plant is non-solid and the grab fires when you
+    /// walk into the dew itself, on the same TriggerOnStep substrate as
+    /// every rune and trap above. ConsumeOnTrigger=false: a plant is
+    /// not a mine; it holds, releases, and waits again.</para>
+    /// </summary>
+    public class GreatdewSnarePart : TriggerOnStepPart
+    {
+        /// <summary>Percent-in-100 chance a step is caught.</summary>
+        public int GrabChance = 55;
+
+        /// <summary>Turns the hold lasts (RootedEffect duration).</summary>
+        public int HoldTurns = 4;
+
+        /// <summary>AcidicEffect corrosion while held.</summary>
+        public float Corrosion = 1.0f;
+
+        public static System.Random TestRng;
+        private static readonly System.Random _defaultRng = new System.Random();
+
+        public GreatdewSnarePart()
+        {
+            ConsumeOnTrigger = false;
+        }
+
+        protected override void OnTrigger(Entity actor, Zone zone)
+        {
+            var rng = TestRng ?? _defaultRng;
+            if (rng.Next(100) >= GrabChance)
+            {
+                MessageLog.Add($"{actor.GetDisplayName()} brushes through the {ParentEntity.GetDisplayName()}.");
+                if (Diag.IsChannelEnabled("effect"))
+                    Diag.Record("effect", "SnareBrushed", ParentEntity, actor,
+                        new { chance = GrabChance });
+                return;
+            }
+
+            MessageLog.Add($"The {ParentEntity.GetDisplayName()} closes around {actor.GetDisplayName()}. Stillness passes; struggle does not.");
+            actor.ApplyEffect(new RootedEffect(HoldTurns), ParentEntity, zone);
+            actor.ApplyEffect(new AcidicEffect(Corrosion), ParentEntity, zone);
+            if (Diag.IsChannelEnabled("effect"))
+                Diag.Record("effect", "SnareGrabbed", ParentEntity, actor,
+                    new { holdTurns = HoldTurns, corrosion = Corrosion });
         }
     }
 }

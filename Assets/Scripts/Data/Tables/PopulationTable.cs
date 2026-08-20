@@ -71,7 +71,7 @@ namespace CavesOfOoo.Data
                     case BiomeType.Beating: return BeatingTier3();
                     case BiomeType.Jungle: return JungleTier3();
                     case BiomeType.Grovelands: return JungleTier3();
-                    case BiomeType.Sodden: return JungleTier3();
+                    case BiomeType.Sodden: return SoddenTier3();
                     case BiomeType.Spread: return SpreadTier3();
                     case BiomeType.Ruins: return RuinsTier3();
                     case BiomeType.Overwrit: return RuinsTier3();
@@ -88,7 +88,7 @@ namespace CavesOfOoo.Data
                     case BiomeType.Beating: return BeatingTier2();
                     case BiomeType.Jungle: return JungleTier2();
                     case BiomeType.Grovelands: return JungleTier2();
-                    case BiomeType.Sodden: return JungleTier2();
+                    case BiomeType.Sodden: return SoddenTier2();
                     case BiomeType.Spread: return SpreadTier2();
                     case BiomeType.Ruins: return RuinsTier2();
                     case BiomeType.Overwrit: return RuinsTier2();
@@ -103,7 +103,7 @@ namespace CavesOfOoo.Data
                 case BiomeType.Beating: return BeatingTier1();
                 case BiomeType.Jungle: return JungleTier1();
                 case BiomeType.Grovelands: return JungleTier1();
-                case BiomeType.Sodden: return JungleTier1();
+                case BiomeType.Sodden: return SoddenTier1();
                 case BiomeType.Spread: return SpreadTier1();
                 case BiomeType.Ruins: return RuinsTier1();
                 case BiomeType.Overwrit: return RuinsTier1();
@@ -293,6 +293,68 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "LeatherCap", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "LeatherBoots", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "LeatherGloves", Weight = 1, MinCount = 0, MaxCount = 1 },
+                }
+            };
+        }
+
+        // ── The Sodden (W3.4) ─────────────────────────────────────────
+        //
+        // The bog's danger is patient. Nothing here chases far: the
+        // frogs sit, the toads wait, the greatdew waits better. What
+        // thickens with tier is not the crowd but the teeth — the deep
+        // Sodden is MawToad and bandfrog country, and the greatdew grows
+        // where nothing clears it. Forage is oil on legs (reedfrogs).
+        // No human trouble by design: the road crews and peat-cutters
+        // are Sumphold's people, and Sumphold is a POI, not wilderness.
+
+        public static PopulationTable SoddenTier1()
+        {
+            return new PopulationTable
+            {
+                Name = "SoddenTier1",
+                Entries = new List<PopulationEntry>
+                {
+                    // The bog's ordinary voices.
+                    new PopulationEntry { BlueprintName = "Reedfrog", Weight = 5, MinCount = 1, MaxCount = 4 },
+                    new PopulationEntry { BlueprintName = "GinFrog", Weight = 3, MinCount = 0, MaxCount = 2 },
+                    // The lesson is the skin.
+                    new PopulationEntry { BlueprintName = "Bandfrog", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Viper", Weight = 2, MinCount = 0, MaxCount = 1 },
+                    // Things that wait.
+                    new PopulationEntry { BlueprintName = "Greatdew", Weight = 2, MinCount = 0, MaxCount = 2 },
+                }
+            };
+        }
+
+        public static PopulationTable SoddenTier2()
+        {
+            return new PopulationTable
+            {
+                Name = "SoddenTier2",
+                Entries = new List<PopulationEntry>
+                {
+                    new PopulationEntry { BlueprintName = "Reedfrog", Weight = 4, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "GinFrog", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Bandfrog", Weight = 3, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Viper", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "MawToad", Weight = 2, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Greatdew", Weight = 3, MinCount = 1, MaxCount = 2 },
+                }
+            };
+        }
+
+        public static PopulationTable SoddenTier3()
+        {
+            return new PopulationTable
+            {
+                Name = "SoddenTier3",
+                Entries = new List<PopulationEntry>
+                {
+                    new PopulationEntry { BlueprintName = "Reedfrog", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Bandfrog", Weight = 4, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "MawToad", Weight = 3, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Viper", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Greatdew", Weight = 4, MinCount = 1, MaxCount = 3 },
                 }
             };
         }
@@ -654,7 +716,18 @@ namespace CavesOfOoo.Data
                 // Felling W0.6 — the canon biomes borrow their nearest
                 // legacy roster until their own phase authors one.
                 case BiomeType.Spread:     return LairGuards(BiomeType.Jungle);
-                case BiomeType.Sodden:     return LairGuards(BiomeType.Jungle);
+                case BiomeType.Sodden:
+                    // W3.4 — the bog guards its own.
+                    return new PopulationTable
+                    {
+                        Name = "SoddenLairGuards",
+                        Entries = new List<PopulationEntry>
+                        {
+                            new PopulationEntry { BlueprintName = "MawToad", Weight = 3, MinCount = 1, MaxCount = 2 },
+                            new PopulationEntry { BlueprintName = "Bandfrog", Weight = 3, MinCount = 1, MaxCount = 3 },
+                            new PopulationEntry { BlueprintName = "Greatdew", Weight = 2, MinCount = 0, MaxCount = 2 },
+                        }
+                    };
                 case BiomeType.Beating:
                     // W2.2 — the wasteland's own guards.
                     return new PopulationTable

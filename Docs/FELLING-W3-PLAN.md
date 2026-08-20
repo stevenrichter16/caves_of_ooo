@@ -312,6 +312,55 @@ resolution. One compile fix (missing using CavesOfOoo.Data).
 
 **Tests:** 6850 → 6857 (+7). All green headless.
 
+### W3.4 — The Sodden's bestiary (SHIPPED)
+
+**Verify-first results (the plan's three open questions):**
+- *Bandfrog's on-being-hit reflect:* SHIPS. ScaldingVeilEffect's
+  OnTakeDamage is the pattern; `CausticSkinPart` is the part-shaped
+  sibling (anatomy, not ailment — permanent, and a panacea can't
+  cure what an animal is made of). Contact means contact: adjacency
+  (Chebyshev ≤ 1) gates the reflect, so melee qualifies and a spell
+  from across the marsh does not; the rejecting gate emits
+  `damage/SkinContactRejected` with its reason. **Born with the
+  recursion guard the veil lacks:** reflected damage carries a
+  marker attribute and skin never answers skin — two bandfrogs
+  trading a blow must not ping-pong to mutual death. (ScaldingVeil's
+  own two-veils exposure was flagged as a spin-off task, not fixed
+  here — W2 shipped it; the fix pattern now exists to copy.)
+- *Greatdew's adjacency-grab:* does NOT ship (IAuraProvider is
+  visual-only; no adjacent-entry event exists). Per R4's own gate,
+  v1 rides the step-trigger substrate: the plant is NON-SOLID and
+  the grab fires when you walk into the dew itself
+  (`GreatdewSnarePart : TriggerOnStepPart`, ConsumeOnTrigger=false —
+  a plant is not a mine). Chance-gated grab → RootedEffect(4) +
+  AcidicEffect; "stillness passes" is RootedEffect's ordinary
+  expiry, zero new plumbing. Both branches emit diag
+  (SnareGrabbed / SnareBrushed).
+- *Reedfrog's harvest:* SHIPS via the Viper pattern (Corpse part
+  HarvestBlueprint) → `FrogOil` (Commerce 8 — Sumphold lamps, a
+  W3.6-adjacent trade good). The W5 slime-pool ecology note lives in
+  the Reedfrog's examine copy as promised.
+
+**Content:** Reedfrog (passive, flees, oil on legs), Bandfrog
+(caustic skin), MawToad (Staying ambusher, AV 2, the copse's
+resident), GinFrog (gate 7: NO Examinable part at all — "You see a
+gin frog." is the entire record, pinned by test so any future
+explanatory text is a failure), Greatdew, FrogOil.
+SoddenTier1/2/3 + SoddenLairGuards replace the Jungle alias
+(Grovelands still borrows — counter-pinned). DrownedCopse now
+guarantees 1-2 MawToads (the den), on top of whatever the tables
+roll. No human trouble in the wilderness tables by design: the
+road crews are Sumphold's people, and Sumphold is a POI.
+
+**Tests (SoddenBestiaryTests.cs, +13):** table names per tier +
+lair guards; Grovelands-still-borrows counter; fail-loud
+every-entry-is-a-real-blueprint gate (the "Waterskin" lesson);
+no-jungle-legacy sweep; gate-7 pin; contact reflect + not-adjacent
+counter + environmental-null counter + two-bandfrogs recursion pin
++ poison chance boundaries (0/100); dew grab at 100 / brush at 0 /
+stillness-passes expiry walk-away; copse always houses 1-2 toads;
+reedfrog passive + harvest pins.
+
 ## 6. Critical review of this plan (before implementation)
 
 **R1 — Sumphold-on-Spread is a feature, not a bug** — but the profile
