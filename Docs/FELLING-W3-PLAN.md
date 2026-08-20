@@ -402,6 +402,47 @@ guaranteed river-adjacent — the yard is BY the water in fiction,
 somewhere-in-town in generation. Cosmetic; noted for a future
 water-aware placement pass if it ever grates.
 
+### W3.6 — The body-courier contract (SHIPPED)
+
+**The loop:** the Curation Sorter offers carriage (gated
+IfQuestNotStarted); acceptance = StartQuest BogBodyCourier +
+GiveItem SealedBogTakenBody (Weight 30). The filer-clerk at
+Marrowstye's intake window (CurationIntake stamp, PaleCuration
+faction-keyed branch) carries the delivery choice, gated
+IfQuestActive + IfHaveItem, running TakeItem + SetFact + GiveDrams
+25 + rep +10 + CompleteQuest. The offer quotes **Clause the fifth
+verbatim** (Codex/06:31), pinned to the canon string so a
+paraphrase is a test failure — and the sorter's framing explains
+why a PERSON carries it: the clause made the Concord careful of
+the whole category, sealed or not.
+
+**SCOPE DIVERGENCES (both recorded, both pinned):**
+1. *No QuestMarkerTriggerPart.* The plan sketched the objective fact
+   being set by a marker at Marrowstye; shipped, the CLERK sets it —
+   the clerk IS the destination, and a marker would complete the
+   objective on arrival while the body is still on your back. The
+   cross-file fact-string lint pins clerk↔quest agreement.
+2. *"Repeatable" is v1-deferred.* StartQuest refuses completed ids
+   (the QS.3 registry guard), so the substrate is one-shot per
+   quest id. The offer hides after completion
+   (TheOffer_DoesNotRepeat pins it as the shipped contract).
+   True repeatability needs a repeatable-quest substrate decision —
+   future work, not smuggled in here.
+
+**The burden is real:** Weight 30 against a Strength-1 courier's 15
+capacity = overburdened = CANNOT MOVE (InventoryPart's BeforeMove
+block); drop it and the legs work again. Pinned both ways.
+
+**The refusal:** "No — and I say it aloud" gets the spoken-no
+treatment in the Sorter's register ("a no said aloud files clean"),
+and starts nothing — pinned.
+
+**Tests (BodyCourierTests.cs +7, SoddenProfileTests +1):** clause
+verbatim pin; cross-file fact lint; full loop through the real
+ConversationManager (offer → carry → deliver → paid → rep → closed);
+refusal; deliver-needs-both-paper-and-parcel (two hidden-choice
+counters); no-repeat pin; the burden; Marrowstye window census.
+
 ## 6. Critical review of this plan (before implementation)
 
 **R1 — Sumphold-on-Spread is a feature, not a bug** — but the profile

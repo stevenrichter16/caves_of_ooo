@@ -826,6 +826,31 @@ namespace CavesOfOoo.Core
             },
         };
 
+        /// <summary>W3.6 — Marrowstye's intake window: the destination
+        /// of the body-courier contract. A person at a table is the
+        /// whole institution — the filer-clerk, the coffers, and a
+        /// queue you cannot see.</summary>
+        public static StructureStamp CurationIntake() => new StructureStamp
+        {
+            Name = "CurationIntake",
+            Chance = 100,
+            MinTier = 1,
+            ClearsVegetation = true,
+            Rows = new[]
+            {
+                "##.##",
+                "#=.f#",
+                "#=..#",
+                "##.##",
+            },
+            Legend = new Dictionary<char, string>
+            {
+                { '#', "SandstoneWall" },
+                { '=', "StoneCoffer" },
+                { 'f', "spawn:FilerClerk" },
+            },
+        };
+
         /// <summary>W3.5 — Sumphold's boatyard: hulls on trestles, the
         /// toll-rolls under their rain-hood (quoting the REGISTER of
         /// Codex/10 — "short count — forgiven — my error" — never the

@@ -447,6 +447,15 @@ namespace CavesOfOoo.Core
                     new List<StructureStamp> { StampCatalog.ExcavationCamp() },
                     priority: 3860, maxStructures: 1));
             }
+            // W3.6: Marrowstye — the Curation regional place, and the
+            // body-courier contract's destination. Faction-keyed
+            // (PaleCuration is unique to it among villages).
+            else if (poi.Faction == "PaleCuration" && poi.Name == "Marrowstye")
+            {
+                pipeline.AddBuilder(new LandmarkBuilder(biome, 1,
+                    new List<StructureStamp> { StampCatalog.CurationIntake() },
+                    priority: 3860, maxStructures: 1));
+            }
             // W3.5 (plan R1): Sumphold is Villagers-faction like four
             // other places, so its profile keys on the NAME — accepted
             // for two name-keyed places (First Tent inside the TentRight

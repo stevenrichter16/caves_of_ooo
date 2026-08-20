@@ -29153,6 +29153,60 @@
         { "Name": "XPValue", "Value": 0 }
       ],
       "Tags": [ { "Key": "Faction", "Value": "Villagers" }, { "Key": "Tier", "Value": "1" } ]
+    },
+    {
+      "Name": "SealedBogTakenBody",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "sealed bog-taken body" },
+            { "Key": "RenderString", "Value": "&" },
+            { "Key": "ColorString", "Value": "&K" },
+            { "Key": "RenderLayer", "Value": "3" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "30" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Wrapped, waxed, and corded to Curation intake standard; the sorter's stamp is in the seal. The label, in a careful hand: one entry. Status: continuing. It is heavier than it looks, and it looks heavy." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "FilerClerk",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "filer-clerk" },
+            { "Key": "RenderString", "Value": "@" },
+            { "Key": "ColorString", "Value": "&C" }
+          ]
+        },
+        { "Name": "Conversation", "Params": [ { "Key": "ConversationID", "Value": "FilerClerk_1" } ] },
+        { "Name": "AISelfPreservation", "Params": [] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "The intake window of Marrowstye is a person at a table, and the person is this one. Stamps in a row, wax in a warmer, and a ledger whose every entry ends the same way." }
+          ]
+        }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 16, "Min": 0, "Max": 16 },
+        { "Name": "Strength", "Value": 10 },
+        { "Name": "Agility", "Value": 12 },
+        { "Name": "Speed", "Value": 100 },
+        { "Name": "XPValue", "Value": 0 }
+      ],
+      "Tags": [ { "Key": "Faction", "Value": "PaleCuration" }, { "Key": "Tier", "Value": "1" } ]
     }
   ]
 }

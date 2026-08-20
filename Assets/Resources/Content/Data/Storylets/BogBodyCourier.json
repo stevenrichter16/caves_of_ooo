@@ -1,0 +1,21 @@
+{
+  "Storylets": [
+    {
+      "ID": "BogBodyCourier",
+      "OneShot": false, "Tracked": true, "Triggers": [], "Effects": [],
+      "Quest": {
+        "Name": "Carriage Work",
+        "Accomplishment": "You carried a sealed bog-taken body from the Drowned Ledger to the intake window at Marrowstye. The file says: continuing.",
+        "Stages": [
+          {
+            "ID": "carry", "Triggers": [], "OnEnter": [],
+            "Objectives": [
+              { "ID": "deliver_body", "Text": "Carry the sealed body to the intake window at Marrowstye", "Optional": false, "Hidden": false,
+                "Triggers": [ { "Key": "IfFact", "Value": "bog_body_reached_marrowstye:>=:1" } ], "OnEnter": [] }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

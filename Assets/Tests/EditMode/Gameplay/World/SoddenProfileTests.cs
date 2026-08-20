@@ -117,6 +117,19 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void Marrowstye_HasItsIntakeWindow()
+        {
+            // W3.6: the courier contract's destination is real — the
+            // filer-clerk at the window, coffers behind.
+            var zone = Generate("Overworld.12.12.0");
+
+            Assert.GreaterOrEqual(CountOf(zone, "FilerClerk"), 1,
+                "the institution is a person at a table");
+            Assert.GreaterOrEqual(CountOf(zone, "StoneCoffer"), 1,
+                "and the files behind the person");
+        }
+
+        [Test]
         public void TheStampSwap_KeptTheCountAtExactlyThree()
         {
             // W3.2's contract survives W3.5's architecture: one body on

@@ -1574,6 +1574,11 @@
           "Text": "Mind the stakes. Everything numbered is somebody's -- was somebody's -- is somebody's. We are still deciding the tense, and until we decide, you walk between the lines.",
           "Choices": [
             { "Text": "Are they dead?", "Target": "Status" },
+            {
+              "Text": "Is there work?",
+              "Target": "Carriage",
+              "Predicates": [ { "Key": "IfQuestNotStarted", "Value": "BogBodyCourier" } ]
+            },
             { "Text": "Farewell.", "Target": "End" }
           ]
         },
@@ -1582,6 +1587,37 @@
           "Text": "The file does not use your word. The file says: continuing. Every entry in my ledger ends the same way -- Status: continuing -- and I have not been given cause to write anything else. Outside the camp you may think what you like.",
           "Choices": [
             { "Text": "Continuing. All right.", "Target": "Start" },
+            { "Text": "Farewell.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Carriage",
+          "Text": "Carriage, if your back is honest. One intake, sealed by my hand, for the window at Marrowstye. The Concord will not touch it -- their own paper, Clause the fifth: 'The Concord will not carry: unboxed spores; bodies not sealed to Curation intake standard; anything that sings; anything the Bower-Folk have asked after twice.' Mine IS sealed to standard, but the clause has made them careful of the whole category. So it goes by a person. You.",
+          "Choices": [
+            {
+              "Text": "I will carry it.",
+              "Target": "Accepted",
+              "Actions": [
+                { "Key": "StartQuest", "Value": "BogBodyCourier" },
+                { "Key": "GiveItem", "Value": "SealedBogTakenBody" }
+              ]
+            },
+            { "Text": "No -- and I say it aloud.", "Target": "CarriageRefused" },
+            { "Text": "Not yet.", "Target": "Start" }
+          ]
+        },
+        {
+          "ID": "Accepted",
+          "Text": "Entered: one intake, in carriage, by hand. Walk it dry, keep the seal whole, and give it to the clerk at the window -- no one else. The entry stays open until the window closes it.",
+          "Choices": [
+            { "Text": "To Marrowstye, then.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "CarriageRefused",
+          "Text": "Refused well. A no said aloud files clean -- better a clean no than a carriage that turns back. The stakes will still be here if your back changes its mind.",
+          "Choices": [
+            { "Text": "Noted.", "Target": "Start" },
             { "Text": "Farewell.", "Target": "End" }
           ]
         }
@@ -1612,6 +1648,48 @@
           "Choices": [
             { "Text": "Fair enough.", "Target": "Start" },
             { "Text": "Farewell.", "Target": "End" }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "FilerClerk_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "The window is open. State your business as it appears on your paper; if it does not appear on paper, state it slowly.",
+          "Choices": [
+            {
+              "Text": "[Deliver] One intake, sealed, from the Drowned Ledger.",
+              "Target": "Delivered",
+              "Predicates": [
+                { "Key": "IfQuestActive", "Value": "BogBodyCourier" },
+                { "Key": "IfHaveItem", "Value": "SealedBogTakenBody" }
+              ],
+              "Actions": [
+                { "Key": "TakeItem", "Value": "SealedBogTakenBody" },
+                { "Key": "SetFact", "Value": "bog_body_reached_marrowstye:1" },
+                { "Key": "GiveDrams", "Value": "25" },
+                { "Key": "ChangeFactionFeeling", "Value": "PaleCuration:Player:10" },
+                { "Key": "CompleteQuest", "Value": "BogBodyCourier" }
+              ]
+            },
+            { "Text": "Nothing on paper.", "Target": "NoPaper" },
+            { "Text": "Farewell.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Delivered",
+          "Text": "Seal whole. Stamp true. Received: one entry, in continuation. Your fee is counted -- take it without counting it back at me, please, the window has a queue even when you cannot see one. Status: continuing.",
+          "Choices": [
+            { "Text": "Continuing.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "NoPaper",
+          "Text": "Then the window is a wall. It is a very patient wall. Good day.",
+          "Choices": [
+            { "Text": "Good day.", "Target": "End" }
           ]
         }
       ]
