@@ -72,7 +72,7 @@ namespace CavesOfOoo.Core
                 case BiomeType.Ruins: return Ruins;
                 case BiomeType.Spread: return Spread;
                 case BiomeType.Sodden: return For(BiomeType.Jungle);
-                case BiomeType.Beating: return For(BiomeType.Desert);
+                case BiomeType.Beating: return Beating;
                 case BiomeType.Grovelands: return For(BiomeType.Jungle);
                 case BiomeType.Overwrit: return For(BiomeType.Ruins);
                 case BiomeType.Stump: return For(BiomeType.Cave);
@@ -361,11 +361,11 @@ namespace CavesOfOoo.Core
             },
         };
 
-        private static readonly StructureStamp[] Desert =
-        {
-            HermitHut("SandstoneWall", "DesertHermit"),
-            // Phase D: the tomb — PlateArmor's first source, behind the
-            // dead and a lock.
+        // Shared between the Desert and the Beating (W2.4) — declared
+        // ABOVE both arrays because static fields initialize in textual
+        // order; an array referencing a field declared below it would
+        // capture null.
+        private static readonly StructureStamp SandstoneTombStamp =
             new StructureStamp
             {
                 Name = "SandstoneTomb",
@@ -387,28 +387,9 @@ namespace CavesOfOoo.Core
                     { 'k', "IronKey" },
                     { '+', "" },
                 },
-            },
-            // Phase D: the Glassblown Remnant's obelisk — the Drifter's
-            // 25-node conversation tree goes live here.
-            new StructureStamp
-            {
-                Name = "GlassblownObelisk",
-                Chance = 20,
-                MinTier = 1,
-                Rows = new[]
-                {
-                    ".I.",
-                    ".g.",
-                    "...",
-                },
-                Legend = new Dictionary<char, string>
-                {
-                    { 'I', "Pillar" },
-                    { 'g', "spawn:GlassblownDrifter" },
-                },
-            },
-            // Phase D: a Saccharine Concord waystation — envoy, fire,
-            // and a place to breathe between dunes.
+            };
+
+        private static readonly StructureStamp ConcordWaystationStamp =
             new StructureStamp
             {
                 Name = "ConcordWaystation",
@@ -428,7 +409,36 @@ namespace CavesOfOoo.Core
                     { 'f', "Campfire" },
                     { '+', "" },
                 },
+            };
+
+        private static readonly StructureStamp[] Desert =
+        {
+            HermitHut("SandstoneWall", "DesertHermit"),
+            // Phase D: the tomb — PlateArmor's first source. Shared with
+            // the Beating (W2.4), defined once above.
+            SandstoneTombStamp,
+            // Phase D: the Glassblown Remnant's obelisk — the Drifter's
+            // 25-node conversation tree goes live here.
+            new StructureStamp
+            {
+                Name = "GlassblownObelisk",
+                Chance = 20,
+                MinTier = 1,
+                Rows = new[]
+                {
+                    ".I.",
+                    ".g.",
+                    "...",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { 'I', "Pillar" },
+                    { 'g', "spawn:GlassblownDrifter" },
+                },
             },
+            // Phase D: a Saccharine Concord waystation. Shared with the
+            // Beating (W2.4), defined once above.
+            ConcordWaystationStamp,
             // A bandit dugout — ambushers sleeping on their haul.
             new StructureStamp
             {
@@ -618,6 +628,46 @@ namespace CavesOfOoo.Core
                     { 'p', "Signpost" },
                 },
             },
+        };
+
+        /// <summary>
+        /// The Beating's catalog (W2.4, Docs/FELLING-W1-W2-PLAN.md §7.6)
+        /// — before this, For(Beating) delegated to Desert wholesale.
+        /// The design inversion the whole biome is built on: the most
+        /// hostile environment holds the mechanically safest interiors
+        /// (Lore/Factions/07_TentRight.md:123). The tent camp is that
+        /// sentence as architecture — its insides are marked interior,
+        /// which is what exempts them from the Height glare.
+        /// </summary>
+        private static readonly StructureStamp[] Beating =
+        {
+            new StructureStamp
+            {
+                Name = "TentRightCamp",
+                Chance = 30,
+                MinTier = 1,
+                ClearsVegetation = true,
+                Rows = new[]
+                {
+                    "TTT..TTT",
+                    "TiT..TiT",
+                    "T.T..T.T",
+                    "........",
+                    "..O..P..",
+                    "....H...",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { 'T', "TentWall" },
+                    { 'i', "interior" },
+                    { 'O', "Well" },
+                    { 'P', "GuestClothPole" },
+                    { 'H', "spawn:TentRightHost" },
+                },
+            },
+            HermitHut("SandstoneWall", "DesertHermit"),
+            ConcordWaystationStamp,
+            SandstoneTombStamp,
         };
 
         private static readonly StructureStamp[] Ruins =
@@ -813,6 +863,7 @@ namespace CavesOfOoo.Core
             {
                 string marker = kvp.Value;
                 if (string.IsNullOrEmpty(marker)) continue;
+                if (marker == "interior") continue;   // W2.4 pseudo-marker
                 if (marker.StartsWith("chest:"))
                 {
                     if (!factory.Blueprints.ContainsKey("Chest")) return false;
@@ -924,6 +975,18 @@ namespace CavesOfOoo.Core
                     if (ch == '.') continue;
                     if (!stamp.Legend.TryGetValue(ch, out string marker)) continue;
                     if (string.IsNullOrEmpty(marker)) continue;
+
+                    // W2.4 pseudo-marker: "interior" places nothing and
+                    // marks the cell as inside — a tent's shade is
+                    // architecture (BeatingGlareSystem exempts interior
+                    // cells). Stamps were the one builder that could
+                    // erect a roof without one.
+                    if (marker == "interior")
+                    {
+                        var icell = zone.GetCell(wx, wy);
+                        if (icell != null) icell.IsInterior = true;
+                        continue;
+                    }
 
                     if (marker.StartsWith("chest:"))
                     {

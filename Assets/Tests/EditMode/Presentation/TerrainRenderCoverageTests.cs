@@ -69,7 +69,7 @@ namespace CavesOfOoo.Tests
             // so a flower meadow would become a lawn and a tar seep would
             // become clean stone. They need their own 16×16 tiles.
             "CropRow", "CharmFlowers", "FlowerField", "Reeds",
-            "SaltCrust", "DuneCrest", "Bones",
+            "SaltCrust", "DuneCrest", "Bones", "TentWall",
             "CopperPipe", "PeatBog", "TarSeep", "OilSeep", "OilSlick",
             "BrinePool", "AcidPool", "AcidPond", "IceSheet",
             "ConvalescencePool", "MemoryBathPool", "MirrorMucilagePool",

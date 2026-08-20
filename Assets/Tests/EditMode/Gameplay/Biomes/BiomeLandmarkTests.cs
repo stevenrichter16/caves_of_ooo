@@ -189,7 +189,7 @@ namespace CavesOfOoo.Tests
         [Test]
         public void ShippedCatalogs_AllBiomesHaveStamps()
         {
-            foreach (var biome in new[] { BiomeType.Cave, BiomeType.Desert, BiomeType.Jungle, BiomeType.Ruins, BiomeType.Spread })
+            foreach (var biome in new[] { BiomeType.Cave, BiomeType.Desert, BiomeType.Jungle, BiomeType.Ruins, BiomeType.Spread, BiomeType.Beating })
                 Assert.Greater(StampCatalog.For(biome).Count, 0, biome.ToString());
         }
 
@@ -199,7 +199,7 @@ namespace CavesOfOoo.Tests
             // Every legend blueprint must exist; every chest table must
             // be in the shipped loot JSON. This is the gate that keeps
             // future stamp content honest.
-            foreach (var biome in new[] { BiomeType.Cave, BiomeType.Desert, BiomeType.Jungle, BiomeType.Ruins, BiomeType.Spread })
+            foreach (var biome in new[] { BiomeType.Cave, BiomeType.Desert, BiomeType.Jungle, BiomeType.Ruins, BiomeType.Spread, BiomeType.Beating })
             {
                 foreach (var stamp in StampCatalog.For(biome))
                 {
@@ -207,6 +207,7 @@ namespace CavesOfOoo.Tests
                     {
                         string marker = kvp.Value;
                         if (string.IsNullOrEmpty(marker)) continue;
+                        if (marker == "interior") continue;   // W2.4 pseudo-marker
                         if (marker.StartsWith("chest:"))
                         {
                             Assert.IsNotNull(LootTableRegistry.Get(marker.Substring(6)),
@@ -302,6 +303,110 @@ namespace CavesOfOoo.Tests
 
             Assert.Greater(FindByBlueprint(zone, expectedBlueprint).Count, 0,
                 $"{stampName} placed no {expectedBlueprint}");
+        }
+
+        // ── 4. W2.4 — the tent camp and the interior pseudo-marker ──
+
+        private static Zone OpenSand(string id = "Overworld.16.16.0")
+        {
+            var factory = new EntityFactory();
+            factory.LoadBlueprints(File.ReadAllText(Path.Combine(
+                Application.dataPath, "Resources/Content/Blueprints/Objects.json")));
+            var zone = new Zone(id);
+            for (int x = 1; x < Zone.Width - 1; x++)
+                for (int y = 1; y < Zone.Height - 1; y++)
+                {
+                    var sand = factory.CreateEntity("Sand");
+                    if (sand != null) zone.AddEntity(sand, x, y);
+                }
+            return zone;
+        }
+
+        private static StructureStamp BeatingStamp(string name)
+        {
+            foreach (var st in StampCatalog.For(BiomeType.Beating))
+                if (st.Name == name) return st;
+            return null;
+        }
+
+        [Test]
+        public void BeatingCatalog_NoLongerDelegatesToDesert()
+        {
+            Assert.AreNotSame(StampCatalog.For(BiomeType.Desert), StampCatalog.For(BiomeType.Beating));
+            Assert.IsNotNull(BeatingStamp("TentRightCamp"), "the camp is the biome's thesis");
+            // The shared stamps survive the extraction in BOTH catalogs.
+            Assert.IsNotNull(BeatingStamp("ConcordWaystation"));
+            bool desertStillHasIt = false;
+            foreach (var st in StampCatalog.For(BiomeType.Desert))
+                if (st.Name == "ConcordWaystation") desertStillHasIt = true;
+            Assert.IsTrue(desertStillHasIt, "extraction must not have cost the Desert its waystation");
+        }
+
+        [Test]
+        public void TentRightCamp_MarksItsTentInsidesInterior()
+        {
+            var stamp = BeatingStamp("TentRightCamp");
+            var forced = new StructureStamp
+            {
+                Name = stamp.Name, Chance = 100, MinTier = 1,
+                Rows = stamp.Rows, Legend = stamp.Legend,
+                ClearsVegetation = stamp.ClearsVegetation,
+            };
+            var zone = OpenSand();
+            var builder = new LandmarkBuilder(BiomeType.Beating, tier: 1,
+                new List<StructureStamp> { forced });
+            Assert.IsTrue(builder.BuildZone(zone, _factory, new Random(3)));
+
+            // Find the camp by its pole, then check the tents' insides.
+            Entity pole = null;
+            foreach (var e in zone.GetAllEntities())
+                if (e.BlueprintName == "GuestClothPole") pole = e;
+            Assert.IsNotNull(pole, "the camp placed no guest-cloth pole");
+
+            int interiorCells = 0;
+            for (int x = 0; x < Zone.Width; x++)
+                for (int y = 0; y < Zone.Height; y++)
+                    if (zone.GetCell(x, y).IsInterior) interiorCells++;
+            Assert.AreEqual(2, interiorCells,
+                "exactly the two tent insides are interior — the yard between tents is sky");
+        }
+
+        [Test]
+        public void TheTentInside_IsShadeFromTheGlare()
+        {
+            // The integration that makes the biome's thesis mechanical:
+            // W2.3's glare exempts interior cells, and W2.4's tents are
+            // the first wilderness structure that MAKES interior cells.
+            var stamp = BeatingStamp("TentRightCamp");
+            var forced = new StructureStamp
+            {
+                Name = stamp.Name, Chance = 100, MinTier = 1,
+                Rows = stamp.Rows, Legend = stamp.Legend,
+                ClearsVegetation = stamp.ClearsVegetation,
+            };
+            var zone = OpenSand("Overworld.16.16.0");
+            new LandmarkBuilder(BiomeType.Beating, tier: 1,
+                new List<StructureStamp> { forced }).BuildZone(zone, _factory, new Random(3));
+
+            (int x, int y) inside = (-1, -1);
+            for (int x = 0; x < Zone.Width && inside.x < 0; x++)
+                for (int y = 0; y < Zone.Height; y++)
+                    if (zone.GetCell(x, y).IsInterior) { inside = (x, y); break; }
+            Assert.GreaterOrEqual(inside.x, 0);
+
+            var traveller = new Entity { ID = "t", BlueprintName = "Player" };
+            traveller.Tags["Creature"] = "";
+            traveller.AddPart(new RenderPart { DisplayName = "you" });
+            traveller.Statistics["Strength"] = new Stat { Owner = traveller, Name = "Strength", BaseValue = 16 };
+            traveller.Statistics["Agility"] = new Stat { Owner = traveller, Name = "Agility", BaseValue = 16 };
+            zone.AddEntity(traveller, inside.x, inside.y);
+
+            BeatingGlareSystem.ResetForTests();
+            for (int i = 0; i < 30; i++)
+                BeatingGlareSystem.OnPlayerTurnEnd(traveller, zone, 350);   // Height band
+
+            Assert.IsFalse(traveller.HasEffect<ParchedEffect>(),
+                "under the cloth, the temperature of the world changes");
         }
 
         [Test]

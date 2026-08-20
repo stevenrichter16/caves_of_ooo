@@ -28201,6 +28201,118 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "TentWall",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "tent wall" },
+            { "Key": "RenderString", "Value": "#" },
+            { "Key": "ColorString", "Value": "&y" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [ { "Key": "Solid", "Value": "true" } ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            { "Key": "MaterialID", "Value": "Cloth" },
+            { "Key": "Combustibility", "Value": "0.5" },
+            { "Key": "MaterialTagsRaw", "Value": "Cloth,Flammable" }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            { "Key": "FlameTemperature", "Value": "260" },
+            { "Key": "HeatCapacity", "Value": "0.8" },
+            { "Key": "AmbientDecayRate", "Value": "0.05" }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            { "Key": "HP", "Value": "8" },
+            { "Key": "MaxHP", "Value": "8" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Woven goat-hair, dense enough to keep the noon out. The wall of a house that moves." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" }, { "Key": "Wall", "Value": "" } ]
+    },
+    {
+      "Name": "GuestClothPole",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "guest-cloth pole" },
+            { "Key": "RenderString", "Value": "|" },
+            { "Key": "ColorString", "Value": "&Y" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [ { "Key": "Solid", "Value": "false" } ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A dark cloth on a straight pole, hung where it can be seen from a long way off. What it offers holds for three days. Anyone following you knows what it means." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Furniture", "Value": "" } ]
+    },
+    {
+      "Name": "TentRightHost",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "tent-right host" },
+            { "Key": "RenderString", "Value": "@" },
+            { "Key": "ColorString", "Value": "&y" }
+          ]
+        },
+        {
+          "Name": "AISelfPreservation",
+          "Params": []
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Weathered, unhurried, watching the road the way a well-keeper watches the water level." }
+          ]
+        }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 20, "Min": 0, "Max": 20 },
+        { "Name": "Strength", "Value": 14 },
+        { "Name": "Agility", "Value": 12 },
+        { "Name": "Speed", "Value": 100 },
+        { "Name": "XPValue", "Value": 0 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "TentRight" },
+        { "Key": "Tier", "Value": "1" }
+      ]
     }
   ]
 }
