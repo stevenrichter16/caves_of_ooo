@@ -28067,6 +28067,136 @@
       ],
       "Stats": [],
       "Tags": []
+    },
+    {
+      "Name": "SunStriker",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "sun-striker" },
+            { "Key": "RenderString", "Value": "l" },
+            { "Key": "ColorString", "Value": "&Y" }
+          ]
+        },
+        {
+          "Name": "Armor",
+          "Params": [
+            { "Key": "AV", "Value": "0" },
+            { "Key": "DV", "Value": "6" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A big banded lizard basking flat on the crust, all display and speed. It holds its ground like it owns the noon." }
+          ]
+        }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 },
+        { "Name": "Strength", "Value": 13 },
+        { "Name": "Agility", "Value": 18 },
+        { "Name": "Speed", "Value": 120 },
+        { "Name": "XPValue", "Value": 25 }
+      ],
+      "Props": [
+        { "Key": "NaturalWeapon", "Value": "DefaultBite" }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Beasts" },
+        { "Key": "Tier", "Value": "1" }
+      ]
+    },
+    {
+      "Name": "SaltbriarSprig",
+      "Inherits": "FoodItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "saltbriar sprig" },
+            { "Key": "RenderString", "Value": "%" },
+            { "Key": "ColorString", "Value": "&w" },
+            { "Key": "RenderLayer", "Value": "5" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            { "Key": "Takeable", "Value": "true" },
+            { "Key": "Weight", "Value": "1" }
+          ]
+        },
+        {
+          "Name": "Food",
+          "Params": [
+            { "Key": "Healing", "Value": "1d2" },
+            { "Key": "Cooking", "Value": "Meal" }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [ { "Key": "Value", "Value": "3" } ]
+        }
+      ]
+    },
+    {
+      "Name": "Saltbriar",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "saltbriar" },
+            { "Key": "RenderString", "Value": ";" },
+            { "Key": "ColorString", "Value": "&w" },
+            { "Key": "RenderLayer", "Value": "4" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [ { "Key": "Solid", "Value": "false" } ]
+        },
+        {
+          "Name": "Harvestable",
+          "Params": [
+            { "Key": "YieldBlueprint", "Value": "SaltbriarSprig" },
+            { "Key": "YieldMin", "Value": "1" },
+            { "Key": "YieldMax", "Value": "2" }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            { "Key": "HP", "Value": "5" },
+            { "Key": "MaxHP", "Value": "5" }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            { "Key": "MaterialID", "Value": "Plant" },
+            { "Key": "Combustibility", "Value": "0.45" },
+            { "Key": "MaterialTagsRaw", "Value": "Organic,Plant" }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            { "Key": "FlameTemperature", "Value": "340" },
+            { "Key": "HeatCapacity", "Value": "1.0" },
+            { "Key": "AmbientDecayRate", "Value": "0.05" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A grey briar that grows where nothing should, its leaves rimed with the pan's own salt. Caravans strip it as they pass." }
+          ]
+        }
+      ]
     }
   ]
 }

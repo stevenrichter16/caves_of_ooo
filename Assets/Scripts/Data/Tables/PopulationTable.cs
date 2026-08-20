@@ -68,7 +68,7 @@ namespace CavesOfOoo.Data
                     case BiomeType.Cave: return CaveTier3();
                     case BiomeType.Stump: return CaveTier3();
                     case BiomeType.Desert: return DesertTier3();
-                    case BiomeType.Beating: return DesertTier3();
+                    case BiomeType.Beating: return BeatingTier3();
                     case BiomeType.Jungle: return JungleTier3();
                     case BiomeType.Grovelands: return JungleTier3();
                     case BiomeType.Sodden: return JungleTier3();
@@ -85,7 +85,7 @@ namespace CavesOfOoo.Data
                     case BiomeType.Cave: return CaveTier2();
                     case BiomeType.Stump: return CaveTier2();
                     case BiomeType.Desert: return DesertTier2();
-                    case BiomeType.Beating: return DesertTier2();
+                    case BiomeType.Beating: return BeatingTier2();
                     case BiomeType.Jungle: return JungleTier2();
                     case BiomeType.Grovelands: return JungleTier2();
                     case BiomeType.Sodden: return JungleTier2();
@@ -100,7 +100,7 @@ namespace CavesOfOoo.Data
                 case BiomeType.Cave: return CaveTier1();
                 case BiomeType.Stump: return CaveTier1();
                 case BiomeType.Desert: return DesertTier1();
-                case BiomeType.Beating: return DesertTier1();
+                case BiomeType.Beating: return BeatingTier1();
                 case BiomeType.Jungle: return JungleTier1();
                 case BiomeType.Grovelands: return JungleTier1();
                 case BiomeType.Sodden: return JungleTier1();
@@ -198,6 +198,75 @@ namespace CavesOfOoo.Data
         }
 
         // ── Tier 1 Tables ──────────────────────────────────────────────
+
+        // ── The Beating (W2.2, Docs/FELLING-W1-W2-PLAN.md §7.6) ──
+        //
+        // The static roster only. The bestiary's indicator species
+        // (Sari-Snake, Sky-Sari, and the Wardline that suppresses them)
+        // are DELIBERATELY absent: "only when Urqu is active" is their
+        // whole design, and shipping them as static spawns would falsify
+        // it. They land with state-reactive spawning (design doc §7.6,
+        // plan D3). What lives here now is what lives here always: the
+        // baskers, the scorpions, the briar, and the road's cost.
+
+        public static PopulationTable BeatingTier1()
+        {
+            return new PopulationTable
+            {
+                Name = "BeatingTier1",
+                Entries = new List<PopulationEntry>
+                {
+                    // The pan by day: baskers and what eats them.
+                    new PopulationEntry { BlueprintName = "SunStriker", Weight = 5, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "Scorpion", Weight = 3, MinCount = 0, MaxCount = 2 },
+                    // Forage — the wasteland feeds you, sparingly.
+                    new PopulationEntry { BlueprintName = "Saltbriar", Weight = 4, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "DryBrush", Weight = 3, MinCount = 1, MaxCount = 3 },
+                    // The road's furniture and its cost.
+                    new PopulationEntry { BlueprintName = "Signpost", Weight = 2, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Bones", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "WaterTonic", Weight = 1, MinCount = 0, MaxCount = 1 },
+                }
+            };
+        }
+
+        public static PopulationTable BeatingTier2()
+        {
+            return new PopulationTable
+            {
+                Name = "BeatingTier2",
+                Entries = new List<PopulationEntry>
+                {
+                    new PopulationEntry { BlueprintName = "SunStriker", Weight = 3, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Scorpion", Weight = 3, MinCount = 1, MaxCount = 2 },
+                    // The glass fauna arrives.
+                    new PopulationEntry { BlueprintName = "GlassScorpion", Weight = 3, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "BrittleHound", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Saltbriar", Weight = 3, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Bones", Weight = 2, MinCount = 0, MaxCount = 2 },
+                }
+            };
+        }
+
+        public static PopulationTable BeatingTier3()
+        {
+            return new PopulationTable
+            {
+                Name = "BeatingTier3",
+                Entries = new List<PopulationEntry>
+                {
+                    // Deep pan: what hunts here is patient.
+                    new PopulationEntry { BlueprintName = "DuneLurker", Weight = 3, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "BrittleHound", Weight = 3, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "GlassScorpion", Weight = 3, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "SunStriker", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    // Organised human trouble follows the caravans out.
+                    new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Saltbriar", Weight = 2, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Bones", Weight = 3, MinCount = 1, MaxCount = 3 },
+                }
+            };
+        }
 
         public static PopulationTable CaveTier1()
         {
@@ -586,7 +655,18 @@ namespace CavesOfOoo.Data
                 // legacy roster until their own phase authors one.
                 case BiomeType.Spread:     return LairGuards(BiomeType.Jungle);
                 case BiomeType.Sodden:     return LairGuards(BiomeType.Jungle);
-                case BiomeType.Beating:    return LairGuards(BiomeType.Desert);
+                case BiomeType.Beating:
+                    // W2.2 — the wasteland's own guards.
+                    return new PopulationTable
+                    {
+                        Name = "BeatingLairGuards",
+                        Entries = new List<PopulationEntry>
+                        {
+                            new PopulationEntry { BlueprintName = "BrittleHound", Weight = 3, MinCount = 1, MaxCount = 2 },
+                            new PopulationEntry { BlueprintName = "GlassScorpion", Weight = 3, MinCount = 1, MaxCount = 3 },
+                            new PopulationEntry { BlueprintName = "DuneLurker", Weight = 2, MinCount = 0, MaxCount = 1 },
+                        }
+                    };
                 case BiomeType.Grovelands: return LairGuards(BiomeType.Jungle);
                 case BiomeType.Overwrit:   return LairGuards(BiomeType.Ruins);
                 case BiomeType.Stump:      return LairGuards(BiomeType.Cave);
