@@ -28615,6 +28615,68 @@
       ],
       "Stats": [],
       "Tags": [ { "Key": "Solid", "Value": "" }, { "Key": "Wall", "Value": "" } ]
+    },
+    {
+      "Name": "BogTakenBody",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "bog-taken body" },
+            { "Key": "RenderString", "Value": "&" },
+            { "Key": "ColorString", "Value": "&w" },
+            { "Key": "RenderLayer", "Value": "1" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            { "Key": "Solid", "Value": "false" },
+            { "Key": "Weight", "Value": "80" },
+            { "Key": "Takeable", "Value": "false" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A body the peat kept. Tanned dark as the water that took it; the knot in its cloak-cord is still a knot. It was not buried. It fell, and the bog wrote it down." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "PreFellingBody",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "preserved body" },
+            { "Key": "RenderString", "Value": "&" },
+            { "Key": "ColorString", "Value": "&y" },
+            { "Key": "RenderLayer", "Value": "1" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            { "Key": "Solid", "Value": "false" },
+            { "Key": "Weight", "Value": "80" },
+            { "Key": "Takeable", "Value": "false" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Older than the peat that holds it, and whole to the fingernails. A tin tag on waxed cord, Palimpsest work: 'Recension XI. Body-reading yields: leaf-light through high rooms; a name spoken to a tree, and answered. Reading incomplete.' The attribution is the expedition's. The body says nothing." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
     }
   ]
 }

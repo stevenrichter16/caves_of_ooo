@@ -280,6 +280,14 @@ namespace CavesOfOoo.Core
             return pipeline;
         }
 
+        /// <summary>The Drowned Ledger's zone — "(17,5)" on the authored
+        /// map. NOTE the routing: the Ledger is an authored Place, and
+        /// every Place is installed as a Village POI (WorldGenerator.
+        /// PlacePOIs), so this zone reaches CreateVillagePipeline's
+        /// profile seam — NOT the Sodden biome case, which never runs
+        /// for it. The three pre-Felling preserved are added there.</summary>
+        public const string DrownedLedgerZoneID = "Overworld.17.5.0";
+
         /// <summary>The Sodden — the flood's country. Wetter and more
         /// choked than the Spread; W3 brings the mires and the
         /// Bog-Taken.</summary>
@@ -425,6 +433,17 @@ namespace CavesOfOoo.Core
             {
                 pipeline.AddBuilder(new LandmarkBuilder(biome, 1,
                     new List<StructureStamp> { StampCatalog.LastCounterPost() },
+                    priority: 3860, maxStructures: 1));
+            }
+            // W3.2 (Docs/FELLING-W3-PLAN.md): the Drowned Ledger — a
+            // Palimpsest expedition site. The three pre-Felling
+            // preserved lie here and nowhere else in the world
+            // (Lore/History/03_History.md:28). W3.5 grows the rest of
+            // the place's profile on this same branch.
+            else if (poi.Faction == "Palimpsest" && poi.Name == "the Drowned Ledger")
+            {
+                pipeline.AddBuilder(new LandmarkBuilder(biome, 1,
+                    new List<StructureStamp> { StampCatalog.DrownedLedgerBodies() },
                     priority: 3860, maxStructures: 1));
             }
             // STARTING TOWN (Docs/STARTING-TOWN.md): five guaranteed

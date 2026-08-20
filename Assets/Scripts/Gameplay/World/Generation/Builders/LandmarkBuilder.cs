@@ -789,6 +789,30 @@ namespace CavesOfOoo.Core
             },
         };
 
+        /// <summary>W3.2 — the Drowned Ledger's three pre-Felling
+        /// preserved (Lore/History/03_History.md:28: one of the world's
+        /// three thin sources on what came before; each reading yields
+        /// fragments). Exactly three, hand-placed to this one zone —
+        /// nowhere else in the Sodden ever grows one. No walls, no
+        /// marker: the peat is the ledger.</summary>
+        public static StructureStamp DrownedLedgerBodies() => new StructureStamp
+        {
+            Name = "DrownedLedgerBodies",
+            Chance = 100,
+            MinTier = 1,
+            ClearsVegetation = true,
+            Rows = new[]
+            {
+                "B...B",
+                ".....",
+                "..B..",
+            },
+            Legend = new Dictionary<char, string>
+            {
+                { 'B', "PreFellingBody" },
+            },
+        };
+
         /// <summary>An abandoned predecessor of the Last Counter —
         /// "has been pulled back twice in two generations" — broken
         /// walls and bones, scavenged long ago. Time-depth as level

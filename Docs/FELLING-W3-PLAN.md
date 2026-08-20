@@ -221,6 +221,54 @@ one authored Sodden zone each (13.0.0 / 16.0.0 / 14.0.0 / 17.0.0 /
 **Tests:** 6810 → 6823 (+13). All green headless, twice (before and
 after the OpenMire retune).
 
+### W3.2 — The Bog-Taken (SHIPPED)
+
+**FALSE PREMISE caught by the verification sweep:** this plan
+prescribed "hand-placed ONLY in the Drowned Ledger's zone (authored
+placement, W2.8 tenth-fire pattern)" — but the tenth-fire pattern
+(zone-id check in the BIOME case) can never fire for the Ledger:
+every authored Place is installed as a Village POI
+(WorldGenerator.PlacePOIs), and POI zones route to
+CreateVillagePipeline BEFORE the biome switch. The three bodies
+live in the W2.6 profile seam instead (poi.Faction=="Palimpsest" &&
+poi.Name=="the Drowned Ledger"), which is also where W3.5 grows the
+rest of the place. A first-draft Sodden-case hook was written and
+REVERTED when the sweep caught the routing.
+
+**Files:** Objects.json (BogTakenBody &w + PreFellingBody &y — '&'
+follows the shipped SaltCuredBody precedent, but NON-SOLID by plan:
+a solid body beside a trench bank could seal a one-wide passage the
+reachability repair can't see, since it removes only own walls),
+SoddenFormationBuilder (SeatBogTaken: 0-2 per cut zone, on open
+ground against a SURVIVING bank, after the repair; PeatCuts +
+BogFace only), LandmarkBuilder (DrownedLedgerBodies stamp — three
+'B', no walls, no marker: the peat is the ledger),
+OverworldZoneManager (DrownedLedgerZoneID const documenting the
+routing + the profile-seam branch), BogTakenTests.cs (NEW).
+
+**The text gates (R3):** BogTakenBody describes state only ("It was
+not buried. It fell, and the bog wrote it down"). PreFellingBody
+yields fragments inside a quoted Palimpsest tag ("Recension XI ...
+Reading incomplete") with the attribution explicit ("The attribution
+is the expedition's. The body says nothing") — non-speech stated
+without adjudicating consciousness; no "Naro", no "seventh"
+(negative-asserted by test). The "mummy" lint is GAME-WIDE and
+permanent: every blueprint's examine copy, whatever feature ships
+it.
+
+**Render coverage:** bodies are PhysicalObjects (layer 1), not
+Terrain-tagged, so TerrainRenderCoverageTests does not demand
+entries — noted here so the plan's "render-coverage entries" line
+reads as checked, not skipped.
+
+**Self-review note (§2.1 honesty):** tests and implementation were
+written in one pass this SM (single headless cycle per run); the
+content-existence tests are RED-by-construction absent the content,
+but the per-test RED step was compressed. Counter-checks: unworked
+formations surface 0 bodies; Sumphold and ambient Sodden zones grow
+0 PreFellingBody; the banned-word lint passes over the whole
+shipped corpus including SaltCuredBody.
+
 ## 6. Critical review of this plan (before implementation)
 
 **R1 — Sumphold-on-Spread is a feature, not a bug** — but the profile

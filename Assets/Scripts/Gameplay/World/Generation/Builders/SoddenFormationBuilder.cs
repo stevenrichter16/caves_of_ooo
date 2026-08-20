@@ -122,6 +122,7 @@ namespace CavesOfOoo.Core
                 }
             }
             EnsureAllReachable(zone, placed);
+            SeatBogTaken(zone, factory, rng, placed);
         }
 
         /// <summary>One-cell channels braided through tall reeds. Reeds
@@ -212,6 +213,50 @@ namespace CavesOfOoo.Core
                     BuilderSpawn.TryPlace(zone, factory, "MirePool", x, y + 2);
             }
             EnsureAllReachable(zone, placed);
+            SeatBogTaken(zone, factory, rng, placed);
+        }
+
+        /// <summary>W3.2 — the Bog-Taken surface where the peat is
+        /// worked: "a centuries-deep cemetery whose contents are
+        /// visible" (Lore/History/02_Geography.md:69). 0-2 per cut
+        /// zone, seated on open ground against a SURVIVING bank (the
+        /// reachability repair may have removed some). Runs after the
+        /// repair on purpose: a body must lie where the face still
+        /// stands, and a body is non-solid — you stop at it, it never
+        /// blocks. Ordinary drowned only; the three pre-Felling bodies
+        /// are authored to the Drowned Ledger by hand.</summary>
+        private static void SeatBogTaken(Zone zone, EntityFactory factory,
+            System.Random rng, List<Entity> banks)
+        {
+            int bodies = rng.Next(3);   // 0-2 — the bog gives sparingly
+            if (bodies == 0 || banks.Count == 0) return;
+
+            var candidates = new List<(int x, int y)>();
+            var seen = new HashSet<(int, int)>();
+            foreach (var bank in banks)
+            {
+                var cell = zone.GetEntityCell(bank);
+                if (cell == null) continue;   // breached by the repair
+                Consider(zone, cell.X + 1, cell.Y, candidates, seen);
+                Consider(zone, cell.X - 1, cell.Y, candidates, seen);
+                Consider(zone, cell.X, cell.Y + 1, candidates, seen);
+                Consider(zone, cell.X, cell.Y - 1, candidates, seen);
+            }
+            for (int b = 0; b < bodies && candidates.Count > 0; b++)
+            {
+                int i = rng.Next(candidates.Count);
+                BuilderSpawn.TryPlace(zone, factory, "BogTakenBody",
+                    candidates[i].x, candidates[i].y);
+                candidates.RemoveAt(i);
+            }
+        }
+
+        private static void Consider(Zone zone, int x, int y,
+            List<(int x, int y)> candidates, HashSet<(int, int)> seen)
+        {
+            if (!IsOpenGround(zone, x, y)) return;
+            if (!seen.Add((x, y))) return;
+            candidates.Add((x, y));
         }
 
         // ════════════════════════════════════════════════════════
