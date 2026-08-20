@@ -673,6 +673,16 @@ namespace CavesOfOoo.Core
             // B2 generalized the arg: "10" (the inn) or "8:hermit's
             // fire" — hermits reuse the whole flow at their own rate
             // with their own site label in the rest message.
+            // W2.5 — the host names you guest. The spoken half lives in
+            // the conversation node (the oath codex is the source text);
+            // this is the mechanical half. Re-claiming refreshes the
+            // three days (UnderTheClothEffect.OnStack).
+            Register("ClaimGuestRight", (speaker, listener, arg) =>
+            {
+                if (listener == null) return;
+                listener.ApplyEffect(new UnderTheClothEffect(), speaker, null);
+            });
+
             Register("RestAtInn", (speaker, listener, arg) =>
             {
                 if (listener == null) return;

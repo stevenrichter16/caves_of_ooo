@@ -40,6 +40,10 @@ namespace CavesOfOoo.Skills
         {
             if (target == null || baseDamage <= 0) return 0;
 
+            // W2.5 — a spell at a person is a swing like any other
+            // (see CombatSystem.PerformMeleeAttack's twin call).
+            UnderTheClothEffect.Break(attacker, target);
+
             // Skill modifier — Spellcraft_Empower returns +1 universally,
             // PyromancySkill returns +damage when Heat hits a Burning
             // target, etc. The dispatcher iterates owned skills and sums

@@ -1403,6 +1403,79 @@
           ]
         }
       ]
+    },
+    {
+      "ID": "TentRightHost_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "There is water. There is shade. Sit, and be named a guest. For three days what is mine is between us: the fire's side, the bread's half, the wall at your back while you sleep.",
+          "Choices": [
+            {
+              "Text": "I sit, and I am your guest.",
+              "Target": "Named",
+              "Actions": [
+                {
+                  "Key": "ClaimGuestRight",
+                  "Value": ""
+                }
+              ]
+            },
+            {
+              "Text": "No — and I say it aloud.",
+              "Target": "RefusedWell"
+            },
+            {
+              "Text": "What does the cloth mean?",
+              "Target": "TheCloth"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Named",
+          "Text": "Done. For three days I will not ask your road, nor your burden, nor your name if you keep it. If your enemy comes to my cloth he will find me between you. On the third day I will ask you three things, and you may answer, or go — but go spoken, guest.",
+          "Choices": [
+            {
+              "Text": "The cloth over us.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "RefusedWell",
+          "Text": "Refused well. A no said aloud owes nothing. Water before you go, then — the water is not part of the asking.",
+          "Choices": [
+            {
+              "Text": "Thank you.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "TheCloth",
+          "Text": "Three days, absolute. Whoever you are, whatever you did, whoever is behind you. They can wait at the edge of the camp and learn patience. Breaking it is the one thing we do not forgive — not the guest who breaks it, and not the host.",
+          "Choices": [
+            {
+              "Text": "Then name me guest.",
+              "Target": "Named",
+              "Actions": [
+                {
+                  "Key": "ClaimGuestRight",
+                  "Value": ""
+                }
+              ]
+            },
+            {
+              "Text": "Back to my other questions.",
+              "Target": "Start"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

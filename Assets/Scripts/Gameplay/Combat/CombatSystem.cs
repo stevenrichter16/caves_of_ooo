@@ -88,6 +88,14 @@ namespace CavesOfOoo.Core
             {
                 if (attacker == null || defender == null) return false;
 
+                // W2.5 — the oath breaks on the SWING, not the hit: a
+                // guest under the cloth attacking a person (Tent-Right or
+                // a fellow guest) loses the cloth and the game's largest
+                // rep hit. Beasts are daily life, not oathbreak — the
+                // Break helper filters. Before the veto gate so even a
+                // vetoed swing at your host is the betrayal it is.
+                UnderTheClothEffect.Break(attacker, defender);
+
                 // 1. Fire BeforeMeleeAttack on attacker
                 var beforeAttack = GameEvent.New("BeforeMeleeAttack");
                 beforeAttack.SetParameter("Attacker", (object)attacker);

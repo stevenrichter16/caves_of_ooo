@@ -174,6 +174,22 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static int GetFeeling(Entity source, Entity target)
         {
+            int feeling = GetFeelingCore(source, target);
+            // W2.5 — the oath (Docs/FELLING-W1-W2-PLAN.md §7.6): a guest
+            // under the cloth is not a valid target for PEOPLE. The check
+            // runs ONLY on would-be-hostile results so the effect scan
+            // stays off the friendly hot path, and it sits ABOVE personal
+            // hostility by construction — canon: "If your enemy comes to
+            // my cloth he will find me between you" (the pursuers wait).
+            // Oathbreak removes the effect, which removes the floor.
+            if (feeling <= HOSTILE_THRESHOLD
+                && UnderTheClothEffect.Protects(source, target))
+                return 0;
+            return feeling;
+        }
+
+        private static int GetFeelingCore(Entity source, Entity target)
+        {
             if (source == null || target == null) return 0;
             if (source == target) return 100; // self
 
