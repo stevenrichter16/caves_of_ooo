@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using CavesOfOoo.Data;
 using UnityEngine;
 
@@ -89,7 +90,7 @@ namespace CavesOfOoo.Core
                 case BiomeType.Sodden:
                     return CreateSoddenPipeline(tier);
                 case BiomeType.Beating:
-                    return CreateBeatingPipeline(tier);
+                    return CreateBeatingPipeline(tier, zoneID);
                 case BiomeType.Grovelands:
                     return CreateGrovelandsPipeline(tier);
                 case BiomeType.Overwrit:
@@ -286,7 +287,15 @@ namespace CavesOfOoo.Core
 
         /// <summary>The Beating — raw sun and salt. Open, exposed, and
         /// stony.</summary>
-        private ZoneGenerationPipeline CreateBeatingPipeline(int tier = 1)
+        /// <summary>The Last Counter has been pulled back twice; its
+        /// abandoned predecessors stand further out, past where the
+        /// guarantee now ends (Lore/Factions/04_SaccharineConcord.md:97).
+        /// Authored zone ids, not procedural — time-depth is placed by
+        /// hand.</summary>
+        public const string AbandonedCounterZoneA = "Overworld.19.18.0";
+        public const string AbandonedCounterZoneB = "Overworld.19.19.0";
+
+        private ZoneGenerationPipeline CreateBeatingPipeline(int tier = 1, string zoneID = null)
         {
             var pipeline = CreateSurfacePipeline(BiomeType.Beating, tier,
                 new DesertBuilder { WallThreshold = 0.88f, RockChance = 0.06f });
@@ -294,6 +303,13 @@ namespace CavesOfOoo.Core
             // machine reaches the wasteland — pans, ruins, dunes, the
             // caravan road, barrens, brine.
             pipeline.AddBuilder(new BeatingFormationBuilder());
+            // W2.6: the two ruins the Concord left behind.
+            if (zoneID == AbandonedCounterZoneA || zoneID == AbandonedCounterZoneB)
+            {
+                pipeline.AddBuilder(new LandmarkBuilder(BiomeType.Beating, tier,
+                    new List<StructureStamp> { StampCatalog.AbandonedCounter() },
+                    priority: 3790, maxStructures: 1));
+            }
             return pipeline;
         }
 
@@ -351,6 +367,30 @@ namespace CavesOfOoo.Core
             var pipeline = new ZoneGenerationPipeline();
             bool isStartingTown = zoneID == VillagePopulationBuilder.StartingVillageZoneId;
             pipeline.AddBuilder(new VillageBuilder(biome, poi, SettlementManager, largeTown: isStartingTown));
+
+            // W2.6 (Docs/FELLING-W1-W2-PLAN.md §7.6, decision D5): the
+            // first consumer of Place.Faction — until now all sixteen
+            // named places generated as one identical village. Minimal
+            // profile, not bespoke builders: Tent-Right places get the
+            // guaranteed camp (tents + well + the cloth + a host to
+            // speak the oath); the First Tent adds its monument; the
+            // Last Counter gets the Concord post with the notice-board.
+            // Priority 3860 mirrors the starting town's stamps — after
+            // the river (3850), before population (4000).
+            if (poi.Faction == "TentRight")
+            {
+                var profile = new List<StructureStamp> { StampCatalog.TentRightProfileCamp() };
+                if (poi.Name == "the First Tent")
+                    profile.Add(StampCatalog.FirstTentMonument());
+                pipeline.AddBuilder(new LandmarkBuilder(biome, 1, profile,
+                    priority: 3860, maxStructures: profile.Count));
+            }
+            else if (poi.Faction == "SaccharineConcord" && poi.Name == "the Last Counter")
+            {
+                pipeline.AddBuilder(new LandmarkBuilder(biome, 1,
+                    new List<StructureStamp> { StampCatalog.LastCounterPost() },
+                    priority: 3860, maxStructures: 1));
+            }
             // STARTING TOWN (Docs/STARTING-TOWN.md): five guaranteed
             // shop stamps at priority 3860 — AFTER the river (3850) so
             // water is on the map before footprint checks, before

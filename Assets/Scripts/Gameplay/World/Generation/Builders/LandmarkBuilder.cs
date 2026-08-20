@@ -639,8 +639,7 @@ namespace CavesOfOoo.Core
         /// sentence as architecture — its insides are marked interior,
         /// which is what exempts them from the Height glare.
         /// </summary>
-        private static readonly StructureStamp[] Beating =
-        {
+        private static readonly StructureStamp TentRightCampStamp =
             new StructureStamp
             {
                 Name = "TentRightCamp",
@@ -664,10 +663,111 @@ namespace CavesOfOoo.Core
                     { 'P', "GuestClothPole" },
                     { 'H', "spawn:TentRightHost" },
                 },
-            },
+            };
+
+        private static readonly StructureStamp[] Beating =
+        {
+            TentRightCampStamp,
             HermitHut("SandstoneWall", "DesertHermit"),
             ConcordWaystationStamp,
             SandstoneTombStamp,
+        };
+
+        // ── W2.6 place profiles (Docs/FELLING-W1-W2-PLAN.md §7.6) ────
+        // The first content that makes one named place differ from
+        // another. Guaranteed placements, so profiles pass Forced()
+        // copies rather than gambling on Chance.
+
+        /// <summary>A Chance-100 copy for guaranteed placement — the
+        /// original stays an ambient roll in its biome catalog.</summary>
+        public static StructureStamp Forced(StructureStamp s) => new StructureStamp
+        {
+            Name = s.Name,
+            Chance = 100,
+            MinTier = 1,
+            Rows = s.Rows,
+            Legend = s.Legend,
+            ClearsVegetation = true,
+        };
+
+        /// <summary>Wellmeet and kin: the guaranteed camp — tents,
+        /// well, the cloth on its pole, a host to speak the oath.</summary>
+        public static StructureStamp TentRightProfileCamp() => Forced(TentRightCampStamp);
+
+        /// <summary>The First Tent: "Not a temple — there is no god —
+        /// but a monument to a choice" (Lore/Factions/07_TentRight.md:118).
+        /// A ring of guest-cloth poles and a keeper. No god imagery, by
+        /// construction.</summary>
+        public static StructureStamp FirstTentMonument() => new StructureStamp
+        {
+            Name = "FirstTentMonument",
+            Chance = 100,
+            MinTier = 1,
+            ClearsVegetation = true,
+            Rows = new[]
+            {
+                "P...P",
+                ".....",
+                "..H..",
+                ".....",
+                "P...P",
+            },
+            Legend = new Dictionary<char, string>
+            {
+                { 'P', "GuestClothPole" },
+                { 'H', "spawn:TentRightHost" },
+            },
+        };
+
+        /// <summary>The Last Counter: the Concord's final outpost, with
+        /// the notice-board that has been rewritten twice
+        /// (Lore/Factions/04_SaccharineConcord.md:97).</summary>
+        public static StructureStamp LastCounterPost() => new StructureStamp
+        {
+            Name = "LastCounterPost",
+            Chance = 100,
+            MinTier = 1,
+            ClearsVegetation = true,
+            Rows = new[]
+            {
+                "##.##",
+                "#v.c#",
+                "#..f+",
+                "#####",
+                "..s..",
+            },
+            Legend = new Dictionary<char, string>
+            {
+                { '#', "SandstoneWall" },
+                { 'v', "spawn:SaccharineEnvoy" },
+                { 'c', "chest:CampGoodsT1" },
+                { 'f', "Campfire" },
+                { '+', "" },
+                { 's', "LastCounterSign" },
+            },
+        };
+
+        /// <summary>An abandoned predecessor of the Last Counter —
+        /// "has been pulled back twice in two generations" — broken
+        /// walls and bones, scavenged long ago. Time-depth as level
+        /// dressing; nothing here explains itself.</summary>
+        public static StructureStamp AbandonedCounter() => new StructureStamp
+        {
+            Name = "AbandonedCounter",
+            Chance = 100,
+            MinTier = 1,
+            Rows = new[]
+            {
+                "##.#.",
+                "#..b.",
+                ".....",
+                "#.##.",
+            },
+            Legend = new Dictionary<char, string>
+            {
+                { '#', "SandstoneWall" },
+                { 'b', "Bones" },
+            },
         };
 
         private static readonly StructureStamp[] Ruins =
