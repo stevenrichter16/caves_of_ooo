@@ -55,7 +55,7 @@ namespace CavesOfOoo.Presentation.Rendering
                 case BiomeType.Jungle: return Jungle;
                 case BiomeType.Ruins:  return Ruins;
                 case BiomeType.Spread: return Jungle;
-                case BiomeType.Sodden: return Jungle;
+                case BiomeType.Sodden: return Sodden;
                 case BiomeType.Beating: return Desert;
                 case BiomeType.Grovelands: return Jungle;
                 case BiomeType.Overwrit: return Ruins;
@@ -99,6 +99,16 @@ namespace CavesOfOoo.Presentation.Rendering
             contrast: 5f,
             saturation: 12f,
             vignetteIntensity: 0f /* round 6: vignette removed (user call) */);
+
+        /// <summary>W3.1 — tea water and olive sedge: darker and
+        /// browner than the Jungle it used to borrow (design §6 tint
+        /// 0.82/0.86/0.80).</summary>
+        public static readonly BiomePalette Sodden = new BiomePalette(
+            BiomeType.Sodden,
+            colorFilter: new Color(0.82f, 0.86f, 0.80f, 1f),
+            contrast: 6f,
+            saturation: 4f,
+            vignetteIntensity: 0f);
 
         public static readonly BiomePalette Ruins = new BiomePalette(
             BiomeType.Ruins,

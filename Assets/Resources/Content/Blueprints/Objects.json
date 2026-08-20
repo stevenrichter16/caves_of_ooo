@@ -28431,6 +28431,190 @@
       ],
       "Stats": [],
       "Tags": []
+    },
+    {
+      "Name": "MirePool",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "mire" },
+            { "Key": "RenderString", "Value": "~" },
+            { "Key": "ColorString", "Value": "&g" },
+            { "Key": "RenderLayer", "Value": "1" }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            { "Key": "MaterialID", "Value": "Peat" },
+            { "Key": "Combustibility", "Value": "0.2" },
+            { "Key": "Conductivity", "Value": "45" },
+            { "Key": "MaterialTagsRaw", "Value": "Liquid,Water,Organic" }
+          ]
+        },
+        {
+          "Name": "LiquidPool",
+          "Params": [
+            { "Key": "LiquidId", "Value": "bog-mire" },
+            { "Key": "Volume", "Value": "60" }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            { "Key": "Temperature", "Value": "10" },
+            { "Key": "FlameTemperature", "Value": "400" }
+          ]
+        },
+        {
+          "Name": "TileStateSource",
+          "Params": [
+            { "Key": "Coating", "Value": "water" },
+            { "Key": "CoatingTurns", "Value": "4" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Tea-dark and still. It holds what it takes; the bog country is patient that way." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "Duckboard",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "duckboard" },
+            { "Key": "RenderString", "Value": "=" },
+            { "Key": "ColorString", "Value": "&y" },
+            { "Key": "RenderLayer", "Value": "1" }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            { "Key": "MaterialID", "Value": "Wood" },
+            { "Key": "Combustibility", "Value": "0.6" },
+            { "Key": "MaterialTagsRaw", "Value": "Wood,Flammable" }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            { "Key": "FlameTemperature", "Value": "300" },
+            { "Key": "HeatCapacity", "Value": "1.0" },
+            { "Key": "AmbientDecayRate", "Value": "0.05" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Planks laid on posts over the soft ground, worn smooth down the middle. Some of them answer your weight." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "DeadTree",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "dead tree" },
+            { "Key": "RenderString", "Value": "T" },
+            { "Key": "ColorString", "Value": "&w" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [ { "Key": "Solid", "Value": "true" } ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            { "Key": "MaterialID", "Value": "Wood" },
+            { "Key": "Combustibility", "Value": "0.4" },
+            { "Key": "MaterialTagsRaw", "Value": "Wood" }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            { "Key": "HP", "Value": "12" },
+            { "Key": "MaxHP", "Value": "12" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Grey wood standing in the water it drowned in. It kept its shape better than its neighbors." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" } ]
+    },
+    {
+      "Name": "PeatBank",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "peat bank" },
+            { "Key": "RenderString", "Value": "#" },
+            { "Key": "ColorString", "Value": "&g" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [ { "Key": "Solid", "Value": "true" } ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            { "Key": "MaterialID", "Value": "Peat" },
+            { "Key": "Combustibility", "Value": "0.5" },
+            { "Key": "MaterialTagsRaw", "Value": "Organic,Fuel" }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            { "Key": "FlameTemperature", "Value": "320" },
+            { "Key": "HeatCapacity", "Value": "1.2" },
+            { "Key": "AmbientDecayRate", "Value": "0.05" }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            { "Key": "HP", "Value": "10" },
+            { "Key": "MaxHP", "Value": "10" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Cut peat, the tool marks still clean. The bank face is layered like a book nobody meant to write." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" }, { "Key": "Wall", "Value": "" } ]
     }
   ]
 }

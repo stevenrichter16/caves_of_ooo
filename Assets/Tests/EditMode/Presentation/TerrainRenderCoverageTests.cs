@@ -70,6 +70,7 @@ namespace CavesOfOoo.Tests
             // become clean stone. They need their own 16×16 tiles.
             "CropRow", "CharmFlowers", "FlowerField", "Reeds",
             "SaltCrust", "DuneCrest", "Bones", "TentWall", "UntendedFire",
+            "MirePool", "Duckboard", "DeadTree", "PeatBank",
             "CopperPipe", "PeatBog", "TarSeep", "OilSeep", "OilSlick",
             "BrinePool", "AcidPool", "AcidPond", "IceSheet",
             "ConvalescencePool", "MemoryBathPool", "MirrorMucilagePool",

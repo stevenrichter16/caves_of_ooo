@@ -284,8 +284,14 @@ namespace CavesOfOoo.Core
         /// choked than the Spread; W3 brings the mires and the
         /// Bog-Taken.</summary>
         private ZoneGenerationPipeline CreateSoddenPipeline(int tier = 1)
-            => CreateSurfacePipeline(BiomeType.Sodden, tier,
+        {
+            var pipeline = CreateSurfacePipeline(BiomeType.Sodden, tier,
                 new JungleBuilder { SeedChance = 52, TreeChance = 0.14f });
+            // W3.1 (Docs/FELLING-W3-PLAN.md): the anti-sameness machine
+            // reaches the bog — mires, cuts, reeds, the causeway.
+            pipeline.AddBuilder(new SoddenFormationBuilder());
+            return pipeline;
+        }
 
         /// <summary>The Beating — raw sun and salt. Open, exposed, and
         /// stony.</summary>

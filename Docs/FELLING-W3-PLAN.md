@@ -172,7 +172,54 @@ emits its reason.
 
 ## 5. Implementation log
 
-(filled per SM)
+### W3.1 — Six formations + the look pass (SHIPPED)
+
+**Files:** Formation.cs (enum appends after BrineLens + SoddenPool
+8-entry weighted + PoolFor case), SoddenFormationBuilder.cs (NEW —
+six routines + shared EnsureAllReachable/FloodFromWest full-
+reachability repair, remove-own-only), OverworldZoneManager.cs
+(CreateSoddenPipeline appends the builder), Objects.json (MirePool /
+Duckboard / DeadTree / PeatBank appended surgically),
+ContainerPlacementService.cs (SoddenPool: WovenBasket 4, HollowLog 3,
+Crate 2, Sack 1), BiomePalette.cs (Sodden case — tea-water filter),
+SoddenFormationTests.cs (NEW), SpreadFormationTests re-baselined
+(poolless exemplar Sodden→Grovelands), TerrainRenderCoverageTests
+(+4 GlyphOnlyByDesign entries).
+
+**Scope divergences from this plan:** SoddenPool container weights
+shipped as HollowLog 3 / Sack 1 (plan said 2/2 — a hollow log is the
+more Sodden of the two); DrownedCopse ships DeadTree 7% + permanent
+water coating 23% (plan's "scatter over water coating" made
+concrete). PeatCuts self-repair uses the W2 lesson directly: banks
+are tracked and only own walls are removed on breach.
+
+**R2 verified at the look pass:** dense permanent mire coatings
+render fine (same projection as rivers); the ground line reads
+bog-mire in a mire, as designed.
+
+**Look pass (the gate) — run over all six via AsciiDumpTool,
+one authored Sodden zone each (13.0.0 / 16.0.0 / 14.0.0 / 17.0.0 /
+17.1.0 / 15.0.0, + 18.2.0 second Causeway):**
+- PeatCuts, ReedMaze, Causeway, BogFace: signatures unmistakable
+  first look. The causeway wobbles across 2-3 rows with mire lapping;
+  a 2-cell sunk-board gap reads as age, and MirePool is walkable so
+  it strands no one.
+- 🟡 **OpenMire failed the first look** — 5-8 small blobs survived
+  tree/rock rejection as ~2% of the zone: a forest with puddles, not
+  a bog, in the double-weighted commonest formation. Fix: 9-12 blobs,
+  radius 2-5, plus a 3% lone-pool scatter ("the flood never fully
+  drained"). Second dump reads as bog with tussock paths. Same
+  finding-class as W2.1's DuneBelt.
+- ⚪ Honesty bound: DrownedCopse's signature is invisible in a
+  monochrome dump (DeadTree is 'T' like living trees; TileState
+  coatings aren't dumped). In-game color (&w dead vs green living +
+  water sheen) carries it; the signature test pins the content.
+- False alarm walked down: stray '=' in non-Causeway zones is
+  HollowLog containers / CopperPipe ruin stamps, not Duckboard bleed
+  (the cross-signature counter test also pins this).
+
+**Tests:** 6810 → 6823 (+13). All green headless, twice (before and
+after the OpenMire retune).
 
 ## 6. Critical review of this plan (before implementation)
 

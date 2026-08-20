@@ -81,6 +81,16 @@ namespace CavesOfOoo.Core
             new ContainerKind("Sack", "SackT", 3),
             new ContainerKind("StrongBox", "StrongBoxT", 1),
         };
+        /// <summary>W3.1 — bog-country containers: baskets and hollow
+        /// logs fit (reeds and wet wood), plus the boat-builder's crates.
+        /// Reuses existing generic tables; zero new loot content.</summary>
+        private static readonly ContainerKind[] SoddenPool =
+        {
+            new ContainerKind("WovenBasket", "BasketT", 4),
+            new ContainerKind("HollowLog", "HollowLogT", 3),
+            new ContainerKind("Crate", "CrateT", 2),
+            new ContainerKind("Sack", "SackT", 1),
+        };
         private static readonly ContainerKind[] RuinsPool =
         {
             new ContainerKind("StrongBox", "StrongBoxT", 3),
@@ -251,7 +261,7 @@ namespace CavesOfOoo.Core
                 case BiomeType.Jungle: return JunglePool;
                 case BiomeType.Ruins:  return RuinsPool;
                 case BiomeType.Spread: return SpreadPool;
-                case BiomeType.Sodden: return JunglePool;
+                case BiomeType.Sodden: return SoddenPool;
                 case BiomeType.Beating: return DesertPool;
                 case BiomeType.Grovelands: return JunglePool;
                 case BiomeType.Overwrit: return RuinsPool;

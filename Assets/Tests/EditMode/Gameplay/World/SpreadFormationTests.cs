@@ -123,11 +123,11 @@ namespace CavesOfOoo.Tests
         [Test]
         public void ABiomeWithoutAPoolGetsNoFormation()
         {
-            // Biomes without pools (W3+) must fall back to their plain
+            // Biomes without pools (W4+) must fall back to their plain
             // recipe rather than borrowing another biome's. Re-baselined
-            // in W2.1: the Beating grew its own pool, so the poolless
-            // examples are now the Sodden and Cave.
-            Assert.AreEqual(Formation.None, FormationSelector.For(BiomeType.Sodden, "Overworld.1.1.0"));
+            // in W3.1: the Sodden grew its own pool, so the poolless
+            // examples are now Grovelands and Cave.
+            Assert.AreEqual(Formation.None, FormationSelector.For(BiomeType.Grovelands, "Overworld.1.1.0"));
             Assert.AreEqual(Formation.None, FormationSelector.For(BiomeType.Cave, "Overworld.1.1.0"));
         }
 

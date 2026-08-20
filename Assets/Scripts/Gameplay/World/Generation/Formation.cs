@@ -53,6 +53,26 @@ namespace CavesOfOoo.Core
         /// <summary>Thin crust over deep brine — standing water in the
         /// driest place in the world.</summary>
         BrineLens,
+
+        // ── The Sodden (W3, Docs/FELLING-W3-PLAN.md §3) ──────────
+        /// <summary>Archipelago — tussock paths over deep mire.
+        /// Route-picking, cell by cell.</summary>
+        OpenMire,
+        /// <summary>Comb — harvested trenches, water-filled, worked
+        /// banks. The Bog-Taken show in the cut faces.</summary>
+        PeatCuts,
+        /// <summary>Braid — one-cell channels through tall reeds.
+        /// Ambush country.</summary>
+        ReedMaze,
+        /// <summary>Dead trees standing in shallow water. Open but
+        /// obstructed.</summary>
+        DrownedCopse,
+        /// <summary>ONE duckboard line across everything — the safe
+        /// line, and everyone knows it, including what hunts.</summary>
+        Causeway,
+        /// <summary>Edge — a tall cut showing strata. Readable
+        /// stratigraphy; bodies at every depth.</summary>
+        BogFace,
     }
 
     /// <summary>
@@ -104,13 +124,29 @@ namespace CavesOfOoo.Core
             Formation.BrineLens,
         };
 
+        /// <summary>The Sodden: mostly mire and reeds (the bog IS the
+        /// place), the causeway and the bog-face rarer and more
+        /// memorable.</summary>
+        private static readonly Formation[] SoddenPool =
+        {
+            Formation.OpenMire,
+            Formation.OpenMire,
+            Formation.ReedMaze,
+            Formation.ReedMaze,
+            Formation.PeatCuts,
+            Formation.DrownedCopse,
+            Formation.Causeway,
+            Formation.BogFace,
+        };
+
         private static Formation[] PoolFor(BiomeType biome)
         {
             switch (biome)
             {
                 case BiomeType.Spread: return SpreadPool;
                 case BiomeType.Beating: return BeatingPool;
-                default: return null;   // W3+ fill these in
+                case BiomeType.Sodden: return SoddenPool;
+                default: return null;   // W4+ fill these in
             }
         }
 
