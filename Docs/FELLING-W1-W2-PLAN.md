@@ -613,7 +613,7 @@ flag divergences rather than pausing.
 
 ---
 
-## 7. W2 — The Beating & Tent-Right (scoped, not yet detailed)
+## 7. W2 — The Beating & Tent-Right (detailed, ready to implement)
 
 Per `Docs/FELLING-IMPLEMENTATION-PLAN.md`'s own convention ("W1-W8
 milestone map (detailed at phase start)"), W2 gets a full
@@ -684,24 +684,324 @@ abandoned predecessors" need new unnamed ruin markers, likely small
   phrases... their courtesy is jurisprudence"). W2 dialogue has a
   real card to write against, unlike W1's Sill gap.
 
-### 7.3 Known gaps the detailed pass must resolve
+### 7.3 W2 verification sweep — corrections + new facts (all re-read 2026-08-19)
 
-- Whether the oath ships as a real AI-honored mechanic (a genuine
-  `FactionManager`/`BrainPart` extension — "hostile AI holds at the
-  boundary" per design doc §7.4) or a narrower first cut (a status +
-  a dialogue-gated pacification verb, deferring full AI honor-gating).
-  This is the single highest-uncertainty design call in W2 and
-  deserves its own critical-review pass, not a decision buried in
-  this scoping section.
-- `Parched`'s exact numbers and whether Height-band glare needs a new
-  `WorldClock` consumer pattern that W1's FlowerField dusk-glow (cut
-  in SM3, §2.2) could share — worth resolving once, not twice.
-- Whether Wellmeet/First Tent get bespoke builders or a
-  richer-but-still-generic "place profile" layer that the other 14
-  places could also eventually use (avoids a one-off special case
-  that the *next* differentiated place has to reinvent).
+| Claim / question | Finding | Cite |
+|---|---|---|
+| "Beating routes to DesertTier3 at every tier" (earlier explorer summary) | **WRONG — corrected.** Aliasing is per-tier: T1→DesertTier1, T2→DesertTier2, T3→DesertTier3; LairGuards→Desert. GlassScorpion/BrittleHound/DuneLurker live only in DesertTier3. | `PopulationTable.cs:71,88,103,589` |
+| Formation substrate extension point | `FormationSelector.PoolFor` returns null for every non-Spread biome ("W2+ fill these in"); enum is append-only; selection hashes zone id, so appending Beating members cannot re-roll the Spread. | `Formation.cs:73-80,17` |
+| Drinking mechanic for Parched's cure | **Only `TonicPart` has a Drink action.** No drink-from-well/tile exists. `Well` blueprint is inert (Render+Physics only). | `TonicPart.cs:42`; blueprint scan |
+| Apply-effect from dialogue | **No such conversation action.** `CureEffect` exists; `RestAtInn` is the precedent for a dedicated verb-action. The oath claim will be a dedicated action, not a generic apply-effect. | `ConversationActions.cs:710,676` |
+| Tent shade via `Cell.IsInterior` | **Stamps never mark IsInterior** (zero hits in LandmarkBuilder). Only VillageBuilder floors and underground zones set it. Tents need a new stamp capability. | grep LandmarkBuilder.cs |
+| The Great Salt Plain "≡" cells | **Not encoded in the map** — rows 16-18 cols 12-14 are plain `B`; the design doc's `≡` was notation. | `WorldMapAuthoring.cs` BiomeRows |
+| `MineralTradeService.TryTrade` callers | **Zero production callers** (docstring only + one dev scenario). W2.7 is its first real wiring. | grep |
+| Effect duration ticking | `Effect.Duration` decrements at `Effect.cs:180` (owner's turn tick). 3 days = 3 × `WorldClock.DayLengthTicks` (1200) = **3600 turns**. | `Effect.cs:180`; `WorldClock.cs:47` |
+| Head-cover query | `Body.GetPartByType("Head")` → `BodyPart.Equipped`. No helper exists; W2.3 writes `HasHeadCover(entity)`. | `Body.cs:96`; `BodyPart.cs:213` |
+| Canon fauna blueprints | SunStriker / Wardline / SariSnake / SkySari / Saltbriar: **none exist.** GlassScorpion / BrittleHound / DuneLurker / Scorpion ship. | blueprint scan |
+| `FormationApplied` diag | Hardcodes `biome = nameof(BiomeType.Spread)` — the Beating builder must pass its own biome name (tiny generalization, W2.1). | `SpreadFormationBuilder.cs:53-58` |
 
----
+### 7.4 Resolved design decisions (were §7.3's open questions)
+
+**D1 — The oath ships as a real mechanic, first cut.** Not the narrow
+"status + dialogue verb only" fallback: the hostility veto is the
+faction's entire identity ("the delta between outside and inside IS the
+faction") and the seam exists — `FactionManager.GetFeeling`'s override
+precedence chain (personal hostility → party → reputation → table).
+V1 = `UnderTheClothEffect` (Duration 3600) + a veto clause in
+`GetFeeling` + claim/extend via dedicated conversation actions +
+oathbreak (guest attacks anyone while under the cloth → effect removed,
+largest single rep loss in the game, canon `07_TentRight.md:152`).
+**Deferred, each a documented divergence:** pursuit-waits-at-the-boundary
+geometry (needs zone-boundary AI that doesn't exist); Catcher-specific
+vetoes (no Catcher NPCs until W5); Urqu-bleed suppression under cloth
+(no bleed writer until W7). None of these deferrals is silent scope-loss:
+the design doc's §7.4 scene ("your pursuers camped at the boundary,
+waiting politely") moves to the W5+ backlog explicitly.
+
+**D2 — Glare is player-only in v1.** The design doc says "creatures
+without head-slot cover take heat," but Tent-Right NPCs live outdoors in
+the Beating — a literal reading permanently Parches every native. The
+honest v1: the glare writer targets the player only; natives are adapted
+(that's why they live there). Documented divergence; revisit if NPC
+exposure ever matters mechanically.
+
+**D3 — Sari-Snake / Sky-Sari stay out of W2.** They are the bestiary's
+indicator species — "only when Urqu is active" IS their design. Shipping
+them as static spawns would falsify that design, which is worse than
+their absence. They land with state-reactive spawning (§7.6 of the
+design doc, W7-adjacent). Wardline (suppresses Sari-Snake spawns) is
+meaningless without them and waits too. W2's bestiary is the static
+roster: SunStriker (new), GlassScorpion, BrittleHound, DuneLurker,
+Scorpion, Saltbriar (new forage), plus human trouble at T3.
+
+**D4 — The Great Salt Plain is not a W2 place.** Salt-pan formations
+carry `PaleSaltVein` outcrops across the Beating (supply everywhere the
+pans are), and Wellmeet's salt-master is the demand. The *named* Plain
+as a differentiated place joins a later place-pass; nothing in the salt
+loop depends on it.
+
+**D5 — Places differentiate via a minimal faction profile, not bespoke
+builders.** `CreateVillagePipeline` starts reading `Place.Faction`
+(today it reads nothing but Name/Tier): TentRight → tent stamps +
+Tent-Right roster (clan-elder, well-keeper, salt-master hosts);
+SaccharineConcord at the Last Counter → Caravanserai profile + Factor +
+the disclaimer dialogue. This is deliberately the smallest seam that
+makes Wellmeet ≠ Sill — the richer per-place system stays future work.
+
+### 7.5 Content-readiness
+
+| Sub-feature | Readiness | Why |
+|---|---|---|
+| Beating formations | 🟢 | Formation substrate proven by W1.1; DesertBuilder base stays; six self-contained formation routines |
+| Beating population tables | 🟢 | pattern proven by W1.2; two small new blueprints (SunStriker, Saltbriar) |
+| Parched + glare | 🟡 | new effect (pattern: HobbledEffect) + WorldClock's FIRST consumer + new Well drink action — three small firsts in one SM |
+| Tent stamps + interior marking | 🟡 | needs the new `MarksInterior` stamp capability (small, but touches LandmarkBuilder.Apply) |
+| The oath | 🟡 | GetFeeling veto is on the AI hot path (perf care); oathbreak hook needs a verify-first read of the attack event |
+| Place profiles | 🟡 | first time `Place.Faction` is consumed; touches the village pipeline |
+| Salt economy | 🟢 | all pieces exist unwired (veins, WantsMineralPart, MineralTradeService, rep) |
+| Tenth fire / Last Counter dressing | 🟢 | trivial once profiles + formations exist |
+
+### 7.6 Sub-milestones (smallest blast radius first)
+
+#### W2.1 — Six Beating formations + the look pass
+
+`Formation` enum appends `SaltPan, RuinField, DuneBelt, CaravanRoad,
+WindBarrens, BrineLens` (append-only, after RiverMeadow). New
+`BeatingFormationBuilder` (priority 2500, mirror of Spread's), pool
+weighted pans/barrens common, brine lens rare. Formations are
+self-contained routines placing existing blueprints — `PaleSaltVein`
+(2-4 per salt pan: the supply half of W2.7), `SandstoneWall` segments
+with gaps (ruin field: the exposed street grid, waist-high), `RoadStone`
+lane + `Signpost` waymarkers + bone props (caravan road), `Sand`/`Rock`
+banding (dune belt), `DryBrush`+`Rock` scatter (wind barrens),
+`BrinePool` patches (brine lens). `FormationApplied` diag generalized to
+carry the builder's own biome. **Gate: the W1.1b ASCII-dump look pass
+runs BEFORE the commit** — three of four Spread formations were wrong in
+ways only a picture showed; that lesson is now a step, not a memory.
+Tests mirror `SpreadFormationTests`: stable selection, every-formation-
+reachable, signature-per-formation + counter-check, crossability
+flood-fill on ruin field (walls must never seal), veins-in-pans.
+
+#### W2.2 — The Beating's own bestiary
+
+`BeatingTier1/2/3` in `PopulationTable` + the three switch arms
+(replacing the Desert aliasing), + `LairGuards(Beating)`. New
+blueprints: `SunStriker` (bestiary-canon: fast territorial melee, no
+venom, village-edge basker) and `Saltbriar` (forage bush, Harvestable →
+SaltbriarSprig ingredient — the ingredient name already exists in
+`Docs/Design/WORLD-INGREDIENTS.md`). Roster per tier: T1 sun-strikers/
+scorpions/saltbriar + sparse human trouble; T2 GlassScorpion +
+BrittleHound arrive; T3 DuneLurker + organized trouble. Tests mirror
+`SpreadPopulationTests`: settled-vs-hostile weighting invariants,
+`EveryBlueprintTheBeatingNamesActuallyExists`, fallback counter-check.
+D3's deferral note goes in the table's docstring so the missing
+indicator species read as deliberate.
+
+#### W2.3 — Parched + Height-band glare + drinking
+
+`ParchedEffect`: stacking (OnStack increments a `Stacks` field, max 3),
+−1 Str/Agi per stack (StatShift pattern from HobbledEffect), no
+duration (persists until cured — Duration 0 sentinel, verify the
+no-duration idiom against HearthAura/Rooted at implementation).
+Cure vectors: (a) standing on a water-coated tile clears all stacks
+(checked in the effect's own turn tick — one TileState read),
+(b) drinking at a Well — new `WellPart` adding a "Draw water" action
+(SanctuaryPart's action idiom) that clears Parched + messages,
+(c) any TonicPart drink clears one stack (one-line hook in ApplyTonic).
+The glare writer: `BeatingGlareSystem.OnPlayerTurnEnd` (called beside
+`WorldClock.NotifyPlayerTurnEnd`, InputHandler.cs:925): if
+`WorldClock.GetBand == Height` && zone biome == Beating && player cell
+`!IsInterior` && `!HasHeadCover(player)` (new helper:
+`Body.GetPartByType("Head")?.Equipped != null`) → accumulate an
+exposure counter; every 10th consecutive exposed turn applies/stacks
+Parched. Counter resets on shade/night/cover. Diag: `effect` category
+carries the apply via the normal pipeline; add `glare/Exposed` tick
+record gated on channel. Tests: band gating (Dawn no, Height yes),
+interior exemption, head-cover exemption (counter-check: bare head
+stacks), stack cap, each cure vector + its counter-check, WorldClock's
+first consumer pinned against band boundaries (tick 299/300).
+
+#### W2.4 — Tent stamps + interior shade + the guest-cloth pole
+
+`StructureStamp` gains `MarksInterior` (bool): `Apply()` sets
+`Cell.IsInterior = true` on floor cells enclosed by the stamp footprint
+(the tent's inside — which is what makes W2.3's shade exemption
+*architecture*, per the design doc). New blueprints: `TentWall`
+(cloth wall, Solid, flammable-low), `GuestClothPole` (the sanctuary
+marker: Render `|` + Examinable text passing the Tent-Right voice card
+— "the ones following you know what the cloth means"). New
+`TentRightCamp` stamp (Beating catalog, replacing the Desert
+delegation for the camp slot): tents (MarksInterior) + `Well` +
+`GuestClothPole` + Tent-Right host NPC (new `TentRightHost` blueprint,
+Faction TentRight, Conversation from W2.5). Beating gets its own
+`StampCatalog` array (Desert delegation ends): TentRightCamp,
+ConcordWaystation (reused), SandstoneTomb (reused), the tenth-fire-free
+ambient set. Tests: stamp placement smoke, interior cells marked +
+counter-check (outside the tent stays exterior → glare applies outside,
+not inside — the biome's whole thesis in one test), catalog content
+gate extended to Beating.
+
+#### W2.5 — The oath, first cut
+
+`UnderTheClothEffect` (Duration = `3 * WorldClock.DayLengthTicks`,
+display "under the cloth", TYPE_GENERAL positive). Claim: dedicated
+conversation action `ClaimGuestRight` on the TentRightHost conversation
+("There is water. There is shade. Sit." — the codex text
+`Lore/Codex/04_TentRightOath.md` is the spoken source; host lines
+written from the Tent-Right voice card, which is strong). Veto: in
+`FactionManager.GetFeeling`, after the personal-hostility check and
+before the reputation read — if the candidate target `HasEffect
+<UnderTheClothEffect>()` and the asker's faction is not Beasts/Snapjaws
+(the oath binds people, not animals — canon: the covenant is between
+people), return non-hostile floor (0). Cost: one short effect-list scan
+only on paths that would otherwise go hostile — measured acceptable
+(turn-based AI scans, ~30 NPCs). Oathbreak: hook the player-attack
+seam — verify-first item: read `CombatSystem.PerformMeleeAttack` +
+spell damage attribution to find the one choke point where
+`attacker == player && player.HasEffect<UnderTheClothEffect>()` can
+trigger `OathbreakService.Break(player)`: remove effect,
+`PlayerReputation.Modify(TentRight, -100)` (largest single loss in the
+game, tuned vs existing rep deltas at implementation), message in the
+Tent-Right register, diag `oath/Broken`. Diag: `oath/Claimed`,
+`oath/Expired` (effect OnRemove distinguishes cause), `oath/Broken`.
+Tests: claim applies + duration exact, hostile NPC's GetFeeling returns
+non-hostile while cloth holds + counter-check (expired → hostile
+again), animals unaffected by the veto, oathbreak removes + rep hammer
++ counter-check (attacking AFTER expiry is not oathbreak), claim twice
+= refresh not stack, save round-trip of the effect mid-oath.
+Adversarial (2+ taxonomy surfaces — cross-actor, anti-exploit,
+save/load): claim then immediately attack the host; claim in one camp
+and walk to another zone (effect travels — the oath binds the person,
+not the ground — pin as designed); rep already rock-bottom.
+
+#### W2.6 — Place profiles: Wellmeet, the First Tent, the Last Counter
+
+`CreateVillagePipeline` reads `Place.Faction` (first consumer):
+TentRight → tent-flavored village (TentWall buildings via a tent
+village variant flag on VillageBuilder OR post-pass swap — decide by
+reading VillageBuilder's wall handling at implementation; smallest
+diff wins), Tent-Right roster replacing the generic one (clan-elder,
+well-keeper who is a WellPart host, salt-master carrying
+`WantsMineralPart`), oath host at the well. First Tent additionally
+places a monument stamp (the pilgrimage site: poles + cloth + NO god
+imagery — canon: "not a temple; there is no god — a monument to a
+choice"). Last Counter (Concord): Caravanserai-profile + Factor +
+disclaimer dialogue line ("We cannot guarantee delivery beyond this
+point." — verbatim canon `04_SaccharineConcord.md:97`); its two
+abandoned predecessors are dressing in the two adjacent zones toward
+the corner (a ruined-waystation stamp in the ambient catalog gated to
+those world cells — verify the gating seam at implementation; if
+per-cell stamp gating is awkward, ship the ruined stamp as a rare
+ambient in deep-Beating and place the two authored ones by zone id).
+Tests: faction-profile dispatch (TentRight village contains tents +
+salt-master; generic village unchanged — counter-check), First Tent
+monument present, Last Counter has Factor + Caravanserai.
+
+#### W2.7 — Salt economy live
+
+Supply shipped in W2.1 (veins in pans). Demand: the salt-master's
+`WantsMineralPart { Minerals: "PaleSalt", Faction: "TentRight",
+RepReward }` + new conversation action `SellMineral`
+("SellMineral:PaleSalt") calling `MineralTradeService.TryTrade` — its
+first production caller; the service already diags `mineral-trade`.
+Concord Factors buy salt through the ordinary trade screen (already
+works via Commerce.Value — pin with a test, no code expected). Tests:
+sell → item consumed + rep moves + diag; sell without salt → refusal
+path; the WantsMineralPart blueprint gate
+(`EveryBlueprintCarryingWantsMineral...` content test) so the part
+never goes consumer-less again.
+
+#### W2.8 — The tenth fire + W2 close-out
+
+`UntendedFire` blueprint: Render `*` warm, `LightSource`, `Thermal`
+warm, **no Fuel part** (a Campfire's Fuel exhausts — this one must
+never), Examinable Text EMPTY (prints exactly "You see a fire." —
+Mystery Ledger §4: no answer, from anything, ever; the blueprint's
+display name is just "fire"). Placed by zone id in one authored
+deep-pan wilderness cell (constant in WorldMapAuthoring, chosen off-road
+far corner; NOT a POI — it must never appear on the map UI, which
+non-POI placement satisfies by construction). No quest, no fact, no
+diag beyond placement. Then the full W2 close-out: cold-eye over all
+W2 diffs together, hypothesis pass, adversarial sweep for the oath
+(the one W2 feature with 2+ taxonomy surfaces), doc log, live ASCII
+look at every formation + the camp, PlayMode sanity sweep (enter the
+Beating, stand in noon glare bareheaded, claim the oath at a tent,
+sell salt).
+
+### 7.7 W2 performance (required — touches per-turn paths)
+
+| Risk | Mitigation |
+|---|---|
+| `GetFeeling` oath veto on the AI hot path | Effect-list scan ONLY on the branch that would return hostile; list is short (≤5 effects typical); no allocation. Measured against the existing per-turn AI scan budget at implementation (ProfilerRecorder if in doubt). |
+| Glare check per player turn | One call beside the existing WorldClock notify: band check (int math) + biome check + one cell read + head-slot read. Early-outs ordered cheapest-first. Player-only (D2). |
+| Parched cure check per turn | Inside the effect's own tick — one TileState dictionary read. Only exists while Parched. |
+| Formations | Generation-time only. |
+| New stamps' interior marking | Generation-time only. |
+
+### 7.8 W2 observability
+
+- `oath/Claimed | Expired | Broken` — the faction's whole mechanic, queryable.
+- `glare/Exposed` (channel-gated) + Parched via the standard effect pipeline.
+- `mineral-trade/*` already emitted by MineralTradeService — first real records.
+- `worldgen/FormationApplied` now carries the true biome.
+- Every gate that can reject (claim while already under cloth, sell without salt) emits its reason.
+
+### 7.9 Critical review of the W2 plan (before implementation)
+
+**R1 — Is the GetFeeling veto the right seam for the oath?** The
+alternatives: (a) NoFightGoal pushed onto every hostile in the zone —
+rejected: it suppresses self-preservation too (documented caveat at
+NoFightGoal.cs:23-31) and has to chase spawns; (b) a Passive flip —
+rejected: mutates NPC state that must be un-mutated on expiry, a
+save/load trap; (c) the feeling chain — chosen: stateless, expires with
+the effect automatically, already the documented precedence seam. The
+cost is the hot-path scan, bounded per §7.7.
+
+**R2 — Does the oath protect the player from BEASTS?** No (D5 note in
+W2.5): canon frames the oath as a covenant between people; a scorpion
+cannot be an oathbreaker. Pinned by a test either way so the behavior
+is chosen, not accidental.
+
+**R3 — Effect.Duration = 3600 assumes player effects tick once per
+player turn.** Verify-first at W2.5: read Effect.cs:180's caller and
+confirm the tick cadence for player-owned effects; if effects tick on
+world ticks instead, the constant changes, not the design.
+
+**R4 — The oathbreak hook is the riskiest unknown.** There may be no
+single choke point for "player initiated an attack" (melee + spells +
+push?). Verify-first: if scattered, v1 hooks melee + spell damage
+attribution only, and the gap (indirect harm: pushing a guest into
+lava) is a documented 🧪 deferral — matching how Qud-parity work
+handles edge semantics.
+
+**R5 — Tent villages via VillageBuilder may fight its assumptions**
+(wall blueprint is hardcoded "Wall" at VillageBuilder.cs:85,91).
+Smallest-diff option if a parameterized wall is invasive: keep stone
+buildings, add tent stamps AROUND them, and let the roster + oath do
+the differentiation. Decide at W2.6 implementation with the file open —
+both outcomes acceptable, neither blocks anything upstream.
+
+**R6 — The look-pass gate is now load-bearing** for six new formations
+at once. Budget it as a real step (W1.1b found 3-of-4 wrong); the
+commit for W2.1 does not land until the dump has been looked at.
+
+**R7 — Scope guard: W2 adds no new status-effect *system* work** — the
+recent simplification arc (one door, one readout) must not be quietly
+re-complicated. Parched and UnderTheCloth go through Entity.ApplyEffect
+and the existing readout like everything else; if either needs a
+special path, that is a design smell to stop on, not code around.
+
+### 7.10 W2 exit criteria
+
+Full suite green; every SM's per-invariant counter-checks in;
+the oath adversarial file (W2.5) run; ASCII look pass on all six
+formations + the camp recorded in this doc; PlayMode sanity sweep with
+honesty bounds; cold-eye + hypothesis pass logged in §7.11; SCOPE
+DIVERGENCE sections wherever D1-D5 changed the design doc's word.
+
+### 7.11 W2 implementation log
+
+(filled per SM)
 
 ## 8. Deferred / explicitly out of scope (this document)
 
