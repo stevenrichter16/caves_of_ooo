@@ -683,6 +683,18 @@ namespace CavesOfOoo.Core
                 listener.ApplyEffect(new UnderTheClothEffect(), speaker, null);
             });
 
+            // W2.7 — arg: mineral blueprint name. The FIRST production
+            // caller of MineralTradeService.TryTrade (shipped in E.3.5
+            // with zero consumers). The service handles all rejection
+            // paths + diag; this action only adds the spoken outcome.
+            Register("SellMineral", (speaker, listener, arg) =>
+            {
+                bool traded = MineralTradeService.TryTrade(listener, speaker, arg);
+                MessageLog.Add(traded
+                    ? "Weighed, entered, and thanks given."
+                    : "Nothing to weigh.");
+            });
+
             Register("RestAtInn", (speaker, listener, arg) =>
             {
                 if (listener == null) return;

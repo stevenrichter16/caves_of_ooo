@@ -691,8 +691,28 @@ namespace CavesOfOoo.Core
         };
 
         /// <summary>Wellmeet and kin: the guaranteed camp — tents,
-        /// well, the cloth on its pole, a host to speak the oath.</summary>
-        public static StructureStamp TentRightProfileCamp() => Forced(TentRightCampStamp);
+        /// well, the cloth on its pole, a host to speak the oath, and
+        /// the salt-master at the scales (W2.7: the demand half of the
+        /// economy — the ambient wilderness camp deliberately has no
+        /// scales; the trade lives where the towns are).</summary>
+        public static StructureStamp TentRightProfileCamp()
+        {
+            var camp = Forced(TentRightCampStamp);
+            camp.Rows = new[]
+            {
+                "TTT..TTT",
+                "TiT..TiT",
+                "T.T..T.T",
+                "........",
+                "..O..P..",
+                "..S.H...",
+            };
+            camp.Legend = new Dictionary<char, string>(TentRightCampStamp.Legend)
+            {
+                ['S'] = "spawn:SaltMaster",
+            };
+            return camp;
+        }
 
         /// <summary>The First Tent: "Not a temple — there is no god —
         /// but a monument to a choice" (Lore/Factions/07_TentRight.md:118).

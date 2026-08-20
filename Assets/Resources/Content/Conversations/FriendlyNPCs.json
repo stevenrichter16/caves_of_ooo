@@ -1476,6 +1476,65 @@
           ]
         }
       ]
+    },
+    {
+      "ID": "SaltMaster_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Salt off the pans, weighed fair. The Concord carts it, the Curation buys it, and it starts here at my scales. If you have Pale-Salt, I will weigh it against standing with the tents.",
+          "Choices": [
+            {
+              "Text": "Weigh this salt. [sell Pale-Salt]",
+              "Target": "Weighed",
+              "Predicates": [
+                {
+                  "Key": "IfHaveItem",
+                  "Value": "PaleSalt"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "SellMineral",
+                  "Value": "PaleSalt"
+                }
+              ]
+            },
+            {
+              "Text": "Where does the salt go?",
+              "Target": "TheChain"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Weighed",
+          "Text": "Entered. The tents remember who feeds the scales.",
+          "Choices": [
+            {
+              "Text": "More where that came from.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "TheChain",
+          "Text": "Out of the pans by our hands. Onto the carts by the Concord's — they move it under guest-right; in the Beating our claim wins and they know it. The Curation buys the far end for their vaults. Everyone eats a little of the price on the way. That is the whole of it.",
+          "Choices": [
+            {
+              "Text": "Back to the scales.",
+              "Target": "Start"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

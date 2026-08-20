@@ -28344,6 +28344,53 @@
       ],
       "Stats": [],
       "Tags": [ { "Key": "Solid", "Value": "" }, { "Key": "Furniture", "Value": "" } ]
+    },
+    {
+      "Name": "SaltMaster",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "salt-master" },
+            { "Key": "RenderString", "Value": "@" },
+            { "Key": "ColorString", "Value": "&W" }
+          ]
+        },
+        {
+          "Name": "Conversation",
+          "Params": [ { "Key": "ConversationID", "Value": "SaltMaster_1" } ]
+        },
+        {
+          "Name": "WantsMineral",
+          "Params": [
+            { "Key": "Minerals", "Value": "PaleSalt" },
+            { "Key": "Faction", "Value": "TentRight" },
+            { "Key": "RepReward", "Value": "5" }
+          ]
+        },
+        {
+          "Name": "AISelfPreservation",
+          "Params": []
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "White to the elbows. The scales beside the ledger are cleaner than anything else in the camp." }
+          ]
+        }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 18, "Min": 0, "Max": 18 },
+        { "Name": "Strength", "Value": 13 },
+        { "Name": "Agility", "Value": 11 },
+        { "Name": "Speed", "Value": 100 },
+        { "Name": "XPValue", "Value": 0 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "TentRight" },
+        { "Key": "Tier", "Value": "1" }
+      ]
     }
   ]
 }
