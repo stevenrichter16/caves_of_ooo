@@ -220,6 +220,23 @@ namespace CavesOfOoo.Tests
                 "one carriage per courier, for now — the entry is closed");
         }
 
+        [Test]
+        public void TheSealedBody_CannotBeSoldOutFromUnderTheContract()
+        {
+            // W3.7 hypothesis audit (H1, confirmed RED pre-fix): nothing
+            // stopped the courier selling the body to any merchant —
+            // item gone, quest active forever, offer hidden forever: a
+            // softlock by shop. The NoTrade tag is the substrate's own
+            // quest-item mechanism; now the body carries it.
+            var player = MakePlayer();
+            var body = _factory.CreateEntity("SealedBogTakenBody");
+            player.GetPart<InventoryPart>().AddObject(body);
+            var merchant = new Entity { ID = "m", BlueprintName = "Merchant" };
+
+            Assert.IsFalse(TradeSystem.CanBeTraded(body, player, merchant, "Sell"),
+                "the seal is Curation's, not yours to price");
+        }
+
         // ════════════════════════════════════════════════════════
         // The burden
         // ════════════════════════════════════════════════════════

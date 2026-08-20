@@ -443,6 +443,62 @@ ConversationManager (offer → carry → deliver → paid → rep → closed);
 refusal; deliver-needs-both-paper-and-parcel (two hidden-choice
 counters); no-repeat pin; the burden; Marrowstye window census.
 
+### W3.7 — Close-out (COMPLETE)
+
+**Review shape (divergence from this plan's own sketch):** the plan
+called for review WORKFLOWS at ~W3.3 and at close-out; the monthly
+spend limit killed 15 of 21 verify agents in the W2 close-out
+workflow, so W3's reviews ran INLINE instead — per-SM severity-marked
+self-reviews in every commit, a focused cold-eye after W3.4 (Q1-Q4
+over the four diffs, 0 🟡+), and this hypothesis-driven deep audit.
+
+**Hypothesis audit (12 player-flow hypotheses; classification per
+CLAUDE.md):**
+- 🟡 H1 CONFIRMED (RED→GREEN): the sealed body was sellable to any
+  merchant mid-contract — item gone, quest active forever, offer
+  hidden forever: softlock by shop. Fixed with the substrate's own
+  NoTrade tag; pinned at the CanBeTraded seam.
+- 🟡 H4 CONFIRMED (RED→GREEN): a burning bandfrog's tick damage
+  carries Source = the arsonist; standing adjacent, every tick read
+  as "contact" and seared them. Fire is not touch: elemental damage
+  (Fire/Heat/Cold/Acid/Electric/Poison) never triggers the skin.
+  Direction note: a future flaming WEAPON'S mixed damage will also
+  skip the reflect — element wins over touch, accepted and recorded.
+- ✅ H12 PINNED-AS-CORRECT: a reflect that kills the attacker
+  mid-dispatch neither throws nor poisons the corpse (the guards
+  were already right; now they are regression infrastructure).
+- Walked and closed without tests: H2 (dropped body persists — RPG
+  zone persistence, recoverable), H3 (a slip that slides you into
+  the dew gets grabbed — correct, the bog is like that), H5/H11
+  (population-placement cosmetics), H6 (killing the Sorter doesn't
+  strand the contract — the clerk holds completion), H8-H10
+  (covered by substrate suites or vacuous).
+- ⚪ H7 recorded: a burned-away PeatBog leaves its permanent
+  water coating on the tile (TileState outlives the entity).
+  Cosmetic; the ground remembers the bog, which is almost right
+  anyway.
+
+**Design-gate sweep (design doc §9, W3-relevant):** gates 1 (Naro —
+negative-asserted), 7 (Gin Frogs — pinned), 9 (consciousness never
+resolved — all texts state state; "continuing" is a filing stance),
+11 (mummy — game-wide lint) ✅. **Gate 12 caught a live violation:**
+Reedfrog's examine copy said "In W5 terms: ... an ecology, not a
+backdrop" — design register in the player's face. Text fixed, and a
+NEW game-wide lint (phase tokens \bW\d\b, §, "design doc" in any
+examine copy) makes the class unshippable.
+
+**Look passes:** all six formations (W3.1, incl. the OpenMire
+retune), Sumphold + the Ledger (W3.5). **PlayMode sanity sweep:
+DEFERRED with the same honesty bound as W2** — the GUI editor's
+wedge cycle makes live runs unreliable; everything asserted this
+phase is EditMode-observable. Unverified live: gas-cloud rendering
+over mire, camp color reads, the courier walk at real pace.
+
+**W3 exit:** suite green (6891/6891), this doc's log complete per
+SM, §9 gates checked ✅. The Sodden is a place now: it has a shape, its
+dead, its gas, its beasts, its two towns, and one piece of honest
+work for a strong back.
+
 ## 6. Critical review of this plan (before implementation)
 
 **R1 — Sumphold-on-Spread is a feature, not a bug** — but the profile

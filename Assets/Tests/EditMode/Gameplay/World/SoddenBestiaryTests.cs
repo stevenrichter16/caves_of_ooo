@@ -237,6 +237,51 @@ namespace CavesOfOoo.Tests
             }
         }
 
+        [Test]
+        public void AnAdjacentArsonist_IsNotTouchingTheFrog()
+        {
+            // W3.7 hypothesis audit (H4, confirmed RED pre-fix): a
+            // burning bandfrog's tick damage carries Source = the
+            // arsonist; standing adjacent, every tick read as "contact"
+            // and seared them. Fire is not touch: elemental damage never
+            // triggers the skin, whoever lit it and wherever they stand.
+            var zone = new Zone("Z");
+            SettlementRuntime.ActiveZone = zone;
+            var frog = _factory.CreateEntity("Bandfrog");
+            zone.AddEntity(frog, 10, 10);
+            var arsonist = Attacker(zone, 11, 10);
+
+            var d = new Damage(3);
+            d.AddAttribute("Fire");
+            CombatSystem.ApplyDamage(frog, d, arsonist, zone);
+
+            Assert.AreEqual(30, arsonist.GetStatValue("Hitpoints", 0),
+                "the fire is touching the frog; the arsonist is not");
+        }
+
+        [Test]
+        public void AReflectThatKills_DoesNotPoisonTheCorpse()
+        {
+            // W3.7 hypothesis audit (H12, pinned-as-correct): the
+            // reflect lands mid-dispatch; if it kills the attacker, the
+            // poison roll must see the corpse and stand down.
+            var zone = new Zone("Z");
+            SettlementRuntime.ActiveZone = zone;
+            var frog = new Entity { ID = "bf", BlueprintName = "Bandfrog" };
+            frog.Tags["Creature"] = "";
+            frog.AddPart(new RenderPart { DisplayName = "bandfrog" });
+            frog.Statistics["Hitpoints"] = new Stat
+            { Owner = frog, Name = "Hitpoints", BaseValue = 9, Min = 0, Max = 9 };
+            frog.AddPart(new CausticSkinPart { PoisonChance = 100 });
+            zone.AddEntity(frog, 10, 10);
+            var dying = Attacker(zone, 11, 10, hp: 1);
+
+            Assert.DoesNotThrow(() => Strike(frog, dying, zone));
+            Assert.LessOrEqual(dying.GetStatValue("Hitpoints", 0), 0, "the skin finished it");
+            Assert.IsFalse(dying.HasEffect<PoisonedEffect>(),
+                "no venom spent on the dead");
+        }
+
         // ════════════════════════════════════════════════════════
         // The greatdew waits
         // ════════════════════════════════════════════════════════

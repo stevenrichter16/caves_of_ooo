@@ -196,6 +196,33 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void NoShippedExamineText_SpeaksInTheDesignRegister()
+        {
+            // Design gate 12 (FELLING-WORLD-DESIGN.md §9): the design-doc
+            // register is banned from in-world text. Caught for real in
+            // W3.7's gate sweep: a shipped examine line read "In W5
+            // terms: ... an ecology, not a backdrop" — a phase marker
+            // talking to the developer, in the player's face. Phase
+            // tokens (W1-W9), section signs, and the phrase "design doc"
+            // now fail game-wide.
+            var marker = new System.Text.RegularExpressions.Regex(@"\bW\d\b");
+            var offenders = new List<string>();
+            foreach (var name in _factory.Blueprints.Keys)
+            {
+                Entity e;
+                try { e = _factory.CreateEntity(name); }
+                catch (System.Exception) { continue; }
+                var text = e?.GetPart<ExaminablePart>()?.Text;
+                if (string.IsNullOrEmpty(text)) continue;
+                if (marker.IsMatch(text) || text.Contains("§")
+                    || text.ToLowerInvariant().Contains("design doc"))
+                    offenders.Add(name);
+            }
+            CollectionAssert.IsEmpty(offenders,
+                "examine copy speaks in the design register: " + string.Join(", ", offenders));
+        }
+
+        [Test]
         public void ThePreFellingText_AttributesItsFragments_AndConfirmsNothing()
         {
             var body = _factory.CreateEntity("PreFellingBody");

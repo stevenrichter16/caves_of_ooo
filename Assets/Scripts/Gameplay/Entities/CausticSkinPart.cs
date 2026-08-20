@@ -39,6 +39,11 @@ namespace CavesOfOoo.Core
         /// carrying it is never answered (the recursion guard).</summary>
         public const string ReflectAttribute = "SkinContact";
 
+        /// <summary>Damage that arrives as element, not as touch. The
+        /// skin answers hands and teeth, never the fire somebody lit.</summary>
+        private static readonly string[] ElementalAttributes =
+            { "Fire", "Heat", "Cold", "Acid", "Electric", "Poison" };
+
         public static System.Random TestRng;
         private static readonly System.Random _defaultRng = new System.Random();
 
@@ -48,6 +53,13 @@ namespace CavesOfOoo.Core
 
             var damage = e.GetParameter<Damage>("Damage");
             if (damage == null || damage.HasAttribute(ReflectAttribute)) return true;
+
+            // W3.7 audit (H4): fire is not touch. A burning frog's tick
+            // damage carries Source = whoever lit it; an adjacent
+            // arsonist must not be "in contact" every tick. Elemental
+            // damage never triggers the skin — only physical contact.
+            foreach (var elemental in ElementalAttributes)
+                if (damage.HasAttribute(elemental)) return true;
 
             var attacker = e.GetParameter<Entity>("Source");
             // Environmental damage (burning, poison ticks) has no one to
