@@ -269,6 +269,49 @@ formations surface 0 bodies; Sumphold and ambient Sodden zones grow
 0 PreFellingBody; the banned-word lint passes over the whole
 shipped corpus including SaltCuredBody.
 
+### W3.3 — Methane peat (SHIPPED)
+
+**SUBSTRATE FALSE PREMISE caught by the sweep:** this plan's test
+sketch assumed "TakeDamage with Fire attribute → GasFactory spawn"
+just works on a PeatBog. It could not: terrain has no Hitpoints
+stat, CombatSystem.ApplyDamage deliberately early-outs on statless
+targets, and the STRUCTURAL path burning terrain actually takes
+(BurningEffect → DestructionSystem.RouteDamage → Damage) never
+fired a TakeDamage event at all. BurnOffGasPart — whose own G.9
+docstring promises "a peat bog venting methane when torched" — was
+unreachable for every prop in the game.
+
+**The fix, minimal:** RouteDamage's destructible branch now fires
+TakeDamage with ApplyDamage's exact contract (pre-decrement,
+listeners may mutate damage.Amount, clamped ≥0). Listener sweep
+before the change: BurnOffGasPart (the intended hearer),
+StatusEffectsPart (forwards to effects' OnTakeDamage — benign for
+props), DamageFlashPart (props don't carry it). No behavior change
+for anything that existed.
+
+**Content:** marsh-gas.json (Seeping, BehaviorKind Poison — chosen
+from what ships; methane in a low hollow chokes). PeatBog gains
+Destructible HP 40 (peat is Fuel — enough fire CONSUMES it, venting
+the whole way down) + BurnOffGas{marsh-gas, DamagePer 6, Heat;Fire}.
+MirePool gains the same vent but Destructible HP 200 / Hardness 5 —
+the burning tick erodes it by the 1-minimum, so the water
+effectively never burns away but the trapped gas still comes up.
+
+**🧪 deferral (per plan R-clause):** gas-cloud ignition (the
+cloud-to-next-bog chain) needs a flammable gas behavior; none ships
+(Poison/Stun/Confusion/Cryo/Sleep/FungalSpores/Plasma). The vent
+alone ships; the chain is deferred with this note in
+MarshGasTests' docstring too.
+
+**Tests (MarshGasTests.cs, +7):** vent on fire (end-to-end through
+RouteDamage, the real burning path), blunt-blow counter (damage
+still lands, no gas), mire hardness pin, burn-the-bog-away
+consumption, DeadTree-burns-in-silence wiring counter, registry
+pins off the REAL shipped json file, BehaviorKind→GasPoisonPart
+resolution. One compile fix (missing using CavesOfOoo.Data).
+
+**Tests:** 6850 → 6857 (+7). All green headless.
+
 ## 6. Critical review of this plan (before implementation)
 
 **R1 — Sumphold-on-Spread is a feature, not a bug** — but the profile

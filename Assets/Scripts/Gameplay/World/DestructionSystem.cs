@@ -204,8 +204,25 @@ namespace CavesOfOoo.Core
                 var part = target.GetPart<DestructiblePart>();
                 if (part != null)
                 {
+                    // W3.3 — the structural path announces TakeDamage with
+                    // the same contract as CombatSystem.ApplyDamage: fired
+                    // BEFORE the decrement, listeners may mutate
+                    // damage.Amount, clamped so over-mutation can't heal.
+                    // First listener that needed it: BurnOffGasPart on
+                    // burning peat — a prop with attribute-typed damage
+                    // (BurningEffect routes here with "Fire") previously
+                    // burned in silence and nothing could react.
+                    var takeDamage = GameEvent.New("TakeDamage");
+                    takeDamage.SetParameter("Target", (object)target);
+                    takeDamage.SetParameter("Source", (object)source);
+                    takeDamage.SetParameter("Amount", damage.Amount);
+                    takeDamage.SetParameter("Damage", (object)damage);
+                    target.FireEventAndRelease(takeDamage);
+                    int amount = System.Math.Max(0, damage.Amount);
+                    if (amount <= 0) return 0;
+
                     int before = part.HP;
-                    Damage(target, damage.Amount, source, zone);
+                    Damage(target, amount, source, zone);
                     return System.Math.Max(0, before - part.HP);
                 }
             }
