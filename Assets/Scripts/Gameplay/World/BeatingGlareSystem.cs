@@ -30,7 +30,14 @@ namespace CavesOfOoo.Core
 
         private static int _exposure;
 
-        public static void ResetForTests() => _exposure = 0;
+        /// <summary>Statics outlive play sessions (domain reload is off)
+        /// AND survive save/load — without this, nine exposed turns from
+        /// before a death would carry into the reloaded game and parch
+        /// one turn early (W2 mid-review finding). Called beside
+        /// WorldClock.Reset() at bootstrap and on ApplyLoadedGame.</summary>
+        public static void Reset() => _exposure = 0;
+
+        public static void ResetForTests() => Reset();
 
         /// <summary>Called once per player turn, beside
         /// <c>WorldClock.NotifyPlayerTurnEnd</c> (InputHandler). Cheap
@@ -58,7 +65,10 @@ namespace CavesOfOoo.Core
 
             if (Diag.IsChannelEnabled("effect"))
             {
-                Diag.Record("effect", "GlareExposure", actor: player, payload: new
+                // Effect-category convention: the BEARER rides in target
+                // (see StatusEffectsPart's OnApply hook); the sun has no
+                // actor.
+                Diag.Record("effect", "GlareExposure", target: player, payload: new
                 {
                     zoneID = zone.ZoneID,
                     tick,

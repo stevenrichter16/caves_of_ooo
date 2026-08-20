@@ -261,6 +261,93 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void DrinkingThroughTheActualTonic_PushesTheParchBack()
+        {
+            // W2 mid-review: the wiring test went straight to
+            // ReduceOneStack and never through TonicPart's own dispatch —
+            // a broken hook would have passed. This one drinks for real.
+            var zone = new Zone(BeatingZoneId);
+            var t = Traveller(zone);
+            t.AddPart(new InventoryPart());
+            t.ApplyEffect(new ParchedEffect(), null, zone);
+            t.ApplyEffect(new ParchedEffect(), null, zone);
+
+            var tonic = _factory.CreateEntity("WaterTonic");
+            t.GetPart<InventoryPart>().AddObject(tonic);
+            var e = GameEvent.New("InventoryAction");
+            e.SetParameter("Command", "ApplyTonic");
+            e.SetParameter("Actor", (object)t);
+            e.SetParameter("Zone", (object)zone);
+            tonic.FireEvent(e);
+            e.Release();
+
+            var parched = t.GetPart<StatusEffectsPart>().GetEffect<ParchedEffect>();
+            Assert.IsNotNull(parched, "two stacks minus one drink = one stack");
+            Assert.AreEqual(1, parched.Stacks);
+        }
+
+        [Test]
+        public void TheBandBoundary_IsExact()
+        {
+            // The spec'd 299/300 pin (plan §7.6 W2.3): Dawn's last tick
+            // does not burn; Height's first does; Height's last does;
+            // Dusk's first does not.
+            var zone = new Zone(BeatingZoneId);
+            var t = Traveller(zone);
+
+            Expose(t, zone, 30, tick: 299);
+            Assert.IsFalse(t.HasEffect<ParchedEffect>(), "tick 299 is still Dawn");
+
+            BeatingGlareSystem.ResetForTests();
+            Expose(t, zone, BeatingGlareSystem.ExposureTurnsPerStack, tick: 300);
+            Assert.IsTrue(t.HasEffect<ParchedEffect>(), "tick 300 is Height");
+
+            t.GetPart<StatusEffectsPart>().RemoveEffect<ParchedEffect>();
+            BeatingGlareSystem.ResetForTests();
+            Expose(t, zone, BeatingGlareSystem.ExposureTurnsPerStack, tick: 599);
+            Assert.IsTrue(t.HasEffect<ParchedEffect>(), "tick 599 is still Height");
+
+            t.GetPart<StatusEffectsPart>().RemoveEffect<ParchedEffect>();
+            BeatingGlareSystem.ResetForTests();
+            Expose(t, zone, 30, tick: 600);
+            Assert.IsFalse(t.HasEffect<ParchedEffect>(), "tick 600 is Dusk");
+        }
+
+        [Test]
+        public void TheWaterCure_ReportsItsRealCause()
+        {
+            // Effect.cs contract: self-ending effects overwrite
+            // LastRemovalCause before zeroing Duration — a never-expires
+            // effect must never report "duration_expired".
+            var zone = new Zone(BeatingZoneId);
+            var t = Traveller(zone, 10, 10);
+            t.ApplyEffect(new ParchedEffect(), null, zone);
+            var parched = t.GetPart<StatusEffectsPart>().GetEffect<ParchedEffect>();
+
+            zone.TileState.WriteCoating(10, 10, "water", 6);
+            EndTurn(t, zone);
+
+            Assert.AreEqual("cured_by_water", parched.LastRemovalCause);
+        }
+
+        [Test]
+        public void TheProductionReset_ClearsAStaleStreak()
+        {
+            // W2 mid-review: nine exposed turns from before a death must
+            // not carry into a loaded game. Reset() is what bootstrap and
+            // ApplyLoadedGame call.
+            var zone = new Zone(BeatingZoneId);
+            var t = Traveller(zone);
+            Expose(t, zone, BeatingGlareSystem.ExposureTurnsPerStack - 1);
+
+            BeatingGlareSystem.Reset();   // the load boundary
+            Expose(t, zone, 1);
+
+            Assert.IsFalse(t.HasEffect<ParchedEffect>(),
+                "9 pre-load + 1 post-load is not 10 consecutive");
+        }
+
+        [Test]
         public void ADrink_PushesTheParchBackOneStack()
         {
             var zone = new Zone(BeatingZoneId);

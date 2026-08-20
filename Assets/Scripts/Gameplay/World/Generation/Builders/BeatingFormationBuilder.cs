@@ -94,7 +94,7 @@ namespace CavesOfOoo.Core
                 }
             }
 
-            // The outcrops. 2-4, never adjacent to each other.
+            // The outcrops: 2-4, wherever the pan allows.
             int veins = 2 + rng.Next(3);
             for (int v = 0; v < veins; v++)
             {
@@ -125,17 +125,30 @@ namespace CavesOfOoo.Core
                 int x0 = 2 + rng.Next(Zone.Width - w - 4);
                 int y0 = 2 + rng.Next(Zone.Height - h - 4);
 
-                // Two door gaps, expressed in the same coordinates as the
-                // walls they are gaps in (the W1.1b lesson, verbatim).
-                int perimeter = 2 * (w + h);
+                // Two door gaps over DISTINCT perimeter cells. The first
+                // cut walked 2(w+h) steps over 2(w+h)-4 cells — each
+                // corner visited twice — and gapB's antipodal offset
+                // (w+h) mapped the corner indices exactly onto each
+                // other, so a gap landing on any corner voided BOTH
+                // doors and ~41% of rooms sealed (the W2 mid-review's
+                // adversarial verifier measured it). Third occurrence of
+                // the gaps-vs-walls coordinate-system bug class in this
+                // codebase; the rule, again: a gap must be expressed in
+                // the same coordinates as the thing it is a gap in —
+                // and those coordinates must not alias.
+                int perimeter = 2 * (w + h) - 4;
                 int gapA = rng.Next(perimeter);
                 int gapB = (gapA + perimeter / 2) % perimeter;
 
                 int step = 0;
-                for (int x = x0; x < x0 + w; x++) TryWall(zone, factory, x, y0, ref step, gapA, gapB, placed);
-                for (int y = y0; y < y0 + h; y++) TryWall(zone, factory, x0 + w - 1, y, ref step, gapA, gapB, placed);
-                for (int x = x0 + w - 1; x >= x0; x--) TryWall(zone, factory, x, y0 + h - 1, ref step, gapA, gapB, placed);
-                for (int y = y0 + h - 1; y >= y0; y--) TryWall(zone, factory, x0, y, ref step, gapA, gapB, placed);
+                for (int x = x0; x < x0 + w; x++)
+                    TryWall(zone, factory, x, y0, ref step, gapA, gapB, placed);
+                for (int y = y0 + 1; y < y0 + h; y++)
+                    TryWall(zone, factory, x0 + w - 1, y, ref step, gapA, gapB, placed);
+                for (int x = x0 + w - 2; x >= x0; x--)
+                    TryWall(zone, factory, x, y0 + h - 1, ref step, gapA, gapB, placed);
+                for (int y = y0 + h - 2; y >= y0 + 1; y--)
+                    TryWall(zone, factory, x0, y, ref step, gapA, gapB, placed);
             }
 
             EnsureCrossable(zone, placed);
@@ -315,36 +328,39 @@ namespace CavesOfOoo.Core
             }
         }
 
-        /// <summary>West-to-east crossability, repaired by removing ONLY
-        /// walls this builder placed (see the class docstring for why the
-        /// Spread's breach-by-blueprint-name is not safe here).</summary>
+        /// <summary>The REAL property, learned twice over: not "the zone
+        /// can be crossed" but "every open cell is reachable". Per-room
+        /// door rules cannot see compositions — two overlapping rooms can
+        /// seal a pocket even when each has its doors (a door can open
+        /// flush into the other room's wall; the sealed-room detector
+        /// test caught seed 21 doing exactly this after the corner fix).
+        /// Repaired by removing ONLY walls this builder placed: any
+        /// placed wall that borders both reached and unreached open
+        /// ground is a valid breach.</summary>
         private static void EnsureCrossable(Zone zone, List<Entity> placed)
         {
-            for (int attempt = 0; attempt < 40 && placed.Count > 0; attempt++)
+            for (int attempt = 0; attempt < 80 && placed.Count > 0; attempt++)
             {
-                if (CrossableWestToEast(zone)) return;
-
-                // Remove our easternmost placed wall that borders reached
-                // ground — the same drive-toward-the-goal rule the Spread's
-                // repair converged with.
                 var reached = FloodFromWest(zone);
+                if (FullyReached(zone, reached)) return;
+
                 Entity breach = null;
-                int breachX = -1;
-                for (int i = placed.Count - 1; i >= 0; i--)
+                for (int i = placed.Count - 1; i >= 0 && breach == null; i--)
                 {
                     var wall = placed[i];
                     var pos = zone.GetEntityPosition(wall);
                     if (pos.x < 0) { placed.RemoveAt(i); continue; }
-                    bool bordersReached = false;
-                    for (int dx = -1; dx <= 1 && !bordersReached; dx++)
-                        for (int dy = -1; dy <= 1 && !bordersReached; dy++)
+                    bool bordersReached = false, bordersUnreached = false;
+                    for (int dx = -1; dx <= 1; dx++)
+                        for (int dy = -1; dy <= 1; dy++)
                         {
                             int nx = pos.x + dx, ny = pos.y + dy;
-                            if (nx >= 0 && ny >= 0 && nx < Zone.Width && ny < Zone.Height
-                                && reached[nx, ny])
-                                bordersReached = true;
+                            if (nx < 1 || ny < 1 || nx >= Zone.Width - 1 || ny >= Zone.Height - 1)
+                                continue;
+                            if (reached[nx, ny]) bordersReached = true;
+                            else if (IsOpenGround(zone, nx, ny)) bordersUnreached = true;
                         }
-                    if (bordersReached && pos.x > breachX) { breach = wall; breachX = pos.x; }
+                    if (bordersReached && bordersUnreached) breach = wall;
                 }
 
                 if (breach == null) return;   // sealed by terrain, not by us
@@ -353,12 +369,12 @@ namespace CavesOfOoo.Core
             }
         }
 
-        private static bool CrossableWestToEast(Zone zone)
+        private static bool FullyReached(Zone zone, bool[,] reached)
         {
-            var reached = FloodFromWest(zone);
-            for (int y = 1; y < Zone.Height - 1; y++)
-                if (reached[Zone.Width - 2, y]) return true;
-            return false;
+            for (int x = 1; x < Zone.Width - 1; x++)
+                for (int y = 1; y < Zone.Height - 1; y++)
+                    if (IsOpenGround(zone, x, y) && !reached[x, y]) return false;
+            return true;
         }
 
         private static bool[,] FloodFromWest(Zone zone)

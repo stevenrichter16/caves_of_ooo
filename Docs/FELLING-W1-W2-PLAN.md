@@ -941,7 +941,11 @@ sell salt).
 ### 7.8 W2 observability
 
 - `oath/Claimed | Expired | Broken` — the faction's whole mechanic, queryable.
-- `glare/Exposed` (channel-gated) + Parched via the standard effect pipeline.
+- `effect/GlareExposure` on each stack APPLICATION (bearer in target,
+  per the effect-category convention) — not per-tick; at bleed-0
+  cadence a per-tick record would be noise. Parched itself rides the
+  standard effect pipeline. *(As shipped — the plan's earlier
+  `glare/Exposed` per-tick wording superseded.)*
 - `mineral-trade/*` already emitted by MineralTradeService — first real records.
 - `worldgen/FormationApplied` now carries the true biome.
 - Every gate that can reject (claim while already under cloth, sell without salt) emits its reason.
@@ -1001,7 +1005,81 @@ DIVERGENCE sections wherever D1-D5 changed the design doc's word.
 
 ### 7.11 W2 implementation log
 
-(filled per SM)
+**W2.1 ✅** (`b664a0f6`, +13 tests) — six formations. The look pass
+earned its keep again: DuneBelt's first cut failed it (modulo gaps
+aligned into vertical fence-seams; free-rolled bands clumped) and was
+reworked to stratified crests with rolled gaps before commit. Three
+tiny prop blueprints (SaltCrust/DuneCrest/Bones). An early whole-file
+json.dump rewrite of Objects.json was reverted for diff hygiene.
+
+**W2.2 ✅** (`83817f23`, +6) — Beating bestiary; SunStriker + Saltbriar
+new; the D3 indicator-species absence is PINNED by a test whose
+failure message says it's a design conversation. The fail-loud
+blueprint gate caught a nonexistent "Waterskin" during authoring.
+Noted in passing: shipped GlassScorpion carries Faction=
+SaccharineConcord (looks like a content bug; spun off as a task).
+
+**W2.3 ✅** (`7c4548b3`, +13) — Parched + glare + wells.
+VERIFICATION-LOOP CHANGE: the GUI editor wedged mid-compile and its
+relaunches stalled on a stale Temp/UnityLockfile (root cause of the
+previous session's stall too). Switched to HEADLESS batchmode test
+runs (Unity -batchmode -runTests): full suite in ~40s, no bridge, no
+modals. Adopted for the rest of W2/W3.
+
+**W2.4 ✅** (`d23ac576`, +3) — tent camp + the `interior` stamp
+pseudo-marker (wired in all three legend-validating places). Two gate
+catches pre-commit (HermitHut's arg is an NPC blueprint; TentWall's
+render-coverage entry).
+
+**W2.5 ✅** (`94e7b862`, +13) — the oath. R3 resolved: expiry measured
+on the WorldClock, not owner-turns (a rest jumps 60 ticks in one
+turn). R4 resolved: melee chokes at PerformMeleeAttack:92 (breaks on
+the SWING, pre-veto), spells at ApplySpellDamage's head; indirect harm
+is the named 🧪 deferral. All 13 tests green first run.
+
+**W2.6 ✅** (`c6a65ede`, +6) — place profiles; Wellmeet keeps its
+canon "town-half" under the Tent-Right layer; predecessors authored
+by zone id.
+
+**W2.7 ✅** (`02b7e48f`, +5) — salt economy; MineralTradeService's
+first production caller, months after it shipped with zero.
+
+**Mid-W2 review ✅** (three-lens adversarial workflow over W2.1-W2.3;
+20 agents, 17 confirmed findings, 0 refuted). Fixed in the review
+commit:
+- 🔴 RuinField's perimeter walk double-visited corners and the
+  antipodal gap offset mapped corner indices onto each other — ~41%
+  of rooms sealed with BOTH doors voided (verifier measured it by
+  simulation). Third occurrence of the gaps-vs-walls coordinate bug
+  class. Fixed: distinct-cell walk (2w+2h-4). AND the fix's own
+  sealed-room detector then caught the COMPOSITION case (seed 21:
+  overlapping rooms sealing a pocket through their doors) — the
+  repair now enforces the real property, "every open cell reachable",
+  breaching only builder-placed walls.
+- 🟡 Glare streak is a static that survived save/load and new games —
+  nine pre-death exposed turns carried into the loaded game. Reset()
+  wired at bootstrap (beside WorldClock.Reset) and in ApplyLoadedGame.
+- 🟡 ParchedEffect's water cure violated the Effect.cs removal-cause
+  contract (reported "duration_expired" from a never-expires effect).
+  Now "cured_by_water", pinned.
+- 🟡 Parched + UnderTheCloth had no EffectDescriber lines (look mode
+  showed the bare fallback). Added, with stacks / ticks remaining.
+- 🟡 The tonic cure was tested only via a direct ReduceOneStack call —
+  through-the-real-TonicPart testing exposed that WaterTonic wasn't
+  Drink=true, so the OBVIOUS cure didn't work in play. WaterTonic now
+  drinks ("Cool water, all the way down.").
+- 🟡 THIS SECTION was empty through seven commits — the living-doc
+  rule violated; filled now and kept current.
+- 🔵 GlareExposure diag now follows the effect-category convention
+  (bearer in target); §7.8's wording updated to match the shipped
+  apply-only shape. SaltPan's lying "never adjacent" comment fixed.
+- ⚪ WellPart everywhere: DECISION, not bug — every village well
+  serves water and cures Parched ("water is the truest wealth and is
+  given, never sold"). No fouled-well mechanic exists to conflict.
+
+**W2.8 remaining:** the tenth fire + full W2 close-out (cold-eye over
+all W2 diffs, hypothesis pass, ASCII look at the camp + profiles,
+PlayMode sanity if the GUI editor cooperates).
 
 ## 8. Deferred / explicitly out of scope (this document)
 

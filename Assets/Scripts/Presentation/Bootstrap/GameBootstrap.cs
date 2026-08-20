@@ -86,6 +86,8 @@ namespace CavesOfOoo
                 // compare its first turn against the previous session's
                 // last band and could announce a spurious transition.
                 WorldClock.Reset();
+                // W2 mid-review: the glare streak is a static too.
+                BeatingGlareSystem.Reset();
 
                 Debug.Log("[Bootstrap] Step 1/9: Initializing factions...");
                 PerformanceDiagnostics.MeasureStartupPhase("LoadFactions", PerformanceMarkers.Bootstrap.LoadFactions, () =>
@@ -846,6 +848,9 @@ namespace CavesOfOoo
             _world = state.World;
             NarrativeStatePart.Current = _world?.GetPart<NarrativeStatePart>();
             TurnManager.World = _world;
+            // W2 mid-review: a pre-death exposure streak must not carry
+            // into the loaded game.
+            BeatingGlareSystem.Reset();
 
             // Re-attach StoryletPart on the loaded world entity. If the save
             // graph contained one (v3+), re-bind Current to it; otherwise

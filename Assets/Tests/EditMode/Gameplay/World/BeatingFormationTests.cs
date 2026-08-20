@@ -167,6 +167,28 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void RuinRooms_AlwaysHaveAtLeastOneDoor()
+        {
+            // The W2 mid-review's critical: the perimeter walk visited
+            // each corner twice, and the antipodal gap offset mapped the
+            // corner indices onto each other — so ~41% of rooms sealed
+            // with BOTH doors voided, invisible to the west-east
+            // crossability test. The real invariant: the flood from the
+            // west must reach EVERY open cell — a sealed interior is a
+            // region the flood cannot enter.
+            for (int seed = 0; seed < 60; seed++)
+            {
+                var zone = Built(Formation.RuinField, seed: seed);
+                var reached = FloodFrom(zone, westEdge: true);
+                for (int x = 1; x < Zone.Width - 1; x++)
+                    for (int y = 1; y < Zone.Height - 1; y++)
+                        if (IsOpen(zone, x, y))
+                            Assert.IsTrue(reached[x, y],
+                                $"seed {seed}: open cell ({x},{y}) is sealed off — a room with no door");
+            }
+        }
+
+        [Test]
         public void DuneBeltsLeaveStandingGaps()
         {
             // Occlusion, not blockade — the belt must be crossable
@@ -188,6 +210,28 @@ namespace CavesOfOoo.Tests
             if (x < 1 || y < 1 || x >= Zone.Width - 1 || y >= Zone.Height - 1) return false;
             var cell = zone.GetCell(x, y);
             return cell != null && !cell.BlocksMovement();
+        }
+
+        private static bool[,] FloodFrom(Zone zone, bool westEdge)
+        {
+            var seen = new bool[Zone.Width, Zone.Height];
+            var queue = new Queue<(int x, int y)>();
+            for (int y = 1; y < Zone.Height - 1; y++)
+                if (IsOpen(zone, 1, y)) { seen[1, y] = true; queue.Enqueue((1, y)); }
+            while (queue.Count > 0)
+            {
+                var (x, y) = queue.Dequeue();
+                for (int dx = -1; dx <= 1; dx++)
+                    for (int dy = -1; dy <= 1; dy++)
+                    {
+                        int nx = x + dx, ny = y + dy;
+                        if (nx < 1 || ny < 1 || nx >= Zone.Width - 1 || ny >= Zone.Height - 1) continue;
+                        if (seen[nx, ny] || !IsOpen(zone, nx, ny)) continue;
+                        seen[nx, ny] = true;
+                        queue.Enqueue((nx, ny));
+                    }
+            }
+            return seen;
         }
 
         private static bool Crossable(Zone zone, bool westToEast)

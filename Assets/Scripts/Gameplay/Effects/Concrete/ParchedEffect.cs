@@ -76,6 +76,11 @@ namespace CavesOfOoo.Core
             if (pos.x < 0) return;
             if (zone.TileState.HasCoating(pos.x, pos.y, "water"))
             {
+                // Contract (Effect.cs removal-cause block): effects that
+                // end themselves overwrite the cause BEFORE zeroing
+                // Duration — for a never-expires effect, every
+                // "duration_expired" record would be a lie.
+                LastRemovalCause = "cured_by_water";
                 Duration = 0;
                 MessageLog.Add("The water takes the parch out of "
                     + target.GetDisplayName() + ".");

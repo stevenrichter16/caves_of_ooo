@@ -86,6 +86,14 @@ namespace CavesOfOoo.Core
                 case BerserkEffect bz:
                     return "Berserk - lashing out at anything near" + ForTurns(bz.Duration) + ".";
 
+                case ParchedEffect pa:
+                    return "Parched x" + pa.Stacks + " - -" + pa.Stacks
+                        + " Strength and Agility until watered.";
+                case UnderTheClothEffect oath:
+                    return "Under the cloth - guest-right holds"
+                        + " (" + System.Math.Max(0, oath.ExpiryTick - WorldClock.CurrentTick)
+                        + " ticks remain).";
+
                 case null:
                     return "Nothing.";
                 default:
