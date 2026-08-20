@@ -28395,6 +28395,42 @@
         { "Key": "Faction", "Value": "TentRight" },
         { "Key": "Tier", "Value": "1" }
       ]
+    },
+    {
+      "Name": "UntendedFire",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "fire" },
+            { "Key": "RenderString", "Value": "*" },
+            { "Key": "ColorString", "Value": "&R" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        {
+          "Name": "LightSource",
+          "Params": [
+            { "Key": "Radius", "Value": "8" },
+            { "Key": "LightColor", "Value": "&W" },
+            { "Key": "Intensity", "Value": "0.8" }
+          ]
+        },
+        {
+          "Name": "LightSourceFlicker",
+          "Params": []
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            { "Key": "Temperature", "Value": "500" },
+            { "Key": "FlameTemperature", "Value": "300" }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
     }
   ]
 }

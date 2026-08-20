@@ -295,6 +295,13 @@ namespace CavesOfOoo.Core
         public const string AbandonedCounterZoneA = "Overworld.19.18.0";
         public const string AbandonedCounterZoneB = "Overworld.19.19.0";
 
+        /// <summary>Somewhere in the deep wasteland a fire burns that no
+        /// one tends. It appears on no map, in no POI list, and this
+        /// constant's name is as much explanation as will ever exist
+        /// (Lore/MYSTERY-LEDGER.md §4 — forbidden from answering:
+        /// everything and everyone).</summary>
+        public const string TenthFireZoneID = "Overworld.2.19.0";
+
         private ZoneGenerationPipeline CreateBeatingPipeline(int tier = 1, string zoneID = null)
         {
             var pipeline = CreateSurfacePipeline(BiomeType.Beating, tier,
@@ -308,6 +315,13 @@ namespace CavesOfOoo.Core
             {
                 pipeline.AddBuilder(new LandmarkBuilder(BiomeType.Beating, tier,
                     new List<StructureStamp> { StampCatalog.AbandonedCounter() },
+                    priority: 3790, maxStructures: 1));
+            }
+            // W2.8: the tenth fire. Placed, burning, unexamined.
+            if (zoneID == TenthFireZoneID)
+            {
+                pipeline.AddBuilder(new LandmarkBuilder(BiomeType.Beating, tier,
+                    new List<StructureStamp> { StampCatalog.TenthFire() },
                     priority: 3790, maxStructures: 1));
             }
             return pipeline;

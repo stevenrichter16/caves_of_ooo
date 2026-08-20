@@ -115,6 +115,41 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void TheTenthFire_Burns_AndSaysNothing()
+        {
+            // Mystery Ledger §4: placed, burning, unexamined. The examine
+            // line must be EXACTLY "You see a fire." — any word more is a
+            // ledger violation, and this test is the lint.
+            var zone = Generate(OverworldZoneManager.TenthFireZoneID);
+
+            Entity fire = null;
+            foreach (var e in zone.GetAllEntities())
+                if (e.BlueprintName == "UntendedFire") fire = e;
+            Assert.IsNotNull(fire, "somewhere in the deep wasteland a fire burns");
+
+            Assert.IsNull(fire.GetPart<FuelPart>(), "no fuel — it must never exhaust");
+            Assert.IsNotNull(fire.GetPart<LightSourcePart>(), "it burns");
+
+            MessageLog.Clear();
+            var ev = GameEvent.New("InventoryAction");
+            ev.SetParameter("Command", "Examine");
+            fire.FireEvent(ev);
+            ev.Release();
+            Assert.AreEqual("You see a fire.", MessageLog.GetLast(),
+                "as much explanation as will ever exist");
+        }
+
+        [Test]
+        public void TheTenthFire_AppearsOnNoMap()
+        {
+            // It must never be a POI — non-POI placement satisfies "never
+            // on the map UI" by construction; this pins that nobody
+            // later promotes it.
+            var (x, y, _) = WorldMap.FromZoneID(OverworldZoneManager.TenthFireZoneID);
+            Assert.IsNull(_mgr.WorldMap.GetPOI(x, y), "the tenth fire is not a place; it is a fire");
+        }
+
+        [Test]
         public void AnOrdinaryDeepBeatingZone_HasNoAuthoredRuin()
         {
             // Counter-check on the zone-id gating: the neighbor cell must

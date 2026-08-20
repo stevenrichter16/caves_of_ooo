@@ -767,6 +767,23 @@ namespace CavesOfOoo.Core
             },
         };
 
+        /// <summary>One fire, deep pan, burning, untended. No Fuel part
+        /// (it must never exhaust), no CampfirePart (no rest prompt, no
+        /// "crackles warmly" — no text beyond what is seen), empty
+        /// examine. Tent-Right caravans route around it without
+        /// discussing it. Mystery Ledger §4.</summary>
+        public static StructureStamp TenthFire() => new StructureStamp
+        {
+            Name = "TenthFire",
+            Chance = 100,
+            MinTier = 1,
+            Rows = new[] { "F" },
+            Legend = new Dictionary<char, string>
+            {
+                { 'F', "UntendedFire" },
+            },
+        };
+
         /// <summary>An abandoned predecessor of the Last Counter —
         /// "has been pulled back twice in two generations" — broken
         /// walls and bones, scavenged long ago. Time-depth as level
