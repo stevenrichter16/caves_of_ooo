@@ -257,7 +257,7 @@ card with their own modes; see `ROTCHOIR_VOICES.md`.)*
   > "Why didn't he? Ah. That's the question, isn't it."
   > "No, it doesn't mean anything. It's the sound a name makes letting go."
   > "And none of it's true, and you'll hear the river all night same as always, saying nothing, saying nothing, saying nothing. In you go."
-  > "Old [name] stops mid-sentence — something in the water said her grandmother's word for it, and doesn't say it again."
+  > "The elder stops mid-sentence — something in the water said a word from a story their great-grandparent told, and doesn't say it again."
 
   *(Gate note: this card is derived from the one shipped specimen —
   `Lore/Codex/12_SariStory_Sill.md` — rather than authored fresh and

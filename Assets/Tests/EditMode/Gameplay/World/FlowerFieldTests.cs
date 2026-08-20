@@ -239,6 +239,55 @@ namespace CavesOfOoo.Tests
         }
 
         // ════════════════════════════════════════════════════════════
+        // Hypothesis audit (Docs/FELLING-W1-W2-PLAN.md §2.3, second pass):
+        // player flows the per-SM tests never simulated
+        // ════════════════════════════════════════════════════════════
+
+        [Test]
+        public void ASavedMidLifeFlower_DoesNotRerootIntoAFreshSeason()
+        {
+            // THE reason FlowerCharmPart.Rooted is a public field: parts
+            // round-trip public fields via reflection (SaveSystem.cs:1270
+            // WritePublicFields). If Rooted were private, every loaded
+            // flower would re-root on its first post-load turn and hand
+            // itself a full season — a wilted meadow un-wilting whenever
+            // the player reloads. Save mid-life, load, tick: the countdown
+            // must CONTINUE, not restart.
+            var zone = MeadowAt(1f, "Overworld.6.6.0");   // bleeding → short season
+            var flower = FirstFlower(zone);
+            EndTurn(flower, zone);                          // roots short
+            int midLife = flower.GetPart<LifespanPart>().TurnsRemaining;
+
+            var loaded = PartRoundTripHelper.RoundTripEntity(flower);
+            var charm = loaded.GetPart<FlowerCharmPart>();
+            Assert.IsTrue(charm.Rooted, "the latch must survive the save");
+            Assert.AreEqual(midLife, loaded.GetPart<LifespanPart>().TurnsRemaining);
+
+            // The post-load tick continues the countdown — in a CLEAN zone,
+            // which is the trap: an un-latched charm would read bleed 0 here
+            // and reset the season to full.
+            var cleanZone = new Zone("Overworld.6.5.0");
+            EndTurn(loaded, cleanZone);
+            Assert.AreEqual(midLife - 1, loaded.GetPart<LifespanPart>().TurnsRemaining,
+                "a loaded flower continues its old season; it never re-reads the zone");
+        }
+
+        [Test]
+        public void ACharmWithoutALifespanPart_RootsAsANoOp_NoCrash()
+        {
+            // Blueprint-misauthoring adversarial: FlowerCharm present,
+            // Lifespan forgotten. The charm must latch and do nothing —
+            // not throw on the missing part.
+            var e = new Entity { BlueprintName = "Misauthored" };
+            e.AddPart(new FlowerCharmPart());
+            var zone = new Zone("Z");
+            zone.AddEntity(e, 5, 5);
+
+            Assert.DoesNotThrow(() => EndTurn(e, zone));
+            Assert.IsTrue(e.GetPart<FlowerCharmPart>().Rooted);
+        }
+
+        // ════════════════════════════════════════════════════════════
         // Observability — the instrument speaks only when it has something to say
         // ════════════════════════════════════════════════════════════
 
