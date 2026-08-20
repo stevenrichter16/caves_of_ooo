@@ -923,6 +923,9 @@ namespace CavesOfOoo.Rendering
             // or a world-map crossing can jump several bands in this one
             // call; the clock reports one transition either way.
             WorldClock.NotifyPlayerTurnEnd(TurnManager.TickCount);
+            // W2.3 — the Height-band glare reads the same tick the clock
+            // just reported (WorldClock's first gameplay consumer).
+            BeatingGlareSystem.OnPlayerTurnEnd(PlayerEntity, CurrentZone, TurnManager.TickCount);
             // No `RequestZoneRedraw("Turn.Advance")` — the per-cell dirty
             // hooks (MovementSystem, CombatSystem) flag exactly the cells
             // that changed during the turn cycle. Player movement upgrades

@@ -112,6 +112,11 @@ namespace CavesOfOoo.Core
             applyEvent.SetParameter("Source", (object)user);
             ParentEntity.FireEventAndRelease(applyEvent);
 
+            // W2.3 — any drink pushes dehydration back one stack (the
+            // wells cure it outright; a tonic is a mouthful).
+            if (Drink)
+                ParchedEffect.ReduceOneStack(target);
+
             if (showUseMessage)
             {
                 string verb = Drink ? "drinks" : "applies";
