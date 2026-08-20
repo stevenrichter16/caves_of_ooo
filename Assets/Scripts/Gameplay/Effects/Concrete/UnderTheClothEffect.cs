@@ -24,12 +24,13 @@ namespace CavesOfOoo.Core
     /// (the persist idiom); the turn tick compares the clock and sets
     /// Duration to 0 when the third day ends.</para>
     ///
-    /// <para><b>Breaking it:</b> the guest attacking a PERSON — anyone
-    /// Tent-Right, or anyone likewise under the cloth — removes the
-    /// effect and lands the single largest reputation loss in the game
-    /// (canon :152). Attacking beasts is daily life, not oathbreak.
-    /// Indirect harm (a shove into a hazard) is a documented 🧪
-    /// deferral, per plan R4.</para>
+    /// <para><b>Breaking it:</b> the guest attacking any PERSON — the
+    /// exact mirror of the floor: whoever the cloth silences, swinging
+    /// at them forfeits it (plan D1: "guest attacks anyone") — removes
+    /// the effect and lands the single largest reputation loss in the
+    /// game (canon :152). Attacking beasts and the factionless wilds is
+    /// daily life, not oathbreak. Indirect harm (a shove into a hazard)
+    /// is a documented 🧪 deferral, per plan R4.</para>
     /// </summary>
     public class UnderTheClothEffect : Effect
     {
@@ -103,32 +104,48 @@ namespace CavesOfOoo.Core
         // The two static seams the rest of the game consults
         // ════════════════════════════════════════════════════════
 
+        /// <summary>Who the covenant binds — and who it therefore also
+        /// covers. A person is a FACTIONED entity that is not Beasts:
+        /// the wilds never signed (a factionless critter can neither
+        /// swear the oath nor be its victim), and "a scorpion cannot be
+        /// an oathbreaker". A cloth-wearer counts regardless — a fellow
+        /// guest is under the law by definition. This single test backs
+        /// BOTH static seams so floor and break can never drift apart
+        /// again (the W2 close-out's one-way-shield bug was exactly
+        /// that drift).</summary>
+        private static bool IsPerson(Entity e)
+        {
+            if (e == null) return false;
+            if (e.HasEffect<UnderTheClothEffect>()) return true;
+            string faction = FactionManager.GetFaction(e);
+            return faction != null && faction != "Beasts";
+        }
+
         /// <summary>Does the oath stand between these two? True when the
         /// TARGET is under the cloth and the would-be aggressor is a
-        /// person (not Beasts). Consulted by FactionManager.GetFeeling
-        /// ONLY on would-be-hostile results, so the effect scan stays off
-        /// the friendly path.</summary>
+        /// person (see <see cref="IsPerson"/>). Consulted by
+        /// FactionManager.GetFeeling ONLY on would-be-hostile results,
+        /// so the effect scan stays off the friendly path.</summary>
         public static bool Protects(Entity source, Entity target)
         {
             if (source == null || target == null || source == target) return false;
             if (!target.HasEffect<UnderTheClothEffect>()) return false;
-            return FactionManager.GetFaction(source) != "Beasts";
+            return IsPerson(source);
         }
 
         /// <summary>The guest swung at a person. Remove the cloth and
-        /// land the hammer. Called from the two damage choke points
-        /// (melee, spell) when the attacker wears the cloth and the
-        /// victim is a person under its law — Tent-Right, or a fellow
-        /// guest.</summary>
+        /// land the hammer. Called unconditionally from the two damage
+        /// choke points (melee, spell); this helper filters. The rule is
+        /// the mirror of <see cref="Protects"/>: whoever's hostility the
+        /// cloth floors, swinging at them forfeits the cloth (plan D1:
+        /// "guest attacks anyone while under the cloth → effect
+        /// removed"). Beasts and the factionless wilds are daily life.</summary>
         public static void Break(Entity guest, Entity victim)
         {
             var effects = guest?.GetPart<StatusEffectsPart>();
             var oath = effects?.GetEffect<UnderTheClothEffect>();
             if (oath == null) return;
-            if (victim != null
-                && FactionManager.GetFaction(victim) != "TentRight"
-                && !victim.HasEffect<UnderTheClothEffect>())
-                return;   // beasts and strangers: not oathbreak
+            if (!IsPerson(victim)) return;   // no victim, or beast: not oathbreak
 
             oath.Broken = true;
             effects.RemoveEffect<UnderTheClothEffect>();

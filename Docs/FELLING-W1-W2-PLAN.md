@@ -1077,9 +1077,81 @@ commit:
   serves water and cures Parched ("water is the truest wealth and is
   given, never sold"). No fouled-well mechanic exists to conflict.
 
-**W2.8 remaining:** the tenth fire + full W2 close-out (cold-eye over
-all W2 diffs, hypothesis pass, ASCII look at the camp + profiles,
-PlayMode sanity if the GUI editor cooperates).
+**W2.8 ✅** (`09c76524` the tenth fire; `b992af25` its look pass) —
+the fire's zone rolled a hermit hut and a tomb on the first dump
+(mystery needs emptiness → bare CreateTenthFirePipeline), then a vein
+'*' collided with the fire's glyph (→ OmitSaltVeins knob). Final
+state: one '*' in the zone, and it's the fire.
+
+**W2 close-out ✅** (three-lens adversarial workflow over W2.4-W2.8 +
+the review commit; 3 findings adversarially CONFIRMED before 15 of 21
+verify agents died on a spend limit; the raised-but-unverified titles
+were then triaged INLINE — reads, not agents — and every real one
+fixed in the close-out commit):
+- 🔴 **The one-way shield** (all three find-lenses raised it
+  independently): the floor silenced ALL people's hostility toward
+  the guest, but Break() fired only for TentRight/fellow-guest
+  victims — a three-day window of one-sided killing (floored
+  Snapjaws mechanically could not answer). Fixed by symmetry: one
+  IsPerson test backs BOTH static seams — whoever the cloth floors,
+  swinging at them forfeits it (D1's literal "attacks anyone",
+  beasts carved out). RED-confirmed, then GREEN.
+- 🟡 Recruit-under-truce: Persuasion_Recruit's hostility veto read
+  the FLOORED feeling, so a truce-bound raider was recruitable — and
+  stayed recruited after the third day. Veto #7 now reads
+  GetFeelingUnfloored (new, contract-documented). RED→GREEN.
+- 🟡 Panacea stripped the oath: CureEffect="All" called
+  RemoveAllEffects, removing the covenant and printing the calm
+  expiry line mid-oath. Cure-all now removes TYPE_NEGATIVE effects
+  only (the WSP6.16 backfill finally load-bearing). RED→GREEN.
+- 🟡 Break(guest, null) fell through the victim guard and landed the
+  -100 hammer for a swing at nobody. Now: no victim, no crime.
+  RED→GREEN.
+- 🟡 The veto-side mirror: a FACTIONLESS wild critter with a personal
+  grudge (you wounded it) was floored — null faction != "Beasts"
+  made every wild thing a "person". IsPerson requires a faction: the
+  wilds never signed. RED→GREEN.
+- 🟡 Load-seam asymmetry (Q1): bootstrap resets WorldClock's band
+  diff (W0.1) but ApplyLoadedGame reset only the glare static —
+  loading into a different time-of-day band announced a transition
+  the player never lived through. Reset() wired at the load seam;
+  unit contract already pinned by WorldClockTests.
+- 🔵 StampCatalog.Forced shared Rows/Legend refs with the ambient
+  original (latent — current profiles reassign rather than mutate).
+  Now deep-copies.
+- Raised and REFUTED, pinned: "pursuers with an in-flight KillGoal
+  keep attacking" — AI target selection re-validates hostility every
+  evaluation (IsValidHostileTarget → IsHostile → the floor), so
+  mid-hunt pursuit drops the guest the turn the cloth goes on.
+  Pinned at the FindNearestHostile seam.
+
+**SCOPE DIVERGENCE (W2.5, recorded here per §7.10):** plan §7.6 spec'd
+the floor's exclusion as "Beasts/Snapjaws — the oath binds people,
+not animals". Shipped: only Beasts excluded — **Snapjaws are floored,
+deliberately**. Snapjaws are a registered people (Factions.json), and
+canon's covenant is between people, not between nice people; OathTests
+pins it as "even the raider knows what the cloth means". The Break
+symmetry fix removes what made this divergence dangerous (attacking
+the floored raider is now oathbreak, so the truce binds both ways).
+The D1 narrowing ("attacks anyone" → TentRight/fellow-guests only)
+was the OTHER unrecorded divergence — that one was a bug, and the
+close-out fix restores D1's word.
+
+**§7.10 exit status:** suite green ✅ (6837, twice); counter-checks
+per SM ✅; oath adversarial file ✅ (OathAdversarialTests.cs, 14
+tests: 6 RED-confirmed bugs, 8 pins, incl. the plan's two previously
+untested named scenarios — claim-then-travel and rock-bottom rep);
+look passes recorded ✅ (formations §W2.1, camp/profiles/tenth-fire
+§W2.8); cold-eye + hypothesis pass ✅ (mid-review workflow W2.1-2.3 +
+close-out workflow W2.4-2.8 + this inline triage); SCOPE DIVERGENCE
+sections ✅ (above). **PlayMode sanity sweep: DEFERRED with honesty
+bound** — the GUI editor's wedge cycle (stale UnityLockfile) made
+live Play runs unreliable this arc; everything asserted above is
+EditMode-observable (effects, feelings, diags, vetoes). What remains
+UNVERIFIED live: message-log ordering on oath events in real play,
+glare/well interaction on a real surface walk, camp look in color.
+First manual playtest should walk a tent camp; the deferral is debt,
+not completion.
 
 ## 8. Deferred / explicitly out of scope (this document)
 

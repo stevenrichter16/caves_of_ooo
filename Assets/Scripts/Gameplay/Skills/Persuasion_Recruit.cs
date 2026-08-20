@@ -181,7 +181,14 @@ namespace CavesOfOoo.Skills
             // confirmed it was unreachable dead code: GetFeeling never
             // returns > HOSTILE_THRESHOLD when EITHER side has a grudge,
             // so #7 always fires first.
-            if (FactionManager.GetFeeling(target, actor) <= FactionManager.HOSTILE_THRESHOLD)
+            //
+            // W2 close-out: UNFLOORED, deliberately. The plain GetFeeling
+            // floors would-be-hostile people to 0 while the actor is under
+            // the cloth (UnderTheClothEffect) — correct for combat, but a
+            // truce-floored raider would sail through this veto and stay
+            // recruited after the third day. Recruitment asks what the
+            // target actually feels, not whether it may swing right now.
+            if (FactionManager.GetFeelingUnfloored(target, actor) <= FactionManager.HOSTILE_THRESHOLD)
             {
                 EmitSkillRejectedDiag(ctx, "target_hostile");
                 return false;

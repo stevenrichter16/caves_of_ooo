@@ -679,14 +679,19 @@ namespace CavesOfOoo.Core
         // copies rather than gambling on Chance.
 
         /// <summary>A Chance-100 copy for guaranteed placement — the
-        /// original stays an ambient roll in its biome catalog.</summary>
+        /// original stays an ambient roll in its biome catalog. Rows and
+        /// Legend are copied, not shared: profile builders customise
+        /// their forced stamps (today they reassign whole collections —
+        /// TentRightProfileCamp — but the first one to edit in place
+        /// would silently rewrite the ambient original for every other
+        /// zone; W2 close-out, latent).</summary>
         public static StructureStamp Forced(StructureStamp s) => new StructureStamp
         {
             Name = s.Name,
             Chance = 100,
             MinTier = 1,
-            Rows = s.Rows,
-            Legend = s.Legend,
+            Rows = (string[])s.Rows.Clone(),
+            Legend = new Dictionary<char, string>(s.Legend),
             ClearsVegetation = true,
         };
 

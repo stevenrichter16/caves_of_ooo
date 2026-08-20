@@ -188,6 +188,18 @@ namespace CavesOfOoo.Core
             return feeling;
         }
 
+        /// <summary>
+        /// The same feeling WITHOUT the oath floor. For gates that ask
+        /// "does this creature actually like me?" rather than "may it
+        /// attack me right now?" — a raider under three-day truce still
+        /// hates you, and the truce must not launder that into consent
+        /// (the W2 close-out's recruit-a-floored-raider exploit).
+        /// Combat/AI target selection must keep using
+        /// <see cref="GetFeeling"/>, which honors the cloth.
+        /// </summary>
+        public static int GetFeelingUnfloored(Entity source, Entity target)
+            => GetFeelingCore(source, target);
+
         private static int GetFeelingCore(Entity source, Entity target)
         {
             if (source == null || target == null) return 0;

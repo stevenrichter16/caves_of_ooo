@@ -24,8 +24,18 @@ namespace CavesOfOoo.Core
 
                 if (CureEffect == "All")
                 {
-                    effects.RemoveAllEffects();
-                    MessageLog.Add($"{actor.GetDisplayName()} is cured of all ailments!");
+                    // W2 close-out: "all AILMENTS", literally. A blanket
+                    // RemoveAllEffects also stripped covenants like
+                    // UnderTheClothEffect (and printed its calm expiry
+                    // line mid-oath). A cure removes what is WRONG with
+                    // you — the TYPE_NEGATIVE effects (WSP6.16 backfill)
+                    // — and leaves oaths and boons alone.
+                    bool any = false;
+                    while (effects.RemoveEffect(eff =>
+                        (eff.GetEffectType() & Effect.TYPE_NEGATIVE) != 0))
+                        any = true;
+                    if (any)
+                        MessageLog.Add($"{actor.GetDisplayName()} is cured of all ailments!");
                 }
                 else
                 {

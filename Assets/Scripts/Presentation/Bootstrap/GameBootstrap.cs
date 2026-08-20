@@ -851,6 +851,13 @@ namespace CavesOfOoo
             // W2 mid-review: a pre-death exposure streak must not carry
             // into the loaded game.
             BeatingGlareSystem.Reset();
+            // W2 close-out (Q1 symmetry with the restart seam above,
+            // which has had this since W0.1): the hour-band diff must
+            // re-prime against the LOADED clock, or the first turn
+            // announces a band transition the player never lived
+            // through. Contract pinned by WorldClockTests
+            // (ResetForTests_ClearsPriming / FirstObservation_Primes).
+            WorldClock.Reset();
 
             // Re-attach StoryletPart on the loaded world entity. If the save
             // graph contained one (v3+), re-bind Current to it; otherwise
