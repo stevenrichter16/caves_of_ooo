@@ -123,9 +123,11 @@ namespace CavesOfOoo.Tests
         [Test]
         public void ABiomeWithoutAPoolGetsNoFormation()
         {
-            // W2+ biomes have not been given pools yet, and must fall back
-            // to their plain recipe rather than borrowing the Spread's.
-            Assert.AreEqual(Formation.None, FormationSelector.For(BiomeType.Beating, "Overworld.1.1.0"));
+            // Biomes without pools (W3+) must fall back to their plain
+            // recipe rather than borrowing another biome's. Re-baselined
+            // in W2.1: the Beating grew its own pool, so the poolless
+            // examples are now the Sodden and Cave.
+            Assert.AreEqual(Formation.None, FormationSelector.For(BiomeType.Sodden, "Overworld.1.1.0"));
             Assert.AreEqual(Formation.None, FormationSelector.For(BiomeType.Cave, "Overworld.1.1.0"));
         }
 

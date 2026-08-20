@@ -34,6 +34,25 @@ namespace CavesOfOoo.Core
         Fallow,
         /// <summary>Water-meadow along a river edge.</summary>
         RiverMeadow,
+
+        // ── The Beating (W2, Docs/FELLING-W1-W2-PLAN.md §7.6) ────
+        /// <summary>Polygon-cracked crust, zero cover — a duel floor
+        /// with salt outcrops.</summary>
+        SaltPan,
+        /// <summary>The pre-Felling street grid standing waist-high out
+        /// of the pan. The old world, walkable.</summary>
+        RuinField,
+        /// <summary>Soft banded dunes: slow going, occluded lines.</summary>
+        DuneBelt,
+        /// <summary>The well-to-well lane. The road is life; leaving it
+        /// is a decision.</summary>
+        CaravanRoad,
+        /// <summary>Rock and dry brush. Scorpion country; the brush
+        /// burns.</summary>
+        WindBarrens,
+        /// <summary>Thin crust over deep brine — standing water in the
+        /// driest place in the world.</summary>
+        BrineLens,
     }
 
     /// <summary>
@@ -70,12 +89,28 @@ namespace CavesOfOoo.Core
             return pool[StableIndex(zoneID, pool.Length)];
         }
 
+        /// <summary>The Beating: mostly open pans and barrens (the
+        /// exposure IS the biome), the ruins and the brine rarer and
+        /// more memorable.</summary>
+        private static readonly Formation[] BeatingPool =
+        {
+            Formation.SaltPan,
+            Formation.SaltPan,
+            Formation.WindBarrens,
+            Formation.WindBarrens,
+            Formation.DuneBelt,
+            Formation.CaravanRoad,
+            Formation.RuinField,
+            Formation.BrineLens,
+        };
+
         private static Formation[] PoolFor(BiomeType biome)
         {
             switch (biome)
             {
                 case BiomeType.Spread: return SpreadPool;
-                default: return null;   // W2+ fill these in
+                case BiomeType.Beating: return BeatingPool;
+                default: return null;   // W3+ fill these in
             }
         }
 

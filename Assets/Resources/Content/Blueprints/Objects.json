@@ -27993,6 +27993,80 @@
           "Value": ""
         }
       ]
+    },
+    {
+      "Name": "SaltCrust",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "salt crust" },
+            { "Key": "RenderString", "Value": "+" },
+            { "Key": "ColorString", "Value": "&W" },
+            { "Key": "RenderLayer", "Value": "0" },
+            { "Key": "GlyphVariants", "Value": "+-|" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "The pan cracked into plates as it dried. The ridges are sharp enough to read by." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "DuneCrest",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "dune crest" },
+            { "Key": "RenderString", "Value": "^" },
+            { "Key": "ColorString", "Value": "&y" },
+            { "Key": "RenderLayer", "Value": "1" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [ { "Key": "Solid", "Value": "true" } ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Soft sand stacked steeper than it looks. Easier to go around than over." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" } ]
+    },
+    {
+      "Name": "Bones",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "sun-bleached bones" },
+            { "Key": "RenderString", "Value": "%" },
+            { "Key": "ColorString", "Value": "&w" },
+            { "Key": "RenderLayer", "Value": "1" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Picked clean and dried white. Whatever it was, it was walking the road." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
     }
   ]
 }

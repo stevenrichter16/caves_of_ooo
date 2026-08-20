@@ -287,8 +287,15 @@ namespace CavesOfOoo.Core
         /// <summary>The Beating — raw sun and salt. Open, exposed, and
         /// stony.</summary>
         private ZoneGenerationPipeline CreateBeatingPipeline(int tier = 1)
-            => CreateSurfacePipeline(BiomeType.Beating, tier,
+        {
+            var pipeline = CreateSurfacePipeline(BiomeType.Beating, tier,
                 new DesertBuilder { WallThreshold = 0.88f, RockChance = 0.06f });
+            // W2.1 (Docs/FELLING-W1-W2-PLAN.md §7.6): the anti-sameness
+            // machine reaches the wasteland — pans, ruins, dunes, the
+            // caravan road, barrens, brine.
+            pipeline.AddBuilder(new BeatingFormationBuilder());
+            return pipeline;
+        }
 
         /// <summary>The Grovelands — Choir country. Dense growth with
         /// open cathedral floors between.</summary>
