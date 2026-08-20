@@ -361,6 +361,47 @@ counter + environmental-null counter + two-bandfrogs recursion pin
 stillness-passes expiry walk-away; copse always houses 1-2 toads;
 reedfrog passive + harvest pins.
 
+### W3.5 — Place profiles: Sumphold + the Drowned Ledger (SHIPPED)
+
+**The three-body contract survives the architecture:** the plan's
+"a ReadingTable with a body ON it" would have made a FOURTH body
+next to W3.2's scatter stamp — and BogTakenTests pins the Ledger at
+EXACTLY three. Resolution: one combined `ExcavationCamp` stamp
+replaces `DrownedLedgerBodies` (method deleted) — one body on the
+reading-tent's table, two among the numbered stakes, three total.
+The re-pin (`TheStampSwap_KeptTheCountAtExactlyThree`) makes any
+future camp edit that changes the count fail loudly.
+
+**Sumphold** (R1 honored: name-keyed profile branch, second of the
+two allowed before promotion to a Place.Profile field): boatyard
+stamp — BoatFrames, two PeatCutter spawns, and `TollRolls` quoting
+the REGISTER of Codex/10 ("short count — forgiven — my error")
+with a test negative-asserting the reading's confession ("not
+kind", "her face") never leaks into a prop. The Bog-Taken trade
+controversy lives in PeatCutter_1's dialogue — "Two answers in one
+mouth" — and refuses to settle, which is the canon position.
+
+**The Ledger:** ExcavationCamp — reading tent (interior-marked),
+one ReadingTable, SurveyStakes, RecensionScribe + CurationSorter in
+joint presence, each speaking their Order's card: "Attribution
+before assertion" (Recension) and "Status: continuing" (Curation —
+the file does not use the other word; the sorter's line mentions
+the player's word only to decline it, which is the card).
+
+**Voice notes:** the sorter's "we are still deciding the tense" is
+about the FILES, not an assertion of inner life (R3 holds). All new
+examine copy passes the game-wide mummy lint by construction.
+
+**Tests (SoddenProfileTests.cs, +7):** boatyard present at Sumphold
++ Tine counter (name-key gating); register-not-reading negative
+pins; camp census; exact-three re-pin; the Orders' cards asserted
+in the loaded dialogue; fail-loud NPC↔conversation wiring gate.
+
+**⚪ accepted:** stamp placement is generic, so the boatyard is not
+guaranteed river-adjacent — the yard is BY the water in fiction,
+somewhere-in-town in generation. Cosmetic; noted for a future
+water-aware placement pass if it ever grates.
+
 ## 6. Critical review of this plan (before implementation)
 
 **R1 — Sumphold-on-Spread is a feature, not a bug** — but the profile

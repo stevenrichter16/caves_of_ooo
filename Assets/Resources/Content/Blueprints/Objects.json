@@ -28967,6 +28967,192 @@
       ],
       "Stats": [],
       "Tags": [ { "Key": "Commerce", "Value": "" } ]
+    },
+    {
+      "Name": "BoatFrame",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "boat frame" },
+            { "Key": "RenderString", "Value": ")" },
+            { "Key": "ColorString", "Value": "&w" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" }, { "Key": "Takeable", "Value": "false" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A hull upside-down on trestles, ribs bare, seams waiting for pitch. Sumphold builds shallow and wide, for water that is mostly patience." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" }, { "Key": "Furniture", "Value": "" } ]
+    },
+    {
+      "Name": "TollRolls",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "toll-rolls" },
+            { "Key": "RenderString", "Value": "I" },
+            { "Key": "ColorString", "Value": "&W" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" }, { "Key": "Takeable", "Value": "false" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Bound crossing-counts under a rain-hood, a century deep and mould-spotted: carts, heads, coin, initials. One entry is pressed harder than the rest of its year: short count -- forgiven -- my error. The rolls do not say whose." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" }, { "Key": "Furniture", "Value": "" } ]
+    },
+    {
+      "Name": "SurveyStake",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "survey stake" },
+            { "Key": "RenderString", "Value": "|" },
+            { "Key": "ColorString", "Value": "&Y" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" }, { "Key": "Takeable", "Value": "false" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A numbered stake, paint gone grey. The numbering starts somewhere out of sight and does not appear to be close to done." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "ReadingTable",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "reading table" },
+            { "Key": "RenderString", "Value": "=" },
+            { "Key": "ColorString", "Value": "&W" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" }, { "Key": "Takeable", "Value": "false" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A long table under canvas, scrubbed pale. Straps, padded blocks, a folio stand: everything arranged so a body may be read without being moved more than it must be. The attending junior's stool sits where the light is worst." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" }, { "Key": "Furniture", "Value": "" } ]
+    },
+    {
+      "Name": "RecensionScribe",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "Recension scribe" },
+            { "Key": "RenderString", "Value": "@" },
+            { "Key": "ColorString", "Value": "&c" }
+          ]
+        },
+        { "Name": "Conversation", "Params": [ { "Key": "ConversationID", "Value": "RecensionScribe_1" } ] },
+        { "Name": "AISelfPreservation", "Params": [] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Ink to the second knuckle, and a table of attributions never out of reach. Reads everything twice; asserts almost nothing." }
+          ]
+        }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 16, "Min": 0, "Max": 16 },
+        { "Name": "Strength", "Value": 10 },
+        { "Name": "Agility", "Value": 12 },
+        { "Name": "Speed", "Value": 100 },
+        { "Name": "XPValue", "Value": 0 }
+      ],
+      "Tags": [ { "Key": "Faction", "Value": "Palimpsest" }, { "Key": "Tier", "Value": "1" } ]
+    },
+    {
+      "Name": "CurationSorter",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "Curation sorter" },
+            { "Key": "RenderString", "Value": "@" },
+            { "Key": "ColorString", "Value": "&C" }
+          ]
+        },
+        { "Name": "Conversation", "Params": [ { "Key": "ConversationID", "Value": "CurationSorter_1" } ] },
+        { "Name": "AISelfPreservation", "Params": [] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Gloves, always. A ledger of numbered things, each entry ending in the same word. Handles everything as if it were on loan, which, per the files, it is." }
+          ]
+        }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 16, "Min": 0, "Max": 16 },
+        { "Name": "Strength", "Value": 10 },
+        { "Name": "Agility", "Value": 12 },
+        { "Name": "Speed", "Value": 100 },
+        { "Name": "XPValue", "Value": 0 }
+      ],
+      "Tags": [ { "Key": "Faction", "Value": "Palimpsest" }, { "Key": "Tier", "Value": "1" } ]
+    },
+    {
+      "Name": "PeatCutter",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "peat-cutter" },
+            { "Key": "RenderString", "Value": "@" },
+            { "Key": "ColorString", "Value": "&w" }
+          ]
+        },
+        { "Name": "Conversation", "Params": [ { "Key": "ConversationID", "Value": "PeatCutter_1" } ] },
+        { "Name": "AISelfPreservation", "Params": [] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Boots to the thigh and a blade like a long spade worn to a shine. Smells of smoke that never quite goes out." }
+          ]
+        }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 20, "Min": 0, "Max": 20 },
+        { "Name": "Strength", "Value": 15 },
+        { "Name": "Agility", "Value": 11 },
+        { "Name": "Speed", "Value": 100 },
+        { "Name": "XPValue", "Value": 0 }
+      ],
+      "Tags": [ { "Key": "Faction", "Value": "Villagers" }, { "Key": "Tier", "Value": "1" } ]
     }
   ]
 }

@@ -1535,6 +1535,86 @@
           ]
         }
       ]
+    },
+    {
+      "ID": "RecensionScribe_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Recension the Eleventh, day four-thousand-and-counting; the count is in the tent and the count is right. You are not in my attribution table. State your errand and I will enter it as claimed, not as confirmed.",
+          "Choices": [
+            { "Text": "What do the bodies say?", "Target": "Bodies" },
+            { "Text": "What is a Recension?", "Target": "Order" },
+            { "Text": "Farewell.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Bodies",
+          "Text": "Nothing. The READINGS say -- and a reading is entered as the expedition's, never as the body's. Attribution before assertion. That is the whole Order, whatever the juniors tell you after dark.",
+          "Choices": [
+            { "Text": "Noted, as claimed.", "Target": "Start" },
+            { "Text": "Farewell.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Order",
+          "Text": "The eleventh attempt to read what the Ledger holds, is what. Ten recensions before us entered their findings; we keep their pages and correct them in the margin, signed. The peat does not mind how long we take.",
+          "Choices": [
+            { "Text": "Back to your count.", "Target": "Start" },
+            { "Text": "Farewell.", "Target": "End" }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "CurationSorter_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Mind the stakes. Everything numbered is somebody's -- was somebody's -- is somebody's. We are still deciding the tense, and until we decide, you walk between the lines.",
+          "Choices": [
+            { "Text": "Are they dead?", "Target": "Status" },
+            { "Text": "Farewell.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Status",
+          "Text": "The file does not use your word. The file says: continuing. Every entry in my ledger ends the same way -- Status: continuing -- and I have not been given cause to write anything else. Outside the camp you may think what you like.",
+          "Choices": [
+            { "Text": "Continuing. All right.", "Target": "Start" },
+            { "Text": "Farewell.", "Target": "End" }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "PeatCutter_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Cut, stack, dry, burn. The peat pays twice -- once as warmth, once as what it gives up. Mind where you put your feet; the trench is deeper than it reads.",
+          "Choices": [
+            { "Text": "What happens when you find one? A body.", "Target": "Found" },
+            { "Text": "Farewell.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Found",
+          "Text": "We stop the cut and we mark it, and then Sumphold argues. The Concord pays for the Bog-Taken -- pays well -- and the coin spends. Some of us will not touch that coin. Some of us load the boat. Two answers in one mouth; that is this town on the subject, and I will not pretend it is settled.",
+          "Choices": [
+            { "Text": "And you? Which answer?", "Target": "Which" },
+            { "Text": "Farewell.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Which",
+          "Text": "I cut peat. The day I answer that out loud, I will answer it to the one in the trench first.",
+          "Choices": [
+            { "Text": "Fair enough.", "Target": "Start" },
+            { "Text": "Farewell.", "Target": "End" }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -435,15 +435,27 @@ namespace CavesOfOoo.Core
                     new List<StructureStamp> { StampCatalog.LastCounterPost() },
                     priority: 3860, maxStructures: 1));
             }
-            // W3.2 (Docs/FELLING-W3-PLAN.md): the Drowned Ledger — a
-            // Palimpsest expedition site. The three pre-Felling
-            // preserved lie here and nowhere else in the world
-            // (Lore/History/03_History.md:28). W3.5 grows the rest of
-            // the place's profile on this same branch.
+            // W3.2/W3.5 (Docs/FELLING-W3-PLAN.md): the Drowned Ledger —
+            // a Palimpsest expedition site, not a market town. The full
+            // excavation camp: reading tent, numbered stakes, the two
+            // Orders in joint presence, and the three pre-Felling
+            // preserved that lie here and nowhere else in the world
+            // (Lore/History/03_History.md:28).
             else if (poi.Faction == "Palimpsest" && poi.Name == "the Drowned Ledger")
             {
                 pipeline.AddBuilder(new LandmarkBuilder(biome, 1,
-                    new List<StructureStamp> { StampCatalog.DrownedLedgerBodies() },
+                    new List<StructureStamp> { StampCatalog.ExcavationCamp() },
+                    priority: 3860, maxStructures: 1));
+            }
+            // W3.5 (plan R1): Sumphold is Villagers-faction like four
+            // other places, so its profile keys on the NAME — accepted
+            // for two name-keyed places (First Tent inside the TentRight
+            // branch is the other); a third promotes to a Place.Profile
+            // field.
+            else if (poi.Name == "Sumphold")
+            {
+                pipeline.AddBuilder(new LandmarkBuilder(biome, 1,
+                    new List<StructureStamp> { StampCatalog.SumpholdBoatyard() },
                     priority: 3860, maxStructures: 1));
             }
             // STARTING TOWN (Docs/STARTING-TOWN.md): five guaranteed

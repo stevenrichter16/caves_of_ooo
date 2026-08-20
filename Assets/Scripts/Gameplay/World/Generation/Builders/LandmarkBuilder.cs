@@ -789,27 +789,65 @@ namespace CavesOfOoo.Core
             },
         };
 
-        /// <summary>W3.2 — the Drowned Ledger's three pre-Felling
-        /// preserved (Lore/History/03_History.md:28: one of the world's
-        /// three thin sources on what came before; each reading yields
-        /// fragments). Exactly three, hand-placed to this one zone —
-        /// nowhere else in the Sodden ever grows one. No walls, no
-        /// marker: the peat is the ledger.</summary>
-        public static StructureStamp DrownedLedgerBodies() => new StructureStamp
+        /// <summary>W3.2/W3.5 — the Drowned Ledger's excavation camp.
+        /// The three pre-Felling preserved (Lore/History/03_History.md:28
+        /// — one of the world's three thin sources on what came before)
+        /// live here and nowhere else: one on the reading-tent's table —
+        /// the Codex/10 scene as architecture — and two among the
+        /// numbered stakes. A Recension scribe and a Curation sorter
+        /// keep the count (joint presence per canon). The body count is
+        /// EXACTLY THREE and BogTakenTests pins it; any edit here that
+        /// changes it fails there.</summary>
+        public static StructureStamp ExcavationCamp() => new StructureStamp
         {
-            Name = "DrownedLedgerBodies",
+            Name = "ExcavationCamp",
             Chance = 100,
             MinTier = 1,
             ClearsVegetation = true,
             Rows = new[]
             {
-                "B...B",
-                ".....",
-                "..B..",
+                "s....TTTTT",
+                ".B...TiRiT",
+                ".....TibiT",
+                ".s...TT.TT",
+                "B..s......",
+                "..K....Q..",
             },
             Legend = new Dictionary<char, string>
             {
+                { 'T', "TentWall" },
+                { 'i', "interior" },
+                { 'R', "ReadingTable" },
+                { 'b', "PreFellingBody" },
                 { 'B', "PreFellingBody" },
+                { 's', "SurveyStake" },
+                { 'K', "spawn:RecensionScribe" },
+                { 'Q', "spawn:CurationSorter" },
+            },
+        };
+
+        /// <summary>W3.5 — Sumphold's boatyard: hulls on trestles, the
+        /// toll-rolls under their rain-hood (quoting the REGISTER of
+        /// Codex/10 — "short count — forgiven — my error" — never the
+        /// reading's own words), and the cutters between jobs.</summary>
+        public static StructureStamp SumpholdBoatyard() => new StructureStamp
+        {
+            Name = "SumpholdBoatyard",
+            Chance = 100,
+            MinTier = 1,
+            ClearsVegetation = true,
+            Rows = new[]
+            {
+                ").)..",
+                ".....",
+                "C..I.",
+                "...C.",
+            },
+            Legend = new Dictionary<char, string>
+            {
+                { ')', "BoatFrame" },
+                { 'I', "TollRolls" },
+                { 'C', "spawn:PeatCutter" },
             },
         };
 
