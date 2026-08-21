@@ -68,6 +68,21 @@ the seam itself predates W4.
 
 ## 1. RIPE — the burning-field cascade (three interlocking findings)
 
+> **STATUS: FIXED (all three).** §1a: `GasFactory.SpawnGas` merges into a
+> compatible same-cell cloud via the new public
+> `GasSystem.FindMergeTarget` (MergeChunk semantics: sum density, max
+> level, OR seeping, receiver keeps creator; `gas/SpawnMerged` record) —
+> pinned by `GasSpawnMergeTests` (6 RED→GREEN + 3 counters); eight
+> existing pins updated from entity-count to conserved-density asserts
+> (BurnOff Number rolls, grenade overlap/double-detonate/cross-actor,
+> contagion cadences) — the grenade overlap pin existed precisely "so a
+> future merge-at-spawn change is explicit." §1b: `gas/Dispersed` moved
+> to the off-by-default `gas-verbose` channel. §1c: `GasVisuals.Refresh`
+> skips writes + dirty mark when glyph and background are unchanged.
+> Live gasbench matrix re-run deferred to the next PlayMode session
+> (honesty bound: EditMode pins prove merge/skip logic, not the live
+> field-fire population curve).
+
 The only cluster that crosses the project's own perf lines, and it is one
 scenario: **set a peat/bog field on fire** (a designed-for W3/W4 player
 action — the grove-law arc practically invites it).
@@ -126,6 +141,16 @@ MarkCellDirty when both are unchanged.
 
 ## 2. RIPE — per-frame: the water shimmer now scales with bog size
 
+> **STATUS: FIXED.** The skip logic lives in the pure static
+> `WaterShimmer` (ColorIndex = the branch's historical formula,
+> ClaimPaint stamps a byte[] cache reset by RefreshWaterCache on every
+> full redraw; takeover paths Invalidate so creature transit repaints
+> honestly). Pinned by `WaterShimmerTests` (RED was the compile error —
+> new pure class). PERF-FOUNDATION's budget table carries the
+> re-measure-live honesty bound; known ⚪: a dirty-cell repaint that
+> leaves water on top can show base color ≤0.5s on that one cell until
+> the next band tick.
+
 The one true per-frame finding. ZoneRenderer.cs:2010 — the stationary
 water-shimmer loop runs `GetCell` + `GetTopVisibleObject` (per-object
 GetPart scan) + 2× HasTag + `SetTileFlags`/`SetColor` for **every**
@@ -147,6 +172,18 @@ PERF-FOUNDATION budget table per its living-follow-ups rule.
 ---
 
 ## 3. MODERATE — observability fixes wearing perf clothing
+
+> **STATUS: FIXED (all three).** §3a: NPC turn Begin/End route to
+> `turn-verbose` (off by default), the player's stay on `turn`; pairing
+> survives per-actor within each channel. §3b: one `tile/PropagationWave`
+> aggregate per flood that moved anything (wave, seedCount, reached,
+> medium split, bbox); per-cell `PropagationStep` behind `tile-verbose`;
+> the 3×-per-turn seed `List<int>` hoisted to static scratch. §3c: the
+> attacker null/self early-outs moved above the elemental check — no
+> rejection record without an attacker to reject. All pinned by
+> `DiagChannelSplitTests` (7 RED→GREEN + 2 counters);
+> `TilePropagationTests.PropagationEmitsAStepRecord` retargeted to the
+> verbose channel it now proves.
 
 All three are cheap, none is a frame-rate issue; their real payoff is
 that the diag ring buffer stops eating itself.

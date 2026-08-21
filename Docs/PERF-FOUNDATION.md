@@ -413,6 +413,18 @@ Main Thread avg                ≈ 3-5ms     (300+fps potential)
 GC.Alloc/frame                 ≈ 3KB
 ```
 
+> **2026-08-21 (Wx opt review §2):** the `UpdateAmbientAnimations ≈ 0.78ms`
+> row was measured before W3's Sodden formations put 250-450 stationary
+> water cells (MirePool/PeatBog) in a single zone — at that scale the
+> stationary shimmer branch issued ~500-900 `SetTileFlags`/`SetColor`
+> calls per frame, ~97% rewriting an unchanged color (static-analysis
+> estimate: +0.8-1.5ms). `WaterShimmer.ClaimPaint` now skips unchanged
+> bands (the band advances 2×/sec/cell), cutting the native-call count
+> ~30× on bog zones. **Baseline honesty bound:** the post-change number
+> has not been re-measured live — re-profile
+> `PerformanceMarkers.Zone.UpdateAmbientAnimations` over 60-90s in an
+> OpenMire zone next PlayMode session and update this row.
+
 ---
 
 ## Living follow-ups

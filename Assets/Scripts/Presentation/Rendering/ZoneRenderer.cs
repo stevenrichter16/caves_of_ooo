@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using CavesOfOoo.Core;
 using CavesOfOoo.Diagnostics;
+using CavesOfOoo.Rendering;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Stopwatch = System.Diagnostics.Stopwatch;
@@ -165,6 +166,17 @@ namespace CavesOfOoo.Rendering
         private Camera _popupOverlayCamera;
         private LightMap _lightMap;
         private readonly List<Vector2Int> _waterTilePositions = new List<Vector2Int>();
+
+        /// <summary>
+        /// Wx opt review §2 — last-painted stationary-shimmer color band
+        /// per cached water cell (indexed with _waterTilePositions;
+        /// WaterShimmer.Unpainted = owes a repaint). Reset by
+        /// RefreshWaterCache, so every full-zone redraw forces one honest
+        /// repaint. W3's bogs put 250-450 stationary water cells in a
+        /// zone; without the skip they cost ~500-900 native tilemap calls
+        /// per frame, ~97% rewriting an unchanged color.
+        /// </summary>
+        private byte[] _stationaryShimmerLast;
 
         /// <summary>
         /// Positions of Bank entities in a RiverChunk zone. Cached so
@@ -1972,6 +1984,14 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
+            // Wx §2 — size/reset the shimmer skip cache. Reusing the
+            // array when it still fits avoids a per-full-redraw alloc.
+            if (_stationaryShimmerLast == null
+                || _stationaryShimmerLast.Length < _waterTilePositions.Count)
+                _stationaryShimmerLast = new byte[_waterTilePositions.Count];
+            for (int i = 0; i < _stationaryShimmerLast.Length; i++)
+                _stationaryShimmerLast[i] = WaterShimmer.Unpainted;
+
             InitDebrisPool();
         }
 
@@ -2019,18 +2039,27 @@ namespace CavesOfOoo.Rendering
                     // Clear any leftover fine-water tiles so they don't stay
                     // visible in fog of war / out of vision.
                     ClearFineWaterAt(x, y);
+                    // Wx §2: another painter owns the tile now — the
+                    // shimmer repaints as soon as the water is back.
+                    WaterShimmer.Invalidate(_stationaryShimmerLast, i);
                     continue;
                 }
 
                 // Verify water is still the top visible entity (creature may be standing on it)
                 Entity top = cell.GetTopVisibleObject();
-                if (top == null) { ClearFineWaterAt(x, y); continue; }
+                if (top == null)
+                {
+                    ClearFineWaterAt(x, y);
+                    WaterShimmer.Invalidate(_stationaryShimmerLast, i);
+                    continue;
+                }
                 var render = top.GetPart<RenderPart>();
                 if (render == null || render.RenderString != "~")
                 {
                     // Entity (player/NPC) is on this water cell — clear fine
                     // tiles so they don't cover the entity's glyph.
                     ClearFineWaterAt(x, y);
+                    WaterShimmer.Invalidate(_stationaryShimmerLast, i);
                     continue;
                 }
 
@@ -2126,13 +2155,17 @@ namespace CavesOfOoo.Rendering
                 }
                 else
                 {
-                    // Stationary spatial-shimmer for the village decor puddle.
-                    float phase = _ambientTimer * 2f + x * 0.7f + y * 1.3f;
-                    int colorIndex = ((int)phase) % WaterColors.Length;
-                    if (colorIndex < 0) colorIndex += WaterColors.Length;
-
-                    _tilemap.SetTileFlags(tilePos, TileFlags.None);
-                    _tilemap.SetColor(tilePos, WaterColors[colorIndex]);
+                    // Stationary spatial-shimmer (village decor puddles,
+                    // and — since W3 — whole Sodden bogs). Wx §2: the
+                    // band advances 2×/sec/cell, so skip the two native
+                    // writes on the ~97% of frames where it is unchanged.
+                    int colorIndex = WaterShimmer.ColorIndex(
+                        _ambientTimer, x, y, WaterColors.Length);
+                    if (WaterShimmer.ClaimPaint(_stationaryShimmerLast, i, colorIndex))
+                    {
+                        _tilemap.SetTileFlags(tilePos, TileFlags.None);
+                        _tilemap.SetColor(tilePos, WaterColors[colorIndex]);
+                    }
                 }
             }
 
