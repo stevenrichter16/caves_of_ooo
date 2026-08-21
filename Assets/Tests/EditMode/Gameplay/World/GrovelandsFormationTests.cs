@@ -373,6 +373,66 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void DrinkingAtTheSeep_CuresParched_EndToEnd()
+        {
+            // W4.1 review round 2 (hypothesis pin): the sign's promise
+            // through the REAL action wire — a parched walker draws at
+            // the seep and is cured, exactly like a village well.
+            var seep = _factory.CreateEntity("GroveSeep");
+            var walker = new Entity { ID = "walker", BlueprintName = "Walker" };
+            walker.Tags["Creature"] = "";
+            walker.AddPart(new RenderPart { DisplayName = "walker" });
+            walker.ApplyEffect(new ParchedEffect(), null, null);
+            Assert.IsTrue(walker.HasEffect<ParchedEffect>(), "setup: parched");
+
+            var ev = GameEvent.New("InventoryAction");
+            ev.SetParameter("Command", "DrawWaterAtWell");
+            ev.SetParameter("Actor", (object)walker);
+            seep.FireEvent(ev);
+            ev.Release();
+
+            Assert.IsFalse(walker.HasEffect<ParchedEffect>(),
+                "\"Drink at the seep. It is for you.\" — and it works");
+        }
+
+        [Test]
+        public void ABurningColumn_BurnsDown_AndItsLightDiesWithIt()
+        {
+            // Round 2 pin: the column is now ignitable (round 1 gave it
+            // a flashpoint), it has HP 25, and fire consumes it through
+            // the real structural path. The glow needs no cleanup —
+            // the lightmap re-scans zone entities, so a removed column
+            // is a dark column.
+            var zone = new Zone("Z");
+            var column = _factory.CreateEntity("MycelialColumn");
+            zone.AddEntity(column, 10, 10);
+            Assert.IsNotNull(column.GetPart<ThermalPart>(), "it can catch now");
+
+            for (int i = 0; i < 6; i++)
+            {
+                var d = new Damage(5);
+                d.AddAttribute("Fire");
+                DestructionSystem.RouteDamage(column, d, null, zone);
+            }
+
+            Assert.IsNull(zone.GetEntityCell(column),
+                "living Choir tissue burns — W4.2's fire-is-a-crime hook needs "
+                + "exactly this to be possible");
+        }
+
+        [Test]
+        public void TheColumnsGlow_SurvivesSaveAndLoad()
+        {
+            // Round 2 pin: LightSourcePart's fields ride the reflection
+            // round-trip — a loaded grove still glows.
+            var column = _factory.CreateEntity("MycelialColumn");
+            var loaded = PartRoundTripHelper.RoundTripEntity(column);
+            var light = loaded.GetPart<LightSourcePart>();
+            Assert.IsNotNull(light, "the glow survives the save");
+            Assert.AreEqual(3, light.Radius);
+        }
+
+        [Test]
         public void TheGrovelandsAmbientCatalog_IsItsOwn()
         {
             // W3 re-review carried forward: the Grovelands aliased the

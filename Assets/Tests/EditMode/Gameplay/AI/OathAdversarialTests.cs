@@ -202,6 +202,25 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void Adversarial_AttackingTheChoirsTendril_IsOathbreak()
+        {
+            // W4.1 review round 2 (hypothesis pin, kept as designed):
+            // the ChoirTendril is RotChoir-factioned — a person under
+            // IsPerson — so swinging at it under the cloth forfeits the
+            // cloth. The grove-edge sign carries the ruling itself:
+            // "EVERYTHING HERE IS SOMEBODY."
+            var zone = new Zone("Z");
+            var guest = Guest(zone);
+            var tendril = Npc(zone, "RotChoir", 11, 10, "tendril");
+            Claim(guest);
+
+            CombatSystem.PerformMeleeAttack(guest, tendril, zone, new Random(3));
+
+            Assert.IsFalse(guest.HasEffect<UnderTheClothEffect>(),
+                "everything here is somebody — the oath knows it too");
+        }
+
+        [Test]
         public void Adversarial_BreakWithNullVictim_DoesNotBreak()
         {
             // Boundary input (confirmed RED pre-fix): the victim guard

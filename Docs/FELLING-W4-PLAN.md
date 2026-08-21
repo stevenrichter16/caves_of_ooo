@@ -345,6 +345,31 @@ review-fix commit; RED confirmed for the behavioral ones.
   The shipped HollowLog-led pool is the correct reading; recorded
   here as the §1-style correction the sweep missed.
 
+### W4.1 review round 2 (hypothesis audit) — 4 pins, 1 refuted, 2 flakes
+
+Player-flow hypotheses against the fixed W4.1, RED-first where a
+fix would have been needed (none was — all four pinned as correct):
+- ✅ Drinking at the seep cures Parched through the REAL action wire
+  (the sign's promise, end to end).
+- ✅ A burning column burns down (round 1's flashpoint made it
+  possible) and its glow needs no cleanup — the lightmap re-scans
+  entities, so a removed column is a dark column.
+- ✅ The glow survives save/load (LightSourcePart reflection reach).
+- ✅ Attacking the Choir's tendril under the cloth IS oathbreak —
+  RotChoir is factioned, therefore a person under IsPerson, and the
+  grove-edge sign carries the ruling itself: "EVERYTHING HERE IS
+  SOMEBODY." Kept as designed, pinned with the canon line.
+- ❌ REFUTED (recorded so it stays refuted): "the fen-seated tendril
+  trades with empty shelves" — TradeStockBuilder only stocks
+  Villagers, but TraderPart SELF-stocks on ObjectCreated from its
+  own ChoirStock table (TraderPart.Apply), so the tendril arrives
+  with goods and a 70-dram purse.
+- Two UNRELATED failures in the pin run identified as flakes by
+  rerun (both green): DiagPerfTests' 200ns ceiling (machine load —
+  workflows were running) and the Campfire flicker probability test.
+- Look re-verify: the fen now reads as TWO winding growth bands that
+  converge and part — the braid; the grove unchanged and correct.
+
 ## 6. Critical review of this plan (before implementation)
 
 **R1 — The profile promotion is load-bearing, do it FIRST inside
