@@ -29395,6 +29395,15 @@
         },
         { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" }, { "Key": "Takeable", "Value": "false" } ] },
         {
+          "Name": "Harvestable",
+          "Params": [
+            { "Key": "YieldBlueprint", "Value": "GoldCoin" },
+            { "Key": "YieldMin", "Value": "1" },
+            { "Key": "YieldMax", "Value": "3" },
+            { "Key": "YieldChance", "Value": "60" }
+          ]
+        },
+        {
           "Name": "Examinable",
           "Params": [
             { "Key": "Description", "Value": "A tidy row of what is being taken back: cloth gone to lace, a boot, chitin, a shape further along than the rest. The rows are straight. Nothing made them straight; they grew that way. Everything here is somebody." }
@@ -29455,6 +29464,167 @@
           "Name": "Examinable",
           "Params": [
             { "Key": "Description", "Value": "Low growth heavy with red, at the grove edge, where the sign can see it. The sign says eat nothing red. Nothing stops you picking it." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "Shambler",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "spore shambler" },
+            { "Key": "RenderString", "Value": "z" },
+            { "Key": "ColorString", "Value": "&m" },
+            { "Key": "RenderLayer", "Value": "10" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "Brain",
+          "Params": [
+            { "Key": "SightRadius", "Value": "8" },
+            { "Key": "Wanders", "Value": "true" }
+          ]
+        },
+        {
+          "Name": "Corpse",
+          "Params": [
+            { "Key": "HarvestBlueprint", "Value": "ShamblerSporeSac" },
+            { "Key": "HarvestMin", "Value": "1" },
+            { "Key": "HarvestMax", "Value": "1" },
+            { "Key": "HarvestChance", "Value": "80" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "It was somebody's shape once, and the growth kept the shape because the shape still walked. It is not in a hurry. Nothing here is." }
+          ]
+        }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 16, "Min": 0, "Max": 16 },
+        { "Name": "Strength", "Value": 13 },
+        { "Name": "Agility", "Value": 6 },
+        { "Name": "Toughness", "Value": 12 },
+        { "Name": "Speed", "Value": 80 },
+        { "Name": "XPValue", "Value": 25 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Beasts" },
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "BloodColor", "Value": "&m" }
+      ]
+    },
+    {
+      "Name": "ShamblerSporeSac",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "shambler spore-sac" },
+            { "Key": "RenderString", "Value": "%" },
+            { "Key": "ColorString", "Value": "&M" },
+            { "Key": "RenderLayer", "Value": "3" }
+          ]
+        },
+        {
+          "Name": "Reagent",
+          "Params": [
+            { "Key": "PropertiesRaw", "Value": "toxic:2, volatile:1" },
+            { "Key": "FlavorText", "Value": "A wheezing pouch of spores. Keep it away from flame, and from your face, and honestly from you." }
+          ]
+        },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "13" } ] }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "GlowMoth",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "glow-moth" },
+            { "Key": "RenderString", "Value": "m" },
+            { "Key": "ColorString", "Value": "&Y" },
+            { "Key": "RenderLayer", "Value": "10" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "Brain",
+          "Params": [
+            { "Key": "SightRadius", "Value": "6" },
+            { "Key": "Wanders", "Value": "true" },
+            { "Key": "WandersRandomly", "Value": "true" },
+            { "Key": "Passive", "Value": "true" },
+            { "Key": "FleeThreshold", "Value": "0.9" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A moth the size of a hand, dusted the same pale light as the columns. It navigates by the groves, which is to say it is never lost." }
+          ]
+        }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 3, "Min": 0, "Max": 3 },
+        { "Name": "Strength", "Value": 2 },
+        { "Name": "Agility", "Value": 18 },
+        { "Name": "Toughness", "Value": 3 },
+        { "Name": "XPValue", "Value": 2 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Beasts" },
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" },
+        { "Key": "BloodColor", "Value": "&Y" }
+      ]
+    },
+    {
+      "Name": "WineLeafSundew",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "wine-leaf sundew" },
+            { "Key": "RenderString", "Value": "v" },
+            { "Key": "ColorString", "Value": "&r" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" }, { "Key": "Takeable", "Value": "false" } ] },
+        {
+          "Name": "GreatdewSnare",
+          "Params": [
+            { "Key": "GrabChance", "Value": "45" },
+            { "Key": "HoldTurns", "Value": "3" },
+            { "Key": "Corrosion", "Value": "1.5" }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            { "Key": "MaterialID", "Value": "Plant" },
+            { "Key": "MaterialTagsRaw", "Value": "Plant,Organic" }
+          ]
+        },
+        { "Name": "Destructible", "Params": [ { "Key": "HP", "Value": "8" }, { "Key": "MaxHP", "Value": "8" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Leaves the color of wine going darker, beaded sticky at every edge. How dark the leaves are is how recently it has eaten. These are quite dark." }
           ]
         }
       ],

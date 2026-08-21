@@ -83,11 +83,15 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void TheGrovelands_StillBorrows_UntilW4()
+        public void TheUnmigratedBiomes_StillBorrow()
         {
-            // Counter-check on the switch edit: only the Sodden changed.
-            Assert.AreEqual("JungleTier1",
+            // Counter-check on the tier-switch edits: only the migrated
+            // biomes changed. Re-baselined in W4.3 (the Grovelands grew
+            // its own tables); the Stump borrows Cave until W6.
+            Assert.AreEqual("GrovelandsTier1",
                 PopulationTable.GetBiomeTable(BiomeType.Grovelands, 1).Name);
+            Assert.AreEqual("CaveTier1",
+                PopulationTable.GetBiomeTable(BiomeType.Stump, 1).Name);
         }
 
         [Test]

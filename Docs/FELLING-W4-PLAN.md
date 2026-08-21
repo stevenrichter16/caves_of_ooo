@@ -404,6 +404,45 @@ blast and tripped paths the test never meant to probe.
 counters; fire charge + elsewhere/spread counters; the reagent's
 numbers and flavor pinned; edge-siting existence.
 
+### W4.2 reachability fix (user-audit round)
+
+The user asked whether all this is reachable in game. The audit
+found one real hole: veins spawned only underground and in Beating
+salt pans — NO vein on any Grovelands surface, so the dig law had
+no reachable trigger. Choir iron now surfaces rarely in TendrilFen
+(30% of fens, 0-1, tracked and repair-covered) — the only surface
+source, and the law's own temptation. Pinned END TO END in a real
+authored fen: the vein generates, the player digs, the Choir
+charges (RED-proven unreachable first: twenty fens, no iron).
+
+### W4.3 — The bestiary (SHIPPED)
+
+**Files:** Objects.json (Shambler 'z' &m — the §1 false premise
+closed: the design claimed it shipped, now it does — with Corpse →
+ShamblerSporeSac; the sac as ReagentItem toxic:2 volatile:1 value
+13, flavor verbatim from WORLD-INGREDIENTS; GlowMoth 'm' &Y
+passive; WineLeafSundew 'v' &r — GreatdewSnarePart REUSED with its
+own tuning per R5, GrabChance 45 / HoldTurns 3 / Corrosion 1.5;
+CompostRow gains its Harvestable — the loot half the W4.1 review
+assigned here: GoldCoin 1-3 at 60%, the pile giving back what the
+grove took), PopulationTable (GrovelandsTier1/2/3 +
+GrovelandsLairGuards replace the Jungle alias; Rotling and Mosshulk
+STAY — fungal fauna, Choir-adjacent by nature, recorded; ambient
+ChoirTendril 0-1 at tier 2+ per R7, on top of the fen's guarantee),
+GrovelandsBestiaryTests.cs (8), SoddenBestiaryTests' borrow counter
+re-baselined (Grovelands → its own; the Stump borrows Cave until W6).
+
+**Perf rule honored and pinned:** GlowMoth carries NO
+LightSourcePart — a wandering light is a per-turn lightmap
+recompute; the glow is paint (&Y), the render carries the idea.
+
+**Deferred within W4.3's own scope, recorded:** the sundew's
+"color = feeding state" danger read is a render note for the sprite
+pass; v1 ships the darkest read in the examine copy.
+
+**Tests:** 6955 → 6963 (+8). Green headless (the one failure is the
+documented flaky contagion test).
+
 ## 6. Critical review of this plan (before implementation)
 
 **R1 — The profile promotion is load-bearing, do it FIRST inside

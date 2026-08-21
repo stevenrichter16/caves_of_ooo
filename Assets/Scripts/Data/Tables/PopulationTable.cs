@@ -70,7 +70,7 @@ namespace CavesOfOoo.Data
                     case BiomeType.Desert: return DesertTier3();
                     case BiomeType.Beating: return BeatingTier3();
                     case BiomeType.Jungle: return JungleTier3();
-                    case BiomeType.Grovelands: return JungleTier3();
+                    case BiomeType.Grovelands: return GrovelandsTier3();
                     case BiomeType.Sodden: return SoddenTier3();
                     case BiomeType.Spread: return SpreadTier3();
                     case BiomeType.Ruins: return RuinsTier3();
@@ -87,7 +87,7 @@ namespace CavesOfOoo.Data
                     case BiomeType.Desert: return DesertTier2();
                     case BiomeType.Beating: return BeatingTier2();
                     case BiomeType.Jungle: return JungleTier2();
-                    case BiomeType.Grovelands: return JungleTier2();
+                    case BiomeType.Grovelands: return GrovelandsTier2();
                     case BiomeType.Sodden: return SoddenTier2();
                     case BiomeType.Spread: return SpreadTier2();
                     case BiomeType.Ruins: return RuinsTier2();
@@ -102,7 +102,7 @@ namespace CavesOfOoo.Data
                 case BiomeType.Desert: return DesertTier1();
                 case BiomeType.Beating: return BeatingTier1();
                 case BiomeType.Jungle: return JungleTier1();
-                case BiomeType.Grovelands: return JungleTier1();
+                case BiomeType.Grovelands: return GrovelandsTier1();
                 case BiomeType.Sodden: return SoddenTier1();
                 case BiomeType.Spread: return SpreadTier1();
                 case BiomeType.Ruins: return RuinsTier1();
@@ -355,6 +355,65 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "MawToad", Weight = 3, MinCount = 1, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Viper", Weight = 2, MinCount = 0, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Greatdew", Weight = 4, MinCount = 1, MaxCount = 3 },
+                }
+            };
+        }
+
+
+        // ── The Grovelands (W4.3) ─────────────────────────────────────
+        //
+        // Choir country is not dangerous the way a jungle is dangerous.
+        // Most of what moves here is gentle (moths, the slow shapes that
+        // used to be somebody) and most of what kills you was patient
+        // about it (the sundews). Rotlings and mosshulks stay — they are
+        // fungal fauna, Choir-adjacent by nature, not jungle leftovers.
+        // The tendrils in the tables are AMBIENT extras; the fens
+        // guarantee their own (R7).
+
+        public static PopulationTable GrovelandsTier1()
+        {
+            return new PopulationTable
+            {
+                Name = "GrovelandsTier1",
+                Entries = new List<PopulationEntry>
+                {
+                    new PopulationEntry { BlueprintName = "GlowMoth", Weight = 5, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "Rotling", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Shambler", Weight = 2, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "WineLeafSundew", Weight = 2, MinCount = 0, MaxCount = 2 },
+                }
+            };
+        }
+
+        public static PopulationTable GrovelandsTier2()
+        {
+            return new PopulationTable
+            {
+                Name = "GrovelandsTier2",
+                Entries = new List<PopulationEntry>
+                {
+                    new PopulationEntry { BlueprintName = "GlowMoth", Weight = 3, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Rotling", Weight = 3, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Shambler", Weight = 3, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "WineLeafSundew", Weight = 3, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Mosshulk", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "ChoirTendril", Weight = 1, MinCount = 0, MaxCount = 1 },
+                }
+            };
+        }
+
+        public static PopulationTable GrovelandsTier3()
+        {
+            return new PopulationTable
+            {
+                Name = "GrovelandsTier3",
+                Entries = new List<PopulationEntry>
+                {
+                    new PopulationEntry { BlueprintName = "Shambler", Weight = 4, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "Mosshulk", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "WineLeafSundew", Weight = 4, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "Rotling", Weight = 3, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "ChoirTendril", Weight = 1, MinCount = 0, MaxCount = 1 },
                 }
             };
         }
@@ -740,7 +799,18 @@ namespace CavesOfOoo.Data
                             new PopulationEntry { BlueprintName = "DuneLurker", Weight = 2, MinCount = 0, MaxCount = 1 },
                         }
                     };
-                case BiomeType.Grovelands: return LairGuards(BiomeType.Jungle);
+                case BiomeType.Grovelands:
+                    // W4.3 — the groves guard their own, slowly.
+                    return new PopulationTable
+                    {
+                        Name = "GrovelandsLairGuards",
+                        Entries = new List<PopulationEntry>
+                        {
+                            new PopulationEntry { BlueprintName = "Shambler", Weight = 3, MinCount = 1, MaxCount = 2 },
+                            new PopulationEntry { BlueprintName = "Mosshulk", Weight = 2, MinCount = 0, MaxCount = 1 },
+                            new PopulationEntry { BlueprintName = "WineLeafSundew", Weight = 2, MinCount = 1, MaxCount = 2 },
+                        }
+                    };
                 case BiomeType.Overwrit:   return LairGuards(BiomeType.Ruins);
                 case BiomeType.Stump:      return LairGuards(BiomeType.Cave);
                 default:
