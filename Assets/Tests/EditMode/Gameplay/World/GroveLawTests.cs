@@ -254,6 +254,47 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void TheDigLaw_HasARealTemptation_InTheWorld()
+        {
+            // Reachability audit finding (RED pre-fix): veins spawned
+            // only underground and in Beating salt pans — NO vein
+            // existed on Grovelands surface, so the dig law shipped
+            // with no reachable trigger. The fen now surfaces choir
+            // iron rarely; this proves the whole chain END TO END in a
+            // real authored fen zone: the vein generates, the player
+            // digs it, the Choir charges.
+            int veinsSeen = 0;
+            bool chainProven = false;
+            for (int seed = 0; seed < 20 && !chainProven; seed++)
+            {
+                var zone = new Zone(GroveZone);   // authored 'G' cell — real Choir ground
+                for (int x = 1; x < Zone.Width - 1; x++)
+                    for (int y = 1; y < Zone.Height - 1; y++)
+                    {
+                        var g = _factory.CreateEntity("Grass");
+                        if (g != null) zone.AddEntity(g, x, y);
+                    }
+                new GrovelandsFormationBuilder { Override = Formation.TendrilFen }
+                    .BuildZone(zone, _factory, new Random(seed));
+
+                Entity vein = null;
+                foreach (var e in zone.GetAllEntities())
+                    if (e.BlueprintName == "ChoirIronVein") vein = e;
+                if (vein == null) continue;
+                veinsSeen++;
+
+                PlayerReputation.Reset();
+                var player = Player(zone);
+                Harvest(vein, player, zone);
+                chainProven = PlayerReputation.Get("RotChoir") == GroveLaw.DigRepLoss;
+            }
+            Assert.Greater(veinsSeen, 0,
+                "twenty fens and no iron — the law has no temptation again");
+            Assert.IsTrue(chainProven,
+                "generate, dig, be remembered — the whole chain, in a real zone");
+        }
+
+        [Test]
         public void TheRedGrowth_GrowsAtGroveEdges()
         {
             // Sited by the Grove routine (edge ring) and the fen banks.

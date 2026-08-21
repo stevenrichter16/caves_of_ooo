@@ -232,6 +232,23 @@ namespace CavesOfOoo.Core
                     }
                 }
 
+            // The temptation (W4.2 reachability fix): choir iron
+            // surfaces where the tendrils trace the old veins — the ONLY
+            // surface source of the dig-law's own trigger. Rare, and the
+            // sign has already told you.
+            if (rng.Next(100) < 30)
+            {
+                for (int attempt = 0; attempt < 30; attempt++)
+                {
+                    int x = 4 + rng.Next(Zone.Width - 8);
+                    int y = 3 + rng.Next(Zone.Height - 6);
+                    if (!IsOpenGround(zone, x, y)) continue;
+                    var vein = BuilderSpawn.TryPlace(zone, factory, "ChoirIronVein", x, y);
+                    if (vein != null) placed.Add(vein);
+                    break;
+                }
+            }
+
             EnsureAllReachable(zone, placed);
 
             // The residents — seated AFTER the repair, because they are
