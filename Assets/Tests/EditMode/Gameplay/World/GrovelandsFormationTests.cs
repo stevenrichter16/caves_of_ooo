@@ -190,29 +190,113 @@ namespace CavesOfOoo.Tests
         [Test]
         public void Grove_InRealForest_StillHasItsSeepAndSign()
         {
-            // Look-pass finding, pinned: on open grass the center is
-            // always open, so the original silent IsOpenGround guards
-            // passed every test while REAL forested zones generated
-            // groves with no seep and no sign (the phantom-neutral-pass
-            // class from the self-auditing-scenario rules). This builds
-            // on dense forest instead.
+            // Look-pass finding, pinned — then STRENGTHENED by the W4.1
+            // review: the first version scattered Trees (Solid tag, no
+            // Wall tag), which ClearVegetation removes — but production
+            // Grovelands terrain is JungleBuilder VineWall, which the
+            // clearing deliberately skips, so a center rolled inside a
+            // wall blob ENTOMBED the guaranteed seep in ~1 grove in 16
+            // and CountOf==1 still passed. The fixture now scatters the
+            // production wall class too, and the assert is cell-level:
+            // the seep must stand OPEN and REACHED, not merely exist.
             for (int seed = 0; seed < 15; seed++)
             {
                 var zone = OpenLoam();
-                var treeRng = new Random(seed * 31 + 7);
+                var scatterRng = new Random(seed * 31 + 7);
                 for (int x = 1; x < Zone.Width - 1; x++)
                     for (int y = 1; y < Zone.Height - 1; y++)
-                        if (treeRng.Next(100) < 30)
+                    {
+                        int roll = scatterRng.Next(100);
+                        if (roll < 18)
                             zone.AddEntity(_factory.CreateEntity("Tree"), x, y);
+                        else if (roll < 43)
+                            zone.AddEntity(_factory.CreateEntity("VineWall"), x, y);
+                    }
 
                 new GrovelandsFormationBuilder { Override = Formation.Grove }
                     .BuildZone(zone, _factory, new Random(seed));
+                // Production order: ConnectivityBuilder (priority 3000)
+                // runs after the formation and connects regions — the
+                // scatter above creates pockets the FORMATION didn't
+                // cause and doesn't own. With connectivity now judging
+                // by BlocksMovement (the review's fix), this is the real
+                // end-to-end promise: the seep is reachable in the world
+                // the player actually gets.
+                new ConnectivityBuilder().BuildZone(zone, _factory, new Random(seed));
 
                 Assert.AreEqual(1, CountOf(zone, "GroveSeep"),
                     $"seed {seed}: the grove clears its floor — the seep is guaranteed");
                 Assert.GreaterOrEqual(CountOf(zone, "GroveSign"), 1,
                     $"seed {seed}: the grove makes room for its law");
+
+                Entity seep = null;
+                foreach (var e in zone.GetAllEntities())
+                    if (e.BlueprintName == "GroveSeep") seep = e;
+                var cell = zone.GetEntityCell(seep);
+                Assert.IsFalse(cell.BlocksMovement(seep),
+                    $"seed {seed}: the seep is WATER, not a thing inside a wall");
+                Assert.IsTrue(FloodFromWest(zone)[cell.X, cell.Y],
+                    $"seed {seed}: 'Drink at the seep. It is for you' — you must be able to reach it");
             }
+        }
+
+        [Test]
+        public void Grove_InSolidWallCountry_TheWaterStillFindsItsWayUp()
+        {
+            // Deterministic variant of the pin above (the scatter version
+            // can miss the center by luck): EVERY interior cell is
+            // VineWall, so the rolled center is walled by construction.
+            // The one-cell extended dig must still deliver an OPEN seep.
+            // (Reachability through miles of wall is ConnectivityBuilder's
+            // job downstream — this pins only the builder's own promise.)
+            for (int seed = 0; seed < 5; seed++)
+            {
+                var zone = new Zone("Overworld.2.2.0");
+                for (int x = 2; x < Zone.Width - 2; x++)
+                    for (int y = 1; y < Zone.Height - 1; y++)
+                        zone.AddEntity(_factory.CreateEntity("VineWall"), x, y);
+
+                new GrovelandsFormationBuilder { Override = Formation.Grove }
+                    .BuildZone(zone, _factory, new Random(seed));
+
+                Entity seep = null;
+                foreach (var e in zone.GetAllEntities())
+                    if (e.BlueprintName == "GroveSeep") seep = e;
+                Assert.IsNotNull(seep, $"seed {seed}: the seep rises through anything");
+                var cell = zone.GetEntityCell(seep);
+                Assert.IsFalse(cell.BlocksMovement(seep),
+                    $"seed {seed}: risen THROUGH the wall, not entombed in it");
+            }
+        }
+
+        [Test]
+        public void TheFen_IsABraid_NotAStrand()
+        {
+            // W4.1 review: the design says "Braid — tendrils tracing old
+            // water-veins" and the plan says "braided lanes", but v1
+            // shipped ONE sine strand — a single lane, no crossings, no
+            // braid geometry possible. Two phase-offset strands cross
+            // and part; the pin: enough columns must hold two coated
+            // cells far apart vertically, which one strand's ~3-cell
+            // band can never produce.
+            int braidedColumns = 0;
+            for (int seed = 0; seed < 6; seed++)
+            {
+                var zone = Built(Formation.TendrilFen, seed);
+                for (int x = 2; x < Zone.Width - 2; x++)
+                {
+                    int lowest = -1, highest = -1;
+                    for (int y = 2; y < Zone.Height - 2; y++)
+                    {
+                        if (!zone.TileState.HasCoating(x, y, "water")) continue;
+                        if (lowest < 0) lowest = y;
+                        highest = y;
+                    }
+                    if (lowest >= 0 && highest - lowest >= 4) braidedColumns++;
+                }
+            }
+            Assert.GreaterOrEqual(braidedColumns, 12,
+                "two strands cross and part — a lone sine band never separates by 4 rows");
         }
 
         // ════════════════════════════════════════════════════════
@@ -244,21 +328,48 @@ namespace CavesOfOoo.Tests
                 "and you can stand in it — it is water, not furniture");
         }
 
+        /// <summary>Codex/11's body, whitespace-normalized. The W4.1
+        /// review found the old six-phrase pin left ~8 sentences
+        /// unguarded — a word could drift in the singers stanza and no
+        /// test would blink. One equality now guards every word.</summary>
+        private const string CanonSignBody =
+            "WALKER. YOU ARE ENTERING US. "
+            + "Walk anywhere. Everything is path. "
+            + "Drink at the seep. It is for you. "
+            + "Eat nothing red. The red is thinking. "
+            + "If you hear singing, it is old singing. "
+            + "It is not for you. You may listen anyway. "
+            + "The singers do not mind. The singers "
+            + "have not minded anything for a long time, "
+            + "and it is a kindness to be heard. "
+            + "Do not dig. "
+            + "If you are tired — truly tired, walker, "
+            + "the kind of tired that has stopped keeping count — "
+            + "lie down anywhere soft. "
+            + "Someone will cover you. "
+            + "If you are only a little tired, keep walking. "
+            + "We can tell the difference. "
+            + "We are patient about the difference. "
+            + "GO GENTLY. EVERYTHING HERE IS SOMEBODY.";
+
         [Test]
         public void TheSign_SpeaksTheWholeLaw_Verbatim()
         {
             // Codex/11, quoted whole — the letters are grown, not
-            // carved, and neither is the text: verbatim canon, pinned
-            // phrase by load-bearing phrase.
+            // carved, and neither is the text. The examine copy is a
+            // short physical frame, then "It reads: " + the body;
+            // the body must equal canon word for word.
             string text = _factory.CreateEntity("GroveSign")
                 .GetPart<ExaminablePart>().Text;
 
-            StringAssert.Contains("WALKER. YOU ARE ENTERING US", text);
-            StringAssert.Contains("Walk anywhere. Everything is path", text);
-            StringAssert.Contains("Eat nothing red. The red is thinking", text);
-            StringAssert.Contains("Do not dig", text);
-            StringAssert.Contains("We can tell the difference", text);
-            StringAssert.Contains("GO GENTLY. EVERYTHING HERE IS SOMEBODY", text);
+            int i = text.IndexOf("It reads: ");
+            Assert.GreaterOrEqual(i, 0, "the frame introduces the reading");
+            string body = System.Text.RegularExpressions.Regex
+                .Replace(text.Substring(i + "It reads: ".Length), @"\s+", " ").Trim();
+            string canon = System.Text.RegularExpressions.Regex
+                .Replace(CanonSignBody, @"\s+", " ").Trim();
+            Assert.AreEqual(canon, body,
+                "every word of the law, exactly — the grove does not paraphrase itself");
         }
 
         [Test]

@@ -189,7 +189,11 @@ namespace CavesOfOoo.Tests
         [Test]
         public void ShippedCatalogs_AllBiomesHaveStamps()
         {
-            foreach (var biome in new[] { BiomeType.Cave, BiomeType.Desert, BiomeType.Jungle, BiomeType.Ruins, BiomeType.Spread, BiomeType.Beating })
+            // W4.1 review: this list was hardcoded and silently skipped
+            // every biome added after it was written (Sodden's and the
+            // Grovelands' own arrays shipped unvalidated). All enum
+            // values now — aliases and the default empty are safe.
+            foreach (BiomeType biome in System.Enum.GetValues(typeof(BiomeType)))
                 Assert.Greater(StampCatalog.For(biome).Count, 0, biome.ToString());
         }
 
@@ -199,7 +203,10 @@ namespace CavesOfOoo.Tests
             // Every legend blueprint must exist; every chest table must
             // be in the shipped loot JSON. This is the gate that keeps
             // future stamp content honest.
-            foreach (var biome in new[] { BiomeType.Cave, BiomeType.Desert, BiomeType.Jungle, BiomeType.Ruins, BiomeType.Spread, BiomeType.Beating })
+            // W4.1 review: same hardcoded-list gap as above — the gate
+            // that "keeps future stamp content honest" was not applied
+            // to future biomes. All enum values now.
+            foreach (BiomeType biome in System.Enum.GetValues(typeof(BiomeType)))
             {
                 foreach (var stamp in StampCatalog.For(biome))
                 {

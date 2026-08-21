@@ -107,10 +107,23 @@ namespace CavesOfOoo.Core
                 if (column != null) placed.Add(column);
             }
 
-            // The centre is the reason you came — GUARANTEED: the floor
-            // above was cleared, so the only refusals left are the zone
-            // border (the center range keeps us off it) or an existing
-            // seep (TryPlaceOnce, fine).
+            // The centre is the reason you came — GUARANTEED. W4.1
+            // review: the clearing skips WALLS, and production terrain
+            // is JungleBuilder VineWall — a center rolled inside a wall
+            // blob (~1 grove in 16) entombed the seep. The one allowed
+            // dig extends by exactly one cell: the water finds its way
+            // up through anything.
+            var centerCell = zone.GetCell(cx, cy);
+            if (centerCell != null && !IsOpenGround(zone, cx, cy))
+            {
+                for (int i = centerCell.Objects.Count - 1; i >= 0; i--)
+                {
+                    var o = centerCell.Objects[i];
+                    if (o != null && (o.HasTag("Wall") || o.HasTag("Solid")
+                        || (o.GetPart<PhysicsPart>()?.Solid ?? false)))
+                        zone.RemoveEntity(o);
+                }
+            }
             BuilderSpawn.TryPlaceOnce(zone, factory, "GroveSeep", cx, cy);
 
             // Lone columns beyond the ring — the glow you steer by.
@@ -169,16 +182,22 @@ namespace CavesOfOoo.Core
         private void TendrilFen(Zone zone, EntityFactory factory, System.Random rng)
         {
             var placed = new List<Entity>();
-            double phase = rng.NextDouble() * 6.28;
+            // W4.1 review: one sine strand is a lane, not the design's
+            // BRAID. Two phase-offset strands at different frequencies
+            // cross and part — the braid geometry the word means.
+            double phase1 = rng.NextDouble() * 6.28;
+            double phase2 = rng.NextDouble() * 6.28;
 
             for (int x = 2; x < Zone.Width - 2; x++)
                 for (int y = 2; y < Zone.Height - 2; y++)
                 {
-                    double vein = System.Math.Sin(x * 0.22 + phase) * 6.0 + Zone.Height * 0.5;
-                    double dist = System.Math.Abs(y - vein);
+                    double vein1 = System.Math.Sin(x * 0.22 + phase1) * 6.0 + Zone.Height * 0.5;
+                    double vein2 = System.Math.Sin(x * 0.15 + phase2) * 7.0 + Zone.Height * 0.5;
+                    double dist = System.Math.Min(
+                        System.Math.Abs(y - vein1), System.Math.Abs(y - vein2));
                     if (dist < 1.2)
                     {
-                        // The old water-vein itself.
+                        // The old water-veins themselves.
                         if (IsOpenGround(zone, x, y))
                             zone.TileState.WriteCoating(x, y, "water", ZoneTileState.Permanent);
                     }
@@ -302,6 +321,17 @@ namespace CavesOfOoo.Core
             string blueprint, int x, int y)
         {
             if (!IsOpenGround(zone, x, y)) return null;
+
+            // W4.1 review: never occupy an ISOLATED open cell — filling
+            // a one-cell pocket "improves" the unreached count while
+            // entombing the placed thing (a sign nobody can ever read).
+            bool hasOpenNeighbor = false;
+            for (int dx = -1; dx <= 1 && !hasOpenNeighbor; dx++)
+                for (int dy = -1; dy <= 1 && !hasOpenNeighbor; dy++)
+                    if ((dx != 0 || dy != 0) && IsOpenGround(zone, x + dx, y + dy))
+                        hasOpenNeighbor = true;
+            if (!hasOpenNeighbor) return null;
+
             int before = UnreachedOpenCells(zone);
             var e = BuilderSpawn.TryPlace(zone, factory, blueprint, x, y);
             if (e == null) return null;

@@ -290,6 +290,61 @@ the-fen counters, verbatim sign pins, container/catalog contracts.
 rounds (the forest pin was RED twice — first for the missing sign,
 then for the global-reachability veto — before going green).
 
+### W4.1 review round 1 (workflow, post-commit) — 12 confirmed
+
+Two-lens adversarial workflow (mechanics / fidelity; 14 agents, one
+skeptic per finding). All 12 confirmed findings fixed in the
+review-fix commit; RED confirmed for the behavioral ones.
+
+- 🟡 **The seep could be entombed in VineWall** (~1 grove in 16 —
+  the verifier SIMULATED the CA to quantify it): the clearing skips
+  walls, production terrain IS walls, and the forest pin used Trees
+  (Solid tag, no Wall tag) so it couldn't see the class. Fixed: the
+  one allowed dig extends by exactly one cell — the water finds its
+  way up through anything. Pinned deterministically (an all-VineWall
+  zone) plus the strengthened scatter pin with cell-level open+
+  reached asserts.
+- 🟡 **ConnectivityBuilder judged passability by the Solid TAG while
+  movement uses physics** — it certified corridors THROUGH the
+  seated ChoirTendril (untagged Physics-solid) and its carve could
+  delete Solid-tagged formation guarantees. Fixed: passability is
+  now !BlocksMovement (the same test movement uses, benefiting every
+  biome), and GroveSign drops its Solid TAG so no carve can ever
+  remove the law.
+- 🟡 **TendrilFen was one sine strand, not the design's braid** —
+  two phase-offset strands now cross and part; pinned by braid
+  geometry (columns with coated cells ≥4 rows apart).
+- 🟡 **FruitingBody/MycelialColumn authored Combustibility with NO
+  Thermal part** — every ignition path routes through ThermalPart,
+  so the tuning was dead data and the grove's signature scenery was
+  invisible to W4.2's coming fire-is-a-crime hook. Both get
+  flashpoints (320/1.2, 420/2.0), DeadTree too (300/1.2 — a W3.1
+  instance of the same class), and a NEW inverse lint makes
+  Combustibility-without-Thermal unshippable (six pre-existing
+  furniture pieces exempted with a recorded reason: the
+  furniture-combustion pass is future work).
+- 🟡 **The catalog validation gates were hardcoded six-biome lists**
+  — Sodden's and the Grovelands' own arrays shipped unvalidated.
+  Both gates now iterate every enum value.
+- 🟡 **PlaceSolidIfHarmless could OCCUPY a one-cell pocket** (the
+  delta counts filling a stranded cell as improvement — a sign
+  nobody can ever read). Isolated-cell veto added.
+- 🟡 **CompostRow's "loot" half is orphaned** — recorded cut with an
+  owner: W4.3's harvest pass gives CompostRow a Harvestable ("the
+  pile gives things up"), which is that SM's native territory.
+- 🔵 GroveSign's six-phrase pin left ~8 sentences unguarded →
+  whole-text equality against the canon constant. 🔵 The poolless
+  exemplar churned four times → now legacy biomes (Jungle/Cave),
+  which never join the formation machine. 🔵 GroveSeep's authored
+  '&C' was silently overwritten by the water definition's '&c' at
+  runtime (LiquidPoolPart.ApplyDefinitionRender) — authored data now
+  matches the definition-driven contract. 🔵 **HollowStump was a
+  false premise in THIS plan** (§3 "HollowStump-heavy"): it is a
+  Solid Harvestable yielding 1-4 GoldCoin, has no Container part —
+  and a coin-dispensing stump contradicts "nothing manufactured".
+  The shipped HollowLog-led pool is the correct reading; recorded
+  here as the §1-style correction the sweep missed.
+
 ## 6. Critical review of this plan (before implementation)
 
 **R1 — The profile promotion is load-bearing, do it FIRST inside

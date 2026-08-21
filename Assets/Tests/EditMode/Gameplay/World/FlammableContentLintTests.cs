@@ -93,6 +93,54 @@ namespace CavesOfOoo.Tests
             }
         }
 
+        /// <summary>Combustible furniture with no Thermal — it cannot
+        /// ignite today, deliberately deferred: the furniture-combustion
+        /// pass (burning bookshelves, crates catching from room fires)
+        /// is its own future feature. Recorded here so the debt is a
+        /// list, not a surprise.</summary>
+        private static readonly HashSet<string> AwaitingFurnitureCombustion = new HashSet<string>
+        {
+            "Crate", "WovenBasket", "HollowLog",
+            "Bookshelf", "WeaponRack", "AlchemyShelf",
+        };
+
+        [Test]
+        public void EverythingCombustible_CanActuallyIgnite()
+        {
+            // The inverse of the lint above, from the W4.1 review:
+            // FruitingBody authored Combustibility 0.3 (tuned to 3x the
+            // column's!) but no Thermal part — and every ignition path
+            // routes through ThermalPart, so the tuning was dead data
+            // and "harvest country" walls were fireproof scenery.
+            // Combustibility without a Thermal part is authoring that
+            // does nothing; either give it a flashpoint or delete the
+            // number. Creatures are exempt (they burn via combat
+            // effects, not heat-crossing); takeable items per the note
+            // above.
+            var offenders = new List<string>();
+            foreach (var name in _factory.Blueprints.Keys)
+            {
+                Entity e;
+                try { e = _factory.CreateEntity(name); }
+                catch (System.Exception) { continue; }
+                if (e == null || e.HasTag("Creature")) continue;
+
+                var material = e.GetPart<MaterialPart>();
+                if (material == null || material.Combustibility <= 0) continue;
+                var phys = e.GetPart<PhysicsPart>();
+                if (phys != null && phys.Takeable) continue;
+                if (AwaitingFurnitureCombustion.Contains(name)) continue;
+
+                if (e.GetPart<ThermalPart>() == null) offenders.Add(name);
+            }
+
+            CollectionAssert.IsEmpty(offenders,
+                "Combustibility authored with no Thermal part — no ignition path can "
+                + "ever reach these, so the number is dead data and the scenery is "
+                + "silently fireproof. Add a Thermal part (a flashpoint) or remove the "
+                + "Combustibility, or exempt with a reason: " + string.Join(", ", offenders));
+        }
+
         [Test]
         public void TheDryBrush_BurnsAway()
         {

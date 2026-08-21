@@ -24,11 +24,18 @@ namespace CavesOfOoo.Core
 
         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
         {
+            // W4.1 review: passability here was Cell.IsPassable — a
+            // Solid-TAG-only check — while real movement is
+            // BlocksMovement (tag OR PhysicsPart.Solid). The gap let
+            // connectivity certify corridors THROUGH untagged stationary
+            // solids (a seated ChoirTendril), shipping zones that pass
+            // the connectivity gate but block the player. Passability is
+            // now the same test movement uses.
             // Find first passable cell
             int startX = -1, startY = -1;
             for (int x = 0; x < Zone.Width && startX < 0; x++)
                 for (int y = 0; y < Zone.Height && startX < 0; y++)
-                    if (zone.GetCell(x, y).IsPassable())
+                    if (!zone.GetCell(x, y).BlocksMovement())
                     { startX = x; startY = y; }
 
             if (startX < 0) return false; // No passable cells at all
@@ -42,7 +49,7 @@ namespace CavesOfOoo.Core
                 int ux = -1, uy = -1;
                 for (int x = 0; x < Zone.Width && ux < 0; x++)
                     for (int y = 0; y < Zone.Height && ux < 0; y++)
-                        if (!reachable[x, y] && zone.GetCell(x, y).IsPassable())
+                        if (!reachable[x, y] && !zone.GetCell(x, y).BlocksMovement())
                         { ux = x; uy = y; }
 
                 if (ux < 0) break;
@@ -162,7 +169,7 @@ namespace CavesOfOoo.Core
 
                         if (nx < 0 || nx >= Zone.Width || ny < 0 || ny >= Zone.Height) continue;
                         if (visited[nx, ny]) continue;
-                        if (!zone.GetCell(nx, ny).IsPassable()) continue;
+                        if (zone.GetCell(nx, ny).BlocksMovement()) continue;
 
                         visited[nx, ny] = true;
                         queue.Enqueue((nx, ny));

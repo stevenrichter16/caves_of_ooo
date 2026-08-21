@@ -123,11 +123,13 @@ namespace CavesOfOoo.Tests
         [Test]
         public void ABiomeWithoutAPoolGetsNoFormation()
         {
-            // Biomes without pools (W5+) must fall back to their plain
-            // recipe rather than borrowing another biome's. Re-baselined
-            // in W4.1: the Grovelands grew its own pool, so the poolless
-            // examples are now the Overwrit and Cave.
-            Assert.AreEqual(Formation.None, FormationSelector.For(BiomeType.Overwrit, "Overworld.1.1.0"));
+            // Biomes without pools must fall back to their plain recipe
+            // rather than borrowing another biome's. W4.1 review: this
+            // assertion churned FOUR times as each Felling biome grew
+            // its pool — the exemplars are now LEGACY biomes (Jungle,
+            // Cave), which by design never join the formation machine,
+            // so this line never moves again.
+            Assert.AreEqual(Formation.None, FormationSelector.For(BiomeType.Jungle, "Overworld.1.1.0"));
             Assert.AreEqual(Formation.None, FormationSelector.For(BiomeType.Cave, "Overworld.1.1.0"));
         }
 
