@@ -26,6 +26,17 @@ namespace CavesOfOoo.Core
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID != "TickEnd") return true;
+            // Wx opt review §0 — TickEnd fires once per ACTOR
+            // (TurnManager.EndTurn), but gas semantics are per ROUND:
+            // ungated, cloud lifetime and the per-turn poison dose scaled
+            // with zone population (4 actors = 4× the authored dose).
+            // ZoneTileStateSystem.cs:25-30 documents this exact trap.
+            // Forward only when the round ends — the player's turn end —
+            // or when the event is unstamped (benches/tests firing bare
+            // TickEnd mean "a round passed"). Pinned by
+            // TickEndActorGateTests.
+            var actor = e.GetParameter<Entity>("Actor");
+            if (actor != null && !actor.HasTag("Player")) return true;
             GasSystem.OnTickEnd(SettlementRuntime.ActiveZone);
             return true;
         }

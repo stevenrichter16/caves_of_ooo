@@ -402,6 +402,15 @@ namespace CavesOfOoo.Core
                 if (World != null)
                 {
                     var tickEnd = GameEvent.New("TickEnd");
+                    // Wx opt review §0 — TickEnd fires once per ACTOR, and
+                    // listeners that want per-ROUND semantics (gas, crops)
+                    // must be able to tell whose turn ended. The player's
+                    // EndTurn fires exactly once per round — including
+                    // blocked/stunned rounds via playerAlreadyBlocked — so
+                    // "Actor is the player" is the round boundary. An
+                    // unstamped TickEnd (benches, tests) means "a round
+                    // passed". See TickEndActorGateTests.
+                    tickEnd.SetParameter("Actor", (object)actor);
                     World.FireEvent(tickEnd);
                     tickEnd.Release();
                 }

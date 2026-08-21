@@ -23,6 +23,13 @@ namespace CavesOfOoo.Core
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID != "TickEnd") return true;
+            // Wx opt review §0 — same gate as GasSystemPart: TickEnd is
+            // per ACTOR, growth is per ROUND. Ungated, crops matured and
+            // dried out faster in populated zones. Unstamped events
+            // (benches/tests) keep the old contract. Pinned by
+            // TickEndActorGateTests.
+            var actor = e.GetParameter<Entity>("Actor");
+            if (actor != null && !actor.HasTag("Player")) return true;
             CropSystem.OnTickEnd(SettlementRuntime.ActiveZone);
             return true;
         }

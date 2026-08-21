@@ -15,6 +15,15 @@ budgets (>32KB/frame investigate, <5KB/frame acceptable), CLAUDE.md's
 
 ## 0. HEADLINE — a correctness bug found in passing: TickEnd fires per ACTOR, and three systems assume per ROUND
 
+> **STATUS: FIXED.** TurnManager stamps the ending actor onto the TickEnd
+> event; GasSystemPart and CropSystemPart forward only for the player's
+> turn end (the round boundary — including blocked/stunned rounds) or for
+> unstamped events (bench/test compat). RED-confirmed pre-fix: the poison
+> dose read 20 (4 actors × 5) where one round doses 5; crops advanced per
+> NPC turn. Pinned by `TickEndActorGateTests` (6 tests: 3 RED→GREEN, 3
+> counters). NarrativeStatePart/StoryletPart stay per-actor deliberately —
+> their reactors are idempotent predicate polls; noted, not changed.
+
 Two workflow verifiers disagreed on the gas tick rate ("once per player
 turn" vs "once per actor turn"), so I settled it by hand. The per-actor
 reading is correct, and it is worse than a perf finding:
