@@ -34,7 +34,10 @@ namespace CavesOfOoo.Core
         /// <summary>Injected by GameBootstrap; null = graceful no-op.</summary>
         public static EntityFactory Factory;
 
-        private struct ContainerKind
+        // Public (with PoolFor below) so content tests can pin what a
+        // biome's wilderness actually holds — the W4.1 "nothing
+        // manufactured in Choir country" contract is a test, not a hope.
+        public struct ContainerKind
         {
             public string Blueprint;
             public string TablePrefix;
@@ -89,6 +92,16 @@ namespace CavesOfOoo.Core
             new ContainerKind("WovenBasket", "BasketT", 4),
             new ContainerKind("HollowLog", "HollowLogT", 3),
             new ContainerKind("Crate", "CrateT", 2),
+            new ContainerKind("Sack", "SackT", 1),
+        };
+        /// <summary>W4.1 — Choir country holds nothing manufactured: the
+        /// Choir has no material culture, so what you find is what grew
+        /// (hollow logs) or what travelers wove and left. No crates, no
+        /// chests, no urns.</summary>
+        private static readonly ContainerKind[] GrovelandsPool =
+        {
+            new ContainerKind("HollowLog", "HollowLogT", 4),
+            new ContainerKind("WovenBasket", "BasketT", 3),
             new ContainerKind("Sack", "SackT", 1),
         };
         private static readonly ContainerKind[] RuinsPool =
@@ -251,7 +264,7 @@ namespace CavesOfOoo.Core
             return tier;
         }
 
-        private static ContainerKind[] PoolFor(BiomeType biome, ZoneKind kind)
+        public static ContainerKind[] PoolFor(BiomeType biome, ZoneKind kind)
         {
             if (kind == ZoneKind.Village || kind == ZoneKind.Camp) return SettlementPool;
             if (kind == ZoneKind.Underground) return UndergroundPool;
@@ -263,7 +276,7 @@ namespace CavesOfOoo.Core
                 case BiomeType.Spread: return SpreadPool;
                 case BiomeType.Sodden: return SoddenPool;
                 case BiomeType.Beating: return DesertPool;
-                case BiomeType.Grovelands: return JunglePool;
+                case BiomeType.Grovelands: return GrovelandsPool;
                 case BiomeType.Overwrit: return RuinsPool;
                 case BiomeType.Stump: return CavePool;
                 default:               return CavePool;

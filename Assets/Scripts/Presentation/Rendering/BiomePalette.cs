@@ -57,7 +57,7 @@ namespace CavesOfOoo.Presentation.Rendering
                 case BiomeType.Spread: return Jungle;
                 case BiomeType.Sodden: return Sodden;
                 case BiomeType.Beating: return Desert;
-                case BiomeType.Grovelands: return Jungle;
+                case BiomeType.Grovelands: return Grovelands;
                 case BiomeType.Overwrit: return Ruins;
                 case BiomeType.Stump: return Cave;
                 default:               return Cave;
@@ -108,6 +108,16 @@ namespace CavesOfOoo.Presentation.Rendering
             colorFilter: new Color(0.82f, 0.86f, 0.80f, 1f),
             contrast: 6f,
             saturation: 4f,
+            vignetteIntensity: 0f);
+
+        /// <summary>W4.1 — dark loam, living light: the ground near-black,
+        /// the growth pale, the glow doing the work (design §3.4 render
+        /// table: 0.88 / 0.92 / 0.85).</summary>
+        public static readonly BiomePalette Grovelands = new BiomePalette(
+            BiomeType.Grovelands,
+            colorFilter: new Color(0.88f, 0.92f, 0.85f, 1f),
+            contrast: 8f,
+            saturation: 6f,
             vignetteIntensity: 0f);
 
         public static readonly BiomePalette Ruins = new BiomePalette(

@@ -29228,6 +29228,160 @@
         { "Name": "XPValue", "Value": 0 }
       ],
       "Tags": [ { "Key": "Faction", "Value": "PaleCuration" }, { "Key": "Tier", "Value": "1" } ]
+    },
+    {
+      "Name": "MycelialColumn",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "mycelial column" },
+            { "Key": "RenderString", "Value": "O" },
+            { "Key": "ColorString", "Value": "&w" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "Material",
+          "Params": [
+            { "Key": "MaterialID", "Value": "Plant" },
+            { "Key": "Combustibility", "Value": "0.1" },
+            { "Key": "MaterialTagsRaw", "Value": "Plant,Organic" }
+          ]
+        },
+        { "Name": "Destructible", "Params": [ { "Key": "HP", "Value": "25" }, { "Key": "MaxHP", "Value": "25" } ] },
+        {
+          "Name": "LightSource",
+          "Params": [
+            { "Key": "Radius", "Value": "3" },
+            { "Key": "LightColor", "Value": "&G" },
+            { "Key": "Intensity", "Value": "0.5" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A column of pale growth, waist-thick and faintly warm, veined violet under the skin. The light in the veins moves slowly, always in the same direction. It holds up nothing. It is not for holding up." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" } ]
+    },
+    {
+      "Name": "GroveSeep",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "grove seep" },
+            { "Key": "RenderString", "Value": "~" },
+            { "Key": "ColorString", "Value": "&C" },
+            { "Key": "RenderLayer", "Value": "1" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" } ] },
+        {
+          "Name": "LiquidPool",
+          "Params": [
+            { "Key": "LiquidId", "Value": "water" },
+            { "Key": "Volume", "Value": "40" }
+          ]
+        },
+        { "Name": "Well", "Params": [] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Clean water rising cold through white filaments, clearer than any well in the towns. The sign says it is for you. Nothing here has ever said otherwise." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "FruitingBody",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "fruiting body" },
+            { "Key": "RenderString", "Value": "%" },
+            { "Key": "ColorString", "Value": "&m" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "Material",
+          "Params": [
+            { "Key": "MaterialID", "Value": "Plant" },
+            { "Key": "Combustibility", "Value": "0.3" },
+            { "Key": "MaterialTagsRaw", "Value": "Plant,Organic" }
+          ]
+        },
+        { "Name": "Destructible", "Params": [ { "Key": "HP", "Value": "8" }, { "Key": "MaxHP", "Value": "8" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Growth in shelves and closed fists, violet over ochre. It was not this size last season. It will not be this size next season." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" } ]
+    },
+    {
+      "Name": "GroveSign",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "grove-edge sign" },
+            { "Key": "RenderString", "Value": "I" },
+            { "Key": "ColorString", "Value": "&G" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" }, { "Key": "Takeable", "Value": "false" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A board of grown wood, the letters raised in living grain — grown out of it, not carved into it — and weathered smooth by hands. It reads: WALKER. YOU ARE ENTERING US. Walk anywhere. Everything is path. Drink at the seep. It is for you. Eat nothing red. The red is thinking. If you hear singing, it is old singing. It is not for you. You may listen anyway. The singers do not mind. The singers have not minded anything for a long time, and it is a kindness to be heard. Do not dig. If you are tired — truly tired, walker, the kind of tired that has stopped keeping count — lie down anywhere soft. Someone will cover you. If you are only a little tired, keep walking. We can tell the difference. We are patient about the difference. GO GENTLY. EVERYTHING HERE IS SOMEBODY." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" }, { "Key": "Furniture", "Value": "" } ]
+    },
+    {
+      "Name": "CompostRow",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "compost row" },
+            { "Key": "RenderString", "Value": "%" },
+            { "Key": "ColorString", "Value": "&w" },
+            { "Key": "RenderLayer", "Value": "1" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" }, { "Key": "Takeable", "Value": "false" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A tidy row of what is being taken back: cloth gone to lace, a boot, chitin, a shape further along than the rest. The rows are straight. Nothing made them straight; they grew that way. Everything here is somebody." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
     }
   ]
 }

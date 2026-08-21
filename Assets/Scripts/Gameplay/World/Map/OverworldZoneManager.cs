@@ -360,8 +360,14 @@ namespace CavesOfOoo.Core
         /// <summary>The Grovelands — Choir country. Dense growth with
         /// open cathedral floors between.</summary>
         private ZoneGenerationPipeline CreateGrovelandsPipeline(int tier = 1)
-            => CreateSurfacePipeline(BiomeType.Grovelands, tier,
+        {
+            var pipeline = CreateSurfacePipeline(BiomeType.Grovelands, tier,
                 new JungleBuilder { SeedChance = 50, TreeChance = 0.16f });
+            // W4.1 (Docs/FELLING-W4-PLAN.md): the anti-sameness machine
+            // reaches Choir country — groves, fens, walls, the fields.
+            pipeline.AddBuilder(new GrovelandsFormationBuilder());
+            return pipeline;
+        }
 
         /// <summary>
         /// The Overwrit — the scraped region. Near-empty ground with

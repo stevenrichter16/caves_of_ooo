@@ -227,7 +227,68 @@ already carry reasons; `quest/*` ships). New caches: none.
 
 ## 5. Implementation log
 
-(filled per SM)
+### W4.1 — Four formations + the glow (SHIPPED)
+
+**Files:** Formation.cs (Grove/TendrilFen/FruitingWall/
+CompostingField + GrovelandsPool 3-2-2-1), GrovelandsFormationBuilder
+(NEW), OverworldZoneManager (pipeline gains the builder), Objects.json
+(MycelialColumn 'O' &w + LightSource r3, GroveSeep '~' &C + Well,
+FruitingBody '%' &m, GroveSign 'I' &G with Codex/11 VERBATIM,
+CompostRow '%' &w non-solid), ContainerPlacementService
+(GrovelandsPool: HollowLog/WovenBasket/Sack — nothing manufactured;
+PoolFor + ContainerKind made public for the contract test),
+BiomePalette (Grovelands case), LandmarkBuilder (GroveShrineStamp
+extracted; Grovelands ambient array = shrine + mendleaf + blind;
+Ziggurat stays jungle-only), GrovelandsFormationTests (23 tests).
+
+**SCOPE DIVERGENCES:**
+- SubstrateMat CUT at implementation: the palette carries the ground
+  look, and the tile atlas keys raw Latin-1 chars (a fancy glyph
+  falls back to '?'), so a mechanics-free mat entity risked an
+  unreadable glyph for zero gain. Same atlas fact moved the column
+  from the design's '♣' to 'O' (color-differentiated from the cyan
+  Well, per the vein convention).
+- The grove CLEARS ITS OWN FLOOR (one allowed dig, the Causeway
+  precedent): the design table's own words are "columns ringing a
+  seep, OPEN floor", and without the clearing the look pass showed
+  the ring drowned in forest.
+
+**Look pass (the gate; two rounds):**
+- Round 1: CompostingField unmistakable (ordered '%' rows; the
+  GroveShrine stamp rolled beside it — the five named choir NPCs
+  around their fire, placed at last); TendrilFen's tendrils + bank
+  growth read (its water veins are TileState coatings — the known
+  monochrome-dump bound); FruitingWall thin; **Grove FAILED
+  twice-over** — at the first authored cell nothing built (a random
+  lair POI routes around the formation builder; dump cells must
+  dodge lairs), and at real forested cells the ring drowned, the
+  seep and sign SILENTLY absent (IsOpenGround guards = the
+  phantom-neutral-pass class; the open-grass tests could never see
+  it).
+- Fixes: the floor clearing (above); the seep GUARANTEED on the
+  cleared center; the sign walks an eastern arc (clearing its
+  doorpost) with a cleared-floor fallback; FruitingWall 10-13 lines
+  at 90%.
+- The forest-fixture pin then caught one more real bug:
+  PlaceSolidIfHarmless demanded GLOBAL reachability, so any
+  pre-existing pocket (upstream scatter this builder didn't cause)
+  vetoed every sign and tendril forever. Now a DELTA contract —
+  placement must not make reachability worse — which is the honest
+  rule on imperfect zones.
+- Round 2: the Grove reads as designed — clearing, gapped ring, '~'
+  at center, 'I' at the east entry, lone columns glowing beyond;
+  FruitingWall reads as broken growth lines.
+
+**Honesty bounds:** night glow is invisible to the dump — verified
+at the part level (LightSource radius 3 pinned); TendrilFen's veins
+likewise coating-invisible. Tests: seep/sign guaranteed ON DENSE
+FOREST (15 seeds), every-open-cell reachability 40 seeds ×3 solid
+formations, TryPlaceOnce stacking pins (R9a), tendril 1-3 + only-
+the-fen counters, verbatim sign pins, container/catalog contracts.
+
+**Tests:** 6915 → 6938 (+23). Green headless ×3 across the fix
+rounds (the forest pin was RED twice — first for the missing sign,
+then for the global-reachability veto — before going green).
 
 ## 6. Critical review of this plan (before implementation)
 

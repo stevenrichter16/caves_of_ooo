@@ -77,7 +77,7 @@ namespace CavesOfOoo.Core
                 // catalog was created to stop.
                 case BiomeType.Sodden: return Sodden;
                 case BiomeType.Beating: return Beating;
-                case BiomeType.Grovelands: return For(BiomeType.Jungle);
+                case BiomeType.Grovelands: return Grovelands;
                 case BiomeType.Overwrit: return For(BiomeType.Ruins);
                 case BiomeType.Stump: return For(BiomeType.Cave);
                 default: return System.Array.Empty<StructureStamp>();
@@ -514,6 +514,43 @@ namespace CavesOfOoo.Core
                 },
             };
 
+        // Phase E: the Rot Choir's grove — the five NAMED choir
+        // NPCs (authored dialogue, never placed until now) gathered
+        // around their congregation fire.
+        private static readonly StructureStamp GroveShrineStamp =
+            new StructureStamp
+            {
+                Name = "GroveShrine",
+                Chance = 20,
+                MinTier = 1,
+                Rows = new[]
+                {
+                    ".m.g.",
+                    ".nfo.",
+                    "..i..",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { 'm', "spawn:Mogu" },
+                    { 'g', "spawn:Grib" },
+                    { 'n', "spawn:Nam" },
+                    { 'i', "spawn:Sien" },
+                    { 'o', "spawn:Sopp" },
+                    { 'f', "Campfire" },
+                },
+            };
+
+        /// <summary>W4.1 — the Grovelands' own ambient texture: the
+        /// Choir's shrine belongs HERE (it was born in the shared
+        /// jungle array and could roll anywhere green), plus the herb
+        /// patch and the blind. The Ziggurat stays jungle-only.</summary>
+        private static readonly StructureStamp[] Grovelands =
+        {
+            GroveShrineStamp,
+            MendleafGardenStamp,
+            HuntersBlindStamp,
+        };
+
         /// <summary>The Sodden's own ambient texture (W3 re-review) —
         /// the shared stamps that read as bog country: a reed-walled
         /// hermit, the healing-herb patch, the hunter's blind. The
@@ -552,30 +589,7 @@ namespace CavesOfOoo.Core
                     { '+', "" },
                 },
             },
-            // Phase E: the Rot Choir's grove — the five NAMED choir
-            // NPCs (authored dialogue, never placed until now) gathered
-            // around their congregation fire.
-            new StructureStamp
-            {
-                Name = "GroveShrine",
-                Chance = 20,
-                MinTier = 1,
-                Rows = new[]
-                {
-                    ".m.g.",
-                    ".nfo.",
-                    "..i..",
-                },
-                Legend = new Dictionary<char, string>
-                {
-                    { 'm', "spawn:Mogu" },
-                    { 'g', "spawn:Grib" },
-                    { 'n', "spawn:Nam" },
-                    { 'i', "spawn:Sien" },
-                    { 'o', "spawn:Sopp" },
-                    { 'f', "Campfire" },
-                },
-            },
+            GroveShrineStamp,
             MendleafGardenStamp,
             HuntersBlindStamp,
         };

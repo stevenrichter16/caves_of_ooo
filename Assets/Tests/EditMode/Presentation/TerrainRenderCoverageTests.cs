@@ -71,6 +71,7 @@ namespace CavesOfOoo.Tests
             "CropRow", "CharmFlowers", "FlowerField", "Reeds",
             "SaltCrust", "DuneCrest", "Bones", "TentWall", "UntendedFire",
             "MirePool", "Duckboard", "DeadTree", "PeatBank",
+            "MycelialColumn", "GroveSeep", "FruitingBody",
             "CopperPipe", "PeatBog", "TarSeep", "OilSeep", "OilSlick",
             "BrinePool", "AcidPool", "AcidPond", "IceSheet",
             "ConvalescencePool", "MemoryBathPool", "MirrorMucilagePool",

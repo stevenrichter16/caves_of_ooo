@@ -73,6 +73,21 @@ namespace CavesOfOoo.Core
         /// <summary>Edge — a tall cut showing strata. Readable
         /// stratigraphy; bodies at every depth.</summary>
         BogFace,
+
+        // ── The Grovelands (W4, Docs/FELLING-W4-PLAN.md §3) ──────
+        /// <summary>Radial — glowing columns ringing a clean seep, the
+        /// grown sign at the east entry. The centre is the reason you
+        /// came; the rules apply.</summary>
+        Grove,
+        /// <summary>Braid — tendrils tracing old water-veins. The
+        /// Choir's fingertips, and they talk.</summary>
+        TendrilFen,
+        /// <summary>Rubble — short dense lines of vertical growth.
+        /// Harvest country, climbing spores.</summary>
+        FruitingWall,
+        /// <summary>Ordered rows of the half-taken-back. Loot and
+        /// horror in one pile; everything here is somebody.</summary>
+        CompostingField,
     }
 
     /// <summary>
@@ -139,6 +154,21 @@ namespace CavesOfOoo.Core
             Formation.BogFace,
         };
 
+        /// <summary>The Grovelands: groves ARE the biome — the ring and
+        /// the seep in nearly half the chunks; the fen (where the
+        /// tendrils talk), the walls, and the composting field rarer.</summary>
+        private static readonly Formation[] GrovelandsPool =
+        {
+            Formation.Grove,
+            Formation.Grove,
+            Formation.Grove,
+            Formation.TendrilFen,
+            Formation.TendrilFen,
+            Formation.FruitingWall,
+            Formation.FruitingWall,
+            Formation.CompostingField,
+        };
+
         private static Formation[] PoolFor(BiomeType biome)
         {
             switch (biome)
@@ -146,7 +176,8 @@ namespace CavesOfOoo.Core
                 case BiomeType.Spread: return SpreadPool;
                 case BiomeType.Beating: return BeatingPool;
                 case BiomeType.Sodden: return SoddenPool;
-                default: return null;   // W4+ fill these in
+                case BiomeType.Grovelands: return GrovelandsPool;
+                default: return null;   // W5+ fill these in
             }
         }
 
