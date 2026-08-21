@@ -227,13 +227,12 @@ namespace CavesOfOoo.Tests
         [Test]
         public void Detonate_MergesIntoExistingCompatibleGas_InsteadOfStacking()
         {
-            // Adversarial: a grenade detonating where a compatible gas
-            // already exists should... well, looking at the code,
-            // GasFactory.SpawnGas always creates a new entity. The merge
-            // happens during dispersal (G.4), not at spawn. So two
-            // overlapping gases will coexist as separate entities until
-            // the next dispersal tick merges them. Pin this so a future
-            // "merge at spawn" change is explicit.
+            // This pin existed "so a future 'merge at spawn' change is
+            // explicit" — that change is Wx opt review §1a
+            // (GasSpawnMergeTests): SpawnGas now merges into a compatible
+            // same-cell cloud, Qud Gas.MergeToGas parity. The center
+            // spawn joins the pre-existing cloud (50+30=80); the eight
+            // surrounding burst cells spawn fresh.
             var zone = new Zone("GrenadeOverlap");
             GasFactory.SpawnGas(zone, 10, 10, "poison-vapor", density: 50);
             int beforeCount = zone.GetEntitiesWithTag("Gas").Count;
@@ -243,11 +242,12 @@ namespace CavesOfOoo.Tests
             var center = zone.GetCell(10, 10);
             grenade.GetPart<GasGrenadePart>().Detonate(null, center, zone);
 
-            int afterCount = zone.GetEntitiesWithTag("Gas").Count;
-            // 9 new spawns + 1 pre-existing = 10 entities. Merge happens
-            // on next tick, not at spawn (documented behavior).
-            Assert.AreEqual(10, afterCount,
-                "spawn-time does NOT merge with existing; G.4 merge runs on next tick");
+            Assert.AreEqual(9, zone.GetEntitiesWithTag("Gas").Count,
+                "center merged, eight fresh burst cells — no stacked twin");
+            var centerPool = GasSystem.FindMergeTarget(center, "Poison", "&g");
+            Assert.IsNotNull(centerPool);
+            Assert.AreEqual(80, centerPool.Density,
+                "the grenade's center density joined the standing cloud");
         }
 
         [Test]
@@ -263,8 +263,16 @@ namespace CavesOfOoo.Tests
             var center = zone.GetCell(10, 10);
             grenade.GetPart<GasGrenadePart>().Detonate(null, center, zone);
             grenade.GetPart<GasGrenadePart>().Detonate(null, center, zone);
-            Assert.AreEqual(18, zone.GetEntitiesWithTag("Gas").Count,
-                "two detonations = 18 gas entities (ThrowItemCommand prevents double-call)");
+            // Wx §1a merge-on-spawn: the second detonation's nine spawns
+            // merge into the first's clouds — the non-idempotency this
+            // test guards still shows, as doubled density per cell.
+            var clouds = zone.GetEntitiesWithTag("Gas");
+            Assert.AreEqual(9, clouds.Count,
+                "both detonations landed, merged per cell — no stacked twins");
+            foreach (var g in clouds)
+                Assert.AreEqual(60, g.GetPart<GasPoolPart>().Density,
+                    "two detonations = 2×30 density everywhere " +
+                    "(ThrowItemCommand prevents double-call)");
         }
 
         // ════════════════════════════════════════════════════════════
@@ -395,17 +403,22 @@ namespace CavesOfOoo.Tests
             grenadeA.GetPart<GasGrenadePart>().Detonate(throwerA, center, zone);
             grenadeB.GetPart<GasGrenadePart>().Detonate(throwerB, center, zone);
 
-            Assert.AreEqual(18, zone.GetEntitiesWithTag("Gas").Count,
-                "two grenades at same cell → 18 gas entities pre-merge");
-            int aCount = 0, bCount = 0;
-            foreach (var g in zone.GetEntitiesWithTag("Gas"))
+            // Wx §1a merge-on-spawn: B's nine spawns merge into A's nine
+            // standing clouds. Provenance follows MergeChunk parity — the
+            // receiver keeps its established Creator, so the whole cloud
+            // field credits the FIRST thrower. B's contribution survives
+            // as density, the cross-actor quantity that matters for
+            // dose/dissipation.
+            var clouds = zone.GetEntitiesWithTag("Gas");
+            Assert.AreEqual(9, clouds.Count,
+                "two grenades at same cell merge per burst cell");
+            foreach (var g in clouds)
             {
-                var creator = g.GetPart<GasPoolPart>().Creator;
-                if (creator == throwerA) aCount++;
-                else if (creator == throwerB) bCount++;
+                Assert.AreSame(throwerA, g.GetPart<GasPoolPart>().Creator,
+                    "the standing cloud keeps its first owner (MergeChunk parity)");
+                Assert.AreEqual(60, g.GetPart<GasPoolPart>().Density,
+                    "both throwers' density is in the field");
             }
-            Assert.AreEqual(9, aCount, "9 gases credit thrower A");
-            Assert.AreEqual(9, bCount, "9 gases credit thrower B");
         }
     }
 }

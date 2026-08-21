@@ -50,23 +50,58 @@ namespace CavesOfOoo.Core
         public static void Refresh(Entity gas, GasPoolPart pool, Zone zone)
         {
             if (gas == null || pool == null) return;
+            bool changed = true;
             var render = gas.GetPart<RenderPart>();
             if (render != null)
             {
-                render.RenderString = GlyphForDensity(pool.Density).ToString();
-                // Tint the cell BACKGROUND with the gas color so a cloud
-                // reads as a filled colored rectangle even when the
-                // foreground stipple (░) is sparse and dimmed by ambient
-                // light. Foreground "&X" → background "^X" (the renderer's
-                // background-color format, QudColorParser.ParseBackground).
-                render.BackgroundColor = ToBackgroundCode(pool.ColorString);
+                // Wx opt review §1c — skip the writes AND the dirty mark
+                // when the shade glyph and background are both unchanged.
+                // Per-tick decay only crosses a band at densities 30/80,
+                // so ~97% of stationary-turn Refresh calls are no-ops;
+                // ungated, every gas repainted its cell every turn. The
+                // comparison is allocation-free on the skip path (chars,
+                // not built strings). Pinned by GasSpawnMergeTests.
+                char glyph = GlyphForDensity(pool.Density);
+                char colorCode = ColorCodeOf(pool.ColorString);
+                bool glyphSame = render.RenderString != null
+                    && render.RenderString.Length == 1
+                    && render.RenderString[0] == glyph;
+                bool bgSame = colorCode == '\0'
+                    ? string.IsNullOrEmpty(render.BackgroundColor)
+                    : render.BackgroundColor != null
+                      && render.BackgroundColor.Length == 2
+                      && render.BackgroundColor[0] == '^'
+                      && render.BackgroundColor[1] == colorCode;
+                changed = !(glyphSame && bgSame);
+                if (changed)
+                {
+                    render.RenderString = glyph.ToString();
+                    // Tint the cell BACKGROUND with the gas color so a cloud
+                    // reads as a filled colored rectangle even when the
+                    // foreground stipple (░) is sparse and dimmed by ambient
+                    // light. Foreground "&X" → background "^X" (the renderer's
+                    // background-color format, QudColorParser.ParseBackground).
+                    render.BackgroundColor = ToBackgroundCode(pool.ColorString);
+                }
             }
-            if (zone != null)
+            if (changed && zone != null)
             {
                 var pos = zone.GetEntityPosition(gas);
                 if (pos.x >= 0)
                     ZoneRenderHooks.MarkCellDirty(pos.x, pos.y, "Gas");
             }
+        }
+
+        /// <summary>The color-code char of a "&amp;X" foreground string
+        /// ('\0' if none) — the allocation-free half of
+        /// <see cref="ToBackgroundCode"/> for the Refresh skip check.</summary>
+        private static char ColorCodeOf(string colorString)
+        {
+            if (string.IsNullOrEmpty(colorString)) return '\0';
+            for (int i = 0; i < colorString.Length - 1; i++)
+                if (colorString[i] == '&')
+                    return colorString[i + 1];
+            return '\0';
         }
 
         /// <summary>Convert a foreground color string ("&g") to the

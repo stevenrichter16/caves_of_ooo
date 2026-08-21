@@ -39,6 +39,17 @@ namespace CavesOfOoo.Tests
             SettlementRuntime.Reset();
         }
 
+        // Wx §1a merge-on-spawn: the cadence tests detect spawn events
+        // by density growth (entity count no longer moves per spawn —
+        // repeat spawns merge into the standing cloud).
+        private static int TotalGasDensity(Zone zone)
+        {
+            int total = 0;
+            foreach (var e in zone.GetEntitiesWithTag("Gas"))
+                total += e.GetPart<GasPoolPart>()?.Density ?? 0;
+            return total;
+        }
+
         private static Entity MakeCreatureInZone(Zone zone, int x, int y,
             int hpMax = 200, int toughness = 14)
         {
@@ -125,12 +136,16 @@ namespace CavesOfOoo.Tests
             host.ApplyEffect(fx);
             fx.TurnsInfected = 19;
 
+            // Wx §1a merge-on-spawn: repeat spawns at the stationary
+            // host's cell merge into one growing cloud, so entity count
+            // only moves on the FIRST hit. Total density strictly
+            // increases on every cadence hit — that is the spawn signal.
             int spawnCount = 0;
             for (int i = 0; i < 10; i++) // turns 20..29
             {
-                int before = zone.GetEntitiesWithTag("Gas").Count;
+                int before = TotalGasDensity(zone);
                 fx.OnTurnStart(host, ContextWithZone(zone));
-                int after = zone.GetEntitiesWithTag("Gas").Count;
+                int after = TotalGasDensity(zone);
                 if (after > before) spawnCount++;
             }
             // Expected: at turns 20, 23, 26, 29 → 4 spawn events
@@ -153,12 +168,14 @@ namespace CavesOfOoo.Tests
             host.ApplyEffect(fx);
             fx.TurnsInfected = 29;
 
+            // Wx §1a merge-on-spawn: density, not entity count, is the
+            // spawn signal (see the Blooming cadence test above).
             int spawnCount = 0;
             for (int i = 0; i < 10; i++) // turns 30..39
             {
-                int before = zone.GetEntitiesWithTag("Gas").Count;
+                int before = TotalGasDensity(zone);
                 fx.OnTurnStart(host, ContextWithZone(zone));
-                int after = zone.GetEntitiesWithTag("Gas").Count;
+                int after = TotalGasDensity(zone);
                 if (after > before) spawnCount++;
             }
             Assert.AreEqual(5, spawnCount,

@@ -75,6 +75,34 @@ namespace CavesOfOoo.Core
             int useDensity = density < 0 ? def.DefaultDensity : density;
             int useLevel = level < 0 ? def.DefaultLevel : level;
 
+            // Wx opt review §1a — merge-on-spawn. A spawn onto a cell
+            // already holding a compatible cloud (same GasType + Color,
+            // the IsMergeCompatible gate) grows that cloud instead of
+            // stacking a twin entity. Without this, BurnOffGas spawned a
+            // fresh cloud per damage threshold with no cap — a burning
+            // peat field sustained hundreds of stacked gas entities (the
+            // 2026-05-23 236-entity freeze scale), each ticking, dosing,
+            // and serializing diag per turn. Merge semantics mirror
+            // GasSystem.MergeChunk: sum density, max level, OR seeping,
+            // receiver keeps its creator. Matches Qud's Gas.MergeToGas.
+            string useGasType = string.IsNullOrEmpty(def.GasType) ? "BaseGas" : def.GasType;
+            string useColor = string.IsNullOrEmpty(def.Color) ? "&w" : def.Color;
+            var receiver = GasSystem.FindMergeTarget(zone.GetCell(x, y), useGasType, useColor);
+            if (receiver != null)
+            {
+                int receiverBefore = receiver.Density;
+                receiver.Density += useDensity; // setter fires GasDensityChange — the cloud genuinely grew
+                if (useLevel > receiver.Level) receiver.Level = useLevel;
+                if (def.Seeping && !receiver.Seeping) receiver.Seeping = true;
+                if (creator != null && receiver.Creator == null) receiver.Creator = creator;
+                GasVisuals.Refresh(receiver.ParentEntity, receiver, zone);
+                if (Diag.IsChannelEnabled("gas"))
+                    Diag.Record("gas", "SpawnMerged", creator, receiver.ParentEntity,
+                        new { gasId, addedDensity = useDensity, receiverBefore,
+                              receiverAfter = receiver.Density, level = useLevel, x, y });
+                return receiver.ParentEntity;
+            }
+
             var entity = new Entity
             {
                 ID = $"gas_{gasId}_{x}_{y}_{System.Guid.NewGuid().ToString("N").Substring(0, 6)}",

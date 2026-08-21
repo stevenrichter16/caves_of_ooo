@@ -306,6 +306,28 @@ namespace CavesOfOoo.Core
 
         // ──────────── Helpers ────────────
 
+        /// <summary>Wx opt review §1a — spawn-time merge target: a gas in
+        /// the cell whose GasType and ColorString match the would-be
+        /// spawn (the same gate as <see cref="IsMergeCompatible"/>, keyed
+        /// by def values because no source pool exists yet at spawn
+        /// time). Lets <see cref="GasFactory.SpawnGas"/> grow an existing
+        /// cloud instead of stacking a twin entity — the unbounded-stack
+        /// path that let a burning peat field accumulate hundreds of
+        /// clouds. See GasSpawnMergeTests.</summary>
+        public static GasPoolPart FindMergeTarget(Cell cell, string gasType, string colorString)
+        {
+            if (cell == null) return null;
+            for (int i = 0; i < cell.Objects.Count; i++)
+            {
+                var pool = cell.Objects[i]?.GetPart<GasPoolPart>();
+                if (pool == null) continue;
+                if (pool.GasType != gasType) continue;
+                if (pool.ColorString != colorString) continue;
+                return pool;
+            }
+            return null;
+        }
+
         /// <summary>Find a compatible (same GasType + Color) gas in a cell,
         /// skipping the source gas itself.</summary>
         private static GasPoolPart FindCompatibleGas(Cell cell, GasPoolPart src, Entity srcEntity)

@@ -82,6 +82,22 @@ namespace CavesOfOoo.Tests
             return n;
         }
 
+        // Wx opt review §1a: SpawnGas now merges compatible same-cell
+        // spawns (GasSpawnMergeTests), so multi-spawn burn-offs read as
+        // ONE growing cloud. Density is the conserved quantity the
+        // Number-roll tests now pin.
+        private static int TotalGasDensityAt(Zone zone, int x, int y)
+        {
+            int total = 0;
+            foreach (var ent in zone.GetAllEntities())
+            {
+                if (!ent.Tags.ContainsKey("Gas")) continue;
+                var p = zone.GetEntityPosition(ent);
+                if (p.x == x && p.y == y) total += ent.GetPart<GasPoolPart>()?.Density ?? 0;
+            }
+            return total;
+        }
+
         // ════════════════════════════════════════════════════════════
         //   PART I — accumulate + threshold spawn (via ApplyDamage)
         // ════════════════════════════════════════════════════════════
@@ -127,7 +143,10 @@ namespace CavesOfOoo.Tests
             SettlementRuntime.ActiveZone = zone;
             var e = MakeFlammable(zone, 5, 5);
             Burn(e, zone, 25); // floor(25/10) = 2 cycles, remainder 5
-            Assert.AreEqual(2, CountGasAt(zone, 5, 5), "25 crosses 10-threshold twice");
+            // Wx §1a merge-on-spawn: two cycles feed one cloud (2×50).
+            Assert.AreEqual(1, CountGasAt(zone, 5, 5), "merged, not stacked");
+            Assert.AreEqual(100, TotalGasDensityAt(zone, 5, 5),
+                "25 crosses 10-threshold twice — both spawns' density landed");
             Assert.AreEqual(5, e.GetPart<BurnOffGasPart>().DamageTaken, "remainder 5");
         }
 
@@ -165,7 +184,10 @@ namespace CavesOfOoo.Tests
             SettlementRuntime.ActiveZone = zone;
             var e = MakeFlammable(zone, 5, 5, number: "3");
             Burn(e, zone, 10);
-            Assert.AreEqual(3, CountGasAt(zone, 5, 5), "Number=\"3\" → 3");
+            // Wx §1a: the three spawns merge on the shared cell — the
+            // roll's contract is now conserved density (3×50).
+            Assert.AreEqual(1, CountGasAt(zone, 5, 5));
+            Assert.AreEqual(150, TotalGasDensityAt(zone, 5, 5), "Number=\"3\" → 3×50");
         }
 
         [Test]
@@ -176,7 +198,9 @@ namespace CavesOfOoo.Tests
             SettlementRuntime.ActiveZone = zone;
             var e = MakeFlammable(zone, 5, 5, number: "2d1");
             Burn(e, zone, 10);
-            Assert.AreEqual(2, CountGasAt(zone, 5, 5), "\"2d1\" → 2");
+            // Wx §1a: merged — the dice roll shows up as density (2×50).
+            Assert.AreEqual(1, CountGasAt(zone, 5, 5));
+            Assert.AreEqual(100, TotalGasDensityAt(zone, 5, 5), "\"2d1\" → 2×50");
         }
 
         [Test]
