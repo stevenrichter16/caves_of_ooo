@@ -141,6 +141,13 @@ namespace CavesOfOoo.Core
                 if (material != null && material.Volatility > 0f)
                     startIntensity += material.Volatility;
                 ParentEntity.ApplyEffect(new BurningEffect(intensity: startIntensity, source: source), source, zone);
+
+                // W4.2 — fire is a crime in a grove. Charged HERE, at
+                // the one seam every ignition passes through; GroveLaw
+                // self-gates on player source + Grovelands surface, so
+                // this is a no-op everywhere else and for fire spread
+                // (whose Source is the propagating entity).
+                GroveLaw.OnIgnite(source, ParentEntity, zone);
             }
         }
 

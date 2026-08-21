@@ -86,6 +86,11 @@ namespace CavesOfOoo.Core
             else
                 MessageLog.Add($"You harvest {sourceName}, but find nothing worth keeping.");
 
+            // W4.2 — "Do not dig." Charged at the harvest seam; GroveLaw
+            // self-gates on player + MineralVein tag + Grovelands
+            // surface, so berry-picking and every other biome no-op.
+            GroveLaw.OnDig(actor, e.GetParameter<Zone>("Zone"), ParentEntity);
+
             if (Diag.IsChannelEnabled("loot"))
             {
                 Diag.Record(

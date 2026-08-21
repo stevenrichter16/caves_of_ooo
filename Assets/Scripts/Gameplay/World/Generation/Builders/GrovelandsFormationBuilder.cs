@@ -126,6 +126,24 @@ namespace CavesOfOoo.Core
             }
             BuilderSpawn.TryPlaceOnce(zone, factory, "GroveSeep", cx, cy);
 
+            // W4.2 — red growth at the grove edge, where the sign can
+            // see it: "GroveRed ... Choir grove edges" (WORLD-
+            // INGREDIENTS.md). Non-solid forage; the warning is on the
+            // sign, not the ground.
+            int reds = 2 + rng.Next(3);
+            for (int i = 0; i < reds; i++)
+            {
+                for (int attempt = 0; attempt < 25; attempt++)
+                {
+                    double a = rng.NextDouble() * System.Math.PI * 2.0;
+                    int x = cx + (int)System.Math.Round((rx + 1 + rng.Next(3)) * System.Math.Cos(a));
+                    int y = cy + (int)System.Math.Round((ry + 1 + rng.Next(2)) * System.Math.Sin(a));
+                    if (!IsOpenGround(zone, x, y)) continue;
+                    BuilderSpawn.TryPlaceOnce(zone, factory, "GroveRedGrowth", x, y);
+                    break;
+                }
+            }
+
             // Lone columns beyond the ring — the glow you steer by.
             int lone = 3 + rng.Next(4);
             for (int i = 0; i < lone; i++)
@@ -206,6 +224,11 @@ namespace CavesOfOoo.Core
                         // Growth crowds the banks.
                         var body = BuilderSpawn.TryPlace(zone, factory, "FruitingBody", x, y);
                         if (body != null) placed.Add(body);
+                    }
+                    else if (dist < 3.0 && rng.Next(100) < 4 && IsOpenGround(zone, x, y))
+                    {
+                        // W4.2 — and so does the red, along the veins.
+                        BuilderSpawn.TryPlaceOnce(zone, factory, "GroveRedGrowth", x, y);
                     }
                 }
 

@@ -23605,7 +23605,7 @@
           "Key": "Solid",
           "Value": ""
         }
-      ]
+      , { "Key": "MineralVein", "Value": "" } ]
     },
     {
       "Name": "PaleSaltVein",
@@ -23674,7 +23674,7 @@
           "Key": "Solid",
           "Value": ""
         }
-      ]
+      , { "Key": "MineralVein", "Value": "" } ]
     },
     {
       "Name": "ChoirIronVein",
@@ -23743,7 +23743,7 @@
           "Key": "Solid",
           "Value": ""
         }
-      ]
+      , { "Key": "MineralVein", "Value": "" } ]
     },
     {
       "Name": "PaleSalt",
@@ -29398,6 +29398,63 @@
           "Name": "Examinable",
           "Params": [
             { "Key": "Description", "Value": "A tidy row of what is being taken back: cloth gone to lace, a boot, chitin, a shape further along than the rest. The rows are straight. Nothing made them straight; they grew that way. Everything here is somebody." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "GroveRed",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "grove-red" },
+            { "Key": "RenderString", "Value": "%" },
+            { "Key": "ColorString", "Value": "&R" },
+            { "Key": "RenderLayer", "Value": "3" }
+          ]
+        },
+        {
+          "Name": "Reagent",
+          "Params": [
+            { "Key": "PropertiesRaw", "Value": "vital:3, toxic:1" },
+            { "Key": "FlavorText", "Value": "A fruit of astonishing health, grown from everyone the grove has ever loved. The red is thinking." }
+          ]
+        },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "18" } ] }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "GroveRedGrowth",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "red growth" },
+            { "Key": "RenderString", "Value": ";" },
+            { "Key": "ColorString", "Value": "&R" },
+            { "Key": "RenderLayer", "Value": "1" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" }, { "Key": "Takeable", "Value": "false" } ] },
+        {
+          "Name": "Harvestable",
+          "Params": [
+            { "Key": "YieldBlueprint", "Value": "GroveRed" },
+            { "Key": "YieldMin", "Value": "1" },
+            { "Key": "YieldMax", "Value": "2" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Low growth heavy with red, at the grove edge, where the sign can see it. The sign says eat nothing red. Nothing stops you picking it." }
           ]
         }
       ],

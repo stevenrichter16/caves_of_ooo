@@ -370,6 +370,40 @@ fix would have been needed (none was — all four pinned as correct):
 - Look re-verify: the fen now reads as TWO winding growth bands that
   converge and part — the braid; the grove unchanged and correct.
 
+### W4.2 — The grove rules (SHIPPED)
+
+**Files:** GroveLaw.cs (NEW — the sign's law as mechanics:
+IsGroveGround reads the biome statically off the zone id; OnDig -15
+RotChoir, OnIgnite -40, player-only, grove-surface-only, each with a
+faction-channel diag naming the act), ThermalPart (OnIgnite charged
+at the one seam every ignition passes through), HarvestablePart
+(OnDig charged at the harvest seam), Diag ("faction" joins the
+default channels), Objects.json (MineralVein tags on the three
+veins — the law's honest hook; GroveRed: ReagentItem vital:3
+toxic:1, Commerce 18, the WORLD-INGREDIENTS flavor line verbatim;
+GroveRedGrowth: non-solid forage bush yielding 1-2), the builder
+sites red growth at grove edges + along fen veins (TryPlaceOnce per
+R9a), GroveLawTests.cs (9 tests).
+
+**Design notes honored:** the seep's rule shipped in W4.1; "eat
+nothing red" is a WARNING, not a fine — picking the red costs
+nothing and the reagent is exactly the designed trap (best vital in
+the game AND a brew-ruiner); digging is defined by the MineralVein
+tag, so foraging never triggers it; fire charges per player-caused
+ignition and NOT on spread (propagation events carry the burning
+entity as source) — a multi-target fire spell charges per thing lit,
+deliberately: the Choir counts acts.
+
+**Fixture lesson (recorded for the next fire test):** ignition
+fixtures must mirror MaterialPrimitivesPhaseATests' proven shape —
+Hitpoints stat, 0-1 Combustibility scale, joules under the
+|delta|>200 thermal-shock branch. The first fixture used a 500-joule
+blast and tripped paths the test never meant to probe.
+
+**Tests:** 6945 → 6954 (+9): dig charge + elsewhere/NPC/forage
+counters; fire charge + elsewhere/spread counters; the reagent's
+numbers and flavor pinned; edge-siting existence.
+
 ## 6. Critical review of this plan (before implementation)
 
 **R1 — The profile promotion is load-bearing, do it FIRST inside
