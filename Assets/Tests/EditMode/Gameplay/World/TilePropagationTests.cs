@@ -359,19 +359,32 @@ namespace CavesOfOoo.Tests
         [Test]
         public void PropagationEmitsAStepRecord()
         {
+            // Wx opt review §3b: per-cell steps moved to the
+            // off-by-default "tile-verbose" channel (the flood runs every
+            // player turn; the always-on stream carries one PropagationWave
+            // aggregate instead — see DiagChannelSplitTests). The chain
+            // stays traceable when a debugger opts in — which is what
+            // this test now proves.
             var zone = new Zone();
             zone.TileState.WriteCoating(5, 5, "water", 6);
             zone.TileState.WriteCoating(6, 5, "water", 6);
             zone.TileState.AddCharge(5, 5, 1);
             Diag.ResetAll();
+            Diag.SetChannel("tile-verbose", true);
+            try
+            {
+                TilePropagationSystem.PropagateCharge(zone);
 
-            TilePropagationSystem.PropagateCharge(zone);
-
-            var recs = DiagQuery.Apply(new DiagQuery.Filter
-            { Category = "tile", Kind = "PropagationStep", Limit = 10 }).Records;
-            Assert.GreaterOrEqual(recs.Count, 1,
-                "a chain has to be traceable or 'why did that happen?' is unanswerable");
-            StringAssert.Contains("conductive_liquid", recs[0].PayloadJson);
+                var recs = DiagQuery.Apply(new DiagQuery.Filter
+                { Category = "tile-verbose", Kind = "PropagationStep", Limit = 10 }).Records;
+                Assert.GreaterOrEqual(recs.Count, 1,
+                    "a chain has to be traceable or 'why did that happen?' is unanswerable");
+                StringAssert.Contains("conductive_liquid", recs[0].PayloadJson);
+            }
+            finally
+            {
+                Diag.SetChannel("tile-verbose", false);
+            }
         }
 
         [Test]

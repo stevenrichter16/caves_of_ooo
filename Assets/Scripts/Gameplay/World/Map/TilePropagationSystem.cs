@@ -53,6 +53,10 @@ namespace CavesOfOoo.Core
         private static readonly List<int> _frontier = new List<int>(16);
         private static readonly List<int> _next = new List<int>(16);
         private static readonly HashSet<int> _seen = new HashSet<int>();
+        // Wx opt review §3b freebie: the seed collection ran 3× per
+        // player turn with a fresh List<int> even in inert zones —
+        // inconsistent with this file's own scratch hygiene above.
+        private static readonly List<int> _writtenScratch = new List<int>(64);
 
         // ── Conductivity ─────────────────────────────────────────
 
@@ -138,11 +142,11 @@ namespace CavesOfOoo.Core
             _seen.Clear();
 
             // Seed: every tile already carrying charge.
-            var written = new List<int>();
-            state.CollectWrittenKeys(written);
-            for (int i = 0; i < written.Count; i++)
+            _writtenScratch.Clear();
+            state.CollectWrittenKeys(_writtenScratch);
+            for (int i = 0; i < _writtenScratch.Count; i++)
             {
-                int key = written[i];
+                int key = _writtenScratch[i];
                 int x = key % Zone.Width, y = key / Zone.Width;
                 if (state.Charge(x, y) <= 0) continue;
                 _frontier.Add(key);
@@ -150,7 +154,9 @@ namespace CavesOfOoo.Core
             }
             if (_frontier.Count == 0) return 0;
 
-            int reached = 0;
+            int seedCount = _frontier.Count;
+            int reached = 0, metalReached = 0;
+            int minX = int.MaxValue, minY = int.MaxValue, maxX = -1, maxY = -1;
             int maxSteps = MetalChargeRange > ChargeRange ? MetalChargeRange : ChargeRange;
 
             for (int step = 0; step < maxSteps; step++)
@@ -185,14 +191,29 @@ namespace CavesOfOoo.Core
                             _next.Add(nkey);
                             zone.TileState.AddCharge(nx, ny, 1);
                             reached++;
+                            if (metal) metalReached++;
+                            if (nx < minX) minX = nx;
+                            if (ny < minY) minY = ny;
+                            if (nx > maxX) maxX = nx;
+                            if (ny > maxY) maxY = ny;
 
-                            Diag.Record("tile", "PropagationStep", cause, null,
-                                new
-                                {
-                                    medium = metal ? "metal" : "conductive_liquid",
-                                    fromX = cx, fromY = cy, toX = nx, toY = ny,
-                                    step,
-                                });
+                            // Wx opt review §3b — per-cell steps live on
+                            // the off-by-default "tile-verbose" channel:
+                            // this flood runs every player turn, and a
+                            // self-sustaining peat fire emitted 25-75
+                            // eagerly-serialized steps per turn on the
+                            // always-on channel. The aggregate Wave
+                            // record below keeps the every-turn stream;
+                            // the per-cell chain stays traceable when a
+                            // debugger opts in. See DiagChannelSplitTests.
+                            if (Diag.IsChannelEnabled("tile-verbose"))
+                                Diag.Record("tile-verbose", "PropagationStep", cause, null,
+                                    new
+                                    {
+                                        medium = metal ? "metal" : "conductive_liquid",
+                                        fromX = cx, fromY = cy, toX = nx, toY = ny,
+                                        step,
+                                    });
                         }
                     }
                 }
@@ -201,6 +222,19 @@ namespace CavesOfOoo.Core
                 _frontier.Clear();
                 _frontier.AddRange(_next);
             }
+
+            // Wx §3b — ONE aggregate record per flood that moved charge:
+            // the always-on trace of "the arc found the pipe" without a
+            // record per cell. Silent when nothing spread (the every-turn
+            // inert case costs nothing).
+            if (reached > 0 && Diag.IsChannelEnabled("tile"))
+                Diag.Record("tile", "PropagationWave", cause, null,
+                    new
+                    {
+                        wave = "charge", seedCount, reached,
+                        metal = metalReached, liquid = reached - metalReached,
+                        minX, minY, maxX, maxY,
+                    });
 
             return reached;
         }
@@ -219,11 +253,11 @@ namespace CavesOfOoo.Core
             _frontier.Clear();
             _seen.Clear();
 
-            var written = new List<int>();
-            state.CollectWrittenKeys(written);
-            for (int i = 0; i < written.Count; i++)
+            _writtenScratch.Clear();
+            state.CollectWrittenKeys(_writtenScratch);
+            for (int i = 0; i < _writtenScratch.Count; i++)
             {
-                int key = written[i];
+                int key = _writtenScratch[i];
                 int x = key % Zone.Width, y = key / Zone.Width;
                 if (!state.HasResidue(x, y, "embers")) continue;
                 _frontier.Add(key);
@@ -231,7 +265,9 @@ namespace CavesOfOoo.Core
             }
             if (_frontier.Count == 0) return 0;
 
+            int seedCount = _frontier.Count;
             int spread = 0;
+            int minX = int.MaxValue, minY = int.MaxValue, maxX = -1, maxY = -1;
             for (int step = 0; step < FireRange; step++)
             {
                 _next.Clear();
@@ -258,14 +294,20 @@ namespace CavesOfOoo.Core
                             _next.Add(nkey);
                             zone.TileState.WriteResidue(nx, ny, "embers", 3);
                             spread++;
+                            if (nx < minX) minX = nx;
+                            if (ny < minY) minY = ny;
+                            if (nx > maxX) maxX = nx;
+                            if (ny > maxY) maxY = ny;
 
-                            Diag.Record("tile", "PropagationStep", cause, null,
-                                new
-                                {
-                                    medium = "fuel",
-                                    fromX = cx, fromY = cy, toX = nx, toY = ny,
-                                    step,
-                                });
+                            // Wx §3b — verbose, mirroring PropagateCharge.
+                            if (Diag.IsChannelEnabled("tile-verbose"))
+                                Diag.Record("tile-verbose", "PropagationStep", cause, null,
+                                    new
+                                    {
+                                        medium = "fuel",
+                                        fromX = cx, fromY = cy, toX = nx, toY = ny,
+                                        step,
+                                    });
                         }
                     }
                 }
@@ -274,6 +316,15 @@ namespace CavesOfOoo.Core
                 _frontier.Clear();
                 _frontier.AddRange(_next);
             }
+
+            // Wx §3b — one aggregate per fire flood that spread.
+            if (spread > 0 && Diag.IsChannelEnabled("tile"))
+                Diag.Record("tile", "PropagationWave", cause, null,
+                    new
+                    {
+                        wave = "fire", seedCount, reached = spread,
+                        minX, minY, maxX, maxY,
+                    });
 
             return spread;
         }

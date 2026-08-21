@@ -302,10 +302,23 @@ namespace CavesOfOoo.Core
                     // a Begin record (paired with the End below); a
                     // turn that's "spent" via stun-block is still a
                     // turn that consumed energy.
-                    if (Diag.IsChannelEnabled("turn"))
+                    //
+                    // Wx opt review §3a — NPC boundaries go to the
+                    // off-by-default "turn-verbose" channel: at 18 NPCs
+                    // they were 38 records per player action, rotating
+                    // the 8192-slot ring in ~215 player turns and
+                    // evicting all other history (the buffer comment
+                    // below measured dropped_records: 17733). The
+                    // player's Begin/End stay on "turn" — the round
+                    // anchor the debugging workflow keys on. Pairing
+                    // survives per-actor within each channel. See
+                    // DiagChannelSplitTests.
+                    string beginChannel = actor != null && actor.HasTag("Player")
+                        ? "turn" : "turn-verbose";
+                    if (Diag.IsChannelEnabled(beginChannel))
                     {
                         Diag.Record(
-                            category: "turn",
+                            category: beginChannel,
                             kind: "Begin",
                             actor: actor,
                             payload: new
@@ -371,10 +384,13 @@ namespace CavesOfOoo.Core
                 // D2.4 diag hook — turn boundary marker (paired with
                 // turn/Begin above). Records ALL EndTurn calls, including
                 // those triggered after a blocked BeginTakeAction.
-                if (Diag.IsChannelEnabled("turn"))
+                // Wx §3a: NPC Ends go verbose, mirroring Begin above.
+                string endChannel = actor != null && actor.HasTag("Player")
+                    ? "turn" : "turn-verbose";
+                if (Diag.IsChannelEnabled(endChannel))
                 {
                     Diag.Record(
-                        category: "turn",
+                        category: endChannel,
                         kind: "End",
                         actor: actor,
                         payload: new

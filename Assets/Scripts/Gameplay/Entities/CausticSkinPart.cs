@@ -64,6 +64,15 @@ namespace CavesOfOoo.Core
             var damage = e.GetParameter<Damage>("Damage");
             if (damage == null || damage.HasAttribute(ReflectAttribute)) return true;
 
+            var attacker = e.GetParameter<Entity>("Source");
+            // Environmental damage (burning, poison ticks) has no one to
+            // answer; self-damage must not loop. Wx opt review §3c: these
+            // early-outs sit ABOVE the elemental check so a source-less
+            // burn tick doesn't emit a SkinContactRejected with a null
+            // target every turn — a rejection record means an attacker
+            // actually existed to reject. See DiagChannelSplitTests.
+            if (attacker == null || attacker == ParentEntity) return true;
+
             // W3.7 audit (H4): fire is not touch. A burning frog's tick
             // damage carries Source = whoever lit it; an adjacent
             // arsonist must not be "in contact" every tick. Elemental
@@ -74,15 +83,11 @@ namespace CavesOfOoo.Core
             {
                 if (Diag.IsChannelEnabled("damage"))
                     Diag.Record("damage", "SkinContactRejected", ParentEntity,
-                        e.GetParameter<Entity>("Source"),
+                        attacker,
                         new { reason = "elemental_not_contact" });
                 return true;
             }
 
-            var attacker = e.GetParameter<Entity>("Source");
-            // Environmental damage (burning, poison ticks) has no one to
-            // answer; self-damage must not loop.
-            if (attacker == null || attacker == ParentEntity) return true;
             if (attacker.GetStatValue("Hitpoints", 0) <= 0) return true;
 
             var zone = SettlementRuntime.ActiveZone;
