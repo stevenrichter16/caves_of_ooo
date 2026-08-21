@@ -29395,15 +29395,6 @@
         },
         { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" }, { "Key": "Takeable", "Value": "false" } ] },
         {
-          "Name": "Harvestable",
-          "Params": [
-            { "Key": "YieldBlueprint", "Value": "GoldCoin" },
-            { "Key": "YieldMin", "Value": "1" },
-            { "Key": "YieldMax", "Value": "3" },
-            { "Key": "YieldChance", "Value": "60" }
-          ]
-        },
-        {
           "Name": "Examinable",
           "Params": [
             { "Key": "Description", "Value": "A tidy row of what is being taken back: cloth gone to lace, a boot, chitin, a shape further along than the rest. The rows are straight. Nothing made them straight; they grew that way. Everything here is somebody." }
@@ -29625,6 +29616,39 @@
           "Name": "Examinable",
           "Params": [
             { "Key": "Description", "Value": "Leaves the color of wine going darker, beaded sticky at every edge. How dark the leaves are is how recently it has eaten. These are quite dark." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "CompostCache",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "compost find" },
+            { "Key": "RenderString", "Value": "%" },
+            { "Key": "ColorString", "Value": "&W" },
+            { "Key": "RenderLayer", "Value": "1" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" }, { "Key": "Takeable", "Value": "false" } ] },
+        {
+          "Name": "Harvestable",
+          "Params": [
+            { "Key": "YieldBlueprint", "Value": "GoldCoin" },
+            { "Key": "YieldMin", "Value": "1" },
+            { "Key": "YieldMax", "Value": "3" },
+            { "Key": "YieldChance", "Value": "60" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A spot in the row where the taking-back has further to go. Some of what comes up still has pockets. The grove does not mind; it was never after the pockets." }
           ]
         }
       ],

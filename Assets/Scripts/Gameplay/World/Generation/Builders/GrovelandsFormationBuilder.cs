@@ -301,6 +301,7 @@ namespace CavesOfOoo.Core
         /// walk the rows, which is the point and the problem.</summary>
         private static void CompostingField(Zone zone, EntityFactory factory, System.Random rng)
         {
+            var rowCells = new List<(int x, int y)>();
             int y0 = 4 + rng.Next(3);
             for (int y = y0; y < Zone.Height - 3; y += 4)
             {
@@ -310,8 +311,23 @@ namespace CavesOfOoo.Core
                 {
                     if (rng.Next(100) >= 70) continue;
                     if (!IsOpenGround(zone, x, y)) continue;
-                    BuilderSpawn.TryPlaceOnce(zone, factory, "CompostRow", x, y);
+                    if (BuilderSpawn.TryPlaceOnce(zone, factory, "CompostRow", x, y) != null)
+                        rowCells.Add((x, y));
                 }
+            }
+
+            // The loot half (W4.3 review: NOT one coin-roll per row —
+            // that was a mint). A FEW spots per field where the
+            // taking-back has further to go; the cache stands on a row
+            // cell, in the row, where the design put it: loot and
+            // horror in one pile.
+            int caches = 2 + rng.Next(3);
+            for (int c = 0; c < caches && rowCells.Count > 0; c++)
+            {
+                int i = rng.Next(rowCells.Count);
+                var (x, y) = rowCells[i];
+                rowCells.RemoveAt(i);
+                BuilderSpawn.TryPlaceOnce(zone, factory, "CompostCache", x, y);
             }
         }
 

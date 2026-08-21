@@ -379,7 +379,8 @@ namespace CavesOfOoo.Data
                 {
                     new PopulationEntry { BlueprintName = "GlowMoth", Weight = 5, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "Rotling", Weight = 2, MinCount = 0, MaxCount = 2 },
-                    new PopulationEntry { BlueprintName = "Shambler", Weight = 2, MinCount = 0, MaxCount = 1 },
+                    // Review: the slow shapes arrive with tier 2, like
+                    // the Sodden's toads — the gentle ring stays gentle.
                     new PopulationEntry { BlueprintName = "WineLeafSundew", Weight = 2, MinCount = 0, MaxCount = 2 },
                 }
             };

@@ -443,6 +443,30 @@ pass; v1 ships the darkest read in the examine copy.
 **Tests:** 6955 → 6963 (+8). Green headless (the one failure is the
 documented flaky contagion test).
 
+### W4.3 adversarial review (user-directed, inline both-angles)
+
+- 🔴 **The compost was a mint** (caught by arithmetic before a
+  single playtest): a 60% GoldCoin harvest on EVERY row × ~200 rows
+  ≈ 240 coins per field zone, strip-mineable. Split: CompostRow is
+  texture again; `CompostCache` (2-4 per field, seated ON row cells,
+  one shade brighter as the searchable tell) carries the finds.
+  Economy bound pinned across 12 seeds. Canon note: coins in the
+  pile do NOT breach "nothing manufactured" — that rule is the
+  Choir's own culture; the pile holds travelers' possessions, which
+  is the whole horror of it.
+- 🟡 Shambler moved out of Tier 1 (the Sodden precedent: MawToad
+  entered at Tier 2; the gentle ring stays gentle). Pinned both
+  directions.
+- ✅ REFUTED, recorded: a plant in the lair-guard table is fine —
+  LairPopulationBuilder places blueprints generically, and a sundew
+  guards a lair approach the way it guards everything: by waiting.
+- Verified clean in passing: snare-part JSON binding incl. the
+  ctor-set ConsumeOnTrigger; the four-way '%' glyph family stays
+  color-differentiated; sac reagent properties parse; Speed 80 is
+  slow (Qud-parity higher-is-faster); vein-in-fen survives its own
+  repair list; sundew Combustibility 0 needs no Thermal (the lint's
+  own rule).
+
 ## 6. Critical review of this plan (before implementation)
 
 **R1 — The profile promotion is load-bearing, do it FIRST inside

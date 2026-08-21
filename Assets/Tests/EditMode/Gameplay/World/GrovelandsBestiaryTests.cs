@@ -157,16 +157,69 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void TheCompostRows_GiveThingsUp()
+        public void TheCompost_GivesThingsUp_ButIsNotAMint()
         {
-            // The W4.1 review assigned CompostRow's "loot" half here:
-            // the pile is where travelers' things end up, and harvest is
-            // how they come back out.
+            // W4.3 adversarial review (RED pre-fix): the first cut put a
+            // 60% GoldCoin harvest on EVERY row — ~200 rows per field ≈
+            // 240 coins per zone, strip-mineable. The loot half now
+            // lives in a separate CompostCache: a FEW spots per field
+            // where what comes back up still has pockets; the rows
+            // themselves are texture, not currency.
             var row = _factory.CreateEntity("CompostRow");
-            var harvest = row.GetPart<HarvestablePart>();
-            Assert.IsNotNull(harvest, "loot and horror in one pile — now actually loot");
-            Assert.AreEqual("GoldCoin", harvest.YieldBlueprint);
-            Assert.IsNotNull(_factory.CreateEntity("GoldCoin"), "and the coin is real");
+            Assert.IsNull(row.GetPart<HarvestablePart>(),
+                "the rows are the horror; they are not the loot");
+
+            var cache = _factory.CreateEntity("CompostCache");
+            Assert.IsNotNull(cache, "the finds exist");
+            var harvest = cache.GetPart<HarvestablePart>();
+            Assert.IsNotNull(harvest);
+            Assert.AreEqual("GoldCoin", harvest.YieldBlueprint,
+                "found possessions — the pile holds what the grove took");
+        }
+
+        [Test]
+        public void ACompostingField_HoldsOnlyAFewFinds()
+        {
+            // The economy bound, per zone, pinned across seeds.
+            for (int seed = 0; seed < 12; seed++)
+            {
+                var zone = new Zone("Overworld.0.0.0");
+                for (int x = 1; x < Zone.Width - 1; x++)
+                    for (int y = 1; y < Zone.Height - 1; y++)
+                    {
+                        var g = _factory.CreateEntity("Grass");
+                        if (g != null) zone.AddEntity(g, x, y);
+                    }
+                new GrovelandsFormationBuilder { Override = Formation.CompostingField }
+                    .BuildZone(zone, _factory, new Random(seed));
+
+                int caches = 0, rows = 0;
+                foreach (var e in zone.GetAllEntities())
+                {
+                    if (e.BlueprintName == "CompostCache") caches++;
+                    if (e.BlueprintName == "CompostRow") rows++;
+                }
+                Assert.That(caches, Is.InRange(2, 4),
+                    $"seed {seed}: a few finds, not a payroll ({caches})");
+                Assert.Greater(rows, 20,
+                    $"seed {seed}: the rows still carry the horror");
+            }
+        }
+
+        [Test]
+        public void TierOne_StaysGentle()
+        {
+            // W4.3 adversarial review (RED pre-fix): the Shambler sat in
+            // Tier 1 against the Sodden precedent (the MawToad entered
+            // its tables at Tier 2). The gentle ring stays gentle; the
+            // slow shapes start where the strangeness does.
+            foreach (var entry in PopulationTable.GetBiomeTable(BiomeType.Grovelands, 1).Entries)
+                Assert.AreNotEqual("Shambler", entry.BlueprintName,
+                    "tier 1 is moths and warnings, not the half-taken");
+            bool atTwo = false;
+            foreach (var entry in PopulationTable.GetBiomeTable(BiomeType.Grovelands, 2).Entries)
+                if (entry.BlueprintName == "Shambler") atTwo = true;
+            Assert.IsTrue(atTwo, "and they arrive with tier 2, like the toads did");
         }
     }
 }
