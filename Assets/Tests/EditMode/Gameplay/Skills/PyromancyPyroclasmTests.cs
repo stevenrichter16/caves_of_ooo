@@ -116,5 +116,46 @@ namespace CavesOfOoo.Tests
             Assert.DoesNotThrow(() =>
                 skill.OnCommand(new SkillEventContext { Attacker = atk, Defender = atk, Zone = zone, Rng = null }));
         }
+
+        [Test]
+        public void Pyroclasm_DestroyedSceneryMidBlast_DoesNotSkipTheNextTarget()
+        {
+            // W3 re-review (RED pre-fix): the AOE iterated the LIVE
+            // cell.Objects list while RouteDamage destroyed scenery
+            // inside it — Destroy() removes the entity, indices shift,
+            // and whoever stood on the wreckage was silently skipped.
+            // W3.3 made destructible terrain common (peat, dead trees),
+            // turning the latent loop into a routine miss. The blast now
+            // snapshots its targets first (the FlamingHands pattern).
+            var factory = new CavesOfOoo.Data.EntityFactory();
+            factory.LoadBlueprints(System.IO.File.ReadAllText(System.IO.Path.Combine(
+                UnityEngine.Application.dataPath, "Resources/Content/Blueprints/Objects.json")));
+
+            var (atk, zone, skill) = Fixture();
+            var def = MakeBodied("def", hp: 200);
+            def.AddPart(new ThermalPart());
+            zone.AddEntity(atk, 5, 5); zone.AddEntity(def, 6, 5);
+            def.ApplyEffect(new BurningEffect(intensity: 2.0f), atk, zone); // Duration 6 → aoe 18
+
+            // Same AOE cell: a DeadTree (HP 12 — dies to 18) added FIRST,
+            // a bystander creature added after (higher render layer, so
+            // it sits after the tree in the cell list).
+            var tree = factory.CreateEntity("DeadTree");
+            zone.AddEntity(tree, 7, 5);
+            var bystander = MakeBodied("bystander", hp: 100);
+            // Creatures render at layer 10; Cell.AddObject inserts by
+            // layer, so this puts the bystander AFTER the tree in the
+            // cell list — inside the index-shift window when the tree
+            // is destroyed mid-iteration.
+            bystander.GetPart<RenderPart>().RenderLayer = 10;
+            zone.AddEntity(bystander, 7, 5);
+
+            skill.OnCommand(new SkillEventContext
+            { Attacker = atk, Defender = atk, Zone = zone, Rng = new Random(0) });
+
+            Assert.IsNull(zone.GetEntityCell(tree), "the tree burns away in the blast");
+            Assert.Less(bystander.GetStatValue("Hitpoints"), 100,
+                "whoever stood beside it still burns — the wreckage must not shield them");
+        }
     }
 }

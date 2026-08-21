@@ -11,11 +11,12 @@ namespace CavesOfOoo.Tests
     /// <summary>
     /// W3.2 (Docs/FELLING-W3-PLAN.md §3) — the Bog-Taken. Canon: the
     /// bodies are "the drowned of the cataclysm, still emerging from
-    /// peat a thousand years later" (Lore/History/01_Spine.md:169), the
-    /// worked bog is "a centuries-deep cemetery whose contents are
-    /// visible" (02_Geography.md:69), and the Drowned Ledger's three
-    /// pre-Felling preserved are one of the world's three thin sources
-    /// on what came before (03_History.md:28).
+    /// peat a thousand years later" (Lore/History/01_Spine.md:169),
+    /// "bog-bodies become visible at depth" (00_Canon.md:76), and the
+    /// Drowned Ledger's three pre-Felling preserved are one of the
+    /// world's three thin sources on what came before (03_History.md:28).
+    /// (The cemetery-made-visible framing is design prose, not canon —
+    /// re-attributed by the W3 re-review.)
     ///
     /// <para>The text gates are the strictest in the game (plan R3):
     /// no "mummy" anywhere in shipped examine copy — enforced game-wide

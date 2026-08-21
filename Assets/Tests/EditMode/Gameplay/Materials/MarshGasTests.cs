@@ -155,6 +155,27 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void TheDuckboard_BurnsLikeItsNeighbors()
+        {
+            // W3 re-review (RED pre-fix): Duckboard carried Combustibility
+            // 0.6 + Thermal (so it visibly IGNITES) but no Destructible —
+            // its burning ticks fell into the exact silent void
+            // RouteDamage's own doc-comment exists to name. The safe line
+            // burns like everything else old and wooden here; MirePool is
+            // walkable, so a lost board never breaks reachability.
+            var board = Peat("Duckboard");
+            var part = board.GetPart<DestructiblePart>();
+            Assert.IsNotNull(part, "burnable things carry a pool to burn from");
+            int before = part.HP;
+
+            FireAt(board, _zone, 6);
+
+            Assert.Less(part.HP, before, "the fire does something");
+            Assert.AreEqual(0, GasAt(_zone, 10, 10),
+                "wood, not peat — it burns without venting");
+        }
+
+        [Test]
         public void ADeadTree_BurnsInSilence()
         {
             // Counter-check on the blueprint wiring: the event now fires

@@ -39,10 +39,20 @@ namespace CavesOfOoo.Core
         /// carrying it is never answered (the recursion guard).</summary>
         public const string ReflectAttribute = "SkinContact";
 
-        /// <summary>Damage that arrives as element, not as touch. The
-        /// skin answers hands and teeth, never the fire somebody lit.</summary>
-        private static readonly string[] ElementalAttributes =
-            { "Fire", "Heat", "Cold", "Acid", "Electric", "Poison" };
+        /// <summary>Damage that arrives as element, not as touch — the
+        /// skin answers hands and teeth, never the fire somebody lit.
+        /// W3 re-review: this was six exact strings, but the damage
+        /// model treats Lightning/Shock/Electricity, Ice/Freeze, and
+        /// Light/Laser as aliases (DamageAttributeFlags) — an
+        /// ElectrifiedEffect tick carries only "Lightning" and would
+        /// have reopened the arsonist bug for electricity the moment
+        /// its source-threading lands. The flag helpers collapse the
+        /// aliases; Poison stays a string check (no flag exists).</summary>
+        private static bool IsElemental(Damage damage)
+            => damage.IsHeatDamage() || damage.IsColdDamage()
+            || damage.IsElectricDamage() || damage.IsAcidDamage()
+            || damage.IsLightDamage() || damage.IsDisintegrationDamage()
+            || damage.HasAttribute("Poison");
 
         public static System.Random TestRng;
         private static readonly System.Random _defaultRng = new System.Random();
@@ -57,9 +67,17 @@ namespace CavesOfOoo.Core
             // W3.7 audit (H4): fire is not touch. A burning frog's tick
             // damage carries Source = whoever lit it; an adjacent
             // arsonist must not be "in contact" every tick. Elemental
-            // damage never triggers the skin — only physical contact.
-            foreach (var elemental in ElementalAttributes)
-                if (damage.HasAttribute(elemental)) return true;
+            // damage never triggers the skin — only physical contact —
+            // and like the adjacency gate below, the rejection names
+            // its reason (the observability rule).
+            if (IsElemental(damage))
+            {
+                if (Diag.IsChannelEnabled("damage"))
+                    Diag.Record("damage", "SkinContactRejected", ParentEntity,
+                        e.GetParameter<Entity>("Source"),
+                        new { reason = "elemental_not_contact" });
+                return true;
+            }
 
             var attacker = e.GetParameter<Entity>("Source");
             // Environmental damage (burning, poison ticks) has no one to

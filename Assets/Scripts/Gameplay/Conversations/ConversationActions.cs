@@ -136,10 +136,32 @@ namespace CavesOfOoo.Core
                     return;
                 }
                 var inv = listener.GetPart<InventoryPart>();
-                if (inv != null)
+                if (inv == null) return;
+
+                if (inv.AddObject(item))
                 {
-                    inv.AddObject(item);
                     MessageLog.Add($"You receive {item.GetDisplayName()}.");
+                    return;
+                }
+
+                // W3 re-review (critical): AddObject refuses when the pack
+                // is at MaxWeight — pre-fix the item went NOWHERE while
+                // "You receive..." still printed. For a quest handout
+                // (the sealed body) that was a softlock: quest active,
+                // offer gated off, cargo nonexistent. A refused handout
+                // now lands at the listener's feet so it always EXISTS.
+                var zone = SettlementRuntime.ActiveZone;
+                var pos = zone != null ? zone.GetEntityPosition(listener) : (-1, -1);
+                if (pos.Item1 >= 0)
+                {
+                    zone.AddEntity(item, pos.Item1, pos.Item2);
+                    MessageLog.Add($"Your pack is full — {item.GetDisplayName()} falls at your feet.");
+                }
+                else
+                {
+                    // No resolvable ground to drop onto: refuse honestly
+                    // rather than lie about receipt.
+                    MessageLog.Add($"You cannot carry {item.GetDisplayName()}.");
                 }
             });
 

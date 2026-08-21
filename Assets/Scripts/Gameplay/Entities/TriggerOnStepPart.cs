@@ -463,7 +463,10 @@ namespace CavesOfOoo.Core
                 return;
             }
 
-            MessageLog.Add($"The {ParentEntity.GetDisplayName()} closes around {actor.GetDisplayName()}. Stillness passes; struggle does not.");
+            // W3 re-review: v1 has no struggle-worsens mechanic (the hold
+            // is a flat duration), so the plant must not TEACH one — the
+            // Apatheia lesson ships when the mechanic does.
+            MessageLog.Add($"The {ParentEntity.GetDisplayName()} closes around {actor.GetDisplayName()}. Stillness passes.");
             actor.ApplyEffect(new RootedEffect(HoldTurns), ParentEntity, zone);
             actor.ApplyEffect(new AcidicEffect(Corrosion), ParentEntity, zone);
             if (Diag.IsChannelEnabled("effect"))

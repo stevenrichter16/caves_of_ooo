@@ -97,6 +97,11 @@ namespace CavesOfOoo.Tests
             StringAssert.DoesNotContain("not kind", text,
                 "the confession belongs to the page, not the props");
             StringAssert.DoesNotContain("her face", text);
+            // W3 re-review: canon's own negative — the rolls DO name the
+            // keeper (Oradin derives Ollun from them); what they do not
+            // record is the crosser. "The rolls do not record a face."
+            StringAssert.Contains("do not record a face", text,
+                "the anonymity attaches to the forgiven crosser, not the keeper");
         }
 
         // ════════════════════════════════════════════════════════
@@ -127,6 +132,23 @@ namespace CavesOfOoo.Tests
                 "the institution is a person at a table");
             Assert.GreaterOrEqual(CountOf(zone, "StoneCoffer"), 1,
                 "and the files behind the person");
+        }
+
+        [Test]
+        public void TheTwoOrders_WearTheirOwnColors()
+        {
+            // W3 re-review (RED pre-fix): the CurationSorter shipped
+            // Faction=Palimpsest — the Curation officer mechanically a
+            // Recension member, so delivering her own contract's rep
+            // never reached her, and Recension standing gated her mood.
+            // Joint presence means two Orders, not one wearing two coats.
+            var scribe = _factory.CreateEntity("RecensionScribe");
+            var sorter = _factory.CreateEntity("CurationSorter");
+
+            Assert.AreEqual("Palimpsest", FactionManager.GetFaction(scribe),
+                "the scribe answers to the Recension");
+            Assert.AreEqual("PaleCuration", FactionManager.GetFaction(sorter),
+                "the sorter answers to Curation — her own contract's rep must reach her");
         }
 
         [Test]

@@ -282,7 +282,7 @@ namespace CavesOfOoo.Core
                         if (d2 <= radius * radius)
                         {
                             if (rng.Next(100) < 70)
-                                BuilderSpawn.TryPlace(zone, factory, "BrinePool", x, y);
+                                BuilderSpawn.TryPlaceOnce(zone, factory, "BrinePool", x, y);
                         }
                         else if (d2 <= (radius + 1) * (radius + 1) && rng.Next(100) < 40)
                         {

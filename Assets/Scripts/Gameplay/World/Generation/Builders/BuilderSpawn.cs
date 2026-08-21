@@ -41,5 +41,24 @@ namespace CavesOfOoo.Core
             zone.AddEntity(e, x, y);
             return e;
         }
+
+        /// <summary>
+        /// <see cref="TryPlace"/>, but a no-op when the cell already holds
+        /// an entity of the SAME blueprint. W3 re-review: builders that
+        /// scatter non-solid features (mire pools, brine pools) guard
+        /// placement with "is the cell walkable?" — which a non-solid
+        /// feature never fails — so overlapping blobs double-booked cells
+        /// (double burn-off gas, double burn-away budget, double coating
+        /// writes). One pool per cell is what every routine meant.
+        /// </summary>
+        public static Entity TryPlaceOnce(Zone zone, EntityFactory factory,
+            string blueprint, int x, int y)
+        {
+            var cell = zone?.GetCell(x, y);
+            if (cell == null) return null;
+            for (int i = 0; i < cell.Objects.Count; i++)
+                if (cell.Objects[i].BlueprintName == blueprint) return null;
+            return TryPlace(zone, factory, blueprint, x, y);
+        }
     }
 }

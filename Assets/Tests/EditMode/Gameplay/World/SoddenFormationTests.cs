@@ -172,6 +172,48 @@ namespace CavesOfOoo.Tests
         // Helpers
         // ════════════════════════════════════════════════════════
 
+        [Test]
+        public void OpenMire_NeverStacksTwoPoolsOnOneCell()
+        {
+            // W3 re-review (RED pre-fix): IsOpenGround only checks
+            // BlocksMovement, and a MirePool is non-solid — so overlapping
+            // blobs plus the 3% scatter double-booked ~40 cells per zone
+            // with stacked pools (double burn-off gas, double burn-away
+            // budget, double coating writes). The scatter comment said
+            // "lone pools"; the code now means it.
+            for (int seed = 0; seed < 20; seed++)
+            {
+                var zone = Built(Formation.OpenMire, seed);
+                for (int x = 1; x < Zone.Width - 1; x++)
+                    for (int y = 1; y < Zone.Height - 1; y++)
+                    {
+                        int pools = 0;
+                        foreach (var e in zone.GetCell(x, y).Objects)
+                            if (e.BlueprintName == "MirePool") pools++;
+                        Assert.LessOrEqual(pools, 1,
+                            $"seed {seed}: ({x},{y}) holds {pools} stacked mire pools");
+                    }
+            }
+        }
+
+        [Test]
+        public void TheSoddenAmbientCatalog_IsItsOwn()
+        {
+            // W3 re-review: the ambient stamp catalog aliased Jungle, so
+            // vine ziggurats, Choir grove shrines, and jungle hermits
+            // rolled in the peat bog. The Sodden keeps the stamps that
+            // read as bog country and loses the ones that read as
+            // somewhere else's identity.
+            var names = new HashSet<string>();
+            foreach (var s in StampCatalog.For(BiomeType.Sodden)) names.Add(s.Name);
+
+            Assert.Greater(names.Count, 0, "the bog has SOME ambient texture");
+            CollectionAssert.DoesNotContain(names, "Ziggurat",
+                "a vine-choked ziggurat is jungle identity, not bog");
+            CollectionAssert.DoesNotContain(names, "GroveShrine",
+                "the Choir's shrines belong to the Grovelands");
+        }
+
         private static bool IsOpen(Zone zone, int x, int y)
         {
             if (x < 1 || y < 1 || x >= Zone.Width - 1 || y >= Zone.Height - 1) return false;

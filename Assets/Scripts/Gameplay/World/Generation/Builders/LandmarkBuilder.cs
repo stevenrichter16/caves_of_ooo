@@ -71,7 +71,11 @@ namespace CavesOfOoo.Core
                 case BiomeType.Jungle: return Jungle;
                 case BiomeType.Ruins: return Ruins;
                 case BiomeType.Spread: return Spread;
-                case BiomeType.Sodden: return For(BiomeType.Jungle);
+                // W3 re-review: the Sodden aliased Jungle wholesale, so a
+                // vine ziggurat or a Choir GroveShrine could turn up in
+                // the peat — the same identity drift the Spread's own
+                // catalog was created to stop.
+                case BiomeType.Sodden: return Sodden;
                 case BiomeType.Beating: return Beating;
                 case BiomeType.Grovelands: return For(BiomeType.Jungle);
                 case BiomeType.Overwrit: return For(BiomeType.Ruins);
@@ -462,6 +466,66 @@ namespace CavesOfOoo.Core
             },
         };
 
+        // W3 re-review — shared ambient stamps, extracted so the Sodden
+        // can carry the ones that read as bog country without inheriting
+        // the Ziggurat and the Choir's GroveShrine wholesale. Declared
+        // ABOVE the arrays that use them: static field initializers run
+        // in textual order (the W2.4 lesson).
+
+        // Phase E: a wild mendleaf patch — the healing herb gets a
+        // harvest source beyond trade.
+        private static readonly StructureStamp MendleafGardenStamp =
+            new StructureStamp
+            {
+                Name = "MendleafGarden",
+                Chance = 15,
+                MinTier = 1,
+                Rows = new[]
+                {
+                    "pp.p",
+                    ".pp.",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { 'p', "MendleafPlant" },
+                },
+            };
+
+        // A hunter's blind, long abandoned — dried stores and a
+        // venom-worked blade if you're lucky.
+        private static readonly StructureStamp HuntersBlindStamp =
+            new StructureStamp
+            {
+                Name = "HuntersBlind",
+                Chance = 30,
+                MinTier = 1,
+                Rows = new[]
+                {
+                    "#####",
+                    "#c..#",
+                    "#...+",
+                    "#####",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { '#', "VineWall" },
+                    { 'c', "chest:HunterCacheT1" },
+                    { '+', "" },
+                },
+            };
+
+        /// <summary>The Sodden's own ambient texture (W3 re-review) —
+        /// the shared stamps that read as bog country: a reed-walled
+        /// hermit, the healing-herb patch, the hunter's blind. The
+        /// Ziggurat and the Choir's GroveShrine stay in the jungle and
+        /// the Grovelands where their identities live.</summary>
+        private static readonly StructureStamp[] Sodden =
+        {
+            HermitHut("VineWall", "JungleHermit"),
+            MendleafGardenStamp,
+            HuntersBlindStamp,
+        };
+
         private static readonly StructureStamp[] Jungle =
         {
             HermitHut("VineWall", "JungleHermit"),
@@ -512,44 +576,8 @@ namespace CavesOfOoo.Core
                     { 'f', "Campfire" },
                 },
             },
-            // Phase E: a wild mendleaf patch — the healing herb gets a
-            // harvest source beyond trade.
-            new StructureStamp
-            {
-                Name = "MendleafGarden",
-                Chance = 15,
-                MinTier = 1,
-                Rows = new[]
-                {
-                    "pp.p",
-                    ".pp.",
-                },
-                Legend = new Dictionary<char, string>
-                {
-                    { 'p', "MendleafPlant" },
-                },
-            },
-            // A hunter's blind, long abandoned — dried stores and a
-            // venom-worked blade if you're lucky.
-            new StructureStamp
-            {
-                Name = "HuntersBlind",
-                Chance = 30,
-                MinTier = 1,
-                Rows = new[]
-                {
-                    "#####",
-                    "#c..#",
-                    "#...+",
-                    "#####",
-                },
-                Legend = new Dictionary<char, string>
-                {
-                    { '#', "VineWall" },
-                    { 'c', "chest:HunterCacheT1" },
-                    { '+', "" },
-                },
-            },
+            MendleafGardenStamp,
+            HuntersBlindStamp,
         };
 
         /// <summary>

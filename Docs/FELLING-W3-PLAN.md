@@ -495,7 +495,90 @@ phase is EditMode-observable. Unverified live: gas-cloud rendering
 over mire, camp color reads, the courier walk at real pace.
 
 **W3 exit:** suite green (6891/6891), this doc's log complete per
-SM, §9 gates checked ✅. The Sodden is a place now: it has a shape, its
+SM, §9 gates checked ✅.
+
+### W3 re-review (post-exit, user-directed) — the workflow round
+
+A three-lens adversarial workflow (taxonomy / canon-fidelity /
+cross-system integration; 3 finders → dedup → 1 skeptic per finding;
+20 agents, 0 refusals-by-budget this time) re-read the whole W3
+range. **14 findings confirmed, 3 refuted.** All fixed in the
+re-review commit; RED confirmed before every behavioral fix.
+
+**🔴 critical:** GiveItem ignored AddObject's refusal — the shipped
+player's Inventory MaxWeight=150 meant accepting the carriage with a
+near-full pack VANISHED the sealed body while "You receive..."
+printed: quest active forever, offer gated off forever. A refused
+handout now falls at the listener's feet (and the no-ground fallback
+refuses honestly instead of lying about receipt).
+
+**🟡 notable (5):**
+- OpenMire double-booked ~40 cells/zone with stacked MirePools (the
+  walkability guard can't see non-solid occupants) — double gas,
+  double burn budget. New BuilderSpawn.TryPlaceOnce guards OpenMire
+  AND the Beating's BrineLens (same latent pattern, proven at seed 8).
+- Retaliation (CausticSkin/ScaldingVeil) can kill the ATTACKER
+  mid-swing via the pre-decrement TakeDamage dispatch — pre-fix the
+  corpse's hit line printed after its death line, on-hit dispatchers
+  fired from the corpse, and the dual-wield loop (defender-HP-only
+  check) let the zone-removed corpse swing its off-hand. Two guards:
+  the swing loop breaks on attacker death; PerformSingleAttack
+  returns after ApplyDamage if the attacker died. The exposure
+  predates W3 (ScaldingVeil) but W3.4 made it routine.
+- The elemental-not-contact gate was six exact strings while the
+  damage model collapses Lightning/Shock/Ice/Freeze/Laser aliases to
+  flags — ElectrifiedEffect ticks (Lightning-only) would have
+  reopened the arsonist bug the moment their source-threading lands.
+  The gate now reads the flag helpers (+ Light/Disintegration:
+  element wins over touch, consistently).
+- CurationSorter shipped Faction=Palimpsest — the Curation officer
+  was mechanically a Recension member: her own contract's rep never
+  reached her. Now PaleCuration; a two-Orders pin keeps the joint
+  presence honest.
+- Pyroclasm iterated the LIVE cell list while RouteDamage (W3.3's
+  TakeDamage emission made it side-effectful on scenery) destroyed
+  entities inside it — whoever stood on the wreckage was skipped.
+  Snapshots targets first (the FlamingHands pattern).
+
+**🔵 nits (7), all addressed:** the elemental gate now emits its
+rejection reason like its adjacency sibling; TollRolls' closing
+line now uses canon's OWN negative ("The rolls do not record a
+face" — the rolls DO name the keeper; the crosser is the anonymous
+one) with a pin; Greatdew's grab message no longer teaches
+struggle-worsens (v1 has no such mechanic — the Apatheia lesson
+ships when the mechanic does; examine copy reworked to
+non-mechanical menace); Duckboard gains Destructible HP 8 (it
+ignited but its burn ticks fell into the exact silent void
+RouteDamage's doc-comment names — the safe line burns like its
+neighbors, and walkable mire means a lost board never breaks
+reachability); the SeatBogTaken docstring's "centuries-deep
+cemetery" quote re-attributed to design prose (it is not in the
+cited lore file — canon's line is "bog-bodies become visible at
+depth"); ReedMaze's "sightline maze" comment made honest (FOV is
+wall-keyed; no concealment hook ships) and the reed-concealment
+mechanic recorded as future work HERE, beside the boat-lanes cut;
+**recorded divergence (missed by rule 7 at W3.5):** TollRolls was
+planned "on the bridge approach" and shipped inside the boatyard
+stamp — no bridge exists in generated Sumphold; same
+generic-stamp-placement limitation as the river-adjacency ⚪, and
+the rolls read as the surviving ARCHIVE of the old bridge-toll per
+Codex/10's margin note.
+
+**Identity fix the lenses missed, caught inline:** the Sodden's
+AMBIENT stamp catalog aliased Jungle wholesale — vine ziggurats,
+Choir grove shrines, and jungle hermits rolled in the peat. The
+Sodden now has its own array (hermit, mendleaf patch, hunter's
+blind), exactly the fix the Spread's catalog docstring describes for
+the same drift; pinned by test. (W4 note: Grovelands still aliases
+Jungle — RIGHT for GroveShrine, wrong for Ziggurat; W4.1 owns it.)
+
+**Refuted (3, recorded so they stay refuted):** the "Concord won't
+touch the bodies" premise-vs-canon contradiction (conflates the
+carriage clause with the purchase trade); the "silent stamp
+placement could strand the three PreFellingBodies" (guaranteed
+placement + the exact-three pin both hold); the "MirePool vents six
+times its structural damage" disproportion (accumulator semantics
+are Qud-parity and deliberate). The Sodden is a place now: it has a shape, its
 dead, its gas, its beasts, its two towns, and one piece of honest
 work for a strong back.
 

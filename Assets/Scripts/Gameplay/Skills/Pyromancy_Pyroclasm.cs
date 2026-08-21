@@ -99,7 +99,15 @@ namespace CavesOfOoo.Skills
                 return false;
             }
 
-            int hits = 0;
+            // W3 re-review: SNAPSHOT the targets before damaging any of
+            // them (the FlamingHands pattern). RouteDamage is
+            // side-effectful on the live cell lists — destroying scenery
+            // removes it mid-iteration (shifting indices past whoever
+            // stood on the wreckage), and W3.3's burn-off can append gas
+            // to the very cell being walked. W3.3 made destructible
+            // terrain routine (peat, dead trees, duckboards), turning the
+            // latent loop into a routine miss.
+            var targets = new System.Collections.Generic.List<Entity>();
             for (int oy = -1; oy <= 1; oy++)
             {
                 for (int ox = -1; ox <= 1; ox++)
@@ -110,21 +118,28 @@ namespace CavesOfOoo.Skills
                     var cell = ctx.Zone.GetCell(cx, cy);
                     if (cell == null) continue;
                     for (int i = 0; i < cell.Objects.Count; i++)
-                    {
-                        var e = cell.Objects[i];
-                        if (!AbilityTargeting.IsElementalTarget(e, actor)) continue;
-                        var fireDmg = new Damage(aoeAmount);
-                        fireDmg.AddAttribute("Fire");
-                        fireDmg.AddAttribute("Heat");
-                        // RouteDamage, not ApplyDamage: scenery keeps its
-                        // hitpoints on a DestructiblePart, and ApplyDamage
-                        // deliberately early-returns on anything with no
-                        // Hitpoints stat — so elemental damage aimed at a
-                        // tree or a barrel was silently discarded.
-                        DestructionSystem.RouteDamage(e, fireDmg, actor, ctx.Zone);
-                        hits++;
-                    }
+                        if (AbilityTargeting.IsElementalTarget(cell.Objects[i], actor))
+                            targets.Add(cell.Objects[i]);
                 }
+            }
+
+            int hits = 0;
+            for (int t = 0; t < targets.Count; t++)
+            {
+                var e = targets[t];
+                // A target an earlier hit already removed (chain
+                // destruction) gets no phantom damage.
+                if (ctx.Zone.GetEntityCell(e) == null) continue;
+                var fireDmg = new Damage(aoeAmount);
+                fireDmg.AddAttribute("Fire");
+                fireDmg.AddAttribute("Heat");
+                // RouteDamage, not ApplyDamage: scenery keeps its
+                // hitpoints on a DestructiblePart, and ApplyDamage
+                // deliberately early-returns on anything with no
+                // Hitpoints stat — so elemental damage aimed at a
+                // tree or a barrel was silently discarded.
+                DestructionSystem.RouteDamage(e, fireDmg, actor, ctx.Zone);
+                hits++;
             }
 
             MessageLog.Add(actor.GetDisplayName() + "'s pyroclasm detonates! "

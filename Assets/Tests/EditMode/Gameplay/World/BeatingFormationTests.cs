@@ -64,6 +64,27 @@ namespace CavesOfOoo.Tests
             return zone;
         }
 
+        [Test]
+        public void BrineLens_NeverStacksTwoPoolsOnOneCell()
+        {
+            // W3 re-review: the same latent double-booking the Sodden's
+            // OpenMire had (IsOpenGround only checks BlocksMovement, and
+            // a pool is non-solid) — lower density here, same guard.
+            for (int seed = 0; seed < 20; seed++)
+            {
+                var zone = Built(Formation.BrineLens, seed);
+                for (int x = 1; x < Zone.Width - 1; x++)
+                    for (int y = 1; y < Zone.Height - 1; y++)
+                    {
+                        int pools = 0;
+                        foreach (var e in zone.GetCell(x, y).Objects)
+                            if (e.BlueprintName == "BrinePool") pools++;
+                        Assert.LessOrEqual(pools, 1,
+                            $"seed {seed}: ({x},{y}) holds {pools} stacked brine pools");
+                    }
+            }
+        }
+
         // ════════════════════════════════════════════════════════
         // Selection
         // ════════════════════════════════════════════════════════

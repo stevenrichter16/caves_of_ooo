@@ -260,6 +260,34 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void Adversarial_LightningIsNotTouchEither()
+        {
+            // W3 re-review (RED pre-fix): the elemental gate was six
+            // exact strings, but the codebase's own damage model treats
+            // Lightning/Shock/Electricity as aliases of Electric
+            // (DamageAttributeFlags). ElectrifiedEffect ticks carry ONLY
+            // "Lightning" — the moment its planned source-threading
+            // lands, an adjacent electrified attacker would reopen the
+            // exact H4 bug for electricity. The gate now reads the
+            // alias-collapsing flag helpers.
+            var zone = new Zone("Z");
+            SettlementRuntime.ActiveZone = zone;
+            var frog = _factory.CreateEntity("Bandfrog");
+            zone.AddEntity(frog, 10, 10);
+            var attacker = Attacker(zone, 11, 10);
+
+            var d = new Damage(3);
+            d.AddAttribute("Lightning");
+            CombatSystem.ApplyDamage(frog, d, attacker, zone);
+
+            Assert.AreEqual(30, attacker.GetStatValue("Hitpoints", 0),
+                "lightning arrives as element, not as touch — whatever it is called");
+            Assert.AreEqual(1, DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "damage", Kind = "SkinContactRejected", Limit = 10 }).Records.Count,
+                "and the rejecting gate names its reason, like its adjacency sibling");
+        }
+
+        [Test]
         public void AReflectThatKills_DoesNotPoisonTheCorpse()
         {
             // W3.7 hypothesis audit (H12, pinned-as-correct): the

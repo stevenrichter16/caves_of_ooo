@@ -150,6 +150,14 @@ namespace CavesOfOoo.Core
                 if (defender.GetStatValue("Hitpoints", 0) <= 0)
                     break; // Target already dead
 
+                // W3 re-review: retaliation (CausticSkin, ScaldingVeil)
+                // can kill the ATTACKER mid-swing via the pre-decrement
+                // TakeDamage dispatch. A dead attacker — corpse dropped,
+                // removed from the zone by HandleDeath — must not roll
+                // its off-hand and swing again.
+                if (attacker.GetStatValue("Hitpoints", 0) <= 0)
+                    break;
+
                 bool isPrimary = weapons[i].IsPrimary;
 
                 // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM9/B3. Off-hand
@@ -438,6 +446,17 @@ namespace CavesOfOoo.Core
             //   → HP decrement (clamped to ≥ 0)
             //   → HandleDeath if HP <= 0 (which logs "X is killed by Y!").
             ApplyDamage(defender, damage, attacker, zone);
+
+            // W3 re-review: the defender's TakeDamage dispatch (which
+            // runs INSIDE that call, before the decrement) can kill the
+            // attacker — CausticSkin's reflect, ScaldingVeil's steam.
+            // The blow itself already landed, by the announce-then-
+            // decrement contract; but a dead attacker gets no hit line,
+            // no hit-stop, and no on-hit dispatchers — HandleDeath has
+            // already logged its death, dropped its gear, and removed it
+            // from the zone. The dead do not narrate their swings.
+            if (attacker != null && attacker.GetStatValue("Hitpoints", 0) <= 0)
+                return;
 
             int hpAfter = defender.GetStatValue("Hitpoints", 0);
             int actualDamage = System.Math.Max(0, hpBefore - hpAfter);

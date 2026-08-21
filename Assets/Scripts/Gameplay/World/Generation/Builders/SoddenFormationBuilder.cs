@@ -83,7 +83,7 @@ namespace CavesOfOoo.Core
                         if (dx * dx + dy * dy > radius * radius) continue;
                         if (!IsOpenGround(zone, x, y)) continue;
                         if (rng.Next(100) < 80)
-                            BuilderSpawn.TryPlace(zone, factory, "MirePool", x, y);
+                            BuilderSpawn.TryPlaceOnce(zone, factory, "MirePool", x, y);
                     }
             }
 
@@ -91,7 +91,7 @@ namespace CavesOfOoo.Core
             for (int x = 1; x < Zone.Width - 1; x++)
                 for (int y = 1; y < Zone.Height - 1; y++)
                     if (rng.Next(100) < 3 && IsOpenGround(zone, x, y))
-                        BuilderSpawn.TryPlace(zone, factory, "MirePool", x, y);
+                        BuilderSpawn.TryPlaceOnce(zone, factory, "MirePool", x, y);
         }
 
         /// <summary>Harvested trenches: water-filled cuts between worked
@@ -126,8 +126,11 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>One-cell channels braided through tall reeds. Reeds
-        /// are non-solid (they hide, they don't block), so this is a
-        /// sightline maze, not a wall maze.</summary>
+        /// are non-solid, so the braid shapes MOVEMENT and the look —
+        /// W3 re-review honesty: reeds do not yet affect sight (FOV is
+        /// wall-keyed and no concealment hook exists). The sightline
+        /// maze is recorded future work in the W3 plan, beside the
+        /// boat-lanes cut.</summary>
         private static void ReedMaze(Zone zone, EntityFactory factory, System.Random rng)
         {
             for (int x = 2; x < Zone.Width - 2; x++)
@@ -234,8 +237,10 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>W3.2 — the Bog-Taken surface where the peat is
-        /// worked: "a centuries-deep cemetery whose contents are
-        /// visible" (Lore/History/02_Geography.md:69). 0-2 per cut
+        /// worked. Canon: "bog-bodies become visible at depth"
+        /// (Lore/History/00_Canon.md:76); the cemetery-made-visible
+        /// framing is design prose (FELLING-WORLD-DESIGN.md §3.2), not
+        /// canon — re-attributed by the W3 re-review. 0-2 per cut
         /// zone, seated on open ground against a SURVIVING bank (the
         /// reachability repair may have removed some). Runs after the
         /// repair on purpose: a body must lie where the face still

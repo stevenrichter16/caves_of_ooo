@@ -237,6 +237,50 @@ namespace CavesOfOoo.Tests
                 "the seal is Curation's, not yours to price");
         }
 
+        [Test]
+        public void Adversarial_AFullPack_DoesNotSwallowTheBody()
+        {
+            // W3 re-review (critical, RED pre-fix): the shipped player
+            // inherits Inventory MaxWeight=150, and GiveItem ignored
+            // AddObject's false return — accept the contract with a
+            // near-full pack and the 30-weight body went NOWHERE while
+            // "You receive..." printed. Quest active forever, offer
+            // gated off forever, delivery impossible: softlock by
+            // shopping too well. Now the body falls at your feet.
+            var zone = new Zone("Z");
+            SettlementRuntime.ActiveZone = zone;
+            try
+            {
+                var player = MakePlayer();
+                player.GetPart<InventoryPart>().MaxWeight = 150;
+                var ballast = new Entity { ID = "ballast", BlueprintName = "Ballast" };
+                ballast.AddPart(new RenderPart { DisplayName = "ballast" });
+                ballast.AddPart(new PhysicsPart { Takeable = true, Weight = 130 });
+                Assert.IsTrue(player.GetPart<InventoryPart>().AddObject(ballast));
+                zone.AddEntity(player, 10, 10);
+                var sorter = Npc("CurationSorter_1");
+
+                ConversationManager.StartConversation(sorter, player);
+                SelectChoiceStartingWith("Is there work?");
+                SelectChoiceStartingWith("I will carry it.");
+                ConversationManager.EndConversation();
+
+                Assert.IsTrue(StoryletPart.Current.IsQuestActive(QuestId));
+                bool inPack = HasItem(player, "SealedBogTakenBody");
+                bool atFeet = false;
+                foreach (var e in zone.GetCell(10, 10).Objects)
+                    if (e.BlueprintName == "SealedBogTakenBody") atFeet = true;
+                Assert.IsTrue(inPack || atFeet,
+                    "the body must exist SOMEWHERE the courier can reach — " +
+                    "a contract whose cargo evaporates is a softlock");
+                Assert.IsTrue(atFeet, "with a full pack it lands at your feet");
+            }
+            finally
+            {
+                SettlementRuntime.ActiveZone = null;
+            }
+        }
+
         // ════════════════════════════════════════════════════════
         // The burden
         // ════════════════════════════════════════════════════════
