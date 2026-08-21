@@ -1079,6 +1079,12 @@ namespace CavesOfOoo.Core
                 gnome.AddPart(new CavesOfOoo.Storylets.AddFactWhenSlain { Fact = "warren_gnomes_routed", Amount = 1 });
                 var gr = gnome.GetPart<RenderPart>();
                 if (gr != null) { gr.DisplayName = "dirt gnome"; gr.RenderString = "g"; gr.ColorString = "&y"; }
+                // Playtest bug: the reskin changed the FACE but not the
+                // remains — a dead "dirt gnome" dropped a snapjaw corpse,
+                // because Snapjaw's Corpse part overrides the generic one.
+                // A reskin must reskin the whole lifecycle.
+                var gc = gnome.GetPart<CorpsePart>();
+                if (gc != null) gc.CorpseBlueprint = "CreatureCorpse";
                 zone.AddEntity(gnome, gx, gy);
             }
         }

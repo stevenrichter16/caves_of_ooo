@@ -2368,6 +2368,26 @@ namespace CavesOfOoo.Rendering
         }
 
         /// <summary>
+        /// Does this world-menu command require the player to actually be
+        /// next to (or on) the target? Everything that ACTS does. The
+        /// exemptions are looking (Examine — look mode exists to look at
+        /// distant things) and the menu's own navigation/inert rows,
+        /// plus crafting-mark toggles, which act on CARRIED items.
+        /// Public and pure so the contract is pinnable by EditMode tests
+        /// without instantiating the input MonoBehaviour.
+        /// </summary>
+        public static bool ActionRequiresReach(string command)
+        {
+            if (string.IsNullOrEmpty(command)) return false;
+            if (command == "Examine") return false;
+            if (command == "CraftNoop") return false;
+            if (command == WorldInteractionSystem.PickCellCommand) return false;
+            if (command.StartsWith(WorldInteractionSystem.PickTargetCommandPrefix, StringComparison.Ordinal)) return false;
+            if (command.StartsWith(CraftingMarkPart.ToggleCommandPrefix, StringComparison.Ordinal)) return false;
+            return true;
+        }
+
+        /// <summary>
         /// Run the selected action. Handles three cases:
         /// - Pile-cell Examine: log cell description instead of target's
         ///   individual Examine (matches user spec: pile summary for piles).
@@ -2422,6 +2442,21 @@ namespace CavesOfOoo.Rendering
                     OpenTargetPicker(cell);
                 else
                     _inputState = _worldActionMenuReturnState;
+                return;
+            }
+
+            // Playtest bug: this menu is reachable from LOOK MODE, whose
+            // cursor can sit anywhere on the map — and only Break carried
+            // a reach check, so the player could open chests, chat, draw
+            // water, throw distant items, and pocket loot from across the
+            // zone. Everything that ACTS requires being there; menu
+            // navigation and Examine stay rangeless (examining at a
+            // distance is what look mode IS).
+            if (ActionRequiresReach(action.Command)
+                && !DestructionSystem.IsWithinStrikeReach(PlayerEntity, target, CurrentZone))
+            {
+                MessageLog.Add($"{target.GetDisplayName()} is out of reach.");
+                _inputState = _worldActionMenuReturnState;
                 return;
             }
 
@@ -2549,18 +2584,9 @@ namespace CavesOfOoo.Rendering
             // decide whether to keep going.
             if (action.Command == DestructiblePart.BreakCommand)
             {
-                // Reach check: this menu is reachable from look mode too,
-                // whose cursor can sit anywhere on the map. Without this the
-                // player could demolish a wall across the zone by pointing
-                // at it. The bump path needs no such check — it is adjacent
-                // by construction.
-                if (!DestructionSystem.IsWithinStrikeReach(PlayerEntity, target, CurrentZone))
-                {
-                    MessageLog.Add($"{target.GetDisplayName()} is out of reach.");
-                    _inputState = _worldActionMenuReturnState;
-                    return;
-                }
-
+                // Reach is enforced by the unified gate above — Break was
+                // the ONLY guarded action until the playtest found the
+                // others weren't.
                 DestructionSystem.Damage(
                     target,
                     DestructionSystem.ComputeStructuralBlow(PlayerEntity, _combatRng),

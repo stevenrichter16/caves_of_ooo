@@ -152,6 +152,32 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void BuildZone_WarrenGnomes_DieAsGnomes_NotAsSnapjaws()
+        {
+            // Playtest bug: the gnomes are reskinned Snapjaws, and the
+            // reskin changed the FACE but not the remains — a dead
+            // "dirt gnome" dropped a snapjaw corpse, because Snapjaw's
+            // Corpse part overrides the generic blueprint. A reskin must
+            // reskin the whole lifecycle.
+            string z = FindZoneForQuest("ClearTheWarren");
+            Assert.IsNotNull(z);
+            BuildVillage(z, out var zone);
+
+            int checkedGnomes = 0;
+            foreach (var e in zone.GetAllEntities())
+            {
+                var p = e.GetPart<CavesOfOoo.Storylets.AddFactWhenSlain>();
+                if (p == null || p.Fact != "warren_gnomes_routed") continue;
+                checkedGnomes++;
+                var corpse = e.GetPart<CorpsePart>();
+                Assert.IsNotNull(corpse, "gnomes leave remains");
+                Assert.AreNotEqual("SnapjawCorpse", corpse.CorpseBlueprint,
+                    "a dirt gnome must not die as a snapjaw");
+            }
+            Assert.AreEqual(3, checkedGnomes, "all three gnomes were checked");
+        }
+
+        [Test]
         public void BuildZone_CandyTaxVillage_PlacesGiverAndThreeTaxableCitizens()
         {
             // SM2: the collect-N dialogue quest must spawn the giver
