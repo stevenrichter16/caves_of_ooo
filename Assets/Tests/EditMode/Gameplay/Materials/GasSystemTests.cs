@@ -565,14 +565,30 @@ namespace CavesOfOoo.Tests
         [Test]
         public void OnTickEnd_DispersalEmitsDispersedDiag()
         {
+            // Wx opt review §1b: Dispersed is verbose-tier now (one per
+            // unstable gas per tick flooded the always-on channel at
+            // field-fire scale). The trace survives behind the opt-in.
+            // NOTE: ResetAll restores default channels, so the enable
+            // must come after it.
             var zone = new Zone("DispDiag");
             GasFactory.SpawnGas(zone, 5, 5, "poison-vapor", density: 100);
             Diag.ResetAll();
-            GasSystem.OnTickEnd(zone);
-            var recs = DiagQuery.Apply(new DiagQuery.Filter
-            { Category = "gas", Kind = "Dispersed", Limit = 5 }).Records;
-            Assert.AreEqual(1, recs.Count, "one Dispersed record per unstable gas per tick");
-            StringAssert.Contains("\"gasId\":\"poison-vapor\"", recs[0].PayloadJson);
+            Diag.SetChannel("gas-verbose", true);
+            try
+            {
+                GasSystem.OnTickEnd(zone);
+                var recs = DiagQuery.Apply(new DiagQuery.Filter
+                { Category = "gas-verbose", Kind = "Dispersed", Limit = 5 }).Records;
+                Assert.AreEqual(1, recs.Count, "one Dispersed record per unstable gas per tick");
+                StringAssert.Contains("\"gasId\":\"poison-vapor\"", recs[0].PayloadJson);
+                Assert.AreEqual(0, DiagQuery.Apply(new DiagQuery.Filter
+                { Category = "gas", Kind = "Dispersed", Limit = 5 }).Records.Count,
+                    "and none leaks onto the always-on channel");
+            }
+            finally
+            {
+                Diag.SetChannel("gas-verbose", false);
+            }
         }
 
         [Test]
@@ -597,10 +613,14 @@ namespace CavesOfOoo.Tests
 
                 Assert.DoesNotThrow(() => GasSystem.OnTickEnd(zone));
 
-                var recs = DiagQuery.Apply(new DiagQuery.Filter
-                { Category = "gas", Kind = "Dispersed", Limit = 5 }).Records;
-                Assert.AreEqual(0, recs.Count,
-                    "gas channel disabled -- no Dispersed record should be written");
+                // Wx §1b: Dispersed rides gas-verbose (off by default), so
+                // with neither channel on, no Dispersed lands anywhere.
+                Assert.AreEqual(0, DiagQuery.Apply(new DiagQuery.Filter
+                { Category = "gas", Kind = "Dispersed", Limit = 5 }).Records.Count,
+                    "gas channel disabled -- no Dispersed record on it");
+                Assert.AreEqual(0, DiagQuery.Apply(new DiagQuery.Filter
+                { Category = "gas-verbose", Kind = "Dispersed", Limit = 5 }).Records.Count,
+                    "and gas-verbose is off by default -- the steady-state win");
             }
             finally
             {
@@ -619,16 +639,24 @@ namespace CavesOfOoo.Tests
             GasFactory.SpawnGas(zone, 5, 5, "poison-vapor", density: 100);
             int before = zone.GetEntitiesWithTag("Gas").Count;
             Diag.ResetAll();
-            GasSystem.OnTickEnd(zone);
-            int after = zone.GetEntitiesWithTag("Gas").Count;
-            var recs = DiagQuery.Apply(new DiagQuery.Filter
-            { Category = "gas", Kind = "Dispersed", Limit = 50 }).Records;
-            // One Dispersed per original gas; new gases spawned this tick
-            // shouldn't have produced their own Dispersed records.
-            Assert.AreEqual(before, recs.Count,
-                "Dispersed records match snapshot count (new gases queued for next tick)");
-            Assert.GreaterOrEqual(after, before,
-                "spread may have added new gas entities (counts as before+ for next tick)");
+            Diag.SetChannel("gas-verbose", true); // Wx §1b: Dispersed is verbose-tier
+            try
+            {
+                GasSystem.OnTickEnd(zone);
+                int after = zone.GetEntitiesWithTag("Gas").Count;
+                var recs = DiagQuery.Apply(new DiagQuery.Filter
+                { Category = "gas-verbose", Kind = "Dispersed", Limit = 50 }).Records;
+                // One Dispersed per original gas; new gases spawned this tick
+                // shouldn't have produced their own Dispersed records.
+                Assert.AreEqual(before, recs.Count,
+                    "Dispersed records match snapshot count (new gases queued for next tick)");
+                Assert.GreaterOrEqual(after, before,
+                    "spread may have added new gas entities (counts as before+ for next tick)");
+            }
+            finally
+            {
+                Diag.SetChannel("gas-verbose", false);
+            }
         }
 
         // ══════════════════════════════════════════════════════════════

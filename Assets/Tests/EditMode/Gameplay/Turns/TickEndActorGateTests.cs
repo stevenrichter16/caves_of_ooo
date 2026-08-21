@@ -63,6 +63,7 @@ namespace CavesOfOoo.Tests
         [TearDown]
         public void TearDown()
         {
+            Diag.SetChannel("gas-verbose", false);
             TurnManager.World = null;
             GasRegistry.ResetForTests();
             GasPoisonPart.TestRng = null;
@@ -75,11 +76,16 @@ namespace CavesOfOoo.Tests
             GasFactory.SpawnGas(zone, 5, 5, "poison-vapor", density: 100);
             SettlementRuntime.ActiveZone = zone;
             Diag.ResetAll(); // drop the spawn-time records; count tick-driven only
+            // Wx §1b: Dispersed rides the off-by-default gas-verbose
+            // channel — enable it (AFTER ResetAll, which restores
+            // channel defaults) so the tick counter sees it. Disabled
+            // again in TearDown.
+            Diag.SetChannel("gas-verbose", true);
             return zone;
         }
 
         private static int DispersedCount() => DiagQuery.Apply(new DiagQuery.Filter
-        { Category = "gas", Kind = "Dispersed", Limit = 50 }).Records.Count;
+        { Category = "gas-verbose", Kind = "Dispersed", Limit = 50 }).Records.Count;
 
         private static Entity MakeCrop(Zone zone, int x, int y)
         {

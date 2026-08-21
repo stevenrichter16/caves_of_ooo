@@ -126,8 +126,17 @@ namespace CavesOfOoo.Core
                 int rate = GetDispersalRate(pool);
                 int before = pool.Density;
                 pool.Density = before - rate; // setter clamps + fires GasDensityChange
-                if (Diag.IsChannelEnabled("gas"))
-                    Diag.Record("gas", "Dispersed", pool.Creator, gas,
+                // Wx opt review §1b — Dispersed fires once per unstable
+                // gas per tick: at field-fire scale that flooded the
+                // always-on channel (hundreds of eager serializations
+                // per round) and rotated the ring buffer in ~10-80
+                // turns. It lives on the off-by-default "gas-verbose"
+                // channel now; Created/SpawnMerged/Spread/Merged/
+                // Dissipated/BurnOff stay on "gas" (low-frequency,
+                // high-signal). See DiagChannelSplitTests' §3 siblings
+                // and GasSystemTests' dispersal-diag pins.
+                if (Diag.IsChannelEnabled("gas-verbose"))
+                    Diag.Record("gas-verbose", "Dispersed", pool.Creator, gas,
                         new { gasId = pool.GasId, before, after = pool.Density, rate });
             }
 
