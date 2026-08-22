@@ -29357,6 +29357,69 @@
       "Tags": [ { "Key": "Solid", "Value": "" } ]
     },
     {
+      "Name": "BloomingFruitingBody",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "blooming body" },
+            { "Key": "RenderString", "Value": "%" },
+            { "Key": "ColorString", "Value": "&M" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            { "Key": "Solid", "Value": "true" }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            { "Key": "MaterialID", "Value": "Plant" },
+            { "Key": "Combustibility", "Value": "0.3" },
+            { "Key": "MaterialTagsRaw", "Value": "Plant,Organic" }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            { "Key": "FlameTemperature", "Value": "320" },
+            { "Key": "HeatCapacity", "Value": "1.2" }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            { "Key": "HP", "Value": "8" },
+            { "Key": "MaxHP", "Value": "8" }
+          ]
+        },
+        {
+          "Name": "BurnOffGas",
+          "Params": [
+            { "Key": "GasId", "Value": "bloom-spores" },
+            { "Key": "DamagePer", "Value": "6" },
+            { "Key": "Chance", "Value": "100" },
+            { "Key": "GasDensity", "Value": "30" },
+            { "Key": "DamageTriggerTypes", "Value": "Heat;Fire" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Growth in shelves and closed fists, brighter than its neighbors, and warm. It is further along than the others. Standing near it feels like being considered." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Solid", "Value": "" }
+      ]
+    },
+    {
       "Name": "GroveSign",
       "Inherits": "PhysicalObject",
       "Parts": [

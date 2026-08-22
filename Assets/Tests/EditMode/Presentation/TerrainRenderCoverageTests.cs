@@ -72,6 +72,7 @@ namespace CavesOfOoo.Tests
             "SaltCrust", "DuneCrest", "Bones", "TentWall", "UntendedFire",
             "MirePool", "Duckboard", "DeadTree", "PeatBank",
             "MycelialColumn", "GroveSeep", "FruitingBody",
+            "BloomingFruitingBody", // W4.4 SM-D — the front's growth, same glyph family as FruitingBody
             "CopperPipe", "PeatBog", "TarSeep", "OilSeep", "OilSlick",
             "BrinePool", "AcidPool", "AcidPond", "IceSheet",
             "ConvalescencePool", "MemoryBathPool", "MirrorMucilagePool",

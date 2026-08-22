@@ -11,6 +11,13 @@ namespace CavesOfOoo.Core
     public class ZoneGenerationPipeline
     {
         private List<IZoneBuilder> _builders = new List<IZoneBuilder>();
+
+        /// <summary>Read-only view of the registered builders, in run
+        /// order. Test-facing: lets structural pins assert which
+        /// builders a given zone's pipeline carries (e.g. the R8
+        /// exclusion — no BloomFrontBuilder on POI pipelines) without
+        /// generating the zone.</summary>
+        public IReadOnlyList<IZoneBuilder> Builders => _builders;
         public int MaxRetries = 5;
 
         public void AddBuilder(IZoneBuilder builder)

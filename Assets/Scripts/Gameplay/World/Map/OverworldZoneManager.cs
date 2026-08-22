@@ -94,7 +94,17 @@ namespace CavesOfOoo.Core
                         return CreateTenthFirePipeline(tier);
                     return CreateBeatingPipeline(tier, zoneID);
                 case BiomeType.Grovelands:
-                    return CreateGrovelandsPipeline(tier);
+                {
+                    // W4.4 SM-D (R8): the Bloom-front registers HERE —
+                    // the wilderness arm, reached only when poi == null —
+                    // and never inside CreateGrovelandsPipeline, which
+                    // the MerchantCamp pipeline reuses. Villages (all
+                    // authored Places incl. Cinderhold), lairs, river
+                    // chunks, and camps are excluded structurally.
+                    var grove = CreateGrovelandsPipeline(tier);
+                    grove.AddBuilder(new BloomFrontBuilder());
+                    return grove;
+                }
                 case BiomeType.Overwrit:
                     return CreateOverwritPipeline(tier);
                 case BiomeType.Stump:
