@@ -289,7 +289,15 @@ arithmetic so future audits don't re-litigate:
 
 ---
 
-## 6. Recommended sequence (pending approval)
+## 6. Recommended sequence (EXECUTED 2026-08-21)
+
+> Items 1-5 shipped as five commits (`348da151` TickEnd round gate,
+> `1936de3a` merge-on-spawn + Refresh skip, `74ba7493` turn/tile/caustic
+> channel splits, `6a848e20` gas/Dispersed verbose, `9fbfd3e0` shimmer
+> skip). Item 6 remains deferred to the seam before the next
+> biome-adding phase, per the section below. Outstanding honesty bounds:
+> live gasbench field-fire matrix + UpdateAmbientAnimations re-measure,
+> both next PlayMode session.
 
 1. **§0 TickEnd per-actor seam** — correctness first: gas + crops to
    player-turn semantics with RED tests pinning population-independence.
