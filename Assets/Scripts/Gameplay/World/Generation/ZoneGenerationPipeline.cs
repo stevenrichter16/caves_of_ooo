@@ -18,6 +18,16 @@ namespace CavesOfOoo.Core
         /// exclusion — no BloomFrontBuilder on POI pipelines) without
         /// generating the zone.</summary>
         public IReadOnlyList<IZoneBuilder> Builders => _builders;
+
+        /// <summary>Drop every builder of a given type. Used where a
+        /// bespoke pipeline reuses a biome's wilderness recipe but one
+        /// of its builders contradicts the bespoke content — e.g. a
+        /// sinkhole mouth, whose hole IS the way down and which must not
+        /// also roll a random cave entrance.</summary>
+        public void RemoveBuilders<T>() where T : IZoneBuilder
+        {
+            _builders.RemoveAll(b => b is T);
+        }
         public int MaxRetries = 5;
 
         public void AddBuilder(IZoneBuilder builder)

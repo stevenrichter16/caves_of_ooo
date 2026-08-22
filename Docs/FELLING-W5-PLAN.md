@@ -269,3 +269,36 @@ RED. Steps compressed; recorded rather than glossed. The counter-check
 branches.
 
 Tests: 7074 → 7080 (+6). All green.
+
+### W5 foundation — cold-eye adversarial pass (after W5.1–W5.3)
+
+Run BEFORE W5.4/W5.5 layer content on the vertical foundation, on the
+principle the arc keeps re-proving: a foundation bug is cheapest at
+the moment nothing is standing on it yet. Hypothesis-driven rather
+than re-reading — asking what the SHAPE implies, not whether the code
+looks right.
+
+**🔴 H9 — a Drowned Sima had a Drowned Sima under it, forever.** The
+routing sent every level below the Descent through the archetype
+branch, and each floor also gets a `StairsDownBuilder` — so z=3 was
+another sima, z=4 another, without end. Canon puts "Z=3+ CATACOMBS /
+ROOTWAYS — below the floors, where placed": different content, not a
+copy. The Floor is now exactly one level; below it routes to the
+generic underground stack.
+
+**🔴 H10 — half of all worlds gave a sinkhole two front doors.** The
+mouth pipeline reuses the biome's wilderness recipe, which carries
+`CaveEntranceBuilder` — and that fires on a **50% roll**, dropping a
+second random staircase into the same descent. Worse, the original
+"exactly one way down" pin passed only because the coin landed right
+at seed 42: a seed-lucky test, which is a test that is not yet doing
+its job. The pin now sweeps twelve seeds, and the mouth pipeline
+drops `CaveEntranceBuilder` outright — a hole in the world does not
+need a cave door beside it.
+
+**Refuted, and worth recording:** zone connections DO survive save/load
+(`GetConnectionSnapshot` → `SaveZoneConnection`), so a player who saves
+in a descent is not stranded when the registry rebuilds — R2's
+guarantee holds across a reload, which was the scariest open question.
+
+Tests: 7080 → 7082 (+2, both RED→GREEN).

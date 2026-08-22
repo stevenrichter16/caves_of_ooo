@@ -228,9 +228,25 @@ namespace CavesOfOoo.Core
             {
                 // The mouth is its own biome's wilderness, plus the hole.
                 var mouth = CreateSurfaceWildernessFor(biome, surfaceTier);
+                // Cold-eye H10: the biome's wilderness carries
+                // CaveEntranceBuilder, which fires on a 50% roll — so
+                // half of all worlds gave a sinkhole mouth a SECOND,
+                // random staircase into the same descent. A hole in the
+                // world is the way down; it does not need a cave door
+                // beside it.
+                mouth.RemoveBuilders<CaveEntranceBuilder>();
                 mouth.AddBuilder(new SinkholeMouthBuilder(this));
                 return mouth;
             }
+
+            // Cold-eye H9: the Floor is ONE level. Canon puts
+            // "Z=3+ CATACOMBS / ROOTWAYS — below the floors, where
+            // placed" — different content, not a second copy. Routing
+            // every level below the descent through the archetype
+            // branch gave a Drowned Sima a Drowned Sima under it,
+            // forever, because the floor also gets a StairsDownBuilder.
+            if (wz > 2)
+                return CreateUndergroundPipeline(wz);
 
             int floorTier = System.Math.Min(surfaceTier + 1, 8);
             var pipeline = new ZoneGenerationPipeline();

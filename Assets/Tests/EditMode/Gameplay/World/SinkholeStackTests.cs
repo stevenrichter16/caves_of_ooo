@@ -150,6 +150,52 @@ namespace CavesOfOoo.Tests
         }
 
         // ════════════════════════════════════════════════════════════
+        //   Cold-eye pass — hypotheses about the shape, not the code
+        // ════════════════════════════════════════════════════════════
+
+        [Test]
+        public void TheHole_IsTheOnlyWayDown_AtEverySeed()
+        {
+            // H10: the mouth pipeline reuses the biome's wilderness,
+            // which carries CaveEntranceBuilder — so a sinkhole mouth
+            // could sprout a SECOND, random staircase into the same
+            // descent. The original "exactly 1" pin passed only because
+            // the roll missed at seed 42; this sweeps seeds so the
+            // guarantee is real rather than lucky.
+            var (_, x, y) = SinkholeSites.All[0];
+            for (int seed = 1; seed <= 12; seed++)
+            {
+                var mgr = new OverworldZoneManager(_factory, worldSeed: seed);
+                var zone = mgr.GetZone($"Overworld.{x}.{y}.0");
+                int down = 0;
+                foreach (var e in zone.GetAllEntities())
+                    if (e.GetPart<StairsDownPart>() != null) down++;
+                Assert.AreEqual(1, down,
+                    $"seed {seed}: a sinkhole's mouth IS the way down — " +
+                    "a second random cave entrance beside it is nonsense");
+            }
+        }
+
+        [Test]
+        public void BelowTheFloor_IsNotAnotherCopyOfTheFloor()
+        {
+            // H9: the routing sent EVERY level below the descent through
+            // the archetype branch, and StairsDownBuilder gives each one
+            // a way further down — so a Drowned Sima had a Drowned Sima
+            // under it, forever. Canon: the Floor is ONE level (z=2),
+            // and "Z=3+ CATACOMBS / ROOTWAYS — below the floors, where
+            // placed" is different content.
+            var mgr = new ExposingManager(_factory);
+            var (_, x, y) = SinkholeSites.All[2];   // Lampwell — a sima
+            var floor = mgr.Pipe($"Overworld.{x}.{y}.2");
+            Assert.IsTrue(Carries<DrownedSimaBuilder>(floor),
+                "z=2 is the floor");
+            var below = mgr.Pipe($"Overworld.{x}.{y}.3");
+            Assert.IsFalse(Carries<DrownedSimaBuilder>(below),
+                "and z=3 is not a second one");
+        }
+
+        // ════════════════════════════════════════════════════════════
         //   The descent
         // ════════════════════════════════════════════════════════════
 
