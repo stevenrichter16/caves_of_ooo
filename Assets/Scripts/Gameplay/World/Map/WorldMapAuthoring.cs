@@ -182,8 +182,17 @@ namespace CavesOfOoo.Core
             public readonly string Name;
             public readonly string Faction;
 
-            public Place(int x, int y, string name, string faction)
-            { X = x; Y = y; Name = name; Faction = faction; }
+            /// <summary>W4.6 (the W2 R1 rule, fired): which village
+            /// PROFILE this place generates with — the data field that
+            /// replaced CreateVillagePipeline's name/faction-keyed
+            /// branch chain when Cinderhold would have been the third
+            /// name key. Null/empty = a plain village. The pipeline
+            /// switches on THIS, never on Name.</summary>
+            public readonly string Profile;
+
+            public Place(int x, int y, string name, string faction,
+                string profile = null)
+            { X = x; Y = y; Name = name; Faction = faction; Profile = profile; }
         }
 
         /// <summary>
@@ -202,18 +211,18 @@ namespace CavesOfOoo.Core
             new Place(10, 10, "Sill",               "Villagers"),
             new Place( 7,  8, "Gantry",             "Villagers"),
             new Place(13,  7, "Tine",               "Villagers"),
-            new Place( 6,  6, "Cinderhold",         "SaccharineConcord"),
+            new Place( 6,  6, "Cinderhold",         "SaccharineConcord", profile: "PruningPost"),
             new Place( 5,  9, "Posy",               "BowerFolk"),
-            new Place(12, 12, "Marrowstye",         "PaleCuration"),
+            new Place(12, 12, "Marrowstye",         "PaleCuration",     profile: "Intake"),
             new Place(14,  9, "Quillhold",          "Palimpsest"),
             new Place(10, 14, "Tally",              "SaccharineConcord"),
-            new Place( 8, 16, "Wellmeet",           "TentRight"),
-            new Place( 5, 17, "the First Tent",     "TentRight"),
+            new Place( 8, 16, "Wellmeet",           "TentRight",        profile: "TentCamp"),
+            new Place( 5, 17, "the First Tent",     "TentRight",        profile: "TentCampFirst"),
             new Place(15, 15, "the Salt-Vault",     "PaleCuration"),
-            new Place(15,  6, "Sumphold",           "Villagers"),
-            new Place(17,  5, "the Drowned Ledger", "Palimpsest"),
+            new Place(15,  6, "Sumphold",           "Villagers",        profile: "Boatyard"),
+            new Place(17,  5, "the Drowned Ledger", "Palimpsest",       profile: "ExcavationCamp"),
             new Place(16, 11, "Slip",               "Villagers"),
-            new Place(18, 18, "the Last Counter",   "SaccharineConcord"),
+            new Place(18, 18, "the Last Counter",   "SaccharineConcord", profile: "ConcordPost"),
             new Place(16,  1, "the Quiet's Door",   "CatacombFolk"),
         };
 

@@ -168,5 +168,32 @@ namespace CavesOfOoo.Tests
             StringAssert.StartsWith("Overworld.19.", OverworldZoneManager.AbandonedCounterZoneA);
             StringAssert.StartsWith("Overworld.19.", OverworldZoneManager.AbandonedCounterZoneB);
         }
+
+        [Test]
+        public void TheProfileTable_IsData_AndComplete()
+        {
+            // W4.6 — the W2 R1 rule, fired: profiles are a Place FIELD
+            // now, not a name-keyed branch chain. This pin is the table:
+            // dropping a profile (or typoing one) fails HERE, not as a
+            // silently-plain village three zones later.
+            var expected = new System.Collections.Generic.Dictionary<string, string>
+            {
+                { "Wellmeet", "TentCamp" },
+                { "the First Tent", "TentCampFirst" },
+                { "the Last Counter", "ConcordPost" },
+                { "the Drowned Ledger", "ExcavationCamp" },
+                { "Marrowstye", "Intake" },
+                { "Sumphold", "Boatyard" },
+                { "Cinderhold", "PruningPost" },
+            };
+            foreach (var place in WorldMapAuthoring.Places)
+            {
+                if (expected.TryGetValue(place.Name, out var profile))
+                    Assert.AreEqual(profile, place.Profile, place.Name);
+                else
+                    Assert.IsTrue(string.IsNullOrEmpty(place.Profile),
+                        place.Name + " is a plain village");
+            }
+        }
     }
 }

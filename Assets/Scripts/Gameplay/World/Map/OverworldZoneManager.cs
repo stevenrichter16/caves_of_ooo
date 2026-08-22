@@ -455,52 +455,47 @@ namespace CavesOfOoo.Core
             // Last Counter gets the Concord post with the notice-board.
             // Priority 3860 mirrors the starting town's stamps — after
             // the river (3850), before population (4000).
-            if (poi.Faction == "TentRight")
+            // W4.6 — the W2 R1 rule, fired: Cinderhold would have been
+            // the THIRD name-keyed branch, so profiles promoted to DATA
+            // (Place.Profile → PointOfInterest.Profile). The old
+            // faction/name chain migrated case-for-case; PlaceProfileTests
+            // and SoddenProfileTests re-pin unchanged behavior, and
+            // PlaceProfileTests pins the table itself.
+            var profileStamps = new List<StructureStamp>();
+            switch (poi.Profile)
             {
-                var profile = new List<StructureStamp> { StampCatalog.TentRightProfileCamp() };
-                if (poi.Name == "the First Tent")
-                    profile.Add(StampCatalog.FirstTentMonument());
-                pipeline.AddBuilder(new LandmarkBuilder(biome, 1, profile,
-                    priority: 3860, maxStructures: profile.Count));
+                case "TentCamp":
+                    profileStamps.Add(StampCatalog.TentRightProfileCamp());
+                    break;
+                case "TentCampFirst":
+                    profileStamps.Add(StampCatalog.TentRightProfileCamp());
+                    profileStamps.Add(StampCatalog.FirstTentMonument());
+                    break;
+                case "ConcordPost":
+                    profileStamps.Add(StampCatalog.LastCounterPost());
+                    break;
+                // W3.2/W3.5: the Drowned Ledger — an expedition site,
+                // not a market town (the three pre-Felling preserved
+                // live here and nowhere else).
+                case "ExcavationCamp":
+                    profileStamps.Add(StampCatalog.ExcavationCamp());
+                    break;
+                // W3.6: Marrowstye — the body-courier's destination.
+                case "Intake":
+                    profileStamps.Add(StampCatalog.CurationIntake());
+                    break;
+                case "Boatyard":
+                    profileStamps.Add(StampCatalog.SumpholdBoatyard());
+                    break;
+                // W4.6: Cinderhold — the Concord's Grovelands post and
+                // the pruning contract's home.
+                case "PruningPost":
+                    profileStamps.Add(StampCatalog.PruningPost());
+                    break;
             }
-            else if (poi.Faction == "SaccharineConcord" && poi.Name == "the Last Counter")
-            {
-                pipeline.AddBuilder(new LandmarkBuilder(biome, 1,
-                    new List<StructureStamp> { StampCatalog.LastCounterPost() },
-                    priority: 3860, maxStructures: 1));
-            }
-            // W3.2/W3.5 (Docs/FELLING-W3-PLAN.md): the Drowned Ledger —
-            // a Palimpsest expedition site, not a market town. The full
-            // excavation camp: reading tent, numbered stakes, the two
-            // Orders in joint presence, and the three pre-Felling
-            // preserved that lie here and nowhere else in the world
-            // (Lore/History/03_History.md:28).
-            else if (poi.Faction == "Palimpsest" && poi.Name == "the Drowned Ledger")
-            {
-                pipeline.AddBuilder(new LandmarkBuilder(biome, 1,
-                    new List<StructureStamp> { StampCatalog.ExcavationCamp() },
-                    priority: 3860, maxStructures: 1));
-            }
-            // W3.6: Marrowstye — the Curation regional place, and the
-            // body-courier contract's destination. Faction-keyed
-            // (PaleCuration is unique to it among villages).
-            else if (poi.Faction == "PaleCuration" && poi.Name == "Marrowstye")
-            {
-                pipeline.AddBuilder(new LandmarkBuilder(biome, 1,
-                    new List<StructureStamp> { StampCatalog.CurationIntake() },
-                    priority: 3860, maxStructures: 1));
-            }
-            // W3.5 (plan R1): Sumphold is Villagers-faction like four
-            // other places, so its profile keys on the NAME — accepted
-            // for two name-keyed places (First Tent inside the TentRight
-            // branch is the other); a third promotes to a Place.Profile
-            // field.
-            else if (poi.Name == "Sumphold")
-            {
-                pipeline.AddBuilder(new LandmarkBuilder(biome, 1,
-                    new List<StructureStamp> { StampCatalog.SumpholdBoatyard() },
-                    priority: 3860, maxStructures: 1));
-            }
+            if (profileStamps.Count > 0)
+                pipeline.AddBuilder(new LandmarkBuilder(biome, 1, profileStamps,
+                    priority: 3860, maxStructures: profileStamps.Count));
             // STARTING TOWN (Docs/STARTING-TOWN.md): five guaranteed
             // shop stamps at priority 3860 — AFTER the river (3850) so
             // water is on the map before footprint checks, before

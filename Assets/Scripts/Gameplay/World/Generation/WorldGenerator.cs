@@ -69,7 +69,8 @@ namespace CavesOfOoo.Core
             {
                 map.SetPOI(place.X, place.Y, new PointOfInterest(
                     POIType.Village, place.Name, place.Faction,
-                    WorldMapAuthoring.TierAt(place.X, place.Y)));
+                    WorldMapAuthoring.TierAt(place.X, place.Y),
+                    profile: place.Profile));
                 placed.Add((place.X, place.Y));
             }
 

@@ -814,6 +814,36 @@ namespace CavesOfOoo.Core
             },
         };
 
+        /// <summary>W4.6 — Cinderhold's Concord post: the pruning
+        /// contract's home. The Last Counter's shape (walls, fire,
+        /// goods, a sign) with the FACTOR — the Concord's Grovelands
+        /// agent — where the envoy would stand. The notice board reads
+        /// as the post's public face; the contract itself is spoken.</summary>
+        public static StructureStamp PruningPost() => new StructureStamp
+        {
+            Name = "PruningPost",
+            Chance = 100,
+            MinTier = 1,
+            ClearsVegetation = true,
+            Rows = new[]
+            {
+                "##.##",
+                "#v.c#",
+                "#..f+",
+                "#####",
+                "..s..",
+            },
+            Legend = new Dictionary<char, string>
+            {
+                { '#', "SandstoneWall" },
+                { 'v', "spawn:ConcordFactor" },
+                { 'c', "chest:CampGoodsT1" },
+                { 'f', "Campfire" },
+                { '+', "" },
+                { 's', "LastCounterSign" },
+            },
+        };
+
         /// <summary>One fire, deep pan, burning, untended. No Fuel part
         /// (it must never exhaust), no CampfirePart (no rest prompt, no
         /// "crackles warmly" — no text beyond what is seen), empty
