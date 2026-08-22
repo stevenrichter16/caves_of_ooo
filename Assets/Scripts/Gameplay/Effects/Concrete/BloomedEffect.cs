@@ -79,11 +79,42 @@ namespace CavesOfOoo.Core
 
         public override void OnRemove(Entity target)
         {
-            // SM-C adds the eruption here, gated on
-            // LastRemovalCause == CAUSE_OWNER_DIED.
+            // SM-C — eruption. Effects never receive the Died event;
+            // StatusEffectsPart translates death into
+            // RemoveAllEffects(CAUSE_OWNER_DIED), so the cause gate IS
+            // the death gate — a Choir cure arrives as CAUSE_EXTERNAL
+            // and must not open the body (pinned both ways). The zone
+            // resolve mirrors BurnOffGasPart (TakeDamage carries no
+            // Zone either); the cell is still resolvable because
+            // StatusEffectsPart sits at Parts[0] — removal runs before
+            // CorpsePart's corpse AND before zone.RemoveEntity, so the
+            // corpse spawns INTO the spores.
+            if (LastRemovalCause == CAUSE_OWNER_DIED)
+                Erupt(target);
+
             if (_pushedGoal == null) return;
             target?.GetPart<BrainPart>()?.RemoveGoal(_pushedGoal);
             _pushedGoal = null;
+        }
+
+        private static void Erupt(Entity target)
+        {
+            if (target == null) return;
+            var zone = SettlementRuntime.ActiveZone;
+            if (zone == null) return;
+            var pos = zone.GetEntityPosition(target);
+            if (pos.x < 0) return;
+
+            var gas = GasFactory.SpawnGas(zone, pos.x, pos.y, "bloom-spores",
+                creator: target);
+            // Voice gate: terrain-grade. The line only speaks when the
+            // spores are real (R9d).
+            if (gas != null)
+                MessageLog.Add(target.GetDisplayName() + " opens.");
+            if (Diag.IsChannelEnabled("effect"))
+                Diag.Record("effect", "BloomErupted", target, gas,
+                    new { blueprintName = target.BlueprintName,
+                          x = pos.x, y = pos.y, spawned = gas != null });
         }
 
         public override bool OnStack(Effect incoming)

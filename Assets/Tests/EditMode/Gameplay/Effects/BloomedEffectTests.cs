@@ -23,6 +23,13 @@ namespace CavesOfOoo.Tests
             Diag.ResetAll();
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            GasRegistry.ResetForTests();
+            SettlementRuntime.Reset();
+        }
+
         // --- Fixture (CombatPathfindingTests shape + StatusEffectsPart) ---
 
         private static Entity MakeCreature(string faction, int hp = 30)
@@ -208,6 +215,78 @@ namespace CavesOfOoo.Tests
 
             Assert.IsFalse(host.HasEffect<BloomedEffect>(), "the Choir takes it back");
             Assert.IsFalse(brain.HasGoal<BloomGoal>(), "and the legs are the bearer's again");
+        }
+
+        // ════════════════════════════════════════════════════════════
+        //   SM-C — eruption on death (OnRemove + CAUSE_OWNER_DIED)
+        // ════════════════════════════════════════════════════════════
+
+        private static void InitBloomGas() => GasRegistry.Initialize(@"{ ""Gases"":[
+              { ""Id"":""bloom-spores"", ""GasType"":""BloomSpores"",
+                ""Glyph"":""°"", ""Color"":""&m"",
+                ""DefaultDensity"":60, ""DefaultLevel"":1,
+                ""BehaviorKind"":""BloomSpores"" } ] }");
+
+        private static int BloomGasDensityAt(Zone zone, int x, int y)
+        {
+            int total = 0;
+            foreach (var e in zone.GetEntitiesWithTag("Gas"))
+            {
+                var p = zone.GetEntityPosition(e);
+                var pool = e.GetPart<GasPoolPart>();
+                if (p.x == x && p.y == y && pool != null && pool.GasId == "bloom-spores")
+                    total += pool.Density;
+            }
+            return total;
+        }
+
+        [Test]
+        public void Death_Erupts_BloomSpores_AtTheBody()
+        {
+            // Effects never see the Died event — StatusEffectsPart
+            // translates death into RemoveAllEffects(CAUSE_OWNER_DIED),
+            // and the eruption rides OnRemove gated on that cause
+            // (sweep row 4). The cell is still resolvable during
+            // dispatch: removal runs before zone.RemoveEntity.
+            InitBloomGas();
+            var zone = new Zone("BloomErupt");
+            SettlementRuntime.ActiveZone = zone;
+            var host = MakeCreature("GroveWardens", hp: 5);
+            zone.AddEntity(host, 10, 10);
+            host.ApplyEffect(new BloomedEffect());
+
+            var killer = MakeCreature("Concord");
+            zone.AddEntity(killer, 11, 10);
+            var d = new Damage(50);
+            d.AddAttribute("Slashing");
+            CombatSystem.ApplyDamage(host, d, killer, zone);
+
+            Assert.Greater(BloomGasDensityAt(zone, 10, 10), 0,
+                "the body opens — bloom spores at the death cell");
+            Assert.AreEqual(1, DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "effect", Kind = "BloomErupted", Limit = 5 }).Records.Count,
+                "the eruption records itself");
+        }
+
+        [Test]
+        public void TheCure_DoesNotErupt()
+        {
+            // Counter (the CAUSE gate): a Choir cure arrives as
+            // CAUSE_EXTERNAL — being healed is not being opened.
+            InitBloomGas();
+            var zone = new Zone("BloomNoErupt");
+            SettlementRuntime.ActiveZone = zone;
+            var host = MakeCreature("GroveWardens");
+            zone.AddEntity(host, 10, 10);
+            host.ApplyEffect(new BloomedEffect());
+
+            ConversationActions.Execute("CureEffect", null, host, "Bloomed");
+
+            Assert.IsFalse(host.HasEffect<BloomedEffect>(), "precondition: cured");
+            Assert.AreEqual(0, BloomGasDensityAt(zone, 10, 10),
+                "no spores — the cure is a cure");
+            Assert.AreEqual(0, DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "effect", Kind = "BloomErupted", Limit = 5 }).Records.Count);
         }
 
         // ════════════════════════════════════════════════════════════
