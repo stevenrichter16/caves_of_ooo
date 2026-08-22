@@ -28,6 +28,19 @@
               "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetPalimpsest" }]
             },
             {
+          "Text": "[Post] I carry a pruning notice from the Concord.",
+          "Target": "WritPosted",
+          "Predicates": [
+            { "Key": "IfQuestActive", "Value": "PruningContract" },
+            { "Key": "IfHaveItem", "Value": "PruningWrit" }
+          ],
+          "Actions": [
+            { "Key": "TakeItem", "Value": "PruningWrit" },
+            { "Key": "SetFact", "Value": "pruning_writ_posted:1" },
+            { "Key": "ChangeFactionFeeling", "Value": "RotChoir:Player:-15" }
+          ]
+        },
+        {
               "Text": "Farewell.",
               "Target": "End"
             }
@@ -573,8 +586,21 @@
               "Target": "End"
             }
           ]
-        }
-      ]
+        },
+      {
+        "ID": "WritPosted",
+        "Text": "Post it, then. We feel the wax; we read the cut-date through the paper. The soil will remember that your hands were the ones that held it -- soil forgets nothing, it only files slowly. Go and be paid.",
+        "Choices": [
+          { "Text": "It is only paper.", "Target": "OnlyPaper" },
+          { "Text": "Farewell.", "Target": "End" }
+        ]
+      },
+      {
+        "ID": "OnlyPaper",
+        "Text": "So is a name. Walk carefully at the edges for a season, walker. The tendrils know your tread now, and they are patient the way roots are patient.",
+        "Choices": [{ "Text": "Farewell.", "Target": "End" }]
+      }
+    ]
     },
     {
       "ID": "Mogu_1",

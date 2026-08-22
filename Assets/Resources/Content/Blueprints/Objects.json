@@ -12306,6 +12306,95 @@
       ]
     },
     {
+      "Name": "ConcordFactor",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "Concord factor" },
+            { "Key": "RenderString", "Value": "@" },
+            { "Key": "ColorString", "Value": "&W" },
+            { "Key": "RenderLayer", "Value": "10" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            { "Key": "Solid", "Value": "true" }
+          ]
+        },
+        {
+          "Name": "Armor",
+          "Params": [
+            { "Key": "AV", "Value": "2" },
+            { "Key": "DV", "Value": "2" }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            { "Key": "SightRadius", "Value": "10" },
+            { "Key": "Wanders", "Value": "false" }
+          ]
+        },
+        {
+          "Name": "Conversation",
+          "Params": [
+            { "Key": "ConversationID", "Value": "ConcordFactor_1" }
+          ]
+        },
+        {
+          "Name": "GivesRep",
+          "Params": [
+            { "Key": "Value", "Value": "25" }
+          ]
+        }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 35, "Min": 0, "Max": 35 },
+        { "Name": "Intelligence", "Value": 18 },
+        { "Name": "Ego", "Value": 20 },
+        { "Name": "XPValue", "Value": 105 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "SaccharineConcord" },
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "PruningWrit",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "pruning writ" },
+            { "Key": "RenderString", "Value": "=" },
+            { "Key": "ColorString", "Value": "&Y" },
+            { "Key": "RenderLayer", "Value": "3" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            { "Key": "Takeable", "Value": "true" },
+            { "Key": "Weight", "Value": "1" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A single page, wax-sealed, the Concord's counting-house hand. The clause is short: the tendrils at the grove edges are to be pruned to the surveyed line by the posted date. A margin note, initialed: post where the grove can read it." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "NoTrade", "Value": "" }
+      ]
+    },
+    {
       "Name": "PaleCurator",
       "Inherits": "Creature",
       "Parts": [

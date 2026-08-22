@@ -1693,6 +1693,78 @@
           ]
         }
       ]
-    }
-  ]
+    },
+    {
+      "ID": "ConcordFactor_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "The post is open. Cinderhold ledgers: standing. State your business, or take some of ours -- the Concord has paper that needs feet.",
+          "Choices": [
+            {
+              "Text": "Is there work?",
+              "Target": "Contract",
+              "Predicates": [ { "Key": "IfQuestNotStarted", "Value": "PruningContract" } ]
+            },
+            {
+              "Text": "[Report] It is posted.",
+              "Target": "Reported",
+              "Predicates": [
+                { "Key": "IfQuestActive", "Value": "PruningContract" },
+                { "Key": "IfFact", "Value": "pruning_writ_posted:>=:1" }
+              ],
+              "Actions": [
+                { "Key": "GiveDrams", "Value": "20" },
+                { "Key": "ChangeFactionFeeling", "Value": "SaccharineConcord:Player:10" },
+                { "Key": "CompleteQuest", "Value": "PruningContract" }
+              ]
+            },
+            { "Text": "Farewell.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Contract",
+          "Text": "A writ. One page, one posting. The tendrils at the grove edges have crossed the surveyed line, and the notice sets the pruning date. Carriage and posting, twenty drams on report -- on report, mind, not on promises. The Choir will not thank you, and the Concord does not require that they do.",
+          "Choices": [
+            {
+              "Text": "I will post it.",
+              "Target": "Accepted",
+              "Actions": [
+                { "Key": "StartQuest", "Value": "PruningContract" },
+                { "Key": "GiveItem", "Value": "PruningWrit" }
+              ]
+            },
+            {
+              "Text": "No -- and I say it aloud.",
+              "Target": "RefusedAloud",
+              "Actions": [
+                { "Key": "ChangeFactionFeeling", "Value": "SaccharineConcord:Player:-5" }
+              ]
+            },
+            { "Text": "Not yet.", "Target": "Start" }
+          ]
+        },
+        {
+          "ID": "Accepted",
+          "Text": "Entered. Post it where the grove can read it -- the tendrils read everything, which is half our difficulty. Keep the seal whole until it is up. The fee is counted when the posting is confirmed.",
+          "Choices": [
+            { "Text": "To the groves, then.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "RefusedAloud",
+          "Text": "Noted, aloud, in the margin. The Concord respects a clean refusal and prices it accordingly -- the ledger holds both columns. The paper will find other feet.",
+          "Choices": [
+            { "Text": "Farewell.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Reported",
+          "Text": "Confirmed by the return-mark on the seal. Twenty drams, counted true -- take them without counting them back at me. The Concord remembers feet that finish.",
+          "Choices": [
+            { "Text": "Farewell.", "Target": "End" }
+          ]
+        }
+      ]
+    }]
 }

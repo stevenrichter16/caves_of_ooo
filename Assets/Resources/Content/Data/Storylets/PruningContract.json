@@ -1,0 +1,21 @@
+{
+  "Storylets": [
+    {
+      "ID": "PruningContract",
+      "OneShot": false, "Tracked": true, "Triggers": [], "Effects": [],
+      "Quest": {
+        "Name": "The Pruning Notice",
+        "Accomplishment": "You carried the Concord's pruning writ into Choir country and posted it where the grove could read it. The Concord counts it settled. The grove counts it too.",
+        "Stages": [
+          {
+            "ID": "post", "Triggers": [], "OnEnter": [],
+            "Objectives": [
+              { "ID": "post_writ", "Text": "Post the pruning writ where the grove can read it, then report to the factor at Cinderhold", "Optional": false, "Hidden": false,
+                "Triggers": [ { "Key": "IfFact", "Value": "pruning_writ_posted:>=:1" } ], "OnEnter": [] }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

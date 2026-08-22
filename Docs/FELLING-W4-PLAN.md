@@ -676,3 +676,31 @@ voice lint covers all ten new nodes automatically.
 Tests: 7037 → 7046 (+9: 4 doll gates incl. quiet-grove + no-map; 5
 offer tests incl. fail-closed sweep + once-latch + decline-does-
 nothing). All green.
+
+### W4.6 — Cinderhold + the pruning contract + the R1 promotion (SHIPPED)
+
+**a (06f3f8af):** the R1 rule fired on schedule — Cinderhold would
+have been the third name-keyed branch, so `Place.Profile` promoted to
+data first: PointOfInterest carries it, CreateVillagePipeline switches
+on it (TentCamp/TentCampFirst/ConcordPost/ExcavationCamp/Intake/
+Boatyard migrated case-for-case, PruningPost joins as the first
+data-native profile). Proof of behavior preservation: the existing
+pins (PlaceProfileTests, SoddenProfileTests, StartingTownTests,
+BodyCourierTests) all green through the change, unmodified; the new
+table pin makes the assignment itself a tested artifact.
+
+**b:** Cinderhold's post (the Last Counter's shape with the
+ConcordFactor where the envoy would stand — R9c faction pin shipped
+same-day) and the canonical first-act tradeoff, the W3.6 courier
+wiring mirrored: accept → StartQuest + the NoTrade PruningWrit;
+posting happens at the grove's own face (a gated ChoirTendril_1
+choice: TakeItem + `pruning_writ_posted` + RotChoir −15 — the soil
+files slowly); report back → 20 drams + Concord +10 + CompleteQuest.
+Refuse aloud → Concord −5, the spoken-no register in Concord voice
+("Noted, aloud, in the margin"). R6: BOTH deltas pinned by exact
+string so a balance pass cannot silently flatten the tradeoff;
+cross-file fact lint threads all three files; the factor never says
+"free" (§9 gate 12, linted over his whole tree).
+
+Tests: 7046 → 7054 (+8). Green (the documented flaky contagion test
+excepted in one run; green on the prior identical-code run).
