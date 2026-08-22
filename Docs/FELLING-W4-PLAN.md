@@ -643,3 +643,36 @@ test; gas/Applied third payload shape (standardize when any of the
 three gas parts is next touched); LOS gate on the step-away scan;
 adversarial file for the Bloom surface (taxonomy: two+ surfaces apply —
 queue for the W4.7 sweep); PlayMode/look pass honesty bound stands.
+
+### W4.5 — The doll, and the quiet pieces (SHIPPED)
+
+**The doll (design gate 4):** the tenth-fire pattern verbatim —
+`WovenDollZoneID = "Overworld.1.6.0"` (wilderness 'G', no authored
+POI, no-POI pinned at seed 42), a forced 1×2 stamp (MycelialColumn +
+WovenDoll) at priority 3790, and the doll's grove gets NO Bloom-front
+(authored stillness, pinned structurally via the pipeline Builders
+view). The examine line is pinned EXACTLY — "You see a woven doll. No
+longer than a hand. The column beside it has grown around one arm,
+and stopped." — bare sight, the Examinable's own "You see" preamble
+included (learned in RED: the part composes name + description; the
+description was trimmed so the composed line reads as one breath).
+The doll is takeable (RPG player freedom); the scene is the holding,
+not the loot.
+
+**The encasement offer (R3):** IfStatBelowPercent(Stat:Percent) — a
+FAIL-CLOSED predicate (the registry's unknown-name fallback is
+pass-true, the wrong direction for a gate like this; malformed args,
+unknown stats, max≤0 all read closed, pinned). Five keeper branches:
+entrance "You keep looking at my wounds." gated on Hitpoints:35 +
+IfNotFact EncasementOffered — the entrance itself sets the latch, so
+the offer is spoken ONCE ever, across all keepers. Accepting is
+gently DECLINED per keeper ("Not yet. You are only a little tired.")
+— the offer is the mechanic, the decline keeps the text honest about
+what ships (encasement is W5+); saying yes carries ZERO actions,
+pinned. The refusal is the spoken-no register in the player's own
+line ("No. Not that — and I say it aloud."). The whole-file Choir
+voice lint covers all ten new nodes automatically.
+
+Tests: 7037 → 7046 (+9: 4 doll gates incl. quiet-grove + no-map; 5
+offer tests incl. fail-closed sweep + once-latch + decline-does-
+nothing). All green.

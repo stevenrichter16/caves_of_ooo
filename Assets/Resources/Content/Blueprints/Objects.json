@@ -29445,6 +29445,37 @@
       "Tags": [ { "Key": "Furniture", "Value": "" } ]
     },
     {
+      "Name": "WovenDoll",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "woven doll" },
+            { "Key": "RenderString", "Value": "i" },
+            { "Key": "ColorString", "Value": "&y" },
+            { "Key": "RenderLayer", "Value": "3" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            { "Key": "Solid", "Value": "false" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "No longer than a hand. The column beside it has grown around one arm, and stopped." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Item", "Value": "" }
+      ]
+    },
+    {
       "Name": "CompostRow",
       "Inherits": "PhysicalObject",
       "Parts": [

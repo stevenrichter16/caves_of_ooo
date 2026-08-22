@@ -591,6 +591,15 @@
           "Target": "BloomAsk",
           "Predicates": [{ "Key": "IfHasEffect", "Value": "Bloomed" }]
         },
+        {
+          "Text": "You keep looking at my wounds.",
+          "Target": "EncasementOffer",
+          "Predicates": [
+            { "Key": "IfStatBelowPercent", "Value": "Hitpoints:35" },
+            { "Key": "IfNotFact", "Value": "EncasementOffered:>=:1" }
+          ],
+          "Actions": [{ "Key": "SetFact", "Value": "EncasementOffered:1" }]
+        },
         { "Text": "Farewell, Solm.", "Target": "End" }
           ]
         },
@@ -643,6 +652,19 @@
         "ID": "BloomTaken",
         "Text": "It is done. The Bloom is patient; it does not begrudge. Walk slow.",
         "Choices": [{ "Text": "Back.", "Target": "Start" }]
+      },
+      {
+        "ID": "EncasementOffer",
+        "Text": "You are hurt in the way that makes walking loud. So hear one kindness, once: the grove keeps what it loves, and it would keep you — warm, unhurried, visited. Not a burial. A holding.",
+        "Choices": [
+          { "Text": "Yes. Hold me.", "Target": "EncasementDeclined" },
+          { "Text": "No. Not that — and I say it aloud.", "Target": "Start" }
+        ]
+      },
+      {
+        "ID": "EncasementDeclined",
+        "Text": "Not yet. You are only a little tired. Come back when the seam shows, and ask again — or never ask. Both are honored.",
+        "Choices": [{ "Text": "Back.", "Target": "Start" }]
       }
     ]
     },
@@ -660,6 +682,15 @@
           "Text": "Something grows through me. It pulls me toward the open ground.",
           "Target": "BloomAsk",
           "Predicates": [{ "Key": "IfHasEffect", "Value": "Bloomed" }]
+        },
+        {
+          "Text": "You keep looking at my wounds.",
+          "Target": "EncasementOffer",
+          "Predicates": [
+            { "Key": "IfStatBelowPercent", "Value": "Hitpoints:35" },
+            { "Key": "IfNotFact", "Value": "EncasementOffered:>=:1" }
+          ],
+          "Actions": [{ "Key": "SetFact", "Value": "EncasementOffered:1" }]
         },
         { "Text": "Goodbye, Vurn.", "Target": "End" }
           ]
@@ -713,6 +744,19 @@
         "ID": "BloomTaken",
         "Text": "There. The ground releases its claim — for now, and without grudge.",
         "Choices": [{ "Text": "Back.", "Target": "Start" }]
+      },
+      {
+        "ID": "EncasementOffer",
+        "Text": "That is a lot of blood to carry uphill. The wall holds some of us, you know. Warm. Unhurried. It could hold you too, when you are ready to put the weight down.",
+        "Choices": [
+          { "Text": "Yes. Hold me.", "Target": "EncasementDeclined" },
+          { "Text": "No. Not that — and I say it aloud.", "Target": "Start" }
+        ]
+      },
+      {
+        "ID": "EncasementDeclined",
+        "Text": "No — not today. Today you are merely bleeding, and bleeding mends. The offer keeps.",
+        "Choices": [{ "Text": "Back.", "Target": "Start" }]
       }
     ]
     },
@@ -730,6 +774,15 @@
           "Text": "Something grows through me. It pulls me toward the open ground.",
           "Target": "BloomAsk",
           "Predicates": [{ "Key": "IfHasEffect", "Value": "Bloomed" }]
+        },
+        {
+          "Text": "You keep looking at my wounds.",
+          "Target": "EncasementOffer",
+          "Predicates": [
+            { "Key": "IfStatBelowPercent", "Value": "Hitpoints:35" },
+            { "Key": "IfNotFact", "Value": "EncasementOffered:>=:1" }
+          ],
+          "Actions": [{ "Key": "SetFact", "Value": "EncasementOffered:1" }]
         },
         { "Text": "Until next time, Amai.", "Target": "End" }
           ]
@@ -783,6 +836,19 @@
         "ID": "BloomTaken",
         "Text": "Done. Carry yourself lightly; you were briefly two things, and that leaves a seam.",
         "Choices": [{ "Text": "Back.", "Target": "Start" }]
+      },
+      {
+        "ID": "EncasementOffer",
+        "Text": "You wear your hurts on the outside. Inside the growth there is no outside. If a day comes when you want walls that love you back — ours do.",
+        "Choices": [
+          { "Text": "Yes. Hold me.", "Target": "EncasementDeclined" },
+          { "Text": "No. Not that — and I say it aloud.", "Target": "Start" }
+        ]
+      },
+      {
+        "ID": "EncasementDeclined",
+        "Text": "Not from unkindness, we decline. You still want things; the wall is for after wanting. Walk on.",
+        "Choices": [{ "Text": "Back.", "Target": "Start" }]
       }
     ]
     },
@@ -800,6 +866,15 @@
           "Text": "Something grows through me. It pulls me toward the open ground.",
           "Target": "BloomAsk",
           "Predicates": [{ "Key": "IfHasEffect", "Value": "Bloomed" }]
+        },
+        {
+          "Text": "You keep looking at my wounds.",
+          "Target": "EncasementOffer",
+          "Predicates": [
+            { "Key": "IfStatBelowPercent", "Value": "Hitpoints:35" },
+            { "Key": "IfNotFact", "Value": "EncasementOffered:>=:1" }
+          ],
+          "Actions": [{ "Key": "SetFact", "Value": "EncasementOffered:1" }]
         },
         { "Text": "Farewell.", "Target": "End" }
           ]
@@ -853,6 +928,19 @@
         "ID": "BloomTaken",
         "Text": "It is out. Drink water. Stand in the sun a while, where the ground can see you are yours.",
         "Choices": [{ "Text": "Back.", "Target": "Start" }]
+      },
+      {
+        "ID": "EncasementOffer",
+        "Text": "Sit before you fall. And hear a kindness: the grove takes in the tired, whole, and keeps them company. No one is rushed. The offer stands as long as we do.",
+        "Choices": [
+          { "Text": "Yes. Hold me.", "Target": "EncasementDeclined" },
+          { "Text": "No. Not that — and I say it aloud.", "Target": "Start" }
+        ]
+      },
+      {
+        "ID": "EncasementDeclined",
+        "Text": "Not yet, little ember. You are only a little tired. Drink at the seep. The wall will still be here.",
+        "Choices": [{ "Text": "Back.", "Target": "Start" }]
       }
     ]
     },
@@ -870,6 +958,15 @@
           "Text": "Something grows through me. It pulls me toward the open ground.",
           "Target": "BloomAsk",
           "Predicates": [{ "Key": "IfHasEffect", "Value": "Bloomed" }]
+        },
+        {
+          "Text": "You keep looking at my wounds.",
+          "Target": "EncasementOffer",
+          "Predicates": [
+            { "Key": "IfStatBelowPercent", "Value": "Hitpoints:35" },
+            { "Key": "IfNotFact", "Value": "EncasementOffered:>=:1" }
+          ],
+          "Actions": [{ "Key": "SetFact", "Value": "EncasementOffered:1" }]
         },
         { "Text": "Fair winds, Ketch.", "Target": "End" }
           ]
@@ -922,6 +1019,19 @@
       {
         "ID": "BloomTaken",
         "Text": "So. The asking was heard. Add this to your own telling, however you keep it.",
+        "Choices": [{ "Text": "Back.", "Target": "Start" }]
+      },
+      {
+        "ID": "EncasementOffer",
+        "Text": "In my people's tellings, the badly hurt were carried home. This is us, carrying: the wall would have you, and gently. Say the word — any season.",
+        "Choices": [
+          { "Text": "Yes. Hold me.", "Target": "EncasementDeclined" },
+          { "Text": "No. Not that — and I say it aloud.", "Target": "Start" }
+        ]
+      },
+      {
+        "ID": "EncasementDeclined",
+        "Text": "The telling says: not this verse. You have more walking in you than you think. Ask again when you do not.",
         "Choices": [{ "Text": "Back.", "Target": "Start" }]
       }
     ]

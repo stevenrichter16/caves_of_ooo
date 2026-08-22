@@ -831,6 +831,25 @@ namespace CavesOfOoo.Core
             },
         };
 
+        /// <summary>W4.5 — design gate 4: the doll in the wall. Forced
+        /// into exactly one authored Grovelands zone
+        /// (OverworldZoneManager.WovenDollZoneID): a woven doll on the
+        /// open cell beside the column that has grown around one arm.
+        /// Uneaten, unexplained; WovenDollTests pins the exact examine
+        /// line the way the tenth fire's gate test pins the fire.</summary>
+        public static StructureStamp WovenDoll() => new StructureStamp
+        {
+            Name = "WovenDoll",
+            Chance = 100,
+            MinTier = 1,
+            Rows = new[] { "CD" },
+            Legend = new Dictionary<char, string>
+            {
+                { 'C', "MycelialColumn" },
+                { 'D', "WovenDoll" },
+            },
+        };
+
         /// <summary>W3.2/W3.5 — the Drowned Ledger's excavation camp.
         /// The three pre-Felling preserved (Lore/History/03_History.md:28
         /// — one of the world's three thin sources on what came before)

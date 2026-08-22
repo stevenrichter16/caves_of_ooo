@@ -106,6 +106,25 @@ namespace CavesOfOoo.Core
             Register("IfHaveIntProperty", (speaker, listener, arg) =>
                 listener != null && listener.IntProperties.ContainsKey(arg));
 
+            // W4.5 — IfStatBelowPercent(StatName:Percent): the
+            // listener's stat sits below the given percent of its max.
+            // Mirrors IfStatAtLeast but in percent, because "badly
+            // hurt" scales with the body doing the hurting. FAIL-CLOSED
+            // on malformed args, unknown stats, and max<=0 — a gate
+            // like the encasement offer must never open by accident
+            // (the registry's unknown-name fallback is pass-TRUE, which
+            // is the wrong direction for this one).
+            Register("IfStatBelowPercent", (speaker, listener, arg) =>
+            {
+                if (listener == null || string.IsNullOrWhiteSpace(arg)) return false;
+                var parts = arg.Split(':');
+                if (parts.Length != 2) return false;
+                if (!int.TryParse(parts[1].Trim(), out int pct)) return false;
+                if (!listener.Statistics.TryGetValue(parts[0].Trim(), out var stat)
+                    || stat == null || stat.Max <= 0) return false;
+                return stat.BaseValue * 100 < pct * stat.Max;
+            });
+
             // W4.4 SM-E — IfHasEffect(effectName): the listener carries
             // the named status effect. The name convention mirrors the
             // CureEffect ACTION's matcher exactly (type name with or

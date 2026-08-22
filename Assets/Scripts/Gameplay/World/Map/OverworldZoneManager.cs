@@ -102,6 +102,18 @@ namespace CavesOfOoo.Core
                     // authored Places incl. Cinderhold), lairs, river
                     // chunks, and camps are excluded structurally.
                     var grove = CreateGrovelandsPipeline(tier);
+                    if (zoneID == WovenDollZoneID)
+                    {
+                        // W4.5 — design gate 4: the doll's grove gets
+                        // the forced stamp and NO Bloom-front. Authored
+                        // stillness: the scene is a doll a column has
+                        // grown around, and nothing else happening.
+                        grove.AddBuilder(new LandmarkBuilder(
+                            BiomeType.Grovelands, tier,
+                            new List<StructureStamp> { StampCatalog.WovenDoll() },
+                            priority: 3790, maxStructures: 1));
+                        return grove;
+                    }
                     grove.AddBuilder(new BloomFrontBuilder());
                     return grove;
                 }
@@ -327,6 +339,12 @@ namespace CavesOfOoo.Core
         /// (Lore/MYSTERY-LEDGER.md §4 — forbidden from answering:
         /// everything and everyone).</summary>
         public const string TenthFireZoneID = "Overworld.2.19.0";
+
+        /// <summary>W4.5 — design gate 4: the doll in the wall. One
+        /// authored wilderness Grovelands zone, never a POI, never a
+        /// Bloom-front. WovenDollTests pins the scene the way the
+        /// tenth fire's gate test pins the fire.</summary>
+        public const string WovenDollZoneID = "Overworld.1.6.0";
 
         private ZoneGenerationPipeline CreateBeatingPipeline(int tier = 1, string zoneID = null)
         {
