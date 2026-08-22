@@ -136,11 +136,16 @@ namespace CavesOfOoo.Tests
         [Test]
         public void TheChoir_NeverSaysDead()
         {
-            // Voice gate (§9 gate 10): scan every node of the keeper
-            // trees — not just the new ones — for the forbidden word.
-            foreach (var id in KeeperConversations)
+            // Voice gate (§9 gate 10) over the WHOLE file — the first
+            // cut scanned only the five keepers and walked past
+            // ChoirTendril_1 saying it twice (close-out 🟡): the exact
+            // asymmetry class the Sopp fix corrected. Everything in
+            // RotChoir.json is Choir voice.
+            foreach (var id in new[] { "ChoirTendril_1", "Mogu_1", "Grib_1",
+                                       "Nam_1", "Sien_1", "Sopp_1" })
             {
                 var conv = ConversationLoader.Get(id);
+                Assert.IsNotNull(conv, $"{id} loads (widen this list when the file grows)");
                 foreach (var node in conv.Nodes)
                 {
                     var text = (node.Text ?? "").ToLowerInvariant();
@@ -149,6 +154,35 @@ namespace CavesOfOoo.Tests
                     StringAssert.DoesNotContain(" died", text,
                         $"{id}/{node.ID}");
                 }
+            }
+        }
+
+        [Test]
+        public void TheRitual_LeavesARecord()
+        {
+            // Close-out 🟡 #6: the plan promised a fact latch and the
+            // first cut silently dropped it — the cure was a service
+            // with no memory. AddFact ChoirBloomCures counts them:
+            // repeat cures become queryable, and future content can
+            // react to a walker the Choir has taken the Bloom from
+            // more than once.
+            var world = new Entity { ID = "world", BlueprintName = "World" };
+            var ns = new NarrativeStatePart();
+            world.AddPart(ns);
+            NarrativeStatePart.Current = ns;
+            try
+            {
+                var conv = ConversationLoader.Get("Mogu_1");
+                var ritual = FindRitualChoice(conv);
+                var listener = MakeListener(bloomed: true);
+                ConversationActions.ExecuteAll(ritual.Actions, null, listener);
+
+                Assert.AreEqual(1, ns.GetFact("ChoirBloomCures"),
+                    "the taking is counted");
+            }
+            finally
+            {
+                NarrativeStatePart.Current = null;
             }
         }
     }

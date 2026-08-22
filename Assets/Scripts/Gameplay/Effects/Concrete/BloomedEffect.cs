@@ -11,9 +11,12 @@ namespace CavesOfOoo.Core
     /// brain (guarded by HasGoal, the WitnessedEffect.cs:60-93 shape):
     /// attack whatever stands adjacent regardless of faction, otherwise
     /// leave the others and walk toward open ground. The push lives in
-    /// OnTurnStart rather than OnApply so a loaded save self-heals — the
-    /// goal is rebuilt on the bearer's first turn (goal stacks do not
-    /// round-trip; the effect's public fields do).</para>
+    /// OnTurnStart rather than OnApply because _pushedGoal is
+    /// deliberately unserialized: goal stacks DO round-trip saves
+    /// (SaveSystem serializes them generically — the close-out review
+    /// corrected the first draft's claim here), but after a load this
+    /// effect cannot identify the restored instance. The HasGoal guard
+    /// absorbs the restored goal; Finished() sheds strays post-cure.</para>
     ///
     /// <para><b>R4 — why no TYPE_NEGATIVE (the cure taxonomy).</b> The
     /// cure-all tonic strips by the TYPE_NEGATIVE bit
@@ -77,7 +80,13 @@ namespace CavesOfOoo.Core
         {
             if (target == null) return;
             var brain = target.GetPart<BrainPart>();
-            if (brain != null)
+            // Close-out 🔴 #1: the REAL player inherits Creature and so
+            // HAS a BrainPart — but TurnManager never fires TakeTurn on
+            // Player-tagged actors and BrainPart skips them, so a goal
+            // pushed onto the player's brain is dead weight and a lying
+            // diag record. The gate is the Player tag (the same gate
+            // BrainPart itself uses), not brain-null.
+            if (brain != null && !target.HasTag("Player"))
             {
                 if (brain.HasGoal<BloomGoal>()) return;
                 _pushedGoal = new BloomGoal();
@@ -85,9 +94,11 @@ namespace CavesOfOoo.Core
                 if (Diag.IsChannelEnabled("effect"))
                     Diag.Record("effect", "BloomCompelled", target, null,
                         new { blueprintName = target.BlueprintName,
-                              hp = target.GetStatValue("Hitpoints", -1) });
+                              hp = target.GetStatValue("Hitpoints", -1),
+                              stride = false });
                 return;
             }
+            if (!target.HasTag("Player")) return; // brainless non-player: inert
 
             // SM-F — the player path. TurnManager never fires TakeTurn
             // on players and BrainPart skips them, so the goal system
@@ -129,6 +140,13 @@ namespace CavesOfOoo.Core
                         new { blueprintName = target.BlueprintName,
                               stride = true, turnsWorn = TurnsWorn });
             }
+            else if (Diag.IsChannelEnabled("effect"))
+            {
+                // A gate that rejects names itself: the stride came due
+                // and found no step (walled in, or nothing to walk from).
+                Diag.Record("effect", "BloomStrideBlocked", target, null,
+                    new { reason = "no_step", turnsWorn = TurnsWorn });
+            }
         }
 
         public override void OnRemove(Entity target)
@@ -151,16 +169,37 @@ namespace CavesOfOoo.Core
             _pushedGoal = null;
         }
 
+        /// <summary>Close-out 🔴 #3: every shipped bloom-spores source
+        /// was level 1, and ComputeTakeChance(1, Toughness 18 — the
+        /// shipped player statline) is exactly 0: the infection path
+        /// was arithmetic-dead. A corpse burst is CONCENTRATED — level
+        /// 2 takes a shipped body at 9%. The level-1 immunity floor
+        /// stays pinned (weak wisps remain beneath a hard body's
+        /// notice).</summary>
+        public const int ERUPT_GAS_LEVEL = 2;
+
         private static void Erupt(Entity target)
         {
             if (target == null) return;
             var zone = SettlementRuntime.ActiveZone;
-            if (zone == null) return;
+            if (zone == null)
+            {
+                if (Diag.IsChannelEnabled("effect"))
+                    Diag.Record("effect", "BloomEruptSkipped", target, null,
+                        new { reason = "NoActiveZone" });
+                return;
+            }
             var pos = zone.GetEntityPosition(target);
-            if (pos.x < 0) return;
+            if (pos.x < 0)
+            {
+                if (Diag.IsChannelEnabled("effect"))
+                    Diag.Record("effect", "BloomEruptSkipped", target, null,
+                        new { reason = "NotInZone" });
+                return;
+            }
 
             var gas = GasFactory.SpawnGas(zone, pos.x, pos.y, "bloom-spores",
-                creator: target);
+                level: ERUPT_GAS_LEVEL, creator: target);
             // Voice gate: terrain-grade. The line only speaks when the
             // spores are real (R9d).
             if (gas != null)

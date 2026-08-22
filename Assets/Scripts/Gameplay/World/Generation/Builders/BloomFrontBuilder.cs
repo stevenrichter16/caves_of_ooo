@@ -107,26 +107,29 @@ namespace CavesOfOoo.Core
             }
 
             // The hosts: 1-2 of the zone's existing creatures, already
-            // worn. Only bodies with a will to override (BrainPart) and
-            // somewhere to keep the effect (StatusEffectsPart).
+            // worn. Only bodies with a will to override (BrainPart).
+            // No StatusEffectsPart filter (close-out 🔴 #2): no blueprint
+            // ships that part — Entity.ApplyEffect creates it lazily —
+            // so requiring it up front rejected EVERY live creature and
+            // fronts generated with hosts=0.
             var candidates = new System.Collections.Generic.List<Entity>();
             foreach (var e in zone.GetAllEntities())
             {
                 if (!e.Tags.ContainsKey("Creature")) continue;
                 if (e.GetPart<BrainPart>() == null) continue;
-                if (e.GetPart<StatusEffectsPart>() == null) continue;
                 if (e.GetStatValue("Hitpoints", 0) <= 0) continue;
                 if (e.HasEffect<BloomedEffect>()) continue;
                 candidates.Add(e);
             }
             int hostTarget = 1 + rng.Next(HostMax);
             int hosts = 0;
+            int candidateCount = candidates.Count;
             while (hosts < hostTarget && candidates.Count > 0)
             {
                 var pick = candidates[rng.Next(candidates.Count)];
                 candidates.Remove(pick);
                 pick.ApplyEffect(new BloomedEffect());
-                hosts++;
+                if (pick.HasEffect<BloomedEffect>()) hosts++; // count what actually took
             }
 
             // The unfinished workshop: tools down mid-task. An anvil
@@ -145,7 +148,8 @@ namespace CavesOfOoo.Core
 
             if (Diag.IsChannelEnabled("worldgen"))
                 Diag.Record("worldgen", "BloomFront", null, null,
-                    new { zoneId = zone.ZoneID, fruiting, hosts, workshop });
+                    new { zoneId = zone.ZoneID, fruiting, fruitingTarget = target,
+                          hosts, hostTarget, candidateCount, workshop });
             return true;
         }
 
@@ -153,17 +157,23 @@ namespace CavesOfOoo.Core
         /// its full 8-ring is open: removing such a cell from the walk
         /// graph can never disconnect it (any route through the center
         /// re-routes along the ring), so no reachability repair is
-        /// needed afterward.</summary>
-        private static bool IsSafeSolidSite(Zone zone, int x, int y)
+        /// needed afterward. Public: a pure geometric predicate, and
+        /// the safe-site contract is pinned from the test assembly.</summary>
+        public static bool IsSafeSolidSite(Zone zone, int x, int y)
         {
+            // BlocksMovement, not tag-only IsPassable: GroveSign,
+            // SmithAnvil, and haulables are Part-solid with NO Solid
+            // tag — tag-only checks would bury furniture and void the
+            // no-disconnect proof (close-out 🟡; the W4.1
+            // ConnectivityBuilder lesson recurring).
             var cell = zone.GetCell(x, y);
-            if (cell == null || !cell.IsPassable()) return false;
+            if (cell == null || cell.BlocksMovement()) return false;
             for (int ox = -1; ox <= 1; ox++)
                 for (int oy = -1; oy <= 1; oy++)
                 {
                     if (ox == 0 && oy == 0) continue;
                     var n = zone.GetCell(x + ox, y + oy);
-                    if (n == null || !n.IsPassable()) return false;
+                    if (n == null || n.BlocksMovement()) return false;
                 }
             return true;
         }

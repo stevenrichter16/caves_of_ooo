@@ -64,13 +64,17 @@ namespace CavesOfOoo.Tests
 
         private static Entity AddCreature(Zone zone, int x, int y, bool brained = true)
         {
+            // PRODUCTION-FAITHFUL (close-out 🔴 #2): no blueprint ships
+            // a StatusEffects part — Entity.ApplyEffect creates it
+            // lazily on first use. The first fixture AddPart-ed it and
+            // masked a builder filter that rejected every real creature
+            // (hosts were always 0 in live front zones).
             var e = new Entity { ID = "c_" + x + "_" + y, BlueprintName = "TestCreature" };
             e.Tags["Creature"] = "";
             e.Statistics["Hitpoints"] = new Stat
             { Owner = e, Name = "Hitpoints", BaseValue = 20, Min = 0, Max = 20 };
             e.AddPart(new RenderPart { DisplayName = "c" });
             e.AddPart(new PhysicsPart { Solid = true });
-            e.AddPart(new StatusEffectsPart());
             if (brained)
                 e.AddPart(new BrainPart { CurrentZone = zone, Rng = new Random(7) });
             zone.AddEntity(e, x, y);
@@ -201,6 +205,28 @@ namespace CavesOfOoo.Tests
                 "only creatures with a will to override get driven");
             Assert.GreaterOrEqual(CountBlueprint(zone, "BloomingFruitingBody"),
                 BloomFrontBuilder.FruitingMin);
+        }
+
+        [Test]
+        public void SafeSite_RefusesPartSolidNeighbors()
+        {
+            // Close-out 🟡 #5 — the W4.1 ConnectivityBuilder lesson
+            // recurring: Cell.IsPassable is TAG-only, but GroveSign,
+            // SmithAnvil, and every haulable are Part-solid (no tag).
+            // A "safe" site beside one is not safe — the
+            // no-disconnect proof needs BlocksMovement.
+            var zone = FlooredZone("Overworld.3.5.0");
+            var sign = new Entity { ID = "sign", BlueprintName = "GroveSign" };
+            sign.AddPart(new RenderPart());
+            sign.AddPart(new PhysicsPart { Solid = true }); // Part-solid, NO tag
+            zone.AddEntity(sign, 10, 10);
+
+            Assert.IsFalse(BloomFrontBuilder.IsSafeSolidSite(zone, 11, 10),
+                "a Part-solid neighbor voids the open-ring proof");
+            Assert.IsFalse(BloomFrontBuilder.IsSafeSolidSite(zone, 10, 10),
+                "and an occupied center is no site at all");
+            Assert.IsTrue(BloomFrontBuilder.IsSafeSolidSite(zone, 40, 10),
+                "open field remains a site");
         }
 
         // ════════════════════════════════════════════════════════════

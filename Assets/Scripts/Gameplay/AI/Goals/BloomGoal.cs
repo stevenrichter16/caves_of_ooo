@@ -86,7 +86,10 @@ namespace CavesOfOoo.Core
         {
             Entity best = null;
             int bestDist = int.MaxValue;
-            foreach (var e in zone.GetAllEntities())
+            // Read-only scan — no zone mutation during iteration, so the
+            // live view is safe and allocation-free (close-out 🔵; the
+            // Wx perf rules' AI-scan standard).
+            foreach (var e in zone.GetReadOnlyEntities())
             {
                 if (e == self || !e.Tags.ContainsKey("Creature")) continue;
                 if (e.GetStatValue("Hitpoints", 0) <= 0) continue;
@@ -100,13 +103,17 @@ namespace CavesOfOoo.Core
 
         internal static bool IsOpenGround(Zone zone, Cell cell)
         {
-            if (cell == null || !cell.IsPassable()) return false;
+            // BlocksMovement, not the tag-only IsPassable — GroveSign,
+            // anvils, and haulables are Part-solid with no Solid tag
+            // (the W4.1 ConnectivityBuilder lesson, caught recurring by
+            // the close-out review).
+            if (cell == null || cell.BlocksMovement()) return false;
             for (int ox = -1; ox <= 1; ox++)
                 for (int oy = -1; oy <= 1; oy++)
                 {
                     if (ox == 0 && oy == 0) continue;
                     var n = zone.GetCell(cell.X + ox, cell.Y + oy);
-                    if (n == null || !n.IsPassable()) return false;
+                    if (n == null || n.BlocksMovement()) return false;
                 }
             return true;
         }

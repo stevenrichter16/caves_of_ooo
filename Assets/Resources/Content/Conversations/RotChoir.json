@@ -151,7 +151,7 @@
         },
         {
           "ID": "StillDeath",
-          "Text": "Is the raindrop dead when it joins the river? We do not argue. You are not ready. But the soil is patient, and so are we.",
+          "Text": "Is the raindrop ended when it joins the river? We do not argue. You are not ready. But the soil is patient, and so are we.",
           "Choices": [
             {
               "Text": "Back to my other questions.",
@@ -562,7 +562,7 @@
         },
         {
           "ID": "CompareApproach",
-          "Text": "They preserve by remembering. We preserve by consuming. The result is the same -- nothing is truly lost. But their method keeps things in jars, dead and labeled. Ours keeps things alive inside us, growing, changing, becoming part of something larger. Ask yourself which is kinder.",
+          "Text": "They preserve by remembering. We preserve by consuming. The result is the same -- nothing is truly lost. But their method keeps things in jars, stilled and labeled. Ours keeps things alive inside us, growing, changing, becoming part of something larger. Ask yourself which is kinder.",
           "Choices": [
             {
               "Text": "I'll have to think on that.",
@@ -632,6 +632,7 @@
             "Target": "BloomTaken",
             "Actions": [
               { "Key": "CureEffect", "Value": "Bloomed" },
+              { "Key": "AddFact", "Value": "ChoirBloomCures:1" },
               { "Key": "AddMessage", "Value": "The Choir hums, low. The pull toward the open ground loosens, and is gone." }
             ]
           },
@@ -701,6 +702,7 @@
             "Target": "BloomTaken",
             "Actions": [
               { "Key": "CureEffect", "Value": "Bloomed" },
+              { "Key": "AddFact", "Value": "ChoirBloomCures:1" },
               { "Key": "AddMessage", "Value": "The Choir hums, low. The pull toward the open ground loosens, and is gone." }
             ]
           },
@@ -770,6 +772,7 @@
             "Target": "BloomTaken",
             "Actions": [
               { "Key": "CureEffect", "Value": "Bloomed" },
+              { "Key": "AddFact", "Value": "ChoirBloomCures:1" },
               { "Key": "AddMessage", "Value": "The Choir hums, low. The pull toward the open ground loosens, and is gone." }
             ]
           },
@@ -839,6 +842,7 @@
             "Target": "BloomTaken",
             "Actions": [
               { "Key": "CureEffect", "Value": "Bloomed" },
+              { "Key": "AddFact", "Value": "ChoirBloomCures:1" },
               { "Key": "AddMessage", "Value": "The Choir hums, low. The pull toward the open ground loosens, and is gone." }
             ]
           },
@@ -908,6 +912,7 @@
             "Target": "BloomTaken",
             "Actions": [
               { "Key": "CureEffect", "Value": "Bloomed" },
+              { "Key": "AddFact", "Value": "ChoirBloomCures:1" },
               { "Key": "AddMessage", "Value": "The Choir hums, low. The pull toward the open ground loosens, and is gone." }
             ]
           },

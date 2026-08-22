@@ -295,12 +295,16 @@ namespace CavesOfOoo.Tests
 
         private static Entity MakePlayer(Zone zone, int x, int y)
         {
-            // The player path: Player tag, no BrainPart — TurnManager
-            // never fires TakeTurn on players, so the goal system
-            // cannot drive them (sweep row 11). The effect walks them
-            // directly, one step every BLOOM_STRIDE turns.
+            // PRODUCTION-FAITHFUL fixture (close-out 🔴 #1): the real
+            // player inherits Creature and therefore HAS a BrainPart —
+            // which TurnManager/BrainPart never drive (Player-tag
+            // skips). The first fixture omitted the brain and masked
+            // that the stride gated on brain-null was dead code in
+            // live play. The stride must fire for a Player-tagged
+            // bearer WITH a brain.
             var e = MakeCreature(null);
             e.Tags["Player"] = "";
+            e.AddPart(new BrainPart { CurrentZone = zone, Rng = new Random(11) });
             zone.AddEntity(e, x, y);
             return e;
         }
@@ -333,6 +337,80 @@ namespace CavesOfOoo.Tests
             int dist = Math.Max(Math.Abs(after.x - 13), Math.Abs(after.y - 10));
             Assert.Greater(dist, 3,
                 "on the stride, the Bloom walks you away from the others");
+
+            // Counter (🔴 #1's second half): the player's brain must
+            // NEVER receive a BloomGoal — TakeTurn never fires on
+            // players, so a pushed goal would be a lie the
+            // BloomCompelled diag repeats.
+            Assert.IsFalse(player.GetPart<BrainPart>().HasGoal<BloomGoal>(),
+                "players are walked, never goal-driven");
+
+            // And the stride records itself, once, with its own shape.
+            var recs = DiagQuery.Apply(new DiagQuery.Filter
+            { Category = "effect", Kind = "BloomCompelled", Limit = 10 }).Records;
+            Assert.AreEqual(1, recs.Count,
+                "one stride, one record — the four quiet turns emitted none");
+            StringAssert.Contains("\"stride\":true", recs[0].PayloadJson);
+        }
+
+        [Test]
+        public void Eruption_IsConcentrated_LevelTwo()
+        {
+            // Close-out 🔴 #3: every shipped bloom-spores source was
+            // level 1, and chance(1, Toughness 18 — the shipped player
+            // statline) is exactly 0: the plan's player infection path
+            // was arithmetic-dead. A corpse burst is concentrated —
+            // level 2 — and chance(2, 18) = 9%: rare, real.
+            InitBloomGas();
+            var zone = new Zone("BloomEruptLevel");
+            SettlementRuntime.ActiveZone = zone;
+            var host = MakeCreature("GroveWardens", hp: 5);
+            zone.AddEntity(host, 10, 10);
+            host.ApplyEffect(new BloomedEffect());
+            var killer = MakeCreature("Concord");
+            zone.AddEntity(killer, 11, 10);
+            var d = new Damage(50);
+            d.AddAttribute("Slashing");
+            CombatSystem.ApplyDamage(host, d, killer, zone);
+
+            GasPoolPart pool = null;
+            foreach (var e in zone.GetEntitiesWithTag("Gas"))
+                if (e.GetPart<GasPoolPart>()?.GasId == "bloom-spores")
+                    pool = e.GetPart<GasPoolPart>();
+            Assert.IsNotNull(pool, "precondition: erupted");
+            Assert.AreEqual(2, pool.Level, "the burst is concentrated");
+            Assert.Greater(GasBloomSporesPart.ComputeTakeChance(pool.Level, 18), 0,
+                "a shipped body CAN be taken by a shipped source");
+        }
+
+        [Test]
+        public void AloneBearer_DriftsTowardOpenGround()
+        {
+            // Close-out 🧪: the goal's third branch was untested. A
+            // lone bearer beside a wall cluster walks off it, toward
+            // ground with a full open ring.
+            var zone = new Zone("BloomDrift");
+            var host = MakeCreature("GroveWardens");
+            GiveBrain(host, zone);
+            zone.AddEntity(host, 3, 10);
+            for (int y = 8; y <= 12; y++)
+            {
+                var wall = new Entity { ID = "w" + y, BlueprintName = "Wall" };
+                wall.Tags["Solid"] = "";
+                wall.AddPart(new RenderPart());
+                wall.AddPart(new PhysicsPart { Solid = true });
+                zone.AddEntity(wall, 2, y);
+            }
+
+            host.ApplyEffect(new BloomedEffect());
+            var before = zone.GetEntityPosition(host);
+            for (int i = 0; i < 3; i++) Cycle(host);
+            var after = zone.GetEntityPosition(host);
+
+            Assert.IsTrue(after.x != before.x || after.y != before.y,
+                "alone, the Bloom still walks its bearer toward the open");
+            Assert.Greater(after.x, before.x - 1,
+                "and not INTO the wall line");
         }
 
         [Test]

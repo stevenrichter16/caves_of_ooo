@@ -588,3 +588,58 @@ Suite: 6999 → 7033 (+34). Deferred to close-out review: BloomCompelled
 push payload gains stride=false (Q2 schema consistency); branch-3
 (alone → open ground) untested for both goal and stride; live look
 pass + PlayMode honesty bound per house pattern.
+
+### W4.4 close-out review (14-agent workflow: taxonomy + contract + player-flow + observability; 0 refuted)
+
+**🔴 fixed (all three were masked by test fixtures that diverged from
+production — the fixture-faithfulness lesson):**
+1. *The player stride was dead code.* The real player inherits Creature
+   and HAS a BrainPart, so the brain-null gate never let a player reach
+   the stride — and pushed a goal the Player-tag skip never executes,
+   with a lying BloomCompelled record. Gate is now the Player tag (the
+   same gate BrainPart uses); the fixture got a real brain; a counter
+   pins that players are walked, never goal-driven.
+2. *Front hosts were always 0 in live zones.* No blueprint ships
+   StatusEffectsPart (Entity.ApplyEffect creates it lazily); the
+   candidate filter required it and rejected every real creature. Filter
+   dropped; hosts counted by what actually took; fixture de-masked.
+3. *The player could never catch the Bloom.* All shipped sources were
+   level 1 and chance(1, Toughness 18 — the shipped player statline) is
+   exactly 0. Eruptions and the blooming bodies' burn-off are now level
+   2 (chance 9% — rare, real); the level-1 immunity floor stays pinned
+   as the counter (wisps remain beneath a hard body's notice).
+
+**🟡 fixed:** the tag-only IsPassable drift in BOTH new spatial
+predicates (IsSafeSolidSite, IsOpenGround) → BlocksMovement (the W4.1
+ConnectivityBuilder lesson recurring — Part-solid furniture has no
+tag); ChoirTendril_1 said "dead" twice (StillDeath → "ended",
+CompareApproach → "stilled") and the voice lint now scans ALL six
+conversations in RotChoir.json; the plan's promised ritual fact latch
+had been silently dropped → AddFact ChoirBloomCures:1 on all five
+branches, pinned.
+
+**Deliberate divergences, recorded:** (a) *"exposure while the front
+holds" shipped as EARNED exposure* — a front at rest holds no standing
+gas (unstable gas cannot be gen-seeded); the sources are growths that
+vent on burn and hosts that erupt on death. Sweep row 5's sentence is
+amended by this note. (b) *BloomingFruitingBody is a new blueprint, not
+a retrofit* — W4.1's plain FruitingBody placements must stay inert.
+(c) *Step-away drifted from "away from allies" to "away from any
+company"* — matching the attack's faction blindness; the Bloom does not
+know the bearer's friends. (d) *Gen-time host application logs the
+OnApply line at zone entry* — accepted as the front's arrival tell.
+(e) Docstring corrected: goal stacks DO round-trip saves; the
+OnTurnStart re-push exists because _pushedGoal cannot identify the
+restored instance (HasGoal absorbs it; Finished() sheds strays).
+
+**Also shipped from the minors:** BloomCompelled payload schema aligned
+(stride=false on push), BloomStrideBlocked + BloomEruptSkipped reason
+records, BloomFront payload carries fruitingTarget/hostTarget/
+candidateCount, NearestCreature reads the zone's live view
+allocation-free, branch-3 open-ground drift pinned.
+
+**Deferred with notes (🧪/⚪):** cure-after-load goal-stack cleanup
+test; gas/Applied third payload shape (standardize when any of the
+three gas parts is next touched); LOS gate on the step-away scan;
+adversarial file for the Bloom surface (taxonomy: two+ surfaces apply —
+queue for the W4.7 sweep); PlayMode/look pass honesty bound stands.
