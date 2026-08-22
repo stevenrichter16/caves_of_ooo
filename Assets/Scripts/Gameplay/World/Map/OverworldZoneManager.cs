@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using CavesOfOoo.Data;
+using CavesOfOoo.Diagnostics;
 using UnityEngine;
 
 namespace CavesOfOoo.Core
@@ -39,14 +40,24 @@ namespace CavesOfOoo.Core
             if (!WorldMap.InBounds(wx, wy))
                 return base.GetPipelineForZone(zoneID);
 
+            BiomeType biome = WorldMap.GetBiome(wx, wy);
+            var poi = WorldMap.GetPOI(wx, wy);
+
+            // W5.1 (Docs/FELLING-W5-PLAN.md sweep row 1) — a sinkhole is
+            // the ONE POI type that means something below z=0, so it is
+            // resolved BEFORE the generic depth branch. Every other POI
+            // describes a surface chunk only; before this, `wz > 0`
+            // returned the anonymous cave pipeline without ever reading
+            // the POI, and a sinkhole's own descent and floor generated
+            // as generic caves.
+            if (poi != null && poi.Type == POIType.Sinkhole)
+                return CreateSinkholePipeline(biome, poi, wx, wy, wz);
+
             // Underground zones use a dedicated pipeline
             if (wz > 0)
                 return CreateUndergroundPipeline(wz);
 
-            BiomeType biome = WorldMap.GetBiome(wx, wy);
-
             // Check for POI -- villages, lairs, and river chunks get special pipelines
-            var poi = WorldMap.GetPOI(wx, wy);
             if (poi != null)
             {
                 switch (poi.Type)
@@ -197,6 +208,72 @@ namespace CavesOfOoo.Core
             var pipeline = new ZoneGenerationPipeline();
             pipeline.AddBuilder(new WorldMapZoneBuilder(WorldMap));
             return pipeline;
+        }
+
+        /// <summary>W5.1 — the sinkhole stack. One POI, three bespoke
+        /// levels: the Mouth you find (z=0), the Descent you survive
+        /// (z=1), the Floor that is a different place per sinkhole
+        /// (z=2+, generic for now — W5.3 gives it archetypes).
+        ///
+        /// <para><b>R5 decided:</b> a sinkhole floor's tier is the
+        /// SURFACE tier + 1 (canon's rule, FELLING-WORLD-DESIGN §3),
+        /// not the generic <c>depth/3 + 1</c> the anonymous cave stack
+        /// uses. The two formulas would have disagreed; this is the one
+        /// that holds for holes.</para></summary>
+        private ZoneGenerationPipeline CreateSinkholePipeline(
+            BiomeType biome, PointOfInterest poi, int wx, int wy, int wz)
+        {
+            int surfaceTier = GetTierForCoords(wx, wy);
+            if (wz == 0)
+            {
+                // The mouth is its own biome's wilderness, plus the hole.
+                var mouth = CreateSurfaceWildernessFor(biome, surfaceTier);
+                mouth.AddBuilder(new SinkholeMouthBuilder(this));
+                return mouth;
+            }
+
+            int floorTier = System.Math.Min(surfaceTier + 1, 8);
+            var pipeline = new ZoneGenerationPipeline();
+            var (wallBP, floorBP) = SolidEarthBuilder.GetMaterialsForDepth(wz);
+            pipeline.AddBuilder(new SolidEarthBuilder(wallBP));
+            pipeline.AddBuilder(new StrataBuilder(wz, wallBP, floorBP));
+            pipeline.AddBuilder(new ConnectivityBuilder { FloorBlueprint = floorBP });
+            pipeline.AddBuilder(new StairsUpBuilder(this));
+            pipeline.AddBuilder(new StairsDownBuilder(this));
+            pipeline.AddBuilder(new StairConnectorBuilder(floorBP));
+
+            if (wz == 1)
+                pipeline.AddBuilder(new SinkholeDescentBuilder(this));
+
+            pipeline.AddBuilder(new HazardTerrainBuilder(BiomeType.Cave, underground: true));
+            pipeline.AddBuilder(new PopulationBuilder(PopulationTable.UndergroundTier(wz)));
+            pipeline.AddBuilder(new ContainerBuilder(BiomeType.Cave, floorTier,
+                ContainerPlacementService.ZoneKind.Underground));
+            if (Diag.IsChannelEnabled("worldmap"))
+                Diag.Record("worldmap", "SinkholeRouted", null, null,
+                    new { sinkhole = poi.Name, x = wx, y = wy, z = wz,
+                          level = wz == 1 ? "Descent" : "Floor", floorTier });
+            return pipeline;
+        }
+
+        /// <summary>The plain wilderness pipeline for a biome, without
+        /// any POI treatment — the base a sinkhole mouth builds its hole
+        /// into.</summary>
+        private ZoneGenerationPipeline CreateSurfaceWildernessFor(BiomeType biome, int tier)
+        {
+            switch (biome)
+            {
+                case BiomeType.Desert:     return CreateDesertPipeline(tier);
+                case BiomeType.Jungle:     return CreateJunglePipeline(tier);
+                case BiomeType.Ruins:      return CreateRuinsPipeline(tier);
+                case BiomeType.Spread:     return CreateSpreadPipeline(tier);
+                case BiomeType.Sodden:     return CreateSoddenPipeline(tier);
+                case BiomeType.Beating:    return CreateBeatingPipeline(tier);
+                case BiomeType.Grovelands: return CreateGrovelandsPipeline(tier);
+                case BiomeType.Overwrit:   return CreateOverwritPipeline(tier);
+                case BiomeType.Stump:      return CreateStumpPipeline(tier);
+                default:                   return CreateCavePipeline(tier);
+            }
         }
 
         private ZoneGenerationPipeline CreateUndergroundPipeline(int depth)

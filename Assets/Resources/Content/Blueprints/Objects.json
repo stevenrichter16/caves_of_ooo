@@ -29478,6 +29478,78 @@
       "Tags": [ { "Key": "Solid", "Value": "" } ]
     },
     {
+      "Name": "SinkholeLip",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "sinkhole lip" },
+            { "Key": "RenderString", "Value": "#" },
+            { "Key": "ColorString", "Value": "&K" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Undercut rock at the rim, wet with spray from below. The green here grows thicker than the green anywhere else in the chunk, and leans in." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" } ]
+    },
+    {
+      "Name": "DescentLedge",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "ledge" },
+            { "Key": "RenderString", "Value": "=" },
+            { "Key": "ColorString", "Value": "&y" },
+            { "Key": "RenderLayer", "Value": "1" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A shelf of rock wide enough to stand on and not much wider. Water finds it, uses it, and goes on down." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "RopeAnchor",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "rope anchor" },
+            { "Key": "RenderString", "Value": "|" },
+            { "Key": "ColorString", "Value": "&w" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "An iron pin driven into the rock, and a hand's length of rope still knotted to it. The cut end is old and clean: somebody took the rest with them, or somebody took it from them." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "BloomingFruitingBody",
       "Inherits": "Terrain",
       "Parts": [

@@ -11,7 +11,15 @@ namespace CavesOfOoo.Core
         /// river.ascii demo: a full-width channel of water flanked on
         /// both sides by noise-driven bank vegetation. No village content.
         /// </summary>
-        RiverChunk
+        RiverChunk,
+
+        /// <summary>W5.1 — a hole in the world. Claims a world cell and
+        /// routes ALL of its z-levels to bespoke pipelines: the Mouth
+        /// (z=0) you find, the Descent (z=1) you survive, the Floor
+        /// (z=2) that is a different place per sinkhole. Unlike every
+        /// other POI type, this one means something below z=0 — see
+        /// OverworldZoneManager's depth routing.</summary>
+        Sinkhole
     }
 
     /// <summary>

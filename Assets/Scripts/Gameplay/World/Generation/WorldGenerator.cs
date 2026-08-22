@@ -74,6 +74,19 @@ namespace CavesOfOoo.Core
                 placed.Add((place.X, place.Y));
             }
 
+            // 1a2. W5.1 — the authored sinkhole mouths. Canon reserved
+            // these cells and said they were waiting for "POI types and
+            // zone stacks that W5/W6/W7 build"; this is that placement.
+            // Stamped BEFORE the opportunistic rolls and added to
+            // `placed`, so a lair can never claim a mouth.
+            foreach (var site in SinkholeSites.All)
+            {
+                map.SetPOI(site.X, site.Y, new PointOfInterest(
+                    POIType.Sinkhole, site.Name, null,
+                    WorldMapAuthoring.TierAt(site.X, site.Y)));
+                placed.Add((site.X, site.Y));
+            }
+
             // 1b. Authored wilderness scenes (the tenth fire, the
             // doll): reserved before any opportunistic roll, so a lair
             // or camp can never take the cell and delete the scene from

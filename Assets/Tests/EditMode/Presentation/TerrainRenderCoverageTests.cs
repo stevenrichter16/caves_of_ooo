@@ -72,6 +72,7 @@ namespace CavesOfOoo.Tests
             "SaltCrust", "DuneCrest", "Bones", "TentWall", "UntendedFire",
             "MirePool", "Duckboard", "DeadTree", "PeatBank",
             "MycelialColumn", "GroveSeep", "FruitingBody",
+            "SinkholeLip", // W5.1 — the rim of a hole, its own glyph
             "BloomingFruitingBody", // W4.4 SM-D — the front's growth, same glyph family as FruitingBody
             "CopperPipe", "PeatBog", "TarSeep", "OilSeep", "OilSlick",
             "BrinePool", "AcidPool", "AcidPond", "IceSheet",

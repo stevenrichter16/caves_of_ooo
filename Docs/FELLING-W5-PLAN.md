@@ -180,3 +180,39 @@ puts them there.
 ## 6. Implementation log
 
 _(filled per sub-milestone)_
+
+### W5.1 — The stack (SHIPPED)
+
+`POIType.Sinkhole` appended; `SinkholeSites` places canon's four
+reserved mouths (Olderdeep 4,6 · the Deepest Cathedral 5,4 · Lampwell
+12,3 · Spivenor 16,4) and reserves their cells from opportunistic
+rolls before the lair loop — the W4.7 lesson applied ahead of the bug
+rather than after it.
+
+**The sweep's 🔴 fixed:** POI identity now resolves BEFORE the generic
+depth branch, so a sinkhole owns all of its z-levels. Everything else
+is unchanged — an ordinary cave under Sill still routes generically
+(counter-pinned).
+
+**R5 decided:** a sinkhole floor's tier is surface tier + 1 (canon),
+not the anonymous stack's `depth/3 + 1`. Recorded in the pipeline's
+docstring so the two formulas cannot drift back together.
+
+**Two design errors caught by the tests, both worth keeping:**
+1. *The rim ate itself.* The mouth builder ran at priority 2500 —
+   BEFORE `ConnectivityBuilder` (3000) — so it asked "is this zone
+   still crossable?" of a raw jungle chunk that was not crossable
+   yet, and the repair loop dutifully removed all 40-odd lip cells.
+   Fixed twice over: the builder moved to 3100 (cut the hole into an
+   already-carved zone) AND the repair now uses the **delta
+   contract** — if the zone could not be crossed before we touched
+   it, the rim is not the reason. This is the W4.1
+   `PlaceSolidIfHarmless` lesson recurring in a new builder; the
+   pattern is now explicit in a second place.
+2. *The descent had no way out* — because the test generated it in
+   isolation, and `StairsUpBuilder` derives the exit from the
+   connection the MOUTH registers. The test now generates the mouth
+   first, which is the only way a player is ever in a descent.
+   Faithful, not weakened.
+
+Tests: 7062 → 7069 (+7). All green.
