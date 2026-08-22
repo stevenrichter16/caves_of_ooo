@@ -241,3 +241,31 @@ phase cannot answer headless. The invariants are pinned; the feel is
 not.
 
 Tests: 7069 → 7074 (+5). All green.
+
+### W5.3 — The Drowned Sima (SHIPPED)
+
+The floor is a different place per sinkhole. `SinkholeArchetypes.For`
+is a **pure function of the hole's name** (R3) — never the builder rng,
+never a saved field — so it is fixed forever for free and identical
+across a load, which is the W4.6a/W4.7 profile lesson applied before
+it could bite a second time.
+
+**Where canon named a place, canon wins:** the Deepest Cathedral is a
+Choir Cathedral because it is called that; Lampwell is a well and so
+holds water; Olderdeep has somebody in it. The stable hash is the
+fallback for holes nobody named, not the primary mechanism — the
+design doc's "rolled at worldgen" reads as *fixed*, and an authored
+table is fixed too, with better taste.
+
+Drowned Sima content: a basin of standing water (reusing W3's
+MirePool), the gin frogs canon's survey came for, and banks that stay
+walkable — a floor that is entirely water is a screenshot, not a room
+(pinned).
+
+**Methodology note, honestly:** the tests were written before the
+code, but I implemented before RUNNING them, so W5.3 has no confirmed
+RED. Steps compressed; recorded rather than glossed. The counter-check
+(a Cathedral floor is not a sima) does prove the branch actually
+branches.
+
+Tests: 7074 → 7080 (+6). All green.

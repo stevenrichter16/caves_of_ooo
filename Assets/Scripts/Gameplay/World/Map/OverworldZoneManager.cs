@@ -243,7 +243,24 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new StairConnectorBuilder(floorBP));
 
             if (wz == 1)
+            {
                 pipeline.AddBuilder(new SinkholeDescentBuilder(this));
+            }
+            else
+            {
+                // W5.3 — the floor is a different place per sinkhole.
+                // The archetype is a pure function of the hole's name
+                // (R3), so it is fixed forever without a saved field.
+                switch (SinkholeArchetypes.For(poi.Name))
+                {
+                    case SinkholeArchetype.DrownedSima:
+                        pipeline.AddBuilder(new DrownedSimaBuilder());
+                        break;
+                    // StrandedSettlement (W5.4) and ChoirCathedral
+                    // (W5.5) fall through to the bare floor until their
+                    // own sub-milestones give them content.
+                }
+            }
 
             pipeline.AddBuilder(new HazardTerrainBuilder(BiomeType.Cave, underground: true));
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.UndergroundTier(wz)));
