@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using CavesOfOoo.Data;
 using CavesOfOoo.Diagnostics;
 
+using static CavesOfOoo.Core.FormationReachability;
+
 namespace CavesOfOoo.Core
 {
     /// <summary>
@@ -285,28 +287,7 @@ namespace CavesOfOoo.Core
         // Shared guards (the W2 mid-review's full-reachability rule)
         // ════════════════════════════════════════════════════════
 
-        private static bool IsOpenGround(Zone zone, int x, int y)
-        {
-            if (x < 1 || y < 1 || x >= Zone.Width - 1 || y >= Zone.Height - 1) return false;
-            var cell = zone.GetCell(x, y);
-            return cell != null && !cell.BlocksMovement();
-        }
-
-        private static void ClearFor(Zone zone, int y, int x)
-        {
-            var cell = zone.GetCell(x, y);
-            if (cell == null) return;
-            for (int i = cell.Objects.Count - 1; i >= 0; i--)
-            {
-                var e = cell.Objects[i];
-                if (e == null) continue;
-                var physics = e.GetPart<PhysicsPart>();
-                bool solid = e.HasTag("Solid") || (physics != null && physics.Solid);
-                if (solid) zone.RemoveEntity(e);
-            }
-        }
-
-        /// <summary>Every open cell reachable, repaired by removing only
+                        /// <summary>Every open cell reachable, repaired by removing only
         /// banks this builder placed — the property W2's sealed-room
         /// finding proved crossing-tests cannot see.</summary>
         private static void EnsureAllReachable(Zone zone, List<Entity> placed)
@@ -341,34 +322,5 @@ namespace CavesOfOoo.Core
             }
         }
 
-        private static bool FullyReached(Zone zone, bool[,] reached)
-        {
-            for (int x = 1; x < Zone.Width - 1; x++)
-                for (int y = 1; y < Zone.Height - 1; y++)
-                    if (IsOpenGround(zone, x, y) && !reached[x, y]) return false;
-            return true;
-        }
-
-        private static bool[,] FloodFromWest(Zone zone)
-        {
-            var seen = new bool[Zone.Width, Zone.Height];
-            var queue = new Queue<(int x, int y)>();
-            for (int y = 1; y < Zone.Height - 1; y++)
-                if (IsOpenGround(zone, 1, y)) { seen[1, y] = true; queue.Enqueue((1, y)); }
-            while (queue.Count > 0)
-            {
-                var (x, y) = queue.Dequeue();
-                for (int dx = -1; dx <= 1; dx++)
-                    for (int dy = -1; dy <= 1; dy++)
-                    {
-                        int nx = x + dx, ny = y + dy;
-                        if (nx < 1 || ny < 1 || nx >= Zone.Width - 1 || ny >= Zone.Height - 1) continue;
-                        if (seen[nx, ny] || !IsOpenGround(zone, nx, ny)) continue;
-                        seen[nx, ny] = true;
-                        queue.Enqueue((nx, ny));
                     }
-            }
-            return seen;
-        }
-    }
 }

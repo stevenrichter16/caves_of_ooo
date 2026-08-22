@@ -1,6 +1,8 @@
 using CavesOfOoo.Data;
 using CavesOfOoo.Diagnostics;
 
+using static CavesOfOoo.Core.FormationReachability;
+
 namespace CavesOfOoo.Core
 {
     /// <summary>
@@ -183,33 +185,7 @@ namespace CavesOfOoo.Core
             }
         }
 
-        private static bool[,] FloodFromWest(Zone zone, out bool crossed)
-        {
-            var seen = new bool[Zone.Width, Zone.Height];
-            var queue = new System.Collections.Generic.Queue<(int x, int y)>();
-            crossed = false;
-
-            for (int y = 1; y < Zone.Height - 1; y++)
-                if (IsOpenGround(zone, 1, y)) { seen[1, y] = true; queue.Enqueue((1, y)); }
-
-            while (queue.Count > 0)
-            {
-                var (x, y) = queue.Dequeue();
-                if (x >= Zone.Width - 2) crossed = true;
-                for (int dx = -1; dx <= 1; dx++)
-                    for (int dy = -1; dy <= 1; dy++)
-                    {
-                        int nx = x + dx, ny = y + dy;
-                        if (nx < 1 || ny < 1 || nx >= Zone.Width - 1 || ny >= Zone.Height - 1) continue;
-                        if (seen[nx, ny] || !IsOpenGround(zone, nx, ny)) continue;
-                        seen[nx, ny] = true;
-                        queue.Enqueue((nx, ny));
-                    }
-            }
-            return seen;
-        }
-
-        /// <summary>Worked ground: parallel crop strips with lanes between
+                /// <summary>Worked ground: parallel crop strips with lanes between
         /// them. Reads as somebody's livelihood, which is the Spread's whole
         /// argument — this is a region that does not believe in the Tree
         /// because it is busy.</summary>
@@ -324,30 +300,5 @@ namespace CavesOfOoo.Core
 
         // ════════════════════════════════════════════════════════
 
-        /// <summary>Open, in-bounds ground with nothing solid on it. A
-        /// formation decorates the space the terrain builder carved; it
-        /// never digs through rock.</summary>
-        private static bool IsOpenGround(Zone zone, int x, int y)
-        {
-            if (x < 1 || y < 1 || x >= Zone.Width - 1 || y >= Zone.Height - 1) return false;
-            var cell = zone.GetCell(x, y);
-            return cell != null && !cell.BlocksMovement();
-        }
-
-        /// <summary>The road is the one formation allowed to cut through:
-        /// it was here before the scrub was.</summary>
-        private static void ClearFor(Zone zone, int y, int x)
-        {
-            var cell = zone.GetCell(x, y);
-            if (cell == null) return;
-            for (int i = cell.Objects.Count - 1; i >= 0; i--)
-            {
-                var e = cell.Objects[i];
-                if (e == null) continue;
-                var physics = e.GetPart<PhysicsPart>();
-                bool solid = e.HasTag("Solid") || (physics != null && physics.Solid);
-                if (solid) zone.RemoveEntity(e);
-            }
-        }
     }
 }
