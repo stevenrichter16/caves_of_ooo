@@ -79,7 +79,10 @@ namespace CavesOfOoo.Core
             // Already standing in it: the Bloom is satisfied. Sway.
         }
 
-        private static Entity NearestCreature(Zone zone, Entity self, int x, int y, int radius)
+        // Internal statics: shared with BloomedEffect's SM-F player
+        // stride, which walks the bearer with the same priorities the
+        // goal uses (away from company, else toward open ground).
+        internal static Entity NearestCreature(Zone zone, Entity self, int x, int y, int radius)
         {
             Entity best = null;
             int bestDist = int.MaxValue;
@@ -95,7 +98,7 @@ namespace CavesOfOoo.Core
             return best;
         }
 
-        private static bool IsOpenGround(Zone zone, Cell cell)
+        internal static bool IsOpenGround(Zone zone, Cell cell)
         {
             if (cell == null || !cell.IsPassable()) return false;
             for (int ox = -1; ox <= 1; ox++)

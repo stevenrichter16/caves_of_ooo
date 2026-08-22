@@ -45,6 +45,16 @@ namespace CavesOfOoo.Core
         // The Choir's color family — the bearer reads as the Bloom's.
         public override string GetRenderColorOverride() => "&m";
 
+        /// <summary>SM-F — every this-many turns, a player bearer is
+        /// walked one step (players cannot be goal-driven: TurnManager
+        /// never fires TakeTurn on them). NPC bearers use the goal.</summary>
+        public const int BLOOM_STRIDE = 5;
+
+        /// <summary>Turns the Bloom has been worn by a bearer the goal
+        /// system cannot drive (the player). Public so the stride phase
+        /// rides the save — reloading is not a free reset.</summary>
+        public int TurnsWorn;
+
         // The goal this effect pushed; OnRemove surgically removes
         // exactly this instance (WitnessedEffect shape). Private on
         // purpose: not serialized, rebuilt by OnTurnStart after load.
@@ -65,16 +75,60 @@ namespace CavesOfOoo.Core
 
         public override void OnTurnStart(Entity target)
         {
-            var brain = target?.GetPart<BrainPart>();
-            if (brain == null) return; // the player path is SM-F; NPC-only here
-            if (brain.HasGoal<BloomGoal>()) return;
+            if (target == null) return;
+            var brain = target.GetPart<BrainPart>();
+            if (brain != null)
+            {
+                if (brain.HasGoal<BloomGoal>()) return;
+                _pushedGoal = new BloomGoal();
+                brain.PushGoal(_pushedGoal);
+                if (Diag.IsChannelEnabled("effect"))
+                    Diag.Record("effect", "BloomCompelled", target, null,
+                        new { blueprintName = target.BlueprintName,
+                              hp = target.GetStatValue("Hitpoints", -1) });
+                return;
+            }
 
-            _pushedGoal = new BloomGoal();
-            brain.PushGoal(_pushedGoal);
-            if (Diag.IsChannelEnabled("effect"))
-                Diag.Record("effect", "BloomCompelled", target, null,
-                    new { blueprintName = target.BlueprintName,
-                          hp = target.GetStatValue("Hitpoints", -1) });
+            // SM-F — the player path. TurnManager never fires TakeTurn
+            // on players and BrainPart skips them, so the goal system
+            // cannot drive this bearer. Instead the effect itself walks
+            // them one step every BLOOM_STRIDE turns, with the goal's
+            // own priorities minus the attack: away from company, else
+            // toward open ground. The message speaks only when the step
+            // actually landed (R9d — text backed by mechanics).
+            TurnsWorn++;
+            if (TurnsWorn % BLOOM_STRIDE != 0) return;
+            var zone = SettlementRuntime.ActiveZone;
+            if (zone == null) return;
+            var pos = zone.GetEntityPosition(target);
+            if (pos.x < 0) return;
+
+            bool walked = false;
+            var near = BloomGoal.NearestCreature(zone, target, pos.x, pos.y,
+                BloomGoal.NoticeRadius);
+            if (near != null)
+            {
+                var theirs = zone.GetEntityPosition(near);
+                walked = AIHelpers.TryStepAway(target, zone, pos.x, pos.y,
+                    theirs.x, theirs.y);
+            }
+            else
+            {
+                var open = AIHelpers.FindNearestCellWhere(zone, pos.x, pos.y,
+                    c => BloomGoal.IsOpenGround(zone, c), maxRadius: 12);
+                if (open.HasValue && (open.Value.x != pos.x || open.Value.y != pos.y))
+                    walked = AIHelpers.TryStepToward(target, zone, pos.x, pos.y,
+                        open.Value.x, open.Value.y);
+            }
+
+            if (walked)
+            {
+                MessageLog.Add("Your legs decide.");
+                if (Diag.IsChannelEnabled("effect"))
+                    Diag.Record("effect", "BloomCompelled", target, null,
+                        new { blueprintName = target.BlueprintName,
+                              stride = true, turnsWorn = TurnsWorn });
+            }
         }
 
         public override void OnRemove(Entity target)

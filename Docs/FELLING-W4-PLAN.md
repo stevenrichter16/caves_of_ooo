@@ -565,3 +565,26 @@ in W4.4 is the first place this bites.
 - **SM-F — player compelled step.** BLOOM_STRIDE forced step at OnTurnStart for the player bearer + message (R9d-backed). Tests: stride fires, normal turns unaffected, counter: uncursed player never moved.
 
 Per-SM: RED→GREEN→counter→adversarial→self-review→living-doc→commit (§2.3 template). Close-out review at W4.7 per plan.
+
+### W4.4 — The Bloom (SHIPPED — pending close-out review)
+
+Six sub-milestones, each RED→GREEN→committed: SM-A af85ccc0 (effect +
+goal: attacks-own-ally with explicit pre-swing provoke — the sweep's
+auto-retaliation claim was falsified by the RED test; R4 decided as
+omit-TYPE_NEGATIVE), SM-B 86528d5d (bloom-spores gas beside the
+pinned fungal arc, player path pinned), SM-C fedb6105 (eruption on
+CAUSE_OWNER_DIED; cure does not open the body), SM-D bb7287bb (the
+front: pure-function membership, R8 structural POI exclusion + shrine
+stand-down, all-8-open safe solid siting, BloomingFruitingBody burn
+rhyme — two gates fired during RED and were honored: terrain-render
+coverage + RouteDamage-not-ApplyDamage), SM-E aa6ff976 (the ritual:
+IfHasEffect predicate mirroring the CureEffect matcher, five keeper
+branches surgically spliced, and the new voice lint caught a REAL
+pre-existing 'dead' in Sopp_1/Sagas — reworded), SM-F (player stride:
+the legs decide every 5th turn, message only when the step lands,
+stride clock rides the save).
+
+Suite: 6999 → 7033 (+34). Deferred to close-out review: BloomCompelled
+push payload gains stride=false (Q2 schema consistency); branch-3
+(alone → open ground) untested for both goal and stride; live look
+pass + PlayMode honesty bound per house pattern.

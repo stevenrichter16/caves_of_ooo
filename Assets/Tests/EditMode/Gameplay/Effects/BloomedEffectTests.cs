@@ -290,6 +290,84 @@ namespace CavesOfOoo.Tests
         }
 
         // ════════════════════════════════════════════════════════════
+        //   SM-F — the player's compulsion: sometimes the legs decide
+        // ════════════════════════════════════════════════════════════
+
+        private static Entity MakePlayer(Zone zone, int x, int y)
+        {
+            // The player path: Player tag, no BrainPart — TurnManager
+            // never fires TakeTurn on players, so the goal system
+            // cannot drive them (sweep row 11). The effect walks them
+            // directly, one step every BLOOM_STRIDE turns.
+            var e = MakeCreature(null);
+            e.Tags["Player"] = "";
+            zone.AddEntity(e, x, y);
+            return e;
+        }
+
+        private static void PlayerCycle(Entity e)
+        {
+            var begin = GameEvent.New("BeginTakeAction");
+            e.FireEventAndRelease(begin);
+        }
+
+        [Test]
+        public void PlayerBearer_IsWalked_OnTheStride()
+        {
+            var zone = new Zone("BloomStride");
+            SettlementRuntime.ActiveZone = zone;
+            var player = MakePlayer(zone, 10, 10);
+            var other = MakeCreature("GroveWardens");
+            zone.AddEntity(other, 13, 10);
+
+            player.ApplyEffect(new BloomedEffect());
+
+            for (int i = 0; i < BloomedEffect.BLOOM_STRIDE - 1; i++)
+                PlayerCycle(player);
+            var before = zone.GetEntityPosition(player);
+            Assert.AreEqual((10, 10), (before.x, before.y),
+                "between strides, the legs are still yours");
+
+            PlayerCycle(player);
+            var after = zone.GetEntityPosition(player);
+            int dist = Math.Max(Math.Abs(after.x - 13), Math.Abs(after.y - 10));
+            Assert.Greater(dist, 3,
+                "on the stride, the Bloom walks you away from the others");
+        }
+
+        [Test]
+        public void UncompelledPlayer_IsNeverWalked()
+        {
+            // Counter-check: no Bloom, no stride.
+            var zone = new Zone("BloomStrideCounter");
+            SettlementRuntime.ActiveZone = zone;
+            var player = MakePlayer(zone, 10, 10);
+            var other = MakeCreature("GroveWardens");
+            zone.AddEntity(other, 13, 10);
+
+            for (int i = 0; i < 12; i++) PlayerCycle(player);
+
+            var pos = zone.GetEntityPosition(player);
+            Assert.AreEqual((10, 10), (pos.x, pos.y));
+        }
+
+        [Test]
+        public void TheStrideClock_SurvivesSaveLoad()
+        {
+            var host = MakeCreature(null);
+            host.Tags["Player"] = "";
+            var fx = new BloomedEffect();
+            host.ApplyEffect(fx);
+            fx.TurnsWorn = 3;
+
+            var loaded = PartRoundTripHelper.RoundTripEntity(host);
+
+            Assert.AreEqual(3,
+                loaded.GetPart<StatusEffectsPart>().GetEffect<BloomedEffect>().TurnsWorn,
+                "the stride phase rides the save — no free reset by reloading");
+        }
+
+        // ════════════════════════════════════════════════════════════
         //   Persistence + scars
         // ════════════════════════════════════════════════════════════
 
