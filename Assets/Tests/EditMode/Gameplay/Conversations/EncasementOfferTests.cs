@@ -81,6 +81,15 @@ namespace CavesOfOoo.Tests
                 "IfStatBelowPercent", null, w, "NoSuchStat:35"), "unknown stat");
             Assert.IsFalse(ConversationPredicates.Evaluate(
                 "IfStatBelowPercent", null, null, "Hitpoints:35"), "null listener");
+
+            // max<=0 was claimed fail-closed but never constructed.
+            var zeroMax = MakeWalker(hp: 0, maxHp: 0);
+            Assert.IsFalse(ConversationPredicates.Evaluate(
+                "IfStatBelowPercent", null, zeroMax, "Hitpoints:35"),
+                "a body with no maximum is not 'badly hurt' — it is a bug");
+            var negMax = MakeWalker(hp: 1, maxHp: -5);
+            Assert.IsFalse(ConversationPredicates.Evaluate(
+                "IfStatBelowPercent", null, negMax, "Hitpoints:35"));
         }
 
         // ════════════════════════════════════════════════════════════
@@ -149,6 +158,39 @@ namespace CavesOfOoo.Tests
                 Assert.IsNotNull(declined, $"{id}: the Choir answers");
                 StringAssert.Contains("not", declined.Text.ToLowerInvariant(),
                     $"{id}: and the answer is a gentle no");
+            }
+        }
+
+        [Test]
+        public void TheOffer_CanBeReturnedTo_AsThePromisesSay()
+        {
+            // Every decline node invites a return — "Come back when the
+            // seam shows, and ask again", "The offer keeps", "The offer
+            // stands as long as we do". But the only entrance was gated
+            // IfNotFact EncasementOffered, the fact is never cleared,
+            // and no player-initiated ask existed: five keepers making
+            // promises no mechanic backs (R9d). A returning walker who
+            // is badly hurt can raise it themselves.
+            foreach (var id in Keepers)
+            {
+                var conv = ConversationLoader.Get(id);
+                ChoiceData ret = null;
+                foreach (var c in conv.GetStartNode().Choices)
+                {
+                    if (c.Predicates == null) continue;
+                    bool needsLatch = false, needsHurt = false;
+                    foreach (var p in c.Predicates)
+                    {
+                        if (p.Key == "IfFact" && p.Value.StartsWith("EncasementOffered"))
+                            needsLatch = true;
+                        if (p.Key == "IfStatBelowPercent") needsHurt = true;
+                    }
+                    if (needsLatch && needsHurt) ret = c;
+                }
+                Assert.IsNotNull(ret,
+                    id + ": a walker who was offered the wall can raise it again");
+                Assert.IsNotNull(conv.GetNode(ret.Target),
+                    id + ": and the keeper answers");
             }
         }
 

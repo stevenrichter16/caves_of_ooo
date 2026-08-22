@@ -37,7 +37,7 @@
           "Actions": [
             { "Key": "TakeItem", "Value": "PruningWrit" },
             { "Key": "SetFact", "Value": "pruning_writ_posted:1" },
-            { "Key": "ChangeFactionFeeling", "Value": "RotChoir:Player:-15" }
+            { "Key": "ChangeFactionFeeling", "Value": "RotChoir:Player:-9" }
           ]
         },
         {
@@ -626,6 +626,14 @@
           ],
           "Actions": [{ "Key": "SetFact", "Value": "EncasementOffered:1" }]
         },
+        {
+          "Text": "I am ready for the wall.",
+          "Target": "EncasementOffer",
+          "Predicates": [
+            { "Key": "IfStatBelowPercent", "Value": "Hitpoints:35" },
+            { "Key": "IfFact", "Value": "EncasementOffered:>=:1" }
+          ]
+        },
         { "Text": "Farewell, Solm.", "Target": "End" }
           ]
         },
@@ -717,6 +725,14 @@
             { "Key": "IfNotFact", "Value": "EncasementOffered:>=:1" }
           ],
           "Actions": [{ "Key": "SetFact", "Value": "EncasementOffered:1" }]
+        },
+        {
+          "Text": "I am ready for the wall.",
+          "Target": "EncasementOffer",
+          "Predicates": [
+            { "Key": "IfStatBelowPercent", "Value": "Hitpoints:35" },
+            { "Key": "IfFact", "Value": "EncasementOffered:>=:1" }
+          ]
         },
         { "Text": "Goodbye, Vurn.", "Target": "End" }
           ]
@@ -810,6 +826,14 @@
           ],
           "Actions": [{ "Key": "SetFact", "Value": "EncasementOffered:1" }]
         },
+        {
+          "Text": "I am ready for the wall.",
+          "Target": "EncasementOffer",
+          "Predicates": [
+            { "Key": "IfStatBelowPercent", "Value": "Hitpoints:35" },
+            { "Key": "IfFact", "Value": "EncasementOffered:>=:1" }
+          ]
+        },
         { "Text": "Until next time, Amai.", "Target": "End" }
           ]
         },
@@ -902,6 +926,14 @@
           ],
           "Actions": [{ "Key": "SetFact", "Value": "EncasementOffered:1" }]
         },
+        {
+          "Text": "I am ready for the wall.",
+          "Target": "EncasementOffer",
+          "Predicates": [
+            { "Key": "IfStatBelowPercent", "Value": "Hitpoints:35" },
+            { "Key": "IfFact", "Value": "EncasementOffered:>=:1" }
+          ]
+        },
         { "Text": "Farewell.", "Target": "End" }
           ]
         },
@@ -993,6 +1025,14 @@
             { "Key": "IfNotFact", "Value": "EncasementOffered:>=:1" }
           ],
           "Actions": [{ "Key": "SetFact", "Value": "EncasementOffered:1" }]
+        },
+        {
+          "Text": "I am ready for the wall.",
+          "Target": "EncasementOffer",
+          "Predicates": [
+            { "Key": "IfStatBelowPercent", "Value": "Hitpoints:35" },
+            { "Key": "IfFact", "Value": "EncasementOffered:>=:1" }
+          ]
         },
         { "Text": "Fair winds, Ketch.", "Target": "End" }
           ]

@@ -101,19 +101,16 @@ namespace CavesOfOoo.Core
                     // the MerchantCamp pipeline reuses. Villages (all
                     // authored Places incl. Cinderhold), lairs, river
                     // chunks, and camps are excluded structurally.
-                    var grove = CreateGrovelandsPipeline(tier);
+                    // W4.5 — design gate 4: the doll's grove is built
+                    // BARE, the tenth fire's lesson applied (W2.8: "the
+                    // mystery needs emptiness" — its first look pass put
+                    // the fire beside a hermit's hut). No ambient
+                    // stamps, no containers, no Bloom-front; the grove
+                    // formation forced, the doll, and Choir-country
+                    // fauna, which belongs.
                     if (zoneID == WovenDollZoneID)
-                    {
-                        // W4.5 — design gate 4: the doll's grove gets
-                        // the forced stamp and NO Bloom-front. Authored
-                        // stillness: the scene is a doll a column has
-                        // grown around, and nothing else happening.
-                        grove.AddBuilder(new LandmarkBuilder(
-                            BiomeType.Grovelands, tier,
-                            new List<StructureStamp> { StampCatalog.WovenDoll() },
-                            priority: 3790, maxStructures: 1));
-                        return grove;
-                    }
+                        return CreateWovenDollPipeline(tier);
+                    var grove = CreateGrovelandsPipeline(tier);
                     grove.AddBuilder(new BloomFrontBuilder());
                     return grove;
                 }
@@ -346,6 +343,16 @@ namespace CavesOfOoo.Core
         /// tenth fire's gate test pins the fire.</summary>
         public const string WovenDollZoneID = "Overworld.1.6.0";
 
+        /// <summary>W4.7 close-out 🟡 — authored wilderness scenes whose
+        /// cells opportunistic POIs must never claim. PlacePOIs rolls
+        /// lairs and camps onto any cell far enough from the authored
+        /// Places, and these zones have no Place to space them from:
+        /// at seed 18 a POI took the doll's cell and design-gate-4 canon
+        /// simply did not exist in that world. Future authored zones
+        /// join this list.</summary>
+        public static readonly string[] AuthoredWildernessZoneIDs =
+            { TenthFireZoneID, WovenDollZoneID };
+
         private ZoneGenerationPipeline CreateBeatingPipeline(int tier = 1, string zoneID = null)
         {
             var pipeline = CreateSurfacePipeline(BiomeType.Beating, tier,
@@ -382,6 +389,26 @@ namespace CavesOfOoo.Core
                 priority: 3790, maxStructures: 1));
             pipeline.AddBuilder(new PopulationBuilder(
                 PopulationTable.GetBiomeTable(BiomeType.Beating, tier)));
+            return pipeline;
+        }
+
+        /// <summary>W4.5 — the doll's grove, built bare on the tenth
+        /// fire's precedent (CreateTenthFirePipeline): terrain,
+        /// connectivity, the grove formation forced, the doll stamp,
+        /// and the biome's own creatures. NO ambient landmark stamps
+        /// (a hermit's hut beside the scene is exactly what W2.8
+        /// caught), no containers, no Bloom-front.</summary>
+        private ZoneGenerationPipeline CreateWovenDollPipeline(int tier)
+        {
+            var pipeline = new ZoneGenerationPipeline();
+            pipeline.AddBuilder(new JungleBuilder { SeedChance = 50, TreeChance = 0.16f });
+            pipeline.AddBuilder(new ConnectivityBuilder());
+            pipeline.AddBuilder(new GrovelandsFormationBuilder { Override = Formation.Grove });
+            pipeline.AddBuilder(new LandmarkBuilder(BiomeType.Grovelands, tier,
+                new List<StructureStamp> { StampCatalog.WovenDoll() },
+                priority: 3790, maxStructures: 1));
+            pipeline.AddBuilder(new PopulationBuilder(
+                PopulationTable.GetBiomeTable(BiomeType.Grovelands, tier)));
             return pipeline;
         }
 
@@ -491,6 +518,15 @@ namespace CavesOfOoo.Core
                 // the pruning contract's home.
                 case "PruningPost":
                     profileStamps.Add(StampCatalog.PruningPost());
+                    break;
+                case null:
+                case "":
+                    break; // a plain village, by design
+                default:
+                    // A typo'd profile would otherwise generate a plain
+                    // village in silence (close-out 🔵).
+                    Debug.LogWarning($"[Worldgen] Unknown village profile " +
+                        $"'{poi.Profile}' on {poi.Name} — generating plain.");
                     break;
             }
             if (profileStamps.Count > 0)

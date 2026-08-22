@@ -104,6 +104,57 @@ namespace CavesOfOoo.Tests
                 "the doll's grove is not a place; it is a grove");
         }
 
+        [Test]
+        public void AuthoredZones_AreReservedFromOpportunisticPOIs()
+        {
+            // PlacePOIs rolls 3-5 lairs and 2-3 camps onto any cell far
+            // enough from the authored Places — and (1,6) qualifies
+            // (nearest Place is Cinderhold at distance 5). On those
+            // seeds the POI pipeline wins and design-gate-4 canon simply
+            // does not exist in that world. Same latent hole under the
+            // tenth fire. Sweep seeds; the authored cells stay clear.
+            foreach (var zoneId in new[] { OverworldZoneManager.WovenDollZoneID,
+                                           OverworldZoneManager.TenthFireZoneID })
+            {
+                var (x, y, _) = WorldMap.FromZoneID(zoneId);
+                for (int seed = 1; seed <= 60; seed++)
+                {
+                    var mgr = new OverworldZoneManager(_factory, worldSeed: seed);
+                    Assert.IsNull(mgr.WorldMap.GetPOI(x, y),
+                        $"seed {seed}: an opportunistic POI claimed {zoneId} — " +
+                        "the authored scene would not exist in that world");
+                }
+            }
+        }
+
+        [Test]
+        public void TheDollsGrove_IsBare()
+        {
+            // W2.8's tenth-fire lesson, verbatim: "the first look pass
+            // placed the fire in a zone that had rolled a hermit's hut
+            // ... the mystery needs emptiness." The doll rode the full
+            // busy Grovelands pipeline — ambient stamps, containers, a
+            // tier-3 population — thirty cells from the scene.
+            var pipe = new ExposingManager(_factory).Pipe(
+                OverworldZoneManager.WovenDollZoneID);
+            // Scoped to the tenth fire's actual shape: it strips
+            // ambient stamps and containers but KEEPS population — a
+            // wholly creatureless zone reads as broken, not quiet, and
+            // Choir-country fauna (moths) belongs at a grove. What
+            // dilutes a mystery is a hermit's hut or a stashed chest
+            // thirty cells away, not a moth.
+            int landmarks = 0;
+            foreach (var b in pipe.Builders)
+            {
+                Assert.IsFalse(b is ContainerBuilder,
+                    "nothing is stashed beside the doll");
+                if (b is LandmarkBuilder) landmarks++;
+            }
+            Assert.AreEqual(1, landmarks,
+                "exactly one landmark builder — the doll's own stamp, " +
+                "no ambient hut rolling in beside the mystery");
+        }
+
         private sealed class ExposingManager : OverworldZoneManager
         {
             public ExposingManager(EntityFactory f) : base(f, worldSeed: 42) { }

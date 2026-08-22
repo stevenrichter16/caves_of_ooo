@@ -149,6 +149,23 @@ namespace CavesOfOoo.Core
             return POIs[x, y];
         }
 
+        /// <summary>W4.7 — re-derive each Village POI's authored
+        /// Profile from <see cref="WorldMapAuthoring.Places"/> by name.
+        /// Called after a map is loaded: Profile is AUTHORED data, so
+        /// the authoring table is its source of truth, not the save
+        /// stream (which also heals saves written before profiles
+        /// existed).</summary>
+        public void RehydrateAuthoredProfiles()
+        {
+            foreach (var place in WorldMapAuthoring.Places)
+            {
+                var poi = GetPOI(place.X, place.Y);
+                if (poi == null || poi.Type != POIType.Village) continue;
+                if (poi.Name != place.Name) continue;
+                poi.Profile = place.Profile;
+            }
+        }
+
         public void SetPOI(int x, int y, PointOfInterest poi)
         {
             if (InBounds(x, y))

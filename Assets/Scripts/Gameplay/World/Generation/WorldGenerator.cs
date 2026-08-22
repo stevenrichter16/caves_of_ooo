@@ -74,6 +74,16 @@ namespace CavesOfOoo.Core
                 placed.Add((place.X, place.Y));
             }
 
+            // 1b. Authored wilderness scenes (the tenth fire, the
+            // doll): reserved before any opportunistic roll, so a lair
+            // or camp can never take the cell and delete the scene from
+            // that world. W4.7 close-out.
+            foreach (var authored in OverworldZoneManager.AuthoredWildernessZoneIDs)
+            {
+                var (ax, ay, _) = WorldMap.FromZoneID(authored);
+                placed.Add((ax, ay));
+            }
+
             // 2. Lairs. Not in the Overwrit: nobody dens in a scraped
             // region, and "no ruins where ruins should be" is the whole
             // horror of the place.

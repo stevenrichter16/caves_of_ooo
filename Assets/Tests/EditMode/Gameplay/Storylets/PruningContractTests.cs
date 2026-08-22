@@ -1,7 +1,9 @@
 using System.IO;
+using System.Text.RegularExpressions;
 using NUnit.Framework;
 using CavesOfOoo.Core;
 using CavesOfOoo.Data;
+using CavesOfOoo.Storylets;
 using Application = UnityEngine.Application;
 
 namespace CavesOfOoo.Tests
@@ -100,8 +102,9 @@ namespace CavesOfOoo.Tests
         {
             // R6: accepting angers a god's landscape; refusing angers a
             // shipping company. Asymmetric ON PURPOSE.
-            StringAssert.Contains("\"ChangeFactionFeeling\", \"Value\": \"RotChoir:Player:-15\"",
-                _rotchoir, "posting costs the grove's regard, at the posting");
+            StringAssert.Contains("\"ChangeFactionFeeling\", \"Value\": \"RotChoir:Player:-9\"",
+                _rotchoir, "posting costs the grove's regard, at the posting — " +
+                "heaviest delta in the game, and still short of a war");
             StringAssert.Contains("\"ChangeFactionFeeling\", \"Value\": \"SaccharineConcord:Player:10\"",
                 _friendly, "the Concord pays standing at the report");
             StringAssert.Contains("\"GiveDrams\", \"Value\": \"20\"", _friendly,
@@ -123,6 +126,103 @@ namespace CavesOfOoo.Tests
         // ════════════════════════════════════════════════════════════
         //   Voice
         // ════════════════════════════════════════════════════════════
+
+        // ════════════════════════════════════════════════════════════
+        //   W4.7 close-out — consequences, not just numbers
+        // ════════════════════════════════════════════════════════════
+
+        [Test]
+        public void PostingDoesNotEndTheContract_TheFactorPaysIt()
+        {
+            // The quest's only objective triggered on the POSTING fact,
+            // so the storylet tick auto-advanced past the last stage and
+            // auto-completed the quest in the grove — leaving the
+            // factor's [Report] choice (gated IfQuestActive) unreachable
+            // and the 20 drams unpayable. The guard-stage pattern
+            // (BmoCartridge) parks the quest until the factor closes it.
+            ConversationActions.Reset();
+            ConversationPredicates.Reset();
+            StoryletRegistry.Reset();
+            StoryletPart.Current = null;
+            NarrativeStatePart.Current = new NarrativeStatePart();
+            try
+            {
+                StoryletRegistry.LoadFromJson(File.ReadAllText(Path.Combine(
+                    Application.dataPath,
+                    "Resources/Content/Data/Storylets/PruningContract.json")));
+                var sp = new StoryletPart();
+                sp.StartQuest(new QuestState
+                { QuestId = "PruningContract", CurrentStageIndex = 0 });
+
+                NarrativeStatePart.Current.SetFact("pruning_writ_posted", 1);
+                sp.OnTickEnd(NarrativeStatePart.Current);
+                sp.OnTickEnd(NarrativeStatePart.Current);
+
+                Assert.IsTrue(sp.IsQuestActive("PruningContract"),
+                    "posting is not payment — the contract stays open " +
+                    "until the factor counts it at the window");
+            }
+            finally
+            {
+                StoryletPart.Current = null;
+                NarrativeStatePart.Current = null;
+                StoryletRegistry.Reset();
+            }
+        }
+
+        [Test]
+        public void PostingTheWrit_DoesNotStartAWarWithTheChoir()
+        {
+            // The R6 pin held the NUMBER; this holds the CONSEQUENCE.
+            // RotChoir starts at 0 and HOSTILE_THRESHOLD is -10, so a
+            // -15 posting flipped the whole Choir hostile the moment the
+            // window closed — locking the five keepers' conversations
+            // and with them the Bloom's ONLY cure (W4.4 R4), the
+            // encasement offer, and every RotChoir rep path. The grove
+            // may hold a grudge; it may not be a war.
+            var m = Regex.Match(_rotchoir,
+                "\"ChangeFactionFeeling\", \"Value\": \"RotChoir:Player:(-?\\d+)\"");
+            Assert.IsTrue(m.Success, "the posting prices itself");
+            int delta = int.Parse(m.Groups[1].Value);
+            Assert.Less(delta, 0, "and the price is real");
+            Assert.Greater(delta, FactionManager.HOSTILE_THRESHOLD,
+                "but a walker who posts one notice can still be spoken to " +
+                "— the cure must not be deleted by a side quest");
+        }
+
+        [Test]
+        public void RefusingAloud_IsPricedOnce_NotEveryTime()
+        {
+            // "Is there work?" is gated IfQuestNotStarted, which a
+            // refusal leaves TRUE — so an unlatched -5 re-fired on every
+            // re-ask: two firm noes put the player at war with a
+            // shipping company. The no is priced once, like the
+            // encasement offer's latch.
+            StringAssert.Contains("\"SetFact\", \"Value\": \"pruning_refusal_noted:1\"",
+                _friendly, "the refusal is written in the margin");
+            StringAssert.Contains("\"IfNotFact\", \"Value\": \"pruning_refusal_noted:>=:1\"",
+                _friendly, "and the margin is checked before it is priced again");
+        }
+
+        [Test]
+        public void TheCinderholdBoard_CarriesItsOwnHistory()
+        {
+            // The post reused LastCounterSign, whose text asserts the
+            // Last Counter's twice-pulled-back history ("the same words
+            // twice more") — a past Cinderhold does not have. Text must
+            // be backed by the world (R9d).
+            var mgr = new OverworldZoneManager(_factory, worldSeed: 42);
+            var zone = mgr.GetZone("Overworld.6.6.0");
+            int lastCounter = 0, own = 0;
+            foreach (var e in zone.GetAllEntities())
+            {
+                if (e.BlueprintName == "LastCounterSign") lastCounter++;
+                if (e.BlueprintName == "CinderholdNoticeBoard") own++;
+            }
+            Assert.AreEqual(0, lastCounter,
+                "Cinderhold does not borrow another post's history");
+            Assert.AreEqual(1, own, "it has its own board");
+        }
 
         [Test]
         public void TheConcord_NeverSaysFree()

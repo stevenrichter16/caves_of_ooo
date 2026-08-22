@@ -704,3 +704,115 @@ cross-file fact lint threads all three files; the factor never says
 
 Tests: 7046 → 7054 (+8). Green (the documented flaky contagion test
 excepted in one run; green on the prior identical-code run).
+
+### W4.7 — Close-out (COMPLETE)
+
+**Review shape.** A three-lens workflow (player-flow hypotheses /
+design-contract drift / wiring-taxonomy) over the W4.5+W4.6 surfaces.
+Its find phase completed; all twelve verify agents died on a monthly
+spend limit, so the findings arrived **unadjudicated** — recovered
+from the run journal and verified by hand at source instead. That
+hand-verification is itself part of the record: every finding below
+was confirmed by reading the shipped code, not accepted on an agent's
+say-so, and one (the doll-eating POI) was confirmed **empirically**
+by the test failing at seed 18.
+
+**🔴 The pruning contract auto-completed in the grove.** The quest's
+only objective triggered on `pruning_writ_posted`, so the first
+storylet tick after posting advanced past the last stage and
+auto-completed it — while the player stood in the grove, unpaid, with
+the factor's `[Report]` choice (gated `IfQuestActive`) now permanently
+unreachable: 20 drams and Concord +10 unpayable, the tradeoff's
+Concord half deleted. Fixed with BmoCartridge's guard-stage pattern.
+**The subtle half:** a guard stage must have an EMPTY objectives list.
+The first fix gave it an *optional* objective with empty triggers,
+which `CheckAll(empty)` passes vacuously — it would have finished
+itself and re-completed the quest. Only the empty list reaches the
+stage-trigger path (StoryletPart.cs:538-560); BmoCartridge's shape was
+load-bearing, not incidental.
+
+**🔴 Profiles did not survive a load.** W4.6a moved village identity
+from Faction/Name (both serialized) to Profile — which
+`SavePointOfInterest` never wrote. Any profiled village not yet
+generated when the player saved came back plain: Cinderhold with no
+post, Marrowstye with no intake window, the Drowned Ledger with no
+camp. Fixed by re-deriving from the authoring table on load
+(`WorldMap.RehydrateAuthoredProfiles`) rather than bumping the save
+format — the table is the source of truth for authored data, and this
+also heals saves already written.
+
+**🟡 Posting the writ started a war.** `RotChoir:Player:-15` from a
+standing 0 crosses `HOSTILE_THRESHOLD` (−10) — the only delta in the
+shipped game that does. Consequence: the tendril that just said "Go
+and be paid" attacks, every keeper refuses to speak, and with them
+**the Bloom's only cure** (W4.4 R4: no tonic touches it), the
+encasement offer, and every RotChoir rep path — a side quest silently
+deleting a headline feature. Retuned to −9: still the heaviest delta
+in the game, still hostile-adjacent, still "the soil files slowly" —
+but the Choir keeps its promises. **The lesson: R6 pinned the NUMBER
+and the number was fine; nothing pinned the CONSEQUENCE.** The new
+pin asserts the delta stays above the hostility threshold, so a future
+balance pass cannot re-break the cure by touching one integer.
+
+**🟡 Refusing twice made an enemy of the Concord.** The refusal's −5
+was unlatched and "Is there work?" stays offered (refusal starts
+nothing), so two firm noes = −10 = hostile: every Concord NPC stops
+speaking and the contract can never be accepted. Now priced once
+(`pruning_refusal_noted`), with a second refusal routed to its own
+line — which also fixes the register contradiction of a factor who
+said "the paper will find other feet" and then re-offered it.
+
+**🟡 A rolled POI could delete the doll.** `PlacePOIs` rolls lairs and
+camps onto any cell spaced from the authored Places; (1,6) has none
+near it, so at some seeds the POI pipeline won and design-gate-4 canon
+did not exist in that world — **confirmed at seed 18**. Authored
+wilderness cells are now reserved before any opportunistic roll
+(`AuthoredWildernessZoneIDs`), which closes the same latent hole under
+the tenth fire, and the pin sweeps 60 seeds.
+
+**🟡 The doll's grove was not still.** It rode the full Grovelands
+pipeline — ambient stamps, containers, the lot — the exact failure
+W2.8 documented for the tenth fire ("the mystery needs emptiness"
+after a look pass put a hermit's hut beside it). Now a dedicated bare
+pipeline mirroring `CreateTenthFirePipeline`. Scope note: that
+precedent KEEPS population, so the doll's grove keeps its moths — a
+creatureless zone reads as broken, not quiet; what dilutes a mystery
+is a hut or a stashed chest, not a moth.
+
+**🟡 Cinderhold borrowed another post's history.** `PruningPost`
+reused `LastCounterSign`, whose text asserts the Last Counter's
+twice-pulled-back past ("the same words twice more") — backed at the
+Last Counter by W2.6's two abandoned counters, backed at Cinderhold by
+nothing. Its own board now speaks about the surveyed line the writ and
+factor actually establish.
+
+**🟡 Five keepers promised a door that did not exist.** Every decline
+node invites return ("Come back when the seam shows, and ask again",
+"The offer stands as long as we do") while the only entrance was
+gated `IfNotFact EncasementOffered` and the fact is never cleared. A
+player-initiated return ("I am ready for the wall.") now exists,
+gated on the latch plus the same badly-hurt read — text and mechanics
+agree until W5+ ships the real thing (R9d).
+
+**Also folded in:** the profile switch names an unknown profile
+instead of generating plain in silence; `max<=0` fail-closed is now
+actually constructed and pinned; the `[Report]` objective text no
+longer promises the report inside the posting stage.
+
+**Design-gate sweep:** gates 2/10/12 register-clean across all new
+W4.4–W4.6 content (scripted scan for design-register leakage,
+"dead" in Choir voice, "free" in Concord voice). The Choir "dead"
+lint now covers all six conversations in RotChoir.json, not the five
+keepers only.
+
+**Honesty bounds.** EditMode-only: 7062 tests green. No PlayMode
+sweep and no ASCII look pass ran this phase (the GUI editor cycle is
+wedged; the headless loop is the whole verification path). Unverified
+by construction: how the doll's grove and a Bloom-front READ on
+screen, the Bloom's felt pacing, and whether −9 lands right in play —
+all queued for the next live session. The 60-seed POI sweep is
+bounded by 60 seeds, not proof for all of them.
+
+**W4 exit:** W4.1 formations · W4.2 grove law · W4.3 bestiary ·
+W4.4 the Bloom · W4.5 the doll + the offer · W4.6 the R1 promotion +
+the pruning contract · W4.7 this close-out. 6965 → 7062 tests.

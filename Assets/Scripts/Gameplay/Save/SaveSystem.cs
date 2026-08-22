@@ -1054,6 +1054,13 @@ namespace CavesOfOoo.Core
             for (int x = 0; x < WorldMap.Width; x++)
                 for (int y = 0; y < WorldMap.Height; y++)
                     map.Visited[x, y] = reader.ReadBool();
+            // W4.7 close-out 🔴 — Place.Profile is AUTHORED data that the
+            // POI stream never carried, so a loaded world generated
+            // profiled villages PLAIN (Cinderhold with no post, the
+            // Drowned Ledger with no camp). Re-derive from the authoring
+            // table rather than bumping the format: the table is the
+            // source of truth, and this also heals saves already written.
+            map.RehydrateAuthoredProfiles();
             return map;
         }
 

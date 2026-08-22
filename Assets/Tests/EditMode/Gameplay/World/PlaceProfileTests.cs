@@ -170,6 +170,36 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void Profiles_SurviveALoadedWorld()
+        {
+            // W4.6a moved village identity from Faction/Name (both
+            // serialized) to Profile — which SavePointOfInterest never
+            // wrote. Any profiled village not yet generated at save time
+            // came back plain: Cinderhold with no post, Marrowstye with
+            // no intake window, the Drowned Ledger with no camp. The
+            // profile is AUTHORED data, so a loaded map re-derives it
+            // from the authoring table rather than trusting the stream —
+            // which also heals saves written before this fix.
+            var mgr = new OverworldZoneManager(_factory, worldSeed: 42);
+            var map = mgr.WorldMap;
+
+            // Simulate the load path's loss, then the rehydration.
+            foreach (var place in WorldMapAuthoring.Places)
+            {
+                var poi = map.GetPOI(place.X, place.Y);
+                Assert.IsNotNull(poi, place.Name + " is on the map");
+                map.SetPOI(place.X, place.Y, new PointOfInterest(
+                    poi.Type, poi.Name, poi.Faction, poi.Tier, poi.BossBlueprint));
+            }
+            map.RehydrateAuthoredProfiles();
+
+            foreach (var place in WorldMapAuthoring.Places)
+                Assert.AreEqual(place.Profile,
+                    map.GetPOI(place.X, place.Y).Profile,
+                    place.Name + " keeps its profile across a load");
+        }
+
+        [Test]
         public void TheProfileTable_IsData_AndComplete()
         {
             // W4.6 — the W2 R1 rule, fired: profiles are a Place FIELD

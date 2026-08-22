@@ -1737,8 +1737,19 @@
             {
               "Text": "No -- and I say it aloud.",
               "Target": "RefusedAloud",
+              "Predicates": [
+                { "Key": "IfNotFact", "Value": "pruning_refusal_noted:>=:1" }
+              ],
               "Actions": [
-                { "Key": "ChangeFactionFeeling", "Value": "SaccharineConcord:Player:-5" }
+                { "Key": "ChangeFactionFeeling", "Value": "SaccharineConcord:Player:-5" },
+                { "Key": "SetFact", "Value": "pruning_refusal_noted:1" }
+              ]
+            },
+            {
+              "Text": "Still no.",
+              "Target": "RefusedAlready",
+              "Predicates": [
+                { "Key": "IfFact", "Value": "pruning_refusal_noted:>=:1" }
               ]
             },
             { "Text": "Not yet.", "Target": "Start" }
@@ -1749,6 +1760,14 @@
           "Text": "Entered. Post it where the grove can read it -- the tendrils read everything, which is half our difficulty. Keep the seal whole until it is up. The fee is counted when the posting is confirmed.",
           "Choices": [
             { "Text": "To the groves, then.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "RefusedAlready",
+          "Text": "The margin already holds your no; I do not charge a man twice for the same sentence. The paper is still here, and so are you. Take it or do not.",
+          "Choices": [
+            { "Text": "Back.", "Target": "Start" },
+            { "Text": "Farewell.", "Target": "End" }
           ]
         },
         {

@@ -840,7 +840,7 @@ namespace CavesOfOoo.Core
                 { 'c', "chest:CampGoodsT1" },
                 { 'f', "Campfire" },
                 { '+', "" },
-                { 's', "LastCounterSign" },
+                { 's', "CinderholdNoticeBoard" },
             },
         };
 

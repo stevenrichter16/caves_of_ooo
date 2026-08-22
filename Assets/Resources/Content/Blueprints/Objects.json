@@ -28468,6 +28468,38 @@
       "Tags": [ { "Key": "Solid", "Value": "" }, { "Key": "Furniture", "Value": "" } ]
     },
     {
+      "Name": "CinderholdNoticeBoard",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "Concord notice-board" },
+            { "Key": "RenderString", "Value": "I" },
+            { "Key": "ColorString", "Value": "&W" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            { "Key": "Solid", "Value": "true" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A planed board in the Concord's neat hand: SURVEYED LINE AS POSTED. PRUNING BY THE DATE BELOW. The date has been scraped off and rewritten in a fresher ink, and the line beneath it is drawn straighter than the ground it describes." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        { "Key": "Solid", "Value": "" },
+        { "Key": "Furniture", "Value": "" }
+      ]
+    },
+    {
       "Name": "SaltMaster",
       "Inherits": "Creature",
       "Parts": [
