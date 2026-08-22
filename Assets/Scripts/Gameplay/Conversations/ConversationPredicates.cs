@@ -106,6 +106,32 @@ namespace CavesOfOoo.Core
             Register("IfHaveIntProperty", (speaker, listener, arg) =>
                 listener != null && listener.IntProperties.ContainsKey(arg));
 
+            // W4.4 SM-E — IfHasEffect(effectName): the listener carries
+            // the named status effect. The name convention mirrors the
+            // CureEffect ACTION's matcher exactly (type name with or
+            // without the "Effect" suffix, or DisplayName, all
+            // case-insensitive) so a gate and its verb can never
+            // disagree about what "Bloomed" means. First shipped user:
+            // the Choir ritual branch, visible only to the Bloomed.
+            Register("IfHasEffect", (speaker, listener, arg) =>
+            {
+                if (listener == null || string.IsNullOrWhiteSpace(arg)) return false;
+                var effects = listener.GetPart<StatusEffectsPart>();
+                if (effects == null) return false;
+                string want = arg.Trim();
+                var all = effects.GetAllEffects();
+                for (int i = 0; i < all.Count; i++)
+                {
+                    var eff = all[i];
+                    string tn = eff.GetType().Name;
+                    if (tn.Equals(want, System.StringComparison.OrdinalIgnoreCase)) return true;
+                    if (tn.Equals(want + "Effect", System.StringComparison.OrdinalIgnoreCase)) return true;
+                    if (eff.DisplayName != null
+                        && eff.DisplayName.Equals(want, System.StringComparison.OrdinalIgnoreCase)) return true;
+                }
+                return false;
+            });
+
             // Tag on speaker
             Register("IfSpeakerHaveTag", (speaker, listener, arg) =>
                 speaker != null && speaker.HasTag(arg));

@@ -586,7 +586,12 @@
             { "Text": "How did you join the Choir?", "Target": "Joining" },
             { "Text": "What did you do before?", "Target": "Before" },
             { "Text": "What does the Choir teach you?", "Target": "Teaching" },
-            { "Text": "Farewell, Solm.", "Target": "End" }
+            {
+          "Text": "Something grows through me. It pulls me toward the open ground.",
+          "Target": "BloomAsk",
+          "Predicates": [{ "Key": "IfHasEffect", "Value": "Bloomed" }]
+        },
+        { "Text": "Farewell, Solm.", "Target": "End" }
           ]
         },
         {
@@ -617,8 +622,28 @@
           "Choices": [
             { "Text": "Back.", "Target": "Start" }
           ]
-        }
-      ]
+        },
+      {
+        "ID": "BloomAsk",
+        "Text": "So it is. The Bloom is early in you still — a first syllable. Sit. We will ask it to wait for a better verse.",
+        "Choices": [
+          {
+            "Text": "Take it back.",
+            "Target": "BloomTaken",
+            "Actions": [
+              { "Key": "CureEffect", "Value": "Bloomed" },
+              { "Key": "AddMessage", "Value": "The Choir hums, low. The pull toward the open ground loosens, and is gone." }
+            ]
+          },
+          { "Text": "Not yet.", "Target": "Start" }
+        ]
+      },
+      {
+        "ID": "BloomTaken",
+        "Text": "It is done. The Bloom is patient; it does not begrudge. Walk slow.",
+        "Choices": [{ "Text": "Back.", "Target": "Start" }]
+      }
+    ]
     },
     {
       "ID": "Grib_1",
@@ -630,7 +655,12 @@
             { "Text": "You sound bleak.", "Target": "Bleak" },
             { "Text": "Why did you let the Choir take you?", "Target": "Surrender" },
             { "Text": "Do you hate the living?", "Target": "Hate" },
-            { "Text": "Goodbye, Vurn.", "Target": "End" }
+            {
+          "Text": "Something grows through me. It pulls me toward the open ground.",
+          "Target": "BloomAsk",
+          "Predicates": [{ "Key": "IfHasEffect", "Value": "Bloomed" }]
+        },
+        { "Text": "Goodbye, Vurn.", "Target": "End" }
           ]
         },
         {
@@ -661,8 +691,28 @@
           "Choices": [
             { "Text": "Back.", "Target": "Start" }
           ]
-        }
-      ]
+        },
+      {
+        "ID": "BloomAsk",
+        "Text": "Early, yes. It has learned your name but not your sentences. Be still a moment. We will speak over you.",
+        "Choices": [
+          {
+            "Text": "Take it back.",
+            "Target": "BloomTaken",
+            "Actions": [
+              { "Key": "CureEffect", "Value": "Bloomed" },
+              { "Key": "AddMessage", "Value": "The Choir hums, low. The pull toward the open ground loosens, and is gone." }
+            ]
+          },
+          { "Text": "Not yet.", "Target": "Start" }
+        ]
+      },
+      {
+        "ID": "BloomTaken",
+        "Text": "There. The ground releases its claim — for now, and without grudge.",
+        "Choices": [{ "Text": "Back.", "Target": "Start" }]
+      }
+    ]
     },
     {
       "ID": "Nam_1",
@@ -674,7 +724,12 @@
             { "Text": "Why are you so welcoming?", "Target": "Welcoming" },
             { "Text": "Tell me about your people.", "Target": "People" },
             { "Text": "What does the Choir feel like, from inside?", "Target": "Inside" },
-            { "Text": "Until next time, Amai.", "Target": "End" }
+            {
+          "Text": "Something grows through me. It pulls me toward the open ground.",
+          "Target": "BloomAsk",
+          "Predicates": [{ "Key": "IfHasEffect", "Value": "Bloomed" }]
+        },
+        { "Text": "Until next time, Amai.", "Target": "End" }
           ]
         },
         {
@@ -705,8 +760,28 @@
           "Choices": [
             { "Text": "Back.", "Target": "Start" }
           ]
-        }
-      ]
+        },
+      {
+        "ID": "BloomAsk",
+        "Text": "You carry a beginning. Beginnings can be returned. Kneel, if kneeling is easy for you — the soil will not keep what we ask it to release.",
+        "Choices": [
+          {
+            "Text": "Take it back.",
+            "Target": "BloomTaken",
+            "Actions": [
+              { "Key": "CureEffect", "Value": "Bloomed" },
+              { "Key": "AddMessage", "Value": "The Choir hums, low. The pull toward the open ground loosens, and is gone." }
+            ]
+          },
+          { "Text": "Not yet.", "Target": "Start" }
+        ]
+      },
+      {
+        "ID": "BloomTaken",
+        "Text": "Done. Carry yourself lightly; you were briefly two things, and that leaves a seam.",
+        "Choices": [{ "Text": "Back.", "Target": "Start" }]
+      }
+    ]
     },
     {
       "ID": "Sien_1",
@@ -718,7 +793,12 @@
             { "Text": "You don't say much.", "Target": "Quiet" },
             { "Text": "What did you do before?", "Target": "Before" },
             { "Text": "Tell me about the forest.", "Target": "Forest" },
-            { "Text": "Farewell.", "Target": "End" }
+            {
+          "Text": "Something grows through me. It pulls me toward the open ground.",
+          "Target": "BloomAsk",
+          "Predicates": [{ "Key": "IfHasEffect", "Value": "Bloomed" }]
+        },
+        { "Text": "Farewell.", "Target": "End" }
           ]
         },
         {
@@ -749,8 +829,28 @@
           "Choices": [
             { "Text": "Back.", "Target": "Start" }
           ]
-        }
-      ]
+        },
+      {
+        "ID": "BloomAsk",
+        "Text": "The Bloom mistakes you for ground. An honest mistake. We will correct it gently; no one is scolded here.",
+        "Choices": [
+          {
+            "Text": "Take it back.",
+            "Target": "BloomTaken",
+            "Actions": [
+              { "Key": "CureEffect", "Value": "Bloomed" },
+              { "Key": "AddMessage", "Value": "The Choir hums, low. The pull toward the open ground loosens, and is gone." }
+            ]
+          },
+          { "Text": "Not yet.", "Target": "Start" }
+        ]
+      },
+      {
+        "ID": "BloomTaken",
+        "Text": "It is out. Drink water. Stand in the sun a while, where the ground can see you are yours.",
+        "Choices": [{ "Text": "Back.", "Target": "Start" }]
+      }
+    ]
     },
     {
       "ID": "Sopp_1",
@@ -762,12 +862,17 @@
             { "Text": "You sound like the old tellings.", "Target": "Sagas" },
             { "Text": "What is the Choir's fate?", "Target": "Fate" },
             { "Text": "Do you miss the sea?", "Target": "Sea" },
-            { "Text": "Fair winds, Ketch.", "Target": "End" }
+            {
+          "Text": "Something grows through me. It pulls me toward the open ground.",
+          "Target": "BloomAsk",
+          "Predicates": [{ "Key": "IfHasEffect", "Value": "Bloomed" }]
+        },
+        { "Text": "Fair winds, Ketch.", "Target": "End" }
           ]
         },
         {
           "ID": "Sagas",
-          "Text": "We carry our shapes from before. The tellings were how my people held their dead — in the telling itself, you understand. The Choir holds its own the same way. Same craft, deeper roots. The six tired gods would not blink at us.",
+          "Text": "We carry our shapes from before. The tellings were how my people held the ones the soil had taken back — in the telling itself, you understand. The Choir holds its own the same way. Same craft, deeper roots. The six tired gods would not blink at us.",
           "Choices": [
             { "Text": "Back.", "Target": "Start" }
           ]
@@ -793,8 +898,28 @@
           "Choices": [
             { "Text": "Back.", "Target": "Start" }
           ]
-        }
-      ]
+        },
+      {
+        "ID": "BloomAsk",
+        "Text": "It is small in you. Small things listen. Hold still, and let the Choir do the asking.",
+        "Choices": [
+          {
+            "Text": "Take it back.",
+            "Target": "BloomTaken",
+            "Actions": [
+              { "Key": "CureEffect", "Value": "Bloomed" },
+              { "Key": "AddMessage", "Value": "The Choir hums, low. The pull toward the open ground loosens, and is gone." }
+            ]
+          },
+          { "Text": "Not yet.", "Target": "Start" }
+        ]
+      },
+      {
+        "ID": "BloomTaken",
+        "Text": "So. The asking was heard. Add this to your own telling, however you keep it.",
+        "Choices": [{ "Text": "Back.", "Target": "Start" }]
+      }
+    ]
     }
   ]
 }
