@@ -755,9 +755,19 @@ namespace CavesOfOoo.Core
         /// gray applied unmodulated, so an ambient below it renders
         /// visible cells darker than remembered ones.</para>
         /// </summary>
-        private static float GetDepthAmbient(int depth)
+        public static float GetDepthAmbient(int depth)
         {
-            return Zone.DefaultAmbientLevel;
+            // The authored ladder (FELLING-WORLD-DESIGN.md §6). Light is
+            // the underground's terrain: the shaft still catches day
+            // from the mouth, the floor keeps just enough to move by,
+            // and the catacombs make carried light the point. Nothing
+            // reaches zero — a room you cannot navigate at all is a bad
+            // room, so it is the CONTENT (plaque-reading, dead-zone
+            // traversal) that demands a lamp, never the floor itself.
+            if (depth <= 0) return Zone.DefaultAmbientLevel; // 0.40, the day
+            if (depth == 1) return 0.28f;  // the descent, lit from above
+            if (depth == 2) return 0.22f;  // the floor
+            return 0.12f;                  // catacombs and below
         }
 
         /// <summary>

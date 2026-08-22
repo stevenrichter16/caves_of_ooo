@@ -216,3 +216,28 @@ docstring so the two formulas cannot drift back together.
    Faithful, not weakened.
 
 Tests: 7062 → 7069 (+7). All green.
+
+### W5.2 — The dark (SHIPPED)
+
+`GetDepthAmbient` filled with the authored ladder, into the hook W0.2
+built for exactly this: day 0.40 → descent 0.28 (the shaft still
+catches light from its own mouth) → floor 0.22 → catacombs 0.12 and
+below. Nothing reaches zero — the introspection doc's UX warning
+honored, so it is the CONTENT that demands a lamp, never the floor.
+
+**R1 resolved, and it was a real bug in waiting.** Remembered cells
+drew at a hard-coded flat 0.2 grey. That was invisible while every
+zone sat at ambient 0.40 and would have become a fog-of-war inversion
+the instant the 0.12 rung shipped: ground you were LOOKING AT drawn
+darker than ground you merely remembered. The remembered grey now
+derives from the zone's own ambient (half of it, capped at the
+historical 0.2), so memory is dimmer than sight at every rung — pinned
+across the whole ladder — and the surface look is bit-identical.
+Cached per zone rather than recomputed per remembered cell, per the
+Wx review's render standard.
+
+Honesty bound: whether 0.12 *feels* right is a look-pass question this
+phase cannot answer headless. The invariants are pinned; the feel is
+not.
+
+Tests: 7069 → 7074 (+5). All green.

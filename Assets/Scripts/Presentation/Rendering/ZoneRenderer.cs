@@ -1009,6 +1009,39 @@ namespace CavesOfOoo.Rendering
 
         private static readonly Color RememberedColor = new Color(0.2f, 0.2f, 0.2f);
 
+        /// <summary>W5.2 / R1 — the remembered-cell grey, derived from
+        /// the zone's own ambient so memory is ALWAYS dimmer than sight.
+        ///
+        /// <para>The flat 0.2 this replaces was fine while every zone
+        /// sat at ambient 0.40, and became a bug the moment the authored
+        /// ladder went below it: ground you were LOOKING AT would have
+        /// drawn darker than ground you merely remembered, which reads
+        /// as the fog-of-war running backwards. Half of ambient, capped
+        /// at the historical 0.2 so nothing above ground shifts.</para></summary>
+        public static float RememberedBrightnessFor(float ambient)
+        {
+            float v = ambient * 0.5f;
+            return v < 0.2f ? v : 0.2f;
+        }
+
+        // Memo: recomputing a Color per remembered cell per redraw would
+        // be per-cell work in the render path for a value that changes
+        // once per zone (the Wx review's standard).
+        private float _rememberedForAmbient = float.NaN;
+        private Color _rememberedCached = RememberedColor;
+
+        private Color CurrentRememberedColor()
+        {
+            float ambient = CurrentZone?.AmbientLevel ?? Zone.DefaultAmbientLevel;
+            if (ambient != _rememberedForAmbient)
+            {
+                float b = RememberedBrightnessFor(ambient);
+                _rememberedForAmbient = ambient;
+                _rememberedCached = new Color(b, b, b);
+            }
+            return _rememberedCached;
+        }
+
         private void RenderCell(int x, int y)
         {
             if (PerformanceDiagnostics.DetailedCellProfilingEnabled)
@@ -1256,7 +1289,7 @@ namespace CavesOfOoo.Rendering
                 {
                     _tilemap.SetTile(tilePos, t);
                     _tilemap.SetTileFlags(tilePos, TileFlags.None);
-                    _tilemap.SetColor(tilePos, RememberedColor);
+                    _tilemap.SetColor(tilePos, CurrentRememberedColor());
 
                     // Dim background too
                     if (_bgTilemap != null && !string.IsNullOrEmpty(rp.BackgroundColor))
