@@ -198,17 +198,24 @@ namespace CavesOfOoo.Tests
                 zone.AddEntity(vandal, 11, 10);
                 Diag.ResetAll();
 
+                PlayerReputation.Reset();
                 var d = new Damage(3);
                 d.AddAttribute("Slashing");
                 DestructionSystem.RouteDamage(patch, d, vandal, zone);
 
-                Assert.Less(PlayerReputation.Get("CatacombFolk"), 0,
-                    "harming the hearth is the one crime that matters");
+                // Verify-pass correction: the first cut charged −40,
+                // and 0 − 40 = −40 is not ≤ DISLIKED(−50) — the one
+                // act canon calls war left the village NEUTRAL and
+                // still chatting. War must be war on the attitude
+                // tier, not a ledger nudge the step function eats.
+                Assert.AreEqual(PlayerReputation.Attitude.Hated,
+                    PlayerReputation.GetAttitude("CatacombFolk"),
+                    "threatening the patch IS war — the village hates you, immediately");
                 Assert.AreEqual(1, DiagQuery.Apply(new DiagQuery.Filter
                 { Category = "faction", Kind = "HearthThreatened", Limit = 5 }).Records.Count,
                     "and the gate names itself");
             }
-            finally { SettlementRuntime.Reset(); }
+            finally { SettlementRuntime.Reset(); PlayerReputation.Reset(); }
         }
 
         [Test]
@@ -235,6 +242,7 @@ namespace CavesOfOoo.Tests
                 { Owner = vandal, Name = "Hitpoints", BaseValue = 30, Min = 0, Max = 30 };
                 zone.AddEntity(vandal, 11, 10);
 
+                PlayerReputation.Reset();
                 int before = PlayerReputation.Get("CatacombFolk");
                 for (int blow = 0; blow < 5; blow++)
                 {
@@ -243,11 +251,77 @@ namespace CavesOfOoo.Tests
                     DestructionSystem.RouteDamage(patch, d, vandal, zone);
                 }
                 int lost = before - PlayerReputation.Get("CatacombFolk");
-                Assert.AreEqual(40, lost,
+                Assert.AreEqual(-PlayerReputation.HATED_THRESHOLD, lost,
                     "five blows, one war — the village does not charge you " +
                     "again for a fire it is already fighting");
             }
-            finally { SettlementRuntime.Reset(); }
+            finally { SettlementRuntime.Reset(); PlayerReputation.Reset(); }
+        }
+
+        [Test]
+        public void TheWarIsOneWar_AcrossEveryTileOfThePatch()
+        {
+            // Verify-pass RED: the ellipse places ~51 separate
+            // HearthPatch ENTITIES, so a per-Part latch was 51
+            // independent latches — one Pyroclasm hit nine tiles in a
+            // single cast and billed nine wars. The reputation ledger
+            // is the latch now: village-scoped, shared by every tile.
+            var zone = new Zone("PatchWarTiles");
+            SettlementRuntime.ActiveZone = zone;
+            FactionManager.Initialize();
+            try
+            {
+                var tileA = _factory.CreateEntity("HearthPatch");
+                var tileB = _factory.CreateEntity("HearthPatch");
+                zone.AddEntity(tileA, 10, 10);
+                zone.AddEntity(tileB, 11, 10);
+                var vandal = new Entity { ID = "v", BlueprintName = "Vandal" };
+                vandal.Tags["Creature"] = "";
+                vandal.Tags["Player"] = "";
+                vandal.Statistics["Hitpoints"] = new Stat
+                { Owner = vandal, Name = "Hitpoints", BaseValue = 30, Min = 0, Max = 30 };
+                zone.AddEntity(vandal, 12, 10);
+
+                PlayerReputation.Reset();
+                foreach (var tile in new[] { tileA, tileB })
+                {
+                    var d = new Damage(2);
+                    d.AddAttribute("Fire");
+                    DestructionSystem.RouteDamage(tile, d, vandal, zone);
+                }
+                Assert.AreEqual(PlayerReputation.HATED_THRESHOLD,
+                    PlayerReputation.Get("CatacombFolk"),
+                    "two tiles, one village, one war — not one war per tile");
+            }
+            finally { SettlementRuntime.Reset(); PlayerReputation.Reset(); }
+        }
+
+        [Test]
+        public void AFallingRock_IsNotAnEnemyOfTheVillage()
+        {
+            // Counter-check: only a person can commit a crime. Damage
+            // with a non-player source (a collapse, a stray beast)
+            // must not start the war.
+            var zone = new Zone("PatchRock");
+            SettlementRuntime.ActiveZone = zone;
+            FactionManager.Initialize();
+            try
+            {
+                var patch = _factory.CreateEntity("HearthPatch");
+                zone.AddEntity(patch, 10, 10);
+                var beast = new Entity { ID = "b", BlueprintName = "Snapjaw" };
+                beast.Tags["Creature"] = "";
+                zone.AddEntity(beast, 11, 10);
+
+                PlayerReputation.Reset();
+                var d = new Damage(5);
+                d.AddAttribute("Crushing");
+                DestructionSystem.RouteDamage(patch, d, beast, zone);
+
+                Assert.AreEqual(0, PlayerReputation.Get("CatacombFolk"),
+                    "the village does not blame the walker for the ceiling");
+            }
+            finally { SettlementRuntime.Reset(); PlayerReputation.Reset(); }
         }
 
         // ════════════════════════════════════════════════════════════

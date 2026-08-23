@@ -165,6 +165,56 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void AHostileAcrossTheZoneDoesNotStopYou()
+        {
+            // Counter-check on the NoticeRadius gate (cold-eye fix D):
+            // the old rule vetoed travel whenever ANY hostile existed
+            // anywhere in the zone, which made the feature unusable in
+            // exactly the zones it exists for. A snapjaw 30 cells away
+            // has not noticed you; you walk. A revert to the zone-wide
+            // scan fails here.
+            var zone = Floored();
+            var you = Walker(zone, 10, 10);
+            you.Tags["Faction"] = "Villagers";
+            var beast = FarBeast(zone, 45, 10);
+
+            Assert.IsFalse(StairTravel.ShouldInterrupt(zone, you),
+                "a hostile beyond notice range is scenery, not an ambush");
+        }
+
+        [Test]
+        public void TheNoticeBoundaryIsChebyshev()
+        {
+            // Boundary pair: distance exactly NoticeRadius interrupts;
+            // one cell further does not. Chebyshev, matching how the
+            // grid actually plays (diagonals cost one).
+            var zone = Floored();
+            var you = Walker(zone, 10, 10);
+            you.Tags["Faction"] = "Villagers";
+
+            var near = FarBeast(zone, 10 + StairTravel.NoticeRadius, 10);
+            Assert.IsTrue(StairTravel.ShouldInterrupt(zone, you),
+                "at the boundary you are noticed");
+
+            zone.RemoveEntity(near);
+            var far = FarBeast(zone, 10 + StairTravel.NoticeRadius + 1, 10);
+            Assert.IsFalse(StairTravel.ShouldInterrupt(zone, you),
+                "one past the boundary you are not");
+        }
+
+        private static Entity FarBeast(Zone zone, int x, int y)
+        {
+            var beast = new Entity { ID = "beast@" + x + "," + y, BlueprintName = "Snapjaw" };
+            beast.Tags["Creature"] = "";
+            beast.Tags["Faction"] = "Snapjaws";
+            beast.Statistics["Hitpoints"] = new Stat
+            { Owner = beast, Name = "Hitpoints", BaseValue = 10, Min = 0, Max = 10 };
+            beast.AddPart(new RenderPart { DisplayName = "snapjaw" });
+            zone.AddEntity(beast, x, y);
+            return beast;
+        }
+
+        [Test]
         public void AnEmptyRoomDoesNotStopYou()
         {
             // Counter-check: the interrupt must not fire on nothing, or

@@ -273,7 +273,7 @@ namespace CavesOfOoo.Core
                         pipeline.AddBuilder(new DrownedSimaBuilder());
                         break;
                     case SinkholeArchetype.StrandedSettlement:
-                        pipeline.AddBuilder(new StrandedSettlementBuilder());
+                        pipeline.AddBuilder(new StrandedSettlementBuilder(this));
                         break;
                     case SinkholeArchetype.ChoirCathedral:
                         pipeline.AddBuilder(new ChoirCathedralBuilder());

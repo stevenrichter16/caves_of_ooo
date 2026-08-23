@@ -35,21 +35,82 @@ namespace CavesOfOoo.Core
         public const int NaveTop = 9;
         public const int NaveBottom = 15;
 
+        /// <summary>Three ways in, evenly spaced. A vault that cannot be
+        /// entered is a wall with ambitions.</summary>
+        private static bool IsDoorway(int x) =>
+            (x >= 20 && x <= 22) || (x >= 38 && x <= 40) || (x >= 56 && x <= 58);
+
         public bool BuildZone(Zone zone, EntityFactory factory, Random rng)
         {
             if (zone == null || factory == null || rng == null) return true;
 
-            // ── The vault: grown walls above and below the nave, so the
-            //    room reads as a long hall rather than a cave.
+            // ── The vault: grown walls above and below the nave, so
+            //    the room reads as a long hall rather than a cave.
+            //
+            //    Cold-eye 🔴: these were four UNBROKEN solid rows laid
+            //    after ConnectivityBuilder had already certified the
+            //    zone, which walled the nave off from everything north
+            //    and south of it — a vault with no way in. A vault has
+            //    doors; three gaps per band, and a delta-contract
+            //    repair behind them (the SinkholeMouthBuilder lesson:
+            //    only OUR damage is ours to repair).
+            //
+            //    Verify-pass correction: the first repair here asked
+            //    FloodFromWest's CROSSED question — the wrong axis. The
+            //    bands run east-west, so west→east crossing survives
+            //    through the open margins even while the nave is sealed
+            //    from the outer strips NORTH-SOUTH (e.g. terrain the
+            //    strata left in the doorway columns). The contract is
+            //    whole-zone reachability: if the zone had no walled-off
+            //    pocket before us, it has none after us. Repair is
+            //    TARGETED — remove a vault cell bordering the sealed
+            //    region — because tail-popping walks the placement
+            //    order, and the sealing cell may have been placed first.
+            var before = FloodFromWest(zone, out bool crossedBefore);
+            bool fullBefore = FullyReached(zone, before);
+            var placed = new System.Collections.Generic.List<(Entity e, int x, int y)>();
             int vault = 0;
-            for (int x = 6; x <= 73; x++)
-                foreach (int y in new[] { NaveTop - 2, NaveTop - 1,
-                                          NaveBottom + 1, NaveBottom + 2 })
+            foreach (int y in new[] { NaveTop - 2, NaveTop - 1,
+                                      NaveBottom + 1, NaveBottom + 2 })
+                for (int x = 6; x <= 73; x++)
                 {
+                    if (IsDoorway(x)) continue;
                     if (!IsOpenGround(zone, x, y)) continue;
-                    if (BuilderSpawn.TryPlaceOnce(zone, factory, "SubstrateVault", x, y) != null)
-                        vault++;
+                    var e = BuilderSpawn.TryPlaceOnce(zone, factory, "SubstrateVault", x, y);
+                    if (e != null) { vault++; placed.Add((e, x, y)); }
                 }
+
+            for (int attempt = 0; attempt < 300 && placed.Count > 0; attempt++)
+            {
+                var reached = FloodFromWest(zone, out bool crossed);
+                // Repair to the strongest invariant that held BEFORE us:
+                // whole-zone if the pipeline delivered whole-zone,
+                // west-east crossing if it only delivered that.
+                bool intact = fullBefore ? FullyReached(zone, reached)
+                                         : (!crossedBefore || crossed);
+                if (intact) break;
+
+                int victim = -1;
+                for (int i = placed.Count - 1; i >= 0; i--)
+                {
+                    var (_, px, py) = placed[i];
+                    // A vault cell bordering open-but-unreached ground
+                    // is part of the seal; removing it opens the wound.
+                    for (int dx = -1; dx <= 1 && victim < 0; dx++)
+                        for (int dy = -1; dy <= 1; dy++)
+                        {
+                            int nx = px + dx, ny = py + dy;
+                            if (nx < 1 || ny < 1 || nx >= Zone.Width - 1
+                                || ny >= Zone.Height - 1) continue;
+                            if (IsOpenGround(zone, nx, ny) && !reached[nx, ny])
+                            { victim = i; break; }
+                        }
+                    if (victim >= 0) break;
+                }
+                if (victim < 0) victim = placed.Count - 1; // no border found: fall back
+                zone.RemoveEntity(placed[victim].e);
+                placed.RemoveAt(victim);
+            }
 
             // ── The node, at the head of the nave.
             int nodeX = 68, nodeY = (NaveTop + NaveBottom) / 2;

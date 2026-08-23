@@ -210,12 +210,27 @@ namespace CavesOfOoo.Rendering
             ("EncasedElder", "encased_elder"),
         };
 
+        /// <summary>W5 cold-eye — fixtures stamped in bulk (the vault
+        /// covers up to 272 cells of a Cathedral floor) get position-
+        /// hashed variants so the field doesn't read as wallpaper.
+        /// A blueprint listed here loads <c>file</c> (variant 0) plus
+        /// <c>file_v1..file_vN-1</c>; cells pick one via
+        /// <see cref="FixtureVariantIndex"/>. Fixtures NOT listed keep
+        /// the single-tile path untouched.</summary>
+        public static readonly Dictionary<string, int> FixtureVariantCounts =
+            new Dictionary<string, int>
+        {
+            { "SubstrateVault", 4 },
+        };
+
         private readonly Dictionary<string, Tile> _namedActorTiles =
             new Dictionary<string, Tile>(80);
         private readonly Dictionary<string, char> _namedActorGlyphs =
             new Dictionary<string, char>(80);
         private readonly Dictionary<string, Tile> _fixtureBlueprintTiles =
             new Dictionary<string, Tile>(8);
+        private readonly Dictionary<string, Tile[]> _fixtureVariantTiles =
+            new Dictionary<string, Tile[]>(2);
         private readonly Dictionary<string, Tile> _itemBodyTiles =
             new Dictionary<string, Tile>(16);
         // Note: AnimatedEnvironmentRenderer (Pass 5) already claims
@@ -714,10 +729,27 @@ namespace CavesOfOoo.Rendering
             }
             // Round 5 — interactable fixtures (entity pre-pass).
             _fixtureBlueprintTiles.Clear();
+            _fixtureVariantTiles.Clear();
             foreach (var (blueprint, file) in FixtureSprites)
             {
                 var s = LoadSingle(SpriteRoot + file);
                 if (s != null) _fixtureBlueprintTiles[blueprint] = MakeTile(s, blueprint);
+
+                // W5 cold-eye — bulk-stamped fixtures carry _v1..vN-1
+                // siblings; the base file doubles as variant 0. A
+                // missing sibling falls back to the base so a bad
+                // import degrades to the old look, never to a hole.
+                if (s != null && FixtureVariantCounts.TryGetValue(blueprint, out int n))
+                {
+                    var tiles = new Tile[n];
+                    tiles[0] = _fixtureBlueprintTiles[blueprint];
+                    for (int v = 1; v < n; v++)
+                    {
+                        var sv = LoadSingle(SpriteRoot + file + "_v" + v);
+                        tiles[v] = sv != null ? MakeTile(sv, blueprint + "_v" + v) : tiles[0];
+                    }
+                    _fixtureVariantTiles[blueprint] = tiles;
+                }
             }
             // Round 5 — item bodies (near-gray, tinted by glyph color
             // at claim time — one vial serves every tonic).
@@ -848,7 +880,7 @@ namespace CavesOfOoo.Rendering
 
             // Pass 10 — entity-based pre-pass (chest/lantern/bed/corpse
             // + campfire): blueprint-keyed, glyph-independent.
-            Tile entityTile = visible ? TryEntityBasedTile(topEntity) : null;
+            Tile entityTile = visible ? TryEntityBasedTile(topEntity, x, zoneY) : null;
             if (entityTile != null)
             {
                 ClaimCell(pos, entityTile, _mainTilemap.GetColor(pos));
@@ -1130,9 +1162,9 @@ namespace CavesOfOoo.Rendering
         /// holds the glyph at that moment.</para>
         /// </summary>
         public bool WillRenderAsSprite(Entity entity)
-            => entity != null && TryEntityBasedTile(entity) != null;
+            => entity != null && TryEntityBasedTile(entity, 0, 0) != null;
 
-        private Tile TryEntityBasedTile(Entity topEntity)
+        private Tile TryEntityBasedTile(Entity topEntity, int x, int y)
         {
             string bp = topEntity?.BlueprintName;
             if (string.IsNullOrEmpty(bp)) return null;
@@ -1149,7 +1181,13 @@ namespace CavesOfOoo.Rendering
             // Round 5 — interactable fixtures (berry bush, beehive,
             // hollow stump, mushroom ring, signpost).
             if (_fixtureBlueprintTiles.TryGetValue(bp, out var fixture))
+            {
+                // W5 cold-eye — bulk-stamped fixtures pick a position-
+                // hashed face so a 272-cell vault floor isn't wallpaper.
+                if (_fixtureVariantTiles.TryGetValue(bp, out var variants))
+                    return variants[FixtureVariantIndex(x, y, variants.Length)];
                 return fixture;
+            }
             return null;
         }
 
@@ -1818,6 +1856,19 @@ namespace CavesOfOoo.Rendering
             // Bit-mix hash. Cheap; produces good distribution for small ints.
             int h = x * 73856093 ^ y * 19349663;
             return (h & 0x7fffffff) % 4;
+        }
+
+        /// <summary>
+        /// Deterministic-hash fixture variant (W5 cold-eye). Same
+        /// (x, y) → same face across frames and reloads; different
+        /// mixing constants from <see cref="FloorVariantIndex"/> so
+        /// the two patterns don't spatially correlate.
+        /// </summary>
+        public static int FixtureVariantIndex(int x, int y, int count)
+        {
+            if (count <= 1) return 0;
+            int h = x * 83492791 ^ y * 50331653;
+            return (h & 0x7fffffff) % count;
         }
 
         /// <summary>

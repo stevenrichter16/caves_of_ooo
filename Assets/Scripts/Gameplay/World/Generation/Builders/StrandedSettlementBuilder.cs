@@ -43,12 +43,43 @@ namespace CavesOfOoo.Core
         /// floor, the W5.1 mouth lesson applied from the start.</summary>
         public int Priority => 3100;
 
-        public const int PatchCenterX = 40;
-        public const int PatchCenterY = 12;
+        /// <summary>Cold-eye 🔴: the patch used to sit at
+        /// (Zone.Width/2, Zone.Height/2) — which is EXACTLY where the
+        /// Descent's StairsDownBuilder starts searching, so the player
+        /// arrived inside the hearth and the floor's StairsUpBuilder
+        /// (priority 3500, after this) planted its staircase in the
+        /// middle of the village's holiest object. The chamber is now
+        /// laid out relative to the ARRIVAL cell, read from the
+        /// connection the Descent registered.</summary>
+        public const int PatchOffsetFromArrival = 14;
+
+        private readonly ZoneManager _zoneManager;
+        public StrandedSettlementBuilder(ZoneManager zoneManager = null)
+        { _zoneManager = zoneManager; }
+
+        /// <summary>Where the player will come in, if we can know it.</summary>
+        private (int x, int y) ArrivalCell(Zone zone)
+        {
+            if (_zoneManager != null)
+            {
+                var conns = _zoneManager.GetConnectionsTo(zone.ZoneID, "StairsDown");
+                if (conns != null && conns.Count > 0)
+                    return (conns[0].TargetX, conns[0].TargetY);
+            }
+            return (Zone.Width / 2, Zone.Height / 2);
+        }
 
         public bool BuildZone(Zone zone, EntityFactory factory, Random rng)
         {
             if (zone == null || factory == null || rng == null) return true;
+
+            var arrival = ArrivalCell(zone);
+            // Put the hearth a good walk from the door, on the side with
+            // more room, so the entry sightline crosses the chamber.
+            int PatchCenterX = arrival.x < Zone.Width / 2
+                ? System.Math.Min(arrival.x + PatchOffsetFromArrival, Zone.Width - 8)
+                : System.Math.Max(arrival.x - PatchOffsetFromArrival, 7);
+            int PatchCenterY = Zone.Height / 2;
 
             var claimed = new List<(int x, int y)>();
 
@@ -128,9 +159,19 @@ namespace CavesOfOoo.Core
 
             // ── The threshold: two mats flanking the way out. WALKABLE
             //    on purpose — being stepped on is the entire mechanic.
+            // Cold-eye 🟡: the mats used to be two groups with a
+            // five-cell gap between them on open floor, so a walker
+            // could stroll straight through the "threshold" and never
+            // be announced. One contiguous span now, laid ACROSS the
+            // line between the door and the hearth: anyone walking the
+            // arrival→glow axis crosses the dew and is announced. A
+            // deliberate skulker can still circle wide of it — the dew
+            // is a doorbell, not a moat, and sneaking around it is a
+            // choice the village would notice in other ways.
             int mats = 0;
-            foreach (int mx in new[] { 34, 35, 36, 42, 43, 44 })
-                for (int my = 21; my <= 22; my++)
+            int midX = (arrival.x + PatchCenterX) / 2;
+            for (int mx = midX - 2; mx <= midX + 2; mx++)
+                for (int my = PatchCenterY - 3; my <= PatchCenterY + 3; my++)
                 {
                     if (!IsOpenGround(zone, mx, my)) continue;
                     if (BuilderSpawn.TryPlaceOnce(zone, factory, "PebbleSundewThreshold", mx, my) != null)
@@ -140,8 +181,8 @@ namespace CavesOfOoo.Core
             // ── The people. Off the patch-to-door axis, so the glow is
             //    what the player meets first. The Warden stands where
             //    the entry light falls; the Tender is at her wall.
-            PlaceVillager(zone, factory, "CatacombWarden", 38, 19, claimed);
-            PlaceVillager(zone, factory, "PlaqueTender", 24, 5, claimed);
+            PlaceVillager(zone, factory, "CatacombWarden", midX + 3, PatchCenterY + 4, claimed);
+            PlaceVillager(zone, factory, "PlaqueTender", PatchCenterX, 4, claimed);
 
             // ── Claim the chamber so later spawners keep out of it.
             int reserved = 0;

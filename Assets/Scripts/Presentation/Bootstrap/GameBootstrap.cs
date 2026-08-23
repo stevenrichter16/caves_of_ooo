@@ -950,6 +950,16 @@ namespace CavesOfOoo
 
         private void WirePresentationForLoadedGame()
         {
+            // Cold-eye 🔴 — stair travel is plain MonoBehaviour state
+            // (_stairPath / _stairStep), and nothing cleared it on a
+            // load. A save taken mid-walk came back still walking: the
+            // remembered path replayed step-for-step through whatever
+            // zone the load restored, marching the player through a
+            // room that had never been on the route.
+            var travelHandler = GetComponent<InputHandler>();
+            if (travelHandler != null)
+                travelHandler.CancelStairTravel(null);
+
             if (ZoneRenderer != null)
             {
                 ZoneRenderer.SetZone(_zone);

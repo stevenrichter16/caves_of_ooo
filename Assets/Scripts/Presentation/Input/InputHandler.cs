@@ -459,6 +459,13 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
+            // Latch a stop request on the frame it happens — the rate
+            // limit below only clears about one frame in seven, and a
+            // single-frame flag read there is missed far more often
+            // than it is caught.
+            if (_stairPath != null && UnityEngine.Input.anyKeyDown)
+                _stairInterruptRequested = true;
+
             // Rate limit
             if (Time.time - _lastMoveTime < MoveRepeatDelay)
                 return;
@@ -468,7 +475,7 @@ namespace CavesOfOoo.Rendering
             // it, the way it does in Qud.
             if (_stairPath != null && _inputState == InputState.Normal)
             {
-                if (UnityEngine.Input.anyKeyDown)
+                if (_stairInterruptRequested)
                 {
                     CancelStairTravel("You stop.");
                 }
@@ -960,8 +967,21 @@ namespace CavesOfOoo.Rendering
         private int _stairStep;
         private bool _stairGoingDown;
 
-        private void CancelStairTravel(string why)
+        /// <summary>Cold-eye 🟡: "any keypress stops it" was sampled
+        /// inside the block BELOW the 120ms rate limit, so
+        /// Input.anyKeyDown — a single-frame flag — was only read on
+        /// roughly one frame in seven. A tap usually did nothing. The
+        /// interrupt is latched every frame now and consumed by the
+        /// stepper.</summary>
+        private bool _stairInterruptRequested;
+
+        /// <summary>Public so the load path can clear it: cold-eye 🔴 —
+        /// these are plain MonoBehaviour fields that nothing reset on
+        /// load, so a save taken mid-walk resumed auto-walking a stale
+        /// path through the RESTORED zone.</summary>
+        public void CancelStairTravel(string why)
         {
+            _stairInterruptRequested = false;
             if (_stairPath == null) return;
             _stairPath = null;
             _stairStep = 0;

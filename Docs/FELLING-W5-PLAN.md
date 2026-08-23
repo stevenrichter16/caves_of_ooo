@@ -403,3 +403,42 @@ and the save format is strict-equality versioned, so nothing may be
 added to SaveZone/SaveZoneConnection/SavePointOfInterest.
 
 Tests: 7101 → 7110 (+9). All green.
+
+---
+
+### W5 cold-eye + adversarial fix wave — 2026-08-23
+
+The post-W5.5 review (workflow, both angles + player-flow hypotheses)
+returned 3 🔴 and ~12 🟡. The war-latch fix shipped separately
+(`18074649` — RouteDamage emits TakeDamage per blow AND per burning
+tick, so rep drained per-hit instead of once; `WarDeclared` latch).
+The rest ship in this wave:
+
+| # | Sev | Finding | Fix |
+|---|-----|---------|-----|
+| A | 🔴 | Stairs down land dead-centre in the hearth-patch — arrival = instant war | `StrandedSettlementBuilder` takes the ZoneManager, reads the real arrival cell from the StairsDown connection, offsets the patch `PatchOffsetFromArrival = 14` cells away; mats + villagers placed relative to the chamber |
+| B | 🔴 | Cathedral's four full-width solid bands had no reachability contract — a bad roll seals the floor | `IsDoorway` gaps (x 20-22, 38-40, 56-58) + delta-contract repair. Verify-pass correction: the first repair asked FloodFromWest's CROSSED question — the wrong axis (bands run east-west; west→east crossing survives via the margins while the nave is sealed north-south). Contract is now `FullyReached` whole-zone delta (falling back to crossed when the pipeline itself delivered less), and the repair is TARGETED — remove a vault cell bordering the sealed region — not tail-popping, since the sealing cell may have been placed first |
+| C | 🔴 | Stair-travel state survives a load — the player auto-walks a stale path through the RESTORED zone | `CancelStairTravel` made public; `WirePresentationForLoadedGame` clears it |
+| D | 🟡 | Stair travel refused whenever ANY hostile existed anywhere in the zone | `StairTravel.NoticeRadius`, Chebyshev — only a hostile that can plausibly notice you vetoes the walk. Verify-pass correction: first cut was 9, one cell UNDER `BrainPart.SightRadius` (10); raised to 10 so the gate is at least as wide as the eyes it models |
+| E | 🟡 | "Any keypress stops it" sampled `anyKeyDown` on ~1 frame in 7 (below the 120ms rate gate) | interrupt latched every frame above the gate, consumed by the stepper |
+| F | 🟡 | Tint regime violations: `PlaqueWall &w`, five named plaques `&W`, `DroseraRing &r` | all → `&y` / `&R` (fixture sprites multiply by glyph colour) |
+| G | 🔴/🟡 | Voice/canon: the encased elder CONCEDED loss (the one thing the Choir never concedes — "everything here is somebody" is inventory, not elegy); elder promised a return-conversation that doesn't exist; "Small tier" design-register leak; Plaque-Tender's "She's" had no antecedent | `NotSame` rewritten to refuse the ledger, not concede it; `Travel` promise replaced with "ask the grove, not me"; register leak cut; the pronoun now points at the plaque of Riane — whose examine text already says "Says the patch sang once" |
+| H | 🔵 | `SubstrateVault` = one bordered tile stamped up to 272 times per Cathedral floor — wallpaper | fixture-variant mechanism: `FixtureVariantCounts` + `FixtureVariantIndex(x,y,n)` position hash (distinct constants from `FloorVariantIndex`); 3 new sprites `substrate_vault_v1..v3` (same palette, moved lilac nodes + weave knots), missing-file fallback to base |
+
+Verify-pass additions beyond the recovered findings:
+
+| # | Sev | Finding | Fix |
+|---|-----|---------|-----|
+| I | 🟡 | "War" cost nothing for one act and everything for four: RepLoss=40 from rep 0 lands at −40 = NEUTRAL (threshold −50) — text not backed by mechanics. AND the ellipse places ~51 separate HearthPatch entities, so the per-Part `WarDeclared` latch was 51 independent latches (one Pyroclasm = 9 wars = −360) | The LEDGER is the latch: `WarRep = HATED_THRESHOLD` (−150); on first player blow, `Modify(WarRep − current)` — one war, village-wide, save-safe, attitude-tier real (Hated → hostile). `WarDeclared` deleted. New tests: two-tiles-one-war, falling-rock counter-check; the old two tests re-pinned to Hated / −150 |
+| J | 🔴 deferred | Player MELEE never bills the war at all — bump-attack (`InputHandler.cs:748`) and Break (`:2702`) call `DestructionSystem.Damage` directly, which never fires TakeDamage; only `RouteDamage` does. The most obvious way to destroy the patch is the one path that is free | DEFERRED to its own RED-first commit: rerouting melee through `RouteDamage` widens the TakeDamage seam to EVERY breakable prop (BurnOffGasPart et al.), which the verify pass itself says "deserves its own RED test pass before merging" |
+| K | 🟡 | Mats: a 5×7 band across a 23-row interior is not "the only way to the fire" — the comment over-claimed | Comment now says what the dew is: a doorbell on the arrival→glow axis, not a moat; circling wide is a choice |
+| L | 🟡 | RopeAnchor `&w` — the 7th tint-regime instance, unnamed in the recovered findings | → `&y` |
+| M | 🔵 | The elder rewrite dropped the old closer's permission beat ("permitted to think otherwise…"), which was good voice-card material — tolerance without concession | Appended to the new `NotSame` text |
+
+**RED honesty:** A–G were fixes to reviewed findings with the RED
+demonstrated by the review's own failing scenarios or by prior
+committed tests (war-latch). H's tests (`FixtureVariantTests`, 5
+tests incl. two counter-checks) were written before the mechanism
+existed — RED as compile error, not run in isolation before
+implementing; noted per §2.1.
+
