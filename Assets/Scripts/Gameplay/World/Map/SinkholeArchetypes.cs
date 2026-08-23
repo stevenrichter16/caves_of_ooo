@@ -33,8 +33,15 @@ namespace CavesOfOoo.Core
             {
                 // Authored — the name is the design.
                 case "the Deepest Cathedral": return SinkholeArchetype.ChoirCathedral;
-                case "Lampwell":              return SinkholeArchetype.DrownedSima;
-                case "Spivenor":              return SinkholeArchetype.DrownedSima;
+                // W5.4 sweep correction: W5.3 assigned these two to
+                // DrownedSima on my own rationale ("a well holds
+                // water"). Canon disagrees and canon is the authority —
+                // Spivenor is the NAMED instance of the Spore-Wedded
+                // village archetype (FELLING-WORLD-DESIGN.md:752) and
+                // Lampwell is the bioluminescent catacomb hub (:943).
+                // Both are catacomb villages.
+                case "Lampwell":              return SinkholeArchetype.StrandedSettlement;
+                case "Spivenor":              return SinkholeArchetype.StrandedSettlement;
                 case "Olderdeep":             return SinkholeArchetype.StrandedSettlement;
             }
             // Unnamed: stable hash, same shape as the formation pools.

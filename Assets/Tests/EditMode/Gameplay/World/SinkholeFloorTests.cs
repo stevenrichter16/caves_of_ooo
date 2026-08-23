@@ -43,9 +43,13 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(SinkholeArchetype.ChoirCathedral,
                 SinkholeArchetypes.For("the Deepest Cathedral"),
                 "a place called the Deepest Cathedral is a cathedral");
-            Assert.AreEqual(SinkholeArchetype.DrownedSima,
+            // W5.4 sweep correction: Lampwell and Spivenor are canon
+            // catacomb hubs, not simas — see CatacombVillageTests.
+            // DrownedSima remains a real archetype, reachable by the
+            // hash for holes nobody named, and tested directly below.
+            Assert.AreEqual(SinkholeArchetype.StrandedSettlement,
                 SinkholeArchetypes.For("Lampwell"),
-                "a well holds water");
+                "the bioluminescent catacomb hub");
             Assert.AreEqual(SinkholeArchetype.StrandedSettlement,
                 SinkholeArchetypes.For("Olderdeep"),
                 "somebody is down there, and has been a long time");
@@ -91,6 +95,25 @@ namespace CavesOfOoo.Tests
             return null;
         }
 
+        /// <summary>Build a sima floor directly. All four AUTHORED
+        /// sinkholes are catacomb villages or the Cathedral (canon), so
+        /// the Drowned Sima has no named instance in the shipped map —
+        /// it is reached by the hash for unnamed holes. Its content is
+        /// therefore tested on its own builder rather than through a
+        /// named place.</summary>
+        private static Zone SimaFloor(int seed = 5)
+        {
+            var zone = new Zone("Overworld.9.9.2");
+            for (int x = 1; x < Zone.Width - 1; x++)
+                for (int y = 1; y < Zone.Height - 1; y++)
+                {
+                    var f = _factory.CreateEntity("StoneFloor");
+                    if (f != null) zone.AddEntity(f, x, y);
+                }
+            new DrownedSimaBuilder().BuildZone(zone, _factory, new System.Random(seed));
+            return zone;
+        }
+
         private static int CountOf(Zone zone, string blueprint)
         {
             int n = 0;
@@ -104,9 +127,7 @@ namespace CavesOfOoo.Tests
         {
             // The survey's ground truth: standing water, and the frogs
             // that were the reason anybody wrote the survey down.
-            var zone = FloorOf("Lampwell");
-            Assert.IsNotNull(zone, "Lampwell has a floor");
-
+            var zone = SimaFloor();
             Assert.Greater(CountOf(zone, "MirePool"), 20,
                 "the floor of a sima is mostly water");
             Assert.GreaterOrEqual(CountOf(zone, "GinFrog"), 2,
@@ -118,7 +139,7 @@ namespace CavesOfOoo.Tests
         {
             // A floor that is entirely water is a screenshot, not a
             // room. Dry ground must remain.
-            var zone = FloorOf("Lampwell");
+            var zone = SimaFloor();
             int dry = 0;
             for (int x = 1; x < Zone.Width - 1; x++)
                 for (int y = 1; y < Zone.Height - 1; y++)

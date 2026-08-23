@@ -29502,6 +29502,359 @@
       "Tags": [ { "Key": "Solid", "Value": "" } ]
     },
     {
+      "Name": "HearthPatch",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "hearth-patch" },
+            { "Key": "RenderString", "Value": "*" },
+            { "Key": "ColorString", "Value": "&G" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "Material",
+          "Params": [
+            { "Key": "MaterialID", "Value": "Plant" },
+            { "Key": "Combustibility", "Value": "0.1" },
+            { "Key": "MaterialTagsRaw", "Value": "Plant,Organic" }
+          ]
+        },
+        { "Name": "Thermal", "Params": [ { "Key": "FlameTemperature", "Value": "420" }, { "Key": "HeatCapacity", "Value": "2.0" } ] },
+        { "Name": "Destructible", "Params": [ { "Key": "HP", "Value": "40" }, { "Key": "MaxHP", "Value": "40" } ] },
+        { "Name": "HearthPatch", "Params": [ { "Key": "RepLoss", "Value": "40" } ] },
+        {
+          "Name": "LightSource",
+          "Params": [
+            { "Key": "Radius", "Value": "4" },
+            { "Key": "LightColor", "Value": "&G" },
+            { "Key": "Intensity", "Value": "0.8" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [ { "Key": "Description", "Value": "Mature fungus in a low mound, breathing light the colour of new leaves. It is warm the way a body is warm. Everything in this room is arranged around it, and everyone in this room is watching you look at it." } ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" } ]
+    },
+    {
+      "Name": "NicheHome",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "niche home" },
+            { "Key": "RenderString", "Value": "n" },
+            { "Key": "ColorString", "Value": "&y" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [ { "Key": "Description", "Value": "A cell carved into the wall face, bedding folded at the back, a lamp-hook above. Someone sleeps here now and will be laid here later. It is not morbid. It is home." } ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" } ]
+    },
+    {
+      "Name": "PlaqueWall",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "plaque-wall" },
+            { "Key": "RenderString", "Value": "=" },
+            { "Key": "ColorString", "Value": "&w" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [ { "Key": "Description", "Value": "Cut names, row on row, oldest at the floor. The village's history is not written down anywhere else; it is this wall." } ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" } ]
+    },
+    {
+      "Name": "DroseraRing",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "drosera ring" },
+            { "Key": "RenderString", "Value": "*" },
+            { "Key": "ColorString", "Value": "&r" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [ { "Key": "Description", "Value": "Tended sundew, planted in a ring and kept that way. It catches what walks in and it is not sentimental about it." } ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" } ]
+    },
+    {
+      "Name": "BeetleJar",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "beetle-jar" },
+            { "Key": "RenderString", "Value": "j" },
+            { "Key": "ColorString", "Value": "&Y" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" } ] },
+        {
+          "Name": "LightSource",
+          "Params": [
+            { "Key": "Radius", "Value": "2" },
+            { "Key": "LightColor", "Value": "&Y" },
+            { "Key": "Intensity", "Value": "0.5" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [ { "Key": "Description", "Value": "A stoppered jar of lantern-beetles, hung at head height. They brighten when the room moves. Crush one and every Warden in the village will know inside a breath." } ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "PebbleSundewThreshold",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "pebble-sundew threshold" },
+            { "Key": "RenderString", "Value": ":" },
+            { "Key": "ColorString", "Value": "&g" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" } ] },
+        {
+          "Name": "PebbleSundewThreshold",
+          "Params": [ { "Key": "TriggerFaction", "Value": "CatacombFolk" } ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [ { "Key": "Description", "Value": "A tended field of small sundews across the entry, kept trimmed to ankle height. Stepping across is how the village is introduced to you." } ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "PlaqueRiane",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "plaque of Riane" },
+            { "Key": "RenderString", "Value": "=" },
+            { "Key": "ColorString", "Value": "&W" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [ { "Key": "Description", "Value": "RIANE. Patch-Tender. Widowed the year the green light came back. Tended forty years. Says the patch sang once, and no one believes her, and she does not care." } ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" } ]
+    },
+    {
+      "Name": "PlaqueOssu",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "plaque of Ossu" },
+            { "Key": "RenderString", "Value": "=" },
+            { "Key": "ColorString", "Value": "&W" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [ { "Key": "Description", "Value": "OSSU. Beetle-Master. Went upstairs young and came back old and never said. Good hands. The wall keeps him anyway." } ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" } ]
+    },
+    {
+      "Name": "PlaqueMerrin",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "plaque of Merrin" },
+            { "Key": "RenderString", "Value": "=" },
+            { "Key": "ColorString", "Value": "&W" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [ { "Key": "Description", "Value": "MERRIN, called MOTH. Child. One winter. The light dimmed the night she went and the old people say it was courtesy." } ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" } ]
+    },
+    {
+      "Name": "PlaqueSmoothed",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "smoothed niche" },
+            { "Key": "RenderString", "Value": "=" },
+            { "Key": "ColorString", "Value": "&W" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [ { "Key": "Description", "Value": "— — — — — The stone here has been chiselled back to smooth. Nothing is cut into it, and the cutting that was there has been taken out to the depth of a thumbnail." } ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" } ]
+    },
+    {
+      "Name": "PlaqueVashti",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "plaque of Vashti" },
+            { "Key": "RenderString", "Value": "=" },
+            { "Key": "ColorString", "Value": "&W" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [ { "Key": "Description", "Value": "VASHTI. Tongue. Spoke for the village to three Factors, two Curators, and once, badly, to a god. First Plaque cut at twelve; died at ninety-one; the plaque she cut at twelve is behind this one, and it says, in a child's letters: I WILL SLEEP HERE WHEN I AM DONE. SAVE MY PLACE." } ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" } ]
+    },
+    {
+      "Name": "PlaqueOldest",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "the oldest plaque" },
+            { "Key": "RenderString", "Value": "=" },
+            { "Key": "ColorString", "Value": "&W" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [ { "Key": "Description", "Value": "The letters here are worn beyond the alphabet. Whatever this row says, it has stopped saying it in any language now in use." } ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" } ]
+    },
+    {
+      "Name": "CatacombWarden",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "Warden Nossik" },
+            { "Key": "RenderString", "Value": "@" },
+            { "Key": "ColorString", "Value": "&c" },
+            { "Key": "RenderLayer", "Value": "10" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        { "Name": "Brain", "Params": [ { "Key": "SightRadius", "Value": "8" }, { "Key": "Wanders", "Value": "false" } ] },
+        { "Name": "Conversation", "Params": [ { "Key": "ConversationID", "Value": "CatacombWarden_1" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "Broad through the shoulders, pale as the walls, and standing where the light from the patch falls across the entry. She has been watching you since the sundew." } ] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 },
+        { "Name": "Intelligence", "Value": 16 },
+        { "Name": "Ego", "Value": 16 },
+        { "Name": "XPValue", "Value": 90 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "CatacombFolk" },
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
+      "Name": "PlaqueTender",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "the Plaque-Tender" },
+            { "Key": "RenderString", "Value": "@" },
+            { "Key": "ColorString", "Value": "&W" },
+            { "Key": "RenderLayer", "Value": "10" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        { "Name": "Brain", "Params": [ { "Key": "SightRadius", "Value": "8" }, { "Key": "Wanders", "Value": "false" } ] },
+        { "Name": "Conversation", "Params": [ { "Key": "ConversationID", "Value": "PlaqueTender_1" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "Old, and holding a lamp low to the bottom rows. Her hands are chalked white to the wrist from re-cutting letters that were going soft." } ] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 30, "Min": 0, "Max": 30 },
+        { "Name": "Intelligence", "Value": 16 },
+        { "Name": "Ego", "Value": 16 },
+        { "Name": "XPValue", "Value": 90 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "CatacombFolk" },
+        { "Key": "Tier", "Value": "2" }
+      ]
+    },
+    {
       "Name": "DescentLedge",
       "Inherits": "PhysicalObject",
       "Parts": [

@@ -302,3 +302,55 @@ in a descent is not stranded when the registry rebuilds — R2's
 guarantee holds across a reload, which was the scariest open question.
 
 Tests: 7080 → 7082 (+2, both RED→GREEN).
+
+### W5.4 — The catacomb village (SHIPPED)
+
+**The sweep corrected the plan's own citation.** W5.4's line cites
+`catacomb_village_design.md` as the authority, and that file — read in
+full — is an ANTHROPOLOGY doc: roles, customs, cosmology, dialect,
+commerce. It carries no floor plan, no glyph legend, no entry sequence,
+and none of the quotes attributed to it. The real spatial authority is
+`FELLING-WORLD-DESIGN.md:1099-1113`, which ships an actual ASCII
+hearth-chamber sketch WITH a legend; the real quote authority is
+`Lore/Codex/05_PlaqueWall.md`, which is a finished in-world artifact.
+Both were used directly: the layout preserves the sketch's topology
+scaled to 80×25, and all six plaques ship **verbatim**.
+
+**Canon drift, mine, corrected.** W5.3 assigned Lampwell and Spivenor
+to DrownedSima on a rationale I invented ("a well holds water"). Canon
+says Spivenor is the NAMED instance of the Spore-Wedded village
+archetype and Lampwell is the bioluminescent catacomb hub — both are
+catacomb villages. Reassigned. Consequence handled honestly: all four
+authored sinkholes are now villages or the Cathedral, so the Drowned
+Sima has no named instance in the shipped map. It remains a real
+archetype reached by the hash for unnamed holes, and its content is
+now tested on its own builder rather than through a named place.
+
+**What shipped:** the hearth-patch (glowing radius 4 — canon's number;
+"warmth, food, politics and the god's dream in one object"), a broken
+Drosera ring, niche columns in three tiers, the plaque-wall with its
+six authored plaques including the chiselled-smooth niche that names
+no one, beetle-jars, two walkable Pebble-Sundew mats flanking the way
+out, and two people: the Warden who meets strangers (canon's first
+contact) and the Plaque-Tender who speaks the bracketed notes the
+codex already wrote.
+
+**Two mechanics, both canon-load-bearing:** the threshold ANNOUNCES
+you (`dewstep` — the village recognising you by the feel of your step,
+their own word for welcome), and threatening the patch **is war** — a
+single 40-point reputation break, not a graded tick, on the prop-damage
+seam so a torch counts too.
+
+**HAZARD the sweep caught and the plan would have missed:** the
+sinkhole floor pipeline still runs `PopulationBuilder(UndergroundTier)`
+AFTER this builder, and at that depth the table rolls snapjaws. A
+village square full of snapjaws is not a village — the chamber is
+claimed in `GenReservedCells`, which is how the surface town keeps its
+own square clear. Pinned.
+
+**R6 honored, and partly free:** no TraderPart, no stock table — these
+are a people with a culture, not a shop. `TradeStockBuilder` also gates
+on `Faction == "Villagers"`, so CatacombFolk NPCs can never be
+auto-stuffed with surface trade goods.
+
+Tests: 7082 → 7091 (+9). All green.

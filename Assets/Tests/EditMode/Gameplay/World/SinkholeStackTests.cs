@@ -186,13 +186,15 @@ namespace CavesOfOoo.Tests
             // and "Z=3+ CATACOMBS / ROOTWAYS — below the floors, where
             // placed" is different content.
             var mgr = new ExposingManager(_factory);
-            var (_, x, y) = SinkholeSites.All[2];   // Lampwell — a sima
+            var (_, x, y) = SinkholeSites.All[2];   // Lampwell — a village
             var floor = mgr.Pipe($"Overworld.{x}.{y}.2");
-            Assert.IsTrue(Carries<DrownedSimaBuilder>(floor),
-                "z=2 is the floor");
+            Assert.IsTrue(Carries<StrandedSettlementBuilder>(floor),
+                "z=2 is the floor, and it has the archetype's content");
             var below = mgr.Pipe($"Overworld.{x}.{y}.3");
+            Assert.IsFalse(Carries<StrandedSettlementBuilder>(below),
+                "and z=3 is not a second copy of it");
             Assert.IsFalse(Carries<DrownedSimaBuilder>(below),
-                "and z=3 is not a second one");
+                "nor any other floor archetype");
         }
 
         // ════════════════════════════════════════════════════════════

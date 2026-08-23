@@ -272,9 +272,11 @@ namespace CavesOfOoo.Core
                     case SinkholeArchetype.DrownedSima:
                         pipeline.AddBuilder(new DrownedSimaBuilder());
                         break;
-                    // StrandedSettlement (W5.4) and ChoirCathedral
-                    // (W5.5) fall through to the bare floor until their
-                    // own sub-milestones give them content.
+                    case SinkholeArchetype.StrandedSettlement:
+                        pipeline.AddBuilder(new StrandedSettlementBuilder());
+                        break;
+                    // ChoirCathedral (W5.5) falls through to the bare
+                    // floor until its own sub-milestone.
                 }
             }
 

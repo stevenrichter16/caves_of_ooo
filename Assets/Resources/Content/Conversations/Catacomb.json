@@ -1,0 +1,140 @@
+{
+  "Conversations": [
+    {
+      "ID": "CatacombWarden_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "You came in over the dew, so we knew. Speak low; the stone carries. I am Nossik, and I keep the way in. What is your purpose here?",
+          "Choices": [
+            {
+              "Text": "I'm only passing through.",
+              "Target": "Passing"
+            },
+            {
+              "Text": "What is this place?",
+              "Target": "Place"
+            },
+            {
+              "Text": "What are the rules here?",
+              "Target": "Rules"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Passing",
+          "Text": "Another way to see it is that nobody passes through a village; they pass through the people in it, and are remembered or not. Walk where the light is. Do not put your hands in the patch.",
+          "Choices": [
+            {
+              "Text": "Back.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Place",
+          "Text": "A village. Small tier, if you are counting — we are enough to keep the patch and not enough to be interesting. The wall is the older half of us. The Tender is at it now; she will talk longer than you want, and you should let her.",
+          "Choices": [
+            {
+              "Text": "Back.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Rules",
+          "Text": "Two. Speak low — a voice at surface-volume is a shout down here, and we will think there is a fire. And leave the patch alone. Not as a courtesy. The patch is the warmth, the food, the argument and the god's sleep in one body; a hand laid on it wrongly is not theft, it is war, and I would not be able to stop what came after.",
+          "Choices": [
+            {
+              "Text": "Understood.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "PlaqueTender_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Mind the lamp; I have it low for the bottom rows, and the bottom rows have earned it. You may read. Most walkers read the top and think they have read a wall.",
+          "Choices": [
+            {
+              "Text": "Tell me about the wall.",
+              "Target": "Wall"
+            },
+            {
+              "Text": "There's a smooth place, with nothing on it.",
+              "Target": "Smooth"
+            },
+            {
+              "Text": "Who was Merrin?",
+              "Target": "Merrin"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Wall",
+          "Text": "Oldest at the floor, newest at the ceiling, and every one of them re-cut before the letters go soft. That is the whole of my work and most of my life. She's my grandmother's grandmother, the top of row nine. The patch did sing. We just don't say so in front of guests.",
+          "Choices": [
+            {
+              "Text": "Back.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Smooth",
+          "Text": "You'll ask about the smooth place. Everyone asks. That was a man who sold the tunnel-map of this village to walkers who came back with knives. The council voted refusal-to-inscribe. I won't say his name; that's the point of it; he isn't anywhere now, not even here. I'll tell you this much — my mother's mother voted against. She said no wall should have a hole in it. She's row eleven; you can tell her you agree, if you do.",
+          "Choices": [
+            {
+              "Text": "I think she was right.",
+              "Target": "Agree"
+            },
+            {
+              "Text": "Back.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Agree",
+          "Text": "Then go and say it to row eleven, not to me. She is the one who has been waiting to hear it.",
+          "Choices": [
+            {
+              "Text": "Back.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Merrin",
+          "Text": "One winter, and called Moth for the way she went at the lamps. We re-cut her plaque every generation; the letters must never wear past reading. That one is the whole wall's business, not just her line's. The light dimmed the night she went. The old people say it was courtesy. I was not old then and I say so too.",
+          "Choices": [
+            {
+              "Text": "Back.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

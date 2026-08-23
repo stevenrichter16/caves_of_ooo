@@ -73,6 +73,14 @@ namespace CavesOfOoo.Tests
             "MirePool", "Duckboard", "DeadTree", "PeatBank",
             "MycelialColumn", "GroveSeep", "FruitingBody",
             "SinkholeLip", // W5.1 — the rim of a hole, its own glyph
+            // W5.4 — the catacomb village. Every one of these is a
+            // carved or grown FEATURE standing on the chamber floor,
+            // not the floor itself; mapping them to a ground material
+            // would erase the village into blank stone.
+            "HearthPatch", "NicheHome", "PlaqueWall", "DroseraRing",
+            "BeetleJar", "PebbleSundewThreshold",
+            "PlaqueRiane", "PlaqueOssu", "PlaqueMerrin",
+            "PlaqueSmoothed", "PlaqueVashti", "PlaqueOldest",
             "BloomingFruitingBody", // W4.4 SM-D — the front's growth, same glyph family as FruitingBody
             "CopperPipe", "PeatBog", "TarSeep", "OilSeep", "OilSlick",
             "BrinePool", "AcidPool", "AcidPond", "IceSheet",
