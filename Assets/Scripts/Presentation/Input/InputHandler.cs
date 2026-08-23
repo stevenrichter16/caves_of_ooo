@@ -463,6 +463,23 @@ namespace CavesOfOoo.Rendering
             if (Time.time - _lastMoveTime < MoveRepeatDelay)
                 return;
 
+            // An in-progress walk to the stairs takes the turn, unless
+            // the player asks for something else — any keypress stops
+            // it, the way it does in Qud.
+            if (_stairPath != null && _inputState == InputState.Normal)
+            {
+                if (UnityEngine.Input.anyKeyDown)
+                {
+                    CancelStairTravel("You stop.");
+                }
+                else
+                {
+                    StepStairTravel();
+                    _lastMoveTime = Time.time;
+                    return;
+                }
+            }
+
             if (_inputState == InputState.AwaitingDirection)
             {
                 HandleAwaitingDirection();
@@ -934,6 +951,50 @@ namespace CavesOfOoo.Rendering
             // redraw is the bulk of Tier-A Fix #2's perf win.
         }
 
+        // ── Qud-parity stair travel ────────────────────────────────
+        // Pressing `>` away from the stairs walks you to them. State
+        // lives here because the walk is per-TURN, not per-call; the
+        // decisions (which stairs, what path, when to stop) are pure
+        // and live in StairTravel.
+        private List<(int dx, int dy)> _stairPath;
+        private int _stairStep;
+        private bool _stairGoingDown;
+
+        private void CancelStairTravel(string why)
+        {
+            if (_stairPath == null) return;
+            _stairPath = null;
+            _stairStep = 0;
+            if (!string.IsNullOrEmpty(why)) MessageLog.Add(why);
+        }
+
+        /// <summary>One step of an in-progress walk to the stairs.
+        /// Returns true while travel is still running.</summary>
+        private bool StepStairTravel()
+        {
+            if (_stairPath == null) return false;
+            if (PlayerEntity == null || CurrentZone == null)
+            { CancelStairTravel(null); return false; }
+
+            if (StairTravel.ShouldInterrupt(CurrentZone, PlayerEntity))
+            { CancelStairTravel("You stop — you are not alone."); return false; }
+
+            if (_stairStep >= _stairPath.Count)
+            {
+                // Arrived. Use them, which is what was asked for.
+                _stairPath = null;
+                _stairStep = 0;
+                TryUseStairs(_stairGoingDown);
+                return false;
+            }
+
+            var (dx, dy) = _stairPath[_stairStep++];
+            if (!MovementSystem.TryMove(PlayerEntity, CurrentZone, dx, dy))
+            { CancelStairTravel("Something is in the way."); return false; }
+            EndTurnAndProcess();
+            return true;
+        }
+
         private void TryUseStairs(bool goingDown)
         {
             var cell = CurrentZone.GetEntityCell(PlayerEntity);
@@ -951,6 +1012,37 @@ namespace CavesOfOoo.Rendering
 
             if (!hasStairs)
             {
+                // Qud parity (CmdMoveD): being in the wrong cell is not
+                // a refusal. If this chunk HAS the staircase you asked
+                // for and you can reach it, walk there and use it.
+                // Only when there is no reachable staircase do we fall
+                // through to the world map / the honest refusal.
+                if (_stairPath == null)
+                {
+                    var target = StairTravel.FindTarget(CurrentZone, PlayerEntity, goingDown);
+                    if (target.HasValue)
+                    {
+                        var steps = StairTravel.PathTo(CurrentZone, PlayerEntity,
+                            target.Value.x, target.Value.y);
+                        if (steps != null && steps.Count > 0)
+                        {
+                            if (StairTravel.ShouldInterrupt(CurrentZone, PlayerEntity))
+                            {
+                                MessageLog.Add("Not with company this close.");
+                                return;
+                            }
+                            _stairPath = steps;
+                            _stairStep = 0;
+                            _stairGoingDown = goingDown;
+                            MessageLog.Add(goingDown
+                                ? "You make for the stairs down."
+                                : "You make for the stairs up.");
+                            StepStairTravel();
+                            return;
+                        }
+                    }
+                }
+
                 // No stairs — fall through to world-map traversal,
                 // mirroring Qud's CmdMoveU/CmdMoveD unification
                 // (XRLCore.cs:1329-1426). `<` from a surface ground
