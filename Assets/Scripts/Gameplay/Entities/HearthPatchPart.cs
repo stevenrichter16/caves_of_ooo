@@ -29,6 +29,19 @@ namespace CavesOfOoo.Core
         /// village does not negotiate the first offence down.</summary>
         public int RepLoss = 40;
 
+        /// <summary>Latched once the war has started. Public so it
+        /// round-trips the save with the rest of the part's fields —
+        /// reloading must not re-arm a grievance the village already
+        /// holds.
+        ///
+        /// <para>Cold-eye: without this, every blow charged the full
+        /// price. RouteDamage emits TakeDamage per blow AND per tick of
+        /// a BurningEffect (which passes its IgnitionSource as the
+        /// source), so setting the patch alight billed -40 roughly ten
+        /// to forty times over as it burned down. The war is declared
+        /// once; after that the village is already fighting you.</para></summary>
+        public bool WarDeclared;
+
         private static readonly int TakeDamageID = GameEvent.GetID("TakeDamage");
 
         public override bool WantEvent(int eventID) => eventID == TakeDamageID;
@@ -40,7 +53,9 @@ namespace CavesOfOoo.Core
             // Only a person can commit a crime. A collapsing ceiling is
             // not an enemy of the village.
             if (source == null || !source.HasTag("Player")) return true;
+            if (WarDeclared) return true;   // already at war; do not re-bill
 
+            WarDeclared = true;
             PlayerReputation.Modify("CatacombFolk", -RepLoss);
             MessageLog.Add(
                 "The light shudders. Somewhere behind you, every voice in " +

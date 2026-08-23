@@ -211,6 +211,45 @@ namespace CavesOfOoo.Tests
             finally { SettlementRuntime.Reset(); }
         }
 
+        [Test]
+        public void TheWarIsDeclaredOnce_NotOncePerBlow()
+        {
+            // Cold-eye: HearthPatchPart fires on TakeDamage, and
+            // DestructionSystem.RouteDamage emits that on EVERY blow —
+            // including every tick of a BurningEffect, which passes its
+            // IgnitionSource as the source. Setting the patch alight
+            // therefore charged -40 per tick (HP 40 at 1-4/tick = ten
+            // to forty charges) when the design is ONE break. The war
+            // starts once; it cannot be re-declared.
+            var zone = new Zone("PatchWarOnce");
+            SettlementRuntime.ActiveZone = zone;
+            FactionManager.Initialize();
+            try
+            {
+                var patch = _factory.CreateEntity("HearthPatch");
+                zone.AddEntity(patch, 10, 10);
+                var vandal = new Entity { ID = "v", BlueprintName = "Vandal" };
+                vandal.Tags["Creature"] = "";
+                vandal.Tags["Player"] = "";
+                vandal.Statistics["Hitpoints"] = new Stat
+                { Owner = vandal, Name = "Hitpoints", BaseValue = 30, Min = 0, Max = 30 };
+                zone.AddEntity(vandal, 11, 10);
+
+                int before = PlayerReputation.Get("CatacombFolk");
+                for (int blow = 0; blow < 5; blow++)
+                {
+                    var d = new Damage(2);
+                    d.AddAttribute("Fire");
+                    DestructionSystem.RouteDamage(patch, d, vandal, zone);
+                }
+                int lost = before - PlayerReputation.Get("CatacombFolk");
+                Assert.AreEqual(40, lost,
+                    "five blows, one war — the village does not charge you " +
+                    "again for a fire it is already fighting");
+            }
+            finally { SettlementRuntime.Reset(); }
+        }
+
         // ════════════════════════════════════════════════════════════
         //   The people, and what the floor must not do to them
         // ════════════════════════════════════════════════════════════
