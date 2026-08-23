@@ -72,16 +72,7 @@ namespace CavesOfOoo.Tests
             "SaltCrust", "DuneCrest", "Bones", "TentWall", "UntendedFire",
             "MirePool", "Duckboard", "DeadTree", "PeatBank",
             "MycelialColumn", "GroveSeep", "FruitingBody",
-            "SinkholeLip", // W5.1 — the rim of a hole, its own glyph
-            // W5.4 — the catacomb village. Every one of these is a
-            // carved or grown FEATURE standing on the chamber floor,
-            // not the floor itself; mapping them to a ground material
-            // would erase the village into blank stone.
-            "HearthPatch", "NicheHome", "PlaqueWall", "DroseraRing",
-            "BeetleJar", "PebbleSundewThreshold",
-            "PlaqueRiane", "PlaqueOssu", "PlaqueMerrin",
-            "PlaqueSmoothed", "PlaqueVashti", "PlaqueOldest",
-            "BloomingFruitingBody", // W4.4 SM-D — the front's growth, same glyph family as FruitingBody
+                        "BloomingFruitingBody", // W4.4 SM-D — the front's growth, same glyph family as FruitingBody
             "CopperPipe", "PeatBog", "TarSeep", "OilSeep", "OilSlick",
             "BrinePool", "AcidPool", "AcidPond", "IceSheet",
             "ConvalescencePool", "MemoryBathPool", "MirrorMucilagePool",
@@ -124,6 +115,11 @@ namespace CavesOfOoo.Tests
                 if (GlyphOnlyByDesign.Contains(name)) continue;
                 if (EnvironmentSpriteRenderer.ResolveGroundMaterial(name)
                     != EnvironmentSpriteRenderer.GroundMaterial.None) continue;
+                // A blueprint-keyed fixture sprite is the THIRD honest
+                // answer, and the guard did not know about it: terrain
+                // with real art was still forced onto the debt list,
+                // which made the list read as bigger than the debt.
+                if (HasFixtureSprite(name)) continue;
                 unaccounted.Add(name);
             }
 
@@ -133,6 +129,49 @@ namespace CavesOfOoo.Tests
                 + "flowing ground field. Either map them in "
                 + "EnvironmentSpriteRenderer.ResolveGroundMaterial or add them to "
                 + "GlyphOnlyByDesign with a reason: " + string.Join(", ", unaccounted));
+        }
+
+        private static bool HasFixtureSprite(string blueprint)
+        {
+            foreach (var (bp, _) in EnvironmentSpriteRenderer.FixtureSprites)
+                if (bp == blueprint) return true;
+            return false;
+        }
+
+        [Test]
+        public void TheVerticalWorldHasArt_NotJustLetters()
+        {
+            // The W5 content ships with real 16x16 sprites rather than
+            // joining the "wants sprite art" debt list. Each entry
+            // needs BOTH halves: a blueprint->file mapping, and a file
+            // that actually loads.
+            foreach (var bp in new[] { "SinkholeLip", "DescentLedge", "RopeAnchor",
+                                       "HearthPatch", "NicheHome", "DroseraRing",
+                                       "BeetleJar", "PebbleSundewThreshold",
+                                       "PlaqueWall", "PlaqueSmoothed" })
+            {
+                Assert.IsTrue(HasFixtureSprite(bp), bp + " is mapped to art");
+                string file = null;
+                foreach (var (b, f) in EnvironmentSpriteRenderer.FixtureSprites)
+                    if (b == bp) file = f;
+                Assert.IsNotNull(Resources.Load<Sprite>("Sprites/Environment/" + file),
+                    bp + " maps to " + file + ", which must actually load");
+            }
+        }
+
+        [Test]
+        public void TheSmoothedNiche_HasItsOwnArt()
+        {
+            // It must NOT share the plaque slab: the entire point of
+            // the niche is that nothing is cut into it.
+            string wall = null, smoothed = null;
+            foreach (var (b, f) in EnvironmentSpriteRenderer.FixtureSprites)
+            {
+                if (b == "PlaqueWall") wall = f;
+                if (b == "PlaqueSmoothed") smoothed = f;
+            }
+            Assert.AreNotEqual(wall, smoothed,
+                "the absence is the content; it cannot wear the same face");
         }
 
         [Test]

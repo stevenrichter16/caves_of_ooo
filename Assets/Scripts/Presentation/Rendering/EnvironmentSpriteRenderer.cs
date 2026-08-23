@@ -179,6 +179,27 @@ namespace CavesOfOoo.Rendering
             ("WovenBasket", "cont_woven_basket"), ("HollowLog", "cont_hollow_log"),
             ("Reliquary", "cont_reliquary"), ("Bookshelf", "cont_bookshelf"),
             ("WeaponRack", "cont_weapon_rack"), ("AlchemyShelf", "cont_alchemy_shelf"),
+
+            // W5 — the vertical world. Blueprint-keyed on purpose:
+            // these share glyphs with unrelated content ('=' is the
+            // plaque-wall AND a ledge, '*' is the hearth-patch AND a
+            // campfire), and the glyph tier's false-identity guard
+            // exists precisely because a shared glyph is not an
+            // identity. Keyed here, each resolves to its own art and
+            // nothing else can claim it.
+            ("SinkholeLip", "sinkhole_lip"), ("DescentLedge", "descent_ledge"),
+            ("RopeAnchor", "rope_anchor"),
+            ("HearthPatch", "hearth_patch"), ("NicheHome", "niche_home"),
+            ("DroseraRing", "drosera_ring"), ("BeetleJar", "beetle_jar"),
+            ("PebbleSundewThreshold", "pebble_sundew"),
+            // The wall and its plaques share one slab; the smoothed
+            // niche gets its OWN art, because the whole point of it is
+            // that there is nothing cut into it.
+            ("PlaqueWall", "plaque_wall"),
+            ("PlaqueRiane", "plaque_wall"), ("PlaqueOssu", "plaque_wall"),
+            ("PlaqueMerrin", "plaque_wall"), ("PlaqueVashti", "plaque_wall"),
+            ("PlaqueOldest", "plaque_wall"),
+            ("PlaqueSmoothed", "plaque_smoothed"),
         };
 
         private readonly Dictionary<string, Tile> _namedActorTiles =
