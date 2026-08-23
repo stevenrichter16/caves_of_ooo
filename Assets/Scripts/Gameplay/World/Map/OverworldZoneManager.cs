@@ -275,8 +275,9 @@ namespace CavesOfOoo.Core
                     case SinkholeArchetype.StrandedSettlement:
                         pipeline.AddBuilder(new StrandedSettlementBuilder());
                         break;
-                    // ChoirCathedral (W5.5) falls through to the bare
-                    // floor until its own sub-milestone.
+                    case SinkholeArchetype.ChoirCathedral:
+                        pipeline.AddBuilder(new ChoirCathedralBuilder());
+                        break;
                 }
             }
 

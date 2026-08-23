@@ -200,6 +200,14 @@ namespace CavesOfOoo.Rendering
             ("PlaqueMerrin", "plaque_wall"), ("PlaqueVashti", "plaque_wall"),
             ("PlaqueOldest", "plaque_wall"),
             ("PlaqueSmoothed", "plaque_smoothed"),
+            // W5.5 — the Cathedral. NOTE the tint regime: this tier
+            // never sets authoredColor, so a fixture sprite is
+            // MULTIPLIED by its blueprint's glyph colour. These three
+            // paint &y/&Y deliberately; a &K blueprint would render its
+            // art near-black (which is why SinkholeLip's colour moved).
+            ("SubstrateVault", "substrate_vault"),
+            ("ChoirNode", "choir_node"),
+            ("EncasedElder", "encased_elder"),
         };
 
         private readonly Dictionary<string, Tile> _namedActorTiles =

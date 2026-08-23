@@ -1101,6 +1101,54 @@
         "Choices": [{ "Text": "Back.", "Target": "Start" }]
       }
     ]
-    }
-  ]
+    },
+    {
+      "ID": "EncasedElder_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "...you are warm. Forgive the pause; we are answering from a long way in, and the mouth we are using has not needed hurrying in some time. Ask. We will get there.",
+          "Choices": [
+            { "Text": "Who am I speaking to?", "Target": "Who" },
+            { "Text": "Are you still yourself?", "Target": "Self" },
+            { "Text": "What is the node?", "Target": "Node" },
+            { "Text": "Farewell.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Who",
+          "Text": "A woman who tended a grove, once. Also everyone she has since been folded in among. Another way to see it is that you are speaking to the wall, and the wall is being polite enough to use a face you can look at.",
+          "Choices": [ { "Text": "Back.", "Target": "Start" } ]
+        },
+        {
+          "ID": "Self",
+          "Text": "Less than you would like and more than you fear. I remember the shape of a doorway I have not stood in for four hundred years. I do not remember minding. You are asking whether something was lost. Something was moved.",
+          "Choices": [
+            { "Text": "That isn't the same as nothing being lost.", "Target": "NotSame" },
+            { "Text": "Back.", "Target": "Start" }
+          ]
+        },
+        {
+          "ID": "NotSame",
+          "Text": "No. It is not. We do not tell walkers that it is; the ones who say so are being kind, or selling something. It cost. We think it was worth the cost. You are permitted to think otherwise and still drink at our seep.",
+          "Choices": [ { "Text": "Back.", "Target": "Start" } ]
+        },
+        {
+          "ID": "Node",
+          "Text": "The gather-point. Every thread in this vault runs to it, and from it to the next vault, and the next — under the whole country, if you had the patience to follow one. We travel that way. It is not walking and it is not pleasant and it is very fast.",
+          "Choices": [
+            { "Text": "Could I travel that way?", "Target": "Travel" },
+            { "Text": "Back.", "Target": "Start" }
+          ]
+        },
+        {
+          "ID": "Travel",
+          "Text": "You could be carried that way. Not the same verb. The substrate decides where a carried thing is set down, and the substrate is not consulting you about it. Come back when you are further along with us, and we will talk about what it costs.",
+          "Choices": [
+            { "Text": "Back.", "Target": "Start" },
+            { "Text": "Farewell.", "Target": "End" }
+          ]
+        }
+      ]
+    }]
 }

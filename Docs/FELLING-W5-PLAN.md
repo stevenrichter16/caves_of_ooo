@@ -354,3 +354,52 @@ on `Faction == "Villagers"`, so CatacombFolk NPCs can never be
 auto-stuffed with surface trade goods.
 
 Tests: 7082 → 7091 (+9). All green.
+
+### W5.5 — The Choir Cathedral (SHIPPED, with Wall-Catching deferred)
+
+**Scope decided from canon, not from the plan line.** Canon puts two
+different things at this address. The Cathedral ARCHETYPE is generic —
+"every sinkhole of the Choir Cathedral archetype is a Choir node …
+some are large and old, some small and recent"
+(Lore/Factions/01_RotChoir.md:126). The DEEPEST Cathedral is Tier 5,
+holds the Wedded's own body, and is "the most-difficult-to-earn
+audience with any of the Six gods" (:122, :218) — god-room content the
+milestone map puts in **W8**. W5.5 builds the archetype; the god lands
+on top later, exactly as W5.4 left Olderdeep's founding-village
+identity to W6.
+
+Shipped: a substrate-grown vault (a nave with grown walls, warm to the
+hand), the node where every thread gathers and goes on to the next
+vault, two-to-four encased elders held in the wall with a voice of
+their own, reused ChoirTendrils, a claimed footprint, and three new
+sprites.
+
+**WALL-CATCHING DEFERRED — three blockers, all verified in code:**
+
+1. **The destination set has cardinality ONE.** Wall-Catching is
+   Cathedral→Cathedral displacement "among Cathedral nodes", and
+   exactly one sinkhole in the shipped world maps to ChoirCathedral.
+   Canon's own mechanic has nowhere to route. Adding nodes is a
+   world-authoring decision (canon reserved four mouths and named
+   three of them as villages), not something to smuggle in here.
+2. **There is no fall.** The accidental trigger is "falling into a
+   Cathedral sinkhole" — but `SinkholeMouthBuilder` rings the hole
+   with solid lip precisely so you cannot stroll in, and the interior
+   is plain walkable floor. Codebase-wide there is no fall damage or
+   pit mechanic at all.
+3. **Teleporting into an ungenerated floor produces a zone with NO
+   STAIRS UP — a hard soft-lock.** `StairsUpBuilder` does not create
+   stairs, it READS the connection that the Descent's
+   `StairsDownBuilder` wrote. Arrive by teleport and that connection
+   never existed, so the exit is not there. A safe arbitrary-destination
+   primitive must guarantee an exit before any teleport ships.
+
+Also recorded from the sweep, for whoever builds it: the permanent
+Wall-Bound counter belongs in `NarrativeStatePart`'s FactBag, NOT on an
+Effect (effects are stripped on death and by the cure-all tonic, so the
+count would evaporate); a step-trigger must NOT transition inline
+(InputHandler dereferences the old zone immediately after the move);
+and the save format is strict-equality versioned, so nothing may be
+added to SaveZone/SaveZoneConnection/SavePointOfInterest.
+
+Tests: 7101 → 7110 (+9). All green.

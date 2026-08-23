@@ -29486,7 +29486,7 @@
           "Params": [
             { "Key": "DisplayName", "Value": "sinkhole lip" },
             { "Key": "RenderString", "Value": "#" },
-            { "Key": "ColorString", "Value": "&K" },
+            { "Key": "ColorString", "Value": "&y" },
             { "Key": "RenderLayer", "Value": "2" }
           ]
         },
@@ -29500,6 +29500,90 @@
       ],
       "Stats": [],
       "Tags": [ { "Key": "Solid", "Value": "" } ]
+    },
+    {
+      "Name": "SubstrateVault",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "substrate vault" },
+            { "Key": "RenderString", "Value": "#" },
+            { "Key": "ColorString", "Value": "&y" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [ { "Key": "Description", "Value": "Not stone. The wall here was grown, in the way a bone is grown, and it is faintly warm where you rest a hand on it. Threads run through the violet in it, all of them going the same way." } ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" } ]
+    },
+    {
+      "Name": "ChoirNode",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "the node" },
+            { "Key": "RenderString", "Value": "O" },
+            { "Key": "ColorString", "Value": "&Y" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "LightSource",
+          "Params": [
+            { "Key": "Radius", "Value": "5" },
+            { "Key": "LightColor", "Value": "&M" },
+            { "Key": "Intensity", "Value": "0.7" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [ { "Key": "Description", "Value": "Where every thread in the vault gathers and does not stop. The light off it is steady, and slow, and has the rhythm of something breathing very deeply somewhere a long way off." } ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" } ]
+    },
+    {
+      "Name": "EncasedElder",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "an encased elder" },
+            { "Key": "RenderString", "Value": "@" },
+            { "Key": "ColorString", "Value": "&Y" },
+            { "Key": "RenderLayer", "Value": "10" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        { "Name": "Brain", "Params": [ { "Key": "SightRadius", "Value": "6" }, { "Key": "Wanders", "Value": "false" }, { "Key": "Passive", "Value": "true" } ] },
+        { "Name": "Conversation", "Params": [ { "Key": "ConversationID", "Value": "EncasedElder_1" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [ { "Key": "Description", "Value": "A person, held. The substrate has taken everything below the shoulders and most of what was above them, and the face it has left is composed, and turned slightly toward you, and has been for a very long time." } ]
+        }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 40, "Min": 0, "Max": 40 },
+        { "Name": "Intelligence", "Value": 20 },
+        { "Name": "Ego", "Value": 22 },
+        { "Name": "XPValue", "Value": 120 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "RotChoir" },
+        { "Key": "Tier", "Value": "3" }
+      ]
     },
     {
       "Name": "HearthPatch",
@@ -29739,7 +29823,7 @@
           "Params": [
             { "Key": "DisplayName", "Value": "smoothed niche" },
             { "Key": "RenderString", "Value": "=" },
-            { "Key": "ColorString", "Value": "&W" },
+            { "Key": "ColorString", "Value": "&y" },
             { "Key": "RenderLayer", "Value": "2" }
           ]
         },
