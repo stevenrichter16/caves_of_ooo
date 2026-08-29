@@ -89,6 +89,11 @@ namespace CavesOfOoo.Rendering
             ("Farmer",       "farmer",        '@'),
             ("Undertaker",   "undertaker",    'U'),
             ("Marceline",    "marceline",     'M'),
+            // W5.6 sweep — the W5.4 villagers were shipped as bare
+            // '@'s; the people the catacomb design leads with get
+            // faces (olm-pale, per the canon morphology).
+            ("CatacombWarden", "catacomb_warden", '@'),
+            ("PlaqueTender",   "plaque_tender",   '@'),
         };
 
         /// <summary>Round 3 — current render glyph of an entity, '\0'
@@ -161,6 +166,9 @@ namespace CavesOfOoo.Rendering
             ("Grib", "grib", 'G'), ("Nam", "nam", 'N'),
             ("Sien", "sien", 'S'), ("Sopp", "sopp", 's'),
             ("SnapjawChieftain", "snapjaw_chieftain", 'S'), ("SnapjawWarlord", "snapjaw_warlord", 'S'),
+            // W5.6 — Ginmere makes the drowned sima reachable, and its
+            // headline fauna stops being a bare letter.
+            ("GinFrog", "gin_frog", 'f'),
         };
 
         /// <summary>ROUND 5 — interactable fixtures resolved in the

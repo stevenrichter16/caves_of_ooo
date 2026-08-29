@@ -497,8 +497,9 @@ namespace CavesOfOoo.Tests
 
             Assert.AreEqual("Weaponsmith", FindOverlay().GetTile(tilePos)?.name,
                 "the shopkeeper renders as its role sprite, not a letter");
-            Assert.AreEqual(12, EnvironmentSpriteRenderer.NamedActorSprites.Length,
-                "roster pin: 5 shopkeepers + 4 hermits + Farmer/Undertaker/Marceline");
+            Assert.AreEqual(14, EnvironmentSpriteRenderer.NamedActorSprites.Length,
+                "roster pin: 5 shopkeepers + 4 hermits + Farmer/Undertaker/"
+                + "Marceline + the W5.6 catacomb pair (Warden, Plaque-Tender)");
         }
 
         // ── ROUND 3: town live-sweep fixes ───────────────────────
@@ -837,9 +838,25 @@ namespace CavesOfOoo.Tests
 
             Assert.AreEqual("JungleApe", FindOverlay().GetTile(tilePos)?.name,
                 "the bestiary resolves by blueprint through the actor tier");
-            Assert.AreEqual(44, EnvironmentSpriteRenderer.CreatureSprites.Length,
-                "roster pin: the full 44-creature bestiary");
+            Assert.AreEqual(45, EnvironmentSpriteRenderer.CreatureSprites.Length,
+                "roster pin: the 44-creature bestiary + the gin frog (W5.6)");
             Object.DestroyImmediate(aGlyph);
+        }
+
+        [Test]
+        public void EveryDeclaredActorSpriteFile_ActuallyLoads()
+        {
+            // W5.6 sweep — no loads-audit existed for the actor tables,
+            // so a typo'd filename degrades silently to the glyph
+            // fallback and is only noticed by a human looking at the
+            // screen. (The fixture tier already has this guard in
+            // TerrainRenderCoverageTests.)
+            foreach (var (bp, file, _) in EnvironmentSpriteRenderer.NamedActorSprites)
+                Assert.IsNotNull(Resources.Load<Sprite>("Sprites/Environment/" + file),
+                    bp + " declares " + file + ", which must load");
+            foreach (var (bp, file, _) in EnvironmentSpriteRenderer.CreatureSprites)
+                Assert.IsNotNull(Resources.Load<Sprite>("Sprites/Environment/" + file),
+                    bp + " declares " + file + ", which must load");
         }
 
         [Test]

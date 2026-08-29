@@ -95,12 +95,11 @@ namespace CavesOfOoo.Tests
             return null;
         }
 
-        /// <summary>Build a sima floor directly. All four AUTHORED
-        /// sinkholes are catacomb villages or the Cathedral (canon), so
-        /// the Drowned Sima has no named instance in the shipped map —
-        /// it is reached by the hash for unnamed holes. Its content is
-        /// therefore tested on its own builder rather than through a
-        /// named place.</summary>
+        /// <summary>Build a sima floor directly — the builder in
+        /// isolation, complementing the end-to-end Ginmere tests below.
+        /// (Historical note: between W5.4 and W5.6 the Drowned Sima had
+        /// no named instance and this fixture was its ONLY coverage;
+        /// Ginmere closed that gap.)</summary>
         private static Zone SimaFloor(int seed = 5)
         {
             var zone = new Zone("Overworld.9.9.2");
@@ -164,6 +163,85 @@ namespace CavesOfOoo.Tests
             Assert.IsNotNull(zone);
             Assert.AreEqual(0, CountOf(zone, "GinFrog"),
                 "no frogs in the vault");
+        }
+
+        // ════════════════════════════════════════════════════════════
+        //   W5.6 — every shipped archetype exists somewhere
+        // ════════════════════════════════════════════════════════════
+
+        [Test]
+        public void EveryShippedArchetype_HasAPlaceInTheWorld()
+        {
+            // The structural pin that would have caught the W5.4
+            // orphaning: the canon correction reassigned Lampwell and
+            // Spivenor to StrandedSettlement, which left the Drowned
+            // Sima — all of W5.3's floor — reachable only "by the hash
+            // for unnamed holes"… and the shipped world contains no
+            // unnamed holes. An archetype the player cannot reach is
+            // not shipped; it is stored.
+            foreach (SinkholeArchetype archetype in
+                     System.Enum.GetValues(typeof(SinkholeArchetype)))
+            {
+                bool placed = false;
+                foreach (var (name, _, _) in SinkholeSites.All)
+                    if (SinkholeArchetypes.For(name) == archetype) placed = true;
+                Assert.IsTrue(placed,
+                    archetype + " is a shipped floor with no mouth that " +
+                    "leads to it — unreachable content");
+            }
+        }
+
+        [Test]
+        public void Ginmere_IsTheDrownedSima_EndToEnd()
+        {
+            // Not the builder in isolation (that is the SimaFloor
+            // fixture above) — the whole stack: world map POI → mouth →
+            // descent → floor, through the real routing.
+            var zone = FloorOf("Ginmere");
+            Assert.IsNotNull(zone, "Ginmere generates a floor");
+            Assert.Greater(CountOf(zone, "MirePool"), 20,
+                "and the floor is the sima's standing water");
+            Assert.GreaterOrEqual(CountOf(zone, "GinFrog"), 2,
+                "with the frogs the survey came for");
+        }
+
+        [Test]
+        public void Ginmere_IsNotAVillage()
+        {
+            // Counter-check: adding the fifth mouth must not have
+            // disturbed the other four's assignments — and Ginmere
+            // itself must not roll a hearth.
+            var zone = FloorOf("Ginmere");
+            Assert.IsNotNull(zone);
+            Assert.AreEqual(0, CountOf(zone, "HearthPatch"),
+                "a sima has frogs, not a fire");
+            Assert.AreEqual(SinkholeArchetype.StrandedSettlement,
+                SinkholeArchetypes.For("Lampwell"));
+            Assert.AreEqual(SinkholeArchetype.ChoirCathedral,
+                SinkholeArchetypes.For("the Deepest Cathedral"));
+        }
+
+        [Test]
+        public void Ginmere_SitsAtTheTepuisFoot_OnCleanGround()
+        {
+            // The siting rationale, pinned: canon puts simas in tepui
+            // country ("Sima Interior — inside sinkholes", Lore/History/
+            // 00_Canon.md:63), so the mouth opens in Grovelands at the
+            // foot, like Olderdeep's. And the cell must be genuinely
+            // empty — no authored place, no road, no river.
+            int gx = -1, gy = -1;
+            foreach (var (name, x, y) in SinkholeSites.All)
+                if (name == "Ginmere") { gx = x; gy = y; }
+            Assert.GreaterOrEqual(gx, 0, "Ginmere is an authored mouth");
+
+            Assert.AreEqual(BiomeType.Grovelands,
+                WorldMapAuthoring.BiomeAt(gx, gy));
+            Assert.IsNull(WorldMapAuthoring.PlaceAt(gx, gy),
+                "the mouth does not sit on a settlement");
+            Assert.IsFalse(WorldMapAuthoring.IsRoad(gx, gy),
+                "a hole in a road would eat the road");
+            Assert.IsFalse(WorldMapAuthoring.IsRiver(gx, gy),
+                "a river cell is already spoken for");
         }
     }
 }

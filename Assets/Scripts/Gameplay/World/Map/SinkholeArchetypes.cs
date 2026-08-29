@@ -43,6 +43,11 @@ namespace CavesOfOoo.Core
                 case "Lampwell":              return SinkholeArchetype.StrandedSettlement;
                 case "Spivenor":              return SinkholeArchetype.StrandedSettlement;
                 case "Olderdeep":             return SinkholeArchetype.StrandedSettlement;
+                // W5.6 — the named drowned sima. Coined, because the
+                // canon correction above left the archetype with no
+                // place in the world, and an archetype the player
+                // cannot reach is stored, not shipped.
+                case "Ginmere":               return SinkholeArchetype.DrownedSima;
             }
             // Unnamed: stable hash, same shape as the formation pools.
             int i = FormationSelector.StableIndex("SinkholeFloor|" + (sinkholeName ?? ""), 3);

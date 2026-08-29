@@ -13,15 +13,28 @@ namespace CavesOfOoo.Core
     /// </summary>
     public static class SinkholeSites
     {
-        /// <summary>Name, world X, world Y. Biomes (verified): Olderdeep
-        /// and the Deepest Cathedral open in Grovelands, Lampwell in the
-        /// Spread, Spivenor in the Sodden.</summary>
+        /// <summary>Name, world X, world Y. Biomes (verified): Olderdeep,
+        /// the Deepest Cathedral and Ginmere open in Grovelands, Lampwell
+        /// in the Spread, Spivenor in the Sodden.
+        ///
+        /// <para><b>Ginmere (W5.6):</b> the W5.4 canon correction made
+        /// all four original mouths villages or the Cathedral, which
+        /// orphaned the Drowned Sima — W5.3's whole floor was reachable
+        /// only "by the hash for unnamed holes", and the shipped world
+        /// has no unnamed holes. Ginmere is its named instance: a
+        /// water-filled sima at the tepui's foot (canon sites simas in
+        /// tepui country — Lore/History/00_Canon.md:63), two cells west
+        /// of Olderdeep on clean ground (no place, road or river; both
+        /// pinned). The name is coined, not canon — canon names no
+        /// drowned sima — in the register of Lampwell and Wellmeet:
+        /// a mere is a standing pool, and the gin frogs live in it.</para></summary>
         public static readonly (string Name, int X, int Y)[] All =
         {
             ("Olderdeep",             4, 6),
             ("the Deepest Cathedral", 5, 4),
             ("Lampwell",             12, 3),
             ("Spivenor",             16, 4),
+            ("Ginmere",               2, 7),
         };
 
         /// <summary>True when this world cell is an authored mouth.</summary>

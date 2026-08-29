@@ -200,7 +200,7 @@ namespace CavesOfOoo.Core
         /// player's start.
         ///
         /// <para>Sinkhole mouths (Olderdeep 4,6 · the Deepest Cathedral
-        /// 5,4 · Lampwell 12,3 · Spivenor 16,4), the Root (3,3), the
+        /// 5,4 · Lampwell 12,3 · Spivenor 16,4 · Ginmere 2,7), the Root (3,3), the
         /// Felling-Site (3,5) and the Unsaying (2,11) are reserved but
         /// NOT placed here — they need POI types and zone stacks that
         /// W5/W6/W7 build. Their cells are already the right biome, so

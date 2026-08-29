@@ -442,3 +442,61 @@ tests incl. two counter-checks) were written before the mechanism
 existed — RED as compile error, not run in isolation before
 implementing; noted per §2.1.
 
+
+---
+
+### W5.6 — Ginmere: the drowned sima gets a place in the world (SHIPPED)
+
+**What the plan said:** "Lampwell + Spivenor placed, plus the mouths at
+Olderdeep and the Deepest Cathedral if their floors fall out of the
+three shipped archetypes." All four were placed in W5.1 and all four
+floors are in-scope — so the literal W5.6 was vacuous.
+
+**What the sweep found instead:** the W5.4 canon correction (Lampwell,
+Spivenor, Olderdeep → StrandedSettlement) left the **Drowned Sima
+orphaned**. Its honesty note said the archetype "remains reachable by
+the hash for unnamed holes" — but `SinkholeSites.All` is the only
+source of `POIType.Sinkhole` (WorldGenerator.cs:82) and the shipped
+world contains **no unnamed holes**. All of W5.3's floor — the standing
+water, the gin frogs — was stored, not shipped.
+
+**The fix:** a fifth authored mouth, **Ginmere** (2,7) → DrownedSima.
+- Siting verified before writing code: Grovelands at the tepui's foot
+  (canon puts simas in tepui country — Lore/History/00_Canon.md:63),
+  tier 3, two cells west of Olderdeep; no place, road or river on the
+  cell (each pinned by test).
+- The name is COINED, and says so in the source docstring — canon
+  names no drowned sima. In the register of Lampwell/Wellmeet: a mere
+  is a standing pool; the gin frogs live in it. (Distinct from the
+  W5.4 lesson: that was inventing a rationale to override an EXISTING
+  canon identity; this is naming a new thing that has none.)
+- **The structural pin that would have caught the orphaning:**
+  `EveryShippedArchetype_HasAPlaceInTheWorld` — every enum member must
+  be reachable from some authored mouth. RED before the fix (proof the
+  gap was real), GREEN after, and permanent: a future archetype cannot
+  ship floor-only.
+- End-to-end test goes POI → mouth → descent → floor through the real
+  routing, not just the builder in isolation; counter-check pins that
+  Ginmere is not a village and the other four assignments moved not at
+  all.
+
+**Sprites (the standing rule, applied):** Ginmere makes the gin frog
+headline fauna of a reachable floor — it was a bare 'f'. Shipped
+`gin_frog.png` (pale silver-green, the "gin" is the translucency).
+Sweep also caught W5.4 debt: Warden Nossik and the Plaque-Tender were
+bare '@'s — shipped `catacomb_warden.png` / `plaque_tender.png`
+(olm-pale, per canon's catacomb-villager morphology). Roster pins
+bumped (44→45 creatures, 12→14 named actors) and a new loads-audit
+covers BOTH actor tables (no such guard existed — a typo'd filename
+degraded silently to the glyph).
+
+**RED honesty:** proper RED this time — all four W5.6 tests were run
+and confirmed failing (assertion-RED, 7124 total / 4 failed) before
+the implementation commit. One environmental note: a mid-run
+MCP-for-Unity WebSocket error poisoned 14 unrelated tests via
+LogAssert in one GREEN run; server relaunched, clean rerun required
+before commit.
+
+Tests: 7120 → 7125 (+5: 4 Ginmere + 1 actor-sprite loads-audit; the
+roster pins are edits to existing tests). All green — including, this
+run, the documented-flaky contagion test.

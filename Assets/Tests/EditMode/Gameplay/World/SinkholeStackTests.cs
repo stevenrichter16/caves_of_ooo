@@ -46,7 +46,7 @@ namespace CavesOfOoo.Tests
         // ════════════════════════════════════════════════════════════
 
         [Test]
-        public void TheFourMouths_AreSinkholePOIs()
+        public void TheAuthoredMouths_AreSinkholePOIs()
         {
             var mgr = new OverworldZoneManager(_factory, worldSeed: 42);
             foreach (var (name, x, y) in SinkholeSites.All)
