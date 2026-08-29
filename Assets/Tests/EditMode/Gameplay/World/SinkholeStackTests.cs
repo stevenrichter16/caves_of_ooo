@@ -95,14 +95,19 @@ namespace CavesOfOoo.Tests
         {
             // The W4.7 lesson applied before it can bite: a rolled lair
             // must never take a mouth cell and delete the hole.
-            foreach (var (name, x, y) in SinkholeSites.All)
-                for (int seed = 1; seed <= 30; seed++)
+            // Close-out 🔵 — this used to build 30 worlds PER MOUTH
+            // (150 generations); one world per seed answers for all
+            // five mouths at once.
+            for (int seed = 1; seed <= 30; seed++)
+            {
+                var mgr = new OverworldZoneManager(_factory, worldSeed: seed);
+                foreach (var (name, x, y) in SinkholeSites.All)
                 {
-                    var mgr = new OverworldZoneManager(_factory, worldSeed: seed);
                     var poi = mgr.WorldMap.GetPOI(x, y);
                     Assert.AreEqual(POIType.Sinkhole, poi?.Type,
                         $"seed {seed}: something else claimed {name}");
                 }
+            }
         }
 
         // ════════════════════════════════════════════════════════════
@@ -162,18 +167,24 @@ namespace CavesOfOoo.Tests
             // descent. The original "exactly 1" pin passed only because
             // the roll missed at seed 42; this sweeps seeds so the
             // guarantee is real rather than lucky.
-            var (_, x, y) = SinkholeSites.All[0];
-            for (int seed = 1; seed <= 12; seed++)
-            {
-                var mgr = new OverworldZoneManager(_factory, worldSeed: seed);
-                var zone = mgr.GetZone($"Overworld.{x}.{y}.0");
-                int down = 0;
-                foreach (var e in zone.GetAllEntities())
-                    if (e.GetPart<StairsDownPart>() != null) down++;
-                Assert.AreEqual(1, down,
-                    $"seed {seed}: a sinkhole's mouth IS the way down — " +
-                    "a second random cave entrance beside it is nonsense");
-            }
+            // Close-out hypothesis H13 — this guarantee was proven
+            // only for All[0]; the other mouths sit in DIFFERENT biomes
+            // whose wilderness recipes carry different builders, so
+            // "the roll missed for Olderdeep" said nothing about
+            // Lampwell (Spread) or Spivenor (Sodden). Every mouth, a
+            // few seeds each.
+            foreach (var (name, x, y) in SinkholeSites.All)
+                for (int seed = 1; seed <= 4; seed++)
+                {
+                    var mgr = new OverworldZoneManager(_factory, worldSeed: seed);
+                    var zone = mgr.GetZone($"Overworld.{x}.{y}.0");
+                    int down = 0;
+                    foreach (var e in zone.GetAllEntities())
+                        if (e.GetPart<StairsDownPart>() != null) down++;
+                    Assert.AreEqual(1, down,
+                        $"{name} seed {seed}: a sinkhole's mouth IS the way down — " +
+                        "a second random cave entrance beside it is nonsense");
+                }
         }
 
         [Test]
@@ -227,5 +238,166 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(1, up, "and you can climb back out");
             Assert.AreEqual(1, down, "the floor is below");
         }
+
+        // ════════════════════════════════════════════════════════════
+        //   W5.7 close-out — the stack's contracts under pressure
+        // ════════════════════════════════════════════════════════════
+
+        [Test]
+        public void TheVoid_IsReservedAgainstAmbientStamps()
+        {
+            // Close-out 🟡 — the biome's LandmarkBuilder runs at 3800,
+            // AFTER the mouth, and its FootprintClear happily accepted
+            // the cleared void: a Choir shrine (five NPCs, a campfire)
+            // could generate standing INSIDE the hole. The ellipse
+            // joins GenReservedCells, the same fence the village square
+            // uses.
+            var mgr = new OverworldZoneManager(_factory, worldSeed: 42);
+            var (name0, x0, y0) = SinkholeSites.All[0];
+            var zone = mgr.GetZone($"Overworld.{x0}.{y0}.0");
+            int reservedInVoid = 0;
+            foreach (var e in zone.GetAllEntities())
+                if (e.BlueprintName == "SinkholeLip")
+                {
+                    var pos = zone.GetEntityPosition(e);
+                    if (zone.GenReservedCells.Contains((pos.x, pos.y)))
+                        reservedInVoid++;
+                }
+            Assert.Greater(reservedInVoid, 12,
+                name0 + ": the hole and its lip are fenced against later spawners");
+        }
+
+        [Test]
+        public void TheCacheLedge_HoldsWhatTheyPacked()
+        {
+            // Close-out 🔵 — canon, the plan and the docstring all
+            // promised a cache ledge and the expedition; nothing built
+            // one. Now the lowest terrace holds the sack of supplies
+            // they did not get to use.
+            var mgr = new OverworldZoneManager(_factory, worldSeed: 42);
+            var (_, x, y) = SinkholeSites.All[0];
+            mgr.GetZone($"Overworld.{x}.{y}.0");
+            var descent = mgr.GetZone($"Overworld.{x}.{y}.1");
+
+            foreach (var e in descent.GetAllEntities())
+                if (e.BlueprintName == "Sack")
+                {
+                    var hold = e.GetPart<ContainerPart>();
+                    Assert.IsNotNull(hold);
+                    Assert.GreaterOrEqual(hold.Contents.Count, 3,
+                        "torch, food, tonic — the kit of somebody who meant to climb out");
+                    return;
+                }
+            Assert.Fail("the cache exists on the descent");
+        }
+
+        [Test]
+        public void ArrivingLaterally_TheFloorStillHasItsWayUp()
+        {
+            // Close-out hypothesis H1 — a floor reached by walking
+            // underground from the next chunk over used to generate
+            // BEFORE its descent existed; StairsUpBuilder read the
+            // connection registry, found nothing, and the floor was
+            // born with no way up — a soft-lock in a recoverable-death
+            // RPG. The stack now generates top-down: asking for z=2
+            // cold generates z=0 and z=1 first.
+            var mgr = new OverworldZoneManager(_factory, worldSeed: 77);
+            var (name0, x0, y0) = SinkholeSites.All[0];
+            var floor = mgr.GetZone($"Overworld.{x0}.{y0}.2");   // COLD — no z0/z1 call first
+
+            int up = 0;
+            foreach (var e in floor.GetAllEntities())
+                if (e.GetPart<StairsUpPart>() != null) up++;
+            Assert.GreaterOrEqual(up, 1,
+                name0 + ": however you got down here, the way back up exists");
+        }
+
+        [Test]
+        public void RegisteringTheSameStairsTwice_KeepsOneConnection()
+        {
+            // Close-out 🔵 — RegisterConnection appended blindly, and a
+            // zone that regenerates re-registers its stairs: one
+            // duplicate per unload/regen cycle, saved forever, and one
+            // extra StairsUp entity placed per duplicate.
+            var mgr = new OverworldZoneManager(_factory, worldSeed: 42);
+            var conn = new ZoneConnection
+            {
+                SourceZoneID = "Overworld.9.9.0", SourceX = 5, SourceY = 5,
+                TargetZoneID = "Overworld.9.9.1", TargetX = 5, TargetY = 5,
+                Type = "StairsDown",
+            };
+            var again = new ZoneConnection
+            {
+                SourceZoneID = "Overworld.9.9.0", SourceX = 5, SourceY = 5,
+                TargetZoneID = "Overworld.9.9.1", TargetX = 5, TargetY = 5,
+                Type = "StairsDown",
+            };
+            mgr.RegisterConnection(conn);
+            mgr.RegisterConnection(again);
+            Assert.AreEqual(1,
+                mgr.GetConnectionsTo("Overworld.9.9.1", "StairsDown").Count,
+                "same stairs, one connection — regeneration is not accretion");
+        }
+
+        [Test]
+        public void UnloadingAZone_DropsTheConnectionsItOwns()
+        {
+            // The other half of the dedup contract: an unloaded zone
+            // will re-register on regeneration, so its OWN connections
+            // leave with it; connections INTO it from other zones stay.
+            var mgr = new OverworldZoneManager(_factory, worldSeed: 42);
+            mgr.RegisterConnection(new ZoneConnection
+            {
+                SourceZoneID = "Overworld.9.9.0", SourceX = 5, SourceY = 5,
+                TargetZoneID = "Overworld.9.9.1", TargetX = 5, TargetY = 5,
+                Type = "StairsDown",
+            });
+            mgr.RegisterConnection(new ZoneConnection
+            {
+                SourceZoneID = "Overworld.8.9.0", SourceX = 2, SourceY = 2,
+                TargetZoneID = "Overworld.9.9.0", TargetX = 3, TargetY = 3,
+                Type = "StairsDown",
+            });
+            mgr.UnloadZone("Overworld.9.9.0");
+            Assert.AreEqual(0,
+                mgr.GetConnectionsTo("Overworld.9.9.1", "StairsDown").Count,
+                "the unloaded zone took its own stairs with it");
+            Assert.AreEqual(1,
+                mgr.GetConnectionsTo("Overworld.9.9.0", "StairsDown").Count,
+                "but the neighbour's stairs into it survive");
+        }
+
+        [Test]
+        public void ALoadedWorld_GrowsMouthsAuthoredAfterItWasSaved()
+        {
+            // Close-out 🟡 — the POI stream is the only source on load,
+            // and SinkholeSites.All was consumed only by fresh worldgen:
+            // a pre-W5.6 save never grew Ginmere, so the Drowned Sima
+            // stayed orphaned in every existing world. Same heal as the
+            // W4.7 profile rehydration: the table is the source of truth.
+            var map = WorldGenerator.Generate(42);
+            var (nameG, xg, yg) = SinkholeSites.All[SinkholeSites.All.Length - 1];
+            map.SetPOI(xg, yg, null);                       // a pre-W5.6 save
+            map.RehydrateAuthoredSinkholes();
+            var poi = map.GetPOI(xg, yg);
+            Assert.IsNotNull(poi, nameG + " grew back on load");
+            Assert.AreEqual(POIType.Sinkhole, poi.Type);
+            Assert.AreEqual(nameG, poi.Name);
+        }
+
+        [Test]
+        public void Rehydration_NeverDisplacesWhatIsThere()
+        {
+            // Counter-check: a cell that HOLDS something — whatever the
+            // save put there — is never overwritten by the table.
+            var map = WorldGenerator.Generate(42);
+            var (nameG, xg, yg) = SinkholeSites.All[0];
+            var squatter = new PointOfInterest(POIType.Lair, "squatter", null, 2);
+            map.SetPOI(xg, yg, squatter);
+            map.RehydrateAuthoredSinkholes();
+            Assert.AreSame(squatter, map.GetPOI(xg, yg),
+                "an occupied cell is the save's business, not the table's");
+        }
+
     }
 }

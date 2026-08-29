@@ -146,10 +146,17 @@ namespace CavesOfOoo.Core
                     { claimed.Add((px, 3)); px += 3; break; }
                 }
             }
-            for (int x = 30; x < 50; x++)
-                if (IsOpenGround(zone, x, PatchCenterY + 8)
-                    && BuilderSpawn.TryPlaceOnce(zone, factory, "PlaqueOldest", x, PatchCenterY + 8) != null)
-                { claimed.Add((x, PatchCenterY + 8)); break; }
+            // Close-out 🔵 — this used to sit at PatchCenterY+8: an
+            // isolated plaque on open floor 17 rows south of the wall
+            // it belongs to. Canon's wall is ONE artifact ("oldest at
+            // the floor" — the wall's own bottom row, not the zone's
+            // southmost band), so the oldest anchors the wall run's
+            // western floor-level end, beneath the named row, where a
+            // reader working the wall top-to-bottom actually meets it.
+            for (int x = 12; x <= 30; x++)
+                if (IsOpenGround(zone, x, 4)
+                    && BuilderSpawn.TryPlaceOnce(zone, factory, "PlaqueOldest", x, 4) != null)
+                { claimed.Add((x, 4)); break; }
 
             // ── Beetle-jars: mobile light, mid-field.
             foreach (var (jx, jy) in new[] { (16, 9), (62, 9), (16, 15), (62, 15) })

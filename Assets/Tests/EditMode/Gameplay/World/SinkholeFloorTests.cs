@@ -243,5 +243,34 @@ namespace CavesOfOoo.Tests
             Assert.IsFalse(WorldMapAuthoring.IsRiver(gx, gy),
                 "a river cell is already spoken for");
         }
+
+        [Test]
+        public void TheSimaFloor_IsALightWell()
+        {
+            // Close-out hypothesis H12 — the drowned sima shipped at
+            // catacomb darkness (0.22) with ZERO light sources: the one
+            // floor with no glow of its own was also the one at the
+            // bottom of an open hole. A real sima is a light well —
+            // daylight down the shaft is why anything grows there.
+            var zone = FloorOf("Ginmere");
+            Assert.IsNotNull(zone);
+            Assert.AreEqual(OverworldZoneManager.ShaftLightAmbient,
+                zone.AmbientLevel, 0.001f,
+                "open sky above; the floor reads brighter than sealed stone");
+        }
+
+        [Test]
+        public void TheVillageFloor_KeepsItsAuthoredDark()
+        {
+            // Counter-check: the shaft light is the SIMA's. The village
+            // floor's darkness is authored — canon's reveal order ("the
+            // GLOW before the people") needs the dark around the patch.
+            var zone = FloorOf("Lampwell");
+            Assert.IsNotNull(zone);
+            Assert.AreEqual(OverworldZoneManager.GetDepthAmbient(2),
+                zone.AmbientLevel, 0.001f,
+                "the glow is the town, and it needs the dark to be seen");
+        }
+
     }
 }

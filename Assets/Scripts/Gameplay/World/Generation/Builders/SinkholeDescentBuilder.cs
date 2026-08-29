@@ -59,9 +59,36 @@ namespace CavesOfOoo.Core
                     anchors++;
             }
 
+            // The cache ledge — and the expedition. Close-out 🔵: the
+            // docstring, the W5.1 plan line and canon (:692-694) all
+            // promised this and nothing built it — living-doc-vs-impl
+            // drift of exactly the kind Q4 exists to catch. One sack of
+            // the supplies they did not get to use, and the bones of
+            // whoever packed it, beside a ledge on the LOWEST terrace:
+            // they nearly made it back up.
+            bool cache = false;
+            for (int attempt = 0; attempt < 80 && !cache; attempt++)
+            {
+                int x = 4 + rng.Next(Zone.Width - 8);
+                int y = 3 + (LedgeRows - 1) * ((Zone.Height - 6) / LedgeRows) + 1;
+                if (!IsOpenGround(zone, x, y)) continue;
+                var sack = BuilderSpawn.TryPlaceOnce(zone, factory, "Sack", x, y);
+                if (sack == null) continue;
+                var hold = sack.GetPart<ContainerPart>();
+                if (hold != null)
+                {
+                    hold.AddItem(factory.CreateEntity("Torch"));
+                    hold.AddItem(factory.CreateEntity("DriedMeat"));
+                    hold.AddItem(factory.CreateEntity("HealingTonic"));
+                }
+                if (IsOpenGround(zone, x + 1, y))
+                    BuilderSpawn.TryPlaceOnce(zone, factory, "Bones", x + 1, y);
+                cache = true;
+            }
+
             if (Diag.IsChannelEnabled("worldgen"))
                 Diag.Record("worldgen", "SinkholeDescent", null, null,
-                    new { zoneId = zone.ZoneID, ledges, anchors });
+                    new { zoneId = zone.ZoneID, ledges, anchors, cache });
             return true;
         }
     }

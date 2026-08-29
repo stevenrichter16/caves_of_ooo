@@ -102,6 +102,29 @@ namespace CavesOfOoo.Core
             CachedZones.Remove(zoneID);
             if (ActiveZone?.ZoneID == zoneID)
                 ActiveZone = null;
+            // W5.7 close-out 🔵 — an unloaded zone REGENERATES on next
+            // access and its builders re-register their connections.
+            // Leaving the old ones behind grew the registry by one
+            // duplicate per unload/regen cycle (village advances while
+            // the player is away), every duplicate was saved forever,
+            // and StairsUpBuilder placed one staircase PER duplicate.
+            // Drop connections the unloaded zone OWNS (it is the
+            // source); connections into it from zones still loaded
+            // stay, because those zones will not re-register them.
+            if (_connections.TryGetValue(zoneID, out var owned))
+            {
+                var dropped = new List<ZoneConnection>();
+                for (int i = owned.Count - 1; i >= 0; i--)
+                    if (owned[i].SourceZoneID == zoneID)
+                    { dropped.Add(owned[i]); owned.RemoveAt(i); }
+                if (owned.Count == 0) _connections.Remove(zoneID);
+                foreach (var conn in dropped)
+                    if (_connections.TryGetValue(conn.TargetZoneID, out var tl))
+                    {
+                        tl.Remove(conn);
+                        if (tl.Count == 0) _connections.Remove(conn.TargetZoneID);
+                    }
+            }
         }
 
         public int CachedZoneCount => CachedZones.Count;
@@ -119,6 +142,16 @@ namespace CavesOfOoo.Core
                 sourceList = new List<ZoneConnection>();
                 _connections[conn.SourceZoneID] = sourceList;
             }
+            // W5.7 close-out 🔵 — idempotent by value: a regenerated
+            // zone re-registering the same stairs must not stack a
+            // duplicate (and a save must not grow monotonically).
+            foreach (var existing in sourceList)
+                if (existing.SourceZoneID == conn.SourceZoneID
+                    && existing.TargetZoneID == conn.TargetZoneID
+                    && existing.SourceX == conn.SourceX && existing.SourceY == conn.SourceY
+                    && existing.TargetX == conn.TargetX && existing.TargetY == conn.TargetY
+                    && existing.Type == conn.Type)
+                    return;
             sourceList.Add(conn);
 
             if (!_connections.TryGetValue(conn.TargetZoneID, out var targetList))

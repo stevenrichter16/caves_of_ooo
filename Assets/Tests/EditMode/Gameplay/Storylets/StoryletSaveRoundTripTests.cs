@@ -28,7 +28,13 @@ namespace CavesOfOoo.Tests
             // 5→6: Felling W1 put Zone.UrquBleedLevel beside it — a field
             //      documented as mirroring AmbientLevel has to actually
             //      survive a save (Docs/FELLING-W1-W2-PLAN.md §2.3).
-            Assert.AreEqual(6, SaveWriter.FormatVersion);
+            // 6→7: W5.7 close-out 🔴 — HearthPatchPart's public fields
+            //      changed shape (RepLoss/WarDeclared deleted) and the
+            //      reflection reader CANNOT skip an unknown field name
+            //      (SkipValue never consumes the bytes): a v6 save with
+            //      the catacomb floor cached would misalign mid-load.
+            //      Strict rejection is the honest failure.
+            Assert.AreEqual(7, SaveWriter.FormatVersion);
         }
 
         // counter-check: a fabricated v2-version header must reject on load

@@ -242,5 +242,89 @@ namespace CavesOfOoo.Tests
             Assert.IsFalse(StairTravel.ShouldInterrupt(zone, you),
                 "a neighbour is not an ambush");
         }
+
+        // ════════════════════════════════════════════════════════════
+        //   W5.7 — who actually stops you
+        // ════════════════════════════════════════════════════════════
+
+        [Test]
+        public void AFleeingFrogIsNotAnAmbush()
+        {
+            // Close-out hypothesis H2 — GinFrog is faction Beasts
+            // (faction-hostile to the player) but Passive: it never
+            // initiates (BrainPart.cs:47). Before the passive rule, one
+            // frog three cells away vetoed stair travel across the
+            // whole sima it lives in.
+            var zone = Floored();
+            var you = Walker(zone, 10, 10);
+            you.Tags["Faction"] = "Villagers";
+            var frog = FarBeast(zone, 13, 10);
+            frog.AddPart(new BrainPart { Passive = true });
+
+            Assert.IsFalse(StairTravel.ShouldInterrupt(zone, you),
+                "a thing that only flees is scenery, not company");
+        }
+
+        [Test]
+        public void APassiveCreatureYouAreFightingStillStopsYou()
+        {
+            // Counter-check: passivity ends where the fight begins —
+            // a passive creature DEFENDING itself against you is a
+            // fight like any other.
+            var zone = Floored();
+            var you = Walker(zone, 10, 10);
+            you.Tags["Faction"] = "Villagers";
+            var frog = FarBeast(zone, 13, 10);
+            var brain = new BrainPart { Passive = true };
+            brain.PersonalEnemies.Add(you);
+            frog.AddPart(brain);
+
+            Assert.IsTrue(StairTravel.ShouldInterrupt(zone, you),
+                "you started this; you do not stroll away mid-fight");
+        }
+
+        [Test]
+        public void AFarSightedHostileStopsYouAtItsOwnRange()
+        {
+            // Close-out 🔵 — SightRadius is blueprint-settable; the
+            // gate is as wide as THIS hostile's eyes, not the default.
+            var zone = Floored();
+            var you = Walker(zone, 10, 10);
+            you.Tags["Faction"] = "Villagers";
+            var watcher = FarBeast(zone, 10 + StairTravel.NoticeRadius + 4, 10);
+            watcher.AddPart(new BrainPart { SightRadius = StairTravel.NoticeRadius + 4 });
+
+            Assert.IsTrue(StairTravel.ShouldInterrupt(zone, you),
+                "it can see you, so it counts — whatever the default radius says");
+        }
+
+        [Test]
+        public void TheWalkGoesAroundSomethingParkedOnThePath()
+        {
+            // Close-out hypothesis H11 — W5.5's encased elders are
+            // solid and never move. Planning ignores creatures (they
+            // usually move), so the plan can go THROUGH one; the
+            // creature-respecting overload must find the way around,
+            // because the walker re-plans with it when a step bounces.
+            var zone = Floored();
+            var you = Walker(zone, 10, 10);
+            var elder = new Entity { ID = "elder", BlueprintName = "EncasedElder" };
+            elder.Tags["Creature"] = "";
+            elder.AddPart(new PhysicsPart { Solid = true });
+            elder.AddPart(new RenderPart { DisplayName = "encased elder" });
+            elder.Statistics["Hitpoints"] = new Stat
+            { Owner = elder, Name = "Hitpoints", BaseValue = 10, Min = 0, Max = 10 };
+            zone.AddEntity(elder, 15, 10);
+
+            var detour = StairTravel.PathTo(zone, you, 20, 10, ignoreCreatures: false);
+            Assert.IsNotNull(detour, "there is floor all around; the way exists");
+            int x = 10, y = 10;
+            bool through = false;
+            foreach (var (dx, dy) in detour)
+            { x += dx; y += dy; if (x == 15 && y == 10) through = true; }
+            Assert.IsFalse(through, "the detour respects the elder");
+            Assert.AreEqual((20, 10), (x, y), "and still arrives");
+        }
+
     }
 }

@@ -30,12 +30,31 @@ namespace CavesOfOoo.Core
             ConsumeOnTrigger = false;
         }
 
+        /// <summary>Entity property that latches the greeting. The
+        /// mats are a 5×7 field of ~35 separate trigger entities, so
+        /// without a latch one walk across the band printed the same
+        /// second-person line up to five times (close-out hypothesis
+        /// H4) — and any wandering NPC crossing the mats narrated
+        /// "the weight of YOU" at the player from across the zone.
+        /// The fiction resolves it: the village recognizes a step
+        /// ONCE — "knows the weight of you now" is permanent — so the
+        /// latch is per-actor, forever, and rides the save with the
+        /// entity's other properties. The diag record still fires on
+        /// every crossing; the village always feels the step, it just
+        /// does not re-announce an old acquaintance.</summary>
+        public const string GreetedProperty = "DewstepKnown";
+
         protected override void OnTrigger(Entity actor, Zone zone)
         {
             if (actor == null) return;
-            MessageLog.Add(
-                "The sundew gives underfoot, sticky and warm — a dewstep. " +
-                "Somewhere ahead, the village knows the weight of you now.");
+            if (actor.HasTag("Player")
+                && !actor.Properties.ContainsKey(GreetedProperty))
+            {
+                actor.Properties[GreetedProperty] = "";
+                MessageLog.Add(
+                    "The sundew gives underfoot, sticky and warm — a dewstep. " +
+                    "Somewhere ahead, the village knows the weight of you now.");
+            }
             if (Diag.IsChannelEnabled("faction"))
                 Diag.Record("faction", "Dewstep", actor, ParentEntity,
                     new { blueprintName = actor.BlueprintName });

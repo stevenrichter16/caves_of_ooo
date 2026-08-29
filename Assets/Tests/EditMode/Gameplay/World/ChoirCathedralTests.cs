@@ -168,5 +168,47 @@ namespace CavesOfOoo.Tests
                 Assert.IsTrue(mapped, bp + " ships with a sprite, not just a letter");
             }
         }
+
+        [Test]
+        public void TheChoirSpeaksToTheHostile_BecausePatienceIsDoctrine()
+        {
+            // Close-out hypothesis H6 — one act of grove arson (−40,
+            // past the hostile threshold at −10) used to lock EVERY
+            // Choir conversation, and with them the elder's mercy and
+            // the Bloom's cure, forever: a permanent lockout in a game
+            // whose identity is recoverable consequence. Canon resolves
+            // it — "the singers have not minded anything for a long
+            // time" — the Choir does not do enmity. The ledger still
+            // remembers; the door still opens.
+            var zone = new Zone("PatientChoir");
+            FactionManager.Initialize();
+            try
+            {
+                ConversationLoader.Reset();
+                ConversationLoader.LoadFromJson(File.ReadAllText(Path.Combine(
+                    Application.dataPath, "Resources/Content/Conversations/RotChoir.json")));
+                var elder = _factory.CreateEntity("EncasedElder");
+                zone.AddEntity(elder, 10, 10);
+                var player = new Entity { ID = "p", BlueprintName = "Player" };
+                player.Tags["Player"] = "";
+                player.Tags["Creature"] = "";
+                player.Tags["Faction"] = "Player";
+                player.AddPart(new RenderPart { DisplayName = "you" });
+                zone.AddEntity(player, 11, 10);
+
+                PlayerReputation.Reset();
+                PlayerReputation.Modify("RotChoir", -80, silent: true);  // two arsons
+                bool started = ConversationManager.StartConversation(elder, player);
+                Assert.IsTrue(started,
+                    "the grove is angry, and the grove is patient, and both are true");
+                ConversationManager.EndConversation();
+            }
+            finally
+            {
+                ConversationLoader.Reset();
+                PlayerReputation.Reset();
+            }
+        }
+
     }
 }

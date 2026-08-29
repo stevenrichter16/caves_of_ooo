@@ -96,7 +96,7 @@ namespace CavesOfOoo.Core
             // + display-name with the POI's marker. The POI marker is
             // the player-visible signal of a settlement / lair / etc.
             var poi = _worldMap.GetPOI(worldX, worldY);
-            if (poi != null)
+            if (poi != null && !HideFromMap(poi, worldX, worldY))
             {
                 var (poiGlyph, poiColor, poiName) = GetPOIRender(poi);
                 glyph = poiGlyph;
@@ -167,8 +167,23 @@ namespace CavesOfOoo.Core
                 case POIType.Lair:         return ("&", "&R", $"{name} lair");
                 case POIType.MerchantCamp: return ("$", "&G", $"{name} merchant camp");
                 case POIType.RiverChunk:   return ("~", "&C", "river");
+                // W5.7 close-out 🔴 — a Sinkhole previously fell to
+                // the default '?' AND leaked its name on examine.
+                // Once discovered it earns a marker: a hole, dark.
+                case POIType.Sinkhole:     return ("o", "&K", name);
                 default:                   return ("?", "&w", name);
             }
         }
+
+        /// <summary>Canon: "Overgrown mouths are found, not shown"
+        /// (Docs/FELLING-WORLD-DESIGN.md:691) — and the mouth
+        /// builder's own docstring promises "the hole is not a POI
+        /// marker on the map UI", which the shipped fall-through
+        /// contradicted (close-out 🔴). A sinkhole renders as plain
+        /// biome — glyph, colour AND examine-name — until the player
+        /// has actually entered its chunk; the Visited bitmap already
+        /// exists and round-trips the save (v4+).</summary>
+        private bool HideFromMap(PointOfInterest poi, int worldX, int worldY)
+            => poi.Type == POIType.Sinkhole && !_worldMap.IsVisited(worldX, worldY);
     }
 }

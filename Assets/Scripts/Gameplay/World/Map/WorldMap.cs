@@ -166,6 +166,20 @@ namespace CavesOfOoo.Core
             }
         }
 
+        /// <summary>W5.7 — the sinkhole twin of
+        /// <see cref="RehydrateAuthoredProfiles"/>: authored mouths are
+        /// table-sourced (SinkholeSites.All), so a loaded world grows
+        /// any mouth authored after it was saved. Empty cells only —
+        /// a POI already present (whatever it is) is never displaced.</summary>
+        public void RehydrateAuthoredSinkholes()
+        {
+            foreach (var (name, x, y) in SinkholeSites.All)
+                if (GetPOI(x, y) == null)
+                    SetPOI(x, y, new PointOfInterest(
+                        POIType.Sinkhole, name, null,
+                        WorldMapAuthoring.TierAt(x, y)));
+        }
+
         public void SetPOI(int x, int y, PointOfInterest poi)
         {
             if (InBounds(x, y))

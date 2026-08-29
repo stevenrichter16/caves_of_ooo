@@ -162,8 +162,11 @@ namespace CavesOfOoo.Tests
             var mat = _factory.CreateEntity("PebbleSundewThreshold");
             Assert.IsNotNull(mat, "the threshold ships");
             zone.AddEntity(mat, 10, 10);
+            // (H4 made the greeting player-only and once-ever: the
+            // second-person line belongs to the player's own step.)
             var walker = new Entity { ID = "w", BlueprintName = "Walker" };
             walker.Tags["Creature"] = "";
+            walker.Tags["Player"] = "";
             walker.AddPart(new RenderPart { DisplayName = "walker" });
             walker.AddPart(new PhysicsPart { Solid = true });
             walker.Statistics["Hitpoints"] = new Stat
@@ -360,5 +363,191 @@ namespace CavesOfOoo.Tests
             Assert.Greater(zone.GenReservedCells.Count, 100,
                 "the chamber is claimed against later spawners");
         }
+
+        // ════════════════════════════════════════════════════════════
+        //   W5.7 close-out — the war's other direction, and the door
+        // ════════════════════════════════════════════════════════════
+
+        [Test]
+        public void TheWarCannotIMPROVEYourStanding()
+        {
+            // Close-out 🟡 (verify pass) — the set-to arithmetic
+            // computes WarRep − current; for a player already BELOW
+            // −150 (villager murders), deleting the early-out guard
+            // would make patch damage RAISE rep by the difference and
+            // print "improves". All the other war tests start at rep 0
+            // and cannot see this direction.
+            var zone = new Zone("PatchWarWorse");
+            SettlementRuntime.ActiveZone = zone;
+            FactionManager.Initialize();
+            try
+            {
+                var patch = _factory.CreateEntity("HearthPatch");
+                zone.AddEntity(patch, 10, 10);
+                var vandal = new Entity { ID = "v", BlueprintName = "Vandal" };
+                vandal.Tags["Creature"] = "";
+                vandal.Tags["Player"] = "";
+                vandal.Statistics["Hitpoints"] = new Stat
+                { Owner = vandal, Name = "Hitpoints", BaseValue = 30, Min = 0, Max = 30 };
+                zone.AddEntity(vandal, 11, 10);
+
+                PlayerReputation.Reset();
+                PlayerReputation.Modify("CatacombFolk", -175, silent: true);
+                var d = new Damage(2);
+                d.AddAttribute("Fire");
+                DestructionSystem.RouteDamage(patch, d, vandal, zone);
+
+                Assert.AreEqual(-175, PlayerReputation.Get("CatacombFolk"),
+                    "a deeper grievance is not paid off by a fresh crime");
+            }
+            finally { SettlementRuntime.Reset(); PlayerReputation.Reset(); }
+        }
+
+        [Test]
+        public void KillingAVillager_IsWarGrade()
+        {
+            // Close-out hypothesis H8 — murdering Warden Nossik used
+            // to cost −10 (the base-Creature GivesRep) while
+            // scratching the fungus cost −150: people were 15× cheaper
+            // than the crop. Both named villagers now carry the
+            // war-grade value.
+            foreach (var bp in new[] { "CatacombWarden", "PlaqueTender" })
+            {
+                var v = _factory.CreateEntity(bp);
+                var rep = v.GetPart<GivesRepPart>();
+                Assert.IsNotNull(rep, bp + " carries GivesRep");
+                Assert.AreEqual(150, rep.Value,
+                    bp + ": a person of the village is worth no less than the patch");
+            }
+        }
+
+        [Test]
+        public void TheDewstep_GreetsYouOnce_NotOncePerMat()
+        {
+            // Close-out hypothesis H4 — the threshold is ~35 separate
+            // trigger entities; one walk across the band printed the
+            // same second-person line up to five times. Recognition is
+            // permanent: greeted once, remembered after.
+            var zone = new Zone("DewOnce");
+            SettlementRuntime.ActiveZone = zone;
+            FactionManager.Initialize();
+            try
+            {
+                var matA = _factory.CreateEntity("PebbleSundewThreshold");
+                var matB = _factory.CreateEntity("PebbleSundewThreshold");
+                zone.AddEntity(matA, 10, 10);
+                zone.AddEntity(matB, 11, 10);
+                var walker = new Entity { ID = "w", BlueprintName = "Walker" };
+                walker.Tags["Creature"] = "";
+                walker.Tags["Player"] = "";
+                walker.AddPart(new RenderPart { DisplayName = "you" });
+                walker.AddPart(new PhysicsPart { Solid = true });
+                walker.Statistics["Hitpoints"] = new Stat
+                { Owner = walker, Name = "Hitpoints", BaseValue = 20, Min = 0, Max = 20 };
+                zone.AddEntity(walker, 9, 10);
+
+                MessageLog.Clear();
+                MovementSystem.TryMove(walker, zone, 1, 0);   // onto mat A
+                MovementSystem.TryMove(walker, zone, 1, 0);   // onto mat B
+                int greetings = 0;
+                foreach (var line in MessageLog.GetMessages())
+                    if (line.Contains("dewstep")) greetings++;
+                Assert.AreEqual(1, greetings,
+                    "two mats, one welcome — the village met you already");
+            }
+            finally { SettlementRuntime.Reset(); }
+        }
+
+        [Test]
+        public void TheDewstep_DoesNotNarrateOtherPeoplesSteps()
+        {
+            // Counter-check (H4's second half): a wandering NPC
+            // crossing the mats must not print second-person text at
+            // the player from across the zone. The village still FEELS
+            // the step — the diag record fires — it just says nothing.
+            var zone = new Zone("DewNPC");
+            SettlementRuntime.ActiveZone = zone;
+            FactionManager.Initialize();
+            try
+            {
+                var mat = _factory.CreateEntity("PebbleSundewThreshold");
+                zone.AddEntity(mat, 10, 10);
+                var stranger = new Entity { ID = "s", BlueprintName = "Snapjaw" };
+                stranger.Tags["Creature"] = "";
+                stranger.AddPart(new RenderPart { DisplayName = "snapjaw" });
+                stranger.AddPart(new PhysicsPart { Solid = true });
+                stranger.Statistics["Hitpoints"] = new Stat
+                { Owner = stranger, Name = "Hitpoints", BaseValue = 20, Min = 0, Max = 20 };
+                zone.AddEntity(stranger, 9, 10);
+
+                MessageLog.Clear();
+                Diag.ResetAll();
+                MovementSystem.TryMove(stranger, zone, 1, 0);
+                foreach (var line in MessageLog.GetMessages())
+                    StringAssert.DoesNotContain("dewstep", line,
+                        "the weight of YOU belongs to the player alone");
+                Assert.AreEqual(1, DiagQuery.Apply(new DiagQuery.Filter
+                { Category = "faction", Kind = "Dewstep", Limit = 5 }).Records.Count,
+                    "but the village still knows something crossed");
+            }
+            finally { SettlementRuntime.Reset(); }
+        }
+
+        [Test]
+        public void TheOldestPlaque_BelongsToTheWall()
+        {
+            // Close-out 🔵 — it used to sit 17 rows south of the wall
+            // on open floor: canon's wall is ONE artifact, oldest at
+            // ITS floor, so the oldest lives in the wall's own band.
+            var zone = BuildVillage();
+            foreach (var e in zone.GetAllEntities())
+                if (e.BlueprintName == "PlaqueOldest")
+                {
+                    var pos = zone.GetEntityPosition(e);
+                    Assert.LessOrEqual(pos.y, 5,
+                        "the oldest plaque anchors the wall run, not the far floor");
+                    return;
+                }
+            Assert.Fail("the oldest plaque exists");
+        }
+
+        [Test]
+        public void AtWar_TheWardenRefusesToSpeak()
+        {
+            // Close-out hypothesis H9 — war means war: the shipped
+            // refusal gate (ConversationManager.cs:61) fires for a
+            // Hated-faction speaker, and nothing pinned it against the
+            // war path until now. The Choir's patience (SpeaksToHostiles)
+            // is the deliberate exception, pinned in ChoirCathedralTests.
+            var zone = new Zone("WarNoChat");
+            SettlementRuntime.ActiveZone = zone;
+            FactionManager.Initialize();
+            try
+            {
+                ConversationLoader.Reset();
+                ConversationLoader.LoadFromJson(File.ReadAllText(Path.Combine(
+                    Application.dataPath, "Resources/Content/Conversations/Catacomb.json")));
+                var warden = _factory.CreateEntity("CatacombWarden");
+                zone.AddEntity(warden, 10, 10);
+                var player = new Entity { ID = "p", BlueprintName = "Player" };
+                player.Tags["Player"] = "";
+                player.Tags["Creature"] = "";
+                player.Tags["Faction"] = "Player";
+                player.AddPart(new RenderPart { DisplayName = "you" });
+                zone.AddEntity(player, 11, 10);
+
+                PlayerReputation.Reset();
+                PlayerReputation.Modify("CatacombFolk", -150, silent: true);
+                bool started = ConversationManager.StartConversation(warden, player);
+                Assert.IsFalse(started, "war is war; the door is shut");
+            }
+            finally
+            {
+                ConversationLoader.Reset();
+                SettlementRuntime.Reset();
+                PlayerReputation.Reset();
+            }
+        }
+
     }
 }

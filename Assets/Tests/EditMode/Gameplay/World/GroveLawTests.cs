@@ -322,5 +322,43 @@ namespace CavesOfOoo.Tests
             }
             Assert.Greater(total, 0, "the red grows where the sign can see it");
         }
+
+        // ════════════════════════════════════════════════════════════
+        //   W5.7 — the law reaches everything the Choir IS
+        // ════════════════════════════════════════════════════════════
+
+        [Test]
+        public void BurningTheCathedral_IsACrimeToo()
+        {
+            // Close-out hypothesis H7 — the z != 0 gate meant torching
+            // the Deepest Cathedral's own substrate billed NOTHING
+            // while a campfire in a surface grove billed −40. The
+            // Deepest Cathedral is (5,4); its floor is z=2.
+            var zone = new Zone("Overworld.5.4.2");
+            var player = Player(zone);
+            var tendril = new Entity { ID = "t", BlueprintName = "ChoirTendril" };
+            zone.AddEntity(tendril, 11, 10);
+
+            int before = PlayerReputation.Get("RotChoir");
+            GroveLaw.OnIgnite(player, tendril, zone);
+            Assert.AreEqual(GroveLaw.FireRepLoss,
+                PlayerReputation.Get("RotChoir") - before,
+                "fire in the vault is fire in the grove");
+        }
+
+        [Test]
+        public void TheDescentIsNotChoirGround()
+        {
+            // Counter-check: only the CATHEDRAL floor joins the law.
+            // The descent above it (z=1) is bare rock; the drowned
+            // sima's floor belongs to the frogs, not the Choir.
+            Assert.IsFalse(GroveLaw.IsChoirGround(new Zone("Overworld.5.4.1")),
+                "the shaft is not the vault");
+            Assert.IsFalse(GroveLaw.IsChoirGround(new Zone("Overworld.2.7.2")),
+                "Ginmere's floor is a sima, not a cathedral");
+            Assert.IsTrue(GroveLaw.IsChoirGround(new Zone("Overworld.5.4.2")),
+                "and the vault itself IS choir ground");
+        }
+
     }
 }

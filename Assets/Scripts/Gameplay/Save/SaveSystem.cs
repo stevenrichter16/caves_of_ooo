@@ -31,9 +31,19 @@ namespace CavesOfOoo.Core
         //   persists — a field that silently reset to 0 on every load would
         //   be a data-loss trap the day W7 gives it a writer. Same pre-1.0
         //   acceptance as v4→v5.
+        // v6 → v7: HearthPatchPart's public fields changed shape
+        //   (RepLoss/WarDeclared deleted — the ledger became the war
+        //   latch, W5 fix wave). ReadPublicFields cannot SKIP an
+        //   unknown field name — ReadFieldValue's SkipValue path never
+        //   consumes the value bytes — so a v6 save containing the
+        //   catacomb floor would misalign the stream mid-load and fail
+        //   on garbage. The strict gate turns a corrupt load into an
+        //   honest rejection. (Close-out 🔴; the durable fix — a
+        //   self-describing field format that CAN skip — is a v8
+        //   project, noted in Docs/FELLING-W5-PLAN.md.)
         // Bumping is acceptable on a feature branch;
         // older saves will be rejected by ReadHeader's strict check.
-        public const int FormatVersion = 6;
+        public const int FormatVersion = 7;
 
         private readonly BinaryWriter _writer;
         private readonly Dictionary<Entity, int> _entityTokens = new Dictionary<Entity, int>();
@@ -1061,6 +1071,15 @@ namespace CavesOfOoo.Core
             // table rather than bumping the format: the table is the
             // source of truth, and this also heals saves already written.
             map.RehydrateAuthoredProfiles();
+            // W5.7 close-out 🟡 — same lesson, second table: authored
+            // sinkhole mouths exist only in SinkholeSites.All, which
+            // fresh worldgen stamps and the POI stream never carried
+            // for saves older than the site. Without this, a world
+            // saved before a mouth was authored never grows it —
+            // Ginmere stays unreachable in every pre-W5.6 world, which
+            // is the exact "stored, not shipped" defect W5.6 closed.
+            // Never overwrites: an existing POI (of any type) wins.
+            map.RehydrateAuthoredSinkholes();
             return map;
         }
 

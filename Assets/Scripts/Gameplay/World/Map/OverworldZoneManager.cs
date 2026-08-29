@@ -757,6 +757,24 @@ namespace CavesOfOoo.Core
                 float depth = Mathf.Min(wz * 0.03f, 0.15f);
                 zone.AmbientTint = new Color(0.85f - depth, 0.9f - depth * 0.5f, 1f);
                 zone.AmbientLevel = GetDepthAmbient(wz);
+                // Close-out hypothesis H12 — the drowned sima shipped
+                // at catacomb darkness with zero light sources: the one
+                // floor archetype with no glow of its own was also the
+                // one at the bottom of an OPEN HOLE. A real sima is a
+                // light well — daylight falling down the shaft is why
+                // anything grows at the bottom at all (it is the whole
+                // premise of the Time-Locked Forest archetype). The
+                // floor of a sinkhole stack sits under open sky, so it
+                // reads brighter than sealed stone at the same depth.
+                // Archetype-gated: the village floor's darkness is
+                // AUTHORED (canon's reveal order — "the GLOW before the
+                // people" needs the dark around the patch), and the
+                // cathedral's vault likewise. Only the sima is canon's
+                // light-well.
+                var poiAbove = WorldMap.GetPOI(wx, wy);
+                if (poiAbove != null && poiAbove.Type == POIType.Sinkhole && wz == 2
+                    && SinkholeArchetypes.For(poiAbove.Name) == SinkholeArchetype.DrownedSima)
+                    zone.AmbientLevel = ShaftLightAmbient;
 
                 // Mark all cells as interior. Extracted so a future zone-
                 // hydration path (save/load) can call it too without
@@ -791,6 +809,12 @@ namespace CavesOfOoo.Core
         /// gray applied unmodulated, so an ambient below it renders
         /// visible cells darker than remembered ones.</para>
         /// </summary>
+        /// <summary>Ambient on a sinkhole FLOOR (z=2): the shaft is
+        /// open to the sky, so daylight reaches the bottom — dimmer
+        /// than the surface (0.40), brighter than sealed stone at the
+        /// same depth (0.22).</summary>
+        public const float ShaftLightAmbient = 0.34f;
+
         public static float GetDepthAmbient(int depth)
         {
             // The authored ladder (FELLING-WORLD-DESIGN.md §6). Light is
@@ -853,6 +877,26 @@ namespace CavesOfOoo.Core
                 return;
 
             var (wx, wy, wz) = WorldMap.FromZoneID(zoneID);
+
+            // Close-out hypothesis H1 — the stack generates TOP-DOWN.
+            // A sinkhole floor reached LATERALLY (walking underground
+            // from the next chunk over) used to generate before its
+            // own descent existed: StairsUpBuilder READS the connection
+            // the level above registers, finds nothing, and the floor
+            // is born with no way up — a soft-lock in a recoverable-
+            // death RPG. Generating the level above first (recursively
+            // to the mouth) guarantees every connection exists before
+            // the level that consumes it builds. Sequential, not
+            // reentrant: the recursive GetZone completes before this
+            // zone generates; the cache makes repeat calls free.
+            if (wz > 0 && wz <= 2 && WorldMap.InBounds(wx, wy)
+                && !CachedZones.ContainsKey(zoneID))
+            {
+                var poiHere = WorldMap.GetPOI(wx, wy);
+                if (poiHere != null && poiHere.Type == POIType.Sinkhole)
+                    GetZone($"Overworld.{wx}.{wy}.{wz - 1}");
+            }
+
             if (!WorldMap.InBounds(wx, wy) || wz != 0)
                 return;
 

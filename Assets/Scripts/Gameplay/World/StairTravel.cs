@@ -51,12 +51,23 @@ namespace CavesOfOoo.Core
         /// route exists. Creatures are ignored for planning (they move);
         /// the per-step walk re-checks and gives up if it is blocked.</summary>
         public static List<(int dx, int dy)> PathTo(Zone zone, Entity actor, int x, int y)
+            => PathTo(zone, actor, x, y, ignoreCreatures: true);
+
+        /// <summary>Close-out hypothesis H11 — planning ignores
+        /// creatures because they normally move, but W5.5 introduced
+        /// creatures that NEVER do (the encased elders are held in the
+        /// wall). A plan straight through one dead-ends: the blocked
+        /// step cancelled the whole walk at the elder's feet. The
+        /// walker re-plans around what is actually standing there
+        /// (<c>ignoreCreatures: false</c>) before giving up.</summary>
+        public static List<(int dx, int dy)> PathTo(Zone zone, Entity actor,
+            int x, int y, bool ignoreCreatures)
         {
             if (zone == null || actor == null) return null;
             var from = zone.GetEntityPosition(actor);
             if (from.x < 0) return null;
             var path = FindPath.Search(zone, from.x, from.y, x, y,
-                ignoreCreatures: true, actor: actor);
+                ignoreCreatures: ignoreCreatures, actor: actor);
             if (!path.Usable) return null;
             return path.Steps;
         }
@@ -92,7 +103,22 @@ namespace CavesOfOoo.Core
                 if (p.x < 0) continue;
                 int dist = System.Math.Max(System.Math.Abs(p.x - me.x),
                                            System.Math.Abs(p.y - me.y));
-                if (dist > NoticeRadius) continue;
+                // Close-out 🔵 — SightRadius is blueprint-settable, and
+                // a const compared against a default reintroduces the
+                // one-cell-blind bug for the first far-sighted creature
+                // authored. The gate is as wide as THIS hostile's eyes.
+                int notice = NoticeRadius;
+                var brain = e.GetPart<BrainPart>();
+                if (brain != null && brain.SightRadius > notice)
+                    notice = brain.SightRadius;
+                if (dist > notice) continue;
+                // Close-out hypothesis H2 — a PASSIVE creature never
+                // initiates (BrainPart.cs:47: canInitiate = !Passive ||
+                // personally hostile), so a fleeing gin frog must not
+                // veto travel across its own floor. It still vetoes
+                // once it is personally in a fight with you.
+                if (brain != null && brain.Passive
+                    && !brain.PersonalEnemies.Contains(actor)) continue;
                 if (FactionManager.IsHostile(e, actor)) return true;
             }
             return false;

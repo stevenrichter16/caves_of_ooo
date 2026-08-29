@@ -57,8 +57,20 @@ namespace CavesOfOoo.Core
                 return false;
             }
 
-            // Check if speaker is willing to talk
-            if (FactionManager.IsHostile(speaker, listener))
+            // Check if speaker is willing to talk. Close-out
+            // hypothesis H6 — one act of grove arson (−40, past the
+            // hostile threshold) locked EVERY Choir conversation, and
+            // with them the elder's mercy and the Bloom's cure, forever:
+            // a permanent lockout in a game whose identity is
+            // recoverable consequence. Canon resolves it: the Choir
+            // does not do enmity — "the singers have not minded
+            // anything for a long time", "we are patient about the
+            // difference". A speaker tagged SpeaksToHostiles talks to
+            // anyone; the ledger still remembers what you did. War-
+            // factions (the catacomb village) keep the refusal — war
+            // is war.
+            if (FactionManager.IsHostile(speaker, listener)
+                && !speaker.HasTag("SpeaksToHostiles"))
             {
                 MessageLog.Add($"{speaker.GetDisplayName()} refuses to speak with you.");
                 return false;

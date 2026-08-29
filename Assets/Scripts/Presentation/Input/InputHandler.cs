@@ -363,6 +363,21 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            // Latch a stop request for an in-progress stair walk on
+            // the frame it happens. Close-out 🟡 — this latch used to
+            // sit BELOW the save/pause/skills/abilities handlers and
+            // the wait/skip block, all of which early-return: pressing
+            // '.', X, M or Tab mid-walk consumed the key up there and
+            // the walk silently resumed after. The latch must run
+            // before every consuming handler; anyKeyDown is a single-
+            // frame flag and this is the only line guaranteed to see
+            // it. (Below the modal handlers above, deliberately: a key
+            // pressed INSIDE an open inventory belongs to the modal,
+            // and no walk is stepping while a modal is up anyway —
+            // ShouldInterrupt re-checks safety before every step.)
+            if (_stairPath != null && UnityEngine.Input.anyKeyDown)
+                _stairInterruptRequested = true;
+
             // Save/Load + Pause menu (Phases 4 + 4d) — fire only in normal
             // gameplay, never while a modal UI is open. Routed through
             // unit-tested controllers so dispatch logic stays testable.
@@ -458,13 +473,6 @@ namespace CavesOfOoo.Rendering
                     return;
                 }
             }
-
-            // Latch a stop request on the frame it happens — the rate
-            // limit below only clears about one frame in seven, and a
-            // single-frame flag read there is missed far more often
-            // than it is caught.
-            if (_stairPath != null && UnityEngine.Input.anyKeyDown)
-                _stairInterruptRequested = true;
 
             // Rate limit
             if (Time.time - _lastMoveTime < MoveRepeatDelay)
@@ -1010,7 +1018,24 @@ namespace CavesOfOoo.Rendering
 
             var (dx, dy) = _stairPath[_stairStep++];
             if (!MovementSystem.TryMove(PlayerEntity, CurrentZone, dx, dy))
-            { CancelStairTravel("Something is in the way."); return false; }
+            {
+                // H11 — the plan ignored creatures (they usually move),
+                // but some never do (encased elders). Re-plan around
+                // whatever is actually standing there; cancel only when
+                // there is genuinely no way through.
+                var target = StairTravel.FindTarget(CurrentZone, PlayerEntity, _stairGoingDown);
+                var detour = target.HasValue
+                    ? StairTravel.PathTo(CurrentZone, PlayerEntity,
+                        target.Value.x, target.Value.y, ignoreCreatures: false)
+                    : null;
+                if (detour == null || detour.Count == 0)
+                { CancelStairTravel("Something is in the way."); return false; }
+                _stairPath = detour;
+                _stairStep = 0;
+                var (rx, ry) = _stairPath[_stairStep++];
+                if (!MovementSystem.TryMove(PlayerEntity, CurrentZone, rx, ry))
+                { CancelStairTravel("Something is in the way."); return false; }
+            }
             EndTurnAndProcess();
             return true;
         }

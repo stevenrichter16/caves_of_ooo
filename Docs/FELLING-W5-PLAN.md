@@ -500,3 +500,81 @@ before commit.
 Tests: 7120 → 7125 (+5: 4 Ginmere + 1 actor-sprite loads-audit; the
 roster pins are edits to existing tests). All green — including, this
 run, the documented-flaky contagion test.
+
+---
+
+### W5.7 — Close-out (audit + fix wave)
+
+**The audit:** a 57-agent workflow — Angle A (taxonomy) over both
+recent commits, Angle B (canon-parity-first) over the whole W5
+surface, a save/load-reach lane, and a player-flow hypothesis
+generator — every finding surviving only on a 2-of-2 (or red 1-of-2)
+adversarial refutation vote. 20 confirmed findings (with cross-agent
+duplicates; ~14 distinct) + 13 hypotheses.
+
+**Fixed in this wave:**
+
+| Sev | Finding / hypothesis | Fix |
+|-----|----------------------|-----|
+| 🔴 | Deleting `RepLoss`/`WarDeclared` breaks every v6 save mid-load — `ReadFieldValue`'s SkipValue path never consumes the value bytes, so an unknown field name misaligns the stream | `FormatVersion` 6 → 7: the strict gate turns a corrupt load into an honest rejection. The durable fix (self-describing field format that CAN skip) is recorded as a v8 project |
+| 🔴 | All five mouths rendered as white `?` markers AND leaked their names on examine — canon: "overgrown mouths are found, not shown", and the mouth builder's own docstring promised no marker | POI override gated on the `Visited` bitmap (exists since v4, zero render consumers until now): plain biome face until entered, then a dark `o`. Villages stay marked undiscovered (civilization is known of) — pinned both ways |
+| 🟡 | Pre-W5.6 saves never grow Ginmere — POIs come only from the save stream; the sima stays orphaned in every existing world | `WorldMap.RehydrateAuthoredSinkholes()` on load — the sinkhole twin of the W4.7 profile heal; never displaces an existing POI (pinned) |
+| 🟡 | The interrupt latch sat below the save/pause/skills/wait handlers, which all early-return: '.', X, M, Tab mid-walk consumed the key and the walk resumed unasked | Latch moved above every consuming handler in the Normal-state chain |
+| 🟡 | Mouth void unreserved — the biome's LandmarkBuilder (3800) accepted the cleared ellipse; a Choir shrine could generate standing INSIDE the hole | Ellipse joins `GenReservedCells` while cutting (the village-square fence) |
+| 🟡 | War guard's protective direction untested: deleting the early-out would make patch damage RAISE rep for a player below −150 | Counter-check pinned (rep −175 stays −175) |
+| 🟡 H1 | A floor reached LATERALLY generated before its descent — born with no way up, a soft-lock | The stack generates top-down: `PrepareZoneForAccess` recursively generates the level above first; pinned by a cold `GetZone(z=2)` |
+| 🟡 H2 | A fleeing gin frog (faction-hostile, Passive) vetoed stair travel across its own floor | Passive creatures veto only when personally in a fight with you (mirrors `BrainPart`'s own canInitiate rule); counter-pinned |
+| 🟡 H4 | One walk across the mats printed the dewstep line up to 5×, and NPCs narrated second-person text at the player | Recognition is permanent: player-only, once-ever (`DewstepKnown` property, rides the save); diag still fires per crossing |
+| 🟡 H6 | One grove arson (−40, threshold −10) locked every Choir conversation forever — elder's mercy and the Bloom's cure included | Canon resolves it: the Choir does not do enmity. `SpeaksToHostiles` tag on all 7 Choir speakers; war-factions keep the refusal (warden counter-pinned) |
+| 🟡 H7 | Burning the Deepest Cathedral's own substrate billed nothing (`z != 0` gate) | `GroveLaw.IsChoirGround` = grove surface OR ChoirCathedral floor; descent/sima counter-pinned |
+| 🟡 H8 | Murdering a named villager cost −10 (base-Creature GivesRep) vs −150 for scratching the fungus | `GivesRep = 150` on Warden Nossik + the Plaque-Tender |
+| 🟡 H11 | The walk cancelled dead at an immobile encased elder (planning ignores creatures) | Blocked step re-plans with `ignoreCreatures: false` before giving up; pure-half pinned |
+| 🟡 H12 | The drowned sima shipped pitch-dark — the one floor with no glow was the one under an OPEN HOLE | A sima is a light well: `ShaftLightAmbient = 0.34` on DrownedSima floors via the persisted `Zone.AmbientLevel`; village keeps its authored dark (the glow-before-people reveal) — counter-pinned |
+| 🔵 | Stale `RepLoss=40` param in the HearthPatch blueprint — a silent dead tuning knob | Deleted |
+| 🔵 | `NoticeRadius` const vs blueprint-settable `SightRadius` | Gate widens to the hostile's own eyes (`Max(NoticeRadius, brain.SightRadius)`); pinned |
+| 🔵 | The oldest plaque stranded 17 rows from its wall | Rejoins the wall band (y=4, western floor-level end); pinned |
+| 🔵 | Connection registry never deduped: one duplicate per unload/regen cycle, saved forever, one StairsUp entity per duplicate | `RegisterConnection` idempotent by value; `UnloadZone` drops the connections the zone owns (both pinned) |
+| 🔵 | The descent's promised cache ledge was never built (docstring + plan + canon all claim it) | Built: a sack (torch, dried meat, tonic) and the bones of whoever packed it, on the lowest terrace |
+| 🔵 | The reservation sweep generated each world five times | One world per seed, all mouths checked per world |
+| 🔵 | Only-way-down proven only for `All[0]` | Sweeps every mouth (each sits in a different biome with different ambient builders) |
+
+**Pinned-as-correct (hypotheses that found no bug):** H9 — the warden
+DOES refuse conversation at war (gate existed; now pinned). H10 — the
+war's −150 survives save/load via the existing
+`Gap_PlayerReputation_StaticState_PreservedAcrossRoundTrip` mechanism.
+H13 — became the all-mouths sweep above.
+
+**Deferred, recorded:**
+- 🔴 melee-bypass (player melee never fires TakeDamage) — task chip
+  filed; widens the seam to every breakable prop, needs its own
+  RED-first pass (verify pass's own advice).
+- H3/LOS — a hostile sealed BEHIND the vault wall still vetoes travel
+  inside the nave (Chebyshev has no line-of-sight term). Wants a LOS
+  check in `ShouldInterrupt`; deferred with the same shape as the
+  BloomGoal LOS debt.
+- H5 — war laundering via follower kills (source ≠ Player). Sibling
+  of the melee chip; fold into that branch.
+- Descent cost asymmetry ("falling is cheap; climbing back up costs
+  turns and gear") — a multi-turn transition mechanic, not a
+  close-out rider. Scope-pruned HERE, explicitly, which the sweep
+  flagged the docstring for claiming silently.
+- v8 save format: self-describing fields so unknown names can be
+  skipped — every future public-field rename on a reflected Part is
+  otherwise a save-breaker.
+
+**Honesty bounds:** headless EditMode cannot verify — how the hidden
+mouths read on the actual world-map screen; the shaft-light feel at
+0.34 vs the village's 0.22; whether the re-path around an elder feels
+like walking or like pathing. All three are look-pass items for a live
+session. The adversarial-vote pattern is bounded by what 2 refuters
+can trace; a finding both refuters miss stays missed.
+
+**Verification:** 7125 → 7151 (+26). Two RED moments en route, both
+honest: the FormatVersion tripwire fired on the 6→7 bump exactly as
+designed (pin updated with the migration note), and the new
+discovered-mouth test had a fixture bug (empty blueprint set vs the
+builder's border walls) — fixed in place. One full-suite run was
+poisoned by the MCP-for-Unity plugin's WebSocket error (its server had
+died); relaunched + keepalive, clean rerun: 7151/7151, including the
+documented-flaky contagion test.
+

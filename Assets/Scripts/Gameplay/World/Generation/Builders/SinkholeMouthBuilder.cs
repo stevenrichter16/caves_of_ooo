@@ -74,6 +74,16 @@ namespace CavesOfOoo.Core
                         // Inside the rim: nothing grows on a hole.
                         ClearFor(zone, y, x);
                     }
+
+                    // W5.7 close-out 🟡 — the whole ellipse joins the
+                    // reservation. The biome's ambient LandmarkBuilder
+                    // runs at 3800, AFTER the mouth and after its last
+                    // repair pass, and FootprintClear happily accepted
+                    // the cleared void — a Choir shrine (five NPCs and
+                    // a campfire) could generate standing INSIDE the
+                    // hole. Same mechanism the village uses to keep
+                    // snapjaws off its square.
+                    zone.GenReservedCells.Add((x, y));
                 }
 
             // A void must not seal the chunk — but only OUR damage is

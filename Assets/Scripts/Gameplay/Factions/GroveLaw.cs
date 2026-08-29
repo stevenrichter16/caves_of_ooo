@@ -42,6 +42,26 @@ namespace CavesOfOoo.Core
             return WorldMapAuthoring.BiomeAt(x, y) == BiomeType.Grovelands;
         }
 
+        /// <summary>Close-out hypothesis H7 — the z != 0 gate above
+        /// meant torching the Deepest Cathedral's own substrate billed
+        /// NOTHING while a campfire in any surface grove billed −40.
+        /// The Choir's law reaches everything the Choir IS: grove
+        /// surface, or a Cathedral floor (z=2 of a mouth whose
+        /// archetype is ChoirCathedral — a pure static read, like the
+        /// biome).</summary>
+        public static bool IsChoirGround(Zone zone)
+        {
+            if (IsGroveGround(zone)) return true;
+            if (zone == null || string.IsNullOrEmpty(zone.ZoneID)) return false;
+            if (!WorldMap.IsOverworldZoneID(zone.ZoneID)) return false;
+            var (x, y, z) = WorldMap.FromZoneID(zone.ZoneID);
+            if (z != 2) return false;
+            foreach (var (name, mx, my) in SinkholeSites.All)
+                if (mx == x && my == y)
+                    return SinkholeArchetypes.For(name) == SinkholeArchetype.ChoirCathedral;
+            return false;
+        }
+
         /// <summary>The actor harvested something out of the ground.
         /// Charges only when the target is a MINERAL VEIN (tagged) —
         /// foraging a growth is not digging — and only the player,
@@ -50,7 +70,7 @@ namespace CavesOfOoo.Core
         {
             if (actor == null || !actor.HasTag("Player")) return;
             if (target == null || !target.HasTag("MineralVein")) return;
-            if (!IsGroveGround(zone)) return;
+            if (!IsChoirGround(zone)) return;
 
             PlayerReputation.Modify("RotChoir", DigRepLoss);
             MessageLog.Add("The ground closes very slowly over the wound. Something has noticed the digging.");
@@ -66,7 +86,7 @@ namespace CavesOfOoo.Core
         public static void OnIgnite(Entity source, Entity burned, Zone zone)
         {
             if (source == null || !source.HasTag("Player")) return;
-            if (!IsGroveGround(zone)) return;
+            if (!IsChoirGround(zone)) return;
 
             PlayerReputation.Modify("RotChoir", FireRepLoss);
             MessageLog.Add("Fire, in a grove. Every column's light leans toward it. The singing does not stop, which is worse.");
