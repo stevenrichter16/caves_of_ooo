@@ -578,3 +578,39 @@ poisoned by the MCP-for-Unity plugin's WebSocket error (its server had
 died); relaunched + keepalive, clean rerun: 7151/7151, including the
 documented-flaky contagion test.
 
+---
+
+### W5 — Exit statement
+
+**Shipped:** the vertical world is real. Five authored mouths (four
+named by canon, Ginmere coined to give the Drowned Sima a place);
+three floor archetypes end-to-end (sima, catacomb village, Choir
+Cathedral); the descent with its ledges, anchors, and the expedition
+that never climbed out; depth-keyed ambient with the sima as a light
+well; the catacomb village with its hearth-war, plaque-wall, dewstep
+and two named villagers; the Cathedral with its node, encased elders,
+and the law that now reaches it; Qud-parity stair travel with an
+honest interrupt model; sprites for every new thing the player sees
+(17 fixtures + vault variants + gin frog + both villagers).
+
+**Structural guarantees now pinned:** every shipped archetype is
+reachable from the world map; the stack generates top-down (no
+stranded floors); the mouth's void is fenced; connections neither
+duplicate nor leak; authored mouths rehydrate into old saves; the
+save format rejects what it cannot read instead of corrupting.
+
+**The audit trail:** three review waves (post-W5.5 20-agent, W5.6
+inline, close-out 57-agent), every confirmed finding fixed or
+explicitly deferred with rationale, 10 of 13 player-flow hypotheses
+confirmed as real defects and fixed, 3 pinned-as-correct. The
+dedicated adversarial gate file (`W5AdversarialTests`) probes the
+four applicable taxonomy surfaces. Suite: 6965 at W5's start →
+7164 at close, green throughout (final gate run: 7164/7164).
+
+**Deferred with recorded blockers:** Wall-Catching (3 blockers),
+melee TakeDamage seam (chip), ShouldInterrupt LOS, follower
+war-laundering, descent cost asymmetry, v8 self-describing save
+fields, and the live look-passes (hidden mouths on screen, shaft
+light vs authored dark, re-path feel).
+
+W5 is complete.
