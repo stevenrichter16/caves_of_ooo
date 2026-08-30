@@ -128,7 +128,7 @@ namespace CavesOfOoo.Core
                 case BiomeType.Overwrit:
                     return CreateOverwritPipeline(tier);
                 case BiomeType.Stump:
-                    return CreateStumpPipeline(tier);
+                    return CreateStumpPipeline(tier, StumpBands.BandAt(wx, wy));
 
                 case BiomeType.Cave:
                 default:
@@ -227,7 +227,12 @@ namespace CavesOfOoo.Core
             if (wz == 0)
             {
                 // The mouth is its own biome's wilderness, plus the hole.
-                var mouth = CreateSurfaceWildernessFor(biome, surfaceTier);
+                // W6.3a — the band reaches the mouth's base wilderness
+                // too: W6.6's Sealed Library opens on the SLOPES, and a
+                // bandless base would populate its mouth chunk with
+                // foothill fauna.
+                var mouth = CreateSurfaceWildernessFor(
+                    biome, surfaceTier, StumpBands.BandAt(wx, wy));
                 // Cold-eye H10: the biome's wilderness carries
                 // CaveEntranceBuilder, which fires on a 50% roll — so
                 // half of all worlds gave a sinkhole mouth a SECOND,
@@ -295,7 +300,8 @@ namespace CavesOfOoo.Core
         /// <summary>The plain wilderness pipeline for a biome, without
         /// any POI treatment — the base a sinkhole mouth builds its hole
         /// into.</summary>
-        private ZoneGenerationPipeline CreateSurfaceWildernessFor(BiomeType biome, int tier)
+        private ZoneGenerationPipeline CreateSurfaceWildernessFor(
+            BiomeType biome, int tier, StumpBand band = StumpBand.None)
         {
             switch (biome)
             {
@@ -307,7 +313,7 @@ namespace CavesOfOoo.Core
                 case BiomeType.Beating:    return CreateBeatingPipeline(tier);
                 case BiomeType.Grovelands: return CreateGrovelandsPipeline(tier);
                 case BiomeType.Overwrit:   return CreateOverwritPipeline(tier);
-                case BiomeType.Stump:      return CreateStumpPipeline(tier);
+                case BiomeType.Stump:      return CreateStumpPipeline(tier, band);
                 default:                   return CreateCavePipeline(tier);
             }
         }
@@ -549,7 +555,8 @@ namespace CavesOfOoo.Core
 
         /// <summary>The Stump — the petrified tepui. Rock and
         /// fissure.</summary>
-        private ZoneGenerationPipeline CreateStumpPipeline(int tier = 1)
+        private ZoneGenerationPipeline CreateStumpPipeline(
+            int tier = 1, StumpBand band = StumpBand.None)
         {
             // W6.2a — the W0 placeholder (CaveBuilder 50/0.44, "rock
             // and fissure") produced ~86% wall and zones that often
@@ -579,6 +586,13 @@ namespace CavesOfOoo.Core
             // W6.2 — the tepui's formation family (band-keyed inside
             // the builder; off-mountain Stump-biome cells no-op).
             pipeline.AddBuilder(new StumpFormationBuilder());
+            // W6.3a — and its own fauna, by band. The shared surface
+            // spine already added a PopulationBuilder carrying
+            // GetBiomeTable(Stump, tier), which returned the CAVE
+            // table: the god-tree's stump was populated by snapjaws.
+            pipeline.RemoveBuilders<PopulationBuilder>();
+            pipeline.AddBuilder(new PopulationBuilder(
+                PopulationTable.GetStumpTable(band, tier)));
             return pipeline;
         }
 

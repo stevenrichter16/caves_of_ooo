@@ -169,6 +169,14 @@ namespace CavesOfOoo.Rendering
             // W5.6 — Ginmere makes the drowned sima reachable, and its
             // headline fauna stops being a bare letter.
             ("GinFrog", "gin_frog", 'f'),
+            // W6.3a — the tepui's lowland band. The Sari-Snake and the
+            // Wardline share a glyph ('s') and are told apart by their
+            // art, which is the point of having art.
+            ("SariSnake", "sari_snake", 's'),
+            ("Wardline", "wardline", 's'),
+            ("CascadeFather", "cascade_father", 'f'),
+            ("GlasspaneFrog", "glasspane_frog", 'f'),
+            ("YellowfootWayfarer", "yellowfoot_wayfarer", 't'),
         };
 
         /// <summary>ROUND 5 — interactable fixtures resolved in the

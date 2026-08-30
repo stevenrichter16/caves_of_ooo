@@ -29972,6 +29972,177 @@
       "Tags": []
     },
     {
+      "Name": "SariSnake",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "sari-snake" },
+            { "Key": "RenderString", "Value": "s" },
+            { "Key": "ColorString", "Value": "&r" },
+            { "Key": "RenderLayer", "Value": "10" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        { "Name": "Brain", "Params": [ { "Key": "SightRadius", "Value": "6" }, { "Key": "Wanders", "Value": "false" } ] },
+        { "Name": "MeleeWeapon", "Params": [ { "Key": "BaseDamage", "Value": "1d6" }, { "Key": "OnHitEffectsRaw", "Value": "Bleeding,45,1d3,8,0" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [ { "Key": "Description", "Value": "A heavy pit viper the colour of wet stone, coiled where the litter is deepest. It does not rattle and it does not flee. Where these are thick on a slope, something underneath is awake." } ]
+        }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 14, "Min": 0, "Max": 14 },
+        { "Name": "Strength", "Value": 12 },
+        { "Name": "Agility", "Value": 16 },
+        { "Name": "Toughness", "Value": 10 },
+        { "Name": "XPValue", "Value": 28 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Beasts" },
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "BloodColor", "Value": "&r" }
+      ]
+    },
+    {
+      "Name": "Wardline",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "wardline" },
+            { "Key": "RenderString", "Value": "s" },
+            { "Key": "ColorString", "Value": "&g" },
+            { "Key": "RenderLayer", "Value": "10" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        { "Name": "Brain", "Params": [ { "Key": "SightRadius", "Value": "8" }, { "Key": "Wanders", "Value": "true" }, { "Key": "Passive", "Value": "true" }, { "Key": "FleeThreshold", "Value": "0.5" } ] },
+        { "Name": "MeleeWeapon", "Params": [ { "Key": "BaseDamage", "Value": "1d4" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [ { "Key": "Description", "Value": "A long olive colubrid draped along a branch, watching the ground with more attention than it spends on you. Villages that have one nearby say so the way other places mention a good well." } ]
+        }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 16, "Min": 0, "Max": 16 },
+        { "Name": "Strength", "Value": 10 },
+        { "Name": "Agility", "Value": 17 },
+        { "Name": "Toughness", "Value": 11 },
+        { "Name": "XPValue", "Value": 22 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Beasts" },
+        { "Key": "Tier", "Value": "2" },
+        { "Key": "BloodColor", "Value": "&r" }
+      ]
+    },
+    {
+      "Name": "CascadeFather",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "cascade-father" },
+            { "Key": "RenderString", "Value": "f" },
+            { "Key": "ColorString", "Value": "&C" },
+            { "Key": "RenderLayer", "Value": "10" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        { "Name": "Brain", "Params": [ { "Key": "SightRadius", "Value": "6" }, { "Key": "Wanders", "Value": "true" }, { "Key": "WandersRandomly", "Value": "true" }, { "Key": "Passive", "Value": "true" }, { "Key": "FleeThreshold", "Value": "0.95" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [ { "Key": "Description", "Value": "A thumbnail of a frog, pale-striped, sitting in the spray with a back full of young. It has no call. Where the water is good, they are everywhere; where the water has gone wrong, they are the first thing missing." } ]
+        }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 3, "Min": 0, "Max": 3 },
+        { "Name": "Strength", "Value": 2 },
+        { "Name": "Agility", "Value": 19 },
+        { "Name": "Toughness", "Value": 3 },
+        { "Name": "XPValue", "Value": 4 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Beasts" },
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" },
+        { "Key": "BloodColor", "Value": "&C" }
+      ]
+    },
+    {
+      "Name": "GlasspaneFrog",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "glasspane frog" },
+            { "Key": "RenderString", "Value": "f" },
+            { "Key": "ColorString", "Value": "&G" },
+            { "Key": "RenderLayer", "Value": "10" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        { "Name": "Brain", "Params": [ { "Key": "SightRadius", "Value": "6" }, { "Key": "Wanders", "Value": "true" }, { "Key": "WandersRandomly", "Value": "true" }, { "Key": "Passive", "Value": "true" }, { "Key": "FleeThreshold", "Value": "0.9" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [ { "Key": "Description", "Value": "Its underside is a window. You can watch the heart work from here, which is a thing it cannot hide from you and does not seem to mind. The Bower-Folk pay for these alive and unbruised." } ]
+        }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 3, "Min": 0, "Max": 3 },
+        { "Name": "Strength", "Value": 2 },
+        { "Name": "Agility", "Value": 18 },
+        { "Name": "Toughness", "Value": 3 },
+        { "Name": "XPValue", "Value": 5 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Beasts" },
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" },
+        { "Key": "BloodColor", "Value": "&G" }
+      ]
+    },
+    {
+      "Name": "YellowfootWayfarer",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "yellowfoot wayfarer" },
+            { "Key": "RenderString", "Value": "t" },
+            { "Key": "ColorString", "Value": "&w" },
+            { "Key": "RenderLayer", "Value": "10" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        { "Name": "Brain", "Params": [ { "Key": "SightRadius", "Value": "4" }, { "Key": "Wanders", "Value": "true" }, { "Key": "WandersRandomly", "Value": "true" }, { "Key": "Passive", "Value": "true" } ] },
+        { "Name": "Armor", "Params": [ { "Key": "AV", "Value": "6" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [ { "Key": "Description", "Value": "A tortoise the size of a footstool, going somewhere at its own rate. Some villages have kept one for six generations and treat it as the oldest thing that remembers them." } ]
+        }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 26, "Min": 0, "Max": 26 },
+        { "Name": "Strength", "Value": 12 },
+        { "Name": "Agility", "Value": 4 },
+        { "Name": "Toughness", "Value": 18 },
+        { "Name": "XPValue", "Value": 12 }
+      ],
+      "Tags": [
+        { "Key": "Faction", "Value": "Beasts" },
+        { "Key": "Tier", "Value": "1" },
+        { "Key": "AllowIdleBehavior", "Value": "" },
+        { "Key": "BloodColor", "Value": "&r" }
+      ]
+    },
+    {
       "Name": "TepuiStone",
       "Inherits": "Terrain",
       "Parts": [

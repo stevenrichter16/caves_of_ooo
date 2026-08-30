@@ -236,3 +236,63 @@ at all and the routing pin failed for the wrong reason. Fixture
 extended. This is the same trap W4.4 hit twice (§ "test fixtures
 diverging from production").
 
+
+---
+
+### W6.3a — What lives at each height (SHIPPED)
+
+**§7.6, shipped with two live wirings.** `PopulationEntry` gains
+`RequiresWorldFlag` / `ForbidsWorldFlag`, read from
+`NarrativeStatePart.Current`'s FactBag — the world-flag store the plan
+named. Both fail SAFE in opposite directions: a *required* flag with
+no world state fails CLOSED (never spawn state-gated content into a
+world that has no such state), a *forbidden* one fails OPEN (nothing
+has gone wrong yet). A gated-out entry contributes **no weight**, so
+suppressing one indicator does not quietly re-weight the band toward
+whatever is left — the band keeps its shape and the indicator is what
+changes.
+
+The wirings are canon, not invented:
+- **Sari-Snake** `Requires UrquActive` — "Urqu's signs in flesh…
+  increased spawning frequency during Urqu's manifest periods"
+  (`sarisarinama_bestiary_design.md`:64-70).
+- **Cascade-Father** `Forbids EcologyDamaged` — the indicator whose
+  ABSENCE is the alarm: "a village whose nearby cascade no longer
+  hosts Cascade-Fathers is a village in ecological trouble" (:270).
+
+**The Stump stops borrowing the cave.** `GetStumpTable(band, tier)`
+replaces `GetBiomeTable(Stump, *)`'s CaveTier1/2/3 — the god-tree's
+stump was populated by snapjaws. The band reaches the pipeline from
+the router (which has the coordinates) and from the sinkhole-mouth
+base as well, so W6.6's Sealed Library mouth on the SLOPES will not
+populate with foothill fauna. `StumpBand.None` falls back to the
+foothills, not to the cave.
+
+**Five creatures, all with art** (the standing rule): SariSnake,
+Wardline, CascadeFather, GlasspaneFrog, YellowfootWayfarer. The
+Sari-Snake and the Wardline deliberately share the `'s'` glyph and are
+told apart by their sprites — a coil versus a drape on a branch —
+which is what the art tier is for. Canon's structural opposition is
+mechanical: the Wardline is Passive (it wards, it does not hunt you),
+the Sari-Snake is not.
+
+**Two param formats corrected against shipped content before they
+could fail soft:** the on-hit spec key is `OnHitEffectsRaw` with a
+`Name,Chance,Dice,Duration,Magnitude` payload (not the `OnHitEffect`
+/ colon form I first wrote), and natural armour is an `Armor` Part
+with an `AV` param, not an `ArmorValue` stat — the Yellowfoot's shell
+would have been silently absent.
+
+**Deferred to W6.3b:** the summit/sima wave (Summit Singer,
+Brocchinia-Sentinel, Sky-Sari, Sima Pricklebrow, Helmwood Frog) and
+the tepuibone veins that W6.2's review moved here.
+
+**Verification:** 7200 → 7212 (+12). Two false alarms chased to ground
+rather than assumed: the roster-count pin fired correctly (45→50, the
+guard doing its job), and a nanosecond-scale Diag perf test failed at
+264ns against a 200ns ceiling — it PASSED on a rerun without the MCP
+server starting concurrently, so it was load-induced, not a
+regression. Recipe that runs clean: restart the MCP server, let it
+settle ~5s, then launch Unity; the plugin's WebSocket error otherwise
+poisons ~19 unrelated tests through LogAssert in either direction
+(server absent OR server started mid-run).

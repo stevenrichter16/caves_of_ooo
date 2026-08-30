@@ -9,6 +9,46 @@ namespace CavesOfOoo.Data
         public int Weight = 1;
         public int MinCount = 0;
         public int MaxCount = 1;
+
+        /// <summary>§7.6 — spawn only while this world flag is SET.
+        /// Canon: "roughly a third of the bestiary exists to indicate a
+        /// band or a state", and "static tables kill the design". The
+        /// Sari-Snake is the shipped user: Urqu's signs in flesh, which
+        /// should not exist while Urqu is quiet.
+        ///
+        /// <para><b>Fails closed.</b> With no world state to read
+        /// (worldgen before the narrative part exists, or a test with
+        /// no fixture) a REQUIRED flag counts as clear — never spawn
+        /// state-gated content into a world that has no such
+        /// state.</para></summary>
+        public string RequiresWorldFlag;
+
+        /// <summary>§7.6 — spawn only while this world flag is CLEAR.
+        /// The Cascade-Father is the shipped user: an indicator whose
+        /// ABSENCE is the alarm ("a village whose nearby cascade no
+        /// longer hosts Cascade-Fathers is a village in ecological
+        /// trouble"). Fails OPEN, mirroring Requires: no world state
+        /// means nothing has gone wrong yet.</summary>
+        public string ForbidsWorldFlag;
+
+        /// <summary>Does the world currently allow this entry? Null
+        /// predicates always pass, so every shipped table is
+        /// unaffected.</summary>
+        public bool AllowedByWorldState()
+        {
+            var state = NarrativeStatePart.Current;
+            if (!string.IsNullOrEmpty(RequiresWorldFlag))
+            {
+                if (state == null) return false;              // fail closed
+                if (state.GetFact(RequiresWorldFlag) == 0) return false;
+            }
+            if (!string.IsNullOrEmpty(ForbidsWorldFlag))
+            {
+                if (state != null && state.GetFact(ForbidsWorldFlag) != 0)
+                    return false;
+            }
+            return true;
+        }
     }
 
     /// <summary>
@@ -29,11 +69,18 @@ namespace CavesOfOoo.Data
         {
             var result = new List<string>();
             int totalWeight = 0;
-            foreach (var e in Entries) totalWeight += e.Weight;
+            // §7.6 — a state-gated entry contributes NO weight while it
+            // is gated out, so suppressing one indicator species does
+            // not quietly re-weight the whole band toward whatever is
+            // left. The band keeps its shape; the indicator is what
+            // changes.
+            foreach (var e in Entries)
+                if (e.AllowedByWorldState()) totalWeight += e.Weight;
             if (totalWeight == 0) return result;
 
             foreach (var entry in Entries)
             {
+                if (!entry.AllowedByWorldState()) continue;
                 // Always spawn MinCount
                 int count = entry.MinCount;
 
@@ -49,6 +96,95 @@ namespace CavesOfOoo.Data
                     result.Add(entry.BlueprintName);
             }
             return result;
+        }
+
+        // ── The Stump, by elevation band (W6.3) ────────────────────────
+
+        /// <summary>
+        /// W6.3 — the tepui's fauna, sited by band. Canon puts a third
+        /// of the bestiary to work indicating a band or a state
+        /// (FELLING-WORLD-DESIGN §3.6), and until now the Stump
+        /// borrowed the CAVE tables outright: the god-tree's stump was
+        /// populated by snapjaws.
+        ///
+        /// <para><c>StumpBand.None</c> (a Stump-biome cell off the
+        /// authored band map, or a pipeline built without coordinates)
+        /// falls back to the foothills — the mountain's most ordinary
+        /// ground — rather than back to the cave.</para>
+        /// </summary>
+        public static PopulationTable GetStumpTable(StumpBand band, int tier)
+        {
+            switch (band)
+            {
+                case StumpBand.Summit:  return StumpSummit(tier);
+                case StumpBand.Slopes:  return StumpSlopes(tier);
+                default:                return StumpFoothills(tier);
+            }
+        }
+
+        /// <summary>Foothills: blackwater creeks and spray zones — the
+        /// biodiversity hotspot, and the gentlest band.</summary>
+        private static PopulationTable StumpFoothills(int tier)
+        {
+            var t = new PopulationTable { Name = $"StumpFoothills{tier}" };
+            // The cascade's indicator. Its ABSENCE is the alarm, so it
+            // is gated on the ecology flag rather than on danger.
+            t.Entries.Add(new PopulationEntry
+            {
+                BlueprintName = "CascadeFather", Weight = 4, MinCount = 1, MaxCount = 3,
+                ForbidsWorldFlag = "EcologyDamaged",
+            });
+            t.Entries.Add(new PopulationEntry
+            { BlueprintName = "GlasspaneFrog", Weight = 3, MinCount = 1, MaxCount = 2 });
+            t.Entries.Add(new PopulationEntry
+            { BlueprintName = "YellowfootWayfarer", Weight = 2, MinCount = 0, MaxCount = 1 });
+            t.Entries.Add(new PopulationEntry
+            { BlueprintName = "Wardline", Weight = 2, MinCount = 0, MaxCount = 1 });
+            if (tier >= 2)
+                t.Entries.Add(new PopulationEntry
+                { BlueprintName = "MawToad", Weight = 2, MinCount = 0, MaxCount = 2 });
+            return t;
+        }
+
+        /// <summary>Slopes: fungal forest over the root-buttress
+        /// ridges. Where Urqu's signs show first.</summary>
+        private static PopulationTable StumpSlopes(int tier)
+        {
+            var t = new PopulationTable { Name = $"StumpSlopes{tier}" };
+            // "Urqu's signs in flesh" — increased spawning during
+            // manifest periods, and none at all while it is quiet.
+            t.Entries.Add(new PopulationEntry
+            {
+                BlueprintName = "SariSnake", Weight = 4, MinCount = 1, MaxCount = 3,
+                RequiresWorldFlag = "UrquActive",
+            });
+            // The structural opposite: Urqu-opposed wild fauna.
+            t.Entries.Add(new PopulationEntry
+            { BlueprintName = "Wardline", Weight = 3, MinCount = 1, MaxCount = 2 });
+            t.Entries.Add(new PopulationEntry
+            { BlueprintName = "YellowfootWayfarer", Weight = 2, MinCount = 0, MaxCount = 1 });
+            if (tier >= 2)
+                t.Entries.Add(new PopulationEntry
+                { BlueprintName = "MawToad", Weight = 2, MinCount = 0, MaxCount = 2 });
+            return t;
+        }
+
+        /// <summary>Summit: the petrified canopy. W6.3b sites its own
+        /// wave (Summit Singer, Brocchinia-Sentinel, Sky-Sari); until
+        /// then the band carries the wanderers that reach it.</summary>
+        private static PopulationTable StumpSummit(int tier)
+        {
+            var t = new PopulationTable { Name = $"StumpSummit{tier}" };
+            t.Entries.Add(new PopulationEntry
+            { BlueprintName = "GlasspaneFrog", Weight = 2, MinCount = 0, MaxCount = 1 });
+            t.Entries.Add(new PopulationEntry
+            { BlueprintName = "Wardline", Weight = 2, MinCount = 0, MaxCount = 1 });
+            t.Entries.Add(new PopulationEntry
+            {
+                BlueprintName = "SariSnake", Weight = 2, MinCount = 0, MaxCount = 2,
+                RequiresWorldFlag = "UrquActive",
+            });
+            return t;
         }
 
         // ── Biome Tier Lookup ──────────────────────────────────────────
