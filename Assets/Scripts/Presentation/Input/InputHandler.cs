@@ -753,10 +753,11 @@ namespace CavesOfOoo.Rendering
                     // walls and staircases without that Part fall through to
                     // the ordinary "you can't go there" outcome exactly as
                     // before.
-                    DestructionSystem.Damage(
-                        blockedBy,
-                        DestructionSystem.ComputeStructuralBlow(PlayerEntity, _combatRng),
-                        PlayerEntity, CurrentZone);
+                    // Melee-bypass fix: through the TakeDamage seam,
+                    // so the hearth's war (and every other prop
+                    // listener) sees a sword the same as a spell.
+                    DestructionSystem.StrikeStructure(
+                        blockedBy, PlayerEntity, CurrentZone, _combatRng);
                     EndTurnAndProcess();
                 }
                 else if (blockedBy == null && ZoneManager != null && WorldMap != null)
@@ -2724,10 +2725,9 @@ namespace CavesOfOoo.Rendering
                 // Reach is enforced by the unified gate above — Break was
                 // the ONLY guarded action until the playtest found the
                 // others weren't.
-                DestructionSystem.Damage(
-                    target,
-                    DestructionSystem.ComputeStructuralBlow(PlayerEntity, _combatRng),
-                    PlayerEntity, CurrentZone);
+                // Melee-bypass fix: same seam as bump-to-break.
+                DestructionSystem.StrikeStructure(
+                    target, PlayerEntity, CurrentZone, _combatRng);
                 EndTurnAndProcess();
                 _inputState = _worldActionMenuReturnState;
                 return;

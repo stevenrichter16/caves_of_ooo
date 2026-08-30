@@ -232,6 +232,31 @@ namespace CavesOfOoo.Core
             return System.Math.Max(0, hpBefore - target.GetStatValue("Hitpoints", 0));
         }
 
+        /// <summary>
+        /// One deliberate swing at a non-living thing — the seam BOTH
+        /// player melee paths (bump-to-break, the Break world-action)
+        /// route through.
+        ///
+        /// <para>W5.7 close-out 🔴, deferred to its own RED-first
+        /// commit: these call sites used to call <see cref="Damage"/>
+        /// directly, and Damage never fires TakeDamage — only
+        /// <see cref="RouteDamage"/> does. Every Part listening on the
+        /// prop-damage seam was blind to swords: a player could chop
+        /// down all ~51 hearth-patch tiles for ZERO reputation while a
+        /// fire spell billed the war. The blow now travels as a
+        /// Bludgeoning-attributed Damage through RouteDamage, so
+        /// listeners see it; fire-gated listeners (BurnOffGasPart's
+        /// Heat;Fire accumulator) ignore it by their own attribute
+        /// gates — pinned in StructuralStrikeTests.</para>
+        /// </summary>
+        public static void StrikeStructure(Entity target, Entity striker,
+            Zone zone, System.Random rng)
+        {
+            var blow = new Damage(ComputeStructuralBlow(striker, rng));
+            blow.AddAttribute("Bludgeoning");
+            RouteDamage(target, blow, striker, zone);
+        }
+
         /// <summary>What a bare fist swings for when nothing better is to hand.</summary>
         private const string UnarmedBlow = "1d2";
 
