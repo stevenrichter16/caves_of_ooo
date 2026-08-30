@@ -159,3 +159,30 @@ wired into OnZoneGenerated: warm base → cool bright summit
 (2,1) zones). R1's two coverage fences pinned in both directions.
 
 Tests: 7170 → 7178 (+8). All green, flaky included.
+
+---
+
+### W6.2a — The Grainfield + the Cascade gorge (SHIPPED)
+
+Formation family opened: `ForStump(band, zoneID)` — band-keyed pools,
+pure in the address; W6.2a pools carry only shipped formations
+(Slopes=Grainfield, Foothills=CascadeGorge, Summit empty until
+W6.2b). `StumpFormationBuilder` (3100, W5.7-corrected delta contract
+with targeted repair). GrainRidge blueprint + 4-face sprite set
+(bulk-stamped → FixtureVariantCounts); SprayPool rides the water
+tileset + '~' animation family.
+
+**Two RED→findings en route, both real:**
+1. The W0 base terrain (CaveBuilder 50/0.44, "rock and fissure")
+   measured ~86% WALL and often uncrossable (probe: open=245/1794,
+   crossed=false) — not a playfield, and canon's bands are all
+   walkable country. Swapped to open stone with outcrops
+   (DesertBuilder 0.90/0.05); the W0 routing pin re-baselined from
+   "uses the rock palette" to "is rock-country you can WALK".
+2. Opportunistic LAIRS could claim tepui cells — one took (2,2) at
+   seed 42 and the slope generated as a snapjaw den (the probe's
+   SnapjawHunter=4 census was the tell). Canon: the mountain is
+   "designed sequence, not garrison" — the Stump joins the Overwrit
+   in both opportunistic exclusions.
+
+Tests: 7178 → 7188 (+10). All green, flaky included.

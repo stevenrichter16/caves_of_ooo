@@ -88,6 +88,24 @@ namespace CavesOfOoo.Core
         /// <summary>Ordered rows of the half-taken-back. Loot and
         /// horror in one pile; everything here is somebody.</summary>
         CompostingField,
+
+        // ── The Stump (W6, Docs/FELLING-W6-PLAN.md §3) ───────────
+        /// <summary>Parallel stone ridges — the wood grain of a bole a
+        /// mile wide, one compass direction across every slope chunk,
+        /// so the mountain reads as one object.</summary>
+        Grainfield,
+        /// <summary>Terrace shelves and spray pools where the
+        /// blackwater creeks fall — the biodiversity hotspot.</summary>
+        CascadeGorge,
+        /// <summary>Petrified roots radiating downhill like walls of
+        /// grain-marked stone. (Ships W6.2b.)</summary>
+        ButtressRidge,
+        /// <summary>Bromeliad scrub on stone domes; the tanks hold
+        /// drinkable rain. (Ships W6.2b.)</summary>
+        SummitScrub,
+        /// <summary>The green crack — humid dwarf-forest at the rim,
+        /// cloud passing through. (Ships W6.2b.)</summary>
+        RimForest,
     }
 
     /// <summary>
@@ -168,6 +186,39 @@ namespace CavesOfOoo.Core
             Formation.FruitingWall,
             Formation.CompostingField,
         };
+
+        /// <summary>The Stump chooses by BAND, not by biome alone —
+        /// elevation is the content key (W6.1). Pools carry only
+        /// SHIPPED formations: W6.2a ships the Grainfield and the
+        /// gorge; W6.2b widens each band's pool. An empty pool (the
+        /// summit, this milestone) is plain stump ground, not an
+        /// error.</summary>
+        public static Formation ForStump(StumpBand band, string zoneID)
+        {
+            Formation[] pool = StumpPoolFor(band);
+            if (pool == null || pool.Length == 0) return Formation.None;
+            return pool[StableIndex(zoneID, pool.Length)];
+        }
+
+        private static readonly Formation[] StumpFoothillsPool =
+        {
+            Formation.CascadeGorge,
+        };
+
+        private static readonly Formation[] StumpSlopesPool =
+        {
+            Formation.Grainfield,
+        };
+
+        private static Formation[] StumpPoolFor(StumpBand band)
+        {
+            switch (band)
+            {
+                case StumpBand.Foothills: return StumpFoothillsPool;
+                case StumpBand.Slopes:    return StumpSlopesPool;
+                default:                  return null; // Summit ships W6.2b
+            }
+        }
 
         private static Formation[] PoolFor(BiomeType biome)
         {

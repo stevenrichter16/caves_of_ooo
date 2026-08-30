@@ -29972,6 +29972,60 @@
       "Tags": []
     },
     {
+      "Name": "GrainRidge",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "grain ridge" },
+            { "Key": "RenderString", "Value": "=" },
+            { "Key": "ColorString", "Value": "&y" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A ridge of pink-grey stone with the grain of wood in it, running the way every other ridge on this mountain runs. It is not like wood. It is wood, finished with being wood." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" } ]
+    },
+    {
+      "Name": "SprayPool",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "spray pool" },
+            { "Key": "RenderString", "Value": "~" },
+            { "Key": "ColorString", "Value": "&C" },
+            { "Key": "RenderLayer", "Value": "1" }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            { "Key": "MaterialID", "Value": "Water" },
+            { "Key": "Combustibility", "Value": "0" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Falling water lands here and stands a while, cold and bright, before it finds the next shelf down. Things live in it that live nowhere drier." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "RopeAnchor",
       "Inherits": "PhysicalObject",
       "Parts": [

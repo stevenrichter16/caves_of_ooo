@@ -550,8 +550,21 @@ namespace CavesOfOoo.Core
         /// <summary>The Stump — the petrified tepui. Rock and
         /// fissure.</summary>
         private ZoneGenerationPipeline CreateStumpPipeline(int tier = 1)
-            => CreateSurfacePipeline(BiomeType.Stump, tier,
-                new CaveBuilder { SeedChance = 50, NoiseThreshold = 0.44f });
+        {
+            // W6.2a — the W0 placeholder (CaveBuilder 50/0.44, "rock
+            // and fissure") produced ~86% wall and zones that often
+            // could not be crossed at all (probe: open=245 of 1794,
+            // crossed=false). Canon's bands are WALKABLE country —
+            // fungal forest over ridges, bromeliad scrub, spray pools —
+            // so the base is open stone with outcrops, and the W6
+            // formation family carves the identity into it.
+            var pipeline = CreateSurfacePipeline(BiomeType.Stump, tier,
+                new DesertBuilder { WallThreshold = 0.90f, RockChance = 0.05f });
+            // W6.2 — the tepui's formation family (band-keyed inside
+            // the builder; off-mountain Stump-biome cells no-op).
+            pipeline.AddBuilder(new StumpFormationBuilder());
+            return pipeline;
+        }
 
         /// <summary>
         /// The shared surface-wilderness spine: terrain, connectivity,

@@ -1232,26 +1232,31 @@ namespace CavesOfOoo.Tests
             var manager = CreateManager(42);
             var worldMap = manager.WorldMap;
 
-            // RE-BASELINED (W0.6): the surface is the six canon biomes.
-            // The Stump borrows the cave generator for now, so it is the
-            // biome that proves Wall-terrain routing still works.
-            (int x, int y)? cavePos = null;
-            for (int y = 0; y < WorldMap.Height && cavePos == null; y++)
+            // RE-BASELINED twice. W0.6 borrowed the cave generator
+            // ("rock and fissure") — which the W6.2a probe measured at
+            // ~86% wall and often uncrossable: not a playfield. Canon's
+            // bands are walkable country, so the base is open stone
+            // with outcrops, and the formation family carves the
+            // identity into it. The routing proof is now "the zone is
+            // rock-country you can WALK": stone outcrops exist AND the
+            // chunk is crossable.
+            (int x, int y)? stumpPos = null;
+            for (int y = 0; y < WorldMap.Height && stumpPos == null; y++)
             {
-                for (int x = 0; x < WorldMap.Width && cavePos == null; x++)
+                for (int x = 0; x < WorldMap.Width && stumpPos == null; x++)
                 {
                     if (worldMap.GetBiome(x, y) == BiomeType.Stump && !worldMap.HasPOI(x, y))
-                        cavePos = (x, y);
+                        stumpPos = (x, y);
                 }
             }
-            Assert.IsNotNull(cavePos, "Expected at least one Stump-biome tile without a POI.");
+            Assert.IsNotNull(stumpPos, "Expected at least one Stump-biome tile without a POI.");
 
-            string caveID = WorldMap.ToZoneID(cavePos.Value.x, cavePos.Value.y);
-            Zone zone = manager.GetZone(caveID);
+            string stumpID = WorldMap.ToZoneID(stumpPos.Value.x, stumpPos.Value.y);
+            Zone zone = manager.GetZone(stumpID);
             Assert.IsNotNull(zone);
 
-            Assert.IsTrue(ZoneHasBlueprint(zone, "Wall"),
-                "Stump zones use the rock palette");
+            FormationReachability.FloodFromWest(zone, out bool crossed);
+            Assert.IsTrue(crossed, "the mountain is walkable country");
         }
 
         [Test]

@@ -110,6 +110,12 @@ namespace CavesOfOoo.Core
                 if (!IsSpacedFrom(x, y, placed, 3)) continue;
                 BiomeType biome = map.GetBiome(x, y);
                 if (biome == BiomeType.Overwrit) continue;
+                // W6.2a — nor on the Stump: canon says the mountain is
+                // "designed sequence, not garrison" (§3.6), and a lair
+                // chunk breaks the Grainfield's one-object contract
+                // (found empirically: a lair claimed (2,2) at seed 42
+                // and the slope generated as a den, not as grain).
+                if (biome == BiomeType.Stump) continue;
 
                 map.SetPOI(x, y, new PointOfInterest(
                     POIType.Lair,
@@ -131,6 +137,9 @@ namespace CavesOfOoo.Core
 
                 if (!IsSpacedFrom(x, y, placed, 3)) continue;
                 if (map.GetBiome(x, y) == BiomeType.Overwrit) continue;
+                // W6.2a — the Concord does not camp on the mountain
+                // either; same designed-sequence rule as the lairs.
+                if (map.GetBiome(x, y) == BiomeType.Stump) continue;
 
                 map.SetPOI(x, y, new PointOfInterest(
                     POIType.MerchantCamp, "Merchant Camp", "Villagers",

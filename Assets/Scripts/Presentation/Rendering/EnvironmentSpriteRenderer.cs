@@ -214,6 +214,8 @@ namespace CavesOfOoo.Rendering
             // paint &y/&Y deliberately; a &K blueprint would render its
             // art near-black (which is why SinkholeLip's colour moved).
             ("SubstrateVault", "substrate_vault"),
+            // W6.2a — the Grainfield's ridge (bulk-stamped: variants).
+            ("GrainRidge", "grain_ridge"),
             ("ChoirNode", "choir_node"),
             ("EncasedElder", "encased_elder"),
         };
@@ -229,6 +231,7 @@ namespace CavesOfOoo.Rendering
             new Dictionary<string, int>
         {
             { "SubstrateVault", 4 },
+            { "GrainRidge", 4 },
         };
 
         private readonly Dictionary<string, Tile> _namedActorTiles =
@@ -406,6 +409,9 @@ namespace CavesOfOoo.Rendering
                 case "QuartziteFloor": return GroundMaterial.Quartzite;
                 case "ObsidianFloor":  return GroundMaterial.Obsidian;
                 case "WaterPuddle":    return GroundMaterial.Water;
+                // W6.2a — the gorge's spray rides the water tileset +
+                // the '~' animation family.
+                case "SprayPool":      return GroundMaterial.Water;
 
                 // W1 formations. A packed road IS a ground surface — the
                 // old stone under the earth — so it paints as floor rather
