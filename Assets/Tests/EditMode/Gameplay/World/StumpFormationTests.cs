@@ -292,5 +292,94 @@ namespace CavesOfOoo.Tests
                     .TryGetValue("GrainRidge", out int n) && n >= 3,
                 "a mile of the same tile is wallpaper");
         }
+
+        // ════════════════════════════════════════════════════════════
+        //   The mountain is pink stone, not a desert (cold-eye 🔴)
+        // ════════════════════════════════════════════════════════════
+
+        [Test]
+        public void TheTepuiIsNotACactusDesert()
+        {
+            // The 🔴: W6.2a swapped the base terrain to DesertBuilder
+            // and inherited its stock content — a HARD-CODED 3% cactus
+            // scatter (~48 per chunk, summit included) on the petrified
+            // god-tree. Canon's flora is sundews, spear-leaf, bromeliad
+            // scrub and dwarf forest; no cactus anywhere on the tepui.
+            foreach (var (x, y) in new[] { (2, 1), (2, 2), (3, 3) })
+                Assert.AreEqual(0, CountOf(StumpZone(x, y), "Cactus"),
+                    $"({x},{y}) is the god-tree's stump, not the Beating");
+        }
+
+        [Test]
+        public void TheDesertStillHasItsCacti()
+        {
+            // Counter-check: the cactus scatter became a FIELD, not a
+            // deletion. A desert with no cacti would be the same bug
+            // wearing the other shoe.
+            var zone = new Zone("CactusControl");
+            new DesertBuilder().BuildZone(zone, _factory, new System.Random(3));
+            Assert.Greater(CountOf(zone, "Cactus"), 5,
+                "the wasteland keeps what it always had");
+        }
+
+        [Test]
+        public void TheGroundIsPinkStone_NotSand()
+        {
+            // Canon: "Pink-grey sandstone (the real tepui is pink
+            // sandstone)". The ground tier paints macro tiles at
+            // AUTHORED art colour — it is not multiplied by the
+            // blueprint's glyph colour the way the fixture tier is —
+            // so pink-grey needs its own material, not a recoloured
+            // Sand blueprint.
+            var zone = StumpZone(2, 2);
+            Assert.Greater(CountOf(zone, "TepuiStone"), 200,
+                "the mountain is floored in its own stone");
+            Assert.AreEqual(0, CountOf(zone, "Sand"),
+                "and not in the wasteland's sand");
+            Assert.AreEqual(
+                CavesOfOoo.Rendering.EnvironmentSpriteRenderer.GroundMaterial.Tepui,
+                CavesOfOoo.Rendering.EnvironmentSpriteRenderer
+                    .ResolveGroundMaterial("TepuiStone"));
+        }
+
+        [Test]
+        public void TheWallsAreTepuiStoneToo()
+        {
+            var zone = StumpZone(2, 2);
+            Assert.Greater(CountOf(zone, "TepuiWall"), 5,
+                "the outcrops are the mountain's own stone");
+            Assert.AreEqual(0, CountOf(zone, "SandstoneWall"),
+                "not the desert's");
+        }
+
+        [Test]
+        public void ThePinkStoneTilesetLoads()
+        {
+            // A declared ground material with no art silently falls
+            // through to the ASCII glyph — the exact failure mode the
+            // terrain-coverage guard exists for.
+            for (int i = 0; i < 16; i++)
+                Assert.IsNotNull(
+                    UnityEngine.Resources.Load<UnityEngine.Sprite>(
+                        $"Sprites/Environment/tepui_m{i:00}"),
+                    $"tepui_m{i:00} must load");
+            for (int v = 0; v < 4; v++)
+                Assert.IsNotNull(
+                    UnityEngine.Resources.Load<UnityEngine.Sprite>(
+                        $"Sprites/Environment/tepui_wall_v{v}"),
+                    $"tepui_wall_v{v} must load");
+        }
+
+        [Test]
+        public void TheBeatingIsStillSand()
+        {
+            // Counter-check: the new material must not have been wired
+            // by hijacking the desert's. Sand is still Sand.
+            Assert.AreEqual(
+                CavesOfOoo.Rendering.EnvironmentSpriteRenderer.GroundMaterial.Sand,
+                CavesOfOoo.Rendering.EnvironmentSpriteRenderer
+                    .ResolveGroundMaterial("Sand"));
+        }
+
     }
 }

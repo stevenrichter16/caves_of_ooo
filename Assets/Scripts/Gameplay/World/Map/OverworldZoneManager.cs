@@ -558,8 +558,24 @@ namespace CavesOfOoo.Core
             // fungal forest over ridges, bromeliad scrub, spray pools —
             // so the base is open stone with outcrops, and the W6
             // formation family carves the identity into it.
+            // Cold-eye 🔴 — the first cut passed only the thresholds
+            // and inherited DesertBuilder's STOCK CONTENT: "Sand"
+            // floor (the Beating's own ground material, blueprint-keyed
+            // with no biome awareness) and a hard-coded cactus
+            // scatter. The petrified god-tree read as a cactus desert
+            // while GrainRidge's own examine text said "pink-grey
+            // stone". Canon: "Pink-grey sandstone (the real tepui is
+            // pink sandstone)" — so the mountain gets its own floor,
+            // its own wall, and no cacti.
             var pipeline = CreateSurfacePipeline(BiomeType.Stump, tier,
-                new DesertBuilder { WallThreshold = 0.90f, RockChance = 0.05f });
+                new DesertBuilder
+                {
+                    WallThreshold = 0.90f,
+                    RockChance = 0.05f,
+                    CactusChance = 0f,
+                    SandBlueprint = "TepuiStone",
+                    SandstoneWallBlueprint = "TepuiWall",
+                });
             // W6.2 — the tepui's formation family (band-keyed inside
             // the builder; off-mountain Stump-biome cells no-op).
             pipeline.AddBuilder(new StumpFormationBuilder());
@@ -883,7 +899,7 @@ namespace CavesOfOoo.Core
                 case BiomeType.Grovelands: return new Color(0.88f, 0.92f, 0.85f);
                 // The Overwrit is grey on purpose: a scraped page.
                 case BiomeType.Overwrit:   return new Color(0.9f, 0.9f, 0.9f);
-                case BiomeType.Stump:      return new Color(0.98f, 0.93f, 0.92f);
+                case BiomeType.Stump:      return StumpBands.BaseTint;
                 default:                return Color.white;
             }
         }

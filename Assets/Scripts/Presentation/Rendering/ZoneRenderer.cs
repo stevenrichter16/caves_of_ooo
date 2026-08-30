@@ -573,6 +573,19 @@ namespace CavesOfOoo.Rendering
                                 _ambientMotesRenderer.RegisterAnchor(
                                     AmbientMotesRenderer.MoteKind.Drip, cell.X, cell.Y);
                                 break;
+                            // W6 cold-eye 🟡 — canon pairs the tepui's
+                            // spray zones with "the water animation +
+                            // Drip motes" (FELLING-WORLD-DESIGN §3.6).
+                            // The water animation came free with the
+                            // ground material; the motes did not, so a
+                            // cascade gorge fell silent. Capped like
+                            // the trees: a gorge places ~10 pools and
+                            // the mote budget is shared zone-wide.
+                            case "SprayPool":
+                                if (_ambientMotesRenderer.AnchorCount < 24)
+                                    _ambientMotesRenderer.RegisterAnchor(
+                                        AmbientMotesRenderer.MoteKind.Drip, cell.X, cell.Y);
+                                break;
                             case "MushroomRing":
                                 _ambientMotesRenderer.RegisterAnchor(
                                     AmbientMotesRenderer.MoteKind.Spore, cell.X, cell.Y);

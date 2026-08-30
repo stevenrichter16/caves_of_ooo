@@ -18,6 +18,19 @@ namespace CavesOfOoo.Core
         public float WallThreshold = 0.85f;
         public float RockChance = 0.05f;
 
+        /// <summary>Per-open-cell chance of a cactus. Cold-eye 🔴: this
+        /// was a hard-coded 0.03 literal, so W6's Stump — which reuses
+        /// this builder for its open-stone base — inherited ~48 cacti
+        /// per chunk on the petrified god-tree, summit included. The
+        /// default preserves the desert exactly; the tepui passes 0.</summary>
+        public float CactusChance = 0.03f;
+
+        /// <summary>Blueprint scattered by <see cref="CactusChance"/>.
+        /// Field-ised alongside the chance so a biome can keep a
+        /// scatter with its OWN flora rather than only turning the
+        /// desert's off.</summary>
+        public string CactusBlueprint = "Cactus";
+
         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
         {
             // Generate noise field for wall placement
@@ -47,9 +60,9 @@ namespace CavesOfOoo.Core
                         }
 
                         // Scatter cacti
-                        if (rng.NextDouble() < 0.03)
+                        if (CactusChance > 0f && rng.NextDouble() < CactusChance)
                         {
-                            BuilderSpawn.TryPlace(zone, factory, "Cactus", x, y);
+                            BuilderSpawn.TryPlace(zone, factory, CactusBlueprint, x, y);
                         }
                     }
                 }

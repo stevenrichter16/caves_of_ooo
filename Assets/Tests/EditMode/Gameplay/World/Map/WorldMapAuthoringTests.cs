@@ -232,6 +232,30 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void Generate_PutsNoLairOrCampOnTheStump()
+        {
+            // W6.2a excluded the tepui from both opportunistic rolls —
+            // canon: the mountain is "designed sequence, not garrison",
+            // and empirically a lair claimed (2,6)'s neighbour and the
+            // slope generated as a den with zero grain. The Overwrit's
+            // exclusion has had a pin since W0; this one shipped with
+            // none, so deleting either `continue` stayed green.
+            for (int seed = 1; seed <= 12; seed++)
+            {
+                var map = WorldGenerator.Generate(seed);
+                for (int x = 0; x < WorldMap.Width; x++)
+                    for (int y = 0; y < WorldMap.Height; y++)
+                    {
+                        if (map.GetBiome(x, y) != BiomeType.Stump) continue;
+                        var poi = map.GetPOI(x, y);
+                        Assert.IsNull(poi,
+                            $"seed {seed}: ({x},{y}) is tepui and holds a "
+                            + (poi != null ? poi.Type.ToString() : "POI"));
+                    }
+            }
+        }
+
+        [Test]
         public void Generate_PutsNoLairOrCampInTheOverwrit()
         {
             for (int seed = 0; seed < 12; seed++)

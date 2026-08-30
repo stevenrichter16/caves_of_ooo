@@ -44,6 +44,12 @@ namespace CavesOfOoo.Core
             "..FSSF..............", // 5  (3,5) — the Felling-Site, base-slope
         };
 
+        /// <summary>The tepui's warm base tint — pink-grey stone. One
+        /// source of truth: <c>GetBiomeTint(Stump)</c> returns this and
+        /// the band ladder shifts from it, so a retune moves both and
+        /// no test duplicates the literal (cold-eye 🔵).</summary>
+        public static readonly Color BaseTint = new Color(0.98f, 0.93f, 0.92f);
+
         public static StumpBand BandAt(int x, int y)
         {
             if (y < 0 || y >= BandRows.Length) return StumpBand.None;

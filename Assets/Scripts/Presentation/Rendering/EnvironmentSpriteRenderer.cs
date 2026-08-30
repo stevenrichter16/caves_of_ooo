@@ -391,7 +391,14 @@ namespace CavesOfOoo.Rendering
         {
             None, Grass, Sand, Floor, Bank,
             Sandstone, Limestone, Shale, Slate, Quartzite, Obsidian,
-            Water
+            Water,
+            /// <summary>W6 — the tepui's pink-grey sandstone. Its own
+            /// material rather than Sandstone's, because ground macro
+            /// tiles paint at AUTHORED colour (unlike the fixture tier,
+            /// which multiplies by glyph colour), so sharing the
+            /// desert's tileset would have painted the god-tree's
+            /// stump desert-yellow.</summary>
+            Tepui
         }
 
         public static GroundMaterial ResolveGroundMaterial(string blueprintName)
@@ -414,6 +421,7 @@ namespace CavesOfOoo.Rendering
                 // W6.2a — the gorge's spray rides the water tileset +
                 // the '~' animation family.
                 case "SprayPool":      return GroundMaterial.Water;
+                case "TepuiStone":     return GroundMaterial.Tepui;
 
                 // W1 formations. A packed road IS a ground surface — the
                 // old stone under the earth — so it paints as floor rather
@@ -437,6 +445,7 @@ namespace CavesOfOoo.Rendering
         private Tile[] _wallTopTiles;          // generic wall, 4 variants
         private Tile[] _vineWallTopTiles;
         private Tile[] _sandstoneWallTopTiles;
+        private Tile[] _tepuiWallTopTiles;      // W6 — the tepui's own outcrops
 
         private Tilemap _overlayTilemap;
         private Tilemap _mainTilemap;
@@ -611,6 +620,7 @@ namespace CavesOfOoo.Rendering
             _wallTopTiles = LoadTileSet("wall", WallVarSuffixes);
             _vineWallTopTiles = LoadTileSet("vine_wall", WallVarSuffixes);
             _sandstoneWallTopTiles = LoadTileSet("sandstone_wall", WallVarSuffixes);
+            _tepuiWallTopTiles     = LoadTileSet("tepui_wall", WallVarSuffixes);
         }
 
         private static Tile MakeTile(Sprite s, string name)
@@ -1235,7 +1245,8 @@ namespace CavesOfOoo.Rendering
         {
             None, Grass, Sand, Bank, Well, MarketStall, TinkersForge, AlchemyStill, Pillar,
             // Pass 14
-            OilSeep, AcidPond, Rubble, Oven, IceStalactite, VineWall, SandstoneWall
+            OilSeep, AcidPond, Rubble, Oven, IceStalactite, VineWall, SandstoneWall,
+            TepuiWall
         }
 
         /// <summary>Pass 13 — actor sprites (STYLE-GUIDE.md §6). The
@@ -1311,6 +1322,7 @@ namespace CavesOfOoo.Rendering
                 // identity; Wall/StoneWall stay on the generic atlas.
                 case "VineWall":      return EnvFixtureKind.VineWall;
                 case "SandstoneWall": return EnvFixtureKind.SandstoneWall;
+                case "TepuiWall":     return EnvFixtureKind.TepuiWall;
                 default:             return EnvFixtureKind.None;
             }
         }
@@ -1465,6 +1477,10 @@ namespace CavesOfOoo.Rendering
                     case EnvFixtureKind.SandstoneWall:
                         if (_sandstoneWallTopTiles.Length == 4)
                             return _sandstoneWallTopTiles[WallVariantIndex(zone, x, y)];
+                        break;
+                    case EnvFixtureKind.TepuiWall:
+                        if (_tepuiWallTopTiles.Length == 4)
+                            return _tepuiWallTopTiles[WallVariantIndex(zone, x, y)];
                         if (_sandstoneWallTile != null) return _sandstoneWallTile;
                         break;
                 }

@@ -71,6 +71,28 @@ namespace CavesOfOoo.Tests
               ]
             },
             {
+              ""Name"": ""TepuiStone"",
+              ""Inherits"": ""Terrain"",
+              ""Parts"": [
+                { ""Name"": ""Render"", ""Params"": [
+                  { ""Key"": ""DisplayName"", ""Value"": ""pink stone"" },
+                  { ""Key"": ""RenderString"", ""Value"": ""."" },
+                  { ""Key"": ""ColorString"", ""Value"": ""&y"" }
+                ]}
+              ]
+            },
+            {
+              ""Name"": ""TepuiWall"",
+              ""Inherits"": ""Wall"",
+              ""Parts"": [
+                { ""Name"": ""Render"", ""Params"": [
+                  { ""Key"": ""DisplayName"", ""Value"": ""pink stone outcrop"" },
+                  { ""Key"": ""RenderString"", ""Value"": ""#"" },
+                  { ""Key"": ""ColorString"", ""Value"": ""&y"" }
+                ]}
+              ]
+            },
+            {
               ""Name"": ""Sand"",
               ""Inherits"": ""Terrain"",
               ""Parts"": [
@@ -1257,6 +1279,15 @@ namespace CavesOfOoo.Tests
 
             FormationReachability.FloodFromWest(zone, out bool crossed);
             Assert.IsTrue(crossed, "the mountain is walkable country");
+            // Cold-eye 🟡: crossability ALONE does not prove routing —
+            // misroute the Stump to any walkable pipeline (or delete
+            // its case and fall to the cave default) and a
+            // crossable-only pin stays green, while
+            // StumpFormationTests already covers crossability. Every
+            // sibling routing pin asserts a pipeline-specific
+            // blueprint; this one does again.
+            Assert.IsTrue(ZoneHasBlueprint(zone, "TepuiStone"),
+                "Stump zones are floored in the mountain's own stone");
         }
 
         [Test]

@@ -95,7 +95,7 @@ namespace CavesOfOoo.Tests
         {
             // Canon: "warm base → cool bright summit". Pure half: the
             // per-band tint. Blue rises with altitude; red falls.
-            var baseTint = new Color(0.98f, 0.93f, 0.92f);
+            var baseTint = StumpBands.BaseTint;
             var foot = StumpBands.TintFor(StumpBand.Foothills, baseTint);
             var slope = StumpBands.TintFor(StumpBand.Slopes, baseTint);
             var summit = StumpBands.TintFor(StumpBand.Summit, baseTint);
@@ -120,16 +120,23 @@ namespace CavesOfOoo.Tests
                 UnityEngine.Application.dataPath, "Resources/Content/Blueprints/Objects.json")));
             var mgr = new OverworldZoneManager(factory, worldSeed: 42);
 
+            // Cold-eye 🔵: this used to assert the BLUE channel only
+            // and duplicate the base-tint literal — so a drift in the
+            // warm half (r/g, which is what "warm base" actually
+            // means) passed silently, and a designer retune of
+            // GetBiomeTint broke a W6 test far from the tuned file.
+            // Full colour, one shared source of truth.
             var summitZone = mgr.GetZone("Overworld.3.3.0");
-            var expected = StumpBands.TintFor(StumpBand.Summit,
-                new Color(0.98f, 0.93f, 0.92f));
-            Assert.AreEqual(expected.b, summitZone.AmbientTint.b, 0.001f,
-                "the summit chunk is cool and bright");
+            var expectedSummit = StumpBands.TintFor(StumpBand.Summit, StumpBands.BaseTint);
+            Assert.AreEqual(expectedSummit.r, summitZone.AmbientTint.r, 0.001f, "summit r");
+            Assert.AreEqual(expectedSummit.g, summitZone.AmbientTint.g, 0.001f, "summit g");
+            Assert.AreEqual(expectedSummit.b, summitZone.AmbientTint.b, 0.001f, "summit b");
 
-            // Counter: a foothill chunk keeps the warm base tint.
+            // Counter: a foothill chunk keeps the warm base tint whole.
             var footZone = mgr.GetZone("Overworld.2.1.0");
-            Assert.AreEqual(0.92f, footZone.AmbientTint.b, 0.001f,
-                "the foothills keep the biome's warmth");
+            Assert.AreEqual(StumpBands.BaseTint.r, footZone.AmbientTint.r, 0.001f, "foothill r");
+            Assert.AreEqual(StumpBands.BaseTint.g, footZone.AmbientTint.g, 0.001f, "foothill g");
+            Assert.AreEqual(StumpBands.BaseTint.b, footZone.AmbientTint.b, 0.001f, "foothill b");
         }
     }
 }

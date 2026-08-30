@@ -205,3 +205,34 @@ Proper assertion-RED this time (the enum existed, so the 4 new tests
 failed on assertions against the empty summit pool, not on compile).
 
 Tests: 7188 → 7193 (+5, one W6.2a test restructured). All green.
+
+---
+
+### W6.2 cold-eye fix wave — 2026-08-30
+
+A 62-agent review of W6.1–W6.2 (taxonomy / canon-parity / worldgen-
+integration / player-flow lanes, 2-vote adversarial verify). 30 verify
+agents were killed mid-run by a spend limit, so the list is PARTIAL —
+findings past ~13 never got a second vote and were dropped rather than
+shipped unverified. 12 confirmed; all 12 are dispositioned below.
+
+| # | Sev | Finding | Disposition |
+|---|-----|---------|-------------|
+| 1,2,6 | 🔴 | **The tepui rendered as a cactus desert.** The W6.2a base swap took `DesertBuilder`'s STOCK content: `Sand` floor — which `ResolveGroundMaterial` maps to the Beating's own `GroundMaterial.Sand`, blueprint-keyed with no biome awareness — plus a hard-coded, non-configurable 3% cactus scatter (~48 per chunk, summit included). `GrainRidge`'s examine text said "pink-grey stone" while the ground under it examined as sand. My W6.2a commit called the swap "open stone with outcrops", which was wrong. | FIXED — `TepuiStone`/`TepuiWall` blueprints, a `GroundMaterial.Tepui` with its own 16-tile macro set + 4 wall variants (recoloured from sandstone toward rose-grey: the ground tier paints at AUTHORED colour, unlike the fixture tier, so a recoloured *blueprint* could not have worked); `CactusChance`/`CactusBlueprint` fielded on DesertBuilder (default preserves the desert exactly, pinned) and set to 0 for the Stump |
+| 3,12 | 🟡🔵 | The re-baselined W0 routing pin asserted only crossability — which another test already covers — so deleting the whole `BiomeType.Stump` route would have stayed green. Its comment also promised an outcrop assertion it did not make. | FIXED — asserts `TepuiStone` again (pipeline-discriminating, like every sibling pin); comment matches |
+| 4 | 🟡 | The Stump lair/camp exclusion shipped with no test pin, unlike the Overwrit exclusion it mirrors — deleting either `continue` stayed green. | FIXED — 12-seed twin pin |
+| 5 | 🔵 | The band-tint integration pin asserted the BLUE channel only (so drift in the warm half passed silently) and duplicated the base-tint literal. | FIXED — full colour, one shared `StumpBands.BaseTint` seam that `GetBiomeTint` now reads |
+| 7 | 🟡 | Spray zones never got Drip motes — canon pairs them with the water animation, which came free with the ground material while the motes did not. | FIXED — `SprayPool` registers a Drip anchor, capped like the trees |
+| 8 | 🟡 | Summit cloud overlay: the plan assigned it to W6.2, it shipped nowhere, and no deferral was recorded. | DEFERRED, recorded here — it is a per-frame render overlay riding the existing cloud channel, so it belongs with the look-pass that can actually judge it, not with a headless terrain milestone |
+| 9 | 🟡 | Tepuibone vein stamp: promised in the W6.2 plan line, not shipped, not recorded as moved. | DEFERRED to **W6.3** — the veins are `MineralVein`-tagged content whose only current consumer is the dig-law hook; they land with the band content pass, not the terrain pass |
+| 10 | 🟡 | Tank-Brocchinia's examine text narrates drinking, but it ships Examinable-only — canon's affordances (drinkable rainwater, studyable, glow-fungus inoculation for portable light) are unrecorded. | DEFERRED, recorded — drink/study/inoculate are three new interaction verbs; that is an affordance milestone, and the examine text is written so it describes what people DO here rather than promising the player a button |
+| 11 | 🔵 | GrainRidge ships `'='` where canon says "`═`-class glyphs mapped to CP437". | **DOCUMENTED DIVERGENCE.** `'='` is the project-wide ASCII-tier convention for this shape (DescentLedge, PlaqueWall, roads all use it), GrainRidge has real sprite art so the glyph is a fallback only, and U+2550 renders as `?` (CP437TilesetGenerator returns the fallback for non-CP437 codepoints). The correct form is raw byte 205, which would be the FIRST non-ASCII RenderString in the entire content pack — real encoding risk across the JSON loader for a 🔵. Not worth it standalone; revisit if a CP437-glyph pass ever happens. |
+
+**Fixture-divergence caught while fixing:** `WorldMapTests`' minimal
+inline blueprint fixture had `Sand`/`SandstoneWall` but not the new
+tepui pair, and `BuilderSpawn.TryPlace` fails SOFT on unknown
+blueprints — so the Stump zone in that test generated with no ground
+at all and the routing pin failed for the wrong reason. Fixture
+extended. This is the same trap W4.4 hit twice (§ "test fixtures
+diverging from production").
+

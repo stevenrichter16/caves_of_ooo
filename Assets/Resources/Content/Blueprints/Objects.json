@@ -29972,6 +29972,54 @@
       "Tags": []
     },
     {
+      "Name": "TepuiStone",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "pink stone" },
+            { "Key": "RenderString", "Value": "." },
+            { "Key": "ColorString", "Value": "&y" },
+            { "Key": "GlyphVariants", "Value": "...,.'`" },
+            { "Key": "RenderLayer", "Value": "0" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "Pink-grey sandstone, worn smooth and faintly warm underfoot. Every tepui in the world is the Tree's anatomy turned to stone; this one is the stump itself, and you are standing on it." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "TepuiWall",
+      "Inherits": "Wall",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "pink stone outcrop" },
+            { "Key": "RenderString", "Value": "#" },
+            { "Key": "ColorString", "Value": "&y" },
+            { "Key": "BackgroundColor", "Value": "^k" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A shoulder of pink stone standing out of the slope. The grain in it runs the same way the grain runs everywhere here, which is how you know the whole mountain is one object." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" } ]
+    },
+    {
       "Name": "GrainRidge",
       "Inherits": "Terrain",
       "Parts": [
