@@ -186,3 +186,22 @@ tileset + '~' animation family.
    in both opportunistic exclusions.
 
 Tests: 7178 → 7188 (+10). All green, flaky included.
+
+---
+
+### W6.2b — The summit family (SHIPPED)
+
+Pools widened (Slopes: grain ×2 + buttress; Summit: scrub ×2 + rim);
+three builders: ButtressRidge (ridge spokes fanning downhill, reusing
+GrainRidge — a buttress IS grain, bent), SummitScrub (radial dome
+blobs + tank-brocchinia), RimForest (a winding two-line dwarf forest,
+crossable through the scrub — Tree/Bush reuse, no new art needed).
+StoneDome ships 3 faces (bulk-stamped); TankBrocchinia one. The
+formation tests were made pool-widening-proof: grainfield chunks are
+found by ASKING the selector, not hard-coded (the W6.2a addresses
+would have silently rolled ButtressRidge).
+
+Proper assertion-RED this time (the enum existed, so the 4 new tests
+failed on assertions against the empty summit pool, not on compile).
+
+Tests: 7188 → 7193 (+5, one W6.2a test restructured). All green.

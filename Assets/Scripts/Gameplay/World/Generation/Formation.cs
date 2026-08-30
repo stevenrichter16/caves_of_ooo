@@ -205,9 +205,20 @@ namespace CavesOfOoo.Core
             Formation.CascadeGorge,
         };
 
+        /// <summary>Mostly grain (the signature), the buttress rarer.</summary>
         private static readonly Formation[] StumpSlopesPool =
         {
             Formation.Grainfield,
+            Formation.Grainfield,
+            Formation.ButtressRidge,
+        };
+
+        /// <summary>Mostly scrub-and-domes; the green crack rarer.</summary>
+        private static readonly Formation[] StumpSummitPool =
+        {
+            Formation.SummitScrub,
+            Formation.SummitScrub,
+            Formation.RimForest,
         };
 
         private static Formation[] StumpPoolFor(StumpBand band)
@@ -216,7 +227,8 @@ namespace CavesOfOoo.Core
             {
                 case StumpBand.Foothills: return StumpFoothillsPool;
                 case StumpBand.Slopes:    return StumpSlopesPool;
-                default:                  return null; // Summit ships W6.2b
+                case StumpBand.Summit:    return StumpSummitPool;
+                default:                  return null;
             }
         }
 

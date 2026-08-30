@@ -216,6 +216,7 @@ namespace CavesOfOoo.Rendering
             ("SubstrateVault", "substrate_vault"),
             // W6.2a — the Grainfield's ridge (bulk-stamped: variants).
             ("GrainRidge", "grain_ridge"),
+            ("StoneDome", "stone_dome"), ("TankBrocchinia", "tank_brocchinia"),
             ("ChoirNode", "choir_node"),
             ("EncasedElder", "encased_elder"),
         };
@@ -232,6 +233,7 @@ namespace CavesOfOoo.Rendering
         {
             { "SubstrateVault", 4 },
             { "GrainRidge", 4 },
+            { "StoneDome", 3 },
         };
 
         private readonly Dictionary<string, Tile> _namedActorTiles =

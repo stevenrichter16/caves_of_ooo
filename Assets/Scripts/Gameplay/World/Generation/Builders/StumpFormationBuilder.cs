@@ -48,8 +48,11 @@ namespace CavesOfOoo.Core
 
             switch (formation)
             {
-                case Formation.Grainfield:   BuildGrainfield(zone, factory, rng, placed); break;
-                case Formation.CascadeGorge: BuildCascadeGorge(zone, factory, rng, placed); break;
+                case Formation.Grainfield:    BuildGrainfield(zone, factory, rng, placed); break;
+                case Formation.CascadeGorge:  BuildCascadeGorge(zone, factory, rng, placed); break;
+                case Formation.ButtressRidge: BuildButtressRidge(zone, factory, rng, placed); break;
+                case Formation.SummitScrub:   BuildSummitScrub(zone, factory, rng, placed); break;
+                case Formation.RimForest:     BuildRimForest(zone, factory, rng, placed); break;
             }
 
             // Delta contract, the W5.7-corrected shape: repair to the
@@ -140,6 +143,92 @@ namespace CavesOfOoo.Core
                 if (!IsOpenGround(zone, x, y)) continue;
                 if (BuilderSpawn.TryPlaceOnce(zone, factory, "SprayPool", x, y) != null)
                     pools++;
+            }
+        }
+        /// <summary>Petrified roots radiating downhill: ridge spokes
+        /// fanning from the chunk's uphill (north) edge, gaps between
+        /// the fingers. Reuses GrainRidge — a buttress IS grain, bent.</summary>
+        private static void BuildButtressRidge(Zone zone, EntityFactory factory,
+            Random rng, System.Collections.Generic.List<(Entity, int, int)> placed)
+        {
+            int spokes = 4 + rng.Next(3);
+            for (int sIdx = 0; sIdx < spokes; sIdx++)
+            {
+                int originX = 8 + sIdx * (Zone.Width - 16) / spokes + rng.Next(5);
+                double slope = -1.2 + sIdx * (2.4 / System.Math.Max(1, spokes - 1));
+                for (int y = 2; y < Zone.Height - 2; y++)
+                {
+                    int x = originX + (int)System.Math.Round(slope * (y - 2));
+                    if (x < 2 || x >= Zone.Width - 2) break;
+                    if ((y - 2) % 6 == 5) continue;         // a gap per finger-length
+                    if (!IsOpenGround(zone, x, y)) continue;
+                    var e = BuilderSpawn.TryPlaceOnce(zone, factory, "GrainRidge", x, y);
+                    if (e != null) placed.Add((e, x, y));
+                }
+            }
+        }
+
+        /// <summary>Bromeliad scrub on stone domes: radial dome blobs
+        /// with tank-brocchinia scattered in the lee of them.</summary>
+        private static void BuildSummitScrub(Zone zone, EntityFactory factory,
+            Random rng, System.Collections.Generic.List<(Entity, int, int)> placed)
+        {
+            int blobs = 4 + rng.Next(3);
+            for (int b = 0; b < blobs; b++)
+            {
+                int cx = 8 + rng.Next(Zone.Width - 16);
+                int cy = 4 + rng.Next(Zone.Height - 8);
+                int r = 2 + rng.Next(2);
+                for (int x = cx - r; x <= cx + r; x++)
+                    for (int y = cy - r; y <= cy + r; y++)
+                    {
+                        double d = ((x - cx) * (x - cx)) / (double)(r * r)
+                                 + ((y - cy) * (y - cy)) / (double)(r * r);
+                        if (d > 1.0) continue;
+                        if (!IsOpenGround(zone, x, y)) continue;
+                        var e = BuilderSpawn.TryPlaceOnce(zone, factory, "StoneDome", x, y);
+                        if (e != null) placed.Add((e, x, y));
+                    }
+            }
+            int tanks = 0;
+            for (int attempt = 0; attempt < 100 && tanks < 6; attempt++)
+            {
+                int x = 3 + rng.Next(Zone.Width - 6);
+                int y = 3 + rng.Next(Zone.Height - 6);
+                if (!IsOpenGround(zone, x, y)) continue;
+                if (BuilderSpawn.TryPlaceOnce(zone, factory, "TankBrocchinia", x, y) != null)
+                    tanks++;
+            }
+        }
+
+        /// <summary>The green crack: a winding band of dwarf forest —
+        /// two rough tree lines with scrub between, crossable through
+        /// the scrub (trees are solid; bushes are the way through).</summary>
+        private static void BuildRimForest(Zone zone, EntityFactory factory,
+            Random rng, System.Collections.Generic.List<(Entity, int, int)> placed)
+        {
+            int midY = Zone.Height / 2;
+            double phase = rng.NextDouble() * System.Math.PI * 2;
+            for (int x = 2; x < Zone.Width - 2; x++)
+            {
+                int wave = (int)System.Math.Round(3.0 * System.Math.Sin(phase + x * 0.18));
+                int yTop = midY + wave - 3;
+                int yBot = midY + wave + 3;
+                // The two tree lines, broken every few cells.
+                if (x % 4 != 0 && IsOpenGround(zone, x, yTop))
+                {
+                    var e = BuilderSpawn.TryPlaceOnce(zone, factory, "Tree", x, yTop);
+                    if (e != null) placed.Add((e, x, yTop));
+                }
+                if (x % 4 != 2 && IsOpenGround(zone, x, yBot))
+                {
+                    var e = BuilderSpawn.TryPlaceOnce(zone, factory, "Tree", x, yBot);
+                    if (e != null) placed.Add((e, x, yBot));
+                }
+                // Scrub between: walkable green.
+                int yMid = midY + wave + (rng.Next(3) - 1);
+                if (IsOpenGround(zone, x, yMid))
+                    BuilderSpawn.TryPlaceOnce(zone, factory, "Bush", x, yMid);
             }
         }
     }

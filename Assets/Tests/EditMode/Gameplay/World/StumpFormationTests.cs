@@ -66,26 +66,45 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void TheSlopesAreGrainfieldCountry()
+        public void TheSlopesRollOnlySlopeFormations()
         {
-            // W6.2a pools carry only SHIPPED formations, so every slope
-            // chunk is Grainfield until W6.2b widens the pool — and the
-            // pool must never hand a slope a foothill's gorge.
+            // W6.2b widened the pool: a slope is Grainfield or a
+            // ButtressRidge — never a gorge, never summit scrub.
             foreach (var id in new[] { "Overworld.2.2.0", "Overworld.4.2.0",
                                        "Overworld.2.4.0", "Overworld.3.5.0" })
-                Assert.AreEqual(Formation.Grainfield,
-                    FormationSelector.ForStump(StumpBand.Slopes, id), id);
+            {
+                var f = FormationSelector.ForStump(StumpBand.Slopes, id);
+                Assert.IsTrue(f == Formation.Grainfield || f == Formation.ButtressRidge,
+                    id + " rolled " + f);
+            }
         }
 
         // ════════════════════════════════════════════════════════════
         //   The Grainfield
         // ════════════════════════════════════════════════════════════
 
+        /// <summary>The slope addresses whose formation is the
+        /// Grainfield, found by asking the selector — the pool is
+        /// weighted data, and hard-coding addresses breaks every time
+        /// it widens.</summary>
+        private static System.Collections.Generic.List<(int x, int y)> GrainfieldChunks()
+        {
+            var outp = new System.Collections.Generic.List<(int x, int y)>();
+            foreach (var (x, y) in new[] { (2, 2), (4, 2), (2, 4), (3, 5), (4, 5) })
+                if (StumpBands.BandAt(x, y) == StumpBand.Slopes
+                    && FormationSelector.ForStump(StumpBand.Slopes, $"Overworld.{x}.{y}.0")
+                        == Formation.Grainfield)
+                    outp.Add((x, y));
+            return outp;
+        }
+
         [Test]
         public void ASlopeChunk_CarriesTheGrain()
         {
-            // (2,2) is Slopes (StumpBandTests pins the band map).
-            var zone = StumpZone(2, 2);
+            var grain = GrainfieldChunks();
+            Assert.Greater(grain.Count, 0, "some slope carries the grain");
+            var (gx, gy) = grain[0];
+            var zone = StumpZone(gx, gy);
             Assert.Greater(CountOf(zone, "GrainRidge"), 30,
                 "the wood grain of a bole a mile wide is not subtle");
         }
@@ -97,7 +116,9 @@ namespace CavesOfOoo.Tests
             // grid terms — ridges dominate ROWS, never columns, and do
             // so in every slope chunk, so the mountain reads as one
             // object rather than a tiling of unrelated chunks.
-            foreach (var (wx, wy) in new[] { (2, 2), (4, 2) })
+            var grain = GrainfieldChunks();
+            Assert.Greater(grain.Count, 0, "some slope carries the grain");
+            foreach (var (wx, wy) in grain)
             {
                 var zone = StumpZone(wx, wy);
                 var perRow = new System.Collections.Generic.Dictionary<int, int>();
@@ -122,10 +143,13 @@ namespace CavesOfOoo.Tests
         {
             // Ridges are walls; the field must still be crossable and
             // pocket-free. Multi-seed, because the gaps are rng-placed.
+            var grain = GrainfieldChunks();
+            Assert.Greater(grain.Count, 0, "some slope carries the grain");
+            var (gx, gy) = grain[0];
             for (int seed = 1; seed <= 4; seed++)
             {
-                var zone = StumpZone(2, 2, seed);
-                var reached = FormationReachability.FloodFromWest(zone, out bool crossed);
+                var zone = StumpZone(gx, gy, seed);
+                FormationReachability.FloodFromWest(zone, out bool crossed);
                 Assert.IsTrue(crossed, $"seed {seed}: the slope can be walked");
             }
         }
@@ -146,15 +170,99 @@ namespace CavesOfOoo.Tests
                 "and terraced — water finds the shelves and goes on down");
         }
 
+        // ════════════════════════════════════════════════════════════
+        //   W6.2b — the summit family
+        // ════════════════════════════════════════════════════════════
+
         [Test]
-        public void TheSummitStaysBare_UntilItsFormationsShip()
+        public void TheSummitRollsOnlySummitFormations()
         {
-            // Counter-check (W6.2a scope): the Summit pool is empty, so
-            // a summit chunk carries neither the grain nor the gorge —
-            // plain stump ground until W6.2b.
-            var zone = StumpZone(3, 3);
-            Assert.AreEqual(0, CountOf(zone, "GrainRidge"), "no grain at the canopy");
-            Assert.AreEqual(0, CountOf(zone, "SprayPool"), "no gorge at the canopy");
+            foreach (var (x, y) in new[] { (3, 2), (2, 3), (3, 3), (4, 3), (3, 4) })
+            {
+                var f = FormationSelector.ForStump(StumpBand.Summit, $"Overworld.{x}.{y}.0");
+                Assert.IsTrue(f == Formation.SummitScrub || f == Formation.RimForest,
+                    $"({x},{y}) rolled {f}");
+            }
+        }
+
+        [Test]
+        public void ASummitChunk_HasDomesAndTanks()
+        {
+            // Find a SummitScrub summit cell by asking the selector.
+            foreach (var (x, y) in new[] { (3, 2), (2, 3), (3, 3), (4, 3), (3, 4) })
+            {
+                if (FormationSelector.ForStump(StumpBand.Summit, $"Overworld.{x}.{y}.0")
+                    != Formation.SummitScrub) continue;
+                var zone = StumpZone(x, y);
+                Assert.Greater(CountOf(zone, "StoneDome"), 12,
+                    "the petrified canopy is domed stone");
+                Assert.Greater(CountOf(zone, "TankBrocchinia"), 3,
+                    "and the tanks hold drinkable rain");
+                return;
+            }
+            Assert.Fail("no summit cell rolled SummitScrub — the pool weighting is off");
+        }
+
+        [Test]
+        public void ARimChunk_IsAGreenCrack()
+        {
+            foreach (var (x, y) in new[] { (3, 2), (2, 3), (3, 3), (4, 3), (3, 4) })
+            {
+                if (FormationSelector.ForStump(StumpBand.Summit, $"Overworld.{x}.{y}.0")
+                    != Formation.RimForest) continue;
+                var zone = StumpZone(x, y);
+                int green = CountOf(zone, "Tree") + CountOf(zone, "Bush");
+                Assert.Greater(green, 20,
+                    "humid dwarf-forest winds through the stone");
+                return;
+            }
+            Assert.Fail("no summit cell rolled RimForest — the pool weighting is off");
+        }
+
+        [Test]
+        public void TheSummitFormationsDoNotSealTheChunk()
+        {
+            foreach (var (x, y) in new[] { (3, 2), (3, 3) })
+                for (int seed = 1; seed <= 3; seed++)
+                {
+                    var zone = StumpZone(x, y, seed);
+                    FormationReachability.FloodFromWest(zone, out bool crossed);
+                    Assert.IsTrue(crossed, $"({x},{y}) seed {seed}: the canopy can be walked");
+                }
+        }
+
+        [Test]
+        public void TheBandsDoNotSwapContent()
+        {
+            // Counter-checks across the widened pools: domes never on
+            // the slopes, grain never at the canopy, the gorge only in
+            // the foothills.
+            var grain = GrainfieldChunks();
+            if (grain.Count > 0)
+            {
+                var slope = StumpZone(grain[0].x, grain[0].y);
+                Assert.AreEqual(0, CountOf(slope, "StoneDome"), "no domes on the slopes");
+            }
+            var summit = StumpZone(3, 3);
+            Assert.AreEqual(0, CountOf(summit, "GrainRidge"), "no grain at the canopy");
+            Assert.AreEqual(0, CountOf(summit, "SprayPool"), "no gorge at the canopy");
+        }
+
+        [Test]
+        public void TheDomesHaveArt_WithMoreThanOneFace()
+        {
+            bool dome = false, tank = false;
+            foreach (var (bp, _) in CavesOfOoo.Rendering.EnvironmentSpriteRenderer.FixtureSprites)
+            {
+                if (bp == "StoneDome") dome = true;
+                if (bp == "TankBrocchinia") tank = true;
+            }
+            Assert.IsTrue(dome, "StoneDome is mapped to art");
+            Assert.IsTrue(tank, "TankBrocchinia is mapped to art");
+            Assert.IsTrue(
+                CavesOfOoo.Rendering.EnvironmentSpriteRenderer.FixtureVariantCounts
+                    .TryGetValue("StoneDome", out int n) && n >= 3,
+                "a field of identical domes is wallpaper");
         }
 
         // ════════════════════════════════════════════════════════════

@@ -29996,6 +29996,54 @@
       "Tags": [ { "Key": "Solid", "Value": "" } ]
     },
     {
+      "Name": "StoneDome",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "stone dome" },
+            { "Key": "RenderString", "Value": "n" },
+            { "Key": "ColorString", "Value": "&y" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A dome of pink stone, smooth as a knuckle. It was a bough once, or the knot where a bough met the trunk. The scrub grows in its cracks and does not ask." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Solid", "Value": "" } ]
+    },
+    {
+      "Name": "TankBrocchinia",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "tank-brocchinia" },
+            { "Key": "RenderString", "Value": "u" },
+            { "Key": "ColorString", "Value": "&G" },
+            { "Key": "RenderLayer", "Value": "2" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A bromeliad the size of a rain barrel, holding a barrel's worth of rain. The water is clear and cold and something small lives its entire life in there. Summit people drink from these and leave the small thing unbothered." }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "SprayPool",
       "Inherits": "Terrain",
       "Parts": [
