@@ -145,3 +145,17 @@ adversarial gate + design-gate sweep + honesty bounds + exit statement.
 ## 6. Implementation log
 
 (appended per sub-milestone)
+
+---
+
+### W6.1 — The bands as data (SHIPPED)
+
+`StumpBands`: authored band rows in the BiomeRows house style (NOT
+derived geometry — the T region is irregular; a distance formula
+misclassifies the east shoulder). 21 T cells → 11 Foothills / 5
+Slopes / 5 Summit, the summit a plus-shape over the Root. Band tint
+wired into OnZoneGenerated: warm base → cool bright summit
+(TintFor pure, pinned; integration pinned on generated (3,3) vs
+(2,1) zones). R1's two coverage fences pinned in both directions.
+
+Tests: 7170 → 7178 (+8). All green, flaky included.

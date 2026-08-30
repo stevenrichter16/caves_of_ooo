@@ -788,6 +788,10 @@ namespace CavesOfOoo.Core
 
             zone.AmbientTint = GetBiomeTint(WorldMap.GetBiome(wx, wy));
             zone.AmbientLevel = Zone.DefaultAmbientLevel;
+            // W6.1 — on the tepui, altitude shifts the light: warm at
+            // the base, cool and bright at the petrified canopy.
+            zone.AmbientTint = StumpBands.TintFor(
+                StumpBands.BandAt(wx, wy), zone.AmbientTint);
         }
 
         /// <summary>
