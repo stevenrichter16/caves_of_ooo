@@ -178,7 +178,7 @@ namespace CavesOfOoo.Core
                 if (inv == null) return false;
                 for (int i = 0; i < inv.Objects.Count; i++)
                 {
-                    if (inv.Objects[i].BlueprintName == arg)
+                    if (inv.Objects[i].BlueprintName == arg && inv.CanConsumeOne(inv.Objects[i]))
                         return true;
                 }
                 return false;
@@ -220,7 +220,7 @@ namespace CavesOfOoo.Core
                 if (inv == null) return false;
                 for (int i = 0; i < inv.Objects.Count; i++)
                 {
-                    if (inv.Objects[i].HasTag(arg))
+                    if (inv.Objects[i].HasTag(arg) && inv.CanConsumeOne(inv.Objects[i]))
                         return true;
                 }
                 return false;

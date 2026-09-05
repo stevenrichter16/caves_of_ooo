@@ -106,6 +106,13 @@ namespace CavesOfOoo.Core
         /// Equipped items and Physics backreferences alone do not establish carriage.</summary>
         public bool CanConsumeOne(Entity item) => ConsumptionRefusalReason(item) == null;
 
+        /// <summary>Display one unit without temporarily changing the stack quantity.</summary>
+        internal static string GetUnitDisplayName(Entity item)
+        {
+            string name = item?.GetPart<RenderPart>()?.DisplayName;
+            return !string.IsNullOrEmpty(name) ? name : item?.BlueprintName ?? item?.ID ?? "unknown";
+        }
+
         private string ConsumptionRefusalReason(Entity item)
         {
             if (item == null) return "missing_item";

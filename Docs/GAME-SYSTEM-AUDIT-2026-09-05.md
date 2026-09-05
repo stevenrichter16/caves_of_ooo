@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b NEXT**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c NEXT**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -537,3 +537,97 @@ other quantity-mutating services remain queued. A42 campfire Render wiring
 fixture is now deterministic (no production flicker change). Independent
 inventory/native reviews cleared all must-fix findings. Final native10/10 in
 both isolated startup states. Next implement the verified wave2b plan above.
+
+
+Wave2b RED implementation starts after reading the cited CoO/Qud sources and
+actual FriendlyNPCs/Wardens confirmation/reward chains. Further verified seam:
+IfHaveItem/IfHaveItemWithTag currently accept zero stacks; align positive-unit
+queries with execution, retaining valid later matches. Entity.GetDisplayName
+unconditionally appends `(xN)` for stacks, so one-unit prose must use its base
+Render/blueprint/ID fallback without mutating quantity to format a name.
+First RED suite uses actual blueprint items and loaded authored conversations:
+6 material repairs,4 donations,4 stale repair confirmations,6 teaching payment
+cases and3 copy delivery outcomes (23 cases). No production changes yet.
+
+Wave2b initial23-case RED:15 confirmed failures/8 controls GREEN, zero C#
+errors (22:07:11UTC). Full content-chain sweep also found two quest offers
+start their quest BEFORE GiveItem (CurationSorter/ConcordFactor). Required
+handover failure would still leave those starts committed. Add RED total-
+refusal and valid-feet controls, then reorder those two authored chains so
+cargo delivery precedes quest start. Other authored handover chains either
+put payment first or are the two teaching chains already covered. Add paired
+zero/positive predicate tests before changing item availability queries.
+
+Wave2b expanded31-case RED:19 failures/12 controls at22:09:57UTC. Minimum
+focused118/118 GREEN at22:13:45–46UTC, zero C# errors. Required handlers
+return local rejection reasons; TryExecuteAll stops later dialogue actions,
+while legacy void ExecuteAll keeps its established contract. Default content
+uses required item actions only in conversations, not Storylet OnEnter arrays.
+Independent cold-eye found one authored location contradiction: Palimpsest's
+TemporalShard gift follow-up still says in-your-hand after ground fallback.
+A paired full/available-pack test is written before neutralizing that message.
+
+Wave2b adversarial RED62:56 passed/6 failed (22:18:41–42UTC). One real new
+failure is Palimpsest's contradictory in-hand follow-up. Five are fixture
+corrections: SealedBogTakenBody is authored nonstacking (three courier setups
+incorrectly required a Stacker), and FlowerField has zero weight (two placement
+cases never reached capacity refusal). Correct courier to one actual body;
+its empty-quantity case explicitly models a malformed extension. Force the
+zero-weight flower's generic fallback with an already over-capacity pack, in
+both barren/open controls. No authored default-world body-stack claim.
+Palimpsest's action message becomes location-neutral; dialogue voice is unchanged.
+
+Wave2b corrected62/62 GREEN,22:19:59–22:20:00UTC, zero C# errors. Native plan uses actual Scribe/Farmer conversations in StartingVillage, full carried pack with MendingRiteGrimoire/OvenBuildersGuide/FireClay3, ground-copy delivery and a successful-then-no-op oven repair. Native keyboard selections resolve authored targets/actions and actual UI reveal state. Six staging/diagnostic tests precede scenario implementation. No ordinary per-frame/per-turn production work is added; the temporary native coroutine is removed with its isolated play session. No performance-improvement claim.
+
+Wave2b native staging six missing-type tests confirmed RED22:27:05UTC; implemented bench/temporary keyboard driver/isolated batch and menu launcher. Focused68/68 GREEN22:30:19UTC. Independent final production review cleared all must-fix findings; all22 authored required-action chains contain their one required action first. The native run is in progress.
+
+Wave2b native review caught a fixture-only modal assumption: dialogue queues announcements until it closes, so the driver cannot drain the copy/repair notice while talking. Native first run confirms this failure; preserve raw report/log. Correct driver to Escape before draining when leaving a conversation, and leave queued notices alone during the Farmer reward/refusal sequence. Production modal policy remains unchanged.
+
+Corrected native modal route exits0. Keep this run as a control; reviewer identified a nonvacuity gap: unchanged node/state alone cannot prove repeat Enter executed. Add a fresh matching ConversationActionRejected record requirement for the exact player/Farmer/action/argument/reason, with event-channel preference restoration, plus literal KnowsMendingRite knowledge checks before final native claim.
+
+Wave2b final native31/31 PASS, run71429a9c069d48cf9c57d7831e8f1929,7.724744625seconds,exit0/zero C# errors; independent native review clears all findings. First full7865/7866 has only the pre-recorded fungal self-cloud flaky failure22:34:12–22:35:50UTC; preserve raw failure and repeat full unchanged.
+
+
+## Wave2c — transfer conservation (verification sweep / planned next)
+
+Scope: A01 dropped-item placement and transfer rollback; A04 trader capacity
+refusal; A05 refreshes directly in these transfer/split rollback paths. Broader
+crafting quantity refresh and functional stack identity remain separate waves.
+No new content/art/save fields. This is local ownership integrity, not an exact
+Qud trade-capacity port. Existing sprite-bearing Dagger/Torch/Sack/Merchant
+provide real positive/refusal fixtures. No ordinary hot-path expansion planned.
+
+Root read DropCommand, DropPartialCommand, PutInContainerCommand, ContainerPart,
+InventoryPart, InventoryTransaction/Executor, UnequipCommand, equipment split
+rollback, TradeSystem and TradeUI.ExecuteTrade. Qud Inventory.AddObject's NoStack
+option (235–305) corroborates preserving identity when required; its broader
+receive/event framework differs. Current CoO has a hard trader MaxWeight150.
+
+Corrections before implementation:
+
+| Earlier assumption | Verified correction / impact |
+|---|---|
+| Returning a refused item with AddObject restores it. | It can merge an equipped unit into a matching carried stack or refuse capacity; restore exact identity/index/count/backreferences before equipment undo. |
+| Removing an inserted item undoes container insertion. | Fully merged input is no longer in Contents; partial merge also changes preexisting counts. Capture/restore destination structure and quantities. |
+| Chest can be the native underfoot-container fixture. | Chest is solid; actual generated Sack is nonsolid, MaxItems6 and usable through the at-feet inventory menu. |
+| Vegetation provides an ordinary pickup/drop failure. | All31 such fixtures are not takeable. Deliberately carried FlowerField plus barren ground is a synthetic API refusal control, not a normal pickup claim. |
+| Equipped sale is an ordinary TradeUI row. | UI lists carried Objects only. Equipped sale remains a supported API/rollback control; full trader + carried Dagger is native-reachable. |
+| Sale refusal already has accurate UI feedback. | TradeUI hardcodes cannot-afford for every failure. Preserve bool compatibility and propagate the actual refusal reason to its status text. |
+| Throw quantity restoration still needs refreshing. | Current throw paths already refresh. Limit initial A05 repair to confirmed partial-drop/equipment split restoration; other crafting paths stay queued. |
+| A notifying StackCount property is a safe global fix. | Public-field reflection is used by save/cloning; retain the field and refresh authoritative owners at mutation seams. No authored CarryMovePenalty exists, so handling values in controls are explicitly synthetic. |
+
+RED before production: real Dagger3 equip1 → full Sack refusal preserves
+carried2/equipped1 exact identities; ordinary space control succeeds. Actual
+Torch2 + input3 and Torch98 + input3 container insertion followed by injected
+outer failure restores both sides; commit controls retain intended merges.
+Full/partial drop respects rejected barren placement and valid nonvegetation/
+open-ground counterparts. Actual Merchant carrying50 Torches refuses a Dagger
+at150 weight without payment/loss;48 Torches accepts at148 and pays once.
+Equipment sale controls cover bonuses, matching carried stacks and unequip
+veto. Transfer quantity/undo checks retain unrelated Speed penalty7 and assert
+handling3×2 →2×2 on successful partial drop, restored on refusal/rollback.
+
+Then dedicated20–60 adversarial cases, native full-container/full-trader paths,
+independent taxonomy/Qud-contract review, full suite and same-commit docs.
+
+Wave2b COMPLETE: unchanged full repeat7866/7866 GREEN,22:36:28–22:37:58UTC, zero C# errors. +68 cases; native31/31 and both independent reviews clear. A17/A18 closed within the report’s explicit ordered-refusal bounds. Proceed to wave2c transfer-conservation RED fixtures.

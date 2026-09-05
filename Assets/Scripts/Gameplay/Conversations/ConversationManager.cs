@@ -103,7 +103,11 @@ namespace CavesOfOoo.Core
             var choice = _visibleChoices[choiceIndex];
 
             // Execute actions
-            ConversationActions.ExecuteAll(choice.Actions, Speaker, Listener);
+            if (!ConversationActions.TryExecuteAll(choice.Actions, Speaker, Listener))
+            {
+                RefreshVisibleChoices();
+                return true; // The conversation remains active on its current node.
+            }
 
             // Navigate to target
             string target = choice.Target;

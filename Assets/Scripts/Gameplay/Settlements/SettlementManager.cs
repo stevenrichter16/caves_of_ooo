@@ -208,6 +208,12 @@ namespace CavesOfOoo.Core
                         return false;
                     }
 
+                    if (!ConsumeInventoryItem(player, tag: "GrimoireCopy"))
+                    {
+                        MessageLog.Add("You'll need a grimoire copy to leave for study.");
+                        return false;
+                    }
+
                     site.Stage = RepairStage.ImprovedWithCaretaker;
                     site.OutcomeTier = RepairOutcomeTier.Improved;
                     site.ResolvedByMethod = method;
@@ -257,6 +263,12 @@ namespace CavesOfOoo.Core
                     if (site.Stage != RepairStage.StableRepair)
                     {
                         MessageLog.Add(SettlementRepairDefinitions.GetMethodFailureMessage(method));
+                        return false;
+                    }
+
+                    if (!ConsumeInventoryItem(player, tag: "GrimoireCopy"))
+                    {
+                        MessageLog.Add("You'll need a grimoire copy to leave for study.");
                         return false;
                     }
 
@@ -409,14 +421,14 @@ namespace CavesOfOoo.Core
 
             for (int i = 0; i < inventory.Objects.Count; i++)
             {
-                if (inventory.Objects[i].BlueprintName == blueprint)
+                if (inventory.Objects[i].BlueprintName == blueprint && inventory.CanConsumeOne(inventory.Objects[i]))
                     return true;
             }
 
             return false;
         }
 
-        private static bool ConsumeInventoryItem(Entity player, string blueprint)
+        private static bool ConsumeInventoryItem(Entity player, string blueprint = null, string tag = null)
         {
             var inventory = player.GetPart<InventoryPart>();
             if (inventory == null)
@@ -424,12 +436,12 @@ namespace CavesOfOoo.Core
 
             for (int i = 0; i < inventory.Objects.Count; i++)
             {
-                if (inventory.Objects[i].BlueprintName != blueprint)
-                    continue;
-
                 var item = inventory.Objects[i];
-                inventory.RemoveObject(item);
-                MessageLog.Add("You hand over " + item.GetDisplayName() + ".");
+                if ((blueprint != null && item.BlueprintName != blueprint)
+                    || (tag != null && !item.HasTag(tag)) || !inventory.CanConsumeOne(item)) continue;
+                string name = InventoryPart.GetUnitDisplayName(item);
+                if (!inventory.TryConsumeOne(item)) continue;
+                MessageLog.Add("You hand over " + name + ".");
                 return true;
             }
 

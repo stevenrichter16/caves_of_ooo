@@ -16,6 +16,9 @@ namespace CavesOfOoo.Core
         private static Dictionary<string, ActionFunc> _actions
             = new Dictionary<string, ActionFunc>();
 
+        // Required handlers return null on success or a stable rejection reason.
+        private static readonly Dictionary<string, Func<Entity, Entity, string, string>> _requiredActions
+            = new Dictionary<string, Func<Entity, Entity, string, string>>();
         private static bool _initialized;
 
         /// <summary>
@@ -32,7 +35,51 @@ namespace CavesOfOoo.Core
 
         public static void Register(string name, ActionFunc func)
         {
+            _requiredActions.Remove(name);
             _actions[name] = func;
+        }
+
+        private static void RegisterRequired(string name, Func<Entity, Entity, string, string> func)
+        {
+            _requiredActions[name] = func;
+            _actions[name] = (speaker, listener, argument) => InvokeRequired(name, func, speaker, listener, argument);
+        }
+
+        private static bool InvokeRequired(string name, Func<Entity, Entity, string, string> func,
+            Entity speaker, Entity listener, string argument)
+        {
+            string reason = func(speaker, listener, argument);
+            CavesOfOoo.Diagnostics.Diag.Record("event", reason == null ? "ConversationActionApplied" : "ConversationActionRejected",
+                actor: listener, target: speaker, payload: new { action = name, argument, reason });
+            return reason == null;
+        }
+
+        /// <summary>Execute one action and report required handover/repair refusal.
+        /// Registered legacy void actions report success after invocation.</summary>
+        public static bool TryExecute(string name, Entity speaker, Entity listener, string argument)
+        {
+            EnsureInitialized();
+            if (string.IsNullOrEmpty(name)) return false;
+            if (_requiredActions.TryGetValue(name, out var required))
+                return InvokeRequired(name, required, speaker, listener, argument);
+            if (!_actions.TryGetValue(name, out var action))
+            {
+                Debug.LogWarning($"[Conversation] Unknown action: '{name}'");
+                return false;
+            }
+            action(speaker, listener, argument);
+            return true;
+        }
+
+        /// <summary>Execute a dialogue choice in order, stopping at a required
+        /// refusal. Earlier actions are not rolled back; authored costs/deliveries
+        /// must precede rewards. Legacy ExecuteAll retains its void contract.</summary>
+        public static bool TryExecuteAll(List<Data.ConversationParam> actions, Entity speaker, Entity listener)
+        {
+            if (actions == null) return true;
+            for (int i = 0; i < actions.Count; i++)
+                if (!TryExecute(actions[i].Key, speaker, listener, actions[i].Value)) return false;
+            return true;
         }
 
         /// <summary>
@@ -126,62 +173,22 @@ namespace CavesOfOoo.Core
             });
 
             // Give an item to the listener (player) by blueprint name
-            Register("GiveItem", (speaker, listener, arg) =>
+            RegisterRequired("GiveItem", (speaker, listener, arg) =>
             {
-                if (listener == null || Factory == null) return;
+                if (listener == null) return "missing_listener";
+                if (Factory == null) return "missing_factory";
                 var item = Factory.CreateEntity(arg);
                 if (item == null)
                 {
                     Debug.LogWarning($"[Conversation] GiveItem: blueprint '{arg}' not found.");
-                    return;
+                    return "unknown_blueprint";
                 }
-                var inv = listener.GetPart<InventoryPart>();
-                if (inv == null) return;
-
-                if (inv.AddObject(item))
-                {
-                    MessageLog.Add($"You receive {item.GetDisplayName()}.");
-                    return;
-                }
-
-                // W3 re-review (critical): AddObject refuses when the pack
-                // is at MaxWeight — pre-fix the item went NOWHERE while
-                // "You receive..." still printed. For a quest handout
-                // (the sealed body) that was a softlock: quest active,
-                // offer gated off, cargo nonexistent. A refused handout
-                // now lands at the listener's feet so it always EXISTS.
-                var zone = SettlementRuntime.ActiveZone;
-                var pos = zone != null ? zone.GetEntityPosition(listener) : (-1, -1);
-                if (pos.Item1 >= 0)
-                {
-                    zone.AddEntity(item, pos.Item1, pos.Item2);
-                    MessageLog.Add($"Your pack is full — {item.GetDisplayName()} falls at your feet.");
-                }
-                else
-                {
-                    // No resolvable ground to drop onto: refuse honestly
-                    // rather than lie about receipt.
-                    MessageLog.Add($"You cannot carry {item.GetDisplayName()}.");
-                }
+                return DeliverItem(listener, item);
             });
 
-            // Take an item from the listener (player) by blueprint name
-            Register("TakeItem", (speaker, listener, arg) =>
-            {
-                if (listener == null) return;
-                var inv = listener.GetPart<InventoryPart>();
-                if (inv == null) return;
-                for (int i = 0; i < inv.Objects.Count; i++)
-                {
-                    if (inv.Objects[i].BlueprintName == arg)
-                    {
-                        var item = inv.Objects[i];
-                        inv.RemoveObject(item);
-                        MessageLog.Add($"You hand over {item.GetDisplayName()}.");
-                        return;
-                    }
-                }
-            });
+            // A handover removes one positive carried unit, not its whole stack.
+            RegisterRequired("TakeItem", (speaker, listener, arg) =>
+                TakeOne(listener, arg, matchTag: false));
 
             // Open the trade screen after conversation ends
             Register("StartTrade", (speaker, listener, arg) =>
@@ -225,99 +232,64 @@ namespace CavesOfOoo.Core
                 }
             });
 
-            Register("ResolveSettlementSite", (speaker, listener, arg) =>
+            RegisterRequired("ResolveSettlementSite", (speaker, listener, arg) =>
             {
-                if (speaker == null || listener == null || string.IsNullOrWhiteSpace(arg) || SettlementManager.Current == null)
-                    return;
-
+                if (speaker == null || listener == null) return "missing_participant";
+                if (string.IsNullOrWhiteSpace(arg)) return "missing_method";
+                if (SettlementManager.Current == null) return "missing_settlement_manager";
                 string[] parts = arg.Split(':');
-                if (parts.Length != 2)
-                    return;
-
+                if (parts.Length != 2) return "invalid_method";
                 string settlementId = ResolveSettlementId(speaker);
-                if (string.IsNullOrEmpty(settlementId))
-                    return;
-
-                RepairMethodId method;
-                if (!Enum.TryParse(parts[1], out method))
-                    return;
-
-                if (SettlementManager.Current.ApplyRepairMethod(settlementId, parts[0], method, listener))
-                {
-                    SettlementManager.Current.RefreshActiveZonePresentation(SettlementRuntime.ActiveZone);
-                    SettlementRuntime.MarkZoneDirty();
-                }
+                if (string.IsNullOrEmpty(settlementId)) return "missing_settlement";
+                if (!Enum.TryParse(parts[1], out RepairMethodId method)) return "unknown_method";
+                if (!SettlementManager.Current.ApplyRepairMethod(settlementId, parts[0], method, listener))
+                    return "repair_refused";
+                SettlementManager.Current.RefreshActiveZonePresentation(SettlementRuntime.ActiveZone);
+                SettlementRuntime.MarkZoneDirty();
+                return null;
             });
 
             // Copy the first grimoire in the player's inventory, producing a GrimoireCopy
-            Register("CopyGrimoire", (speaker, listener, arg) =>
+            RegisterRequired("CopyGrimoire", (speaker, listener, arg) =>
             {
-                if (listener == null || Factory == null) return;
-
+                if (listener == null) return "missing_listener";
+                if (Factory == null) return "missing_factory";
                 var inv = listener.GetPart<InventoryPart>();
-                if (inv == null) return;
-
+                if (inv == null) return "missing_inventory";
                 Entity grimoire = null;
                 for (int i = 0; i < inv.Objects.Count; i++)
                 {
-                    if (inv.Objects[i].HasTag("Grimoire") && !inv.Objects[i].HasTag("GrimoireCopy"))
-                    {
-                        grimoire = inv.Objects[i];
-                        break;
-                    }
+                    var candidate = inv.Objects[i];
+                    if (inv.CanConsumeOne(candidate) && candidate.HasTag("Grimoire") && !candidate.HasTag("GrimoireCopy"))
+                    { grimoire = candidate; break; }
                 }
-
                 if (grimoire == null)
                 {
                     MessageLog.Add("You don't have a grimoire to copy.");
-                    return;
+                    return "missing_original";
                 }
-
                 var grimoirePart = grimoire.GetPart<GrimoirePart>();
-                if (grimoirePart == null) return;
-
+                if (grimoirePart == null) return "missing_original_payload";
                 Entity copy = Factory.CreateEntity("GrimoireCopy");
-                if (copy == null) return;
-
+                if (copy == null) return "missing_copy_blueprint";
                 var copyPart = copy.GetPart<GrimoirePart>();
-                if (copyPart != null)
-                {
-                    copyPart.KnowledgeProperty = grimoirePart.KnowledgeProperty;
-                    copyPart.LearnMessage = grimoirePart.LearnMessage;
-                    copyPart.AlreadyKnownMessage = grimoirePart.AlreadyKnownMessage;
-                    // Spell-granting grimoires teach via SkillClassName,
-                    // not KnowledgeProperty — without copying it, a copy
-                    // of e.g. the Watering Grimoire read as "blank pages"
-                    // (SM7d, farming audit F8 rider).
-                    copyPart.SkillClassName = grimoirePart.SkillClassName;
-                }
-
+                if (copyPart == null) return "missing_copy_payload";
+                copyPart.KnowledgeProperty = grimoirePart.KnowledgeProperty;
+                copyPart.LearnMessage = grimoirePart.LearnMessage;
+                copyPart.AlreadyKnownMessage = grimoirePart.AlreadyKnownMessage;
+                copyPart.SkillClassName = grimoirePart.SkillClassName;
                 var copyRender = copy.GetPart<RenderPart>();
                 var origRender = grimoire.GetPart<RenderPart>();
                 if (copyRender != null && origRender != null)
                     copyRender.DisplayName = "copy of " + origRender.DisplayName;
-
-                inv.AddObject(copy);
-                MessageLog.AddAnnouncement("The scribe carefully copies the grimoire. You receive the copy.");
+                string refusal = DeliverItem(listener, copy);
+                if (refusal != null) return refusal;
+                MessageLog.AddAnnouncement("The scribe finishes a faithful copy.");
+                return null;
             });
 
-            // Remove the first item matching a tag from the player's inventory
-            Register("TakeItemWithTag", (speaker, listener, arg) =>
-            {
-                if (listener == null || string.IsNullOrEmpty(arg)) return;
-                var inv = listener.GetPart<InventoryPart>();
-                if (inv == null) return;
-                for (int i = 0; i < inv.Objects.Count; i++)
-                {
-                    if (inv.Objects[i].HasTag(arg))
-                    {
-                        var item = inv.Objects[i];
-                        inv.RemoveObject(item);
-                        MessageLog.Add($"You hand over {item.GetDisplayName()}.");
-                        return;
-                    }
-                }
-            });
+            RegisterRequired("TakeItemWithTag", (speaker, listener, arg) =>
+                TakeOne(listener, arg, matchTag: true));
 
             // M2.1: Pacify the speaker (the NPC) for N turns — e.g., a
             // Charisma-gated "Stand down" dialogue branch can non-violently
@@ -845,6 +817,48 @@ namespace CavesOfOoo.Core
             });
         }
 
+        private static string TakeOne(Entity listener, string argument, bool matchTag)
+        {
+            if (listener == null) return "missing_listener";
+            if (string.IsNullOrEmpty(argument)) return "missing_item_selector";
+            var inventory = listener.GetPart<InventoryPart>();
+            if (inventory == null) return "missing_inventory";
+            for (int i = 0; i < inventory.Objects.Count; i++)
+            {
+                var item = inventory.Objects[i];
+                if (!(matchTag ? item.HasTag(argument) : item.BlueprintName == argument)
+                    || !inventory.CanConsumeOne(item)) continue;
+                string name = InventoryPart.GetUnitDisplayName(item);
+                if (!inventory.TryConsumeOne(item)) continue;
+                MessageLog.Add($"You hand over {name}.");
+                return null;
+            }
+            MessageLog.Add("You no longer have the required item to hand over.");
+            return "missing_positive_unit";
+        }
+
+        // Shared GiveItem/copy delivery: both inventory and ground placement can refuse.
+        private static string DeliverItem(Entity listener, Entity item)
+        {
+            var inventory = listener.GetPart<InventoryPart>();
+            if (inventory == null) return "missing_inventory";
+            string name = InventoryPart.GetUnitDisplayName(item);
+            if (inventory.AddObject(item))
+            {
+                MessageLog.Add($"You receive {name}.");
+                return null;
+            }
+            var zone = SettlementRuntime.ActiveZone;
+            var pos = zone != null ? zone.GetEntityPosition(listener) : (-1, -1);
+            if (pos.Item1 >= 0 && zone.AddEntity(item, pos.Item1, pos.Item2))
+            {
+                MessageLog.Add($"Your pack is full — {name} falls at your feet.");
+                return null;
+            }
+            MessageLog.Add($"There is no room to receive {name} here.");
+            return pos.Item1 < 0 ? "missing_delivery_cell" : "ground_placement_refused";
+        }
+
         private static string ResolveSettlementId(Entity speaker)
         {
             if (speaker == null)
@@ -859,6 +873,7 @@ namespace CavesOfOoo.Core
         public static void Reset()
         {
             _actions.Clear();
+            _requiredActions.Clear();
             _initialized = false;
         }
     }

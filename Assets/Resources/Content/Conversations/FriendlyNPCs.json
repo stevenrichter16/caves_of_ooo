@@ -1266,10 +1266,6 @@
                 {
                   "Key": "ResolveSettlementSite",
                   "Value": "VillageOven:TeachBaker"
-                },
-                {
-                  "Key": "TakeItemWithTag",
-                  "Value": "GrimoireCopy"
                 }
               ]
             },
@@ -1384,7 +1380,7 @@
         },
         {
           "ID": "AfterCopy",
-          "Text": "Here you are. A faithful copy. The original is yours to keep, of course.",
+          "Text": "A faithful copy, ready for study. The original is yours to keep, of course.",
           "Choices": [
             {
               "Text": "Thank you.",
@@ -1598,8 +1594,8 @@
               "Text": "I will carry it.",
               "Target": "Accepted",
               "Actions": [
-                { "Key": "StartQuest", "Value": "BogBodyCourier" },
-                { "Key": "GiveItem", "Value": "SealedBogTakenBody" }
+                { "Key": "GiveItem", "Value": "SealedBogTakenBody" },
+                { "Key": "StartQuest", "Value": "BogBodyCourier" }
               ]
             },
             { "Text": "No -- and I say it aloud.", "Target": "CarriageRefused" },
@@ -1730,8 +1726,8 @@
               "Text": "I will post it.",
               "Target": "Accepted",
               "Actions": [
-                { "Key": "StartQuest", "Value": "PruningContract" },
-                { "Key": "GiveItem", "Value": "PruningWrit" }
+                { "Key": "GiveItem", "Value": "PruningWrit" },
+                { "Key": "StartQuest", "Value": "PruningContract" }
               ]
             },
             {
