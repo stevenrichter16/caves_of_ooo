@@ -6310,3 +6310,14 @@ canon formulas. Nine real16×16 sprites include four variants for each repeated
 family. See [W6 plan](FELLING-W6-PLAN.md) and
 [W6.5 verification](Verification/FellingW6/W65-REPORT.md) for raw gates and
 honesty bounds. The seventh's history and ending actions remain unexplained.
+
+### Felling W6.6 — Sealed Library (2026-09-05)
+
+CoO-original authored architecture, not a Qud parity claim. Stillleaf's slope
+mouth, stable profile and appended archetype ship with its locked floor.
+Existing LockPart supplies keyed access; the opt-in barrier closes movement
+and automatic-arrival gaps without changing ordinary wall vaulting. Three
+material identities do not imply a room-wide immunity aura. No quest key or
+readable records ship in W6.6. Full suite7614/7614;67 new tests,36 adversarial,
+native12/12 and75-second capture. See `Docs/Verification/FellingW6/W66-REPORT.md`
+for actual raw gates, resolved review findings and headless honesty bounds.

@@ -139,6 +139,11 @@ namespace CavesOfOoo.Core
                 };
             }
 
+            // Validate even exhausted vertical fallbacks before changing
+            // source membership. Arrival exclusions do not block walking.
+            if (!CanArrive(newZone.GetCell(arriveX, arriveY)))
+                return new ZoneTransitionResult { Success = false, ErrorReason = "No eligible arrival cell" };
+
             // Execute the transfer
             currentZone.RemoveEntity(player);
             newZone.AddEntity(player, arriveX, arriveY);
@@ -219,6 +224,12 @@ namespace CavesOfOoo.Core
             }
         }
 
+        // Automatic arrivals must not place actors in a sealed interior.
+        // Tags survive save/load and are checked beneath any dropped objects.
+        // Ordinary walking and restoration deliberately do not use this rule.
+        private static bool CanArrive(Cell cell)
+            => cell != null && cell.IsPassable() && !cell.HasObjectWithTag("ExcludeZoneArrival");
+
         /// <summary>
         /// F.2.7 — search for a passable cell adjacent to
         /// (<paramref name="cx"/>, <paramref name="cy"/>) in 8-direction
@@ -238,7 +249,7 @@ namespace CavesOfOoo.Core
                 int y = cy + dy[i];
                 if (!zone.InBounds(x, y)) continue;
                 var cell = zone.GetCell(x, y);
-                if (cell != null && cell.IsPassable())
+                if (CanArrive(cell))
                     return (x, y);
             }
             // Wider spiral if none of the 8 immediate cells work.
@@ -254,7 +265,7 @@ namespace CavesOfOoo.Core
                         int y = cy + oy;
                         if (!zone.InBounds(x, y)) continue;
                         var cell = zone.GetCell(x, y);
-                        if (cell != null && cell.IsPassable())
+                        if (CanArrive(cell))
                             return (x, y);
                     }
                 }
@@ -271,7 +282,7 @@ namespace CavesOfOoo.Core
         {
             // Try exact position first
             var cell = zone.GetCell(targetX, targetY);
-            if (cell != null && cell.IsPassable())
+            if (CanArrive(cell))
                 return (targetX, targetY);
 
             // Search in expanding radius along the arrival edge
@@ -301,7 +312,7 @@ namespace CavesOfOoo.Core
 
                         if (!zone.InBounds(x, y)) continue;
                         cell = zone.GetCell(x, y);
-                        if (cell != null && cell.IsPassable())
+                        if (CanArrive(cell))
                             return (x, y);
                     }
                 }
@@ -359,7 +370,7 @@ namespace CavesOfOoo.Core
 
                 // Ensure it's passable
                 var cell = newZone.GetCell(arriveX, arriveY);
-                if (cell == null || !cell.IsPassable())
+                if (!CanArrive(cell))
                 {
                     // Search for any passable cell nearby
                     for (int radius = 1; radius <= 20; radius++)
@@ -373,7 +384,7 @@ namespace CavesOfOoo.Core
                                 int ny = arriveY + dy;
                                 if (!newZone.InBounds(nx, ny)) continue;
                                 var c = newZone.GetCell(nx, ny);
-                                if (c != null && c.IsPassable())
+                                if (CanArrive(c))
                                 {
                                     arriveX = nx;
                                     arriveY = ny;
@@ -385,6 +396,11 @@ namespace CavesOfOoo.Core
                     }
                 }
             }
+
+            // Validate even exhausted vertical fallbacks before changing
+            // source membership. Arrival exclusions do not block walking.
+            if (!CanArrive(newZone.GetCell(arriveX, arriveY)))
+                return new ZoneTransitionResult { Success = false, ErrorReason = "No eligible arrival cell" };
 
             // Execute the transfer
             currentZone.RemoveEntity(player);
@@ -416,6 +432,7 @@ namespace CavesOfOoo.Core
                 for (int y = 0; y < Zone.Height; y++)
                 {
                     var cell = zone.GetCell(x, y);
+                    if (!CanArrive(cell)) continue;
                     for (int i = 0; i < cell.Objects.Count; i++)
                     {
                         if (cell.Objects[i].HasTag(stairsTag))

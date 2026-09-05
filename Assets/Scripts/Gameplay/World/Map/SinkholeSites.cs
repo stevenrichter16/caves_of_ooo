@@ -13,12 +13,14 @@ namespace CavesOfOoo.Core
     /// </summary>
     public static class SinkholeSites
     {
+        public const string SealedLibraryProfile = "SealedLibrary";
         public const string FoundingVillageProfile = "FoundingVillage";
 
         /// <summary>Authored identity, re-derived after loading. Keep the
         /// three-field site table compatible with existing map consumers.</summary>
         public static string ProfileFor(string name)
-            => name == "Olderdeep" ? FoundingVillageProfile : null;
+            => name == "Olderdeep" ? FoundingVillageProfile
+                : name == SealedLibraryBuilder.SiteName ? SealedLibraryProfile : null;
 
         /// <summary>Name, world X, world Y. Biomes (verified): Olderdeep,
         /// the Deepest Cathedral and Ginmere open in Grovelands, Lampwell
@@ -42,6 +44,8 @@ namespace CavesOfOoo.Core
             ("Lampwell",             12, 3),
             ("Spivenor",             16, 4),
             ("Ginmere",               2, 7),
+            // W6.6 coined archive mouth, on an unclaimed western slope.
+            (SealedLibraryBuilder.SiteName, 2, 4),
         };
 
         /// <summary>True when this world cell is an authored mouth.</summary>

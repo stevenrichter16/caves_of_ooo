@@ -257,7 +257,9 @@ namespace CavesOfOoo.Core
             if (wz > 2)
                 return CreateUndergroundPipeline(wz);
 
-            int floorTier = System.Math.Min(surfaceTier + 1, 8);
+            var archetype = SinkholeArchetypes.ForSite(poi);
+            bool libraryFloor = wz == 2 && archetype == SinkholeArchetype.SealedLibrary;
+            int floorTier = libraryFloor ? 3 : System.Math.Min(surfaceTier + 1, 8);
             var pipeline = new ZoneGenerationPipeline();
             var (wallBP, floorBP) = SolidEarthBuilder.GetMaterialsForDepth(wz);
             pipeline.AddBuilder(new SolidEarthBuilder(wallBP));
@@ -278,8 +280,6 @@ namespace CavesOfOoo.Core
                 // (R3), so it is fixed forever without a saved field.
                 // A profile describes the authored floor, independently of
                 // a story changing the place's displayed name.
-                var archetype = poi.Profile == SinkholeSites.FoundingVillageProfile
-                    ? SinkholeArchetype.StrandedSettlement : SinkholeArchetypes.For(poi.Name);
                 switch (archetype)
                 {
                     case SinkholeArchetype.DrownedSima:
@@ -290,6 +290,9 @@ namespace CavesOfOoo.Core
                     case SinkholeArchetype.StrandedSettlement:
                         pipeline.AddBuilder(new StrandedSettlementBuilder(this, poi.Profile));
                         break;
+                    case SinkholeArchetype.SealedLibrary:
+                        pipeline.AddBuilder(new SealedLibraryBuilder());
+                        break;
                     case SinkholeArchetype.ChoirCathedral:
                         pipeline.AddBuilder(new ChoirCathedralBuilder());
                         break;
@@ -297,7 +300,8 @@ namespace CavesOfOoo.Core
             }
 
             pipeline.AddBuilder(new HazardTerrainBuilder(BiomeType.Cave, underground: true));
-            pipeline.AddBuilder(new PopulationBuilder(PopulationTable.UndergroundTier(wz)));
+            pipeline.AddBuilder(new PopulationBuilder(libraryFloor
+                ? PopulationTable.CaveTier3() : PopulationTable.UndergroundTier(wz)));
             pipeline.AddBuilder(new ContainerBuilder(BiomeType.Cave, floorTier,
                 ContainerPlacementService.ZoneKind.Underground));
             if (Diag.IsChannelEnabled("worldmap"))
@@ -828,7 +832,7 @@ namespace CavesOfOoo.Core
                 // light-well.
                 var poiAbove = WorldMap.GetPOI(wx, wy);
                 if (poiAbove != null && poiAbove.Type == POIType.Sinkhole && wz == 2
-                    && SinkholeArchetypes.For(poiAbove.Name) == SinkholeArchetype.DrownedSima)
+                    && SinkholeArchetypes.ForSite(poiAbove) == SinkholeArchetype.DrownedSima)
                     zone.AmbientLevel = ShaftLightAmbient;
 
                 // Mark all cells as interior. Extracted so a future zone-

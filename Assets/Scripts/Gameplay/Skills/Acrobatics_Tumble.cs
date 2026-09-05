@@ -115,6 +115,13 @@ namespace CavesOfOoo.Skills
                 return false;
             }
 
+            if (ctx.Zone.GetCell(actorPos.x, actorPos.y)?.HasClosedArchiveBarrier() == true
+                || ctx.Zone.GetCell(targetPos.x, targetPos.y)?.HasClosedArchiveBarrier() == true)
+            {
+                EmitSkillRejectedDiag(ctx, "sealed_barrier");
+                return false;
+            }
+
             // Three-phase swap. Pull target OUT first so the actor's
             // destination is vacant; move actor; then re-add target on
             // the (now vacant) old actor cell. If any phase fails, undo

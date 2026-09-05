@@ -63,6 +63,12 @@ namespace CavesOfOoo.Skills
                 return false;
             }
             var landCell = ctx.Zone.GetCell(landX, landY);
+            if (ctx.Zone.GetCell(actorPos.x + dx, actorPos.y + dy)?.HasClosedArchiveBarrier() == true)
+            {
+                EmitSkillRejectedDiag(ctx, "sealed_barrier");
+                MessageLog.Add(actor.GetDisplayName() + " cannot vault through the sealed archive.");
+                return false;
+            }
             if (landCell == null || landCell.IsSolid())
             {
                 EmitSkillRejectedDiag(ctx, "landing_blocked");

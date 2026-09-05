@@ -8,6 +8,7 @@ namespace CavesOfOoo.Core
         DrownedSima,
         StrandedSettlement,
         ChoirCathedral,
+        SealedLibrary,
     }
 
     /// <summary>
@@ -27,6 +28,15 @@ namespace CavesOfOoo.Core
     /// </summary>
     public static class SinkholeArchetypes
     {
+        /// <summary>Authored profile wins a story's display-name change.
+        /// Generation, ambient light and passage repair share this identity.</summary>
+        public static SinkholeArchetype ForSite(PointOfInterest site)
+        {
+            if (site?.Profile == SinkholeSites.FoundingVillageProfile) return SinkholeArchetype.StrandedSettlement;
+            if (site?.Profile == SinkholeSites.SealedLibraryProfile) return SinkholeArchetype.SealedLibrary;
+            return For(site?.Name);
+        }
+
         public static SinkholeArchetype For(string sinkholeName)
         {
             switch (sinkholeName)
@@ -43,6 +53,8 @@ namespace CavesOfOoo.Core
                 case "Lampwell":              return SinkholeArchetype.StrandedSettlement;
                 case "Spivenor":              return SinkholeArchetype.StrandedSettlement;
                 case "Olderdeep":             return SinkholeArchetype.StrandedSettlement;
+                // W6.6 — the coined sealed archive on the western slopes.
+                case "Stillleaf":             return SinkholeArchetype.SealedLibrary;
                 // W5.6 — the named drowned sima. Coined, because the
                 // canon correction above left the archetype with no
                 // place in the world, and an archetype the player

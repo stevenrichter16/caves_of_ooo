@@ -45,7 +45,7 @@ namespace CavesOfOoo.Core
                 var (wx, wy, wz) = WorldMap.FromZoneID(zone.ZoneID);
                 var poi = overworld.WorldMap.GetPOI(wx, wy);
                 if ((wz == 0 || wz == 2) && poi?.Type == POIType.Sinkhole
-                    && SinkholeArchetypes.For(poi.Name) == SinkholeArchetype.DrownedSima)
+                    && SinkholeArchetypes.ForSite(poi) == SinkholeArchetype.DrownedSima)
                 {
                     string peer = $"Overworld.{wx}.{wy}.{(wz == 0 ? 2 : 0)}";
                     if (!manager.CachedZones.ContainsKey(peer)) manager.GetZone(peer);
@@ -110,7 +110,7 @@ namespace CavesOfOoo.Core
             if (wz != 0 && wz != 2) return;
             var poi = manager.WorldMap.GetPOI(wx, wy);
             if (poi == null || poi.Type != POIType.Sinkhole
-                || SinkholeArchetypes.For(poi.Name) != SinkholeArchetype.DrownedSima) return;
+                || SinkholeArchetypes.ForSite(poi) != SinkholeArchetype.DrownedSima) return;
             // Stable one-in-eight worlds, independent of generation order/RNG.
             if (FormationSelector.StableIndex("HelmwoodDoor|" + manager.WorldSeed + "|" + wx + "|" + wy, 8) != 0) return;
             string surfaceID = $"Overworld.{wx}.{wy}.0", floorID = $"Overworld.{wx}.{wy}.2";

@@ -31062,6 +31062,589 @@
         { "Name": "Render", "Params": [ { "Key": "DisplayName", "Value": "empty seventh position" }, { "Key": "RenderString", "Value": "'" }, { "Key": "ColorString", "Value": "&W" }, { "Key": "RenderLayer", "Value": "2" } ] },
         { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "A seventh interval in the circle. Nothing occupies it. Looking across it, the near and far edges briefly cease to agree. The air is wrong at this one point." } ] }
       ]
+    },
+    {
+      "Name": "LibraryTepuiboneWall",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "SealedLibraryBarrier", "Params": [] },
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "tepuibone archive wall"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "#"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&Y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1000"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Pale stone closes in long courses. Grain turns through the blocks without reaching their edges."
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Tepuibone"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0"
+            },
+            {
+              "Key": "Conductivity",
+              "Value": "0"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Stone,Mineral"
+            }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            {
+              "Key": "HP",
+              "Value": "250"
+            },
+            {
+              "Key": "MaxHP",
+              "Value": "250"
+            },
+            {
+              "Key": "Hardness",
+              "Value": "20"
+            },
+            {
+              "Key": "Indestructible",
+              "Value": "true"
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Solid",
+          "Value": ""
+        },
+        {
+          "Key": "Wall",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "LibraryMemoryMarbleWall",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "SealedLibraryBarrier", "Params": [] },
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "memory-marble archive wall"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "#"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&c"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1000"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Clouded bands repeat beneath the polished face. The joints are too fine to admit a fingertip."
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "MemoryMarble"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0"
+            },
+            {
+              "Key": "Conductivity",
+              "Value": "0"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Stone,Mineral"
+            }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            {
+              "Key": "HP",
+              "Value": "250"
+            },
+            {
+              "Key": "MaxHP",
+              "Value": "250"
+            },
+            {
+              "Key": "Hardness",
+              "Value": "20"
+            },
+            {
+              "Key": "Indestructible",
+              "Value": "true"
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Solid",
+          "Value": ""
+        },
+        {
+          "Key": "Wall",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "LibraryChoirIronWall",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "SealedLibraryBarrier", "Params": [] },
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "choir-iron archive brace"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "#"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&g"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1000"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Dull iron ribs bind the stone courses. Their rivets are set deep; no filament grows in the seams."
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "ChoirIron"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0"
+            },
+            {
+              "Key": "Conductivity",
+              "Value": "70"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Metal,Mineral"
+            }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            {
+              "Key": "HP",
+              "Value": "250"
+            },
+            {
+              "Key": "MaxHP",
+              "Value": "250"
+            },
+            {
+              "Key": "Hardness",
+              "Value": "20"
+            },
+            {
+              "Key": "Indestructible",
+              "Value": "true"
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Solid",
+          "Value": ""
+        },
+        {
+          "Key": "Wall",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "SealedLibraryDoor",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "SealedLibraryBarrier", "Params": [] },
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "sealed archive door"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "+"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1000"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Iron lies flush within a pale stone frame. A small keyway interrupts the unbroken seam."
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "ChoirIron"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0"
+            },
+            {
+              "Key": "Conductivity",
+              "Value": "70"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Metal,Mineral"
+            }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            {
+              "Key": "HP",
+              "Value": "250"
+            },
+            {
+              "Key": "MaxHP",
+              "Value": "250"
+            },
+            {
+              "Key": "Hardness",
+              "Value": "20"
+            },
+            {
+              "Key": "Indestructible",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Lock",
+          "Params": [
+            {
+              "Key": "KeyId",
+              "Value": "coo.sealed-library.stillleaf"
+            },
+            {
+              "Key": "IsLocked",
+              "Value": "true"
+            }
+          ]
+        }
+      ],
+      "Tags": []
+    },
+    {
+      "Name": "SealedLibraryFloor",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "archive paving"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "."
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&K"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            },
+            {
+              "Key": "Weight",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Close-fitted slabs run between the sealed shelves."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "ExcludeZoneArrival",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "SealedArchiveShelf",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "sealed archive shelf"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "H"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&Y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1000"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Tied bundles stand in shallow stone shelves. Faded clay seals close each binding."
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Tepuibone"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0"
+            },
+            {
+              "Key": "Conductivity",
+              "Value": "0"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Stone,Mineral"
+            }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            {
+              "Key": "HP",
+              "Value": "250"
+            },
+            {
+              "Key": "MaxHP",
+              "Value": "250"
+            },
+            {
+              "Key": "Hardness",
+              "Value": "20"
+            },
+            {
+              "Key": "Indestructible",
+              "Value": "true"
+            }
+          ]
+        }
+      ],
+      "Tags": []
     }
   ]
 }

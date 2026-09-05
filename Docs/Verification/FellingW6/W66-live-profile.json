@@ -1,0 +1,69 @@
+{
+    "runId": "8d5a2efce37c462ba817df7116b2adc5",
+    "seconds": 75.000941708,
+    "frames": 71568,
+    "ticks": 6110,
+    "moves": 611,
+    "failures": 0,
+    "audit": [
+        "closed_queries:PASS",
+        "keyless_bump_refused:PASS",
+        "forced_entry_refused:PASS",
+        "vault_refused:PASS",
+        "demolition_refused:PASS",
+        "hauling_refused:PASS",
+        "matching_key_unlocks:PASS",
+        "unlocked_entry_control:PASS",
+        "native_keyless_bump:PASS",
+        "native_matching_key:PASS",
+        "native_enters_door:PASS",
+        "native_repeated_open_entry:PASS"
+    ],
+    "metrics": [
+        {
+            "name": "COO.Turns.ProcessUntilPlayerTurn",
+            "unit": "nanoseconds",
+            "available": true,
+            "activeFrames": 611,
+            "max": 121625,
+            "p99": 0,
+            "mean": 61.94799351665549
+        },
+        {
+            "name": "COO.World.ArchiveBarrier",
+            "unit": "nanoseconds",
+            "available": true,
+            "activeFrames": 611,
+            "max": 750,
+            "p99": 0,
+            "mean": 3.112913592667114
+        },
+        {
+            "name": "COO.Input.Update",
+            "unit": "nanoseconds",
+            "available": true,
+            "activeFrames": 71566,
+            "max": 3659208,
+            "p99": 9500,
+            "mean": 6799.622345182204
+        },
+        {
+            "name": "COO.ZoneRenderer.LateUpdate",
+            "unit": "nanoseconds",
+            "available": true,
+            "activeFrames": 71567,
+            "max": 12726625,
+            "p99": 1254417,
+            "mean": 765075.4419433266
+        },
+        {
+            "name": "GC Allocated In Frame",
+            "unit": "bytes",
+            "available": true,
+            "activeFrames": 71567,
+            "max": 21561880,
+            "p99": 173418,
+            "mean": 24792.78023697742
+        }
+    ]
+}

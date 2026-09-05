@@ -758,3 +758,107 @@ performance, canon inferences and visual/feel limits. **Next: W6.6, Sealed
 Library (enum + archetype + slope mouth in ONE commit), then W6.7 close-out.**
 After W6 completion, continue the authorized whole-game audit, repair plans
 and implementations without pausing for approval.
+
+### W6.6 — Stillleaf, the Sealed Library (IN PROGRESS, 2026-09-05)
+
+Baseline `3e466883`, 7547/7547 GREEN. Preserve the 653-path snapshot in
+`/tmp/codex-w66-preexisting/manifest.json`; shared files receive only our
+incremental hunks. Qud reference: none; this is CoO-original authored content.
+
+Readiness: 🟢 sinkhole stack, append-only enum, LockPart, material identity,
+save graph and hidden-map presentation; 🟡 closed-barrier bypasses and stale
+discovery rendering need consumers/fixes. ⚪ exact location, geometry and
+indestructibility are staging decisions for the future key arc, not claims
+of canonical invulnerability. No quest, key, readable text system or ending.
+
+Preimplementation verification sweep (before production changes):
+
+| Premise | Verified correction / consequence |
+|---|---|
+| Any new enum value may use the unnamed hash | Keep the existing three-way fallback unchanged. Append SealedLibrary=3, explicitly map coined Stillleaf, and ship its slope mouth (2,4), profile and floor in ONE commit. |
+| POI.Tier controls floor encounters | The router ignores POI.Tier. Canon Geography§13 / Recension specifies Tier3; select the actual CaveTier3 population table and container tier3 on this floor only. Surface/descent retain their existing tiers. |
+| A locked door is a complete physical seal | Stock door only sets Physics.Solid; tag-only movement, sight/gas and skill paths disagree. A narrow SealedLibraryBarrier part derives closure from its lock, with no duplicate saved state; walls without locks stay closed. |
+| Indestructible mineral deposits make walls | Harvestable can remove its parent. Author fixed architecture with no Harvestable/Container and Takeable=false, with the three actual MaterialID values. No fungal/Urqu immunity aura exists. |
+| All movement checks the landing cell | Vault skips the intervening cell; check this barrier specifically, preserving ordinary wall vaulting. Tumble must preflight BOTH swap cells before removal; raw forced movement must refuse a closed barrier destination. |
+| Safe travel fallback cannot enter a sealed room | Lateral, stair and follower placement search through walls. Mark the actual interior floor ExcludeZoneArrival and consume it only in travel selection, never ordinary walking or restoration. Reject an exhausted vertical fallback before removing the source actor. |
+| Visiting already refreshes hidden mouths | Ascend builds/uses the map BEFORE MarkVisited and never refreshes it. Refresh derived appearance after a successful ascent; a failed ascent must not reveal the place. Preserve map entity identities and occupants. |
+| A late builder may erase stairs | Stamp at3650, after StairConnector3600. Pick a stair-free enclosure, preserve exact stairs, carve their exterior approaches, reserve architecture/interior before hazard/population/containers. |
+| A library requires a new reading mechanic now | W6.6 explicitly ships a locked vault without its future quest key. Fixed sealed archive shelves establish its contents; readable records and their canon/voice gate belong with the later access arc. |
+
+References read: this plan§W6.6 and readiness; FELLING-WORLD-DESIGN§3.6,
+map discovery§156 and sinkhole stack; Lore/History02§13, History03§Sealing,
+History08 material culture, Lore/10_Bible,11_SecondSpine,MYSTERY-LEDGER§1,
+Recension§first library and Codex/README gate. Code: SinkholeSites,
+SinkholeArchetypes, OverworldZoneManager, PopulationTable, Cell/Zone,
+WorldMapTraversal/WorldMapZoneBuilder, ZoneTransitionSystem, Lock/Physics/
+Material/Destructible parts, Vault/Tumble/Disengage/ChargingStrike,
+LiquidCovered knockback and existing W6 authoring/save/native fixtures.
+
+Implementation: (1) RED authoring/discovery pins; authored route, enclosure,
+three four-variant wall families, four floor variants, fixed archive shelves
+and door art. (2) RED barrier/travel regressions, then smallest shared guards.
+(3) dedicated20–60 adversarial cases, taxonomy + canon review, native keyboard
+and75-second hot-path profile, full suite, raw evidence and same-commit docs.
+
+Scope: finding uses the existing surveyed-world-cell Visited model on return
+to the world map, not a new precise mouth-proximity detector. The seal blocks
+ordinary gas diffusion; direct grenade/on-hit gas deposition and Seeping gas
+retain their existing wall-crossing rules. This is not gas-tight sealing.
+No forcefield across open interior tiles; arrival exclusion only governs
+automatic cross-zone placement. Cached player-modified floors are preserved.
+
+
+W6.6 checkpoints: authoring/discovery13 checks reached GREEN; the first RED
+had12 assertion failures and one hash control passing. An initial fixture
+used nonexistent WorldMap.HasRoad/HasRiver methods; corrected to the actual
+WorldMapAuthoring helpers before accepting assertion RED. Runtime/Tier/travel
+RED12/30 became30/30 GREEN. Dedicated29 adversarial tests passed; the scenario
+existence assertion was the only failure in59/60, then60/60 GREEN after the
+native scenario implementation. No stale compile-result XML was accepted.
+
+Cold-eye Angle A found no new geometry/arrival/removal defect; it corrected
+the gas claim to diffusion only (direct grenade seeding is an existing limit).
+Angle B found a 🟡 profile split: generation honored the library profile while
+sima daylight and water-passage generation/repair used the display name. Three
+real REDs (renamed library/founding ambient, renamed library water pair) and
+one genuine-sima control precede the shared ForSite resolver fix. This also
+keeps Olderdeep's authored profile coherent. The manual menu uses ScenarioRunner;
+the isolated batch launcher remains separate because it exits the editor.
+
+
+Further hypothesis RED3/3: both movement facades ignored Zone.MoveEntity's
+new refusal and still emitted AfterMove/entry notifications; a relocked door
+with stale Physics.Solid=false also bypassed the bump unlock path. Honor the
+zone's bool before any movement notifications, and include derived archive
+closure in PhysicsPart's collision predicate. Tests pair refused entry with
+ordinary entry and an actual matching-key bump after relocking. This is a
+confirmed return-value/duplicate-state defect, not a claim of a shipped relock
+quest. Added36 dedicated adversarial cases total, including save/instance,
+profile, relocation, geometry and these flow hypotheses. Full/native follow.
+
+### W6.6 exit — 2026-09-05
+
+**SHIPPED.** Full suite7614/7614 GREEN, zero C# errors,
+19:57:28–19:58:35 UTC; baseline7547→7614 (+67). Native run
+8d5a2efce37c462ba817df7116b2adc5 passes12/12 with exit0,
+75.000941708seconds,71568frames,611 actual keyboard moves and6110ticks.
+Shared barrier query active mean0.000365ms,p990.000625ms,max0.000750ms.
+The surrounding renderer active mean0.765086ms,p991.254417ms,max12.726625ms;
+whole-editor GC is retained without feature attribution. All21 original
+sprites and2302 global GUIDs pass the audit, including four variants for each
+repeated fixture family. Full tests/native follow the last production fix;
+only explanatory comments and docs changed afterward.
+
+See `Docs/Verification/FellingW6/W66-REPORT.md` for resolved review findings,
+raw gates, scope inferences and limits. Runtime renamed-profile checks are
+future-writer robustness: v7 rederives canonical profiles and has no shipped
+POI rename writer. Renamed-site persistence belongs with the recorded save
+format work, not an undocumented schema extension. Existing/concurrent work
+is preserved, with only our incremental MovementSystem/renderer hunks staged.
+
+**Next: W6.7 close-out.** The cross-wave review has found two first-wave
+content failures to fix: SariSnake/Wardline natural attacks are bypassed by
+default humanoid anatomy, and CascadeFather's spray-only habitat lacks a
+consumer. Review also identified one Catacomb voice-card word correction and
+the bestiary's required cultural-source credit entry. Then continue the
+authorized whole-game system audit and repairs, maintaining the daily log.

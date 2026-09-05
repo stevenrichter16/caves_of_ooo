@@ -310,6 +310,11 @@ namespace CavesOfOoo.Core
             Cell target = GetCell(newX, newY);
             if (target == null) return false;
 
+            // Forced displacement may bypass ordinary collision; it must
+            // still stop at the sealed archive. AddEntity remains available
+            // for content placement and saved-state reconstruction.
+            if (target.HasClosedArchiveBarrier()) return false;
+
             return AddEntity(entity, newX, newY);
         }
 

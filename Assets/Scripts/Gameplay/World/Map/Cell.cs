@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.Profiling;
 
 namespace CavesOfOoo.Core
 {
@@ -9,6 +10,7 @@ namespace CavesOfOoo.Core
     /// </summary>
     public class Cell
     {
+        private static readonly ProfilerMarker ArchiveBarrierMarker = new ProfilerMarker("COO.World.ArchiveBarrier");
         // Readonly: the tile-state readout keys the sparse store by these
         // and trusts they match the zone's array index (Zone.cs fills
         // Cells[x,y] = new Cell(x,y)). Nothing ever mutated them; making
@@ -86,13 +88,14 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// Returns true if any entity in this cell has the "Solid" tag.
+        /// True for a Solid tag or a closed, opted-in archive barrier.
+        /// Ordinary Physics-only furniture keeps its existing semantics.
         /// </summary>
         public bool IsSolid()
         {
             for (int i = 0; i < Objects.Count; i++)
             {
-                if (Objects[i].HasTag("Solid"))
+                if (Objects[i].HasTag("Solid") || Objects[i].GetPart<SealedLibraryBarrierPart>()?.IsClosed == true)
                     return true;
             }
             return false;
@@ -102,9 +105,9 @@ namespace CavesOfOoo.Core
         /// True when something here would stop a move into this cell.
         ///
         /// <para><b>Not the same as <see cref="IsSolid"/>,</b> which tests
-        /// the <c>Solid</c> TAG only. The rule the movement gate actually
-        /// enforces is two-clause — <c>PhysicsPart.Solid || HasTag("Solid")</c>
-        /// (<c>PhysicsPart.cs:69-71</c>) — and blueprints use both spellings:
+        /// the <c>Solid</c> tag plus opted-in closed archive barriers.
+        /// The movement gate additionally honors <c>PhysicsPart.Solid</c>,
+        /// and blueprints use both ordinary spellings:
         /// walls and trees carry the tag, while the haulable furniture sets
         /// only the Part field. A caller that asks <c>IsSolid</c> when it
         /// means "can I move here" silently walks through the second group.
@@ -125,21 +128,34 @@ namespace CavesOfOoo.Core
                 if (o.HasTag("Solid")) return true;
                 var physics = o.GetPart<PhysicsPart>();
                 if (physics != null && physics.Solid) return true;
+                if (o.GetPart<SealedLibraryBarrierPart>()?.IsClosed == true) return true;
             }
             return false;
         }
 
         /// <summary>
-        /// Returns true if any entity in this cell has the "Wall" tag.
+        /// True for a Wall tag or a closed archive barrier (including its door).
         /// </summary>
         public bool IsWall()
         {
             for (int i = 0; i < Objects.Count; i++)
             {
-                if (Objects[i].HasTag("Wall"))
+                if (Objects[i].HasTag("Wall") || Objects[i].GetPart<SealedLibraryBarrierPart>()?.IsClosed == true)
                     return true;
             }
             return false;
+        }
+
+        /// <summary>Specific closed-archive collision, used by movement paths
+        /// that intentionally bypass ordinary obstacles. No allocations.</summary>
+        public bool HasClosedArchiveBarrier()
+        {
+            using (ArchiveBarrierMarker.Auto())
+            {
+                for (int i = 0; i < Objects.Count; i++)
+                    if (Objects[i]?.GetPart<SealedLibraryBarrierPart>()?.IsClosed == true) return true;
+                return false;
+            }
         }
 
         /// <summary>

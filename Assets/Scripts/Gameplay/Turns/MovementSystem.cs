@@ -88,7 +88,7 @@ namespace CavesOfOoo.Core
             // Perform the move
             int oldX = currentCell.X;
             int oldY = currentCell.Y;
-            zone.MoveEntity(entity, newX, newY);
+            if (!zone.MoveEntity(entity, newX, newY)) return (false, null);
 
             // Notify renderer: old cell needs re-render (entity gone) and
             // new cell needs re-render (entity arrived). For the player we
@@ -142,7 +142,7 @@ namespace CavesOfOoo.Core
             // Perform the move
             int oldX = currentCell?.X ?? -1;
             int oldY = currentCell?.Y ?? -1;
-            zone.MoveEntity(entity, x, y);
+            if (!zone.MoveEntity(entity, x, y)) return false;
 
             DirtyForMove(entity, oldX, oldY, x, y);
 

@@ -104,7 +104,8 @@ namespace CavesOfOoo.Core
 
                 var otherPhysics = other.GetPart<PhysicsPart>();
                 bool isSolid = (otherPhysics != null && otherPhysics.Solid)
-                               || other.HasTag("Solid");
+                               || other.HasTag("Solid")
+                               || other.GetPart<SealedLibraryBarrierPart>()?.IsClosed == true;
                 if (!isSolid) continue;
 
                 // LK.3: bump-to-unlock. If the Solid blocker carries a

@@ -37,8 +37,9 @@ namespace CavesOfOoo.Core
         public string BossBlueprint; // For lairs only
         /// <summary>W4.6 — the authored Place's village profile,
         /// carried onto the POI so CreateVillagePipeline can switch on
-        /// data instead of names. Null for non-village POIs and plain
-        /// villages.</summary>
+        /// data instead of names. Authored sinkholes also use a profile.
+        /// Version7 saves rederive it from the canonical site name; no
+        /// shipped story writer currently renames these sites.</summary>
         public string Profile;
 
         public PointOfInterest(POIType type, string name, string faction = null, int tier = 1, string bossBlueprint = null, string profile = null)
