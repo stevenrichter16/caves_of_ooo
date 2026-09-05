@@ -31,7 +31,9 @@ namespace CavesOfOoo.Core
             if (e.ID == "GetInventoryActions")
             {
                 var actions = e.GetParameter<InventoryActionList>("Actions");
-                if (actions != null)
+                var actor = e.GetParameter<Entity>("Actor");
+                if (actions != null && (!ConsumeOnStudy || actor == null
+                    || actor.GetPart<InventoryPart>()?.CanConsumeOne(ParentEntity) == true))
                     actions.AddAction("Study", "study", "StudySchematic", 's', 20);
                 return true;
             }
@@ -52,6 +54,8 @@ namespace CavesOfOoo.Core
 
         private bool DoStudy(Entity actor, GameEvent e)
         {
+            if (ConsumeOnStudy && !InventoryPart.CheckCanConsumeOne(actor, ParentEntity))
+                return true;
             e.Handled = true;
 
             var bitLocker = actor.GetPart<BitLockerPart>();
@@ -80,6 +84,11 @@ namespace CavesOfOoo.Core
                 return false;
             }
 
+            if (ConsumeOnStudy && !InventoryPart.TryConsumeOne(actor, ParentEntity))
+            {
+                e.Handled = false;
+                return true;
+            }
             bitLocker.LearnRecipe(recipe.ID);
 
             if (!string.IsNullOrEmpty(LearnMessage))
@@ -90,24 +99,7 @@ namespace CavesOfOoo.Core
             Diag.Record("event", "RecipeLearned", actor: actor,
                 payload: new { recipeId = recipe.ID, source = "schematic", consumed = ConsumeOnStudy });
 
-            if (ConsumeOnStudy)
-                ConsumeSelf(actor);
-
             return false;
-        }
-
-        private void ConsumeSelf(Entity actor)
-        {
-            var stacker = ParentEntity?.GetPart<StackerPart>();
-            if (stacker != null && stacker.StackCount > 1)
-            {
-                stacker.StackCount -= 1;
-                return;
-            }
-
-            var inventory = actor.GetPart<InventoryPart>();
-            if (inventory != null && inventory.Contains(ParentEntity))
-                inventory.RemoveObject(ParentEntity);
         }
     }
 }

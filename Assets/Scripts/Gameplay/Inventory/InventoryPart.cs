@@ -102,6 +102,67 @@ namespace CavesOfOoo.Core
             return true;
         }
 
+        /// <summary>True for a positive unit actually in this carried list.
+        /// Equipped items and Physics backreferences alone do not establish carriage.</summary>
+        public bool CanConsumeOne(Entity item) => ConsumptionRefusalReason(item) == null;
+
+        private string ConsumptionRefusalReason(Entity item)
+        {
+            if (item == null) return "missing_item";
+            if (Objects == null || !Objects.Contains(item)) return "not_carried";
+            return (item.GetPart<StackerPart>()?.StackCount ?? 1) > 0 ? null : "empty_stack";
+        }
+
+        // Execution-only preflight: unlike the pure menu query, refusals are observable.
+        internal static bool CheckCanConsumeOne(Entity actor, Entity item)
+        {
+            var inventory = actor?.GetPart<InventoryPart>();
+            string reason = actor == null ? "missing_actor" : inventory == null ? "missing_inventory"
+                : inventory.ConsumptionRefusalReason(item);
+            if (reason == null) return true;
+            RecordConsumptionRefusal(actor, item, reason);
+            return false;
+        }
+
+        internal static void RecordConsumptionRefusal(Entity actor, Entity item, string reason)
+        {
+            CavesOfOoo.Diagnostics.Diag.Record("event", "ItemConsumptionRejected", actor: actor, target: item,
+                payload: new { reason, blueprint = item?.BlueprintName, quantity = item?.GetPart<StackerPart>()?.StackCount ?? 1 });
+        }
+
+        // Handles absent actor/inventory for consuming item entry points.
+        internal static bool TryConsumeOne(Entity actor, Entity item)
+        {
+            if (actor?.GetPart<InventoryPart>() is InventoryPart inventory)
+                return inventory.TryConsumeOne(item);
+            CheckCanConsumeOne(actor, item);
+            return false;
+        }
+
+        /// <summary>Spend one carried unit before granting its benefit. Refusal
+        /// changes nothing; quantity changes refresh the carrier's handling penalty.
+        /// Records payment or its rejection; payload success remains the caller's responsibility.</summary>
+        public bool TryConsumeOne(Entity item)
+        {
+            string reason = ConsumptionRefusalReason(item);
+            if (reason != null)
+            {
+                RecordConsumptionRefusal(ParentEntity, item, reason);
+                return false;
+            }
+            var stacker = item.GetPart<StackerPart>();
+            int before = stacker?.StackCount ?? 1;
+            if (before > 1)
+            {
+                stacker.StackCount--;
+                RefreshHandlingCarryPenalty();
+            }
+            else RemoveObject(item);
+            CavesOfOoo.Diagnostics.Diag.Record("event", "ItemUnitConsumed", actor: ParentEntity, target: item,
+                payload: new { blueprint = item.BlueprintName, quantityBefore = before, quantityAfter = before - 1 });
+            return true;
+        }
+
         /// <summary>
         /// Equip an item to a body part (body-part-aware mode).
         /// Sets the item on the BodyPart node and updates caches.
@@ -287,6 +348,7 @@ namespace CavesOfOoo.Core
         public override void FinalizeLoad(SaveReader reader)
         {
             RefreshLoadedBackReferences();
+            RebaseHandlingCarryPenalty();
         }
 
         private void RefreshLoadedBackReferences()
@@ -345,6 +407,13 @@ namespace CavesOfOoo.Core
                 return stacker.GetTotalWeight();
 
             return HandlingService.GetWeight(item);
+        }
+
+        /// <summary>Synchronize the derived tracker after inventory and saved stats
+        /// have both been restored. Does not apply a second penalty to restored stats.</summary>
+        internal void RebaseHandlingCarryPenalty()
+        {
+            _appliedHandlingCarryPenalty = ComputeCarriedHandlingPenalty();
         }
 
         public void RefreshHandlingCarryPenalty()

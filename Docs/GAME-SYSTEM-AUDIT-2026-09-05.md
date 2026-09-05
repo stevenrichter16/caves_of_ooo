@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; INVENTORY REPAIRS NEXT**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b NEXT**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -393,3 +393,147 @@ wall-clock guidance and wrote linked report before commit. A20/A26 are verified
 complete, including full retained-buffer subfinding A20b. Full7715GREEN;
 41 added tests. Next: split inventory wave into small coherent repair commits,
 starting carried consumable ownership, then transfer/stack/donation integrity.
+
+
+### Wave2a plan and verification sweep — carried consumables
+
+Scope: A02's reusable ground Tonic/Food/InkVial, plus the supported optional
+single-use Schematic contract. Shared InventoryPart one-unit consumption will
+also serve later handovers; A17/A18 and transfer/stack identity ship separately.
+
+Invariant: a consuming action needs one positive unit actually carried by its
+user, and spends it before delivering its benefit. Ground/other-owner/stale/
+zero-count references cannot heal, boost stats, apply status, grant Ink or teach
+single-use recipes. Refused action returns an unhandled event/false command
+result, not false-handler-as-success. Actorless action declaration can remain
+available for metadata callers; actual actor-aware world menus hide the row.
+Nonconsuming Tonic.ApplyTo remains the thrown payload path; ordinary reusable
+schematic study remains readable without consumption.
+
+Verified APIs: InventorySystem.GetActions supplies Actor; WorldInteractionSystem
+also supplies Actor. Most existing action tests already insert items into carried
+Objects. Inventory.Contains includes equipped items, so it is too broad for this
+gate. Public StackCount stays a field for v7 reflection compatibility. Unit
+consumption refreshes handling penalties; last-unit removal keeps its detached
+entity count convention. No blueprint/art/save-format changes.
+
+RED cases use actual HealingTonic/StrengthTonic/PoisonTonic, Starapple and InkVial
+blueprints in real zones and action facades; menu absence and repeat direct
+execution, carried count1/3 controls, public consuming Tonic bypass and thrown
+payload controls. Dedicated adversarial cases cover other owners, stale
+backreferences, invalid quantities, removed callbacks, save/reload consumption,
+full inventory, immunity and unrelated action dispatch. Native keyboard scenario
+will verify visible world-menu refusal and pickup→consume through runtime input;
+observable checks are separated from visual feel.
+
+
+Wave2a initial RED at21:29:10–11UTC:19 tests,16 expected failures and3
+controls GREEN, zero C# errors. Ground menu/direct-action/public consuming-API
+failures reproduce the ownership exploit; stale last Food/InkVial references
+also remain reusable. Tonic's nested ApplyTonic probe confirms benefit callbacks
+currently run before payment (the command executor turns the probe assertion
+into a failed result). Added separate RED single-use schematic/ordinary-study
+controls before touching that supported optional path. Raw runs are archived.
+
+
+Wave2a expanded RED:22 cases,17 failures/5 controls at21:30:15UTC.
+Minimum GREEN335/335 at21:32:07UTC. Dedicated33 adversarial cases initially
+GREEN with22 regressions (55/55 at21:38:59UTC). Independent review found that
+refreshing carry penalties during consumption exposes A05's transaction rollback
+tracker mismatch: count1 restoration can double the penalty immediately; count3
+restoration leaves a stale tracker that doubles on a later refresh. Add four
+outer-rollback RED tests before repairing structure→stats→tracker restoration.
+This is pulled forward from A05 because it directly affects this helper.
+Review also requires explicit rejection diagnostics on actual mutation attempts,
+with no menu-query spam; add reason/quantity/ownership counterchecks.
+
+Wave2a review RED at21:42:01–02UTC:12/12 failures, zero compiler errors.
+All four corrected carry rollback cases reproduce; the first run's two tonic
+fixtures added a duplicate HandlingPart, so they failed their own precondition.
+Corrected fixtures configure the already authored Part; both raw runs retained.
+Two save/load quantity cases also reproduce A05's missing loaded tracker; this
+portion is included now because consuming a loaded handling-bearing stack uses
+that same derived state. FinalizeLoad rebases after the graph is available,
+without new serialized fields or another stat delta. Six rejection-diagnostic
+cases reproduce the missing observability. No menu-query records are emitted.
+
+
+Wave2a native first batch9/9 passed (run037765ef099c43438d92cac880a211a6,
+3.542090542s). Full7793 run had7792 pass and one existing Campfire flicker
+wiring test failure: its30 Render events run synchronously at the same Time.time,
+despite the fixture's comment claiming30 frames. Investigate/pin deterministically;
+raw failed run is retained, not reported GREEN.
+
+Native cold-eye found the ordinary menu launch skipped isolated save setup,
+so N could become movement and bootstrap could save the synthetic arena on a
+no-save run. Share isolation/cleanup for menu launch and test no-boot-menu input
+as a native RED branch. Category scenario is disabled by default; add a RED
+record counter with enabled-channel control, scope its enablement to each record.
+Correct single failed native assertion double-counting in the driver.
+
+Broader preexisting A41 transaction debt: action snapshots restore item + actor
+stats but omit Ink properties, effects/cures and learned recipes. No production
+Before/AfterInventoryAction callback was found, so normal-world triggering remains
+unproven; test exception/outer-transaction contracts as a separate repair wave.
+Direct public consuming Tonic.ApplyTo has no transaction: exceptions may spend
+payment. Normal UI uses the command facade. Do not claim complete effect rollback.
+
+Native no-menu fixture correction: omitting the marker did not produce a clean
+boot; ResolveActiveGameIDOnBoot falls back to another saved expedition. The
+9/9 result580c1aa7c72f4330865a52697bf12dc2 is archived as a fallback control,
+not no-menu proof. Keep the isolated marker for every launch. The no-menu
+fixture now explicitly dismisses that modal with a native N during setup;
+the actual audit must then avoid sending N into normal movement.
+
+### Wave2b verification plan — single-unit handovers and honest dialogue
+
+Next scope: A17/A18. Read SettlementManager.ConsumeInventoryItem, the actual
+ConversationActions TakeItem/TakeItemWithTag/GiveItem/CopyGrimoire handlers,
+ConversationManager.SelectChoice, authored Farmer_1/Warden_Lantern_1/Scribe_1/
+WellKeeper_1 and courier action chains. Qud corroboration is local
+`/Users/steven/qud-decompiled-project/XRL.World.Conversations.Parts/TakeItem.cs`:
+Amount defaults1, required failure prevents entering the success element, and
+SplitStack/removal must actually supply the requested quantity. CoO keeps its
+own donation semantics; no NPC-receives-item parity claim.
+
+Corrections before implementation:
+
+- Logging GetDisplayName after decrement describes remaining `(x2)` rather
+  than one donated unit. Use a unit name independently of the remaining count.
+- Authored repair confirmations can be stale: ResolveSettlementSite returns
+  false internally, but void action lists still enter AfterOvenRebuild or
+  AfterReforge, then award Villagers+10. Count-only repair is insufficient.
+- TeachBaker/TeachWarden split stage change from a later TakeItemWithTag.
+  Their copy requirement and single-unit payment must be checked/committed
+  together. TeachCaretaker is intentionally free; WellKeeper's separate
+  donation remains a distinct handover.
+- Existing GiveItem feet fallback ignores Zone.AddEntity refusal. A shared
+  delivery helper must distinguish carried/ground/refused and check both
+  placement results. Ordinary GrimoireCopy is a valid nonvegetation Item;
+  barren-vegetation refusal is a generic-helper control, not a real book rule.
+- Preserve Register/Execute/ExecuteAll compatibility: StoryletPart and legacy
+  quest OnEnter also call the void API. Add result-bearing required actions
+  and stop later dialogue actions/navigation on failure. Do not claim rollback
+  of already committed StoryletPart transitions.
+
+RED fixtures: actual material repairs count1/count3 and stable/no-op state;
+losing material/copy after choice display; authored teaching count1/count3;
+free caretaker control; TakeItem/TakeItemWithTag positive stacks after a zero
+stack; actual courier delivery side effects blocked when payment fails; Scribe
+copy with full pack and real ground, plus missing zone/listener membership.
+Preserve copied knowledge and SkillClassName. Native conversation/menu checks
+and a dedicated adversarial file follow successful minimum fixes.
+
+Wave2a final focused94/94 GREEN (21:57:11UTC). Final new case count83:
+22 regression +56 dedicated adversarial +5 staging/record cases. Native active
+boot modal10/10 and already-dismissed isolated modal10/10 GREEN; raw IDs and
+honesty bounds are in `Verification/GameSystemAudit/GA02a-REPORT.md`.
+Both independent reviewers cleared their must-fix findings after correction.
+The complete full run is in progress; no full GREEN claim yet.
+
+Wave2a complete: full7798/7798 GREEN,21:59:24–22:00:58UTC, zero C# errors,
++83 tests from7715. A02 complete; A05 load/rollback tracker portions complete,
+other quantity-mutating services remain queued. A42 campfire Render wiring
+fixture is now deterministic (no production flicker change). Independent
+inventory/native reviews cleared all must-fix findings. Final native10/10 in
+both isolated startup states. Next implement the verified wave2b plan above.

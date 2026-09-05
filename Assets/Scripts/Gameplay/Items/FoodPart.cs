@@ -25,7 +25,9 @@ namespace CavesOfOoo.Core
             if (e.ID == "GetInventoryActions")
             {
                 var actions = e.GetParameter<InventoryActionList>("Actions");
-                if (actions != null)
+                var actor = e.GetParameter<Entity>("Actor");
+                if (actions != null && (actor == null
+                    || actor.GetPart<InventoryPart>()?.CanConsumeOne(ParentEntity) == true))
                     actions.AddAction("Eat", "eat", "Eat", 'e', 20);
                 return true;
             }
@@ -46,6 +48,9 @@ namespace CavesOfOoo.Core
 
         private bool DoEat(Entity actor, GameEvent e)
         {
+            if (!InventoryPart.TryConsumeOne(actor, ParentEntity))
+                return true; // Leave the consuming action unhandled on refusal.
+
             // Heal if healing dice specified
             if (!string.IsNullOrEmpty(Healing))
             {
@@ -70,27 +75,11 @@ namespace CavesOfOoo.Core
                 : $"{actor.GetDisplayName()} eats {ParentEntity.GetDisplayName()}.";
             MessageLog.Add(displayMsg);
 
-            // Consume the item
-            ConsumeItem(actor);
-
+            CavesOfOoo.Diagnostics.Diag.Record("event", "FoodEaten", actor: actor, target: ParentEntity,
+                payload: new { healing = Healing });
             e.Handled = true;
             return false;
         }
 
-        private void ConsumeItem(Entity actor)
-        {
-            var stacker = ParentEntity.GetPart<StackerPart>();
-            if (stacker != null && stacker.StackCount > 1)
-            {
-                stacker.StackCount--;
-            }
-            else
-            {
-                // Remove from inventory
-                var inv = actor.GetPart<InventoryPart>();
-                if (inv != null)
-                    inv.RemoveObject(ParentEntity);
-            }
-        }
     }
 }

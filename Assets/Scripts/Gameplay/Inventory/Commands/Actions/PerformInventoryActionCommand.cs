@@ -142,8 +142,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
             if (context?.Actor == null || snapshot == null)
                 return;
 
-            RestoreActorStats(context.Actor, snapshot.ActorStats);
             RestoreItemState(context, snapshot.ItemState);
+            RestoreActorStats(context.Actor, snapshot.ActorStats);
+            context.Inventory?.RebaseHandlingCarryPenalty();
         }
 
         private static void RestoreActorStats(Entity actor, Dictionary<string, Stat> snapshot)

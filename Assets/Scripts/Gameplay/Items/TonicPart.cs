@@ -5,7 +5,7 @@ namespace CavesOfOoo.Core
     /// <summary>
     /// Consumable tonic/potion item. Mirrors Qud's Tonic part.
     /// Declares an "Apply" inventory action. When applied, fires ApplyTonic event
-    /// on the item for sub-parts to handle, then consumes the item.
+    /// on the item for sub-parts to handle, after spending one carried unit.
     /// Blueprint params: Effect (string tag), Duration (turns), Healing (dice),
     /// Message (flavor text), Drink (if true, uses "drink" instead of "apply").
     /// </summary>
@@ -36,7 +36,9 @@ namespace CavesOfOoo.Core
             if (e.ID == "GetInventoryActions")
             {
                 var actions = e.GetParameter<InventoryActionList>("Actions");
-                if (actions != null)
+                var actor = e.GetParameter<Entity>("Actor");
+                if (actions != null && (actor == null
+                    || actor.GetPart<InventoryPart>()?.CanConsumeOne(ParentEntity) == true))
                 {
                     if (Drink)
                         actions.AddAction("Drink", "drink", "ApplyTonic", 'd', 20);
@@ -65,7 +67,8 @@ namespace CavesOfOoo.Core
             var rng = e.GetParameter<Random>("Random") ?? new Random();
             Zone zone = e.GetParameter<Zone>("Zone");
 
-            ApplyTo(actor, actor, zone, rng, consumeItem: true, showUseMessage: true);
+            if (!ApplyTo(actor, actor, zone, rng, consumeItem: true, showUseMessage: true))
+                return true; // Unhandled refusal; false would count as successful dispatch.
             e.Handled = true;
             return false;
         }
@@ -84,6 +87,8 @@ namespace CavesOfOoo.Core
                 || ParentEntity?.GetPart<BrewItemPart>() != null;
         }
 
+        /// <summary>Apply a tonic payload. Consuming use requires and spends
+        /// one unit carried by user before effects; nonconsuming use supports thrown payloads.</summary>
         public bool ApplyTo(
             Entity target,
             Entity user,
@@ -93,6 +98,12 @@ namespace CavesOfOoo.Core
             bool showUseMessage = true)
         {
             if (target == null)
+            {
+                InventoryPart.RecordConsumptionRefusal(user, ParentEntity, "missing_target");
+                return false;
+            }
+
+            if (consumeItem && !InventoryPart.TryConsumeOne(user, ParentEntity))
                 return false;
 
             rng = rng ?? new Random();
@@ -125,9 +136,8 @@ namespace CavesOfOoo.Core
                 MessageLog.Add(displayMsg);
             }
 
-            if (consumeItem && user != null)
-                ConsumeItem(user);
-
+            CavesOfOoo.Diagnostics.Diag.Record("event", "TonicApplied", actor: user, target: target,
+                payload: new { item = ParentEntity.ID, consumed = consumeItem, healing = Healing, statBoost = StatBoost });
             return true;
         }
 
@@ -167,19 +177,5 @@ namespace CavesOfOoo.Core
             MessageLog.Add($"{target.GetDisplayName()} feels a surge of {statName}!");
         }
 
-        private void ConsumeItem(Entity actor)
-        {
-            var stacker = ParentEntity.GetPart<StackerPart>();
-            if (stacker != null && stacker.StackCount > 1)
-            {
-                stacker.StackCount--;
-            }
-            else
-            {
-                var inv = actor.GetPart<InventoryPart>();
-                if (inv != null)
-                    inv.RemoveObject(ParentEntity);
-            }
-        }
     }
 }

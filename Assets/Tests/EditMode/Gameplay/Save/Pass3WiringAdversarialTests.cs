@@ -145,24 +145,24 @@ namespace CavesOfOoo.Tests
                 "Setup: LightSourcePart.Intensity is non-zero from "
                 + "the blueprint (Campfire blueprint sets 0.8).");
 
-            // Fire 30 Render events through the entity's event flow.
-            // (The flicker uses Time.time which is non-deterministic
-            // in tests — but across 30 frames at varying Time.time
-            // values, intensity must shift at least once.)
-            bool changed = false;
-            for (int i = 0; i < 30 && !changed; i++)
-            {
-                var ev = GameEvent.New("Render");
-                campfire.FireEventAndRelease(ev);
-                if (System.Math.Abs(lightSource.Intensity - startIntensity) > 0.001f)
-                    changed = true;
-            }
+            // Prime the real Part's stable base, then replace the output with
+            // an impossible sentinel. Synchronous EditMode events do not advance
+            // Time.time: testing for a nonzero Perlin deviation here was flaky.
+            var flicker = campfire.GetPart<LightSourceFlickerPart>();
+            Assert.NotNull(flicker);
+            flicker.UpdateIntensityAt(0f);
+            lightSource.Intensity = -1f;
+            campfire.FireEventAndRelease(GameEvent.New("Render"));
+            Assert.That(lightSource.Intensity, Is.InRange(
+                startIntensity * (1f - flicker.IntensityWobble),
+                startIntensity * (1f + flicker.IntensityWobble)),
+                "The real Render event must replace the sentinel with a valid flicker sample.");
 
-            Assert.IsTrue(changed,
-                "Across 30 Render events on a factory-spawned Campfire, "
-                + "the LightSourcePart.Intensity must shift at least "
-                + "once. If this fails, the flicker is NOT wired to "
-                + "the production Render-event flow on real entities.");
+            campfire.RemovePart(flicker);
+            lightSource.Intensity = -1f;
+            campfire.FireEventAndRelease(GameEvent.New("Render"));
+            Assert.AreEqual(-1f, lightSource.Intensity,
+                "Without the flicker Part, the same Render event must leave the sentinel alone.");
         }
 
         // ── 3. Status-effect color override flows through Render event ──

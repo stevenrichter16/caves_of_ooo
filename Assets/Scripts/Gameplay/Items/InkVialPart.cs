@@ -22,7 +22,9 @@ namespace CavesOfOoo.Core
             if (e.ID == "GetInventoryActions")
             {
                 var actions = e.GetParameter<InventoryActionList>("Actions");
-                actions?.AddAction("Use", "use", "UseInkVial", 'u', 20);
+                var actor = e.GetParameter<Entity>("Actor");
+                if (actor == null || actor.GetPart<InventoryPart>()?.CanConsumeOne(ParentEntity) == true)
+                    actions?.AddAction("Use", "use", "UseInkVial", 'u', 20);
                 return true;
             }
 
@@ -31,6 +33,8 @@ namespace CavesOfOoo.Core
                 if (e.GetStringParameter("Command") != "UseInkVial") return true;
                 var actor = e.GetParameter<Entity>("Actor");
                 if (actor == null) return true;
+                if (!InventoryPart.TryConsumeOne(actor, ParentEntity))
+                    return true;
 
                 RentalSystem.AddInk(actor, InkAmount);
                 int total = RentalSystem.GetInk(actor);
@@ -44,7 +48,6 @@ namespace CavesOfOoo.Core
                         payload: new { amount = InkAmount, total });
                 }
 
-                ConsumeOne(actor);
                 e.Handled = true;
                 return false;
             }
@@ -52,13 +55,5 @@ namespace CavesOfOoo.Core
             return true;
         }
 
-        private void ConsumeOne(Entity actor)
-        {
-            var stacker = ParentEntity.GetPart<StackerPart>();
-            if (stacker != null && stacker.StackCount > 1)
-                stacker.StackCount--;
-            else
-                actor.GetPart<InventoryPart>()?.RemoveObject(ParentEntity);
-        }
     }
 }
