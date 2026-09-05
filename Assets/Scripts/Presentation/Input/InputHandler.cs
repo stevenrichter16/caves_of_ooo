@@ -70,6 +70,9 @@ namespace CavesOfOoo.Rendering
         public float WaitHoldDelay = 0.1f;
 
         private float _lastMoveTime;
+        // A menu shortcut such as S (sleep) must be released before the
+        // same held key can become ordinary movement after the menu closes.
+        private KeyCode _worldActionKeyToRelease = KeyCode.None;
         // Initialized to large-negative so the first tap of `.` fires
         // instantly (Time.time - (-999) always exceeds WaitHoldDelay).
         private float _lastWaitTime = -999f;
@@ -335,6 +338,12 @@ namespace CavesOfOoo.Rendering
 
                 if (TurnManager.CurrentActor != PlayerEntity)
                     return;
+
+                if (_inputState == InputState.Normal && _worldActionKeyToRelease != KeyCode.None)
+                {
+                    if (InputHelper.GetKey(_worldActionKeyToRelease)) return;
+                    _worldActionKeyToRelease = KeyCode.None;
+                }
 
             EnsureHotbarSelectionValid();
             SyncHotbarState();
@@ -704,7 +713,7 @@ namespace CavesOfOoo.Rendering
             if (InputHelper.GetKeyDown(KeyCode.C))
             {
                 _inputState = InputState.AwaitingTalkDirection;
-                MessageLog.Add("Interact — choose a direction.");
+                MessageLog.Add("Interact — choose a direction, or . for underfoot.");
                 _lastMoveTime = Time.time;
                 return;
             }
@@ -2456,6 +2465,7 @@ namespace CavesOfOoo.Rendering
             // Actor-aware gather: stations add in-menu crafting toggle rows
             // for the player's carried items (M3-L3 live-playtest finding).
             var actions = WorldInteractionSystem.GatherActions(target, PlayerEntity);
+            WorldInteractionSystem.AppendUnderfootActions(actions, cell, PlayerEntity, target);
             if (actions.Count == 0)
             {
                 MessageLog.Add(WorldInteractionSystem.DescribeCell(cell, CurrentZone));
@@ -2552,6 +2562,9 @@ namespace CavesOfOoo.Rendering
                 _inputState = _worldActionMenuReturnState;
                 return;
             }
+
+            if (action.Key >= 'a' && action.Key <= 'z')
+                _worldActionKeyToRelease = (KeyCode)action.Key;
 
             // Restore gameplay camera BEFORE running the action — some
             // downstream actions (Chat → OpenDialogue, OpenContainer →
@@ -3533,6 +3546,13 @@ namespace CavesOfOoo.Rendering
             if (InputHelper.GetKeyDown(KeyCode.Escape))
             {
                 _inputState = InputState.Normal;
+                return;
+            }
+
+            if (InputHelper.GetKeyDown(KeyCode.Period) || InputHelper.GetKeyDown(KeyCode.Keypad5))
+            {
+                _lastMoveTime = Time.time;
+                InteractInDirection(0, 0);
                 return;
             }
 

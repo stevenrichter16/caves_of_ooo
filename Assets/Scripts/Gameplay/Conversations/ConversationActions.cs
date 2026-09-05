@@ -709,6 +709,8 @@ namespace CavesOfOoo.Core
             // caller of MineralTradeService.TryTrade (shipped in E.3.5
             // with zero consumers). The service handles all rejection
             // paths + diag; this action only adds the spoken outcome.
+            Register("OfferFoundingStone", (speaker, listener, arg) => FoundingTrustService.TryOffer(listener, speaker));
+
             Register("SellMineral", (speaker, listener, arg) =>
             {
                 bool traded = MineralTradeService.TryTrade(listener, speaker, arg);

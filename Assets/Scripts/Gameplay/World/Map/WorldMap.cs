@@ -174,10 +174,15 @@ namespace CavesOfOoo.Core
         public void RehydrateAuthoredSinkholes()
         {
             foreach (var (name, x, y) in SinkholeSites.All)
+            {
                 if (GetPOI(x, y) == null)
                     SetPOI(x, y, new PointOfInterest(
                         POIType.Sinkhole, name, null,
-                        WorldMapAuthoring.TierAt(x, y)));
+                        WorldMapAuthoring.TierAt(x, y), profile: SinkholeSites.ProfileFor(name)));
+                var poi = GetPOI(x, y);
+                if (poi.Type == POIType.Sinkhole && poi.Name == name)
+                    poi.Profile = SinkholeSites.ProfileFor(name);
+            }
         }
 
         public void SetPOI(int x, int y, PointOfInterest poi)

@@ -6268,3 +6268,25 @@ not a claim of Qud anatomy/flight parity.
 
 See [phase plan](FELLING-W6-PLAN.md) and [native verification](Verification/FellingW6/REPORT.md)
 for RED/GREEN evidence, 43-case adversarial gate, live audit and honesty bounds.
+
+
+## Felling W6.4 — CoO-original Founding encounter (2026-09-05)
+
+Olderdeep's FoundingVillage profile, oval chamber/root-wall authoring, Rooted
+and plume art, Listening conversations, one-time tepuibone service and dream
+meeting are **CoO-original**. They compose existing world generation, shared
+rest, stack-aware mineral exchange, faction standing and graph-save APIs.
+No new claim of Qud god-dialogue, resting, dream or AI parity is made.
+
+| Contract | Implementation / deliberate boundary |
+| --- | --- |
+| Trusted meeting | Liked CatacombFolk, live player on the exact plume, safe rest; +60 existing clock ticks, first-meeting world fact, two-week saved bloom expiry |
+| Earnable trust | One tepuibone stack unit for +50 once, inferred from name-holding stone and plaque tending; current inventory/reach/unfloored consent rechecked |
+| Sacred space | Explicit root-facing wall, bare reserved gap, fixed villagers outside it; cultural boundary remains physically walkable |
+| Profile routing | Authored Founding profile wins over runtime display-name archetypes; old unvisited floors get the profile, cached player changes remain intact |
+| Presentation input | Opt-in underfoot navigation preserves loot targeting; selected world-action letter must be released before it can become normal movement |
+
+See [W6 phase log](FELLING-W6-PLAN.md) and
+[W6.4 verification](Verification/FellingW6/W64-REPORT.md). Native audit and
+full-suite results are recorded there after their gates, not inferred from
+unit tests. No ending/Staking or mortal-name disclosure is added here.

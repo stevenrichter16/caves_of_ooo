@@ -495,3 +495,137 @@ failed-capture controls, scope boundaries and protected-work preservation.
 **Next implementation: W6.4, Olderdeep the Founding.** W6.5 (Felling-Site),
 W6.6 (SealedLibrary enum + archetype + mouth in one commit), and W6.7 close-out
 remain. Then perform the user's authorized whole-game system audit/repair cycle.
+
+### W6.4 — Olderdeep the Founding (IN PROGRESS, 2026-09-05)
+
+Starts after W6.3b commit `bdd79d3f`; suite baseline 7394. Protected work
+snapshot refreshed at `/tmp/codex-w64-preexisting/`. Earlier readiness sweeps
+above remain authoritative; read the exit footer for actual shipped status.
+
+Implementation sequence:
+1. RED actual authored profile, loaded-map rehydration, Olderdeep floor content,
+   generic-village controls and physical/art contracts. Wire FoundingVillage
+   through the existing StrandedSettlement profile seam; preserve cached floors.
+2. Author the larger chamber and oval annex with the Rooted in the western
+   focus, arms reaching east, a clear untouched gap, and a walkable torso plume
+   carrying HearthPatch war rules. Real 16×16 body and plume/NPC art, with
+   3–4 variants for repeated plume cells. Keep normal arrival/stair connectivity.
+3. RED actual underfoot menu and trusted same-cell sleep. Existing inventory
+   command dispatch already supplies Actor+Zone and does not charge an extra
+   action; RestSystem charges exactly 60 ticks. Guard trust/reach/hostiles in
+   the part itself so direct commands cannot bypass the menu.
+4. Listening Tradition conversations with their own IDs. The initial meeting
+   conveys contentment and remembered dream fragments; no god/ending dialogue,
+   and no public mortal-name leak. Trust permission uses actual faction standing.
+5. Dedicated adversarial gate, cold-eye review, actual scenario/audit, full
+   suite and living docs in the W6.4 commit.
+
+Further verified corrections: RestSystem's nearby-hostile check uses faction
+hostility and Chebyshev radius8 without LOS; generic underfoot targeting picks
+the player before terrain. A narrowly marked underfoot interaction must remain
+reachable without hiding ordinary loot/pile choices. The shared HearthPatch
+ledger is CatacombFolk-wide, despite its older village-scoped comment. The
+plume's damage path must exercise real RouteDamage before assuming the war
+rule fires (indestructible direct Damage is an early return).
+
+W6.4 sweep correction before implementation: final founding decoration belongs
+at priority3650, AFTER both stairs3500 and StairConnector3600; reservations do
+not protect a body from their Solid/Wall clearing. The authored profile still
+routes through the StrandedSettlement family. Preserve actual stair cells and
+connect them before placing the body/plume. Also, `c` direction input currently
+cannot choose self: recognize Period/Keypad5 locally in the talk-direction
+state, rather than changing the shared parser used by throws/targeting.
+
+W6.4 interaction sweep corrections: CatacombFolk begins at0 and has no
+shipped positive reputation path. Author a one-time Tepuibone delivery to the
+founding-wall tender: one actual stack unit for +50, with a saved world fact
+latching only a successful exchange. This small service is a CoO-original
+inference from plaque tending + name-holding stone, not a new quest arc.
+The existing MineralTradeService provides stack-aware consume/reward; JSON
+SellMineral + SetFact is not atomic because failed SellMineral returns void.
+Use a guarded wrapper which rechecks current speaker/reach/standing/item and
+sets the fact only after true. Cached dialogue choices do not recheck predicates.
+Authoring9/9 GREEN; rest/trust24 actual RED has10 failures (missing successful
+rest, underfoot navigation, conversation and exchange),14 passing controls.
+First test compile caught an incorrect fixture RemoveTag API; fixed to the
+actual Tags.Remove before accepting the assertion RED. No stale XML accepted.
+
+W6.4 cold-eye review (before fixes): 🟡 the annex relied on random cave walls,
+so an open base left the Rooted reaching into space; its plume intruded east of
+his body. Author a compact oval (center61/radii7,6), whose rounded foci match
+body58 and east wall65, and a deterministic wall face. Reserve and leave its
+six-cell gap empty. 🟡 niches must sit against real chamber walls rather than
+in rows across open floor. Forced stair fixtures and open/solid bases pin both.
+Reservations govern generated content, not runtime walking; villagers stay still
+by their existing Wanders=false contract, and the player can choose to cross
+sacred ground. This is cultural space, not an invisible collision barrier.
+The canon patch-bloom recognition can use a saved player expiry property read
+only when talking: 14 * WorldClock.DayLengthTicks =16800 ticks (two weeks),
+without another per-turn hook or scan. Add boundary tests before authoring.
+
+W6.4 checkpoints: 33/33 interaction/content GREEN; dedicated31 adversarial
+RED17 exposed the deterministic wall/plume geometry, dead-player rest loophole
+and unimplemented scent expiry. After fixes, 68 tests passed66 with precisely
+the two new consent regression REDs: raw -1 reputation showed an offer that
+execution refused; UnderTheCloth masked a tender's personal grudge. Share the
+permission predicate and use GetFeelingUnfloored (the existing recruit-consent
+precedent). All70 focused checks then GREEN, zero C# errors. Scenario2 tests
+first failed to compile on the deliberately absent FoundingVillageBench type;
+implemented the native keyboard scenario and both now pass. Art7/7 passes
+16x16, binary alpha, shared outline, metadata-only-GUID-diff and global GUID audit.
+Final router review found that a FoundingVillage profile still passed through
+the display-name archetype switch before selecting its builder. Add two
+opposite-archetype-name RED controls, then let the profile win on the floor.
+
+Last geometry review: the original seven-row collision rectangle rejected two
+legal stairs at(60,9)/(60,15) for every preferred body center. Replace it with
+actual plume/gap/root-face collision cells and deterministic fallback center
+rows7..17. Preserve exact stair entities and coordinates; their approaches
+remain above/below the three-row sacred gap. The new two-stair assertion ran
+RED before this correction. Native stale-selection staging stays one tile
+from the selected plume, so it tests strict same-cell sleep, not just generic
+interaction reach. The native once-only row audits CanOffer; repeated actual
+exchange and stale cached-choice execution are independently covered in EditMode.
+
+Native RED (exit1, zero C# errors): real held S selected Sleep, then the same
+held shortcut became normal movement after the menu closed. This spent an
+extra action and changed the underfoot target before the next case. The
+new input release latch consumes a selected world-action letter until key-up
+before allowing Normal-state input. Native exact-clock/energy/position checks
+exercise the counter-condition after a held shortcut; no shorter test pulse
+is used to hide the defect. Filtered raw gameplay lines are archived in
+W64-native-held-key-red.txt (no process arguments or credentials).
+
+W6.4 native GREEN: run30e595e630c149b59348e356239a6c3d,8/8 actual keyboard
+rows PASS, no C# errors, launcher exit0. Held S no longer moves the player;
+rest remains exactly60ticks with unchanged energy and position. The headless
+ScreenCapture call produced no file; this is not visual-playtest evidence.
+The first full suite was7466/7467, with only the user's pre-recorded fungal
+self-cloud flaky failure. Final repeat follows the last art fix: repeated
+NicheHome fixtures now use four variants (existing base plus three new original
+16x16 sprites), alongside four plume variants. Three missing-import assertions
+ran RED before this art/renderer entry. Ten authored sprites, both distinct
+four-variant families and all global GUIDs pass the audit. The native scenario
+ran before the final cosmetic niche variants; no new gameplay followed it.
+
+
+### W6.4 exit — 2026-09-05
+
+**SHIPPED.** Final single-editor EditMode suite **7470/7470 GREEN**, zero C#
+errors,18:35:30–18:36:28 UTC. Baseline7394 →7470 (+76), including34 dedicated
+adversarial cases. Ten original sprites, four plume/four niche variants,
+metadata and global GUID audit pass. Native eight-row keyboard encounter
+run30e595e630c149b59348e356239a6c3d passed with exit0; exact rest timing,
+unchanged energy/position, earning trust, first-meeting latch and refusal flows.
+The earlier held-key native failure and known fungal full-suite flake are
+retained as failures in the raw evidence, not omitted or counted as passes.
+
+See `Docs/Verification/FellingW6/W64-REPORT.md` for the final implementation,
+resolved cold-eye findings, scope inferences and honesty bounds. The native
+run does not establish visual feel; headless screenshot capture was absent.
+No new per-turn scan was introduced. Prior spell work stays unstaged; only
+our incremental hunks enter the three shared presentation/test files.
+
+**Next: W6.5, the Felling-Site**, then W6.6 (Sealed Library enum + archetype +
+mouth in one commit) and W6.7 close-out. After W6 completion, continue the
+user's authorized whole-game system audit, repair plans and implementations.

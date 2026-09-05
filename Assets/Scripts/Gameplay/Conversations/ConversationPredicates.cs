@@ -83,6 +83,8 @@ namespace CavesOfOoo.Core
 
         private static void RegisterDefaults()
         {
+            Register("IfFoundingBloom", (speaker, listener, arg) => FoundingPlumePart.HasBloom(listener));
+            Register("IfCanOfferFoundingStone", (speaker, listener, arg) => FoundingTrustService.CanOffer(listener, speaker));
             // Location check — is the player currently in zone `arg`
             // (matched against Zone.ZoneID)? SettlementRuntime.ActiveZone
             // is kept current by every zone-transition site (GameBootstrap

@@ -261,7 +261,20 @@ namespace CavesOfOoo.Core
             rows.AddAction("PickCell", "<< everything here", PickCellCommand, '\0', -1);
 
             rows.Sort();
+            AppendUnderfootActions(rows.Actions, cell, actor);
             return rows.Actions;
+        }
+
+        /// <summary>Expose explicitly marked underfoot terrain without
+        /// replacing the actor or loot target. Only the actor's occupied cell
+        /// qualifies. Picker execution re-resolves the entity by its ID.</summary>
+        public static void AppendUnderfootActions(List<InventoryAction> rows, Cell cell, Entity actor, Entity target = null)
+        {
+            if (rows == null || cell == null || actor == null || !cell.Objects.Contains(actor)) return;
+            foreach (var e in cell.Objects)
+                if (e != target && e.HasTag("UnderfootInteractable") && !string.IsNullOrEmpty(e.ID))
+                    rows.Add(new InventoryAction("Underfoot", e.GetDisplayName() + " underfoot",
+                        PickTargetCommandPrefix + e.ID, '\0', 0));
         }
 
         public static List<InventoryAction> BuildTargetPickerActions(Cell cell)

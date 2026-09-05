@@ -497,9 +497,9 @@ namespace CavesOfOoo.Tests
 
             Assert.AreEqual("Weaponsmith", FindOverlay().GetTile(tilePos)?.name,
                 "the shopkeeper renders as its role sprite, not a letter");
-            Assert.AreEqual(14, EnvironmentSpriteRenderer.NamedActorSprites.Length,
+            Assert.AreEqual(16, EnvironmentSpriteRenderer.NamedActorSprites.Length,
                 "roster pin: 5 shopkeepers + 4 hermits + Farmer/Undertaker/"
-                + "Marceline + the W5.6 catacomb pair (Warden, Plaque-Tender)");
+                + "Marceline + the W5.6 catacomb pair + the W6.4 founding pair");
         }
 
         // ── ROUND 3: town live-sweep fixes ───────────────────────

@@ -83,7 +83,7 @@ namespace CavesOfOoo.Core
             {
                 map.SetPOI(site.X, site.Y, new PointOfInterest(
                     POIType.Sinkhole, site.Name, null,
-                    WorldMapAuthoring.TierAt(site.X, site.Y)));
+                    WorldMapAuthoring.TierAt(site.X, site.Y), profile: SinkholeSites.ProfileFor(site.Name)));
                 placed.Add((site.X, site.Y));
             }
 

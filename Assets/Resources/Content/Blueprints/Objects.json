@@ -30948,6 +30948,63 @@
           { "Key": "Description", "Value": "Fresh water runs through a low opening worn smooth in the stone. The current comes from farther away than this pool can explain. Stand here and follow it downward (>) or upward (<)." }
         ] }
       ]
+    },
+    {
+      "Name": "TheRooted",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "the Rooted" },
+          { "Key": "RenderString", "Value": "&" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ] },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" }, { "Key": "Takeable", "Value": "false" } ] },
+        { "Name": "Destructible", "Params": [ { "Key": "HP", "Value": "1000" }, { "Key": "MaxHP", "Value": "1000" }, { "Key": "Indestructible", "Value": "true" } ] },
+        { "Name": "HearthPatch", "Params": [ { "Key": "WarRep", "Value": "-150" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "A human shape has grown into the stone: shins flat, knees bent, torso arched above the floor. Pale fungus rises from his chest. His open arms reach toward the eastern wall and stop short of it. Nothing has been built in that narrow distance. The pose holds no strain." } ] }
+      ],
+      "Tags": [ { "Key": "Solid", "Value": "" }, { "Key": "Fixture", "Value": "" } ]
+    },
+    {
+      "Name": "FoundingPlume",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "founding plume" },
+          { "Key": "RenderString", "Value": "*" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ] },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" }, { "Key": "Takeable", "Value": "false" } ] },
+        { "Name": "Material", "Params": [ { "Key": "MaterialID", "Value": "Plant" }, { "Key": "Combustibility", "Value": "0.1" }, { "Key": "MaterialTagsRaw", "Value": "Plant,Organic" } ] },
+        { "Name": "Thermal", "Params": [ { "Key": "FlameTemperature", "Value": "420" }, { "Key": "HeatCapacity", "Value": "2.0" } ] },
+        { "Name": "Destructible", "Params": [ { "Key": "HP", "Value": "40" }, { "Key": "MaxHP", "Value": "40" } ] },
+        { "Name": "LightSource", "Params": [ { "Key": "Radius", "Value": "5" }, { "Key": "LightColor", "Value": "&G" }, { "Key": "Intensity", "Value": "0.8" } ] },
+        { "Name": "HearthPatch", "Params": [ { "Key": "WarRep", "Value": "-150" } ] },
+        { "Name": "FoundingPlume", "Params": [] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "Pale stalks rise from the Rooted's torso and spread into a soft, warm bed. Every hearth in Olderdeep grew outward from this body. Those trusted by the Listening Tradition may lie here and sleep." } ] }
+      ],
+      "Tags": [ { "Key": "UnderfootInteractable", "Value": "" } ]
+    },
+    {
+      "Name": "FoundingListener",
+      "Inherits": "CatacombWarden",
+      "Parts": [
+        { "Name": "Render", "Params": [ { "Key": "DisplayName", "Value": "Listening elder" }, { "Key": "ColorString", "Value": "&y" } ] },
+        { "Name": "Conversation", "Params": [ { "Key": "ConversationID", "Value": "FoundingListener_1" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "She rests one hand against the chamber wall as she listens. Her voice reaches you at the same volume as her breathing." } ] }
+      ]
+    },
+    {
+      "Name": "FoundingPlaqueTender",
+      "Inherits": "PlaqueTender",
+      "Parts": [
+        { "Name": "Render", "Params": [ { "Key": "DisplayName", "Value": "founding-wall tender" }, { "Key": "ColorString", "Value": "&W" } ] },
+        { "Name": "Conversation", "Params": [ { "Key": "ConversationID", "Value": "FoundingPlaqueTender_1" } ] },
+        { "Name": "WantsMineral", "Params": [ { "Key": "Minerals", "Value": "Tepuibone" }, { "Key": "Faction", "Value": "CatacombFolk" }, { "Key": "RepReward", "Value": "50" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "Stone dust whitens her knees. She deepens an old inscription one small cut at a time, pausing to speak toward the floor between cuts." } ] }
+      ]
     }
   ]
 }

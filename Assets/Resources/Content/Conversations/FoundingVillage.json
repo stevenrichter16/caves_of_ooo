@@ -1,0 +1,71 @@
+{
+  "Conversations": [
+    {
+      "ID": "FoundingListener_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Speak softly. Here we listen to the one whose sleep keeps our lamps. We call him the Rooted. The plume is his body; we do not pretend otherwise.",
+          "Choices": [
+            { "Text": "What is he reaching for?", "Target": "Wall" },
+            { "Text": "How may I be trusted here?", "Target": "Trust" },
+            { "Text": "May I sleep on the plume?", "Target": "Rest", "Predicates": [{ "Key": "IfReputationAtLeast", "Value": "CatacombFolk:Liked" }] },
+            { "Text": "I dreamed in his arms.", "Target": "Dream", "Predicates": [{ "Key": "IfFact", "Value": "RootedMet:=:1" }] },
+            { "Text": "You recognized me before I spoke.", "Target": "Bloom", "Predicates": [{ "Key": "IfFoundingBloom", "Value": "" }] },
+            { "Text": "Leave quietly.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Wall",
+          "Text": "Beyond that eastern wall, through more stone than either of us can name, the First Root sleeps. He has held his arms open toward it for a thousand years. We leave the space before his fingertips untouched. Please walk around it.",
+          "Choices": [{ "Text": "I will.", "Target": "Start" }]
+        },
+        {
+          "ID": "Trust",
+          "Text": "Attend to a name before asking to enter a dream. Our founding-wall tender needs a chip of tepuibone to support an old inscription. The pale seams on the Stump's slopes will yield one. Bring it to her, and hear the name she is keeping. A gift does not erase harm done to the patch.",
+          "Choices": [{ "Text": "I will speak with the tender.", "Target": "Start" }]
+        },
+        {
+          "ID": "Rest",
+          "Text": "You have a place beside our light. Stand on the living plume beside his torso, then lie down and sleep. Use the plume underfoot; the stone beside it is only stone. If danger is near, wait. When you wake, keep whatever fragments remain. He is content to hold us; that is the first thing most visitors understand.",
+          "Choices": [{ "Text": "I will be gentle.", "Target": "End" }]
+        },
+        {
+          "ID": "Bloom",
+          "Text": "Patch-bloom. It stays with those who have slept in his arms for a few weeks. I knew you had been spoken to. I do not know what he said; that belongs to you.",
+          "Choices": [{ "Text": "Back.", "Target": "Start" }]
+        },
+        {
+          "ID": "Dream",
+          "Text": "Then you have met him. You need not make the fragments into a speech for me. Some things he keeps for the Root; some he leaves with a guest. Sit beside the light as long as you need.",
+          "Choices": [{ "Text": "Thank you.", "Target": "End" }]
+        }
+      ]
+    },
+    {
+      "ID": "FoundingPlaqueTender_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Keep the lamp low. This name is older than the hands that taught my hands. A chip of tepuibone will hold the weakened edge while I recut the last syllable. If you bring one from the Stump's slopes, stay and hear the name with me. That is the service; the stone is how we begin.",
+          "Choices": [
+            { "Text": "Place one tepuibone chip beside the inscription and listen.", "Target": "Start", "Predicates": [{ "Key": "IfCanOfferFoundingStone", "Value": "" }], "Actions": [{ "Key": "OfferFoundingStone", "Value": "" }] },
+            { "Text": "Tell me how you tend him.", "Target": "Tending" },
+            { "Text": "We kept the inscription together.", "Target": "Kept", "Predicates": [{ "Key": "IfFact", "Value": "FoundingStoneOffered:=:1" }] },
+            { "Text": "Leave the lamp where it is.", "Target": "End" }
+          ]
+        },
+        {
+          "ID": "Tending",
+          "Text": "We clean a stalk, turn a lamp, speak a name. Elsewhere they may say they tend a patch and mean him quietly. Here we address him. The light comes out of his chest. Harm it and every hearth of our people will know an enemy; this is no ordinary bed of mushrooms.",
+          "Choices": [{ "Text": "Back.", "Target": "Start" }]
+        },
+        {
+          "ID": "Kept",
+          "Text": "And it will outlast both our hands. The Listening elder will explain how to lie upon the founding plume. There is no second payment to make.",
+          "Choices": [{ "Text": "Leave quietly.", "Target": "End" }]
+        }
+      ]
+    }
+  ]
+}

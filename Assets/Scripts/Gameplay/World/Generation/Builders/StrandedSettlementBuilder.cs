@@ -41,7 +41,7 @@ namespace CavesOfOoo.Core
 
         /// <summary>3100 — after ConnectivityBuilder (3000) carves the
         /// floor, the W5.1 mouth lesson applied from the start.</summary>
-        public int Priority => 3100;
+        public int Priority => _profile == SinkholeSites.FoundingVillageProfile ? 3650 : 3100;
 
         /// <summary>Cold-eye 🔴: the patch used to sit at
         /// (Zone.Width/2, Zone.Height/2) — which is EXACTLY where the
@@ -54,8 +54,9 @@ namespace CavesOfOoo.Core
         public const int PatchOffsetFromArrival = 14;
 
         private readonly ZoneManager _zoneManager;
-        public StrandedSettlementBuilder(ZoneManager zoneManager = null)
-        { _zoneManager = zoneManager; }
+        private readonly string _profile;
+        public StrandedSettlementBuilder(ZoneManager zoneManager = null, string profile = null)
+        { _zoneManager = zoneManager; _profile = profile; }
 
         /// <summary>Where the player will come in, if we can know it.</summary>
         private (int x, int y) ArrivalCell(Zone zone)
@@ -72,6 +73,8 @@ namespace CavesOfOoo.Core
         public bool BuildZone(Zone zone, EntityFactory factory, Random rng)
         {
             if (zone == null || factory == null || rng == null) return true;
+            if (_profile == SinkholeSites.FoundingVillageProfile)
+                return new FoundingVillageBuilder().BuildZone(zone, factory, rng);
 
             var arrival = ArrivalCell(zone);
             // Put the hearth a good walk from the door, on the side with

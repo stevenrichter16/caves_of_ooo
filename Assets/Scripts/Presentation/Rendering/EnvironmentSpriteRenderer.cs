@@ -94,6 +94,8 @@ namespace CavesOfOoo.Rendering
             // faces (olm-pale, per the canon morphology).
             ("CatacombWarden", "catacomb_warden", '@'),
             ("PlaqueTender",   "plaque_tender",   '@'),
+            ("FoundingListener", "founding_listener", '@'),
+            ("FoundingPlaqueTender", "founding_plaque_tender", '@'),
         };
 
         /// <summary>Round 3 — current render glyph of an entity, '\0'
@@ -234,6 +236,7 @@ namespace CavesOfOoo.Rendering
             ("PricklebrowNest", "pricklebrow_nest"),
             ("TepuiboneVein", "tepuibone_vein"), ("Tepuibone", "tepuibone"),
             ("HelmwoodWaterPassage", "helmwood_water_passage"),
+            ("TheRooted", "the_rooted"), ("FoundingPlume", "founding_plume"),
             ("ChoirNode", "choir_node"),
             ("EncasedElder", "encased_elder"),
         };
@@ -252,6 +255,8 @@ namespace CavesOfOoo.Rendering
             { "GrainRidge", 4 },
             { "StoneDome", 3 },
             { "TepuiboneVein", 4 },
+            { "FoundingPlume", 4 },
+            { "NicheHome", 4 },
         };
 
         private readonly Dictionary<string, Tile> _namedActorTiles =

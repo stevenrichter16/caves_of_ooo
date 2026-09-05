@@ -272,7 +272,11 @@ namespace CavesOfOoo.Core
                 // W5.3 — the floor is a different place per sinkhole.
                 // The archetype is a pure function of the hole's name
                 // (R3), so it is fixed forever without a saved field.
-                switch (SinkholeArchetypes.For(poi.Name))
+                // A profile describes the authored floor, independently of
+                // a story changing the place's displayed name.
+                var archetype = poi.Profile == SinkholeSites.FoundingVillageProfile
+                    ? SinkholeArchetype.StrandedSettlement : SinkholeArchetypes.For(poi.Name);
+                switch (archetype)
                 {
                     case SinkholeArchetype.DrownedSima:
                         pipeline.AddBuilder(new DrownedSimaBuilder());
@@ -280,7 +284,7 @@ namespace CavesOfOoo.Core
                         pipeline.AddBuilder(new PopulationBuilder(PopulationTable.StumpSima()));
                         break;
                     case SinkholeArchetype.StrandedSettlement:
-                        pipeline.AddBuilder(new StrandedSettlementBuilder(this));
+                        pipeline.AddBuilder(new StrandedSettlementBuilder(this, poi.Profile));
                         break;
                     case SinkholeArchetype.ChoirCathedral:
                         pipeline.AddBuilder(new ChoirCathedralBuilder());
