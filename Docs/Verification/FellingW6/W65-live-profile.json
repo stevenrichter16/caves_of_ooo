@@ -1,0 +1,65 @@
+{
+    "runId": "657ea017c8ae4f87a77638a8ad210d89",
+    "seconds": 75.001255583,
+    "frames": 74360,
+    "ticks": 7410,
+    "failures": 0,
+    "audit": [
+        "six_and_one:PASS",
+        "ordinary_wait_control:PASS",
+        "point_wait_exposes:PASS",
+        "repeat_nonstacking:PASS",
+        "movement_recovers:PASS",
+        "bare_position_control:PASS",
+        "bare_rejects_flower:PASS",
+        "ordinary_accepts_flower:PASS",
+        "native_waits_on_point:PASS"
+    ],
+    "metrics": [
+        {
+            "name": "COO.Turns.ProcessUntilPlayerTurn",
+            "unit": "nanoseconds",
+            "available": true,
+            "activeFrames": 741,
+            "max": 68500,
+            "p99": 0,
+            "mean": 69.81425497579343
+        },
+        {
+            "name": "COO.Turns.FellingExposure",
+            "unit": "nanoseconds",
+            "available": true,
+            "activeFrames": 741,
+            "max": 381000,
+            "p99": 0,
+            "mean": 847.8281334050565
+        },
+        {
+            "name": "COO.Input.Update",
+            "unit": "nanoseconds",
+            "available": true,
+            "activeFrames": 74358,
+            "max": 4740042,
+            "p99": 47500,
+            "mean": 20947.022350726198
+        },
+        {
+            "name": "COO.ZoneRenderer.LateUpdate",
+            "unit": "nanoseconds",
+            "available": true,
+            "activeFrames": 74359,
+            "max": 10300292,
+            "p99": 2372584,
+            "mean": 699766.7148332436
+        },
+        {
+            "name": "GC Allocated In Frame",
+            "unit": "bytes",
+            "available": true,
+            "activeFrames": 74359,
+            "max": 18926380,
+            "p99": 364884,
+            "mean": 27673.50874125874
+        }
+    ]
+}

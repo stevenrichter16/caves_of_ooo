@@ -6290,3 +6290,23 @@ See [W6 phase log](FELLING-W6-PLAN.md) and
 [W6.4 verification](Verification/FellingW6/W64-REPORT.md). Native audit and
 full-suite results are recorded there after their gates, not inferred from
 unit tests. No ending/Staking or mortal-name disclosure is added here.
+
+## Felling W6.5 — CoO-original Felling-Site (2026-09-05)
+
+The surface circle, six persistent barren positions and localized seventh
+exposure are **CoO-original**, composing existing generation, confusion and
+save primitives. No new claim of Qud terrain, god or effect parity is made.
+
+| Contract | Implementation / deliberate boundary |
+| --- | --- |
+| Place before plot | Tier5 authored POI at(3,5), no random dungeon/loot/NPC/quest overlay; open center and perimeter with6+1 accessible positions |
+| One pressure point | Player-end actual-cell check after status cleanup; normal nonstacking Confused(2), -2DV/-2Agility, ordinary brief recovery after leaving; no intent, damage, world fact or UrquActive gate |
+| Permanent barrenness | Six saved Barren terrain entities reject classified Vegetation;31 rooted/standing-dead blueprints tagged; crop/flower parts also guarded; existing food/furniture/creatures remain allowed |
+| Atomic placement | Refused moves preserve source/indexes; seeds are consumed only after successful placement; plot conversion and builders honor refusal |
+| Older worlds | Empty-only POI repair; cached map appearance refreshed after bodies resolve; saved ground modifications preserved; narrow Vegetation tag backfill and order-independent barren cleanup |
+
+Exact circle geometry and confusion numbers are authored interpretations, not
+canon formulas. Nine real16×16 sprites include four variants for each repeated
+family. See [W6 plan](FELLING-W6-PLAN.md) and
+[W6.5 verification](Verification/FellingW6/W65-REPORT.md) for raw gates and
+honesty bounds. The seventh's history and ending actions remain unexplained.

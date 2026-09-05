@@ -127,6 +127,7 @@ namespace CavesOfOoo.Core
 
         private static bool HasPlantableTerrain(Cell cell)
         {
+            if (BarrenGroundRules.IsBarren(cell)) return false;
             for (int i = 0; i < cell.Objects.Count; i++)
                 if (cell.Objects[i].HasTag("Terrain") && cell.Objects[i].HasTag("Plantable"))
                     return true;
@@ -140,6 +141,7 @@ namespace CavesOfOoo.Core
             if (!zone.InBounds(x, y)) return false;
             var cell = zone.GetCell(x, y);
             if (cell == null) return false;
+            if (BarrenGroundRules.IsBarren(cell)) return false;
             if (cell.IsInterior) return false;              // never pave building floors
             if (cell.IsSolid()) return false;               // walls, trees
             if (HasPlantableTerrain(cell)) return false;    // already counted
@@ -159,11 +161,12 @@ namespace CavesOfOoo.Core
             var grass = factory.CreateEntity("Grass");
             if (grass == null) return false;
 
+            if (!zone.AddEntity(grass, x, y)) return false;
+
             if (toReplace != null)
                 for (int i = 0; i < toReplace.Count; i++)
                     zone.RemoveEntity(toReplace[i]);
 
-            zone.AddEntity(grass, x, y);
             ZoneRenderHooks.MarkCellDirty(x, y, "FarmPlotSeeded");
             return true;
         }

@@ -72,6 +72,10 @@ namespace CavesOfOoo.Core
                         // stamp (previously this fell through to plain
                         // wilderness and the camp POI meant nothing).
                         return CreateMerchantCampPipeline(biome, GetTierForCoords(wx, wy));
+                    case POIType.FellingSite:
+                        var felling = new ZoneGenerationPipeline();
+                        felling.AddBuilder(new FellingSiteBuilder());
+                        return felling;
                     case POIType.RiverChunk:
                         return CreateRiverChunkPipeline();
                 }

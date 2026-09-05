@@ -185,6 +185,15 @@ namespace CavesOfOoo.Core
             }
         }
 
+        /// <summary>Repair pre-site saves only where no saved POI exists.
+        /// Cached ground is preserved; this does not regenerate visited terrain.</summary>
+        public void RehydrateFellingSite()
+        {
+            if (GetPOI(FellingSiteBuilder.WorldX, FellingSiteBuilder.WorldY) == null)
+                SetPOI(FellingSiteBuilder.WorldX, FellingSiteBuilder.WorldY,
+                    new PointOfInterest(POIType.FellingSite, FellingSiteBuilder.SiteName, tier: 5));
+        }
+
         public void SetPOI(int x, int y, PointOfInterest poi)
         {
             if (InBounds(x, y))

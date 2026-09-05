@@ -89,20 +89,7 @@ namespace CavesOfOoo.Core
 
         private Entity CreateWorldMapTerrain(int worldX, int worldY)
         {
-            var biome = _worldMap.GetBiome(worldX, worldY);
-            var (glyph, color, displayName) = GetBiomeRender(biome);
-
-            // If this world-cell has a POI, override the glyph + color
-            // + display-name with the POI's marker. The POI marker is
-            // the player-visible signal of a settlement / lair / etc.
-            var poi = _worldMap.GetPOI(worldX, worldY);
-            if (poi != null && !HideFromMap(poi, worldX, worldY))
-            {
-                var (poiGlyph, poiColor, poiName) = GetPOIRender(poi);
-                glyph = poiGlyph;
-                color = poiColor;
-                displayName = poiName;
-            }
+            var (glyph, color, displayName) = GetCellAppearance(worldX, worldY);
 
             var e = new Entity { BlueprintName = "WorldMapCell" };
             e.Tags["WorldMapCell"] = "";
@@ -124,6 +111,42 @@ namespace CavesOfOoo.Core
                 WorldY = worldY,
             });
             return e;
+        }
+
+        /// <summary>Refresh only derived appearance on existing map terrain.
+        /// Entity identity, occupants and non-derived render fields survive.</summary>
+        public int RefreshAppearance(Zone zone)
+        {
+            if (_worldMap == null || zone == null || !WorldMap.IsWorldMapZoneID(zone.ZoneID)) return 0;
+            int refreshed = 0;
+            foreach (var entity in zone.GetReadOnlyEntities())
+            {
+                var cell = entity.GetPart<WorldMapCellPart>(); var render = entity.GetPart<RenderPart>();
+                if (cell == null || render == null || !_worldMap.InBounds(cell.WorldX, cell.WorldY)) continue;
+                var appearance = GetCellAppearance(cell.WorldX, cell.WorldY);
+                render.RenderString = appearance.glyph; render.ColorString = appearance.color;
+                render.DisplayName = appearance.displayName; refreshed++;
+            }
+            return refreshed;
+        }
+        private (string glyph, string color, string displayName) GetCellAppearance(int worldX, int worldY)
+        {
+            var biome = _worldMap.GetBiome(worldX, worldY);
+            var (glyph, color, displayName) = GetBiomeRender(biome);
+
+            // If this world-cell has a POI, override the glyph + color
+            // + display-name with the POI's marker. The POI marker is
+            // the player-visible signal of a settlement / lair / etc.
+            var poi = _worldMap.GetPOI(worldX, worldY);
+            if (poi != null && !HideFromMap(poi, worldX, worldY))
+            {
+                var (poiGlyph, poiColor, poiName) = GetPOIRender(poi);
+                glyph = poiGlyph;
+                color = poiColor;
+                displayName = poiName;
+            }
+
+            return (glyph, color, displayName);
         }
 
         /// <summary>
@@ -171,6 +194,7 @@ namespace CavesOfOoo.Core
                 // the default '?' AND leaked its name on examine.
                 // Once discovered it earns a marker: a hole, dark.
                 case POIType.Sinkhole:     return ("o", "&K", name);
+                case POIType.FellingSite:  return ("O", "&y", name);
                 default:                   return ("?", "&w", name);
             }
         }

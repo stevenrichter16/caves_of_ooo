@@ -134,7 +134,11 @@ namespace CavesOfOoo.Core
                 return;
             }
 
-            zone.AddEntity(crop, pos.x, pos.y);
+            if (!zone.AddEntity(crop, pos.x, pos.y))
+            {
+                Reject(actor, "placement_refused", "The seed cannot take root here.");
+                return;
+            }
             ZoneRenderHooks.MarkCellDirty(pos.x, pos.y, "CropPlanted");
             ConsumeOneSeed(actor);
 

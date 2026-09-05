@@ -764,6 +764,11 @@ namespace CavesOfOoo.Core
             entity.ID = reader.ReadString();
             entity.BlueprintName = reader.ReadString();
             entity.Tags = ReadStringDictionary(reader);
+            // W6.5: this newly authored classification must reach old saved
+            // flora too. Merge only Vegetation, never overwrite saved tags.
+            if (entity.BlueprintName != null && reader.Factory != null
+                && reader.Factory.Blueprints.TryGetValue(entity.BlueprintName, out var blueprint)
+                && blueprint.Tags.ContainsKey("Vegetation")) entity.Tags["Vegetation"] = "";
             entity.Properties = ReadStringDictionary(reader);
             entity.IntProperties = ReadIntDictionary(reader);
 
@@ -864,6 +869,10 @@ namespace CavesOfOoo.Core
 
             foreach (var kvp in state.ZoneManager.CachedZones)
                 kvp.Value.RebuildEntityCellsFromCells();
+            // Entity bodies are now resolved. Repair derived map appearance
+            // without creating an uncached map or clearing saved occupants.
+            if (state.ZoneManager.CachedZones.TryGetValue(WorldMap.WorldMapZoneID, out var mapZone))
+                new WorldMapZoneBuilder(state.ZoneManager.WorldMap).RefreshAppearance(mapZone);
         }
 
         public static void SaveTurnManager(TurnManager turnManager, SaveWriter writer)
@@ -1080,6 +1089,7 @@ namespace CavesOfOoo.Core
             // is the exact "stored, not shipped" defect W5.6 closed.
             // Never overwrites: an existing POI (of any type) wins.
             map.RehydrateAuthoredSinkholes();
+            map.RehydrateFellingSite();
             return map;
         }
 

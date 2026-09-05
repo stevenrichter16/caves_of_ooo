@@ -19,7 +19,10 @@ namespace CavesOfOoo.Core
         /// (z=2) that is a different place per sinkhole. Unlike every
         /// other POI type, this one means something below z=0 — see
         /// OverworldZoneManager's depth routing.</summary>
-        Sinkhole
+        Sinkhole,
+
+        /// <summary>The authored surface circle; append-only save ordinal5.</summary>
+        FellingSite
     }
 
     /// <summary>

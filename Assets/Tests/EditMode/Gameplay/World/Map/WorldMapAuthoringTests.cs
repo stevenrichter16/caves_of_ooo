@@ -248,6 +248,18 @@ namespace CavesOfOoo.Tests
                     {
                         if (map.GetBiome(x, y) != BiomeType.Stump) continue;
                         var poi = map.GetPOI(x, y);
+                        // Authored landmarks are deliberately present; random
+                        // lairs/camps still fail the original exclusion below.
+                        if (poi?.Type == POIType.FellingSite)
+                        {
+                            Assert.AreEqual((FellingSiteBuilder.WorldX, FellingSiteBuilder.WorldY), (x, y));
+                            continue;
+                        }
+                        if (poi?.Type == POIType.Sinkhole)
+                        {
+                            Assert.IsTrue(SinkholeSites.IsMouth(x, y));
+                            continue;
+                        }
                         Assert.IsNull(poi,
                             $"seed {seed}: ({x},{y}) is tepui and holds a "
                             + (poi != null ? poi.Type.ToString() : "POI"));

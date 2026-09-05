@@ -177,7 +177,11 @@ namespace CavesOfOoo.Core
         public bool AddEntity(Entity entity, int x, int y)
         {
             Cell cell = GetCell(x, y);
-            if (cell == null) return false;
+            if (cell == null || entity == null) return false;
+            // Refuse before removing a moved plant from its source cell.
+            if (BarrenGroundRules.IsVegetation(entity)
+                && (BarrenGroundRules.IsBarren(cell) || entity.HasTag("Barren"))) return false;
+            if (entity.HasTag("Barren")) BarrenGroundRules.ClearVegetation(this, cell);
 
             // Distinguish first-time add from a move so the tag index
             // doesn't double-add. _entityCells is the source of truth
@@ -446,6 +450,7 @@ namespace CavesOfOoo.Core
                     }
 
                     cell.ParentZone = this;
+                    BarrenGroundRules.RepairLoadedCell(cell);
                     for (int i = 0; i < cell.Objects.Count; i++)
                     {
                         Entity entity = cell.Objects[i];

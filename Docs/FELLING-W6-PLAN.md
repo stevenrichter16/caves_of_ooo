@@ -629,3 +629,132 @@ our incremental hunks enter the three shared presentation/test files.
 **Next: W6.5, the Felling-Site**, then W6.6 (Sealed Library enum + archetype +
 mouth in one commit) and W6.7 close-out. After W6 completion, continue the
 user's authorized whole-game system audit, repair plans and implementations.
+
+
+### W6.5 — the Felling-Site (IN PROGRESS, 2026-09-05)
+
+Baseline: W6.4 commit `7e8f31c7`, 7470/7470 GREEN. Protected work snapshot:
+`/tmp/codex-w65-preexisting/manifest.json` (403 paths); preserve their bytes
+and stage only incremental hunks in any shared file. Qud reference: none;
+this site and exposure are CoO-original Felling content.
+
+Readiness: 🟢 authored POI/router, existing stone, status effects, ordinary
+save graph; 🟡 persistent barrenness and standing exposure need runtime
+consumers; ⚪ exact ring geometry and two-action confusion are authored
+interpretations, not quantitative canon. W6.5 is not pure authoring.
+
+Preimplementation verification corrections (source read before code):
+
+| Assumption | Verified correction / implementation consequence |
+|---|---|
+| Put the site in Places | WorldGenerator stamps every Place as Village. Append POIType.FellingSite=5; reserve (3,5) before opportunistic rolls. Surface route only; display name is not a behavior gate. |
+| Reuse the Stump pipeline | Surface pipeline adds caves, hazards, loot, trade and population. A dedicated open-stone circle builder preserves the empty scene and clear approaches. |
+| Center the seventh | WorldMapTraversal descends at (40,12). Keep ordinary arrival ground there; place six bare cells + seventh on the surrounding ring. Exact geometry is authored staging. |
+| Zone bleed field represents the point | Zone.UrquBleedLevel is zone-wide and consumed by FlowerCharm. Do not change it; highest pressure is one persistent SeventhPosition cell. |
+| Terrain EndTurn or entry trigger suffices | Static terrain receives no actor EndTurn; EntityEnteredCell excludes waits. Check the ending player's actual cell after actor effect cleanup in TurnManager.EndTurn. No NPC or zone scan. |
+| Existing confusion changes input directions | ConfusedEffect actually subtracts2 DV/Agility and does not scramble player directions. Use brief nonstacking two-action disorientation, with a normal aftereffect on leaving; respect preexisting effects/immunity. Clear JustApplied only for this new post-cleanup application. |
+| Generation reservation means permanently bare | GenReservedCells is transient and generation-only. Audit runtime flora placement before adding a durable barrenness gate. Do not ship an unused Barren flag. |
+| Rehydrate POI fixes old maps visually | Cached WorldMapCell render fields also persist. Refresh derived rendering after load without rebuilding the map or removing occupants. Preserve cached player-modified ground zones. |
+| Label the empty position with Naro's history | Mystery Ledger§1 overrides design history: neither absence nor attendance is proven in-world. No identity labels, authoritative refusal, intentional Urqu, quest or ending action. |
+
+References read: Docs/FELLING-WORLD-DESIGN.md§3.6, this plan§3/W6.5,
+Lore/History/02_Geography.md§Stump + bleed distribution, History03 Felling,
+Lore/10_Bible.md cosmology + Seventh, Lore/11_SecondSpine.md C1/C4,
+Lore/MYSTERY-LEDGER.md§1; WorldGenerator, WorldMap, PointOfInterest,
+OverworldZoneManager, WorldMapZoneBuilder, Cell/Zone, TurnManager,
+StatusEffectsPart/ConfusedEffect and existing W6.4 save/builder tests.
+
+Implementation slices: (1) actual POI, deterministic accessible 6+1 circle,
+real art/variants and cached-map repair; (2) standing exposure + durable flora
+exclusion, with RED gameplay controls before code; (3) dedicated20–60-case
+adversarial gate, cold-eye fixes, deterministic native input/performance
+scenario75seconds, full suite and living docs in one complete W6.5 commit.
+
+Scope boundaries: no new ending interaction, no quest facts, no UrquActive
+gate, no zone-wide maximum and no explanatory NPC. Old cached ground is
+preserved rather than regenerated. Exposure duration and geometry are
+CoO-original; visual/feel judgment remains separate from native observables.
+
+W6.5 runtime sweep follow-up (before implementation): rooted flora has no
+complete shared tag; Plant/Wood materials also describe food/furniture. Add
+Vegetation to the31 verified rooted/standing-dead blueprints only, with Crop
+and FlowerCharm part controls. Zone.AddEntity is the shared bool-returning
+placement/movement gate: reject before changing source membership. Incoming
+barren terrain removes only vegetation; loaded-cell repair runs after bodies
+resolve, with only this new classification rehydrated from current blueprint
+tags. SeedPart and BuilderSpawn currently ignore AddEntity failure; honor it
+before consuming a seed or reporting a placed entity. FarmPlotSeeder must
+check barren before replacing floors. No player flower-conjuring command or
+fungal-root propagation currently ships; existing FlowerCharm is a lifespan
+reader. This prevents material heuristics from deleting food, furniture or
+mobile creatures. The31-entry census includes living substrate architecture
+and standing dead plants as explicit content classification choices.
+
+Authoring RED confirmed14/16 failures (missing site/art) with2 passing nearby
+controls, zero C# errors. A fixture parenthesis typo was corrected before
+accepting that assertion RED. Save RED1/4 confirms the missing old-map POI
+repair;3 saved-POI/uncached-map controls pass.
+
+W6.5 runtime RED10/19 (9 controls pass) →39/39 focusedGREEN with authoring
+and save tests. Dedicated hypothesis/adversarial run32/33; its only failure
+was a wrong test expectation that Olderdeep(4,6) lay in Stump, when actual
+map authoring places its mouth in Grovelands. Correct the control to derive
+the real underlying biome, preserving the hidden-name assertion. No production
+fix implied. Earlier direct test access to internal BuilderSpawn failed to
+compile; the test now invokes its public static method via test reflection,
+without expanding production API. No stale results were used.
+Cold-eye taxonomy and canon passes found0 confirmed 🟡+ defects. Hypotheses
+include all31 plant classes, preserved source/index/version on refusal,
+active-effect save/expiry, prior penalties, veto, absent/dead/removed targets,
+old missing-tag flora, cached ground preservation, renamed routes, real
+lateral arrivals, map descent and marker-order-independent loaded cleanup.
+New ordinary player-end lookup reads only the current cell with no allocation;
+actual confusion application/log lifecycle allocates. Profiling follows below.
+
+
+W6.5 full sweep RED7544/7547, zero C# errors. It caught one missed project
+contract (🟡): production must apply effects through Entity.ApplyEffect,
+never StatusEffectsPart directly. Replace the call, preserving normal veto and
+JustApplied semantics; the structural facade test remains strict. Two existing
+world tests assumed every Stump cell was wilderness: grain orientation now
+samples actual wilderness, and the no-lair/camp pin explicitly permits only
+coordinate-validated authored Felling/sinkhole POIs. Random claims still fail.
+These failures are preserved as W65-full-integration-red.xml.gz. Repeat native
+capture and full suite after the facade correction; no pre-fix performance
+numbers stand in for the final implementation.
+
+Full repeat7546/7547: all77 new tests and the repaired structural contracts
+pass; sole failure is the user's pre-recorded fungal self-cloud flaky test.
+Keep raw W65-full-known-fungal-flake.xml.gz and repeat after the final native
+capture. Final scene/art appearance is unchanged by the facade correction.
+
+Final native capture657ea017c8ae4f87a77638a8ad210d89:9/9PASS,75.001255583sec,
+74360frames,7410ticks,741active exposure frames, zero failures/C# errors,
+launcher exit0. Exposure active-frame mean0.085080ms,p990.220875ms,
+max0.381000ms. Full-frame samples and whole-editor GC are retained; the
+pre-facade capture is separately named rather than overwritten.
+
+
+### W6.5 exit — 2026-09-05
+
+**SHIPPED.** Final full EditMode suite **7547/7547 GREEN**, zero C# errors,
+19:18:46–19:19:45 UTC. W6.4 baseline7470 →7547 (+77), including36 dedicated
+adversarial cases and2 deterministic scenario checks. Nine real sprites,
+four variants each for bare positions/creases, binary alpha, template metadata
+and global GUID audit pass. Final native run657ea017c8ae4f87a77638a8ad210d89
+passes9/9,75seconds,zero capture failures,launcher exit0. First full integration
+failures and the known fungal flake remain archived with the successful repeat.
+
+Cold-eye and final full-suite review resolved the facade violation; existing
+Stump tests now distinguish the authored site from wilderness without admitting
+random camps/lairs. The true exposure hook uses Entity.ApplyEffect and the
+final native measurement follows that fix. All403 protected baseline files
+remain; only incremental hunks enter SaveSystem and EnvironmentSpriteRenderer.
+Other original files are byte-identical except the editor's runtime MCP log.
+Concurrent component-art outputs are also left alone.
+
+See `Docs/Verification/FellingW6/W65-REPORT.md` for behavior, raw gates,
+performance, canon inferences and visual/feel limits. **Next: W6.6, Sealed
+Library (enum + archetype + slope mouth in ONE commit), then W6.7 close-out.**
+After W6 completion, continue the authorized whole-game audit, repair plans
+and implementations without pausing for approval.

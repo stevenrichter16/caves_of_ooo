@@ -380,6 +380,7 @@ namespace CavesOfOoo.Core
                 if (zone != null)
                     endTurn.SetParameter("Zone", (object)zone);
                 actor.FireEventAndRelease(endTurn);
+                SeventhPositionPart.OnPlayerTurnEnded(actor, zone);
 
                 // D2.4 diag hook — turn boundary marker (paired with
                 // turn/Begin above). Records ALL EndTurn calls, including

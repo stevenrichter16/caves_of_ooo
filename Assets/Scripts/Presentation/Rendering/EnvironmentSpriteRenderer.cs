@@ -237,6 +237,8 @@ namespace CavesOfOoo.Rendering
             ("TepuiboneVein", "tepuibone_vein"), ("Tepuibone", "tepuibone"),
             ("HelmwoodWaterPassage", "helmwood_water_passage"),
             ("TheRooted", "the_rooted"), ("FoundingPlume", "founding_plume"),
+            ("FellingScar", "felling_scar"), ("FellingBarePosition", "felling_bare_position"),
+            ("SeventhPosition", "seventh_position"),
             ("ChoirNode", "choir_node"),
             ("EncasedElder", "encased_elder"),
         };
@@ -256,6 +258,7 @@ namespace CavesOfOoo.Rendering
             { "StoneDome", 3 },
             { "TepuiboneVein", 4 },
             { "FoundingPlume", 4 },
+            { "FellingScar", 4 }, { "FellingBarePosition", 4 },
             { "NicheHome", 4 },
         };
 

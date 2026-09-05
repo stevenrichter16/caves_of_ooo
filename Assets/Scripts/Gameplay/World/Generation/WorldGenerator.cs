@@ -87,6 +87,11 @@ namespace CavesOfOoo.Core
                 placed.Add((site.X, site.Y));
             }
 
+            // W6.5: the surface circle is a distinct authored POI.
+            map.SetPOI(FellingSiteBuilder.WorldX, FellingSiteBuilder.WorldY,
+                new PointOfInterest(POIType.FellingSite, FellingSiteBuilder.SiteName, tier: 5));
+            placed.Add((FellingSiteBuilder.WorldX, FellingSiteBuilder.WorldY));
+
             // 1b. Authored wilderness scenes (the tenth fire, the
             // doll): reserved before any opportunistic roll, so a lair
             // or camp can never take the cell and delete the scene from

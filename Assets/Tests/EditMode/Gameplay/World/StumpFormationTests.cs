@@ -90,8 +90,9 @@ namespace CavesOfOoo.Tests
         private static System.Collections.Generic.List<(int x, int y)> GrainfieldChunks()
         {
             var outp = new System.Collections.Generic.List<(int x, int y)>();
+            var map = WorldGenerator.Generate(42); // actual wilderness only; authored POIs have their own shape.
             foreach (var (x, y) in new[] { (2, 2), (4, 2), (2, 4), (3, 5), (4, 5) })
-                if (StumpBands.BandAt(x, y) == StumpBand.Slopes
+                if (map.GetPOI(x, y) == null && StumpBands.BandAt(x, y) == StumpBand.Slopes
                     && FormationSelector.ForStump(StumpBand.Slopes, $"Overworld.{x}.{y}.0")
                         == Formation.Grainfield)
                     outp.Add((x, y));

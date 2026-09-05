@@ -38,8 +38,7 @@ namespace CavesOfOoo.Core
 
             Entity e = factory.CreateEntity(blueprint);
             if (e == null) return null;
-            zone.AddEntity(e, x, y);
-            return e;
+            return zone.AddEntity(e, x, y) ? e : null;
         }
 
         /// <summary>
