@@ -356,6 +356,22 @@ namespace CavesOfOoo.Core
                 };
             }
 
+            // W6.7: a real stair with a removed return endpoint cannot
+            // silently become a one-way teleport through the fallback below.
+            // Marker-free relocation callers retain their existing fallback.
+            var departure = currentZone.GetCell(currentX, currentY);
+            bool physicalStair = false, returnStair = false;
+            if (departure != null)
+                foreach (var e in departure.Objects)
+                    if (goingDown ? e.HasPart<StairsDownPart>() : e.HasPart<StairsUpPart>()) physicalStair = true;
+            if (physicalStair)
+            {
+                foreach (var e in newZone.GetAllEntities())
+                    if (goingDown ? e.HasPart<StairsUpPart>() : e.HasPart<StairsDownPart>()) { returnStair = true; break; }
+                if (!returnStair)
+                    return new ZoneTransitionResult { Success = false, ErrorReason = "The return stairs are missing" };
+            }
+
             // Find matching stairs in the target zone
             // Going down: look for StairsUp (the matching pair)
             // Going up: look for StairsDown (the matching pair)

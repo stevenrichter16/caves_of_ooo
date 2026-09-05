@@ -121,10 +121,30 @@ namespace CavesOfOoo.Core
                 foreach (var conn in dropped)
                     if (_connections.TryGetValue(conn.TargetZoneID, out var tl))
                     {
-                        tl.Remove(conn);
+                        // W6.7 adversarial: save/load creates separate instances in
+                        // the two indexes. Identity is the complete route, as at registration.
+                        tl.RemoveAll(other => SameConnection(other, conn));
                         if (tl.Count == 0) _connections.Remove(conn.TargetZoneID);
                     }
             }
+        }
+
+        private static bool SameConnection(ZoneConnection a, ZoneConnection b)
+            => a.SourceZoneID == b.SourceZoneID && a.TargetZoneID == b.TargetZoneID
+                && a.SourceX == b.SourceX && a.SourceY == b.SourceY
+                && a.TargetX == b.TargetX && a.TargetY == b.TargetY && a.Type == b.Type;
+
+        /// <summary>Remove a complete route from both indexes, including the
+        /// distinct reference copies restored by saves. Unrelated routes survive.</summary>
+        public void RemoveConnection(ZoneConnection connection)
+        {
+            if (connection == null) return;
+            foreach (string id in new[] { connection.SourceZoneID, connection.TargetZoneID })
+                if (_connections.TryGetValue(id, out var list))
+                {
+                    list.RemoveAll(other => SameConnection(other, connection));
+                    if (list.Count == 0) _connections.Remove(id);
+                }
         }
 
         public int CachedZoneCount => CachedZones.Count;
@@ -146,11 +166,7 @@ namespace CavesOfOoo.Core
             // zone re-registering the same stairs must not stack a
             // duplicate (and a save must not grow monotonically).
             foreach (var existing in sourceList)
-                if (existing.SourceZoneID == conn.SourceZoneID
-                    && existing.TargetZoneID == conn.TargetZoneID
-                    && existing.SourceX == conn.SourceX && existing.SourceY == conn.SourceY
-                    && existing.TargetX == conn.TargetX && existing.TargetY == conn.TargetY
-                    && existing.Type == conn.Type)
+                if (SameConnection(existing, conn))
                     return;
             sourceList.Add(conn);
 

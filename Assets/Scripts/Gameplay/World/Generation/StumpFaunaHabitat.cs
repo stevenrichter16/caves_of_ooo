@@ -8,6 +8,8 @@ namespace CavesOfOoo.Core
         {
             switch (blueprint)
             {
+                // Cascade indicators occupy actual spray, not nearby dry rock or standing water.
+                case "CascadeFather": return Contains(cell, "SprayPool");
                 case "BrocchiniaSentinel": return Near(cell, "TankBrocchinia", 2);
                 case "SummitSinger":
                 case "HelmwoodFrog": return Near(cell, "Tree", 2);

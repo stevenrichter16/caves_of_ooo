@@ -115,8 +115,8 @@ namespace CavesOfOoo.Scenarios.Custom
             }
             _recorders = null; report.failures = Failures;
             string directory = Path.Combine(Application.dataPath, "../Docs/Verification/FellingW6");
-            Directory.CreateDirectory(directory); ReportPath = Path.Combine(directory, "W63b-live-profile.json");
-            File.WriteAllText(Path.Combine(directory, "W63b-live-frames.csv"), csv.ToString());
+            Directory.CreateDirectory(directory); ReportPath = Path.Combine(directory, "W67-live-profile.json");
+            File.WriteAllText(Path.Combine(directory, "W67-live-frames.csv"), csv.ToString());
             File.WriteAllText(ReportPath, JsonUtility.ToJson(report, true));
             Diag.Record("scenario", "StumpSummitProfile", payload: new { runId = _bench.RunId, ticks, frames = _frames, failures = Failures });
             Debug.Log("[StumpSummitBench] " + JsonUtility.ToJson(report));

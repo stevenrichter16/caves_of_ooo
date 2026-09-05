@@ -15,7 +15,7 @@ namespace CavesOfOoo.Tests
                 var bench = new StumpSummitBench();
                 bench.Apply(harness.CreateContext());
                 Assert.AreEqual(0, bench.Failures);
-                Assert.AreEqual(6, bench.Cases);
+                Assert.AreEqual(14, bench.Cases);
                 string first = bench.RunId;
                 bench.Apply(harness.CreateContext());
                 Assert.AreNotEqual(first, bench.RunId);

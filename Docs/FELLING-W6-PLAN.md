@@ -1,5 +1,8 @@
 # FELLING W6 — The Stump (the Root-slope)
 
+> **Status: W6 COMPLETE, 2026-09-05.** Full suite7674/7674 GREEN; native
+> close-out14/14. Explicit later-phase and visual debts remain recorded below.
+
 > Phase plan per CLAUDE.md's major-feature workflow. Canon authority:
 > `Lore/` (10_Bible.md); design: `Docs/FELLING-WORLD-DESIGN.md` §3.6
 > (the tepui), §7.6 (state-reactive spawning), roadmap §10 (W6 line).
@@ -862,3 +865,126 @@ default humanoid anatomy, and CascadeFather's spray-only habitat lacks a
 consumer. Review also identified one Catacomb voice-card word correction and
 the bestiary's required cultural-source credit entry. Then continue the
 authorized whole-game system audit and repairs, maintaining the daily log.
+
+### W6.7 — close-out review and repairs (IN PROGRESS, 2026-09-05)
+
+Baseline `9c4f44f4`,7614/7614 GREEN; W6.6 native12/12. Protected work is
+snapshotted under `/tmp/codex-w67-preexisting`. Both independent review angles
+covered W6.1–6; four new findings below need repair. Recorded debt stays
+explicit rather than being rediscovered or silently relabeled as complete.
+
+| Verified finding before implementation | Correction / gate |
+|---|---|
+| SariSnake/Wardline inherit humanoid bodies; authored natural damage/bleed never reaches body combat. Merely tagging them can still be overridden by default fists after body maintenance. | Supported Simple anatomy plus BodyNaturalAttack; actual melee damage/bleed before and after maintenance, untagged and equipped-weapon controls. No new bespoke anatomy is needed. |
+| CascadeFather is guaranteed in foothill population, but the habitat hook defaults it to any passable cell. Canon says waterfall/spray only, never dry or standing water. | Exact SprayPool-cell predicate in the existing population hook; dry/ordinary-water and removed-pool controls, actual generated placement. No new hot path. |
+| Elder dialogue says “Use the plume underfoot,” against the Catacomb voice card's express taboo. The original conversation voice gate was not recorded. | Corrective intent card below, then fresh-context blind attribution/honesty review of the conversation; rewrite failures without regrading. Do not claim the original pre-draft gate occurred. |
+| Bestiary design§VIII requires an implementation-time Cultural Sources & Credits entry; IDEAS.md lacks it. | Add factual scientific/structural source attribution for adopted content and preserve the primary-ethnography follow-up; do not imply that additional research was performed. |
+
+References: sarisarinama_bestiary_design.md§methodology, species/habitat and
+VIII; Lore/Voices/VOICE-CARDS.md§6 + gate; IDEAS credits ledger; actual
+FoundingVillage conversation; EntityFactory anatomy selection, AnatomyFactory
+Simple/default fist templates, Body maintenance/weapon gathering, CombatSystem
+body dispatch, StumpFaunaHabitat, StumpFormation spray and PopulationBuilder.
+CoO-original content wiring, with existing combat dispatch preserved; no new
+Qud parity claim.
+
+Corrective prose intent card (before revision): Catacomb-villager voices;
+neighborly, understated and domestic, oriented by kin and light. The elder
+must give usable rest/trust directions while making the plume a tended living
+presence. The tender must make the stone exchange an act of keeping a name.
+Neither may sound like a resource vendor, doom-speaking cave mystic, design
+manual or self-admiring moralist. Existing text is reviewed blind first; this
+is a corrective gate, not a retrospective claim about the initial drafting.
+
+Implementation: RED combat/habitat checks → surgical content/habitat repair →
+cross-wave player-flow hypotheses and dedicated20–60 adversarial close-out
+checks → native sanity, full suite, canon/design gate and explicit exit.
+No new sprites are required for corrected existing creatures; their authored
+16×16 assets remain the actual presentation.
+
+Player-flow hypotheses cover old-map migration→discovery, harvested material→
+trust→saved dream, plume action invalidation by barrenness, removed bromeliad
+cover with a surviving sentinel, saved water-passage indexes after unloading,
+and cross-site generation order. Renamed-site persistence was investigated:
+no shipped runtime POI-name/profile writer exists, so it is a future-writer
+constraint under the known save-format debt, not a current gameplay defect.
+
+Additional W6.7 pre-fix correction: SaveSystem.LoadOverworldZoneManager
+reads a distinct ZoneConnection instance into each endpoint index, but
+ZoneManager.UnloadZone removes the opposite entry by reference. A saved pair
+can therefore retain an orphan reverse index after unloading its owning
+surface. Dedicated cross-wave RED checks cover loaded/unloaded controls and
+a second save before lazy passage repair. If confirmed, remove by the same
+full endpoint/type identity used by registration, without changing save bytes.
+
+Native close-out extends the existing summit scenario with actual snake
+strikes after body maintenance and spray/dry population controls. The existing
+scenario test expects ten controls before implementation (previously six).
+
+W6.7 stair correction, verified before implementation: the defect is the
+directional builder protocol. StairsUpBuilder consumes only already-registered
+incoming edges; StairsDownBuilder later chooses unrelated coordinates; the
+vertical travel facade silently falls back even when a real stair has no
+return marker. Re-running builders on cached floors would erase Wall/Solid
+objects, and recursively creating an entire deep column is unbounded work.
+
+Chosen repair: fresh underground floors at depth3+ may place an up endpoint
+and pre-register its immediate underground parent's down edge, without
+generating that parent. The later fresh parent consumes that edge, preserves
+its target coordinates, and may relocate only its own new endpoint to avoid
+its incoming stair. Connection replacement/removal uses full route values in
+both indexes. If an already-cached neighbor lacks a surviving counterpart,
+preserve it and omit/refuse the unpaired route rather than restore removed
+stairs. Existing surface/mouth rules stay owned by their builders. A real
+physical stair cannot transfer a player to a floor with no return stair;
+ordinary eligible placement around an occupied surviving stair remains valid.
+
+Additional RED/preservation controls cover very deep direct generation without
+ancestor materialization, later-parent coordinate conflict, cached neighbor
+identity, removed endpoints, missing content and both travel directions.
+This is a shared underground-generation repair discovered at the W6 boundary,
+not a claim that every saved one-way route can be safely auto-restamped.
+
+### W6.7 exit — 2026-09-05
+
+**SHIPPED / W6 COMPLETE.** Final full suite7674/7674 GREEN, zero C# errors,
+20:49:39–20:51:08UTC. Baseline7614→7674 (+60:14 combat/habitat and46
+dedicated cross-wave adversarial cases). The preceding full run failed only
+the user-recorded fungal self-cloud flake; its raw result is retained.
+Native run c05c31497fc04128993300cc7ca6a90f passes14/14, exit0,
+75.001322583seconds,73265frames,4970ticks, zero capture failures.
+
+Resolved: authored snake damage and bleeding bypassed by humanoid fists;
+CascadeFather's missing spray-cell spawn consumer; stale reverse passage
+indexes after load/unload; fresh depth3+ floors lacking a return pair when
+reached before their parents; Catacomb dialogue intent/voice violations;
+missing Sarisariñama source credit. Review found no further player-facing
+regression after the fixes. See W67-REPORT.md for raw gates, failed fixture
+assumptions, corrective blind-voice review and measured/subjective limits.
+
+Design gate: all ten W6 creature blueprints and genuine sprites, elevation
+bands and formation families, tepuibone seam/harvest loop, Olderdeep chamber
+and saved trust/dream/bloom, Felling-Site exposure/barrenness, and Stillleaf's
+locked vault are connected to runtime consumers. The initial SealedLibrary
+enum, archetype and mouth shipped atomically in9c4f44f4. No glyph-only new
+content; repeated fixture families have four variants. This close-out adds
+no new art;2304 current asset GUIDs have no collisions.
+
+Scope remains honest: the Singer's full silence alarm, advanced Sky-Sari
+flight, god-clock/endings, specimen/slurry economies and readable/unlock
+quest content belong to later phases. Summit cloud/Tank-Brocchinia affordance,
+GrainRidge glyph divergence and live look-pass debt are recorded, not silently
+completed. Fresh deep-first pairing does not restamp ambiguous cached saves.
+The new cold generation work is not included in the warm75-second profile.
+
+Files: surgical Objects/FoundingVillage JSON; StumpFaunaHabitat; both stair
+builders, ZoneManager and vertical transition; summit scenario/driver/test;
+two new test classes and metadata; IDEAS credits; raw verification/report,
+phase plan and daily work log. All previously dirty/concurrent work is
+preserved; this commit stages only paths clean at the W6.7 baseline plus
+this wave's new files. No changes to the user-designated earlier spell work.
+
+**Next: the authorized whole-game audit.** Inventory every system, distinguish
+confirmed bugs from intentional future content and previously recorded debt,
+write repair plans, then implement and verify the plans without intervention.
+The daily ledger remains Docs/WORK-LOG-2026-09-05.md.

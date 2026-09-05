@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CavesOfOoo.Core;
+using CavesOfOoo.Core.Anatomy;
 using CavesOfOoo.Diagnostics;
+using CavesOfOoo.Data;
 using UnityEngine;
 
 namespace CavesOfOoo.Scenarios.Custom
@@ -11,7 +13,7 @@ namespace CavesOfOoo.Scenarios.Custom
     /// stimuli use the live energy scheduler and ordinary movement. Runtime
     /// profiling continues through keyboard waits in StumpSummitBenchPlayer.</summary>
     [Scenario(name: "Stump Summit and Sima Audit", category: "World",
-        description: "Six deterministic ecology controls, then 75 seconds of native gameplay profiling.")]
+        description: "Fourteen deterministic ecology/combat/travel controls, then 75 seconds of native gameplay profiling.")]
     public sealed class StumpSummitBench : IScenario
     {
         public int Cases { get; private set; }
@@ -36,6 +38,60 @@ namespace CavesOfOoo.Scenarios.Custom
             ctx.Zone.RemoveEntity(ctx.PlayerEntity); ctx.Zone.AddEntity(ctx.PlayerEntity, 20, 12);
             var hp = ctx.PlayerEntity.GetStat("Hitpoints"); hp.Max = hp.BaseValue = 1000000; hp.Penalty = 0;
             ctx.Turns.AddEntity(ctx.PlayerEntity); ctx.Turns.ProcessUntilPlayerTurn();
+
+            // W6.7 close-out: exercise the authored first-wave attacks through
+            // real body combat after maintenance, where humanoid fists hid them.
+            bool damageChannel = Diag.IsChannelEnabled("damage"); Diag.SetChannel("damage", true);
+            try
+            {
+                foreach (var row in new[] { ("SariSnake", "1d6", true), ("Wardline", "1d4", false) })
+                {
+                    var snake = Place(ctx, row.Item1, 5, 5); snake.GetPart<Body>().UpdateBodyParts();
+                    snake.GetPart<MeleeWeaponPart>().HitBonus = 100; snake.GetPart<MeleeWeaponPart>().PenBonus = 20;
+                    var target = new Entity(); target.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 100000, Max = 100000 };
+                    ctx.Zone.AddEntity(target, 6, 5);
+                    for (int seed = 0; seed < 30; seed++) CombatSystem.PerformMeleeAttack(snake, target, ctx.Zone, new System.Random(seed));
+                    var records = DiagQuery.Apply(new DiagQuery.Filter { Category = "damage", Kind = "DamageRoll", Actor = snake.ID, Limit = 100 }).Records;
+                    Check(row.Item1 + "_authored_strike", records.Count > 0
+                        && records.All(r => r.PayloadJson.Contains("\"damageDice\":\"" + row.Item2 + "\""))
+                        && target.HasEffect<BleedingEffect>() == row.Item3);
+                    ctx.Zone.RemoveEntity(snake); ctx.Zone.RemoveEntity(target);
+                }
+            }
+            finally { Diag.SetChannel("damage", damageChannel); }
+            foreach (bool spray in new[] { true, false })
+            {
+                var arena = new Zone("CascadeHabitatAudit");
+                arena.AddEntity(ctx.Factory.CreateEntity(spray ? "SprayPool" : "WaterPuddle"), 10, 10);
+                var table = new PopulationTable { Name = "CascadeHabitatAudit" };
+                table.Entries.Add(new PopulationEntry { BlueprintName = "CascadeFather", MinCount = 1, MaxCount = 1, Weight = 1 });
+                new PopulationBuilder(table) { HabitatFilter = StumpFaunaHabitat.Allows }.BuildZone(arena, ctx.Factory, new System.Random(67));
+                var frogs = arena.GetAllEntities().Where(e => e.BlueprintName == "CascadeFather").ToList();
+                Check(spray ? "cascade_in_spray" : "standing_water_excluded", spray
+                    ? frogs.Count == 1 && arena.GetEntityPosition(frogs[0]) == (10, 10) : frogs.Count == 0);
+            }
+            foreach (var site in new[] { (2, 4), (4, 6) })
+            {
+                var manager = new OverworldZoneManager(ctx.Factory, 67);
+                var lower = manager.GetZone($"Overworld.{site.Item1}.{site.Item2}.3");
+                var upper = manager.GetZone($"Overworld.{site.Item1}.{site.Item2}.2");
+                // Isolate the authored route from randomly occupying creatures.
+                foreach (var z in new[] { lower, upper })
+                    foreach (var e in z.GetEntitiesWithTag("Creature").ToArray()) z.RemoveEntity(e);
+                var up = lower.GetAllEntities().Single(e => e.HasPart<StairsUpPart>());
+                var down = upper.GetAllEntities().Single(e => e.HasPart<StairsDownPart>());
+                var pos = upper.GetEntityPosition(down); var visitor = new Entity(); upper.AddEntity(visitor, pos.x, pos.y);
+                var descent = ZoneTransitionSystem.TransitionPlayerVertical(visitor, upper, true, pos.x, pos.y, manager);
+                bool returned = false;
+                if (descent.Success)
+                    returned = ZoneTransitionSystem.TransitionPlayerVertical(visitor, lower, false,
+                        descent.NewPlayerX, descent.NewPlayerY, manager).Success;
+                Check("deep_first_round_trip_" + site.Item1, descent.Success && returned && upper.GetEntityCell(visitor) != null);
+                lower.RemoveEntity(up); upper.RemoveEntity(visitor); upper.AddEntity(visitor, pos.x, pos.y);
+                var refused = ZoneTransitionSystem.TransitionPlayerVertical(visitor, upper, true, pos.x, pos.y, manager);
+                Check("removed_return_refused_" + site.Item1, !refused.Success
+                    && upper.GetEntityCell(visitor) != null && lower.GetEntityCell(visitor) == null);
+            }
 
             Entity subject = Spawn(ctx, "BrocchiniaSentinel", 23, 12);
             Place(ctx, "TankBrocchinia", 24, 12);

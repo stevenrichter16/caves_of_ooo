@@ -916,6 +916,15 @@ This appendix records every real-world cultural, linguistic, geographical, or bi
 - **Stance:** real species cited explicitly in design notes; in-game name is a contraction of the binomial. **Biology only — no cultural attribution required.**
 - **Follow-up:** the genus *Stefania* contains ~20 species, each available as a real biological hook for variant Gin Frogs (desert / deep-cave / Choir-tended) keying off real epithets. Cite the source species when naming variants.
 
+### Sarisariñama Bestiary
+
+- **Scientific source:** César L. Barrio-Amorós & Charles Brewer-Carías (2008), *Herpetological results of the 2002 expedition to Sarisariñama, a tepui in Venezuelan Guayana, with the description of five new species*, *Zootaxa* 1942. Citation and species observations are recorded in `sarisarinama_herpetofauna_findings.md`; the adaptation plan is `sarisarinama_bestiary_design.md`.
+- **What was used in W6:** tepui elevation bands and isolated microhabitats; waterfall-spray frogs, glass frogs, summit callers, bromeliad cover, communal gecko nesting, snake danger/protection patterns, an apex bird paired with the snake, and a frog as a clue to a hidden water route. The full design roster is a proposal; this credit does not claim every proposed species or behavior is implemented.
+- **Biological references:** among the adopted analogues are *Anomaloglossus moffetti*, *Hyalinobatrachium mesai*, *Pristimantis sarisarinama*, *Gonatodes superciliaris*, *Osteocephalus taurinus*, *Bothrops atrox*, *Pseustes poecilonotus*, *Harpia harpyja* and *Brocchinia hechtioides*. Names follow the source design and its 2008 scientific reference, rather than asserting current taxonomy. Game mechanics and composite species are fictional adaptations, not additional biological findings.
+- **Cultural source:** the **Ye'kwana / Ye'kuana people**, a living Indigenous tradition. The source paper records names and cultural roles; the design borrows the structural patterns of a threatening snake, a protective serpent and a great dangerous bird. Acknowledge the people in shipped credits even when their names are absent from game text.
+- **Stance:** structural inheritance only; no Ye'kwana names are lifted into the new in-game text. Do not borrow the Wanadi creator-deity framing for a fictional frog. CoO supplies its own names and cosmology.
+- **Required follow-up:** consult primary Ye'kwana ethnography before extending the snake, protective-serpent, great-bird or Bandfrog threads beyond those structural concepts. This implementation records the source already supplied in the design; it does not claim that follow-up research has been completed. Coordinate credits with the existing Pemon, Quechua and Ye'kuana entries below.
+
 ### Root of the World
 
 - **Cultural source:** the **Pemon people** of the Guiana Highlands (Venezuela / Guyana / Brazil). Specifically the cosmology around **Mount Roraima** as the petrified stump of *Wazaka*, the Tree of Life, felled by *Makunaima* the trickster — and the *mawari* spirits the Pemon associate with tepuis.

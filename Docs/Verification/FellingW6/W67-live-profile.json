@@ -1,0 +1,79 @@
+{
+    "runId": "c05c31497fc04128993300cc7ca6a90f",
+    "seconds": 75.00132258300002,
+    "frames": 73265,
+    "ticks": 4970,
+    "failures": 0,
+    "audit": [
+        "SariSnake_authored_strike:PASS",
+        "Wardline_authored_strike:PASS",
+        "cascade_in_spray:PASS",
+        "standing_water_excluded:PASS",
+        "deep_first_round_trip_2:PASS",
+        "removed_return_refused_2:PASS",
+        "deep_first_round_trip_4:PASS",
+        "removed_return_refused_4:PASS",
+        "approached_retreat:PASS",
+        "quiet_control:PASS",
+        "occupied_cover_control:PASS",
+        "sheltered_stays:PASS",
+        "nest_sixteen_scheduled:PASS",
+        "defenders_act_without_respawn:PASS"
+    ],
+    "metrics": [
+        {
+            "name": "COO.Turns.ProcessUntilPlayerTurn",
+            "unit": "nanoseconds",
+            "available": true,
+            "activeFrames": 497,
+            "max": 11594250,
+            "p99": 0,
+            "mean": 13753.854760117381
+        },
+        {
+            "name": "COO.Turns.AI.TakeTurn",
+            "unit": "nanoseconds",
+            "available": true,
+            "activeFrames": 497,
+            "max": 10816458,
+            "p99": 0,
+            "mean": 9957.278441274824
+        },
+        {
+            "name": "COO.Turns.AI.BromeliadRetreat",
+            "unit": "nanoseconds",
+            "available": true,
+            "activeFrames": 497,
+            "max": 97875,
+            "p99": 0,
+            "mean": 377.51818740189727
+        },
+        {
+            "name": "COO.Input.Update",
+            "unit": "nanoseconds",
+            "available": true,
+            "activeFrames": 73263,
+            "max": 12968750,
+            "p99": 7125,
+            "mean": 25494.683191155396
+        },
+        {
+            "name": "COO.ZoneRenderer.LateUpdate",
+            "unit": "nanoseconds",
+            "available": true,
+            "activeFrames": 73264,
+            "max": 9764125,
+            "p99": 1113083,
+            "mean": 716585.6663618372
+        },
+        {
+            "name": "GC Allocated In Frame",
+            "unit": "bytes",
+            "available": true,
+            "activeFrames": 73264,
+            "max": 8790774,
+            "p99": 267644,
+            "mean": 27146.9601992766
+        }
+    ]
+}
