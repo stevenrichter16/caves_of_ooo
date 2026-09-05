@@ -430,37 +430,40 @@ during D1.4; see `Docs/D1-SPIKE-PLAN.md` §9.
 | `diag_causal_chain` | (Subsumed by `diag_inspect_record`'s `caused_by` array) | — | ❌ folded into D3.3 |
 | `diag_set_channels` | Toggle category recording at runtime | `{ channels: { name: bool, ... } }` | ⏳ D4 |
 
-**Common parameters (all query tools):**
-- `category`, `kind`, `actor`, `target` — filters (string equality;
-  `kind` accepts arrays for OR matching)
-- `since_turn`, `until_turn` — turn-window filter. Records with
-  `Turn = null` (worldgen, save, bootstrap, UI) are **excluded** from
-  any query that uses these parameters. Use `since_unix_ms` /
-  `until_unix_ms` instead to include null-turn records.
-- `since_unix_ms`, `until_unix_ms` — wall-clock time window (always
-  applicable since `TimestampUnixMs` is always populated).
-- `fields=["TraceId","Kind","Turn","..."]` — projection (omits everything else)
-- `limit` (default 50, max 500), `cursor` — pagination
+**Shipped filters (`diag_query`, `diag_count`, `diag_assert`):**
+- `category`, `kind`, `actor`, `target`, `cause_trace_id` — optional exact
+  string equality. Omitted means no filter; an empty string remains an exact
+  value. `kind` currently accepts a scalar, not an array.
+- `since_turn`, `until_turn` — inclusive turn window. Records with `Turn=null`
+  are excluded whenever either bound is set.
+- `diag_query` additionally accepts `limit` (default50, maximum500) and
+  `budget_kb` (default100, maximum1000). `diag_count` and `diag_assert` count
+  all matching retained records; query limit does not cap aggregation.
+- All three runtime scans and `diag_inspect_record` inspect the full current
+  ring capacity,8192 records. Actual overwritten records remain unavailable.
 
-**Response-size budget enforcement** (operationalizing P2):
-Every query tool checks the size of the JSON it would return BEFORE
-returning it. If the would-be response exceeds **100 KB** (~25k
-tokens), the tool refuses and returns this inner payload (wrapped
-by the FastMCP envelope, so visible to the LLM at `response.data.*`):
+Wall-clock windows, field projection, array-kind matching and cursor pagination
+remain planned extensions; older example calls below that include those fields
+are future examples, not current parameter contracts.
+
+**Response-size budget enforcement (`diag_query`):**
+The tool serializes its complete inner payload and measures **UTF8 bytes**
+before returning it. The MCP envelope is outside this budget. If the inner
+payload exceeds the selected budget, the response contains no record array:
 
 ```json
 {
-  "meta": { ... },
+  "meta": { "returned_count": 0 },
   "data": null,
   "truncated": true,
   "would_be_size_bytes": 248000,
-  "hint": "Response exceeded 100KB budget. Use cursor + smaller limit, narrow filters (since_turn / kind), use fields= to project, or pass budget_kb=500 to override (max 1000)."
+  "hint": "Narrow filters, reduce limit, or increase budget_kb (max 1000)."
 }
 ```
 
-Override via optional `budget_kb` parameter on any query tool (default
-100, max 1000). The substrate truncates rather than streams — partial
-responses with stale data are worse than refusal.
+The refusal leaves the ring buffer unchanged. Raise `budget_kb`, narrow the
+filter or lower the limit to retrieve records. The compact count/assert tools
+do not advertise or enforce this response budget.
 
 **Example calls — combat (bear-trap bleeding deferred bug):**
 
@@ -1489,3 +1492,18 @@ When the substrate ships:
 This doc is the contract for what I expect from the substrate. Code drifting
 from it is a bug; doc drifting from code is a different bug. Both fixed in
 the same commit as the drift.
+
+
+### Whole-game audit wave1 — 2026-09-05
+
+Cause filtering is now exposed consistently by query/count/assert; count
+matches query predicates and samples while retaining its uncapped aggregation
+contract. All query/inspection scans use the full current buffer capacity,
+repairing the old5000-entry ceiling after the ring grew to8192. Query budgeting
+counts UTF8 bytes, so multibyte payloads cannot pass a character-count check.
+The shipped-vs-planned parameter list above replaces earlier overclaims.
+
+Verification: `Docs/Verification/GameSystemAudit/GA01-REPORT.md`; real editor
+HandleCommand adapters are invoked in EditMode tests through reflection. This
+proves local schema/dispatch/envelope behavior, not remote transport behavior.
+No new gameplay hook, per-frame work or Qud-parity claim.

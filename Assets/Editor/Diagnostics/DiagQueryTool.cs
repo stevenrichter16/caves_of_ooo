@@ -15,16 +15,12 @@ namespace CavesOfOoo.Editor.Diagnostics
     /// Design contract: <c>Docs/AI-OBSERVABILITY.md</c> §3 Layer 2.
     ///
     /// Auto-discovered by <see cref="MCPForUnity.Editor.Tools.CommandRegistry"/>.
-    /// First-class MCP tool: callable directly via
-    /// <c>/tmp/mcp-call.sh diag_query '{"category":"effect", ...}'</c>
-    /// (no <c>execute_custom_tool</c> wrapper — auto-registered tools
-    /// are wrapped as first-class FastMCP tools by
-    /// <c>custom_tool_service.py</c>).
+    /// Invoke through the integration's registered custom-tool dispatcher;
+    /// transport registration is owned by MCPForUnity, not this handler.
     ///
-    /// Spike scope (D1.3): filter by category/kind/target/limit. The
-    /// fields=[...] projection and since_turn/until_turn time-window
-    /// filters are documented in the schema but not yet implemented;
-    /// they ship in D3 (post-spike).
+    /// Supports scalar category/kind/actor/target/cause filters, inclusive
+    /// turn windows and a bounded record limit. Projection, wall-clock
+    /// windows and cursor pagination remain future extensions.
     ///
     /// Response shape:
     /// <code>
@@ -59,7 +55,10 @@ namespace CavesOfOoo.Editor.Diagnostics
             [ToolParameter("Filter by actor Entity ID. Omit for all.", Required = false)]
             public string actor { get; set; }
 
-            [ToolParameter("Lower-bound turn filter (inclusive). Records with Turn=null are EXCLUDED from any windowed query — use unix_ms filters (D4) for those. Omit for no lower bound.", Required = false)]
+            [ToolParameter("Filter by exact causal trace ID. Omit for all causes.", Required = false)]
+            public string cause_trace_id { get; set; }
+
+            [ToolParameter("Lower-bound turn filter (inclusive). Records with Turn=null are EXCLUDED from any windowed query; omit the turn window to include those. Omit for no lower bound.", Required = false)]
             public int? since_turn { get; set; }
 
             [ToolParameter("Upper-bound turn filter (inclusive). Same null-Turn exclusion as since_turn. Omit for no upper bound.", Required = false)]
@@ -113,6 +112,7 @@ namespace CavesOfOoo.Editor.Diagnostics
                     Category = category,
                     Kind = kind,
                     Actor = actorId,
+                    CauseTraceId = @params["cause_trace_id"]?.ToString(),
                     Target = targetId,
                     SinceTurn = sinceTurn,
                     UntilTurn = untilTurn,
@@ -136,7 +136,7 @@ namespace CavesOfOoo.Editor.Diagnostics
                 // the SuccessResponse envelope adds ~50 bytes of overhead,
                 // negligible vs. the 100KB default budget.
                 string serialized = JsonConvert.SerializeObject(responseData);
-                int sizeBytes = serialized.Length;
+                int sizeBytes = System.Text.Encoding.UTF8.GetByteCount(serialized);
                 int budgetBytes = budgetKb * 1024;
                 if (sizeBytes > budgetBytes)
                 {

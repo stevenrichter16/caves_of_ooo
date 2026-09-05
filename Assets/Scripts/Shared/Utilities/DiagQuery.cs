@@ -38,9 +38,9 @@ namespace CavesOfOoo.Diagnostics
             /// Records with <c>Turn=null</c> (out-of-turn events: worldgen,
             /// save, bootstrap, UI) are <strong>EXCLUDED</strong> from any
             /// query that uses <see cref="SinceTurn"/> or <see cref="UntilTurn"/>
-            /// — they have no turn to compare against. Use the wall-clock
-            /// filters (D4) to include null-Turn records in time-windowed
-            /// queries. Per <c>AI-OBSERVABILITY.md</c> §3 Layer 2.
+            /// — they have no turn to compare against. Omit turn bounds to
+            /// include those records; wall-clock filters remain a planned
+            /// extension. Per <c>AI-OBSERVABILITY.md</c> §3 Layer 2.
             /// </summary>
             public int? SinceTurn;
 
@@ -80,7 +80,6 @@ namespace CavesOfOoo.Diagnostics
 
         private const int MaxLimit = 500;
         private const int DefaultLimit = 50;
-        private const int SnapshotCap = 5000;
 
         /// <summary>
         /// Filter the ring buffer using the supplied <paramref name="filter"/>.
@@ -94,9 +93,8 @@ namespace CavesOfOoo.Diagnostics
             if (limit <= 0) limit = DefaultLimit;
             if (limit > MaxLimit) limit = MaxLimit;
 
-            // Pull a generous slice; ring buffer holds ≤ 1024 records, so
-            // SnapshotCap=5000 always returns the whole buffer.
-            var all = Diag.Snapshot(SnapshotCap);
+            // Search every retained record, including older entries after capacity increases.
+            var all = Diag.Snapshot(Diag.BufferCapacity);
 
             bool hasTurnWindow = filter.SinceTurn.HasValue || filter.UntilTurn.HasValue;
             var matched = new List<Diag.Entry>(limit);
@@ -157,7 +155,7 @@ namespace CavesOfOoo.Diagnostics
         {
             filter ??= new Filter();
 
-            var all = Diag.Snapshot(SnapshotCap);
+            var all = Diag.Snapshot(Diag.BufferCapacity);
 
             bool hasTurnWindow = filter.SinceTurn.HasValue || filter.UntilTurn.HasValue;
             int count = 0;
@@ -170,6 +168,7 @@ namespace CavesOfOoo.Diagnostics
                 if (filter.Kind != null && rec.Kind != filter.Kind) continue;
                 if (filter.Actor != null && rec.ActorId != filter.Actor) continue;
                 if (filter.Target != null && rec.TargetId != filter.Target) continue;
+                if (filter.CauseTraceId != null && rec.CauseTraceId != filter.CauseTraceId) continue;
                 // Turn-window filter (D3.1). Same null-Turn exclusion as Apply.
                 if (hasTurnWindow && rec.Turn == null) continue;
                 if (filter.SinceTurn.HasValue && rec.Turn < filter.SinceTurn.Value) continue;
@@ -243,12 +242,11 @@ namespace CavesOfOoo.Diagnostics
         {
             if (string.IsNullOrEmpty(traceId)) return null;
 
-            var all = Diag.Snapshot(SnapshotCap);
+            var all = Diag.Snapshot(Diag.BufferCapacity);
 
             // Index for O(1) lookups during the backward walk. Newest-write
-            // wins on the unlikely traceId collision (8-char Guid prefix
-            // gives ~16 bits → 65k slots, ring buffer is 1024, so
-            // collision probability is low).
+            // wins if a traceId collides. Eight hexadecimal characters encode
+            // 32 bits; they do not guarantee uniqueness.
             var byTraceId = new Dictionary<string, Diag.Entry>(all.Count);
             for (int i = 0; i < all.Count; i++)
                 byTraceId[all[i].TraceId] = all[i];

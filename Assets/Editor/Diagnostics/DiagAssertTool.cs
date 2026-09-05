@@ -54,6 +54,9 @@ namespace CavesOfOoo.Editor.Diagnostics
             [ToolParameter("Filter by actor Entity ID. Omit for all.", Required = false)]
             public string actor { get; set; }
 
+            [ToolParameter("Filter by exact causal trace ID. Omit for all causes.", Required = false)]
+            public string cause_trace_id { get; set; }
+
             [ToolParameter("Filter by target Entity ID. Omit for all.", Required = false)]
             public string target { get; set; }
 
@@ -77,6 +80,7 @@ namespace CavesOfOoo.Editor.Diagnostics
                     Category = @params["category"]?.ToString(),
                     Kind = @params["kind"]?.ToString(),
                     Actor = @params["actor"]?.ToString(),
+                    CauseTraceId = @params["cause_trace_id"]?.ToString(),
                     Target = @params["target"]?.ToString(),
                     SinceTurn = @params["since_turn"]?.ToObject<int?>(),
                     UntilTurn = @params["until_turn"]?.ToObject<int?>(),
