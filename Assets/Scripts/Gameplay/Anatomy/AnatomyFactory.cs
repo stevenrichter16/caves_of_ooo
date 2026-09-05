@@ -140,6 +140,13 @@ namespace CavesOfOoo.Core.Anatomy
                 TargetWeight = 5,
             });
 
+            Register(new BodyPartType("Wing")
+            {
+                Appendage = true,
+                Contact = true,
+                TargetWeight = 10,
+            });
+
             // Thrown Weapon: abstract slot for throwable items. Always present.
             Register(new BodyPartType("Thrown Weapon", "Thrown Weapon", "thrown weapon")
             {
@@ -281,6 +288,29 @@ namespace CavesOfOoo.Core.Anatomy
         {
             var body = CreatePart("Body");
             body.Category = category;
+            MarkNative(body);
+            return body;
+        }
+
+        /// <summary>W6.3b adult frogs and birds: actual hit locations,
+        /// no humanoid weapon slots. Wings do not grant flight; aerial
+        /// locomotion remains a separate future mechanic.</summary>
+        public static BodyPart CreateFrogOrBird(bool bird, int category = BodyPartCategory.ANIMAL)
+        {
+            var body = CreatePart("Body");
+            body.Category = category;
+            var head = CreatePart("Head");
+            body.AddPart(head);
+            head.AddPart(CreatePart("Face"));
+            body.AddPart(CreatePart("Back"));
+            foreach (int side in new[] { Laterality.LEFT, Laterality.RIGHT })
+            {
+                body.AddPart(CreatePart("Feet", Laterality.HIND | side));
+                body.AddPart(CreatePart(bird ? "Wing" : "Feet", Laterality.FORE | side));
+            }
+            if (bird) body.AddPart(CreatePart("Tail"));
+            body.AddPart(CreatePart("Thrown Weapon"));
+            body.AddPart(CreatePart("Floating Nearby"));
             MarkNative(body);
             return body;
         }

@@ -71,6 +71,7 @@ namespace CavesOfOoo.Diagnostics
             public static readonly ProfilerMarker ProcessUntilPlayerTurn = new ProfilerMarker("COO.Turns.ProcessUntilPlayerTurn");
             public static readonly ProfilerMarker EndTurn = new ProfilerMarker("COO.Turns.EndTurn");
             public static readonly ProfilerMarker AiTakeTurn = new ProfilerMarker("COO.Turns.AI.TakeTurn");
+            public static readonly ProfilerMarker BromeliadRetreat = new ProfilerMarker("COO.Turns.AI.BromeliadRetreat");
         }
 
         public static class Combat

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using CavesOfOoo.Data;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
@@ -15,6 +16,9 @@ namespace CavesOfOoo.Core
         public string Name => "PopulationBuilder";
         public int Priority => 4000;
         public PopulationTable Table;
+        /// <summary>Optional cold-generation habitat predicate. A rolled
+        /// animal with no eligible unoccupied cell is skipped and diagnosed.</summary>
+        public System.Func<string, Cell, bool> HabitatFilter;
 
         public PopulationBuilder(PopulationTable table)
         {
@@ -32,7 +36,7 @@ namespace CavesOfOoo.Core
             var openCells = new List<(int x, int y)>();
             zone.ForEachCell((cell, x, y) =>
             {
-                if (cell.IsPassable() && !zone.GenReservedCells.Contains((x, y)))
+                if (!cell.BlocksMovement() && !zone.GenReservedCells.Contains((x, y)))
                     openCells.Add((x, y));
             });
 
@@ -44,7 +48,29 @@ namespace CavesOfOoo.Core
             {
                 if (openCells.Count == 0) break;
 
-                int idx = rng.Next(openCells.Count);
+                int idx;
+                if (HabitatFilter != null)
+                {
+                    // Reservoir selection is uniform over eligible cells. A
+                    // cyclic scan would favor the first cell after a long gap.
+                    int candidate = -1, eligible = 0;
+                    for (int test = 0; test < openCells.Count; test++)
+                    {
+                        var pos = openCells[test];
+                        if (HabitatFilter(blueprintName, zone.GetCell(pos.x, pos.y))
+                            && rng.Next(++eligible) == 0) candidate = test;
+                    }
+                    if (candidate < 0)
+                    {
+                        if (Diag.IsChannelEnabled("worldgen"))
+                            Diag.Record("worldgen", "HabitatPopulationRejected", payload: new
+                            { blueprint = blueprintName, zone = zone.ZoneID, table = Table.Name,
+                                reason = "no_habitat", open = openCells.Count, eligible });
+                        continue;
+                    }
+                    idx = candidate;
+                }
+                else idx = rng.Next(openCells.Count);
                 var (x, y) = openCells[idx];
 
                 // BuilderSpawn rather than CreateEntity directly: a table

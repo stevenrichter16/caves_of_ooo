@@ -276,6 +276,8 @@ namespace CavesOfOoo.Core
                 {
                     case SinkholeArchetype.DrownedSima:
                         pipeline.AddBuilder(new DrownedSimaBuilder());
+                        pipeline.AddBuilder(new SimaNestBuilder());
+                        pipeline.AddBuilder(new PopulationBuilder(PopulationTable.StumpSima()));
                         break;
                     case SinkholeArchetype.StrandedSettlement:
                         pipeline.AddBuilder(new StrandedSettlementBuilder(this));
@@ -527,7 +529,7 @@ namespace CavesOfOoo.Core
                 new List<StructureStamp> { StampCatalog.WovenDoll() },
                 priority: 3790, maxStructures: 1));
             pipeline.AddBuilder(new PopulationBuilder(
-                PopulationTable.GetBiomeTable(BiomeType.Grovelands, tier)));
+                PopulationTable.GetBiomeTable(BiomeType.Grovelands, tier)) { HabitatFilter = StumpFaunaHabitat.Allows });
             return pipeline;
         }
 
@@ -592,7 +594,7 @@ namespace CavesOfOoo.Core
             // table: the god-tree's stump was populated by snapjaws.
             pipeline.RemoveBuilders<PopulationBuilder>();
             pipeline.AddBuilder(new PopulationBuilder(
-                PopulationTable.GetStumpTable(band, tier)));
+                PopulationTable.GetStumpTable(band, tier)) { HabitatFilter = StumpFaunaHabitat.Allows });
             return pipeline;
         }
 
@@ -615,7 +617,7 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new ContainerBuilder(biome, tier,
                 ContainerPlacementService.ZoneKind.Wilderness));
             pipeline.AddBuilder(new PopulationBuilder(
-                PopulationTable.GetBiomeTable(biome, tier)));
+                PopulationTable.GetBiomeTable(biome, tier)) { HabitatFilter = StumpFaunaHabitat.Allows });
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
             // The heavy things the drag verb exists for. Sparse by design —
             // see HaulablePropBuilder.
@@ -793,6 +795,8 @@ namespace CavesOfOoo.Core
                 return;
 
             var (wx, wy, wz) = WorldMap.FromZoneID(zoneID);
+            HelmwoodPassages.OnZoneGenerated(zone, this);
+
 
             if (wz > 0)
             {

@@ -177,6 +177,12 @@ namespace CavesOfOoo.Rendering
             ("CascadeFather", "cascade_father", 'f'),
             ("GlasspaneFrog", "glasspane_frog", 'f'),
             ("YellowfootWayfarer", "yellowfoot_wayfarer", 't'),
+            // W6.3b — summit and sima fauna, with their own silhouettes.
+            ("SummitSinger", "summit_singer", 'f'),
+            ("BrocchiniaSentinel", "brocchinia_sentinel", 'l'),
+            ("SkySari", "sky_sari", 'E'),
+            ("PrickleBrowGecko", "pricklebrow_gecko", 'l'),
+            ("HelmwoodFrog", "helmwood_frog", 'f'),
         };
 
         /// <summary>ROUND 5 — interactable fixtures resolved in the
@@ -225,6 +231,9 @@ namespace CavesOfOoo.Rendering
             // W6.2a — the Grainfield's ridge (bulk-stamped: variants).
             ("GrainRidge", "grain_ridge"),
             ("StoneDome", "stone_dome"), ("TankBrocchinia", "tank_brocchinia"),
+            ("PricklebrowNest", "pricklebrow_nest"),
+            ("TepuiboneVein", "tepuibone_vein"), ("Tepuibone", "tepuibone"),
+            ("HelmwoodWaterPassage", "helmwood_water_passage"),
             ("ChoirNode", "choir_node"),
             ("EncasedElder", "encased_elder"),
         };
@@ -242,6 +251,7 @@ namespace CavesOfOoo.Rendering
             { "SubstrateVault", 4 },
             { "GrainRidge", 4 },
             { "StoneDome", 3 },
+            { "TepuiboneVein", 4 },
         };
 
         private readonly Dictionary<string, Tile> _namedActorTiles =

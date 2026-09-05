@@ -1,0 +1,71 @@
+{
+    "runId": "868449a126e4415fb6b5d2cef38adc63",
+    "seconds": 75.00059341600002,
+    "frames": 70659,
+    "ticks": 4980,
+    "failures": 0,
+    "audit": [
+        "approached_retreat:PASS",
+        "quiet_control:PASS",
+        "occupied_cover_control:PASS",
+        "sheltered_stays:PASS",
+        "nest_sixteen_scheduled:PASS",
+        "defenders_act_without_respawn:PASS"
+    ],
+    "metrics": [
+        {
+            "name": "COO.Turns.ProcessUntilPlayerTurn",
+            "unit": "nanoseconds",
+            "available": true,
+            "activeFrames": 498,
+            "max": 28741541,
+            "p99": 0,
+            "mean": 14413.125758926675
+        },
+        {
+            "name": "COO.Turns.AI.TakeTurn",
+            "unit": "nanoseconds",
+            "available": true,
+            "activeFrames": 498,
+            "max": 27777085,
+            "p99": 0,
+            "mean": 10405.784118088282
+        },
+        {
+            "name": "COO.Turns.AI.BromeliadRetreat",
+            "unit": "nanoseconds",
+            "available": true,
+            "activeFrames": 498,
+            "max": 103834,
+            "p99": 0,
+            "mean": 353.6515518193012
+        },
+        {
+            "name": "COO.Input.Update",
+            "unit": "nanoseconds",
+            "available": true,
+            "activeFrames": 70657,
+            "max": 32598584,
+            "p99": 7958,
+            "mean": 28349.22769923152
+        },
+        {
+            "name": "COO.ZoneRenderer.LateUpdate",
+            "unit": "nanoseconds",
+            "available": true,
+            "activeFrames": 70658,
+            "max": 9109542,
+            "p99": 1112125,
+            "mean": 746008.2694348915
+        },
+        {
+            "name": "GC Allocated In Frame",
+            "unit": "bytes",
+            "available": true,
+            "activeFrames": 70658,
+            "max": 12766346,
+            "p99": 362420,
+            "mean": 28497.056567457792
+        }
+    ]
+}

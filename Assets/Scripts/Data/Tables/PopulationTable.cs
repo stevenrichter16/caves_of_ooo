@@ -69,11 +69,9 @@ namespace CavesOfOoo.Data
         {
             var result = new List<string>();
             int totalWeight = 0;
-            // §7.6 — a state-gated entry contributes NO weight while it
-            // is gated out, so suppressing one indicator species does
-            // not quietly re-weight the whole band toward whatever is
-            // left. The band keeps its shape; the indicator is what
-            // changes.
+            // Only eligible entries share the weight pool. Removing a gated
+            // entry increases the optional-roll chances of the remaining rows;
+            // their guaranteed MinCount values are unchanged.
             foreach (var e in Entries)
                 if (e.AllowedByWorldState()) totalWeight += e.Weight;
             if (totalWeight == 0) return result;
@@ -166,24 +164,37 @@ namespace CavesOfOoo.Data
             if (tier >= 2)
                 t.Entries.Add(new PopulationEntry
                 { BlueprintName = "MawToad", Weight = 2, MinCount = 0, MaxCount = 2 });
+            t.Entries.Add(new PopulationEntry
+            { BlueprintName = "SkySari", Weight = 1, MinCount = 0, MaxCount = 1,
+              RequiresWorldFlag = "UrquActive" });
             return t;
         }
 
-        /// <summary>Summit: the petrified canopy. W6.3b sites its own
-        /// wave (Summit Singer, Brocchinia-Sentinel, Sky-Sari); until
-        /// then the band carries the wanderers that reach it.</summary>
+        /// <summary>Summit endemics are filtered to their real microhabitat
+        /// by the Stump pipeline. Singer silence is W8's clock, not despawn.</summary>
         private static PopulationTable StumpSummit(int tier)
         {
             var t = new PopulationTable { Name = $"StumpSummit{tier}" };
             t.Entries.Add(new PopulationEntry
-            { BlueprintName = "GlasspaneFrog", Weight = 2, MinCount = 0, MaxCount = 1 });
+            { BlueprintName = "SummitSinger", Weight = 4, MinCount = 2, MaxCount = 4 });
+            t.Entries.Add(new PopulationEntry
+            { BlueprintName = "BrocchiniaSentinel", Weight = 2, MinCount = 1, MaxCount = 2 });
+            t.Entries.Add(new PopulationEntry
+            { BlueprintName = "SkySari", Weight = 1, MinCount = 0, MaxCount = 1,
+              RequiresWorldFlag = "UrquActive" });
             t.Entries.Add(new PopulationEntry
             { BlueprintName = "Wardline", Weight = 2, MinCount = 0, MaxCount = 1 });
             t.Entries.Add(new PopulationEntry
-            {
-                BlueprintName = "SariSnake", Weight = 2, MinCount = 0, MaxCount = 2,
-                RequiresWorldFlag = "UrquActive",
-            });
+            { BlueprintName = "SariSnake", Weight = 2, MinCount = 0, MaxCount = 2,
+              RequiresWorldFlag = "UrquActive" });
+            return t;
+        }
+
+        public static PopulationTable StumpSima()
+        {
+            var t = new PopulationTable { Name = "StumpSima" };
+            t.Entries.Add(new PopulationEntry
+            { BlueprintName = "PrickleBrowGecko", Weight = 1, MinCount = 1, MaxCount = 3 });
             return t;
         }
 
@@ -513,6 +524,7 @@ namespace CavesOfOoo.Data
                 Name = "GrovelandsTier1",
                 Entries = new List<PopulationEntry>
                 {
+                    new PopulationEntry { BlueprintName = "HelmwoodFrog", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "GlowMoth", Weight = 5, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "Rotling", Weight = 2, MinCount = 0, MaxCount = 2 },
                     // Review: the slow shapes arrive with tier 2, like
@@ -529,6 +541,7 @@ namespace CavesOfOoo.Data
                 Name = "GrovelandsTier2",
                 Entries = new List<PopulationEntry>
                 {
+                    new PopulationEntry { BlueprintName = "HelmwoodFrog", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "GlowMoth", Weight = 3, MinCount = 1, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Rotling", Weight = 3, MinCount = 0, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Shambler", Weight = 3, MinCount = 1, MaxCount = 2 },
@@ -546,6 +559,7 @@ namespace CavesOfOoo.Data
                 Name = "GrovelandsTier3",
                 Entries = new List<PopulationEntry>
                 {
+                    new PopulationEntry { BlueprintName = "HelmwoodFrog", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "Shambler", Weight = 4, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "Mosshulk", Weight = 2, MinCount = 0, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "WineLeafSundew", Weight = 4, MinCount = 1, MaxCount = 3 },

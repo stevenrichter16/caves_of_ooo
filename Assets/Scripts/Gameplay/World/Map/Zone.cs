@@ -433,6 +433,7 @@ namespace CavesOfOoo.Core
         public void RebuildEntityCellsFromCells()
         {
             _entityCells.Clear();
+            _tagIndex.Clear();
             for (int x = 0; x < Width; x++)
             {
                 for (int y = 0; y < Height; y++)
@@ -449,7 +450,10 @@ namespace CavesOfOoo.Core
                     {
                         Entity entity = cell.Objects[i];
                         if (entity != null)
+                        {
                             _entityCells[entity] = cell;
+                            IndexEntityTags(entity);
+                        }
                     }
                 }
             }

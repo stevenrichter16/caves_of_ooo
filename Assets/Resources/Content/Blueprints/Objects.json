@@ -30709,6 +30709,245 @@
       ],
       "Stats": [],
       "Tags": []
+    },
+    {
+      "Name": "SummitSinger",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "summit singer" },
+          { "Key": "RenderString", "Value": "f" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ] },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        { "Name": "Brain", "Params": [
+          { "Key": "Passive", "Value": "true" },
+          { "Key": "Wanders", "Value": "true" },
+          { "Key": "SightRadius", "Value": "6" }
+        ] },
+        { "Name": "MeleeWeapon", "Params": [ { "Key": "BaseDamage", "Value": "1d2" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "A small brown frog with a dark W folded across its back. It waits against a mossy trunk, throat lifted. One note, then another. The long space between them seems to belong to the mountain." } ] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 8, "Min": 0, "Max": 8 },
+        { "Name": "Strength", "Value": 4 },
+        { "Name": "Agility", "Value": 13 },
+        { "Name": "Toughness", "Value": 8 },
+        { "Name": "XPValue", "Value": 4 }
+      ],
+      "Props": [ { "Key": "Anatomy", "Value": "Frog" } ],
+      "Tags": [
+        { "Key": "BodyNaturalAttack", "Value": "" }, { "Key": "Faction", "Value": "Beasts" },
+                { "Key": "Tier", "Value": "1" } ]
+    },
+    {
+      "Name": "BrocchiniaSentinel",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "AIBromeliadRetreat", "Params": [] },
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "brocchinia-sentinel" },
+          { "Key": "RenderString", "Value": "l" },
+          { "Key": "ColorString", "Value": "&g" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ] },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        { "Name": "Brain", "Params": [
+          { "Key": "Passive", "Value": "true" },
+          { "Key": "Wanders", "Value": "true" },
+          { "Key": "SightRadius", "Value": "6" }
+        ] },
+        { "Name": "MeleeWeapon", "Params": [ { "Key": "BaseDamage", "Value": "1d2" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "A lichen-coloured lizard flattened against the stone. Its green-brown flanks repeat the mottling of the dome so closely that the yellow eye seems to hang there alone. Tank leaves shiver close by." } ] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 10, "Min": 0, "Max": 10 },
+        { "Name": "Strength", "Value": 5 },
+        { "Name": "Agility", "Value": 19 },
+        { "Name": "Toughness", "Value": 8 },
+        { "Name": "XPValue", "Value": 8 }
+      ],
+      "Props": [ { "Key": "Anatomy", "Value": "Quadruped" } ],
+      "Tags": [
+        { "Key": "BodyNaturalAttack", "Value": "" }, { "Key": "Faction", "Value": "Beasts" },
+                { "Key": "Tier", "Value": "1" } ]
+    },
+    {
+      "Name": "SkySari",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "sky-sari" },
+          { "Key": "RenderString", "Value": "E" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ] },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        { "Name": "Brain", "Params": [
+          { "Key": "Passive", "Value": "false" },
+          { "Key": "Wanders", "Value": "true" },
+          { "Key": "SightRadius", "Value": "10" }
+        ] },
+        { "Name": "MeleeWeapon", "Params": [ { "Key": "BaseDamage", "Value": "2d8" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "An immense ash-pale eagle, dark beneath the wings. Its talons close slowly on nothing. People who know the slopes watch the ground when this shadow crosses them: what coils below and what circles above have begun keeping the same hours." } ] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 58, "Min": 0, "Max": 58 },
+        { "Name": "Strength", "Value": 23 },
+        { "Name": "Agility", "Value": 18 },
+        { "Name": "Toughness", "Value": 16 },
+        { "Name": "XPValue", "Value": 140 }
+      ],
+      "Props": [ { "Key": "Anatomy", "Value": "Avian" } ],
+      "Tags": [
+        { "Key": "BodyNaturalAttack", "Value": "" }, { "Key": "Faction", "Value": "Beasts" },
+                { "Key": "Tier", "Value": "4" } ]
+    },
+    {
+      "Name": "PrickleBrowGecko",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "sima pricklebrow" },
+          { "Key": "RenderString", "Value": "l" },
+          { "Key": "ColorString", "Value": "&B" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ] },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        { "Name": "Brain", "Params": [
+          { "Key": "Passive", "Value": "false" },
+          { "Key": "Wanders", "Value": "true" },
+          { "Key": "SightRadius", "Value": "6" }
+        ] },
+        { "Name": "MeleeWeapon", "Params": [ { "Key": "BaseDamage", "Value": "1d3" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "An indigo gecko with an amber throat and a long fine spine above each eye. It holds itself close to the litter, all sharp elbows and patient attention. Several small tracks meet beneath the stone beside it." } ] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 6, "Min": 0, "Max": 6 },
+        { "Name": "Strength", "Value": 8 },
+        { "Name": "Agility", "Value": 17 },
+        { "Name": "Toughness", "Value": 8 },
+        { "Name": "XPValue", "Value": 9 }
+      ],
+      "Props": [ { "Key": "Anatomy", "Value": "Quadruped" } ],
+      "Tags": [
+        { "Key": "BodyNaturalAttack", "Value": "" }, { "Key": "Faction", "Value": "Beasts" },
+                { "Key": "Tier", "Value": "1" } ]
+    },
+    {
+      "Name": "HelmwoodFrog",
+      "Inherits": "Creature",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "helmwood frog" },
+          { "Key": "RenderString", "Value": "f" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "10" }
+        ] },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        { "Name": "Brain", "Params": [
+          { "Key": "Passive", "Value": "true" },
+          { "Key": "Wanders", "Value": "true" },
+          { "Key": "SightRadius", "Value": "6" }
+        ] },
+        { "Name": "MeleeWeapon", "Params": [ { "Key": "BaseDamage", "Value": "1d2" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "A broad-headed forest frog with a bony casque like a weathered wooden helm. A bead of water clings below its jaw. Underground, such a visitor is worth following: forest frogs do not arrive in sealed rooms." } ] }
+      ],
+      "Stats": [
+        { "Name": "Hitpoints", "Value": 12, "Min": 0, "Max": 12 },
+        { "Name": "Strength", "Value": 6 },
+        { "Name": "Agility", "Value": 13 },
+        { "Name": "Toughness", "Value": 8 },
+        { "Name": "XPValue", "Value": 7 }
+      ],
+      "Props": [ { "Key": "Anatomy", "Value": "Frog" } ],
+      "Tags": [
+        { "Key": "BodyNaturalAttack", "Value": "" }, { "Key": "Faction", "Value": "Beasts" },
+                { "Key": "Tier", "Value": "1" } ]
+    },
+    {
+      "Name": "PricklebrowNest",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "communal pricklebrow nest" },
+          { "Key": "RenderString", "Value": ":" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ] },
+        { "Name": "Physics", "Params": [
+          { "Key": "Solid", "Value": "false" },
+          { "Key": "Takeable", "Value": "false" }
+        ] },
+        { "Name": "PricklebrowNest", "Params": [] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "Sixteen pale eggs share a hollow under the leaf litter. Blue-black brows watch from the surrounding cracks. A foot in that hollow would have many answers." }
+        ] }
+      ],
+      "Tags": [ { "Key": "Fixture", "Value": "" } ]
+    },
+    {
+      "Name": "TepuiboneVein",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "tepuibone vein" },
+          { "Key": "RenderString", "Value": "*" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "4" }
+        ] },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" } ] },
+        { "Name": "Harvestable", "Params": [
+          { "Key": "YieldBlueprint", "Value": "Tepuibone" },
+          { "Key": "YieldMin", "Value": "1" },
+          { "Key": "YieldMax", "Value": "2" }
+        ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A pale seam holds its line through the pink-grey stone. The mountain remembers a grain older than rock. Even a loose chip seems unwilling to be lifted." }
+        ] }
+      ],
+      "Tags": [ { "Key": "Solid", "Value": "" }, { "Key": "MineralVein", "Value": "" } ]
+    },
+    {
+      "Name": "Tepuibone",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "tepuibone" },
+          { "Key": "RenderString", "Value": "*" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ] },
+        { "Name": "Physics", "Params": [
+          { "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "12" }
+        ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "30" } ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "Sandstone cut from the Root. It weighs more than its size promises, pale grain closed tightly around the memory of wood. Name-holders work it patiently; the stone has never been in a hurry." }
+        ] }
+      ],
+      "Tags": [ { "Key": "Mineral", "Value": "" }, { "Key": "Tier", "Value": "3" } ]
+    },
+    {
+      "Name": "HelmwoodWaterPassage",
+      "Inherits": "SprayPool",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "water-worn passage" },
+          { "Key": "RenderString", "Value": "~" },
+          { "Key": "ColorString", "Value": "&W" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ] },
+        { "Name": "WaterPassage", "Params": [] },
+        { "Name": "LiquidPool", "Params": [
+          { "Key": "LiquidId", "Value": "water" },
+          { "Key": "Volume", "Value": "60" }
+        ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "Fresh water runs through a low opening worn smooth in the stone. The current comes from farther away than this pool can explain. Stand here and follow it downward (>) or upward (<)." }
+        ] }
+      ]
     }
   ]
 }

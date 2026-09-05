@@ -475,6 +475,12 @@ namespace CavesOfOoo.Data
                 case "Quadruped":
                     root = AnatomyFactory.CreateQuadruped(category);
                     break;
+                case "Frog":
+                    root = AnatomyFactory.CreateFrogOrBird(false, category);
+                    break;
+                case "Avian":
+                    root = AnatomyFactory.CreateFrogOrBird(true, category);
+                    break;
                 case "Insectoid":
                     root = AnatomyFactory.CreateInsectoid(category);
                     break;

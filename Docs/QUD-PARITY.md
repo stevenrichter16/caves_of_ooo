@@ -6248,3 +6248,23 @@ workflow above is what produced that outcome.
 5. **Phase 10 — debug introspection**: low-cost developer QoL
 6. **Phase 9 — opinion system**: refines combat/conversation feel
 7. **Phase 14 — combat intelligence**: last big feature
+
+## Felling W6.3b — CoO-original summit/sima ecology (2026-09-05)
+
+These are **CoO-original**, not creature/AI ports from Qud: the five summit/sima
+bestiary blueprints; AIBromeliadRetreatPart; PricklebrowNestPart and its shared
+stamp-capacity contract; StumpFaunaHabitat; HelmwoodPassages/WaterPassagePart;
+and the tepuibone seam authoring. They compose the shipped energy scheduler,
+movement, population, interaction and graph-save primitives. Frog/Avian body
+layouts and the opt-in BodyNaturalAttack fallback are content integration,
+not a claim of Qud anatomy/flight parity.
+
+| Area | Post-implementation classification / boundary |
+| --- | --- |
+| Summit fauna | CoO-original ecology; Singer silence clock stays W8; Sky-Sari has Urqu-gated apex combat and Avian anatomy, without advanced aerial locomotion/stoop |
+| Sima nests / passages | CoO-original behavior; sixteen real scheduled defenders; exact-cell paired route within a Drowned-Sima stack, not generalized wormhole generation |
+| Tepuibone | CoO-original resource/stamp; harvest, weight and trade value; no inferred slurry/anti-Urqu economy |
+| Shared fixes | Tag-index reconstruction, occupied-cell population checks and harvest overflow preserve existing mechanics; they are bug fixes, not new parity claims |
+
+See [phase plan](FELLING-W6-PLAN.md) and [native verification](Verification/FellingW6/REPORT.md)
+for RED/GREEN evidence, 43-case adversarial gate, live audit and honesty bounds.

@@ -248,9 +248,9 @@ named. Both fail SAFE in opposite directions: a *required* flag with
 no world state fails CLOSED (never spawn state-gated content into a
 world that has no such state), a *forbidden* one fails OPEN (nothing
 has gone wrong yet). A gated-out entry contributes **no weight**, so
-suppressing one indicator does not quietly re-weight the band toward
-whatever is left — the band keeps its shape and the indicator is what
-changes.
+suppressing one indicator increases the optional-roll chances of remaining
+rows; their guaranteed minimum counts are unchanged. (W6.3b corrects the
+original prose claim; the shipped roll behavior is unchanged.)
 
 The wirings are canon, not invented:
 - **Sari-Snake** `Requires UrquActive` — "Urqu's signs in flesh…
@@ -296,3 +296,202 @@ regression. Recipe that runs clean: restart the MCP server, let it
 settle ~5s, then launch Unity; the plugin's WebSocket error otherwise
 poisons ~19 unrelated tests through LogAssert in either direction
 (server absent OR server started mid-run).
+
+---
+
+### W6.3b — summit/sima bestiary (SHIPPED, 2026-09-05)
+
+**Untouched baseline:** HEAD `02ef64df`, branch
+`claude/game-lore-analysis-jqa7ur`. This workspace also contains the
+previously completed, uncommitted spell-presentation work, so the actual
+baseline is **7,302/7,302 passed**, zero compile errors, rather than the
+handoff's 7,212. Headless Unity ran after the MCP server settled;
+[native XML](Verification/FellingW6/W63b-baseline-7302.xml.gz),
+2026-09-05 15:00:01–15:00:37 UTC. Existing changes remain in place; a
+hash/contents snapshot is at `/tmp/codex-w63b-preexisting/`. Only this
+phase's changes will be staged.
+
+#### Pre-implementation verification sweep
+
+| Premise | Verified reality | Consequence |
+|---|---|---|
+| Five creatures can all enter the summit table | Bestiary §§III–IV: Pricklebrow is sima-floor fauna; Helmwood is forest fauna with rare sima arrivals. PopulationBuilder samples generic passable cells, without habitat restrictions. | Keep surface bands and sima fauna distinct; pin negative habitats as well as presence. |
+| Passive + FleeThreshold implements the sentinel | BrainPart / GoalHandler.ShouldFlee require injury. AIFleeToShrine demonstrates seeking a destination, but also requires injury. | Approach-triggered bromeliad seeking needs bounded explicit behavior. |
+| Singer silence is part of this wave | This plan's W6.3 scope assigns the silence/alarm clock to W8. | Ship the passive W-marked animal; do not delete singers under UrquActive to impersonate silence. |
+| Sky-Sari is an ordinary rare spawn | Bestiary §VI: active during manifest periods. W6.3a's RequiresWorldFlag fails closed without state. | Require UrquActive; test set/clear/missing state and the paired Sari-Snake. |
+| Anatomy is an arbitrary Body parameter | EntityFactory.InitializeAnatomy reads Props[Anatomy]; supported choices are Humanoid/Quadruped/Insectoid/Simple. No flight/stoop/nest framework exists. | Use supported anatomy; disclose any boundary between art and mechanics. |
+| Helmwood can simply be sprinkled underground | Its presence implies a real water-passage connection. DrownedSimaBuilder currently establishes no such connection. | An underground clue must be anchored to actual passage truth, never random filler. |
+| Tepuibone already exists | Only tepuibone-slurry exists, as a liquid ID. MineralVein is a dig-law tag; shipped Harvestable uses YieldBlueprint/YieldMin/YieldMax. | Author real vein and resource art, with a bounded connectivity-safe stamp. Slurry interactions remain deferred. |
+| Content parameters validate themselves | Unknown parameters and missing builder blueprints fail soft. | Assert instantiated values, resource loading, exact sprite dimensions/alpha, and unique GUIDs. JSON edits are surgical string splices. |
+| W6.3a's comment says flag gates never reweight | Roll excludes rejected weight, so later weighted bonus choices favor remaining entries. | Preserve existing behavior; correct the documentation claim without changing the population contract. |
+
+**Readiness / order:** 🟢 blueprint/art/table and reachability seams;
+🟡 targeted habitat behavior; ⚪ Singer alarm/audio clock, advanced
+aerial locomotion, specimen economy, and slurry verbs remain outside
+this content wave. Work through roster/placement, observable habitat
+behavior, and vein content/stamping with recorded RED→GREEN cycles.
+Then counter-checks, dedicated adversarial tests, cold-eye review and
+the required player-flow hypothesis pass. This is CoO-original content,
+not a claim of Qud creature parity.
+
+**Performance / observability:** tables and stamps run only during
+generation. New behavior uses bounded scans without hot-path collection
+allocations, existing movement/goals, and success/refusal diagnostics.
+Persist state through the shipped serializer. Headless tests can verify
+placement, routing, state and imported assets; they cannot judge live
+visual feel or the deferred summit cloud look-pass.
+
+
+### Authorized follow-on — whole-game system audit (2026-09-05)
+
+After completing the entire Felling continuation above, the user requests a
+methodical scan of every game system for bugs, inconsistencies, and dead
+mechanics; evidence-backed repair plans; then implementation without further
+intervention. Preserve this order. Inventory systems from the shipped code and
+living docs, separate verified defects from recorded debt, and apply the same
+RED → GREEN, review → fix, adversarial-gate methodology to each bounded wave.
+This is authorized follow-on work, not a reason to interrupt W6 close-out.
+
+
+W6.3b progress: real factory/art RED 5 → GREEN 44; cold-eye found unused
+natural melee dice and incorrect frog/eagle limbs. RED 5 real failures plus
+an equipped-control fixture error (missing FirstSlotForEquipped, corrected),
+then GREEN 79 including existing combat controls. Added opt-in
+BodyNaturalAttack fallback only when no hand weapon exists; Frog/Avian layouts.
+Ecology RED 12 → GREEN 87: Urqu-gated eagles, summit habitat filtering,
+healthy Sentinel approach/quiet behavior, communal nest actual movement,
+16 distinct scheduled defenders, and Ginmere floor placement.
+
+Helmwood verification correction: a wet ordinary staircase does NOT satisfy
+the canon Door shortcut. W6.3b now includes a minimal paired WaterPassage
+marker/connection using the existing registry and save graph, plus exact-cell
+travel. No StairsUp/Down marker (would reveal secrets through auto-walking).
+Only place the rare underground frog when both real endpoints exist. Test
+round trip, blocked/orphan exits, ordinary stairs, save/load, and unloading.
+
+
+### W6.4 readiness addendum (verified before implementation)
+
+- Olderdeep is in SinkholeSites, not WorldMapAuthoring.Places. The existing
+  village Profile switch is bypassed by sinkhole routing. Pass an authored
+  FoundingVillage profile through fresh stamping, rehydration and the floor
+  builder; preserve already visited cached floors rather than erase player state.
+- HearthPatch has BOTH Solid tag and Physics.Solid. Author a separately
+  walkable plume with HearthPatchPart, not an inherited solid patch with only
+  one override. WarRep is -150, shared CatacombFolk ledger, player damage only.
+- BedPart is NPC sitting, not player sleeping. RestSystem.TryRest supplies
+  healing/bleeding cure and exactly 60 clock ticks, but no dream event. Add
+  the explicit same-cell, trusted-player action; emit meeting only on success.
+  Normal underfoot terrain is obscured by player targeting, so test the actual
+  interaction picker and command dispatch rather than only a direct part call.
+- Founding villagers need their own ConversationIDs. Predicates/actions are
+  Key/Value arrays; IfReputationAtLeast=CatacombFolk:Liked starts at 50.
+- Rooted canon: arched torso, grounded shins, eastward open arms, torso plume,
+  oval chamber, untouched gap. Emotional key is contentment. Tooltip remains
+  the Rooted; mortal name is a deepest-rite reveal. Listening (burial, plaque
+  deepening, mutter-prayer) differs from aggressive Tending cultivation.
+- Olderdeep geography Tier 3 vs design Tier 5 approach is a documented source
+  mismatch; do not silently retier. Clock-long scent/recognition is beyond the
+  narrowly planned meeting and needs an explicit scope decision, not an
+  ordinary EndTurn duration pretending to measure weeks.
+
+
+### W6.5 / W6.6 readiness addendum (verified before implementation)
+
+- Felling (3,5) needs its own appended POI type/authored stamp, surface route
+  and world-map render branch. WorldMapAuthoring.Places would make a village.
+  Use a sparse bespoke pipeline, not the full random Stump pipeline.
+- The six bare positions require actual clearing: stamp dots preserve terrain,
+  and ClearsVegetation misses non-solid plants. Mandatory placement must verify
+  success. The empty seventh is one POINT, not a zone or summoned actor.
+- No tile-level Urqu consumer exists. Zone.UrquBleedLevel is zone-wide and read
+  by flower lifespan only. Static terrain receives neither actor EndTurn nor
+  generic material ticks; standing/waiting needs a real occupancy seam.
+  Persist an entity/part: transient TileState and GenReservedCells do not save.
+- Append SealedLibrary=3, explicitly map its coined mouth, and KEEP the unnamed
+  archetype pool modulo 3. Enum + mouth + floor route ship in one commit.
+- Library vault must land after Stairs(3500)/StairConnector(3600), before
+  hazards(3900)/population(4000)/containers(4100); otherwise repair can breach
+  walls or stairs can appear inside. Reserve its interior and verify no entry.
+- Available slopes are tier 4, routed to floor tier 5, while canon first Library
+  says tier 3. A POI-tier edit alone does not affect the router; resolve the
+  mismatch explicitly rather than claim both. Existing discovery means hidden
+  until the surface chunk is entered, not permanently absent from the map.
+- Stock LockedDoor is wooden, HP22/hardness2 and breakable even with no key.
+  KeyId must be exact/nonempty and IsLocked=true; missing KeyId auto-unlocks.
+  For a seal awaiting a future key use Destructible.Indestructible=true.
+  Do not inherit a Solid-tagged wall for the door: unlock clears Physics.Solid
+  only. The closed stock door also fails tag-only gas barriers.
+- Author Tepuibone/Memory-Marble/Choir-Iron walls with real art; their names do
+  not create an immunity aura. No wall fungal/Urqu protection mechanic exists.
+  W6 ships sealed architecture with no key, quest arc, Staking or ending verb.
+
+### W6.3b current verification checkpoint — 2026-09-05
+
+Still in implementation/review; W6.4–6.7 readiness notes above are not shipped.
+Baseline was 7302 (90 earlier spell tests above the 7212 handoff), all green.
+Current changes remain uncommitted while the live scenario/performance gate runs.
+
+| Review finding / false premise | Resolution / evidence |
+| --- | --- |
+| A surviving water marker lost its route when the owning surface unloaded | Lazily load only an uncached authored peer, then re-resolve its real connection; do not repair cached orphans. Direct ascent and whole-save controls RED → GREEN. |
+| Frog placement could choose its own entrance | Exact outer rings exclude the endpoint; reserved inner ring control RED → GREEN. |
+| SprayPool looked wet but has no LiquidPool | Passage child explicitly declares LiquidId=water, Volume=60. |
+| Heavy harvest yield silently disappeared when the pack filled | Overflow drops at the harvest cell (actor cell for carried sources); carried/dropped diagnostic counts; capacities 0/12/24 preserve both units. Stacker merges two units into one object, so tests count units. |
+| Bare Stump bands had ordinary Helmwood rows but no trees | Remove unreachable rows; add rare Helmwood to shipped Grovelands forest tables and apply the real Tree-nearness predicate to the surface pipelines. Actual-map seed sweep RED → GREEN. |
+| Habitat rejection and cryptic AI decisions were silent | Cold worldgen refusal record; opt-in `ai` decisions distinguish quiet/covered/no-cover/move/veto. The AI channel intentionally stays off by default to avoid ring churn. |
+| Newly spawned defenders appeared inert after one wait in a test | Existing energy scheduler starts new actors at zero, player wins the first tie. Two real waits prove action; this was a fixture timing correction, not a scheduler change. |
+| Population-row splice removed only half a two-line statement | Native compile check caught syntax failure before XML parsing; corrected the surgical splice. No stale results accepted. |
+
+Evidence: passage/harvest 61/61 GREEN; forest/observability 45/50 RED (four real missing wires plus the scheduler fixture), then 50/54 with only the four newly introduced AI-diagnostic REDs remaining. Earlier full checkpoint 7353/7353. Final full run and native Play workload still required.
+
+Native verification plan: reusable self-auditing summit/sima scenario, real bootstrap,
+registered energy scheduler, six treatment/control rows stamped by run ID. Follow
+with a 75-second native frame capture under ordinary input waits; record AI,
+retreat, input and renderer CPU counters plus GC. This establishes script-observable
+behavior and measured CPU cost on this host, not visual quality, flight feel, or
+Singer audio (W8). Use the actual scene `Assets/Scenes/Main/SampleScene.unity`.
+
+#### W6.3b final-gate progress
+
+- Full EditMode suite: **7394/7394 GREEN**, zero C# errors, 2026-09-05
+  17:22:35–17:23:29 UTC (`W63b-full-green-7394.xml.gz`).
+- Six-row scenario smoke: all controls pass, including repeat run stamps and
+  loud missing-blueprint refusal. The native bootstrap audit also passed all
+  six rows; its first 75-second capture had **zero player ticks**, correctly
+  rejected by the activity guards. Raw `W63b-live-idle-rejected-profile.json`
+  is evidence of a failed capture, not performance evidence for AI.
+- Native Test Framework PlayMode launch stalled before running its test body.
+  Replaced the temporary PlayMode assembly with an Editor batch launcher using
+  the real OnAfterBootstrap event and an independent 180-second deadline.
+  One older editor process was also closed before repeating the complete
+  server-settle / single-editor sequence. EditMode XML remained independently
+  timestamped; the final run is repeated with only one editor.
+- Batch input needs an unfocused-Game-view override. The scenario now clones
+  InputSettings, routes native queued keys to the Game view, then restores the
+  original settings/device state on teardown. No production input workaround.
+- Pre-existing spell-renderer teardown issue observed: ZoneRenderer's camera
+  accent callback uses `?.` on a destroyed Unity Camera, producing a
+  MissingReferenceException during editor exit. This is in the protected
+  earlier spell work, outside W6.3b changes; record for the authorized
+  whole-game audit, do not silently rewrite the user's pre-existing diff.
+
+### W6.3b exit — 2026-09-05
+
+**SHIPPED.** Final single-editor native EditMode suite **7394/7394 GREEN**,
+zero C# errors, 17:38:40–17:39:40 UTC. Worktree baseline 7302 → 7394 (+92);
+90 protected earlier spell tests remain outside this commit. Dedicated gate:
+43 adversarial cases. Twelve authored sprites pass the complete metadata/GUID
+and pixel audit. Cold-eye findings in this wave are resolved.
+
+Native Play audit run `868449a126e4415fb6b5d2cef38adc63`: all six rows PASS;
+75.0006 seconds, 70,659 frames, 498 actual input-driven player actions, zero
+capture failures, batch launcher exit 0. Sentinel behavior across the three
+subjects: active-frame mean 0.0502 ms, p99 0.0866 ms, max 0.1038 ms. The full
+AI stress workload's first-action maximum and editor GC are retained, not
+hidden by averages. See `Docs/Verification/FellingW6/REPORT.md` for raw data,
+failed-capture controls, scope boundaries and protected-work preservation.
+
+**Next implementation: W6.4, Olderdeep the Founding.** W6.5 (Felling-Site),
+W6.6 (SealedLibrary enum + archetype + mouth in one commit), and W6.7 close-out
+remain. Then perform the user's authorized whole-game system audit/repair cycle.

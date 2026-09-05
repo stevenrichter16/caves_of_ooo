@@ -221,6 +221,7 @@ namespace CavesOfOoo
                 // SPELLCRAFT SM6: Glacial Wall spawns IceWall entities.
                 Skills.Cryomancy_GlacialWall.Factory = _factory;
                 LayRuneGoal.Factory = _factory;
+                PricklebrowNestPart.Factory = _factory;
                 AlchemyStillPart.Factory = _factory;
                 ForgePart.Factory = _factory;
                 SeedPart.Factory = _factory;
@@ -888,6 +889,7 @@ namespace CavesOfOoo
             DestructionSystem.EntityFactoryRef = _factory;
             Skills.Cryomancy_GlacialWall.Factory = _factory;
             LayRuneGoal.Factory = _factory;
+            PricklebrowNestPart.Factory = _factory;
             AlchemyStillPart.Factory = _factory;
             ForgePart.Factory = _factory;
             SeedPart.Factory = _factory;

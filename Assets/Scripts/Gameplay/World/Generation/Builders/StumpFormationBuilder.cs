@@ -55,6 +55,9 @@ namespace CavesOfOoo.Core
                 case Formation.RimForest:     BuildRimForest(zone, factory, rng, placed); break;
             }
 
+            if (band == StumpBand.Slopes)
+                StampTepuibone(zone, factory, rng, placed);
+
             // Delta contract, the W5.7-corrected shape: repair to the
             // strongest invariant that held before us, with TARGETED
             // victim selection (a cell bordering the sealed region).
@@ -89,6 +92,26 @@ namespace CavesOfOoo.Core
                     new { zoneId = zone.ZoneID, band = band.ToString(),
                           formation = formation.ToString(), placed = placed.Count });
             return true;
+        }
+
+        private static void StampTepuibone(Zone zone, EntityFactory factory,
+            Random rng, System.Collections.Generic.List<(Entity, int, int)> placed)
+        {
+            // Short seams follow the same east-west grain. They participate
+            // in the formation's existing connectivity repair, and respect
+            // authored reservations even in standalone/retry fixtures.
+            for (int seam = 0; seam < 3; seam++)
+            {
+                int x = 4 + rng.Next(Zone.Width - 12);
+                int y = 3 + rng.Next(Zone.Height - 6);
+                for (int offset = 0; offset < 4; offset++)
+                {
+                    int px = x + offset;
+                    if (!IsOpenGround(zone, px, y) || zone.GenReservedCells.Contains((px, y))) continue;
+                    var e = BuilderSpawn.TryPlaceOnce(zone, factory, "TepuiboneVein", px, y);
+                    if (e != null) placed.Add((e, px, y));
+                }
+            }
         }
 
         /// <summary>Parallel east–west ridge lines with rng-placed gaps

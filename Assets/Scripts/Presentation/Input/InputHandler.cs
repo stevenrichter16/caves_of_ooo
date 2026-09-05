@@ -1046,6 +1046,14 @@ namespace CavesOfOoo.Rendering
             var cell = CurrentZone.GetEntityCell(PlayerEntity);
             if (cell == null) return;
 
+            if (HelmwoodPassages.HasPassage(cell))
+            {
+                var passage = HelmwoodPassages.TryTravel(PlayerEntity, CurrentZone, goingDown, ZoneManager);
+                if (passage.Success) { HandleZoneTransition(passage); EndTurnAndProcess(); }
+                else MessageLog.Add(passage.ErrorReason);
+                return;
+            }
+
             // Check for stairs entity in current cell
             bool hasStairs = false;
             for (int i = 0; i < cell.Objects.Count; i++)

@@ -139,8 +139,12 @@ namespace CavesOfOoo.Core
 
             if (weapons.Count == 0)
             {
-                // No weapons: punch/natural attack from primary hand or body
-                PerformSingleAttack(attacker, defender, null, true, zone, rng);
+                // W6.3b: opt-in body weapons (beaks, bites, talons) do not
+                // require fictitious hands. Equipped/default hand weapons
+                // still take priority, and untagged creatures keep 1d2.
+                var natural = attacker.HasTag("BodyNaturalAttack")
+                    ? attacker.GetPart<MeleeWeaponPart>() : null;
+                PerformSingleAttack(attacker, defender, natural, true, zone, rng);
                 return true;
             }
 

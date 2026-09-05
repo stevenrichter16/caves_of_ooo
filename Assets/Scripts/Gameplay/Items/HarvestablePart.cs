@@ -67,6 +67,9 @@ namespace CavesOfOoo.Core
             string sourceName = ParentEntity.GetDisplayName();
 
             int yielded = 0;
+            int dropped = 0;
+            Zone zone = e.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone;
+            var dropCell = zone?.GetEntityCell(ParentEntity) ?? zone?.GetEntityCell(actor);
             bool rollPassed = YieldChance >= 100 || rng.Next(100) < YieldChance;
             if (rollPassed && factory != null && !string.IsNullOrEmpty(YieldBlueprint)
                 && factory.Blueprints.ContainsKey(YieldBlueprint))
@@ -78,10 +81,18 @@ namespace CavesOfOoo.Core
                     var item = factory.CreateEntity(YieldBlueprint);
                     if (item != null && inv != null && inv.AddObject(item))
                         yielded++;
+                    else if (item != null && dropCell != null)
+                    {
+                        zone.AddEntity(item, dropCell.X, dropCell.Y);
+                        ZoneRenderHooks.MarkCellDirty(dropCell.X, dropCell.Y, "HarvestOverflow");
+                        dropped++;
+                    }
                 }
             }
 
-            if (yielded > 0)
+            if (dropped > 0)
+                MessageLog.Add($"You harvest {sourceName}: {yielded} x {YieldBlueprint} packed, {dropped} left on the ground.");
+            else if (yielded > 0)
                 MessageLog.Add($"You harvest {sourceName}: {yielded} x {YieldBlueprint}.");
             else
                 MessageLog.Add($"You harvest {sourceName}, but find nothing worth keeping.");
@@ -101,6 +112,7 @@ namespace CavesOfOoo.Core
                         source = ParentEntity.BlueprintName,
                         yield = YieldBlueprint,
                         count = yielded,
+                        dropped,
                         rollPassed,
                     });
             }
