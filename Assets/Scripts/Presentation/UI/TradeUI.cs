@@ -351,8 +351,8 @@ namespace CavesOfOoo.Rendering
             else
             {
                 if (_rightRows.Count == 0) return;
-                ok = TradeSystem.SellToTrader(PlayerEntity, _trader, _rightRows[_rightCursor].Item);
-                _statusMessage = ok ? null : "The trader can't afford that.";
+                ok = TradeSystem.SellToTrader(PlayerEntity, _trader, _rightRows[_rightCursor].Item, out string reason);
+                _statusMessage = ok ? null : reason;
             }
             Rebuild();
             Render();

@@ -63,6 +63,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
             var actor = context.Actor;
             var zone = context.Zone;
             var inventory = context.Inventory;
+            if (!transaction.TryClaim(_item, actor, Name))
+                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "Item transfer is already in progress.");
 
             // If equipped, unequip first and register rollback to re-equip.
             var equippedState = UnequipCommand.CaptureEquippedState(context, _item);
@@ -96,18 +98,23 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Actor has no valid position to drop items.");
             }
 
-            if (!inventory.RemoveObject(_item))
+            var source = InventoryTransferSnapshot.Capture(inventory);
+            transaction.Do(apply: null, undo: source.Restore);
+            if (!source.Apply(() => inventory.RemoveObject(_item)))
             {
                 return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,
                     "Item is not in inventory.");
             }
 
-            transaction.Do(
-                apply: null,
-                undo: () => inventory.AddObject(_item));
-
-            zone.AddEntity(_item, cell.X, cell.Y);
+            if (!zone.AddEntity(_item, cell.X, cell.Y))
+            {
+                MessageLog.Add("There is no room to drop that here.");
+                DispositionDiagnostics.Record(context, _item, Name, _item.GetPart<StackerPart>()?.StackCount ?? 1,
+                    zone.ZoneID, "ground_placement_refused");
+                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed,
+                    "Ground placement refused.");
+            }
             transaction.Do(
                 apply: null,
                 undo: () => zone.RemoveEntity(_item));
@@ -119,6 +126,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
             afterDrop.SetParameter("Actor", (object)actor);
             afterDrop.SetParameter("Item", (object)_item);
             actor.FireEventAndRelease(afterDrop);
+
+            DispositionDiagnostics.Record(context, _item, Name, _item.GetPart<StackerPart>()?.StackCount ?? 1, zone.ZoneID);
 
             return InventoryCommandResult.Ok();
         }

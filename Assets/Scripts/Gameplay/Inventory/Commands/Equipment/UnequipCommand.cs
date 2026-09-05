@@ -50,6 +50,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
             var actor = context.Actor;
+            if (!transaction.TryClaim(_item, actor, Name))
+                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "Item transfer is already in progress.");
             var rollbackState = CaptureEquippedState(context, _item);
             if (!rollbackState.HasLocation)
             {
@@ -133,6 +135,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
         {
             if (context?.Actor == null || context.Inventory == null || item == null)
                 return false;
+            if (!transaction.TryClaim(item, context.Actor, "Unequip")) return false;
 
             var actor = context.Actor;
             var rollbackState = CaptureEquippedState(context, item);

@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c NEXT**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d NEXT**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -631,3 +631,134 @@ Then dedicated20–60 adversarial cases, native full-container/full-trader paths
 independent taxonomy/Qud-contract review, full suite and same-commit docs.
 
 Wave2b COMPLETE: unchanged full repeat7866/7866 GREEN,22:36:28–22:37:58UTC, zero C# errors. +68 cases; native31/31 and both independent reviews clear. A17/A18 closed within the report’s explicit ordered-refusal bounds. Proceed to wave2c transfer-conservation RED fixtures.
+
+Wave2c begins afterb468e614 (7866 full GREEN). Root's required inverse-source
+read also found the same merged-destination undo in Pickup/TakeFromContainer,
+and GoldCoin's special credit path ignores zone membership/removal. Record
+**A43 — acquisition source/rollback integrity** as a follow-up producer/consumer
+verification task; loose-object API assumptions and actual UI reach still need
+confirmation. Do not silently broaden the initial disposition/sale wave.
+
+Wave2c initial20-case RED confirms9 failures/11 controls,22:43:22UTC, zero C# errors: trader capacity2, merged container undo2, equipped-unit identity1, handling refresh2, rejected drop placement2. Add paired actual TradeUI sale-status tests before its failure-feedback change.
+
+Wave2c expanded22-case RED confirms10 failures/12 controls22:44:41UTC; added
+TradeUI capacity-message failure. Minimum implementation adds a short-lived
+item-list rollback receipt (entries, counts, backreferences; no payload/effect
+rollback claim), uses it after unequip and before disposition, checks ground
+placement, and joins sale delivery/equipment/wallets in one command transaction.
+Partial drop and equipment split rollback refresh the authoritative inventory.
+TradeUI receives the actual sale refusal explanation through a bool-compatible
+overload. Initial focused verification is next; adversarial/review/native remain.
+
+Wave2c minimum338/338 GREEN22:48:12–13UTC, zero C# errors. Independent
+cold-eye found two introduced callback regressions: whole-list undo resurrects
+an independently dropped second item, and nested same-item sale during
+AfterUnequip can commit then be re-equipped by outer rollback. Also add missing
+disposition outcome records. Dedicated adversarial RED cases precede corrections:
+limit receipts to transfer-caused membership/count changes; guard participating
+items across nested disposition/equipment calls while a transaction remains
+active; preserve different-item independent work. Probe malformed quantities,
+self-sale, save/capacity, multi-slot bonuses, vetoes and exception rollback too.
+
+Wave2c dedicated33-case adversarial sweep plus22 regressions:43/55 passed,
+12 failed22:56:02–03UTC. Six missing outcome-record assertions, three callback
+regressions (same-item sale/drop and unrelated-item resurrection), two invalid-
+quantity sales and one self-sale confirmed. Corrections seal receipts around
+only the immediate Add/Remove mutation; restore changed entries rather than
+entire lists. Transaction-scoped item claims reject separate reentrant commands
+for participating items, allow direct same-transaction equipment operations,
+and release on commit/rollback. Weak-key claims avoid retaining abandoned
+entity graphs. Required new gates record reentrancy/disposition/sale reasons.
+No public Part/save fields change. Claim placement also covers equip/unequip
+and fresh equipment split identities. Further focused verification follows.
+
+Wave2c corrected371/371 focused GREEN23:00:18UTC, zero C# errors. Native
+plan preflight: actual Sack6 distinct items at feet, Dagger3 equip1 leaves
+distinct carried2/equipped1; full Put refusal then native loot SilverSand to
+free a slot and successful put. Underfoot Player+Sack opens pile summary, so
+use native PickCell → PickTarget:Sack → OpenContainer. Actual Merchant holds
+Starapple99+51 at authored capacity150; failed sale carries an exact status
+and new rejection record; buy51 then sell Dagger2 with real price/wallet checks.
+Seven staging/diagnostic RED tests precede native scenario implementation.
+
+Final protocol review added a concrete independent-command affordability
+case: a different-item nested sale during AfterUnequip legitimately commits,
+but can exhaust the same trader's purse before the outer sale pays. Add RED
+insufficient-for-both plus sufficient-for-both controls before a late funds
+recheck. Add a claim-before-CanBeTraded callback pin and strengthen the existing
+TradeUI case to retry on the SAME refused screen. Native staging7/7 missing-
+type RED23:02:33UTC is confirmed; scenario implementation waits for this fix.
+
+
+### Follow-up acquisition and stack-identity preparation (read-only complete)
+
+A43: facade documents pickup from the zone; inspected positive fixtures place
+the item. Preserve adjacent pickup, reject absent/wrong-zone/self-carried/other-
+owned sources, and revalidate after pickup hooks. No ordinary repeated-key
+gold duplication is demonstrated because successful popup rows disappear. Stale
+references remain API regressions: GoldCoin3 wallet20 →35 once; repeated input
+refuses, distinct coin succeeds. Reject count0/−1 and checked overflow; gold
+currently skips pickup hooks, ignores RemoveEntity and lacks transaction undo.
+Outer failure must restore wallet and exact coin/cell. If hooks are unified,
+pin gold vetoes and callback source revalidation before altering semantics.
+
+Acquisition receipts: Starapple carried2/source3 and carried98/source3 fit
+default capacity150; outer rollback must restore both sides of full/partial
+merges. Preserve committed merges. Merchant Starapple99+1 with player52 refuses
+purchase99 at151 weight but current source re-add turns original99→1/sibling1→99.
+Player51 is the success control at150. Container take has the same exact-source
+refusal issue. Adopt transaction item claims in these acquisition paths rather
+than assuming GA02c guards raw lists or every existing command. Existing Taken
+quest/effect callback rollback remains the separately recorded broader boundary.
+
+A03 concrete real collisions: GlimmerBrine alone vs +SparkRoot both display
+acidic & electrified tonic but EffectsRaw charge2 vs3. MendleafSprig+EmberFruit
+vs CandyHeartRoot both display mending & mending tonic; these healing-only brews
+have no BrewItemPart, and Tonic.Healing differs1d4/2d4. Actual paid tinkering
+mod_palesalt_infuse once vs twice suppresses duplicate adjective but carries
+one vs two Tier2/BonusDamage4 enhancement Parts (4 vs8 undead damage). Transfer
+the modified weapons to provoke restacking; modification alone does not restack.
+
+Minimum semantic comparator is computed, symmetric, no saved fingerprint/field
+change: keep blueprint/display and charged-book veto; compare presence and
+configured BrewItem EffectsRaw/Form, Tonic Effect/Duration/Healing/StatBoost/
+Drink/Message, StatusTonic EffectName/EffectDuration/EffectDamageDice/
+EffectMagnitude, CureTonic CureEffect, plus every enhancement occurrence in
+actual Parts order. Enhancement fields: runtime type/Tier, PaleSalt/ChoirIron
+BonusDamage, Serrated ChancePercent/SaveTarget/DamageDice, Lacquered AvBonus/
+AppliedBonus, GlowQuartz RadiusBonus/AppliedBonus, Engraved Faction/RepDelta/
+AppliedBonus. Unknown enhancement types should conservatively refuse. Do not
+compare ownership/IDs/count or blindly sort dispatch-significant effects.
+
+Qud GameObject.SameAs:10696 checks parts/stats/effects; Stacker.SameAs ignores
+quantity, explicit modification comparators inspect Tier/config. CoO duplicates
+Parts intentionally, so a first-part-only comparator is insufficient. Preserve
+identical recipes and equivalent CandyHeartRoot vs +Mendleaf (MAX merge gives
+same2d4), once/once and twice/twice infusion, split/remerge and token-graph reload.
+Test ACTUALLY CARRIED outputs after AddObject; using orphan returned producedItem
+with consumeItem=false conceals the current merge defect. This is payload-family
+identity, not a blanket equivalence claim for all HP/thermal/material state.
+
+Wave2c payment RED58:57 passed/1 insufficient-for-both failure23:04:01–02UTC. Late affordability gate after unequip now preserves the independent sale and refuses the outer transfer before delivery. Native bench/driver/isolated launcher implemented after seven confirmed staging REDs. Focused GREEN verification follows.
+
+Wave2c staging/payment GREEN385/38523:08:09–10UTC, zero C# errors. First
+native keyboard audit35/35 PASS, runf740aef9c8474b56b3bfbd63483ea53f,11.219860417s,
+exit0. Actual inventory→full Sack refusal→loot one filler→successful Put, then
+Merchant dialogue→full-trader sale refusal→buy51→successful sale all passed.
+Raw JSON/log retained. Recorded A31 destroyed-camera shutdown errors recur after
+the successful audit; no claim of clean global FX teardown. Independent native
+review identified a verification gap: dictionary/Physics equipment checks did
+not inspect BodyPart._Equipped used by combat. Add original body-slot capture,
+assert restored on refusal and absent on success before final native repeat.
+
+Final taxonomy review found no remaining must-fix production regression. Add8
+sequential same-transaction and conflicting-vs-independent destination-merge
+controls, plus veto/exception retries and an explicit callback-entered pin.
+These are hypothesis/countercheck probes; classify their first results honestly.
+
+Wave2c COMPLETE:73/73 final checks, then7939/7939 full GREEN23:18:03–23:19:33UTC,
+zero C# errors. Strengthened native35/35 PASS, run4621440f68954790b6086b80724a72a7,
+10.452218166s, exit0. Eight final hypotheses pinned correct behavior; independent
+taxonomy/Qud-contract/native review clear after body-equipment assertions.
+2326 unique GUIDs,zero collisions. See GA02c-REPORT.md for exact evidence and
+limits. A01/A04 and transfer-specific A05 closed; proceed A43 acquisition.

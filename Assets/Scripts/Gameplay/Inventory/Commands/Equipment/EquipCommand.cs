@@ -101,6 +101,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
             }
 
             var actor = context.Actor;
+            if (!transaction.TryClaim(item, actor, "Equip"))
+                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "Item transfer is already in progress.");
             var equippable = item.GetPart<EquippablePart>();
             if (equippable == null)
             {
@@ -114,6 +116,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             if (sourceStacker != null && sourceStacker.StackCount > 1)
             {
                 itemToEquip = sourceStacker.RemoveOne();
+                transaction.TryClaim(itemToEquip, actor, "Equip"); // A fresh split belongs to this same transaction.
                 var splitItem = itemToEquip;
                 transaction.Do(
                     apply: null,
@@ -291,6 +294,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
             sourceStacker.StackCount += splitStacker.StackCount;
             splitStacker.StackCount = 0;
+            context?.Inventory?.RefreshHandlingCarryPenalty();
         }
     }
 }

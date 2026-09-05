@@ -71,6 +71,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
         {
             var actor = context.Actor;
             var zone = context.Zone;
+            if (!transaction.TryClaim(_item, actor, Name))
+                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "Item transfer is already in progress.");
 
             var stacker = _item.GetPart<StackerPart>();
             if (stacker == null || _count >= stacker.StackCount)
@@ -87,6 +89,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Actor has no valid position to drop items.");
             }
 
+            int originalCount = stacker.StackCount;
             var split = stacker.SplitStack(_count);
             if (split == null)
             {
@@ -100,19 +103,25 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 undo: () =>
                 {
                     var splitStacker = split.GetPart<StackerPart>();
-                    if (splitStacker == null || splitStacker.StackCount <= 0)
-                        return;
-
-                    stacker.StackCount += splitStacker.StackCount;
-                    splitStacker.StackCount = 0;
+                    stacker.StackCount = originalCount;
+                    if (splitStacker != null) splitStacker.StackCount = 0;
+                    context.Inventory.RefreshHandlingCarryPenalty();
                 });
 
-            zone.AddEntity(split, cell.X, cell.Y);
+            context.Inventory.RefreshHandlingCarryPenalty();
+            if (!zone.AddEntity(split, cell.X, cell.Y))
+            {
+                MessageLog.Add("There is no room to drop that here.");
+                DispositionDiagnostics.Record(context, _item, Name, _count, zone.ZoneID, "ground_placement_refused");
+                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed,
+                    "Ground placement refused.");
+            }
             transaction.Do(
                 apply: null,
                 undo: () => zone.RemoveEntity(split));
 
             MessageLog.Add($"{actor.GetDisplayName()} drops {split.GetDisplayName()}.");
+            DispositionDiagnostics.Record(context, _item, Name, _count, zone.ZoneID);
             return InventoryCommandResult.Ok();
         }
     }

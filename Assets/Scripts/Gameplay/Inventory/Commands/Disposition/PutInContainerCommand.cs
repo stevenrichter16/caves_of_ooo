@@ -64,6 +64,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
         {
             var containerPart = _container.GetPart<ContainerPart>();
             var inventory = context.Inventory;
+            if (!transaction.TryClaim(_item, context.Actor, Name))
+                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "Item transfer is already in progress.");
             if (containerPart == null || inventory == null)
             {
                 return InventoryCommandResult.Fail(
@@ -91,30 +93,32 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 }
             }
 
-            if (!inventory.RemoveObject(_item))
+            string itemName = _item.GetDisplayName();
+            int quantity = _item.GetPart<StackerPart>()?.StackCount ?? 1;
+            var source = InventoryTransferSnapshot.Capture(inventory);
+            transaction.Do(apply: null, undo: source.Restore);
+            if (!source.Apply(() => inventory.RemoveObject(_item)))
             {
                 return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,
                     "Item is not in inventory.");
             }
 
-            transaction.Do(
-                apply: null,
-                undo: () => inventory.AddObject(_item));
-
-            if (!containerPart.AddItem(_item))
+            var destination = InventoryTransferSnapshot.Capture(containerPart, _item);
+            transaction.Do(apply: null, undo: destination.Restore);
+            if (!destination.Apply(() => containerPart.AddItem(_item)))
             {
                 MessageLog.Add($"The {_container.GetDisplayName()} is full.");
+                DispositionDiagnostics.Record(context, _item, Name, quantity, _container.ID, "container_full");
                 return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,
                     "Container is full.");
             }
 
-            transaction.Do(
-                apply: null,
-                undo: () => containerPart.RemoveItem(_item));
-
-            MessageLog.Add($"You put {_item.GetDisplayName()} {containerPart.Preposition} the {_container.GetDisplayName()}.");
+            if (!destination.ClaimChanges(transaction, context.Actor, Name))
+                return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "A destination stack is already being transferred.");
+            MessageLog.Add($"You put {itemName} {containerPart.Preposition} the {_container.GetDisplayName()}.");
+            DispositionDiagnostics.Record(context, _item, Name, quantity, _container.ID);
             return InventoryCommandResult.Ok();
         }
     }

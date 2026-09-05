@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using CavesOfOoo.Diagnostics;
+using CavesOfOoo.Core.Inventory;
+using CavesOfOoo.Core.Inventory.Commands;
 
 namespace CavesOfOoo.Core
 {
@@ -200,74 +202,96 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Sell an item to a trader. Transfers item to trader, drams to seller.
         /// </summary>
-        public static bool SellToTrader(Entity seller, Entity trader, Entity item)
+        public static bool SellToTrader(Entity seller, Entity trader, Entity item) =>
+            SellToTrader(seller, trader, item, out _);
+
+        /// <summary>Sell with an explanation suitable for the trade screen on refusal.
+        /// Payment follows successful delivery; failed transfer restores exact item and equipment state.</summary>
+        public static bool SellToTrader(Entity seller, Entity trader, Entity item, out string failureReason)
         {
-            if (seller == null || trader == null || item == null) return false;
-
-            var traderInv = trader.GetPart<InventoryPart>();
-            if (traderInv == null) return false;
-
-            var sellerInv = seller.GetPart<InventoryPart>();
-            if (sellerInv == null) return false;
-
-            // SP.3: trader-state validation (mirrors buy path).
+            failureReason = null;
+            if (seller == null || trader == null || item == null)
+                return RefuseSale(seller, trader, item, "The sale is missing an item or participant.", out failureReason);
+            if (trader.GetPart<InventoryPart>() == null || seller.GetPart<InventoryPart>() == null)
+                return RefuseSale(seller, trader, item, "An inventory is missing for this sale.", out failureReason);
             if (TraderUnableToTrade(trader, out string reason))
-            {
-                MessageLog.Add($"The trader {reason}.");
-                return false;
-            }
+                return RefuseSale(seller, trader, item, $"The trader {reason}.", out failureReason);
+            // Name/quantity must be captured before destination merging absorbs the input.
+            string itemName = item.GetDisplayName();
+            var command = new SellTransferCommand(trader, item);
+            var result = InventorySystem.ExecuteCommand(command, seller);
+            if (!result.Success)
+                return RefuseSale(seller, trader, item, result.ErrorMessage, out failureReason);
 
-            // SP.2: per-item veto on sell side. Same shape as the buy
-            // path — quest items refuse to leave the player's bag.
-            if (!CanBeTraded(item, seller, trader, "Sell"))
-            {
-                MessageLog.Add($"You can't trade {item.GetDisplayName()}.");
-                return false;
-            }
-
-            double perf = GetTradePerformance(seller);
-            int price = GetSellPrice(item, perf, trader);
-
-            int traderDrams = GetDrams(trader);
-            if (traderDrams < price)
-            {
-                MessageLog.Add("The trader can't afford that!");
-                return false;
-            }
-
-            // If equipped, unequip first
-            if (InventorySystem.IsEquipped(seller, item))
-            {
-                if (!InventorySystem.UnequipItem(seller, item))
-                    return false;
-            }
-
-            // Transfer item
-            if (!sellerInv.RemoveObject(item)) return false;
-            traderInv.AddObject(item);
-
-            // Transfer currency
-            SetDrams(seller, GetDrams(seller) + price);
-            SetDrams(trader, traderDrams - price);
-
-            MessageLog.Add($"You sell {item.GetDisplayName()} for {price} drams.");
-
-            // SP.4 diag hook: mirrors the Buy path.
+            int price = command.Price; double perf = command.Performance;
+            MessageLog.Add($"You sell {itemName} for {price} drams.");
             if (Diag.IsChannelEnabled("trade"))
-            {
-                Diag.Record(
-                    category: "trade", kind: "Sold",
-                    actor: seller, target: trader,
-                    payload: new
-                    {
-                        itemName = item.GetDisplayName(),
-                        itemId = item.ID,
-                        price,
-                        dramsAfter = GetDrams(seller),
-                        perf
-                    });
-            }
+                Diag.Record(category: "trade", kind: "Sold", actor: seller, target: trader,
+                    payload: new { itemName, itemId = item.ID, price, dramsAfter = GetDrams(seller), perf });
             return true;
+        }
+
+        private static bool RefuseSale(Entity seller, Entity trader, Entity item, string message, out string failureReason)
+        {
+            failureReason = message;
+            MessageLog.Add(message);
+            Diag.Record("trade", "SaleRejected", actor: seller, target: trader,
+                payload: new { itemId = item?.ID, reason = message });
+            return false;
+        }
+
+        // Equipment, both item lists, and wallets share one command transaction.
+        // In particular, failed trader capacity must not commit a separate UnequipItem call.
+        private sealed class SellTransferCommand : IInventoryCommand
+        {
+            private readonly Entity _trader, _item;
+            internal int Price { get; private set; }
+            internal double Performance { get; private set; }
+            public string Name => "SellToTrader";
+            internal SellTransferCommand(Entity trader, Entity item)
+            { _trader = trader; _item = item; }
+            public InventoryValidationResult Validate(InventoryContext context) => InventoryValidationResult.Valid();
+            public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
+            {
+                if (ReferenceEquals(context.Actor, _trader))
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "You cannot sell to yourself.");
+                if (!transaction.TryClaim(_item, context.Actor, Name))
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "Item transfer is already in progress.");
+                if (!context.Inventory.Contains(_item) || (_item.GetPart<StackerPart>()?.StackCount ?? 1) <= 0)
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "You no longer carry a positive unit of that item.");
+                if (!CanBeTraded(_item, context.Actor, _trader, "Sell"))
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, $"You can't trade {_item.GetDisplayName()}.");
+                Performance = GetTradePerformance(context.Actor); Price = GetSellPrice(_item, Performance, _trader);
+                if (GetDrams(_trader) < Price)
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "The trader can't afford that.");
+                if (UnequipCommand.CaptureEquippedState(context, _item).HasLocation)
+                {
+                    var unequipped = new UnequipCommand(_item).Execute(context, transaction);
+                    if (!unequipped.Success) return unequipped;
+                }
+                // A permitted independent-item sale in AfterUnequip can spend this
+                // trader's purse. Preserve that committed sale and refuse this one.
+                if (GetDrams(_trader) < Price)
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "The trader can't afford that.");
+                var source = InventoryTransferSnapshot.Capture(context.Inventory);
+                transaction.Do(apply: null, undo: source.Restore);
+                if (!context.Inventory.CanConsumeOne(_item) || !source.Apply(() => context.Inventory.RemoveObject(_item)))
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "You no longer carry that item.");
+
+                var traderInventory = _trader.GetPart<InventoryPart>();
+                var destination = InventoryTransferSnapshot.Capture(traderInventory, _item);
+                transaction.Do(apply: null, undo: destination.Restore);
+                if (!destination.Apply(() => traderInventory.AddObject(_item)))
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "The trader cannot carry that much weight.");
+
+                if (!destination.ClaimChanges(transaction, context.Actor, Name))
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "A destination stack is already being transferred.");
+                int sellerDrams = GetDrams(context.Actor), traderDrams = GetDrams(_trader);
+                transaction.Do(
+                    apply: () => { SetDrams(context.Actor, sellerDrams + Price); SetDrams(_trader, traderDrams - Price); },
+                    undo: () => { SetDrams(context.Actor, sellerDrams); SetDrams(_trader, traderDrams); });
+                return InventoryCommandResult.Ok();
+            }
         }
 
         /// <summary>

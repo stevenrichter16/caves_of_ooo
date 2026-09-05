@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core.Inventory
 {
@@ -11,6 +13,30 @@ namespace CavesOfOoo.Core.Inventory
     {
         private readonly List<Action> _undoActions = new List<Action>();
         private bool _completed;
+        private static readonly ConditionalWeakTable<Entity, InventoryTransaction> ActiveTransfers
+            = new ConditionalWeakTable<Entity, InventoryTransaction>();
+        private readonly List<Entity> _claimedItems = new List<Entity>();
+
+        /// <summary>Protect a participating item until commit/rollback. Direct nested
+        /// commands sharing this transaction remain allowed; separate reentrant commands
+        /// on that item refuse. Independent items may still transfer.</summary>
+        internal bool TryClaim(Entity item, Entity actor, string action)
+        {
+            if (item == null || _completed) return false;
+            if (ActiveTransfers.TryGetValue(item, out var owner))
+            {
+                if (ReferenceEquals(owner, this)) return true;
+                Diag.Record("event", "InventoryTransferRejected", actor: actor, target: item,
+                    payload: new { action, reason = "transfer_in_progress" });
+                return false;
+            }
+            ActiveTransfers.Add(item, this); _claimedItems.Add(item); return true;
+        }
+        private void ReleaseClaims()
+        {
+            foreach (var item in _claimedItems) ActiveTransfers.Remove(item);
+            _claimedItems.Clear();
+        }
 
         public bool IsCommitted { get; private set; }
 
@@ -35,6 +61,7 @@ namespace CavesOfOoo.Core.Inventory
                 return;
 
             _undoActions.Clear();
+            ReleaseClaims();
             _completed = true;
             IsCommitted = true;
             IsRolledBack = false;
@@ -58,6 +85,7 @@ namespace CavesOfOoo.Core.Inventory
             }
 
             _undoActions.Clear();
+            ReleaseClaims();
             _completed = true;
             IsCommitted = false;
             IsRolledBack = true;
