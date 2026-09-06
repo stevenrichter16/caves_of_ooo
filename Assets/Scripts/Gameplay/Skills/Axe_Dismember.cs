@@ -8,15 +8,14 @@ namespace CavesOfOoo.Skills
     /// Axe-class on-hit Dismember passive. Per Qud's
     /// <c>Axe_Dismember.cs:280-318</c> — on every Axe-attribute hit that
     /// lands damage, a small chance to force-dismember a random severable
-    /// body part on the defender. Dismembered targets bleed.
+    /// body part on the defender. Surviving dismembered targets bleed.
     ///
     /// <para><b>Mechanic (CoO):</b> on every <see cref="OnAttackerAfterAttack"/>
     /// where the damage carries the Axe attribute and
     /// <see cref="SkillEventContext.ActualDamage"/> &gt; 0, roll
     /// <see cref="CHANCE_PERCENT"/>%. On success, collect every body part
     /// for which <see cref="BodyPart.IsSeverable"/> returns true (skipping
-    /// Mortal parts so a single proc can't instakill via head-removal —
-    /// that's <c>Axe_Decapitate</c>'s job, deferred for now). Pick one at
+    /// Mortal parts unless the attacker owns <c>Axe_Decapitate</c>). Pick one at
     /// random via <see cref="SkillEventContext.Rng"/>, call
     /// <see cref="Body.Dismember"/>, and apply
     /// <see cref="BleedingEffect"/> with save target
@@ -59,7 +58,7 @@ namespace CavesOfOoo.Skills
         {
             if (ctx?.Damage == null || !ctx.Damage.HasAttribute("Axe")) return;
             if (ctx.ActualDamage <= 0) return;
-            if (ctx.Defender == null || ctx.Rng == null) return;
+            if (ctx.Defender == null || ctx.Rng == null || IsDead(ctx.Defender)) return;
 
             if (ctx.Rng.Next(100) >= CHANCE_PERCENT) return;
 
@@ -85,7 +84,10 @@ namespace CavesOfOoo.Skills
             if (candidates.Count == 0) return;
 
             var pick = candidates[ctx.Rng.Next(candidates.Count)];
-            if (!body.Dismember(pick, ctx.Zone)) return;
+            if (!body.Dismember(pick, ctx.Zone, ctx.Attacker)) return;
+            // Mortal loss can complete death and clear effects inside Dismember.
+            // Do not add a fresh surviving-victim bleed after that cleanup.
+            if (IsDead(ctx.Defender)) return;
 
             // Apply Bleeding (Qud-parity values: saveTarget 35, dice "1d2").
             // Use ctx.Rng so the save-roll inside BleedingEffect is
@@ -94,5 +96,8 @@ namespace CavesOfOoo.Skills
                 new BleedingEffect(BLEED_SAVE_TARGET, BLEED_DAMAGE_DICE, ctx.Rng),
                 ctx.Attacker, ctx.Zone);
         }
+        private static bool IsDead(Entity entity)
+            => CombatSystem.IsDeathHandled(entity)
+                || (entity.GetStat("Hitpoints") is Stat hp && hp.Value <= 0);
     }
 }

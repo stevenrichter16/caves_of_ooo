@@ -19,8 +19,8 @@ namespace CavesOfOoo.Rendering
     /// <c>Docs/QUD-PARITY.md §2.1</c> (TDD) and <c>Docs/roadmap.md</c>
     /// Tier-1 #2 (death-screen continue from autosave).
     ///
-    /// <para><b>Lifecycle.</b> Starts inactive. The player-Died
-    /// listener calls <see cref="Activate"/>; from there
+    /// <para><b>Lifecycle.</b> Starts inactive. InputHandler polls HP and
+    /// committed death, then calls <see cref="Activate"/>; from there
     /// <see cref="Tick"/> polls each frame until the player picks
     /// Load or Restart. Dispatch deactivates the modal — Tick is a
     /// no-op until reactivated.</para>
@@ -43,8 +43,7 @@ namespace CavesOfOoo.Rendering
 
         /// <summary>
         /// Show the death-screen modal. No-op if already active so
-        /// re-firing the player-Died event (defensive against a
-        /// double-fire bug elsewhere) doesn't double-log the prompt.
+        /// repeated death-state polling does not double-log the prompt.
         /// </summary>
         public void Activate(Action<string> log)
         {

@@ -151,7 +151,7 @@ namespace CavesOfOoo.Core
             // Attack with each weapon
             for (int i = 0; i < weapons.Count; i++)
             {
-                if (defender.GetStatValue("Hitpoints", 0) <= 0)
+                if (IsDeathHandled(defender) || defender.GetStatValue("Hitpoints", 0) <= 0)
                     break; // Target already dead
 
                 // W3 re-review: retaliation (CausticSkin, ScaldingVeil)
@@ -159,7 +159,7 @@ namespace CavesOfOoo.Core
                 // TakeDamage dispatch. A dead attacker — corpse dropped,
                 // removed from the zone by HandleDeath — must not roll
                 // its off-hand and swing again.
-                if (attacker.GetStatValue("Hitpoints", 0) <= 0)
+                if (IsDeathHandled(attacker) || attacker.GetStatValue("Hitpoints", 0) <= 0)
                     break;
 
                 bool isPrimary = weapons[i].IsPrimary;
@@ -459,7 +459,7 @@ namespace CavesOfOoo.Core
             // no hit-stop, and no on-hit dispatchers — HandleDeath has
             // already logged its death, dropped its gear, and removed it
             // from the zone. The dead do not narrate their swings.
-            if (attacker != null && attacker.GetStatValue("Hitpoints", 0) <= 0)
+            if (attacker != null && (IsDeathHandled(attacker) || attacker.GetStatValue("Hitpoints", 0) <= 0))
                 return;
 
             int hpAfter = defender.GetStatValue("Hitpoints", 0);
@@ -576,7 +576,7 @@ namespace CavesOfOoo.Core
                 // heat-resistant creatures hit by Fire-tagged weapons (the
                 // Glowmaw shouldn't lose a limb to half-absorbed Fire damage).
                 if (hitPart != null)
-                    CheckCombatDismemberment(defender, defenderBody, hitPart, actualDamage, zone, rng);
+                    CheckCombatDismemberment(defender, defenderBody, hitPart, actualDamage, zone, rng, attacker);
             }
         }
 
@@ -1260,14 +1260,24 @@ namespace CavesOfOoo.Core
         private const string DEATH_HANDLED_TAG = "_DeathHandled";
 
         /// <summary>
+        /// True once death has committed, including while its callbacks are running.
+        /// Stat modifiers can leave computed HP positive; they do not undo death.
+        /// </summary>
+        public static bool IsDeathHandled(Entity entity)
+            => entity != null && entity.HasTag(DEATH_HANDLED_TAG);
+
+        /// <summary>
         /// Handle entity death: drop loot, fire Died event, remove from zone.
         /// Mirrors Qud's BeforeDeathRemovalEvent: equipment and inventory drop
         /// to the ground before the entity is removed.
         /// </summary>
         public static void HandleDeath(Entity target, Entity killer, Zone zone)
         {
-            if (target.Tags.ContainsKey(DEATH_HANDLED_TAG)) return;
+            if (IsDeathHandled(target)) return;
             target.Tags[DEATH_HANDLED_TAG] = "";
+            var hp = target.GetStat("Hitpoints");
+            if (hp != null)
+                hp.BaseValue = Math.Min(hp.BaseValue, 0);
 
             string targetName = target.GetDisplayName();
             string killerName = killer?.GetDisplayName() ?? "something";
@@ -1552,7 +1562,7 @@ namespace CavesOfOoo.Core
         /// probability path directly without going through PerformMeleeAttack.
         /// </summary>
         public static void CheckCombatDismemberment(Entity defender, Body body,
-            BodyPart hitPart, int damage, Zone zone, Random rng)
+            BodyPart hitPart, int damage, Zone zone, Random rng, Entity source = null)
         {
             // Docs/COMBAT-AUDIT-BUGFIX-PLAN-2026-07.md SM6/A4. An on-hit item
             // enhancement dispatched earlier in the same attack's on-hit
@@ -1561,7 +1571,7 @@ namespace CavesOfOoo.Core
             // dismembering an already-dead target would still unequip/drop a
             // severed limb and log a nonsensical message, and (for a Mortal
             // part) re-invoke HandleDeath via Body.Dismember.
-            if (defender.GetStatValue("Hitpoints", 0) <= 0) return;
+            if (IsDeathHandled(defender) || defender.GetStatValue("Hitpoints", 0) <= 0) return;
 
             if (!hitPart.IsSeverable())
             {
@@ -1607,8 +1617,13 @@ namespace CavesOfOoo.Core
                 return;
             }
 
+            // The permission callback can independently finish death. Preserve
+            // that lifecycle instead of starting a new cut on its removed victim.
+            if (IsDeathHandled(defender) || defender.GetStatValue("Hitpoints", 0) <= 0)
+                return;
+
             EmitDismembermentDiag(defender, hitPart, "fired", damageRatio, threshold, chance, roll);
-            body.Dismember(hitPart, zone);
+            body.Dismember(hitPart, zone, source);
         }
 
         /// <summary>

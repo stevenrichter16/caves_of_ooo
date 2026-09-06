@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; WAVE2j COMPLETE; WAVE2k COMPLETE; WAVE3a APPLIED/VERIFIED; WAVE3b COMPLETE; WAVE3c COMPLETE; WAVE3d COMPLETE; WAVE3e COMPLETE; WAVE3f COMPLETE; WAVE3g COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; WAVE2j COMPLETE; WAVE2k COMPLETE; WAVE3a APPLIED/VERIFIED; WAVE3b COMPLETE; WAVE3c COMPLETE; WAVE3d COMPLETE; WAVE3e COMPLETE; WAVE3f COMPLETE; WAVE3g COMPLETE; WAVE3h COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -2203,3 +2203,15 @@ native24PASS/0unexpected,0CS. See LOADOUT-LIFECYCLE-PLAN and GA03g-REPORT.
 No current authored Loadout producer exists; historical16-enemy docs corrected.
 No save format/content changes or general observer rollback claim. Next A11 mortal
 dismember death/source/UI consistency; the remaining whole-game queue continues.
+
+## GA03h / A11 — mortal death lifecycle complete
+
+Fatal dismemberment carries its attacker into first-commit death, normalizes
+existing HP base, and activates the death screen despite positive modifiers.
+Self-death XP cannot refill HP. Axe/helper and existing same-melee gates reject
+already committed participants; surviving cuts/offhand attacks retain behavior.
+67new tests; final9484GREEN/0CS; native24PASS; both75s healthy-input profiles
+valid with exact source provenance and complete teardown. See MORTAL-DEATH-
+LIFECYCLE-PLAN and GA03h-REPORT. A12 scheduler, delayed bleed source and generic
+callback failures remain separate. User-requested entity equipment and sprite
+improvements take the next wave, then the remaining audit queue resumes.

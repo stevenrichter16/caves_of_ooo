@@ -218,7 +218,7 @@ namespace CavesOfOoo.Core
         /// this prevents CoO cleanup callbacks from reusing a doomed equipment slot.
         /// If a zone is provided, drops a severed limb item at the creature's position.
         /// </summary>
-        public bool Dismember(BodyPart part, Zone zone = null)
+        public bool Dismember(BodyPart part, Zone zone = null, Entity source = null)
         {
             if (part == null || _body == null) return false;
             if (part == _body) return false; // Can't dismember root
@@ -284,7 +284,7 @@ namespace CavesOfOoo.Core
             // Mortal part loss → death
             if (part.Mortal && ParentEntity != null && zone != null)
             {
-                CombatSystem.HandleDeath(ParentEntity, null, zone);
+                CombatSystem.HandleDeath(ParentEntity, source, zone);
             }
 
             return true;

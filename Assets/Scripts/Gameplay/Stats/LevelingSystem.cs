@@ -53,12 +53,14 @@ namespace CavesOfOoo.Core
                 levelStat.BaseValue++;
                 int newLevel = levelStat.Value;
 
-                // +2 max HP and heal to full
+                // +2 max HP; living actors heal to full. Self-kill XP must not
+                // refill a victim whose death lifecycle has already committed.
                 var hp = entity.GetStat("Hitpoints");
                 if (hp != null)
                 {
                     hp.Max += 2;
-                    hp.BaseValue = hp.Max;
+                    if (!CombatSystem.IsDeathHandled(entity))
+                        hp.BaseValue = hp.Max;
                 }
 
                 // +1 MP for mutation advancement

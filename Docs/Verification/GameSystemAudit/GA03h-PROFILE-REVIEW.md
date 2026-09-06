@@ -1,0 +1,36 @@
+# GA03h performance harness cold-eye review — 2026-09-06
+
+Status: SOURCE-CLEAR for this bounded performance-only addition. No actionable must-fix found. This is an independent source/artifact review; I did not launch Unity, change Assets/Docs, or rerun production mortality tests.
+
+## Scope and sources
+
+Read CLAUDE.md, the relevant PERF-FOUNDATION recorder guidance, /tmp/codex_ga03h_perf.py, /tmp/codex_ga03h_run_profile_before.py, the actual GameAuditMortalDeathBenchPlayer/Batch, NativeSaveIsolation, the scoped InputHandler.Update condition, and all before/after perf JSON and perf-native JSON. Recomputed every phase/metric summary from the compressed frame and step CSVs. Checked the current native report and the pre-profile native report.
+
+## Findings and verification
+
+1. **Functional compatibility is separate and preserved.** The runtime branch is selected only after the initial coroutine yield, so Batch.Apply can configure the driver created by scenario Apply before the branch is evaluated. Run()/the menu clears the session performance mode to empty. The performance branch adds no functional Check groups. Actual Player/Batch bytes exactly match the performance-generator transformation of the native generator source plus the separately reviewed committed-death/no-trailing-offhand guard. The 24 functional Check calls and labels are unchanged. Current compatibility artifact run `3839d8579a154b2f9a647e4237eff905` reports the same 24 PASS labels, zero failures, zero unexpected errors, and successful teardown. This artifact became available during the review; I did not execute it.
+
+2. **Source variant is a real one-expression retrospective baseline.** Recomputed current InputHandler SHA256 `82914040f1e22de1f56e85ba04a6dc88700243a145c719e83c9227b39d51c80f` matches afterSha256 and the saved /tmp after backup. Replacing the single `(playerHp <= 0 || CombatSystem.IsDeathHandled(PlayerEntity))` expression with `playerHp <= 0` yields exactly beforeSha256 `e4c32008bf1015ce02104005257bb42d12d86a3507fe142e3a6bf3c672b9c273`. The launcher does that exact splice, runs the before method, refuses to overwrite a concurrent source edit, and restores the complete after bytes in finally. The provenance records restoration, launcher exit 0 and after-profile verification. This proves the recorded source preparation/restoration; it is not an independent runtime assembly attestation, nor a claim that the baseline predates implementation. No broad claim about every other project file's historical bytes is warranted from this single-file manifest.
+
+3. **Workloads are nonvacuous and bounded.** Both use native queued N/arrows, an eight-step northwest closed loop away from two checked inert NPCs, warmup outside capture, and no combat or save/load during sampling. Healthy state includes actual boot/death/input gates, player identity/registration/current turn, real HP 100, Speed 88, equipped aliases, and stable NPC positions/HP. Therefore the healthy Input.Update branch containing the changed query is reachable. Idle verifies no coordinate/tick/energy change. Movement must advance one exact cell, advance turns, return to player input and preserve health/speed. Discrete and held requests are separately accounted; repeated held moves check that the key remains pressed and is no longer a new press. Route alignment is explicitly outside capture.
+
+   | Capture | Frames | Measured seconds | Discrete requested/accepted | Held requested legs / accepted moves / repeats |
+   |---|---:|---:|---:|---:|
+   | before `48a766c304cd4237aa5f8545909dd811` | 68,091 | 75.4210065 | 135 / 135 | 89 / 178 / 89 |
+   | after `f8399afeef8d4923aaa5eed48f27eb7f` | 68,580 | 75.3743611 | 137 / 137 | 89 / 178 / 89 |
+
+   Each phase exceeds 25 seconds and is below 28; both have zero failed steps and zero buffer overflow. Raw step counts are 313/315, all valid with positive tick deltas, and their accepted/repeat totals match the JSON. This is the same timed workload policy, not identical numbers of discrete actions or identical simulation ticks.
+
+4. **Metrics agree with raw data.** All 21 per-capture summaries have matching sample counts, max, nearest-rank p95/p99 and mean when recomputed from raw frame CSVs (wall-time rounding tolerance only). The script timing recorders use Scripts, GC uses Memory, and all use SumAllSamplesInFrame. Setup/allocation is outside capture, scratch arrays are preallocated, and per-frame sampling is indexed without LINQ/collection allocation. Validity and capacity failures are explicit. Input.Update has positive observations; turn markers are appropriately zero during idle and positive on moving frames. The max values are retained rather than hidden behind averages.
+
+5. **Normal and interrupted lifetime paths have explicit recorder/save cleanup.** RunSafely releases the keyboard and disposes recorders before Finish; OnDestroy repeats idempotent disposal and restores the input settings/background/diagnostic settings. Batch unregisters runtime saving before private Play teardown. NativeSaveIsolation retains the owned root through shutdown and removes only its token-owned root afterward. Both perf-native artifacts report shutdownObserved, shutdownRootHeld and shutdownSavingUnregistered true, failures 0, errors 0; both exact private root directories no longer exist. Compressed logs have zero `error CS` entries and an explicit cleanup exit 0. The fresh normal compatibility root also no longer exists.
+
+## Honesty bounds to preserve in final docs
+
+- These are single uncapped native editor observations, including queued-input observers, renderers, diagnostics and editor overhead. They do not isolate the added tag lookup, establish statistical equivalence, prove a speedup, or verify physical keyboard handling, visual quality, perceived smoothness, build FPS, or combat/death performance.
+- The capture mode string itself does not patch or attest source; cite the external exact-splice provenance with the labels.
+- Recorder LastValue is the latest completed observation; phase-edge samples may be one frame shifted. Engine frame duration is wall duration, not CPU time. Sparse turn-marker p95/p99 being zero means most captured frames did not execute that marker; it does not mean moving turns cost zero.
+- GC is a whole-frame observation including harness/editor context. The before discrete wall-frame maximum is about 641.5 ms and the after idle maximum about 607.6 ms; neither is evidence that this predicate caused or fixed that pause. After discrete Input.Update max is higher (3.286583 ms versus 2.300209 ms), so do not write an unqualified no-regression/speedup conclusion from the two runs.
+- In raw steps, request_to_step_seconds is queue-to-observed-first-step for the first step; for a held repeat the helper resets its start time after the prior observed step, so that row measures the repeat interval. It is synthetic observation timing, not physical input latency.
+- Teardown is observed in perf-native JSON after the perf metrics file is written. Retain both files and the cleanup logs; workloadValid alone is not proof of teardown.
+- No Qud parity claim applies to this editor profiling harness. Gameplay A11 taxonomy/Qud/hypothesis review remains the separate existing production review, deliberately not redone here.

@@ -320,10 +320,11 @@ namespace CavesOfOoo.Rendering
                 // Death-screen modal (Phase 4b) — checked BEFORE the player-turn
                 // gates because a dead player can't take a turn (so WaitingForInput
                 // would be false and we'd never get past the gates). Activation is
-                // HP-based polling rather than Died-event subscription so the
-                // modal lives in the UI layer, not as a Part on the player.
+                // HP/committed-death polling rather than Died-event subscription
+                // so preserved stat modifiers cannot hide a mortal injury.
                 int playerHp = PlayerEntity.GetStatValue("Hitpoints", 1);
-                if (playerHp <= 0 && !_deathScreenController.IsActive)
+                if ((playerHp <= 0 || CombatSystem.IsDeathHandled(PlayerEntity))
+                    && !_deathScreenController.IsActive)
                 {
                     _deathScreenController.Activate(MessageLog.Add);
                 }
