@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; WAVE2j COMPLETE; WAVE2k COMPLETE; WAVE3a APPLIED/VERIFIED; WAVE3b COMPLETE; WAVE3c COMPLETE; WAVE3d COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; WAVE2j COMPLETE; WAVE2k COMPLETE; WAVE3a APPLIED/VERIFIED; WAVE3b COMPLETE; WAVE3c COMPLETE; WAVE3d COMPLETE; WAVE3e COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -2153,3 +2153,23 @@ hypotheses complete. Protected FX placement retained as applied exact patch.
 Next A09 hauling lifecycle source sweep is in HAULING-LIFECYCLE-PLAN.md; the
 remaining actor/world/material/editor and separately bounded save-validation queue
 continues.
+
+
+### Wave3e/A09 — hauling lifecycle complete
+
+The unused link validator is integrated into normal movement/removal and loaded
+world repair. Removed loads cannot be resurrected, both endpoint removals refund
+exactly the stored penalty, and stale saved graphs recover including unplaced
+nonplayer pairs. Healthy/vetoed controls and different valid grips are preserved.
+Callback replacement events and repair-message clocks were fixed during review.
+
+Full9322/9322GREEN (+59),0CS; native39PASS with complete75s before/after measured
+workloads and exact stale-save/normal-removal observations. See HAULING-LIFECYCLE-PLAN
+and Verification/GameSystemAudit/GA03e-REPORT.md. Released includes removal/death;
+Slipped identifies validation/follow failure, not an exhaustive player-intent model.
+
+Recorded visual debt: existing HaulBarrel is glyph-only yellow0; WoodenBarrel's
+sprite is not its mapping. No new content was added. A36 Physics-only arrival
+predicate, earlier arbitrary non-drag callback ordering and generic save-hook
+atomicity remain outside this bounded repair. Next A10 plan and source corrections
+are in EQUIPMENT-LIFECYCLE-PLAN.md; original whole-game queue remains active.

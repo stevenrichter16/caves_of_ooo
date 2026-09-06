@@ -54,7 +54,18 @@ namespace CavesOfOoo.Core
             }
 
             if (e.ID != "AfterMove") return true;
-            if (Dragged == null || ParentEntity == null) return true;
+            var actor = ParentEntity;
+            if (actor == null) return true;
+            // Cleanup can append a replacement DragPart during dispatch. That
+            // new grip must wait for a new move, while nested real movement
+            // carries its own event and can still follow normally.
+            if (ReferenceEquals(e.GetParameter<Entity>("DragFollowActor"), actor)) return true;
+            e.SetParameter("DragFollowActor", (object)actor);
+            var zone = e.GetParameter<Cell>("Cell")?.ParentZone;
+            DragSystem.ValidateLink(actor, zone);
+            // Validation can remove this Part. A callback may also establish
+            // a different grip; this event must not borrow that replacement.
+            if (!ReferenceEquals(actor.GetPart<DragPart>(), this) || Dragged == null) return true;
 
             int oldX = e.GetIntParameter("OldX");
             int oldY = e.GetIntParameter("OldY");
@@ -70,8 +81,7 @@ namespace CavesOfOoo.Core
             // The zone comes from the cell the mover arrived in — the event
             // is the only thing here that knows which zone this happened in,
             // and an entity has no back-pointer to one.
-            var zone = e.GetParameter<Cell>("Cell")?.ParentZone;
-            DragSystem.FollowInto(ParentEntity, Dragged, zone, oldX, oldY);
+            DragSystem.FollowInto(actor, Dragged, zone, oldX, oldY);
             return true;
         }
     }
@@ -294,9 +304,47 @@ namespace CavesOfOoo.Core
                 || zone == null
                 || zone.GetEntityPosition(actor).x < 0
                 || zone.GetEntityPosition(load).x < 0
-                || !ReferenceEquals(GetDragger(load), actor);
+                || !ReferenceEquals(GetDragger(load), actor)
+                || IsGone(actor) || IsGone(load);
 
             if (broken) Slip(actor, load, "link no longer valid");
+        }
+
+        // Structural HP can be zero when BeforeDestroy vetoes destruction.
+        // Gone marks committed prop destruction; combat uses base HP for death.
+        private static bool IsGone(Entity entity)
+            => entity?.GetPart<DestructiblePart>()?.Gone == true
+                || (entity != null && entity.HasTag("Creature")
+                    && entity.GetStat("Hitpoints") != null
+                    && entity.GetStat("Hitpoints").BaseValue <= 0);
+
+        /// <summary>Repair both sides of an entity's saved hauling links in
+        /// its rebuilt zone, or null when it is no longer placed.</summary>
+        public static void ValidateEntity(Entity entity, Zone zone)
+        {
+            if (entity == null) return;
+            var inverse = entity.GetPart<DraggedPart>();
+            ValidateLink(entity, zone);
+            if (inverse == null || !ReferenceEquals(entity.GetPart<DraggedPart>(), inverse)) return;
+            var actor = inverse.Dragger;
+            // Never clear a different valid load merely because this stale
+            // inverse happens to name its hauler.
+            if (ReferenceEquals(GetDragged(actor), entity)) ValidateLink(actor, zone);
+            if (ReferenceEquals(entity.GetPart<DraggedPart>(), inverse)
+                && !ReferenceEquals(GetDragged(actor), entity)) entity.RemovePart(inverse);
+        }
+
+        /// <summary>Detach both captured sides after successful zone removal.
+        /// Repeated or failed removals do not call this method.</summary>
+        public static void DetachRemovedEntity(Entity entity)
+        {
+            if (entity == null) return;
+            var inverse = entity.GetPart<DraggedPart>();
+            Release(entity);
+            if (inverse == null || !ReferenceEquals(entity.GetPart<DraggedPart>(), inverse)) return;
+            var actor = inverse.Dragger;
+            if (ReferenceEquals(GetDragged(actor), entity)) Release(actor);
+            if (ReferenceEquals(entity.GetPart<DraggedPart>(), inverse)) entity.RemovePart(inverse);
         }
 
         // ════════════════════════════════════════════════════════
@@ -322,7 +370,11 @@ namespace CavesOfOoo.Core
         /// </summary>
         internal static void FollowInto(Entity hauler, Entity load, Zone zone, int x, int y)
         {
-            if (zone == null) { Slip(hauler, load, "no zone"); return; }
+            var grip = hauler?.GetPart<DragPart>();
+            if (grip == null || !ReferenceEquals(grip.Dragged, load)) return;
+            ValidateLink(hauler, zone);
+            if (!ReferenceEquals(hauler.GetPart<DragPart>(), grip)
+                || !ReferenceEquals(grip.Dragged, load)) return;
 
             var destination = zone.GetCell(x, y);
             if (destination == null) { Slip(hauler, load, "off the map"); return; }

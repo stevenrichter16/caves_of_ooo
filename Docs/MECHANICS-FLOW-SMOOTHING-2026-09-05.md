@@ -1,6 +1,6 @@
 # Mechanics flow and responsiveness — 2026-09-05
 
-Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 COMPLETE; CRAFTING AVAILABILITY/FIRST-USE REPAIR COMPLETE; CRAFTED OUTPUT/LOCAL ROLLBACK REPAIR COMPLETE; CAMERA CLEANUP APPLIED/VERIFIED; NEW-GAME CHECKPOINT REPAIR COMPLETE; HOTBAR SAVE SELECTION REPAIR COMPLETE; CORRUPT-SAVE ISOLATION/SETTLEMENT WIRING COMPLETE. User explicitly requested identifying mechanics that
+Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 COMPLETE; CRAFTING AVAILABILITY/FIRST-USE REPAIR COMPLETE; CRAFTED OUTPUT/LOCAL ROLLBACK REPAIR COMPLETE; CAMERA CLEANUP APPLIED/VERIFIED; NEW-GAME CHECKPOINT REPAIR COMPLETE; HOTBAR SAVE SELECTION REPAIR COMPLETE; CORRUPT-SAVE ISOLATION/SETTLEMENT WIRING COMPLETE; HAULING LIFECYCLE/SAVE RECOVERY COMPLETE. User explicitly requested identifying mechanics that
 need smoother integration and fully implementing the supported improvements, without
 intervention. This extends the ongoing whole-game audit; it does not cancel its
 remaining repairs. Baseline latest completed repair1ef093a1,8470tests,GA02i native44.
@@ -782,3 +782,12 @@ Normal entry remains unchanged; the missing-registry lookup case is sparse-save/
 robustness.52new tests; full9263GREEN; native22PASS with exact expected rejection,
 recovery and changed save payload. No pixel/feel/speedup claim. Protected FX placement
 remains applied with exact patch retained. Next: hauling lifecycle and stale links.
+
+
+### A09: predictable hauling recovery
+
+Removal, destruction, zone changes and stale-save recovery now release the correct
+grip and speed penalty. Working hauling and vetoed actions remain stable; newly
+grabbed loads wait for a new movement. Full9322GREEN,59new tests and native39PASS
+with complete75s before/after workloads. No subjective-feel/speedup/physical-input
+claim. See GA03e-REPORT.md; next A10 equipment lifecycle remains autonomous work.

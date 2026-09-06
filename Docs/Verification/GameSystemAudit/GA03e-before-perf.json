@@ -1,0 +1,228 @@
+{
+    "runId": "7c0a58f6914d41c4b68df9e567adb841",
+    "mode": "before",
+    "bounds": "Scenario observer and queued input overhead included. Per-frame marker observations; no isolated drag timing or zero-GC claim. Alignment steps between/after phases are outside sampling. HaulBarrel uses shipped CP437 glyph, not barrel sprite.",
+    "frames": 76774,
+    "measuredSeconds": 75.2867112,
+    "wallSeconds": 77.7531419,
+    "phases": [
+        {
+            "name": "idle",
+            "frames": 27190,
+            "attempts": 0,
+            "steps": 0,
+            "heldRepeats": 0,
+            "failures": 0,
+            "startTick": 10,
+            "endTick": 10,
+            "startSeconds": 0.00002750000000029118,
+            "seconds": 25.0001183
+        },
+        {
+            "name": "discrete",
+            "frames": 25310,
+            "attempts": 137,
+            "steps": 137,
+            "heldRepeats": 0,
+            "failures": 0,
+            "startTick": 10,
+            "endTick": 1968,
+            "startSeconds": 25.0001635,
+            "seconds": 25.068438599999998
+        },
+        {
+            "name": "held",
+            "frames": 24274,
+            "attempts": 178,
+            "steps": 178,
+            "heldRepeats": 89,
+            "failures": 0,
+            "startTick": 2068,
+            "endTick": 4610,
+            "startSeconds": 51.34894739999999,
+            "seconds": 25.218154300000003
+        }
+    ],
+    "metrics": [
+        {
+            "phase": "idle",
+            "name": "COO.Input.Update",
+            "unit": "nanoseconds",
+            "valid": true,
+            "samples": 27190,
+            "max": 31667,
+            "p99": 5209,
+            "mean": 2750.1377344611988
+        },
+        {
+            "phase": "idle",
+            "name": "COO.Turns.Tick",
+            "unit": "nanoseconds",
+            "valid": true,
+            "samples": 27190,
+            "max": 0,
+            "p99": 0,
+            "mean": 0.0
+        },
+        {
+            "phase": "idle",
+            "name": "COO.Turns.EndTurn",
+            "unit": "nanoseconds",
+            "valid": true,
+            "samples": 27190,
+            "max": 0,
+            "p99": 0,
+            "mean": 0.0
+        },
+        {
+            "phase": "idle",
+            "name": "COO.Turns.ProcessUntilPlayerTurn",
+            "unit": "nanoseconds",
+            "valid": true,
+            "samples": 27190,
+            "max": 0,
+            "p99": 0,
+            "mean": 0.0
+        },
+        {
+            "phase": "idle",
+            "name": "COO.ZoneRenderer.LateUpdate",
+            "unit": "nanoseconds",
+            "valid": true,
+            "samples": 27190,
+            "max": 3707208,
+            "p99": 748125,
+            "mean": 623341.8088267746
+        },
+        {
+            "phase": "idle",
+            "name": "GC Allocated In Frame",
+            "unit": "bytes",
+            "valid": true,
+            "samples": 27190,
+            "max": 1209078,
+            "p99": 15234,
+            "mean": 15083.693968370724
+        },
+        {
+            "phase": "discrete",
+            "name": "COO.Input.Update",
+            "unit": "nanoseconds",
+            "valid": true,
+            "samples": 25310,
+            "max": 3895875,
+            "p99": 6292,
+            "mean": 10135.114223627024
+        },
+        {
+            "phase": "discrete",
+            "name": "COO.Turns.Tick",
+            "unit": "nanoseconds",
+            "valid": true,
+            "samples": 25310,
+            "max": 1753,
+            "p99": 0,
+            "mean": 6.72998814697748
+        },
+        {
+            "phase": "discrete",
+            "name": "COO.Turns.EndTurn",
+            "unit": "nanoseconds",
+            "valid": true,
+            "samples": 25310,
+            "max": 336500,
+            "p99": 0,
+            "mean": 190.04504148557883
+        },
+        {
+            "phase": "discrete",
+            "name": "COO.Turns.ProcessUntilPlayerTurn",
+            "unit": "nanoseconds",
+            "valid": true,
+            "samples": 25310,
+            "max": 68792,
+            "p99": 0,
+            "mean": 43.11841169498222
+        },
+        {
+            "phase": "discrete",
+            "name": "COO.ZoneRenderer.LateUpdate",
+            "unit": "nanoseconds",
+            "valid": true,
+            "samples": 25310,
+            "max": 15586416,
+            "p99": 746208,
+            "mean": 700695.7345713157
+        },
+        {
+            "phase": "discrete",
+            "name": "GC Allocated In Frame",
+            "unit": "bytes",
+            "valid": true,
+            "samples": 25310,
+            "max": 245990,
+            "p99": 15234,
+            "mean": 15880.50553141051
+        },
+        {
+            "phase": "held",
+            "name": "COO.Input.Update",
+            "unit": "nanoseconds",
+            "valid": true,
+            "samples": 24274,
+            "max": 1970292,
+            "p99": 7167,
+            "mean": 12758.9019527066
+        },
+        {
+            "phase": "held",
+            "name": "COO.Turns.Tick",
+            "unit": "nanoseconds",
+            "valid": true,
+            "samples": 24274,
+            "max": 2083,
+            "p99": 0,
+            "mean": 9.185836697701245
+        },
+        {
+            "phase": "held",
+            "name": "COO.Turns.EndTurn",
+            "unit": "nanoseconds",
+            "valid": true,
+            "samples": 24274,
+            "max": 51625,
+            "p99": 0,
+            "mean": 242.7969844277828
+        },
+        {
+            "phase": "held",
+            "name": "COO.Turns.ProcessUntilPlayerTurn",
+            "unit": "nanoseconds",
+            "valid": true,
+            "samples": 24274,
+            "max": 14500,
+            "p99": 0,
+            "mean": 54.83406113537118
+        },
+        {
+            "phase": "held",
+            "name": "COO.ZoneRenderer.LateUpdate",
+            "unit": "nanoseconds",
+            "valid": true,
+            "samples": 24274,
+            "max": 17101250,
+            "p99": 990833,
+            "mean": 737011.9556727363
+        },
+        {
+            "phase": "held",
+            "name": "GC Allocated In Frame",
+            "unit": "bytes",
+            "valid": true,
+            "samples": 24274,
+            "max": 8775306,
+            "p99": 404340,
+            "mean": 26952.05042432232
+        }
+    ]
+}

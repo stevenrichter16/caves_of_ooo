@@ -226,6 +226,7 @@ namespace CavesOfOoo.Core
                 _entityCells.Remove(entity);
                 UnindexEntityTags(entity);
                 EntityVersion++;
+                DragSystem.DetachRemovedEntity(entity);
                 return true;
             }
             return false;

@@ -135,6 +135,7 @@ namespace CavesOfOoo.Core
         private readonly BinaryReader _reader;
         private readonly Dictionary<int, Entity> _entityTokens = new Dictionary<int, Entity>();
         private readonly List<Entity> _loadedEntities = new List<Entity>();
+        internal IReadOnlyList<Entity> LoadedEntities => _loadedEntities;
 
         public readonly EntityFactory Factory;
         public OverworldZoneManager ZoneManager { get; private set; }
@@ -409,7 +410,7 @@ namespace CavesOfOoo.Core
             messages.Apply();
             PlayerReputation.Restore(reputation);
             reader.RunLoadHooks();
-            SaveGraphSerializer.RebuildLoadedWorld(state);
+            SaveGraphSerializer.RebuildLoadedWorld(state, reader.LoadedEntities);
             return state;
         }
 
@@ -931,16 +932,53 @@ namespace CavesOfOoo.Core
         }
 
         public static void RebuildLoadedWorld(GameSessionState state)
-        {
-            if (state.ZoneManager == null)
-                return;
+            => RebuildLoadedWorld(state, null);
 
-            foreach (var kvp in state.ZoneManager.CachedZones)
-                kvp.Value.RebuildEntityCellsFromCells();
-            // Entity bodies are now resolved. Repair derived map appearance
-            // without creating an uncached map or clearing saved occupants.
-            if (state.ZoneManager.CachedZones.TryGetValue(WorldMap.WorldMapZoneID, out var mapZone))
-                new WorldMapZoneBuilder(state.ZoneManager.WorldMap).RefreshAppearance(mapZone);
+        internal static void RebuildLoadedWorld(GameSessionState state, IReadOnlyList<Entity> loadedEntities)
+        {
+            if (state == null) return;
+            var zones = state.ZoneManager?.CachedZones;
+            if (zones != null)
+            {
+                foreach (var kvp in zones) kvp.Value.RebuildEntityCellsFromCells();
+                // Entity bodies are now resolved. Repair derived map appearance
+                // without creating an uncached map or clearing saved occupants.
+                if (zones.TryGetValue(WorldMap.WorldMapZoneID, out var mapZone))
+                    new WorldMapZoneBuilder(state.ZoneManager.WorldMap).RefreshAppearance(mapZone);
+            }
+
+            // Full-session loads include every token, even wholly unplaced
+            // linked entities. Manual rebuilds cover the placed world/player.
+            // Snapshot before cleanup: message observers may mutate membership.
+            if (loadedEntities == null)
+            {
+                var snapshot = new List<Entity>();
+                if (zones != null)
+                    foreach (var kvp in zones) snapshot.AddRange(kvp.Value.GetReadOnlyEntities());
+                if (state.Player != null) snapshot.Add(state.Player);
+                loadedEntities = snapshot;
+            }
+            // Bootstrap still owns the discarded session's clock until the
+            // loaded state is applied. Repair messages belong to this save.
+            var previousTickProvider = MessageLog.TickProvider;
+            MessageLog.TickProvider = () => state.TurnManager?.TickCount ?? 0;
+            try
+            {
+                for (int i = 0; i < loadedEntities.Count; i++)
+                {
+                    var entity = loadedEntities[i];
+                    if (!entity.HasPart<DragPart>() && !entity.HasPart<DraggedPart>()) continue;
+                    Zone placedZone = null;
+                    if (zones != null)
+                        foreach (var kvp in zones)
+                            if (kvp.Value.GetEntityCell(entity) != null) { placedZone = kvp.Value; break; }
+                    DragSystem.ValidateEntity(entity, placedZone);
+                }
+            }
+            finally
+            {
+                MessageLog.TickProvider = previousTickProvider;
+            }
         }
 
         public static void SaveTurnManager(TurnManager turnManager, SaveWriter writer)

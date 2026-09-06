@@ -531,9 +531,9 @@ you rather than quietly severing the link.
 **When the load cannot follow, the grip breaks** (`drag/Slipped` +
 "slips from your grip"). The alternatives are all worse: teleporting is
 a lie, stacking corrupts the cell, and keeping the link lets a hauler
-walk off with a rope tied to something across the map. Slipping is
-deliberately *not* the same record as `Released` — "did they drop it or
-lose it?" has to stay answerable by query.
+walk off with a rope tied to something across the map. Slipping uses a distinct record from `Released`: the former identifies
+validation or follow failure. `Released` covers explicit release, death and
+successful endpoint removal (A09); it does not independently prove player intent.
 
 ### 🔴 Finding: `Cell.IsSolid()` is not the movement rule
 
@@ -567,9 +567,9 @@ one read instead of being "fixed" by making the test agree with the bug.
 > the distinction myself a few hours earlier.
 >
 > 🔵 **2 — `Slipped` breaks the link inline** rather than calling
-> `Release`, because `Release` emits `Released` and a "you let go"
-> message, both of which would be false. The duplication is three lines
-> and the alternative is a bool parameter that makes `Release` lie.
+> `Release`, preserving a distinct validation/follow-failure record and
+> message. A09 retains Release for explicit release, death and successful
+> removal; `Released` must not be interpreted as voluntary intent alone.
 >
 > 🧪 **3 — the load is not yet slowed by its weight.** D4.
 
@@ -673,3 +673,30 @@ and the player could not have met a single haulable object.
   obvious next thing if drag bugs show up.
 - Ground modifiers (`Slippery`/`Sticky`) are **not** built. The dead
   schema stays dead; §5 remains a proposal.
+
+
+## A09 / GA03e — lifecycle integration correction (2026-09-06)
+
+Earlier D5 coverage manually invoked ValidateLink after removal. That proved the
+validator itself, but did not establish production integration. A09 wires successful
+Zone.RemoveEntity to detach both captured endpoints; failed/wrong-zone removal
+preserves the grip. AfterMove and FollowInto reject absent, nonreciprocal and
+committed-destroyed/dead links before movement can reinsert a removed load.
+
+Full-session finalization rebuilds every zone index first, then repairs the complete
+entity-token graph, including wholly unplaced nonplayer pairs. Manual rebuild
+repairs placed entities and the player. Repair messages temporarily use the loaded
+clock; the previous provider is restored in finally, including observer exceptions.
+
+Refunds remove AppliedPenalty exactly once and preserve unrelated modifiers.
+Prop Gone is the committed-destruction signal: HP0 with BeforeDestroy veto still
+follows. Creature death uses base Hitpoints; missing HP remains supported. A
+hauling-owned AfterMove marker prevents cleanup-created replacement Parts from
+consuming the old move; nested genuine movement remains a separate event. This
+is a bounded cleanup-callback fix, not generic event-listener atomicity.
+
+Diagnostics: Grabbed/Refused retain their previous meaning. Released includes
+explicit release, successful endpoint removal and Died cleanup. Slipped identifies
+validation/follow failure. No save-format, weight, speed-floor or grab-cost change.
+See HAULING-LIFECYCLE-PLAN.md and Verification/GameSystemAudit/GA03e-REPORT.md
+for executed regressions, dedicated adversarial cases, native workload and bounds.
