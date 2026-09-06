@@ -59,6 +59,20 @@ namespace CavesOfOoo.Core
             return AddObjectCore(item, true, out recipient);
         }
 
+        // Ordinary output creation retains the hard capacity limit. A caller-owned
+        // receipt MUST restore a false result: a compatible resident can weigh more
+        // per unit than the incoming item, so capacity also needs a post-merge check.
+        internal bool AddCraftedUnitWithinCapacity(Entity item, out Entity recipient)
+        {
+            recipient = null;
+            if (item == null || (MaxWeight >= 0 && (long)GetCarriedWeight() + GetItemWeight(item) > MaxWeight))
+                return false;
+            if (!AddCraftedUnit(item, out recipient)) return false;
+            if (MaxWeight < 0 || GetCarriedWeight() <= MaxWeight) return true;
+            recipient = null;
+            return false;
+        }
+
         private bool AddObjectCore(Entity item, bool deferCapacity, out Entity recipient)
         {
             recipient = null;

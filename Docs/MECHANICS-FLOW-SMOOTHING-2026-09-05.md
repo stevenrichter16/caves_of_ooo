@@ -1,6 +1,6 @@
 # Mechanics flow and responsiveness — 2026-09-05
 
-Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 COMPLETE; CRAFTING AVAILABILITY/FIRST-USE REPAIR COMPLETE. User explicitly requested identifying mechanics that
+Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 COMPLETE; CRAFTING AVAILABILITY/FIRST-USE REPAIR COMPLETE; CRAFTED OUTPUT/LOCAL ROLLBACK REPAIR COMPLETE. User explicitly requested identifying mechanics that
 need smoother integration and fully implementing the supported improvements, without
 intervention. This extends the ongoing whole-game audit; it does not cancel its
 remaining repairs. Baseline latest completed repair1ef093a1,8470tests,GA02i native44.
@@ -720,3 +720,18 @@ shim now initializes before querying, so all3infusions work on first use.
 Raw first-native failure and allRED/control runs retained in GA02j-REPORT.md.
 2414GUIDs/0collisions; known A31shutdown errors separate. No subjective-feel, mouse
 or speedup claim. Next A47slice addresses exact crafted recipients/local rollback.
+
+## GA02k — exact crafted stacks and capacity recovery complete
+
+Crafted output now resolves to the actual carried recipient, and failed local
+brew/build operations restore exact items and payment. Removed same-blueprint
+rollback guessing and obsolete brew rollback ledger. Frozen selection, preparation
+eligibility/payment rechecks and bounded same-character re-entry make repeated
+crafting reliable while independent completed work remains intact.
+
+Full9066GREEN (+86tests), final strengthened86GREEN, native25PASS: two brews,
+two dagger builds, capacity refusal, exact tonic-stack Drop, successful retry
+into the original dagger. Service return-reference evidence is separately labelled.
+No new content/art/resource-cost/save fields or performance/physical-input/feel
+claim. Full details and raw failures in GA02k-REPORT.md. Remaining whole-game
+repair queue continues with A31camera cleanup; general A41atomicity is separate.

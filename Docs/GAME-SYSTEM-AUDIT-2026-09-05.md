@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; WAVE2j COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; WAVE2j COMPLETE; WAVE2k COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -1924,3 +1924,71 @@ GA02j/A47positive-selection+A50 COMPLETE:8980/8980GREEN,
 first-use RED retained alongside final success. No scenario registry warm-up.
 See GA02j-REPORT.md. Next: A47exact crafting recipients and local failure receipts;
 A41general callback/outer transaction semantics remain separately explicit.
+
+### Wave2k/A47 — exact crafted recipients and local failure receipts
+
+Status: STARTING fromfb1f6a87,8980GREEN. CoO-original service integrity repair.
+No new content/art/recipes/savefields. Real brew/tinker calls can return the incoming
+zero-count orphan after a merge. Current command/UI consumers discard those refs,
+so this proves an API defect, not ordinary visible item loss. Wrong-sibling rollback
+requires supported NumberMade2 extension; every shipped V1 build currently makes1.
+
+| Source / premise | Verified correction / implementation decision |
+|---|---|
+| BrewingService155/177;TinkeringService114 | AddObject can merge; return the actual resident recipient. Batch entries count produced units and may repeat one resident ref. Mishap output remains null. |
+| TinkeringService410 rollback | Same-blueprint fallback can remove/decrement an enhanced sibling instead of the actual plain recipient. Replace guessing with exact scoped transfer receipts. |
+| RestoreConsumed/RestoreIngredient | Re-adding a removed singleton can merge it into a sibling or fail capacity. Receipt restores its exact original membership/order/count/owner, including before-capacity refusal. |
+| InventoryPart55–100 | AddCraftedUnit already enforces one unit and skips empty destinations, but defers capacity for A46. Add a narrow ordinary-capacity singleton path: precheck incoming mass, insert with crafted semantics, then verify actual final mass; caller enrolls receipt before mutation and restores on any refusal. Keep A46 policy unchanged. |
+| EntityFactory170–225 | AddPart initialization and ObjectCreated can call out. Prepare/configure outputs before owned payment/receipt enrollment, then revalidate exact InventoryPart/BitLocker, inputs, known recipe and affordability. Preserve independently completed preparation work. |
+| BitLocker17–60 | HasBits/UseBits/AddBits mutate only the locker; refund captured normalized cost once to the captured locker on local pre-publication rollback. No whole-wallet rewind. |
+| InventoryTransferSnapshot | Captures membership/count/Physics refs and seals immediate mutations. Include prepared outputs; enroll undo before mutation. Claim affected participants/destinations before publication. Payload/effect rollback is not implied. |
+| BrewReagentsCommand/CraftFromRecipeCommand | Currently ignore supplied outer transaction. Keep local service commit semantics in this slice; do not silently join outer rollback without covering discoveries and Mishap HP. |
+| Brew publication | Commit owned items/bits before RecordDiscoveries/MessageLog/EmitResolvedDiag. Publication exceptions keep legacy committed resources; general observer/discovery/HP rollback stays A41. |
+| Two A03 merge tests | Explicitly assert old orphan return. Update return-reference assertions while retaining actual merge quantities and payload evidence. Direct AddObject incoming-orphan tests remain unchanged. |
+
+Frozen intent: copy explicit reagent references and tinker blueprint/count/ingredient/
+normalized cost before factory preparation. Preparing all NumberMade outputs changes
+extension callback timing from progressive payment/output to preparation first;
+document that divergence. Do not claim arbitrary callback effects or extreme integer
+refund overflow are atomic. Local completed calls/batch iterations remain independent.
+
+RED/control plan: ordinary brew/tinker merge and appended recipients; different
+payload/empty destination/max-stack controls; batch repeated refs/exhaustion/Mishap;
+NumberMade2 enhanced/plain sibling rollback versus reverse/sufficient capacity;
+SeparateOne ingredient singleton restoration versus stacked/success; preparation
+failure/revalidation and independent work; claimed destination refusal/retry; final
+weight/handling controls. Then dedicated20–60adversarial cases, source/hypothesis
+review, native positive+supported-failure route, full suite and living-doc commit.
+
+GA02k initial test launch stopped at compiler check: test directly referenced
+internal InventoryTransaction.TryClaim across assemblies (3duplicate CSlog lines).
+No XML/gameplayRED counted. Replaced that fixture access with the established
+reflection approach; no new runtime API/assembly exposure. Raw compile log retained.
+
+GA02k initial gameplay RED: **26 cases, 9 pass / 17 fail, zero compiler errors**, 2026-09-06 06:57:33–35 UTC (1.4957107s). Raw `GA02k-red.xml.gz` retained.
+
+Pre-implementation correction from independent review: moving creation before payment exposes same-actor re-entry with unchanged affordability, especially ingredient-free builds. Existing transfer claims protect items only; no shipped call claims an actor. Both local crafting services will claim the actor before factory/configuration callbacks and release on every exit, then claim exact sources/changed recipients for payment. Different actors and unrelated item transfers remain allowed. Added eight bounded one-shot re-entry/release controls before implementation; no unbounded recursion test. This is a CoO-original service-lifetime guard, not a new player action or outer-command transaction.
+
+Guard fixture compile correction: callback parameter named `_` shadowed out discards (6distinct/18repeated error lines). Renamed parameter; no gameplayRED counted and raw log retained.
+
+GA02k guard gameplay RED:34cases,13pass/21fail,07:05:37–39UTC,1.8395607s,0CS. All4same-actor cross-service preparation cases fail; different actor/release controls already pass. Minimum implementation now adds frozen preparation, actor/source/recipient claims, exact transfer receipts, ordinary final capacity, actual resident return, and removes obsolete brew ledger/same-blueprint output rollback. Existing mod ingredient restoration remains outside this slice.
+
+Minimum expanded125:124pass/1fail,0CS,07:07:47–52UTC,4.5727458s. Existing missing-blueprint regression required the actionable blueprint name in refusal prose; restored it. Raw renamed GA02k-minimum-failure.xml.gz. No failure hidden.
+
+Minimum expanded125GREEN,07:08:57–07:09:01UTC,4.8214444s,0CS. Dedicated adversarial sweep authored separately: frozen single/batch intent, mid-preparation ownership/eligibility/knowledge/bit changes, exact boundary recipients, actual resident weight, independent drop, malformed outputs, source claims, outcome diagnostics and committed publication failures.
+
+Cold-eye source findings being tested before fixes: batch reused the caller's mutable selection across iterations; selected tinker ingredient can change blueprint before payment; selected brew item can lose ReagentPart before payment. Narrow revalidation/copy fixes preserve independently completed changes. Tinker requires outcome diagnostics so interim ItemUnitConsumed records are not mistaken for successful crafting. “Diagnostics follow commit” means outcome diagnostics only; payment/handling attempt records can precede rollback.
+
+Dedicated43+initial34:77cases,71pass/6fail,07:11:58–07:12:02UTC,3.9043347s,0CS. Confirmed batch mutation, ingredient rename and4missing outcome-record cases. Separate brew eligibility/staging RED9:1pass/8fail,07:13:17–18UTC,.4609725s,0CS (1removed-Reagent failure and7bench-absent cases). Dedicated final45; new cases34+45+7=86. Fixes now applied: batch copy; ordinal-ignore-case ingredient recheck; ReagentPart eligibility recheck; event CraftRejected/CraftCompleted. CraftCompleted records immediately after commit before prose, including when a prose observer later throws; existing BrewResolved remains after discovery/prose.
+
+Expanded211/211GREEN,07:15:53–59UTC,5.7783999s,0CS. Native preflight source check corrected observation field name to actual `_tinkeringMode` before launch. Reflection remains read-only. Native capacity recovery audit next.
+
+Full9066/9066GREEN,07:17:25–07:19:42UTC,136.4970163s,0CS/failed/skipped/inconclusive.86newcases. Before close-out strengthened4existing dedicated mass/handling cases to assert nonzero3-per-unit handling plus unrelated7 Speed penalty, with exact restoration on refusal and +3on successful merge. Runtime unchanged; focused post-strengthening run next.
+
+GA02k/A47local brew/build receipts COMPLETE:9066/9066GREEN (+86tests).
+Final strengthened86GREEN07:20:27–31UTC,4.0280713s,0CS; nonzero handling
+restoration/success asserted. Native25/25PASS,7.811696042s,exit0/0CS/0cameraexceptions;
+2420GUIDs/0collisions. Independent final source review complete; no further
+production must-fix findings. Three cold-eye eligibility/selection defects and
+outcome-record gap RED-tested/fixed; obsolete rollback code removed. See
+GA02k-REPORT.md. Next recorded A31camera shutdown, then remaining45-system queue.

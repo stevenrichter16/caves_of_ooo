@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using CavesOfOoo.Data;
+using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
@@ -17,7 +18,8 @@ namespace CavesOfOoo.Core
     /// Return contract: TRUE means the brewing ACT completed — including a
     /// Mishap or InertSludge outcome (reagents consumed, outcome in
     /// <paramref name="brewResult"/>.Kind; producedItem is null for Mishap).
-    /// FALSE means validation/execution failed and NO state changed.
+    /// FALSE means validation/execution failed and local payment/output was restored.
+    /// Independent factory callbacks and post-commit publication are outside rollback.
     ///
     /// Mishap physical consequence (small telegraphed self-damage, §6.3) is
     /// applied at the command/UI layer where zone context lives — M1.3. The
@@ -32,12 +34,10 @@ namespace CavesOfOoo.Core
         /// <summary>Effect name (from brew rules) that maps to instant TonicPart healing dice instead of a status effect.</summary>
         public const string HealingEffectName = "Healing";
 
-        private struct ConsumedReagent
-        {
-            public Entity Entity;
-            public bool ConsumedFromStack;
-        }
-
+        /// <summary>Creates one outcome. A produced item is the actual carried recipient,
+        /// which can be an existing stack. Local payment/list changes roll back on
+        /// execution refusal; independent preparation callbacks are retained. Publication
+        /// (discoveries, prose, outcome diagnostics) follows commit and cannot undo paid output.</summary>
         public static bool TryBrew(
             Entity crafter,
             EntityFactory factory,
@@ -75,6 +75,8 @@ namespace CavesOfOoo.Core
                 return RejectDiag(crafter, reason);
             }
 
+            // Freeze explicit selection before any factory/configuration callback.
+            reagentItems = new List<Entity>(reagentItems);
             var reagentProperties = new List<IReadOnlyList<BrewPropertyAmount>>(reagentItems.Count);
             for (int i = 0; i < reagentItems.Count; i++)
             {
@@ -120,74 +122,84 @@ namespace CavesOfOoo.Core
                 return RejectDiag(crafter, reason);
             }
 
-            // ── Execution: consume all reagents atomically ──
-            var consumed = new List<ConsumedReagent>(reagentItems.Count);
-            for (int i = 0; i < reagentItems.Count; i++)
+            var transaction = new InventoryTransaction();
+            try
             {
-                if (!TryConsumeReagent(inventory, reagentItems[i], out ConsumedReagent record))
+                if (!transaction.TryClaim(crafter, crafter, "Brew"))
                 {
-                    RestoreConsumed(inventory, consumed);
-                    reason = "Failed to consume " + reagentItems[i].GetDisplayName() + ".";
+                    reason = "Crafting is already in progress.";
                     return RejectDiag(crafter, reason);
                 }
 
-                consumed.Add(record);
-            }
-
-            switch (brewResult.Kind)
-            {
-                case BrewOutcomeKind.Mishap:
-                    MessageLog.Add(brewResult.Reason);
-                    EmitResolvedDiag(crafter, brewResult, reagentItems, null);
-                    return true;
-
-                case BrewOutcomeKind.InertSludge:
+                Entity prepared = null;
+                switch (brewResult.Kind)
                 {
-                    Entity sludge = factory.CreateEntity(SludgeBlueprintName);
-                    if (sludge == null || !inventory.AddObject(sludge))
+                    case BrewOutcomeKind.Brew:
+                        prepared = factory.CreateEntity(BrewBlueprintName);
+                        if (prepared != null) ConfigureBrewItem(prepared, brewResult);
+                        break;
+                    case BrewOutcomeKind.InertSludge:
+                        prepared = factory.CreateEntity(SludgeBlueprintName);
+                        break;
+                    case BrewOutcomeKind.Mishap:
+                        break;
+                    default:
+                        reason = "Unknown brew outcome.";
+                        return RejectDiag(crafter, reason);
+                }
+                if (brewResult.Kind != BrewOutcomeKind.Mishap && prepared == null)
+                {
+                    reason = "Failed to create '" + (brewResult.Kind == BrewOutcomeKind.Brew ? BrewBlueprintName : SludgeBlueprintName) + "'.";
+                    return RejectDiag(crafter, reason);
+                }
+                if (!ReferenceEquals(inventory, crafter.GetPart<InventoryPart>()))
+                {
+                    reason = "Crafter inventory changed during preparation.";
+                    return RejectDiag(crafter, reason);
+                }
+                var physics = prepared?.GetPart<PhysicsPart>();
+                if (prepared != null && (inventory.Contains(prepared) || physics?.InInventory != null || physics?.Equipped != null))
+                {
+                    reason = "The prepared output already belongs to an inventory.";
+                    return RejectDiag(crafter, reason);
+                }
+                foreach (var item in reagentItems)
+                {
+                    if (!inventory.CanConsumeOne(item) || !item.HasPart<ReagentPart>()
+                        || !transaction.TryClaim(item, crafter, "Brew"))
                     {
-                        RestoreConsumed(inventory, consumed);
-                        reason = "Failed to create '" + SludgeBlueprintName + "'.";
+                        reason = "A selected reagent is unavailable.";
                         return RejectDiag(crafter, reason);
                     }
-
-                    producedItem = sludge;
-                    MessageLog.Add(brewResult.Reason);
-                    EmitResolvedDiag(crafter, brewResult, reagentItems, sludge);
-                    return true;
                 }
 
-                case BrewOutcomeKind.Brew:
+                string unitName = InventoryPart.GetUnitDisplayName(prepared);
+                var receipt = InventoryTransferSnapshot.Capture(inventory, prepared);
+                transaction.Do(null, receipt.Restore); // Enroll before the first mutation can throw.
+                Entity recipient = null;
+                bool applied = receipt.Apply(() =>
                 {
-                    Entity brew = factory.CreateEntity(BrewBlueprintName);
-                    if (brew == null)
-                    {
-                        RestoreConsumed(inventory, consumed);
-                        reason = "Failed to create '" + BrewBlueprintName + "'.";
-                        return RejectDiag(crafter, reason);
-                    }
-
-                    ConfigureBrewItem(brew, brewResult);
-
-                    if (!inventory.AddObject(brew))
-                    {
-                        RestoreConsumed(inventory, consumed);
-                        reason = "Cannot add the brew to inventory.";
-                        return RejectDiag(crafter, reason);
-                    }
-
-                    producedItem = brew;
+                    foreach (var item in reagentItems)
+                        if (!inventory.TryConsumeOne(item)) return false;
+                    return prepared == null || inventory.AddCraftedUnitWithinCapacity(prepared, out recipient);
+                });
+                if (!applied || !receipt.ClaimChanges(transaction, crafter, "Brew"))
+                {
+                    reason = "Cannot complete the brew in inventory.";
+                    return RejectDiag(crafter, reason);
+                }
+                transaction.Commit();
+                producedItem = recipient;
+                if (brewResult.Kind == BrewOutcomeKind.Brew)
+                {
                     RecordDiscoveries(crafter, brewResult);
-                    MessageLog.Add(crafter.GetDisplayName() + " brews " + brew.GetDisplayName() + ".");
-                    EmitResolvedDiag(crafter, brewResult, reagentItems, brew);
-                    return true;
+                    MessageLog.Add(crafter.GetDisplayName() + " brews " + unitName + ".");
                 }
-
-                default:
-                    RestoreConsumed(inventory, consumed);
-                    reason = "Unknown brew outcome.";
-                    return RejectDiag(crafter, reason);
+                else MessageLog.Add(brewResult.Reason);
+                EmitResolvedDiag(crafter, brewResult, reagentItems, recipient);
+                return true;
             }
+            finally { transaction.Rollback(); } // No-op after commit; also releases preparation claims.
         }
 
         /// <summary>
@@ -233,7 +245,7 @@ namespace CavesOfOoo.Core
         /// entity references repeatedly naturally decrements stacks and
         /// naturally STOPS once any reagent runs out (the next iteration's
         /// ownership check fails) — no separate "how many are left" logic
-        /// to keep in sync with TryBrew's consume/rollback ledger.
+        /// to keep in sync with TryBrew's local transfer receipt.
         ///
         /// Return contract: TRUE if at least one iteration succeeded — a
         /// partial batch (asked for 5, only had mats for 3) is a smaller
@@ -277,6 +289,9 @@ namespace CavesOfOoo.Core
                 return RejectDiag(crafter, reason);
             }
 
+            // The entire batch promises one selection, even if a preparation callback
+            // changes the caller's list between independently committed iterations.
+            if (reagentItems != null) reagentItems = new List<Entity>(reagentItems);
             for (int i = 0; i < requestedCount; i++)
             {
                 bool ok = TryBrew(crafter, factory, reagentItems, out Entity produced, out BrewResult result, out string iterationReason);
@@ -546,59 +561,5 @@ namespace CavesOfOoo.Core
             return false;
         }
 
-        private static bool TryConsumeReagent(InventoryPart inventory, Entity item, out ConsumedReagent record)
-        {
-            record = new ConsumedReagent();
-            // Recheck at payment as well as preflight; never spend an empty unit.
-            if (inventory == null || !inventory.CanConsumeOne(item))
-                return false;
-
-            StackerPart stacker = item.GetPart<StackerPart>();
-            if (stacker != null && stacker.StackCount > 1)
-            {
-                stacker.StackCount -= 1;
-                inventory.RefreshHandlingCarryPenalty();
-                record.Entity = item;
-                record.ConsumedFromStack = true;
-                return true;
-            }
-
-            if (inventory.RemoveObject(item))
-            {
-                record.Entity = item;
-                record.ConsumedFromStack = false;
-                return true;
-            }
-
-            return false;
-        }
-
-        private static void RestoreConsumed(InventoryPart inventory, List<ConsumedReagent> consumed)
-        {
-            if (inventory == null || consumed == null)
-                return;
-
-            for (int i = 0; i < consumed.Count; i++)
-            {
-                ConsumedReagent record = consumed[i];
-                if (record.Entity == null)
-                    continue;
-
-                if (record.ConsumedFromStack)
-                {
-                    StackerPart stacker = record.Entity.GetPart<StackerPart>();
-                    if (stacker != null)
-                    {
-                        stacker.StackCount += 1;
-                        continue;
-                    }
-                }
-
-                if (!inventory.Contains(record.Entity))
-                    inventory.AddObject(record.Entity);
-            }
-            // A singleton AddObject may refresh before later stacked records are restored.
-            inventory.RefreshHandlingCarryPenalty();
-        }
     }
 }

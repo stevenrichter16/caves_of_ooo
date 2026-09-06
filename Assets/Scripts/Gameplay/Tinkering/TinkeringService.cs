@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using CavesOfOoo.Data;
+using CavesOfOoo.Diagnostics;
+using CavesOfOoo.Core.Inventory;
 
 namespace CavesOfOoo.Core
 {
@@ -17,6 +19,9 @@ namespace CavesOfOoo.Core
             public bool ConsumedFromStack;
         }
 
+        /// <summary>Crafted entries count produced units and identify their actual carried
+        /// recipients (the same stack may appear repeatedly). Local payment/output commits
+        /// before success prose; factory callbacks occur before payment and are not undone.</summary>
         public static bool TryCraft(
             Entity crafter,
             EntityFactory factory,
@@ -30,13 +35,13 @@ namespace CavesOfOoo.Core
             if (crafter == null)
             {
                 reason = "Crafter is missing.";
-                return false;
+                return RejectCraft(crafter, recipeId, reason);
             }
 
             if (factory == null)
             {
                 reason = "Entity factory is missing.";
-                return false;
+                return RejectCraft(crafter, recipeId, reason);
             }
 
             InventoryPart inventory = crafter.GetPart<InventoryPart>();
@@ -44,78 +49,107 @@ namespace CavesOfOoo.Core
             if (inventory == null || bitLocker == null)
             {
                 reason = "Crafter cannot tinker without inventory and bit locker.";
-                return false;
+                return RejectCraft(crafter, recipeId, reason);
             }
 
             if (!TinkerRecipeRegistry.TryGetRecipe(recipeId, out TinkerRecipe recipe))
             {
                 reason = "Unknown recipe.";
-                return false;
+                return RejectCraft(crafter, recipeId, reason);
             }
 
             if (!IsBuildRecipe(recipe))
             {
                 reason = "Recipe is not a build recipe.";
-                return false;
+                return RejectCraft(crafter, recipeId, reason);
             }
 
             if (!bitLocker.KnowsRecipe(recipe.ID))
             {
                 reason = "Recipe is not known.";
-                return false;
+                return RejectCraft(crafter, recipeId, reason);
             }
 
             string cost = BitCost.Normalize(recipe.Cost);
             if (!bitLocker.HasBits(cost))
             {
                 reason = "Not enough bits.";
-                return false;
+                return RejectCraft(crafter, recipeId, reason);
             }
 
-            ConsumedIngredient consumedIngredient = new ConsumedIngredient();
-            if (!string.IsNullOrWhiteSpace(recipe.Ingredient))
-            {
-                if (!TryConsumeIngredient(inventory, recipe.Ingredient, out consumedIngredient))
-                {
-                    reason = "Required ingredient is missing.";
-                    return false;
-                }
-            }
-
-            if (!bitLocker.UseBits(cost))
-            {
-                RestoreIngredient(inventory, consumedIngredient);
-                reason = "Not enough bits.";
-                return false;
-            }
-
+            // Freeze the selected recipe and exact optional source before callbacks.
+            string knownRecipe = recipe.ID;
+            string blueprint = recipe.Blueprint;
             int numberMade = Math.Max(1, recipe.NumberMade);
-            for (int i = 0; i < numberMade; i++)
+            string ingredientBlueprint = recipe.Ingredient;
+            Entity ingredient = null;
+            if (!string.IsNullOrWhiteSpace(ingredientBlueprint))
             {
-                Entity created = factory.CreateEntity(recipe.Blueprint);
-                if (created == null)
-                {
-                    RollbackCraftOutputs(inventory, crafted);
-                    bitLocker.AddBits(cost);
-                    RestoreIngredient(inventory, consumedIngredient);
-                    reason = "Failed to create crafted item blueprint '" + recipe.Blueprint + "'.";
-                    return false;
-                }
-
-                if (!inventory.AddObject(created))
-                {
-                    RollbackCraftOutputs(inventory, crafted);
-                    bitLocker.AddBits(cost);
-                    RestoreIngredient(inventory, consumedIngredient);
-                    reason = "Cannot add crafted item to inventory.";
-                    return false;
-                }
-
-                crafted.Add(created);
+                ingredient = inventory.FindConsumableByBlueprint(ingredientBlueprint);
+                if (ingredient == null) { reason = "Required ingredient is missing."; return RejectCraft(crafter, recipeId, reason); }
             }
 
-            MessageLog.Add(crafter.GetDisplayName() + " crafts " + crafted.Count + "x " + recipe.Blueprint + ".");
-            return true;
+            var transaction = new InventoryTransaction();
+            try
+            {
+                if (!transaction.TryClaim(crafter, crafter, "Craft"))
+                { reason = "Crafting is already in progress."; return RejectCraft(crafter, recipeId, reason); }
+                var prepared = new Entity[numberMade];
+                for (int i = 0; i < numberMade; i++)
+                {
+                    prepared[i] = factory.CreateEntity(blueprint);
+                    if (prepared[i] == null)
+                    { reason = "Failed to create crafted item blueprint '" + blueprint + "'."; return RejectCraft(crafter, recipeId, reason); }
+                }
+                if (!ReferenceEquals(inventory, crafter.GetPart<InventoryPart>())
+                    || !ReferenceEquals(bitLocker, crafter.GetPart<BitLockerPart>()))
+                { reason = "Crafter payment inventory changed during preparation."; return RejectCraft(crafter, recipeId, reason); }
+                if (!bitLocker.KnowsRecipe(knownRecipe) || !bitLocker.HasBits(cost))
+                { reason = "Recipe or required bits are no longer available."; return RejectCraft(crafter, recipeId, reason); }
+                if (ingredient != null && (!inventory.CanConsumeOne(ingredient)
+                    || !string.Equals(ingredient.BlueprintName, ingredientBlueprint, StringComparison.OrdinalIgnoreCase)
+                    || !transaction.TryClaim(ingredient, crafter, "Craft")))
+                { reason = "Required ingredient is no longer available."; return RejectCraft(crafter, recipeId, reason); }
+                foreach (var item in prepared)
+                {
+                    var physics = item.GetPart<PhysicsPart>();
+                    if (inventory.Contains(item) || physics?.InInventory != null || physics?.Equipped != null)
+                    { reason = "A prepared output already belongs to an inventory."; return RejectCraft(crafter, recipeId, reason); }
+                }
+
+                var receipt = InventoryTransferSnapshot.Capture(inventory, prepared);
+                transaction.Do(null, receipt.Restore);
+                bool paid = false;
+                transaction.Do(null, () => { if (paid) bitLocker.AddBits(cost); });
+                var recipients = new List<Entity>(numberMade);
+                bool applied = receipt.Apply(() =>
+                {
+                    if (ingredient != null && !inventory.TryConsumeOne(ingredient)) return false;
+                    paid = bitLocker.UseBits(cost);
+                    if (!paid) return false;
+                    foreach (var item in prepared)
+                    {
+                        if (!inventory.AddCraftedUnitWithinCapacity(item, out var recipient)) return false;
+                        recipients.Add(recipient);
+                    }
+                    return true;
+                });
+                if (!applied || !receipt.ClaimChanges(transaction, crafter, "Craft"))
+                { reason = "Cannot add crafted item to inventory."; return RejectCraft(crafter, recipeId, reason); }
+                transaction.Commit();
+                crafted = recipients;
+                Diag.Record("event", "CraftCompleted", actor: crafter,
+                    payload: new { recipeId = knownRecipe, blueprint, units = recipients.Count, cost });
+                MessageLog.Add(crafter.GetDisplayName() + " crafts " + crafted.Count + "x " + blueprint + ".");
+                return true;
+            }
+            finally { transaction.Rollback(); }
+        }
+
+        private static bool RejectCraft(Entity crafter, string recipeId, string reason)
+        {
+            Diag.Record("event", "CraftRejected", actor: crafter, payload: new { recipeId, reason });
+            return false;
         }
 
         public static bool TryApplyModification(
@@ -412,41 +446,6 @@ namespace CavesOfOoo.Core
                 builder.Append(normalized[i]);
 
             return builder.ToString();
-        }
-
-        /// <summary>
-        /// Batch atomicity for TryCraft: a failed craft must leave no partial
-        /// output behind. Items that merged into an existing stack on add are
-        /// undone by decrementing a matching stack instead.
-        /// </summary>
-        private static void RollbackCraftOutputs(InventoryPart inventory, List<Entity> crafted)
-        {
-            for (int i = crafted.Count - 1; i >= 0; i--)
-            {
-                Entity item = crafted[i];
-                if (inventory.RemoveObject(item))
-                    continue;
-
-                for (int j = 0; j < inventory.Objects.Count; j++)
-                {
-                    Entity candidate = inventory.Objects[j];
-                    if (!string.Equals(candidate.BlueprintName, item.BlueprintName, StringComparison.OrdinalIgnoreCase))
-                        continue;
-
-                    StackerPart stacker = candidate.GetPart<StackerPart>();
-                    if (stacker == null)
-                        continue;
-
-                    if (stacker.StackCount > 1)
-                        stacker.StackCount -= 1;
-                    else
-                        inventory.RemoveObject(candidate);
-                    break;
-                }
-            }
-
-            inventory.RefreshHandlingCarryPenalty();
-            crafted.Clear();
         }
 
         private static bool TryConsumeIngredient(

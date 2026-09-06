@@ -95,16 +95,19 @@ namespace CavesOfOoo.Tests
         [TestCase(false, false)] [TestCase(false, true)] [TestCase(true, false)] [TestCase(true, true)]
         public void IdenticalActualRecipesStillMerge(bool healing, bool strong)
         {
-            var actor = Actor(); var a = Brew(actor, healing, strong); var b = Brew(actor, healing, strong);
-            Compatible(a, b, true); Assert.IsTrue(actor.GetPart<InventoryPart>().Contains(a));
-            Assert.IsFalse(actor.GetPart<InventoryPart>().Contains(b)); Assert.AreEqual(2, a.GetPart<StackerPart>().StackCount);
-            Assert.AreEqual(0, b.GetPart<StackerPart>().StackCount);
+            var actor = Actor(); var a = Brew(actor, healing, strong);
+            var parts = a.Parts.ToArray(); string name = Name(a); string healingDice = a.GetPart<TonicPart>().Healing;
+            var b = Brew(actor, healing, strong);
+            Assert.AreSame(a, b); Assert.IsTrue(actor.GetPart<InventoryPart>().Contains(b));
+            Assert.AreEqual(2, a.GetPart<StackerPart>().StackCount); CollectionAssert.AreEqual(parts, a.Parts);
+            Assert.AreEqual(name, Name(a)); Assert.AreEqual(healingDice, a.GetPart<TonicPart>().Healing);
         }
         [Test] public void DifferentRecipesWithSameResolvedHealingStillMerge()
         {
-            var actor = Actor(); var a = Brew(actor, true, true); var b = Brew(actor, true, true, equivalent: true);
-            Assert.AreEqual(Name(a), Name(b)); Assert.AreEqual(a.GetPart<TonicPart>().Healing, b.GetPart<TonicPart>().Healing);
-            Assert.AreEqual(2, a.GetPart<StackerPart>().StackCount); Assert.IsFalse(actor.GetPart<InventoryPart>().Contains(b));
+            var actor = Actor(); var a = Brew(actor, true, true); var payload = a.GetPart<TonicPart>();
+            Assert.AreEqual("2d4", payload.Healing); var b = Brew(actor, true, true, equivalent: true);
+            Assert.AreSame(a, b); Assert.AreSame(payload, b.GetPart<TonicPart>()); Assert.AreEqual("2d4", payload.Healing);
+            Assert.AreEqual(2, a.GetPart<StackerPart>().StackCount); Assert.IsTrue(actor.GetPart<InventoryPart>().Contains(b));
         }
         [TestCase(1, 1)] [TestCase(1, 2)] [TestCase(2, 1)] [TestCase(2, 2)]
         public void PaidMineralUpgradeOccurrencesSurviveTransfer(int firstCount, int secondCount)
