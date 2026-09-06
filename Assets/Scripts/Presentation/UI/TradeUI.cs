@@ -345,8 +345,8 @@ namespace CavesOfOoo.Rendering
             if (_panel == 0)
             {
                 if (_leftRows.Count == 0) return;
-                ok = TradeSystem.BuyFromTrader(PlayerEntity, _trader, _leftRows[_leftCursor].Item);
-                _statusMessage = ok ? null : "You can't afford that.";
+                ok = TradeSystem.BuyFromTrader(PlayerEntity, _trader, _leftRows[_leftCursor].Item, out string reason);
+                _statusMessage = ok ? null : reason;
             }
             else
             {

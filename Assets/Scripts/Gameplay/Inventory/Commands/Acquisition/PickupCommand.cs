@@ -75,20 +75,12 @@ namespace CavesOfOoo.Core.Inventory.Commands
             var zone = context.Zone;
             var inventory = context.Inventory;
 
-            // BETA AUDIT 🔴 #4 — gold coins were inventory clutter with
-            // no economic value (shops trade in Drams): the entire
-            // dungeon '$' reward loop was dead. Treat gold as MONEY:
-            // convert to drams at pickup, 5 drams per coin.
-            if (_item.BlueprintName == "GoldCoin")
-            {
-                int coins = _item.GetPart<CavesOfOoo.Core.StackerPart>()?.StackCount ?? 1;
-                if (coins < 1) coins = 1;
-                int drams = coins * 5;
-                TradeSystem.SetDrams(actor, TradeSystem.GetDrams(actor) + drams);
-                zone.RemoveEntity(_item);
-                MessageLog.Add($"You pocket {coins} gold ({drams} drams).");
-                return InventoryCommandResult.Ok();
-            }
+            if (!transaction.TryClaim(_item, actor, Name))
+                return Refuse(context, "transfer_in_progress", "Item transfer is already in progress.");
+            if (!IsGroundSource(context))
+                return Refuse(context, "invalid_ground_source", "That item is no longer on this ground.");
+            if ((_item.GetPart<StackerPart>()?.StackCount ?? 1) <= 0)
+                return Refuse(context, "empty_stack", "There is no positive unit to pick up.");
 
             if (!HandlingService.CanLift(actor, _item, out string liftFailure))
             {
@@ -104,9 +96,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             beforePickup.SetParameter("Item", (object)_item);
             if (!actor.FireEventAndRelease(beforePickup))
             {
-                return InventoryCommandResult.Fail(
-                    InventoryCommandErrorCode.ExecutionFailed,
-                    "Pickup was cancelled.");
+                return Refuse(context, "actor_veto", "Pickup was cancelled.");
             }
 
             // Fire BeforeBeingPickedUp on item.
@@ -115,51 +105,65 @@ namespace CavesOfOoo.Core.Inventory.Commands
             beforeBeing.SetParameter("Item", (object)_item);
             if (!_item.FireEventAndRelease(beforeBeing))
             {
-                return InventoryCommandResult.Fail(
-                    InventoryCommandErrorCode.ExecutionFailed,
-                    "Item pickup was cancelled.");
+                return Refuse(context, "item_veto", "Item pickup was cancelled.");
             }
 
+            // Veto hooks can move/remove the source or change its quantity.
+            if (!IsGroundSource(context))
+                return Refuse(context, "source_changed", "That item is no longer on this ground.");
+            var stacker = _item.GetPart<StackerPart>();
+            int quantity = stacker?.StackCount ?? 1;
+            if (quantity <= 0) return Refuse(context, "empty_stack", "There is no positive unit to pick up.");
+            bool gold = _item.BlueprintName == "GoldCoin";
+            long credit = gold ? (long)quantity * 5 : 0;
+            int purse = TradeSystem.GetDrams(actor);
+            if (gold && (long)purse + credit > int.MaxValue)
+                return Refuse(context, "currency_overflow", "You cannot carry that much currency.");
+            string itemName = _item.GetDisplayName();
             var originalCell = zone.GetEntityCell(_item);
-            bool hadZonePosition = originalCell != null;
-            int originalX = hadZonePosition ? originalCell.X : -1;
-            int originalY = hadZonePosition ? originalCell.Y : -1;
+            int originalX = originalCell.X, originalY = originalCell.Y;
+            if (!zone.RemoveEntity(_item))
+                return Refuse(context, "removal_refused", "The item could not be removed from the ground.");
+            transaction.Do(apply: null, undo: () => zone.AddEntity(_item, originalX, originalY));
 
-            zone.RemoveEntity(_item);
-            transaction.Do(
-                apply: null,
-                undo: () =>
-                {
-                    if (hadZonePosition)
-                        zone.AddEntity(_item, originalX, originalY);
-                });
-
-            if (!inventory.AddObject(_item))
+            if (gold)
             {
-                MessageLog.Add($"You can't carry {_item.GetDisplayName()}: too heavy!");
-                return InventoryCommandResult.Fail(
-                    InventoryCommandErrorCode.ExecutionFailed,
-                    "Weight limit exceeded.");
+                // Spend the source before success hooks. Currency is only available
+                // when the transaction commits, so independent work cannot spend
+                // provisional gold or lose its own payment during outer rollback.
+                transaction.Do(
+                    apply: () => { if (stacker != null) stacker.StackCount = 0; },
+                    undo: () => { if (stacker != null) stacker.StackCount = quantity; });
+                transaction.DeferCurrencyCredit(actor, (int)credit);
+            }
+            else
+            {
+                var destination = InventoryTransferSnapshot.Capture(inventory, _item);
+                transaction.Do(apply: null, undo: destination.Restore);
+                if (!destination.Apply(() => inventory.AddObject(_item)))
+                {
+                    MessageLog.Add($"You can't carry {itemName}: too heavy!");
+                    return Refuse(context, "weight_limit", "Weight limit exceeded.");
+                }
+                if (!destination.ClaimChanges(transaction, actor, Name))
+                    return Refuse(context, "destination_in_progress", "A destination stack is already being transferred.");
             }
 
-            transaction.Do(
-                apply: null,
-                undo: () => inventory.RemoveObject(_item));
-
-            // Fire item-side Taken AFTER a successful add (CoO analog of Qud's
+            // Fire item-side Taken AFTER successful acquisition (CoO analog of Qud's
             // TakenEvent). World-object quest Parts (CompleteObjectiveOnTaken /
             // QuestStarter) live on the item and hook this. Fires before
-            // AutoEquip so "taken" reflects acquisition independent of equip.
+            // AutoEquip; ground gold has a spent source and a pending commit credit.
             var taken = GameEvent.New("Taken");
             taken.SetParameter("Actor", (object)actor);
             taken.SetParameter("Item", (object)_item);
             _item.FireEventAndRelease(taken);
 
-            MessageLog.Add($"{actor.GetDisplayName()} picks up {_item.GetDisplayName()}.");
+            MessageLog.Add(gold ? $"You pocket {quantity} gold ({credit} drams)."
+                : $"{actor.GetDisplayName()} picks up {itemName}.");
 
             // Preserve auto-equip-on-pickup behavior through command-native flow.
             // Failures are non-fatal for pickup and simply mean "left carried".
-            new AutoEquipCommand(_item).Execute(context, transaction);
+            if (!gold) new AutoEquipCommand(_item).Execute(context, transaction);
 
             // Fire AfterPickup on actor.
             var afterPickup = GameEvent.New("AfterPickup");
@@ -167,7 +171,17 @@ namespace CavesOfOoo.Core.Inventory.Commands
             afterPickup.SetParameter("Item", (object)_item);
             actor.FireEventAndRelease(afterPickup);
 
+            AcquisitionDiagnostics.Record(context, _item, Name, zone.ZoneID, quantity);
             return InventoryCommandResult.Ok();
         }
+
+        private bool IsGroundSource(InventoryContext context)
+        {
+            var physics = _item.GetPart<PhysicsPart>();
+            return context.Zone.GetEntityCell(_item) != null && physics != null
+                && physics.InInventory == null && physics.Equipped == null;
+        }
+        private InventoryCommandResult Refuse(InventoryContext context, string reason, string message) =>
+            AcquisitionDiagnostics.Refuse(context, _item, Name, context.Zone.ZoneID, reason, message);
     }
 }

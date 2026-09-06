@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d NEXT**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e NEXT**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -762,3 +762,211 @@ zero C# errors. Strengthened native35/35 PASS, run4621440f68954790b6086b80724a72
 taxonomy/Qud-contract/native review clear after body-equipment assertions.
 2326 unique GUIDs,zero collisions. See GA02c-REPORT.md for exact evidence and
 limits. A01/A04 and transfer-specific A05 closed; proceed A43 acquisition.
+
+
+### Wave2d — A43 acquisition source, gold and rollback integrity
+
+Status: verified plan before implementation; baseline e70b56b5,7939 full GREEN.
+Root read PickupCommand, TakeFromContainerCommand, AutoEquipCommand, InventoryPart,
+InventorySystem/Context, Zone.Add/RemoveEntity, TradeSystem/TradeUI, ItemTakenEvent
+tests and actual GoldCoin/Starapple/Player/Merchant/Sack content. Qud Inventory
+CommandTakeObject:2185–2295 corroborates actor/item pre-take gates; no full Qud
+receive framework or liquid-currency port. Existing local gold conversion is
+ground-pickup-only; container-held coins remain inventory trade goods.
+
+| Premise | Verified correction / planned consequence |
+|---|---|
+| Pickup means any detached takeable item. | Facade says from zone; checked positive fixtures place items. Require actual zone membership with no inventory/equipment owner; preserve adjacent pickup. |
+| Gold follows ordinary pickup rules. | Special branch skips hooks and credits before unchecked removal; unify BeforePickup/BeforeBeingPickedUp and Taken/AfterPickup, revalidate source after veto hooks. |
+| Coin removal alone makes repeat input safe. | Removal result is ignored, and zero/negative quantities become one; require positive count and checked removal, zero spent count with undo. |
+| An int purse can always accept coin value. | Compute in long and refuse overflow before transfer, with adjacent exact-limit success. Retain public int currency API/save fields. |
+| Source AddItem/AddObject is an inverse remove. | Refused take/buy can merge source siblings and change identity; use exact scoped receipts on both sides. |
+| Initial buy affordability survives BeforeTrade. | It can legitimately change during a callback; recalculate/recheck before payment, preserving independent work. |
+| Buy UI already explains refusal. | It hardcodes cannot-afford, including weight refusal; add bool-compatible out-reason overload and same-screen retry. |
+
+Scope: ground pickup and container take adopt GA02c claims/receipts; gold pays
+exactly once only after accepted removal and supports outer rollback. Buy joins
+source, destination and wallets in one transaction, claims before item/actor
+callbacks, rejects self/empty/non-stock sources and validates late affordability.
+Add acquisition success/refusal records and Bought/BuyRejected reasons. Existing
+Taken side effects are immediate acquisition events; arbitrary quest/effect
+rollback remains A41. No new content/art/serialized fields or ordinary Update.
+
+RED fixtures first: actual coins3, zero/negative, stale/foreign/owned references,
+exact int boundary and outer rollback; Starapple2/98+3 pickup/container merge
+undo with commit controls; source99+1 refused take/buy with player52 vs51 at
+150 capacity; real UI weight refusal. Then20–60 adversarial cases, independent
+review, native G/loot/buy audit, full suite and same-commit docs.
+
+Wave2d initial34-case RED:21 failures,13 controls,23:24:57UTC;zero C# errors.
+Confirmed both acquisition merge undos, refused source sibling identity, actual
+buy-status drift, detached/foreign/owned pickup, stale/invalid gold payment,
+spent coin count, wallet overflow and missing gold outer undo. Minimum fixes
+now follow; pre-hook/late-hook/reentrancy and outcome cases belong to the
+dedicated adversarial expansion before final review.
+
+Wave2d native verification sweep: exact52→51 capacity release requires closing
+loot/trade and eating one carried Starapple through inventory; no native partial
+drop quantity dialog exists. Stage player52, adjacent Sack99+1, Merchant99+1,
+GoldCoin3 alone at feet. G credits15 once; secondG cannot repeat. Sack99 refuses
+151, eat1 and retry succeeds150; drop exact carried99, take Sack's remaining1
+to restore52. Buy99 refuses151; eat1 and reopen/retry succeeds150, preserving
+trader's sibling1. All transitions after setup use native keys. Same-screen
+retry remains an EditMode control. Native sprites already ship for all fixtures.
+Also corrected a new UI test fixture to AddComponent<TradeUI> plus guaranteed
+destruction; initialRED's UI assertion still directly showed the wrong message.
+
+Wave2d minimum429/429 GREEN23:28:41–42UTC,zero C# errors. Self-review corrected
+a TDD sequencing mistake: the first implementation also unified gold hooks
+before their dedicated assertions existed. Revert that unverified hook extension
+to the prior gold-skips-hooks behavior before the adversarial RED run; retain
+the verified source/payment/receipt repairs. Then require observed gold-hook
+RED before enabling that extension again. Do not claim its first write was TDD.
+
+Wave2d dedicated37-case adversarial plus34 regression:71 total,60 passed/11
+failed23:32:10UTC. All11 failures concern the explicitly reverted gold hook
+protocol (including veto/source/exception/nested-payment paths). Re-enable
+hooks after this observed RED, then rerun before changing any newly exposed
+wallet rollback or missing-veto-outcome behavior.
+
+Wave2d hook-enabled rerun71:68 pass/3 fail23:33:42UTC. Confirmed one absolute-
+wallet undo error and two missing veto records. Before correction, add6 tests
+for independently purchased goods funded by existing vs provisional gold, and
+late purse overflow from a second independently committed pickup. Do not merely
+subtract/clamp the outer credit: that would fund goods using rolled-back gold.
+Plan: queue gold credit in the existing inventory transaction; success hooks
+see only already committed money. Commit validates all queued credit totals
+before applying any, emits CurrencyCreditApplied/Rejected, and only then clears
+undo. Failure restores source coins and leaves independent purchases/payments
+intact. No public Part/save field or currency API format changes.
+
+
+### Prepared session/save repairs A06–A08 (read-only sweep)
+
+A06: bootstrap669 already owns fresh_gameID but service resolves previous slot;
+BootMenuController82 N merely dismisses. N→F6/pauseLoad/death-L can load old
+character until first save; N→F5 normally writes freshID and preserves old file
+(SaveSlot541), so do not claim autosave overwrites old characters. N should bind
+existing freshID and attempt initial Quick save; failed/unavailable save must
+never leave loading attached to oldID. Preserve Continue/C+N precedence and
+no-prior-save initial autosave. RED oldA/newB bind, immediate reload/death-L,
+old-file byte identity, Continue controls and explicit failure/retry policy.
+Scenario isolation matters: current marker Quick prevents bootstrap autosave,
+then native drivers pressN. New N save would create fresh arena saves outside
+marker cleanup; update isolated roots/cleanup or explicit audit session seam.
+Some earlier drivers unregister runtime beforeN.
+
+A07: bootstrap capture829 hardcodes SelectedHotbarSlot0; load987 replaces player
+without applying it. Existing serialization test227 only pins integer roundtrip.
+Add input capture/restore seam reusing occupancy validation InputHandler4002;
+assign new player before validating, synchronize renderer. Native/RED slot7
+capture→change2→load7; old/new differing bindings; empty/−1/10/extreme fallback
+to first occupied or−1, slot0/9 controls, cooldown still selected. No save format
+change; ten zero-based slots and occupancy, not usability, is contract.
+
+A08: GameSessionState.Load363 clears FX before header, publishes new TurnManager
+constructor119, restores logs/reputation944 and runs OnAfterLoad aura producers
+before final footer. Stage parsed globals and unpublish new manager; validate
+full payload before finalization/FX replacement. Preserve standalone entity-body
+reader behavior and valid-load regenerated auras. Corrupt final raw four-byte
+check or truncate footer/earlybody; append-garbage currently accepted, not RED.
+SavedA with poisonedNPC versus liveB distinct manager/actor/tick/log serials/
+announcements/flash/rep/pending bothFX queues: failed direct and gzip QuickLoad
+leave B unchanged and do not invoke apply; valid bytes replace/regenerate.
+AsciiFxBus.Clear446 releases pooled requests and incrementsClearVersion: shallow
+copy→Clear→restore is invalid because loaded emission can reset same pooled
+objects. Preserve queue ownership/order/payload andClearVersion on failure.
+_applyLoaded exceptions after successful decode can partially replace runtime,
+and LoadSlot604 switches activeID before callback: separate application rollback
+debt, not an atomicity claim from a decode-only fix.
+
+Wave2d currency RED77:69 passed/8 failed23:37:11UTC confirms provisional spending,
+absolute undo, late overflow and required records. Commit now validates all
+queued recipient totals before applying any credit; rollback discards uncredited
+gold without changing independent money. Fixed veto diagnostics. Correct one
+new diag expectation: two successful nested/outer commits emit two credits,
+not one; its RED still had zero records. Gold acquisition/Taken is immediate,
+its wallet credit becomes spendable at commit.
+
+Wave2d deferred-credit focused472/472 GREEN23:39:33–34UTC. Independent review
+corrected a false premise: TradeSystem.SetDrams calls Entity.SetIntProperty204–223,
+which writes then synchronously dispatches IntPropertyChanged. No explicit
+production consumer exists today, but a throwing listener can leave payment
+while restoring goods. The same callback seam affects both buy and sale.
+Add RED observer and two-recipient cases before correction. Plan: stage/validate
+all wallet deltas, write every resulting purse without callbacks, finish the
+transaction, then publish the normal property-change events. Observer failures
+emit CurrencyObserverFailed and cannot roll back already committed money/items.
+Move buy/sale payment into the same deferred delta primitive. Test notification
+old/new values, multiple recipients, combined overflow, idempotent commit, and
+source/destination merge isolation. Direct Commit can reject before payment;
+its caller must Rollback (the current executor already does).
+
+Wave2d wallet-observer RED94:88 pass/6 fail23:45:02UTC;zero C# errors. All six
+observer/multi-recipient failures confirmed the synchronous setter boundary;
+additional combined-overflow, nested-source and sequential-merge controls passed.
+Wallet commit now validates/stages every delta, writes all balances directly,
+finishes transaction state, then publishes Entity's normal Name/OldValue/NewValue
+notifications. Observer exceptions record CurrencyObserverFailed and do not fail
+paid transactions. Buy/sale use the same deferred transfer; gold uses deferred
+credit. Notification events release in finally. Source review also found the
+preexisting general FireEventAndRelease289–293 lacks finally; include its pooled
+event exception cleanup in A41 follow-up, not a claim of universal event repair.
+
+Correction to the preceding observer-RED claim: the94-case run's six failures
+did NOT yet demonstrate callbacks. Its probe incorrectly used generic
+GetParameter<string/int>, which only reads object parameters; Entity stores
+Name/OldValue/NewValue in typed dictionaries. The101-case staging run retained
+those six probe failures plus seven expected missing-bench failures. Also fix
+the goods-owner assertion: the money payer receives the goods in both buy/sale.
+Correct probes to GetStringParameter/GetIntParameter and payer inventory;
+restore our prior setter-based payment implementation for an honest new RED
+before reapplying the staged notification correction. Keep raw failed evidence
+and do not count fixture failures as gameplay bugs.
+
+Corrected wallet observer RED60:55 pass/5 fail23:50:25–26UTC,zero C# errors.
+Now actually confirms buy observer ordering/throw, sale observer throw and
+two-recipient credit ordering/throw. Nonthrowing sale payer observer already
+sees both balances and is a valid control. Reapply the staged-wallet correction
+after this RED; strengthen second-recipient notification count across throwing
+first listener and repeated Commit/Rollback. Seven native staging missing-type
+REDs were also confirmed in GA02d-bench-red.xml.gz before scenario authoring.
+
+Native scenario first compile caught an authored-driver API mistake: invented
+GetVisibleChoices instead of actual VisibleChoices. Three repeated error-CS
+lines, one compiler error; no test XML trusted. Use the already shipped GA02c
+VisibleChoices/Actions.Key and dialogue_cursorIndex route. Source read also
+corrects an overescaped diagnostic substring before native execution. Raw
+compile log retained; this is harness repair, not a production game bug.
+
+
+### A44 — authored gas immunity IDs do not match gas types (source-proved)
+
+The extra typed-parameter hypothesis was falsified: Rate/Intake/GasType producers
+explicitly box their values, so generic getters work; all bool setters select
+object overload. Do not change GameEvent semantics based on the test-probe error.
+However, actual Rotling GasImmunity.GasType=poison-vapor (Objects15291) and
+SporeShambler=fungal-spores(16125) are gas IDs. Definitions use types Poison and
+FungalSpores; GasImmunityPart42 and GasNavigationWeight82 compare literal types.
+Both enemies ship in world populations. Existing integration tests hand-author
+the correct types and miss the content defect. Root RED reproduction pending.
+
+Plan: actual blueprints+gas definitions, matching exposure veto versus removed-
+immunity control, navigation0 versus positive, cross-type effective control.
+Force fungal RNG to0 and confirm positive infection chance, not just absence
+of infection. Surgically fix ONLY two immunity type strings; preserve BurnOff
+GasId/grenadeIDs. Existing v7 saves restore public fields, so add narrowly
+scoped migration for those exact blueprint/old-value pairs; preserve authored
+custom immunity strings. Verify token graph/save reach before implementation.
+
+
+### Wave2d complete — acquisition and atomic wallet payment
+
+Full8040/8040 GREEN, zero C# errors,23:59:53UTC September5–00:01:21UTC September6
+(September5 locally). Native57/57 PASS, runa7e5751c50684a09befc4eba9c14355b.
+Added101 tests:34 regression,60 adversarial,7 staging. Independent production,
+Qud-contract and native reviews clear; corrected one failure-message label.
+Exact source/merge restoration, buy UI refusal/retry and committed wallet batches
+ship with outcome diagnostics. Detailed chronology, corrected false RED probes,
+raw evidence and honesty bounds: Verification/GameSystemAudit/GA02d-REPORT.md.
+Next Wave2e: A03 functional stack identity; then remaining accepted findings.

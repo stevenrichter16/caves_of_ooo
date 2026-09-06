@@ -82,6 +82,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
         {
             var containerPart = _container.GetPart<ContainerPart>();
             var inventory = context.Inventory;
+            if (!transaction.TryClaim(_item, context.Actor, Name))
+                return Refuse(context, "transfer_in_progress", "Item transfer is already in progress.");
             if (containerPart == null || inventory == null)
             {
                 return InventoryCommandResult.Fail(
@@ -105,28 +107,23 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     liftFailure);
             }
 
-            if (!containerPart.RemoveItem(_item))
+            if (!containerPart.Contents.Contains(_item) || (_item.GetPart<StackerPart>()?.StackCount ?? 1) <= 0)
+                return Refuse(context, "invalid_container_source", "There is no positive unit in that container.");
+            string itemName = _item.GetDisplayName();
+            int quantity = _item.GetPart<StackerPart>()?.StackCount ?? 1;
+            var source = InventoryTransferSnapshot.Capture(containerPart);
+            transaction.Do(apply: null, undo: source.Restore);
+            if (!source.Apply(() => containerPart.RemoveItem(_item)))
+                return Refuse(context, "removal_refused", "Item is not in the container.");
+            var destination = InventoryTransferSnapshot.Capture(inventory, _item);
+            transaction.Do(apply: null, undo: destination.Restore);
+            if (!destination.Apply(() => inventory.AddObject(_item)))
             {
-                return InventoryCommandResult.Fail(
-                    InventoryCommandErrorCode.ExecutionFailed,
-                    "Item is not in the container.");
+                MessageLog.Add($"You can't carry {itemName}: too heavy!");
+                return Refuse(context, "weight_limit", "Weight limit exceeded.");
             }
-
-            transaction.Do(
-                apply: null,
-                undo: () => containerPart.AddItem(_item));
-
-            if (!inventory.AddObject(_item))
-            {
-                MessageLog.Add($"You can't carry {_item.GetDisplayName()}: too heavy!");
-                return InventoryCommandResult.Fail(
-                    InventoryCommandErrorCode.ExecutionFailed,
-                    "Weight limit exceeded.");
-            }
-
-            transaction.Do(
-                apply: null,
-                undo: () => inventory.RemoveObject(_item));
+            if (!destination.ClaimChanges(transaction, context.Actor, Name))
+                return Refuse(context, "destination_in_progress", "A destination stack is already being transferred.");
 
             // Fire item-side Taken AFTER a successful add — same contract as
             // PickupCommand so world-object quest Parts react to acquisition
@@ -136,8 +133,11 @@ namespace CavesOfOoo.Core.Inventory.Commands
             taken.SetParameter("Item", (object)_item);
             _item.FireEventAndRelease(taken);
 
-            MessageLog.Add($"You take {_item.GetDisplayName()} from the {_container.GetDisplayName()}.");
+            MessageLog.Add($"You take {itemName} from the {_container.GetDisplayName()}.");
+            AcquisitionDiagnostics.Record(context, _item, Name, _container.ID, quantity);
             return InventoryCommandResult.Ok();
         }
+        private InventoryCommandResult Refuse(InventoryContext context, string reason, string message) =>
+            AcquisitionDiagnostics.Refuse(context, _item, Name, _container.ID, reason, message);
     }
 }

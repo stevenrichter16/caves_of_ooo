@@ -116,87 +116,87 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Buy an item from a trader. Transfers item to buyer, drams to trader.
         /// </summary>
-        public static bool BuyFromTrader(Entity buyer, Entity trader, Entity item)
+        public static bool BuyFromTrader(Entity buyer, Entity trader, Entity item) =>
+            BuyFromTrader(buyer, trader, item, out _);
+
+        /// <summary>Buy with a screen-ready refusal reason. Delivery, exact source
+        /// restoration and payment share one transaction; callbacks precede final funds checks.</summary>
+        public static bool BuyFromTrader(Entity buyer, Entity trader, Entity item, out string failureReason)
         {
-            if (buyer == null || trader == null || item == null) return false;
-
-            var traderInv = trader.GetPart<InventoryPart>();
-            if (traderInv == null) return false;
-
-            var buyerInv = buyer.GetPart<InventoryPart>();
-            if (buyerInv == null) return false;
-
-            // SP.3: trader must be in a state that allows trade.
+            failureReason = null;
+            if (buyer == null || trader == null || item == null)
+                return RefuseBuy(buyer, trader, item, "The purchase is missing an item or participant.", out failureReason);
+            if (buyer.GetPart<InventoryPart>() == null || trader.GetPart<InventoryPart>() == null)
+                return RefuseBuy(buyer, trader, item, "An inventory is missing for this purchase.", out failureReason);
             if (TraderUnableToTrade(trader, out string reason))
-            {
-                MessageLog.Add($"The trader {reason}.");
-                return false;
-            }
-
-            // SP.2 (Docs/SHOPPING-PARITY.md): per-item veto. Items with
-            // a "NoTrade" tag (e.g., quest items, dungeon keys) refuse
-            // to be traded. Listeners can also veto by returning false
-            // from CanBeTraded HandleEvent — the firing-on-the-item-
-            // first design lets items self-protect without forcing
-            // buyer/seller logic to know about every quest state.
-            if (!CanBeTraded(item, buyer, trader, "Buy"))
-            {
-                MessageLog.Add($"You can't trade {item.GetDisplayName()}.");
-                return false;
-            }
-
-            double perf = GetTradePerformance(buyer);
-            int price = GetBuyPrice(item, perf, trader);
-
-            int buyerDrams = GetDrams(buyer);
-            if (buyerDrams < price)
-            {
-                MessageLog.Add("You can't afford that!");
-                return false;
-            }
-
-            // Fire BeforeTrade event
-            var beforeTrade = GameEvent.New("BeforeTrade");
-            beforeTrade.SetParameter("Buyer", (object)buyer);
-            beforeTrade.SetParameter("Trader", (object)trader);
-            beforeTrade.SetParameter("Item", (object)item);
-            beforeTrade.SetParameter("Price", price);
-            if (!buyer.FireEventAndRelease(beforeTrade))
-                return false;
-
-            // Transfer item
-            if (!traderInv.RemoveObject(item)) return false;
-            if (!buyerInv.AddObject(item))
-            {
-                traderInv.AddObject(item);
-                MessageLog.Add($"You can't carry {item.GetDisplayName()}: too heavy!");
-                return false;
-            }
-
-            // Transfer currency
-            SetDrams(buyer, buyerDrams - price);
-            SetDrams(trader, GetDrams(trader) + price);
-
-            MessageLog.Add($"You buy {item.GetDisplayName()} for {price} drams.");
-
-            // SP.4 diag hook (Docs/SHOPPING-PARITY.md): every successful
-            // buy is recorded so AI debugging can answer "did the player
-            // actually trade for X?" and "what was the perf-adjusted price?".
-            if (Diag.IsChannelEnabled("trade"))
-            {
-                Diag.Record(
-                    category: "trade", kind: "Bought",
-                    actor: buyer, target: trader,
-                    payload: new
-                    {
-                        itemName = item.GetDisplayName(),
-                        itemId = item.ID,
-                        price,
-                        dramsAfter = GetDrams(buyer),
-                        perf
-                    });
-            }
+                return RefuseBuy(buyer, trader, item, $"The trader {reason}.", out failureReason);
+            string itemName = item.GetDisplayName();
+            var command = new BuyTransferCommand(trader, item);
+            var result = InventorySystem.ExecuteCommand(command, buyer);
+            if (!result.Success) return RefuseBuy(buyer, trader, item, result.ErrorMessage, out failureReason);
+            int price = command.Price; double perf = command.Performance;
+            MessageLog.Add($"You buy {itemName} for {price} drams.");
+            Diag.Record("trade", "Bought", actor: buyer, target: trader,
+                payload: new { itemName, itemId = item.ID, price, dramsAfter = GetDrams(buyer), perf });
             return true;
+        }
+        private static bool RefuseBuy(Entity buyer, Entity trader, Entity item, string message, out string failureReason)
+        {
+            failureReason = message; MessageLog.Add(message);
+            Diag.Record("trade", "BuyRejected", actor: buyer, target: trader,
+                payload: new { itemId = item?.ID, reason = message });
+            return false;
+        }
+        private sealed class BuyTransferCommand : IInventoryCommand
+        {
+            private readonly Entity _trader, _item;
+            internal int Price { get; private set; }
+            internal double Performance { get; private set; }
+            public string Name => "BuyFromTrader";
+            internal BuyTransferCommand(Entity trader, Entity item) { _trader = trader; _item = item; }
+            public InventoryValidationResult Validate(InventoryContext context) => InventoryValidationResult.Valid();
+            public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
+            {
+                var buyer = context.Actor; var stock = _trader.GetPart<InventoryPart>();
+                if (ReferenceEquals(buyer, _trader))
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "You cannot buy from yourself.");
+                if (!transaction.TryClaim(_item, buyer, Name))
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "Item transfer is already in progress.");
+                if (!stock.CanConsumeOne(_item))
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "That item is no longer in the trader's stock.");
+                if (!CanBeTraded(_item, buyer, _trader, "Buy"))
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, $"You can't trade {_item.GetDisplayName()}.");
+                Performance = GetTradePerformance(buyer); Price = GetBuyPrice(_item, Performance, _trader);
+                if (GetDrams(buyer) < Price)
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "You can't afford that.");
+                var before = GameEvent.New("BeforeTrade");
+                before.SetParameter("Buyer", (object)buyer); before.SetParameter("Trader", (object)_trader);
+                before.SetParameter("Item", (object)_item); before.SetParameter("Price", Price);
+                if (!buyer.FireEventAndRelease(before))
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "The purchase was cancelled.");
+                // Independent callbacks may change stock, prices or the purse. Read the
+                // actual current state before transfer, preserving their committed work.
+                if (!stock.CanConsumeOne(_item))
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "That item is no longer in the trader's stock.");
+                Performance = GetTradePerformance(buyer); Price = GetBuyPrice(_item, Performance, _trader);
+                int buyerDrams = GetDrams(buyer), traderDrams = GetDrams(_trader);
+                if (buyerDrams < Price)
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "You can't afford that.");
+                if ((long)traderDrams + Price > int.MaxValue)
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "The trader cannot carry that much currency.");
+                var source = InventoryTransferSnapshot.Capture(stock);
+                transaction.Do(apply: null, undo: source.Restore);
+                if (!source.Apply(() => stock.RemoveObject(_item)))
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "The trader could not release that item.");
+                var destination = InventoryTransferSnapshot.Capture(context.Inventory, _item);
+                transaction.Do(apply: null, undo: destination.Restore);
+                if (!destination.Apply(() => context.Inventory.AddObject(_item)))
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "You cannot carry that much weight.");
+                if (!destination.ClaimChanges(transaction, buyer, Name))
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "A destination stack is already being transferred.");
+                transaction.DeferCurrencyTransfer(buyer, _trader, Price);
+                return InventoryCommandResult.Ok();
+            }
         }
 
         /// <summary>
@@ -286,10 +286,7 @@ namespace CavesOfOoo.Core
 
                 if (!destination.ClaimChanges(transaction, context.Actor, Name))
                     return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "A destination stack is already being transferred.");
-                int sellerDrams = GetDrams(context.Actor), traderDrams = GetDrams(_trader);
-                transaction.Do(
-                    apply: () => { SetDrams(context.Actor, sellerDrams + Price); SetDrams(_trader, traderDrams - Price); },
-                    undo: () => { SetDrams(context.Actor, sellerDrams); SetDrams(_trader, traderDrams); });
+                transaction.DeferCurrencyTransfer(_trader, context.Actor, Price);
                 return InventoryCommandResult.Ok();
             }
         }
