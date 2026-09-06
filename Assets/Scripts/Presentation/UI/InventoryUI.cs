@@ -1193,6 +1193,9 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
+            if (new SeparateOneCommand(item).Validate(new InventoryContext(PlayerEntity, CurrentZone)).IsValid)
+                actions.Add(new ItemAction { Label = "Separate one", Command = "separate_one" });
+
             actions.Add(new ItemAction { Label = "Drop", Command = "drop" });
 
             _itemActionPopup = new ItemActionPopupState
@@ -1298,6 +1301,13 @@ namespace CavesOfOoo.Rendering
                 case "equip_manual":
                     OpenBodyPartPicker();
                     return;
+                case "separate_one":
+                    var separation = new SeparateOneCommand(item);
+                    var splitResult = InventorySystem.ExecuteCommand(separation, PlayerEntity, CurrentZone);
+                    completed = splitResult.Success;
+                    if (completed && ReopenItemActionPopupFor(separation.SeparatedItem)) return;
+                    if (!completed) LogCommandFailure("Separate one", splitResult);
+                    break;
                 case "unequip": completed = TryUnequipViaCommand(item); break;
                 case "drop": completed = TryDropViaCommand(item); break;
                 case "disassemble": completed = TryDisassembleViaCommand(item); break;

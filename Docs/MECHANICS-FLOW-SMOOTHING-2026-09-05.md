@@ -1,6 +1,6 @@
 # Mechanics flow and responsiveness — 2026-09-05
 
-Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 SOURCE SWEEP COMPLETE. User explicitly requested identifying mechanics that
+Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 SOURCE SWEEP COMPLETE. User explicitly requested identifying mechanics that
 need smoother integration and fully implementing the supported improvements, without
 intervention. This extends the ongoing whole-game audit; it does not cancel its
 remaining repairs. Baseline latest completed repair1ef093a1,8470tests,GA02i native44.
@@ -588,3 +588,79 @@ FLOW4 COMPLETE:8766/8766GREEN,05:39:07–05:41:08UTC,121.2167921s,
 0CS/failed/skipped/inconclusive.77newcases, native63PASS,2393uniqueGUIDs.
 Full failed evidence and map fixture correction retained. Independent review0must-fix.
 FLOW5 source sweep/RED plan above is next; no FLOW5production changes yet.
+
+FLOW4 committed e4acbd8c; FLOW5 begins from8766GREEN. Root reread command
+executor/context/results, transfer snapshot, transaction, inventory insert/weight/
+equipment APIs, crafting marks and actual UI/Sharp route before initial29REDcases.
+Additional correction: GetAllEquipped and InventorySystem.IsEquipped only inspect
+the legacy cache. New separation validation also checks actual Body references and
+Physics ownership, rather than assuming the cache alone proves carriage. Clone
+probe side effects precede the separation snapshot; refusals preserve independently
+completed work. No FLOW5production changes before RED.
+
+FLOW5 RED29cases:2already-passing singleton/zero-row controls,27missing-command/
+menu failures,05:43:28–05:43:29UTC,1.6268074s,0compilererrors. Raw FLOW5-red.xml.gz.
+Minimum implementation uses one new command and a small popup branch. The no-merge
+append remains private to the transaction-owned command, avoiding an unnecessary
+new general inventory insertion API. It validates actual carried/equipped references,
+claims before clone initialization, revalidates afterward, captures immediately before
+its own mutations, preserves source mark, and returns exact recipient/focus.
+
+FLOW5 minimum95/95GREEN,05:45:58–05:46:03UTC,4.7816438s,0CS.
+30dedicated adversarial cases now exercise clone exceptions/revalidation, shared
+transaction nesting, late failures, independent work during preparation/publication,
+participant claims, repeated separation, mark ownership, save/remerge, ID-sort focus,
+retry and unchanged turn timing. No extra runtime change before this gate.
+
+FLOW5 adversarial+neighbors81/81GREEN,05:48:51–05:48:54UTC,3.2006368s,
+0CS. Independent review found an API documentation overclaim: validation is a pure
+query and does not clear a previously committed command result. The popup creates a
+fresh command per attempt and reads SeparatedItem only on success. Document that
+per-attempt/result contract explicitly; add a positive query-preservation pin rather
+than mutate results from Validate. Dedicated matrix30→31. No runtime behavior change.
+Native staging6cases written before its scenario; verified BitLocker.GetKnownRecipes
+rather than assuming a KnownRecipes property.
+
+FLOW5 native staging RED6/6missing-scenario failures,05:51:22UTC,.2421046s,
+0CS. Scenario/player/disposable launcher added afterward. Independent source
+cold-eye0production must-fix. Strengthened rollback with retained recipient ownership
+checks; added heavier prepared-clone refusal versus unchanged-weight control, so the
+new mass-refusal branch is directly exercised. Dedicated matrix31→33.
+
+FLOW5 expanded134GREEN,05:53:59–05:54:06UTC,6.9690878s,0CS.
+Native16/16PASS,2a08cb6be3d34dfaaf00d6858758bbb6,5.014162292s,exit0,
+0CS. Actual separate→exact focused singleton→paidSharp, remainder/mass/time checks
+passed.2401uniqueGUIDs/0collisions. Native raw retains2known A31shutdown camera
+exceptions after success. Independent reviewer found a staging-fixture Active-turn
+leak; capture/restore added before full suite. No runtime behavior change.
+
+## FLOW6/A49 — reserve normal L for Look (source sweep complete; after FLOW5)
+
+Existing ALPHA-READINESS item12 debt, reconfirmed during FLOW3; not a new discovery.
+CoO-original control consistency repair. No new art/content or key binding.
+
+| Source/premise | Verified correction / decision |
+|---|---|
+| InputHandler489 rate gate;612 fresh L | A press swallowed by rate limiting can become held L afterward, bypassing Look and moving east. Remove only the held normal east fallback. Do not promise delayed Look activation. |
+| InputHandler364–368 Look dispatch | Look is handled above normal rate gate and uses GetDirectionKeyDown1953/3488. Preserve modal L cursor movement. |
+| GetMoveInput3509–3532 | Uses held WASD/arrows/numpad plus alternate vi keys. Full hjklyubn claim conflicts with L Look; remove only L in this normal movement helper and correct comments. |
+| ControlsReference26/31/57 | Already advertises WASD/arrows/numpad and L Look. Keep the shipped displayed binding. |
+| Docs/Status/IMPLEMENTED67 | Historical full-vi claim needs correction. MCP_PlayMode_Testing_Strategy37 documents modal targeting and remains valid. |
+| ShortcutFixture isolated InputTestFixture | Repeated manual Update calls in one InputSystem frame retain wasPressedThisFrame. Advance InputSystem.Update without release, assert L.isPressed && !wasPressedThisFrame, then test held input. |
+| Existing Look tests | Direct Enter/Move/Exit calls prove helpers, not real key dispatch. New tests must queue keys through InputHandler.Update. |
+
+Minimum: one normal held-L disjunct removal, three source comment corrections and
+historical control-doc correction. Keep fresh L Look, all advertised movement keys,
+other existing alternate keys and all modal L direction/choice behavior.
+
+RED matrix: rate-limited fresh L then genuine held frame; L+Escape exit with L held;
+fresh L enters Look without spending time; release then L in Look moves cursor;
+D/Right/numpad6 move normally and repeat; rate controls/nonmovement preserved.
+Then dedicated20–60adversarial cases, native keyboard hold/cursor/movement controls,
+independent review and full suite. InputHandler has protected spell work; stage only
+incremental hunks against a pre-wave snapshot. No FPS/speedup or mouse-delivery claim.
+
+FLOW5 COMPLETE:8834/8834GREEN,05:56:35–05:58:42UTC,126.1659211s,
+0CS/failed/skipped/inconclusive.68newcases, native16PASS,2401uniqueGUIDs.
+Accepted direct Separate one step now ships; FLOW6/A49 source sweep above is next,
+followed by the remaining system-audit repair queue. Mouse/visual bounds unchanged.

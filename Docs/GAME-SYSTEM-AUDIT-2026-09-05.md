@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 SOURCE SWEEP COMPLETE**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 SOURCE SWEEP COMPLETE**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -1810,3 +1810,15 @@ FLOW4-REPORT.md retains clean RED, adversarial/save/map corrections and raw evid
 Known A31destroyed-camera shutdown issue recurred after native success and remains
 queued; no exception-free shutdown claim. Next accepted FLOW5Separate one, then
 remaining brew/tinker and broader actor/world/save/movement/material repairs.
+
+## FLOW5 close-out — direct single-item preparation
+
+Carried multi-unit stacks offer Separate one, retaining the original remainder and
+focusing the exact new singleton. Source claims, post-clone revalidation and a scoped
+receipt preserve quantity/ownership/weight and independent completed actions on failure.
+Original crafting selection stays on the source; later ordinary compatible merges
+remain valid. Existing Sharp can now target the singleton without an equip detour.
+Full8834/8834GREEN(+68), native16/16PASS. FLOW5-REPORT.md records all gates,
+source corrections, staging cleanup fix and explicit A31/visual/mouse bounds.
+Next A49normal Look-key conflict; remaining brew/tinker/save/actor/world/material
+plans remain authorized and unfinished.
