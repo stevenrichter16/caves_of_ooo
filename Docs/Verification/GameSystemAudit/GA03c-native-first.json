@@ -1,0 +1,30 @@
+{
+    "runId": "fa2d0cac1040408980061747014c6ee8",
+    "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/5924ef05f9ee4b51857eb25af2639882",
+    "cases": 19,
+    "failures": 1,
+    "seconds": 3.9063828999999998,
+    "shutdownSeconds": 3.9245601,
+    "shutdownObserved": true,
+    "audit": [
+        "PASS boot_menu_before_new_game",
+        "PASS new_game_has_initial_checkpoint",
+        "PASS sparse_hotbar_starts_at_first_occupied",
+        "PASS right_bracket_selects_cooldown_slot9",
+        "PASS f5_creates_checkpoint",
+        "PASS left_bracket_changes_to_slot5",
+        "PASS f6_replaces_actor",
+        "PASS f6_restores_selected_slot9_in_input_and_renderer",
+        "PASS f6_preserves_cooldown7",
+        "PASS selection_save_load_spends_no_turn_or_energy",
+        "PASS selection_does_not_enter_targeting",
+        "PASS loaded_bindings_and_aliases_match",
+        "PASS empty_hotbar_clears_selection",
+        "PASS fixture_repopulation_selects_first_slot",
+        "PASS repopulated_bracket_reaches9",
+        "PASS empty_checkpoint_clears_prior_occupied_selection",
+        "PASS empty_restore_spends_no_turn_or_energy",
+        "FAIL native_saves_remain_in_owned_root",
+        "PASS shutdown_keeps_disposable_root"
+    ]
+}

@@ -1,6 +1,6 @@
 # Mechanics flow and responsiveness — 2026-09-05
 
-Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 COMPLETE; CRAFTING AVAILABILITY/FIRST-USE REPAIR COMPLETE; CRAFTED OUTPUT/LOCAL ROLLBACK REPAIR COMPLETE; CAMERA CLEANUP APPLIED/VERIFIED; NEW-GAME CHECKPOINT REPAIR COMPLETE. User explicitly requested identifying mechanics that
+Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 COMPLETE; CRAFTING AVAILABILITY/FIRST-USE REPAIR COMPLETE; CRAFTED OUTPUT/LOCAL ROLLBACK REPAIR COMPLETE; CAMERA CLEANUP APPLIED/VERIFIED; NEW-GAME CHECKPOINT REPAIR COMPLETE; HOTBAR SAVE SELECTION REPAIR COMPLETE. User explicitly requested identifying mechanics that
 need smoother integration and fully implementing the supported improvements, without
 intervention. This extends the ongoing whole-game audit; it does not cancel its
 remaining repairs. Baseline latest completed repair1ef093a1,8470tests,GA02i native44.
@@ -763,3 +763,12 @@ the disposable destination through normal shutdown.71new tests; full9168/9168GRE
 native61/61PASS, compatibility33/33PASS. Initial-file/metadata atomicity remains
 separate; no visual-feel or speedup claim. See GA03b-REPORT.md for complete bounds.
 Next: hotbar selection survives save/load without casting or changing action costs.
+
+## Completed: selected hotbar slot survives save/load (GA03c/A07)
+
+Actual occupied selection now saves and restores against the loaded actor with
+immediate display-state synchronization. Cooldown selections stay selected; empty
+hotbars clear and invalid indices use the first occupied slot. No cast/targeting/
+action cost is introduced.43new tests; full9211GREEN; native22PASS;0CS.
+Review and failed fixture evidence live in GA03c-REPORT.md. Next: malformed-save
+decode isolation, then remaining supported smoothing and whole-game repairs.

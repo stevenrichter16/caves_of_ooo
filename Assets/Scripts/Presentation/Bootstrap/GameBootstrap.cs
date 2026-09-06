@@ -833,7 +833,7 @@ namespace CavesOfOoo
                 _zoneManager,
                 _turnManager,
                 _player,
-                selectedHotbarSlot: 0,
+                selectedHotbarSlot: GetComponent<InputHandler>()?.CaptureHotbarSelection() ?? -1,
                 world: _world);
         }
 
@@ -923,6 +923,7 @@ namespace CavesOfOoo
 
             RewireLoadedBrains();
             WirePresentationForLoadedGame();
+            GetComponent<InputHandler>()?.RestoreHotbarSelection(state.SelectedHotbarSlot);
 
             if (_turnManager != null && !_turnManager.WaitingForInput)
                 _turnManager.ProcessUntilPlayerTurn();

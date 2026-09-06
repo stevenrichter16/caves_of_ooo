@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; WAVE2j COMPLETE; WAVE2k COMPLETE; WAVE3a APPLIED/VERIFIED; WAVE3b COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; WAVE2j COMPLETE; WAVE2k COMPLETE; WAVE3a APPLIED/VERIFIED; WAVE3b COMPLETE; WAVE3c COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -2111,3 +2111,21 @@ Unity-shutdown timing reports and earlier preliminary reports retained separatel
 2430GUIDs/0collisions; independent final review0remaining🟡+. Exact attributable
 SaveSystem/Bootstrap patches preserve existing FX changes. Next A07hotbar save
 selection plan is prepared; remaining system-audit repairs continue.
+
+### Wave3c/A07 — selected hotbar slot survives saving and loading
+
+Status: IN FULL VERIFICATION from017b1050,9168GREEN. The existing v7 field
+already serialized selection, but bootstrap captured0 and never applied it. Input
+now supplies validated selection; restoration validates against the replacement
+actor and synchronizes the renderer immediately without casting/spending. Empty
+hotbars use-1; invalid indices fall to the first occupied slot; cooldown remains
+selectable. Initial13RED:2pass/11fail; expanded87GREEN, native22/22PASS.
+43new tests include30dedicated adversarial/player-flow checks. Initial native fixture
+count and test-reflection/namespace mistakes are retained, corrected and rerun.
+Full pending; detailed plan HOTBAR-SAVE-SELECTION-PLAN.md and GA03c-REPORT.md.
+
+GA03c complete: full9211/9211GREEN,08:58:16–09:00:34UTC,137.0933501s,0CS.
+43new tests, native22/22PASS,2434GUIDs/0collisions; independent review and hypotheses
+complete. Protected source changes are staged only as this wave’s incremental hunks.
+Next A08 starts from SAVE-DECODE-ISOLATION-PLAN.md; remaining actor/world/material/
+editor queue continues.

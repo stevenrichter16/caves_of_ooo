@@ -3999,6 +3999,24 @@ namespace CavesOfOoo.Rendering
             SyncHotbarState();
         }
 
+        /// <summary>Captures an occupied hotbar selection, choosing the first
+        /// occupied slot when needed or -1 when none exist. Never activates a rite.</summary>
+        public int CaptureHotbarSelection()
+        {
+            EnsureHotbarSelectionValid();
+            return _selectedHotbarSlot;
+        }
+
+        /// <summary>Restores selection against the currently bound player and
+        /// synchronizes its display. Bind the loaded player before calling this;
+        /// ability assignments, targeting and action costs are unchanged.</summary>
+        public void RestoreHotbarSelection(int selectedSlot)
+        {
+            _selectedHotbarSlot = selectedSlot;
+            EnsureHotbarSelectionValid();
+            SyncHotbarState();
+        }
+
         private void EnsureHotbarSelectionValid()
         {
             var abilities = PlayerEntity?.GetPart<ActivatedAbilitiesPart>();
