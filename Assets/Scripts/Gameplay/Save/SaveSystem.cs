@@ -210,7 +210,10 @@ namespace CavesOfOoo.Core
             return entity;
         }
 
-        public void ReadEntityBodies()
+        /// <summary>Read a standalone token graph and complete both load-hook phases.</summary>
+        public void ReadEntityBodies() => ReadEntityBodies(runLoadHooks: true);
+
+        internal void ReadEntityBodies(bool runLoadHooks)
         {
             ExpectCheck("EntityBodies.Begin");
             while (true)
@@ -229,7 +232,12 @@ namespace CavesOfOoo.Core
                 _loadedEntities.Add(entity);
             }
             ExpectCheck("EntityBodies.End");
+            if (runLoadHooks) RunLoadHooks();
+        }
 
+        // Session loading calls this only after all parser and section checks pass.
+        internal void RunLoadHooks()
+        {
             for (int i = 0; i < _loadedEntities.Count; i++)
             {
                 var parts = _loadedEntities[i].Parts;
@@ -380,21 +388,28 @@ namespace CavesOfOoo.Core
             state.World = reader.ReadEntityReference();
 
             reader.ExpectCheck("ZoneManager");
-            state.ZoneManager = SaveGraphSerializer.LoadOverworldZoneManager(reader);
+            state.ZoneManager = SaveGraphSerializer.LoadOverworldZoneManager(reader, activate: false);
 
             reader.ExpectCheck("TurnManager");
-            state.TurnManager = SaveGraphSerializer.LoadTurnManager(reader);
+            state.TurnManager = SaveGraphSerializer.LoadTurnManager(reader, activate: false);
 
             reader.ExpectCheck("MessageLog");
-            SaveGraphSerializer.LoadMessageLog(reader);
+            var messages = SaveGraphSerializer.ReadMessageLog(reader);
 
             reader.ExpectCheck("PlayerReputation");
-            SaveGraphSerializer.LoadPlayerReputation(reader);
+            var reputation = SaveGraphSerializer.ReadPlayerReputation(reader);
 
-            reader.ReadEntityBodies();
-            SaveGraphSerializer.RebuildLoadedWorld(state);
-
+            reader.ReadEntityBodies(runLoadHooks: false);
             reader.ExpectCheck("GameSession.End");
+
+            // Parser failures leave the live session untouched. Load-hook or
+            // bootstrap application exceptions are separate from this boundary.
+            state.TurnManager?.Activate();
+            state.ZoneManager?.SettlementManager?.Activate();
+            messages.Apply();
+            PlayerReputation.Restore(reputation);
+            reader.RunLoadHooks();
+            SaveGraphSerializer.RebuildLoadedWorld(state);
             return state;
         }
 
@@ -875,6 +890,9 @@ namespace CavesOfOoo.Core
         }
 
         public static OverworldZoneManager LoadOverworldZoneManager(SaveReader reader)
+            => LoadOverworldZoneManager(reader, activate: true);
+
+        internal static OverworldZoneManager LoadOverworldZoneManager(SaveReader reader, bool activate)
         {
             if (!reader.ReadBool())
                 return null;
@@ -904,10 +922,11 @@ namespace CavesOfOoo.Core
             }
 
             SettlementManager settlements = LoadSettlementManager(reader);
-            var manager = new OverworldZoneManager(reader.Factory, seed);
+            var manager = new OverworldZoneManager(reader.Factory, seed, activate: false);
             manager.ReplaceLoadedOverworldState(worldMap, settlements, null);
             manager.ReplaceLoadedState(zones, activeZoneID, connections);
             reader.SetZoneManager(manager);
+            if (activate) manager.SettlementManager.Activate();
             return manager;
         }
 
@@ -944,6 +963,9 @@ namespace CavesOfOoo.Core
         }
 
         public static TurnManager LoadTurnManager(SaveReader reader)
+            => LoadTurnManager(reader, activate: true);
+
+        internal static TurnManager LoadTurnManager(SaveReader reader, bool activate)
         {
             if (!reader.ReadBool())
                 return null;
@@ -962,7 +984,7 @@ namespace CavesOfOoo.Core
                 });
             }
 
-            var turnManager = new TurnManager();
+            var turnManager = new TurnManager(activate);
             turnManager.RestoreSavedState(tick, waiting, current, entries);
             return turnManager;
         }
@@ -987,7 +1009,17 @@ namespace CavesOfOoo.Core
             writer.Write(MessageLog.NextSerialValue);
         }
 
-        public static void LoadMessageLog(SaveReader reader)
+        public static void LoadMessageLog(SaveReader reader) => ReadMessageLog(reader).Apply();
+
+        internal sealed class LoadedMessageLog
+        {
+            internal List<MessageLog.Entry> Entries;
+            internal List<string> Announcements;
+            internal int Flash, NextSerial;
+            internal void Apply() => MessageLog.Restore(Entries, Announcements, Flash, NextSerial);
+        }
+
+        internal static LoadedMessageLog ReadMessageLog(SaveReader reader)
         {
             int count = reader.ReadInt();
             var entries = new List<MessageLog.Entry>(count);
@@ -1006,7 +1038,7 @@ namespace CavesOfOoo.Core
 
             int flash = reader.ReadInt();
             int nextSerial = reader.ReadInt();
-            MessageLog.Restore(entries, announcements, flash, nextSerial);
+            return new LoadedMessageLog { Entries = entries, Announcements = announcements, Flash = flash, NextSerial = nextSerial };
         }
 
         public static void SavePlayerReputation(SaveWriter writer)
@@ -1016,8 +1048,10 @@ namespace CavesOfOoo.Core
 
         public static void LoadPlayerReputation(SaveReader reader)
         {
-            PlayerReputation.Restore(ReadIntDictionary(reader));
+            PlayerReputation.Restore(ReadPlayerReputation(reader));
         }
+
+        internal static Dictionary<string, int> ReadPlayerReputation(SaveReader reader) => ReadIntDictionary(reader);
 
         private static void SaveZone(Zone zone, SaveWriter writer)
         {
@@ -1216,7 +1250,7 @@ namespace CavesOfOoo.Core
             for (int i = 0; i < count; i++)
                 settlements[reader.ReadString()] = LoadSettlementState(reader);
 
-            var manager = new SettlementManager();
+            var manager = new SettlementManager(null, null, activate: false);
             manager.RestoreSettlements(settlements);
             return manager;
         }

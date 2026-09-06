@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; WAVE2j COMPLETE; WAVE2k COMPLETE; WAVE3a APPLIED/VERIFIED; WAVE3b COMPLETE; WAVE3c COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; WAVE2j COMPLETE; WAVE2k COMPLETE; WAVE3a APPLIED/VERIFIED; WAVE3b COMPLETE; WAVE3c COMPLETE; WAVE3d COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -2129,3 +2129,27 @@ GA03c complete: full9211/9211GREEN,08:58:16–09:00:34UTC,137.0933501s,0CS.
 complete. Protected source changes are staged only as this wave’s incremental hunks.
 Next A08 starts from SAVE-DECODE-ISOLATION-PLAN.md; remaining actor/world/material/
 editor queue continues.
+
+### Wave3d/A08 — reject malformed saves before replacing live state
+
+Status: IN NATIVE VERIFICATION from70f704dd,9211GREEN. Decode stages managers,
+messages/reputation and defers hooks until the final check. Independent sweep added
+SettlementManager.Current publication/alias repair; dedicated RED added loaded-map
+POI resolver binding for sparse saved Sill.52new tests; focused111/111GREEN.
+Exact FX-clear relocation remains applied as protected work, with retained patch
+and attribution hashes. Native/full pending; see SAVE-DECODE-ISOLATION-PLAN.md
+and GA03d-REPORT.md for raw failures, corrections, excluded exception boundaries
+and normal-entry redundancy.
+
+Additional bounded validation debt found during source sweep: malformed extreme
+BodyPart.ID can overflow the existing allocator and produce nonpositive future IDs.
+Ordinary abandoned loads only skip IDs, without mutating existing anatomy; allocator
+validation is separate from parser publication and remains queued.
+
+GA03d complete. Full9263/9263GREEN,09:27:39–09:29:56UTC,137.4268484s,0CS.
+52new tests; native22/22PASS including exactly one expected footer rejection and
+changed-payload save/reload recovery.2438GUIDs/0collisions. Independent review and
+hypotheses complete. Protected FX placement retained as applied exact patch.
+Next A09 hauling lifecycle source sweep is in HAULING-LIFECYCLE-PLAN.md; the
+remaining actor/world/material/editor and separately bounded save-validation queue
+continues.

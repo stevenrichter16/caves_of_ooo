@@ -116,10 +116,15 @@ namespace CavesOfOoo.Core
         /// application paths can query the current actor through the static
         /// without threading the instance through every call site.
         /// </summary>
-        public TurnManager()
+        public TurnManager() : this(activate: true) { }
+
+        /// <summary>Load candidates remain unpublished until their session validates.</summary>
+        internal TurnManager(bool activate)
         {
-            Active = this;
+            if (activate) Activate();
         }
+
+        internal void Activate() => Active = this;
 
         /// <summary>
         /// Register an entity to participate in turns.

@@ -1,0 +1,12 @@
+--- a/Assets/Scripts/Gameplay/Save/SaveSystem.cs
++++ b/Assets/Scripts/Gameplay/Save/SaveSystem.cs
+@@ -408,6 +408,9 @@
+             state.ZoneManager?.SettlementManager?.Activate();
+             messages.Apply();
+             PlayerReputation.Restore(reputation);
++            // Transient presentation is reconstructed by OnAfterLoad and zone activation.
++            AsciiFxBus.Clear();
++            SpellFxBus.Clear();
+             reader.RunLoadHooks();
+             SaveGraphSerializer.RebuildLoadedWorld(state);
+             return state;

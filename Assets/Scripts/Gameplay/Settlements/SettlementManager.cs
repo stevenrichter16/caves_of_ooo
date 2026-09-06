@@ -9,16 +9,25 @@ namespace CavesOfOoo.Core
 
         private readonly Dictionary<string, SettlementState> _settlements = new Dictionary<string, SettlementState>();
         private Func<int> _currentTurnProvider;
-        private readonly Func<string, PointOfInterest> _poiResolver;
+        private Func<string, PointOfInterest> _poiResolver;
 
         public event Action<string, RepairableSiteState> SiteStateChanged;
 
         public SettlementManager(Func<int> currentTurnProvider = null, Func<string, PointOfInterest> poiResolver = null)
+            : this(currentTurnProvider, poiResolver, activate: true) { }
+
+        /// <summary>Load candidates must not replace the live settlement registry.</summary>
+        internal SettlementManager(Func<int> currentTurnProvider, Func<string, PointOfInterest> poiResolver, bool activate)
         {
             _currentTurnProvider = currentTurnProvider;
             _poiResolver = poiResolver;
-            Current = this;
+            if (activate) Activate();
         }
+
+        internal void Activate() => Current = this;
+
+        // The resolver is runtime wiring, rebuilt from the owning loaded map.
+        internal void SetPointOfInterestResolver(Func<string, PointOfInterest> resolver) => _poiResolver = resolver;
 
         public void SetCurrentTurnProvider(Func<int> currentTurnProvider)
         {

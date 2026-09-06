@@ -1,6 +1,6 @@
 # Mechanics flow and responsiveness — 2026-09-05
 
-Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 COMPLETE; CRAFTING AVAILABILITY/FIRST-USE REPAIR COMPLETE; CRAFTED OUTPUT/LOCAL ROLLBACK REPAIR COMPLETE; CAMERA CLEANUP APPLIED/VERIFIED; NEW-GAME CHECKPOINT REPAIR COMPLETE; HOTBAR SAVE SELECTION REPAIR COMPLETE. User explicitly requested identifying mechanics that
+Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 COMPLETE; CRAFTING AVAILABILITY/FIRST-USE REPAIR COMPLETE; CRAFTED OUTPUT/LOCAL ROLLBACK REPAIR COMPLETE; CAMERA CLEANUP APPLIED/VERIFIED; NEW-GAME CHECKPOINT REPAIR COMPLETE; HOTBAR SAVE SELECTION REPAIR COMPLETE; CORRUPT-SAVE ISOLATION/SETTLEMENT WIRING COMPLETE. User explicitly requested identifying mechanics that
 need smoother integration and fully implementing the supported improvements, without
 intervention. This extends the ongoing whole-game audit; it does not cancel its
 remaining repairs. Baseline latest completed repair1ef093a1,8470tests,GA02i native44.
@@ -772,3 +772,13 @@ hotbars clear and invalid indices use the first occupied slot. No cast/targeting
 action cost is introduced.43new tests; full9211GREEN; native22PASS;0CS.
 Review and failed fixture evidence live in GA03c-REPORT.md. Next: malformed-save
 decode isolation, then remaining supported smoothing and whole-game repairs.
+
+## Completed: corrupt-save rejection and recovery (GA03d/A08)
+
+Malformed session parsing now refuses before replacing live managers, messages,
+reputation or pending effects. Valid loading publishes the actual saved settlement
+registry and restores its loaded-map lookup; existing saved sites retain authority.
+Normal entry remains unchanged; the missing-registry lookup case is sparse-save/API
+robustness.52new tests; full9263GREEN; native22PASS with exact expected rejection,
+recovery and changed save payload. No pixel/feel/speedup claim. Protected FX placement
+remains applied with exact patch retained. Next: hauling lifecycle and stale links.

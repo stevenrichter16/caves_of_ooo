@@ -17,12 +17,17 @@ namespace CavesOfOoo.Core
         private System.Func<int> _turnProvider;
 
         public OverworldZoneManager(EntityFactory factory, int worldSeed = 0)
+            : this(factory, worldSeed, activate: true) { }
+
+        /// <summary>Decode an isolated candidate without publishing its default settlement registry.</summary>
+        internal OverworldZoneManager(EntityFactory factory, int worldSeed, bool activate)
             : base(factory, worldSeed)
         {
             WorldMap = WorldGenerator.Generate(WorldSeed);
             SettlementManager = new SettlementManager(
                 currentTurnProvider: null,
-                poiResolver: ResolvePointOfInterestForSettlement);
+                poiResolver: ResolvePointOfInterestForSettlement,
+                activate: activate);
         }
 
         protected override ZoneGenerationPipeline GetPipelineForZone(string zoneID)
@@ -798,6 +803,7 @@ namespace CavesOfOoo.Core
             if (settlementManager != null)
                 SettlementManager = settlementManager;
 
+            SettlementManager.SetPointOfInterestResolver(ResolvePointOfInterestForSettlement);
             SetTurnProvider(turnProvider);
         }
 

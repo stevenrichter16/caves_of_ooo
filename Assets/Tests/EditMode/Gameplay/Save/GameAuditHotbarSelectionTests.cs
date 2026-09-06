@@ -28,7 +28,7 @@ namespace CavesOfOoo.Tests
         {
             try
             {
-                foreach(var type in new[]{typeof(NarrativeStatePart),typeof(StoryletPart),typeof(WorldClock),typeof(BeatingGlareSystem),typeof(ConversationManager),typeof(SettlementRuntime),typeof(ZoneRenderHooks)})Snapshot(type);
+                foreach(var type in new[]{typeof(NarrativeStatePart),typeof(StoryletPart),typeof(WorldClock),typeof(BeatingGlareSystem),typeof(ConversationManager),typeof(SettlementRuntime),typeof(SettlementManager),typeof(ZoneRenderHooks)})Snapshot(type);
                 Field(typeof(TurnManager),"World");Field(typeof(MessageLog),"TickProvider");
                 foreach(var type in new[]{typeof(ConversationActions),typeof(MaterialReactionResolver),typeof(CorpsePart),typeof(LoadoutPart),typeof(LootDropSystem),typeof(ContainerPlacementService),typeof(TraderPart),typeof(Cryomancy_GlacialWall),typeof(LayRuneGoal),typeof(PricklebrowNestPart),typeof(AlchemyStillPart),typeof(ForgePart),typeof(SeedPart),typeof(CropSystem)})Field(type,"Factory");
                 Field(typeof(DestructionSystem),"EntityFactoryRef");
