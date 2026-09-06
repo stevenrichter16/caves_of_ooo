@@ -5,7 +5,7 @@ namespace CavesOfOoo.Core
     /// <summary>
     /// Manages stack quantity for items that can stack (torches, arrows, etc.).
     /// Mirrors Qud's Stacker part. Items stack if they share the same BlueprintName
-    /// and both have a StackerPart.
+    /// and compatible mutable payloads, and both have a StackerPart.
     ///
     /// Weight is per-unit on PhysicsPart. Total weight = Physics.Weight * StackCount.
     /// </summary>
@@ -26,7 +26,7 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Can this item stack with another entity?
         /// Items stack if both have StackerPart, share the same
-        /// BlueprintName, AND look identical (same display name).
+        /// BlueprintName, look identical, AND preserve the same crafted payload.
         ///
         /// The display-name check exists because identity items share a
         /// blueprint: every brew is "BrewedTonic" and every forged weapon
@@ -63,7 +63,12 @@ namespace CavesOfOoo.Core
 
             string mine = ParentEntity.GetPart<RenderPart>()?.DisplayName;
             string theirs = other.GetPart<RenderPart>()?.DisplayName;
-            return mine == theirs;
+            if (mine != theirs) return false;
+            if (StackPayloadIdentity.Same(ParentEntity, other)) return true;
+            if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("event"))
+                CavesOfOoo.Diagnostics.Diag.Record("event", "StackPayloadMismatch", actor: ParentEntity, target: other,
+                    payload: new { blueprint = ParentEntity.BlueprintName, reason = "different_crafted_payload" });
+            return false;
         }
 
         /// <summary>

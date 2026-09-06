@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e NEXT**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f NEXT**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -970,3 +970,184 @@ Exact source/merge restoration, buy UI refusal/retry and committed wallet batche
 ship with outcome diagnostics. Detailed chronology, corrected false RED probes,
 raw evidence and honesty bounds: Verification/GameSystemAudit/GA02d-REPORT.md.
 Next Wave2e: A03 functional stack identity; then remaining accepted findings.
+
+
+### Wave2e plan and verification sweep — A03 functional stack identity
+
+Baseline1ad88572,8040/8040 GREEN. Read actual Stacker, BrewingService/Resolver/
+BrewRules and blueprints, tonic/status/cure payload consumers, all six enhancement
+classes and dispatch, paid mineral modification, clone/token-graph save and
+WeaponTemperingService/WeaponTemper. Qud GameObject.SameAs10696–10785,
+Stacker.SameAs111–114 and ModSerrated/IModification comparators are references:
+Qud compares broad part/stat/effect identity; this is a bounded CoO payload fix.
+
+| Verified correction | Consequence before implementation |
+|---|---|
+| Same recipe names omit strength; healing-only mixtures have no BrewItem. | Compare tonic configuration as well as ordered brew effects/form. |
+| Mineral infusion costs no bits, but consumes one actual mineral each time. | Test material payment and every duplicate enhancement Part, not first GetPart. |
+| Modification does not restack immediately. | Exercise transfer/re-add after separately upgrading actual singleton daggers. |
+| Any effect-bearing brew can temper; old coating-only summary is stale. | Include actual GlimmerBrine versus +SparkRoot tempered daggers, both acid-quenched. |
+| Temper strength lives in MeleeWeapon.OnHitEffectsRaw and WeaponTemper state. | Extend comparator to melee configuration and temper fields; no payload-family-only claim. |
+| Clone copies public fields for every Part, save token graph restores all occurrences. | Compute identity from current state; no cached/saved fingerprint or version change. |
+
+🟢 Existing actual reagents, recipes, daggers, still and sprites support the wave.
+Scope: retain blueprint/name/charged-book gates; compare ordered relevant Part
+occurrences and their configured payloads (tonic, status/cure, BrewItem, six known
+enhancements, melee configuration, temper). Exact known types; unknown enhancement
+subclasses conservatively remain separate. Counts, IDs, owners and private caches
+are not identity. Raw effect ordering is preserved. Equal outputs merge, including
+different recipes with equivalent MAX-resolved payload. No blanket HP/material/
+thermal equivalence or arbitrary custom Part comparison is claimed.
+
+Sequence: real recipe/paid-upgrade/temper RED with symmetric success controls →
+minimum computed comparator →20–60 dedicated adversarial cases (field omissions,
+part presence/order/duplicates, clone/save, container/transaction neighbors,
+unknown extension refusal and diagnostic gates) → independent cold-eye → actual
+keyboard crafting/consumption/transfers → full suite/owned commit. Emit a scoped
+StackPayloadMismatch diagnostic for same-name payload mismatch. No ordinary new
+per-frame/per-turn work or performance-improvement claim.
+
+Wave2e initial RED21:10 fail/11 controls,00:12:25–26UTC September6; zero compiler
+errors. Failures confirm both potion families, mineral occurrence loss and temper
+strength collision. Independent review caught potential overrestriction BEFORE
+implementation: compare tonic responders and enhancements in their own dispatch
+order; compare non-dispatch melee/temper independently. Empty default WeaponTemper
+left by reforge is equivalent to absent; unrelated zero-radius LightSource left
+by unequip must not affect this bounded comparator. Full melee eight-field list
+verified; caches excluded. Sharp→reforge retains ModSharp while rebuilding away
+its penetration bonus: record separate follow-up A45, not a reforge repair here.
+
+Wave2e minimum+neighbors537/537 GREEN00:14:59–00:15:03UTC; dedicated68/68 GREEN
+00:18:26–29UTC (21regression+47adversarial). Actual forge→temper/infusion histories
+and every public scoped field are pinned. Cold-eye found synthetic duplicate-
+temper hole: filtering all empty markers makes [empty,active] equal [active],
+but TryTemper consumes first marker capacity. Add RED mixed/ordered duplicate
+controls before limiting normalization to a sole empty exact marker.
+
+Native prep correction: CoO AddObject has no noStack overload. Use three ordinary
+ground daggers at20,12/13/14 and sequential native pickup/modification; an actual
+equipped two-handed Warhammer keeps auto-equip from taking these test daggers.
+No invented API or raw-list fixture needed. Stage real reagents only, then use
+native Craft/Brew, Tinker/Mod, Drop/Pickup and Drink. Seven missing-bench REDs
+precede scenario authoring. Existing sprites cover all content.
+
+
+### Next A05 quantity-refresh preparation (source review; root RED pending)
+
+Dynamic weight is already live: InventoryPart.GetCarriedWeight388/IsOverburdened502.
+The stale state is CarryMovePenalty×StackCount cached into Speed.Penalty by
+RefreshHandlingCarryPenalty426/ComputeCarriedHandlingPenalty512; TurnManager.GetSpeed166
+consumes it. No authored nonzero CarryMovePenalty was found. Use real recipes/items
+with this supported field configured; do not claim current content slows this way.
+
+Remaining raw writers: Stacker.MergeFrom/SplitStack/RemoveOne; SeedPart179;
+MineralTradeService(WantsMineralPart175); Temper.TryConsumeQuench211; Tinker
+TryConsumeIngredient457/TryConsumeItem501/RestoreIngredient484/RollbackCraftOutputs429;
+Brew.TryConsumeReagent543/RestoreConsumed575; Forge.TryConsumeComponent592/Restore624.
+Successful Brew/Sludge/Forge/Build normally refresh via output AddObject; Mishap
+and partial-stack seed/gift/temper/mod/disassembly do not. Restoration can refresh
+on singleton AddObject before later stack increments; tinker rollback decrements
+an already-merged output after the last refresh. Keep public StackCount/savev7.
+Refresh actual carried owner after each primitive mutation; both merge owners
+once if same, source owner on split/remove. Check membership, not only Physics
+backreference; container/equipped/orphan contents do not contribute. Refresh once
+at end of restore/rollback loops; retain already-correct idempotent transfer calls.
+
+RED fixture plan: existing HandlingPart.CarryMovePenalty4, Speed100/Penalty7;
+quantity3→2 should penalty19→15, speed81→85; repeat refresh no additional delta.
+Actual CandyCarrotSeed planting (blocked/barren and singleton controls), SaltMaster
+PaleSalt gift (TentRight+5), brewed glimmer quench, paid PaleSalt infusion (third
+cap refusal), Dagger disassembly, FireMoss ALONE Mishap (heat+volatile/no rule;
++LampOil success control). Missing BrewedTonic with ordered singletonGlimmerBrine
+then SparkRoot2 catches low-penalty restore; reverse order is control. Missing
+ForgedWeapon with SteelBlade1/OakHaft2/LeatherBinding2 likewise. Tinker supported
+multi-output fixture overrides craft_dagger NumberMade2 (authored1), existing
+Dagger2/capacity12: first merges, second refuses; exact count/penalty restore.
+Primitive split/merge use full/partial, same/different-owner, invalid and
+orphan/equipped/container controls. Preserve unrelated penalties/load rebase.
+
+### A45 — Sharp gate survives reforge after its bonus is rebuilt away
+
+Source-proved, root RED pending. Actual recipe mod_sharp_melee (not modification
+blueprint mod_sharp), costBC (not the reviewer's initial unverified A). Forge real
+SteelBlade/OakHaft/LeatherBinding, know recipe/payBC, Sharp adds penetration and
+ModSharp tag. Reforge same Oak recomputes PenBonus/name from assembly but leaves
+ModSharp, so sharpness is gone and Sharp cannot be reapplied. Fresh identical
+assembly/name/stats lacks the veto tag. SharpTinkerModification32–35/55/66 and
+WeaponForgingService302/505–514. Plan separately decide/pin reforge preservation
+of paid modifications versus explicit removal; do not claim A03 fixes this gate.
+
+Wave2e staging+neighbors594/594 GREEN00:25:13–19UTC;zero C# errors. Final independent
+review clears production and identifies test-strengthening: assert inner pickup
+actually succeeded/merged before intentional outer rollback; pin exact injected
+refusal so early failure cannot pass. Add four correct-behavior controls for unknown
+empty temper subclass and diagnostic silence at the three earlier gates. Native
+TonicApplied probe now explicitly requires consumed=true and correct actor/target.
+
+Wave2e final counterchecks82/82 GREEN00:28:01–05UTC, zero C# errors. Added exact
+post-rollback enhancement counts after that run, included in subsequent native
+compilation and pending full suite. Native89/89 PASS, run9b7331519681442e82b2b03230b569dd,
+32.876371625seconds, exit0 and zero C# errors. Both independent reviews clear.
+Archive full native Unity log before launching final suite. Native verifies real
+six-recipe crafting, four material payments, sequential pickup, mismatched/equal
+upgrade transfers and both carried tonic payloads; no pixel/feel or native combat
+bonus/save/split claim. Detailed report follows at complete gate.
+
+Wave2e first full8122:8121pass/1known fungal self-cloud flake,00:30:11–00:31:42UTC,
+zero C# errors. All82 new cases pass. Retain GA02e-full-flaky.xml.gz and repeat
+unchanged; do not mark complete or count this as a new production defect.
+
+
+### Additional crafting integrity preparation — finite follow-up after quantity refresh
+
+A46 (source-proved, root RED pending): actual TryForge insertion118 can merge the
+new output, yet returns that nowzero/unowned reference125. ForgePart181 and
+InventoryUI.Crafting332 pass it to the selected follow-up quench, which refuses
+ownership. Conversely batch2 returns first live entity nowcount2; TryTemper has
+no singleton gate and changes both weapons for one quench. TryReforge likewise
+mutates a whole stack for one component; marked.Weapons.Count counts entities,
+not units. Plan one explicit unit-target/output-resolution wave alongside A45:
+singleton+quench control, existing-equivalent+new+quench, batch2+onequench,
+carried forgedstack2+one reforge component. Preserve paid units and actual output
+identity; do not hide this change inside A05's derived-penalty refresh.
+
+A47 (supported malformed/capacity extension controls, no normal producer proved):
+zero/negative carried entries are accepted by several seed/mineral/crafting
+consumers. Seed's actor-mismatched IsCarried fallback only exposes a false menu
+row; DoPlant rechecks actual actor.Objects, so no foreign-seed theft. SaltMaster
+positive inventory predicate hides zero-only stock, but mixed[zero,positive]
+service consumes firstzero and rewards. Brewing/forge/temper/tinker share raw
+membership/quantity writers; root reproduction pending. Plan positive-unit
+validation and truthful action refusal with exact-resource rollback, separate
+from quantity refresh. Do not label malformed resident entries ordinary exploits.
+
+Related supported multi-output craft rollback identity: actualV1 recipes all
+NumberMade1; override craft_dagger2 in fixture, enhancedDagger1 first/plainDagger1
+second, capacity12. First newplain merges, second refuses; RollbackCraftOutputs
+finds first blueprint and removes enhanced item, leavingplain2. Pin actual
+insertion receipts per output (InventoryTransferSnapshot) with plain-first/
+no-mismatched-sibling controls; never use blueprint-only reverse lookup. This
+belongs in the finite crafting transaction follow-up, not an authored batch claim.
+
+A47 preparation completion: Seed.HandleEvent55–57 marks handled/success even when
+void DoPlant refuses hard/occupied/barren ground; existing tests inspect crops and
+diagnostics, not result.Success. No current AfterInventoryAction reward consumer
+found, so no extra-reward/turn-loss claim. Fix DoPlant bool+success-only handled
+alongside positive payment and actor-aware visibility. FoundingTrustService30–32
+also stops at first empty candidate; align positive selectors. Brewing/forge batch
+previews currently treat zero/negative stack availability as1; include guarded
+preview controls. Reforge displaced-output rollback has a separate missing-content
+injection seam: existingOakHaft2, missing recordedSteelBlade, failed reforge leaves
+OakHaft3 because returned component merged and RemoveObject(orphan) fails. Use an
+exact insertion receipt in A46/A47 crafting rollback work. Keep A05 refresh finite.
+
+
+### Wave2e complete — crafted stack identity
+
+Full8122/8122 GREEN00:33:01–00:34:32UTC, zero C# errors; unchanged repeat after
+one known fungal-test flake (failed raw retained). Native89/89 PASS. Added82 tests:
+21regression/54adversarial/7staging. Independent production and native reviews
+clear. Two actual-content strength families, mineral occurrences and temper
+payloads survive stacking; equivalent recipes/history merge. Report and raw
+evidence: Verification/GameSystemAudit/GA02e-REPORT.md. Next Wave2f: A05 remaining
+quantity-to-carry-penalty refresh; A45–A47 crafting integrity then remaining audit.
