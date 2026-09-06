@@ -83,6 +83,9 @@ namespace CavesOfOoo.Core
             // Use the Enhancement Part's Applicable filter as the source
             // of truth for "does this mineral fit on this item?" —
             // single contract, no drift between gates.
+            // Compatibility is queried before Apply. Native first-use auditing
+            // exposed that relying on Apply's lazy initialization hid every target.
+            EnhancementFactory.EnsureInitialized();
             if (!EnhancementFactory.TryGet(EnhancementName, out _))
             {
                 reason = "Enhancement type '" + EnhancementName + "' is not registered.";

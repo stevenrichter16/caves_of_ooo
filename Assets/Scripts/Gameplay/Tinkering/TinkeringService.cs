@@ -311,6 +311,12 @@ namespace CavesOfOoo.Core
                 return false;
             }
 
+            if ((targetItem.GetPart<StackerPart>()?.StackCount ?? 1) <= 0)
+            {
+                reason = "The target item is empty.";
+                return false;
+            }
+
             if (!string.IsNullOrWhiteSpace(recipe.TargetBlueprint)
                 && !string.Equals(targetItem.BlueprintName, recipe.TargetBlueprint, StringComparison.OrdinalIgnoreCase))
             {
@@ -347,6 +353,12 @@ namespace CavesOfOoo.Core
             if (item == null)
             {
                 reason = "Item is missing.";
+                return false;
+            }
+
+            if ((item.GetPart<StackerPart>()?.StackCount ?? 1) <= 0)
+            {
+                reason = "The item is empty.";
                 return false;
             }
 
@@ -446,31 +458,13 @@ namespace CavesOfOoo.Core
             if (inventory == null || string.IsNullOrWhiteSpace(ingredientBlueprint))
                 return false;
 
-            for (int i = 0; i < inventory.Objects.Count; i++)
-            {
-                Entity item = inventory.Objects[i];
-                if (!string.Equals(item.BlueprintName, ingredientBlueprint, StringComparison.OrdinalIgnoreCase))
-                    continue;
-
-                StackerPart stacker = item.GetPart<StackerPart>();
-                if (stacker != null && stacker.StackCount > 1)
-                {
-                    stacker.StackCount -= 1;
-                    inventory.RefreshHandlingCarryPenalty();
-                    consumed.Entity = item;
-                    consumed.ConsumedFromStack = true;
-                    return true;
-                }
-
-                if (inventory.RemoveObject(item))
-                {
-                    consumed.Entity = item;
-                    consumed.ConsumedFromStack = false;
-                    return true;
-                }
-            }
-
-            return false;
+            Entity item = inventory.FindConsumableByBlueprint(ingredientBlueprint);
+            if (item == null) return false;
+            bool fromStack = (item.GetPart<StackerPart>()?.StackCount ?? 1) > 1;
+            if (!TryConsumeItem(inventory, item)) return false;
+            consumed.Entity = item;
+            consumed.ConsumedFromStack = fromStack;
+            return true;
         }
 
         private static void RestoreIngredient(InventoryPart inventory, ConsumedIngredient consumed)
@@ -495,7 +489,7 @@ namespace CavesOfOoo.Core
 
         private static bool TryConsumeItem(InventoryPart inventory, Entity item)
         {
-            if (inventory == null || item == null)
+            if (inventory == null || !inventory.CanConsumeOne(item))
                 return false;
 
             StackerPart stacker = item.GetPart<StackerPart>();

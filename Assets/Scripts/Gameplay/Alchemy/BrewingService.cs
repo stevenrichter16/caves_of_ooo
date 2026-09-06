@@ -97,9 +97,9 @@ namespace CavesOfOoo.Core
                     }
                 }
 
-                if (!inventory.Contains(item))
+                if (!inventory.CanConsumeOne(item))
                 {
-                    reason = "You must own all selected reagents.";
+                    reason = "You must own all selected reagents, and each stack must have at least one item.";
                     return RejectDiag(crafter, reason);
                 }
 
@@ -211,7 +211,10 @@ namespace CavesOfOoo.Core
                     return 0;
 
                 StackerPart stacker = item.GetPart<StackerPart>();
-                int available = (stacker != null && stacker.StackCount > 0) ? stacker.StackCount : 1;
+                int available = stacker?.StackCount ?? 1;
+                if (available <= 0) return 0;
+                for (int j = 0; j < i; j++)
+                    if (ReferenceEquals(reagentItems[j], item)) return 0;
                 if (available < max)
                     max = available;
             }
@@ -394,6 +397,18 @@ namespace CavesOfOoo.Core
                     return preview;
                 }
 
+                if ((reagentItems[i].GetPart<StackerPart>()?.StackCount ?? 1) <= 0)
+                {
+                    preview.Reason = "A selected reagent is empty. Remove that pick.";
+                    return preview;
+                }
+                for (int j = 0; j < i; j++)
+                    if (ReferenceEquals(reagentItems[j], reagentItems[i]))
+                    {
+                        preview.Reason = "The same reagent was selected twice.";
+                        return preview;
+                    }
+
                 propertyLists.Add(reagent.GetProperties());
             }
 
@@ -534,7 +549,8 @@ namespace CavesOfOoo.Core
         private static bool TryConsumeReagent(InventoryPart inventory, Entity item, out ConsumedReagent record)
         {
             record = new ConsumedReagent();
-            if (inventory == null || item == null)
+            // Recheck at payment as well as preflight; never spend an empty unit.
+            if (inventory == null || !inventory.CanConsumeOne(item))
                 return false;
 
             StackerPart stacker = item.GetPart<StackerPart>();

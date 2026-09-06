@@ -164,11 +164,14 @@ namespace CavesOfOoo.Rendering
                 if (item == null || !eligible(item)) continue;
 
                 bool marked = CraftingMarkPart.IsMarked(item);
+                // Keep an invalid explicit pick visible and removable. Filtering it
+                // out of _pickedReagents would silently change the selected recipe.
+                if (!marked && !inv.CanConsumeOne(item)) continue;
                 var stacker = item.GetPart<StackerPart>();
 
                 _craftRows.Add(new CraftRow
                 {
-                    Text = item.GetDisplayName(),
+                    Text = item.GetDisplayName() + ((stacker?.StackCount ?? 1) <= 0 ? " (empty; remove pick)" : ""),
                     IsSelectable = true,
                     IsMarked = marked,
                     Count = stacker != null ? stacker.StackCount : 1,

@@ -1,6 +1,6 @@
 # Mechanics flow and responsiveness — 2026-09-05
 
-Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 COMPLETE. User explicitly requested identifying mechanics that
+Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 COMPLETE; CRAFTING AVAILABILITY/FIRST-USE REPAIR COMPLETE. User explicitly requested identifying mechanics that
 need smoother integration and fully implementing the supported improvements, without
 intervention. This extends the ongoing whole-game audit; it does not cancel its
 remaining repairs. Baseline latest completed repair1ef093a1,8470tests,GA02i native44.
@@ -705,3 +705,18 @@ FLOW6 COMPLETE:8886/8886GREEN,06:17:55–06:20:02UTC,127.2927773s,
 Normal held L never becomes movement; modal L and advertised east repeats retained.
 A47brew/tinker availability/payment truth follows; exact output receipts remain a
 separate subsequent slice. Broader audit repairs and FLOW1mouse bounds stay active.
+
+
+## GA02j — crafting availability and first-use repair complete
+
+After FLOW6, the broader A47repair aligns selected stock, preview/batch quantity,
+automatic mineral choice and actual payment. Empty new picks are hidden; stale
+marked picks remain explicitly labelled and removable without losing other picks.
+Review found same-name cleanup ambiguity; RED labels fixed it. Native found A50:
+mineral compatibility checked an uninitialized enhancement registry. The shared
+shim now initializes before querying, so all3infusions work on first use.
+
+94newtests, full8980GREEN; unchanged native scenario15PASS after production fix.
+Raw first-native failure and allRED/control runs retained in GA02j-REPORT.md.
+2414GUIDs/0collisions; known A31shutdown errors separate. No subjective-feel, mouse
+or speedup claim. Next A47slice addresses exact crafted recipients/local rollback.

@@ -121,9 +121,14 @@ namespace CavesOfOoo.Core
                 if (item == null || string.IsNullOrEmpty(item.ID) || !eligible(item))
                     continue;
 
+                // Retain stale picks as cleanup rows; never offer an empty new pick.
+                if (!IsMarked(item) && !inventory.CanConsumeOne(item)) continue;
+
                 string display = IsMarked(item)
                     ? "[x] " + item.GetDisplayName() + " - picked"
                     : "[ ] " + item.GetDisplayName() + " - add";
+                if ((item.GetPart<StackerPart>()?.StackCount ?? 1) <= 0)
+                    display += " (empty; remove pick)";
                 actions.AddAction("CraftToggle", display,
                     ToggleCommandPrefix + item.ID, '\0', priority--);
             }

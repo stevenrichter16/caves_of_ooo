@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; WAVE2j COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -1837,3 +1837,90 @@ first-positive automatic tinkering ingredients, and matching UI availability.
 Preserve invalid explicitly marked selections for whole-mix refusal. Exact output
 receipts and malformed extension rollback are the following A47slice, not claimed
 fixed by availability gates. No ordinary resident nonpositive-stack producer proved.
+
+### Wave2j/A47 — positive crafting selections (plan + verification sweep)
+
+Status: STARTING from71dd3189,8886GREEN. Goal: displayed availability, explicit
+selection and actual payment agree. CoO-original consistency repair, no new art,
+content, recipe costs, save fields or general rollback redesign.
+
+| Source / premise | Verified correction and implementation decision |
+|---|---|
+| BrewingService100/534 | Contains accepts resident empty quantities; consumption removes them as a unit. Validate every explicit selection with CanConsumeOne before Resolve, and recheck each payment. Never drop an invalid input and brew a different mix. |
+| BrewingService194/366 | Actorless batch/preview checks need quantity only: no Stacker=1, nonpositive=0. Positive unowned reagents remain previewable; duplicate/null validation should agree with execution. |
+| TinkeringService440 | Automatic ingredient is first blueprint match, including empty. Reuse FindConsumableByBlueprint and retain existing consumed-record rollback; check payment before mutation. |
+| TinkeringService293/342 | Compatibility/yield queries need positive-target gates before benefit/payment. Preserve equipped singleton modification; do not add equipped disassembly support. |
+| InventoryUI1781/1804 | Automatic ingredient indicator must use the same positive selector. Comma-alternative UI vs literal service mismatch is unshipped: actual recipe ingredients only PaleSalt/ChoirIron/GlowQuartz. Record separately; do not add parsing in this slice. |
+| InventoryUI.Crafting159–194 | Rows and explicit selection are collected together. Hide only unmarked empty entries; keep marked empty entries visible/removable and in the full selection, so preview/service refuses until user removes the stale pick. |
+| InventoryUI.Crafting339;InventoryUI2252 | Existing C clear removes all marks. Preserve per-row removal as the finer recovery route, keeping other picks intact. |
+| CraftingMarkPart109;InventoryUI1167;ToggleCraftMarkCommand | Align panel, station toggle rows and item popup. Adding a mark requires positive carriage; removing an existing owned mark stays possible even at zero/negative count. Do not gate cleanup with CanConsumeOne. |
+| A46/GA02h | Forge/temper positive inputs and forge batch counts already fixed. Exact output receipts remain the following A47slice; this wave cannot claim that rollback repair. |
+| Actual content/ordinary reach | Empty resident quantities are malformed-state robustness; no ordinary producer established. Valid singletons/stacks, separated siblings and equipped modifications are ordinary counterchecks. |
+
+Sequence: RED service+UI invariants; minimum positive gates and recovery presentation;
+dedicated20–60adversarial cases; independent cold-eye/hypothesis pass; disposable
+native valid/invalid selection recovery; full suite; same-commit report/living docs.
+New tests distinguish original RED bugs from already-passing controls. Preserve
+existing output, discovery, bit-cost and rollback semantics outside positive gates.
+
+GA02j RED46:21already-passing controls,25failures,06:25:08–06:25:10UTC,
+2.4872045s,0CS. Confirmed empty payment/benefit, wrong automatic ingredient,
+preview/batch inconsistency, invalid explicit mix execution and unavailable UI picks.
+Minimum125/125GREEN,06:26:58–06:27:01UTC,3.4949581s,0CS.
+Uses pure quantity for actorless previews/compatibility; checked carriage for payment
+and first-positive selectors. Mark execution revalidates before exclusive sibling
+changes. Existing marked-empty cleanup stays available in all three menu surfaces.
+No new output receipt or general callback-atomicity claim.
+
+GA02j source review correction: PreviewBrew.IsValid means an actual Brew outcome;
+Mishap/sludge are still successful experimentation via service/command. New gates
+must not replace execution with the preview gate. Dedicated probes use actual
+BlastcapSpore for positive/empty Mishap, equipped Dagger/LeatherArmor mods, no-Stacker
+payment, foreign ownership, invalid batch ordering, cached exclusive-mark revalidation,
+query purity and all cleanup surfaces. Marking an empty cached new selection must
+not evict another exact valid marker; cleanup of an existing empty mark stays allowed.
+
+GA02j adversarial+neighbors120/120GREEN,06:29:41–06:29:47UTC,
+6.0586105s,0CS. Dedicated29cases (22service/command +7UI). Nine native staging
+cases failed for missing scenario before authoring,06:30:52–06:30:53UTC,.3288175s.
+
+Independent cold-eye 🟡 recovery-clarity finding: zero/one same-blueprint marked
+rows have identical names because count<=1 is not printed. A generic empty-pick
+preview reason cannot identify which one to remove. Add actual row-text RED pins
+before a small explicit empty cleanup suffix in panel and station rows. This is
+malformed-state recovery clarity, not a claim of an ordinary empty-stack producer.
+
+GA02j expanded124GREEN,06:35:52–06:35:56UTC,4.3577687s,0CS.
+Native20ed69b731f4418494d0c33a66b824e5 failed after11PASS,12thcheck: no
+infusion target. Actual UI reason was 'No compatible target item for this mod.'
+The raw failed JSON/log are retained. Pack invalid-refusal/cleanup/brew succeeded.
+
+Native-found 🟡 ordinary first-use integration bug: MineralInfusionTinkerModification
+CanApply calls EnhancementFactory.TryGet before any lazy initialization. TryGet/Create
+do not initialize; ItemEnhancing.Apply does, but that lies behind compatibility.
+Existing StackIdentityFixture and older quantity/reforge benches explicitly warmed
+the registry, masking fresh-Play failure. This bench did not. The factory docstring
+claims the shims initialize first; actual shim lacks the call. Scope extends to one
+production EnsureInitialized call before TryGet, with cold first-use RED tests for
+all3minerals/query+paid paths and an explicit ResetForTests suppression countercheck.
+Do not patch the scenario to warm the registry; fix the actual gameplay entry point.
+
+A50 confirmed by native first-use and7REDtests:6failed missing-registration
+messages for all3minerals/query+execution;1explicit suppression control passed.
+06:40:06–06:40:07UTC,.6242687s,0CS. Added the shim's missing EnsureInitialized
+before TryGet, fulfilling EnhancementFactory's existing documented contract.
+Dedicated suite32→39, total new87→94. Scenario still does not warm the registry.
+
+A50fix first-use expanded151GREEN,06:41:16–06:41:21UTC,5.5795577s,0CS.
+Same native bench rerun dca91794c64a4eea8607f10182b62182 **15/15PASS**,
+4.673590416s,exit0/0CS; production shim fix alone resolves missing target. Native
+raw retains2known A31shutdown camera exceptions after success.2414GUIDs/0collisions.
+Full suite pending. No registry warm-up added to scenario.
+
+
+GA02j/A47positive-selection+A50 COMPLETE:8980/8980GREEN,
+06:43:30–06:45:42UTC,131.7028706s,0CS/failed/skipped/inconclusive.
+94newcases, native15PASS,2414GUIDs/0collisions. Earlier native failure and cold
+first-use RED retained alongside final success. No scenario registry warm-up.
+See GA02j-REPORT.md. Next: A47exact crafting recipients and local failure receipts;
+A41general callback/outer transaction semantics remain separately explicit.

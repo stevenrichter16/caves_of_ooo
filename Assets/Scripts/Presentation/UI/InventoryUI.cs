@@ -1165,7 +1165,7 @@ namespace CavesOfOoo.Rendering
 
             // Crafting seam (M3-L3): toggle the set-aside-for-crafting mark
             // the stations read via CraftingMarkPart.CollectMarked.
-            if (CraftingMarkPart.IsMarkable(item))
+            if (new ToggleCraftMarkCommand(item).Validate(new InventoryContext(PlayerEntity, CurrentZone)).IsValid)
             {
                 actions.Add(new ItemAction
                 {
@@ -1806,14 +1806,7 @@ namespace CavesOfOoo.Rendering
             if (inventory == null || string.IsNullOrWhiteSpace(blueprint))
                 return false;
 
-            for (int i = 0; i < inventory.Objects.Count; i++)
-            {
-                var item = inventory.Objects[i];
-                if (string.Equals(item.BlueprintName, blueprint, StringComparison.OrdinalIgnoreCase))
-                    return true;
-            }
-
-            return false;
+            return inventory.FindConsumableByBlueprint(blueprint) != null;
         }
 
         private bool TryGetPreferredModTarget(TinkerRecipe recipe, out Entity target, out string reason)

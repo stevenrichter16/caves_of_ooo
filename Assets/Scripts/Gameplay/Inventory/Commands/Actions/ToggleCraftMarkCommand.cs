@@ -56,11 +56,21 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     _item.GetDisplayName() + " has no use at a crafting station.");
             }
 
+            // Existing owned marks remain removable even after their stack becomes
+            // empty. Only adding a pick requires an actual positive carried unit.
+            if (!CraftingMarkPart.IsMarked(_item) && !context.Inventory.CanConsumeOne(_item))
+                return InventoryValidationResult.Invalid(
+                    InventoryValidationErrorCode.BlockedByRule,
+                    "That stack is empty or is no longer in your pack.");
+
             return InventoryValidationResult.Valid();
         }
 
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
+            var validation = Validate(context);
+            if (!validation.IsValid) return InventoryCommandResult.ValidationFailure(validation);
+
             // Radio semantics (sectioned forge menu): marking an item bumps
             // any already-marked sibling in the same exclusive group (one
             // blade, one haft, one binding, one quench, one weapon at a
