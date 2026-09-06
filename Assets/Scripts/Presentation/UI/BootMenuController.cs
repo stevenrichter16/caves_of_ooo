@@ -6,7 +6,7 @@ namespace CavesOfOoo.Rendering
     /// <summary>
     /// Pure dispatch logic for the boot-menu modal — shown at game
     /// startup IF a save exists, offering the player Continue (load
-    /// save) or New Game (dismiss menu, keep current bootstrap state).
+    /// save) or New Game (checkpoint the fresh bootstrap state).
     /// Per <c>Docs/QUD-PARITY.md §2.1</c> and <c>Docs/roadmap.md</c>
     /// Tier-1 #2.
     ///
@@ -81,8 +81,10 @@ namespace CavesOfOoo.Rendering
 
             if (newGamePressed)
             {
+                bool saved = service.BeginNewGame();
                 IsActive = false;
-                log?.Invoke("Starting a new game.");
+                log?.Invoke(saved ? "Starting a new game. Initial checkpoint saved."
+                    : "New game started, but the initial save failed. Press [F5] to retry.");
             }
         }
     }

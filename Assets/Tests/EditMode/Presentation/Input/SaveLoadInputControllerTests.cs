@@ -248,6 +248,7 @@ namespace CavesOfOoo.Tests.EditMode.Presentation.Input
             public bool NextSaveResult = true;
             public bool NextLoadResult = true;
 
+            public bool BeginNewGame() => true;
             public bool QuickSave()
             {
                 QuickSaveCalls++;

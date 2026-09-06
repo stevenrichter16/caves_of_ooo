@@ -55,7 +55,7 @@ namespace CavesOfOoo.Scenarios.Custom
             double elapsed = Time.realtimeSinceStartupAsDouble - _created;
             // N dismisses the actual post-bootstrap menu, keeping the staged
             // new game. It never loads or overwrites an existing expedition.
-            if (_stage == 0 && elapsed >= 0.5) { SaveGameService.RegisterRuntime(null, null); QueueKey(Key.N); _stage = 1; }
+            if (_stage == 0 && elapsed >= 0.5) { QueueKey(Key.N); _stage = 1; }
             else if (_stage == 1 && elapsed >= 0.7) { Release(); _stage = 2; }
             else if (_stage == 2 && elapsed >= 2)
             {

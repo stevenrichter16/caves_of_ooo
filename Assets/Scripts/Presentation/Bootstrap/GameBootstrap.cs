@@ -665,7 +665,7 @@ namespace CavesOfOoo
                     Debug.LogError($"[Bootstrap] OnAfterBootstrap handler threw: {ex}");
                 }
 
-                SaveGameService.RegisterRuntime(CaptureGameSessionState, ApplyLoadedGame);
+                SaveGameService.RegisterRuntime(CaptureGameSessionState, ApplyLoadedGame, _gameID);
 
                 // Phase 4c: if a save exists, offer the boot menu so the player
                 // can choose between continuing from the save or starting fresh
@@ -690,8 +690,8 @@ namespace CavesOfOoo
                 // and Continue loads over this harmlessly).
                 if (!SaveGameService.HasQuickSave())
                 {
-                    if (!SaveGameService.QuickSave())
-                        Debug.LogWarning("[Bootstrap] Initial autosave failed (see earlier [Save] error).");
+                    if (!SaveGameService.BeginNewGame())
+                        MessageLog.Add("New game started, but the initial save failed. Press [F5] to retry.");
                 }
 
                 // ALPHA onboarding SM1: the game used to open in total

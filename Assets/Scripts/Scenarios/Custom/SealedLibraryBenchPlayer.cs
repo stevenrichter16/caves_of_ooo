@@ -56,7 +56,7 @@ namespace CavesOfOoo.Scenarios.Custom
         {
             if (_ctx == null || Finished) return;
             double elapsed = Time.realtimeSinceStartupAsDouble - _created;
-            if (_stage == 0 && elapsed >= 0.5) { SaveGameService.RegisterRuntime(null, null); QueueKey(Key.N); _stage = 1; }
+            if (_stage == 0 && elapsed >= 0.5) { QueueKey(Key.N); _stage = 1; }
             else if (_stage == 1 && elapsed >= 0.7) { Release(); _stage = 2; }
             else if (_stage == 2 && elapsed >= 2) { QueueKey(Key.D); _stage = 3; }
             else if (_stage == 3 && elapsed >= 2.2)

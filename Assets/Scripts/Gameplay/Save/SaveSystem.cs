@@ -430,11 +430,52 @@ namespace CavesOfOoo.Core
         private static Func<GameSessionState> _captureCurrent;
         private static Action<GameSessionState> _applyLoaded;
         private static string _activeGameID = DefaultGameID;
+        private static string _newGameID;
+        private static bool _startingNewGame;
 
-        public static void RegisterRuntime(Func<GameSessionState> captureCurrent, Action<GameSessionState> applyLoaded)
+        /// <summary>Overrides all implicit save paths and boot discovery for an
+        /// isolated runtime. Null/empty uses the normal persistent Saves directory.
+        /// The owner must restore the previous override after its runtime stops.</summary>
+        public static string SaveRootOverride { get; set; }
+        private static string SavesRoot => string.IsNullOrEmpty(SaveRootOverride)
+            ? Path.Combine(Application.persistentDataPath, "Saves") : SaveRootOverride;
+
+        /// <summary>Registers the current runtime and its independently known fresh
+        /// identity. Replaces pending identity even when omitted; leaves the active
+        /// load binding intact so the boot menu can still Continue a prior save.</summary>
+        public static void RegisterRuntime(Func<GameSessionState> captureCurrent, Action<GameSessionState> applyLoaded, string newGameID = null)
         {
             _captureCurrent = captureCurrent;
             _applyLoaded = applyLoaded;
+            _newGameID = newGameID;
+        }
+
+        /// <summary>Chooses the registered fresh session before capturing or
+        /// writing its initial Quick checkpoint. False means checkpoint failure;
+        /// the fresh identity remains selected, including capture exceptions and
+        /// mismatches. A missing registration gets one cached fallback identity.</summary>
+        public static bool BeginNewGame()
+        {
+            if (_startingNewGame) return false;
+            _startingNewGame = true;
+            if (string.IsNullOrEmpty(_newGameID)) _newGameID = Guid.NewGuid().ToString("N");
+            string expectedID = _newGameID;
+            _activeGameID = expectedID;
+            try
+            {
+                GameSessionState state = _captureCurrent?.Invoke();
+                if (state == null) return false;
+                if (string.IsNullOrEmpty(state.GameID)) state.GameID = expectedID;
+                if (!string.Equals(state.GameID, expectedID, StringComparison.Ordinal)) return false;
+                _activeGameID = expectedID;
+                return SaveCapturedState(QuickName, state);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[Save] Initial checkpoint failed: {ex}");
+                return false;
+            }
+            finally { _activeGameID = expectedID; _startingNewGame = false; }
         }
 
         public static void SetActiveGameID(string gameID)
@@ -500,7 +541,7 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static void ResolveActiveGameIDOnBoot()
         {
-            string root = Path.Combine(Application.persistentDataPath, "Saves");
+            string root = SavesRoot;
 
             string pref = PlayerPrefs.GetString(LastGameIDPrefsKey, null);
             if (!string.IsNullOrEmpty(pref)
@@ -543,6 +584,11 @@ namespace CavesOfOoo.Core
                 state.GameID = _activeGameID;
             _activeGameID = state.GameID;
 
+            return SaveCapturedState(name, state);
+        }
+
+        private static bool SaveCapturedState(string name, GameSessionState state)
+        {
             // BETA AUDIT 🔴 #2 — the save side had NO exception
             // handling while LoadSlot did (asymmetric): a disk-full /
             // cloud-sync-lock IOException or a Part serialization bug
@@ -640,12 +686,12 @@ namespace CavesOfOoo.Core
 
         private static string GetSavePath(string name, string gameID)
         {
-            return Path.Combine(Application.persistentDataPath, "Saves", gameID ?? DefaultGameID, name + ".sav.gz");
+            return Path.Combine(SavesRoot, gameID ?? DefaultGameID, name + ".sav.gz");
         }
 
         private static string GetMetadataPath(string name, string gameID)
         {
-            return Path.Combine(Application.persistentDataPath, "Saves", gameID ?? DefaultGameID, name + ".json");
+            return Path.Combine(SavesRoot, gameID ?? DefaultGameID, name + ".json");
         }
 
         private static void WriteSaveAtomically(string path, Action<Stream> write)

@@ -21,25 +21,24 @@ namespace CavesOfOoo.Editor
         public static void Run()
         {
             string id = "W66-bench-" + Guid.NewGuid().ToString("N");
-            string slot = Path.Combine(Application.persistentDataPath, "Saves", id);
-            Directory.CreateDirectory(slot);
-            // An isolated marker prevents bootstrap autosaving this synthetic
-            // arena. Native N dismisses the menu; this marker is never loaded.
-            File.WriteAllBytes(Path.Combine(slot, "Quick.sav.gz"), Array.Empty<byte>());
-            SessionState.SetString(Prefix + "slot", slot);
-            SessionState.SetBool(Prefix + "hadPref", PlayerPrefs.HasKey(SaveGameService.LastGameIDPrefsKey));
-            SessionState.SetString(Prefix + "oldPref", PlayerPrefs.GetString(SaveGameService.LastGameIDPrefsKey));
-            PlayerPrefs.SetString(SaveGameService.LastGameIDPrefsKey, id);
+            string saveToken = NativeSaveIsolation.Begin(Prefix, id, true);
+            SessionState.SetString(Prefix + "saveToken", saveToken);
+
             SessionState.SetBool(Prefix + "active", true);
             SessionState.SetFloat(Prefix + "deadline", (float)EditorApplication.timeSinceStartup + 180);
             SessionState.SetInt(Prefix + "errors", 0);
-            Subscribe();
-            EditorSceneManager.OpenScene("Assets/Scenes/Main/SampleScene.unity");
-            EditorApplication.isPlaying = true;
+            try
+            {
+                Subscribe();
+                EditorSceneManager.OpenScene("Assets/Scenes/Main/SampleScene.unity");
+                EditorApplication.isPlaying = true;
+            }
+            catch (Exception ex) { Debug.LogError("[NativeBench] Launch failed: " + ex); Finish(4); }
         }
 
         private static void Subscribe()
         {
+            NativeSaveIsolation.Restore(Prefix, SessionState.GetString(Prefix + "saveToken", ""), Finish);
             GameBootstrap.OnAfterBootstrap -= Apply; GameBootstrap.OnAfterBootstrap += Apply;
             EditorApplication.update -= Poll; EditorApplication.update += Poll;
             Application.logMessageReceived -= OnLog; Application.logMessageReceived += OnLog;
@@ -71,14 +70,8 @@ namespace CavesOfOoo.Editor
             SessionState.SetBool(Prefix + "active", false);
             GameBootstrap.OnAfterBootstrap -= Apply; EditorApplication.update -= Poll; Application.logMessageReceived -= OnLog;
             SaveGameService.RegisterRuntime(null, null);
-            string slot = SessionState.GetString(Prefix + "slot", "");
-            if (!string.IsNullOrEmpty(slot) && Directory.Exists(slot)) Directory.Delete(slot, true);
-            if (SessionState.GetBool(Prefix + "hadPref", false))
-                PlayerPrefs.SetString(SaveGameService.LastGameIDPrefsKey, SessionState.GetString(Prefix + "oldPref", ""));
-            else PlayerPrefs.DeleteKey(SaveGameService.LastGameIDPrefsKey);
-            EditorApplication.isPlaying = false;
             Debug.Log("[SealedLibraryBench] Native capture exit=" + code);
-            EditorApplication.Exit(code);
+            NativeSaveIsolation.Finish(Prefix, SessionState.GetString(Prefix + "saveToken", ""), code);
         }
     }
 }

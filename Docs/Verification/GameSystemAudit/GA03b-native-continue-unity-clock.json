@@ -1,0 +1,27 @@
+{
+    "runId": "009eea7e93474e138c516e9239803684",
+    "mode": "continue",
+    "oldID": "GA03b-old-native-2358dec2bdab437f8147deeaea3437b4",
+    "freshID": "a61fd87bb68649b19482aef39e7e1191",
+    "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/f2b6ed790d58477d92a088898a1ed0f8",
+    "cases": 13,
+    "failures": 0,
+    "seconds": 2.8924780830000005,
+    "shutdownSeconds": -0.35908670809977219,
+    "shutdownObserved": true,
+    "audit": [
+        "PASS old_real_quick_and_primary_seeded",
+        "PASS old_backups_are_real",
+        "PASS real_boot_modal_precondition",
+        "PASS same_isolated_root_after_boot",
+        "PASS chosen_character_and_binding",
+        "PASS selected_checkpoint_exists_without_manual_save",
+        "PASS continue_does_not_create_fresh_slot",
+        "PASS f6_restores_selected_character",
+        "PASS loaded_world_aliases_match_live_input",
+        "PASS previous_save_and_backups_unchanged",
+        "PASS expected_save_paths_are_owned_and_unique_ids_absent_from_normal_root",
+        "PASS native_shutdown_keeps_disposable_root",
+        "PASS native_shutdown_unregisters_saving"
+    ]
+}

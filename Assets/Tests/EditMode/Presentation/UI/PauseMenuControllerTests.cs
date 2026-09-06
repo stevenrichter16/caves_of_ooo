@@ -321,6 +321,7 @@ namespace CavesOfOoo.Tests.EditMode.Presentation.UI
             public int QuickSaveCalls;
             public int QuickLoadCalls;
             public bool HasQuickSaveResult;
+            public bool BeginNewGame() => true;
             public bool QuickSave() { QuickSaveCalls++; return true; }
             public bool QuickLoad() { QuickLoadCalls++; return true; }
             public bool HasQuickSave() => HasQuickSaveResult;

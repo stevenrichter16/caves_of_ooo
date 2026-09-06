@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; WAVE2j COMPLETE; WAVE2k COMPLETE; WAVE3a APPLIED/VERIFIED; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; WAVE2j COMPLETE; WAVE2k COMPLETE; WAVE3a APPLIED/VERIFIED; WAVE3b COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -2079,3 +2079,35 @@ after the test-only stabilization. Native44/44PASS with actual Unity callbacks.
 Protected ZoneRenderer remains unstaged; no pending animation work is adopted.
 Report/failed runs/exact patch/state hashes retained. Next: GA03b/A06N, prepared
 in Docs/NEW-GAME-SAVE-ISOLATION-PLAN.md; remaining audit queue continues.
+
+### Wave3b/A06N — new-game checkpoint and save binding
+
+Status: IN NATIVE VERIFICATION from7c7d87a7,9097GREEN. Prepared source sweep
+and refinements live in NEW-GAME-SAVE-ISOLATION-PLAN.md. N previously dismissed
+the menu while subsequent loads still addressed the previous expedition until F5.
+BeginNewGame now binds an independently registered fresh ID before one capture and
+initial Quick checkpoint. Failure retains fresh binding and gives an F5 retry message;
+Continue/collision behavior remains intact. No-prior-save startup uses the same path.
+
+Initial18RED (2pass/16fail), minimum85GREEN. Dedicated35 added one confirmed
+recursive-capture bug; guard fixed it. Native isolation12boundaryREDs preceded the
+shared helper/adaptation of21launchers. Cold-eye found2helper teardown defects,
+RED-tested then fixed, plus4already-correct operation-release pins. Final focused
+138/138GREEN,08:18:38–39UTC,1.0939924s,0CS. New tests71=18regression+39dedicated
+service+14helper. Native/final full pending. Old saves/metadata/backups compared byte
+for byte; metadata failure can leave valid fresh data without updated preference.
+Normal SaveSlot capture behavior and A08 decode/application atomicity remain separate.
+
+Shared helper owns a generated temp root across all implicit save reads/writes and
+discovery, survives Editor static resets through SessionState, and restores/flushed
+prefs after ordinary Play shutdown. External quit disables saving and retains the
+disposable destination for remaining process teardown. Existing animation work and
+other dirty paths stay protected; stage only attributable SaveSystem/Bootstrap hunks.
+
+GA03b complete. Full9168/9168GREEN,08:31:11–08:33:27UTC,135.5073505s,0CS.
+71new tests, native61/61PASS across4startup modes and normal teardown, compatibility
+33/33PASS (Craft Receipt25, Founding8). Final native timing uses Stopwatch; invalid
+Unity-shutdown timing reports and earlier preliminary reports retained separately.
+2430GUIDs/0collisions; independent final review0remaining🟡+. Exact attributable
+SaveSystem/Bootstrap patches preserve existing FX changes. Next A07hotbar save
+selection plan is prepared; remaining system-audit repairs continue.

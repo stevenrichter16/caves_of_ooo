@@ -1,6 +1,6 @@
 # Mechanics flow and responsiveness — 2026-09-05
 
-Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 COMPLETE; CRAFTING AVAILABILITY/FIRST-USE REPAIR COMPLETE; CRAFTED OUTPUT/LOCAL ROLLBACK REPAIR COMPLETE; CAMERA CLEANUP APPLIED/VERIFIED. User explicitly requested identifying mechanics that
+Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 COMPLETE; CRAFTING AVAILABILITY/FIRST-USE REPAIR COMPLETE; CRAFTED OUTPUT/LOCAL ROLLBACK REPAIR COMPLETE; CAMERA CLEANUP APPLIED/VERIFIED; NEW-GAME CHECKPOINT REPAIR COMPLETE. User explicitly requested identifying mechanics that
 need smoother integration and fully implementing the supported improvements, without
 intervention. This extends the ongoing whole-game audit; it does not cancel its
 remaining repairs. Baseline latest completed repair1ef093a1,8470tests,GA02i native44.
@@ -750,3 +750,16 @@ animation wiring remains protected: GA03a records the exact patch rather than
 committing that other work. See Verification/GameSystemAudit/GA03a-REPORT.md.
 Next smoother flow: New Game immediately selects its own checkpoint and gives a
 truthful retry message if initial saving fails.
+
+## GA03b — a fresh character immediately gets its own save
+
+New Game binds the fresh expedition before its first checkpoint. Every load control
+then addresses that character; failure keeps the fresh binding and explains F5 retry.
+Continue preserves the earlier expedition and its priority. Old saves/metadata/
+backups remain unchanged. Recursive initial checkpoints refuse safely.
+
+Shared native-test save isolation now includes all fresh GUID directories and keeps
+the disposable destination through normal shutdown.71new tests; full9168/9168GREEN,
+native61/61PASS, compatibility33/33PASS. Initial-file/metadata atomicity remains
+separate; no visual-feel or speedup claim. See GA03b-REPORT.md for complete bounds.
+Next: hotbar selection survives save/load without casting or changing action costs.

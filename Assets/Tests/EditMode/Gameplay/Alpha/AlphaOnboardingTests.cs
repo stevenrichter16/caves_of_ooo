@@ -119,6 +119,7 @@ namespace CavesOfOoo.Tests
 
         private sealed class NoopSave : ISaveLoadService
         {
+            public bool BeginNewGame() => true;
             public bool QuickSave() => true;
             public bool QuickLoad() => true;
             public bool HasQuickSave() => false;

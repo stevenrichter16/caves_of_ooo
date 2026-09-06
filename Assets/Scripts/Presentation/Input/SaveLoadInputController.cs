@@ -20,6 +20,9 @@ namespace CavesOfOoo.Rendering
     /// </summary>
     public interface ISaveLoadService
     {
+        /// <summary>Bind the fresh session and attempt its initial checkpoint.
+        /// False reports checkpoint failure; the fresh session remains selected.</summary>
+        bool BeginNewGame();
         bool QuickSave();
         bool QuickLoad();
         bool HasQuickSave();

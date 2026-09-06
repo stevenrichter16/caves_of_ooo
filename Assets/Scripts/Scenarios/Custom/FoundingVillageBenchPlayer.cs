@@ -43,7 +43,6 @@ namespace CavesOfOoo.Scenarios.Custom
         private IEnumerator Start()
         {
             yield return new WaitForSecondsRealtime(.5f);
-            SaveGameService.RegisterRuntime(null, null);
             yield return Tap(Key.N);
             yield return new WaitForSecondsRealtime(1);
             _input = UnityEngine.Object.FindFirstObjectByType<InputHandler>();

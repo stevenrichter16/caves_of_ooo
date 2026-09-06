@@ -16,11 +16,12 @@ namespace CavesOfOoo.Rendering
 
     /// <summary>
     /// Production <see cref="ISaveLoadService"/> wrapping
-    /// <see cref="SaveGameService"/>'s static QuickSave / QuickLoad /
+    /// <see cref="SaveGameService"/>'s static BeginNewGame / QuickSave / QuickLoad /
     /// HasQuickSave methods. Stateless; safe as a static singleton.
     /// </summary>
     internal sealed class SaveGameServiceAdapter : ISaveLoadService
     {
+        public bool BeginNewGame() => SaveGameService.BeginNewGame();
         public bool QuickSave() => SaveGameService.QuickSave();
         public bool QuickLoad() => SaveGameService.QuickLoad();
         public bool HasQuickSave() => SaveGameService.HasQuickSave();
