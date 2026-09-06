@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using CavesOfOoo.Core.Anatomy;
+using CavesOfOoo.Core.Inventory;
+using CavesOfOoo.Core.Inventory.Commands;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
@@ -21,6 +24,10 @@ namespace CavesOfOoo.Core
         /// Root of the body part tree.
         /// </summary>
         private BodyPart _body;
+
+        // Transient removal scopes also include extrinsic limbs, which are not
+        // retained in DismemberedParts. Nested cleanup must see their equipment.
+        private List<BodyPart> _equipmentCleanupSubtrees;
 
         /// <summary>
         /// Body parts that have been dismembered but tracked for regeneration.
@@ -206,16 +213,9 @@ namespace CavesOfOoo.Core
 
         /// <summary>
         /// Dismember a body part: detach it and its subtree, track for regeneration.
-        /// Mirrors Qud's Body.Dismember flow:
-        /// 1. Gate check (BeforeDismemberEvent)
-        /// 2. Unequip subtree
-        /// 3. Detach from tree
-        /// 4. Store in DismemberedParts for regeneration
-        /// 5. Check unsupported part cascade
-        /// 6. Recalculate mobility
-        /// </summary>
-        /// <summary>
-        /// Dismember a body part: detach it and its subtree, track for regeneration.
+        /// After BeforeDismember accepts, settle anatomy and regeneration records
+        /// before forced equipment cleanup. Unlike Qud's unequip-before-cut order,
+        /// this prevents CoO cleanup callbacks from reusing a doomed equipment slot.
         /// If a zone is provided, drops a severed limb item at the creature's position.
         /// </summary>
         public bool Dismember(BodyPart part, Zone zone = null)
@@ -233,11 +233,10 @@ namespace CavesOfOoo.Core
             if (ParentEntity == null)
                 beforeEvent.Release();
 
-            // Unequip everything on this part and children — drop to ground if zone provided
-            UnequipSubtree(part, zone);
-
-            // Detach from parent
+            // Settle anatomy before cleanup observers can choose equipment
+            // slots or attempt to remove the same limb again.
             var parent = part.ParentPart;
+            if (parent == null) return false; // Removed by the gate's callback.
             parent.RemovePart(part);
 
             // Store for regeneration (if not extrinsic)
@@ -250,6 +249,10 @@ namespace CavesOfOoo.Core
                     OriginalPosition = part.Position
                 });
             }
+
+            // The detached subtree still owns its captured equipment until
+            // cleanup clears both its slots and any remaining shared slots.
+            UnequipSubtree(part, zone);
 
             // Create and drop severed limb entity
             Entity limbEntity = null;
@@ -404,8 +407,8 @@ namespace CavesOfOoo.Core
                     if (part.ParentPart == null) continue;
                     if (part.IsUnsupported())
                     {
-                        // Auto-dismember unsupported part
-                        UnequipSubtree(part);
+                        // Mirror explicit dismemberment: settle anatomy and
+                        // regeneration bookkeeping before cleanup callbacks.
                         var parent = part.ParentPart;
                         parent.RemovePart(part);
 
@@ -419,6 +422,7 @@ namespace CavesOfOoo.Core
                             });
                         }
 
+                        UnequipSubtree(part);
                         allParts.RemoveAt(i);
                         changed = true;
 
@@ -810,84 +814,131 @@ namespace CavesOfOoo.Core
         /// </summary>
         public void DropAllEquipment(Zone zone)
         {
-            if (_body == null || zone == null) return;
-            UnequipSubtree(_body, zone);
-
-            // Also clear the EquippedItems cache on inventory
+            if (zone == null) return;
+            var items = new List<Entity>();
+            CollectSubtreeEquipment(_body, items);
+            if (_equipmentCleanupSubtrees != null)
+                for (int i = 0; i < _equipmentCleanupSubtrees.Count; i++)
+                    CollectSubtreeEquipment(_equipmentCleanupSubtrees[i], items);
+            // Compatibility equipment can exist only in the inventory cache.
+            // Snapshot the union instead of deleting entries never processed.
             var inventory = ParentEntity?.GetPart<InventoryPart>();
             if (inventory != null)
-                inventory.EquippedItems.Clear();
+                foreach (var item in inventory.EquippedItems.Values)
+                    if (item != null && !items.Contains(item)) items.Add(item);
+            ForceUnequipAll(items, zone);
         }
 
         private void UnequipSubtree(BodyPart part, Zone zone = null)
         {
-            if (part._Equipped != null)
+            // Callbacks may mutate children or equipment. Capture each exact
+            // item once before publishing any forced-unequip notification.
+            var items = new List<Entity>();
+            CollectSubtreeEquipment(part, items);
+            if (items.Count == 0) return;
+            if (_equipmentCleanupSubtrees == null) _equipmentCleanupSubtrees = new List<BodyPart>();
+            _equipmentCleanupSubtrees.Add(part);
+            try
             {
-                var item = part._Equipped;
-                part.ClearEquipped();
-
-                // Clear from any other body parts sharing this item
-                ClearEquipmentFromAllParts(item);
-
-                var physics = item.GetPart<PhysicsPart>();
-
-                // Drop to ground if zone is available (dismemberment), otherwise move to inventory
-                if (zone != null && ParentEntity != null)
-                {
-                    if (physics != null)
-                    {
-                        physics.Equipped = null;
-                        physics.InInventory = null;
-                    }
-
-                    // Remove from inventory if present
-                    var inventory = ParentEntity.GetPart<InventoryPart>();
-                    if (inventory != null)
-                    {
-                        inventory.Objects.Remove(item);
-                        inventory.RefreshHandlingCarryPenalty();
-                    }
-
-                    var pos = zone.GetEntityPosition(ParentEntity);
-                    if (pos.x >= 0 && pos.y >= 0)
-                    {
-                        zone.AddEntity(item, pos.x, pos.y);
-                        string itemName = item.GetDisplayName();
-                        string entityName = ParentEntity.GetDisplayName();
-                        MessageLog.Add($"{entityName}'s {itemName} falls to the ground!");
-                    }
-                }
-                else
-                {
-                    var inventory = ParentEntity?.GetPart<InventoryPart>();
-                    if (inventory != null)
-                    {
-                        if (physics != null)
-                        {
-                            physics.Equipped = null;
-                            physics.InInventory = ParentEntity;
-                        }
-                        inventory.Objects.Add(item);
-                        inventory.RefreshHandlingCarryPenalty();
-                    }
-                }
+                ForceUnequipAll(items, zone);
             }
-
-            if (part.Parts != null)
+            finally
             {
-                for (int i = 0; i < part.Parts.Count; i++)
-                    UnequipSubtree(part.Parts[i], zone);
+                _equipmentCleanupSubtrees.RemoveAt(_equipmentCleanupSubtrees.Count - 1);
             }
         }
 
-        private void ClearEquipmentFromAllParts(Entity item)
+        private static void CollectSubtreeEquipment(BodyPart part, List<Entity> items)
         {
-            if (_body == null) return;
-            var parts = GetParts();
-            for (int i = 0; i < parts.Count; i++)
+            if (part == null) return;
+            if (part._Equipped != null && !items.Contains(part._Equipped)) items.Add(part._Equipped);
+            if (part.Parts != null)
+                for (int i = 0; i < part.Parts.Count; i++) CollectSubtreeEquipment(part.Parts[i], items);
+        }
+
+        private void ForceUnequipAll(List<Entity> items, Zone zone)
+        {
+            if (items.Count == 0) return;
+            // Guard the complete pending set before publishing the first hook.
+            // A callback may still act on unrelated gear, but cannot ordinarily
+            // transfer a second item whose forced removal is already underway.
+            var guards = new List<InventoryTransaction>(items.Count);
+            try
             {
-                if (parts[i]._Equipped == item)
-                    parts[i].ClearEquipped();
+                for (int i = 0; i < items.Count; i++)
+                    guards.Add(InventoryTransaction.GuardForcedCleanup(items[i]));
+                for (int i = 0; i < items.Count; i++) ForceUnequip(items[i], zone);
+            }
+            finally
+            {
+                for (int i = guards.Count - 1; i >= 0; i--) guards[i]?.Commit();
+            }
+        }
+
+        private void ForceUnequip(Entity item, Zone zone)
+        {
+            var actor = ParentEntity;
+            if (item == null || actor == null) return;
+            var inventory = actor.GetPart<InventoryPart>();
+            var keys = new List<string>();
+            if (inventory != null)
+                foreach (var kvp in inventory.EquippedItems)
+                    if (ReferenceEquals(kvp.Value, item)) keys.Add(kvp.Key);
+            bool attached = false;
+            var parts = GetParts();
+            if (_equipmentCleanupSubtrees != null)
+                for (int i = 0; i < _equipmentCleanupSubtrees.Count; i++)
+                    _equipmentCleanupSubtrees[i].GetParts(parts);
+            for (int i = 0; i < parts.Count; i++)
+                if (ReferenceEquals(parts[i]._Equipped, item)) { attached = true; break; }
+            if (!attached && keys.Count == 0) return; // Already removed by a callback.
+
+            var guard = InventoryTransaction.GuardForcedCleanup(item);
+            try
+            {
+                // Injury/death is forced: BeforeDismember is the outer veto, and
+                // ordinary BeforeUnequip cannot leave gear on a detached limb.
+                EquipBonusUtility.ApplyEquipBonuses(actor, item.GetPart<EquippablePart>(), apply: false);
+                for (int i = 0; i < parts.Count; i++)
+                    if (ReferenceEquals(parts[i]._Equipped, item)) parts[i].ClearEquipped();
+                if (inventory != null)
+                {
+                    for (int i = 0; i < keys.Count; i++) inventory.EquippedItems.Remove(keys[i]);
+                    inventory.Objects.Remove(item);
+                }
+                var physics = item.GetPart<PhysicsPart>();
+                if (physics != null) { physics.Equipped = null; physics.InInventory = null; }
+
+                var position = zone == null ? (-1, -1) : zone.GetEntityPosition(actor);
+                bool dropped = position.Item1 >= 0 && position.Item2 >= 0
+                    && zone.AddEntity(item, position.Item1, position.Item2);
+                if (!dropped)
+                {
+                    // Forced removal must retain this exact item, even when a
+                    // supplied ground destination refuses it or carrying is full.
+                    if (inventory == null) { inventory = new InventoryPart(); actor.AddPart(inventory); }
+                    if (!inventory.Objects.Contains(item)) inventory.Objects.Add(item);
+                    if (physics != null) physics.InInventory = actor;
+                }
+                inventory?.RefreshHandlingCarryPenalty();
+                EquipmentChangeBus.NotifyChanged(actor);
+                Diag.Record("event", "ForcedUnequipped", actor: actor, target: item,
+                    payload: new { blueprintName = item.BlueprintName, destination = dropped ? "ground" : "inventory" });
+                if (dropped) MessageLog.Add($"{actor.GetDisplayName()}'s {item.GetDisplayName()} falls to the ground!");
+
+                // Match ordinary unequip ordering: actor observes settled ownership
+                // and stats first, then item enhancements remove their applied state.
+                var afterUnequip = GameEvent.New("AfterUnequip");
+                afterUnequip.SetParameter("Actor", (object)actor);
+                afterUnequip.SetParameter("Item", (object)item);
+                actor.FireEventAndRelease(afterUnequip);
+                ItemEnhancementDispatch.DispatchOnUnequip(actor, item);
+            }
+            finally
+            {
+                // Only a newly acquired guard is ours to release. If an outer
+                // command already held this item, its claim remains untouched.
+                guard?.Commit();
             }
         }
     }

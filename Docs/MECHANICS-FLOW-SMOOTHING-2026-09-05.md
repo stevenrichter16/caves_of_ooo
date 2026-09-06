@@ -1,6 +1,6 @@
 # Mechanics flow and responsiveness — 2026-09-05
 
-Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 COMPLETE; CRAFTING AVAILABILITY/FIRST-USE REPAIR COMPLETE; CRAFTED OUTPUT/LOCAL ROLLBACK REPAIR COMPLETE; CAMERA CLEANUP APPLIED/VERIFIED; NEW-GAME CHECKPOINT REPAIR COMPLETE; HOTBAR SAVE SELECTION REPAIR COMPLETE; CORRUPT-SAVE ISOLATION/SETTLEMENT WIRING COMPLETE; HAULING LIFECYCLE/SAVE RECOVERY COMPLETE. User explicitly requested identifying mechanics that
+Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 COMPLETE; CRAFTING AVAILABILITY/FIRST-USE REPAIR COMPLETE; CRAFTED OUTPUT/LOCAL ROLLBACK REPAIR COMPLETE; CAMERA CLEANUP APPLIED/VERIFIED; NEW-GAME CHECKPOINT REPAIR COMPLETE; HOTBAR SAVE SELECTION REPAIR COMPLETE; CORRUPT-SAVE ISOLATION/SETTLEMENT WIRING COMPLETE; HAULING LIFECYCLE/SAVE RECOVERY COMPLETE; FORCED EQUIPMENT CLEANUP COMPLETE. User explicitly requested identifying mechanics that
 need smoother integration and fully implementing the supported improvements, without
 intervention. This extends the ongoing whole-game audit; it does not cancel its
 remaining repairs. Baseline latest completed repair1ef093a1,8470tests,GA02i native44.
@@ -791,3 +791,13 @@ grip and speed penalty. Working hauling and vetoed actions remain stable; newly
 grabbed loads wait for a new movement. Full9322GREEN,59new tests and native39PASS
 with complete75s before/after workloads. No subjective-feel/speedup/physical-input
 claim. See GA03e-REPORT.md; next A10 equipment lifecycle remains autonomous work.
+
+
+### A10: equipment transitions stay consistent
+
+Injury, forced drops and saved recovery keep item ownership and bonuses aligned.
+Regeneration restores empty slots, unrelated gear remains usable, and nested
+cleanup cannot duplicate a removal or leave ghost equipment.47new tests,
+full9369GREEN/native111PASS/0CS. Native menus, injury, actual trap death and L
+recovery passed; no subjective smoothness, pixels or speedup claim. See
+GA03f-REPORT.md. Starting-equipment API lifecycle and remaining repairs continue.

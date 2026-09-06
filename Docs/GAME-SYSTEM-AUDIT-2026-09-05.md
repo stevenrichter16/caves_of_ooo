@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; WAVE2j COMPLETE; WAVE2k COMPLETE; WAVE3a APPLIED/VERIFIED; WAVE3b COMPLETE; WAVE3c COMPLETE; WAVE3d COMPLETE; WAVE3e COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; WAVE2j COMPLETE; WAVE2k COMPLETE; WAVE3a APPLIED/VERIFIED; WAVE3b COMPLETE; WAVE3c COMPLETE; WAVE3d COMPLETE; WAVE3e COMPLETE; WAVE3f COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -2173,3 +2173,21 @@ sprite is not its mapping. No new content was added. A36 Physics-only arrival
 predicate, earlier arbitrary non-drag callback ordering and generic save-hook
 atomicity remain outside this bounded repair. Next A10 plan and source corrections
 are in EQUIPMENT-LIFECYCLE-PLAN.md; original whole-game queue remains active.
+
+
+## GA03f / A10 — forced equipment lifecycle complete
+
+Accepted injury/death cleanup now reverses normal contributions, clears exact
+body/cache/Physics ownership and runs post-unequip/enhancement hooks. Saved dropped
+items remain unequipped. Complete-set guards and transient detached-subtree scopes
+prevent five reproduced callback defects while preserving unrelated gear and
+nested forced cleanup. Body-level failed drops retain the exact carried entity.
+47new tests; full9369GREEN,0CS; native111PASS. GA03f-REPORT.md has raw gates,
+Qud divergence, scope reconciliation and independent review. Only two clean
+production paths changed; protected spell/art work remains untouched.
+
+Next: GA03g Loadout uses ordinary equipment lifecycle without displacing gear.
+No current authored Loadout producer exists; stale16-humanoid claims will be
+corrected with the API repair. A11 mortal dismember death remains next after that.
+Generic observer rollback, managed-part removal, corrupt raw ownership and the
+complete death caller's refused AddEntity fallback remain separate queue entries.

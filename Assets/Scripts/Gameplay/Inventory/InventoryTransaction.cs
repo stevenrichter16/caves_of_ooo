@@ -51,6 +51,19 @@ namespace CavesOfOoo.Core.Inventory
             }
             ActiveTransfers.Add(item, this); _claimedItems.Add(item); return true;
         }
+        /// <summary>Guard a forced cleanup through its callbacks without vetoing
+        /// injury/death. An existing command already guards this item; return
+        /// null so its claim cannot be released by the forced operation. A new
+        /// guard belongs to the caller and must be committed in finally.</summary>
+        internal static InventoryTransaction GuardForcedCleanup(Entity item)
+        {
+            if (item == null || ActiveTransfers.TryGetValue(item, out _)) return null;
+            var guard = new InventoryTransaction();
+            ActiveTransfers.Add(item, guard);
+            guard._claimedItems.Add(item);
+            return guard;
+        }
+
         private void ReleaseClaims()
         {
             foreach (var item in _claimedItems) ActiveTransfers.Remove(item);
