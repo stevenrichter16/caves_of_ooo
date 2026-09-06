@@ -1,13 +1,13 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h NEXT**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i NEXT**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
 
 ## Contract and finite scope
 
-Inventory covers all741 C# files under Assets/Scripts (578 Gameplay,
+The initial inventory recorded all741 C# files under Assets/Scripts (578 Gameplay,
 163 Data/Presentation/Shared/Scenarios), plus22 editor-support sources and
 runtime-loaded JSON/art mappings. The source manifest is
 `Docs/Verification/GameSystemAudit/source-inventory.json`. A category being
@@ -1459,3 +1459,210 @@ in GA02g-REPORT.md. Original Sharp/mineral loss and anonymous-name cold-eye fixe
 ship together; fixture corrections remain recorded.2352GUIDsunique; no protected
 path overlap. NextWave2h A46 actual output recipients and one-unit transforms,
 then A47 exact crafting payments/receipts and the remaining accepted system fixes.
+
+### Wave2h plan — A46 actual recipients and one-unit weapon transformations
+
+Baseline db30c145,8274/8274GREEN. Root read AddObject/weight, complete transfer
+receipt, transaction/executor, clone behavior, forge/batch/recompute, temper gates/
+payment, command results and optional-quench/station handlers. All nine prospective
+existing files are clean and absent from the protected snapshot. No edits yet.
+
+Initial actual-content RED matrix will pin resident forge outputs across merge,
+full-stack and batch boundaries; temper/reforge only one unit; current one-quench
+composite behavior; positive target/payment before cloning; valid equipped singleton
+versus abnormal equipped stack. Controls inspect actual inventory quantities,
+receiver identities, payload differences and payments. Follow with exact new-split
+rollback, marks, equipped effects, save, capacity, recipient diagnostics, native
+batch/one-unit station routes and full verification. A47 positive replacement/
+quench and target checks are prerequisites here; record them as covered when shipped.
+
+Implementation shape: preserve old bool/service APIs with result overloads; capture
+actual receiving stack at the insertion branch. Keep singleton equipment identity;
+clone a carried multi-unit target before debit, prepare changed payload, then commit
+one source unit and payment with exact incoming/recipient receipt. A changed clone
+must not be inserted while still identical to the source. Preserve original marks
+on refusal; on success transfer a mark to the actual changed recipient. No new saved
+fields, new content/art, per-frame hook or whole-batch atomicity. A46 must not make
+non-increasing unit transformations unusable merely because the actor is already
+overweight; final capacity semantics and exact receipt seams are under source review
+before implementation. General A47 crafting receipts remain separate except where
+shared changes are necessary to make the new transform safe.
+
+### A47 positive-unit and refusal-truth preparation
+
+Read-only review complete; implementation follows A46. Automatic selectors (mineral
+gift, Founding offer, tinkering ingredient) should skip empty matches and find the
+first positive carried unit. Explicit selections (reagent lists and component/quench
+arguments) must reject any invalid selected unit, not silently execute a different
+recipe. Use pure CanConsumeOne for carriage+quantity and TryConsumeOne for payment;
+keep or replace rollback receipts explicitly because payment alone cannot undo.
+
+Seed must return true/unhandled on refusal and false/Handled on success: command
+execution treats either Handled OR a false FireEvent result as success. Actor-aware
+menus must not fall back to another actor's Physics owner. Remove the exact newly
+placed crop if payment unexpectedly fails. Normal Floor/occupied/Felling-barren
+planting demonstrates false success without malformed state.
+
+Gift currently consumes first empty match for reputation; Founding instead returns
+empty_stack too early. Both need a positive selector. Tinker ingredient availability
+in InventoryUI must match it. SellMineral and OfferFoundingStone are legacy void
+conversation registrations; use required-result adapters if covered. A cached
+SaltMaster choice can otherwise advance to Weighed after salt disappears. Founding
+returns to Start, so no analogous success-node prose claim.
+
+Brew/forge batch availability must report null0/noStacker1/nonpositive0/positive
+minimum. PreviewBrew has no actor: check quantity only. PreviewForge accepts Parts,
+so keep its base-stat math. Hide empty selectable rows, but do not filter stale
+invalid explicit marks out of CollectMarked; services must reject the full selection.
+Actorless disassembly/mod compatibility queries need quantity gates, while actor
+services enforce ownership/payment. Equipped singleton modification targets remain
+valid. A46 must cover positive target and carried-positive quench/replacement now.
+
+Remaining RED/control matrix: seed command truth/menu ownership; mixed empty/positive
+PaleSalt gift and Tepuibone Founding offer; cached conversation refusal; explicit
+empty reagent mix without discovery/payment/output; all component slots; preview
+quantity; mixed tinker ingredient availability/payment; empty modification target
+and disassembly without payment/benefit; valid singleton/stack/equipped controls.
+Empty/negative entries are malformed-state robustness cases: no new ordinary
+producer was found. A46's merged zero-count orphan is already rejected by ownership
+and does not establish a resident empty-item producer. Source references and
+concrete APIs were verified; no A47 implementation or Unity run has occurred yet.
+
+Wave2h design review resolved the remaining safety seams before implementation:
+use an immutable ceiling max(starting carried weight, MaxWeight) for finite packs,
+allow receipt-covered interim insertions, then validate actual final weight. This
+handles recipient-specific configured weight and non-increasing overweight work.
+Keep public AddObject capacity behavior unchanged. Capture multiple incoming
+entities with reference deduplication; register undo before Apply, since transaction
+Do(apply,undo) registers too late if apply throws.
+
+CloneForStack leaves ID null; new A46 clones need local unique string IDs so station
+CraftToggle rows can address them. Claim input weapon/payment before clone preparation
+(which can run virtual Initialize), capture receipts after preparation so independent
+other-item work remains outside rollback, and claim changed merge recipients before
+publication. Actual authored initializers do not provide destructive callbacks.
+
+Commands will need narrow singleton payload/mark undo in addition to quantity/list
+receipts when joining a transaction: MessageLog.Add is synchronous, and ClearTemper
+logs before reforge returns. Snapshot only changed melee/assembly/temper/HP/name fields
+and mark state; preserve equipment and upgrade Parts. On success move a source mark
+to the actual recipient, including remerge into the source itself; an unmarked source
+must not clear an existing recipient mark. Throwing publication/preparation callbacks
+are extension robustness controls, not claims about authored malicious listeners.
+
+Wave2h initial40RED:24fail/16controls pass,01:45:16–18UTC,zeroC#errors.
+Failures are actual recipient loss, whole-stack transformation, nonpositive payment/
+target acceptance and abnormal equipped stacks. Added12 command rollback/commit and
+mark-following controls before production. A per-iteration scoped undo list joins the
+outer transaction: failed iterations restore and disarm their own actions; successful
+iterations remain undoable by their parent. This preserves partial batches without
+adding transaction-wide savepoints. Input claims remain until parent completion.
+
+Wave2h expanded52RED:32fail/20controls pass,01:55:28–31UTC,zeroC#errors.
+Review caught an exception-ordering hazard in automatic local cleanup: nested work
+on the same outer transaction must undo in true reverse order. Revised operation
+uses explicit restore/disarm only for ordinary pre-publication refusal; exceptions
+leave all receipts armed for parent rollback. Stat/stack/weight/diagnostic primitives
+were verified callback-free; factory/clone preparation precedes receipt capture.
+The only newly added temper Part is tracked by exact instance before attachment.
+
+Wave2h minimum115/115GREEN,02:01:17–23UTC,zeroC#errors. Dedicated32-case
+adversarial draft plus7native staging cases initially hit a fixture compile error:
+GatherActions returns List<InventoryAction>, not an Actions wrapper. Corrected test
+API without production change; retained compile log. Independent review identified
+nonpositive destination merges and grouped undo stopping after one throwing marker
+hook. Added6 explicit RED controls before either fix. Native arena remains absent.
+
+Wave2h corrected97RED:82pass/15fail,02:05:33–37UTC,zeroC#errors.
+Six confirmed edge failures:4nonpositive destination and2grouped rollback interruption.
+Two additional failures were fixture drift: Sharp explicitly refuses stacks; corrected
+setup forges and pays both singleton upgrades separately, then merges actual compatible
+weapons before splitting. Remaining7 failures require the not-yet-authored nativearena.
+Native preparation corrected another station dependency: brewing a batch requires an
+adjacent AlchemyStill as well as the forge. Arena will stage both with actual raw inputs.
+
+Wave2h expanded442:440pass/2fail,02:08:48–02:09:00UTC,zeroC#errors.
+All97new tests passed; two older tests require the ownership refusal message to
+retain “own”. Restore compatible clear wording. Cold-eye review additionally found
+undo enrollment before clone preparation can invert same-transaction nested mutation
+order. Added commit/rollback controls before changing enrollment, plus equippedGlow,
+participant claims, later actual recipient and explicit empty component controls.
+
+### A48 verified preparation — split clones lose their addressable identity
+
+Source-only ordinary producer confirmed; root RED remains pending after A46/A47.
+Factory Dagger2→EquipCommand→Stacker.RemoveOne→Entity.CloneForStack creates a
+null-ID singleton. Unequip directly appends it, without merging or assigning an ID.
+Sharp is not needed to cause this. Forge CraftingMarkPart.AddToggleRows skips empty
+IDs, so this otherwise usable weapon disappears from the station weapon/temper picker.
+A Dagger is not itself reforgeable; use actual forged weapons for that picker claim.
+Inventory direct-reference mark selection remains a workaround; do not claim all
+crafting is inaccessible. Dropped null-ID items also lose individual target-picker
+rows, while generic/single-target pickup can still work. Token save graph identity
+survives but saves/reloads the null ID verbatim. Global clone-ID creation plus a
+separately scoped old-save migration will need root RED; A46 assigns IDs only to
+its newly introduced clones. References: EntityFactory173, Entity405, EquipCommand118,
+InventoryPart265, CraftingMarkPart121, WorldInteractionSystem291, SaveSystem101/745.
+
+Wave2h review117RED:116pass/1fail,02:10:55–02:11:01UTC,zeroC#errors.
+Same-transaction clone preparation completed a nested temper before outer mutation;
+constructor-time undo enrollment restored those mutations in the wrong order.
+Moved enrollment to first actual undo/receipt capture after preparation and before
+mutation. Added AlchemyStill/BrewedTonic preflight cases: final new suite119cases
+(52regression,58dedicated adversarial,9staging). Native source review found no blocker;
+its finite pack is not a capacity-boundary test. Full suite and native checks next.
+
+Wave2h firstfull8393:8392pass/1fail,02:12:11–02:13:59UTC,zeroC#errors.
+Existing non-melee-target test exposed a refusal-message regression: shared ownership
+preflight had swallowed the specific melee check. Restored separate ownership/quantity
+and weapon-kind checks, retaining exact named rejection. Added2capacity-limited later
+batch refusal controls and assertions for rollback-failure diagnostics/ordinary absence.
+Final count121new:52regression+60dedicatedadversarial+9staging. All fixes reviewed;
+focused/native/full verification continues before commit.
+
+Wave2h native40/40PASS,ce5eede85da24cbcbe85a8b2c00ddcbc,16.518107959s,
+exit0,zeroC#errors. Actual pack+station keyboard route proves batchonequench,
+split/remerge/reforge, quantities/marks/IDs. Two known post-exit A31Cameraerrors
+retained in raw log. Final full rerun underway after compatible rejection repair.
+
+### Wave2i preparation — A47 planting and mineral exchange truth
+
+Next bounded slice follows A46 close-out: actual seed commands must fail when no
+crop was planted; automatic mineral selectors must skip empty entries and pay a
+positive carried unit; required dialogue actions must not advance after payment
+refusal. Root read complete SeedPart/WantsMineralPart/FoundingTrustService and
+actual SellMineral/OfferFoundingStone registrations. Independent source prep covered
+actual content, existing tests and command/choice return contracts.
+
+Correction table: SaltMaster pays TentRight+5 (older synthetic tests use a different
+faction/reward); Founding tender pays CatacombFolk+50 once. Seed refusal needs
+true/unhandled, successfalse/Handled, because either Handled or falseFireEvent is
+command success. IfHaveItem already checks positive units and skips empty matches;
+no predicate change needed. Actor-aware seed menu queries must not fall back to
+another carrier. SelectChoice's bool means dialogue remains active, not payment
+success. These actions currently spend zero ticks/energy; preserve that behavior.
+A Plantable-tagged Felling-barren terrain is a counterfixture for placement refusal,
+not shipped terrain. Use new test files; FarmingAuditFixTests has protected edits.
+
+Plan positive blueprint selector on InventoryPart for mineral/Founding and later
+tinkering reuse; keep ownership and positive quantity in CanConsumeOne/TryConsumeOne.
+This adds one clean shared inventory file to the four prepared runtime paths.
+DoPlant returnsbool, removes the exact placed crop if payment unexpectedly fails,
+and publishes success only after payment. RegisterRequired returnsnullsuccess or
+stable refusal reason, preserving existing spoken outcomes. Initial actual-content
+RED/control matrix covers22cases of Floor/occupied/placement refusal, positive and
+empty seeds, wrong actor menus, positive/empty/mixed mineral stacks, wanted type,
+once-only Founding, cached choices and required action sequencing. Follow with
+adversarial/native/review/full and samecommit livingdocs. Broader brewing/tinkering
+positive selectors and tinker output receipts follow as another bounded A47slice.
+
+### Wave2h close-out — A46 complete
+
+Full8395/8395GREEN,02:18:42–02:20:24UTC,101.8574372s,zeroC#errors.
+Added121tests (52regression/60adversarial/9staging), focused136/136 andnative40/40.
+All root/independent findings fixed and retained with actual RED evidence.2360GUIDs
+unique,0protectedpathoverlap. The exact source/publication ordering, invalid merge
+recipient, grouped undo and compatible refusal-message corrections ship together.
+GA02h-REPORT.md contains complete scope, evidence, divergence and honesty bounds.
+A46 is closed. A47's seed/mineral/conversation slice is next per Wave2i preparation;
+remaining brew/tinker guards/receipts and A48 cloneIDs follow before the wider queue.

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using CavesOfOoo.Data;
 using CavesOfOoo.Diagnostics;
+using CavesOfOoo.Core.Inventory;
 
 namespace CavesOfOoo.Core
 {
@@ -35,108 +36,61 @@ namespace CavesOfOoo.Core
         public static bool IsHaftSlot(string slot) => string.Equals(slot, HaftSlot, StringComparison.OrdinalIgnoreCase);
         public static bool IsBindingSlot(string slot) => string.Equals(slot, BindingSlot, StringComparison.OrdinalIgnoreCase);
 
-        private struct ConsumedComponent
+        /// <summary>Forge one unit and return its actual carried recipient, which
+        /// may be an existing compatible stack. Failure leaves payment unchanged.</summary>
+        public static bool TryForge(Entity crafter, EntityFactory factory, Entity blade,
+            Entity haft, Entity binding, out Entity weapon, out string reason)
         {
-            public Entity Entity;
-            public bool ConsumedFromStack;
+            var transaction = new InventoryTransaction();
+            try
+            {
+                bool ok = TryForge(crafter, factory, blade, haft, binding, transaction, out weapon, out reason);
+                if (ok) transaction.Commit();
+                return ok;
+            }
+            finally { transaction.Rollback(); }
         }
 
-        public static bool TryForge(
-            Entity crafter,
-            EntityFactory factory,
-            Entity blade,
-            Entity haft,
-            Entity binding,
-            out Entity weapon,
-            out string reason)
+        internal static bool TryForge(Entity crafter, EntityFactory factory, Entity blade,
+            Entity haft, Entity binding, InventoryTransaction transaction, out Entity weapon, out string reason)
         {
-            weapon = null;
-            reason = string.Empty;
-
-            if (crafter == null)
-            {
-                reason = "Crafter is missing.";
-                return false;
-            }
-
-            if (factory == null)
-            {
-                reason = "Entity factory is missing.";
+            weapon = null; reason = string.Empty;
+            var inventory = crafter?.GetPart<InventoryPart>();
+            if (inventory == null || factory == null)
+            { reason = "Forging requires a crafter, inventory and entity factory."; return RejectDiag(crafter, reason); }
+            if (!ValidateComponent(inventory, blade, BladeSlot, out var bladePart, out reason)
+                || !ValidateComponent(inventory, haft, HaftSlot, out var haftPart, out reason)
+                || !ValidateComponent(inventory, binding, BindingSlot, out var bindingPart, out reason))
                 return RejectDiag(crafter, reason);
-            }
-
-            InventoryPart inventory = crafter.GetPart<InventoryPart>();
-            if (inventory == null)
-            {
-                reason = "Crafter cannot forge without an inventory.";
-                return RejectDiag(crafter, reason);
-            }
-
-            if (!ValidateComponent(inventory, blade, BladeSlot, out WeaponComponentPart bladePart, out reason)
-                || !ValidateComponent(inventory, haft, HaftSlot, out WeaponComponentPart haftPart, out reason)
-                || !ValidateComponent(inventory, binding, BindingSlot, out WeaponComponentPart bindingPart, out reason))
-            {
-                return RejectDiag(crafter, reason);
-            }
-
             if (ReferenceEquals(blade, haft) || ReferenceEquals(blade, binding) || ReferenceEquals(haft, binding))
-            {
-                reason = "The same component was selected twice.";
-                return RejectDiag(crafter, reason);
-            }
+            { reason = "The same component was selected twice."; return RejectDiag(crafter, reason); }
 
-            // ── Execution ──
-            var consumed = new List<ConsumedComponent>(3);
-            Entity[] components = { blade, haft, binding };
-            for (int i = 0; i < components.Length; i++)
-            {
-                if (!TryConsumeComponent(inventory, components[i], out ConsumedComponent record))
-                {
-                    RestoreConsumed(inventory, consumed);
-                    reason = "Failed to consume " + components[i].GetDisplayName() + ".";
-                    return RejectDiag(crafter, reason);
-                }
-
-                consumed.Add(record);
-            }
-
-            Entity forged = factory.CreateEntity(ForgedWeaponBlueprintName);
+            var operation = new WeaponCraftingOperation(crafter, transaction, "ForgeWeapon");
+            if (!operation.Claim(blade, haft, binding))
+            { reason = "A selected component is already in use."; return RejectDiag(crafter, reason); }
+            // Prepare before payment and receipt: factory initialization can perform
+            // independent work, which a failed forge must not rewind.
+            var forged = factory.CreateEntity(ForgedWeaponBlueprintName);
             if (forged == null)
-            {
-                RestoreConsumed(inventory, consumed);
-                reason = "Failed to create '" + ForgedWeaponBlueprintName + "'.";
-                return RejectDiag(crafter, reason);
-            }
-
-            var assembly = new WeaponAssemblyPart
-            {
-                BladeBlueprint = blade.BlueprintName,
-                HaftBlueprint = haft.BlueprintName,
-                BindingBlueprint = binding.BlueprintName
-            };
-            forged.AddPart(assembly);
+            { reason = "Failed to create '" + ForgedWeaponBlueprintName + "'."; return RejectDiag(crafter, reason); }
+            forged.AddPart(new WeaponAssemblyPart { BladeBlueprint = blade.BlueprintName,
+                HaftBlueprint = haft.BlueprintName, BindingBlueprint = binding.BlueprintName });
             ApplyComponentStats(forged, bladePart, haftPart, bindingPart);
-
-            if (!inventory.AddObject(forged))
+            var receipt = operation.Capture(forged);
+            Entity recipient = null;
+            bool applied = receipt.Apply(() => inventory.TryConsumeOne(blade)
+                && inventory.TryConsumeOne(haft) && inventory.TryConsumeOne(binding)
+                && inventory.AddCraftedUnit(forged, out recipient));
+            if (!applied || !operation.Finish(receipt))
             {
-                RestoreConsumed(inventory, consumed);
-                reason = "Cannot add the forged weapon to inventory.";
+                operation.Restore(); reason = "Cannot add the forged weapon to inventory.";
                 return RejectDiag(crafter, reason);
             }
-
-            weapon = forged;
-            MessageLog.Add(crafter.GetDisplayName() + " forges " + forged.GetDisplayName() + ".");
-
+            weapon = recipient;
+            MessageLog.Add(crafter.GetDisplayName() + " forges " + InventoryPart.GetUnitDisplayName(recipient) + ".");
             if (Diag.IsChannelEnabled(DiagCategory))
-            {
-                Diag.Record(DiagCategory, "WeaponForged", actor: crafter, target: forged, payload: new
-                {
-                    blade = blade.BlueprintName,
-                    haft = haft.BlueprintName,
-                    binding = binding.BlueprintName
-                });
-            }
-
+                Diag.Record(DiagCategory, "WeaponForged", actor: crafter, target: recipient,
+                    payload: new { blade = blade.BlueprintName, haft = haft.BlueprintName, binding = binding.BlueprintName });
             return true;
         }
 
@@ -165,24 +119,33 @@ namespace CavesOfOoo.Core
         /// Repeat <see cref="TryForge"/> up to <paramref name="requestedCount"/>
         /// times against the SAME three component references — mirrors
         /// BrewingService.TryBrewBatch exactly. Each iteration re-validates
-        /// and consumes via the existing stack-aware TryConsumeComponent, so
+        /// and consumes via the positive carried-unit payment, so
         /// passing the same entities repeatedly naturally exhausts whichever
         /// slot runs out first; no new bookkeeping needed.
         ///
         /// Return contract: TRUE if at least one weapon was forged (a
         /// partial batch is a smaller success). FALSE only when the FIRST
-        /// iteration fails.
+        /// iteration fails. Exceptions roll back the enclosing transaction.
         /// </summary>
-        public static bool TryForgeBatch(
-            Entity crafter,
-            EntityFactory factory,
-            Entity blade,
-            Entity haft,
-            Entity binding,
-            int requestedCount,
-            out List<Entity> producedWeapons,
-            out int madeCount,
-            out string reason)
+        public static bool TryForgeBatch(Entity crafter, EntityFactory factory, Entity blade,
+            Entity haft, Entity binding, int requestedCount, out List<Entity> producedWeapons,
+            out int madeCount, out string reason)
+        {
+            var transaction = new InventoryTransaction();
+            try
+            {
+                bool ok = TryForgeBatch(crafter, factory, blade, haft, binding, requestedCount,
+                    transaction, out producedWeapons, out madeCount, out reason);
+                if (ok) transaction.Commit();
+                return ok;
+            }
+            finally { transaction.Rollback(); }
+        }
+
+        // Results represent produced units, so several entries may name one resident stack.
+        internal static bool TryForgeBatch(Entity crafter, EntityFactory factory, Entity blade,
+            Entity haft, Entity binding, int requestedCount, InventoryTransaction transaction,
+            out List<Entity> producedWeapons, out int madeCount, out string reason)
         {
             producedWeapons = new List<Entity>();
             madeCount = 0;
@@ -202,7 +165,7 @@ namespace CavesOfOoo.Core
 
             for (int i = 0; i < requestedCount; i++)
             {
-                bool ok = TryForge(crafter, factory, blade, haft, binding, out Entity weapon, out string iterationReason);
+                bool ok = TryForge(crafter, factory, blade, haft, binding, transaction, out Entity weapon, out string iterationReason);
                 if (!ok)
                 {
                     if (madeCount == 0)
@@ -228,7 +191,7 @@ namespace CavesOfOoo.Core
                 return 0;
 
             StackerPart stacker = item.GetPart<StackerPart>();
-            return (stacker != null && stacker.StackCount > 0) ? stacker.StackCount : 1;
+            return stacker == null ? 1 : Math.Max(0, stacker.StackCount);
         }
 
         /// <summary>
@@ -237,100 +200,88 @@ namespace CavesOfOoo.Core
         /// blueprint and added to the crafter's inventory; the weapon's
         /// stats are recomputed from the updated component set.
         /// </summary>
-        public static bool TryReforge(
-            Entity crafter,
-            EntityFactory factory,
-            Entity weapon,
-            Entity newComponent,
-            out Entity returnedComponent,
-            out string reason)
+        public static bool TryReforge(Entity crafter, EntityFactory factory, Entity weapon,
+            Entity newComponent, out Entity returnedComponent, out string reason) =>
+            TryReforge(crafter, factory, weapon, newComponent, out _, out returnedComponent, out reason);
+
+        /// <summary>Transform one owned weapon unit. Returns its actual recipient and
+        /// the actual carried recipient of the displaced component. Equipped singletons
+        /// retain identity; carried stacks split automatically. Failure restores payment.</summary>
+        public static bool TryReforge(Entity crafter, EntityFactory factory, Entity weapon,
+            Entity newComponent, out Entity affectedWeapon, out Entity returnedComponent, out string reason)
         {
-            returnedComponent = null;
-            reason = string.Empty;
-
-            if (crafter == null || factory == null)
+            var transaction = new InventoryTransaction();
+            try
             {
-                reason = "Crafter or factory is missing.";
-                return false;
+                bool ok = TryReforge(crafter, factory, weapon, newComponent, transaction,
+                    out affectedWeapon, out returnedComponent, out reason);
+                if (ok) transaction.Commit();
+                return ok;
             }
+            finally { transaction.Rollback(); }
+        }
 
-            InventoryPart inventory = crafter.GetPart<InventoryPart>();
-            if (inventory == null)
-            {
-                reason = "Crafter cannot re-forge without an inventory.";
-                return RejectDiag(crafter, reason);
-            }
-
-            if (weapon == null || !inventory.Contains(weapon))
-            {
-                reason = "You must own the weapon to re-forge it.";
-                return RejectDiag(crafter, reason);
-            }
-
-            WeaponAssemblyPart assembly = weapon.GetPart<WeaponAssemblyPart>();
+        internal static bool TryReforge(Entity crafter, EntityFactory factory, Entity weapon,
+            Entity newComponent, InventoryTransaction transaction,
+            out Entity affectedWeapon, out Entity returnedComponent, out string reason)
+        {
+            affectedWeapon = null; returnedComponent = null; reason = string.Empty;
+            var inventory = crafter?.GetPart<InventoryPart>();
+            if (inventory == null || factory == null)
+            { reason = "Re-forging requires a crafter, inventory and entity factory."; return RejectDiag(crafter, reason); }
+            if (!WeaponCraftingOperation.CanTransform(inventory, weapon))
+            { reason = "You must own a positive weapon unit; equipped stacks cannot be re-forged."; return RejectDiag(crafter, reason); }
+            if (!weapon.HasPart<MeleeWeaponPart>())
+            { reason = "That item is not a melee weapon."; return RejectDiag(crafter, reason); }
+            var assembly = weapon.GetPart<WeaponAssemblyPart>();
             if (assembly == null)
-            {
-                reason = weapon.GetDisplayName() + " was not forged from components.";
-                return RejectDiag(crafter, reason);
-            }
-
-            if (!ValidateComponent(inventory, newComponent, null, out WeaponComponentPart newPart, out reason))
-                return RejectDiag(crafter, reason);
-
-            string slot = newPart.Slot;
-            string displacedBlueprint = assembly.GetBlueprintForSlot(slot);
+            { reason = "That weapon was not forged from components."; return RejectDiag(crafter, reason); }
+            if (ReferenceEquals(weapon, newComponent))
+            { reason = "A weapon cannot be its own replacement component."; return RejectDiag(crafter, reason); }
+            if (!ValidateComponent(inventory, newComponent, null, out var newPart, out reason)) return RejectDiag(crafter, reason);
+            string slot = newPart.Slot, displacedBlueprint = assembly.GetBlueprintForSlot(slot);
             if (string.IsNullOrWhiteSpace(displacedBlueprint))
+            { reason = "Unknown component slot '" + slot + "'."; return RejectDiag(crafter, reason); }
+            var operation = new WeaponCraftingOperation(crafter, transaction, "ReforgeWeapon");
+            if (!operation.Claim(weapon, newComponent))
+            { reason = "A selected item is already in use."; return RejectDiag(crafter, reason); }
+            var planned = new WeaponAssemblyPart { BladeBlueprint = assembly.BladeBlueprint,
+                HaftBlueprint = assembly.HaftBlueprint, BindingBlueprint = assembly.BindingBlueprint };
+            planned.SetBlueprintForSlot(slot, newComponent.BlueprintName);
+            var blade = InstantiateComponentPart(factory, planned.BladeBlueprint);
+            var haft = InstantiateComponentPart(factory, planned.HaftBlueprint);
+            var binding = InstantiateComponentPart(factory, planned.BindingBlueprint);
+            var displaced = factory.CreateEntity(displacedBlueprint);
+            if (blade == null || haft == null || binding == null || displaced == null)
+            { reason = "A recorded component blueprint no longer exists."; return RejectDiag(crafter, reason); }
+            var unit = WeaponCraftingOperation.PrepareUnit(weapon);
+            if (!WeaponCraftingOperation.CanTransform(inventory, weapon) || !inventory.CanConsumeOne(newComponent))
+            { reason = "A selected item is no longer available."; return RejectDiag(crafter, reason); }
+            bool split = !ReferenceEquals(unit, weapon), melted = (unit.GetPart<WeaponTemperPart>()?.TemperCount ?? 0) > 0;
+            if (!split) operation.CapturePayload(unit);
+            var receipt = operation.Capture(unit, displaced);
+            Entity recipient = unit, returned = null;
+            bool applied = receipt.Apply(() =>
             {
-                reason = "Unknown component slot '" + slot + "'.";
+                if (!inventory.TryConsumeOne(newComponent) || (split && !inventory.TryConsumeOne(weapon))) return false;
+                unit.GetPart<WeaponAssemblyPart>().SetBlueprintForSlot(slot, newComponent.BlueprintName);
+                ApplyComponentStats(unit, blade, haft, binding);
+                WeaponTemperingService.ClearTemper(unit, false);
+                return (!split || inventory.AddCraftedUnit(unit, out recipient))
+                    && inventory.AddCraftedUnit(displaced, out returned);
+            });
+            if (!applied || !operation.Finish(receipt))
+            {
+                operation.Restore(); reason = "Cannot fit the re-forged weapon and displaced component in inventory.";
                 return RejectDiag(crafter, reason);
             }
-
-            if (!TryConsumeComponent(inventory, newComponent, out ConsumedComponent consumedNew))
-            {
-                reason = "Failed to consume " + newComponent.GetDisplayName() + ".";
-                return RejectDiag(crafter, reason);
-            }
-
-            Entity displaced = factory.CreateEntity(displacedBlueprint);
-            if (displaced == null || !inventory.AddObject(displaced))
-            {
-                RestoreConsumed(inventory, new List<ConsumedComponent> { consumedNew });
-                reason = "Failed to return the displaced component '" + displacedBlueprint + "'.";
-                return RejectDiag(crafter, reason);
-            }
-
-            assembly.SetBlueprintForSlot(slot, newComponent.BlueprintName);
-
-            if (!TryRecomputeStats(weapon, assembly, factory, out reason))
-            {
-                // Roll the swap back: undo the record, take the displaced
-                // copy back out, restore the consumed new component.
-                assembly.SetBlueprintForSlot(slot, displacedBlueprint);
-                inventory.RemoveObject(displaced);
-                RestoreConsumed(inventory, new List<ConsumedComponent> { consumedNew });
-                return RejectDiag(crafter, reason);
-            }
-
-            // Re-forging melts the temper away: TryRecomputeStats already
-            // rebuilt OnHitEffectsRaw + DisplayName from components (wiping
-            // temper specs and the quench prefix); ClearTemper restores the
-            // Hitpoints-max penalty so no orphaned fatigue lingers on a
-            // weapon whose specs no longer justify it.
-            WeaponTemperingService.ClearTemper(weapon);
-
-            returnedComponent = displaced;
-            MessageLog.Add(crafter.GetDisplayName() + " re-forges " + weapon.GetDisplayName() + ".");
-
+            operation.MoveMark(weapon, recipient);
+            affectedWeapon = recipient; returnedComponent = returned;
+            if (melted) MessageLog.Add("The re-forging melts away the temper.");
+            MessageLog.Add(crafter.GetDisplayName() + " re-forges " + InventoryPart.GetUnitDisplayName(recipient) + ".");
             if (Diag.IsChannelEnabled(DiagCategory))
-            {
-                Diag.Record(DiagCategory, "WeaponReforged", actor: crafter, target: weapon, payload: new
-                {
-                    slot,
-                    installed = newComponent.BlueprintName,
-                    displaced = displacedBlueprint
-                });
-            }
-
+                Diag.Record(DiagCategory, "WeaponReforged", actor: crafter, target: recipient,
+                    payload: new { slot, installed = newComponent.BlueprintName, displaced = displacedBlueprint });
             return true;
         }
 
@@ -569,9 +520,9 @@ namespace CavesOfOoo.Core
                 return false;
             }
 
-            if (!inventory.Contains(item))
+            if (!inventory.CanConsumeOne(item))
             {
-                reason = "You must own all selected components.";
+                reason = "You must own and carry a positive unit of every selected component.";
                 return false;
             }
 
@@ -606,58 +557,5 @@ namespace CavesOfOoo.Core
             return false;
         }
 
-        private static bool TryConsumeComponent(InventoryPart inventory, Entity item, out ConsumedComponent record)
-        {
-            record = new ConsumedComponent();
-            if (inventory == null || item == null)
-                return false;
-
-            StackerPart stacker = item.GetPart<StackerPart>();
-            if (stacker != null && stacker.StackCount > 1)
-            {
-                stacker.StackCount -= 1;
-                inventory.RefreshHandlingCarryPenalty();
-                record.Entity = item;
-                record.ConsumedFromStack = true;
-                return true;
-            }
-
-            if (inventory.RemoveObject(item))
-            {
-                record.Entity = item;
-                record.ConsumedFromStack = false;
-                return true;
-            }
-
-            return false;
-        }
-
-        private static void RestoreConsumed(InventoryPart inventory, List<ConsumedComponent> consumed)
-        {
-            if (inventory == null || consumed == null)
-                return;
-
-            for (int i = 0; i < consumed.Count; i++)
-            {
-                ConsumedComponent record = consumed[i];
-                if (record.Entity == null)
-                    continue;
-
-                if (record.ConsumedFromStack)
-                {
-                    StackerPart stacker = record.Entity.GetPart<StackerPart>();
-                    if (stacker != null)
-                    {
-                        stacker.StackCount += 1;
-                        continue;
-                    }
-                }
-
-                if (!inventory.Contains(record.Entity))
-                    inventory.AddObject(record.Entity);
-            }
-            // A singleton AddObject may refresh before later stacked records are restored.
-            inventory.RefreshHandlingCarryPenalty();
-        }
     }
 }

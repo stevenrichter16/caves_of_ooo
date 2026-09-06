@@ -22,7 +22,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
         private readonly int _requestedCount;
 
         /// <summary>
-        /// Weapons produced by the last Execute, in forge order. Lets the
+        /// Recipients of units produced by the last Execute, in forge order.
+        /// References may repeat when multiple units merge into the same stack. Lets the
         /// forge's one-button Craft flow quench the fresh weapon without
         /// re-scanning the inventory.
         /// </summary>
@@ -103,6 +104,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 _haft,
                 _binding,
                 _requestedCount,
+                transaction,
                 out List<Entity> produced,
                 out int madeCount,
                 out string reason);

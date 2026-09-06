@@ -92,7 +92,7 @@ namespace CavesOfOoo.Rendering
                 AddCraftSection("Blades", inv, item => SlotOf(item) == "Blade");
                 AddCraftSection("Hafts", inv, item => SlotOf(item) == "Haft");
                 AddCraftSection("Bindings", inv, item => SlotOf(item) == "Binding");
-                AddCraftSection("Quench (optional)", inv, IsQuench);
+                AddCraftSection("Quench one weapon (optional)", inv, IsQuench);
 
                 _forgePreview = WeaponForgingService.PreviewForge(
                     _pickedBlade?.GetPart<WeaponComponentPart>(),
@@ -324,7 +324,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // A picked quench tempers the weapon that just came off the
+            // A picked quench tempers one unit from the first output recipient of the
             // anvil — same one-button behaviour the forge menu has.
             if (_pickedQuench != null && command.ForgedWeapons.Count > 0)
             {
@@ -508,7 +508,7 @@ namespace CavesOfOoo.Rendering
                 DrawText(ix, iy + 6, Truncate(_forgePreview.OnHitEffectsRaw, CRAFT_RESULT_W - 4),
                     QudColorParser.BrightRed);
             else if (_pickedQuench != null)
-                DrawText(ix, iy + 6, "quench ready", QudColorParser.Gray);
+                DrawText(ix, iy + 6, "quench one weapon", QudColorParser.Gray);
         }
 
         private void RenderBrewResult(int x, int y)

@@ -14,6 +14,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
         private readonly Entity _weapon;
         private readonly Entity _quench;
 
+        /// <summary>Actual recipient of the last successfully transformed unit.</summary>
+        public Entity TemperedWeapon { get; private set; }
+
         public string Name => "TemperWeapon";
 
         public TemperWeaponCommand(Entity weapon, Entity quench)
@@ -57,14 +60,16 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
+            TemperedWeapon = null;
             if (!WeaponTemperingService.TryTemper(
-                    context.Actor, _weapon, _quench, out string reason))
+                    context.Actor, _weapon, _quench, transaction, out Entity affected, out string reason))
             {
                 return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,
                     reason);
             }
 
+            TemperedWeapon = affected;
             return InventoryCommandResult.Ok();
         }
     }

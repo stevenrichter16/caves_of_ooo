@@ -48,9 +48,21 @@ namespace CavesOfOoo.Core
         /// Returns false if weight would be exceeded.
         /// If the item is stackable and matches an existing stack, merges automatically.
         /// </summary>
-        public bool AddObject(Entity item)
+        public bool AddObject(Entity item) => AddObjectCore(item, false, out _);
+
+        // A crafting receipt covers these interim writes. The caller must validate
+        // actual final carried weight before publishing success; only one unit is accepted.
+        internal bool AddCraftedUnit(Entity item, out Entity recipient)
         {
-            if (MaxWeight >= 0)
+            recipient = null;
+            if (item == null || (item.GetPart<StackerPart>()?.StackCount ?? 1) != 1) return false;
+            return AddObjectCore(item, true, out recipient);
+        }
+
+        private bool AddObjectCore(Entity item, bool deferCapacity, out Entity recipient)
+        {
+            recipient = null;
+            if (!deferCapacity && MaxWeight >= 0)
             {
                 int itemWeight = GetItemWeight(item);
                 if (GetCarriedWeight() + itemWeight > MaxWeight)
@@ -64,11 +76,13 @@ namespace CavesOfOoo.Core
                 for (int i = 0; i < Objects.Count; i++)
                 {
                     var existingStacker = Objects[i].GetPart<StackerPart>();
-                    if (existingStacker != null && existingStacker.CanStackWith(item))
+                    if (existingStacker != null && (!deferCapacity || existingStacker.StackCount > 0)
+                        && existingStacker.CanStackWith(item))
                     {
                         existingStacker.MergeFrom(item);
                         if (itemStacker.StackCount <= 0)
                         {
+                            recipient = Objects[i];
                             RefreshHandlingCarryPenalty();
                             return true; // Fully merged — item consumed
                         }
@@ -78,6 +92,7 @@ namespace CavesOfOoo.Core
 
             // Add as new entry (or remaining count if partial merge)
             Objects.Add(item);
+            recipient = item;
             var physics = item.GetPart<PhysicsPart>();
             if (physics != null)
             {

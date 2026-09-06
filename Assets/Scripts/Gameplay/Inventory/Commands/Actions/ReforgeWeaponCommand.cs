@@ -17,6 +17,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
         private readonly Entity _newComponent;
         private readonly EntityFactory _factory;
 
+        /// <summary>Actual recipient of the last successfully transformed unit.</summary>
+        public Entity ReforgedWeapon { get; private set; }
+
         public string Name => "ReforgeWeapon";
 
         public ReforgeWeaponCommand(Entity weapon, Entity newComponent, EntityFactory factory)
@@ -68,15 +71,17 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
         public InventoryCommandResult Execute(InventoryContext context, InventoryTransaction transaction)
         {
+            ReforgedWeapon = null;
             if (!WeaponForgingService.TryReforge(
-                    context.Actor, _factory, _weapon, _newComponent,
-                    out Entity _, out string reason))
+                    context.Actor, _factory, _weapon, _newComponent, transaction,
+                    out Entity affected, out Entity _, out string reason))
             {
                 return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,
                     reason);
             }
 
+            ReforgedWeapon = affected;
             return InventoryCommandResult.Ok();
         }
     }

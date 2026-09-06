@@ -12,15 +12,18 @@ namespace CavesOfOoo.Core.Inventory
         private readonly InventoryPart _inventory;
         private readonly List<ItemState> _before = new List<ItemState>();
         private readonly List<ItemState> _changed = new List<ItemState>();
-        internal static InventoryTransferSnapshot Capture(InventoryPart inventory, Entity incoming = null) =>
+        internal static InventoryTransferSnapshot Capture(InventoryPart inventory, params Entity[] incoming) =>
             new InventoryTransferSnapshot(inventory.Objects, inventory, incoming);
-        internal static InventoryTransferSnapshot Capture(ContainerPart container, Entity incoming = null) =>
+        internal static InventoryTransferSnapshot Capture(ContainerPart container, params Entity[] incoming) =>
             new InventoryTransferSnapshot(container.Contents, null, incoming);
-        private InventoryTransferSnapshot(List<Entity> list, InventoryPart inventory, Entity incoming)
+        private InventoryTransferSnapshot(List<Entity> list, InventoryPart inventory, Entity[] incoming)
         {
             _list = list; _inventory = inventory;
             for (int i = 0; i < list.Count; i++) _before.Add(new ItemState(list[i], i));
-            if (incoming != null && !list.Contains(incoming)) _before.Add(new ItemState(incoming, -1));
+            var seen = new HashSet<Entity>(list);
+            if (incoming != null)
+                foreach (var item in incoming)
+                    if (item != null && seen.Add(item)) _before.Add(new ItemState(item, -1));
         }
         internal bool Apply(Func<bool> mutation)
         {

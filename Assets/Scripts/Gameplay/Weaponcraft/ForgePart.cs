@@ -74,7 +74,7 @@ namespace CavesOfOoo.Core
                         actions.AddAction("Forge", "forge the kit (blade+haft+binding)", "ForgeWeapon", 'f', 20);
                         actions.AddAction("ForgeBatch", "forge a full batch", "ForgeWeaponBatch", 'F', 19);
                         actions.AddAction("Reforge", "re-forge weapon with component", "ReforgeWeapon", 'r', 18);
-                        actions.AddAction("Quench", "quench weapon in coating", "QuenchWeapon", 'q', 17);
+                        actions.AddAction("Quench", "quench one weapon in coating", "QuenchWeapon", 'q', 17);
                     }
                 }
                 return true;

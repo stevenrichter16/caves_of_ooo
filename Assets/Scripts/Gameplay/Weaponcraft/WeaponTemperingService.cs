@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CavesOfOoo.Diagnostics;
+using CavesOfOoo.Core.Inventory;
 
 namespace CavesOfOoo.Core
 {
@@ -24,12 +25,29 @@ namespace CavesOfOoo.Core
         public const int HpPenaltyPerTemper = 2;
         public const string DiagCategory = WeaponForgingService.DiagCategory;
 
-        public static bool TryTemper(
-            Entity crafter,
-            Entity weapon,
-            Entity quench,
-            out string reason)
+        public static bool TryTemper(Entity crafter, Entity weapon, Entity quench, out string reason) =>
+            TryTemper(crafter, weapon, quench, out _, out reason);
+
+        /// <summary>Temper one owned weapon unit with one positive carried brew.
+        /// Carried stacks split automatically; returns the actual transformed recipient.
+        /// Equipped singletons retain identity. Refusal restores quantity and payload.</summary>
+        public static bool TryTemper(Entity crafter, Entity weapon, Entity quench,
+            out Entity affectedWeapon, out string reason)
         {
+            var transaction = new InventoryTransaction();
+            try
+            {
+                bool ok = TryTemper(crafter, weapon, quench, transaction, out affectedWeapon, out reason);
+                if (ok) transaction.Commit();
+                return ok;
+            }
+            finally { transaction.Rollback(); }
+        }
+
+        internal static bool TryTemper(Entity crafter, Entity weapon, Entity quench,
+            InventoryTransaction transaction, out Entity affectedWeapon, out string reason)
+        {
+            affectedWeapon = null;
             reason = string.Empty;
 
             if (crafter == null)
@@ -45,9 +63,9 @@ namespace CavesOfOoo.Core
                 return RejectDiag(crafter, reason);
             }
 
-            if (weapon == null || !inventory.Contains(weapon))
+            if (!WeaponCraftingOperation.CanTransform(inventory, weapon))
             {
-                reason = "You must own the weapon to temper it.";
+                reason = "You must own a positive weapon unit; equipped stacks cannot be tempered.";
                 return RejectDiag(crafter, reason);
             }
 
@@ -64,9 +82,9 @@ namespace CavesOfOoo.Core
                 return RejectDiag(crafter, reason);
             }
 
-            if (quench == null || !inventory.Contains(quench))
+            if (!inventory.CanConsumeOne(quench))
             {
-                reason = "You must own the quench medium.";
+                reason = "You must carry a positive unit of quench medium.";
                 return RejectDiag(crafter, reason);
             }
 
@@ -88,25 +106,53 @@ namespace CavesOfOoo.Core
                 return RejectDiag(crafter, reason);
             }
 
-            WeaponTemperPart temper = weapon.GetPart<WeaponTemperPart>();
+            if ((weapon.GetPart<WeaponTemperPart>()?.TemperCount ?? 0) >= MaxTempers)
+            { reason = "The metal can hold no more tempering."; return RejectDiag(crafter, reason); }
+            var operation = new WeaponCraftingOperation(crafter, transaction, "TemperWeapon");
+            if (!operation.Claim(weapon, quench))
+            { reason = "A selected item is already in use."; return RejectDiag(crafter, reason); }
+            var unit = WeaponCraftingOperation.PrepareUnit(weapon);
+            if (!WeaponCraftingOperation.CanTransform(inventory, weapon) || !inventory.CanConsumeOne(quench))
+            { reason = "A selected item is no longer available."; return RejectDiag(crafter, reason); }
+            bool split = !ReferenceEquals(unit, weapon);
+            if (!split) operation.CapturePayload(unit);
+            var receipt = operation.Capture(unit);
+            Entity recipient = unit;
+            string joined = null; int penaltyApplied = 0;
+            bool applied = receipt.Apply(() =>
+            {
+                if (!inventory.TryConsumeOne(quench) || (split && !inventory.TryConsumeOne(weapon))) return false;
+                ApplyTemper(unit, effects, operation, out joined, out penaltyApplied);
+                return !split || inventory.AddCraftedUnit(unit, out recipient);
+            });
+            if (!applied || !operation.Finish(receipt))
+            {
+                operation.Restore(); reason = "Cannot fit the tempered weapon in inventory.";
+                return RejectDiag(crafter, reason);
+            }
+            operation.MoveMark(weapon, recipient);
+            affectedWeapon = recipient;
+            MessageLog.Add(crafter.GetDisplayName() + " quenches " + InventoryPart.GetUnitDisplayName(recipient)
+                + " - the metal drinks the coating.");
+            if (Diag.IsChannelEnabled(DiagCategory))
+                Diag.Record(DiagCategory, "WeaponTempered", actor: crafter, target: recipient,
+                    payload: new { quench = quench.BlueprintName, specs = joined,
+                        temperCount = recipient.GetPart<WeaponTemperPart>().TemperCount, hpPenalty = penaltyApplied });
+            return true;
+        }
+
+        private static void ApplyTemper(Entity weapon, IReadOnlyList<BrewPropertyAmount> effects,
+            WeaponCraftingOperation operation, out string joined, out int penaltyApplied)
+        {
+            var melee = weapon.GetPart<MeleeWeaponPart>();
+            var temper = weapon.GetPart<WeaponTemperPart>();
             if (temper == null)
             {
                 temper = new WeaponTemperPart();
+                var added = temper;
+                operation.Undo(() => weapon.RemovePart(added));
                 weapon.AddPart(temper);
             }
-
-            if (temper.TemperCount >= MaxTempers)
-            {
-                reason = "The metal can hold no more tempering.";
-                return RejectDiag(crafter, reason);
-            }
-
-            if (!TryConsumeQuench(inventory, quench))
-            {
-                reason = "Failed to consume " + quench.GetDisplayName() + ".";
-                return RejectDiag(crafter, reason);
-            }
-
             // ── Apply: effects → on-hit specs ──
             var specs = new List<string>(effects.Count);
             for (int i = 0; i < effects.Count; i++)
@@ -119,13 +165,13 @@ namespace CavesOfOoo.Core
                 specs.Add(entry.Property + "," + chance + ",,0," + potency);
             }
 
-            string joined = string.Join(";", specs);
+            joined = string.Join(";", specs);
             melee.OnHitEffectsRaw = string.IsNullOrWhiteSpace(melee.OnHitEffectsRaw)
                 ? joined
                 : melee.OnHitEffectsRaw + ";" + joined;
 
             // ── Trade-off: the metal fatigues ──
-            int penaltyApplied = 0;
+            penaltyApplied = 0;
             Stat hp = weapon.GetStat("Hitpoints");
             if (hp != null)
             {
@@ -146,22 +192,6 @@ namespace CavesOfOoo.Core
             if (render != null && !string.IsNullOrWhiteSpace(render.DisplayName))
                 render.DisplayName = QuenchPrefix(effects[0].Property) + " " + render.DisplayName;
 
-            MessageLog.Add(
-                crafter.GetDisplayName() + " quenches " + weapon.GetDisplayName()
-                + " - the metal drinks the coating.");
-
-            if (Diag.IsChannelEnabled(DiagCategory))
-            {
-                Diag.Record(DiagCategory, "WeaponTempered", actor: crafter, target: weapon, payload: new
-                {
-                    quench = quench.BlueprintName,
-                    specs = joined,
-                    temperCount = temper.TemperCount,
-                    hpPenalty = penaltyApplied
-                });
-            }
-
-            return true;
         }
 
         /// <summary>
@@ -172,7 +202,9 @@ namespace CavesOfOoo.Core
         /// the display name) - without this, the HP penalty would linger on
         /// a weapon whose specs no longer justify it.
         /// </summary>
-        public static void ClearTemper(Entity weapon)
+        public static void ClearTemper(Entity weapon) => ClearTemper(weapon, true);
+
+        internal static void ClearTemper(Entity weapon, bool notify)
         {
             WeaponTemperPart temper = weapon?.GetPart<WeaponTemperPart>();
             if (temper == null || temper.TemperCount == 0)
@@ -186,7 +218,7 @@ namespace CavesOfOoo.Core
             temper.HpPenaltyTotal = 0;
             temper.AppliedSpecsRaw = "";
 
-            MessageLog.Add("The re-forging melts away the temper.");
+            if (notify) MessageLog.Add("The re-forging melts away the temper.");
         }
 
         private static string QuenchPrefix(string effectName)
@@ -201,19 +233,6 @@ namespace CavesOfOoo.Core
                 case "wet": case "water": return "slick-quenched";
                 default: return "quenched";
             }
-        }
-
-        private static bool TryConsumeQuench(InventoryPart inventory, Entity quench)
-        {
-            StackerPart stacker = quench.GetPart<StackerPart>();
-            if (stacker != null && stacker.StackCount > 1)
-            {
-                stacker.StackCount -= 1;
-                inventory.RefreshHandlingCarryPenalty();
-                return true;
-            }
-
-            return inventory.RemoveObject(quench);
         }
 
         private static bool RejectDiag(Entity crafter, string reason)
