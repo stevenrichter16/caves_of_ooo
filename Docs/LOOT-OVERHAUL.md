@@ -1,11 +1,12 @@
 # LOOT OVERHAUL — Gear That Drops, Containers That Exist, A World That Supplies
 
-> Current-source correction (2026-09-06, GA03g): no current Assets/Resources
-> content contains Loadout. The older SM2 entry below reported16 armed humanoids;
-> it is not evidence of present encounter content. Loadout remains a supported
-> opt-in authoring API. See LOADOUT-LIFECYCLE-PLAN.md for verified reach, command
-> lifecycle repair and explicit native fixture bounds. Death-drop reliability is
-> bounded by the current GA03f report, not the historical "works perfectly" prose.
+> Content follow-up (2026-09-06, GA03i complete):24 explicit ordinary-world
+> kits are authored and verified;9599GREEN/native23PASS. See ENTITY-EQUIPMENT-PLAN.md.
+> GA03g's earlier source correction found zero Loadout producers and repaired the
+> opt-in API. The older SM2 claim of16 armed humanoids was not evidence of that
+> baseline's encounter content. See LOADOUT-LIFECYCLE-PLAN.md for the historical
+> lifecycle/native fixture bounds. Death-drop reliability is bounded by actual
+> GA03f/GA03i evidence, not the historical "works perfectly" prose.
 
 
 > Status: **COMPLETE (SM1-SM8).** Written 2026-08-09 after a

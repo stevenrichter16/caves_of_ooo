@@ -7,7 +7,13 @@ namespace CavesOfOoo.Core.Anatomy
     /// </summary>
     public static class NaturalWeaponFactory
     {
-        public static Entity Create(string blueprintName)
+        public static Entity Create(string blueprintName) => Create(blueprintName, allowFallback: true);
+
+        // Save repair must not manufacture a generic weapon for an unknown
+        // custom recipe. Explicit callers retain Create's historical fallback.
+        internal static Entity CreateKnown(string blueprintName) => Create(blueprintName, allowFallback: false);
+
+        private static Entity Create(string blueprintName, bool allowFallback)
         {
             switch (blueprintName)
             {
@@ -115,7 +121,7 @@ namespace CavesOfOoo.Core.Anatomy
                     return CreateWeapon("obsidian fist", "3d6", 3, "&m", "Bludgeoning");
 
                 default:
-                    return CreateWeapon(blueprintName, "1d2", 0, "&y", "");
+                    return allowFallback ? CreateWeapon(blueprintName, "1d2", 0, "&y", "") : null;
             }
         }
 

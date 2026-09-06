@@ -83,7 +83,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
             Entity item,
             BodyPart targetBodyPart,
             bool allowDisplacements,
-            bool emitPlanFailureMessage)
+            bool emitPlanFailureMessage,
+            bool emitSuccessMessage = true)
         {
             if (context == null || context.Actor == null || context.Inventory == null)
             {
@@ -171,7 +172,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 apply: null,
                 undo: () => EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: false));
 
-            MessageLog.Add($"{actor.GetDisplayName()} equips {itemToEquip.GetDisplayName()}.");
+            if (emitSuccessMessage)
+                MessageLog.Add($"{actor.GetDisplayName()} equips {itemToEquip.GetDisplayName()}.");
 
             var afterEquip = GameEvent.New("AfterEquip");
             afterEquip.SetParameter("Actor", (object)actor);

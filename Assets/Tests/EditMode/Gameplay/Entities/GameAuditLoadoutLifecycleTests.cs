@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace CavesOfOoo.Tests
 {
-    // Explicit authoring fixtures: the current world pack has no Loadout entries.
+    // Explicit API fixtures; actual world loadouts are covered by GameAuditEntityEquipmentContentTests.
     internal sealed class LoadoutLifecycleFixture : IDisposable
     {
         readonly EquipmentLifecycleFixture _scope = new EquipmentLifecycleFixture();

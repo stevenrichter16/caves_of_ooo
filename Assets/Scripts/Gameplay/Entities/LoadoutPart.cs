@@ -22,7 +22,7 @@ namespace CavesOfOoo.Core
     /// </code>
     /// <list type="bullet">
     /// <item><c>Equip</c> — semicolon list; created and equipped.</item>
-    /// <item><c>Carry</c> — <c>blueprint:chance%[xMin-Max]</c>; into inventory.</item>
+    /// <item><c>Carry</c> — <c>blueprint:chance[xMin-Max]</c>; into inventory.</item>
     /// <item><c>Pick</c> — <c>N;a;b;c</c>; N random picks, then equipped
     /// (or carried if not equippable). Weapon variety without one
     /// blueprint per variant.</item>
@@ -35,7 +35,7 @@ namespace CavesOfOoo.Core
     ///
     /// <para>Applies itself on <c>ObjectCreated</c>, which EntityFactory
     /// fires immediately after <c>InitializeAnatomy</c> — so body parts
-    /// exist and equipping resolves. No factory changes needed.</para>
+    /// and their declared natural defaults exist before equipment resolves.</para>
     /// </summary>
     public class LoadoutPart : Part
     {
@@ -183,7 +183,7 @@ namespace CavesOfOoo.Core
                     // otherwise supports legacy slots. The command owns hooks,
                     // bonuses and no-displacement checks. Refusal retains the grant.
                     bool hasBody = ParentEntity.GetPart<Body>() != null;
-                    bool completed = hasBody && InventorySystem.AutoEquip(ParentEntity, item);
+                    bool completed = hasBody && InventorySystem.AutoEquip(ParentEntity, item, emitSuccessMessage: false);
                     bool equipped = completed && InventorySystem.IsEquipped(ParentEntity, item);
                     string reason = !hasBody ? "missing_body" : !completed ? "auto_equip_refused"
                         : equipped ? "equipped" : "removed_during_equip";

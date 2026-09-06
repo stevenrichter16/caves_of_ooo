@@ -614,8 +614,12 @@ namespace CavesOfOoo.Core
                 if (part.Type != "Hand") continue;
 
                 // Check equipped weapon first
-                if (part._Equipped != null && part.FirstSlotForEquipped)
+                if (part._Equipped != null)
                 {
+                    // A hand supporting the same multi-slot item is occupied;
+                    // it cannot also supply its natural offhand attack.
+                    if (!part.FirstSlotForEquipped) continue;
+
                     var wpn = part._Equipped.GetPart<MeleeWeaponPart>();
                     if (wpn != null)
                     {

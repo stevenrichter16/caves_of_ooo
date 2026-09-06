@@ -1,6 +1,6 @@
 # Mechanics flow and responsiveness — 2026-09-05
 
-Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 COMPLETE; CRAFTING AVAILABILITY/FIRST-USE REPAIR COMPLETE; CRAFTED OUTPUT/LOCAL ROLLBACK REPAIR COMPLETE; CAMERA CLEANUP APPLIED/VERIFIED; NEW-GAME CHECKPOINT REPAIR COMPLETE; HOTBAR SAVE SELECTION REPAIR COMPLETE; CORRUPT-SAVE ISOLATION/SETTLEMENT WIRING COMPLETE; HAULING LIFECYCLE/SAVE RECOVERY COMPLETE; FORCED EQUIPMENT CLEANUP COMPLETE; STARTING-EQUIPMENT API COMPLETE; MORTAL DEATH/RECOVERY CONSISTENCY COMPLETE. User explicitly requested identifying mechanics that
+Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 COMPLETE; CRAFTING AVAILABILITY/FIRST-USE REPAIR COMPLETE; CRAFTED OUTPUT/LOCAL ROLLBACK REPAIR COMPLETE; CAMERA CLEANUP APPLIED/VERIFIED; NEW-GAME CHECKPOINT REPAIR COMPLETE; HOTBAR SAVE SELECTION REPAIR COMPLETE; CORRUPT-SAVE ISOLATION/SETTLEMENT WIRING COMPLETE; HAULING LIFECYCLE/SAVE RECOVERY COMPLETE; FORCED EQUIPMENT CLEANUP COMPLETE; STARTING-EQUIPMENT API COMPLETE; MORTAL DEATH/RECOVERY CONSISTENCY COMPLETE; PERSONAL EQUIPMENT/NATURAL ACTIVATION COMPLETE. User explicitly requested identifying mechanics that
 need smoother integration and fully implementing the supported improvements, without
 intervention. This extends the ongoing whole-game audit; it does not cancel its
 remaining repairs. Baseline latest completed repair1ef093a1,8470tests,GA02i native44.
@@ -821,3 +821,9 @@ living secondary attacks and saved living recovery remain available.67new tests,
 9484GREEN/0CS; native24PASS. Two75s healthy-input workloads passed every movement
 check; no subjective smoothness or speedup claim. Equipment content/item art is
 next under the user's explicit resumption, with the remaining flow queue intact.
+
+## GA03i — equipped roles and quiet world creation
+
+24 creature/town roles receive explicit personal kits, with shelves and loaners preserved. Automatic spawn equips suppress only their success sentence; ordinary pickup/equip and independent nested commands retain feedback. Real natural recipes now work on fresh creation and missing-default legacy saves, with saved object/flag aliases preserved. Occupied two-handed support slots cannot also punch.
+
+Final9599GREEN (+115),0CS; native23PASS. Two75s controlled miss profiles establish actual swing-count behavior, not broad speedup/equivalence/feel. Ground-item readability is the next separate sprite phase. See GA03i-REPORT and ENTITY-EQUIPMENT-PLAN.

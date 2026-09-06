@@ -1,0 +1,11 @@
+--- a/Assets/Scripts/Gameplay/Combat/CombatSystem.cs
++++ b/Assets/Scripts/Gameplay/Combat/CombatSystem.cs
+@@ -620,2 +620,6 @@
+-                if (part._Equipped != null && part.FirstSlotForEquipped)
+-                {
++                if (part._Equipped != null)
++                {
++                    // A hand supporting the same multi-slot item is occupied;
++                    // it cannot also supply its natural offhand attack.
++                    if (!part.FirstSlotForEquipped) continue;
++

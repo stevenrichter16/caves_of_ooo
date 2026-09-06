@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; WAVE2j COMPLETE; WAVE2k COMPLETE; WAVE3a APPLIED/VERIFIED; WAVE3b COMPLETE; WAVE3c COMPLETE; WAVE3d COMPLETE; WAVE3e COMPLETE; WAVE3f COMPLETE; WAVE3g COMPLETE; WAVE3h COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; WAVE2j COMPLETE; WAVE2k COMPLETE; WAVE3a APPLIED/VERIFIED; WAVE3b COMPLETE; WAVE3c COMPLETE; WAVE3d COMPLETE; WAVE3e COMPLETE; WAVE3f COMPLETE; WAVE3g COMPLETE; WAVE3h COMPLETE; WAVE3i COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -2215,3 +2215,9 @@ valid with exact source provenance and complete teardown. See MORTAL-DEATH-
 LIFECYCLE-PLAN and GA03h-REPORT. A12 scheduler, delayed bleed source and generic
 callback failures remain separate. User-requested entity equipment and sprite
 improvements take the next wave, then the remaining audit queue resumes.
+
+## GA03i — personal equipment and natural-weapon activation complete
+
+User-requested24 explicit creature/NPC kits now use normal equipment lifecycle and quiet automatic success prose. Actual-content adversarial cases exposed40 effective natural declarations/default fists lacking runtime creation. Factory completion restores them; known-only missing save repair preserves saved flags/custom/shared detached aliases. A two-handed supporting hand no longer adds its natural fist, while free offhands/shield fallback retain CoO policy.
+
+115new tests; final9599GREEN/0CS; native23PASS/0unexpected;75s true-before/after combat profiles verify exact changed swing counts with explicit non-equivalent work/timing bounds. Source/Qud/taxonomy and12hypothesis reviews complete; introduced save/selection findings fixed. ENTITY-EQUIPMENT-PLAN, NATURAL-WEAPON-ACTIVATION-PLAN and GA03i-REPORT retain details. No new art yet. Next seven ground-item families, then A12 and the remaining recorded audit queue.

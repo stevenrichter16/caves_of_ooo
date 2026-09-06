@@ -1,0 +1,253 @@
+{
+    "runId": "16a132ba899c4d77b953f458fb14774e",
+    "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/8efbe2aa187e4a59967dce2d9f48faa4",
+    "freshID": "12f1b65c01d94ab9a37bae999738d2a4",
+    "markerID": "GA03i-marker-6efba43bc75a4f3a9dedcc2b91d001a1",
+    "canVerify": "Native N/F5/F6 and exact normal walk/G pickup; actual unmodified 24 actor blueprints through live factory, real starting-village/named-profile producers, actual stock, per-item loadout diagnostics and quiet creation, actual full natural attacks, location armor, normal/veto/forced cleanup, attributed death, exact compressed graph identities and owner links.",
+    "cannotVerify": "No random encounter-frequency, complete balance, enemy AI, sprite/art appearance, keyboard combat/dismemberment, visual/feel, frame allocation, performance or speedup claim. The sprite phase is separate.",
+    "fixtureBounds": "Both content RNG overrides are temporary and restored; no actual blueprint mutation or injected Loadout, stock deletion, private factory, mod or new renderer key. After observing real world producers the starting zone becomes a flat arena; only arena NPC Brain Parts are removed, combat target HP/AV/Agility and player speed/storage are explicit fixture settings. Controlled valid-range combat RNG avoids criticals/procs/offhand. Injury/death are explicit APIs. The temporary veto is removed before save. NativeSaveIsolation owns all save destinations through teardown; process code is selected before final teardown report.",
+    "cases": 23,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "seconds": 5.804119,
+    "shutdownSeconds": 5.8239763,
+    "shutdownObserved": true,
+    "shutdownRootHeld": true,
+    "shutdownSavingUnregistered": true,
+    "audit": [
+        "PASS native_N_binds_fresh_owned_game",
+        "PASS starting_village_producers_keep_personal_gear_and_stock",
+        "PASS named_profile_producers_generate_real_gear_without_active_zone_change",
+        "PASS all_24_authored_kits_have_exact_positive_choices",
+        "PASS factory_creation_is_quiet_but_keeps_per_item_equipment_outcomes",
+        "PASS all_personal_units_have_unique_owners_and_stock_survives",
+        "PASS living_beast_control_keeps_natural_weapons_and_no_loadout",
+        "PASS actual_scavenger_pick_can_choose_second_weapon_without_double_arming",
+        "PASS armor_is_location_specific_and_boots_apply_exact_slowdown",
+        "PASS warlord_full_melee_keeps_2d5_pen2_cutting_axe",
+        "PASS sentry_full_melee_keeps_1d6_plus1_pen1_cutting",
+        "PASS native_F5_saves_all_real_kits_stock_and_cached_profiles",
+        "PASS normal_unequip_refunds_only_boot_slowdown",
+        "PASS normal_reequip_still_announces_and_restores_bonus",
+        "PASS living_veto_control_preserves_exact_feet_gear",
+        "PASS nonmortal_feet_loss_drops_exact_boots_and_refunds_equipment_only",
+        "PASS native_F6_restores_fresh_healthy_graph_without_regrant",
+        "PASS attributed_death_drops_each_personal_unit_once_and_keeps_neighbors_alive",
+        "PASS repeat_death_cannot_duplicate_gear_or_rewards",
+        "PASS native_walk_G_picks_exact_dropped_boots_and_normally_autoequips",
+        "PASS stale_pickup_control_cannot_duplicate_or_steal_equipped_unit",
+        "PASS final_native_F6_restores_healthy_owner_and_removes_drop_duplicates",
+        "PASS all_checkpoints_stay_in_private_disposable_save_scope"
+    ],
+    "stages": [
+        {
+            "label": "natural_attack_SnapjawWarlord",
+            "playerID": "",
+            "playerSignature": "",
+            "tick": 10,
+            "actorSignatures": [
+                "E:10862:LeatherArmor:1|E:10863:IronHelmet:1|E:10864:IronshodBoots:1"
+            ],
+            "rngCalls": [
+                "Next(1,21)=10",
+                "Next(80)=0",
+                "Next(1,11)=9",
+                "Next(1,11)=1",
+                "Next(1,11)=1",
+                "Next(1,6)=5",
+                "Next(1,6)=5",
+                "Next(100)=99",
+                "Next(100)=99"
+            ]
+        },
+        {
+            "label": "natural_attack_SkeletalSentry",
+            "playerID": "",
+            "playerSignature": "",
+            "tick": 10,
+            "actorSignatures": [
+                "E:10872:IronHelmet:1"
+            ],
+            "rngCalls": [
+                "Next(1,21)=10",
+                "Next(80)=0",
+                "Next(1,11)=9",
+                "Next(1,11)=1",
+                "Next(1,11)=1",
+                "Next(1,7)=6",
+                "Next(100)=99",
+                "Next(100)=99"
+            ]
+        },
+        {
+            "label": "actual_kits_and_attacks",
+            "playerID": "2901",
+            "playerSignature": "",
+            "tick": 10,
+            "actorSignatures": [
+                "E:10849:Dagger:1|E:10850:LeatherCap:1",
+                "E:10852:LeatherGloves:1|E:10853:Dagger:1",
+                "E:10855:Spear:1|E:10856:LeatherBoots:1",
+                "E:10858:ShortSword:1|E:10859:LeatherArmor:1|E:10860:LeatherCap:1",
+                "E:10862:LeatherArmor:1|E:10863:IronHelmet:1|E:10864:IronshodBoots:1",
+                "E:10866:ShortSword:1|E:10867:LeatherCap:1",
+                "E:10869:Dagger:1|E:10870:LeatherGloves:1",
+                "E:10872:IronHelmet:1",
+                "E:10874:ShortSword:1|E:10875:LeatherArmor:1",
+                "E:10877:Dagger:1|E:10878:LeatherGloves:1",
+                "C:10880:Spear:1|C:10881:Buckler:1|C:10882:IronHelmet:1|C:10883:HealingTonic:1|C:10884:Torch:1|E:10885:LongSword:1|E:10886:LeatherArmor:1|E:10887:LeatherBoots:1",
+                "C:10889:ChainMail:1|C:10890:LongSword:1|C:10891:IronHelmet:1|C:10892:HealingTonic:1|C:10893:StrengthTonic:1|C:10894:IronSpikeComponent:1|C:10895:Buckler:1|E:10896:Spear:1|E:10897:LeatherArmor:1|E:10898:LeatherBoots:1",
+                "C:10900:Dagger:1|C:10901:ShortSword:1|C:10902:Mace:1|C:10903:Spear:1|C:10904:Hatchet:1|C:10905:LongSword:1|C:10906:Battleaxe:1|C:10907:Warhammer:1|C:10908:SteelBladeComponent:1|C:10909:OakHaftComponent:1|C:10910:LeatherBindingComponent:1|C:10911:SerratedEdgeComponent:1|C:10912:StunGasGrenade:1|E:10913:LeatherGloves:1|E:10914:LeatherBoots:1",
+                "C:10916:IronSpikeComponent:2|C:10918:OakHaftComponent:1|C:10919:LeatherBindingComponent:1|C:10920:IronKey:1|E:10921:Dagger:1|E:10922:LeatherGloves:1",
+                "C:10924:CandyCarrotSeed:1|C:10925:EmberwheatSeed:1|C:10926:Starapple:1|C:10927:WildBerries:1|C:10928:StoneburrSeed:1|E:10929:LeatherBoots:1|E:10930:LeatherGloves:1",
+                "C:10932:WaterTonic:1|C:10933:HealingTonic:1|C:10934:GlimmerBrine:1|C:10935:Antidote:1|E:10936:LeatherBoots:1|E:10937:LeatherCap:1",
+                "C:10941:Dagger:1|E:10939:LeatherBoots:1|E:10940:LeatherGloves:1",
+                "C:10943:HealingTonic:1|C:10944:Panacea:1|C:10945:GrimoireCopy:1|C:10946:WardedCloak:1|E:10947:LeatherCap:1|E:10948:LeatherBoots:1",
+                "C:10950:InkVial:1|C:10951:GrimoireCopy:1|C:10952:WardGleamGrimoire:1|C:10953:StormAnvilGrimoire:1|C:10954:RenderedSteamGrimoire:1|E:10955:LeatherGloves:1|E:10956:LeatherCap:1",
+                "C:10958:HealingTonic:1|C:10959:SpeedTonic:1|C:10960:DriedMeat:1|C:10961:Dagger:1|C:10962:LeatherArmor:1|C:10963:Torch:1|C:10964:FireMoss:1|C:10965:IronKey:1|E:10966:ShortSword:1|E:10967:LeatherBoots:1",
+                "C:10971:Dagger:1|E:10969:LeatherBoots:1|E:10970:LeatherCap:1",
+                "E:10973:LeatherGloves:1|E:10974:LeatherBoots:1",
+                "E:10976:LeatherGloves:1|E:10977:LeatherBoots:1",
+                "E:10979:LeatherGloves:1|E:10980:LeatherCap:1"
+            ],
+            "rngCalls": []
+        },
+        {
+            "label": "nonmortal_cleanup",
+            "playerID": "2901",
+            "playerSignature": "",
+            "tick": 10,
+            "actorSignatures": [
+                "E:10849:Dagger:1|E:10850:LeatherCap:1",
+                "E:10852:LeatherGloves:1|E:10853:Dagger:1",
+                "E:10855:Spear:1|E:10856:LeatherBoots:1",
+                "E:10858:ShortSword:1|E:10859:LeatherArmor:1|E:10860:LeatherCap:1",
+                "E:10862:LeatherArmor:1|E:10863:IronHelmet:1",
+                "E:10866:ShortSword:1|E:10867:LeatherCap:1",
+                "E:10869:Dagger:1|E:10870:LeatherGloves:1",
+                "E:10872:IronHelmet:1",
+                "E:10874:ShortSword:1|E:10875:LeatherArmor:1",
+                "E:10877:Dagger:1|E:10878:LeatherGloves:1",
+                "C:10880:Spear:1|C:10881:Buckler:1|C:10882:IronHelmet:1|C:10883:HealingTonic:1|C:10884:Torch:1|E:10885:LongSword:1|E:10886:LeatherArmor:1|E:10887:LeatherBoots:1",
+                "C:10889:ChainMail:1|C:10890:LongSword:1|C:10891:IronHelmet:1|C:10892:HealingTonic:1|C:10893:StrengthTonic:1|C:10894:IronSpikeComponent:1|C:10895:Buckler:1|E:10896:Spear:1|E:10897:LeatherArmor:1|E:10898:LeatherBoots:1",
+                "C:10900:Dagger:1|C:10901:ShortSword:1|C:10902:Mace:1|C:10903:Spear:1|C:10904:Hatchet:1|C:10905:LongSword:1|C:10906:Battleaxe:1|C:10907:Warhammer:1|C:10908:SteelBladeComponent:1|C:10909:OakHaftComponent:1|C:10910:LeatherBindingComponent:1|C:10911:SerratedEdgeComponent:1|C:10912:StunGasGrenade:1|E:10913:LeatherGloves:1|E:10914:LeatherBoots:1",
+                "C:10916:IronSpikeComponent:2|C:10918:OakHaftComponent:1|C:10919:LeatherBindingComponent:1|C:10920:IronKey:1|E:10921:Dagger:1|E:10922:LeatherGloves:1",
+                "C:10924:CandyCarrotSeed:1|C:10925:EmberwheatSeed:1|C:10926:Starapple:1|C:10927:WildBerries:1|C:10928:StoneburrSeed:1|E:10929:LeatherBoots:1|E:10930:LeatherGloves:1",
+                "C:10932:WaterTonic:1|C:10933:HealingTonic:1|C:10934:GlimmerBrine:1|C:10935:Antidote:1|E:10936:LeatherBoots:1|E:10937:LeatherCap:1",
+                "C:10941:Dagger:1|E:10939:LeatherBoots:1|E:10940:LeatherGloves:1",
+                "C:10943:HealingTonic:1|C:10944:Panacea:1|C:10945:GrimoireCopy:1|C:10946:WardedCloak:1|E:10947:LeatherCap:1|E:10948:LeatherBoots:1",
+                "C:10950:InkVial:1|C:10951:GrimoireCopy:1|C:10952:WardGleamGrimoire:1|C:10953:StormAnvilGrimoire:1|C:10954:RenderedSteamGrimoire:1|E:10955:LeatherGloves:1|E:10956:LeatherCap:1",
+                "C:10958:HealingTonic:1|C:10959:SpeedTonic:1|C:10960:DriedMeat:1|C:10961:Dagger:1|C:10962:LeatherArmor:1|C:10963:Torch:1|C:10964:FireMoss:1|C:10965:IronKey:1|E:10966:ShortSword:1|E:10967:LeatherBoots:1",
+                "C:10971:Dagger:1|E:10969:LeatherBoots:1|E:10970:LeatherCap:1",
+                "E:10973:LeatherGloves:1|E:10974:LeatherBoots:1",
+                "E:10976:LeatherGloves:1|E:10977:LeatherBoots:1",
+                "E:10979:LeatherGloves:1|E:10980:LeatherCap:1"
+            ],
+            "rngCalls": []
+        },
+        {
+            "label": "death_drops",
+            "playerID": "2901",
+            "playerSignature": "",
+            "tick": 10,
+            "actorSignatures": [
+                "E:10849:Dagger:1|E:10850:LeatherCap:1",
+                "E:10852:LeatherGloves:1|E:10853:Dagger:1",
+                "E:10855:Spear:1|E:10856:LeatherBoots:1",
+                "E:10858:ShortSword:1|E:10859:LeatherArmor:1|E:10860:LeatherCap:1",
+                "GONE:10861",
+                "E:10866:ShortSword:1|E:10867:LeatherCap:1",
+                "E:10869:Dagger:1|E:10870:LeatherGloves:1",
+                "E:10872:IronHelmet:1",
+                "E:10874:ShortSword:1|E:10875:LeatherArmor:1",
+                "E:10877:Dagger:1|E:10878:LeatherGloves:1",
+                "C:10880:Spear:1|C:10881:Buckler:1|C:10882:IronHelmet:1|C:10883:HealingTonic:1|C:10884:Torch:1|E:10885:LongSword:1|E:10886:LeatherArmor:1|E:10887:LeatherBoots:1",
+                "C:10889:ChainMail:1|C:10890:LongSword:1|C:10891:IronHelmet:1|C:10892:HealingTonic:1|C:10893:StrengthTonic:1|C:10894:IronSpikeComponent:1|C:10895:Buckler:1|E:10896:Spear:1|E:10897:LeatherArmor:1|E:10898:LeatherBoots:1",
+                "C:10900:Dagger:1|C:10901:ShortSword:1|C:10902:Mace:1|C:10903:Spear:1|C:10904:Hatchet:1|C:10905:LongSword:1|C:10906:Battleaxe:1|C:10907:Warhammer:1|C:10908:SteelBladeComponent:1|C:10909:OakHaftComponent:1|C:10910:LeatherBindingComponent:1|C:10911:SerratedEdgeComponent:1|C:10912:StunGasGrenade:1|E:10913:LeatherGloves:1|E:10914:LeatherBoots:1",
+                "C:10916:IronSpikeComponent:2|C:10918:OakHaftComponent:1|C:10919:LeatherBindingComponent:1|C:10920:IronKey:1|E:10921:Dagger:1|E:10922:LeatherGloves:1",
+                "C:10924:CandyCarrotSeed:1|C:10925:EmberwheatSeed:1|C:10926:Starapple:1|C:10927:WildBerries:1|C:10928:StoneburrSeed:1|E:10929:LeatherBoots:1|E:10930:LeatherGloves:1",
+                "C:10932:WaterTonic:1|C:10933:HealingTonic:1|C:10934:GlimmerBrine:1|C:10935:Antidote:1|E:10936:LeatherBoots:1|E:10937:LeatherCap:1",
+                "C:10941:Dagger:1|E:10939:LeatherBoots:1|E:10940:LeatherGloves:1",
+                "C:10943:HealingTonic:1|C:10944:Panacea:1|C:10945:GrimoireCopy:1|C:10946:WardedCloak:1|E:10947:LeatherCap:1|E:10948:LeatherBoots:1",
+                "C:10950:InkVial:1|C:10951:GrimoireCopy:1|C:10952:WardGleamGrimoire:1|C:10953:StormAnvilGrimoire:1|C:10954:RenderedSteamGrimoire:1|E:10955:LeatherGloves:1|E:10956:LeatherCap:1",
+                "C:10958:HealingTonic:1|C:10959:SpeedTonic:1|C:10960:DriedMeat:1|C:10961:Dagger:1|C:10962:LeatherArmor:1|C:10963:Torch:1|C:10964:FireMoss:1|C:10965:IronKey:1|E:10966:ShortSword:1|E:10967:LeatherBoots:1",
+                "C:10971:Dagger:1|E:10969:LeatherBoots:1|E:10970:LeatherCap:1",
+                "E:10973:LeatherGloves:1|E:10974:LeatherBoots:1",
+                "E:10976:LeatherGloves:1|E:10977:LeatherBoots:1",
+                "E:10979:LeatherGloves:1|E:10980:LeatherCap:1"
+            ],
+            "rngCalls": []
+        },
+        {
+            "label": "final_recovery",
+            "playerID": "2901",
+            "playerSignature": "",
+            "tick": 10,
+            "actorSignatures": [
+                "E:10849:Dagger:1|E:10850:LeatherCap:1",
+                "E:10852:LeatherGloves:1|E:10853:Dagger:1",
+                "E:10855:Spear:1|E:10856:LeatherBoots:1",
+                "E:10858:ShortSword:1|E:10859:LeatherArmor:1|E:10860:LeatherCap:1",
+                "E:10862:LeatherArmor:1|E:10863:IronHelmet:1|E:10864:IronshodBoots:1",
+                "E:10866:ShortSword:1|E:10867:LeatherCap:1",
+                "E:10869:Dagger:1|E:10870:LeatherGloves:1",
+                "E:10872:IronHelmet:1",
+                "E:10874:ShortSword:1|E:10875:LeatherArmor:1",
+                "E:10877:Dagger:1|E:10878:LeatherGloves:1",
+                "C:10880:Spear:1|C:10881:Buckler:1|C:10882:IronHelmet:1|C:10883:HealingTonic:1|C:10884:Torch:1|E:10885:LongSword:1|E:10886:LeatherArmor:1|E:10887:LeatherBoots:1",
+                "C:10889:ChainMail:1|C:10890:LongSword:1|C:10891:IronHelmet:1|C:10892:HealingTonic:1|C:10893:StrengthTonic:1|C:10894:IronSpikeComponent:1|C:10895:Buckler:1|E:10896:Spear:1|E:10897:LeatherArmor:1|E:10898:LeatherBoots:1",
+                "C:10900:Dagger:1|C:10901:ShortSword:1|C:10902:Mace:1|C:10903:Spear:1|C:10904:Hatchet:1|C:10905:LongSword:1|C:10906:Battleaxe:1|C:10907:Warhammer:1|C:10908:SteelBladeComponent:1|C:10909:OakHaftComponent:1|C:10910:LeatherBindingComponent:1|C:10911:SerratedEdgeComponent:1|C:10912:StunGasGrenade:1|E:10913:LeatherGloves:1|E:10914:LeatherBoots:1",
+                "C:10916:IronSpikeComponent:2|C:10918:OakHaftComponent:1|C:10919:LeatherBindingComponent:1|C:10920:IronKey:1|E:10921:Dagger:1|E:10922:LeatherGloves:1",
+                "C:10924:CandyCarrotSeed:1|C:10925:EmberwheatSeed:1|C:10926:Starapple:1|C:10927:WildBerries:1|C:10928:StoneburrSeed:1|E:10929:LeatherBoots:1|E:10930:LeatherGloves:1",
+                "C:10932:WaterTonic:1|C:10933:HealingTonic:1|C:10934:GlimmerBrine:1|C:10935:Antidote:1|E:10936:LeatherBoots:1|E:10937:LeatherCap:1",
+                "C:10941:Dagger:1|E:10939:LeatherBoots:1|E:10940:LeatherGloves:1",
+                "C:10943:HealingTonic:1|C:10944:Panacea:1|C:10945:GrimoireCopy:1|C:10946:WardedCloak:1|E:10947:LeatherCap:1|E:10948:LeatherBoots:1",
+                "C:10950:InkVial:1|C:10951:GrimoireCopy:1|C:10952:WardGleamGrimoire:1|C:10953:StormAnvilGrimoire:1|C:10954:RenderedSteamGrimoire:1|E:10955:LeatherGloves:1|E:10956:LeatherCap:1",
+                "C:10958:HealingTonic:1|C:10959:SpeedTonic:1|C:10960:DriedMeat:1|C:10961:Dagger:1|C:10962:LeatherArmor:1|C:10963:Torch:1|C:10964:FireMoss:1|C:10965:IronKey:1|E:10966:ShortSword:1|E:10967:LeatherBoots:1",
+                "C:10971:Dagger:1|E:10969:LeatherBoots:1|E:10970:LeatherCap:1",
+                "E:10973:LeatherGloves:1|E:10974:LeatherBoots:1",
+                "E:10976:LeatherGloves:1|E:10977:LeatherBoots:1",
+                "E:10979:LeatherGloves:1|E:10980:LeatherCap:1"
+            ],
+            "rngCalls": []
+        }
+    ],
+    "profiles": [
+        {
+            "zoneID": "Overworld.8.16.0",
+            "actorID": "5392",
+            "blueprint": "TentRightHost",
+            "signature": "C:5395:Dagger:1|E:5393:LeatherBoots:1|E:5394:LeatherCap:1"
+        },
+        {
+            "zoneID": "Overworld.8.16.0",
+            "actorID": "5389",
+            "blueprint": "SaltMaster",
+            "signature": "E:5390:LeatherGloves:1|E:5391:LeatherBoots:1"
+        },
+        {
+            "zoneID": "Overworld.15.6.0",
+            "actorID": "8001",
+            "blueprint": "PeatCutter",
+            "signature": "C:8004:Dagger:1|C:8100:KindleGrimoire:1|C:8101:Starapple:1|C:8102:ShortSword:1|C:8103:InkVial:1|C:8104:MendleafSprig:1|E:8002:LeatherBoots:1|E:8003:LeatherGloves:1"
+        },
+        {
+            "zoneID": "Overworld.15.6.0",
+            "actorID": "8006",
+            "blueprint": "PeatCutter",
+            "signature": "C:8009:Dagger:1|C:8105:EmberFruit:2|C:8106:InkVial:1|C:8107:LongSword:1|C:8109:VenomGland:1|E:8007:LeatherBoots:1|E:8008:LeatherGloves:1"
+        },
+        {
+            "zoneID": "Overworld.17.5.0",
+            "actorID": "10712",
+            "blueprint": "RecensionScribe",
+            "signature": "E:10713:LeatherGloves:1|E:10714:LeatherBoots:1"
+        },
+        {
+            "zoneID": "Overworld.17.5.0",
+            "actorID": "10715",
+            "blueprint": "CurationSorter",
+            "signature": "E:10716:LeatherGloves:1|E:10717:LeatherCap:1"
+        }
+    ]
+}

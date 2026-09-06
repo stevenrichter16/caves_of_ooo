@@ -7,12 +7,16 @@ namespace CavesOfOoo.Core.Inventory.Commands
         private static readonly EquipPlanner Planner = new EquipPlanner();
 
         private readonly Entity _item;
+        private readonly bool _emitSuccessMessage;
 
         public string Name => "AutoEquip";
 
-        public AutoEquipCommand(Entity item)
+        public AutoEquipCommand(Entity item) : this(item, emitSuccessMessage: true) { }
+
+        internal AutoEquipCommand(Entity item, bool emitSuccessMessage)
         {
             _item = item;
+            _emitSuccessMessage = emitSuccessMessage;
         }
 
         public InventoryValidationResult Validate(InventoryContext context)
@@ -110,7 +114,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     _item,
                     targetBodyPart: null,
                     allowDisplacements: false,
-                    emitPlanFailureMessage: false);
+                    emitPlanFailureMessage: false,
+                    emitSuccessMessage: _emitSuccessMessage);
             }
 
             if (context.Inventory.GetEquipped(equippable.Slot) != null)
@@ -126,7 +131,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 _item,
                 targetBodyPart: null,
                 allowDisplacements: false,
-                emitPlanFailureMessage: false);
+                emitPlanFailureMessage: false,
+                emitSuccessMessage: _emitSuccessMessage);
         }
     }
 }

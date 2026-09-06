@@ -506,6 +506,10 @@ namespace CavesOfOoo.Data
                         parts[i].DefaultBehaviorBlueprint = naturalWeapon;
                 }
             }
+
+            // Complete the declared natural slots after actor-specific overrides,
+            // before ObjectCreated observers and starting equipment use the body.
+            body.RegenerateDefaultEquipment();
         }
     }
 }

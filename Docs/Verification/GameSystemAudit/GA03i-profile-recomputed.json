@@ -1,0 +1,703 @@
+{
+  "before": {
+    "runId": "aa9ab41e94194f5eab0c61ce5a973c0e",
+    "frames": 72287,
+    "strikes": 492,
+    "measuredSeconds": 75.1736779,
+    "wallSeconds": 75.3755134,
+    "phases": [
+      {
+        "name": "idle",
+        "frames": 24015,
+        "requests": 0,
+        "accepted": 0,
+        "failed": 0,
+        "hitRolls": 0,
+        "offhandRolls": 0,
+        "missMessages": 0,
+        "startTick": 10,
+        "endTick": 10,
+        "startEnergy": 1000,
+        "endEnergy": 1000,
+        "startSeconds": 6.3200000000041e-05,
+        "seconds": 25.0005647,
+        "raw_strikes": 0,
+        "positive_combat_frames": 0,
+        "target_hp_values": [],
+        "strike_time_min_interval": null
+      },
+      {
+        "name": "one_hand",
+        "frames": 24476,
+        "requests": 249,
+        "accepted": 249,
+        "failed": 0,
+        "hitRolls": 498,
+        "offhandRolls": 249,
+        "missMessages": 498,
+        "startTick": 10,
+        "endTick": 10,
+        "startEnergy": 1000,
+        "endEnergy": 1000,
+        "startSeconds": 25.001654499999997,
+        "seconds": 25.097676900000003,
+        "raw_strikes": 249,
+        "positive_combat_frames": 249,
+        "target_hp_values": [
+          20
+        ],
+        "strike_time_min_interval": 0.1003009999999982
+      },
+      {
+        "name": "two_hands",
+        "frames": 23796,
+        "requests": 243,
+        "accepted": 243,
+        "failed": 0,
+        "hitRolls": 486,
+        "offhandRolls": 243,
+        "missMessages": 486,
+        "startTick": 10,
+        "endTick": 10,
+        "startEnergy": 1000,
+        "endEnergy": 1000,
+        "startSeconds": 50.1003215,
+        "seconds": 25.0754363,
+        "raw_strikes": 243,
+        "positive_combat_frames": 243,
+        "target_hp_values": [
+          20
+        ],
+        "strike_time_min_interval": 0.10029500000000269
+      }
+    ],
+    "metrics": [
+      {
+        "phase": "idle",
+        "name": "COO.Combat.PerformMeleeAttack",
+        "unit": "nanoseconds",
+        "samples": 24015,
+        "max": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "mean": 0.0,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "idle",
+        "name": "COO.Input.Update",
+        "unit": "nanoseconds",
+        "samples": 24015,
+        "max": 77916.0,
+        "p95": 6708.0,
+        "p99": 11792.0,
+        "mean": 4236.125879658547,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "idle",
+        "name": "COO.ZoneRenderer.LateUpdate",
+        "unit": "nanoseconds",
+        "samples": 24015,
+        "max": 4023459.0,
+        "p95": 812917.0,
+        "p99": 913666.0,
+        "mean": 722628.54869873,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "idle",
+        "name": "COO.Turns.Tick",
+        "unit": "nanoseconds",
+        "samples": 24015,
+        "max": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "mean": 0.0,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "idle",
+        "name": "COO.Combat.ApplyDamage",
+        "unit": "nanoseconds",
+        "samples": 24015,
+        "max": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "mean": 0.0,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "idle",
+        "name": "GC Allocated In Frame",
+        "unit": "bytes",
+        "samples": 24015,
+        "max": 8818052.0,
+        "p95": 19116.0,
+        "p99": 410858.0,
+        "mean": 29585.815948365605,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "idle",
+        "name": "Engine frame duration",
+        "unit": "milliseconds",
+        "samples": 24015,
+        "max": 10.372831,
+        "p95": 1.247626,
+        "p99": 1.473044,
+        "mean": 1.0410882217364148,
+        "max_abs_rounding_difference": 4.86165523838622e-07
+      },
+      {
+        "phase": "one_hand",
+        "name": "COO.Combat.PerformMeleeAttack",
+        "unit": "nanoseconds",
+        "samples": 24476,
+        "max": 1732250.0,
+        "p95": 0.0,
+        "p99": 272083.0,
+        "mean": 3247.1847115541755,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "one_hand",
+        "name": "COO.Input.Update",
+        "unit": "nanoseconds",
+        "samples": 24476,
+        "max": 63833.0,
+        "p95": 5583.0,
+        "p99": 8291.0,
+        "mean": 3858.4329547311654,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "one_hand",
+        "name": "COO.ZoneRenderer.LateUpdate",
+        "unit": "nanoseconds",
+        "samples": 24476,
+        "max": 7290584.0,
+        "p95": 786458.0,
+        "p99": 2440042.0,
+        "mean": 723868.3396796862,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "one_hand",
+        "name": "COO.Turns.Tick",
+        "unit": "nanoseconds",
+        "samples": 24476,
+        "max": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "mean": 0.0,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "one_hand",
+        "name": "COO.Combat.ApplyDamage",
+        "unit": "nanoseconds",
+        "samples": 24476,
+        "max": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "mean": 0.0,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "one_hand",
+        "name": "GC Allocated In Frame",
+        "unit": "bytes",
+        "samples": 24476,
+        "max": 82662.0,
+        "p95": 19076.0,
+        "p99": 66118.0,
+        "mean": 19564.02966170943,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "one_hand",
+        "name": "Engine frame duration",
+        "unit": "milliseconds",
+        "samples": 24476,
+        "max": 10.593127,
+        "p95": 1.17196,
+        "p99": 3.134212,
+        "mean": 1.0254074731573786,
+        "max_abs_rounding_difference": 4.7203493203085145e-07
+      },
+      {
+        "phase": "one_hand",
+        "name": "Observed full melee call",
+        "unit": "nanoseconds",
+        "samples": 249,
+        "max": 1732400.0,
+        "p95": 381700.0,
+        "p99": 465800.0,
+        "mean": 319485.140562249,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "two_hands",
+        "name": "COO.Combat.PerformMeleeAttack",
+        "unit": "nanoseconds",
+        "samples": 23796,
+        "max": 4005833.0,
+        "p95": 0.0,
+        "p99": 276625.0,
+        "mean": 3486.4791981845688,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "two_hands",
+        "name": "COO.Input.Update",
+        "unit": "nanoseconds",
+        "samples": 23796,
+        "max": 588208.0,
+        "p95": 6708.0,
+        "p99": 11333.0,
+        "mean": 4049.894309968062,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "two_hands",
+        "name": "COO.ZoneRenderer.LateUpdate",
+        "unit": "nanoseconds",
+        "samples": 23796,
+        "max": 4371792.0,
+        "p95": 814750.0,
+        "p99": 2422791.0,
+        "mean": 721294.2653387124,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "two_hands",
+        "name": "COO.Turns.Tick",
+        "unit": "nanoseconds",
+        "samples": 23796,
+        "max": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "mean": 0.0,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "two_hands",
+        "name": "COO.Combat.ApplyDamage",
+        "unit": "nanoseconds",
+        "samples": 23796,
+        "max": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "mean": 0.0,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "two_hands",
+        "name": "GC Allocated In Frame",
+        "unit": "bytes",
+        "samples": 23796,
+        "max": 12871538.0,
+        "p95": 19276.0,
+        "p99": 421194.0,
+        "mean": 30779.792948394686,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "two_hands",
+        "name": "Engine frame duration",
+        "unit": "milliseconds",
+        "samples": 23796,
+        "max": 589.400947,
+        "p95": 1.261083,
+        "p99": 3.119749,
+        "mean": 1.053768296394352,
+        "max_abs_rounding_difference": 2.893017529981279e-07
+      },
+      {
+        "phase": "two_hands",
+        "name": "Observed full melee call",
+        "unit": "nanoseconds",
+        "samples": 243,
+        "max": 4006100.0,
+        "p95": 396400.0,
+        "p99": 588500.0,
+        "mean": 341686.83127572015,
+        "max_abs_rounding_difference": 0
+      }
+    ],
+    "teardown": {
+      "compile_errors": 0,
+      "capture_exit_0": true,
+      "cleanup_exit_0": true,
+      "private_root_removed": true,
+      "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/2f36d1a6711247aea05109e4293a8bdb",
+      "shutdownObserved": true,
+      "shutdownRootHeld": true,
+      "shutdownSavingUnregistered": true,
+      "seconds": 77.2849954,
+      "shutdownSeconds": 77.3068608
+    },
+    "log_relevant_lines": [
+      "[GameAuditEquipmentContentBench Performance] {\"runId\":\"aa9ab41e94194f5eab0c61ce5a973c0e\",\"root\":\"/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/2f36d1a6711247aea05109e4293a8bdb\",\"freshID\":\"3c9eaee620c04548ae035a0fd3db1d34\",\"markerID\":\"GA03i-marker-5c915693d89d4b9ca2f1384db58ed057\",\"canVerify\":\"Performance-only before: native N/private save bootstrap; real normally equipped ShortSword/Greatsword and factory natural defaults; legal finite full melee misses with explicit swing/RNG counters; unchanged HP/coordinates/turn clock; per-frame context/GC and per-call timing. Functional content cases are zero.\",\"cannotVerify\":\"No functional 23-case content matrix in this branch; no isolated guard cost, full-wave speedup, equivalence, zero allocation, landed-hit/rider/death timing, NPC scheduling, physical keyboard combat, build FPS, sprite quality or feel.\",\"fixtureBounds\":\"Actual Player/Villager/ShortSword/Greatsword via live factory; extra Player tags removed, names explicit, NPC brains removed and a flat arena installed. Both source actors retain factory default fists; weapons use normal Equip. All d20 rolls are1 and offhand rolls0 with exact finite overload/range checks. No damage, status accumulation, movement, save/load or turn advancement during capture. Source variant requires external provenance. Read perf-native teardown plus cleanup logs, not workloadValid/process code alone.\",\"cases\":0,\"failures\":0,\"unexpectedErrors\":0,\"seconds\":77.2849954,\"shutdownSeconds\":0.0,\"shutdownObserved\":false,\"shutdownRootHeld\":false,\"shutdownSavingUnregistered\":false,\"audit\":[],\"stages\":[],\"profiles\":[]}",
+      "[GameAuditEquipmentContentBench] Native capture exit=0",
+      "[NativeSaveIsolation] Cleanup complete, exit=0"
+    ]
+  },
+  "after": {
+    "runId": "ea9e69e041ea4069b14e0452a56a2648",
+    "frames": 71654,
+    "strikes": 491,
+    "measuredSeconds": 75.1522081,
+    "wallSeconds": 75.3438428,
+    "phases": [
+      {
+        "name": "idle",
+        "frames": 24023,
+        "requests": 0,
+        "accepted": 0,
+        "failed": 0,
+        "hitRolls": 0,
+        "offhandRolls": 0,
+        "missMessages": 0,
+        "startTick": 10,
+        "endTick": 10,
+        "startEnergy": 1000,
+        "endEnergy": 1000,
+        "startSeconds": 7.620000000008176e-05,
+        "seconds": 25.000526499999996,
+        "raw_strikes": 0,
+        "positive_combat_frames": 0,
+        "target_hp_values": [],
+        "strike_time_min_interval": null
+      },
+      {
+        "name": "one_hand",
+        "frames": 23488,
+        "requests": 242,
+        "accepted": 242,
+        "failed": 0,
+        "hitRolls": 484,
+        "offhandRolls": 242,
+        "missMessages": 484,
+        "startTick": 10,
+        "endTick": 10,
+        "startEnergy": 1000,
+        "endEnergy": 1000,
+        "startSeconds": 25.0020009,
+        "seconds": 25.0581856,
+        "raw_strikes": 242,
+        "positive_combat_frames": 242,
+        "target_hp_values": [
+          20
+        ],
+        "strike_time_min_interval": 0.1002939999999981
+      },
+      {
+        "name": "two_hands",
+        "frames": 24143,
+        "requests": 249,
+        "accepted": 249,
+        "failed": 0,
+        "hitRolls": 249,
+        "offhandRolls": 0,
+        "missMessages": 249,
+        "startTick": 10,
+        "endTick": 10,
+        "startEnergy": 1000,
+        "endEnergy": 1000,
+        "startSeconds": 50.0612776,
+        "seconds": 25.093495999999995,
+        "raw_strikes": 249,
+        "positive_combat_frames": 249,
+        "target_hp_values": [
+          20
+        ],
+        "strike_time_min_interval": 0.1002200000000002
+      }
+    ],
+    "metrics": [
+      {
+        "phase": "idle",
+        "name": "COO.Combat.PerformMeleeAttack",
+        "unit": "nanoseconds",
+        "samples": 24023,
+        "max": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "mean": 0.0,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "idle",
+        "name": "COO.Input.Update",
+        "unit": "nanoseconds",
+        "samples": 24023,
+        "max": 284000.0,
+        "p95": 7000.0,
+        "p99": 12042.0,
+        "mean": 4348.793822586687,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "idle",
+        "name": "COO.ZoneRenderer.LateUpdate",
+        "unit": "nanoseconds",
+        "samples": 24023,
+        "max": 10893625.0,
+        "p95": 813542.0,
+        "p99": 922875.0,
+        "mean": 724383.4134787496,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "idle",
+        "name": "COO.Turns.Tick",
+        "unit": "nanoseconds",
+        "samples": 24023,
+        "max": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "mean": 0.0,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "idle",
+        "name": "COO.Combat.ApplyDamage",
+        "unit": "nanoseconds",
+        "samples": 24023,
+        "max": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "mean": 0.0,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "idle",
+        "name": "GC Allocated In Frame",
+        "unit": "bytes",
+        "samples": 24023,
+        "max": 8844976.0,
+        "p95": 19118.0,
+        "p99": 427868.0,
+        "mean": 30143.880114889897,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "idle",
+        "name": "Engine frame duration",
+        "unit": "milliseconds",
+        "samples": 24023,
+        "max": 11.707412,
+        "p95": 1.243587,
+        "p99": 1.496499,
+        "mean": 1.0407307649336053,
+        "max_abs_rounding_difference": 4.0431118009109923e-07
+      },
+      {
+        "phase": "one_hand",
+        "name": "COO.Combat.PerformMeleeAttack",
+        "unit": "nanoseconds",
+        "samples": 23488,
+        "max": 3378042.0,
+        "p95": 0.0,
+        "p99": 278791.0,
+        "mean": 3506.613632493188,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "one_hand",
+        "name": "COO.Input.Update",
+        "unit": "nanoseconds",
+        "samples": 23488,
+        "max": 105041.0,
+        "p95": 5958.0,
+        "p99": 9167.0,
+        "mean": 4020.655866825613,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "one_hand",
+        "name": "COO.ZoneRenderer.LateUpdate",
+        "unit": "nanoseconds",
+        "samples": 23488,
+        "max": 4019500.0,
+        "p95": 796250.0,
+        "p99": 2547167.0,
+        "mean": 734285.3066672343,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "one_hand",
+        "name": "COO.Turns.Tick",
+        "unit": "nanoseconds",
+        "samples": 23488,
+        "max": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "mean": 0.0,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "one_hand",
+        "name": "COO.Combat.ApplyDamage",
+        "unit": "nanoseconds",
+        "samples": 23488,
+        "max": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "mean": 0.0,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "one_hand",
+        "name": "GC Allocated In Frame",
+        "unit": "bytes",
+        "samples": 23488,
+        "max": 1246776.0,
+        "p95": 19076.0,
+        "p99": 66174.0,
+        "mean": 19620.031803474114,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "one_hand",
+        "name": "Engine frame duration",
+        "unit": "milliseconds",
+        "samples": 23488,
+        "max": 648.299634,
+        "p95": 1.183418,
+        "p99": 3.202997,
+        "mean": 1.0668726809434605,
+        "max_abs_rounding_difference": 4.5663455239264295e-07
+      },
+      {
+        "phase": "one_hand",
+        "name": "Observed full melee call",
+        "unit": "nanoseconds",
+        "samples": 242,
+        "max": 3378200.0,
+        "p95": 400300.0,
+        "p99": 612300.0,
+        "mean": 340583.0578512397,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "two_hands",
+        "name": "COO.Combat.PerformMeleeAttack",
+        "unit": "nanoseconds",
+        "samples": 24143,
+        "max": 2760042.0,
+        "p95": 0.0,
+        "p99": 194042.0,
+        "mean": 2499.0284968727997,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "two_hands",
+        "name": "COO.Input.Update",
+        "unit": "nanoseconds",
+        "samples": 24143,
+        "max": 78666.0,
+        "p95": 6791.0,
+        "p99": 11666.0,
+        "mean": 4141.316282152176,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "two_hands",
+        "name": "COO.ZoneRenderer.LateUpdate",
+        "unit": "nanoseconds",
+        "samples": 24143,
+        "max": 3937250.0,
+        "p95": 833958.0,
+        "p99": 2019125.0,
+        "mean": 729992.3987905397,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "two_hands",
+        "name": "COO.Turns.Tick",
+        "unit": "nanoseconds",
+        "samples": 24143,
+        "max": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "mean": 0.0,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "two_hands",
+        "name": "COO.Combat.ApplyDamage",
+        "unit": "nanoseconds",
+        "samples": 24143,
+        "max": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "mean": 0.0,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "two_hands",
+        "name": "GC Allocated In Frame",
+        "unit": "bytes",
+        "samples": 24143,
+        "max": 8714110.0,
+        "p95": 19276.0,
+        "p99": 417522.0,
+        "mean": 30158.102099987573,
+        "max_abs_rounding_difference": 0
+      },
+      {
+        "phase": "two_hands",
+        "name": "Engine frame duration",
+        "unit": "milliseconds",
+        "samples": 24143,
+        "max": 10.511083,
+        "p95": 1.27354,
+        "p99": 2.602544,
+        "mean": 1.039374206188129,
+        "max_abs_rounding_difference": 4.0292310643508245e-07
+      },
+      {
+        "phase": "two_hands",
+        "name": "Observed full melee call",
+        "unit": "nanoseconds",
+        "samples": 249,
+        "max": 2760300.0,
+        "p95": 275300.0,
+        "p99": 380800.0,
+        "mean": 242509.23694779116,
+        "max_abs_rounding_difference": 0
+      }
+    ],
+    "teardown": {
+      "compile_errors": 0,
+      "capture_exit_0": true,
+      "cleanup_exit_0": true,
+      "private_root_removed": true,
+      "root": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/fcd2a9891bdd4d08987e199f08d134e2",
+      "shutdownObserved": true,
+      "shutdownRootHeld": true,
+      "shutdownSavingUnregistered": true,
+      "seconds": 77.178569,
+      "shutdownSeconds": 77.1981003
+    },
+    "log_relevant_lines": [
+      "[GameAuditEquipmentContentBench Performance] {\"runId\":\"ea9e69e041ea4069b14e0452a56a2648\",\"root\":\"/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/fcd2a9891bdd4d08987e199f08d134e2\",\"freshID\":\"14b7d05c03004d39adc3a9869c4a54d0\",\"markerID\":\"GA03i-marker-75b9af031dea4ba78650fa55b1866b0a\",\"canVerify\":\"Performance-only after: native N/private save bootstrap; real normally equipped ShortSword/Greatsword and factory natural defaults; legal finite full melee misses with explicit swing/RNG counters; unchanged HP/coordinates/turn clock; per-frame context/GC and per-call timing. Functional content cases are zero.\",\"cannotVerify\":\"No functional 23-case content matrix in this branch; no isolated guard cost, full-wave speedup, equivalence, zero allocation, landed-hit/rider/death timing, NPC scheduling, physical keyboard combat, build FPS, sprite quality or feel.\",\"fixtureBounds\":\"Actual Player/Villager/ShortSword/Greatsword via live factory; extra Player tags removed, names explicit, NPC brains removed and a flat arena installed. Both source actors retain factory default fists; weapons use normal Equip. All d20 rolls are1 and offhand rolls0 with exact finite overload/range checks. No damage, status accumulation, movement, save/load or turn advancement during capture. Source variant requires external provenance. Read perf-native teardown plus cleanup logs, not workloadValid/process code alone.\",\"cases\":0,\"failures\":0,\"unexpectedErrors\":0,\"seconds\":77.178569,\"shutdownSeconds\":0.0,\"shutdownObserved\":false,\"shutdownRootHeld\":false,\"shutdownSavingUnregistered\":false,\"audit\":[],\"stages\":[],\"profiles\":[]}",
+      "[GameAuditEquipmentContentBench] Native capture exit=0",
+      "[NativeSaveIsolation] Cleanup complete, exit=0"
+    ]
+  },
+  "source": {
+    "current_after_hashes_match_directly": 10,
+    "current_after_hashes_match_after_two_comment_reversal": [
+      "Assets/Scripts/Gameplay/Entities/LoadoutPart.cs"
+    ],
+    "changed_recorded_files": [
+      "Assets/Scripts/Gameplay/Combat/CombatSystem.cs"
+    ],
+    "before_reconstructed_hash_matches": true,
+    "natural_factory_init_present_both": true
+  }
+}

@@ -65,12 +65,38 @@ namespace CavesOfOoo.Core
         public override void OnAfterLoad(SaveReader reader)
         {
             if (_body != null)
+            {
                 PropagateBody(_body);
+                RestoreMissingDefaultEquipment(_body);
+            }
 
             for (int i = 0; i < DismemberedParts.Count; i++)
             {
                 if (DismemberedParts[i].Part != null)
+                {
                     PropagateBody(DismemberedParts[i].Part);
+                    RestoreMissingDefaultEquipment(DismemberedParts[i].Part);
+                }
+            }
+        }
+
+        // Older saves contain the recipe but no natural object. Restore only
+        // missing defaults after graph loading; retain saved/custom objects even
+        // when they have no recipe. Detached branches must also work when healed.
+        private static void RestoreMissingDefaultEquipment(BodyPart root)
+        {
+            var parts = root.GetParts();
+            for (int i = 0; i < parts.Count; i++)
+            {
+                var part = parts[i];
+                if (part._DefaultBehavior == null && !string.IsNullOrEmpty(part.DefaultBehaviorBlueprint))
+                {
+                    part._DefaultBehavior = NaturalWeaponFactory.CreateKnown(part.DefaultBehaviorBlueprint);
+                    // Each newly created object is unique. Retained shared objects
+                    // keep their saved flags, including across detached branches.
+                    if (part._DefaultBehavior != null)
+                        part.FirstSlotForDefaultBehavior = true;
+                }
             }
         }
 

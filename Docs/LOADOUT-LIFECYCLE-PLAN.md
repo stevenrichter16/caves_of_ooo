@@ -2,6 +2,8 @@
 
 Status: COMPLETE, 2026-09-06. Baseline4a4b8972,9369GREEN →9417GREEN (+48). Focused406GREEN; native24PASS;0compilererrors. Source preparation and proposals below are historical; final implementation and actual scope are reconciled in GA03g-REPORT.md.
 
+Current content follow-up (GA03i, complete): ENTITY-EQUIPMENT-PLAN.md records24 explicit ordinary-world kits and quiet factory equip messages, verified by9599GREEN and native23PASS. The zero-producer observations below describe GA03g's verified baseline. Its supported-API/native fixtures remain historical evidence, not a claim that those kits had already shipped.
+
 ## Goal and finite scope
 
 An entity created with a Loadout `Equip` or `Pick` entry should receive the same applicable equipment bonuses, actor events and enhancement hooks as an ordinary successful equip command. A refused auto-equip should leave successfully granted gear carried. Existing equipment must not be displaced. Preserve the loadout's no-Body behavior, chance/count parsing, recursion guard, independent grants and save fields.

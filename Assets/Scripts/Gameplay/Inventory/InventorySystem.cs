@@ -166,7 +166,14 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static bool AutoEquip(Entity actor, Entity item)
         {
-            var result = ExecuteCommand(new AutoEquipCommand(item), actor);
+            return AutoEquip(actor, item, emitSuccessMessage: true);
+        }
+
+        // Starting loadouts use the same command, hooks and bonuses without
+        // announcing each offscreen grant. The choice belongs to this command.
+        internal static bool AutoEquip(Entity actor, Entity item, bool emitSuccessMessage)
+        {
+            var result = ExecuteCommand(new AutoEquipCommand(item, emitSuccessMessage), actor);
             return result.Success;
         }
 
