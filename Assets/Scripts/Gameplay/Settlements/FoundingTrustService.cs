@@ -27,9 +27,12 @@ namespace CavesOfOoo.Core
                 || FactionManager.GetFeelingUnfloored(tender, player) <= FactionManager.HOSTILE_THRESHOLD) return "standing_refusal";
             if (zone == null || !DestructionSystem.IsWithinStrikeReach(player, tender, zone)) return "out_of_reach";
             var inventory = player.GetPart<InventoryPart>();
-            if (inventory != null) foreach (var item in inventory.Objects)
-                if (string.Equals(item.BlueprintName, "Tepuibone", System.StringComparison.OrdinalIgnoreCase))
-                    return (item.GetPart<StackerPart>()?.StackCount ?? 1) > 0 ? null : "empty_stack";
+            if (inventory?.FindConsumableByBlueprint("Tepuibone") != null) return null;
+            // Preserve the distinct empty-stack refusal, after looking for any
+            // valid alternative rather than stopping at the first matching entry.
+            if (inventory?.Objects != null) foreach (var item in inventory.Objects)
+                if (item != null && string.Equals(item.BlueprintName, "Tepuibone", System.StringComparison.OrdinalIgnoreCase))
+                    return "empty_stack";
             return "no_stone";
         }
 

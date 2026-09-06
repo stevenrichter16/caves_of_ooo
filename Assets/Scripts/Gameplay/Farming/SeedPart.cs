@@ -52,7 +52,7 @@ namespace CavesOfOoo.Core
                 var actor = e.GetParameter<Entity>("Actor");
                 if (actor == null) return true;
 
-                DoPlant(actor, e);
+                if (!DoPlant(actor, e)) return true;
                 e.Handled = true;
                 return false;
             }
@@ -60,7 +60,7 @@ namespace CavesOfOoo.Core
             return true;
         }
 
-        private void DoPlant(Entity actor, GameEvent e)
+        private bool DoPlant(Entity actor, GameEvent e)
         {
             // Anti-exploit gate: the seed must be in the ACTOR's inventory.
             // The world-action menu dispatches InventoryAction directly on
@@ -69,31 +69,32 @@ namespace CavesOfOoo.Core
             // no-ops — without this gate one dropped seed planted
             // infinitely. Audit finding SM7-F1 (2026-07-25).
             var carrierInv = actor.GetPart<InventoryPart>();
-            if (carrierInv == null || !carrierInv.Objects.Contains(ParentEntity))
+            if (carrierInv == null || !carrierInv.CanConsumeOne(ParentEntity))
             {
-                Reject(actor, "not_carried", "You aren't carrying that seed.");
-                return;
+                bool empty = carrierInv?.Objects?.Contains(ParentEntity) == true;
+                Reject(actor, empty ? "empty_stack" : "not_carried", empty ? "There is no seed left to plant." : "You aren't carrying that seed.");
+                return false;
             }
 
             Zone zone = e.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone;
             if (zone == null)
             {
                 Reject(actor, "no_zone", "There is no ground here to plant in.");
-                return;
+                return false;
             }
 
             var pos = zone.GetEntityPosition(actor);
             if (pos.x < 0)
             {
                 Reject(actor, "actor_not_in_zone", "There is no ground here to plant in.");
-                return;
+                return false;
             }
 
             Cell cell = zone.GetCell(pos.x, pos.y);
             if (cell == null)
             {
                 Reject(actor, "no_cell", "There is no ground here to plant in.");
-                return;
+                return false;
             }
 
             // Gate: the cell's terrain must be Plantable (content-driven —
@@ -111,41 +112,47 @@ namespace CavesOfOoo.Core
             if (!plantable)
             {
                 Reject(actor, "not_plantable", "The ground here is too hard to plant in.");
-                return;
+                return false;
             }
 
             // Gate: one crop per cell.
             if (cell.HasObjectWithPart<CropPart>())
             {
                 Reject(actor, "already_planted", "Something is already growing here.");
-                return;
+                return false;
             }
 
             // Gate: factory + blueprint resolve.
             if (Factory == null)
             {
                 Reject(actor, "no_factory", "The seed refuses to take root.");
-                return;
+                return false;
             }
             Entity crop = Factory.CreateEntity(CropBlueprint);
             if (crop == null)
             {
                 Reject(actor, "unknown_blueprint", "The seed refuses to take root.");
-                return;
+                return false;
             }
 
             if (!zone.AddEntity(crop, pos.x, pos.y))
             {
                 Reject(actor, "placement_refused", "The seed cannot take root here.");
-                return;
+                return false;
+            }
+            if (!carrierInv.TryConsumeOne(ParentEntity))
+            {
+                zone.RemoveEntity(crop);
+                Reject(actor, "payment_refused", "The seed is no longer available to plant.");
+                return false;
             }
             ZoneRenderHooks.MarkCellDirty(pos.x, pos.y, "CropPlanted");
-            ConsumeOneSeed(actor);
 
-            MessageLog.Add($"{actor.GetDisplayName()} plants {ParentEntity.GetDisplayName()}.");
+            MessageLog.Add($"{actor.GetDisplayName()} plants {InventoryPart.GetUnitDisplayName(ParentEntity)}.");
             if (Diag.IsChannelEnabled("crop"))
                 Diag.Record("crop", "CropPlanted", actor: actor, target: crop,
                     payload: new { cropBlueprint = CropBlueprint, x = pos.x, y = pos.y });
+            return true;
         }
 
         private void Reject(Entity actor, string reason, string message)
@@ -156,35 +163,13 @@ namespace CavesOfOoo.Core
                     payload: new { reason = reason, cropBlueprint = CropBlueprint });
         }
 
-        /// <summary>True when this seed is carried — in the given actor's
-        /// inventory (authoritative), or in ANY inventory per PhysicsPart
-        /// (fallback for actor-less GetInventoryActions callers).</summary>
+        /// <summary>Offer planting only for a positive unit carried by the supplied
+        /// actor. Actorless queries may resolve a verified actual carrier.</summary>
         private bool IsCarried(Entity actor)
         {
-            var inv = actor?.GetPart<InventoryPart>();
-            if (inv != null && inv.Objects.Contains(ParentEntity))
-                return true;
-            return ParentEntity?.GetPart<PhysicsPart>()?.InInventory != null;
-        }
-
-        /// <summary>StackerPart-aware single-seed consumption —
-        /// TonicPart.ConsumeItem's exact pattern. Callers must have
-        /// passed the not_carried gate: for a zone-resident seed the
-        /// RemoveObject branch would silently no-op (the SM7-F1 exploit).</summary>
-        private void ConsumeOneSeed(Entity actor)
-        {
-            var stacker = ParentEntity.GetPart<StackerPart>();
-            if (stacker != null && stacker.StackCount > 1)
-            {
-                stacker.StackCount--;
-                actor.GetPart<InventoryPart>()?.RefreshHandlingCarryPenalty();
-            }
-            else
-            {
-                var inv = actor.GetPart<InventoryPart>();
-                if (inv != null)
-                    inv.RemoveObject(ParentEntity);
-            }
+            if (actor != null) return actor.GetPart<InventoryPart>()?.CanConsumeOne(ParentEntity) == true;
+            var carrier = ParentEntity?.GetPart<PhysicsPart>()?.InInventory;
+            return carrier?.GetPart<InventoryPart>()?.CanConsumeOne(ParentEntity) == true;
         }
     }
 }

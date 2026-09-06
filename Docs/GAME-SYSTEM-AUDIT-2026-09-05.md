@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i NEXT**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; CRAFTING FLOW WAVE1 IN PREPARATION**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -1666,3 +1666,76 @@ recipient, grouped undo and compatible refusal-message corrections ship together
 GA02h-REPORT.md contains complete scope, evidence, divergence and honesty bounds.
 A46 is closed. A47's seed/mineral/conversation slice is next per Wave2i preparation;
 remaining brew/tinker guards/receipts and A48 cloneIDs follow before the wider queue.
+
+Wave2i root pre-RED sweep complete: read current complete five runtime targets,
+PerformInventoryActionCommand's exact event truth, actual SaltMaster/Founding dialogue
+and content, existing CropPlanting/Founding/Handover tests, CROPS-WATERING §2.2 and
+FellingSiteRules' explicitly Plantable barren counterfixture. All five runtime paths
+are clean and outside protected manifest. Expanded parameter controls yield26initial
+cases (rather than22outline rows). Mixed empty/positive fixtures first acquire two
+resident stacks via a full first stack, then configure malformed quantity; assert
+references/order before action so AddObject cannot invalidate the test. No production
+change yet. These cases pin unchanged current clock/energy, not a new action cost.
+
+Wave2i initial26RED:20fail/6controls pass,02:28:07–08UTC,zeroC#errors.
+Actual failures include Floor/occupied/barren command false-success, wrong-actor seed
+menu, empty mineral reward, empty-first selection, required-action result/diagnostic
+and cached SaltMaster node progression. No fixture failure identified. Review also
+found seed3 success prose describes the remaining(x2); added a one-unit success
+message assertion before using the existing immutable unit-name helper.
+
+Wave2i message-enhanced26RED:21fail/5controls pass,02:29:39–40UTC,
+zeroC#errors; seed3 prose defect reproduced. Added3late-payment direct-event
+cases (remove/empty/unchanged) before exact new-crop cleanup implementation. A temporary
+registered initializer on actual CandyCarrotCrop supplies this extension callback;
+ordinary crop AddEntity has no gameplay callback. Test direct seed event so generic
+PerformInventoryActionCommand snapshot rollback is explicitly outside this claim.
+
+Wave2i final pre-implementation29RED:23fail/6controls pass,02:31:52–54UTC,
+zeroC#errors. Late seed removal/emptying both reproduced unpaid crop retention and
+false success; unchanged callback control passes. Minimum implementation now uses
+pure positive-blueprint selection, checked seed/mineral payment, exact late-refusal
+crop removal, truthful seed event result, one-unit planting prose, and required
+SellMineral/OfferFoundingStone adapters. Focused plus neighboring verification next.
+
+Wave2i minimum250/250GREEN,02:33:39–47UTC,8.3435185s,zeroC#errors;
+independent minimum review0must-fix. Dedicated/native gates next. User additional
+steering requests a mechanics-flow/responsiveness review and full implementation.
+New MECHANICS-FLOW-SMOOTHING-2026-09-05.md records scope/candidates and independent
+review; current wave and remaining audit queue continue. Prioritize verified flow
+friction after this wave, retaining broader accepted repairs.
+
+Wave2i dedicated gate first stopped at compile: the test assembly cannot directly
+call the new internal selector (4unique CS1061 errors,12loglines). Retained raw
+compile log; corrected the pure-query test to use reflection without widening the
+runtime API. No valid test result was claimed from this failed compile.
+
+Wave2i dedicated67:66pass/1test-fixture failure,zeroC#errors. Deliberately
+missing crop blueprint emits EntityFactory error; added exact LogAssert expectation.
+All gameplay assertions passed. Added8staging tests before native bench implementation.
+
+Wave2i staging75RED:67pass/8missing-scenario failures,02:52:19–22UTC,
+zeroC#errors. Native arena/driver/launcher then added. First compile identified
+missing Data namespace import for ConversationLoader; retained log and corrected.
+Independent runtime cold-eye0must-fix; ten attempted-break hypotheses are covered
+by exact-item, ownership, refusal callbacks, late payment, dependency/zone, first
+positive, query purity, reward configuration, cached retry and registry/latch tests.
+
+Wave2i focused296:295pass/1fixture failure,zeroC#errors,02:55:27–35UTC.
+Reset alone causes ConversationLoader.Get to reload Resources, invalidating the
+missing-conversation setup. Explicit empty loaded fixture fixes that false premise.
+Native source review found no menu/clock blockers; command-bool/AfterAction and
+required-adapter diagnostic assertions remain EditMode evidence.
+
+
+### Wave2i close-out — planting and mineral dialogue truth
+
+Full8470/8470GREEN,02:59:15–03:01:02UTC,107.1199362s,zeroC#errors.
+Added75tests (29regression/38dedicatedadversarial/8staging). Focused296GREEN;
+native44/44PASS,bc503b68197b4bd3b37d1a04c8673b3f,9.192578375s,exit0,
+no logged exceptions.2367GUIDsunique,0protectedpathoverlap. Ten explicit attempted
+breaks and independent taxonomy/reference review found no remaining production
+must-fix; all fixture corrections/raw failures retained in GA02i-REPORT.md.
+Today's verified task suite7302→8470,+1168tests. Next user-prioritized crafting
+selection/pointer smoothing is planned in MECHANICS-FLOW-SMOOTHING-2026-09-05.md;
+remaining A47 brew/tinker and broader audit queue stay active.

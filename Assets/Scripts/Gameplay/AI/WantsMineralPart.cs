@@ -152,33 +152,13 @@ namespace CavesOfOoo.Core
             if (inv == null)
             { EmitRejected(player, npc, mineralBlueprintName, "player_lacks_inventory"); return false; }
 
-            // Find the mineral by blueprint name. Use the first match
-            // (stacks: just take one; non-stacks: remove the item).
-            Entity mineral = null;
-            for (int i = 0; i < inv.Objects.Count; i++)
-            {
-                if (string.Equals(inv.Objects[i].BlueprintName, mineralBlueprintName,
-                                  System.StringComparison.OrdinalIgnoreCase))
-                {
-                    mineral = inv.Objects[i];
-                    break;
-                }
-            }
+            // Automatic selection skips empty entries and pays one actual carried
+            // unit before reputation. It does not turn an invalid entry into value.
+            Entity mineral = inv.FindConsumableByBlueprint(mineralBlueprintName);
             if (mineral == null)
             { EmitRejected(player, npc, mineralBlueprintName, "mineral_not_in_inventory"); return false; }
-
-            // Consume — handle stack-or-single. StackerPart with count>1
-            // decrements; otherwise remove the whole entity.
-            var stacker = mineral.GetPart<StackerPart>();
-            if (stacker != null && stacker.StackCount > 1)
-            {
-                stacker.StackCount -= 1;
-                inv.RefreshHandlingCarryPenalty();
-            }
-            else
-            {
-                inv.RemoveObject(mineral);
-            }
+            if (!inv.TryConsumeOne(mineral))
+            { EmitRejected(player, npc, mineralBlueprintName, "payment_refused"); return false; }
 
             // Apply rep + emit success diag.
             if (!string.IsNullOrWhiteSpace(wants.Faction) && wants.RepReward != 0)

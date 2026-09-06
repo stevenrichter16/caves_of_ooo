@@ -121,6 +121,17 @@ namespace CavesOfOoo.Core
         /// Equipped items and Physics backreferences alone do not establish carriage.</summary>
         public bool CanConsumeOne(Entity item) => ConsumptionRefusalReason(item) == null;
 
+        // Pure automatic selection. Explicitly selected lists must instead validate
+        // every supplied item; silently dropping an empty selection changes a recipe.
+        internal Entity FindConsumableByBlueprint(string blueprintName)
+        {
+            if (string.IsNullOrEmpty(blueprintName) || Objects == null) return null;
+            foreach (var item in Objects)
+                if (item != null && string.Equals(item.BlueprintName, blueprintName, System.StringComparison.OrdinalIgnoreCase)
+                    && CanConsumeOne(item)) return item;
+            return null;
+        }
+
         /// <summary>Display one unit without temporarily changing the stack quantity.</summary>
         internal static string GetUnitDisplayName(Entity item)
         {
