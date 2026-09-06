@@ -355,6 +355,38 @@ namespace CavesOfOoo.Tests
         //   PART VII — Self-immunity (host doesn't re-infect themselves)
         // ════════════════════════════════════════════════════════════
 
+        // Regression diagnostic for the old intermittent precondition: an unstable
+        // cloud can leave the host before per-turn exposure dispatch, which is valid.
+        [TestCase(false)] [TestCase(true)]
+        public void Contagion_PerTurnSelfExposureDependsOnCloudRemainingAtHost(bool disperse)
+        {
+            var zone = new Zone("SelfExposureBoundary"); var host = MakeCreatureInZone(zone, 5, 5);
+            var fx = new FungalInfectionEffect(); Assert.IsTrue(host.ApplyEffect(fx)); fx.TurnsInfected = 19;
+            var context = ContextWithZone(zone); try { fx.OnTurnStart(host, context); } finally { context.Release(); }
+            var cloud = zone.GetEntitiesWithTag("Gas")[0]; Assert.AreEqual((5, 5), zone.GetEntityPosition(cloud)); Assert.AreEqual(30, cloud.GetPart<GasPoolPart>().Density);
+            Diag.ResetAll(); TickWithSpreadChoice(zone, disperse);
+            int records = DiagQuery.Count(new DiagQuery.Filter { Category = "gas", Kind = "InfectionAlreadyPresent", Target = host.ID }).Count;
+            Assert.AreEqual(disperse ? 0 : 1, records);
+            Assert.AreEqual(disperse ? (-1, -1) : (5, 5), zone.GetEntityPosition(cloud));
+            if (disperse) Assert.Greater(zone.GetEntitiesWithTag("Gas").Count, 0, "The cloud moved away; exposure was not silently lost.");
+            else Assert.Greater(cloud.GetPart<GasPoolPart>().Density, 10);
+            Assert.AreSame(fx, host.GetEffect<FungalInfectionEffect>()); Assert.AreEqual(20, fx.TurnsInfected);
+        }
+        private static void TickWithSpreadChoice(Zone zone, bool disperse)
+        {
+            var field = typeof(GasSystem).GetField("_rng", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
+            var previous = (System.Random)field.GetValue(null);
+            try { GasSystem.SetRngForTests(new SpreadChoiceRandom(disperse)); GasSystem.OnTickEnd(zone); }
+            finally { GasSystem.SetRngForTests(previous); }
+        }
+        private sealed class SpreadChoiceRandom : System.Random
+        {
+            private readonly bool _disperse;
+            public SpreadChoiceRandom(bool disperse) { _disperse = disperse; }
+            public override int Next(int maxValue) => _disperse ? 0 : maxValue - 1;
+            public override int Next(int minValue, int maxValue) => maxValue - 1;
+        }
+
         [Test]
         public void Contagion_HostInOwnSporeCloud_AlreadyInfected_NoReInfection()
         {
@@ -368,20 +400,23 @@ namespace CavesOfOoo.Tests
             host.ApplyEffect(fx);
             fx.TurnsInfected = 19;
             // Spawn contagion at host's cell
-            fx.OnTurnStart(host, ContextWithZone(zone));
+            var context = ContextWithZone(zone);
+            try { fx.OnTurnStart(host, context); } finally { context.Release(); }
             Assert.AreEqual(1, zone.GetEntitiesWithTag("Gas").Count, "contagion spawned");
+            var cloud = zone.GetEntitiesWithTag("Gas")[0];
 
-            // Now run the gas's per-turn ApplyToCell pass — should
-            // find the host already infected and bail.
+            // Gas disperses BEFORE exposure. Pin no-spread for this self-exposure
+            // invariant; the paired test above verifies the legitimate moved-cloud case.
             Diag.ResetAll();
-            GasSystem.OnTickEnd(zone);
+            TickWithSpreadChoice(zone, false);
+            Assert.AreEqual((5, 5), zone.GetEntityPosition(cloud), "Host must actually remain exposed.");
             var recs = DiagQuery.Apply(new DiagQuery.Filter
             { Category = "gas", Kind = "InfectionAlreadyPresent", Limit = 5 }).Records;
             Assert.Greater(recs.Count, 0,
                 "host's already-infected status bails the gas dispatcher");
             // Stage clock preserved.
-            Assert.GreaterOrEqual(fx.TurnsInfected, 20,
-                "stage clock not reset by own spore cloud");
+            Assert.AreSame(fx, host.GetEffect<FungalInfectionEffect>());
+            Assert.AreEqual(20, fx.TurnsInfected, "stage clock unchanged by own spore cloud");
         }
     }
 }

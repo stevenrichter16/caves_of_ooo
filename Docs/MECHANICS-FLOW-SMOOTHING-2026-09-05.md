@@ -1,6 +1,6 @@
 # Mechanics flow and responsiveness — 2026-09-05
 
-Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 COMPLETE; CRAFTING AVAILABILITY/FIRST-USE REPAIR COMPLETE; CRAFTED OUTPUT/LOCAL ROLLBACK REPAIR COMPLETE. User explicitly requested identifying mechanics that
+Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 COMPLETE; CRAFTING AVAILABILITY/FIRST-USE REPAIR COMPLETE; CRAFTED OUTPUT/LOCAL ROLLBACK REPAIR COMPLETE; CAMERA CLEANUP APPLIED/VERIFIED. User explicitly requested identifying mechanics that
 need smoother integration and fully implementing the supported improvements, without
 intervention. This extends the ongoing whole-game audit; it does not cancel its
 remaining repairs. Baseline latest completed repair1ef093a1,8470tests,GA02i native44.
@@ -735,3 +735,18 @@ into the original dagger. Service return-reference evidence is separately labell
 No new content/art/resource-cost/save fields or performance/physical-input/feel
 claim. Full details and raw failures in GA02k-REPORT.md. Remaining whole-game
 repair queue continues with A31camera cleanup; general A41atomicity is separate.
+
+## GA03a — uninterrupted effect cleanup
+
+A destroyed camera no longer throws before effect playback/particles and both pending
+queues are cancelled. Live-camera cancellation still resets shake; accented casts
+can continue when their camera disappears.29camera tests include20dedicated adversarial
+cases; native44checks exercise actual Unity lifetimes. Full9097/9097GREEN includes
+2additional controls stabilizing the existing fungal exposure test; no infection rule
+changed. No visual-feel or performance improvement is inferred from engine checks.
+
+The runtime guard is applied to the shared renderer. Its surrounding uncommitted
+animation wiring remains protected: GA03a records the exact patch rather than
+committing that other work. See Verification/GameSystemAudit/GA03a-REPORT.md.
+Next smoother flow: New Game immediately selects its own checkpoint and gives a
+truthful retry message if initial saving fails.

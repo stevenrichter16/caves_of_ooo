@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; WAVE2j COMPLETE; WAVE2k COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; WAVE2j COMPLETE; WAVE2k COMPLETE; WAVE3a APPLIED/VERIFIED; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -1992,3 +1992,90 @@ restoration/success asserted. Native25/25PASS,7.811696042s,exit0/0CS/0cameraexce
 production must-fix findings. Three cold-eye eligibility/selection defects and
 outcome-record gap RED-tested/fixed; obsolete rollback code removed. See
 GA02k-REPORT.md. Next recorded A31camera shutdown, then remaining45-system queue.
+
+### Wave3a/A31 — camera-safe effect cancellation
+
+Status: STARTING from0b7311fc,9066GREEN. Recorded native shutdown exception,
+CoO-original Unity-lifetime repair. No spell content/visual redesign, frame rendering
+optimization or gameplay change. The shared ZoneRenderer.cs contains protected
+preexisting spell/art work; snapshot saved and only the incremental camera guard
+hunk will be staged. All other existing changes remain untouched.
+
+| Source/premise | Verified correction/decision |
+|---|---|
+| ZoneRenderer.Awake315 | Bound CameraAccent uses CLR null-conditional on cached Unity Camera. Destroyed Unity objects are managed non-null and must use Unity equality. Replace with explicit `_mainCamera == null`, then check CameraFollow the same way. |
+| WorldFxCoordinator.CancelAll213 | Camera reset happens before playback cancellation, renderer clear and both queue drains. An exception blocks all later cleanup. Preserve live zero-shake reset; do not remove CameraAccent or swallow arbitrary callback exceptions. |
+| ZoneRenderer.OnDisable508/OnDestroy514 | Both reach CancelAll; failed Dispose also skips material/hook cleanup. Test actual bound delegate and remaining cleanup, not a fake/no-op callback. |
+| ZoneRendererStaleBgTests | Reuse Grid/Tilemap and conditional Awake probe. Capture owned roots and settings/hooks; teardown must not contaminate neighbors even during RED. |
+| CameraFollow210 | Shake writes intensity scaled by SpellFxSettings.ShakeIntensity and duration. Set/restore mode and shake setting; positive shake is the live control before zero reset. |
+| Native GA02j/FLOW6 vs GA02k | Earlier complete raw logs showed2shutdown exceptions; latestGA02k had0. Teardown ordering is intermittent, so a deliberate native Unity-lifetime matrix is needed, not reliance on a lucky normal exit. |
+
+Plan: lifecycle RED with the actual Awake-bound delegate, active playback and both
+pending buses; minimal Unity-null guard; dedicated20–40adversarial cases across
+camera/follow destruction, cancellation/zone/mode transitions, repeat cleanup and
+owned cleanup; independent cold-eye; native lifecycle self-audit and full suite.
+No75second performance claim: this changes only two constant-time callback guards.
+Native engine-lifetime verification will be labelled separately from gameplay/input
+verification; no keyboard, pixel or subjective-feel claim is needed for this repair.
+
+GA03a actual-bound-delegate RED9:3live controls pass/6destroyed-camera cases fail,
+07:25:17UTC,.2661904s,0CS. Both destroyed component and destroyed GameObject fail
+CancelWorldFx/OnDisable/OnDestroy through the same cached camera callback. EditMode
+invokes lifecycle bodies directly; native will verify Unity dispatch itself. Minimal
+explicit Unity equality guards now added, keeping live zero-strength reset.
+
+GA03a minimum26GREEN,07:27:00–01UTC,.3829127s,0CS. Dedicated20cases added
+for null/missing/inactive participants, zone/hide/mode/toggle/timeout callers,
+idle/queued cleanup, repeated cancellation/disposal, owned vs foreign materials/hooks,
+and an accented cast that must stay Playing rather than become a caught failure.
+Independent fixture review confirmed actual binding/RED proof; requested preserving
+all5EntityVisualHooks callbacks overwritten by the enabled actor renderer in Awake.
+This is test isolation only and will be corrected before final verification.
+
+GA03a dedicated20+neighbors46GREEN,07:28:46–47UTC,.5544415s,0CS.
+Fixture isolation now preserves all5actor-visual callbacks as well as render hooks.
+Review caught test-created materials replacing/orphaning actual Awake-owned ones;
+material cleanup assertions now use the real3owned materials, with a separate
+unrelated survival control. Runtime unchanged after the minimum guard.
+
+Staging correction: the original CameraAccent binding itself is inside uncommitted
+protected animation work and does not exist in HEAD. Therefore its incremental
+guard hunk cannot be staged against HEAD without adopting unrelated work. Keep
+the fully tested guard applied in the shared working file and commit its exact
+application patch plus tests/verification/docs. This is an applied working-tree
+repair with a retained patch for the pending animation integration, not a claim
+that HEAD alone now contains the preexisting FX coordinator/wiring. No user action
+is required to use the repaired current workspace.
+
+First full9095:9094pass/1known fungal self-spore failure,07:35:28–07:37:45UTC,
+136.9948307s,0CS. All29newcamera tests including actual-owned materials and
+restored visual callbacks passed. Raw retained as GA03a-full-known-flake.xml.gz;
+unchanged rerun required before close-out.
+
+Unchanged full repeat9095:9094pass/the same1known fungal self-spore failure,
+07:40:38–07:42:53UTC,134.3114057s,0CS. Both raw full failures retained.
+Camera29stillGREEN. Checking the named flaky test's actual precondition before
+another broad rerun; do not silently skip it or call the full suite green.
+
+Known-flake source diagnosis: GasSystem.OnTickEnd disperses unstable gas before
+DispatchPerTurnApply. The old self-immunity test's30-density cloud can completely
+move away/dissipate before dosing its host, so no InfectionAlreadyPresent record
+is correct. Added2deterministic forced-spread/no-spread counterchecks before changing
+the original test. They assert actual cloud location, diagnostic presence/absence,
+unchanged infection object and exact stage clock. Planned test-only correction uses
+no-spread for the original exposure invariant, restoring the original global RNG
+instance afterward. No gas gameplay change or test skip.
+
+Forced gas precondition controls2/2GREEN before original-test correction,
+07:47:07UTC,.1780229s,0CS. Runtime correctly emits self-immunity only while the
+cloud remains at the host. Original test now pins no-spread, asserts actual exposure
+and exact same infection/turn20, and releases its event. Global RNG instance is
+restored. New cases total31=29camera+2test-precondition controls; no gas rule changed.
+
+GA03a complete as an applied workspace repair with retained exact patch. Final
+full9097/9097GREEN,07:53:39–07:55:56UTC,136.9263425s,0CS. Focused96GREEN
+after the test-only stabilization. Native44/44PASS with actual Unity callbacks.
+31new tests =29camera +2gas-precondition controls; gas behavior is unchanged.
+Protected ZoneRenderer remains unstaged; no pending animation work is adopted.
+Report/failed runs/exact patch/state hashes retained. Next: GA03b/A06N, prepared
+in Docs/NEW-GAME-SAVE-ISOLATION-PLAN.md; remaining audit queue continues.

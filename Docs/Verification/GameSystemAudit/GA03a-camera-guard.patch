@@ -1,0 +1,17 @@
+--- a/Assets/Scripts/Presentation/Rendering/ZoneRenderer.cs
++++ b/Assets/Scripts/Presentation/Rendering/ZoneRenderer.cs
+@@ -312,7 +312,13 @@
+             _asciiFxRenderer = new AsciiFxRenderer(_fxTilemap);
+             _worldFxCoordinator = new WorldFxCoordinator(_asciiFxRenderer, gridParent);
+             _worldFxCoordinator.CameraAccent = (strength, duration) =>
+-                _mainCamera?.GetComponent<CameraFollow>()?.Shake(strength, duration);
++            {
++                // Unity keeps a managed wrapper after native camera destruction.
++                // Teardown must still cancel playback and clear both effect queues.
++                if (_mainCamera == null) return;
++                var follow = _mainCamera.GetComponent<CameraFollow>();
++                if (follow != null) follow.Shake(strength, duration);
++            };
+             if (GetComponent<SpellFxSettingsPanel>() == null) gameObject.AddComponent<SpellFxSettingsPanel>();
+ 
+             // PALIMPSEST P2b — tile-state marks (puddles, oil, embers,
