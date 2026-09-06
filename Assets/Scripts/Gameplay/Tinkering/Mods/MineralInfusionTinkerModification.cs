@@ -156,28 +156,31 @@ namespace CavesOfOoo.Core
 
     public sealed class PaleSaltTinkerModification : MineralInfusionTinkerModification
     {
+        internal const string Adjective = "pale-salt-edged";
         public override string Id => "mod_palesalt";
         public override string DisplayName => "Pale-Salt Infusion";
         protected override string EnhancementName => nameof(EnhancementPaleSalt);
         protected override int Tier => 2;
-        protected override string DisplayAdjective => "pale-salt-edged";
+        protected override string DisplayAdjective => Adjective;
     }
 
     public sealed class ChoirIronTinkerModification : MineralInfusionTinkerModification
     {
+        internal const string Adjective = "choir-iron-edged";
         public override string Id => "mod_choiriron";
         public override string DisplayName => "Choir-Iron Infusion";
         protected override string EnhancementName => nameof(EnhancementChoirIron);
         protected override int Tier => 3;
-        protected override string DisplayAdjective => "choir-iron-edged";
+        protected override string DisplayAdjective => Adjective;
     }
 
     public sealed class GlowQuartzTinkerModification : MineralInfusionTinkerModification
     {
+        internal const string Adjective = "glow-quartz-tipped";
         public override string Id => "mod_glowquartz";
         public override string DisplayName => "Glow-Quartz Infusion";
         protected override string EnhancementName => nameof(EnhancementGlowQuartz);
         protected override int Tier => 2;
-        protected override string DisplayAdjective => "glow-quartz-tipped";
+        protected override string DisplayAdjective => Adjective;
     }
 }

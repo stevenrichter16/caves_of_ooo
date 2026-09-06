@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g NEXT**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h NEXT**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -1336,3 +1336,126 @@ fixture runs retained, corrections documented in GA02f-REPORT.md. No authored
 nonzero handling claim, native visual/timing claim, newpublicsavefield or hotpath.
 Next: Wave2g A45 permanent paid mods through reforge, then A46/A47craft integrity
 and all remaining accepted whole-game repairs.
+
+### Wave2g plan — A45 permanent mods survive reforge
+
+Baseline88409efc,8211/8211GREEN. Root starts actual-content RED/control tests
+before production. Scope: reforge recomputes new component base stats then restores
+known permanent Sharp contribution and known3mineral labels from existing state.
+Keep all enhancement instances/tiers/values, ModificationCount and equipped hooks;
+clear temper as already documented. Stable canonical label order after reforge,
+one label per known type, every effect occurrence retained. No saved fields or
+load repair; no arbitrary old damage/penetration/name preservation.
+
+Verified correction: CombatSystem's Penetration record uses the **damage** channel,
+not combat. Sharp costsBC, mineralrecipes have emptybitcost and paidmineral.
+ItemEnhancing cap is2 enhancementParts; Sharp is a legacymarker and does not consume
+an enhancementPart slot. Existing actual-content fixture loads shipped IDs. The
+three production candidates (forge service, Sharp mod, mineral mods) are clean.
+
+Content readiness🟢actualweapons/components/modrecipes/station/sprites exist.
+No newcontent/art/hotpath. Test initial24regression with clean/Sharp, threecomponent
+swaps, repeatcycles, temperflags, all3minerals/carried-or-equipped, duplicatepayment
+and savedduplicates. Then20–60dedicatedadversarial/counterchecks, independent
+reference/taxonomyreview, launchableactualnativeforge/mod/reforge scenario, full
+suite, samecommitdocs. A46/A47 remain separate finite waves.
+
+Wave2g actual-content RED24:7pass/17fail,01:10:38–39UTC,zeroC#errors.
+Sharp penetration failures across3component types/repeatedcycles/temper/save,
+all3mineral labels carried/equipped, and staleSharpduplicate-veto state reproduced.
+Minimum now restores known permanent contributions after component base assignment,
+sharing Sharp tag/adjective/+1 and mineral adjective constants with paidapplication.
+No paid Apply replay, new saved fields or changes to intentional temper melt.
+
+Wave2g minimum226/226GREEN,01:12:32–37UTC,zeroC#errors. Independent actualdiff
+finds no extra hook/state hazards. Root cold-eye found anonymous component names:
+old base-name guard preserves obsolete temper labels; new permanent adornment can
+repeat prefixes. New actualfactory NameFragment-empty RED/control cases precede
+fix. Use stable fallback matching actual ForgedWeapon's 'forged weapon' default,
+never parse paid words out of an arbitrary old name. No authored blank fragment
+exists (existing structural contentpin enforces it); this is extension robustness.
+Dedicated34adversarial cases also cover exactmineralpayment, field authority,
+allmineralpair orders/identity, Glow saved lifecycle, customsavedvalues, missing
+Render, combatconsumer, realstation/ownership refusals and slotcap. Knownmineral
+family lookup preserves inherited-family behavior; no authoredcustomsubclass or
+new subclass support claim. Unknown payload stacking remains GA02e's strict gate.
+
+Wave2g dedicated sweep is32cases (earlier34 count was arithmetic error).
+First56:52pass/4fail,01:18:28–31UTC,zeroC#errors: two true blank-name failures;
+two combatfixture misses because CombatSystem derivesDV rather than reading the
+fixture's DVstat. Correct RNG to deterministic noncritical10hit (and minimum
+penetration dice), require landed/onePenetration record. No combat change. Add7
+nativearena RED tests before arena implementation, rerun corrected baseline.
+Native plan: actualcomponents→craftforge, paySharpBC/PaleSalt, stationCraftToggle/
+CraftKitreforge twice, currentPen+1/labels/Part/payment, duplicateSharppopup
+exclusion versus freshDagger. No synthetic effect injection or equipment handblocker.
+
+### A46 verified preparation — one-unit transforms and actual output references
+
+Read-only source preparation is complete; implementation has not started.
+TryForge can return an orphan after AddObject merges its output. Returning the
+actual receiving stack fixes that reference, but batch results can then repeat
+one entity: the result count denotes units, not distinct stacks. ForgePart and
+InventoryUI each issue ONE optional quench after forging.
+
+Preserve that composite behavior: forge N units, then quench ONE weapon. A refused
+quench leaves the successfully forged output and unspent medium. Make the one-weapon
+scope visible. Keep batch limits based on components. Do not introduce whole-batch
+rollback or disable equivalent weapon stacking.
+
+Add a narrowly scoped single-unit insertion result at InventoryPart's actual
+merge/append branch while preserving its public bool AddObject API. Do not search
+for the first compatible item afterward; an earlier full stack can be compatible
+without receiving anything. TryForge should return the actual resident recipient;
+batch references may repeat, with madeCount remaining authoritative.
+
+Preserve existing service overloads and add affectedWeapon results for temper and
+reforge, distinguishing the transformed weapon from the displaced component. For
+carried stacks, prepare one cloned unit and its changed payload before debiting
+and inserting it. Inserting an unchanged clone first would immediately merge it
+back. Keep the remaining payload unchanged and preserve singleton equipment identity.
+Refuse abnormal equipped stacks larger than one. Exact rollback for the new split
+and insertion is required: InventoryTransferSnapshot restores changed membership,
+quantity and Physics ownership, but not arbitrary payload. Clone before debiting,
+or register undo first; RemoveOne currently debits before cloning.
+
+CloneForStack copies CraftingMarkPart. On success, move an existing mark to the
+actual transformed recipient and clear it from the remaining source. Failure must
+preserve original marks; unmarked calls remain unmarked. Rebuild selections from
+current resident entities. A 'split first' refusal alone is insufficient because
+InventoryUI has no general split-one action. DropPartial is an API and automatic
+equipment splitting is not a practical general reforge workflow.
+
+RED/control matrix: single output with no recipient, equal recipient, mismatched
+paid effects or full99 stack; batch2 and existing98+batch2; existing equal weapon
+plus forge/quench; batch2+quench; plain2+batch2→plain3/tempered1; quench stack2 pays1;
+Dagger2 temper changes1; forged2 plus IronSpike changes1 and returns1 steel part;
+same-component reforge remerges; paid Sharp/mineral/temper clones remain independent;
+transformed unit merging into an already-equivalent tempered stack; singleton Glow
+equipment; mark transfer and repeated CraftKit; refused transforms preserve payment,
+quantity, payload and marks; token save round-trip; actual station gates.
+
+Native route: actual two-unit component stacks and brewed quench, then inventory
+Crafting/F/Shift+Enter, inspecting plain and tempered units. Existing-stack station
+CraftToggle/CraftKit covers reforge. A47 malformed payments and broader rollback
+remain separate; no A46 implementation or Unity run has occurred yet.
+
+
+Wave2g corrected63:54pass/9fail,01:21:12–15UTC,zeroC#errors: combatcontrols now
+pass; only2trueanonymous-name failures plus7missing-nativearena REDs. Implemented
+stable unnamedbase before permanentadjectives and authorednativearena/keyboard/
+isolatedlauncher. Refusalcontrols strengthened with actualmembership/Physicsowner,
+positiveWillowinstallation/removal; singletonquantityalone was insufficient.
+
+
+### Wave2g close-out — A45 permanent reforge modifications complete
+
+Full8274/8274GREEN,01:28:16–01:29:57UTC,100.5721342s,zeroC#errors.
+24regression+32adversarial+7staging=63newtests; expanded265/265GREEN.
+Native44/44PASS,6a4aafb74939437eb48f95731ee5c157,16.9175985s,exit0.
+Final independent runtime/test/native/launcher review0must-fix. Two known A31
+Camera teardown errors remain in native raw log after completion, honestly bounded
+in GA02g-REPORT.md. Original Sharp/mineral loss and anonymous-name cold-eye fixes
+ship together; fixture corrections remain recorded.2352GUIDsunique; no protected
+path overlap. NextWave2h A46 actual output recipients and one-unit transforms,
+then A47 exact crafting payments/receipts and the remaining accepted system fixes.

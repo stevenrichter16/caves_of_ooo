@@ -7,7 +7,9 @@ namespace CavesOfOoo.Core
     /// </summary>
     public sealed class SharpTinkerModification : ITinkerModification
     {
-        private const string ModTag = "ModSharp";
+        internal const string ModTag = "ModSharp";
+        internal const string Adjective = "sharp";
+        internal const int PenetrationBonus = 1;
 
         public string Id => "mod_sharp";
 
@@ -52,15 +54,15 @@ namespace CavesOfOoo.Core
                 return false;
 
             var weapon = item.GetPart<MeleeWeaponPart>();
-            weapon.PenBonus += 1;
+            weapon.PenBonus += PenetrationBonus;
 
             // Keep result visible in inventory names.
             var render = item.GetPart<RenderPart>();
             if (render != null && !string.IsNullOrWhiteSpace(render.DisplayName))
             {
                 string current = render.DisplayName.Trim();
-                if (!current.StartsWith("sharp ", StringComparison.OrdinalIgnoreCase))
-                    render.DisplayName = "sharp " + current;
+                if (!current.StartsWith(Adjective + " ", StringComparison.OrdinalIgnoreCase))
+                    render.DisplayName = Adjective + " " + current;
             }
 
             item.SetTag(ModTag, string.Empty);

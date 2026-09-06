@@ -24,6 +24,8 @@ namespace CavesOfOoo.Core
     {
         public const string ForgedWeaponBlueprintName = "ForgedWeapon";
         public const string DiagCategory = "craft";
+        // Matches the shipped ForgedWeapon base name when custom components supply no names.
+        private const string UnnamedWeaponDisplayName = "forged weapon";
 
         public const string BladeSlot = "Blade";
         public const string HaftSlot = "Haft";
@@ -336,7 +338,8 @@ namespace CavesOfOoo.Core
         /// Recompute a forged weapon's stats from its assembly record by
         /// instantiating each component blueprint transiently and re-running
         /// the same combination math the original forge used. Deterministic:
-        /// forge(A,B,C) and reforge-to-(A,B,C) produce identical stats.
+        /// forge(A,B,C) and reforge-to-(A,B,C) produce identical component
+        /// contributions. Existing permanent modifications are restored afterward.
         /// </summary>
         public static bool TryRecomputeStats(
             Entity weapon, WeaponAssemblyPart assembly, EntityFactory factory, out string reason)
@@ -510,8 +513,31 @@ namespace CavesOfOoo.Core
             melee.OnHitEffectsRaw = preview.OnHitEffectsRaw;
 
             RenderPart render = weapon.GetPart<RenderPart>();
-            if (render != null && !string.IsNullOrEmpty(preview.DisplayName))
-                render.DisplayName = preview.DisplayName;
+            if (render != null)
+                render.DisplayName = string.IsNullOrWhiteSpace(preview.DisplayName) ? UnnamedWeaponDisplayName : preview.DisplayName;
+
+            RestorePermanentModifications(weapon);
+        }
+
+        // Rebuilding components replaces their old contributions and temper labels.
+        // Restore known permanent state without replaying paid Apply/equipment hooks,
+        // which would duplicate effects, costs or ModificationCount. Every enhancement
+        // occurrence remains attached; its visible adjective appears once per type.
+        private static void RestorePermanentModifications(Entity weapon)
+        {
+            var labels = new List<string>(4);
+            if (weapon.HasTag(SharpTinkerModification.ModTag))
+            {
+                weapon.GetPart<MeleeWeaponPart>().PenBonus += SharpTinkerModification.PenetrationBonus;
+                labels.Add(SharpTinkerModification.Adjective);
+            }
+            if (weapon.HasPart<EnhancementPaleSalt>()) labels.Add(PaleSaltTinkerModification.Adjective);
+            if (weapon.HasPart<EnhancementChoirIron>()) labels.Add(ChoirIronTinkerModification.Adjective);
+            if (weapon.HasPart<EnhancementGlowQuartz>()) labels.Add(GlowQuartzTinkerModification.Adjective);
+
+            var render = weapon.GetPart<RenderPart>();
+            if (labels.Count > 0 && render != null && !string.IsNullOrWhiteSpace(render.DisplayName))
+                render.DisplayName = string.Join(" ", labels) + " " + render.DisplayName;
         }
 
         private static WeaponComponentPart InstantiateComponentPart(EntityFactory factory, string blueprintName)
