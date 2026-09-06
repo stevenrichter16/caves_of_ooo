@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 SOURCE SWEEP COMPLETE**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -1822,3 +1822,18 @@ Full8834/8834GREEN(+68), native16/16PASS. FLOW5-REPORT.md records all gates,
 source corrections, staging cleanup fix and explicit A31/visual/mouse bounds.
 Next A49normal Look-key conflict; remaining brew/tinker/save/actor/world/material
 plans remain authorized and unfinished.
+
+
+### FLOW6/A49 closed — deliberate Look and movement
+
+Removed normal held-L movement fallback after13REDtests reproduced3actual paths.
+Fresh L retains Look and modal cursor/direction meaning; D/Right/numpad6repeat.
+52newtests, full8886GREEN, native21PASS. See FLOW6-REPORT.md for raw evidence,
+independent review,2407GUIDaudit, protected InputHandler hunk ownership and known
+A31shutdown/visual bounds. A49closed; other readiness12items remain separate.
+
+Next A47slice: positive selected-unit gates, actorless preview/compatibility queries,
+first-positive automatic tinkering ingredients, and matching UI availability.
+Preserve invalid explicitly marked selections for whole-mix refusal. Exact output
+receipts and malformed extension rollback are the following A47slice, not claimed
+fixed by availability gates. No ordinary resident nonpositive-stack producer proved.

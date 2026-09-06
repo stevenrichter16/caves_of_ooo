@@ -64,7 +64,7 @@ Energy-based turn order and movement with event validation.
 - **TurnManager** (`Core/TurnManager.cs`) - Energy-based turn scheduling faithful to Qud. Each tick, entities gain `Speed` energy. At 1000 threshold, entity gets a turn. Player turn pauses for input (`WaitingForInput` flag). `ProcessUntilPlayerTurn()` runs all NPC turns deterministically.
 - **MovementSystem** (`Core/MovementSystem.cs`) - Static class. `TryMove()`/`TryMoveEx()` fire `BeforeMove` event (Parts can block), perform move, fire `AfterMove`. `TryMoveEx` returns `(moved, blockedBy)` for bump-to-attack detection.
 - **PhysicsPart** (`Core/PhysicsPart.cs`) - Handles `BeforeMove` event. Checks target cell for Solid entities and blocks movement. Sets `BlockedBy` parameter on the event. Also holds `Solid`, `Weight`, `Takeable`, `InInventory`, `Equipped` flags.
-- **InputHandler** (`Rendering/InputHandler.cs`) - MonoBehaviour converting key presses to game commands. Supports WASD, arrow keys, numpad 8-directional, and vi keys (hjklyubn). Rate-limited with `MoveRepeatDelay`. Only place Unity input touches simulation.
+- **InputHandler** (`Rendering/InputHandler.cs`) - MonoBehaviour converting key presses to game commands. Supports WASD, arrow keys, numpad 8-directional, and alternate movement keys H/J/K/Y/U/B/N. L opens Look, whose cursor retains full vi directions. Rate-limited with `MoveRepeatDelay`. Only place Unity input touches simulation.
 
 ### Tests
 

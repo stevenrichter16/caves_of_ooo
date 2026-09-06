@@ -11,7 +11,8 @@ namespace CavesOfOoo.Rendering
 {
     /// <summary>
     /// MonoBehaviour that converts player key presses into game commands.
-    /// Supports WASD, arrow keys, numpad (8-directional), vi keys,
+    /// Supports WASD, arrow keys, numpad (8-directional), H/J/K/Y/U/B/N movement,
+    /// L for Look (with full vi cursor directions inside Look),
     /// item pickup (G/comma), ability activation (1-9 + direction/immediate cast),
     /// and debug keys: F6 (grant mutation), F7 (dump body parts),
     /// F8 (dismember limb), F9 (debug craft recipe), P (cycle well state).
@@ -3500,7 +3501,7 @@ namespace CavesOfOoo.Rendering
 
         /// <summary>
         /// Read directional input. Returns true if a direction was pressed.
-        /// Supports WASD, arrows, numpad, and vi keys (hjklyubn).
+        /// Supports WASD, arrows, numpad, and H/J/K/Y/U/B/N. L is reserved for Look.
         /// Uses GetKey (held) for movement auto-repeat.
         /// </summary>
         private bool GetMoveInput(out int dx, out int dy)
@@ -3521,8 +3522,8 @@ namespace CavesOfOoo.Rendering
             if (InputHelper.GetKey(KeyCode.A) || InputHelper.GetKey(KeyCode.LeftArrow) || InputHelper.GetKey(KeyCode.Keypad4) || InputHelper.GetKey(KeyCode.H))
             { dx = -1; return true; }
 
-            // East (D, Right, Numpad6, vi l)
-            if (InputHelper.GetKey(KeyCode.D) || InputHelper.GetKey(KeyCode.RightArrow) || InputHelper.GetKey(KeyCode.Keypad6) || InputHelper.GetKey(KeyCode.L))
+            // East (D, Right, Numpad6). L belongs to Look in normal play.
+            if (InputHelper.GetKey(KeyCode.D) || InputHelper.GetKey(KeyCode.RightArrow) || InputHelper.GetKey(KeyCode.Keypad6))
             { dx = 1; return true; }
 
             // Diagonals (numpad + vi keys)

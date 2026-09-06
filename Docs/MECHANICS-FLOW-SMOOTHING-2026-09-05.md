@@ -1,6 +1,6 @@
 # Mechanics flow and responsiveness — 2026-09-05
 
-Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 SOURCE SWEEP COMPLETE. User explicitly requested identifying mechanics that
+Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 COMPLETE. User explicitly requested identifying mechanics that
 need smoother integration and fully implementing the supported improvements, without
 intervention. This extends the ongoing whole-game audit; it does not cancel its
 remaining repairs. Baseline latest completed repair1ef093a1,8470tests,GA02i native44.
@@ -664,3 +664,44 @@ FLOW5 COMPLETE:8834/8834GREEN,05:56:35–05:58:42UTC,126.1659211s,
 0CS/failed/skipped/inconclusive.68newcases, native16PASS,2401uniqueGUIDs.
 Accepted direct Separate one step now ships; FLOW6/A49 source sweep above is next,
 followed by the remaining system-audit repair queue. Mouse/visual bounds unchanged.
+
+FLOW5 committed; FLOW6 begins from8834GREEN. Root reread EnterLookMode,
+ExitLookMode, HandleLookModeInput, mouse-follow and WorldCursorState. Cursor inputs
+are edge-triggered; stationary mouse is ignored. Initial13tests queue real input
+updates and explicitly distinguish held L from a fresh press. No production edit yet.
+
+FLOW6 RED13:10passed3failed,06:02:19–06:02:20UTC,.9280037s,
+0CS. All3failures actually move10,10→11,10 on genuine held input: normal heldL,
+rate-limited press then heldL, and Escape while L remains held. Fresh Look, modal
+cursor, advertised east repeats and release controls already pass. Apply minimum.
+
+FLOW6 minimum53/53GREEN,06:04:06–06:04:09UTC,2.575117s,0CS.
+34dedicated adversarial cases now cover held-L with intended diagonals, all supported
+cardinal movement groups/aliases, six modifiers, real C→east interaction directions
+and the shipped help table. They distinguish normal movement from modal L consumers.
+
+FLOW6 adversarial+neighbors110/110GREEN,06:05:44–06:05:50UTC,5.6412708s,
+0CS. Independent source review0must-fix. Native source correction: Chest is solid,
+so keep C→L interaction beside it and move south into a clear lane before east-repeat
+controls. WorldCursorState.X/Y/Active are properties; cast the reflected state rather
+than using the field-only helper. Native rate-window race is omitted from its claim;
+deterministic queued EditMode tests cover it. Five staging tests precede the bench.
+
+FLOW6 staging RED5/5missing-scenario failures,06:08:57UTC,.2500505s,
+0CS. Added disposable LookKeyBench/Player/Batch afterward. Native driver holds L
+continuously across Escape, checks Chest HP as well as actor/time, preserves modal
+L cursor and C→L selection, then moves to clear ground before three east-repeat
+controls. Reflection only observes; all gameplay actions use queued keyboard input.
+
+FLOW6 focused57GREEN,06:16:11–06:16:14UTC,2.8942102s,0CS.
+Two intended shortcut filter names were stale/nonexistent; actual selected count is
+52new FLOW6+5Look tests, not a broader shortcut retest. Earlier110and upcoming full
+provide neighbor coverage. Native6d04c04d262f4442ba91d1c07977152021/21PASS,
+6.374252083s,exit0/0CS. Independent cold-eye0must-fix;2407GUIDs/0collisions.
+Raw log retains2known A31shutdown camera exceptions after gameplay success.
+
+FLOW6 COMPLETE:8886/8886GREEN,06:17:55–06:20:02UTC,127.2927773s,
+0CS/failed/skipped/inconclusive.52newcases, native21PASS,2407GUIDs/0collisions.
+Normal held L never becomes movement; modal L and advertised east repeats retained.
+A47brew/tinker availability/payment truth follows; exact output receipts remain a
+separate subsequent slice. Broader audit repairs and FLOW1mouse bounds stay active.

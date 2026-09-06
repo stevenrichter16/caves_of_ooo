@@ -241,7 +241,7 @@ Small correctness bugs that read as broken game: Shift+Comma fires pickup then t
 - Add !shiftHeld guard + early return to the G/Comma pickup branch (InputHandler.cs:731-735, mirroring the wait-key shift guard at 426-429) — test the '<'-on-loot-cell fall-through no longer double-fires
 - Replace the Debug.Log at InputHandler.cs:1301 with MessageLog.Add('Nothing to pick up here.')
 - MessageLog hint on entering look mode ('Look: move cursor, Enter=actions, Esc=exit')
-- Resolve the vi-key 'l' shadowing: either move look mode off L or correct the docstring/docs to claim only wasd/arrows/numpad — pick one and align docs with impl
+- **DONE FLOW6/A49 (2026-09-06):** L is reserved for Look in normal play; removed its held east-movement fallback and corrected full-vi claims. Modal L directions remain.52newtests,8886GREEN, native21PASS; see Verification/GameSystemAudit/FLOW6-REPORT.md.
 
 **Verification:** PLAUSIBLE (not externally verified — verify evidence inline before each sub-milestone).
 
