@@ -110,8 +110,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     _item,
                     targetBodyPart: null,
                     allowDisplacements: false,
-                    emitPlanFailureMessage: false,
-                    prebuiltBodyPlan: plan);
+                    emitPlanFailureMessage: false);
             }
 
             if (context.Inventory.GetEquipped(equippable.Slot) != null)

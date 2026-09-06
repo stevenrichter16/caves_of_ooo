@@ -83,8 +83,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             Entity item,
             BodyPart targetBodyPart,
             bool allowDisplacements,
-            bool emitPlanFailureMessage,
-            EquipPlan prebuiltBodyPlan = null)
+            bool emitPlanFailureMessage)
         {
             if (context == null || context.Actor == null || context.Inventory == null)
             {
@@ -149,8 +148,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     itemToEquip,
                     targetBodyPart,
                     allowDisplacements,
-                    emitPlanFailureMessage,
-                    prebuiltBodyPlan)
+                    emitPlanFailureMessage)
                 : TryEquipLegacy(context, transaction, itemToEquip, equippable, allowDisplacements);
 
             if (!equipped)
@@ -181,6 +179,13 @@ namespace CavesOfOoo.Core.Inventory.Commands
             afterEquip.SetParameter("Slot", equippable.Slot);
             actor.FireEventAndRelease(afterEquip);
 
+            // A post-event may complete a forced removal (for example, injury).
+            // That operation already cleared ownership and reversed bonuses.
+            // Preserve it without rolling back this completed equip or applying
+            // a late enhancement to gear that is now carried or on the ground.
+            if (!InventorySystem.IsEquipped(actor, itemToEquip))
+                return InventoryCommandResult.Ok();
+
             // Item-enhancement on-equip hook (E.2.1). Iterates the item's
             // IItemEnhancement Parts and calls each one's OnEquipped.
             // Fires AFTER the AfterEquip event so enhancements that need
@@ -205,13 +210,15 @@ namespace CavesOfOoo.Core.Inventory.Commands
             Entity item,
             BodyPart targetBodyPart,
             bool allowDisplacements,
-            bool emitPlanFailureMessage,
-            EquipPlan prebuiltPlan)
+            bool emitPlanFailureMessage)
         {
             var actor = context.Actor;
             var inventory = context.Inventory;
 
-            var plan = prebuiltPlan ?? Planner.Build(actor, item, targetBodyPart);
+            // BeforeEquip may have changed anatomy or independently filled a
+            // slot. Build against that settled state, including no-displacement
+            // checks and selection of another free slot when one remains.
+            var plan = Planner.Build(actor, item, targetBodyPart);
             if (!plan.IsValid)
             {
                 if (emitPlanFailureMessage && !string.IsNullOrEmpty(plan.FailureReason))

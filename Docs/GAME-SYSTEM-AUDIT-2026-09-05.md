@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; WAVE2j COMPLETE; WAVE2k COMPLETE; WAVE3a APPLIED/VERIFIED; WAVE3b COMPLETE; WAVE3c COMPLETE; WAVE3d COMPLETE; WAVE3e COMPLETE; WAVE3f COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; WAVE2j COMPLETE; WAVE2k COMPLETE; WAVE3a APPLIED/VERIFIED; WAVE3b COMPLETE; WAVE3c COMPLETE; WAVE3d COMPLETE; WAVE3e COMPLETE; WAVE3f COMPLETE; WAVE3g COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 COMPLETE; FLOW6 COMPLETE**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -2191,3 +2191,15 @@ No current authored Loadout producer exists; stale16-humanoid claims will be
 corrected with the API repair. A11 mortal dismember death remains next after that.
 Generic observer rollback, managed-part removal, corrupt raw ownership and the
 complete death caller's refused AddEntity fallback remain separate queue entries.
+
+
+## GA03g / A10 — starting-equipment API complete
+
+Loadout now reaches normal bonuses/events/enhancements and retains refused grants.
+Fresh post-hook plans preserve independent gear and avoid detached destinations;
+completed forced removal skips late enhancement activation. Outcome receipts
+separate equip completion from current ownership.48new tests; full9417GREEN,
+native24PASS/0unexpected,0CS. See LOADOUT-LIFECYCLE-PLAN and GA03g-REPORT.
+No current authored Loadout producer exists; historical16-enemy docs corrected.
+No save format/content changes or general observer rollback claim. Next A11 mortal
+dismember death/source/UI consistency; the remaining whole-game queue continues.

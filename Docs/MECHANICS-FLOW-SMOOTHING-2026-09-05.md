@@ -1,6 +1,6 @@
 # Mechanics flow and responsiveness — 2026-09-05
 
-Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 COMPLETE; CRAFTING AVAILABILITY/FIRST-USE REPAIR COMPLETE; CRAFTED OUTPUT/LOCAL ROLLBACK REPAIR COMPLETE; CAMERA CLEANUP APPLIED/VERIFIED; NEW-GAME CHECKPOINT REPAIR COMPLETE; HOTBAR SAVE SELECTION REPAIR COMPLETE; CORRUPT-SAVE ISOLATION/SETTLEMENT WIRING COMPLETE; HAULING LIFECYCLE/SAVE RECOVERY COMPLETE; FORCED EQUIPMENT CLEANUP COMPLETE. User explicitly requested identifying mechanics that
+Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 COMPLETE; WAVE6 COMPLETE; CRAFTING AVAILABILITY/FIRST-USE REPAIR COMPLETE; CRAFTED OUTPUT/LOCAL ROLLBACK REPAIR COMPLETE; CAMERA CLEANUP APPLIED/VERIFIED; NEW-GAME CHECKPOINT REPAIR COMPLETE; HOTBAR SAVE SELECTION REPAIR COMPLETE; CORRUPT-SAVE ISOLATION/SETTLEMENT WIRING COMPLETE; HAULING LIFECYCLE/SAVE RECOVERY COMPLETE; FORCED EQUIPMENT CLEANUP COMPLETE; STARTING-EQUIPMENT API COMPLETE. User explicitly requested identifying mechanics that
 need smoother integration and fully implementing the supported improvements, without
 intervention. This extends the ongoing whole-game audit; it does not cancel its
 remaining repairs. Baseline latest completed repair1ef093a1,8470tests,GA02i native44.
@@ -801,3 +801,13 @@ cleanup cannot duplicate a removal or leave ghost equipment.47new tests,
 full9369GREEN/native111PASS/0CS. Native menus, injury, actual trap death and L
 recovery passed; no subjective smoothness, pixels or speedup claim. See
 GA03f-REPORT.md. Starting-equipment API lifecycle and remaining repairs continue.
+
+
+### A10: authored starting equipment shares normal equipment behavior
+
+Supported Loadout grants now apply and reverse the normal contributions/hooks.
+Changed/detached destinations and independently removed gear settle consistently.
+Saved loadouts retain exact items without regranting.48new tests; full9417GREEN,
+native24API checks PASS,0CS. Current world content has no Loadout producer; this
+is an API integration repair. GA03g-REPORT records bounds and stale-doc corrections.
+A11 mortal death and the remaining mechanics queue continue.

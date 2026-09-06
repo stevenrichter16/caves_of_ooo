@@ -1,5 +1,13 @@
 # LOOT OVERHAUL — Gear That Drops, Containers That Exist, A World That Supplies
 
+> Current-source correction (2026-09-06, GA03g): no current Assets/Resources
+> content contains Loadout. The older SM2 entry below reported16 armed humanoids;
+> it is not evidence of present encounter content. Loadout remains a supported
+> opt-in authoring API. See LOADOUT-LIFECYCLE-PLAN.md for verified reach, command
+> lifecycle repair and explicit native fixture bounds. Death-drop reliability is
+> bounded by the current GA03f report, not the historical "works perfectly" prose.
+
+
 > Status: **COMPLETE (SM1-SM8).** Written 2026-08-09 after a
 > full verification sweep (CLAUDE.md §1.2). The sweep caught one
 > load-bearing false premise; the plan below is the CORRECTED one, not
@@ -294,7 +302,8 @@ entities per zone), so:
 `Equip` / `Carry` / `Pick`, applied on `ObjectCreated` — which
 EntityFactory fires immediately after `InitializeAnatomy`, so body parts
 exist and equipping resolves. **Zero EntityFactory changes.** Static
-`Factory`/`Rng` follow the CorpsePart convention (null = graceful no-op).
+`Factory`/`Rng` follow the CorpsePart convention: null Factory skips grants;
+null Rng uses a local Random instance.
 Re-entrancy guard (`MaxDepth = 3`) because Apply creates entities and
 entity creation fires ObjectCreated — a self-referential loadout would
 otherwise recurse until the stack died.
@@ -306,9 +315,9 @@ first-entry-always impl would pass the naive test), parser hardening
 (null/empty/only-delimiters/non-numeric/inverted range/missing
 blueprint), chance clamping, null-factory no-op, unknown-blueprint skip.
 
-### SM2 — Loadout content + Qud drop guards ✅ SHIPPED
+### SM2 — historical loadout-content report + shipped drop guards
 
-16 humanoid hostiles armed, tier-scaled: T1 bandits/gnome-folk (dagger
+The original implementation log reported16 humanoid hostiles armed, tier-scaled: T1 bandits/gnome-folk (dagger
 or shortsword + a few coins + a biome reagent), T2 chieftains/curators/
 envoys (armor + better weapon + a weapon component), T3 warlord and
 palimpsest echo (chainmail, greatsword/claymore, multiple components).

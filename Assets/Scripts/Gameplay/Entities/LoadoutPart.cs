@@ -1,21 +1,17 @@
 using System.Collections.Generic;
 using CavesOfOoo.Data;
-using CavesOfOoo.Core.Inventory.Planning;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
     /// <summary>
     /// LOOT OVERHAUL SM1 — blueprint-authorable starting gear.
     ///
-    /// <para><b>Why this exists.</b> The verification sweep
-    /// (Docs/LOOT-OVERHAUL.md §1) found the death-drop path already
-    /// works perfectly: <c>HandleDeath</c> drops 100% of a creature's
-    /// equipment and inventory to its death cell, pinned by three
-    /// tests. The reason players never saw loot is that every creature
-    /// in the game owns NOTHING — <c>InventoryPart</c> had no
-    /// vocabulary for starting contents. This part is that vocabulary,
-    /// so "enemies drop their gear" needs no death-path change at all:
-    /// gear resolved at SPAWN is gear that drops at DEATH.</para>
+    /// <para>Creates starting inventory and uses the normal equipment
+    /// lifecycle for compatible free slots. Refused equipment stays carried.
+    /// Normal death-drop policies then determine whether gear drops. This is
+    /// an opt-in authoring API; current content reach is tracked separately
+    /// in Docs/LOADOUT-LIFECYCLE-PLAN.md.</para>
     ///
     /// <para><b>Authoring.</b></para>
     /// <code>
@@ -63,8 +59,6 @@ namespace CavesOfOoo.Core
         public static EntityFactory Factory;
         public static System.Random Rng;
 
-        private static readonly EquipPlanner Planner = new EquipPlanner();
-
         /// <summary>
         /// Re-entrancy guard. <see cref="Apply"/> creates entities, and
         /// entity creation fires ObjectCreated — so a loadout that
@@ -102,8 +96,8 @@ namespace CavesOfOoo.Core
             _depth++;
             try
             {
-                // 1. Equip list — always granted (no chance field; a
-                //    bandit's sword is part of what a bandit IS).
+                // 1. Equip list — bare entries are guaranteed; explicit
+                //    chance/count syntax shares the Carry parser.
                 var equipSpecs = ParseCarry(Equip);
                 for (int i = 0; i < equipSpecs.Count; i++)
                     GrantOne(inventory, equipSpecs[i], rng, tryEquip: true);
@@ -185,14 +179,16 @@ namespace CavesOfOoo.Core
 
                 if (tryEquip)
                 {
-                    var plan = Planner.Build(ParentEntity, item);
-                    if (plan.IsValid && plan.ClaimedParts.Count > 0
-                        && plan.Displacements.Count == 0)
-                    {
-                        inventory.EquipToBodyParts(item, plan.ClaimedParts);
-                    }
-                    // Not equippable (no free hand, wrong slot): it stays
-                    // carried — and still drops on death.
+                    // Keep the historical no-Body carried fallback; AutoEquip
+                    // otherwise supports legacy slots. The command owns hooks,
+                    // bonuses and no-displacement checks. Refusal retains the grant.
+                    bool hasBody = ParentEntity.GetPart<Body>() != null;
+                    bool completed = hasBody && InventorySystem.AutoEquip(ParentEntity, item);
+                    bool equipped = completed && InventorySystem.IsEquipped(ParentEntity, item);
+                    string reason = !hasBody ? "missing_body" : !completed ? "auto_equip_refused"
+                        : equipped ? "equipped" : "removed_during_equip";
+                    Diag.Record("event", "LoadoutEquipResult", actor: ParentEntity, target: item,
+                        payload: new { blueprintName = item.BlueprintName, equipped, reason });
                 }
             }
         }
