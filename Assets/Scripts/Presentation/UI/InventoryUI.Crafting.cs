@@ -331,14 +331,14 @@ namespace CavesOfOoo.Rendering
 
             // Use the same ownership validation and exclusive groups as station
             // selections; reagents deliberately remain multi-select.
-            var result = InventorySystem.ExecuteCommand(new ToggleCraftMarkCommand(row.Item), PlayerEntity, CurrentZone);
-            if (!result.Success && !string.IsNullOrEmpty(result.ErrorMessage)) MessageLog.Add(result.ErrorMessage);
+            TryToggleCraftMarkViaCommand(row.Item);
             Rebuild();
             Render();
         }
 
         private void ClearCraftPicks()
         {
+            ClearActionStatus();
             var inv = PlayerEntity?.GetPart<InventoryPart>();
             if (inv == null) return;
 
@@ -354,6 +354,7 @@ namespace CavesOfOoo.Rendering
 
         private void ExecuteCraft(bool batch)
         {
+            ClearActionStatus();
             if (_craftingMode == CraftingMode.Forge) ExecuteForge(batch);
             else ExecuteBrew(batch);
 
@@ -365,14 +366,14 @@ namespace CavesOfOoo.Rendering
         {
             if (!_forgePreview.IsComplete)
             {
-                MessageLog.Add("You need " + _forgePreview.Missing + " to forge that.");
+                ShowActionFailure("You need " + _forgePreview.Missing + " to forge that.");
                 return;
             }
 
             var factory = ForgePart.Factory;
             if (factory == null)
             {
-                MessageLog.Add("(Forging is not wired to a factory.)");
+                ShowActionFailure("Forging is unavailable.");
                 return;
             }
 
@@ -383,8 +384,7 @@ namespace CavesOfOoo.Rendering
 
             if (!result.Success)
             {
-                if (!string.IsNullOrEmpty(result.ErrorMessage))
-                    MessageLog.Add(result.ErrorMessage);
+                ShowActionFailure(result.ErrorMessage);
                 return;
             }
 
@@ -395,8 +395,9 @@ namespace CavesOfOoo.Rendering
                 var quench = InventorySystem.ExecuteCommand(
                     new TemperWeaponCommand(command.ForgedWeapons[0], _pickedQuench),
                     PlayerEntity, CurrentZone);
-                if (!quench.Success && !string.IsNullOrEmpty(quench.ErrorMessage))
-                    MessageLog.Add(quench.ErrorMessage);
+                if (!quench.Success)
+                    ShowActionFailure("Forged weapon; quench failed: " +
+                        (string.IsNullOrWhiteSpace(quench.ErrorMessage) ? "quench unavailable." : quench.ErrorMessage));
             }
         }
 
@@ -404,13 +405,13 @@ namespace CavesOfOoo.Rendering
         {
             if (_pickedReagents.Count == 0)
             {
-                MessageLog.Add("Pick reagents to brew with.");
+                ShowActionFailure("Pick reagents to brew with.");
                 return;
             }
 
             if (!_brewPreview.IsValid)
             {
-                MessageLog.Add(string.IsNullOrEmpty(_brewPreview.Reason)
+                ShowActionFailure(string.IsNullOrEmpty(_brewPreview.Reason)
                     ? "These reagents make nothing." : _brewPreview.Reason);
                 return;
             }
@@ -418,7 +419,7 @@ namespace CavesOfOoo.Rendering
             var factory = AlchemyStillPart.Factory;
             if (factory == null)
             {
-                MessageLog.Add("(Brewing is not wired to a factory.)");
+                ShowActionFailure("Brewing is unavailable.");
                 return;
             }
 
@@ -427,8 +428,7 @@ namespace CavesOfOoo.Rendering
                 new BrewReagentsCommand(new List<Entity>(_pickedReagents), factory, count),
                 PlayerEntity, CurrentZone);
 
-            if (!result.Success && !string.IsNullOrEmpty(result.ErrorMessage))
-                MessageLog.Add(result.ErrorMessage);
+            if (!result.Success) ShowActionFailure(result.ErrorMessage);
         }
 
         // ════════════════════════════════════════════════════════

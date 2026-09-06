@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 PREPARED**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 SOURCE SWEEP COMPLETE**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -1754,3 +1754,13 @@ failed gate and all raw attempts; do not report it as passed. Independent review
 cleared production; harness completion/deadline corrections included.
 Next FLOW2 visible refusal/retry source sweep complete in smoothing plan. Remaining
 A47brew/tinker and broad repair queue remain active.
+
+## FLOW2 close-out — action feedback and contextual retry
+
+A24 implemented: inventory/equipment refusal retains exact context and shows its
+reason; forge/brew/tinker use the shared detail surface. Partial forge/quench wording
+preserves paid outcomes. Craft marks and Clear picks use consistent status lifetime.
+Full8623GREEN(+81),native51PASS,transfer compatibility35PASS;75second measured
+input workload accepted70/70navigation and69/69selection changes. No speedup claim.
+See Verification/GameSystemAudit/FLOW2-REPORT.md for source corrections, actual REDs,
+adversarial controls, cold-eye fixes and honesty bounds. Next A23/FLOW3 shortcuts.

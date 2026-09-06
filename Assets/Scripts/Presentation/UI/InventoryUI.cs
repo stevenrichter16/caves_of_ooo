@@ -106,6 +106,54 @@ namespace CavesOfOoo.Rendering
         private GrimoirePickerState _grimoirePicker;
         private PendingThrowRequest _pendingThrowRequest;
 
+        // Action outcomes belong to the current menu/selection, not the message log.
+        private string _actionStatus = string.Empty;
+        private object _actionStatusContext;
+        private int _actionStatusPanel, _actionStatusMode;
+
+        private object CurrentActionContext()
+        {
+            if (_displaceConfirm != null) return _displaceConfirm;
+            if (_equipPopup != null) return _equipPopup;
+            if (_itemActionPopup != null) return _itemActionPopup;
+            if (_modTargetPopup != null) return _modTargetPopup;
+            if (_grimoirePicker != null) return _grimoirePicker;
+            if (_panel == PANEL_TINKERING && _tinkerCursorIndex >= 0 && _tinkerCursorIndex < _tinkerRows.Count)
+                return _tinkerRows[_tinkerCursorIndex].Recipe;
+            if (_panel == PANEL_INVENTORY && _cursorIndex >= 0 && _cursorIndex < _rows.Count)
+                return _rows[_cursorIndex].Item?.Item;
+            return null;
+        }
+
+        private int CurrentActionMode()
+        {
+            if (_itemActionPopup != null) return _itemActionPopup.InBodyPartPicker ? 1 : 0;
+            if (_panel == PANEL_CRAFTING) return (int)_craftingMode;
+            if (_panel == PANEL_TINKERING) return (int)_tinkeringMode;
+            return _panel == PANEL_EQUIPMENT ? _equipCursorIndex : 0;
+        }
+
+        private void ClearActionStatus()
+        { _actionStatus = string.Empty; _actionStatusContext = null; }
+
+        private void SetActionFailure(string reason)
+        {
+            _actionStatus = string.IsNullOrWhiteSpace(reason) ? "That action could not be completed." : reason;
+            _actionStatusContext = CurrentActionContext();
+            _actionStatusPanel = _panel;
+            _actionStatusMode = CurrentActionMode();
+        }
+
+        private void ShowActionFailure(string reason)
+        { SetActionFailure(reason); MessageLog.Add(_actionStatus); }
+
+        private void RefreshActionStatusContext()
+        {
+            if (!string.IsNullOrEmpty(_actionStatus) && (_actionStatusPanel != _panel
+                || _actionStatusMode != CurrentActionMode()
+                || !ReferenceEquals(_actionStatusContext, CurrentActionContext()))) ClearActionStatus();
+        }
+
         public bool IsOpen => _isOpen;
 
         private struct DisplayRow
@@ -192,6 +240,7 @@ namespace CavesOfOoo.Rendering
         public void Open()
         {
             if (PlayerEntity == null) return;
+            ClearActionStatus();
             _isOpen = true;
             // The world is still on the shared tilemap during the frame
             // this screen opens: ZoneRenderer.Paused is set by the
@@ -224,6 +273,7 @@ namespace CavesOfOoo.Rendering
 
         public void Close()
         {
+            ClearActionStatus();
             _isOpen = false;
             PerformanceDiagnostics.EndInventorySession();
             _equipPopup = null;
@@ -942,9 +992,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            TryEquipViaCommand(item, targetBodyPart);
-
-            _equipPopup = null;
+            if (TryEquipViaCommand(item, targetBodyPart)) _equipPopup = null;
             Rebuild();
             Render();
         }
@@ -952,10 +1000,7 @@ namespace CavesOfOoo.Rendering
         private void UnequipFromPopup()
         {
             var slot = _equipPopup.TargetSlot;
-            if (slot.EquippedItem != null)
-                TryUnequipViaCommand(slot.EquippedItem);
-
-            _equipPopup = null;
+            if (TryUnequipViaCommand(slot.EquippedItem)) _equipPopup = null;
             Rebuild();
             Render();
         }
@@ -1022,14 +1067,12 @@ namespace CavesOfOoo.Rendering
             var target = _displaceConfirm.TargetPart;
             bool fromEquipPopup = _displaceConfirm.FromEquipPopup;
 
-            _displaceConfirm = null;
-
-            TryEquipViaCommand(item, target);
-
-            if (fromEquipPopup)
-                _equipPopup = null;
-            else
-                _itemActionPopup = null;
+            if (TryEquipViaCommand(item, target))
+            {
+                _displaceConfirm = null;
+                if (fromEquipPopup) _equipPopup = null;
+                else _itemActionPopup = null;
+            }
 
             Rebuild();
             ClampCursor();
@@ -1231,107 +1274,53 @@ namespace CavesOfOoo.Rendering
 
         private void ExecuteItemAction(int index)
         {
-            if (index < 0 || index >= _itemActionPopup.Actions.Count) return;
-
+            if (_itemActionPopup == null || index < 0 || index >= _itemActionPopup.Actions.Count) return;
+            ClearActionStatus();
             var action = _itemActionPopup.Actions[index];
             var item = _itemActionPopup.Item;
-
+            bool completed;
             switch (action.Command)
             {
                 case "equip_auto":
-                {
                     var displacements = InventorySystem.PreviewDisplacements(PlayerEntity, item);
                     if (displacements.Count > 0)
                     {
                         _displaceConfirm = new DisplaceConfirmState
                         {
-                            ItemToEquip = item,
-                            TargetPart = null,
-                            Displacements = displacements,
-                            CursorOnYes = true,
-                            FromEquipPopup = false,
-                            FromItemAction = true
+                            ItemToEquip = item, TargetPart = null, Displacements = displacements,
+                            CursorOnYes = true, FromEquipPopup = false, FromItemAction = true
                         };
                         Render();
-                        break;
+                        return;
                     }
-                    TryEquipViaCommand(item);
-                    _itemActionPopup = null;
-                    Rebuild();
-                    ClampCursor();
-                    Render();
+                    completed = TryEquipViaCommand(item);
                     break;
-                }
-
                 case "equip_manual":
                     OpenBodyPartPicker();
-                    break;
-
-                case "unequip":
-                    TryUnequipViaCommand(item);
-                    _itemActionPopup = null;
-                    Rebuild();
-                    ClampCursor();
-                    Render();
-                    break;
-
-                case "drop":
-                    TryDropViaCommand(item);
-                    _itemActionPopup = null;
-                    Rebuild();
-                    ClampCursor();
-                    Render();
-                    break;
-
-                case "disassemble":
-                    TryDisassembleViaCommand(item);
-                    _itemActionPopup = null;
-                    Rebuild();
-                    ClampCursor();
-                    Render();
-                    break;
-
-                case "toggle_craftmark":
-                    TryToggleCraftMarkViaCommand(item);
-                    _itemActionPopup = null;
-                    Rebuild();
-                    ClampCursor();
-                    Render();
-                    break;
-
+                    return;
+                case "unequip": completed = TryUnequipViaCommand(item); break;
+                case "drop": completed = TryDropViaCommand(item); break;
+                case "disassemble": completed = TryDisassembleViaCommand(item); break;
+                case "toggle_craftmark": completed = TryToggleCraftMarkViaCommand(item); break;
+                case "put_container": completed = TryPutInContainerViaCommand(item, action.Container); break;
                 case "examine_tonic":
-                    // Queue the description as an announcement — InputHandler
-                    // pops the AnnouncementUI modal OVER the open inventory
-                    // (same flow as reading a grimoire from the pack).
-                    if (TonicExamineService.TryDescribe(item, out string tonicText))
-                        MessageLog.AddAnnouncement(tonicText);
+                    // AnnouncementUI owns the description over the open inventory.
+                    if (TonicExamineService.TryDescribe(item, out string tonicText)) MessageLog.AddAnnouncement(tonicText);
                     _itemActionPopup = null;
                     Render();
-                    break;
-
+                    return;
                 case "throw":
-                case "Throw": // HandlingPart.GetInventoryActions declares capital-T
+                case "Throw":
                     _pendingThrowRequest = new PendingThrowRequest { Item = item };
                     Close();
-                    break;
-
-                case "put_container":
-                    TryPutInContainerViaCommand(item, action.Container);
-                    _itemActionPopup = null;
-                    Rebuild();
-                    ClampCursor();
-                    Render();
-                    break;
-
-                default:
-                    // Item-specific action (eat, drink, apply, etc.)
-                    TryPerformActionViaCommand(item, action.Command);
-                    _itemActionPopup = null;
-                    Rebuild();
-                    ClampCursor();
-                    Render();
-                    break;
+                    return;
+                default: completed = TryPerformActionViaCommand(item, action.Command); break;
             }
+            // A refused command retains its exact menu, cursor and item for retry.
+            if (completed) _itemActionPopup = null;
+            Rebuild();
+            ClampCursor();
+            Render();
         }
 
         /// <summary>
@@ -1339,8 +1328,9 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private bool TryDropViaCommand(Entity item)
         {
+            ClearActionStatus();
             if (item == null)
-                return false;
+            { SetActionFailure("That item is no longer available."); return false; }
 
             var result = InventorySystem.ExecuteCommand(
                 new DropCommand(item),
@@ -1348,7 +1338,7 @@ namespace CavesOfOoo.Rendering
                 CurrentZone);
 
             if (result.Success)
-                return true;
+            { ClearActionStatus(); return true; }
             LogCommandFailure("Drop", result);
             return false;
         }
@@ -1358,8 +1348,9 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private bool TryEquipViaCommand(Entity item, BodyPart targetBodyPart = null)
         {
+            ClearActionStatus();
             if (item == null)
-                return false;
+            { SetActionFailure("That item is no longer available."); return false; }
 
             var result = InventorySystem.ExecuteCommand(
                 new EquipCommand(item, targetBodyPart),
@@ -1367,7 +1358,7 @@ namespace CavesOfOoo.Rendering
                 CurrentZone);
 
             if (result.Success)
-                return true;
+            { ClearActionStatus(); return true; }
             LogCommandFailure("Equip", result);
             return false;
         }
@@ -1377,8 +1368,9 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private bool TryUnequipViaCommand(Entity item)
         {
+            ClearActionStatus();
             if (item == null)
-                return false;
+            { SetActionFailure("That item is no longer available."); return false; }
 
             var result = InventorySystem.ExecuteCommand(
                 new UnequipCommand(item),
@@ -1386,7 +1378,7 @@ namespace CavesOfOoo.Rendering
                 CurrentZone);
 
             if (result.Success)
-                return true;
+            { ClearActionStatus(); return true; }
             LogCommandFailure("Unequip", result);
             return false;
         }
@@ -1396,8 +1388,9 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private bool TryPerformActionViaCommand(Entity item, string actionCommand)
         {
+            ClearActionStatus();
             if (item == null || string.IsNullOrEmpty(actionCommand))
-                return false;
+            { SetActionFailure("That item action is no longer available."); return false; }
 
             var result = InventorySystem.ExecuteCommand(
                 new PerformInventoryActionCommand(item, actionCommand),
@@ -1405,7 +1398,7 @@ namespace CavesOfOoo.Rendering
                 CurrentZone);
 
             if (result.Success)
-                return true;
+            { ClearActionStatus(); return true; }
             LogCommandFailure($"PerformAction[{actionCommand}]", result);
             return false;
         }
@@ -1416,8 +1409,9 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private bool TryToggleCraftMarkViaCommand(Entity item)
         {
+            ClearActionStatus();
             if (item == null)
-                return false;
+            { SetActionFailure("That item is no longer available."); return false; }
 
             var result = InventorySystem.ExecuteCommand(
                 new ToggleCraftMarkCommand(item),
@@ -1425,7 +1419,7 @@ namespace CavesOfOoo.Rendering
                 CurrentZone);
 
             if (result.Success)
-                return true;
+            { ClearActionStatus(); return true; }
             LogCommandFailure("ToggleCraftMark", result);
             return false;
         }
@@ -1435,8 +1429,9 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private bool TryDisassembleViaCommand(Entity item)
         {
+            ClearActionStatus();
             if (item == null)
-                return false;
+            { SetActionFailure("That item is no longer available."); return false; }
 
             var result = InventorySystem.ExecuteCommand(
                 new DisassembleCommand(item),
@@ -1444,35 +1439,36 @@ namespace CavesOfOoo.Rendering
                 CurrentZone);
 
             if (result.Success)
-                return true;
+            { ClearActionStatus(); return true; }
             LogCommandFailure("Disassemble", result);
             return false;
         }
 
         private bool TryCraftSelectedRecipeViaCommand()
         {
+            ClearActionStatus();
             if (_tinkerRows.Count == 0 || _tinkerCursorIndex < 0 || _tinkerCursorIndex >= _tinkerRows.Count)
-                return false;
+            { SetActionFailure("Select a recipe to craft."); return false; }
 
             var selected = _tinkerRows[_tinkerCursorIndex];
             if (selected.Recipe == null || string.IsNullOrWhiteSpace(selected.Recipe.ID))
-                return false;
+            { SetActionFailure("Select a recipe to craft."); return false; }
 
             if (EntityFactory == null)
             {
-                MessageLog.Add("Cannot craft: missing EntityFactory on InventoryUI.");
+                ShowActionFailure("Crafting is unavailable.");
                 return false;
             }
 
             if (!selected.HasIngredient)
             {
-                MessageLog.Add("Missing required ingredient.");
+                ShowActionFailure("Missing required ingredient.");
                 return false;
             }
 
             if (!selected.HasBits)
             {
-                MessageLog.Add("Not enough bits.");
+                ShowActionFailure("Not enough bits.");
                 return false;
             }
 
@@ -1482,7 +1478,7 @@ namespace CavesOfOoo.Rendering
                 CurrentZone);
 
             if (result.Success)
-                return true;
+            { ClearActionStatus(); return true; }
 
             LogCommandFailure("CraftFromRecipe", result);
             return false;
@@ -1494,12 +1490,13 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private bool TryPutInContainerViaCommand(Entity item, Entity container)
         {
+            ClearActionStatus();
             if (item == null)
-                return false;
+            { SetActionFailure("That item is no longer available."); return false; }
 
             if (container == null || container.GetPart<ContainerPart>() == null)
             {
-                MessageLog.Add("There is no container here.");
+                ShowActionFailure("There is no container here.");
                 return false;
             }
 
@@ -1509,13 +1506,14 @@ namespace CavesOfOoo.Rendering
                 CurrentZone);
 
             if (result.Success)
-                return true;
+            { ClearActionStatus(); return true; }
             LogCommandFailure("PutInContainer", result);
             return false;
         }
 
-        private static void LogCommandFailure(string commandName, InventoryCommandResult result)
+        private void LogCommandFailure(string commandName, InventoryCommandResult result)
         {
+            SetActionFailure(result?.ErrorMessage);
             var validation = result?.Validation;
             string validationCode = validation == null
                 ? "None"
@@ -1631,9 +1629,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            TryEquipViaCommand(item, part);
-
-            _itemActionPopup = null;
+            if (TryEquipViaCommand(item, part)) _itemActionPopup = null;
             Rebuild();
             ClampCursor();
             Render();
@@ -1881,7 +1877,8 @@ namespace CavesOfOoo.Rendering
                 if (string.IsNullOrWhiteSpace(reason))
                     reason = "No compatible target item for this mod.";
 
-                MessageLog.Add(reason);
+                ShowActionFailure(reason);
+                Render();
                 return;
             }
 
@@ -2016,6 +2013,7 @@ namespace CavesOfOoo.Rendering
             if (index < 0 || index >= _modTargetPopup.TotalRows)
                 return;
 
+            ClearActionStatus();
             Entity target = _modTargetPopup.Targets[index];
             var result = InventorySystem.ExecuteCommand(
                 new ApplyModificationCommand(_modTargetPopup.Recipe.ID, target),
@@ -2030,6 +2028,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            ClearActionStatus();
             _modTargetPopup = null;
             Rebuild();
             Render();
@@ -2149,6 +2148,7 @@ namespace CavesOfOoo.Rendering
             using (PerformanceMarkers.Ui.InventoryRender.Auto())
             {
                 PerformanceDiagnostics.RecordInventoryRender();
+                RefreshActionStatusContext();
                 if (Tilemap == null)
                     return;
 
@@ -2643,6 +2643,8 @@ namespace CavesOfOoo.Rendering
 
         private void RenderDetailLine()
         {
+            if (!string.IsNullOrEmpty(_actionStatus))
+            { DrawText(1, H - 1, _actionStatus, QudColorParser.BrightRed); return; }
             if (_equipPopup != null)
             {
                 if (_equipPopup.CursorOnRemove)

@@ -78,7 +78,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 && _bench.CarriedDagger.GetPart<StackerPart>().StackCount == 2 && _bench.EquippedDagger.GetPart<StackerPart>().StackCount == 1
                 && equippedParts.Length > 0);
             int refused = Outcomes("ItemDispositionRejected", _bench.EquippedDagger.ID, "PutInContainer");
-            yield return PutEquipped(input);
+            yield return PutEquipped(input, false);
             _bench.Check("native_full_sack_refusal_dispatched", Outcomes("ItemDispositionRejected", _bench.EquippedDagger.ID, "PutInContainer") == refused + 1);
             _bench.Check("native_refusal_preserves_equipment_and_stack", inv.Objects[originalIndex] == _bench.CarriedDagger
                 && _bench.CarriedDagger.GetPart<StackerPart>().StackCount == 2 && _bench.EquippedDagger.GetPart<StackerPart>().StackCount == 1
@@ -87,7 +87,8 @@ namespace CavesOfOoo.Scenarios.Custom
                 && _bench.EquippedDagger.GetPart<PhysicsPart>().Equipped == _ctx.PlayerEntity
                 && _bench.EquippedDagger.GetPart<PhysicsPart>().InInventory == null && container.Contents.Count == 6
                 && _ctx.Zone.GetEntityCell(_bench.EquippedDagger) == null);
-            yield return Tap(Key.Escape);
+            yield return Tap(Key.Escape); // Close retained failure popup.
+            yield return Tap(Key.Escape); // Then leave inventory.
             _bench.Check("native_inventory_refusal_exit", State(input) == "Normal");
 
             // Player plus Sack makes an actual pile. Reach its object menu through the normal picker.
@@ -106,7 +107,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 && !container.Contents.Contains(_bench.Filler) && container.Contents.Count == 5);
             yield return Tap(Key.Escape);
             _bench.Check("native_loot_exit", State(input) == "Normal");
-            yield return PutEquipped(input);
+            yield return PutEquipped(input, true);
             _bench.Check("native_put_succeeds_after_freeing_slot", container.Contents.Count == 6
                 && container.Contents.Contains(_bench.EquippedDagger) && !InventorySystem.IsEquipped(_ctx.PlayerEntity, _bench.EquippedDagger)
                 && body.GetParts().All(p => p._Equipped != _bench.EquippedDagger)
@@ -154,7 +155,7 @@ namespace CavesOfOoo.Scenarios.Custom
             yield return Tap(Key.Escape);
             _bench.Check("native_trade_exit", State(input) == "Normal" && !trade.IsOpen);
         }
-        private IEnumerator PutEquipped(InputHandler input)
+        private IEnumerator PutEquipped(InputHandler input, bool expectedSuccess)
         {
             yield return Tap(Key.I); yield return Tap(Key.Tab);
             var ui = input.InventoryUI; var rows = Read(ui, "_rows") as IList;
@@ -168,7 +169,10 @@ namespace CavesOfOoo.Scenarios.Custom
                 if ((string)Read(actions[i], "Command") == "put_container" && Read(actions[i], "Container") == _bench.Sack) action = i;
             _bench.Check("native_put_action_available", Read(popup, "Item") == _bench.EquippedDagger && action >= 0);
             yield return MoveCursor(popup, "CursorIndex", action); yield return Tap(Key.Enter);
-            _bench.Check("native_put_popup_closed", Read(ui, "_itemActionPopup") == null && ui.IsOpen);
+            _bench.Check("native_put_popup_outcome", ui.IsOpen && (expectedSuccess
+                ? Read(ui, "_itemActionPopup") == null && string.IsNullOrEmpty((string)Read(ui, "_actionStatus"))
+                : ReferenceEquals(Read(ui, "_itemActionPopup"), popup) && Read(popup, "Item") == _bench.EquippedDagger
+                    && (int)Read(popup, "CursorIndex") == action && (string)Read(ui, "_actionStatus") == "Container is full."));
         }
         private IEnumerator MenuAction(InputHandler input, string command)
         {
@@ -215,7 +219,7 @@ namespace CavesOfOoo.Scenarios.Custom
             var report = new Report { runId = _bench.RunId, seconds = Time.realtimeSinceStartupAsDouble - _started,
                 cases = _bench.Cases, failures = Failures, audit = _bench.Audit.ToArray() };
             string directory = Path.Combine(Application.dataPath, "../Docs/Verification/GameSystemAudit"); Directory.CreateDirectory(directory);
-            File.WriteAllText(Path.Combine(directory, "GA02c-native.json"), JsonUtility.ToJson(report, true));
+            File.WriteAllText(Path.Combine(directory, "FLOW2-transfer-native.json"), JsonUtility.ToJson(report, true));
             Debug.Log("[GameAuditTransferBench] " + JsonUtility.ToJson(report)); Finished = true;
         }
         private void OnDestroy()

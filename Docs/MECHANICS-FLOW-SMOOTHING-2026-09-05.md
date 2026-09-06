@@ -1,6 +1,6 @@
 # Mechanics flow and responsiveness — 2026-09-05
 
-Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 SOURCE SWEEP COMPLETE. User explicitly requested identifying mechanics that
+Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 SOURCE SWEEP COMPLETE. User explicitly requested identifying mechanics that
 need smoother integration and fully implementing the supported improvements, without
 intervention. This extends the ongoing whole-game audit; it does not cancel its
 remaining repairs. Baseline latest completed repair1ef093a1,8470tests,GA02i native44.
@@ -65,7 +65,7 @@ still requires measurement before any optimization claim.
 4. **Shortcuts match their labels.** Shared row-key mapping excludes reserved controls
    and serves both label generation and dispatch. Ordinary7+loot exposes G collision.
    Correction: Elder_Well_1 has12authored choices but mutually exclusive predicates
-   appear to cap visible rows at7(+optionaltrade8); it does not prove ordinary J/K
+   cap authored visible rows at7; automatic Attack makes8(+optionaltrade9); it does not prove ordinary J/K
    reach. Large dialogue fixtures must be labelled staged controls. Preserve reveal
    behavior (first key reveals), navigation, close keys and exact item/choice selection.
 5. **Split items remain addressable (A48).** Assign fresh clone IDs; separately scope
@@ -258,3 +258,80 @@ Native24/24PASS,775c6f2fbb674d21a6700a924b584b5c,75.000108s measured,
 Two-file runtime scope,72tests(24regression/40adversarial/8staging),independent
 review complete. Actual desktop mouse delivery remains unverified, with failed
 raw evidence retained. Wave2 begins against this completed regression baseline.
+
+FLOW2 first compile stopped with2unique CS0246errors(6loglines): paid Sharp
+mod uses ModSharp tag/penetration/count, not a Part named EnhancementSharp.
+Independent review also corrected seed menu command PlantSeed versus label Plant,
+and DrawText omits space tiles. Raw compile retained; corrected fixtures rerun
+before any production implementation. No valid XML claimed from compile failure.
+
+FLOW2 corrected24RED:24fail,04:03:04–06UTC,0C#errors. Actual popup
+closure/status rendering failures coexist with missing-status assertions in positive
+controls; this is not24distinctbugs. Added10symmetry cases before implementation
+for equip-slot/manual-body/unequip/displacement completion, using real actor veto
+hooks with blocked/unblocked controls and exact originating context on retry.
+
+Symmetry fixture compile correction: Part overrides HandleEvent, not FireEvent;
+BodyPart lives in Core.Anatomy. Retained3CS0506loglines and corrected before
+rerunning34RED. No production change or valid XML from the failed compile.
+
+FLOW2 symmetry34RED:34fail,04:06:48–50UTC,0C#errors. Confirmed both
+origin popups and displacement confirmation are discarded on refusal. Minimum
+implementation now retains exact context on false outcomes and displays shared
+status at detail row44. Status context checks run only with existing renders;
+no new input polling or per-frame collection work. Shared command bool signatures
+and all payment/target rules remain unchanged. Composite quench wording is left
+for its dedicated RED→fix follow-up, not silently treated as covered by these34.
+
+FLOW2 minimum143/143GREEN,04:09:10–15UTC,5.2397952s,0C#errors.
+Dedicated matrix now probes repeated refusals, exact equipped transfer retry, reason
+replacement/fallback, mode/context boundaries, handoffs, missing dependencies, partial
+batches, committed forge/unpaid quench and stale modification/crafting selections.
+Independent review found crafting-panel mark failure still bypasses shared status;
+added RED before routing it through the existing bool helper. Popup/craft cursor
+movement preserves context; different item/recipe/equipment slot or mode clears it.
+
+FLOW2 dedicated66RED:62pass/4fail,04:13:49–52UTC,0C#errors. Three
+confirmed feedback gaps: stale crafting marks, successful mark clearing, and committed
+forge/unpaid quench status. One test false premise: consuming the final unit removes
+the Entity but preserves its detached StackCount1; assert inventory absence, not0.
+Use actual checked one-unit preconsumption for the cached partial-batch setup.
+Minimum fixes route crafting marks through shared feedback and label the partial
+forge outcome explicitly. Added6further controls for tinker capacity refund/retry,
+mod target availability and partial/full brew. These are scoped UI observations, not
+new A47/G41 transaction guarantees.
+
+FLOW2 dedicated+neighbors181/181GREEN,04:16:10–17UTC,7.503607s,0C#errors.
+34regression+38dedicated cases now pass. Added8native staging checks before bench
+implementation. Bounded native copy is necessary: prior benches/drivers are sealed
+and Apply starts their keyboard driver, so wrapping would create competing inputs.
+New combined arena uses full Sack→actual loot repair→put retry; incomplete forge,
+invalid FireMoss brew and missing B bit each get real keyboard repair/retry. Native
+Sack retry reopens the menu; same-instance retry is EditMode coverage. Success may
+restore ordinary red detail (for example no bits for another craft); empty action
+status does not promise a blank/non-red footer. Final75second measurement will use
+FLOW1's last committed75second run as the immediately preceding UI baseline.
+
+FLOW2 staging80RED:72pass/8missing-scenario failures,04:18:30–33UTC,
+0C#errors. Final cold-eye adds one real C-key status-lifetime hypothesis before
+fix: explicit Clear picks currently keeps stale failure while successful Pick
+clears it. Dedicated RED/control precedes the one-line action-entry correction.
+
+FLOW2 clear39RED:38pass/1failure,04:19:36–39UTC,0C#errors. Clear picks
+now clears old status at action entry. Added combined native arena/driver/launcher
+after8staging REDs; it only observes UI state via reflection and drives actual input.
+Historical transfer driver now expects retained refusal and two Escapes; its new
+reruns write FLOW2-transfer-native.json, preserving the original GA02c evidence.
+
+FLOW2 final focused241GREEN,04:22:54–04:23:01UTC,7.2221512s,0C#errors.
+Combined native51/51PASS,3906820dbf0e446ea646329a926696ab,90.842086042s,
+exit0,no logged exceptions.75.165754333s measured,363171frames,70/70navigation,
+69/69toggles. Existing rendered failure glyphs/legend were observed after real inputs;
+actual Sack loot and disassembly repaired capacity/bits before retry. Raw/phase
+comparison retained. Compatibility rerun and full suite follow; no speedup claim.
+
+FLOW2 COMPLETE: historical transfer compatibility35/35PASS,
+c688c7e8fa8c44bd8865f2e81da46865,10.5798875s. Full8623/8623GREEN,
+04:28:14–04:30:03UTC,108.4742895s,0compiler errors. Added81tests.
+2380unique asset GUIDs,0collisions;37owned paths with0protected overlap.
+Next FLOW3: shared truthful shortcut mapping and actual activation release gating.
