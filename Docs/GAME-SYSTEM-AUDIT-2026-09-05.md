@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f NEXT**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g NEXT**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -1151,3 +1151,188 @@ clear. Two actual-content strength families, mineral occurrences and temper
 payloads survive stacking; equivalent recipes/history merge. Report and raw
 evidence: Verification/GameSystemAudit/GA02e-REPORT.md. Next Wave2f: A05 remaining
 quantity-to-carry-penalty refresh; A45–A47 crafting integrity then remaining audit.
+
+
+### Wave2f plan — finish A05 quantity-to-carry-penalty refresh
+
+Baseline0345ef46,8122/8122 GREEN. Root read all quantity writers listed above,
+InventoryPart's live weight/cached penalty, TurnManager.GetSpeed/tick consumption,
+actual seed/mineral/recipe tests, Stacker clone and Qud Stacker1–114. Qud emits
+StackCountChangedEvent from its count PROPERTY; CoO's count must remain a public
+FIELD for current factory/save reflection. This is a CoO handling repair, not a
+port of Qud's weight cache/event framework. No authored nonzero CarryMovePenalty
+was found; explicit supported-field fixture configuration is required.
+
+| Verified fact | Implementation constraint |
+|---|---|
+| Weight/overburden already read current quantity. | Do not claim or change weight caching. |
+| Carry penalty uses Objects only, separate from equipped/contained items. | Primitive refresh needs true carried-owner membership. |
+| Clone clears inventory/equipment references. | Refresh source after split/remove; no clone-owner penalty. |
+| Add/Remove refresh and load/action rollback rebase already ship. | Preserve those idempotent paths and unrelated Speed penalties. |
+| Output Add often refreshes successful crafts. | RED must target standalone decrements, Mishap and restore ordering. |
+| Every authored V1 build makes1. | Partial-output failure is an explicit supported NumberMade2 fixture. |
+
+Implementation: refresh both actual carried owners after MergeFrom (once for
+same owner), source after successful SplitStack/RemoveOne; explicitly refresh
+remaining seed/mineral/temper/tinker/brew/forge decrements and completed restores/
+rollbacks. Keep StackCount public and all existing payment/return semantics;
+A45–A47 will repair positive-unit gates, target-unit choice and exact craft receipts.
+Record CarryPenaltyRefreshed only for a real tracker delta, with actor, old/new
+penalty and delta; disabled channel/idempotent calls remain quiet.
+
+Test-first sequence: real item/recipe workflows configuredCarryMovePenalty4 with
+unrelatedSpeed.Penalty7, quantity3→2 requires19→15 and speed81→85; zero-penalty,
+singleton, refusal and successful-output controls. Ordered restore and primitive
+owner/counterchecks; dedicated20–60 adversarial cases; independent taxonomy and
+reference review; native actual planting/gift/mod/disassembly plus movement-speed
+observation under configured fixture; full suite and explicit owned commit.
+No new per-frame/per-turn hook, public saved field, art or speedup claim.
+
+
+### A09 deeper preparation — drag lifecycle and load timing (root RED pending)
+
+ValidateLink still has no production caller; current tests manually invoke it,
+masking removed-load resurrection through FollowInto→ForceMoveTo→Zone.MoveEntity.
+Real cross-zone hauler transfer can later index the same old-zone load in the new
+zone. Minimal seam: successful Zone.RemoveEntity membership removal219–229 invokes
+idempotent detach/refund; false/wrong-zone removal keeps grip. Ordinary same-zone
+MoveEntity/AddEntity uses Cell.RemoveObject, so healthy Step/ForceMove stays intact.
+FollowInto validates BEFORE moving and re-reads surviving link; validate before
+DragPart null-load early return. No world scan per action. Reciprocal guards must
+not release a hauler's different healthy load or a load's different actual hauler.
+
+Use Destructible.Gone as committed destruction. HP<=0 alone is wrong: Damage93
+lowers structuralHP before BeforeDestroy veto139, which may keep Gonefalse/live
+entity. Gone=true148 precedes Destroyed callbacks; this guard stops callback-
+induced hauler movement from pulling a doomed load before final removal166.
+Optional creature Hitpoints<=0 is dead, but missingHP is valid for real props.
+
+Save timing: LoadZone1011 rebuilds placeholder cells before entity bodies. After
+ReadEntityBodies runs OnAfterLoad/FinalizeLoad233–257, GameSessionState.RebuildLoadedWorld
+398/873–874 completes all cached-zone indexes. Validate full-world links only THEN,
+including both placed actors and placed loads pointing at unplaced actors. Preserve
+token-graph-only tests without world context, persisted AppliedPenalty and unrelated
+penalties; no saved fields/version. Do not validate in AddPart or partial load hooks.
+
+Tumble129–138 temporarily removes target, moves actor raw, adds target; noAfterMove.
+Generic removal cleanup will explicitly detach a tumbled TARGET hauler (refused
+pre-transfer control keeps grip). Acting-hauler completion belongs to A35/A37. If
+preserving grips is intended, coordinate atomic swap completion in that wave;
+never silently preserve links on generic committed removal. W6 barrier/arrival/
+passage fixes are already closed; refused transition must keep original grip.
+
+RED matrix: actual removed load/hauler without manual Validate, nextStep/ForceMove
+no resurrection; wrong-zone/no-op removal; real lethal HaulBarrel Damage and healthy/
+BeforeDestroy-veto controls; Destroyed callback forces movement before removal;
+repeatRelease/unrelatedpenalty; horizontal/vertical real transition success versus
+refusal; reciprocal stale-link protection; fullsession healthy/dead/gone/unplaced/
+crosszone links and exact saved refund, token-only control; Tumble target-hauler
+and pre-refusal, blocked/normal/forced/liquid-slip movement.
+
+Actual native reach: HaulBarrel(weight75, structuralHP8, noncarryable, Strength10)
+ships via HaulablePropBuilder across four biomes; old 'not placed yet' prose is
+historical. Player16 can C+direction→HaulObject, lose30speed, move/pull into vacated
+cell, C→Break until destroyed (positive minimum, guard8), require ObjectDestroyed/
+released pair/restoredspeed, thenStep no resurrection. FallenBeam healthy re-grab
+control. Transition/save/malformed cases remain EditMode scope unless exercised.
+
+Wave2f first RED38:25pass/13fail,00:40:07–09UTC;zero C# errors. Twelve failures
+show stale decrements/split/restoration or missing delta diagnostics. One apparent
+control failure is an unanticipated expected EntityFactory error log from the
+missing-output fixture; add exact LogAssert.Expect before that injected call,
+then rerun corrected RED. Add real matching-stack different/same-owner full/
+partial MergeFrom cases before implementation. No production changed yet.
+
+Wave2f corrected/expanded RED42:28pass/14fail,00:42:29–32UTC,zero C# errors.
+Expected missing-blueprint logs now declared; control passes. Six standalone
+count3 handling failures, two split/remove, two cross-owner merge, three ordered
+restore failures and one missing-diagnostic case reproduced before production.
+Minimum explicit refreshes now written; same-owner primitive refresh deduplicates,
+only Physics-resolved owner.Objects members qualify, and diagnostics emit only
+when a real delta changes an existing Speed stat. Public count/load rebase unchanged.
+
+Wave2f minimum + neighbors824/824 GREEN,00:44:42–50UTC,zero C# errors.
+Independent actual-diff review found0must-fix: no gameplay callback introduced,
+Objects-membership and both-owner refresh correct, rollback refresh idempotent.
+Diagnostic scope is applied changes to an existing Speed stat; tracker-only
+updates on actors without Speed stay quiet. Explicit previousPenalty snapshot
+replaces equivalent newPenalty-delta expression for clearer diagnostic semantics.
+38 dedicated adversarial cases and7 absent-native-arena RED cases now authored.
+Native scope refined to actual PlantSeed, paid mineral infusion, disassembly,
+FireMoss Mishap and walking, with explicit supported handling configuration.
+Mineral gifting/quenching and rollback/save/drag remain EditMode evidence, not
+native claims. This exercises four independent quantity writers through UI.
+
+Wave2f expanded neighboring run869/869 GREEN,00:58:04–14UTC,zero C# errors.
+Review strengthened ingredient-free partial craft refusal: require intermediate
++4 then-4 applied-penalty records, not only baseline final state. Added two
+unowned-destination/carried-source merge cases. Missing-content native preflight
+now pins exact inventory members/owner, stat identity/value and factory bindings.
+Native pre-run fixture correction: actual craft_dagger costsBC, disassembly
+partial yieldB. The draft's HasBits(A) was wrong; bootstrap already holdsB, so
+capture B count and require+1. This is a fixture correction, not a gameplay bug.
+
+### A45 verified preparation — permanent modifications through reforge
+
+Read-only second-review plus root verification: Sharp is paid once (actual
+mod_sharp_melee, blueprintmod_sharp, costBC), directly adds PenBonus+1 and name,
+then stores ModSharp and ModificationCount. ApplyComponentStats505–514 rebuilds
+base penetration/name while retaining those markers. Mineral infusion's attached
+Parts/effects already survive; their paid labels also disappear. Reforge explicitly
+melts temper312–317/WeaponTemperingService175; retain that behavior including HP
+maximum restoration. CoO original reforge contract, not Qud reforge parity. Local
+Qud ModSharp36–49 directly increments penetration; its adjective uses display events.
+
+Correct actual IDs: SteelBladeComponent/OakHaftComponent/LeatherBindingComponent,
+IronSpikeComponent/WillowHaftComponent/SerratedEdgeComponent. Shorter testfixture
+IDs are not shipped blueprint IDs. StationTinkersForge; outputForgedWeapon.
+Root read Sharp modification, mineral application/classes, component/recompute
+service, ClearTemper, actual recipeBC and prior StackIdentityFixture.
+
+Planned bounded seam after ApplyComponentStats: reconstruct known permanent
+contributions from existing ModSharp/attached enhancement state, sharing adjective
+constants with paid application. Never replay paid Apply methods or carry over
+arbitrary old penetration/name containing old components/temper. Deterministic
+labels, one per known enhancement type, retain every actual occurrence/tier/value/
+instance; preserve equipped GlowQuartz without replaying equip hooks. No new save
+fields. Old corrupted state repairs only on next successful reforge, not on load.
+A46 unit-target/output references and A47 exact receipts remain separate.
+
+RED/control matrix: unmodified/Sharp same Oak/new IronSpike/new SerratedEdge;
+repeat swaps/back no cumulative bonus/name; first paid Sharp after cleanreforge;
+duplicate Sharprefusal preservesBC/count; actual brewedtemper with/withoutSharp
+melts onlytemper; all3 paidminerals keepPart/tier/value/label; duplicatePaleSalt
+and mixedminerals preserve all effects/slots; Sharp+2minerals no extra payment;
+equippedGlow equipment/radius stable; foreign/missing replacement and away-from-
+forge command refuse; save-before/after then next reforge; actualcombat
+weaponPenBonus diagnostic shows permanent Sharp+1 versus clean control.
+
+Native route verified by review: I→Tab4→F→C, mark3 actualcomponents,Enterforge;
+C clears survivingstackmarks. I→Tab2→M→mod_sharp_melee→actualforgedtarget, payBC.
+C+direction towardforge opens actor-present worldmenu: CraftToggle:weaponID,
+CraftToggle:replacementID, then CraftKit. It has NO standalone ReforgeWeapon row
+(the latter is actorless menu only). Reopen Sharp targetpopup with freshDagger
+control: reforgedSharp absent, cleanDagger present, BC unchanged. No command
+refusal dispatched for an excluded target; direct duplicate refusal is EditMode.
+Output stays carried; no hand blocker needed without groundpickup.
+
+Wave2f native first26/27 PASS,run a1e8a9f9e2784767994780a596a1a887,7.4375s,
+exit1,zeroC#errors. Actual planting/infusion/disassembly and penalty checks pass.
+Fixture reach correction: InventoryUI.ExecuteBrew347 refuses !_brewPreview.IsValid,
+so FireMoss Mishap is not dispatched by that panel. AlchemyStillPart.HandleBrew
+has the actual BrewMix verb and dispatches the marked mix without preview gate.
+Corrected driver retains inventory refusal as a no-payment countercheck, then
+returns20,12→C/right→actualstill BrewMix, requires one spent unit, nonlethal2damage,
+BrewResolved, and current carry penalty. Preserve failedraw; no gameplay change.
+
+
+### Wave2f close-out — A05 quantity refresh complete
+
+Final89/89 focused,8211/8211 fullGREEN,01:04:56–01:06:31UTC;zeroC#errors.
+Native38/38PASS,ea8983e91fae4030b09538aab676b870,8.768810292s,exit0.
+42regression+40adversarial+7staging tests added. All10attempted-break hypotheses
+cleared; final independent code/test/native source review0must-fix. Raw failed
+fixture runs retained, corrections documented in GA02f-REPORT.md. No authored
+nonzero handling claim, native visual/timing claim, newpublicsavefield or hotpath.
+Next: Wave2g A45 permanent paid mods through reforge, then A46/A47craft integrity
+and all remaining accepted whole-game repairs.

@@ -433,6 +433,7 @@ namespace CavesOfOoo.Core
                 }
             }
 
+            inventory.RefreshHandlingCarryPenalty();
             crafted.Clear();
         }
 
@@ -455,6 +456,7 @@ namespace CavesOfOoo.Core
                 if (stacker != null && stacker.StackCount > 1)
                 {
                     stacker.StackCount -= 1;
+                    inventory.RefreshHandlingCarryPenalty();
                     consumed.Entity = item;
                     consumed.ConsumedFromStack = true;
                     return true;
@@ -482,6 +484,7 @@ namespace CavesOfOoo.Core
                 if (stacker != null)
                 {
                     stacker.StackCount += 1;
+                    inventory.RefreshHandlingCarryPenalty();
                     return;
                 }
             }
@@ -499,6 +502,7 @@ namespace CavesOfOoo.Core
             if (stacker != null && stacker.StackCount > 1)
             {
                 stacker.StackCount -= 1;
+                inventory.RefreshHandlingCarryPenalty();
                 return true;
             }
 

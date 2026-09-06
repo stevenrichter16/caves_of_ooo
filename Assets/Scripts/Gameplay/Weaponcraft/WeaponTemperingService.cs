@@ -209,6 +209,7 @@ namespace CavesOfOoo.Core
             if (stacker != null && stacker.StackCount > 1)
             {
                 stacker.StackCount -= 1;
+                inventory.RefreshHandlingCarryPenalty();
                 return true;
             }
 

@@ -590,6 +590,7 @@ namespace CavesOfOoo.Core
             if (stacker != null && stacker.StackCount > 1)
             {
                 stacker.StackCount -= 1;
+                inventory.RefreshHandlingCarryPenalty();
                 record.Entity = item;
                 record.ConsumedFromStack = true;
                 return true;
@@ -629,6 +630,8 @@ namespace CavesOfOoo.Core
                 if (!inventory.Contains(record.Entity))
                     inventory.AddObject(record.Entity);
             }
+            // A singleton AddObject may refresh before later stacked records are restored.
+            inventory.RefreshHandlingCarryPenalty();
         }
     }
 }

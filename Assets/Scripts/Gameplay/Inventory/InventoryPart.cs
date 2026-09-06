@@ -426,7 +426,8 @@ namespace CavesOfOoo.Core
         public void RefreshHandlingCarryPenalty()
         {
             int newPenalty = ComputeCarriedHandlingPenalty();
-            int delta = newPenalty - _appliedHandlingCarryPenalty;
+            int previousPenalty = _appliedHandlingCarryPenalty;
+            int delta = newPenalty - previousPenalty;
             _appliedHandlingCarryPenalty = newPenalty;
 
             if (delta == 0 || ParentEntity == null)
@@ -434,7 +435,12 @@ namespace CavesOfOoo.Core
 
             var speed = ParentEntity.GetStat("Speed");
             if (speed != null)
+            {
                 speed.Penalty += delta;
+                if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("event"))
+                    CavesOfOoo.Diagnostics.Diag.Record("event", "CarryPenaltyRefreshed", actor: ParentEntity,
+                        payload: new { previousPenalty, currentPenalty = newPenalty, delta });
+            }
         }
 
         /// <summary>

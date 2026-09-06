@@ -86,6 +86,7 @@ namespace CavesOfOoo.Core
 
             StackCount += toMerge;
             otherStacker.StackCount -= toMerge;
+            RefreshCarriedOwners(ParentEntity, other);
             return toMerge;
         }
 
@@ -98,6 +99,7 @@ namespace CavesOfOoo.Core
             if (count <= 0 || count >= StackCount) return null;
 
             StackCount -= count;
+            RefreshCarriedOwners(ParentEntity);
             var clone = ParentEntity.CloneForStack();
             clone.GetPart<StackerPart>().StackCount = count;
             return clone;
@@ -112,9 +114,25 @@ namespace CavesOfOoo.Core
             if (StackCount <= 1) return ParentEntity;
 
             StackCount--;
+            RefreshCarriedOwners(ParentEntity);
             var clone = ParentEntity.CloneForStack();
             clone.GetPart<StackerPart>().StackCount = 1;
             return clone;
+        }
+
+        // Counts remain public fields for blueprint/save compatibility. Primitive quantity
+        // operations refresh only inventories that actually carry their participants.
+        private static void RefreshCarriedOwners(Entity first, Entity second = null)
+        {
+            var firstOwner = CarriedOwner(first); var secondOwner = CarriedOwner(second);
+            firstOwner?.RefreshHandlingCarryPenalty();
+            if (secondOwner != firstOwner) secondOwner?.RefreshHandlingCarryPenalty();
+        }
+
+        private static InventoryPart CarriedOwner(Entity item)
+        {
+            var inventory = item?.GetPart<PhysicsPart>()?.InInventory?.GetPart<InventoryPart>();
+            return inventory != null && inventory.Objects.Contains(item) ? inventory : null;
         }
 
         /// <summary>
