@@ -202,6 +202,7 @@ namespace CavesOfOoo.Rendering
             // render. Redrawing once on the following tick costs one
             // frame's work and makes the open deterministic.
             _needsPostOpenRedraw = true;
+            _lastPointerGrid = MouseToGrid();
             PerformanceDiagnostics.BeginInventorySession();
             _panel = PANEL_EQUIPMENT;
             _cursorIndex = 0;
@@ -272,6 +273,7 @@ namespace CavesOfOoo.Rendering
         /// <summary>Set by <see cref="Open"/>, consumed on the next
         /// input tick — see the comment there.</summary>
         private bool _needsPostOpenRedraw;
+        private Vector2Int _lastPointerGrid = new Vector2Int(-1, -1);
 
         public bool HandleInput()
         {
@@ -323,6 +325,12 @@ namespace CavesOfOoo.Rendering
             // Mouse click on equipment square (works from either panel)
             if (Input.GetMouseButtonDown(0))
             {
+                if (_panel == PANEL_CRAFTING)
+                {
+                    HandleCraftingClick(MouseToGrid());
+                    return true;
+                }
+
                 if (_panel == PANEL_TINKERING)
                 {
                     int clickedTinkerRow = GetTinkeringRowAtMouse();
@@ -386,7 +394,11 @@ namespace CavesOfOoo.Rendering
         private void UpdateMouseHover()
         {
             var grid = MouseToGrid();
-            if (grid.x < 0) return;
+            bool pointerMoved = grid != _lastPointerGrid;
+            _lastPointerGrid = grid; // Include outside/popup/other-panel frames.
+            // Hover follows movement; a parked pointer must not undo keyboard
+            // navigation in any panel or popup. Click handlers resolve their own hit.
+            if (grid.x < 0 || !pointerMoved) return;
 
             if (_displaceConfirm != null)
             {
@@ -484,6 +496,15 @@ namespace CavesOfOoo.Rendering
                     Render();
                 }
                 return;
+            }
+
+            if (_panel == PANEL_CRAFTING)
+            {
+                // A parked pointer must not undo subsequent keyboard navigation.
+                int row = GetCraftingRowAtGrid(grid);
+                if (row >= 0 && row != _craftCursorIndex)
+                { _craftCursorIndex = row; Render(); }
+                return; // Inert crafting space also belongs to this panel.
             }
 
             // Main panels — equipment slots

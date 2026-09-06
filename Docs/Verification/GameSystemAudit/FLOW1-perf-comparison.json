@@ -1,0 +1,189 @@
+{
+  "scope": "75s pooled and phase samples; prior completed frame, approximate phase boundaries; whole-frame GC includes editor and harness; no speedup claim",
+  "runs": {
+    "before": {
+      "idle": {
+        "COO.Input.Update": {
+          "unit": "ms",
+          "frames": 119618,
+          "mean": 0.0015070579427845308,
+          "p99": 0.002292,
+          "max": 0.035083
+        },
+        "COO.UI.Inventory.Render": {
+          "unit": "ms",
+          "frames": 119618,
+          "mean": 0.0,
+          "p99": 0.0,
+          "max": 0.0
+        },
+        "COO.ZoneRenderer.LateUpdate": {
+          "unit": "ms",
+          "frames": 119618,
+          "mean": 0.0007310106589309301,
+          "p99": 0.002584,
+          "max": 0.020291
+        },
+        "GC Allocated In Frame": {
+          "unit": "bytes",
+          "frames": 119618,
+          "mean": 5584.213354177465,
+          "p99": 37968.0,
+          "max": 36288648.0
+        }
+      },
+      "navigate": {
+        "COO.Input.Update": {
+          "unit": "ms",
+          "frames": 122298,
+          "mean": 0.0019323814943825737,
+          "p99": 0.002333,
+          "max": 0.951042
+        },
+        "COO.UI.Inventory.Render": {
+          "unit": "ms",
+          "frames": 122298,
+          "mean": 0.00042183507498078467,
+          "p99": 0.0,
+          "max": 0.948875
+        },
+        "COO.ZoneRenderer.LateUpdate": {
+          "unit": "ms",
+          "frames": 122298,
+          "mean": 0.000705310454790757,
+          "p99": 0.001917,
+          "max": 0.040833
+        },
+        "GC Allocated In Frame": {
+          "unit": "bytes",
+          "frames": 122298,
+          "mean": 3998.24116502314,
+          "p99": 3996.0,
+          "max": 23917.0
+        }
+      },
+      "toggle": {
+        "COO.Input.Update": {
+          "unit": "ms",
+          "frames": 118969,
+          "mean": 0.0019912587816994344,
+          "p99": 0.002375,
+          "max": 1.078208
+        },
+        "COO.UI.Inventory.Render": {
+          "unit": "ms",
+          "frames": 118969,
+          "mean": 0.0004224493271356404,
+          "p99": 0.0,
+          "max": 0.849042
+        },
+        "COO.ZoneRenderer.LateUpdate": {
+          "unit": "ms",
+          "frames": 118969,
+          "mean": 0.0007500652438870631,
+          "p99": 0.002666,
+          "max": 3.064125
+        },
+        "GC Allocated In Frame": {
+          "unit": "bytes",
+          "frames": 118969,
+          "mean": 6157.964579007977,
+          "p99": 85430.0,
+          "max": 8482586.0
+        }
+      }
+    },
+    "after": {
+      "idle": {
+        "COO.Input.Update": {
+          "unit": "ms",
+          "frames": 121018,
+          "mean": 0.0014828815300203275,
+          "p99": 0.002291,
+          "max": 0.068125
+        },
+        "COO.UI.Inventory.Render": {
+          "unit": "ms",
+          "frames": 121018,
+          "mean": 0.0,
+          "p99": 0.0,
+          "max": 0.0
+        },
+        "COO.ZoneRenderer.LateUpdate": {
+          "unit": "ms",
+          "frames": 121018,
+          "mean": 0.0007105289626336578,
+          "p99": 0.002541,
+          "max": 0.029166
+        },
+        "GC Allocated In Frame": {
+          "unit": "bytes",
+          "frames": 121018,
+          "mean": 5565.140359285396,
+          "p99": 73742.0,
+          "max": 4343338.0
+        }
+      },
+      "navigate": {
+        "COO.Input.Update": {
+          "unit": "ms",
+          "frames": 123471,
+          "mean": 0.001883205449052814,
+          "p99": 0.002291,
+          "max": 0.821666
+        },
+        "COO.UI.Inventory.Render": {
+          "unit": "ms",
+          "frames": 123471,
+          "mean": 0.00040694707259194467,
+          "p99": 0.0,
+          "max": 0.818875
+        },
+        "COO.ZoneRenderer.LateUpdate": {
+          "unit": "ms",
+          "frames": 123471,
+          "mean": 0.000689201253735695,
+          "p99": 0.001875,
+          "max": 0.024
+        },
+        "GC Allocated In Frame": {
+          "unit": "bytes",
+          "frames": 123471,
+          "mean": 3998.2051250901022,
+          "p99": 3996.0,
+          "max": 26590.0
+        }
+      },
+      "toggle": {
+        "COO.Input.Update": {
+          "unit": "ms",
+          "frames": 122424,
+          "mean": 0.0020730672825589754,
+          "p99": 0.002375,
+          "max": 2.391458
+        },
+        "COO.UI.Inventory.Render": {
+          "unit": "ms",
+          "frames": 122424,
+          "mean": 0.00041109726850944257,
+          "p99": 0.0,
+          "max": 1.481416
+        },
+        "COO.ZoneRenderer.LateUpdate": {
+          "unit": "ms",
+          "frames": 122424,
+          "mean": 0.0007121540792655034,
+          "p99": 0.001958,
+          "max": 0.278666
+        },
+        "GC Allocated In Frame": {
+          "unit": "bytes",
+          "frames": 122424,
+          "mean": 6094.059122394302,
+          "p99": 84438.0,
+          "max": 4288620.0
+        }
+      }
+    }
+  }
+}

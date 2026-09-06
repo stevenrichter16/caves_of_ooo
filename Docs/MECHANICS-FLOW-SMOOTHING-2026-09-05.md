@@ -1,10 +1,9 @@
 # Mechanics flow and responsiveness — 2026-09-05
 
-Status: REVIEW IN PROGRESS. User explicitly requested identifying mechanics that
+Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 SOURCE SWEEP COMPLETE. User explicitly requested identifying mechanics that
 need smoother integration and fully implementing the supported improvements, without
 intervention. This extends the ongoing whole-game audit; it does not cancel its
-remaining repairs. Baseline latest completed repair d219936a,8395tests,GA02h native40.
-Current GA02i planting/mineral correctness wave will finish its gates first.
+remaining repairs. Baseline latest completed repair1ef093a1,8470tests,GA02i native44.
 
 ## Outcome and scope
 
@@ -112,3 +111,150 @@ work and spikes, not subjective feel or a promised speedup. Existing keyboard,
 station, popup and inactive-panel controls remain covered. Both target UI files
 remain outside the protected manifest. User explicitly authorized implementing
 these supported corrections without intervention.
+
+
+Wave1 initial22RED:2pass/20fail,03:04:54–55UTC,zeroC#errors. Actual
+radio/ownership/hover failures reproduced alongside not-yet-authored geometry/click
+helpers. Equipment countercheck used nonexistent Label; corrected to actual
+ShortLabel. Added8native staging cases before benchmark/driver implementation.
+Baseline now1ef093a1,8470GREEN. No production UI change yet.
+
+
+Wave1 staging30RED:3pass/27fail,03:06:49–50UTC,zeroC#errors. Bench then
+implemented without UI changes. First75second native baseline failed its compound
+check but omitted measurement diagnostics before throwing. Retained raw report/log;
+strengthened harness to write metrics/frame/phase and observed-vs-attempted input
+counts before checking, increased bounded capture capacity, and rerun baseline.
+This is an invalid baseline until the cause and workload are established.
+
+Independent cold-eye found a real legacy-state gap: old crafting UI could save two
+marked blades/quenches. A new radio command alone leaves that already-saved kit
+ambiguous on opening. Added2REDcases before implementation; normalize exclusive
+marks while rebuilding crafting rows, retaining the last inventory entry to match
+existing station selection and the exact survivor Part. Reagents stay multi-select.
+No save-format change. This bounded repair remains within the two UI files.
+
+Wave1 legacy32RED:11pass/21fail,03:14:09–11UTC,zeroC#errors; all8
+staging cases now pass. Both old duplicate-mark cases reproduced. Performance
+recorder metrics use nanoseconds for script markers and bytes for whole-frame GC;
+raw capture includes temporary harness allocation/input costs and a one-frame
+sampling phase offset. No UI-only allocation or absolute speedup claim.
+
+Wave1 valid pre-UI baseline:75.00008825s,360885frames,70/70navigation and
+68/68toggle changes; all recorder handles valid, panel4 retained,exit0,0C#errors.
+Frame count demonstrates prior120000capacity insufficient for this workload; new
+bounded500000capture retained raw timestamps/phase and whole-frame samples. Input
+max1.078208ms,inventoryRendermax0.948875ms;GCmax36.29MBincludes capture setup.
+Minimum two-file UI implementation follows this verified baseline.
+
+Wave1 minimum172/172GREEN,03:17:00–06UTC,zeroC#errors. Two UI files now
+share actual37line layout, radio command ownership/selection, last-marked legacy
+normalization and moved-grid crafting hover. Added dedicated adversarial matrix
+covering long-list spacers, exact-fit overflow, rendered tiles, stale ownership,
+legacy continuity, batch quench and unchanged-hover redraw/allocation gates.
+
+Wave1 dedicated+neighbors207/207GREEN,03:20:25–33UTC,zeroC#errors.
+35dedicated cases include actual rendered selection tiles and zero-allocation/zero-
+redraw parked hover. Review strengthened batch-quench assertions to count tempered
+and plain UNITS rather than entities (the latter could miss a whole-stack bug).
+Wording correction: last-marked normalization matches existing component station
+order; duplicate quenches previously caused no quench, so last-marked quench is
+the explicit canonical repair policy, not a claimed pre-existing station winner.
+
+Wave1 native20/20PASS,75.000117583s measured,363350frames,69/69navigation
+and69/69toggle actions. Added2token-graph roundtrip controls for legacy mark
+normalization; initial desktop launch stopped on wrong test-helper namespace.
+Raw3CS0234loglines retained; corrected actual helper namespace before relaunch.
+No desktop pointer outcome claimed from this compile failure.
+
+
+Desktop pointer run14b0f2774cc840059c0fbe48574a2bb8 stopped at crafting-tab
+preflight (2observations,1failure), before any pointer exercise. Raw lacked the
+intermediate panel value, so no exact failure cause claimed solely from that log.
+Inspection identifies same stationary-hover snapback in the Equipment/Inventory
+and popup paths. Added3REDcases (both panel directions, popup cursor), with real
+movement return controls. Extend moved-grid guard to the whole inventory hover
+handler; click dispatch remains independent. Added each-tab native checks to make
+any repeated launch failure diagnostic. This is a same-file flow-smoothing scope
+extension prompted by actual desktop setup, not a waived gate.
+
+Wave1 hover72RED:69pass/3fail,03:30:31–34UTC,zeroC#errors. Both parked
+Equipment/Inventory tab directions and popup keyboard cursor reproduced snapback.
+Promoted unchanged-grid return across hover after cache update; direct click paths
+continue independently resolving hits. New save-graph controls passed in this run.
+
+
+Wave1 hover+neighbors218/218GREEN,03:32:26–35UTC,zeroC#errors.
+Second desktop run1953714aaee64a86a10c2335873aad16 failed first simulated
+Tab preflight, before pointer. Retained raw; this does not invalidate the actual
+RED→GREEN hover fixes or prove their cause was the desktop failure. Desktop mode
+now observes actual CUA keyboard and mouse input throughout, with no virtual
+keyboard device, queued keys or reflection-driven selection. Headless native uses
+its separately verified virtual keyboard path. Final pointer gate remains open.
+
+Desktop real-input run33de6be240c74a7d9fe2f019636c3cac timed out during
+root context recovery before Crafting; retained raw248.43994425s,1failed
+observation,0C#errors. Rerun d97db4f4b22541a4ad956243ffebad2b reached
+Crafting with actual CUA N,I,three separate Tabs; SpaceSteel→Down→SpaceIron
+visibly and observably replaced Steel without an intervening clear. That state
+check passed. Pointer scroll/right-click/left-click/drag moved the visible cursor
+but legacy Input.mousePosition remained1881,894 (grid79,7), never reaching
+Oak13,9. The180second pointer phase therefore failed honestly:2observations,
+1failure,252.649266458s,0C#errors. This is NOT a passed native pointer gate.
+Project Both input backends and new-system focus settings do not establish legacy
+mouse event delivery. Cause beyond that boundary remains unproven. Retain the
+manual observer and explicit live limitation; keyboard native, drawn tile geometry,
+click handler and hover counterchecks provide the verified coverage. No claim that
+CUA moved the game pointer, or that raw state alone proves keyboard provenance.
+
+Cold-eye observer fixes: inner Oak phase previously transiently emitted complete
+before forge; renamed oak_click_complete. Desktop phase allowances total540s, so
+launcher now permits600s including bootstrap (headless remains360s). Removed two
+unreachable pointer conditionals from the headless branch. These are harness
+corrections, not game-mechanic fixes. Final post-global-hover75second capture and
+full suite follow. Protected scene recovery was preserved when Unity offered it.
+
+## Wave2 — visible failure and contextual retry (source sweep complete)
+
+Goal: a refused action keeps its menu and shows the reason at the bottom of inventory;
+a retry succeeds once and clears the warning. Runtime remains in the two UI files.
+Existing command payment/rollback/target rules remain authoritative. This is CoO
+interaction consistency, not a new Qud-parity claim. Content readiness is green: actual
+Sack(MaxItems6), Dagger, seeds, forge/brew/tinker content already ship with sprites.
+No new content or art is needed. A47 selection/receipt correctness remains separate.
+
+Root read ExecuteItemAction, command helpers, popup/body/displacement completion,
+RenderDetailLine and Forge/Brew implementation alongside PutInContainerCommand and
+GA02c's actual native route. Independent source review supplies counterchecks.
+
+| Source correction | Planned behavior/test |
+|---|---|
+| Popup closes unconditionally despite bool helpers | Close only after success; retain exact item/action/cursor on refusal |
+| Command helper failure is console-only | Shared UI status prioritizes detail row44 without changing legend43 or hit geometry |
+| Full Sack means six distinct entries; merge may still succeed | Use six actual distinct fillers plus Dagger; full-merge positive control, no UI fullness preflight |
+| Put menu discovers same-cell containers | Actual same-cell Sack for native and menu tests, not adjacent-only fixture |
+| Equipment/body/displacement finish paths also discard bool | Apply outcome handling symmetrically; preserve subpicker/throw/examine handoffs |
+| Mod target popup already stays open on refusal | Add visible reason and success clearing; no redundant retention rewrite |
+| Forge commits before independent optional quench | Partial status explicitly says forging succeeded/quench failed; do not imply refund or quench-only Enter retry |
+| Brew UI excludes invalid/mishap/sludge previews before command | Preserve that gate and resource behavior |
+| Batch commands can succeed partially with empty ErrorMessage | Clear prior refusal without inventing a full-request success count |
+| Generic item Parts may not expose detailed rejection | Show command result/fallback; do not scrape global log history |
+| Historical GA02c driver asserts failed popup closes | Update reusable driver assertion/Escape count; retain archived historical raw evidence |
+
+Status survives redraw/rebuild within the same context, clears on success, inventory
+open/close or deliberate context change. New action replaces the previous outcome.
+Counterchecks cover full→make-room→retry, full-merge, locked→unlock, failed planting,
+missing forge picks, off-station batch versus valid single, invalid brew, tinker capacity
+refund/retry, missing Sharp bits, forge/quench partial outcome, and actual status tiles.
+Native uses the proven GA02c world-pick→open Sack→take filler→return to put flow; first
+assert exact retained popup and visible status before leaving to make room. Dedicated
+adversarial and cold-eye gates follow minimum GREEN. No added per-frame scanning: UI
+status is set at actions and drawn with existing renders; if scope changes into frame
+work, measure the required75second baseline first.
+
+Wave1 final:8542/8542GREEN,03:53:43–03:55:28UTC,105.0671965s,0C#errors.
+Native24/24PASS,775c6f2fbb674d21a6700a924b584b5c,75.000108s measured,
+366913frames,70/70navigation,69/69toggles,exit0,no logged native exceptions.
+Two-file runtime scope,72tests(24regression/40adversarial/8staging),independent
+review complete. Actual desktop mouse delivery remains unverified, with failed
+raw evidence retained. Wave2 begins against this completed regression baseline.

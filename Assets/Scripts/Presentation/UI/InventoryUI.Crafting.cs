@@ -38,6 +38,11 @@ namespace CavesOfOoo.Rendering
         private CraftingMode _craftingMode = CraftingMode.Forge;
         private int _craftCursorIndex;
         private int _craftScrollOffset;
+        // One map for drawing and hit testing, including blank section spacers.
+        // Rebuilt only with rows/scroll changes; pointer frames allocate nothing.
+        private readonly int[] _craftScreenRows = new int[CRAFT_LIST_END_Y - CRAFT_LIST_START_Y + 1];
+        private bool _craftHasMoreBelow;
+        private readonly Dictionary<string, Entity> _exclusiveCraftPicks = new Dictionary<string, Entity>(System.StringComparer.Ordinal);
 
         /// <summary>One rendered line. Headers and empty-notes are inert:
         /// the cursor skips them so it can never sit on something that
@@ -81,8 +86,9 @@ namespace CavesOfOoo.Rendering
             _pickedReagents.Clear();
 
             var inv = PlayerEntity?.GetPart<InventoryPart>();
-            if (inv == null) return;
+            if (inv == null) { ClampCraftCursor(); return; }
 
+            NormalizeExclusiveCraftPicks(inv);
             _atStation = _craftingMode == CraftingMode.Forge
                 ? ForgePart.IsNearForge(PlayerEntity, CurrentZone)
                 : AlchemyStillPart.IsNearStill(PlayerEntity, CurrentZone);
@@ -114,6 +120,25 @@ namespace CavesOfOoo.Rendering
             }
 
             ClampCraftCursor();
+        }
+
+        private void NormalizeExclusiveCraftPicks(InventoryPart inventory)
+        {
+            // Old panel selections could save multiple marks in an exclusive group.
+            // Keep the last marked item and its exact marker (the station already
+            // uses this order for component slots);
+            // unrelated items and multi-pick reagents remain untouched.
+            _exclusiveCraftPicks.Clear();
+            for (int i = 0; i < inventory.Objects.Count; i++)
+            {
+                Entity item = inventory.Objects[i];
+                if (!CraftingMarkPart.IsMarked(item)) continue;
+                string group = CraftingMarkPart.ExclusiveGroupOf(item);
+                if (group == null) continue;
+                if (_exclusiveCraftPicks.TryGetValue(group, out var previous)) CraftingMarkPart.Toggle(previous);
+                _exclusiveCraftPicks[group] = item;
+            }
+            _exclusiveCraftPicks.Clear();
         }
 
         private static string SlotOf(Entity item)
@@ -172,7 +197,7 @@ namespace CavesOfOoo.Rendering
 
         private void ClampCraftCursor()
         {
-            if (_craftRows.Count == 0) { _craftCursorIndex = 0; _craftScrollOffset = 0; return; }
+            if (_craftRows.Count == 0) { _craftCursorIndex = 0; _craftScrollOffset = 0; BuildCraftingLayout(); return; }
 
             if (_craftCursorIndex >= _craftRows.Count) _craftCursorIndex = _craftRows.Count - 1;
             if (_craftCursorIndex < 0) _craftCursorIndex = 0;
@@ -189,12 +214,50 @@ namespace CavesOfOoo.Rendering
                 if (found >= 0) _craftCursorIndex = found;
             }
 
-            int visible = CRAFT_LIST_END_Y - CRAFT_LIST_START_Y + 1;
-            if (_craftCursorIndex < _craftScrollOffset)
-                _craftScrollOffset = _craftCursorIndex;
-            else if (_craftCursorIndex >= _craftScrollOffset + visible)
-                _craftScrollOffset = _craftCursorIndex - visible + 1;
-            if (_craftScrollOffset < 0) _craftScrollOffset = 0;
+            _craftScrollOffset = Mathf.Clamp(_craftScrollOffset, 0, _craftRows.Count - 1);
+            if (_craftCursorIndex < _craftScrollOffset) _craftScrollOffset = _craftCursorIndex;
+            BuildCraftingLayout();
+            // Logical rows have variable drawn height because headers add spacers.
+            // Keep the keyboard selection within the same map the player sees.
+            while (_craftRows[_craftCursorIndex].IsSelectable && !CraftCursorIsVisible()
+                && _craftScrollOffset < _craftCursorIndex)
+            { _craftScrollOffset++; BuildCraftingLayout(); }
+        }
+
+        private bool CraftCursorIsVisible()
+        {
+            for (int i = 0; i < _craftScreenRows.Length; i++)
+                if (_craftScreenRows[i] == _craftCursorIndex) return true;
+            return false;
+        }
+
+        private void BuildCraftingLayout()
+        {
+            System.Array.Fill(_craftScreenRows, -1);
+            int line = 0, row = _craftScrollOffset;
+            for (; row < _craftRows.Count && line < _craftScreenRows.Length; row++)
+            {
+                if (_craftRows[row].IsHeader && line > 0) line++;
+                if (line >= _craftScreenRows.Length) break;
+                _craftScreenRows[line++] = row;
+            }
+            _craftHasMoreBelow = row < _craftRows.Count;
+        }
+
+        private int GetCraftingRowAtGrid(Vector2Int grid)
+        {
+            if (_panel != PANEL_CRAFTING || grid.x < 1 || grid.x >= CRAFT_DIVIDER_X - 2
+                || grid.y < CRAFT_LIST_START_Y || grid.y > CRAFT_LIST_END_Y) return -1;
+            int row = _craftScreenRows[grid.y - CRAFT_LIST_START_Y];
+            return row >= 0 && row < _craftRows.Count && _craftRows[row].IsSelectable ? row : -1;
+        }
+
+        private void HandleCraftingClick(Vector2Int grid)
+        {
+            int row = GetCraftingRowAtGrid(grid);
+            if (row < 0) return;
+            _craftCursorIndex = row;
+            ToggleCraftPickUnderCursor();
         }
 
         private void MoveCraftCursor(int delta)
@@ -266,9 +329,10 @@ namespace CavesOfOoo.Rendering
             CraftRow row = _craftRows[_craftCursorIndex];
             if (!row.IsSelectable || row.Item == null) return;
 
-            // Routed through the shared mark so the station menus see the
-            // same selection.
-            CraftingMarkPart.Toggle(row.Item);
+            // Use the same ownership validation and exclusive groups as station
+            // selections; reagents deliberately remain multi-select.
+            var result = InventorySystem.ExecuteCommand(new ToggleCraftMarkCommand(row.Item), PlayerEntity, CurrentZone);
+            if (!result.Success && !string.IsNullOrEmpty(result.ErrorMessage)) MessageLog.Add(result.ErrorMessage);
             Rebuild();
             Render();
         }
@@ -404,36 +468,20 @@ namespace CavesOfOoo.Rendering
             }
 
             int listWidth = CRAFT_DIVIDER_X - 3;
-            int rowY = CRAFT_LIST_START_Y;
-
-            for (int i = _craftScrollOffset; i < _craftRows.Count && rowY <= CRAFT_LIST_END_Y; i++)
+            for (int line = 0; line < _craftScreenRows.Length; line++)
             {
+                int i = _craftScreenRows[line];
+                if (i < 0 || i >= _craftRows.Count) continue;
                 CraftRow row = _craftRows[i];
-
-                if (row.IsHeader)
-                {
-                    // A blank line above every section but the first, so
-                    // the groups read as blocks rather than one long list.
-                    if (rowY > CRAFT_LIST_START_Y) rowY++;
-                    if (rowY > CRAFT_LIST_END_Y) break;
-                    DrawSectionRule(1, rowY, row.Text, listWidth);
-                }
-                else if (!row.IsSelectable)
-                {
-                    DrawText(4, rowY, row.Text, QudColorParser.DarkGray);
-                }
-                else
-                {
-                    DrawPickRow(1, rowY, listWidth, row.Text,
-                        i == _craftCursorIndex, row.IsMarked, row.Count);
-                }
-
-                rowY++;
+                int rowY = CRAFT_LIST_START_Y + line;
+                if (row.IsHeader) DrawSectionRule(1, rowY, row.Text, listWidth);
+                else if (!row.IsSelectable) DrawText(4, rowY, row.Text, QudColorParser.DarkGray);
+                else DrawPickRow(1, rowY, listWidth, row.Text, i == _craftCursorIndex, row.IsMarked, row.Count);
             }
 
             if (_craftScrollOffset > 0)
                 DrawChar(CRAFT_DIVIDER_X - 2, CRAFT_LIST_START_Y, '^', QudColorParser.Gray);
-            if (rowY > CRAFT_LIST_END_Y)
+            if (_craftHasMoreBelow)
                 DrawChar(CRAFT_DIVIDER_X - 2, CRAFT_LIST_END_Y, 'v', QudColorParser.Gray);
         }
 

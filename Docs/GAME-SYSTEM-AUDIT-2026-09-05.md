@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; CRAFTING FLOW WAVE1 IN PREPARATION**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 PREPARED**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -1739,3 +1739,18 @@ must-fix; all fixture corrections/raw failures retained in GA02i-REPORT.md.
 Today's verified task suite7302→8470,+1168tests. Next user-prioritized crafting
 selection/pointer smoothing is planned in MECHANICS-FLOW-SMOOTHING-2026-09-05.md;
 remaining A47 brew/tinker and broader audit queue stay active.
+
+
+### Flow wave1 — crafting selection and mixed-input continuity
+
+Accepted smoothing steps1–2 implemented in two UI files. Full8542GREEN(+72),
+03:53:43–03:55:28UTC,105.0671965s,0compilererrors; focused218GREEN.
+Native24PASS,75.000108s measured,366913frames,70/70navigation,69/69toggles.
+Radio selection, legacy normalization, drawn-row hit geometry, spacer-aware scroll
+and global parked-hover continuity covered by40dedicated adversarial cases.
+Real desktop keyboard selection passed; actual mouse delivery remains unverified
+(frozen legacy input despite visible CUA movement). FLOW1-REPORT.md retains that
+failed gate and all raw attempts; do not report it as passed. Independent review
+cleared production; harness completion/deadline corrections included.
+Next FLOW2 visible refusal/retry source sweep complete in smoothing plan. Remaining
+A47brew/tinker and broad repair queue remain active.
