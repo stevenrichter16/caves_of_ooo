@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 SOURCE SWEEP COMPLETE**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 COMPLETE; FLOW5 SOURCE SWEEP COMPLETE**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -1798,3 +1798,15 @@ provenance prevents a held closing letter becoming normal movement.
 Full8689GREEN(+66);native50PASS;70/70navigation and46/46observed close/reopen
 cycles over75seconds. FLOW3-REPORT.md retains all REDs, source/driver corrections,
 independent cold-eye and honesty bounds. A48/FLOW4 identity repair next.
+
+## FLOW4/A48 close-out — independently selectable split items
+
+CloneForStack now assigns GUID-N before part initialization. Normal equip/unequip,
+partial drop and stack throws retain menu-addressable identity. Supported body loads
+repair only null/empty IDs, preserving all opaque existing IDs and v7 format/aliases.
+Removed the redundant post-clone assignment in weapon crafting. This is two related
+identity defect surfaces, not77bugs. Full8766/8766GREEN(+77), native63/63PASS.
+FLOW4-REPORT.md retains clean RED, adversarial/save/map corrections and raw evidence.
+Known A31destroyed-camera shutdown issue recurred after native success and remains
+queued; no exception-free shutdown claim. Next accepted FLOW5Separate one, then
+remaining brew/tinker and broader actor/world/save/movement/material repairs.

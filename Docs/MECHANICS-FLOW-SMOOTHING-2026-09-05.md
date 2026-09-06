@@ -1,6 +1,6 @@
 # Mechanics flow and responsiveness — 2026-09-05
 
-Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 SOURCE SWEEP COMPLETE. User explicitly requested identifying mechanics that
+Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 COMPLETE; WAVE5 SOURCE SWEEP COMPLETE. User explicitly requested identifying mechanics that
 need smoother integration and fully implementing the supported improvements, without
 intervention. This extends the ongoing whole-game audit; it does not cancel its
 remaining repairs. Baseline latest completed repair1ef093a1,8470tests,GA02i native44.
@@ -508,3 +508,83 @@ FLOW3 COMPLETE: full8689/8689GREEN,05:13:34–05:15:32UTC,118.2246955s,
 0compilererrors. Added66tests (27regression,31adversarial,8staging). Native50PASS,
 final75second workload70navigation/46confirmed reopen cycles.2387uniqueGUIDs,
 0collisions. FLOW4 next, with source corrections/plan already recorded above.
+
+FLOW4 initial RED:32tests,13passed19failed,0compilererrors,
+05:19:28–05:19:30UTC,1.7655235s. Raw FLOW4-red.xml.gz retained.
+18 cases expose missing identity; one singleton reforge failure is a fixture
+mistake: the two-out TryReforge overload returns the displaced component,
+not the affected weapon (WeaponForgingService203–211). Use the three-out
+overload and assert both exact weapon and returned SteelBladeComponent.
+Replace NUnit IsNotEmpty(null) argument errors with explicit null/empty
+identity assertions, then rerun unchanged production to retain a clean RED.
+
+FLOW4 corrected RED:32tests,14passed18failed,0compilererrors,
+05:24:57–05:24:58UTC,1.8201597s. All18failures now assert missing identity;
+14 controls already pass. Apply the three planned runtime hunks next.
+
+FLOW4 minimum100/100GREEN,05:25:56–05:26:00UTC,4.3057709s; dedicated
+31adversarial plus neighbors166/166GREEN,05:28:12–05:28:19UTC,7.4533531s.
+Both0compilererrors. Native staging tests now precede its scenario. Independent
+review requested raw carried/equipped counts before Distinct in the save-cycle
+check; strengthened to2carried/1equipped. No production finding.
+
+FLOW4 staging RED9/9expected missing-scenario failures,0compilererrors,
+05:29:05UTC,.3032237s. Native scenario/player/editor launcher added afterward.
+Independent review: no runtime finding; four stronger save cases increase dedicated
+matrix31→35. Raw counts and rollback wording corrected. Expanded focused run active.
+
+## FLOW5 — direct Separate one (source sweep complete; after FLOW4)
+
+CoO-original usability improvement, accepted step6. Existing Dagger/Sharp art and
+recipes are sufficient; no new content, Part, station requirement or save format.
+
+| Source/premise | Verified correction and decision |
+|---|---|
+| InventoryPart.AddObject51/AddCraftedUnit | Both merge immediately. A narrow transaction-owned append without merging is required to retain an unchanged singleton beside its source. |
+| InventoryPart.Contains475 | Includes equipment. Require actual Objects membership and exclude equipped references; missing/singleton/nonowner requests refuse. |
+| StackerPart.SplitStack100 | Decrements/refreshes before cloning. Prepare clone before mutation, then revalidate; initialization exceptions leave source unchanged. |
+| InventoryTransaction.Do | Enrolls undo after apply. Use Do(null,undo) before mutations and InventoryTransferSnapshot for exact list/count/ownership restoration. |
+| CloneForStack/CraftingMarkPart | Clone copies marks. Preserve source mark; remove the new unit's mark to avoid two exclusive weapon/component selections. |
+| InventoryScreenData sorting | Sorts by ID, so append order is not display order. Return exact new Entity and focus by reference. |
+| InventoryUI.ReopenItemActionPopupFor293 | Existing exact-reference focus seam can present the separated singleton. Preserve FLOW2 refusal status/popup on failure. |
+| Inventory action timing | Existing inventory/Sharp actions cost zero world turns; preserve that contract. |
+| Tinkering Sharp | Actual mod_sharp_melee costs BC, requires singleton. No need to change Sharp's rule. Dagger3 leaves source2 unambiguously ineligible. |
+
+Minimal plan: SeparateOneCommand with exact recipient; source claim; clone/one-unit
+preparation before mutation; recheck source; snapshot and pre-enrolled rollback;
+one decrement, append with owner refs and carry refresh. Total mass unchanged,
+including already-overweight packs. Add carried-only Separate one popup action and
+exact recipient focus. Later normal acquisitions may merge; no persistent no-stack flag.
+
+RED/counterchecks: Dagger3→2+1 and2→1+1; unrelated identical stack untouched;
+null/missing inventory, ground/container/foreign/equipped/missing Stacker and1/0/-1
+refuse; stale commands/reentrancy; unlimited/exact-limit/overweight mass/handling;
+clone exception and outer rollback; marked/unmarked source; paid Sharp on exact
+new singleton only; popup visibility/refusal/focus and unchanged clock. Dedicated
+20–60adversarial cases, independent review and native proof follow.
+
+Native plan: Dagger3, empty equipment, known real Sharp recipe, BC bits. Actual
+inventory→Separate one→Mods→Sharp→exact new singleton. Assert original2unchanged,
+new1Sharp/+1PenBonus/ModificationCount1, one payment, distinct IDs, unchanged mass.
+The existing GameAuditReforgeModsBenchPlayer.Modify helper supplies the keyboard
+route. Arbitrary unknown Part deep cloning remains the existing separate contract.
+
+FLOW4 expanded focused102GREEN,0CS,05:32:06–05:32:09UTC,3.6492076s.
+Native63/63PASS,run2c8a55557725443e8c786172e1f03c4d,30.622404583s,exit0,
+0CS. Actual keyboard equip/unequip→exact station transform→individual ground picker
+passed for Dagger and paid forged stock. Raw log retains2existing A31 destroyed-camera
+exceptions after successful report during shutdown; exit0 is not an exception-free
+shutdown claim.2393uniqueGUIDs/0collisions. Final source review0must-fix; full running.
+
+FLOW4 first full8765:8759passed6failed,0CS,05:35:02–05:37:03UTC,
+120.9815569s.1known fungal self-cloud flake;5older W6map preservation assertions
+compared null source IDs with repaired loaded IDs. Source sweep correction:
+map markers are body-loaded entities too. Existing-identity tests must stage an
+actual opaque ID; missing-ID controls must expect repair while preserving metadata.
+Four W6adversarial fixtures now assign saved IDs; FellingSiteSave adds paired
+existing/missing controls(+1case). No runtime change. Full repeat follows.
+
+FLOW4 COMPLETE:8766/8766GREEN,05:39:07–05:41:08UTC,121.2167921s,
+0CS/failed/skipped/inconclusive.77newcases, native63PASS,2393uniqueGUIDs.
+Full failed evidence and map fixture correction retained. Independent review0must-fix.
+FLOW5 source sweep/RED plan above is next; no FLOW5production changes yet.

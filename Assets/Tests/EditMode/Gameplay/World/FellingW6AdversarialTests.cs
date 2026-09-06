@@ -68,7 +68,9 @@ namespace CavesOfOoo.Tests
         {
             var m = new OverworldZoneManager(_factory,67);
             foreach (var p in new[]{(2,4),(4,6),(3,5)}) m.WorldMap.SetPOI(p.Item1,p.Item2,null);
-            var map = m.GetZone("WorldMap"); var marker = Marker(map,x,y); marker.SetIntProperty("PlayerMark",17);
+            var map = m.GetZone("WorldMap"); var marker = Marker(map,x,y);
+            marker.ID = $"saved-map-marker:{x},{y}"; // Test preservation of an existing identity; missing IDs repair on body load.
+            marker.SetIntProperty("PlayerMark",17);
             var ground = m.GetZone($"Overworld.{x}.{y}.0"); var stone = _factory.CreateEntity("Tepuibone"); ground.AddEntity(stone,40,12);
             var actor = Actor(ground,40,12); var load = SaveLoad(m,ground,actor);
             m=load.ZoneManager; ground=m.ActiveZone; actor=load.Player; map=m.GetZone("WorldMap");

@@ -25,12 +25,13 @@ namespace CavesOfOoo.Tests
                 return GameSessionState.Load(new SaveReader(stream, _factory));
             }
         }
-        [Test]
-        public void LoadingOldCachedMapRepairsOnlyItsDerivedAppearance()
+        [TestCase(false)] [TestCase(true)]
+        public void LoadingOldCachedMapRepairsAppearanceAndOnlyMissingIdentity(bool missingId)
         {
             var manager = new OverworldZoneManager(_factory, 64); manager.WorldMap.SetPOI(3, 5, null);
             var zone = manager.GetZone("WorldMap"); var p = WorldMap.WorldCellToZoneCell(3, 5);
             var marker = zone.GetCell(p.zoneX, p.zoneY).Objects.Single(e => e.HasPart<WorldMapCellPart>());
+            marker.ID = missingId ? null : "saved-map-marker:3,5";
             marker.SetIntProperty("PersonalMark", 17); marker.GetPart<RenderPart>().RenderLayer = 4;
             var player = _factory.CreateEntity("Player"); zone.AddEntity(player, p.zoneX, p.zoneY);
             var item = _factory.CreateEntity("Tepuibone"); zone.AddEntity(item, p.zoneX, p.zoneY);
@@ -41,7 +42,13 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual("FellingSite", loaded.ZoneManager.WorldMap.GetPOI(3, 5).Type.ToString());
             Assert.AreEqual("the Felling-Site", lm.GetPart<RenderPart>().DisplayName);
             Assert.AreEqual("O", lm.GetPart<RenderPart>().RenderString);
-            Assert.AreEqual(marker.ID, lm.ID); Assert.AreEqual(17, lm.GetIntProperty("PersonalMark"));
+            if (missingId)
+            {
+                Assert.IsTrue(System.Guid.TryParseExact(lm.ID, "N", out _));
+                Assert.IsNull(marker.ID, "loading does not mutate the old saved source");
+            }
+            else Assert.AreEqual(marker.ID, lm.ID);
+            Assert.AreEqual(17, lm.GetIntProperty("PersonalMark"));
             Assert.AreEqual(4, lm.GetPart<RenderPart>().RenderLayer);
             Assert.IsTrue(cell.Objects.Contains(loaded.Player)); Assert.IsTrue(cell.Objects.Any(e => e.ID == item.ID));
             Assert.AreEqual(count, loadedZone.GetAllEntities().Count);

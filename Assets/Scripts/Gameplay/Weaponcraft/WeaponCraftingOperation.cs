@@ -71,7 +71,6 @@ namespace CavesOfOoo.Core
         {
             if ((weapon.GetPart<StackerPart>()?.StackCount ?? 1) == 1) return weapon;
             Entity unit = weapon.CloneForStack();
-            unit.ID = Guid.NewGuid().ToString("N");
             unit.GetPart<StackerPart>().StackCount = 1;
             return unit;
         }

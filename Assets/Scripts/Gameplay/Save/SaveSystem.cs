@@ -762,6 +762,9 @@ namespace CavesOfOoo.Core
         {
             reader.ExpectCheck("Entity.Begin");
             entity.ID = reader.ReadString();
+            // Older stack splits could be saved without an identity. Repair body reads
+            // before load hooks; retain every existing opaque ID and the v7 wire format.
+            if (string.IsNullOrEmpty(entity.ID)) entity.ID = Guid.NewGuid().ToString("N");
             entity.BlueprintName = reader.ReadString();
             entity.Tags = ReadStringDictionary(reader);
             // W6.5: this newly authored classification must reach old saved

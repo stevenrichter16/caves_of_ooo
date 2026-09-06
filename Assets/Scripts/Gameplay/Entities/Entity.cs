@@ -392,7 +392,8 @@ namespace CavesOfOoo.Core
         /// </summary>
         public Entity CloneForStack()
         {
-            var clone = new Entity();
+            // A split unit is independently selectable, including during Part.Initialize.
+            var clone = new Entity { ID = Guid.NewGuid().ToString("N") };
             clone.BlueprintName = BlueprintName;
 
             foreach (var kvp in Tags)
