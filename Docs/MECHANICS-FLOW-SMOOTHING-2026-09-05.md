@@ -1,6 +1,6 @@
 # Mechanics flow and responsiveness — 2026-09-05
 
-Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 SOURCE SWEEP COMPLETE. User explicitly requested identifying mechanics that
+Status: WAVE1 IMPLEMENTED/REGRESSION-VERIFIED (LIVE MOUSE UNVERIFIED); WAVE2 COMPLETE; WAVE3 COMPLETE; WAVE4 SOURCE SWEEP COMPLETE. User explicitly requested identifying mechanics that
 need smoother integration and fully implementing the supported improvements, without
 intervention. This extends the ongoing whole-game audit; it does not cancel its
 remaining repairs. Baseline latest completed repair1ef093a1,8470tests,GA02i native44.
@@ -335,3 +335,176 @@ c688c7e8fa8c44bd8865f2e81da46865,10.5798875s. Full8623/8623GREEN,
 04:28:14–04:30:03UTC,108.4742895s,0compiler errors. Added81tests.
 2380unique asset GUIDs,0collisions;37owned paths with0protected overlap.
 Next FLOW3: shared truthful shortcut mapping and actual activation release gating.
+
+## FLOW3 — truthful menu shortcuts
+
+Status: PRE-IMPLEMENTATION SWEEP COMPLETE. Baselinebb9b785e,8623GREEN.
+CoO-original control repair; no Qud parity claim. Existing content/art sufficient.
+
+| Premise/reference | Verified contract / correction before implementation |
+|---|---|
+| PickupUI HandleInput/Render | Row7 G closes first; rows10/11 J/K navigate. Actual producer accepts any2+takeable ground items. Seven distinct carried-and-dropped shipped items reproduce it. |
+| Container loot and ContainerPickerUI | Chest holds10 distinct entries; Sack6 cannot prove seventh-item loot. Seven nearby containers are a staged crowd control, not claimed ordinary generated placement. |
+| DestructiblePart GetInventoryActions | Break advertises K, consumed by world-menu navigation. Indestructible flag removes the action. |
+| AlchemyStillPart GetInventoryActions | BrewMix b and BrewMixBatch B case-fold to the same key. Real marked GlimmerBrine3 supports single then batch payment. |
+| ForgePart | f/F collision exists in actorless fallback; not claimed ordinary actor-aware forge defect. |
+| WorldActionMenuUI Open/HandleInput/Render | Preserve original action refs/order/raw Key. Reserve valid unique preferred letters before filling missing/duplicate/reserved rows; CraftNoop headings stay unlabeled. |
+| InputHandler HandleWorldActionMenuInput/ExecuteWorldActionSelection | Capture actual letter activation before ConsumeSelection. Set release gate there; retain the existing4-argument execution seam for callers/tests. Enter/keypad/mouse have no letter release gate. |
+| DialogueUI reveal/dispatch/render | Three consumers must share positional mapping; ChoiceData has no shortcut field. First mapped press while revealing only finishes text. |
+| Elder_Well_1 + ConversationManager.RefreshVisibleChoices | At most7 authored visible plus automatic Attack=8, optional trade=9. Ten-row dialogue regression is staged9choices+Attack, not a twelve-visible ordinary claim. |
+| EditModeTests.asmdef/InputHelper | Add explicit Unity.InputSystem reference for actual queued keyboard HandleInput tests. Save/restore input settings and keyboard; reflection observes UI state only except fixture staging. |
+
+Implementation snippet/contract: shared internal MenuShortcutMap positional alphabet
+excludes GJK for pickup/container and JK for world/dialogue. Positional lookup uses
+absolute list index, returns no key beyond alphabet capacity; no per-frame collection.
+World map is rebuilt only on Open, first reserving valid authored preferences and then
+assigning fallback keys in row order. Display, dispatch and dialogue reveal all consume
+the same mapping. Leave exhausted rows available through existing navigation/Enter.
+Pickup hint becomes [key]take, with existing Tab/Enter/Esc/G functions retained.
+
+Milestones: actual RED dispatch+render/control tests; minimum implementation;20–60
+dedicated adversarial cases and independent cold-eye; native pickup/Break/still/held-key
+route with raw observations; full suite and same-commit living documentation.
+Expected touched runtime: four menus, new helper and two small InputHandler hunks.
+InputHandler contains protected spell work: save current bytes and stage only our diff.
+No blueprint/art/save/payment rules changed. No arbitrary action reordering.
+
+Scope-prune: other menus' existing parked-hover behavior stays recorded for a later
+smoothing wave; native keyboard parks pointer outside. Existing dialogue10-row draw
+limit/absent scrolling is separate debt; this wave repairs shown shortcuts, not a new
+dialogue layout. Keyboard correctness does not prove subjective smoothness or desktop
+mouse delivery. No performance speedup claim; mapping has no new frame allocation.
+
+Pre-implementation self-review: 🟡 release gate, preferred-key starvation and revealing
+dialogue are explicit tests; 🔵 ordinary reach paired with staged boundary controls;
+⚪ large dialogue/crowded-container fixtures labeled accurately.
+
+FLOW3 first RED21:1pass/20fail,04:42:22–23UTC,1.3201951s,0compilererrors.
+Rendered G/J/K/Break collisions reproduce. Fixture correction before runtime work:
+Unity InputManager.ShouldRunUpdate skips Manual player updates outside PlayMode;
+queued EditMode keyboard must use InputUpdateType.Editor. Existing uppercase B glyph
+is not a lowercase shortcut; the test reads no lowercase key, correctly rejecting it.
+Independent review additionally found closing pickup/container/dialogue can leak a
+held selection letter into normal movement. Source confirms they bypass the existing
+world release gate. Add paired real dispatch/held/release REDs before extending the
+same activation provenance to all four affected menus; no claim of other UI coverage.
+
+FLOW3 fixture correction: raw Editor updates change values but do not advance the
+device player-step counter used by wasPressedThisFrame (InputManager4155/4165,
+InputDevice368,ButtonControl283). Retain three failed fixture reports plus compile
+log; none proves dispatch. Use Unity's public composed InputTestFixture, which saves
+and restores the input runtime and provides isolated queued player updates. Added
+explicit Unity.InputSystem.TestFramework test reference; no production input override.
+Actual queued input must pass its precondition before any gameplay assertion counts.
+
+FLOW3 valid dispatch RED27:11pass/16fail,04:49:48–50UTC,1.650369s,
+0compilererrors. Input preconditions now pass. Three closing-menu held A cases
+actually moved from10,10 to7,10; paired Enter cases remained stationary and fresh
+movement controls passed. World Enter incorrectly gated authored K; remapped A had
+no selection. Dialogue J revealed instead of navigating, and L failed to select.
+Rendered G/J/K/Break and still case-fold collisions confirmed. Minimum shared-map
+implementation now follows these REDs; held-key capture extends to all four menus.
+
+FLOW3 minimum52:50pass/2fixture expectation failures,04:50:51–53UTC,
+1.7166655s,0compilererrors. Pickup excludes G as well as JK: absolute rows9/10
+(zero-based) map M/N, while dialogue row9 maps L. Correct the test arithmetic;
+production mapping and actual closing held-key controls pass. Positional input
+loops stop at alphabet exhaustion, preserving the prior bounded per-frame scan.
+
+FLOW3 dedicated+neighbors83GREEN,04:51:56–04:52:00UTC,3.4494628s,
+0compilererrors.27regression+31adversarial cover data identity, two-pass reservation,
+case folding, navigation, scrolling/exhaustion and held-key handoffs. Native staging
+66RED:58pass/8missing-bench failures,04:54:35–38UTC,3.1478145s.
+After staging RED, added disposable real-drop/seven-Sack/Chest/still/staged-dialogue
+scenario and native driver. Its75second workload uses actual world-menu navigation
+and Examine→reopen. Prior FLOW2 capture is historical context, not an identical
+workload or causal performance comparison; no speedup claim.
+
+FLOW3 focused172GREEN,04:58:18–25UTC,7.3841479s,0compilererrors.
+Native first run2563b1ad1c8a4aa0823e65cb5121ae8d passed11checks, then audit-only
+observation threw: Chest structural HP lives in DestructiblePart.HP/MaxHP, not a
+creature Hitpoints Stat. Real pickup keys and held Break selection passed before
+that faulty observation. Correct observer; retain failed JSON/log including known
+A31destroyed-camera teardown. This is not a production damage defect.
+
+Native secondbc9f33dd1af545d1a536c9a570a14a15:19pass/1failure,4.920816458s,
+0compilererrors. Driver wrongly reopened after CraftToggle, whose real InputHandler
+branch already reopens the station. Its extra C correctly dispatched the newly shown
+C toggle and unmarked Glimmer, so Brew accurately refused empty mix. Remove redundant
+interact sequence and assert reopened station; NPC interaction likewise needs actual
+Chat menu action before dialogue. These are driver route corrections, not changed
+command rules. Failed JSON/log retained.
+
+Native third40f3b50cb5a54eb3a98eb21d6f0e8f59:43pass/1route failure,
+11.118388458s,0compilererrors. Actual single/batch payments, mapped dialogue
+reveal/attack confirmation and benign closure, same-cell container selection, held
+keys and fresh H movement all passed. Driver used fresh L to return east, but
+InputHandler612 opens Look before its held vi-L movement branch. Use unambiguous
+RightArrow for the route; record the existing vi-L/Look collision in the broad audit.
+No production remapping of normal Look controls is included in FLOW3. Raw retained.
+
+## FLOW4 — split-item addressability (next wave, pre-implementation)
+
+Status: SOURCE SWEEP COMPLETE; implementation waits for FLOW3 close-out. Accepted
+step5/A48. CoO-original repair; no Qud parity claim. Existing item art/content sufficient.
+
+| Reference/premise | Source-confirmed contract / correction |
+|---|---|
+| Entity.CloneForStack405–443 | New Entity has no ID; AddPart calls Initialize before return. Allocate GUID-N at construction, before these hooks. Source identity stays unchanged. |
+| StackerPart.SplitStack/RemoveOne | Positive split clones; singleton RemoveOne returns same Entity. Invalid SplitStack leaves source intact. Do not alter quantity semantics or unknown-payload cloning. |
+| EquipCommand/InventoryPart.UnequipFromBodyPart | Equip of Dagger2 splits one; unequip appends without merging, so a normal null-ID carried singleton is reproducible without Sharp. |
+| ForgePart/CraftingMarkPart.AddToggleRows | Station weapon rows require nonempty IDs. Dagger proves temper picker reach, not reforge eligibility; real ForgedWeapon must prove reforge. |
+| WorldInteractionSystem individual picker | Skips null/empty IDs and re-resolves opaque string IDs. Drop split item and exercise exact PickTarget command. |
+| WeaponCraftingOperation.PrepareUnit74 | A46 already assigns GUID-N after cloning. Central allocation makes this second assignment redundant; remove it so Initialize and caller see one identity. Do not claim A46's already-working target reach is newly fixed. |
+| SaveGraphSerializer.LoadEntityBody767 | Repair null/empty immediately after saved ID read, before parts/hooks. Placeholder-only assignment would be overwritten. |
+| SaveReader tokens / FormatVersion7 | Tokens restore aliases/owners/cycles independently of ID. Preserve v7 and every nonempty ID, including whitespace/custom/numeric/GUID. Not a migration of unsupported versions or duplicate nonempty IDs. |
+| PartRoundTripHelper | Use token-graph helper for OnAfterLoad/FinalizeLoad and owner cycles. Save writer must not mutate legacy sources. Independently loading old missing-ID bytes may mint different IDs; stability starts with saving repaired state. |
+
+Minimal implementation: clone initializer adds fresh GUID-N; remove A46 overwrite;
+load null/empty repair adds GUID-N. Three small runtime hunks, no factory numeric
+counter changes, no ID requirement in stack compatibility, no saved fields/version.
+Entity.cs and SaveSystem.cs contain protected spell changes; stage only our incremental
+hunks. WeaponCraftingOperation is owned prior repair code.
+
+TDD matrix: fresh identities available during initialization; split/RemoveOne and
+invalid/singleton controls; actual equip→unequip, partial/whole drop and stack/singleton
+throw; actual station temper/reforge and world resolution; rollback and merge identity;
+legacy missing IDs, aliases/cycles, opaque IDs, writer immutability and second-roundtrip
+stability. Then20–60dedicated adversarial cases, independent cold-eye and native
+exact-item station selection/transformation/drop/picker. Existing direct inventory
+actions already use references and are not claimed newly repaired.
+
+Scope-prune: arbitrary clone payload aliases, duplicate nonempty IDs and v8 migration
+remain separate. Direct Separate one is accepted step6, after this identity repair.
+
+FLOW3 intermediate native passed and captured75seconds (raw archived separately).
+Independent review found reopen counter only observed final open state; strengthen
+it to require closed/Normal after E and exact Still reopened. Rename legacy toggle
+fields to reopen. Add final-item pickup letter hold natively; intermediate Tab-all
+proof remains archived. These are verification improvements before final close-out.
+
+FLOW4 additional sweep correction: existing Tier3EntityReferenceRoundTripTests bare
+helper intentionally leaves referenced entities as empty placeholders, because no
+referenced bodies are read. Body-read-only ID repair preserves that contract. The
+BurningEffect null-source test concerns a null entity reference, not an empty ID;
+null tokens remain null. Do not broaden migration to placeholder creation.
+
+Strict-reopen run88704dcaff744870a5677e364f57c94a:47functional checks passed,
+measurement failed correctly.75.001341458s,79273frames,68/68navigation but
+0/46confirmed reopens. ExaminablePart63 authors X, not the driver's assumed E.
+The old final-open-only counter had indeed false-passed. Read actual rendered
+Examine binding before measurement, retain closed/Normal→exact-Still checks.
+Failed JSON/perf/CSV/log retained; earlier intermediate reopen count is invalid
+evidence and is not used for close-out. No runtime change from this correction.
+
+FLOW3 final native50/50PASS,fd51189b03b04facbfb18f9406646008,
+88.335126666s,exit0,0compilererrors,no logged exceptions.75.217160291s,
+78823frames,70/70navigation and46/46actual closed→exact-Still reopened cycles.
+Input max.782958ms,p99.004208ms; whole-frame GCmax8,706,710bytes.
+All four menu closing-letter paths now have native hold/release checks.2387unique
+GUIDs,0collisions. Full suite running; independent observer finding fixed.
+
+FLOW3 COMPLETE: full8689/8689GREEN,05:13:34–05:15:32UTC,118.2246955s,
+0compilererrors. Added66tests (27regression,31adversarial,8staging). Native50PASS,
+final75second workload70navigation/46confirmed reopen cycles.2387uniqueGUIDs,
+0collisions. FLOW4 next, with source corrections/plan already recorded above.

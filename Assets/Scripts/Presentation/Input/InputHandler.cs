@@ -1637,7 +1637,10 @@ namespace CavesOfOoo.Rendering
             PickupUI.HandleInput();
 
             if (!PickupUI.IsOpen)
+            {
+                _worldActionKeyToRelease = PickupUI.ClosingActivationKey;
                 ClosePickup();
+            }
         }
 
         private void ClosePickup()
@@ -1682,6 +1685,7 @@ namespace CavesOfOoo.Rendering
             if (ContainerPickerUI.IsOpen)
                 return;
 
+            _worldActionKeyToRelease = ContainerPickerUI.SelectedActivationKey;
             bool tookAny = false;
             if (ContainerPickerUI.SelectionMade)
                 tookAny = TryTakeAllFromContainerViaCommand(ContainerPickerUI.SelectedContainer);
@@ -2518,6 +2522,7 @@ namespace CavesOfOoo.Rendering
             var target = WorldActionMenuUI.SelectedTarget;
             var cell = WorldActionMenuUI.SelectedCell;
             bool isPile = WorldActionMenuUI.SelectedCellIsPile;
+            _worldActionKeyToRelease = WorldActionMenuUI.SelectedActivationKey;
             WorldActionMenuUI.ConsumeSelection();
 
             ExecuteWorldActionSelection(action, target, cell, isPile);
@@ -2562,9 +2567,6 @@ namespace CavesOfOoo.Rendering
                 _inputState = _worldActionMenuReturnState;
                 return;
             }
-
-            if (action.Key >= 'a' && action.Key <= 'z')
-                _worldActionKeyToRelease = (KeyCode)action.Key;
 
             // Restore gameplay camera BEFORE running the action — some
             // downstream actions (Chat → OpenDialogue, OpenContainer →
@@ -3637,7 +3639,10 @@ namespace CavesOfOoo.Rendering
             DialogueUI.HandleInput();
 
             if (!DialogueUI.IsOpen)
+            {
+                _worldActionKeyToRelease = DialogueUI.ClosingActivationKey;
                 CloseDialogue();
+            }
         }
 
         private void CloseDialogue()

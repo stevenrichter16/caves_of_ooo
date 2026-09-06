@@ -69,6 +69,9 @@ namespace CavesOfOoo.Rendering
 
         public bool IsOpen => _isOpen;
         public bool PickedUpAny => _pickedUpAny;
+        /// <summary>Actual letter used by the last handled selection; read on close to
+        /// suppress held-key movement. Non-letter inputs and Open reset this to None.</summary>
+        public KeyCode ClosingActivationKey { get; private set; }
 
         public void Open(List<Entity> items)
         {
@@ -89,6 +92,7 @@ namespace CavesOfOoo.Rendering
             _cursorIndex = 0;
             _scrollOffset = 0;
             _pickedUpAny = false;
+            ClosingActivationKey = KeyCode.None;
             _statusMessage = null;
             Render();
         }
@@ -105,6 +109,7 @@ namespace CavesOfOoo.Rendering
         public void HandleInput()
         {
             if (!_isOpen) return;
+            ClosingActivationKey = KeyCode.None;
 
             // Close on Escape or G
             if (InputHelper.GetKeyDown(KeyCode.Escape) || InputHelper.GetKeyDown(KeyCode.G))
@@ -177,11 +182,14 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Hotkeys a-z
-            for (int i = 0; i < 26 && i < _items.Count; i++)
+            // Labels and dispatch share absolute row bindings.
+            for (int i = 0; i < _items.Count; i++)
             {
-                if (InputHelper.GetKeyDown(KeyCode.A + i))
+                var key = MenuShortcutMap.Key(MenuShortcutMap.Positional(i, closesWithG: true));
+                if (key == KeyCode.None) break;
+                if (InputHelper.GetKeyDown(key))
                 {
+                    ClosingActivationKey = key;
                     PickupItem(i);
                     return;
                 }
@@ -346,9 +354,9 @@ namespace CavesOfOoo.Rendering
                         DrawChar(1, rowY, '>', QudColorParser.White);
 
                     // Hotkey
-                    if (idx < 26)
+                    char hotkey = MenuShortcutMap.Positional(idx, closesWithG: true);
+                    if (hotkey != '\0')
                     {
-                        char hotkey = (char)('a' + idx);
                         string hk = hotkey + ")";
                         DrawText(2, rowY, hk,
                             selected ? QudColorParser.White : QudColorParser.Gray);
@@ -382,7 +390,7 @@ namespace CavesOfOoo.Rendering
             }
 
             // Action bar below popup border
-            string actions = " [Enter]take [Tab]take all [a-z]select [Esc/g]close";
+            string actions = " [Enter/key]take [Tab]all [Esc/g]close";
             DrawText(0, borderH, actions, QudColorParser.DarkGray);
 
             // Status message (e.g. "too heavy" feedback)

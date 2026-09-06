@@ -39,6 +39,9 @@ namespace CavesOfOoo.Rendering
         public bool IsOpen => _isOpen;
         public bool SelectionMade => _selectionMade;
         public Entity SelectedContainer => _selectedContainer;
+        /// <summary>Pressed selection letter, or None for mouse/confirm/cancel.
+        /// The caller reads this on close before normal held movement resumes.</summary>
+        public KeyCode SelectedActivationKey { get; private set; }
 
         public void Open(List<Entity> containers)
         {
@@ -52,6 +55,7 @@ namespace CavesOfOoo.Rendering
             _scrollOffset = 0;
             _selectionMade = false;
             _selectedContainer = null;
+            SelectedActivationKey = KeyCode.None;
             Render();
         }
 
@@ -59,6 +63,7 @@ namespace CavesOfOoo.Rendering
         {
             if (!_isOpen)
                 return;
+            SelectedActivationKey = KeyCode.None;
 
             if (InputHelper.GetKeyDown(KeyCode.Escape) || InputHelper.GetKeyDown(KeyCode.G))
             {
@@ -117,10 +122,13 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            for (int i = 0; i < 26 && i < _containers.Count; i++)
+            for (int i = 0; i < _containers.Count; i++)
             {
-                if (InputHelper.GetKeyDown(KeyCode.A + i))
+                var key = MenuShortcutMap.Key(MenuShortcutMap.Positional(i, closesWithG: true));
+                if (key == KeyCode.None) break;
+                if (InputHelper.GetKeyDown(key))
                 {
+                    SelectedActivationKey = key;
                     SelectContainer(i);
                     return;
                 }
@@ -141,6 +149,7 @@ namespace CavesOfOoo.Rendering
         {
             _selectionMade = false;
             _selectedContainer = null;
+            SelectedActivationKey = KeyCode.None;
             Close();
         }
 
@@ -213,9 +222,9 @@ namespace CavesOfOoo.Rendering
                     if (selected)
                         DrawChar(1, rowY, '>', QudColorParser.White);
 
-                    if (idx < 26)
+                    char hotkey = MenuShortcutMap.Positional(idx, closesWithG: true);
+                    if (hotkey != '\0')
                     {
-                        char hotkey = (char)('a' + idx);
                         DrawText(2, rowY, hotkey + ")", selected ? QudColorParser.White : QudColorParser.Gray);
                     }
 

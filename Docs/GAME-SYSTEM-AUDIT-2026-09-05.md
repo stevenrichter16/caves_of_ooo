@@ -1,6 +1,6 @@
 # Whole-game system audit and repairs — 2026-09-05
 
-Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 SOURCE SWEEP COMPLETE**. Authorized by the user after completing
+Status: **INITIAL45-SYSTEM SCAN COMPLETE; WAVE1 SHIPPED; WAVE2a COMPLETE; WAVE2b COMPLETE; WAVE2c COMPLETE; WAVE2d COMPLETE; WAVE2e COMPLETE; WAVE2f COMPLETE; WAVE2g COMPLETE; WAVE2h COMPLETE; WAVE2i COMPLETE; CRAFTING FLOW WAVE1 REGRESSION-VERIFIED; FLOW2 COMPLETE; FLOW3 COMPLETE; FLOW4 SOURCE SWEEP COMPLETE**. Authorized by the user after completing
 Felling W6. Baseline `599a042d`, branch `claude/game-lore-analysis-jqa7ur`,
 7674/7674 tests GREEN; W6 native14/14. The daily change ledger is
 `Docs/WORK-LOG-2026-09-05.md`.
@@ -1764,3 +1764,37 @@ Full8623GREEN(+81),native51PASS,transfer compatibility35PASS;75second measured
 input workload accepted70/70navigation and69/69selection changes. No speedup claim.
 See Verification/GameSystemAudit/FLOW2-REPORT.md for source corrections, actual REDs,
 adversarial controls, cold-eye fixes and honesty bounds. Next A23/FLOW3 shortcuts.
+
+## Existing readiness debt reconfirmed during FLOW3 — A49 normal vi-L versus Look
+
+InputHandler612 consumes fresh L to enter Look before GetMoveInput3531, which
+advertises L as east. FLOW3 native43checks passed, then a driver assuming vi-L east
+entered Look and could not return to the station. Existing modal-menu changes do
+not cause this. Plan: verify ControlsReference/help and intended canonical bindings;
+make displayed movement support agree with dispatch, preserving a discoverable Look
+action. Pair fresh versus held L and arrows/WASD. This normal-mode binding decision
+is a separate smoothing repair; do not silently change it in menu shortcut FLOW3.
+
+A49 provenance correction: ALPHA-READINESS.md238–244 already records this collision.
+FLOW3 reconfirmed it, not newly discovered it. Current player-facing ControlsReference
+advertises WASD/arrows/numpad movement and L Look; vi claims remain in source/status
+docs. Prefer preserving the shipped player contract while correcting dead aliases
+and misleading claims, unless a deliberate broader vi-controls change is selected.
+
+A49 source-swept minimum: preserve documented L→Look; remove L only from Normal
+held GetMoveInput east fallback, keep L in modal GetDirectionKeyDown. Otherwise
+a press during Normal rate-limit or a hold carried out of Look can miss the fresh
+Look branch and later move east. Update source/status claims of full normal vi
+support. Pair fresh/held/rate-limited L and Look-cursor L with arrow/D movement.
+Complete bare-L vi plus Shift-L Look would change advertised controls and is pruned
+from this minimum repair.
+
+## FLOW3 close-out — truthful shortcuts and deliberate menu exits
+
+A23 implemented for pickup, container picker, world action menu and dialogue. Shared
+labels/dispatch/reveal mapping reserves close/navigation keys, preserves authored
+action identities and distinguishes still single/batch actions. Actual activation
+provenance prevents a held closing letter becoming normal movement.
+Full8689GREEN(+66);native50PASS;70/70navigation and46/46observed close/reopen
+cycles over75seconds. FLOW3-REPORT.md retains all REDs, source/driver corrections,
+independent cold-eye and honesty bounds. A48/FLOW4 identity repair next.

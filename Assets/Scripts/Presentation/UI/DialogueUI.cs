@@ -76,6 +76,9 @@ namespace CavesOfOoo.Rendering
 
         public bool IsOpen => _isOpen;
         public bool ConversationEnded => _conversationEnded;
+        /// <summary>Actual letter selecting the closing choice. Revealing text,
+        /// navigation, mouse/confirm and Open leave this None.</summary>
+        public KeyCode ClosingActivationKey { get; private set; }
 
         public void Open()
         {
@@ -83,6 +86,7 @@ namespace CavesOfOoo.Rendering
             _isOpen = true;
             _cursorIndex = 0;
             _conversationEnded = false;
+            ClosingActivationKey = KeyCode.None;
             RebuildText();
             Render();
         }
@@ -128,6 +132,7 @@ namespace CavesOfOoo.Rendering
         public void HandleInput()
         {
             if (!_isOpen) return;
+            ClosingActivationKey = KeyCode.None;
 
             // Mouse hover
             {
@@ -163,9 +168,11 @@ namespace CavesOfOoo.Rendering
                          || Input.GetMouseButtonDown(0);
                 if (!skip)
                 {
-                    for (int i = 0; i < 26 && i < choices.Count; i++)
+                    for (int i = 0; i < choices.Count; i++)
                     {
-                        if (InputHelper.GetKeyDown(KeyCode.A + i)) { skip = true; break; }
+                        var key = MenuShortcutMap.Key(MenuShortcutMap.Positional(i));
+                        if (key == KeyCode.None) break;
+                if (InputHelper.GetKeyDown(key)) { skip = true; break; }
                     }
                 }
                 if (skip)
@@ -214,11 +221,14 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Hotkeys a-z
-            for (int i = 0; i < 26 && i < choices.Count; i++)
+            // Positional labels share this mapping with reveal detection.
+            for (int i = 0; i < choices.Count; i++)
             {
-                if (InputHelper.GetKeyDown(KeyCode.A + i))
+                var key = MenuShortcutMap.Key(MenuShortcutMap.Positional(i));
+                if (key == KeyCode.None) break;
+                if (InputHelper.GetKeyDown(key))
                 {
+                    ClosingActivationKey = key;
                     SelectChoice(i);
                     return;
                 }
@@ -494,9 +504,9 @@ namespace CavesOfOoo.Rendering
                         DrawChar(contentOffsetX + 1, y, '>', QudColorParser.White);
 
                     int col = contentOffsetX + 2;
-                    if (i < 26)
+                    char hotkey = MenuShortcutMap.Positional(i);
+                    if (hotkey != '\0')
                     {
-                        char hotkey = (char)('a' + i);
                         string hk = hotkey + ")";
                         Color hkColor = _revealing
                             ? QudColorParser.DarkGray

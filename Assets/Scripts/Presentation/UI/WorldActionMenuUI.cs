@@ -56,6 +56,7 @@ namespace CavesOfOoo.Rendering
         private const int MAX_STATUS_ROWS = 6;
         private bool _cellIsPile;
         private readonly List<InventoryAction> _actions = new List<InventoryAction>();
+        private char[] _shortcuts = System.Array.Empty<char>();
         private int _cursorIndex;
         private int _scrollOffset;
 
@@ -81,6 +82,9 @@ namespace CavesOfOoo.Rendering
         public bool SelectionMade => _selectionMade;
         public bool SelectionCancelled => _selectionCancelled;
         public InventoryAction SelectedAction => _selectedAction;
+        /// <summary>Actual mapped letter that selected this action, never the authored Key.
+        /// Mouse/Enter/cancel produce None. Capture before ConsumeSelection resets it.</summary>
+        public KeyCode SelectedActivationKey { get; private set; }
         public Entity SelectedTarget => _target;
         public Cell SelectedCell => _cell;
         public bool SelectedCellIsPile => _cellIsPile;
@@ -108,12 +112,14 @@ namespace CavesOfOoo.Rendering
             _actions.Clear();
             if (actions != null)
                 _actions.AddRange(actions);
+            _shortcuts = MenuShortcutMap.ForActions(_actions);
 
             _cursorIndex = 0;
             _scrollOffset = 0;
             _selectionMade = false;
             _selectionCancelled = false;
             _selectedAction = null;
+            SelectedActivationKey = KeyCode.None;
             // DIAG [Phase4d] — confirm Open ran with usable state.
             UnityEngine.Debug.Log($"[ActionMenu:ui-open] actions={_actions.Count} " +
                 $"Tilemap={(Tilemap != null ? "set" : "NULL")} " +
@@ -131,6 +137,7 @@ namespace CavesOfOoo.Rendering
             _selectionMade = false;
             _selectionCancelled = false;
             _selectedAction = null;
+            SelectedActivationKey = KeyCode.None;
         }
 
         /// <summary>
@@ -141,6 +148,7 @@ namespace CavesOfOoo.Rendering
         public void HandleInput()
         {
             if (!_isOpen) return;
+            SelectedActivationKey = KeyCode.None;
 
             if (InputHelper.GetKeyDown(KeyCode.Escape))
             {
@@ -199,13 +207,13 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Hotkey matching — if any action's Key equals the pressed letter.
+            // Match the same resolved binding that the row displays.
             for (int i = 0; i < _actions.Count; i++)
             {
-                char k = _actions[i].Key;
-                if (k == '\0' || k == ' ') continue;
-                if (InputHelper.GetKeyDown(CharToKeyCode(k)))
+                var key = MenuShortcutMap.Key(_shortcuts[i]);
+                if (key != KeyCode.None && InputHelper.GetKeyDown(key))
                 {
+                    SelectedActivationKey = key;
                     SelectAction(i);
                     return;
                 }
@@ -226,6 +234,7 @@ namespace CavesOfOoo.Rendering
         {
             _selectionCancelled = true;
             _selectedAction = null;
+            SelectedActivationKey = KeyCode.None;
             Close();
         }
 
@@ -246,16 +255,6 @@ namespace CavesOfOoo.Rendering
                 _scrollOffset = _cursorIndex;
             else if (_cursorIndex >= _scrollOffset + visible)
                 _scrollOffset = _cursorIndex - visible + 1;
-        }
-
-        private static KeyCode CharToKeyCode(char c)
-        {
-            // Lowercase letters map directly to KeyCode.A..Z (Unity treats
-            // `KeyCode.A` as the a key regardless of shift state).
-            char lo = char.ToLowerInvariant(c);
-            if (lo >= 'a' && lo <= 'z')
-                return (KeyCode)((int)KeyCode.A + (lo - 'a'));
-            return KeyCode.None;
         }
 
         // ---- Rendering ----
@@ -408,8 +407,8 @@ namespace CavesOfOoo.Rendering
                     if (selected)
                         DrawChar(1, rowY, '>', QudColorParser.White);
 
-                    char hotkey = action.Key != '\0' ? action.Key : ' ';
-                    if (hotkey != ' ')
+                    char hotkey = _shortcuts[idx];
+                    if (hotkey != '\0')
                     {
                         DrawText(2, rowY, hotkey + ")",
                             selected ? QudColorParser.White : QudColorParser.Gray);
