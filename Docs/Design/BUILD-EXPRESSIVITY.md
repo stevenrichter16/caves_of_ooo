@@ -34,6 +34,34 @@
 | Closure-ledger | **canon-designed, not implemented** | `11_SecondSpine.md` C4. |
 | Names / Marks / Brands / Pacts | **identity-canon, not implemented** | `Docs/PROJECT-IDENTITY.md`. |
 
+### 0.1 The unmerged FUN-P0 spine (`origin/feat/fun-p0-spine`) — read before designing
+
+Surveyed 2026-09-08: `main` is *behind* this branch (0 unseen commits);
+the only remote branch carrying content this branch lacks is
+`feat/fun-p0-spine` (8 commits, last 2026-07-18, same merge-base
+`c7fdd5a7`, **dry-run merge onto this branch: 0 conflicts**). It is the
+playability spine this document must sit on top of:
+
+| P0 move | State on the branch | What it gives this design |
+|---|---|---|
+| M1.a mortal start (`StartingLoadout`, 40 HP, dagger + 2 tonics, `DebugGrantsEnabled=false`) | shipped | there is finally a Level-1 to build *up from* |
+| M1.b natural weapons materialized at spawn; 20 hostiles armed | shipped | threat exists; "solo survival tool" in §12 is now a real test |
+| M1.c/d XP economy + MP stat | shipped | leveling and mutation-rank spending are live currencies |
+| M1.e skill re-costing (root 1 / mid 2 / capstone 3-4) + `Requires` chains | shipped | **the tree grammar exists**: `"Requires": "Pyromancy_Cinder"` on Powers (class names, comma-AND). Root-level gating still needs code. |
+| M2.a `GrimoireDistribution` (starter chest teaches 3; scribes sell by faction; lair chests; ambassador gifts) with a **totality test** (every grimoire reachable from exactly one source) | shipped | the reachability-pin pattern — every skill root in §3 should get the same "reachable from ≥1 world source" test |
+| M2.b/c `LairTreasure`, LockPart→Container sync fix, TradeStockBuilder faction-gate fix, per-village ambassadors | **done but committed as `092d6d58 "asdfsadf"`** together with Roslyn DLLs, `Assets/UnityMCP/Log/*` (10k lines), and 16×24 sprite PNGs | needs a cleanup re-commit before merge |
+| M3 quest announcer, Vex fix, cross-zone quests, chaining | planned, not started | the "game speaks" layer that Names (§10) will plug into |
+
+**P0's binding design rule** (its design judge cut the Thinning scalar
+and deferred character creation on this ground): *"the diagnosis is
+systems starved of content — add wiring and content against tested
+systems; new engine surface only where a gap has no existing
+mechanism."* This document's proposals are re-sequenced in §13 to honor
+that rule: express each root through **existing** surfaces first
+(skill JSON + `Requires`, mutations/grimoires, Persuasion, reputation,
+storylets, effects, followers), and add the two genuinely new substrates
+(Names, closure-ledger) only once those are fed.
+
 **Conclusion:** the *fighting* layer is deep. The *lore-native* layers —
 memory, substrate, preservation, beauty, exchange, roots, naming; the
 Spirits; the closure-ledger; names-as-progression — are where the
@@ -72,6 +100,11 @@ non-combat and off-archetype builds viable.
 7. **Witnessable only.** Nothing in a skill description adjudicates a
    protected mystery (Naro's reason, the sound, the layers). Skills may
    *use* the under-text; they never explain it.
+8. **Feed before you build** (the FUN-P0 rule, §0.1). A root ships first
+   as content on an existing mechanism; it earns new engine surface only
+   when a node has *no* existing mechanism to ride. Every new system in
+   this doc is tagged in §13 as either **wiring/content** or **new
+   surface**, and new surface goes last.
 
 ---
 
@@ -405,22 +438,36 @@ Glassblown Remnant's glass — does something; the item text says nothing.
 
 ---
 
-## 13. Sequencing recommendation (agent-pace)
+## 13. Sequencing recommendation (agent-pace) — reconciled with FUN-P0
 
-1. **Names + closure-ledger substrate** (engineering; unlocks everything;
-   the ledger is already canon-designed). Small: an `IdentityPart` with
-   Names, a `LedgerPart` with open acts, diag categories `name`/`ledger`.
-2. **Cooking + atom-extension** — the cheapest way to make three new
-   builds (chef, host, poisoner) with existing alchemy code.
-3. **Naming root: Host + The No** — the single most on-theme new skill
-   family, and it makes pacifist/refuser builds real.
-4. **Keeping root: Entry + Body-Reading** — turns testimony into items;
-   detectives and lawyers arrive; House-drama storylets get evidence.
-5. **Salting root: Ward + Arrest + Salt-Cure Self** — the stasis/hollow
-   fantasy; reuses `Frozen`/`Stoneskin`/`Hibernating` effects.
-6. **Wedding root: Include + Warm Dark + Spore-Bond** — reuses
-   `FungalInfection`, `Recruited`, followers.
-7. Posy, Counting (with the shop), Deep (with gather nodes), Pacts.
-8. Crossings as content once ≥3 roots exist.
+**Step 0 — land the P0 spine.** Clean-recommit `092d6d58` (keep the
+M2.b/c code + tests; drop the DLLs, MCP logs, and PNGs unless the user
+wants them), finish M3, merge. Nothing below should start on a branch
+that still ships the debug loadout.
+
+**Step 1 — roots as wiring/content on existing mechanisms** (no new
+engine surface; each is one skill-JSON family + blueprints + tests, and
+each gets a `GrimoireDistribution`-style reachability pin):
+
+| Root | First nodes | Rides on |
+|---|---|---|
+| Naming | Host, The No, Decline | **Persuasion** family (exists) + `Requires` chains; The No = a Power that cancels an active `Recruited`/contract/effect via existing effect-removal-with-cause |
+| Salting | Ward, Arrest, Salt-Quench | `Frozen`/`Stoneskin`/`Hibernating` effects + `WardGleam` mutation + weapon attributes (exist) |
+| Wedding | Include, Spore-Bond, Hymn | `FungalInfection`, `Regeneration`, `Recruited`, followers (F.3), `HearthAura`-style aura |
+| Keeping | Entry (a testimony item), Recall | a `TestimonyPart` item blueprint + storylet facts (`SetFact`/`IfHaveItem` vocabulary exists) |
+| Deep | Grow, Root-Sense, Tend the Light | `GatherNodePart` regrow, light sources, `Rooted` effect |
+| Posy | Adorn, Performance | item enhancements (Lacquered pattern) + everyday-charm mutations (`Hearthwarm`, `Kindle`) |
+| Counting | Appraise, Tariff, Chit | `TradeSystem`, player shop, rentals (43-test surface exists) |
+| Trades | Cooking | alchemy atoms on a `DishPart` (BrewRules pattern) |
+
+**Step 2 — the two new substrates**, once the roots above have players:
+Names (`IdentityPart`: earned titles keystoning branches — this is also
+the P0 "character creation / origins" P2 item, now with a mechanism) and
+the closure-ledger (`LedgerPart`: open acts → closed/refused/abandoned;
+canon-designed in `11_SecondSpine.md` C4). Diag categories `name` /
+`ledger`. These are the only items in this document that are **new
+surface**, plus root-level `Requires` gating (P0 noted it needs code).
+
+**Step 3 — Pacts and Crossings** as content once ≥3 roots and Names exist.
 
 Each step is one reviewable ship with tests, per CLAUDE.md.
