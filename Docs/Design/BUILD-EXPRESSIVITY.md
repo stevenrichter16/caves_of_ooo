@@ -381,6 +381,196 @@ oath-tokens, pages of the Reading, maps (over-text only), *borrowed names*
 with unpredictable atom signatures; never described, only *used*. The
 Glassblown Remnant's glass — does something; the item text says nothing.
 
+### 9.1 Extended object catalogue (2026-09-09 pass)
+
+Grounding notes before the list:
+- **The liquid roster is already lore-flavored and mostly unexploited.**
+  `Content/Data/LiquidDefinitions/` on this branch carries
+  `held-breath-lacquer`, `memory-bath`, `felling-counter-resin`,
+  `choir-mirror-mucilage`, `choir-wort`, `tepuibone-slurry`,
+  `iron-gall-ink`, `lantern-beetle-ichor`, `lumen-slime`,
+  `bower-resin-amber`, `veined-pulse-mycelium`, `pebble-sundew-dew`,
+  `sundew-mucilage`, `convalessence`, `honey`, plus the mundane set —
+  and `WeaponTemperingService` / `LiquidCoveredEffect` already apply
+  liquids to things. Every "coat X in Y" item below is **wiring/content**
+  on that surface, not new engine.
+- **`WeaponComponentPart` has three slots: Blade / Haft / Binding.** The
+  Binding slot is where oaths, names, and threads live — it is the
+  lore's natural home for the "what this weapon *means*" layer.
+- **`CorpsePart` already stores `KillerID`/`KillerBlueprint`/`SourceID`**
+  on every corpse; a body-reading item is a reader over data that
+  already exists.
+- **The knife-tithe is canon** (`02_Recension.md` §III): vellum is
+  scarce, every document is written over an older one, and scribes
+  tithe by scraping *themselves*. Tithe-knives and tithe-scrapings are
+  therefore real objects, not inventions.
+- **Every item lists its exploit hook.** An item without a combo is
+  decoration.
+
+#### A. Objects that are usually not objects (the design signature)
+
+| Item | What it is | Mechanic | Serves | Exploit hook |
+|---|---|---|---|---|
+| **Oath-token** | a cord knotted as a promise is spoken | exists while the act is open; dissolves on close; blackens on abandonment — a physical ledger entry | everyone | tradeable: a Counting build buys open oaths and closes them for a fee |
+| **A beat of nothing** | one kept silence, from the seventh verse | consumable: for one turn nothing in the zone can begin or end (no attack lands, nothing dies, nothing closes) | escape, mercy, combo-pause | the Recension can't make them and will pay anything; a Bloodlust build hates them |
+| **Borrowed Name (strip)** | carrier-script bearing someone else's name, worn | NPCs treat you as that person until a Keeper checks | con artist, spy, Saul Goodman | wear a Concord broker's name to trade at his prices; the Inkbound eventually come |
+| **Counter-signed receipt** | proof an act closed, stamped at Tally | needed for a clean-ledger audit; sells to Namers/Curation | Counting, refusers | forge one (Keeping+Posy) and the Counter spends his three minutes on you |
+| **Refusal-knot** | the Declined's object: tied while saying no | untie it to take the no back — the act reopens as *abandoned* (ruinous) | Naming/Declined | a relic-tier item when it's someone *else's* no |
+| **Testimony-scroll** | an Entry as an item | admissible in House dramas and Concord disputes; a memorial; blackmail | Keeping, lawyers, bards | the evidence economy — win wars with paperwork |
+| **Chit** | a debt made portable | transfer / sell / forgive / collect | Counting | buy a village's obligations and *own* its ledger |
+| **Name-seal** | a Curation stamp on your own name | your name becomes unspeakable (immune to Know-the-Name) and un-creditable (no credit, no sanctuary — you are nobody) | assassin, Apatheia | anonymity traded for immunity |
+
+#### B. Naming and identity
+
+| Item | What / mechanic | Serves | Exploit hook |
+|---|---|---|---|
+| **Guest-cloth** | Tent-Right weave; laid as furniture, everything under it is *guest*; violence under it is an abandonment for the attacker | Host, pacifists | lure enemies under the cloth; a berserker who swings there thins the world around himself |
+| **Tepuibone tablet** | carve a name; give it to a place or thing permanently (consumed) | Naming/Deep | name a gather node "Unending" → faster regrow; name a door "Shut" |
+| **Mute-Stone peg** | driven into a doorway: no name can be spoken through it (Naming/Persuasion blocked both ways) | Salting wards | silence a Naming-bell; block a Namer's compulsion |
+| **Naming-bell** | rings a true name across the zone; its bearer must come | summoner, detective | ring a boss's name to pull it out of its lair |
+| **Nameless mask** | no Name for NPC reactions while worn; none can be earned | assassin, actor | do a deed you don't want recorded |
+| **Skipping rope of braided reed** | keeps time: allies in rhythm get an Acrobatics buff; hold the beat correctly ten times → craft *a beat of nothing* | everyday charm, Posy | the only recipe for the silence item — and children make them |
+
+#### C. Memory and the record
+
+| Item | What / mechanic | Serves | Exploit hook |
+|---|---|---|---|
+| **Tithe-knife** | the scribe's scraping knife; scrape one of *your* entries → **tithe-scrapings** (reagent, `binding+vital` at max potency) and lose that memory/Name | Keeping deep tier, alchemy | scrape unwanted Names into reagent; the Choir buys scrapings; the Recension enters that you did it |
+| **Palimpsest vellum** | scarce true writing material; anything written over an older text lets the under-text bleed in (a random atom/effect from the old text) | Spellcraft, Keeping | chaos scrolls |
+| **Page of the Reading** | carried "against loneliness"; read aloud: lies impossible in earshot; scraped details restored briefly | Keeping capstone | interrogations; also the only way to make a Borrowed Name fail on demand |
+| **Sealed file** | Curation container: contents don't decay, can't be Appraised, need a Sorter's seal to open | smuggler, archivist | tariff-free transport; hide a cursed item from the Reading |
+| **Body-reading lens** | reads a corpse's `KillerID`/`KillerBlueprint`/last hour (data CorpsePart already stores) | detective | cheapest item in this list to build |
+| **Iron-gall ink** *(liquid exists)* | coat a blade: struck targets are *annotated* — trackable, Recall-able later | Inkbound, hunters | mark now, find later, anywhere |
+| **Memory-bath** *(liquid exists)* | bathe an item: it Recalls its previous owner — provenance revealed | fences' nightmare, detectives | stolen-goods detection as a liquid |
+| **The "prior" tag** | a Curation shelf-tag; attach to any item: un-appraisable, un-identifiable, un-nameable | trickster, smuggler | the tax dodge; also the joke item the Curation didn't mean to invent |
+| **Carrier-script letter** | an unfinished delivery with a ledger act attached; deliver *aloud* to close; abandon it and it draws manifestations | couriers, Frodo | a carried burden that is literally metaphysical weight |
+| **Gull-feather from no sky** | a quill that writes on nothing: an entry only underreaders can read | Keeping/Overwrit | secret messages; the Recension files them under *prior* |
+| **Unshelved key** | opens the room the catalogue cannot assign a place | First Account arc | — |
+
+#### D. Substrate and the Choir
+
+| Item | What / mechanic | Serves | Exploit hook |
+|---|---|---|---|
+| **Spore-lamp** | light that is also the network's eye: the Choir sees what it lights | Wedding | free light, paid for in privacy |
+| **Choir-cord** | a fungal cord between two patches; Wedding-aligned walk it = teleport | necromancer fast travel | plant patches (below) to build a network |
+| **Spore-satchel** | throwable; plants a patch (uses the existing `fungal-spores` gas) | Wedding | seed Spore-Sense eyes and Choir-cord anchors anywhere |
+| **Inclusion-shroud** | wrap a corpse; laid into substrate it returns *included* (a follower that sings) | necromancer | the dead come back — not as themselves |
+| **Substrate-bread** | Selen's kitchen: heals via Include; grants *half introduced* (Choir friendly, Recension suspicious) | Wedding | cheapest healing in the game; the cost is who you're becoming |
+| **Spore-furred boots** | an armor mod that never brushes off: Spore-Sense rank 1, +Choir, −Recension | the chapter's boots | a permanent introduction |
+| **Bloom-seed** | the Driving Bloom drug: Bloom-Drive burst; addiction Marks | Walter White's product | the Bloom-trade is canon-tolerated-and-despised |
+| **Fungal prosthetic** | a Bloom-driven limb replacing a lost one: stronger, hungry (eats HP unless fed substrate) | body-horror builds, Ash's chainsaw hand | feed it corpses |
+| **Veined-pulse mycelium** *(liquid exists)* | coat armor: regenerates, and slowly includes you | Wedding tanks | Deadpool regen with a clock on it |
+| **Choir-mirror-mucilage** *(liquid exists)* | drink: see through the substrate's eyes for N turns | scouts | see every spore-lamp in the zone |
+| **Honey-jar, large** | the larder: preserves anything sweet+vital — including a person | Concord/Choir crossing | a follower on ice; a body the Recension can still read |
+
+#### E. Preservation and salt
+
+| Item | What / mechanic | Serves | Exploit hook |
+|---|---|---|---|
+| **Salt-block** | stackable Ward walls; melt in water | Salting | build a still room mid-fight |
+| **Catcher's net** | thrown on a dying creature: death *arrested* — salt-cured alive, immobile, conscious | the sect's horror as a tool | you now have a preserved person to carry, sell, or read |
+| **Salt-cured limb** | equipable part: immune to Broken/Hobbled, never heals; each is a Mark; Names slip | the hollowing build | a fully cured body is unkillable and forgetting itself |
+| **Held-breath lacquer** *(liquid exists)* | coat a thing: stopped (no decay, no change); a weapon: hits apply stasis; yourself: one breath of invulnerability, then a cost | Salting | the Preserve ending in a bottle |
+| **Still-water flask** | water that won't move: extinguishes, freezes a gas cloud in place | utility | pin a poison cloud on an enemy |
+| **Mute-Stone door-bar** | bars a passage against manifestations | wardens | the only door Urqu can't come through |
+| **Portable file** | Curation case: contents don't decay and survive your death (death is recoverable; the file survives the corpse) | everyone | the RPG's safe |
+| **Curing rack** | station: items never spoil; creatures on it… the Catchers' use | Salting, cooks | Salt-Chef crossing |
+
+#### F. Beauty and the Bower
+
+| Item | What / mechanic | Serves | Exploit hook |
+|---|---|---|---|
+| **Bower-resin-amber** *(liquid exists)* | cast things: perfect preservation; cast your own limb: perfect AV, immobile | Posy | the one-armed-in-resin build |
+| **Finisher's brush** | resin on unwilling targets: huge Bower-sect standing, everyone else's horror | villain builds | an enemy cast mid-charge is a statue you can loot |
+| **Glamour-mask** | wear another face; the Reading sees through | spies | pair with a Borrowed Name for a complete false person |
+| **Atom-dyed garments** | a cloak dyed in a liquid carries its atoms (coating on armor): `volatile` cloak explodes when burned; `cold` cloak is a frost aura | Posy, elementalists | dress as your element |
+| **Perfume-phial** | emits charm-vapor (`sweet+volatile`, a new gas): Persuasion bonus in cloud; flammable | seducers | charm, then ignite |
+| **Composition (art furniture)** | a painting that calms (Calm aura), a sculpture that unsettles | homeowners, Posy | furnish a shop so customers pay more |
+| **Mirror that remembers** | shows your Names instead of your face; NPCs looking in see your deeds | Keeping+Posy | confession as decor |
+| **Pose-token** | Found-Beauty stance: held still, appearance fixed, immovable (Stoneskin) | Posy tanks | a statue that is a person that is a wall |
+| **Hymn-flute / counting-board / lullaby-shell** | one instrument per culture; Performance amplifiers | bards | a Choir flute in a Recension hall is a provocation |
+| **Posy (flower bundle)** | throw: bloom a meadow — terrain that reinforces binding, slows local Thinning, raises morale | everyday charm | the Bower approves; the Thinning shows itself at the edge |
+
+#### G. Exchange and the Concord
+
+| Item | What / mechanic | Serves | Exploit hook |
+|---|---|---|---|
+| **Contract-paper** | a bound agreement; breaking it is an abandonment (ledger, Thinning) | Counting | make enemies sign, then bait the breach |
+| **Tariff-post** | furniture at a chokepoint: pay or be flagged *in arrears* | shopkeepers | own the only road |
+| **Honey-scale** | weighs intangibles: a debt, a grudge, a name | Counting | know what a rival's oath is worth before you buy it |
+| **Scarcity-future (slip)** | Rising Market bet on a manifestation, harvest, death | gamblers | pays in drams and in the Counter's contempt |
+| **Hush-insurance policy** | canon "half-working charm": stops manifestations 50% of the time; when it fails, the Concord invoices you | comedy | the invoice is itself a contract |
+| **Debt-collar** | a follower bound by debt until the chit clears; freeing them earns a Name | Counting, Naming | buy a follower; free them for the title |
+| **Felling-counter-resin** *(liquid exists)* | coat a coin or contract: unforgeable; coat a blade: every hit is *billed* — a slain debtor is a closed account | Counting warriors | the only weapon that improves your ledger |
+| **Three-minute glass** | a Tally hourglass that runs three minutes a year | event key | be present, or wait a year |
+
+#### H. Roots and the deep
+
+| Item | What / mechanic | Serves | Exploit hook |
+|---|---|---|---|
+| **Portable bio-light sconce** | a god's dream you can carry: light that doesn't burn; brightens near patches; dims when Dohren stirs | Deep | a weather instrument you can read the world by |
+| **Lantern-beetle ichor** *(liquid exists)* | coat a blade: it glows near under-text bleeds | Keeping+Deep | **Sting** — the sword that warns |
+| **Root-pick / seam-drill** | mining tools for seams (`GatherNodePart`); the drill is faster and breaks the seam | miners | speed vs sustainability |
+| **Wall-warm stone** | from the Root-wall, warm forever: HearthAura source; sleep by it = full rest; the Root remembers who took it | Deep, homesteaders | the Rooted know your name now |
+| **Olderdeep cutting** | plant it: a gather node grows; needs bio-light | farmers | a farm anywhere there's a sconce |
+| **Tepuibone-slurry** *(liquid exists)* | pour on ground: the tile holds its name — no Thinning here for N turns | Deep, Naming | paint a safe room |
+| **Tamed mire-auger** | a burrowing beast-mount (sprites already exist): digs passages | Deep beast-bond, Dwarf Fortress | strike the earth with a friend |
+| **Root-bark fragment** | a piece of the Tree: `binding+vital` at max; three factions want it; using it as reagent is sacrilege to all three | alchemists | the best reagent in the game costs three friendships |
+| **Lodestone of the Root** | points toward the Root — and, held by an underreader, toward the nearest bleed (never explained) | explorers | a compass with two norths |
+
+#### I. Spirits and pacts
+
+| Item | What / mechanic | Serves | Exploit hook |
+|---|---|---|---|
+| **Inquiry's lens (`?`)** | see what binds a thing: atoms, weak points, names; each use marks you a little | scientists | cruelty-of-knowing, itemized |
+| **Bloodlust's tooth (`!`)** | a Blade component that *unbinds*: ignores Wards; local Thinning per kill | Guts, Kratos | the weapon that damages the world |
+| **Apatheia's stone (`-`)** | held: immune to compulsion, fear, glamour, Naming; each hour greys out one dialogue option forever | void-monks | invulnerability paid in wanting |
+| **Numen-jar** | a lesser numen bottled at a high-Strangeness place; uncork: a companion for N turns; each unique; they remember being bottled | JoJo stand users | a Stand in a jar |
+| **Brand-iron** | applies a Brand — permanent | pact builds | the RPG's tattoo |
+
+#### J. Under-text relics (never explained; the text says nothing)
+
+| Item | Observable behavior | Note |
+|---|---|---|
+| **Shore-glass** | holds *damp* that never dries; dropped in fire, the fire goes out and tastes of salt | from the shore where no sea is |
+| **Unfired vessel** | fire it: it comes out unfired; fill it: nothing inside can be Unsaid — the safest storage in the world | nobody knows why |
+| **Bookbinder's page** | moves away one tile per your step; cannot be approached | no one has held one |
+| **Remnant glass** | reflects a Naming back at its speaker | the item text is blank |
+| **Map with a moving blank** | the over-text map; the blank relocates to wherever you stand in the Overwrit | the map refuses the pen (Ledger rule made visible) |
+| **Hymn to a fire numbered ten** | sung, something burns with strange numbers | shelved under *prior* |
+| **Drowned oak (Haft)** | damp forever; a weapon on this haft extinguishes what it strikes | from the shore |
+
+#### K. Weapon components (Blade / Haft / Binding — slots exist)
+
+**Bindings — where the weapon's meaning lives:**
+- **Guest-cloth binding** — cannot strike a guest; +Namer standing.
+- **Carrier-script wrap** — remembers every kill (Recall the list; the Recension buys it).
+- **Choir-cord binding** — heals the wielder via substrate per hit (Include stacks).
+- **Inkbound thread** — annotates the struck.
+- **Salt-twine** — bites under-text things; the weapon can't be Unsaid.
+- **Debt-thread** (felling-counter-resin) — every hit billed; a slain debtor closes an account.
+
+**Blades:** Tepui-shard (can be Given a Name for an effect), Resin-edge (never dulls, never sharpens — fixed damage, immune to tempering), Bio-light edge (a blade of tended light — recharges at a sconce), Salt-edge, Bloodlust's tooth, Snapjaw fang *(exists)*.
+
+**Hafts:** Root-wood (+Endure), Drowned oak (relic, above), Salt-cured bone (never breaks; from a Catcher's victim — moral weight the Reading records).
+
+#### L. Food and drink (Cooking on the atom system)
+
+| Dish | Effect | Hook |
+|---|---|---|
+| **Oath-feast** | everyone who eats is *guest* for a day | Host at scale; Sanji/Remy |
+| **Falling-Due cake** | year-turn festival food: closes all your *trivial* open acts at once — "everything owed, all at once" | a small-ledger reset, once a year |
+| **Memory-broth** | Recall a lost Name for one conversation | Keeping cooks |
+| **Bloom-tea** | mild Bloom-Drive; the Concord's table drug | social poison |
+| **Convalessence** *(liquid exists)* | the healing draught | — |
+| **Pebble-sundew dew** *(liquid exists)* | `sweet+toxic`: a lure — NPCs approach | bait |
+| **Glow-porridge** | heals and lights (for sick children) | everyday charm |
+| **Cured anything** | never spoils | Salt-Chef |
+
+#### M. Tools for the non-fighters
+
+Reading-glass (see under-text on a document), wax-seal kit and forgery kit (Keeping+Posy; the Curation punishes), appraisal loupe, witness-bell (rings when a lie is spoken in earshot — the weak Page of the Reading), tinker bandolier (quick-slot tonics/throwables — the utility belt), schematic case (`SchematicPart` exists), festival-cloth (spread it and a festival occurs: NPCs gather, charms amplify, and the Thinning shows itself at the edge — a diagnostic for level designers and a spectacle for players).
+
 ---
 
 ## 10. World concepts
