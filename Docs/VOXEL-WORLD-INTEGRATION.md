@@ -594,3 +594,19 @@ Receipt: S03-west-spawn/live-verification.json. Changed native files are
 GameBootstrap.cs and Main/SampleScene.unity; only the exact installed patch is
 recorded to preserve the unrelated native working-tree changes. New paired test
 and its Unity metadata are included directly with this doc and receipts.
+
+## G1 — Grovelands composition (2026-09-12, complete)
+
+Integrated a deterministic spatial planner and native terrain realization for
+ordinary wilderness Grovelands. Four formation recipes now consume planned
+clearings/approaches; compost rows are bounded beds, canopy is clustered, fen
+water and inhabitants share planned veins. Extended voxel coverage to wilderness
+Grovelands while preserving towns, mouths, special sites and summit recipes.
+Existing native owners retain destruction/harvesting behavior. Detailed design,
+review findings and reproduction instructions: `GROVELANDS-COMPOSITION.md`.
+
+357 targeted checks passed; final full suite 11,831/11,863 with exactly the same
+32 recorded baseline failures, no introduced failures or compiler errors. Reviewed
+12 actual voxel previews and a normal fresh-game spawn. Unity left playing in the
+new western composition, with full reveal and 3D enabled. Exact installed native
+delta and live evidence: `Verification/VoxelWorld/G10-composition-final`.

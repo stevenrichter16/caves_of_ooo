@@ -1,0 +1,31 @@
+{
+  "results": {
+    "id": "2",
+    "testcasecount": "11863",
+    "result": "Failed(Child)",
+    "total": "11863",
+    "passed": "11829",
+    "failed": "34",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-12 20:23:33Z",
+    "end-time": "2026-09-12 20:27:22Z",
+    "duration": "228.1459692"
+  },
+  "newFailures": [
+    {
+      "name": "CavesOfOoo.Tests.SpawnRing3DAdversarialTests.InvalidWorldPickResetsAllOutputs(1,25)",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(1729,\"Overworld.4.7.0\")",
+      "message": "  Overworld.4.7.0 MendleafPlant: unmodeled-native-blueprint\n  Expected: True\n  But was:  False\n"
+    }
+  ],
+  "resolvedFailures": [],
+  "baselineFailures": 32,
+  "currentFailures": 34
+}

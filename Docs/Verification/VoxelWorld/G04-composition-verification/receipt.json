@@ -1,0 +1,35 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "Grovelands|WesternVoxelSpawn|SpawnRing3DIntegrationTests|VoxelWorldIntegrationTests",
+  "results": {
+    "id": "2",
+    "testcasecount": "113",
+    "result": "Failed(Child)",
+    "total": "113",
+    "passed": "110",
+    "failed": "3",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-12 20:15:38Z",
+    "end-time": "2026-09-12 20:15:49Z",
+    "duration": "10.860909"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.SpawnRing3DIntegrationTests.TwoHandedItemMakesOneRealSharedBladeAttachment(\"Overworld.2.7.0\",False)",
+      "message": "  The native fen controls unchanged equipment art outside the voxel region.\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldIntegrationTests.AdjacentSitesDepthsAndMalformedNamesDoNotAcquireVoxelAuthority(\"Overworld.4.6.0\")",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldIntegrationTests.AdjacentSitesDepthsAndMalformedNamesDoNotAcquireVoxelAuthority(\"Overworld.2.7.0\")",
+      "message": "  Expected: False\n  But was:  True\n"
+    }
+  ]
+}
