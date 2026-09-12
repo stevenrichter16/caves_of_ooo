@@ -152,6 +152,33 @@ footprints use `nativePlacementOffset`; single-cell fitted meshes do not. These
 footprints include tree canopies and do not automatically imply trunk-only
 collision. Native gameplay chooses the appropriate physical ownership policy.
 
+The optional `native_coarse` export profile reduces actual voxel occupancy for
+the 19 recipes used by 38 native bindings, while keeping all fine town assets and
+candidate layouts unchanged:
+
+```sh
+PYTHONPATH=ArtSource/VoxelTown python3 - <<'PY'
+from town_generator.native_assets import export_assets
+export_assets('ArtSource/VoxelTown/Output/native-region/assets-coarse.json',
+              profile='native_coarse')
+PY
+```
+
+The 19 recipes contain 584 cells instead of 1428 (**59.1% fewer**) and 1260 triangles
+instead of 1748. This changes geometry, not just paint or the scale of unchanged
+cells. Containers use real 1/3 m cells; nature and beds generally use 0.375 m cells,
+with a 0.5 m single-layer low rock. The minimal 15-cell stool retains its three
+separate legs. Hollow crate/tub rims, blanket/pillow, tree canopy and distinct
+storage silhouettes survive the reduction. Native import uniformly fits these
+new meshes into existing owner bounds and keeps gameplay occupancy unchanged.
+
+Coarse export declares `voxelSizePolicy:"per-asset"` and a null global pitch;
+each mesh declares its actual pitch, runs, bounds and uniform scale. It is an
+**import-only profile**: the fine candidate preview rejects it because coarse
+full-size footprints can differ. The original `assets.json` remains byte-for-byte
+unchanged. `Output/native-region/coarse-comparison.png` compares all 19 fine/coarse
+pairs at the same uniform owner envelopes, with fine on the left.
+
 `assets.json` and `region.json` each publish through an atomic file replacement.
 Unrelated files survive. This native preview command does not claim the complete
 multi-file transaction guarantees of the square toolkit's `bundle.json` CLI.
@@ -229,8 +256,8 @@ python3 ArtSource/VoxelTown/verify.py \
   --fbx-example oasis-seed41
 ```
 
-The current pure suite passes **280/280 tests**, retaining the original209 and
-adding71 native-adapter/export cases. Actual Blender gates verify ownership,
+The current pure suite passes **315/315 tests**, retaining the original 209,
+71 native-adapter/export cases and 35 coarse-profile gates. Actual Blender gates verify ownership,
 manual-scene state, repeated realization, framed lots, saved exports and FBX
 roundtripping. The square full-planner sweep checks54 varied towns; the native
 adapter sweep passes95 four-chunk regions across seeds and rectangular sizes.

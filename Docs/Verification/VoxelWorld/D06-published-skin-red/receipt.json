@@ -1,0 +1,31 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CavesOfOoo.Tests.VoxelWorldDensity",
+  "results": {
+    "id": "2",
+    "testcasecount": "28",
+    "result": "Failed(Child)",
+    "total": "28",
+    "passed": "26",
+    "failed": "2",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-12 14:09:00Z",
+    "end-time": "2026-09-12 14:09:04Z",
+    "duration": "4.5949094"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityArtTests.EveryPublishedSkinExactlyMatchesAFreshBakeAtItsRecordedPitch",
+      "message": "  ring-cascade-father__Geometry vertex count\n  Expected: 600\n  But was:  1224\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityArtTests.OrdinaryPropCharacterAndTerrainContainFewerActualCellsAtCoarserPitch(\"character-teal\")",
+      "message": "  VX_character-teal__Geometry volume must represent an integral number of cells.\n  Expected: less than 0.0050000000000000001d\n  But was:  0.46913580246913256d\n"
+    }
+  ]
+}

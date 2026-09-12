@@ -342,3 +342,106 @@ in architectural variation and ground microdetail. This is a documented visual
 limit, not a claim that the reference aesthetic has been fully reproduced.
 Further candidate embellishment must remain rule-based and preserve the native
 cell/navigation gates. No Unity source was modified in this sub-milestone.
+
+## Native coarse recipe profile (2026-09-12, toolkit complete)
+
+The user requested fewer actual voxels per object after a paint-only reduction.
+This opt-in native mesh profile retains the original fine toolkit and square/
+rectangular candidate geometry. It targets the 19 unique recipes currently used
+by 38 native bindings, with the same asset IDs and palette. Native import applies
+one uniform scale to the existing owner bounds; it never stretches individual axes.
+
+Verification sweep before implementation:
+
+| Assumption | Verified correction |
+|---|---|
+| Increasing `build_recipes` voxel size reduces detail | False: recipes are authored in integer cells, so this preserves every cell and only enlarges metres; native fitting then cancels the change |
+| Blind factor-two union preserves small silhouettes | False: it fills the open crate/tub, merges stool legs and can inflate negative-coordinate bounds by 0.5 m |
+| Current native voxels are all 0.25 m | Source recipes are 0.25 m, but native uniform fitting produces approximately 0.073–0.231 m visible cells |
+| Mixed recipe pitch can use the old global pitch claim | False: coarse export needs an explicit per-asset pitch policy; the original candidate preview must reject that import-only profile |
+
+Implementation plan: independently resample source occupancy in physical space,
+using a coarser lattice anchored at each recipe's lower bounds and deterministic
+material votes. Preserve authored hollow container centres and essential furniture
+features; keep the already minimal 15-cell stool as an explicit exception. Export
+to `Output/native-region/assets-coarse.json` using an optional `native_coarse`
+profile, recomputing all bounds, floor pivots, runs and uniform-fitting metadata.
+The fine `assets.json`, original recipe API defaults and candidate plans remain
+unchanged. RED tests precede implementation; cell-count reduction, silhouette
+features, variants, deterministic exports and profile isolation are the gates.
+This is CoO-original art tooling, not a Qud implementation-parity claim.
+
+Implemented API:
+
+```python
+native_recipes(profile='native_coarse')
+asset_manifest(profile='native_coarse')
+export_assets('ArtSource/VoxelTown/Output/native-region/assets-coarse.json',
+              profile='native_coarse')
+```
+
+The default `fine` profile is unchanged, including the exact previous JSON hash.
+The new profile resamples physical cell centres with deterministic palette votes;
+this actually reduces occupied cells. Containers use 1/3 m cells to retain a
+three-cell rim within a one-metre horizontal envelope. Nature and beds generally
+use 0.375 m cells. The low rock uses a single 0.5 m layer, and the already minimal stool
+retains its 15 original 0.25 m cells and separate legs. All 59 original IDs survive;
+only the 19 bound recipes participate. The remaining 40 recipes retain their fine
+geometry. The coarse file explicitly declares `voxelSizePolicy:per-asset`, a null
+global pitch and import-only usage; every mesh row has its real pitch. Existing
+fine candidate preflight rejects it before any Blender mutation.
+
+The implemented profile contains **584 versus 1428 cells (59.1% fewer)** across
+those 19 recipes. Greedy render geometry contains 1260 versus 1748 triangles
+(27.9% fewer); cell reduction and triangle reduction are different measurements.
+Every changed recipe also produces larger visible cells *after* fitting uniformly
+into the original owner envelope. The stool is the explicit unchanged exception.
+No anisotropic transform, native owner change or candidate-layout change is used.
+
+In-phase and cold-eye findings:
+
+| Severity | Finding | Resolution |
+|---|---|---|
+| 🟡 | Frame voxels outvoted the bed's red blanket | First implementation failed its existing RED silhouette gate; authored visible mattress-top repair retains blanket and pillow |
+| 🟡 | Resampling the 0.5 m-high rock into two 0.375 m layers caused native uniform fitting to cancel its pitch gain | Stronger after-fit countercheck went RED; a real single 0.5 m layer preserves a low silhouette and larger effective cells |
+| 🔵 | Full-size coarse bounds differ, so silently applying the profile to candidate owners would invalidate footprints | Separate output, explicit import-only policy, recomputed bounds and an existing-preview rejection gate |
+| 🧪 | Pure geometry gates cannot establish gameplay readability at the exact live camera | Actual Blender paired visual review completed; native in-game verification remains in the parent world-integration phase |
+
+Verification receipts under `Docs/Verification/VoxelTown`:
+
+- `coarse-01-red.log`: new profile unsupported before implementation.
+- `coarse-02-blanket-red.log`: initial implementation still RED on lost blanket.
+- `coarse-03-green.log`: initial 30 tests pass after blanket repair.
+- `coarse-04-adversarial.log`: after-fit low-rock countercheck RED; one diagnostic
+  test also corrected a mistaken preview helper name before its final run.
+- `coarse-05-adversarial-green.log`: 35 coarse gates pass, including 19 individual
+  recipe gates, source isolation, cavities, variants, materials, negative-grid
+  translations, deterministic votes, output preservation and after-fit pitch.
+- `coarse-06-full-suite.log`: **315/315 pure tests**, preserving all 280 prior cases.
+- `coarse-07-export.log`: per-recipe counts, actual pitch, export/provenance hashes.
+- `coarse-08-blender-comparison.log`: actual Blender validates 38 meshes and renders
+  19 paired models, two threads/eight samples, in 32 s; process then exits.
+- `coarse-09-reviewed-counters.log`: all 35 coarse cases still pass after the
+  independent reviewer requested an explicit air-gap countercheck under the bed.
+
+The paired image `Output/native-region/coarse-comparison.png` shows fine on the
+left, coarse on the right at the same uniform owner envelopes. Visual inspection
+confirms larger canopy blocks, fewer broader scrub branches, open container
+centres, recognizable furniture and differing storage variants. The low rock is
+intentionally one broader layer; the stool is unchanged. This is an asset-level
+comparison, not a claim that live-camera gameplay or the reference town has been
+fully revalidated here.
+
+Final coarse export: `Output/native-region/assets-coarse.json`, SHA256
+`36cc6b5db46cae463ddbe2bd54b9237bb7406fa6594daaeeb76ed1321909b49b`.
+Fine export remains
+`a7f350b3f54e4402e8500104aaa0f44732b79456515ea0077ab2a426e08ec7b2`.
+Files changed: new `native_coarse.py`, optional-profile changes in
+`native_assets.py`, new `test_native_coarse.py` and
+`blender_native_coarse_preview.py`, new coarse JSON/image, README and this log.
+
+Independent read-only review found no remaining production blocker. It identified
+a test weakness: counting at least four bed ground cells would also accept a solid
+plinth. The countercheck now explicitly requires air under the mattress and between
+the two front supports. Current geometry already satisfied those gaps; no further
+production or export change was necessary. The coarse export hash remains final.

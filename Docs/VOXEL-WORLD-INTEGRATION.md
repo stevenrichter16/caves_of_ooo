@@ -74,6 +74,11 @@ From the repository root, with Unity closed for the batch runners:
 ```sh
 PYTHONPATH=ArtSource/VoxelTown python3 -m town_generator.native_generate \
   --seed 41 --output ArtSource/VoxelTown/Output/native-region
+PYTHONPATH=ArtSource/VoxelTown python3 - <<'PY_COARSE'
+from town_generator.native_assets import export_assets
+export_assets('ArtSource/VoxelTown/Output/native-region/assets-coarse.json',
+              profile='native_coarse')
+PY_COARSE
 python3 Tools/VoxelWorld/build_assets.py my-voxel-rebuild
 python3 Tools/VoxelWorld/run_editmode.py my-voxel-tests --filter CavesOfOoo.Tests.VoxelWorld
 python3 Tools/VoxelWorld/run_native.py my-voxel-native --execute
@@ -149,3 +154,172 @@ Review and verification:
 - 🧪 Visual assessment: the matched spawn capture has calmer green ground and more continuous, readable paths. Flowers, building silhouettes, market colors and characters remain prominent. This is deliberately a modest surface-paint reduction; tiny decorative geometry and the existing CRT treatment remain. The pilot's different ground material is unchanged. This pass does not claim a frame-rate improvement or a newly all-green whole-game suite; U15 remains the prior full-suite baseline, and S07/S08 are the scoped revalidation.
 
 Native comparison: `Verification/VoxelWorld/VWN-6e3fde3722764cdcaefd83639b40702a-spawn-town.png` versus the prior U11 spawn capture. Receipts live in `S03-paint-red`, `S05-quieter-ground-bake`, `S07-paint-voxel-green`, and `S08-quieter-ground-native`. `S01-simplify/preservation.json` lists exactly the changed pre-existing files. `S01-simplify/implementation.patch` contains the new helper/tests/metas and the small builder edits; its reconstructed builder before-state matches the captured SHA256. As with the original native integration, source/art remain installed in the mixed working tree, while this scoped patch and verification documentation preserve the change without absorbing the untracked native foundations.
+
+## D1 — fewer voxels per model (2026-09-12, complete)
+
+User feedback asks for actual geometric simplification following S1's paint-only change. Increase voxel pitch for ordinary objects, characters and scenery at their authored placements, and reduce the procedural recipes' cell counts as well. Preserve the quieter palette, gameplay ownership, camera and native rigs. Very small items and thin equipment need a lower pitch so their silhouettes remain legible.
+
+Pre-implementation sweep corrections: the prior `.125/.2m` selector uses bounds diagonal, not longest side; all current prefab scales are 1 but future conversion must still account for scale. Merely changing a toolkit recipe's `.25m` unit and uniformly fitting it back does not reduce its cell count. The 38 recipe substitutions bypass the original-mesh baker entirely and need a genuine recipe simplification. Non-cell-dividing pitches can overhang grid seams; static cell scenery should use `.25m`. Skins must not be rescaled independently of bones, and bone groups can disappear at an overly coarse pitch. Retain fine art for thin/small bodies and verify prior rendered bone coverage.
+
+Gate: observed RED density tests, coarser bake/export, actual cell-count reduction (not just triangle merging), source/GUID preservation, skin and hole/footprint counterchecks, followed by matched native captures and full voxel regression. Before-state files and targeted copies are recorded in `Verification/VoxelWorld/D01-coarser/prechange.json`. Independent toolkit and mesh reviews precede changes; fixes belong in generation rules rather than manually edited example objects.
+
+
+D1 implementation: `VoxelWorldDensity` uses 0.25 m blocks for ordinary rigid
+scenery and 0.1875 m for ordinary animated bodies. Static scenery therefore fits
+four voxel steps per native one-metre cell. Equipment, objects smaller than
+0.55 m, and skins thinner than 0.15 m retain the prior pitch. The selector
+accounts for prefab scale without changing transforms or scaling mesh vertices
+away from their bones. Of 406 native bake sources, 391 receive a larger pitch;
+15 retain their previous pitch, including both thin wardlines and five long
+copper pipes. Rigid objects with two axes below 0.5 m and a length at least four
+times their middle dimension retain their earlier pitch; broad thin floors do
+not qualify. The 60 S1 ambient
+paint treatments remain applied after geometry generation.
+
+The imported procedural props now use `assets-coarse.json`, the optional
+`native_coarse` profile described in `VOXEL-TOWN-GENERATOR.md`. The 19 bound
+recipes contain **1,428 → 584 occupied cells (59.1% fewer)**; the 38 native
+bindings retain their identities, bottom planes and uniform fits. All 37 changed
+bindings have a larger effective pitch after that fit; the minimal stool is the
+unchanged control. The original fine export and all candidate layouts remain
+unchanged. This avoids silently changing full-size toolkit ownership footprints.
+
+Measured examples from actual reloaded Unity assets:
+
+| Model | Previous cells | New cells | World pitch |
+|---|---:|---:|---|
+| Player `character-teal` | 556 | 210 | 0.125 → 0.1875 m |
+| Herb pot | 173 | 38 | 0.125 → 0.25 m |
+| Ground patch 0 | 1,628 | 1,087 | 0.2 → 0.25 m |
+
+Cell counts use closed surface volume divided by the recorded cell volume;
+triangle merging alone cannot pass this gate. The full native bake decreases
+from 475,994 to 263,948 triangles before recipe overrides. Accounting for all
+38 overrides, the effective catalog contains 255,428 rather than 450,644
+triangles. These are asset geometry counts, not a frame-rate claim.
+
+D1 verification and review log:
+
+- D02: zero compiler errors, 16 observed RED cases for missing density policy
+  and unchanged actual art, plus three passing baseline controls.
+- D03: runner refused an unexpectedly open Editor without launching a bake;
+  closed the idle Editor normally. D04 then baked all 406 meshes successfully.
+- D05: 210/211 focused tests passed, but the character's occupied volume was
+  non-integral. Raw serialized inspection confirmed 4,520 old vertex positions
+  paired with indices for only 2,116 new vertices. This was a real publication
+  bug, not a tolerance problem. The all-skins exact-bake regression added next
+  also failed in D06 (26/28 density tests passed).
+- 🟡 Fixed: `EditorUtility.CopySerialized` retained an old skinned vertex stream
+  when rebaking an existing mesh asset. Both generators now clear the destination
+  layout and explicitly write their emitted mesh channels, retaining its asset
+  identity and GUID. No borrowed FBX, rig or source material is rewritten.
+- D07: final bake/import succeeded, zero compiler errors, all source dependencies
+  unchanged and existing output GUIDs preserved. All 38 procedural bindings use
+  the exact final coarse export hash recorded in the toolkit log.
+- D08: **220/220 voxel cases pass**, including all 28 published skins matching
+  fresh bakes exactly (vertices, normals, UVs, weights, bindposes, submesh indices
+  and bounds), prior visible bone coverage, actual voxel counts and unchanged
+  small-equipment geometry.
+- 🔵 Review gap closed: an occupancy-only hole check cannot prove that geometry
+  stays open. Eight new tests cast vertical rays through the actual presenter
+  MeshColliders of every NE/SE ridge variant. Each requires an occupied-cell hit
+  and misses in the adjacent gap and empty corner, all inside the overall bounds.
+  All eight already passed in D06 and remain green in D08; these are regression
+  pins, not claims of eight bugs fixed.
+- D09: **44/44 native checks**, four active chunk binds with zero missing mesh
+  mappings, six normal-key border crossings, seven real GameView captures and
+  exact native save/load snapshots. Runtime sources stayed frozen throughout.
+  Independent receipt inspection recomputes all 25,365 recorded frames and
+  validates hashes, save restoration and distinct checks. Run ID:
+  `56aa9606627046169cc525f753c0a6d3`.
+- Cold-eye review: selector exclusions, scale conversion, generated-channel
+  symmetry, cleanup ownership and source/GUID preservation reviewed independently.
+  No unresolved production blocker remains. Toolkit counterchecks caught and
+  fixed lost bed cloth and a low-rock fit that canceled the pitch gain; explicit
+  bed underside gaps strengthen the existing correct silhouette gate.
+
+Visual assessment: the actual spawn capture has broader character silhouettes,
+simpler wall/well edges and larger individual prop blocks. Western-field trees
+and shrubs have fewer, broader lobes. The visible southern ridges retain their
+irregular outlines; all eight geometric hole probes pass independently of fog.
+The grove screenshot only covers its normally visible entry area. The paired
+Blender asset image separately exposes all 19 fine/coarse recipes at matched
+owner envelopes. Existing CRT pixelation, fog, ground colors and camera remain,
+so coarse geometry does not remove every source of visual noise.
+
+Can verify: reduced actual cells, exact persisted skin geometry, full catalog
+coverage, silhouette counterchecks, eight open collider gaps, native targeting,
+destruction, hauling, spell/animation signals, four chunk binds and source/save
+restoration. Cannot verify: every possible future asset or layout, subjective
+long-session readability or a general frame-rate improvement. D09's four pilot
+phases have engine-frame p95 around 3.42–5.94 ms and maxima 16.70–46.45 ms; peak
+recorded frame allocation is 24.96 MB. This bounded Mac/Metal Editor recording is
+not a controlled performance comparison, and hitches remain outside this art pass.
+
+Native changes remain installed in the mixed working tree under the same
+preservation boundary as the prior integration. D1's exact helper/test additions
+and three existing-file edits are recorded in
+`Verification/VoxelWorld/D01-coarser/implementation.patch`; the old modified files
+were verified against their before-state hashes. The independent coarse toolkit,
+its tests/export/preview, and the living verification record form the scoped
+commit without absorbing unrelated native foundations.
+
+
+D1 full-suite refinement:
+
+- D10 full regression: 11,763 total, 11,729 pass, 34 fail, zero compiler errors.
+  Thirty-two failures exactly match U15. Two additional existing hidden-contact
+  picking tests exposed a real interaction regression: the coarser long pipe
+  widened its raised bounds and filled an intentionally empty click corner.
+- 🟡 Fixed in the density rule, leaving those gameplay tests unchanged: preserve
+  the original resolution of slender rigid objects with two narrow axes. The
+  rule is independent of model names and orientation, and does not exempt wide
+  thin terrain. Current content adds exactly five copper-pipe exceptions; staff
+  equipment was already protected.
+- D11 observed RED: all five new policy cases failed before the thin-object
+  guard; the original 13 policy cases still passed. They cover axis permutations,
+  effective scale, long-object previous pitch, and broad/compact counterexamples.
+  An additional real-asset gate pins all five pipe shapes against fresh old-pitch
+  bakes, including geometry, paint and bounds.
+
+- D12 final rebuild succeeds with zero compiler errors and preserved source/GUID
+  contracts. Exactly five pipe meshes return to their original 0.125 m pitch;
+  all other D07 native meshes and the coarse recipe export are unchanged.
+  The final bake/effective-catalog triangle counts above include these exceptions.
+
+- D13 final full regression: **11,769 total, 11,737 pass, 32 pre-existing failures,
+  zero compiler errors**. Failing names and messages exactly match U15; no new
+  failure remains. All 226 voxel cases and the unchanged hidden-contact gameplay
+  tests pass. This adds 34 density cases to S1's 192 voxel cases.
+- Preservation/GUID audit: 2,728 captured files checked, only expected generated
+  outputs and four existing implementation/export files changed, no changed old
+  metas. All 1,658 independently recorded borrowed asset dependencies are
+  byte-identical; 5,032 valid GUIDs are unique. All 406 catalog binding identities
+  and 38 toolkit GUID/ownership pins survive. Receipts now reference D12.
+
+- D14 post-review countercheck: the same slender dimensions marked as skinned
+  still use the character pitch. All 18 policy tests pass, zero compiler errors.
+  This is an added assertion in existing cases after D13; production/source art
+  are unchanged from the successful full regression.
+- The exact implementation patch passes Git's reverse-application check without
+  modifying the tree. Missing final newlines in generated metas are represented
+  correctly in the patch; no metadata rewrite was needed.
+
+- D15 final native audit: **44/44 checks pass**, zero compiler/runtime errors,
+  all four chunk binds active with zero missing models, six keyboard seams and
+  exact save restoration. Sources stayed frozen. Independent inspection validates
+  all hashes and recomputes 24,509 profile frames. Final run:
+  `d437ca34fa414ebe9d5521de418a7f3b`. The final spawn capture was inspected again;
+  the successful chunky forms remain after preserving the five pipe silhouettes.
+  This supersedes D09 as the final native source/art verification.
+- Closed the audit Editor and reopened the normal project in Unity with its
+  existing SampleScene. No further code or asset changes followed verification.
+
+Final D1 evidence: `D01-coarser/density-summary.json`,
+`D01-coarser/full-regression-comparison.json`, preservation/GUID receipts,
+`D13-coarse-final-full-regression/receipt.json`, and
+`D15-coarser-final-native/independent-inspection.json`, all under
+`Verification/VoxelWorld`. The procedural comparison is
+`ArtSource/VoxelTown/Output/native-region/coarse-comparison.png` (fine left,
+coarse right). The final native spawn image is
+`Verification/VoxelWorld/VWN-d437ca34fa414ebe9d5521de418a7f3b-spawn-town.png`.

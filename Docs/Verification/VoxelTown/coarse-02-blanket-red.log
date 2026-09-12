@@ -1,0 +1,43 @@
+test_bed_keeps_four_feet_fabric_and_tall_headboard (test_native_coarse.NativeCoarseTests.test_bed_keeps_four_feet_fabric_and_tall_headboard) ... FAIL
+test_coarse_density_is_actually_lower_not_a_scale_change (test_native_coarse.NativeCoarseTests.test_coarse_density_is_actually_lower_not_a_scale_change) ... ok
+test_export_is_explicit_deterministic_and_preserves_fine_file (test_native_coarse.NativeCoarseTests.test_export_is_explicit_deterministic_and_preserves_fine_file) ... ok
+test_fine_export_bytes_stay_pinned (test_native_coarse.NativeCoarseTests.test_fine_export_bytes_stay_pinned) ... ok
+test_geometry_variants_do_not_collapse (test_native_coarse.NativeCoarseTests.test_geometry_variants_do_not_collapse) ... ok
+test_invalid_profile_rejected_before_existing_output_changes (test_native_coarse.NativeCoarseTests.test_invalid_profile_rejected_before_existing_output_changes) ... ok
+test_minimal_stool_keeps_three_separate_legs (test_native_coarse.NativeCoarseTests.test_minimal_stool_keeps_three_separate_legs) ... ok
+test_open_container_cavities_remain_open_from_above (test_native_coarse.NativeCoarseTests.test_open_container_cavities_remain_open_from_above) ... ok
+test_palette_ids_and_import_only_pitch_policy (test_native_coarse.NativeCoarseTests.test_palette_ids_and_import_only_pitch_policy) ... ok
+test_recipe_barrel (test_native_coarse.NativeCoarseTests.test_recipe_barrel) ... ok
+test_recipe_barrel_1 (test_native_coarse.NativeCoarseTests.test_recipe_barrel_1) ... ok
+test_recipe_barrel_2 (test_native_coarse.NativeCoarseTests.test_recipe_barrel_2) ... ok
+test_recipe_barrel_3 (test_native_coarse.NativeCoarseTests.test_recipe_barrel_3) ... ok
+test_recipe_bed (test_native_coarse.NativeCoarseTests.test_recipe_bed) ... ok
+test_recipe_crate (test_native_coarse.NativeCoarseTests.test_recipe_crate) ... ok
+test_recipe_crate_1 (test_native_coarse.NativeCoarseTests.test_recipe_crate_1) ... ok
+test_recipe_crate_2 (test_native_coarse.NativeCoarseTests.test_recipe_crate_2) ... ok
+test_recipe_crate_3 (test_native_coarse.NativeCoarseTests.test_recipe_crate_3) ... ok
+test_recipe_rock (test_native_coarse.NativeCoarseTests.test_recipe_rock) ... ok
+test_recipe_rock_1 (test_native_coarse.NativeCoarseTests.test_recipe_rock_1) ... ok
+test_recipe_rock_2 (test_native_coarse.NativeCoarseTests.test_recipe_rock_2) ... ok
+test_recipe_scrub (test_native_coarse.NativeCoarseTests.test_recipe_scrub) ... ok
+test_recipe_scrub_1 (test_native_coarse.NativeCoarseTests.test_recipe_scrub_1) ... ok
+test_recipe_scrub_2 (test_native_coarse.NativeCoarseTests.test_recipe_scrub_2) ... ok
+test_recipe_stool (test_native_coarse.NativeCoarseTests.test_recipe_stool) ... ok
+test_recipe_tree (test_native_coarse.NativeCoarseTests.test_recipe_tree) ... ok
+test_recipe_tree_1 (test_native_coarse.NativeCoarseTests.test_recipe_tree_1) ... ok
+test_recipe_tree_2 (test_native_coarse.NativeCoarseTests.test_recipe_tree_2) ... ok
+test_returned_recipes_are_independent (test_native_coarse.NativeCoarseTests.test_returned_recipes_are_independent) ... ok
+test_unbound_recipes_are_unchanged (test_native_coarse.NativeCoarseTests.test_unbound_recipes_are_unchanged) ... ok
+
+======================================================================
+FAIL: test_bed_keeps_four_feet_fabric_and_tall_headboard (test_native_coarse.NativeCoarseTests.test_bed_keeps_four_feet_fabric_and_tall_headboard)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 59, in test_bed_keeps_four_feet_fabric_and_tall_headboard
+    self.assertIn(MATERIAL_INDEX['cloth_red'],mesh.cells.values())
+AssertionError: 13 not found in dict_values([3, 3, 3, 3, 3, 3, 14, 4, 4, 4, 4, 3, 3, 3, 3, 3, 14, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 14, 4, 4, 4, 4])
+
+----------------------------------------------------------------------
+Ran 30 tests in 0.888s
+
+FAILED (failures=1)

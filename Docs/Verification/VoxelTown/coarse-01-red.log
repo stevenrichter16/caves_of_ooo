@@ -1,0 +1,345 @@
+test_bed_keeps_four_feet_fabric_and_tall_headboard (test_native_coarse.NativeCoarseTests.test_bed_keeps_four_feet_fabric_and_tall_headboard) ... ERROR
+test_coarse_density_is_actually_lower_not_a_scale_change (test_native_coarse.NativeCoarseTests.test_coarse_density_is_actually_lower_not_a_scale_change) ... ERROR
+test_export_is_explicit_deterministic_and_preserves_fine_file (test_native_coarse.NativeCoarseTests.test_export_is_explicit_deterministic_and_preserves_fine_file) ... ERROR
+test_fine_export_bytes_stay_pinned (test_native_coarse.NativeCoarseTests.test_fine_export_bytes_stay_pinned) ... ERROR
+test_geometry_variants_do_not_collapse (test_native_coarse.NativeCoarseTests.test_geometry_variants_do_not_collapse) ... ERROR
+test_invalid_profile_rejected_before_existing_output_changes (test_native_coarse.NativeCoarseTests.test_invalid_profile_rejected_before_existing_output_changes) ... 
+  test_invalid_profile_rejected_before_existing_output_changes (test_native_coarse.NativeCoarseTests.test_invalid_profile_rejected_before_existing_output_changes) (profile='coarse_typo') ... ERROR
+  test_invalid_profile_rejected_before_existing_output_changes (test_native_coarse.NativeCoarseTests.test_invalid_profile_rejected_before_existing_output_changes) (profile='') ... ERROR
+  test_invalid_profile_rejected_before_existing_output_changes (test_native_coarse.NativeCoarseTests.test_invalid_profile_rejected_before_existing_output_changes) (profile=None) ... ERROR
+  test_invalid_profile_rejected_before_existing_output_changes (test_native_coarse.NativeCoarseTests.test_invalid_profile_rejected_before_existing_output_changes) (profile=False) ... ERROR
+  test_invalid_profile_rejected_before_existing_output_changes (test_native_coarse.NativeCoarseTests.test_invalid_profile_rejected_before_existing_output_changes) (profile=2) ... ERROR
+test_minimal_stool_keeps_three_separate_legs (test_native_coarse.NativeCoarseTests.test_minimal_stool_keeps_three_separate_legs) ... ERROR
+test_open_container_cavities_remain_open_from_above (test_native_coarse.NativeCoarseTests.test_open_container_cavities_remain_open_from_above) ... ERROR
+test_palette_ids_and_import_only_pitch_policy (test_native_coarse.NativeCoarseTests.test_palette_ids_and_import_only_pitch_policy) ... ERROR
+test_recipe_barrel (test_native_coarse.NativeCoarseTests.test_recipe_barrel) ... ERROR
+test_recipe_barrel_1 (test_native_coarse.NativeCoarseTests.test_recipe_barrel_1) ... ERROR
+test_recipe_barrel_2 (test_native_coarse.NativeCoarseTests.test_recipe_barrel_2) ... ERROR
+test_recipe_barrel_3 (test_native_coarse.NativeCoarseTests.test_recipe_barrel_3) ... ERROR
+test_recipe_bed (test_native_coarse.NativeCoarseTests.test_recipe_bed) ... ERROR
+test_recipe_crate (test_native_coarse.NativeCoarseTests.test_recipe_crate) ... ERROR
+test_recipe_crate_1 (test_native_coarse.NativeCoarseTests.test_recipe_crate_1) ... ERROR
+test_recipe_crate_2 (test_native_coarse.NativeCoarseTests.test_recipe_crate_2) ... ERROR
+test_recipe_crate_3 (test_native_coarse.NativeCoarseTests.test_recipe_crate_3) ... ERROR
+test_recipe_rock (test_native_coarse.NativeCoarseTests.test_recipe_rock) ... ERROR
+test_recipe_rock_1 (test_native_coarse.NativeCoarseTests.test_recipe_rock_1) ... ERROR
+test_recipe_rock_2 (test_native_coarse.NativeCoarseTests.test_recipe_rock_2) ... ERROR
+test_recipe_scrub (test_native_coarse.NativeCoarseTests.test_recipe_scrub) ... ERROR
+test_recipe_scrub_1 (test_native_coarse.NativeCoarseTests.test_recipe_scrub_1) ... ERROR
+test_recipe_scrub_2 (test_native_coarse.NativeCoarseTests.test_recipe_scrub_2) ... ERROR
+test_recipe_stool (test_native_coarse.NativeCoarseTests.test_recipe_stool) ... ERROR
+test_recipe_tree (test_native_coarse.NativeCoarseTests.test_recipe_tree) ... ERROR
+test_recipe_tree_1 (test_native_coarse.NativeCoarseTests.test_recipe_tree_1) ... ERROR
+test_recipe_tree_2 (test_native_coarse.NativeCoarseTests.test_recipe_tree_2) ... ERROR
+test_returned_recipes_are_independent (test_native_coarse.NativeCoarseTests.test_returned_recipes_are_independent) ... ERROR
+test_unbound_recipes_are_unchanged (test_native_coarse.NativeCoarseTests.test_unbound_recipes_are_unchanged) ... ERROR
+
+======================================================================
+ERROR: test_bed_keeps_four_feet_fabric_and_tall_headboard (test_native_coarse.NativeCoarseTests.test_bed_keeps_four_feet_fabric_and_tall_headboard)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 56, in test_bed_keeps_four_feet_fabric_and_tall_headboard
+    mesh=native_recipes(profile='native_coarse')['bed'];lo,hi=occupied_bounds(mesh)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_coarse_density_is_actually_lower_not_a_scale_change (test_native_coarse.NativeCoarseTests.test_coarse_density_is_actually_lower_not_a_scale_change)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 24, in test_coarse_density_is_actually_lower_not_a_scale_change
+    fine=native_recipes();coarse=native_recipes(profile='native_coarse')
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_export_is_explicit_deterministic_and_preserves_fine_file (test_native_coarse.NativeCoarseTests.test_export_is_explicit_deterministic_and_preserves_fine_file)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 81, in test_export_is_explicit_deterministic_and_preserves_fine_file
+    data=export_assets(coarse,profile='native_coarse');first=coarse.read_bytes()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: export_assets() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_fine_export_bytes_stay_pinned (test_native_coarse.NativeCoarseTests.test_fine_export_bytes_stay_pinned)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 34, in test_fine_export_bytes_stay_pinned
+    native_recipes(profile='native_coarse')
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_geometry_variants_do_not_collapse (test_native_coarse.NativeCoarseTests.test_geometry_variants_do_not_collapse)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 72, in test_geometry_variants_do_not_collapse
+    meshes=native_recipes(profile='native_coarse')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_invalid_profile_rejected_before_existing_output_changes (test_native_coarse.NativeCoarseTests.test_invalid_profile_rejected_before_existing_output_changes) (profile='coarse_typo')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 91, in test_invalid_profile_rejected_before_existing_output_changes
+    with self.assertRaises(ValueError):export_assets(target,profile=profile)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: export_assets() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_invalid_profile_rejected_before_existing_output_changes (test_native_coarse.NativeCoarseTests.test_invalid_profile_rejected_before_existing_output_changes) (profile='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 91, in test_invalid_profile_rejected_before_existing_output_changes
+    with self.assertRaises(ValueError):export_assets(target,profile=profile)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: export_assets() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_invalid_profile_rejected_before_existing_output_changes (test_native_coarse.NativeCoarseTests.test_invalid_profile_rejected_before_existing_output_changes) (profile=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 91, in test_invalid_profile_rejected_before_existing_output_changes
+    with self.assertRaises(ValueError):export_assets(target,profile=profile)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: export_assets() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_invalid_profile_rejected_before_existing_output_changes (test_native_coarse.NativeCoarseTests.test_invalid_profile_rejected_before_existing_output_changes) (profile=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 91, in test_invalid_profile_rejected_before_existing_output_changes
+    with self.assertRaises(ValueError):export_assets(target,profile=profile)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: export_assets() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_invalid_profile_rejected_before_existing_output_changes (test_native_coarse.NativeCoarseTests.test_invalid_profile_rejected_before_existing_output_changes) (profile=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 91, in test_invalid_profile_rejected_before_existing_output_changes
+    with self.assertRaises(ValueError):export_assets(target,profile=profile)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: export_assets() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_minimal_stool_keeps_three_separate_legs (test_native_coarse.NativeCoarseTests.test_minimal_stool_keeps_three_separate_legs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 65, in test_minimal_stool_keeps_three_separate_legs
+    fine=native_recipes()['stool'];coarse=native_recipes(profile='native_coarse')['stool']
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_open_container_cavities_remain_open_from_above (test_native_coarse.NativeCoarseTests.test_open_container_cavities_remain_open_from_above)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 46, in test_open_container_cavities_remain_open_from_above
+    meshes=native_recipes(profile='native_coarse')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_palette_ids_and_import_only_pitch_policy (test_native_coarse.NativeCoarseTests.test_palette_ids_and_import_only_pitch_policy)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 38, in test_palette_ids_and_import_only_pitch_policy
+    fine=asset_manifest();coarse=asset_manifest(profile='native_coarse')
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: asset_manifest() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_recipe_barrel (test_native_coarse.NativeCoarseTests.test_recipe_barrel)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 109, in gate
+    fine=native_recipes()[key];coarse=native_recipes(profile='native_coarse')[key]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_recipe_barrel_1 (test_native_coarse.NativeCoarseTests.test_recipe_barrel_1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 109, in gate
+    fine=native_recipes()[key];coarse=native_recipes(profile='native_coarse')[key]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_recipe_barrel_2 (test_native_coarse.NativeCoarseTests.test_recipe_barrel_2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 109, in gate
+    fine=native_recipes()[key];coarse=native_recipes(profile='native_coarse')[key]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_recipe_barrel_3 (test_native_coarse.NativeCoarseTests.test_recipe_barrel_3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 109, in gate
+    fine=native_recipes()[key];coarse=native_recipes(profile='native_coarse')[key]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_recipe_bed (test_native_coarse.NativeCoarseTests.test_recipe_bed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 109, in gate
+    fine=native_recipes()[key];coarse=native_recipes(profile='native_coarse')[key]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_recipe_crate (test_native_coarse.NativeCoarseTests.test_recipe_crate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 109, in gate
+    fine=native_recipes()[key];coarse=native_recipes(profile='native_coarse')[key]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_recipe_crate_1 (test_native_coarse.NativeCoarseTests.test_recipe_crate_1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 109, in gate
+    fine=native_recipes()[key];coarse=native_recipes(profile='native_coarse')[key]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_recipe_crate_2 (test_native_coarse.NativeCoarseTests.test_recipe_crate_2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 109, in gate
+    fine=native_recipes()[key];coarse=native_recipes(profile='native_coarse')[key]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_recipe_crate_3 (test_native_coarse.NativeCoarseTests.test_recipe_crate_3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 109, in gate
+    fine=native_recipes()[key];coarse=native_recipes(profile='native_coarse')[key]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_recipe_rock (test_native_coarse.NativeCoarseTests.test_recipe_rock)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 109, in gate
+    fine=native_recipes()[key];coarse=native_recipes(profile='native_coarse')[key]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_recipe_rock_1 (test_native_coarse.NativeCoarseTests.test_recipe_rock_1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 109, in gate
+    fine=native_recipes()[key];coarse=native_recipes(profile='native_coarse')[key]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_recipe_rock_2 (test_native_coarse.NativeCoarseTests.test_recipe_rock_2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 109, in gate
+    fine=native_recipes()[key];coarse=native_recipes(profile='native_coarse')[key]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_recipe_scrub (test_native_coarse.NativeCoarseTests.test_recipe_scrub)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 109, in gate
+    fine=native_recipes()[key];coarse=native_recipes(profile='native_coarse')[key]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_recipe_scrub_1 (test_native_coarse.NativeCoarseTests.test_recipe_scrub_1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 109, in gate
+    fine=native_recipes()[key];coarse=native_recipes(profile='native_coarse')[key]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_recipe_scrub_2 (test_native_coarse.NativeCoarseTests.test_recipe_scrub_2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 109, in gate
+    fine=native_recipes()[key];coarse=native_recipes(profile='native_coarse')[key]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_recipe_stool (test_native_coarse.NativeCoarseTests.test_recipe_stool)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 109, in gate
+    fine=native_recipes()[key];coarse=native_recipes(profile='native_coarse')[key]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_recipe_tree (test_native_coarse.NativeCoarseTests.test_recipe_tree)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 109, in gate
+    fine=native_recipes()[key];coarse=native_recipes(profile='native_coarse')[key]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_recipe_tree_1 (test_native_coarse.NativeCoarseTests.test_recipe_tree_1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 109, in gate
+    fine=native_recipes()[key];coarse=native_recipes(profile='native_coarse')[key]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_recipe_tree_2 (test_native_coarse.NativeCoarseTests.test_recipe_tree_2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 109, in gate
+    fine=native_recipes()[key];coarse=native_recipes(profile='native_coarse')[key]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_returned_recipes_are_independent (test_native_coarse.NativeCoarseTests.test_returned_recipes_are_independent)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 101, in test_returned_recipes_are_independent
+    first=native_recipes(profile='native_coarse');second=native_recipes(profile='native_coarse')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+======================================================================
+ERROR: test_unbound_recipes_are_unchanged (test_native_coarse.NativeCoarseTests.test_unbound_recipes_are_unchanged)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_coarse.py", line 95, in test_unbound_recipes_are_unchanged
+    fine=native_recipes();coarse=native_recipes(profile='native_coarse')
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: native_recipes() got an unexpected keyword argument 'profile'
+
+----------------------------------------------------------------------
+Ran 30 tests in 0.166s
+
+FAILED (errors=34)

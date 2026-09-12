@@ -16,9 +16,19 @@ from .assets import build_recipes
 from .materials import PALETTE_HEX
 
 
-def native_recipes():
-    """Fresh .25m source recipes; callers can edit their copy without leakage."""
-    return build_recipes(.25)
+def native_recipes(profile='fine'):
+    """Fresh recipes; opt-in ``native_coarse`` changes topology and cell pitch.
+
+    The coarse profile is for uniformly fitted native imports, not replacement
+    of the fine toolkit's authored full-size buildings or candidate ownership.
+    """
+    if profile not in ('fine','native_coarse'):
+        raise ValueError('Unknown native recipe profile')
+    recipes=build_recipes(.25)
+    if profile=='native_coarse':
+        from .native_coarse import coarsen_recipes
+        recipes=coarsen_recipes(recipes)
+    return recipes
 
 
 def _runs(mesh):
@@ -30,7 +40,7 @@ def _runs(mesh):
     return rows
 
 
-def asset_manifest():
+def asset_manifest(profile='fine'):
     """Return independent JSON-ready mesh/voxel records in stable asset order.
 
     ``nativePlacementOffset`` is applied after the centred pivot when placing
@@ -47,7 +57,10 @@ def asset_manifest():
             'nativeAxes':'X east, Y south; Unity X east, Y height, Z north',
             'palette':[{'name':name,'hex':color} for name,color in PALETTE_HEX.items()],
             'assets':[]}
-    for key,mesh in sorted(native_recipes().items()):
+    if profile=='native_coarse':
+        result.update(profile=profile,voxelSize=None,voxelSizePolicy='per-asset',
+                      sourceVoxelSize=.25,usage='uniformly-fitted-native-import-only')
+    for key,mesh in sorted(native_recipes(profile).items()):
         vertices,quads,materials=mesh.geometry()
         lo=[min(v[axis] for v in vertices) for axis in range(3)]
         hi=[max(v[axis] for v in vertices) for axis in range(3)]
@@ -81,9 +94,9 @@ def asset_manifest():
     return result
 
 
-def export_assets(path):
+def export_assets(path,profile='fine'):
     """Atomically replace one generated JSON file, preserving unrelated files."""
-    path=Path(path);data=asset_manifest()
+    path=Path(path);data=asset_manifest(profile)
     encoded=(json.dumps(data,sort_keys=True,separators=(',',':'))+'\n').encode()
     path.parent.mkdir(parents=True,exist_ok=True)
     with tempfile.NamedTemporaryFile(prefix='.native-assets-',dir=path.parent,delete=False) as stream:

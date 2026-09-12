@@ -1,0 +1,71 @@
+{
+  "status": "passed",
+  "beforeNativeRun": "6e3fde3722764cdcaefd83639b40702a",
+  "afterNativeRun": "d437ca34fa414ebe9d5521de418a7f3b",
+  "nativeMeshes": 406,
+  "skins": 28,
+  "bakePitchIncreased": 391,
+  "bakePitchRetained": 15,
+  "bakeTriangles": {
+    "before": 475994,
+    "after": 263948
+  },
+  "effectiveCatalogTriangles": {
+    "before": 450644,
+    "after": 255428
+  },
+  "toolkit": {
+    "uniqueRecipes": 19,
+    "bindings": 38,
+    "cellsBefore": 1428,
+    "cellsAfter": 584,
+    "largerEffectivePitchBindings": 37,
+    "unchangedEffectivePitchBindings": [
+      "stool"
+    ]
+  },
+  "examples": [
+    {
+      "model": "character-teal",
+      "beforeCells": 556,
+      "afterCells": 210
+    },
+    {
+      "model": "herb-pot",
+      "beforeCells": 173,
+      "afterCells": 38
+    },
+    {
+      "model": "ground-patch-0",
+      "beforeCells": 1628,
+      "afterCells": 1087
+    }
+  ],
+  "gateResults": {
+    "voxelTests": 226,
+    "nativeChecks": 44,
+    "toolkitTests": 315,
+    "ridgeColliderCases": 8,
+    "voxelTestsStatus": "passed in D13 full regression",
+    "fullRegression": {
+      "total": 11769,
+      "passed": 11737,
+      "unchangedPreExistingFailures": 32,
+      "newFailures": 0,
+      "compileErrors": 0
+    },
+    "finalNativeStatus": "passed; D15 independent inspection 44 distinct checks and 24509 frames"
+  },
+  "limits": [
+    "Asset triangle counts are not FPS measurements.",
+    "Fine toolkit candidate layouts and non-native region presentation are not converted by this profile.",
+    "Native camera, normal fog and CRT treatment are retained.",
+    "Native implementation remains installed in mixed working tree and recorded as exact patch; independent Python toolkit is tracked."
+  ],
+  "thinRigidGuard": {
+    "crossSectionBelow": 0.5,
+    "minimumElongation": 4,
+    "additionalPreservedModels": 5,
+    "reason": "Retain native pipe selection gaps; observed two full-suite regressions fixed in density rule."
+  }
+}

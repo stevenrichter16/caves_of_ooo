@@ -1,0 +1,87 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CavesOfOoo.Tests.VoxelWorldDensity",
+  "results": {
+    "id": "2",
+    "testcasecount": "19",
+    "result": "Failed(Child)",
+    "total": "19",
+    "passed": "3",
+    "failed": "16",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-12 13:54:55Z",
+    "end-time": "2026-09-12 13:54:59Z",
+    "duration": "4.1791893"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityArtTests.OrdinaryPropCharacterAndTerrainContainFewerActualCellsAtCoarserPitch(\"herb-pot\")",
+      "message": "  herb-pot must actually use larger cells.\n  Expected: greater than 0.125f\n  But was:  0.125f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityArtTests.OrdinaryPropCharacterAndTerrainContainFewerActualCellsAtCoarserPitch(\"character-teal\")",
+      "message": "  character-teal must actually use larger cells.\n  Expected: greater than 0.125f\n  But was:  0.125f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityArtTests.OrdinaryPropCharacterAndTerrainContainFewerActualCellsAtCoarserPitch(\"ground-patch-0\")",
+      "message": "  ground-patch-0 must actually use larger cells.\n  Expected: greater than 0.200000003f\n  But was:  0.200000003f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityTests.CharacterBodyGetsLargerVoxelsButThinCreatureKeepsItsSilhouette",
+      "message": "  Choose coarser geometry by object scale while protecting tiny and thin items.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityTests.InvalidBoundsRejectRatherThanCreatingMeaninglessDensity(0.0f,0.0f,0.0f)",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException:   Choose coarser geometry by object scale while protecting tiny and thin items.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.VoxelWorldDensityTests.Pitch (UnityEngine.Vector3 size, System.Single scale, System.Boolean skin, System.Boolean equipment) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldDensityTests.cs:15 \n  at CavesOfOoo.Tests.VoxelWorldDensityTests+<>c__DisplayClass7_0.<InvalidBoundsRejectRatherThanCreatingMeaninglessDensity>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldDensityTests.cs:38 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityTests.InvalidBoundsRejectRatherThanCreatingMeaninglessDensity(-1.0f,1.0f,1.0f)",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException:   Choose coarser geometry by object scale while protecting tiny and thin items.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.VoxelWorldDensityTests.Pitch (UnityEngine.Vector3 size, System.Single scale, System.Boolean skin, System.Boolean equipment) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldDensityTests.cs:15 \n  at CavesOfOoo.Tests.VoxelWorldDensityTests+<>c__DisplayClass7_0.<InvalidBoundsRejectRatherThanCreatingMeaninglessDensity>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldDensityTests.cs:38 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityTests.InvalidBoundsRejectRatherThanCreatingMeaninglessDensity(float.NaN,1.0f,1.0f)",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException:   Choose coarser geometry by object scale while protecting tiny and thin items.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.VoxelWorldDensityTests.Pitch (UnityEngine.Vector3 size, System.Single scale, System.Boolean skin, System.Boolean equipment) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldDensityTests.cs:15 \n  at CavesOfOoo.Tests.VoxelWorldDensityTests+<>c__DisplayClass7_0.<InvalidBoundsRejectRatherThanCreatingMeaninglessDensity>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldDensityTests.cs:38 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityTests.InvalidBoundsRejectRatherThanCreatingMeaninglessDensity(float.PositiveInfinity,1.0f,1.0f)",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException:   Choose coarser geometry by object scale while protecting tiny and thin items.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.VoxelWorldDensityTests.Pitch (UnityEngine.Vector3 size, System.Single scale, System.Boolean skin, System.Boolean equipment) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldDensityTests.cs:15 \n  at CavesOfOoo.Tests.VoxelWorldDensityTests+<>c__DisplayClass7_0.<InvalidBoundsRejectRatherThanCreatingMeaninglessDensity>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldDensityTests.cs:38 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityTests.InvalidPrefabScaleRejectsBeforeAnyBake(0.0f)",
+      "message": "  Choose coarser geometry by object scale while protecting tiny and thin items.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityTests.InvalidPrefabScaleRejectsBeforeAnyBake(-1.0f)",
+      "message": "  Choose coarser geometry by object scale while protecting tiny and thin items.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityTests.InvalidPrefabScaleRejectsBeforeAnyBake(float.NaN)",
+      "message": "  Choose coarser geometry by object scale while protecting tiny and thin items.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityTests.InvalidPrefabScaleRejectsBeforeAnyBake(float.PositiveInfinity)",
+      "message": "  Choose coarser geometry by object scale while protecting tiny and thin items.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityTests.LargeSceneryRemainsOnTheSameCellDividingGrid",
+      "message": "  Choose coarser geometry by object scale while protecting tiny and thin items.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityTests.OrdinaryStaticObjectsAndGroundUseFourVoxelsPerMetre",
+      "message": "  Choose coarser geometry by object scale while protecting tiny and thin items.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityTests.PolicyUsesEffectiveWorldDimensionsWithoutConsumingRandom",
+      "message": "  Choose coarser geometry by object scale while protecting tiny and thin items.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityTests.TinyObjectsAndHeldEquipmentRetainTheirExistingLowCellCount",
+      "message": "  Choose coarser geometry by object scale while protecting tiny and thin items.\n  Expected: not null\n  But was:  null\n"
+    }
+  ]
+}

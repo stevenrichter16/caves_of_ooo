@@ -1,0 +1,585 @@
+diff --git a/Assets/Editor/Art/VoxelWorldMeshBuilder.cs b/Assets/Editor/Art/VoxelWorldMeshBuilder.cs
+--- a/Assets/Editor/Art/VoxelWorldMeshBuilder.cs
++++ b/Assets/Editor/Art/VoxelWorldMeshBuilder.cs
+@@ -85,8 +85,8 @@
+                 // replaced last, only after complete source coverage is verified.
+                 foreach(var source in sources.OrderBy(s=>s.Key,StringComparer.Ordinal))
+                 {
+-                    float extent=source.Mesh.bounds.size.magnitude*source.Scale;
+-                    float worldPitch=extent>=3f?.2f:.125f;
++                    bool equipment=Path.GetFileNameWithoutExtension(source.Path).StartsWith("equipment-",StringComparison.Ordinal);
++                    float worldPitch=VoxelWorldDensity.SelectWorldPitch(source.Mesh.bounds.size,source.Scale,source.Skinned,equipment);
+                     float localPitch=worldPitch/source.Scale;
+                     var baked=VoxelWorldMeshBaker.Bake(source.Mesh,localPitch);
+                     // Own the native allocation before palette IO/validation can
+@@ -123,7 +123,7 @@
+                     {
+                         RefuseWrongType(path);mesh=entry.Mesh;AssetDatabase.CreateAsset(mesh,path);entry.Mesh=null;
+                     }
+-                    else {EditorUtility.CopySerialized(entry.Mesh,mesh);EditorUtility.SetDirty(mesh);}
++                    else {ReplaceGeneratedGeometry(entry.Mesh,mesh);EditorUtility.SetDirty(mesh);}
+                     bindings.Add(new VoxelWorldMeshCatalog.Binding {Source=entry.Source.Mesh,Voxel=mesh,SourceKey=entry.Source.Key,
+                         VoxelSize=entry.Report.localVoxelSize,WorldVoxelSize=entry.Report.worldVoxelSize,SourceBindposes=entry.Source.Mesh.bindposes});
+                     entry.Report.outputGuid=AssetDatabase.AssetPathToGUID(path);
+@@ -152,6 +152,27 @@
+                 foreach(var entry in prepared)if(entry.Mesh!=null)Object.DestroyImmediate(entry.Mesh);
+             }
+         }
++        // CopySerialized can retain a persistent skinned mesh's old vertex
++        // stream while replacing its indices. Write the generated channels
++        // through Mesh instead, retaining the destination asset and its GUID.
++        // Both voxel exporters emit only positions, normals, UV0 and optional
++        // rigid skin weights/bindposes; no source FBX is passed as destination.
++        internal static void ReplaceGeneratedGeometry(Mesh source,Mesh destination)
++        {
++            if(source==null||destination==null||source==destination)
++                throw new ArgumentException("Distinct generated source and destination meshes are required.");
++            destination.Clear(false);
++            destination.indexFormat=source.indexFormat;
++            destination.vertices=source.vertices;
++            destination.normals=source.normals;
++            destination.uv=source.uv;
++            destination.bindposes=source.bindposes;
++            destination.boneWeights=source.boneWeights;
++            destination.subMeshCount=source.subMeshCount;
++            for(int sub=0;sub<source.subMeshCount;sub++)
++                destination.SetTriangles(source.GetTriangles(sub),sub,false);
++            destination.bounds=source.bounds;
++        }
+         static List<Source> Collect(GameObject[] prefabs,Dictionary<string,string> borrowed)
+         {
+             var found=new Dictionary<Mesh,Source>();
+diff --git a/Assets/Editor/Art/VoxelWorldToolkitImporter.cs b/Assets/Editor/Art/VoxelWorldToolkitImporter.cs
+--- a/Assets/Editor/Art/VoxelWorldToolkitImporter.cs
++++ b/Assets/Editor/Art/VoxelWorldToolkitImporter.cs
+@@ -18,7 +18,7 @@
+     /// unchanged. A uniform fit preserves each recipe's aspect ratio.</summary>
+     public static class VoxelWorldToolkitImporter
+     {
+-        const string SourcePath = "ArtSource/VoxelTown/Output/native-region/assets.json";
++        const string SourcePath = "ArtSource/VoxelTown/Output/native-region/assets-coarse.json";
+         const string BindingPath = "ArtSource/VoxelTown/native-bindings.json";
+         const string OutputRoot = "Assets/Art3D/VoxelWorld/Toolkit";
+         const string Ownership = "CavesOfOoo.VoxelWorld.Toolkit/1";
+@@ -186,7 +186,7 @@
+                         var importer=AssetImporter.GetAtPath(entry.Row.meshAsset);
+                         importer.userData=Ownership;importer.SaveAndReimport();
+                     }
+-                    else {EditorUtility.CopySerialized(entry.Mesh,existing);EditorUtility.SetDirty(existing);}
++                    else {VoxelWorldMeshBuilder.ReplaceGeneratedGeometry(entry.Mesh,existing);EditorUtility.SetDirty(existing);}
+                     var row=updated.Single(r=>r.Source==entry.Binding.Source);
+                     row.Voxel=existing;
+                     row.VoxelSize=entry.Row.localVoxelSize;
+diff --git a/Assets/Tests/EditMode/VoxelWorldImportedArtTests.cs b/Assets/Tests/EditMode/VoxelWorldImportedArtTests.cs
+--- a/Assets/Tests/EditMode/VoxelWorldImportedArtTests.cs
++++ b/Assets/Tests/EditMode/VoxelWorldImportedArtTests.cs
+@@ -35,7 +35,7 @@
+         }
+         static Mesh MeshOf(Renderer r)=>r is SkinnedMeshRenderer skin?skin.sharedMesh:r.GetComponent<MeshFilter>()?.sharedMesh;
+         static ToolkitBindings Bindings()=>JsonUtility.FromJson<ToolkitBindings>(File.ReadAllText("ArtSource/VoxelTown/native-bindings.json"));
+-        static Recipes RecipeDocument()=>JsonUtility.FromJson<Recipes>(File.ReadAllText("ArtSource/VoxelTown/Output/native-region/assets.json"));
++        static Recipes RecipeDocument()=>JsonUtility.FromJson<Recipes>(File.ReadAllText("ArtSource/VoxelTown/Output/native-region/assets-coarse.json"));
+         static GameObject Prefab(ToolkitBinding binding)
+             =>binding.library=="Village"?Resources.Load<Village3DLibrary>(Village3DLibrary.ResourcePath).FindModel(binding.model)
+             :binding.library=="SpawnRing"?Resources.Load<SpawnRing3DLibrary>(SpawnRing3DLibrary.ResourcePath).FindModel(binding.model):null;
+diff --git a/Assets/Editor/Art/VoxelWorldDensity.cs b/Assets/Editor/Art/VoxelWorldDensity.cs
+--- /dev/null
++++ b/Assets/Editor/Art/VoxelWorldDensity.cs
+@@ -0,0 +1,38 @@
++#if UNITY_EDITOR
++using System;
++using UnityEngine;
++
++namespace CavesOfOoo.Editor
++{
++    /// <summary>Offline art resolution in metres, independent of placement scale.
++    /// Static scenery divides the one-metre gameplay grid; skins retain finer
++    /// joint detail, and tiny/thin objects keep their prior readable resolution.</summary>
++    public static class VoxelWorldDensity
++    {
++        public const float SceneryPitch=.25f;
++        public const float CharacterPitch=.1875f;
++        public const float SmallObjectExtent=.55f;
++        public const float ThinCreatureExtent=.15f;
++        public const float ThinRigidCrossSection=.5f;
++        public const float RigidElongation=4f;
++        public static float SelectWorldPitch(Vector3 localBoundsSize,float prefabScale,bool skinned,bool equipment)
++        {
++            if(!Finite(prefabScale)||prefabScale<=0)throw new ArgumentException("Prefab scale must be positive and finite.");
++            for(int axis=0;axis<3;axis++)
++                if(!Finite(localBoundsSize[axis])||localBoundsSize[axis]<0)throw new ArgumentException("Bounds must be finite and nonnegative.");
++            var world=localBoundsSize*prefabScale;float diagonal=world.magnitude;
++            if(!Finite(diagonal)||diagonal<=0)throw new ArgumentException("World bounds must have a positive finite extent.");
++            float previousPitch=diagonal>=3f?.2f:.125f;
++            float longest=Mathf.Max(world.x,Mathf.Max(world.y,world.z));
++            float shortest=Mathf.Min(world.x,Mathf.Min(world.y,world.z));
++            if(equipment||longest<SmallObjectExtent||(skinned&&shortest<ThinCreatureExtent))return previousPitch;
++            // Two narrow axes identify rods/pipes, unlike a thin broad floor.
++            // Enlarging their cross-section can fill native selection gaps.
++            float middle=Mathf.Max(Mathf.Min(world.x,world.y),Mathf.Min(Mathf.Max(world.x,world.y),world.z));
++            if(!skinned&&middle<ThinRigidCrossSection&&longest>=RigidElongation*middle)return previousPitch;
++            return skinned?Mathf.Max(previousPitch,CharacterPitch):SceneryPitch;
++        }
++        static bool Finite(float value)=>!float.IsNaN(value)&&!float.IsInfinity(value);
++    }
++}
++#endif
+diff --git a/Assets/Tests/EditMode/VoxelWorldDensityTests.cs b/Assets/Tests/EditMode/VoxelWorldDensityTests.cs
+--- /dev/null
++++ b/Assets/Tests/EditMode/VoxelWorldDensityTests.cs
+@@ -0,0 +1,61 @@
++#if UNITY_EDITOR
++using System;
++using System.Linq;
++using System.Reflection;
++using NUnit.Framework;
++using UnityEngine;
++
++namespace CavesOfOoo.Tests
++{
++    public sealed class VoxelWorldDensityTests
++    {
++        static float Pitch(Vector3 size,float scale=1,bool skin=false,bool equipment=false)
++        {
++            var type=AppDomain.CurrentDomain.GetAssemblies().Select(a=>a.GetType("CavesOfOoo.Editor.VoxelWorldDensity")).FirstOrDefault(t=>t!=null);
++            Assert.NotNull(type,"Choose coarser geometry by object scale while protecting tiny and thin items.");
++            var method=type.GetMethod("SelectWorldPitch",BindingFlags.Public|BindingFlags.Static);Assert.NotNull(method);
++            try{return (float)method.Invoke(null,new object[]{size,scale,skin,equipment});}
++            catch(TargetInvocationException error){throw error.InnerException??error;}
++        }
++        [Test] public void OrdinaryStaticObjectsAndGroundUseFourVoxelsPerMetre()
++        {Assert.AreEqual(.25f,Pitch(Vector3.one));Assert.AreEqual(.25f,Pitch(new Vector3(10,.01f,5)));}
++        [Test] public void LargeSceneryRemainsOnTheSameCellDividingGrid()
++        {Assert.AreEqual(.25f,Pitch(Vector3.one*4));Assert.AreEqual(4,1/Pitch(Vector3.one*4));}
++        [Test] public void CharacterBodyGetsLargerVoxelsButThinCreatureKeepsItsSilhouette()
++        {Assert.AreEqual(.1875f,Pitch(new Vector3(1.1f,.85f,1.73f),skin:true));Assert.AreEqual(.125f,Pitch(new Vector3(.4f,.9f,.1f),skin:true));}
++        [Test] public void TinyObjectsAndHeldEquipmentRetainTheirExistingLowCellCount()
++        {Assert.AreEqual(.125f,Pitch(Vector3.one*.25f));Assert.AreEqual(.125f,Pitch(Vector3.one,equipment:true));Assert.AreEqual(.25f,Pitch(Vector3.one));}
++        [TestCase(2.637f,.416f,.416f)]
++        [TestCase(.416f,2.637f,.416f)]
++        [TestCase(.416f,.416f,2.637f)]
++        [TestCase(.94f,.18f,.171f)]
++        public void ThinElongatedRigidObjectsRetainTheirNarrowSelectionEnvelope(float x,float y,float z)
++        {
++            Assert.AreEqual(.125f,Pitch(new Vector3(x,y,z)));
++            Assert.AreEqual(.1875f,Pitch(new Vector3(x,y,z),skin:true),
++                "The rigid contact guard must not change an articulated body's pitch.");
++            Assert.AreEqual(.25f,Pitch(new Vector3(2.637f,.416f,2.637f)),
++                "A broad thin floor is not a narrow rod and must remain coarse.");
++            Assert.AreEqual(.25f,Pitch(new Vector3(1.2f,.416f,.416f)),
++                "A compact body below the elongation threshold remains coarse.");
++        }
++        [Test] public void SlenderShapeGuardUsesWorldSizeAndPreservesLargeStaticPitch()
++        {
++            Assert.AreEqual(.125f,Pitch(new Vector3(5.274f,.832f,.832f),.5f));
++            Assert.AreEqual(.25f,Pitch(new Vector3(2.637f,.416f,.416f),2));
++            Assert.AreEqual(.2f,Pitch(new Vector3(4,.4f,.4f)));
++        }
++        [Test] public void PolicyUsesEffectiveWorldDimensionsWithoutConsumingRandom()
++        {
++            var state=UnityEngine.Random.state;Assert.AreEqual(.125f,Pitch(Vector3.one,.2f));Assert.AreEqual(.25f,Pitch(Vector3.one*.2f,5));
++            Assert.AreEqual(state,UnityEngine.Random.state);
++        }
++        [TestCase(0f)][TestCase(-1f)][TestCase(float.NaN)][TestCase(float.PositiveInfinity)]
++        public void InvalidPrefabScaleRejectsBeforeAnyBake(float scale)
++        {Assert.AreEqual(.25f,Pitch(Vector3.one));Assert.Throws<ArgumentException>(()=>Pitch(Vector3.one,scale));}
++        [TestCase(0f,0f,0f)][TestCase(-1f,1f,1f)][TestCase(float.NaN,1f,1f)][TestCase(float.PositiveInfinity,1f,1f)]
++        public void InvalidBoundsRejectRatherThanCreatingMeaninglessDensity(float x,float y,float z)
++        {Assert.Throws<ArgumentException>(()=>Pitch(new Vector3(x,y,z)));}
++    }
++}
++#endif
+diff --git a/Assets/Tests/EditMode/VoxelWorldDensityArtTests.cs b/Assets/Tests/EditMode/VoxelWorldDensityArtTests.cs
+--- /dev/null
++++ b/Assets/Tests/EditMode/VoxelWorldDensityArtTests.cs
+@@ -0,0 +1,242 @@
++#if UNITY_EDITOR
++using System;
++using System.Collections.Generic;
++using System.Linq;
++using CavesOfOoo.Rendering;
++using NUnit.Framework;
++using UnityEditor;
++using UnityEngine;
++using Object = UnityEngine.Object;
++
++namespace CavesOfOoo.Tests
++{
++    /// <summary>Actual imported art: coarser cells must reduce geometric density,
++    /// without deleting animated parts or changing an object's occupied envelope.
++    /// Fresh old-pitch bakes are disposable controls, never published assets.</summary>
++    [Category("VoxelWorldRealArt")]
++    public sealed class VoxelWorldDensityArtTests
++    {
++        const string VillageModels = "Assets/Art3D/Village/Models/";
++        const string ToolkitRoot = "Assets/Art3D/VoxelWorld/Toolkit/";
++        readonly Dictionary<Mesh, Mesh> baselines = new Dictionary<Mesh, Mesh>();
++        Dictionary<Mesh, float> scales;
++        VoxelWorldMeshCatalog catalog;
++
++        [OneTimeSetUp]
++        public void BorrowNativeCatalogAndCalculateEffectiveSourceScales()
++        {
++            catalog = Resources.Load<VoxelWorldMeshCatalog>(VoxelWorldMeshCatalog.ResourcePath);
++            Assert.NotNull(catalog); catalog.Validate();
++            var village = Resources.Load<Village3DLibrary>(Village3DLibrary.ResourcePath);
++            var ring = Resources.Load<SpawnRing3DLibrary>(SpawnRing3DLibrary.ResourcePath);
++            var pilot = Resources.Load<MultiCellPilot3DLibrary>(MultiCellPilot3DLibrary.ResourcePath);
++            Assert.NotNull(village); Assert.NotNull(ring); Assert.NotNull(pilot);
++            village.Validate(); ring.Validate(); pilot.Validate();
++            var prefabs = village.Models.Select(m => m.Prefab).Concat(ring.Models.Select(m => m.Prefab))
++                .Concat(pilot.Models.Select(m => m.Prefab))
++                .Concat(ring.EquipmentLibrary.Models.Select(m => m.Prefab)).Distinct();
++            scales = new Dictionary<Mesh, float>();
++            foreach (var renderer in prefabs.SelectMany(p => p.GetComponentsInChildren<Renderer>(true)))
++            {
++                var source = renderer is SkinnedMeshRenderer skin ? skin.sharedMesh : renderer.GetComponent<MeshFilter>()?.sharedMesh;
++                if (source == null) continue;
++                var matrix = renderer.transform.localToWorldMatrix;
++                float scale = Mathf.Max(((Vector3)matrix.GetColumn(0)).magnitude,
++                    Mathf.Max(((Vector3)matrix.GetColumn(1)).magnitude, ((Vector3)matrix.GetColumn(2)).magnitude));
++                Assert.That(scale, Is.GreaterThan(0));
++                scales[source] = scales.TryGetValue(source, out var previous) ? Mathf.Max(previous, scale) : scale;
++            }
++        }
++
++        [OneTimeTearDown]
++        public void DisposeOnlyFreshControlMeshes()
++        {
++            foreach (var mesh in baselines.Values) if (mesh != null) Object.DestroyImmediate(mesh);
++            baselines.Clear();
++        }
++
++        float OldWorldPitch(Mesh source) => source.bounds.size.magnitude * scales[source] >= 3f ? .2f : .125f;
++        float OldLocalPitch(Mesh source) => OldWorldPitch(source) / scales[source];
++        Mesh Baseline(Mesh source)
++        {
++            if (!baselines.TryGetValue(source, out var result))
++            {
++                result = VoxelWorldMeshBaker.Bake(source, OldLocalPitch(source));
++                baselines.Add(source, result);
++            }
++            return result;
++        }
++        static bool IsToolkit(VoxelWorldMeshCatalog.Binding row)
++            => AssetDatabase.GetAssetPath(row.Voxel).StartsWith(ToolkitRoot, StringComparison.Ordinal);
++
++        // Every output voxel is closed. Opposing caps at rigid bone boundaries
++        // cancel in signed volume, so this counts occupied cells despite greedy
++        // face merging, UV differences and additional joint faces.
++        static long OccupiedCells(Mesh mesh, float pitch)
++        {
++            var vertices = mesh.vertices; var indices = mesh.triangles;
++            var origin = mesh.bounds.center; double volume6 = 0;
++            for (int i = 0; i < indices.Length; i += 3)
++            {
++                var a = vertices[indices[i]] - origin;
++                var b = vertices[indices[i + 1]] - origin;
++                var c = vertices[indices[i + 2]] - origin;
++                volume6 += (double)a.x * ((double)b.y * c.z - (double)b.z * c.y)
++                    + (double)a.y * ((double)b.z * c.x - (double)b.x * c.z)
++                    + (double)a.z * ((double)b.x * c.y - (double)b.y * c.x);
++            }
++            double cells = volume6 / (6d * pitch * pitch * pitch);
++            Assert.That(cells, Is.GreaterThan(0), mesh.name + " must have outward closed voxel volume.");
++            double rounded = Math.Round(cells);
++            Assert.That(Math.Abs(cells - rounded), Is.LessThan(Math.Max(.005d, rounded * .00001d)),
++                mesh.name + " volume must represent an integral number of cells.");
++            return checked((long)rounded);
++        }
++
++        [TestCase("herb-pot")]
++        [TestCase("character-teal")]
++        [TestCase("ground-patch-0")]
++        public void OrdinaryPropCharacterAndTerrainContainFewerActualCellsAtCoarserPitch(string model)
++        {
++            var row = catalog.Bindings.Single(b => AssetDatabase.GetAssetPath(b.Source) == VillageModels + model + ".fbx");
++            Assert.IsFalse(IsToolkit(row), "The comparison must use the same native design on both sides.");
++            long before = OccupiedCells(Baseline(row.Source), OldLocalPitch(row.Source));
++            long after = OccupiedCells(row.Voxel, row.VoxelSize);
++            TestContext.WriteLine(model + ": " + before + " -> " + after + " occupied cells; world pitch "
++                + OldWorldPitch(row.Source) + " -> " + row.WorldVoxelSize);
++            Assert.That(row.WorldVoxelSize, Is.GreaterThan(OldWorldPitch(row.Source)), model + " must actually use larger cells.");
++            Assert.That(after, Is.LessThan(before), model + " must contain fewer cells, not only claim a larger pitch.");
++        }
++
++        static HashSet<int> UsedBones(Mesh mesh)
++        {
++            var used = new HashSet<int>();
++            foreach (var w in mesh.boneWeights)
++            {
++                if (w.weight0 > 0) used.Add(w.boneIndex0);
++                if (w.weight1 > 0) used.Add(w.boneIndex1);
++                if (w.weight2 > 0) used.Add(w.boneIndex2);
++                if (w.weight3 > 0) used.Add(w.boneIndex3);
++            }
++            return used;
++        }
++
++        [Test]
++        public void AllTwentyEightSkinsRetainEveryBoneThatHadVisibleBaselineGeometry()
++        {
++            var skins = catalog.Bindings.Where(b => b.Source.bindposeCount > 0).ToArray();
++            Assert.AreEqual(28, skins.Length, "Pin the complete current animated library, not a selected humanoid.");
++            int articulated = 0;
++            foreach (var row in skins)
++            {
++                var before = UsedBones(Baseline(row.Source)); var after = UsedBones(row.Voxel);
++                Assert.Greater(before.Count, 0, row.Source.name);
++                if (before.Count > 1) articulated++;
++                CollectionAssert.IsSubsetOf(before, after, row.Source.name + " lost a previously visible limb/body part.");
++            }
++            Assert.Greater(articulated, 0, "The coverage gate must actually exercise articulated bodies.");
++        }
++
++        [Test]
++        public void EveryPublishedSkinExactlyMatchesAFreshBakeAtItsRecordedPitch()
++        {
++            var skins = catalog.Bindings.Where(b => b.Source.bindposeCount > 0).ToArray();
++            Assert.AreEqual(28, skins.Length);
++            foreach (var row in skins)
++            {
++                // Reusing an existing Mesh asset must replace its vertex streams
++                // as well as submesh descriptors. Mixed old vertices/new indices
++                // can retain valid bounds and bone sets but corrupt the body.
++                var fresh = VoxelWorldMeshBaker.Bake(row.Source, row.VoxelSize);
++                try
++                {
++                    Assert.AreEqual(fresh.vertexCount, row.Voxel.vertexCount, row.Source.name + " vertex count");
++                    CollectionAssert.AreEqual(fresh.vertices, row.Voxel.vertices, row.Source.name + " vertices");
++                    CollectionAssert.AreEqual(fresh.normals, row.Voxel.normals, row.Source.name + " normals");
++                    CollectionAssert.AreEqual(fresh.uv, row.Voxel.uv, row.Source.name + " palette");
++                    CollectionAssert.AreEqual(fresh.boneWeights, row.Voxel.boneWeights, row.Source.name + " weights");
++                    CollectionAssert.AreEqual(fresh.bindposes, row.Voxel.bindposes, row.Source.name + " bindposes");
++                    Assert.AreEqual(fresh.subMeshCount, row.Voxel.subMeshCount, row.Source.name + " material slots");
++                    for (int sub = 0; sub < fresh.subMeshCount; sub++)
++                        CollectionAssert.AreEqual(fresh.GetTriangles(sub), row.Voxel.GetTriangles(sub),
++                            row.Source.name + " indices for material slot " + sub);
++                    Assert.AreEqual(fresh.bounds, row.Voxel.bounds, row.Source.name + " bounds");
++                }
++                finally { Object.DestroyImmediate(fresh); }
++            }
++        }
++
++        [Test]
++        public void CompleteNativeCoverageKeepsEveryBaselineBoundsEdgeWithinOneNewCell()
++        {
++            CollectionAssert.AreEquivalent(scales.Keys, catalog.Bindings.Select(b => b.Source));
++            Assert.Greater(scales.Count, 400, "An incomplete catalog cannot satisfy the art gate.");
++            int toolkit = 0, compared = 0;
++            foreach (var row in catalog.Bindings)
++            {
++                // These 38 designs come from different authored voxel recipes;
++                // VoxelWorldImportedArtTests pins their exact recipe topology,
++                // bottom plane, uniform fit and native footprint independently.
++                if (IsToolkit(row)) { toolkit++; continue; }
++                var before = Baseline(row.Source).bounds; var after = row.Voxel.bounds;
++                float tolerance = row.VoxelSize + .0001f / scales[row.Source];
++                for (int axis = 0; axis < 3; axis++)
++                {
++                    Assert.That(Mathf.Abs(after.min[axis] - before.min[axis]), Is.LessThanOrEqualTo(tolerance),
++                        row.Source.name + " minimum edge moved too far on axis " + axis);
++                    Assert.That(Mathf.Abs(after.max[axis] - before.max[axis]), Is.LessThanOrEqualTo(tolerance),
++                        row.Source.name + " maximum edge moved too far on axis " + axis);
++                }
++                compared++;
++            }
++            Assert.AreEqual(38, toolkit, "Do not silently expand the separately verified recipe exclusions.");
++            Assert.AreEqual(catalog.Bindings.Length - toolkit, compared);
++        }
++
++        [Test]
++        public void SmallHeldEquipmentRetainsItsExactBaselineGeometryAsTheCountercheck()
++        {
++            var gear = catalog.Bindings.Where(b => AssetDatabase.GetAssetPath(b.Source)
++                .StartsWith(VillageModels + "equipment-", StringComparison.Ordinal)).ToArray();
++            Assert.AreEqual(6, gear.Length);
++            foreach (var row in gear)
++            {
++                var before = Baseline(row.Source);
++                Assert.That(row.WorldVoxelSize, Is.EqualTo(OldWorldPitch(row.Source)).Within(.000001f), row.Source.name);
++                CollectionAssert.AreEqual(before.vertices, row.Voxel.vertices, row.Source.name + " vertices");
++                CollectionAssert.AreEqual(before.triangles, row.Voxel.triangles, row.Source.name + " faces");
++                CollectionAssert.AreEqual(before.normals, row.Voxel.normals, row.Source.name + " normals");
++                CollectionAssert.AreEqual(before.uv, row.Voxel.uv, row.Source.name + " palette");
++            }
++        }
++
++        [Test]
++        public void AllFiveLongNarrowPipesKeepTheirExactBaselineContactSilhouettes()
++        {
++            var paths = new[] {
++                "Assets/Art3D/SpawnRing/Models/ring-copper-pipe.fbx",
++                "Assets/Art3D/MultiCellPilot/Models/PilotPipe_0.fbx",
++                "Assets/Art3D/MultiCellPilot/Models/PilotPipe_1.fbx",
++                "Assets/Art3D/MultiCellPilot/Models/PilotPipe_2.fbx",
++                "Assets/Art3D/MultiCellPilot/Models/PilotPipe_3.fbx"
++            };
++            foreach (string path in paths)
++            {
++                var row = catalog.Bindings.Single(b => AssetDatabase.GetAssetPath(b.Source) == path);
++                Assert.IsFalse(IsToolkit(row));
++                Assert.AreEqual(0, row.Source.bindposeCount);
++                var before = Baseline(row.Source);
++                // Native contact picking deliberately leaves corners beside
++                // these long bodies empty. Retaining logical owner cells alone
++                // does not protect those corners from an inflated visual mesh.
++                Assert.That(row.WorldVoxelSize, Is.EqualTo(OldWorldPitch(row.Source)).Within(.000001f), path);
++                CollectionAssert.AreEqual(before.vertices, row.Voxel.vertices, path + " contact silhouette");
++                CollectionAssert.AreEqual(before.triangles, row.Voxel.triangles, path + " faces");
++                CollectionAssert.AreEqual(before.normals, row.Voxel.normals, path + " normals");
++                CollectionAssert.AreEqual(before.uv, row.Voxel.uv, path + " palette");
++                Assert.AreEqual(before.bounds, row.Voxel.bounds, path + " selection envelope");
++            }
++        }
++    }
++}
++#endif
+diff --git a/Assets/Tests/EditMode/VoxelWorldDensityHoleTests.cs b/Assets/Tests/EditMode/VoxelWorldDensityHoleTests.cs
+--- /dev/null
++++ b/Assets/Tests/EditMode/VoxelWorldDensityHoleTests.cs
+@@ -0,0 +1,116 @@
++using System.Linq;
++using CavesOfOoo.Core;
++using CavesOfOoo.Rendering;
++using NUnit.Framework;
++using UnityEngine;
++
++namespace CavesOfOoo.Tests
++{
++    /// <summary>Geometric countercheck for the native occupancy-hole gate.
++    /// Vertical rays test actual presenter-created voxel MeshColliders, avoiding
++    /// the tilted camera's legitimate contacts in neighboring physical cells.
++    /// Pilot roots have fixed orientation; NE/SE are shipped authored designs,
++    /// not a claim that runtime footprint rotation is supported.</summary>
++    [Category("VoxelWorldRealArt")]
++    public sealed class VoxelWorldDensityHoleTests
++    {
++        [TestCase("PilotRidgeNE-6-2", "PilotRidgeNE_0", 0, 1, 2)]
++        [TestCase("PilotRidgeNE-3-6", "PilotRidgeNE_1", 0, 1, 2)]
++        [TestCase("PilotRidgeNE-0-14", "PilotRidgeNE_2", 0, 1, 2)]
++        [TestCase("PilotRidgeNE-0-20", "PilotRidgeNE_3", 0, 1, 2)]
++        [TestCase("PilotRidgeSE-47-0", "PilotRidgeSE_0", 3, 2, 1)]
++        [TestCase("PilotRidgeSE-49-4", "PilotRidgeSE_1", 3, 2, 1)]
++        [TestCase("PilotRidgeSE-51-8", "PilotRidgeSE_2", 3, 2, 1)]
++        [TestCase("PilotRidgeSE-54-14", "PilotRidgeSE_3", 3, 2, 1)]
++        public void CoarseRidgeColliderKeepsEmptyCornerAndAdjacentGapOpen(
++            string ownerId, string modelId, int cornerX, int gapX, int occupiedX)
++        {
++            using (var fixture = new SpawnRing3DIntegrationFixture(MultiCellPilotRuntime.ZoneID))
++            {
++                Assert.IsTrue(fixture.Get<bool>("VoxelPresentationActive"));
++                Assert.Greater(fixture.Get<int>("VoxelAppliedMeshCount"), 0);
++                Assert.AreEqual(0, fixture.Get<int>("VoxelMissingMeshCount"));
++                var owner = fixture.Zone.GetReadOnlyEntities().Single(e =>
++                    e.GetPart<MultiCellPilotPropPart>()?.OwnerId == ownerId);
++                Assert.AreEqual(modelId, owner.GetPart<MultiCellPilotPropPart>().ModelId);
++                Assert.AreEqual(10, fixture.Zone.GetOccupiedCells(owner).Count);
++                Assert.IsTrue(fixture.Find(owner, out var root, out var actualModel));
++                Assert.AreEqual(modelId, actualModel);
++                Assert.IsTrue(fixture.Rendered(owner));
++                Assert.AreEqual(Quaternion.identity, root.transform.rotation,
++                    "A fixed pilot footprint must retain its authored orientation.");
++
++                var catalog = Resources.Load<VoxelWorldMeshCatalog>(VoxelWorldMeshCatalog.ResourcePath);
++                var pilot = Resources.Load<MultiCellPilot3DLibrary>(MultiCellPilot3DLibrary.ResourcePath);
++                Assert.NotNull(catalog); catalog.Validate(); Assert.NotNull(pilot); pilot.Validate();
++                var prefab = pilot.FindModel(modelId); Assert.NotNull(prefab);
++                var sourceMeshes = prefab.GetComponentsInChildren<MeshFilter>(true)
++                    .Select(f => f.sharedMesh).ToArray();
++                Assert.IsNotEmpty(sourceMeshes);
++                var expectedMeshes = sourceMeshes.Select(source =>
++                {
++                    Assert.NotNull(source);
++                    var binding = catalog.Bindings.Single(b => b.Source == source);
++                    Assert.AreNotSame(source, binding.Voxel, "The ray must exercise installed voxel art.");
++                    Assert.That(binding.WorldVoxelSize, Is.EqualTo(.25f).Within(.000001f),
++                        "This gate must exercise the new coarser stationary-object pitch.");
++                    return binding.Voxel;
++                }).ToArray();
++
++                var colliders = root.GetComponentsInChildren<MeshCollider>(true);
++                Assert.IsNotEmpty(colliders, "A missing collider cannot masquerade as an open hole.");
++                Assert.AreEqual(colliders.Length, root.GetComponentsInChildren<Collider>(true).Length,
++                    "This irregular ridge must use mesh selection, not a whole-bounds box.");
++                CollectionAssert.AreEquivalent(expectedMeshes, colliders.Select(c => c.sharedMesh));
++                foreach (var collider in colliders)
++                {
++                    Assert.IsTrue(collider.enabled && collider.gameObject.activeInHierarchy);
++                    Assert.IsFalse(collider.convex, "A convex hull would fill the irregular footprint gaps.");
++                    var filter = collider.GetComponent<MeshFilter>(); Assert.NotNull(filter);
++                    Assert.AreSame(filter.sharedMesh, collider.sharedMesh,
++                        "Selection must use the actual displayed voxel surface.");
++                }
++                Physics.SyncTransforms();
++                Bounds bounds = colliders[0].bounds;
++                foreach (var collider in colliders.Skip(1)) bounds.Encapsulate(collider.bounds);
++                var anchor = fixture.Zone.GetEntityPosition(owner);
++                var occupied = fixture.Zone.GetCell(anchor.x + occupiedX, anchor.y);
++                var gap = fixture.Zone.GetCell(anchor.x + gapX, anchor.y);
++                var corner = fixture.Zone.GetCell(anchor.x + cornerX, anchor.y);
++                Assert.NotNull(occupied); Assert.NotNull(gap); Assert.NotNull(corner);
++                Assert.IsTrue(occupied.Occupants.Contains(owner));
++                Assert.IsFalse(gap.Occupants.Contains(owner));
++                Assert.IsFalse(corner.Occupants.Contains(owner));
++                Assert.AreEqual(1, Mathf.Abs(gap.X - occupied.X), "Positive and negative cells must be adjacent.");
++
++                // Countercheck first: neither an inactive mesh nor a ray aimed
++                // outside the entire body can make the negative probes pass.
++                Assert.IsTrue(HitsVertical(colliders, bounds, occupied, out var contact),
++                    ownerId + " occupied-cell center must hit the real coarse mesh.");
++                Assert.IsTrue(Village3DProjection.TryWorldToCell(contact, out int hitX, out int hitY));
++                Assert.AreEqual((occupied.X, occupied.Y), (hitX, hitY));
++                Assert.IsFalse(HitsVertical(colliders, bounds, gap, out _),
++                    ownerId + " coarse geometry sealed the empty cell beside its occupied edge.");
++                Assert.IsFalse(HitsVertical(colliders, bounds, corner, out _),
++                    ownerId + " coarse geometry sealed the known empty bounding-box corner.");
++                TestContext.WriteLine(modelId + ": occupied (" + occupied.X + "," + occupied.Y
++                    + ") hit; gap (" + gap.X + "," + gap.Y + ") and corner ("
++                    + corner.X + "," + corner.Y + ") miss actual voxel mesh colliders.");
++            }
++        }
++
++        static bool HitsVertical(MeshCollider[] colliders, Bounds bounds, Cell cell, out Vector3 contact)
++        {
++            var centre = Village3DProjection.CellCentre(cell.X, cell.Y);
++            Assert.That(centre.x, Is.GreaterThan(bounds.min.x).And.LessThan(bounds.max.x));
++            Assert.That(centre.z, Is.GreaterThan(bounds.min.z).And.LessThan(bounds.max.z));
++            var ray = new Ray(new Vector3(centre.x, bounds.max.y + 2f, centre.z), Vector3.down);
++            float maximum = bounds.size.y + 4f, nearest = float.PositiveInfinity;
++            contact = default;
++            foreach (var collider in colliders)
++                if (collider.Raycast(ray, out var hit, maximum) && hit.distance < nearest)
++                { nearest = hit.distance; contact = hit.point; }
++            return !float.IsPositiveInfinity(nearest);
++        }
++    }
++}
+diff --git a/Assets/Editor/Art/VoxelWorldDensity.cs.meta b/Assets/Editor/Art/VoxelWorldDensity.cs.meta
+--- /dev/null
++++ b/Assets/Editor/Art/VoxelWorldDensity.cs.meta
+@@ -0,0 +1,2 @@
++fileFormatVersion: 2
++guid: 107a987ce51a49948d21969aec5bc814
+\ No newline at end of file
+diff --git a/Assets/Tests/EditMode/VoxelWorldDensityTests.cs.meta b/Assets/Tests/EditMode/VoxelWorldDensityTests.cs.meta
+--- /dev/null
++++ b/Assets/Tests/EditMode/VoxelWorldDensityTests.cs.meta
+@@ -0,0 +1,2 @@
++fileFormatVersion: 2
++guid: 1deb0ac66a614c98952b31e038500fc4
+\ No newline at end of file
+diff --git a/Assets/Tests/EditMode/VoxelWorldDensityArtTests.cs.meta b/Assets/Tests/EditMode/VoxelWorldDensityArtTests.cs.meta
+--- /dev/null
++++ b/Assets/Tests/EditMode/VoxelWorldDensityArtTests.cs.meta
+@@ -0,0 +1,2 @@
++fileFormatVersion: 2
++guid: b991052fcdbe4ca495db96fc9ae32863
+\ No newline at end of file
+diff --git a/Assets/Tests/EditMode/VoxelWorldDensityHoleTests.cs.meta b/Assets/Tests/EditMode/VoxelWorldDensityHoleTests.cs.meta
+--- /dev/null
++++ b/Assets/Tests/EditMode/VoxelWorldDensityHoleTests.cs.meta
+@@ -0,0 +1,2 @@
++fileFormatVersion: 2
++guid: c7e9aa0ad68f4a80829854622e944ab8
+\ No newline at end of file
