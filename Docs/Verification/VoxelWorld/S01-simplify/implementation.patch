@@ -1,0 +1,325 @@
+--- a/Assets/Editor/Art/VoxelWorldMeshBuilder.cs
++++ b/Assets/Editor/Art/VoxelWorldMeshBuilder.cs
+@@ -21,6 +21,7 @@
+         {
+             public string sourceKey, sourcePath, sourceName, outputPath, outputGuid;
+             public int usages, sourceVertices, voxelVertices, sourceTriangles, voxelTriangles, submeshes, bones;
++            public int simplifiedPaintVertices;
+             public float maxPrefabScale, localVoxelSize, worldVoxelSize;
+             public Vector3 sourceBoundsSize, voxelBoundsSize;
+         }
+@@ -40,6 +41,8 @@
+             public float Scale;
+             public int Usages;
+             public bool Skinned;
++            public int PaintColumns;
++            public string PaintTexture;
+         }
+         sealed class Prepared
+         {
+@@ -61,6 +64,7 @@
+             string destination=Path.GetFullPath(string.IsNullOrEmpty(reportPath)?"Docs/Verification/VoxelWorld/mesh-build.json":reportPath);
+             var prepared=new List<Prepared>();var borrowed=new Dictionary<string,string>(StringComparer.Ordinal);
+             var existingGuids=new Dictionary<string,string>(StringComparer.Ordinal);
++            var paintPalettes=new Dictionary<string,Vector2[]>(StringComparer.Ordinal);
+             try
+             {
+                 if(EditorApplication.isPlayingOrWillChangePlaymode||EditorApplication.isCompiling)
+@@ -85,13 +89,26 @@
+                     float worldPitch=extent>=3f?.2f:.125f;
+                     float localPitch=worldPitch/source.Scale;
+                     var baked=VoxelWorldMeshBaker.Bake(source.Mesh,localPitch);
++                    // Own the native allocation before palette IO/validation can
++                    // throw. Failed editor retries must release it in finally too.
++                    var pending=new Prepared {Source=source,Mesh=baked,Report=new MeshReport {sourceKey=source.Key,sourcePath=source.Path}};
++                    prepared.Add(pending);
++                    int simplified=0;
++                    if(source.PaintColumns>0)
++                    {
++                        if(!paintPalettes.TryGetValue(source.PaintTexture,out var palette))
++                        {palette=VoxelWorldPaintSimplifier.LoadRepresentativeUvs(source.PaintTexture,source.PaintColumns);paintPalettes.Add(source.PaintTexture,palette);}
++                        var before=baked.uv;var after=VoxelWorldPaintSimplifier.Consolidate(before,palette,source.PaintColumns);
++                        for(int i=0;i<before.Length;i++)if(before[i]!=after[i])simplified++;
++                        baked.uv=after;
++                    }
+                     string path=ArtRoot+"/Meshes/"+source.Key+".asset";
+                     var row=new MeshReport {sourceKey=source.Key,sourcePath=source.Path,sourceName=source.Mesh.name,outputPath=path,
+                         usages=source.Usages,sourceVertices=source.Mesh.vertexCount,voxelVertices=baked.vertexCount,
+                         sourceTriangles=Triangles(source.Mesh),voxelTriangles=Triangles(baked),submeshes=source.Mesh.subMeshCount,
+                         bones=source.Mesh.bindposes.Length,maxPrefabScale=source.Scale,localVoxelSize=localPitch,worldVoxelSize=worldPitch,
+-                        sourceBoundsSize=source.Mesh.bounds.size,voxelBoundsSize=baked.bounds.size};
+-                    prepared.Add(new Prepared {Source=source,Mesh=baked,Report=row});
++                        sourceBoundsSize=source.Mesh.bounds.size,voxelBoundsSize=baked.bounds.size,simplifiedPaintVertices=simplified};
++                    pending.Report=row;
+                     ValidateBaked(source,baked);
+                     TrackGuid(path,existingGuids);
+                 }
+@@ -168,6 +185,13 @@
+                 source=new Source {Mesh=mesh,Key=guid+"_"+localId.ToString(System.Globalization.CultureInfo.InvariantCulture).Replace('-','n'),Path=AssetDatabase.GetAssetPath(mesh)};
+                 sources.Add(mesh,source);
+             }
++            var paintMaterial=renderer.sharedMaterials.Length==1?renderer.sharedMaterial:null;
++            string texture=paintMaterial!=null&&paintMaterial.HasProperty("_BaseMap")?AssetDatabase.GetAssetPath(paintMaterial.GetTexture("_BaseMap")):null;
++            int columns=VoxelWorldPaintSimplifier.AtlasColumns(source.Path,texture,skinned);
++            if(source.Usages==0){source.PaintColumns=columns;source.PaintTexture=texture;}
++            // Any excluded or differently textured usage vetoes simplification of
++            // this shared mesh; the first encountered renderer never grants ownership.
++            else if(columns!=source.PaintColumns||texture!=source.PaintTexture)source.PaintColumns=0;
+             source.Usages++;source.Scale=Mathf.Max(source.Scale,scale);source.Skinned|=skinned;
+         }
+         static void ValidateBaked(Source source,Mesh mesh)
+--- /dev/null
++++ b/Assets/Editor/Art/VoxelWorldPaintSimplifier.cs
+@@ -0,0 +1,95 @@
++#if UNITY_EDITOR
++using System;
++using System.IO;
++using System.Text.RegularExpressions;
++using UnityEngine;
++
++namespace CavesOfOoo.Editor
++{
++    /// <summary>Offline ambient-ground paint only. Geometry and borrowed source
++    /// textures stay intact; every other content/material family is excluded.</summary>
++    public static class VoxelWorldPaintSimplifier
++    {
++        const int Rows=8;
++        static readonly Regex VillageAmbient=new Regex(@"^(ground-patch-[0-3]|detail-patch-0[0-7]-0[0-4]|grass-[0-3])\.fbx$",RegexOptions.CultureInvariant);
++        static readonly Regex RingAmbient=new Regex(@"^ring-(floor|grass|tepui-stone)-[0-3]\.fbx$",RegexOptions.CultureInvariant);
++
++        /// <returns>The verified atlas column count, or zero for excluded usage.</returns>
++        public static int AtlasColumns(string sourcePath,string texturePath,bool skinned)
++        {
++            if(skinned||string.IsNullOrEmpty(sourcePath))return 0;
++            const string village="Assets/Art3D/Village/Models/",ring="Assets/Art3D/SpawnRing/Models/";
++            if(sourcePath.StartsWith(village,StringComparison.Ordinal)
++                &&texturePath=="Assets/Art3D/Village/Textures/VillagePalette.png"
++                &&VillageAmbient.IsMatch(sourcePath.Substring(village.Length)))return 8;
++            if(sourcePath.StartsWith(ring,StringComparison.Ordinal)
++                &&texturePath=="Assets/Art3D/SpawnRing/Textures/SpawnRingPalette.png"
++                &&RingAmbient.IsMatch(sourcePath.Substring(ring.Length)))return 16;
++            return 0;
++        }
++        static void CheckColumns(int columns)
++        {if(columns!=8&&columns!=16)throw new ArgumentException("Unknown native atlas grid.");}
++
++        /// <summary>Choose the existing opaque texel nearest each swatch's mean
++        /// paint. Sampling existing pixels preserves the native palette/shader.</summary>
++        public static Vector2[] RepresentativeUvs(Color32[] pixels,int width,int height,int columns)
++        {
++            CheckColumns(columns);
++            if(pixels==null||width<columns||height<Rows||width%columns!=0||height%Rows!=0
++                ||(long)width*height>16777216||(long)width*height!=pixels.Length)
++                throw new ArgumentException("Invalid bounded native atlas pixels.");
++            int tw=width/columns,th=height/Rows;var result=new Vector2[columns*Rows];
++            for(int tile=0;tile<result.Length;tile++)
++            {
++                int x0=tile%columns*tw,y0=tile/columns*th;double r=0,g=0,b=0;
++                for(int y=y0;y<y0+th;y++)for(int x=x0;x<x0+tw;x++)
++                {var c=pixels[y*width+x];if(c.a!=255)throw new ArgumentException("Ambient palette must be opaque.");r+=c.r;g+=c.g;b+=c.b;}
++                r/=tw*th;g/=tw*th;b/=tw*th;double best=double.MaxValue;int chosen=0;
++                for(int y=y0;y<y0+th;y++)for(int x=x0;x<x0+tw;x++)
++                {
++                    int index=y*width+x;var c=pixels[index];double distance=(c.r-r)*(c.r-r)+(c.g-g)*(c.g-g)+(c.b-b)*(c.b-b);
++                    if(distance<best){best=distance;chosen=index;}
++                }
++                result[tile]=new Vector2((chosen%width+.5f)/width,(chosen/width+.5f)/height);
++            }
++            return result;
++        }
++        public static Vector2[] LoadRepresentativeUvs(string path,int columns)
++        {
++            var copy=new Texture2D(2,2,TextureFormat.RGBA32,false);
++            try
++            {
++                if(!ImageConversion.LoadImage(copy,File.ReadAllBytes(path),false))throw new ArgumentException("Cannot read native ambient palette.");
++                return RepresentativeUvs(copy.GetPixels32(),copy.width,copy.height,columns);
++            }
++            finally{UnityEngine.Object.DestroyImmediate(copy);}
++        }
++
++        /// <summary>Return new UVs; do not mutate borrowed arrays. Only the three
++        /// brightest grass/moss/path variants merge; flower and material identities survive.</summary>
++        public static Vector2[] Consolidate(Vector2[] input,Vector2[] swatches,int columns)
++        {
++            CheckColumns(columns);
++            if(input==null||swatches==null||swatches.Length!=columns*Rows)throw new ArgumentException("Incomplete ambient palette.");
++            for(int i=0;i<swatches.Length;i++)
++                if(Index(swatches[i],columns)!=i)throw new ArgumentException("Representative UV escaped its material swatch.");
++            var result=new Vector2[input.Length];
++            for(int i=0;i<input.Length;i++)
++            {
++                int tile=Index(input[i],columns);
++                // Shared first64 source palette slots: moss_light, cobble_light,
++                // grass_light. Keep dark paint and the remaining material families.
++                if(tile==2)tile=1;else if(tile==37)tile=36;else if(tile==61)tile=60;
++                result[i]=swatches[tile];
++            }
++            return result;
++        }
++        static int Index(Vector2 uv,int columns)
++        {
++            if(float.IsNaN(uv.x)||float.IsInfinity(uv.x)||float.IsNaN(uv.y)||float.IsInfinity(uv.y)
++                ||uv.x<0||uv.y<0||uv.x>=1||uv.y>=1)throw new ArgumentException("UV is outside the finite native atlas.");
++            return Mathf.FloorToInt(uv.y*Rows)*columns+Mathf.FloorToInt(uv.x*columns);
++        }
++    }
++}
++#endif
+--- /dev/null
++++ b/Assets/Editor/Art/VoxelWorldPaintSimplifier.cs.meta
+@@ -0,0 +1,2 @@
++fileFormatVersion: 2
++guid: a6b2f702eb694264a997a59786c9b799--- /dev/null
++++ b/Assets/Tests/EditMode/VoxelWorldPaintTests.cs
+@@ -0,0 +1,145 @@
++#if UNITY_EDITOR
++using System;
++using System.Linq;
++using System.Reflection;
++using NUnit.Framework;
++using CavesOfOoo.Rendering;
++using UnityEditor;
++using UnityEngine;
++
++namespace CavesOfOoo.Tests
++{
++    public sealed class VoxelWorldPaintTests
++    {
++        const string Village="Assets/Art3D/Village/Models/";
++        const string Ring="Assets/Art3D/SpawnRing/Models/";
++        const string VillageAtlas="Assets/Art3D/Village/Textures/VillagePalette.png";
++        const string RingAtlas="Assets/Art3D/SpawnRing/Textures/SpawnRingPalette.png";
++        static object Call(string name,params object[] args)
++        {
++            var type=AppDomain.CurrentDomain.GetAssemblies().Select(a=>a.GetType("CavesOfOoo.Editor.VoxelWorldPaintSimplifier")).FirstOrDefault(t=>t!=null);
++            Assert.NotNull(type,"Ambient paint simplification must be an explicit offline build step.");
++            var method=type.GetMethod(name,BindingFlags.Public|BindingFlags.Static);Assert.NotNull(method);
++            try{return method.Invoke(null,args);}catch(TargetInvocationException error){throw error.InnerException??error;}
++        }
++        static Vector2 Center(int index,int columns)=>new Vector2((index%columns+.5f)/columns,(index/columns+.5f)/8);
++        static Vector2[] Swatches(int columns)=>Enumerable.Range(0,columns*8).Select(i=>Center(i,columns)).ToArray();
++        static Vector2[] Quiet(Vector2[] input,int columns)=> (Vector2[])Call("Consolidate",input,Swatches(columns),columns);
++
++        [TestCase("ground-patch-0.fbx")][TestCase("detail-patch-04-00.fbx")][TestCase("grass-2.fbx")]
++        public void ExplicitVillageAmbientModelsAreEligible(string model)
++        {
++            Assert.AreEqual(8,Call("AtlasColumns",Village+model,VillageAtlas,false));
++            Assert.AreEqual(0,Call("AtlasColumns",Village+model,VillageAtlas,true),"Skin usage must veto ambient paint.");
++            Assert.AreEqual(0,Call("AtlasColumns",Village+model,RingAtlas,false),"Atlas contracts cannot cross libraries.");
++        }
++        [TestCase("ring-floor-0.fbx")][TestCase("ring-grass-1.fbx")][TestCase("ring-tepui-stone-3.fbx")]
++        public void RingAmbientModelsUseSixteenColumns(string model)
++        {Assert.AreEqual(16,Call("AtlasColumns",Ring+model,RingAtlas,false));}
++        [TestCase("character-teal.fbx")][TestCase("frog.fbx")][TestCase("equipment-blade.fbx")]
++        [TestCase("central-well.fbx")][TestCase("dry-hem-guesthouse-roof.fbx")][TestCase("ground-patch-unknown.fbx")]
++        public void ActorsGearPropsAndUnknownModelsRetainTheirPaint(string model)
++        {Assert.AreEqual(0,Call("AtlasColumns",Village+model,VillageAtlas,false));}
++        [Test] public void ForeignPathsAndPilotGroundStayOutsideTheKnownAtlasContract()
++        {
++            Assert.AreEqual(0,Call("AtlasColumns","Assets/Other/ground-patch-0.fbx",VillageAtlas,false));
++            Assert.AreEqual(0,Call("AtlasColumns","Assets/Art3D/MultiCellPilot/Models/PilotGround_0.fbx","Assets/Art3D/MultiCellPilot/Textures/PilotGroundAlbedo.png",false));
++        }
++        [TestCase(8)][TestCase(16)]
++        public void QuietPaintPreservesSemanticSwatchesWhileConsolidatingThreeBrightGroundVariants(int columns)
++        {
++            var input=Swatches(columns);var original=input.ToArray();var output=Quiet(input,columns);
++            for(int i=0;i<input.Length;i++)
++            {
++                int expected=i==2?1:i==37?36:i==61?60:i;
++                Assert.AreEqual(Center(expected,columns),output[i],"Swatch "+i);
++            }
++            CollectionAssert.AreEqual(original,input,"Borrowed input UVs stay immutable.");
++            CollectionAssert.AreEqual(output,Quiet(output,columns),"Regeneration is idempotent.");
++        }
++        [TestCase(8)][TestCase(16)]
++        public void VariationWithinOneMaterialConvergesButNeighboringMaterialsRemainDistinct(int columns)
++        {
++            var input=new[]{Center(4,columns)+new Vector2(.03f/columns,.02f),Center(4,columns)-new Vector2(.03f/columns,.02f),Center(6,columns)};
++            var result=Quiet(input,columns);Assert.AreEqual(result[0],result[1]);Assert.AreNotEqual(result[1],result[2]);
++        }
++        [TestCase(float.NaN)][TestCase(float.PositiveInfinity)][TestCase(-.01f)][TestCase(1.01f)]
++        public void InvalidUvRejectsBeforePublishingAnyReplacement(float x)
++        {
++            var input=new[]{Center(0,8),new Vector2(x,.5f)};var copy=input.ToArray();
++            Assert.Throws<ArgumentException>(()=>Quiet(input,8));Assert.AreEqual(copy[0],input[0]);Assert.AreEqual(copy[1].y,input[1].y);
++            Assert.AreEqual(BitConverter.SingleToInt32Bits(copy[1].x),BitConverter.SingleToInt32Bits(input[1].x));
++        }
++        [Test] public void RepresentativeTexelTracksMeanPaintRatherThanAnIsolatedBrightPixel()
++        {
++            var pixels=Enumerable.Repeat(new Color32(100,110,60,255),16*16).ToArray();pixels[0]=new Color32(255,255,255,255);
++            var result=(Vector2[])Call("RepresentativeUvs",pixels,16,16,8);
++            Assert.AreEqual(64,result.Length);var first=result[0];int index=(int)(first.y*16)*16+(int)(first.x*16);
++            Assert.AreNotEqual(0,index);Assert.AreEqual(new Color32(100,110,60,255),pixels[index]);
++            for(int i=0;i<64;i++)Assert.AreEqual(i,Mathf.FloorToInt(result[i].y*8)*8+Mathf.FloorToInt(result[i].x*8));
++        }
++        [Test] public void ActualAmbientAssetsKeepEveryGeometryChannelAndOnlyConsolidateUv0()
++        {
++            var catalog=Resources.Load<VoxelWorldMeshCatalog>(VoxelWorldMeshCatalog.ResourcePath);Assert.NotNull(catalog);
++            var village=Resources.Load<Village3DLibrary>(Village3DLibrary.ResourcePath);
++            var ring=Resources.Load<SpawnRing3DLibrary>(SpawnRing3DLibrary.ResourcePath);
++            var renderers=village.Models.Select(m=>m.Prefab).Concat(ring.Models.Select(m=>m.Prefab))
++                .SelectMany(p=>p.GetComponentsInChildren<Renderer>(true)).ToArray();
++            int changed=0;var palettes=new System.Collections.Generic.Dictionary<string,Vector2[]>();
++            foreach(var binding in catalog.Bindings)
++            {
++                string path=AssetDatabase.GetAssetPath(binding.Source);
++                string atlas=path.StartsWith(Village,StringComparison.Ordinal)?VillageAtlas:RingAtlas;
++                int columns=(int)Call("AtlasColumns",path,atlas,binding.Source.bindposeCount>0);if(columns==0)continue;
++                var uses=renderers.Where(r=>(r is SkinnedMeshRenderer s?s.sharedMesh:r.GetComponent<MeshFilter>()?.sharedMesh)==binding.Source).ToArray();
++                Assert.Greater(uses.Length,0,path);
++                bool excluded=uses.Any(r=>r is SkinnedMeshRenderer||r.sharedMaterials.Length!=1||!r.sharedMaterial.HasProperty("_BaseMap")
++                    ||AssetDatabase.GetAssetPath(r.sharedMaterial.GetTexture("_BaseMap"))!=atlas);
++                var plain=VoxelWorldMeshBaker.Bake(binding.Source,binding.VoxelSize);
++                try
++                {
++                    CollectionAssert.AreEqual(plain.vertices,binding.Voxel.vertices,path+" vertices");
++                    CollectionAssert.AreEqual(plain.normals,binding.Voxel.normals,path+" normals");
++                    CollectionAssert.AreEqual(plain.triangles,binding.Voxel.triangles,path+" topology");
++                    Assert.AreEqual(plain.bounds,binding.Voxel.bounds,path+" bounds");
++                    Assert.AreEqual(plain.subMeshCount,binding.Voxel.subMeshCount,path+" material slots");
++                    if(excluded)
++                    {CollectionAssert.AreEqual(plain.uv,binding.Voxel.uv,path+" excluded water/material sibling");continue;}
++                    if(!palettes.TryGetValue(atlas,out var swatches))
++                    {swatches=(Vector2[])Call("LoadRepresentativeUvs",atlas,columns);palettes.Add(atlas,swatches);}
++                    var expected=(Vector2[])Call("Consolidate",plain.uv,swatches,columns);
++                    CollectionAssert.AreEqual(expected,binding.Voxel.uv,path+" baked UVs");
++                    Assert.LessOrEqual(binding.Voxel.uv.Distinct().Count(),columns*8-3,path+" bounded paint vocabulary");
++                    if(!plain.uv.SequenceEqual(binding.Voxel.uv))changed++;
++                }
++                finally{UnityEngine.Object.DestroyImmediate(plain);}
++            }
++            Assert.GreaterOrEqual(changed,40,"The real ambient region must receive the simplification.");
++        }
++        [TestCase(false)][TestCase(true)]
++        public void SharedMeshWithForeignMaterialUsageIsExcludedInEitherEncounterOrder(bool excludedFirst)
++        {
++            var type=AppDomain.CurrentDomain.GetAssemblies().Select(a=>a.GetType("CavesOfOoo.Editor.VoxelWorldMeshBuilder")).First(t=>t!=null);
++            var sourceType=type.GetNestedType("Source",BindingFlags.NonPublic);Assert.NotNull(sourceType);
++            var dictionaryType=typeof(System.Collections.Generic.Dictionary<,>).MakeGenericType(typeof(Mesh),sourceType);
++            var dictionary=(System.Collections.IDictionary)Activator.CreateInstance(dictionaryType);
++            var add=type.GetMethod("Add",BindingFlags.Static|BindingFlags.NonPublic);Assert.NotNull(add);
++            var prefab=Resources.Load<Village3DLibrary>(Village3DLibrary.ResourcePath).FindModel("ground-patch-0");
++            var filter=prefab.GetComponentInChildren<MeshFilter>();var material=filter.GetComponent<MeshRenderer>().sharedMaterial;
++            var owned=new GameObject("paint mixed usage countercheck");var renderer=owned.AddComponent<MeshRenderer>();var foreign=new Material(material);
++            foreign.SetTexture("_BaseMap",Texture2D.whiteTexture);
++            try
++            {
++                // Positive shared-use control requires the exact eligible texture.
++                renderer.sharedMaterial=material;add.Invoke(null,new object[]{filter.sharedMesh,renderer,false,dictionary});
++                var field=sourceType.GetField("PaintColumns");Assert.AreEqual(8,field.GetValue(dictionary[filter.sharedMesh]));
++                dictionary.Clear();
++                foreach(bool excluded in new[]{excludedFirst,!excludedFirst})
++                {renderer.sharedMaterial=excluded?foreign:material;add.Invoke(null,new object[]{filter.sharedMesh,renderer,false,dictionary});}
++                Assert.AreEqual(0,field.GetValue(dictionary[filter.sharedMesh]),"A later valid use cannot reactivate a vetoed shared mesh.");
++            }
++            finally{UnityEngine.Object.DestroyImmediate(owned);UnityEngine.Object.DestroyImmediate(foreign);}
++        }
++    }
++}
++#endif
+--- /dev/null
++++ b/Assets/Tests/EditMode/VoxelWorldPaintTests.cs.meta
+@@ -0,0 +1,2 @@
++fileFormatVersion: 2
++guid: 4af35ee267b94fefa082044a37cbffdf

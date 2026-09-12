@@ -1,0 +1,111 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CavesOfOoo.Tests.VoxelWorldPaintTests",
+  "results": {
+    "id": "2",
+    "testcasecount": "22",
+    "result": "Failed(Child)",
+    "total": "22",
+    "passed": "0",
+    "failed": "22",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-12 12:21:49Z",
+    "end-time": "2026-09-12 12:21:50Z",
+    "duration": "0.4375007"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.ActorsGearPropsAndUnknownModelsRetainTheirPaint(\"character-teal.fbx\")",
+      "message": "  Ambient paint simplification must be an explicit offline build step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.ActorsGearPropsAndUnknownModelsRetainTheirPaint(\"frog.fbx\")",
+      "message": "  Ambient paint simplification must be an explicit offline build step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.ActorsGearPropsAndUnknownModelsRetainTheirPaint(\"equipment-blade.fbx\")",
+      "message": "  Ambient paint simplification must be an explicit offline build step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.ActorsGearPropsAndUnknownModelsRetainTheirPaint(\"central-well.fbx\")",
+      "message": "  Ambient paint simplification must be an explicit offline build step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.ActorsGearPropsAndUnknownModelsRetainTheirPaint(\"dry-hem-guesthouse-roof.fbx\")",
+      "message": "  Ambient paint simplification must be an explicit offline build step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.ActorsGearPropsAndUnknownModelsRetainTheirPaint(\"ground-patch-unknown.fbx\")",
+      "message": "  Ambient paint simplification must be an explicit offline build step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.ExplicitVillageAmbientModelsAreEligible(\"ground-patch-0.fbx\")",
+      "message": "  Ambient paint simplification must be an explicit offline build step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.ExplicitVillageAmbientModelsAreEligible(\"detail-patch-04-00.fbx\")",
+      "message": "  Ambient paint simplification must be an explicit offline build step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.ExplicitVillageAmbientModelsAreEligible(\"grass-2.fbx\")",
+      "message": "  Ambient paint simplification must be an explicit offline build step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.ForeignPathsAndPilotGroundStayOutsideTheKnownAtlasContract",
+      "message": "  Ambient paint simplification must be an explicit offline build step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.InvalidUvRejectsBeforePublishingAnyReplacement(float.NaN)",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException:   Ambient paint simplification must be an explicit offline build step.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.VoxelWorldPaintTests.Call (System.String name, System.Object[] args) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPaintTests.cs:19 \n  at CavesOfOoo.Tests.VoxelWorldPaintTests.Quiet (UnityEngine.Vector2[] input, System.Int32 columns) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPaintTests.cs:25 \n  at CavesOfOoo.Tests.VoxelWorldPaintTests+<>c__DisplayClass14_0.<InvalidUvRejectsBeforePublishingAnyReplacement>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPaintTests.cs:68 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.InvalidUvRejectsBeforePublishingAnyReplacement(float.PositiveInfinity)",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException:   Ambient paint simplification must be an explicit offline build step.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.VoxelWorldPaintTests.Call (System.String name, System.Object[] args) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPaintTests.cs:19 \n  at CavesOfOoo.Tests.VoxelWorldPaintTests.Quiet (UnityEngine.Vector2[] input, System.Int32 columns) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPaintTests.cs:25 \n  at CavesOfOoo.Tests.VoxelWorldPaintTests+<>c__DisplayClass14_0.<InvalidUvRejectsBeforePublishingAnyReplacement>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPaintTests.cs:68 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.InvalidUvRejectsBeforePublishingAnyReplacement(-0.01f)",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException:   Ambient paint simplification must be an explicit offline build step.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.VoxelWorldPaintTests.Call (System.String name, System.Object[] args) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPaintTests.cs:19 \n  at CavesOfOoo.Tests.VoxelWorldPaintTests.Quiet (UnityEngine.Vector2[] input, System.Int32 columns) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPaintTests.cs:25 \n  at CavesOfOoo.Tests.VoxelWorldPaintTests+<>c__DisplayClass14_0.<InvalidUvRejectsBeforePublishingAnyReplacement>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPaintTests.cs:68 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.InvalidUvRejectsBeforePublishingAnyReplacement(1.01f)",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException:   Ambient paint simplification must be an explicit offline build step.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.VoxelWorldPaintTests.Call (System.String name, System.Object[] args) [0x00052] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPaintTests.cs:19 \n  at CavesOfOoo.Tests.VoxelWorldPaintTests.Quiet (UnityEngine.Vector2[] input, System.Int32 columns) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPaintTests.cs:25 \n  at CavesOfOoo.Tests.VoxelWorldPaintTests+<>c__DisplayClass14_0.<InvalidUvRejectsBeforePublishingAnyReplacement>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPaintTests.cs:68 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.QuietPaintPreservesSemanticSwatchesWhileConsolidatingThreeBrightGroundVariants(8)",
+      "message": "  Ambient paint simplification must be an explicit offline build step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.QuietPaintPreservesSemanticSwatchesWhileConsolidatingThreeBrightGroundVariants(16)",
+      "message": "  Ambient paint simplification must be an explicit offline build step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.RepresentativeTexelTracksMeanPaintRatherThanAnIsolatedBrightPixel",
+      "message": "  Ambient paint simplification must be an explicit offline build step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.RingAmbientModelsUseSixteenColumns(\"ring-floor-0.fbx\")",
+      "message": "  Ambient paint simplification must be an explicit offline build step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.RingAmbientModelsUseSixteenColumns(\"ring-grass-1.fbx\")",
+      "message": "  Ambient paint simplification must be an explicit offline build step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.RingAmbientModelsUseSixteenColumns(\"ring-tepui-stone-3.fbx\")",
+      "message": "  Ambient paint simplification must be an explicit offline build step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.VariationWithinOneMaterialConvergesButNeighboringMaterialsRemainDistinct(8)",
+      "message": "  Ambient paint simplification must be an explicit offline build step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.VariationWithinOneMaterialConvergesButNeighboringMaterialsRemainDistinct(16)",
+      "message": "  Ambient paint simplification must be an explicit offline build step.\n  Expected: not null\n  But was:  null\n"
+    }
+  ]
+}
