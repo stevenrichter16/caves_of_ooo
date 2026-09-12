@@ -1,0 +1,58 @@
+F...........................FFFFF
+======================================================================
+FAIL: test_a_missing_wall_in_both_visual_and_semantic_lists_is_still_a_hole (test_native_region_adversarial.NativeRegionAdversarialTests.test_a_missing_wall_in_both_visual_and_semantic_lists_is_still_a_hole)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_region_adversarial.py", line 63, in test_a_missing_wall_in_both_visual_and_semantic_lists_is_still_a_hole
+    with self.assertRaises(ValueError):validate_region(bad)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_native_owner_cannot_claim_a_smaller_body_than_its_recipe (test_native_region_adversarial.NativeRegionAdversarialTests.test_native_owner_cannot_claim_a_smaller_body_than_its_recipe)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_region_adversarial.py", line 58, in test_native_owner_cannot_claim_a_smaller_body_than_its_recipe
+    with self.assertRaises(ValueError):validate_region(bad)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_optional_clutter_stays_near_actual_activity_sites (test_native_region_adversarial.NativeRegionAdversarialTests.test_optional_clutter_stays_near_actual_activity_sites)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_region_adversarial.py", line 73, in test_optional_clutter_stays_near_actual_activity_sites
+    self.assertTrue(close,(c['zoneId'],p['id']))
+AssertionError: False is not true : ('Overworld.3.6.0', 'Overworld.3.6.0/prop-0182-barrel')
+
+======================================================================
+FAIL: test_out_of_bounds_route_is_not_an_unchecked_manifest_claim (test_native_region_adversarial.NativeRegionAdversarialTests.test_out_of_bounds_route_is_not_an_unchecked_manifest_claim)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_region_adversarial.py", line 48, in test_out_of_bounds_route_is_not_an_unchecked_manifest_claim
+    with self.assertRaises(ValueError):validate_region(bad)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_unknown_asset_cannot_turn_into_a_missing_visual (test_native_region_adversarial.NativeRegionAdversarialTests.test_unknown_asset_cannot_turn_into_a_missing_visual)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_region_adversarial.py", line 40, in test_unknown_asset_cannot_turn_into_a_missing_visual
+    with self.assertRaises(ValueError):validate_region(bad)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_wrong_external_neighbor_is_rejected_even_without_a_partner_chunk (test_native_region_adversarial.NativeRegionAdversarialTests.test_wrong_external_neighbor_is_rejected_even_without_a_partner_chunk)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_region_adversarial.py", line 52, in test_wrong_external_neighbor_is_rejected_even_without_a_partner_chunk
+    with self.assertRaises(ValueError):validate_region(bad)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 33 tests in 0.661s
+
+FAILED (failures=6)

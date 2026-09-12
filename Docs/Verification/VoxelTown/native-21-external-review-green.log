@@ -1,0 +1,16 @@
+................E......................................................
+======================================================================
+ERROR: test_generated_preview_inputs_validate_without_blender (test_native_preview.NativePreviewTests.test_generated_preview_inputs_validate_without_blender)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_preview.py", line 15, in test_generated_preview_inputs_validate_without_blender
+    self.assertTrue(validate_preview_inputs(self.chunk,self.assets))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/native_scene.py", line 71, in validate_preview_inputs
+    raise ValueError('Preview geometry exceeds claimed native footprint')
+ValueError: Preview geometry exceeds claimed native footprint
+
+----------------------------------------------------------------------
+Ran 71 tests in 4.003s
+
+FAILED (errors=1)

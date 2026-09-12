@@ -1,0 +1,25 @@
+.....F.....F....
+======================================================================
+FAIL: test_internal_routes_are_established_but_external_footpaths_are_narrow (test_native_region.NativeRegionTests.test_internal_routes_are_established_but_external_footpaths_are_narrow)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_region.py", line 123, in test_internal_routes_are_established_but_external_footpaths_are_narrow
+    self.assertEqual(3 if p['neighborZoneId'] in zones else 1,route['width'])
+AssertionError: 1 != 3
+
+======================================================================
+FAIL: test_trader_merchandise_spills_into_an_accessible_exterior_market (test_native_region.NativeRegionTests.test_trader_merchandise_spills_into_an_accessible_exterior_market)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_region.py", line 128, in test_trader_merchandise_spills_into_an_accessible_exterior_market
+    self.assertEqual(trader['id'],stall['homeId']);self.assertEqual('prop',stall['category'])
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'prop' != 'furniture'
+- prop
++ furniture
+
+
+----------------------------------------------------------------------
+Ran 16 tests in 1.578s
+
+FAILED (failures=2)

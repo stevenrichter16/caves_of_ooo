@@ -1,0 +1,23 @@
+.....E.............................
+======================================================================
+ERROR: test_seed_variation_determinism_and_global_random_independence (test_native_region.NativeRegionTests.test_seed_variation_determinism_and_global_random_independence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_region.py", line 71, in test_seed_variation_determinism_and_global_random_independence
+    self.assertNotEqual(a,generate_region(NativeConfig(seed=73)))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/native_region.py", line 260, in generate_region
+    chunks=[_chunk(config,zone_id,role,assets) for zone_id,role in DEFAULT_CHUNKS]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/native_region.py", line 147, in _chunk
+    buildings=_buildings(config,role,rng,portals,plaza)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/native_region.py", line 119, in _buildings
+    if not candidates:raise ValueError('Rectangular settlement has insufficient clear building lots')
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Rectangular settlement has insufficient clear building lots
+
+----------------------------------------------------------------------
+Ran 35 tests in 3.146s
+
+FAILED (errors=1)

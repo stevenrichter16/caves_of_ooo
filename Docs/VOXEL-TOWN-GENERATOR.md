@@ -1,9 +1,12 @@
 # Procedural voxel settlement toolkit
 
-Status: Milestone1 complete and extended through all10 role profiles, on codex/voxel-town-generator. The user
-replaced the non-voxel art direction and explicitly authorized autonomous
-iterations. Earlier art and mixed uncommitted work remain preserved; the new
-pipeline is isolated in ArtSource/VoxelTown. No existing Unity world is replaced.
+Status: Milestone1/all10 role profiles and the native rectangular adapter are
+complete on codex/voxel-town-generator; the current pure suite passes280/280.
+The separate four-chunk voxel renderer is installed and native-audited; its
+implementation and receipts are in `Docs/VOXEL-WORLD-INTEGRATION.md`. This toolkit
+produces reusable candidates and assets, preserving canonical native owners
+rather than automatically replacing their layouts. Earlier art and unrelated
+uncommitted work remain preserved.
 
 ## Goal and reference
 
@@ -63,8 +66,8 @@ collections; audit idempotence and a manual-child counterexample in real bpy.
 
 Blender viewport/camera renders verify appearance; abstract path tests verify
 layout reachability. Neither proves native Unity combat/destruction/pathfinding.
-No save migration work. Native integration and runtime performance gates follow
-only when that work is actually introduced.
+No save migration work. Native integration and runtime performance are verified
+separately in the four-chunk renderer phase, not inferred from these toolkit tests.
 
 ## Implementation log
 
@@ -156,9 +159,10 @@ helpers use compact formatting. This does not change the external data contract.
 
 ⚪ Current room plans are rectangular and single-room. Oasis geography remains a
 western-water/eastern-desert family, with seed-dependent sites/routes/content.
-No district-only regeneration or native Unity voxel runtime is claimed. These
-are future toolkit milestones, not hidden manual steps required to regenerate
-the delivered examples. No Qud-code parity claim applies.
+At the M1 closeout, no native Unity voxel runtime was shipped by that wave.
+The later four-chunk renderer is installed separately; district-only regeneration
+remains future toolkit work, not a hidden manual step required to regenerate the
+delivered examples. No Qud-code parity claim applies.
 
 🧪 Render review verifies composition and model appearance at the provided camera.
 It cannot establish native Unity collision, destructibility, combat, audio,
@@ -185,7 +189,7 @@ population and vegetation. Separate layout/property gates exercised hundreds of
 seed/configuration combinations. Full receipts, not extrapolated guarantees,
 are retained under `Docs/Verification/VoxelTown`.
 
-### Files and remaining milestones
+### M1 files and follow-up plan (historical)
 
 New implementation lives entirely in `ArtSource/VoxelTown`: semantic model and
 planners,53 procedural recipes,26-color palette, greedy mesher, semantic shell
@@ -193,16 +197,18 @@ builder, Blender adapter, camera/lighting, CLI/presets and pure/native tests.
 `README.md` describes usage, parameters and JSON/FBX boundaries. Source reference
 image, demonstration scenes and generation receipts are preserved.
 
-Next bounded phases: richer multi-room floor plans and architectural silhouettes;
-a second environmental anchor family such as a river crossing; district-level
-regeneration with durable identities; then a Unity voxel-rendering/destruction
-pilot with native pathfinding/displacement/damage tests. Existing save migrations
-remain out of scope per the user's instruction.
+The M1 follow-up plan identified richer multi-room floor plans and architectural
+silhouettes, a second environmental anchor family such as a river crossing,
+district-level regeneration, and a native voxel-rendering pilot. The native
+rectangular adapter and separate four-chunk renderer have since shipped with
+native movement/destruction/revisit checks. The richer generator features remain
+future work. Existing save migrations remain out of scope per the user's instruction.
 
 
-### Final gate and output-publication review
+### M1 final gate and output-publication review (historical)
 
-Final suite:209 pure tests pass. Seven native Blender scripts pass for framing,
+At M1 closeout,209 pure tests passed; the later adapter gate below brings the
+current total to280. Seven native Blender scripts passed for framing,
 integration/repeatability, manual camera/world preservation, saved exports,
 independent regeneration hypotheses,20-case ownership taxonomy and baseline
 ownership. The final oasis FBX additionally receives a separate real roundtrip.
@@ -227,3 +233,112 @@ Final example bundles: `Output/oasis-seed41`, `Output/oasis-seed73`, and
 `Output/large-oasis-seed73`. Earlier M1/refinement images remain as review receipts.
 Source and generated output are committed only within the new voxel scope;
 unrelated pre-existing modifications are not staged.
+
+### Native rectangular adapter — complete bounded milestone (12 September 2026)
+
+This extension preserves the square toolkit and exports reusable asset geometry
+plus deterministic 80×25 gameplay-cell candidate chunks. The four connected
+roles are Morrowfast (3,6), western fields (2,6), Stump foothills (3,7), and
+grove (4,7). Candidate layouts do not replace canonical native owners; Unity
+integration selects compatible assets and content explicitly.
+
+Pre-implementation verification corrected four assumptions: native chunks are
+80×25, not square; local Y increases south whereas Blender Y points north;
+current bootstrap starts Morrowfast despite the older Sill constant; and many
+existing fixtures lack DestructiblePart. The adapter therefore declares axes,
+native cell footprints and destruction intent, without pretending visual voxel
+occupancy creates gameplay behavior. Game integration is documented separately.
+
+Milestones: (1) neutral mesh/voxel/palette export with explicit uniform single-cell
+fit scales; (2) semantic rectangular candidates with reciprocal portals and
+cell-aligned accessible buildings; (3) adversarial multi-seed gates and native
+Blender previews. Asset export is prioritized so runtime integration can reuse
+the actual toolkit recipes. TDD receipts will live in Verification/VoxelTown.
+
+Original CoO generation; no Qud implementation-parity claim is made. Native
+source checks: Zone.cs, Village3DProjection.cs, ZoneTransitionSystem.cs,
+SpatialFootprintPart.cs, BuilderSpawn.cs, Objects.json, and GameBootstrap.cs.
+
+Implementation now separates `native_assets.py` (neutral real meshes/voxel runs),
+`native_region.py` (integer-cell semantic candidates), `native_scene.py` (Blender
+boundary), and `native_generate.py` (exports/previews). The old square APIs and
+209 original tests remain intact. Crate/barrel families now have four actual
+geometry variants each; the full library is59 recipes. Native mesh export
+declares floor pivot, Blender/native axes, palette, bounds, full-size footprints
+and honest uniform single-cell scales, including their reduced effective voxel
+size. It does not infer Unity Parts from visual geometry.
+
+Preliminary verification passed95 regions (80 normal seeds plus40×20,64×24,
+96×32,160×50,256×128 envelopes). A greedy-lot dead end and undersized-envelope
+overbooking were confirmed and fixed through deterministic retries and explicit
+area-based lot counts. A slow sweep exposed unnecessary growing-set copies in
+native flood-fill; those were removed before repeating the complete sweep.
+
+Cold-eye hypotheses found six additional gaps: unknown mesh identities, claimed
+footprints smaller than geometry, unchecked out-of-bounds route records,
+incorrect external-world neighbors, missing walls removed from both semantic
+and placement lists, and clutter scattered outside activity areas. Dedicated
+RED receipts precede their fixes. Fractional anchors were already rejected and
+are now explicitly type-checked. Trees/palms/rocks have solid candidate bodies;
+reeds, scrub and crops remain passable. Every solid candidate reserves its whole
+declared footprint and every architectural wall has a separate one-cell owner.
+
+The first real Blender preview passed actual transformed mesh versus native
+footprint bounds, complete camera framing, linked-mesh reuse, and preservation
+of manually owned objects during repeated regeneration for all four chunks.
+Visual review then identified checkerboard masonry, too-wide secondary roads,
+repeated rectangular silhouettes, and sparse/uniform dressing. The general
+rules now use restrained masonry recesses, narrow secondary footpaths,
+role-specific building dimensions, an outdoor trader stall, contextual exterior
+clutter, coherent vegetation patches and denser green shoreline bands. Final
+post-refinement validation and refreshed previews passed.
+
+Honesty bounds: pure and Blender scripts can verify deterministic geometry,
+native-cell ownership plans, clear entrances, connectivity, model dimensions and
+regeneration safety. They cannot prove Unity interaction/destruction, runtime
+frame time, or aesthetic equivalence to the image reference. Those native
+integration tests and profile receipts belong to the separate world-integration
+phase. Candidate layouts are not silently installed over canonical owners.
+
+Independent read-only review added four actionable findings, all resolved with
+RED tests before fixes:
+
+| Severity | Finding | Resolution |
+|---|---|---|
+| 🟡 | Bad preview data could erase the prior generated scene before failing | Pure asset, terrain, placement and real-bounds preflight precedes every Blender mutation; native Blender rejection tests preserve the prior scene |
+| 🟡 | Imported material IDs could be displayed against a different palette | Preview explicitly rejects incompatible palette names/colors/order before mutation |
+| 🟡 | A wall could claim ownership while its solid/opaque flags were false | Validator requires one-cell, solid, opaque, destructible wall owners |
+| 🟡 | Flood-fill could start from a blocked or outside plaza | Plaza must be an integer, in-bounds, dry and unblocked cell |
+
+The accompanying CLI failure probe found that requesting a render without bpy
+could overwrite prior JSON exports first. Blender availability is now checked
+before publication. Other failure, repeated-export, symlink-target and unrelated
+file preservation hypotheses passed and remain regression pins. The native
+command still promises per-file atomic writes, not a full multi-file transaction.
+
+Final receipts (under `Docs/Verification/VoxelTown`):
+
+- `native-23-final-suite.log`: **280/280 pure tests**; all209 original tests
+  retained, plus71 new tests including35 dedicated adversarial cases.
+- `native-region-24-final-multiseed.log`: **95/95 four-chunk regions**, comprising
+  80 default-size seeds and15 varied-size cases, after the final composition rules.
+- `native-blender-25-final-probe.log`: all four chunks pass actual mesh versus
+  native footprint bounds, framing, linked geometry and regeneration preservation;
+  malformed model/palette rejection leaves the previous preview intact.
+- `native-blender-27-final-renders.log`: four final gameplay-camera images plus
+  `native-region.blend`, rendered using two threads and16 samples in about37s.
+
+Final candidate output contains10 buildings,20 initial human placements and662
+total prop/wall/NPC/vegetation owners over8000 terrain cells. The source59-model
+library exports independently in `Output/native-region/assets.json` with SHA256
+`a7f350b3f54e4402e8500104aaa0f44732b79456515ea0077ab2a426e08ec7b2`.
+The final refinement changed only the unused `voxel-wall` recipe relative to the
+native audit's asset file: all19 unique recipes used by38 native bindings and the
+palette stayed identical (`native-assets-26-final-provenance.log`).
+
+Visual review confirms the specific composition improvements; these small native
+candidates remain simpler than the square oasis showcase/reference, particularly
+in architectural variation and ground microdetail. This is a documented visual
+limit, not a claim that the reference aesthetic has been fully reproduced.
+Further candidate embellishment must remain rule-based and preserve the native
+cell/navigation gates. No Unity source was modified in this sub-milestone.

@@ -1,0 +1,41 @@
+...E...E...
+======================================================================
+ERROR: test_greedy_lot_dead_end_restarts_rules_without_dropping_native_buildings (test_native_region.NativeRegionTests.test_greedy_lot_dead_end_restarts_rules_without_dropping_native_buildings)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_region.py", line 88, in test_greedy_lot_dead_end_restarts_rules_without_dropping_native_buildings
+    data=generate_region(NativeConfig(seed=23))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/native_region.py", line 260, in generate_region
+    chunks=[_chunk(config,zone_id,role,assets) for zone_id,role in DEFAULT_CHUNKS]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/native_region.py", line 147, in _chunk
+    buildings=_buildings(config,role,rng,portals,plaza)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/native_region.py", line 119, in _buildings
+    if not candidates:raise ValueError('Rectangular settlement has insufficient clear building lots')
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Rectangular settlement has insufficient clear building lots
+
+======================================================================
+ERROR: test_small_rectangle_reduces_requested_lot_count_without_scaling_assets (test_native_region.NativeRegionTests.test_small_rectangle_reduces_requested_lot_count_without_scaling_assets)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_region.py", line 93, in test_small_rectangle_reduces_requested_lot_count_without_scaling_assets
+    data=generate_region(NativeConfig(width=40,height=20))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/native_region.py", line 260, in generate_region
+    chunks=[_chunk(config,zone_id,role,assets) for zone_id,role in DEFAULT_CHUNKS]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/native_region.py", line 147, in _chunk
+    buildings=_buildings(config,role,rng,portals,plaza)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/native_region.py", line 119, in _buildings
+    if not candidates:raise ValueError('Rectangular settlement has insufficient clear building lots')
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Rectangular settlement has insufficient clear building lots
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.926s
+
+FAILED (errors=2)

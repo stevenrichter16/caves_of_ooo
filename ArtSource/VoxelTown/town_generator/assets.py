@@ -45,9 +45,10 @@ def _architecture(key, s):
         b(-2, -2, 0, 2, 2, 1, "dark_floor")
     elif key == "wall":
         b(-2, -1, 0, 2, 1, 10, "sandstone")
-        for z in range(0, 10, 2):
-            x = -2 if z % 4 == 0 else 0
-            b(x, -1, z, x+2, 0, z+2, "stone_light")
+        # Shallow mortar notches describe courses without a chessboard of
+        # high-contrast faces when this one-metre segment repeats along walls.
+        for z,x in ((2,-1),(6,1)):
+            a.mesh.cells.pop((x,-1,z),None)
         b(-2, -1, 9, 2, 1, 10, "stone_light")
     elif key in ("door", "gate"):
         width = 4 if key == "door" else 8
@@ -370,8 +371,55 @@ def _character(key, variant, s):
     return a.mesh
 
 
+def _storage_variant(key, variant, s):
+    """One-cell storage silhouettes: open, low/stacked and horizontal forms."""
+    a=_Recipe(s);b=a.b
+    if key=='crate':
+        if variant==1:  # Open slatted crate, visible hollow centre.
+            b(-2,-2,0,2,2,1,'wood')
+            for x in (-2,1):
+                for y in (-2,1):b(x,y,0,x+1,y+1,4,'wood_light')
+            for z in (1,3):
+                for y in (-2,1):b(-2,y,z,2,y+1,z+1,'wood')
+                for x in (-2,1):b(x,-2,z,x+1,2,z+1,'wood')
+        elif variant==2:  # Shallow metal-strapped shipping case.
+            b(-2,-1,0,2,2,3,'wood_light')
+            for x in (-2,1):b(x,-1,0,x+1,2,3,'metal')
+            b(-1,-1,1,1,0,2,'wood')
+            b(-1,0,3,1,1,4,'wood')
+        else:  # Raised lid and broken corner, a tall provision crate.
+            b(-2,-2,0,2,2,4,'wood')
+            b(-2,-2,0,-1,2,5,'wood_light')
+            b(1,-2,0,2,2,4,'wood_light')
+            b(-1,-2,4,1,2,5,'cloth_cream')
+            b(-1,-1,5,1,1,6,'cloth_cream')
+    elif variant==1:  # Narrow upright coopered barrel.
+        b(-1,-1,0,2,2,6,'wood_light')
+        for z in (1,4):b(-1,-1,z,2,2,z+1,'metal')
+        b(0,0,6,1,1,7,'wood')
+    elif variant==2:  # Open low wash/storage tub.
+        b(-2,-2,0,2,2,1,'wood')
+        for x in range(-2,2):
+            for y in range(-2,2):
+                if abs(x+.5)+abs(y+.5)>2.5:continue
+                if x in (-2,1) or y in (-2,1):
+                    b(x,y,1,x+1,y+1,3,'wood_light')
+                    b(x,y,1,x+1,y+1,2,'metal')
+    else:  # Horizontal keg on low feet, with a readable front tap.
+        for x in (-2,1):b(x,0,0,x+1,2,1,'wood')
+        for x in range(-2,2):
+            for z in range(1,5):
+                if abs(x+.5)+abs(z-2.5)<=3:
+                    b(x,-1,z,x+1,2,z+1,'wood_light')
+        for y in (-1,1):
+            b(-2,y,2,2,y+1,4,'metal')
+            b(-1,y,1,1,y+1,5,'metal')
+        b(0,-2,2,1,-1,3,'rust')
+    return a.mesh
+
+
 def build_recipes(voxel_size=.25):
-    """Return all category meshes and three variants for repeatable families."""
+    """Return category meshes; nature has three variants, storage has four."""
     recipes = {}
     architecture = {"wall", "floor", "door", "gate", "stairs", "window", "awning",
                     "fence", "bridge", "well", "ruin"}
@@ -389,6 +437,9 @@ def build_recipes(voxel_size=.25):
                 recipes[key+suffix] = _character(key, variant, voxel_size)
         else:
             recipes[key] = _furniture(key, voxel_size)
+            if key in ('crate','barrel'):
+                for variant in range(1,4):
+                    recipes[f'{key}_{variant}']=_storage_variant(key,variant,voxel_size)
     return recipes
 
 

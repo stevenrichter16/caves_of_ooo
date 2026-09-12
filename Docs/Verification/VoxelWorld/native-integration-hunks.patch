@@ -1,0 +1,190 @@
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DGroundPatches.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DGroundPatches.cs
+@@ -16,6 +16,7 @@
+         private const ulong Offset = 14695981039346656037UL, Prime = 1099511628211UL;
+         private readonly NativeZone3DRenderSurface surface;
+         private readonly SpawnRing3DLibrary library;
++        private readonly VoxelWorldPresentation voxel;
+         private readonly SpawnRing3DCatalog catalog;
+         private readonly Patch[] patches = new Patch[Columns * Rows];
+         private readonly bool[] marked = new bool[Columns * Rows];
+@@ -57,11 +58,12 @@
+             { Mesh = mesh; Submesh = submesh; Relative = relative; Water = water; }
+         }
+ 
+-        public SpawnRing3DGroundPatches(NativeZone3DRenderSurface surface, SpawnRing3DLibrary library, MultiCellPilot3DLibrary pilot = null)
++        public SpawnRing3DGroundPatches(NativeZone3DRenderSurface surface, SpawnRing3DLibrary library, MultiCellPilot3DLibrary pilot = null, VoxelWorldPresentation voxel = null)
+         {
+             if (surface == null || surface.ContentRoot == null || library == null)
+                 throw new ArgumentException("A live native surface and ring library are required.");
+             this.surface = surface; this.library = library; catalog = library.Definition;
++            this.voxel = voxel;
+             // Validate borrowed material families before allocating owned geometry.
+             worldMaterial = surface.MaterialFor(library.WorldMaterial);
+             waterMaterial = surface.MaterialFor(library.WaterMaterial);
+@@ -233,6 +235,7 @@
+             {
+                 if (!(renderer is MeshRenderer)) throw new InvalidOperationException("A batched model contains a nonstatic renderer: " + id);
+                 var filter = renderer.GetComponent<MeshFilter>(); Mesh mesh = filter != null ? filter.sharedMesh : null;
++                if (voxel != null) mesh = voxel.Resolve(mesh);
+                 if (mesh == null || !mesh.isReadable || mesh.vertexCount == 0 || mesh.subMeshCount == 0)
+                     throw new InvalidOperationException("Batched ring model needs a readable nonempty static mesh: " + id);
+                 var materials = renderer.sharedMaterials;
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs
+@@ -32,6 +32,7 @@
+         private readonly List<Entity> removed = new List<Entity>();
+         private RaycastHit[] hits = new RaycastHit[64];
+         private SpawnRing3DLibrary library;
++        private VoxelWorldPresentation voxel;
+         private MultiCellPilot3DLibrary pilotLibrary;
+         private SpawnRing3DCatalog definition;
+         private NativeZone3DRenderSurface surface;
+@@ -44,6 +45,9 @@
+         public Camera WorldCamera => surface?.WorldCamera;
+         public bool IsReady { get; private set; }
+         public string Failure { get; private set; }
++        public bool VoxelPresentationActive => PresentationVisible && voxel != null;
++        public int VoxelAppliedMeshCount => voxel?.AppliedMeshCount ?? 0;
++        public int VoxelMissingMeshCount => voxel?.MissingMeshCount ?? 0;
+         public bool FullReveal { get; set; }
+         private bool PresentationRequested => IsReady && requestedVisible && Village3DSettings.Enabled && source != null && isActiveAndEnabled;
+         public bool PresentationVisible => PresentationRequested && surface != null && surface.IsVisible;
+@@ -65,6 +69,7 @@
+                 library = Resources.Load<SpawnRing3DLibrary>(SpawnRing3DLibrary.ResourcePath);
+                 if (library == null) throw new InvalidOperationException("Spawn-ring 3D library is unavailable.");
+                 library.Validate(); definition = library.Definition;
++                voxel = VoxelWorldPresentation.ForZone(zone);
+                 // Optional in ordinary ring chunks, required at the authored site.
+                 // Loading once at bind also covers owners arriving after this bind.
+                 pilotLibrary = Resources.Load<MultiCellPilot3DLibrary>(MultiCellPilot3DLibrary.ResourcePath);
+@@ -76,8 +81,8 @@
+                 if (pilotLibrary != null) { materials.Add(pilotLibrary.WorldMaterial); materials.Add(pilotLibrary.TarMaterial); materials.Add(pilotLibrary.GroundMaterial); }
+                 surface = new NativeZone3DRenderSurface(transform, library.Renderer, library.RendererIndex,
+                     library.CompositeMaterial, materials.ToArray(), 2.2f);
+-                ground = new SpawnRing3DGroundPatches(surface, library, pilotLibrary);
+-                equipment = new Village3DEquipmentViews(library.EquipmentLibrary, go => surface.PrepareModel(go, true));
++                ground = new SpawnRing3DGroundPatches(surface, library, pilotLibrary, voxel);
++                equipment = new Village3DEquipmentViews(library.EquipmentLibrary, go => PrepareModel(go, true));
+                 IsReady = true; Subscribe(); Refresh(null); SyncCamera();
+             }
+             catch (Exception e)
+@@ -157,7 +162,7 @@
+             if (prefab == null) throw new InvalidOperationException("Missing ring model " + recipe.ModelId);
+             var root = Instantiate(prefab, surface.ContentRoot, false); root.name = recipe.ComponentId ?? recipe.ModelId;
+             root.transform.position = recipe.Position;
+-            surface.PrepareModel(root, recipe.Transient);
++            PrepareModel(root, recipe.Transient);
+             var view = new View { Owner = recipe.Owner, ModelId = recipe.ModelId, Root = root, Target = recipe.Position,
+                 Transient = recipe.Transient, Renderers = root.GetComponentsInChildren<Renderer>(true),
+                 Animator = root.GetComponentInChildren<Animator>(true) };
+@@ -379,9 +384,15 @@
+             }
+             foreach (var view in views.Values) view.Cast?.Dispose();
+             spellLibrary = null;
++            voxel = null;
+             equipment?.Dispose(); equipment = null; ground?.Dispose(); ground = null; surface?.Dispose(); surface = null;
+             recipes.Clear(); views.Clear(); byCollider.Clear(); seen.Clear(); removed.Clear();
+             CurrentZone = null; source = null; library = null; pilotLibrary = null; definition = null;
++        }
++        private void PrepareModel(GameObject root, bool transient)
++        {
++            voxel?.Apply(root);
++            surface.PrepareModel(root, transient);
+         }
+         private static void DestroyOwned(UnityEngine.Object value)
+         { if (Application.isPlaying) Destroy(value); else DestroyImmediate(value); }
+--- a/Assets/Scripts/Presentation/Rendering/Village3DPresenter.cs
++++ b/Assets/Scripts/Presentation/Rendering/Village3DPresenter.cs
+@@ -38,6 +38,7 @@
+         private readonly Dictionary<string, bool> rooms = new Dictionary<string, bool>(StringComparer.Ordinal);
+         private readonly RaycastHit[] hits = new RaycastHit[64];
+         private Village3DLibrary library;
++        private VoxelWorldPresentation voxel;
+         private MultiCellPilot3DLibrary pilotLibrary;
+         private readonly Dictionary<Entity, View> portableViews = new Dictionary<Entity, View>();
+         private readonly HashSet<Entity> portableSeen = new HashSet<Entity>();
+@@ -55,6 +56,9 @@
+         public Camera WorldCamera { get; private set; }
+         public bool IsReady { get; private set; }
+         public string Failure { get; private set; }
++        public bool VoxelPresentationActive => PresentationVisible && voxel != null;
++        public int VoxelAppliedMeshCount => voxel?.AppliedMeshCount ?? 0;
++        public int VoxelMissingMeshCount => voxel?.MissingMeshCount ?? 0;
+         public int EquipmentFallbackCount => equipmentViews?.FallbackCount ?? 0;
+         public IReadOnlyList<Village3DEquipmentFallback> EquipmentFallbacks =>
+             equipmentViews?.Fallbacks ?? Array.Empty<Village3DEquipmentFallback>();
+@@ -80,6 +84,7 @@
+                 library = Resources.Load<Village3DLibrary>(Village3DLibrary.ResourcePath);
+                 if (library == null) throw new InvalidOperationException("Village 3D library is unavailable.");
+                 library.Validate(); definition = library.Definition;
++                voxel = VoxelWorldPresentation.ForZone(zone);
+                 pilotLibrary = Resources.Load<MultiCellPilot3DLibrary>(MultiCellPilot3DLibrary.ResourcePath);
+                 pilotLibrary?.Validate();
+                 var materials = new List<Material> { library.WorldMaterial, library.WaterMaterial };
+@@ -116,7 +121,11 @@
+             go.transform.localScale = placement.scale;
+             PrepareModel(go, false); return go;
+         }
+-        private void PrepareModel(GameObject go, bool transient) => surface.PrepareModel(go, transient);
++        private void PrepareModel(GameObject go, bool transient)
++        {
++            voxel?.Apply(go);
++            surface.PrepareModel(go, transient);
++        }
+         private View AddView(string id, Village3DManifest.Owner spec, string modelId, Entity portableOwner = null)
+         {
+             bool transient = portableOwner != null
+@@ -421,6 +430,7 @@
+             }
+             foreach (var view in views) view.Cast?.Dispose();
+             spellLibrary = null;
++            voxel = null;
+             equipmentViews?.Dispose(); equipmentViews = null;
+             surface?.Dispose(); surface = null;
+             WorldCamera = null; content = null; source = null;
+--- a/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs
++++ b/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs
+@@ -330,13 +330,21 @@
+                 Assert.IsTrue(InventorySystem.UnequipItem(f.Player,item));f.Frame();Assert.IsFalse(f.Equipment(f.Player,item,out _));SpawnRing3DIntegrationFixture.Hidden(view);Assert.AreSame(f.Player,item.GetPart<PhysicsPart>().InInventory);
+             }
+         }
+-        [Test] public void TwoHandedItemMakesOneRealSharedBladeAttachment()
+-        {
+-            using(var f=new SpawnRing3DIntegrationFixture())
+-            {
++        [TestCase(SpawnRing3DIntegrationFixture.Grove,true)]
++        [TestCase(SpawnRing3DIntegrationFixture.Fen,false)]
++        public void TwoHandedItemMakesOneRealSharedBladeAttachment(string zoneId,bool voxelExpected)
++        {
++            using(var f=new SpawnRing3DIntegrationFixture(zoneId))
++            {
++                Assert.AreEqual(voxelExpected,VoxelWorldPresentation.IsEnabledFor(f.Zone),"The native fen controls unchanged equipment art outside the voxel region.");
+                 f.CleanGear(f.Player);var item=f.Equip(f.Player,"Greatsword");f.Refresh();Assert.AreEqual(2,f.Player.GetPart<InventoryPart>().EquippedItems.Values.Count(v=>ReferenceEquals(v,item)));
+                 Assert.IsTrue(f.Equipment(f.Player,item,out var view));var model=f.Library.FindEquipmentModel("equipment-blade");Assert.NotNull(model);
+                 var meshes=model.GetComponentsInChildren<MeshFilter>(true).Select(m=>m.sharedMesh).ToArray();Assert.IsNotEmpty(meshes);
++                if(VoxelWorldPresentation.IsEnabledFor(f.Zone))
++                {
++                    var catalog=Resources.Load<VoxelWorldMeshCatalog>(VoxelWorldMeshCatalog.ResourcePath);Assert.NotNull(catalog);catalog.Validate();
++                    meshes=meshes.Select(catalog.Resolve).ToArray();
++                }
+                 CollectionAssert.AreEquivalent(meshes,view.GetComponentsInChildren<MeshFilter>(true).Select(m=>m.sharedMesh));
+                 Assert.AreEqual(meshes.Length,f.View(f.Player).GetComponentsInChildren<MeshFilter>(true).Count(m=>meshes.Contains(m.sharedMesh)),"Two native slots must not duplicate blade geometry.");
+             }
+--- a/Assets/Tests/EditMode/Presentation/Rendering/Village3DEquipmentIntegrationTests.cs
++++ b/Assets/Tests/EditMode/Presentation/Rendering/Village3DEquipmentIntegrationTests.cs
+@@ -59,7 +59,13 @@
+             Assert.NotNull(view);Assert.IsTrue(Village3DIntegrationFixture.Drawn(view));
+             var library=Resources.Load<Village3DLibrary>(Village3DLibrary.ResourcePath);Assert.NotNull(library);
+             var prefab=library.FindModel(model);Assert.NotNull(prefab,model);
+-            CollectionAssert.AreEquivalent(prefab.GetComponentsInChildren<MeshFilter>(true).Select(x=>x.sharedMesh),
++            var expected=prefab.GetComponentsInChildren<MeshFilter>(true).Select(x=>x.sharedMesh).ToArray();
++            if(VoxelWorldPresentation.IsEnabledFor(f.Zone))
++            {
++                var catalog=Resources.Load<VoxelWorldMeshCatalog>(VoxelWorldMeshCatalog.ResourcePath);Assert.NotNull(catalog);catalog.Validate();
++                expected=expected.Select(catalog.Resolve).ToArray();
++            }
++            CollectionAssert.AreEquivalent(expected,
+                 view.GetComponentsInChildren<MeshFilter>(true).Select(x=>x.sharedMesh),"Wrong imported equipment geometry.");
+             Assert.Greater(view.GetComponentsInChildren<MeshFilter>(true).Length,0);
+             foreach(var renderer in view.GetComponentsInChildren<Renderer>(true))Assert.AreEqual(Village3DPresenter.WorldLayer,renderer.gameObject.layer);

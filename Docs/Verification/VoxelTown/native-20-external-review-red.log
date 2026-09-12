@@ -1,0 +1,46 @@
+............F.E...............................................F.F.
+======================================================================
+ERROR: test_native_preview (unittest.loader._FailedTest.test_native_preview)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_native_preview
+Traceback (most recent call last):
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_preview.py", line 6, in <module>
+    from town_generator.native_scene import validate_preview_inputs
+ImportError: cannot import name 'validate_preview_inputs' from 'town_generator.native_scene' (/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/native_scene.py)
+
+
+======================================================================
+FAIL: test_missing_blender_rejects_render_before_touching_prior_exports (test_native_export.NativeExportTests.test_missing_blender_rejects_render_before_touching_prior_exports)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_export.py", line 25, in test_missing_blender_rejects_render_before_touching_prior_exports
+    self.assertEqual('prior-assets',(root/'assets.json').read_text())
+AssertionError: 'prior-assets' != '{"assets":[{"bounds":{"maximum":[1.5,1.0,[267984 chars]5}\n'
+
+======================================================================
+FAIL: test_plaza_must_be_an_actual_open_in_bounds_cell (test_native_region_adversarial.NativeRegionAdversarialTests.test_plaza_must_be_an_actual_open_in_bounds_cell)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_region_adversarial.py", line 85, in test_plaza_must_be_an_actual_open_in_bounds_cell
+    with self.assertRaises(ValueError):validate_region(bad)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_wall_physical_flags_cannot_turn_structure_into_ghost_art (test_native_region_adversarial.NativeRegionAdversarialTests.test_wall_physical_flags_cannot_turn_structure_into_ghost_art)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_region_adversarial.py", line 79, in test_wall_physical_flags_cannot_turn_structure_into_ghost_art
+    with self.assertRaises(ValueError):validate_region(bad)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 66 tests in 3.758s
+
+FAILED (failures=3, errors=1)

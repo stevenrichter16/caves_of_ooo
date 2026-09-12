@@ -81,8 +81,9 @@ provides width-aware path checks and exact voxel reservations. `props.py`,
 calling them in a different order does not consume shared randomness or rely on
 mutable caller-populated lists. Crops respect irrigation and farm gates.
 
-`assets.py` contains 53 reusable recipes, including all requested categories,
-and three variants for repeated nature and character families. `materials.py`
+`assets.py` contains 59 reusable recipes, including all requested categories,
+three variants for repeated nature/character families, and four geometrically
+different crates and barrels. `materials.py`
 defines 26 flat colors. `architecture.py` produces role-specific open shells,
 real entrances/windows, voxel masonry and floors. `mesh.py` preserves occupied
 cells while merging internal/coplanar render surfaces. A cube is not a Blender
@@ -92,6 +93,68 @@ object: repeated assets share meshes, and terrain is batched into patches.
 `GENERATED_BUILDINGS`, `GENERATED_PROPS`, `GENERATED_VEGETATION`,
 `GENERATED_WATER`, `GENERATED_NPCS`, and `GENERATED_LIGHTING`. The unlinked,
 fake-user asset library survives save/reopen without appearing in the render.
+
+## Rectangular native candidates and shared engine assets
+
+The separate native adapter keeps the existing square planner intact:
+
+```sh
+PYTHONPATH=ArtSource/VoxelTown python3 -m town_generator.native_generate \
+  --seed 41 --output ArtSource/VoxelTown/Output/native-region
+```
+
+Add `--render` when running the same script through Blender to create four
+gameplay-camera previews and `native-region.blend`:
+
+```sh
+/Applications/Blender.app/Contents/MacOS/Blender -b --threads 2 \
+  --python-exit-code 1 \
+  --python ArtSource/VoxelTown/town_generator/native_generate.py -- \
+  --seed 41 --render --samples 16 \
+  --output ArtSource/VoxelTown/Output/native-region
+```
+
+`native_region.generate_region(NativeConfig(...))` produces 80×25 cell candidates
+for Morrowfast (3,6), western fields (2,6), Stump foothills (3,7), and grove (4,7).
+Every cell is one metre. `--width` and `--height` explore rectangular envelopes
+from40×20 through256×128; the real Unity game remains80×25. Small envelopes
+request fewer complete buildings, while all asset dimensions remain unchanged.
+
+The region contains explicit terrain/interior cells, semantic buildings,
+individually destructible wall-cell owners, furniture/NPC footprints, fields,
+contextual clutter and reciprocal edge portals. Portal identity derives from
+the shared world-zone pair and seed, so neighboring candidates agree without
+independent edge-carving. Circulation and door openings are checked on the final
+native integer grid. A deterministic retry stream handles greedy lot dead ends
+without moving one demonstration by hand or silently omitting a requested role.
+
+These are **candidate layouts**, marked `candidateOnly:true`. Running the
+adapter does not replace authored Morrowfast, the existing Stump pilot, or any
+Unity gameplay owner. A separate voxel renderer is now installed in those four
+native chunks and binds compatible toolkit models to existing content, preserving
+its authored owners and mechanics. See `Docs/VOXEL-WORLD-INTEGRATION.md` for the
+native implementation and audit receipts.
+Initial NPC role/home records are not an implemented AI work schedule.
+
+`assets.json` exports the actual toolkit recipes as centred floor-pivot mesh
+vertices, quads, triangles, per-face material indices, palette hex colors, and
+lossless voxel runs. `voxelOrigin` converts the source integer run grid to the
+centred mesh; odd-width recipes can require a half-voxel pivot offset. Axes are
+Blender X east/Y north/Z up; Unity uses X east/Y height/Z north. Native logical
+cell Y points south. Quarter turns in `region.json` rotate east toward south.
+
+Each asset declares native bounds, full geometry footprints, and whether it fits
+one cell at its original .25m voxel scale. Large assets expose one scalar
+`singleCellScale` plus `[s,s,s]` as a uniform fit option; no axis is stretched.
+That option reduces height and effective voxel size too, so a full-size well
+should use multi-cell ownership when its stature matters. Full-size even-cell
+footprints use `nativePlacementOffset`; single-cell fitted meshes do not. These
+footprints include tree canopies and do not automatically imply trunk-only
+collision. Native gameplay chooses the appropriate physical ownership policy.
+
+`assets.json` and `region.json` each publish through an atomic file replacement.
+Unrelated files survive. This native preview command does not claim the complete
+multi-file transaction guarantees of the square toolkit's `bundle.json` CLI.
 
 ## Regeneration and manual work
 
@@ -144,10 +207,12 @@ shared-mesh material registration warnings; the checked output retained all
 colors and geometry. Preserve instancing rather than making every mesh unique
 to silence that exporter behavior.
 
-These exports are a foundation for Unity integration. They do **not** install a
-voxel renderer, damage model, pathfinding system or physics simulation in the
-game. A building's batched mesh is not the sole logical entity: the manifest
-retains its cells and all placed objects for a later destructible implementation.
+Running these export commands does not alter the Unity game. The separately
+installed four-chunk renderer uses selected toolkit recipes and baked voxel
+versions of existing models while retaining native destruction, pathfinding,
+collision and interactions. Candidate layouts remain authoring data; a whole
+building mesh does not become one blocking gameplay owner. This integration
+does not introduce a new per-voxel damage or physics simulation.
 
 ## Verification
 
@@ -156,7 +221,7 @@ PYTHONPATH=ArtSource/VoxelTown python3 -m unittest discover \
   -s ArtSource/VoxelTown/tests -p 'test_*.py'
 ```
 
-Run all available native gates and keep per-gate receipts:
+Run the square toolkit's Blender gates and keep per-gate receipts:
 
 ```sh
 python3 ArtSource/VoxelTown/verify.py \
@@ -164,9 +229,20 @@ python3 ArtSource/VoxelTown/verify.py \
   --fbx-example oasis-seed41
 ```
 
-The final pure suite has209 tests. Actual Blender gates also verify ownership,
+The current pure suite passes **280/280 tests**, retaining the original209 and
+adding71 native-adapter/export cases. Actual Blender gates verify ownership,
 manual-scene state, repeated realization, framed lots, saved exports and FBX
-roundtripping. The dedicated full-planner sweep checks54 varied towns.
+roundtripping. The square full-planner sweep checks54 varied towns; the native
+adapter sweep passes95 four-chunk regions across seeds and rectangular sizes.
+
+Run the rectangular preview's actual Blender geometry, footprint, framing and
+safe-regeneration gate separately:
+
+```sh
+/Applications/Blender.app/Contents/MacOS/Blender -b --threads 2 \
+  --python-exit-code 1 \
+  --python ArtSource/VoxelTown/tests/blender_native_region_probe.py
+```
 
 Run the `blender_*.py` scripts with Blender and `--python-exit-code 1` for actual
 ownership, manual-scene, framing and integration gates. The FBX roundtrip script
@@ -177,10 +253,13 @@ in `Docs/VOXEL-TOWN-GENERATOR.md`.
 
 ## Current scope and next work
 
-The toolkit has repeatable oasis settlements and all ten role profiles. Current
-buildings use one rectangular room; the environment family has a predominantly
-western oasis and eastern dry ground. Multi-room/irregular floor plans, alternate
-river/cliff layouts, district-only regeneration and live voxel gameplay remain
-future milestones. The reference's richer architectural wear, silhouettes and
-activity storytelling remain art-direction targets. The generator, rather than
-individual example scenes, should continue to acquire those rules.
+The toolkit has repeatable oasis settlements, all ten role profiles, rectangular
+native candidates and a reusable mesh export consumed by the installed
+four-chunk renderer. Native gameplay retains its existing simulation owners;
+the generated candidate towns are not automatically installed over them.
+Current buildings use one rectangular room; the square environment family has a
+predominantly western oasis and eastern dry ground. Multi-room/irregular floor
+plans, alternate river/cliff layouts and district-only regeneration remain
+future generator work. The reference's richer architectural wear, silhouettes
+and activity storytelling remain art-direction targets. The generator, rather
+than individual example scenes, should continue to acquire those rules.

@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent read-only comparison of NUnit XML leaf cases and compiler logs; no Unity launch, game-code edit, staging or commit.",
+  "method": "Read compiler logs first; parse XML with ElementTree; reject duplicate full names; reconcile leaf counts with both XML headers and runner receipts; compare full-name sets, every retained result, and exact failure messages.",
+  "comparisonPass": true,
+  "overallSuiteGreen": false,
+  "baseline": {
+    "directory": "Docs/Verification/VoxelWorld/U00-baseline-launch",
+    "xmlSha256": "0d430d8b650b32a471a66e04748d70e62d0ad110b5eab16fe7db72bc1aed3b44",
+    "logSha256": "ed70d7f18a4cc6bdce7fa8649e79cc530d91e256d90c9d17fd408280ef0320ed",
+    "upstreamReceiptSha256": "762aeda1c568c1c2fe259b1a7d7f2aa9b2ef9af31b559b82b012dbe0d5e64d64",
+    "total": 11542,
+    "passed": 11510,
+    "failed": 32,
+    "skipped": 0,
+    "inconclusive": 0,
+    "compilerErrors": 0,
+    "durationSeconds": 188.4050796
+  },
+  "final": {
+    "directory": "Docs/Verification/VoxelWorld/U15-final-full-regression",
+    "xmlSha256": "84aef329e672b4bc1d0b025aae3f91b183edce56bccd0d811bc643a9a35bb133",
+    "logSha256": "c010c68833e76706d55eaa5c4bca25a993854a8406f9c69b4bc4a45d10ef0794",
+    "upstreamReceiptSha256": "2756ed4952468020759f009601a05c193149301fc64352af2331c4b71f510cdb",
+    "total": 11710,
+    "passed": 11678,
+    "failed": 32,
+    "skipped": 0,
+    "inconclusive": 0,
+    "compilerErrors": 0,
+    "durationSeconds": 197.6308856
+  },
+  "existingResults": {
+    "commonCaseNames": 11541,
+    "changedResultNames": [],
+    "newFailureNames": [],
+    "resolvedFailureNames": [],
+    "unchangedFailureNames": [
+      "CavesOfOoo.Tests.BuildingBlockImportedArtTests.Variants_DifferInGeometryOrPaint_NotJustFilename",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AllTenExactBlueprintsReachTheirRealResourcesSpriteAtUnflippedRow",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_boots\")",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_dagger\")",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_gloves\")",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_helmet\")",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_mace\")",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_spear\")",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_sword\")",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_BrightAndDimForegroundCarryHueAndAlphaWithoutAuthoredColorOverride",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_DirtyNeighborhoodPreservesDistantEquipmentClaimAndTint",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_DisablingSpriteModeRestoresEquipmentGlyphThenReclaimsOnEnable",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_HigherLayerActorHidesGroundEquipmentUntilItLeaves",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_IncrementalReplacementUsesNewGlyphColorAndBody",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_InvisibleHigherItemDoesNotHideVisibleLowerItem",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_ItemRemovalExposesFreshUnmappedGlyphWithoutRestoringOldOne",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"Dagger\",\"item_dagger\")",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"LeatherBoots\",\"item_boots\")",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"LeatherCap\",\"item_helmet\")",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"LeatherGloves\",\"item_gloves\")",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"Mace\",\"item_mace\")",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"ShortSword\",\"item_sword\")",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"Spear\",\"item_spear\")",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_NullNewTileRetainsMaceGlyphAndDoesNotBorrowVial",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_ReleaseClaimsRestoresOriginalGlyphAndTint",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_RememberedFogDoesNotRevealGroundEquipment",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_SevenFamiliesHaveDifferentSilhouettesAndDistinctGuids",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_StationaryFullRepaintReplacesOldFamilyWithoutStaleClaim",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_TwoSameBlueprintInstancesShareBodyWithoutSharingCellTint",
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_UnexploredCellCannotClaimNewItemArt",
+      "CavesOfOoo.Tests.PlaceProfileTests.TheProfileTable_IsData_AndComplete",
+      "CavesOfOoo.Tests.WorldMapAuthoringTests.Sill_IsAtTheCentre_OnSpread_AtTierOne"
+    ],
+    "failureMessagesIdentical": true,
+    "failureNamesAndMessagesSha256": "41e26a8ad555396d64f0578cf6566cf48ba8449d22e3eaa79897503189bc0e9f",
+    "failedCasesByClass": {
+      "CavesOfOoo.Tests.BuildingBlockImportedArtTests": 1,
+      "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests": 29,
+      "CavesOfOoo.Tests.PlaceProfileTests": 1,
+      "CavesOfOoo.Tests.WorldMapAuthoringTests": 1
+    }
+  },
+  "newVoxelCases": {
+    "total": 167,
+    "passed": 167,
+    "failed": 0,
+    "allAbsentFromBaseline": true,
+    "caseNamesSha256": "616bb0f0316a206cd38fd93edbf8e77ec888ac196cd8c1e7cfcb5b9f163a9dc3",
+    "classes": {
+      "CavesOfOoo.Tests.VoxelWorldImportedArtTests": 6,
+      "CavesOfOoo.Tests.VoxelWorldIntegrationAdversarialTests": 53,
+      "CavesOfOoo.Tests.VoxelWorldIntegrationTests": 20,
+      "CavesOfOoo.Tests.VoxelWorldMeshAdversarialTests": 12,
+      "CavesOfOoo.Tests.VoxelWorldMeshTests": 15,
+      "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests": 22,
+      "CavesOfOoo.Tests.VoxelWorldToolkitAdversarialTests": 20,
+      "CavesOfOoo.Tests.VoxelWorldToolkitPitchTests": 13,
+      "CavesOfOoo.Tests.VoxelWorldToolkitTests": 6
+    }
+  },
+  "equipmentCountercase": {
+    "previousUnparameterizedCase": "CavesOfOoo.Tests.SpawnRing3DIntegrationTests.TwoHandedItemMakesOneRealSharedBladeAttachment",
+    "previousResult": "Passed",
+    "replacementCases": [
+      {
+        "name": "CavesOfOoo.Tests.SpawnRing3DIntegrationTests.TwoHandedItemMakesOneRealSharedBladeAttachment(\"Overworld.2.6.0\",True)",
+        "result": "Passed"
+      },
+      {
+        "name": "CavesOfOoo.Tests.SpawnRing3DIntegrationTests.TwoHandedItemMakesOneRealSharedBladeAttachment(\"Overworld.2.7.0\",False)",
+        "result": "Passed"
+      }
+    ],
+    "source": "Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs",
+    "sourceSha256": "b15555bfa2073056ca29a2985ec01007bc29ed63ef4b2a77428c17c24789128e",
+    "verifiedAssertion": "The false/Overworld.2.7.0 setup asserts voxel presentation disabled, exact original native equipment meshes, and one shared blade attachment despite two occupied equipment slots."
+  },
+  "countAccounting": {
+    "addedFullNames": 169,
+    "removedFullNames": 1,
+    "netAdditionalCases": 168,
+    "explanation": "167 new VoxelWorld cases plus two parameterized equipment cases replace one former equipment case: 167 + 2 - 1 = 168."
+  },
+  "honestyBounds": [
+    "The full suite remains failed because the 32 baseline failures remain; this is a no-new-failing-case comparison, not an all-green claim.",
+    "Exact failure-name/message equality does not prove all runtime behavior outside the tested assertions is unchanged.",
+    "Native visual, gameplay and timing evidence is separate; U11 independent-inspection.json retains its own profile and observation limits."
+  ]
+}

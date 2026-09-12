@@ -1,0 +1,22 @@
+F.........F...
+======================================================================
+FAIL: test_bulk_nature_uses_the_whole_reusable_variant_family (test_native_region.NativeRegionTests.test_bulk_nature_uses_the_whole_reusable_variant_family)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_region.py", line 101, in test_bulk_nature_uses_the_whole_reusable_variant_family
+    self.assertTrue({family,family+'_1',family+'_2'}<=sources,family)
+AssertionError: False is not true : rock
+
+======================================================================
+FAIL: test_trunks_and_rocks_block_but_reeds_scrub_crops_do_not (test_native_region.NativeRegionTests.test_trunks_and_rocks_block_but_reeds_scrub_crops_do_not)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_region.py", line 107, in test_trunks_and_rocks_block_but_reeds_scrub_crops_do_not
+    if family in ('tree','palm','rock'):self.assertTrue(p['solid'])
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 14 tests in 1.887s
+
+FAILED (failures=2)
