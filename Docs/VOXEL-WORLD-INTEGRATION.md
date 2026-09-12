@@ -552,3 +552,45 @@ scene/renderer delta; reverse-apply check passed. This commit records the patch,
 verification and living doc without absorbing unrelated native changes. The
 ordinary-FOV native audit was not rerun because its normal-hiding assertions are
 intentionally incompatible with this temporary display option.
+
+## S1 — western voxel chunk fresh-game spawn (2026-09-12, complete)
+
+Request: start in the voxel-tree chunk directly west of Morrowfast. The native
+region audit identifies that neighbor as Overworld.2.6.0; Morrowfast remains at
+Overworld.3.6.0. Configure the main scene's fresh-game destination independently
+of town identity. Keep the existing center/outward open-cell placement for the
+western chunk and the southern-road placement when explicitly starting in town.
+
+Verification correction: the town-specific garden preparation currently rejects
+other zones and aborts bootstrap. Gate it to authored Morrowfast; the existing
+general FarmPlotSeeder still runs after placement for the new western start.
+This is original game configuration, with no Qud parity claim or new hot loop.
+Validate actual fresh-zone generation plus placement in both destinations, run
+existing start/garden checks, then inspect a fresh native game. Save loading keeps
+its existing saved location. Preserve unrelated mixed-tree changes as an exact
+implementation delta, consistent with R1.
+
+Implemented `GameBootstrap.FreshGameZoneID`, defaulting to Morrowfast for existing
+fixtures/other scenes; Main/SampleScene selects Overworld.2.6.0. The paired fresh
+generation/placement test failed before implementation (2/2 missing-field
+assertions, zero compiler errors), then passed with existing start/garden suites:
+41/41 green, zero compiler errors. Receipts: S01-west-spawn-red and
+S02-west-spawn-green. No save schema or world-coordinate relocation was needed.
+
+Self-review: 🟡 town-only garden rejection would abort a western start; fixed by
+conditioning preparation on authored town identity. Counter-check retains town
+entry (40,23); western start uses existing open-cell search. No new per-turn or
+per-frame work. Exact native delta reverse-apply check passed. Existing broader
+native audits assume a town start and require explicit town configuration when
+rerun; this bounded change does not claim those workloads were rerun.
+
+Live validation: fresh Play + N starts at Overworld.2.6.0, cell (40,12), confirmed
+walkable. Voxel presenter is active with 33 replacements, zero missing meshes,
+and no failure. Full reveal and saved 3D mode remain enabled. Visually inspected
+the woodland chunk from the unchanged gameplay camera; Unity remains playing.
+Can verify: actual bootstrap destination, passability and renderer state.
+Cannot infer: long-session balance or traversal quality from this start check.
+Receipt: S03-west-spawn/live-verification.json. Changed native files are
+GameBootstrap.cs and Main/SampleScene.unity; only the exact installed patch is
+recorded to preserve the unrelated native working-tree changes. New paired test
+and its Unity metadata are included directly with this doc and receipts.

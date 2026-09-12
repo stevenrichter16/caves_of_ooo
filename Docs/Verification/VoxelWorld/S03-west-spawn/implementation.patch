@@ -1,0 +1,50 @@
+diff --git a/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs b/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs
+--- a/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs
++++ b/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs
+@@ -20,6 +20,9 @@
+     {
+         [Header("References")]
+         public ZoneRenderer ZoneRenderer;
++
++        [Tooltip("Destination for fresh games only; continuing a save uses its saved location.")]
++        public string FreshGameZoneID = MorrowfastSceneRuntime.ZoneID;
+ 
+         /// <summary>
+         /// Fired exactly once per successful <see cref="Start"/>, after the zone,
+@@ -1304,13 +1307,13 @@
+         }
+ 
+         /// <summary>
+-        /// Create the fresh world at the authored Morrowfast entrance. Loading a
++        /// Create the fresh world at the scene's configured starting chunk. Loading a
+         /// saved graph uses ApplyLoadedGame and never calls this start selection.
+         /// </summary>
+         private bool GenerateStartingZone()
+         {
+             _zoneManager = new OverworldZoneManager(_factory, NativeAuditBootstrapSettings.ResolveSeed());
+-            _zone = _zoneManager.GetZone(MorrowfastSceneRuntime.ZoneID);
++            _zone = _zoneManager.GetZone(FreshGameZoneID);
+             _zoneManager.SetActiveZone(_zone);
+             if (_zone == null)
+             {
+@@ -1318,7 +1321,8 @@
+                 return false;
+             }
+ 
+-            if (MorrowfastStartingGarden.Ensure(_zone) != FarmPlotSeeder.MIN_PLANTABLE_CELLS)
++            if (MorrowfastSceneRuntime.IsActive(_zone)
++                && MorrowfastStartingGarden.Ensure(_zone) != FarmPlotSeeder.MIN_PLANTABLE_CELLS)
+             {
+                 Debug.LogError("[Bootstrap] FAILED: Morrowfast's starter garden could not be prepared");
+                 return false;
+diff --git a/Assets/Scenes/Main/SampleScene.unity b/Assets/Scenes/Main/SampleScene.unity
+--- a/Assets/Scenes/Main/SampleScene.unity
++++ b/Assets/Scenes/Main/SampleScene.unity
+@@ -513,6 +513,7 @@
+   m_Name: 
+   m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.GameBootstrap
+   ZoneRenderer: {fileID: 2018787923}
++  FreshGameZoneID: Overworld.2.6.0
+ --- !u!4 &1522488187
+ Transform:
+   m_ObjectHideFlags: 0
