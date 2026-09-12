@@ -1,0 +1,35 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.AStallWithAnotherAtlasRetainsGenericReduction",
+  "results": {
+    "id": "2",
+    "testcasecount": "3",
+    "result": "Failed(Child)",
+    "total": "3",
+    "passed": "0",
+    "failed": "3",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-12 15:37:18Z",
+    "end-time": "2026-09-12 15:37:19Z",
+    "duration": "0.4221301"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.AStallWithAnotherAtlasRetainsGenericReduction(\"Assets/Art3D/SpawnRing/Textures/SpawnRingPalette.png\")",
+      "message": "  Semantic atlas roles require the source texture's identity as well as the model path.\n  Expected: 6\n  But was:  5\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.AStallWithAnotherAtlasRetainsGenericReduction(\"Assets/Art3D/MultiCellPilot/Textures/PilotPalette.png\")",
+      "message": "  Semantic atlas roles require the source texture's identity as well as the model path.\n  Expected: 6\n  But was:  5\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.AStallWithAnotherAtlasRetainsGenericReduction(\"Assets/Art3D/Village/Textures/VillagePalette.png.backup\")",
+      "message": "  Semantic atlas roles require the source texture's identity as well as the model path.\n  Expected: 6\n  But was:  5\n"
+    }
+  ]
+}

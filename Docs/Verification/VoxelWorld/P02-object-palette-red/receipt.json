@@ -1,0 +1,107 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CavesOfOoo.Tests.VoxelWorldObjectPalette",
+  "results": {
+    "id": "2",
+    "testcasecount": "21",
+    "result": "Failed(Child)",
+    "total": "21",
+    "passed": "0",
+    "failed": "21",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-12 14:57:23Z",
+    "end-time": "2026-09-12 14:57:23Z",
+    "duration": "0.4255941"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.AlreadyCompliantObjectsPreserveEverySampledRgb(1)",
+      "message": "  Object color reduction must be an explicit offline step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.AlreadyCompliantObjectsPreserveEverySampledRgb(2)",
+      "message": "  Object color reduction must be an explicit offline step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.EqualRgbFromSeveralTexelsUsesOneCanonicalColorWithoutLosingThatColor",
+      "message": "  Object color reduction must be an explicit offline step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.MalformedTextureDimensionsRejectBeforeSamplingOrAllocating(0,2,4)",
+      "message": "  Expected: instance of <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.MalformedTextureDimensionsRejectBeforeSamplingOrAllocating(-1,2,4)",
+      "message": "  Expected: instance of <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.MalformedTextureDimensionsRejectBeforeSamplingOrAllocating(2,0,4)",
+      "message": "  Expected: instance of <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.MalformedTextureDimensionsRejectBeforeSamplingOrAllocating(2,2,3)",
+      "message": "  Expected: instance of <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.MalformedTextureDimensionsRejectBeforeSamplingOrAllocating(2,2,5)",
+      "message": "  Expected: instance of <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.MalformedTextureDimensionsRejectBeforeSamplingOrAllocating(int.MaxValue,2,4)",
+      "message": "  Expected: instance of <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.NonfiniteOrOutOfRangeUvRejectsWithoutEditingEarlierValidSamples(float.NaN)",
+      "message": "  Expected: instance of <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.NonfiniteOrOutOfRangeUvRejectsWithoutEditingEarlierValidSamples(float.PositiveInfinity)",
+      "message": "  Expected: instance of <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.NonfiniteOrOutOfRangeUvRejectsWithoutEditingEarlierValidSamples(float.NegativeInfinity)",
+      "message": "  Expected: instance of <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.NonfiniteOrOutOfRangeUvRejectsWithoutEditingEarlierValidSamples(-0.001f)",
+      "message": "  Expected: instance of <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.NonfiniteOrOutOfRangeUvRejectsWithoutEditingEarlierValidSamples(1.001f)",
+      "message": "  Expected: instance of <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.NonopaqueSampleRejectsWhileUnusedTransparentAtlasPaddingIsAllowed(0)",
+      "message": "  Expected: instance of <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.NonopaqueSampleRejectsWhileUnusedTransparentAtlasPaddingIsAllowed(254)",
+      "message": "  Expected: instance of <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.NullBuffersRejectExplicitly",
+      "message": "  Expected: instance of <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.ReductionDoesNotMutateBorrowedArraysOrConsumeUnityRandom",
+      "message": "  Object color reduction must be an explicit offline step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.RepeatedAndReorderedInputHasTheSamePerSampleMappingAndIsIdempotent",
+      "message": "  Object color reduction must be an explicit offline step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.ThreeColorObjectsReduceToAtMostTwoExistingColorsAndKeepEachFaceConstant",
+      "message": "  Object color reduction must be an explicit offline step.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.UvBoundaryCoordinatesResolveToActualEdgeTexels",
+      "message": "  Object color reduction must be an explicit offline step.\n  Expected: not null\n  But was:  null\n"
+    }
+  ]
+}

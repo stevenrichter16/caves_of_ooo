@@ -91,6 +91,10 @@ def asset_manifest(profile='fine'):
             'singleCellScale':fit,'singleCellUniformScale':[fit]*3,
             'singleCellEffectiveVoxelSize':mesh.voxel_size*fit,
             'ownership':'single-cell' if max(size[:2])<=1 else 'multi-cell-at-native-scale'})
+    if profile=='native_coarse':
+        from .native_palette import cap_export_materials
+        for row in result['assets']:
+            cap_export_materials(row)
     return result
 
 

@@ -1,0 +1,2427 @@
+{
+  "runId": "13560571d1354f60ae6b7f2c3b2460f1",
+  "nativeSha256": "7c907a778b530c7c158a3ed1509c2a308b7e4d2560228a487f4baca1b0e1068b",
+  "integrityPass": true,
+  "uniqueChecks": 44,
+  "region": [
+    {
+      "zoneId": "Overworld.3.6.0",
+      "playerId": "2053",
+      "entities": 2074,
+      "creatures": 11,
+      "visible": 987,
+      "explored": 987,
+      "swapped": 193,
+      "missing": 0,
+      "active": true,
+      "fullReveal": false,
+      "playerVisible": true
+    },
+    {
+      "zoneId": "Overworld.2.6.0",
+      "playerId": "2053",
+      "entities": 2512,
+      "creatures": 3,
+      "visible": 1292,
+      "explored": 1292,
+      "swapped": 34,
+      "missing": 0,
+      "active": true,
+      "fullReveal": false,
+      "playerVisible": true
+    },
+    {
+      "zoneId": "Overworld.3.7.0",
+      "playerId": "2053",
+      "entities": 2150,
+      "creatures": 4,
+      "visible": 302,
+      "explored": 302,
+      "swapped": 156,
+      "missing": 0,
+      "active": true,
+      "fullReveal": false,
+      "playerVisible": true
+    },
+    {
+      "zoneId": "Overworld.4.7.0",
+      "playerId": "2053",
+      "entities": 2359,
+      "creatures": 8,
+      "visible": 143,
+      "explored": 143,
+      "swapped": 47,
+      "missing": 0,
+      "active": true,
+      "fullReveal": false,
+      "playerVisible": true
+    }
+  ],
+  "borders": [
+    {
+      "from": "Overworld.3.6.0",
+      "to": "Overworld.2.6.0",
+      "key": "A",
+      "fromX": 0,
+      "fromY": 12,
+      "toX": 79,
+      "toY": 12,
+      "tickBefore": 10,
+      "tickAfter": 20,
+      "pass": true
+    },
+    {
+      "from": "Overworld.2.6.0",
+      "to": "Overworld.3.6.0",
+      "key": "D",
+      "fromX": 79,
+      "fromY": 12,
+      "toX": 0,
+      "toY": 12,
+      "tickBefore": 20,
+      "tickAfter": 30,
+      "pass": true
+    },
+    {
+      "from": "Overworld.3.6.0",
+      "to": "Overworld.3.7.0",
+      "key": "S",
+      "fromX": 40,
+      "fromY": 24,
+      "toX": 40,
+      "toY": 0,
+      "tickBefore": 40,
+      "tickAfter": 50,
+      "pass": true
+    },
+    {
+      "from": "Overworld.3.7.0",
+      "to": "Overworld.4.7.0",
+      "key": "D",
+      "fromX": 79,
+      "fromY": 12,
+      "toX": 0,
+      "toY": 12,
+      "tickBefore": 300,
+      "tickAfter": 310,
+      "pass": true
+    },
+    {
+      "from": "Overworld.4.7.0",
+      "to": "Overworld.3.7.0",
+      "key": "A",
+      "fromX": 0,
+      "fromY": 12,
+      "toX": 79,
+      "toY": 12,
+      "tickBefore": 310,
+      "tickAfter": 320,
+      "pass": true
+    },
+    {
+      "from": "Overworld.3.7.0",
+      "to": "Overworld.3.6.0",
+      "key": "W",
+      "fromX": 40,
+      "fromY": 0,
+      "toX": 40,
+      "toY": 24,
+      "tickBefore": 320,
+      "tickAfter": 330,
+      "pass": true
+    }
+  ],
+  "profile": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/VoxelWorld/P17-final-palette-native/artifacts/VWN-13560571d1354f60ae6b7f2c3b2460f1-profile-full.json",
+    "sha256": "b746054806edb7b28923f8d04fc46a227164d1cda336910c9e503a6caf967f07",
+    "rawPath": "/Users/steven/caves-of-ooo/Docs/Verification/VoxelWorld/VWN-13560571d1354f60ae6b7f2c3b2460f1-profile-full-frames.csv.gz",
+    "rawSha256": "2bb79b7b7b50ddead6d58ecf7bce2b9ad985c835331baa3a03ead1d24466bd60",
+    "allRawMetricsRecomputed": true,
+    "frames": 21580,
+    "phases": [
+      {
+        "kind": "pristine_idle",
+        "frames": 4754,
+        "seconds": 20.002149166000002,
+        "engineFramesOver16_667ms": 2,
+        "engineFramesOver33_333ms": 1,
+        "engineFramesOver100ms": 1,
+        "gcCollections": 1,
+        "metrics": {
+          "COO.ZoneRenderer.LateUpdate": {
+            "unit": "TimeNanoseconds",
+            "mean": 894662.2694572991,
+            "max": 1611875.0,
+            "p95": 976250.0,
+            "p99": 1072125.0
+          },
+          "COO.Input.Update": {
+            "unit": "TimeNanoseconds",
+            "mean": 10793.135044173328,
+            "max": 31416.0,
+            "p95": 14250.0,
+            "p99": 16958.0
+          },
+          "Main Thread": {
+            "unit": "TimeNanoseconds",
+            "mean": 4203483.36159024,
+            "max": 749634459.0,
+            "p95": 5727166.0,
+            "p99": 5999500.0
+          },
+          "GC Allocated In Frame": {
+            "unit": "Bytes",
+            "mean": 29505.731173748423,
+            "max": 1250136.0,
+            "p95": 29249.0,
+            "p99": 29499.0
+          },
+          "Draw Calls Count": {
+            "unit": "Count",
+            "mean": 119.0,
+            "max": 119.0,
+            "p95": 119.0,
+            "p99": 119.0
+          },
+          "Triangles Count": {
+            "unit": "Count",
+            "mean": 59616.0,
+            "max": 59616.0,
+            "p95": 59616.0,
+            "p99": 59616.0
+          },
+          "SetPass Calls Count": {
+            "unit": "Count",
+            "mean": 51.0,
+            "max": 51.0,
+            "p95": 51.0,
+            "p99": 51.0
+          },
+          "Batches Count": {
+            "unit": "Count",
+            "mean": 119.0,
+            "max": 119.0,
+            "p95": 119.0,
+            "p99": 119.0
+          },
+          "Render Textures Count": {
+            "unit": "Count",
+            "mean": 38.0,
+            "max": 38.0,
+            "p95": 38.0,
+            "p99": 38.0
+          },
+          "Render Textures Bytes": {
+            "unit": "Bytes",
+            "mean": 146677626.0,
+            "max": 146677626.0,
+            "p95": 146677626.0,
+            "p99": 146677626.0
+          },
+          "Texture Memory": {
+            "unit": "Bytes",
+            "mean": 242447102.0,
+            "max": 242447102.0,
+            "p95": 242447102.0,
+            "p99": 242447102.0
+          },
+          "GPU Frame Time": {
+            "unit": "TimeNanoseconds",
+            "mean": 1020418.0866410529,
+            "max": 4899666.644632816,
+            "p95": 1402041.6419953108,
+            "p99": 1555708.353407681
+          },
+          "Engine frame duration": {
+            "unit": "milliseconds",
+            "mean": 4.207379796859982,
+            "max": 743.1333065032959,
+            "p95": 5.819586105644703,
+            "p99": 6.100581027567387
+          }
+        },
+        "maxWitnesses": {
+          "engine_frame_ms": {
+            "sample": "3504",
+            "unity_frame": "5270",
+            "seconds": "15.952170834000004",
+            "engine_frame_ms": "743.1333065032959",
+            "Main Thread": "3734083",
+            "GC Allocated In Frame": "37092",
+            "COO.ZoneRenderer.LateUpdate": "972917"
+          },
+          "Main Thread": {
+            "sample": "3505",
+            "unity_frame": "5271",
+            "seconds": "15.960105667000004",
+            "engine_frame_ms": "10.462209582328796",
+            "Main Thread": "749634459",
+            "GC Allocated In Frame": "1250136",
+            "COO.ZoneRenderer.LateUpdate": "1439792"
+          },
+          "GC Allocated In Frame": {
+            "sample": "3505",
+            "unity_frame": "5271",
+            "seconds": "15.960105667000004",
+            "engine_frame_ms": "10.462209582328796",
+            "Main Thread": "749634459",
+            "GC Allocated In Frame": "1250136",
+            "COO.ZoneRenderer.LateUpdate": "1439792"
+          },
+          "COO.ZoneRenderer.LateUpdate": {
+            "sample": "4711",
+            "unity_frame": "6477",
+            "seconds": "20.541136709000003",
+            "engine_frame_ms": "4.9505028873682022",
+            "Main Thread": "4952542",
+            "GC Allocated In Frame": "29197",
+            "COO.ZoneRenderer.LateUpdate": "1611875"
+          }
+        }
+      },
+      {
+        "kind": "pristine_walk",
+        "frames": 6022,
+        "seconds": 20.002220458000007,
+        "engineFramesOver16_667ms": 25,
+        "engineFramesOver33_333ms": 0,
+        "engineFramesOver100ms": 0,
+        "gcCollections": 1,
+        "metrics": {
+          "COO.ZoneRenderer.LateUpdate": {
+            "unit": "TimeNanoseconds",
+            "mean": 983582.4682829625,
+            "max": 17408083.0,
+            "p95": 1014958.0,
+            "p99": 1144000.0
+          },
+          "COO.Input.Update": {
+            "unit": "TimeNanoseconds",
+            "mean": 25230.037196944537,
+            "max": 4999542.0,
+            "p95": 14708.0,
+            "p99": 19500.0
+          },
+          "Main Thread": {
+            "unit": "TimeNanoseconds",
+            "mean": 3317373.4345732313,
+            "max": 23597916.0,
+            "p95": 5330125.0,
+            "p99": 5845125.0
+          },
+          "GC Allocated In Frame": {
+            "unit": "Bytes",
+            "mean": 29606.19511790103,
+            "max": 171080.0,
+            "p95": 29249.0,
+            "p99": 37477.0
+          },
+          "Draw Calls Count": {
+            "unit": "Count",
+            "mean": 120.09166389903686,
+            "max": 122.0,
+            "p95": 122.0,
+            "p99": 122.0
+          },
+          "Triangles Count": {
+            "unit": "Count",
+            "mean": 60037.08435735636,
+            "max": 60396.0,
+            "p95": 60396.0,
+            "p99": 60396.0
+          },
+          "SetPass Calls Count": {
+            "unit": "Count",
+            "mean": 55.77781467950847,
+            "max": 68.0,
+            "p95": 60.0,
+            "p99": 60.0
+          },
+          "Batches Count": {
+            "unit": "Count",
+            "mean": 120.09166389903686,
+            "max": 122.0,
+            "p95": 122.0,
+            "p99": 122.0
+          },
+          "Render Textures Count": {
+            "unit": "Count",
+            "mean": 38.0,
+            "max": 38.0,
+            "p95": 38.0,
+            "p99": 38.0
+          },
+          "Render Textures Bytes": {
+            "unit": "Bytes",
+            "mean": 146677626.0,
+            "max": 146677626.0,
+            "p95": 146677626.0,
+            "p99": 146677626.0
+          },
+          "Texture Memory": {
+            "unit": "Bytes",
+            "mean": 242447102.0,
+            "max": 242447102.0,
+            "p95": 242447102.0,
+            "p99": 242447102.0
+          },
+          "GPU Frame Time": {
+            "unit": "TimeNanoseconds",
+            "mean": 914238.7423400504,
+            "max": 2517874.934710562,
+            "p95": 984999.9332800508,
+            "p99": 1293791.6908413172
+          },
+          "Engine frame duration": {
+            "unit": "milliseconds",
+            "mean": 3.3216267633640024,
+            "max": 23.707164451479912,
+            "p95": 5.3909579291939735,
+            "p99": 5.92970522120595
+          }
+        },
+        "maxWitnesses": {
+          "engine_frame_ms": {
+            "sample": "4756",
+            "unity_frame": "6522",
+            "seconds": "20.735449458999998",
+            "engine_frame_ms": "23.707164451479912",
+            "Main Thread": "23597916",
+            "GC Allocated In Frame": "97287",
+            "COO.ZoneRenderer.LateUpdate": "17408083"
+          },
+          "Main Thread": {
+            "sample": "4756",
+            "unity_frame": "6522",
+            "seconds": "20.735449458999998",
+            "engine_frame_ms": "23.707164451479912",
+            "Main Thread": "23597916",
+            "GC Allocated In Frame": "97287",
+            "COO.ZoneRenderer.LateUpdate": "17408083"
+          },
+          "GC Allocated In Frame": {
+            "sample": "10536",
+            "unity_frame": "12302",
+            "seconds": "39.970367500000009",
+            "engine_frame_ms": "20.561415702104568",
+            "Main Thread": "20460167",
+            "GC Allocated In Frame": "171080",
+            "COO.ZoneRenderer.LateUpdate": "13128416"
+          },
+          "COO.ZoneRenderer.LateUpdate": {
+            "sample": "4756",
+            "unity_frame": "6522",
+            "seconds": "20.735449458999998",
+            "engine_frame_ms": "23.707164451479912",
+            "Main Thread": "23597916",
+            "GC Allocated In Frame": "97287",
+            "COO.ZoneRenderer.LateUpdate": "17408083"
+          }
+        }
+      },
+      {
+        "kind": "restored_idle",
+        "frames": 4777,
+        "seconds": 20.002388249999996,
+        "engineFramesOver16_667ms": 3,
+        "engineFramesOver33_333ms": 2,
+        "engineFramesOver100ms": 2,
+        "gcCollections": 3,
+        "metrics": {
+          "COO.ZoneRenderer.LateUpdate": {
+            "unit": "TimeNanoseconds",
+            "mean": 944054.8494871258,
+            "max": 133718667.0,
+            "p95": 1049250.0,
+            "p99": 1284583.0
+          },
+          "COO.Input.Update": {
+            "unit": "TimeNanoseconds",
+            "mean": 11586.71279045426,
+            "max": 35708.0,
+            "p95": 15333.0,
+            "p99": 18000.0
+          },
+          "Main Thread": {
+            "unit": "TimeNanoseconds",
+            "mean": 4183465.2170818504,
+            "max": 412056292.0,
+            "p95": 5693875.0,
+            "p99": 6142375.0
+          },
+          "GC Allocated In Frame": {
+            "unit": "Bytes",
+            "mean": 116044.87042076616,
+            "max": 62624075.0,
+            "p95": 625559.0,
+            "p99": 1192217.0
+          },
+          "Draw Calls Count": {
+            "unit": "Count",
+            "mean": 127.19991626543856,
+            "max": 128.0,
+            "p95": 128.0,
+            "p99": 128.0
+          },
+          "Triangles Count": {
+            "unit": "Count",
+            "mean": 71362.39983253088,
+            "max": 71364.0,
+            "p95": 71364.0,
+            "p99": 71364.0
+          },
+          "SetPass Calls Count": {
+            "unit": "Count",
+            "mean": 52.19949759263136,
+            "max": 57.0,
+            "p95": 57.0,
+            "p99": 57.0
+          },
+          "Batches Count": {
+            "unit": "Count",
+            "mean": 127.19991626543856,
+            "max": 128.0,
+            "p95": 128.0,
+            "p99": 128.0
+          },
+          "Render Textures Count": {
+            "unit": "Count",
+            "mean": 38.0,
+            "max": 38.0,
+            "p95": 38.0,
+            "p99": 38.0
+          },
+          "Render Textures Bytes": {
+            "unit": "Bytes",
+            "mean": 146677626.0,
+            "max": 146677626.0,
+            "p95": 146677626.0,
+            "p99": 146677626.0
+          },
+          "Texture Memory": {
+            "unit": "Bytes",
+            "mean": 242447102.0,
+            "max": 242447102.0,
+            "p95": 242447102.0,
+            "p99": 242447102.0
+          },
+          "GPU Frame Time": {
+            "unit": "TimeNanoseconds",
+            "mean": 1021218.2332674839,
+            "max": 2280291.635543108,
+            "p95": 1395291.6488051414,
+            "p99": 1600875.0535547733
+          },
+          "Engine frame duration": {
+            "unit": "milliseconds",
+            "mean": 4.187748268192452,
+            "max": 412.17178106307983,
+            "p95": 5.773504730314016,
+            "p99": 6.263329181820154
+          }
+        },
+        "maxWitnesses": {
+          "engine_frame_ms": {
+            "sample": "12221",
+            "unity_frame": "15878",
+            "seconds": "59.521774999999991",
+            "engine_frame_ms": "412.17178106307983",
+            "Main Thread": "412056292",
+            "GC Allocated In Frame": "62624075",
+            "COO.ZoneRenderer.LateUpdate": "1000875"
+          },
+          "Main Thread": {
+            "sample": "12221",
+            "unity_frame": "15878",
+            "seconds": "59.521774999999991",
+            "engine_frame_ms": "412.17178106307983",
+            "Main Thread": "412056292",
+            "GC Allocated In Frame": "62624075",
+            "COO.ZoneRenderer.LateUpdate": "1000875"
+          },
+          "GC Allocated In Frame": {
+            "sample": "12221",
+            "unity_frame": "15878",
+            "seconds": "59.521774999999991",
+            "engine_frame_ms": "412.17178106307983",
+            "Main Thread": "412056292",
+            "GC Allocated In Frame": "62624075",
+            "COO.ZoneRenderer.LateUpdate": "1000875"
+          },
+          "COO.ZoneRenderer.LateUpdate": {
+            "sample": "11700",
+            "unity_frame": "15357",
+            "seconds": "57.149996417000011",
+            "engine_frame_ms": "140.00512659549713",
+            "Main Thread": "139872750",
+            "GC Allocated In Frame": "32658083",
+            "COO.ZoneRenderer.LateUpdate": "133718667"
+          }
+        }
+      },
+      {
+        "kind": "restored_walk",
+        "frames": 6027,
+        "seconds": 20.0055955,
+        "engineFramesOver16_667ms": 26,
+        "engineFramesOver33_333ms": 1,
+        "engineFramesOver100ms": 1,
+        "gcCollections": 1,
+        "metrics": {
+          "COO.ZoneRenderer.LateUpdate": {
+            "unit": "TimeNanoseconds",
+            "mean": 932522.7486311598,
+            "max": 19546041.0,
+            "p95": 965084.0,
+            "p99": 1047458.0
+          },
+          "COO.Input.Update": {
+            "unit": "TimeNanoseconds",
+            "mean": 22715.66368010619,
+            "max": 3621667.0,
+            "p95": 13916.0,
+            "p99": 17708.0
+          },
+          "Main Thread": {
+            "unit": "TimeNanoseconds",
+            "mean": 3314832.8475194955,
+            "max": 659760250.0,
+            "p95": 5429708.0,
+            "p99": 5854833.0
+          },
+          "GC Allocated In Frame": {
+            "unit": "Bytes",
+            "mean": 29743.512526962004,
+            "max": 441110.0,
+            "p95": 29249.0,
+            "p99": 29865.0
+          },
+          "Draw Calls Count": {
+            "unit": "Count",
+            "mean": 129.2925170068027,
+            "max": 132.0,
+            "p95": 132.0,
+            "p99": 132.0
+          },
+          "Triangles Count": {
+            "unit": "Count",
+            "mean": 73277.49659863945,
+            "max": 75282.0,
+            "p95": 75282.0,
+            "p99": 75282.0
+          },
+          "SetPass Calls Count": {
+            "unit": "Count",
+            "mean": 56.0625518500083,
+            "max": 68.0,
+            "p95": 60.0,
+            "p99": 60.0
+          },
+          "Batches Count": {
+            "unit": "Count",
+            "mean": 129.2925170068027,
+            "max": 132.0,
+            "p95": 132.0,
+            "p99": 132.0
+          },
+          "Render Textures Count": {
+            "unit": "Count",
+            "mean": 38.0,
+            "max": 38.0,
+            "p95": 38.0,
+            "p99": 38.0
+          },
+          "Render Textures Bytes": {
+            "unit": "Bytes",
+            "mean": 146677626.0,
+            "max": 146677626.0,
+            "p95": 146677626.0,
+            "p99": 146677626.0
+          },
+          "Texture Memory": {
+            "unit": "Bytes",
+            "mean": 242447102.0,
+            "max": 242447102.0,
+            "p95": 242447102.0,
+            "p99": 242447102.0
+          },
+          "GPU Frame Time": {
+            "unit": "TimeNanoseconds",
+            "mean": 935164.0744083795,
+            "max": 2899958.286434412,
+            "p95": 1006833.3940580487,
+            "p99": 1169875.031337142
+          },
+          "Engine frame duration": {
+            "unit": "milliseconds",
+            "mean": 3.3188915165718837,
+            "max": 655.261754989624,
+            "p95": 5.5040037259459496,
+            "p99": 5.970415193587542
+          }
+        },
+        "maxWitnesses": {
+          "engine_frame_ms": {
+            "sample": "16435",
+            "unity_frame": "20092",
+            "seconds": "76.671663959",
+            "engine_frame_ms": "655.261754989624",
+            "Main Thread": "2894042",
+            "GC Allocated In Frame": "43646",
+            "COO.ZoneRenderer.LateUpdate": "906500"
+          },
+          "Main Thread": {
+            "sample": "16436",
+            "unity_frame": "20093",
+            "seconds": "76.69210129199999",
+            "engine_frame_ms": "7.5025795958936214",
+            "Main Thread": "659760250",
+            "GC Allocated In Frame": "441110",
+            "COO.ZoneRenderer.LateUpdate": "1468041"
+          },
+          "GC Allocated In Frame": {
+            "sample": "16436",
+            "unity_frame": "20093",
+            "seconds": "76.69210129199999",
+            "engine_frame_ms": "7.5025795958936214",
+            "Main Thread": "659760250",
+            "GC Allocated In Frame": "441110",
+            "COO.ZoneRenderer.LateUpdate": "1468041"
+          },
+          "COO.ZoneRenderer.LateUpdate": {
+            "sample": "19110",
+            "unity_frame": "22767",
+            "seconds": "85.516916000000009",
+            "engine_frame_ms": "25.300502777099609",
+            "Main Thread": "25182167",
+            "GC Allocated In Frame": "123300",
+            "COO.ZoneRenderer.LateUpdate": "19546041"
+          }
+        }
+      }
+    ]
+  },
+  "historicalBaselines": [
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/MultiCellPilot/MCN-da0e5e856474438e96c7b6436b7cbd42-profile-full.json",
+      "sha256": "e44f228ffd482107bddd25fa6e905ceada50ba93dea52d608553e866c1638626",
+      "rawPath": "/Users/steven/caves-of-ooo/Docs/Verification/MultiCellPilot/MCN-da0e5e856474438e96c7b6436b7cbd42-profile-full-frames.csv.gz",
+      "rawSha256": "6d02df8392f32cc215f1bb18c91c4dc4c0595da8d501014860ed108bf3f1a3da",
+      "allRawMetricsRecomputed": true,
+      "frames": 28601,
+      "phases": [
+        {
+          "kind": "pristine_idle",
+          "frames": 7637,
+          "seconds": 20.001621791999998,
+          "engineFramesOver16_667ms": 1,
+          "engineFramesOver33_333ms": 0,
+          "engineFramesOver100ms": 0,
+          "gcCollections": 1,
+          "metrics": {
+            "COO.ZoneRenderer.LateUpdate": {
+              "unit": "TimeNanoseconds",
+              "mean": 814983.6461961503,
+              "max": 6856041.0,
+              "p95": 895958.0,
+              "p99": 954375.0
+            },
+            "COO.Input.Update": {
+              "unit": "TimeNanoseconds",
+              "mean": 8878.318449653005,
+              "max": 31875.0,
+              "p95": 12709.0,
+              "p99": 16709.0
+            },
+            "Main Thread": {
+              "unit": "TimeNanoseconds",
+              "mean": 2614389.5371219064,
+              "max": 21204541.0,
+              "p95": 3110375.0,
+              "p99": 3572750.0
+            },
+            "GC Allocated In Frame": {
+              "unit": "Bytes",
+              "mean": 29403.820610187246,
+              "max": 78205.0,
+              "p95": 29357.0,
+              "p99": 29549.0
+            },
+            "Draw Calls Count": {
+              "unit": "Count",
+              "mean": 119.23739688359304,
+              "max": 120.0,
+              "p95": 120.0,
+              "p99": 120.0
+            },
+            "Triangles Count": {
+              "unit": "Count",
+              "mean": 292998.4747937672,
+              "max": 293000.0,
+              "p95": 293000.0,
+              "p99": 293000.0
+            },
+            "SetPass Calls Count": {
+              "unit": "Count",
+              "mean": 44.661778185151235,
+              "max": 50.0,
+              "p95": 50.0,
+              "p99": 50.0
+            },
+            "Batches Count": {
+              "unit": "Count",
+              "mean": 119.23739688359304,
+              "max": 120.0,
+              "p95": 120.0,
+              "p99": 120.0
+            },
+            "Render Textures Count": {
+              "unit": "Count",
+              "mean": 41.0,
+              "max": 41.0,
+              "p95": 41.0,
+              "p99": 41.0
+            },
+            "Render Textures Bytes": {
+              "unit": "Bytes",
+              "mean": 180942066.0,
+              "max": 180942066.0,
+              "p95": 180942066.0,
+              "p99": 180942066.0
+            },
+            "Texture Memory": {
+              "unit": "Bytes",
+              "mean": 279780722.0,
+              "max": 279780722.0,
+              "p95": 279780722.0,
+              "p99": 279780722.0
+            },
+            "GPU Frame Time": {
+              "unit": "TimeNanoseconds",
+              "mean": 1028480.1074040864,
+              "max": 1680249.9303594232,
+              "p95": 1184624.9690279365,
+              "p99": 1228000.0373721123
+            },
+            "Engine frame duration": {
+              "unit": "milliseconds",
+              "mean": 2.6191993790237347,
+              "max": 20.74153907597065,
+              "p95": 3.140206914395094,
+              "p99": 3.587747924029827
+            }
+          },
+          "maxWitnesses": {
+            "engine_frame_ms": {
+              "sample": "4162",
+              "unity_frame": "4681",
+              "seconds": "11.560508041999999",
+              "engine_frame_ms": "20.74153907597065",
+              "Main Thread": "6131250",
+              "GC Allocated In Frame": "29357",
+              "COO.ZoneRenderer.LateUpdate": "975666"
+            },
+            "Main Thread": {
+              "sample": "4163",
+              "unity_frame": "4682",
+              "seconds": "11.564343167",
+              "engine_frame_ms": "3.8536281790584326",
+              "Main Thread": "21204541",
+              "GC Allocated In Frame": "31307",
+              "COO.ZoneRenderer.LateUpdate": "974375"
+            },
+            "GC Allocated In Frame": {
+              "sample": "1632",
+              "unity_frame": "2151",
+              "seconds": "4.823167542",
+              "engine_frame_ms": "2.8410856612026691",
+              "Main Thread": "2900041",
+              "GC Allocated In Frame": "78205",
+              "COO.ZoneRenderer.LateUpdate": "860917"
+            },
+            "COO.ZoneRenderer.LateUpdate": {
+              "sample": "4112",
+              "unity_frame": "4631",
+              "seconds": "11.235317167000002",
+              "engine_frame_ms": "11.913669295608997",
+              "Main Thread": "8718417",
+              "GC Allocated In Frame": "29357",
+              "COO.ZoneRenderer.LateUpdate": "6856041"
+            }
+          }
+        },
+        {
+          "kind": "pristine_walk",
+          "frames": 6899,
+          "seconds": 20.001242167,
+          "engineFramesOver16_667ms": 27,
+          "engineFramesOver33_333ms": 1,
+          "engineFramesOver100ms": 1,
+          "gcCollections": 2,
+          "metrics": {
+            "COO.ZoneRenderer.LateUpdate": {
+              "unit": "TimeNanoseconds",
+              "mean": 901023.3054065807,
+              "max": 18436500.0,
+              "p95": 938291.0,
+              "p99": 1028541.0
+            },
+            "COO.Input.Update": {
+              "unit": "TimeNanoseconds",
+              "mean": 21962.543267140165,
+              "max": 3839250.0,
+              "p95": 13458.0,
+              "p99": 20500.0
+            },
+            "Main Thread": {
+              "unit": "TimeNanoseconds",
+              "mean": 2894128.722858385,
+              "max": 620071000.0,
+              "p95": 3288833.0,
+              "p99": 3806833.0
+            },
+            "GC Allocated In Frame": {
+              "unit": "Bytes",
+              "mean": 29843.772575735613,
+              "max": 1251842.0,
+              "p95": 29409.0,
+              "p99": 29973.0
+            },
+            "Draw Calls Count": {
+              "unit": "Count",
+              "mean": 119.4865922597478,
+              "max": 121.0,
+              "p95": 120.0,
+              "p99": 121.0
+            },
+            "Triangles Count": {
+              "unit": "Count",
+              "mean": 295113.9846354544,
+              "max": 295720.0,
+              "p95": 295092.0,
+              "p99": 295720.0
+            },
+            "SetPass Calls Count": {
+              "unit": "Count",
+              "mean": 45.89998550514567,
+              "max": 58.0,
+              "p95": 50.0,
+              "p99": 50.0
+            },
+            "Batches Count": {
+              "unit": "Count",
+              "mean": 119.4865922597478,
+              "max": 121.0,
+              "p95": 120.0,
+              "p99": 121.0
+            },
+            "Render Textures Count": {
+              "unit": "Count",
+              "mean": 41.0,
+              "max": 41.0,
+              "p95": 41.0,
+              "p99": 41.0
+            },
+            "Render Textures Bytes": {
+              "unit": "Bytes",
+              "mean": 180942066.0,
+              "max": 180942066.0,
+              "p95": 180942066.0,
+              "p99": 180942066.0
+            },
+            "Texture Memory": {
+              "unit": "Bytes",
+              "mean": 279780722.0,
+              "max": 279780722.0,
+              "p95": 279780722.0,
+              "p99": 279780722.0
+            },
+            "GPU Frame Time": {
+              "unit": "TimeNanoseconds",
+              "mean": 1029696.271805831,
+              "max": 1892041.6478067636,
+              "p95": 1189416.623674333,
+              "p99": 1233124.9890848994
+            },
+            "Engine frame duration": {
+              "unit": "milliseconds",
+              "mean": 2.899205841713711,
+              "max": 616.3734793663025,
+              "p95": 3.3154194243252277,
+              "p99": 3.8540461100637913
+            }
+          },
+          "maxWitnesses": {
+            "engine_frame_ms": {
+              "sample": "14430",
+              "unity_frame": "14949",
+              "seconds": "40.290753",
+              "engine_frame_ms": "616.37347936630249",
+              "Main Thread": "3573334",
+              "GC Allocated In Frame": "37156",
+              "COO.ZoneRenderer.LateUpdate": "1175500"
+            },
+            "Main Thread": {
+              "sample": "14431",
+              "unity_frame": "14950",
+              "seconds": "40.312661459000005",
+              "engine_frame_ms": "7.3384568095207214",
+              "Main Thread": "620071000",
+              "GC Allocated In Frame": "1251842",
+              "COO.ZoneRenderer.LateUpdate": "1186667"
+            },
+            "GC Allocated In Frame": {
+              "sample": "14431",
+              "unity_frame": "14950",
+              "seconds": "40.312661459000005",
+              "engine_frame_ms": "7.3384568095207214",
+              "Main Thread": "620071000",
+              "GC Allocated In Frame": "1251842",
+              "COO.ZoneRenderer.LateUpdate": "1186667"
+            },
+            "COO.ZoneRenderer.LateUpdate": {
+              "sample": "7639",
+              "unity_frame": "8158",
+              "seconds": "20.630254916999995",
+              "engine_frame_ms": "24.018416181206703",
+              "Main Thread": "23985667",
+              "GC Allocated In Frame": "95923",
+              "COO.ZoneRenderer.LateUpdate": "18436500"
+            }
+          }
+        },
+        {
+          "kind": "restored_idle",
+          "frames": 6722,
+          "seconds": 20.001606540999994,
+          "engineFramesOver16_667ms": 3,
+          "engineFramesOver33_333ms": 2,
+          "engineFramesOver100ms": 1,
+          "gcCollections": 4,
+          "metrics": {
+            "COO.ZoneRenderer.LateUpdate": {
+              "unit": "TimeNanoseconds",
+              "mean": 895460.8939303779,
+              "max": 13881875.0,
+              "p95": 1030333.0,
+              "p99": 1218709.0
+            },
+            "COO.Input.Update": {
+              "unit": "TimeNanoseconds",
+              "mean": 10398.200535554894,
+              "max": 58459.0,
+              "p95": 15166.0,
+              "p99": 18417.0
+            },
+            "Main Thread": {
+              "unit": "TimeNanoseconds",
+              "mean": 2971203.880987801,
+              "max": 396911417.0,
+              "p95": 3640750.0,
+              "p99": 4121792.0
+            },
+            "GC Allocated In Frame": {
+              "unit": "Bytes",
+              "mean": 86233.66884855698,
+              "max": 61291848.0,
+              "p95": 247292.0,
+              "p99": 1086917.0
+            },
+            "Draw Calls Count": {
+              "unit": "Count",
+              "mean": 125.25676881880393,
+              "max": 126.0,
+              "p95": 126.0,
+              "p99": 126.0
+            },
+            "Triangles Count": {
+              "unit": "Count",
+              "mean": 302734.5135376376,
+              "max": 302736.0,
+              "p95": 302736.0,
+              "p99": 302736.0
+            },
+            "SetPass Calls Count": {
+              "unit": "Count",
+              "mean": 44.79738173162749,
+              "max": 50.0,
+              "p95": 50.0,
+              "p99": 50.0
+            },
+            "Batches Count": {
+              "unit": "Count",
+              "mean": 125.25676881880393,
+              "max": 126.0,
+              "p95": 126.0,
+              "p99": 126.0
+            },
+            "Render Textures Count": {
+              "unit": "Count",
+              "mean": 42.0,
+              "max": 42.0,
+              "p95": 42.0,
+              "p99": 42.0
+            },
+            "Render Textures Bytes": {
+              "unit": "Bytes",
+              "mean": 182282346.0,
+              "max": 182282346.0,
+              "p95": 182282346.0,
+              "p99": 182282346.0
+            },
+            "Texture Memory": {
+              "unit": "Bytes",
+              "mean": 281122290.0,
+              "max": 281122290.0,
+              "p95": 281122290.0,
+              "p99": 281122290.0
+            },
+            "GPU Frame Time": {
+              "unit": "TimeNanoseconds",
+              "mean": 1043817.9915400416,
+              "max": 1863791.6073203087,
+              "p95": 1201666.658744216,
+              "p99": 1245749.9979063869
+            },
+            "Engine frame duration": {
+              "unit": "milliseconds",
+              "mean": 2.9755436818057777,
+              "max": 397.60175347328186,
+              "p95": 3.6544997710734606,
+              "p99": 4.187875427305698
+            }
+          },
+          "maxWitnesses": {
+            "engine_frame_ms": {
+              "sample": "16526",
+              "unity_frame": "18228",
+              "seconds": "53.283710834",
+              "engine_frame_ms": "397.60175347328186",
+              "Main Thread": "396911417",
+              "GC Allocated In Frame": "61291848",
+              "COO.ZoneRenderer.LateUpdate": "934458"
+            },
+            "Main Thread": {
+              "sample": "16526",
+              "unity_frame": "18228",
+              "seconds": "53.283710834",
+              "engine_frame_ms": "397.60175347328186",
+              "Main Thread": "396911417",
+              "GC Allocated In Frame": "61291848",
+              "COO.ZoneRenderer.LateUpdate": "934458"
+            },
+            "GC Allocated In Frame": {
+              "sample": "16526",
+              "unity_frame": "18228",
+              "seconds": "53.283710834",
+              "engine_frame_ms": "397.60175347328186",
+              "Main Thread": "396911417",
+              "GC Allocated In Frame": "61291848",
+              "COO.ZoneRenderer.LateUpdate": "934458"
+            },
+            "COO.ZoneRenderer.LateUpdate": {
+              "sample": "14927",
+              "unity_frame": "16629",
+              "seconds": "47.328282499999993",
+              "engine_frame_ms": "16.579287126660347",
+              "Main Thread": "19585250",
+              "GC Allocated In Frame": "131496",
+              "COO.ZoneRenderer.LateUpdate": "13881875"
+            }
+          }
+        },
+        {
+          "kind": "restored_walk",
+          "frames": 7343,
+          "seconds": 20.000624208000005,
+          "engineFramesOver16_667ms": 25,
+          "engineFramesOver33_333ms": 0,
+          "engineFramesOver100ms": 0,
+          "gcCollections": 1,
+          "metrics": {
+            "COO.ZoneRenderer.LateUpdate": {
+              "unit": "TimeNanoseconds",
+              "mean": 882362.0370420809,
+              "max": 15826500.0,
+              "p95": 928125.0,
+              "p99": 1018708.0
+            },
+            "COO.Input.Update": {
+              "unit": "TimeNanoseconds",
+              "mean": 19848.81737709383,
+              "max": 3728042.0,
+              "p95": 13250.0,
+              "p99": 17625.0
+            },
+            "Main Thread": {
+              "unit": "TimeNanoseconds",
+              "mean": 2719915.128421626,
+              "max": 21604250.0,
+              "p95": 3211625.0,
+              "p99": 3636916.0
+            },
+            "GC Allocated In Frame": {
+              "unit": "Bytes",
+              "mean": 29740.378728040312,
+              "max": 120369.0,
+              "p95": 29409.0,
+              "p99": 30765.0
+            },
+            "Draw Calls Count": {
+              "unit": "Count",
+              "mean": 127.15497752962004,
+              "max": 129.0,
+              "p95": 129.0,
+              "p99": 129.0
+            },
+            "Triangles Count": {
+              "unit": "Count",
+              "mean": 313187.81941985566,
+              "max": 323244.0,
+              "p95": 323244.0,
+              "p99": 323244.0
+            },
+            "SetPass Calls Count": {
+              "unit": "Count",
+              "mean": 43.62304235326161,
+              "max": 52.0,
+              "p95": 44.0,
+              "p99": 44.0
+            },
+            "Batches Count": {
+              "unit": "Count",
+              "mean": 127.15497752962004,
+              "max": 129.0,
+              "p95": 129.0,
+              "p99": 129.0
+            },
+            "Render Textures Count": {
+              "unit": "Count",
+              "mean": 42.0,
+              "max": 42.0,
+              "p95": 42.0,
+              "p99": 42.0
+            },
+            "Render Textures Bytes": {
+              "unit": "Bytes",
+              "mean": 182282346.0,
+              "max": 182282346.0,
+              "p95": 182282346.0,
+              "p99": 182282346.0
+            },
+            "Texture Memory": {
+              "unit": "Bytes",
+              "mean": 281122290.0,
+              "max": 281122290.0,
+              "p95": 281122290.0,
+              "p99": 281122290.0
+            },
+            "GPU Frame Time": {
+              "unit": "TimeNanoseconds",
+              "mean": 1051417.3302335262,
+              "max": 1928000.0124126673,
+              "p95": 1207625.0277459621,
+              "p99": 1252666.6978374124
+            },
+            "Engine frame duration": {
+              "unit": "milliseconds",
+              "mean": 2.7236924325672134,
+              "max": 23.605044931173325,
+              "p95": 3.2447490375488997,
+              "p99": 3.6803288385272026
+            }
+          },
+          "maxWitnesses": {
+            "engine_frame_ms": {
+              "sample": "24801",
+              "unity_frame": "26503",
+              "seconds": "75.879889792",
+              "engine_frame_ms": "23.605044931173325",
+              "Main Thread": "20376791",
+              "GC Allocated In Frame": "108930",
+              "COO.ZoneRenderer.LateUpdate": "15019875"
+            },
+            "Main Thread": {
+              "sample": "25649",
+              "unity_frame": "27351",
+              "seconds": "78.284005417",
+              "engine_frame_ms": "21.783666685223579",
+              "Main Thread": "21604250",
+              "GC Allocated In Frame": "108356",
+              "COO.ZoneRenderer.LateUpdate": "15530125"
+            },
+            "GC Allocated In Frame": {
+              "sample": "26684",
+              "unity_frame": "28386",
+              "seconds": "81.083226583999988",
+              "engine_frame_ms": "2.7006235904991627",
+              "Main Thread": "2805209",
+              "GC Allocated In Frame": "120369",
+              "COO.ZoneRenderer.LateUpdate": "827375"
+            },
+            "COO.ZoneRenderer.LateUpdate": {
+              "sample": "26242",
+              "unity_frame": "27944",
+              "seconds": "79.885094584",
+              "engine_frame_ms": "21.498709917068481",
+              "Main Thread": "21427292",
+              "GC Allocated In Frame": "108408",
+              "COO.ZoneRenderer.LateUpdate": "15826500"
+            }
+          }
+        }
+      ],
+      "sameRecordedCameraAndHardwareSettings": true
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/MultiCellPilot/MCN-f366498a6c9f458e816cb91a73eeaac4-profile-full.json",
+      "sha256": "bddff3239022e0b0eb11dac809ebbcbbd15a5fa020505187651a7142b0c2c603",
+      "rawPath": "/Users/steven/caves-of-ooo/Docs/Verification/MultiCellPilot/MCN-f366498a6c9f458e816cb91a73eeaac4-profile-full-frames.csv.gz",
+      "rawSha256": "6f59a3a225878be27175a6d30433e948a91c4f6bed4e7bcfa0ec6d3e985b34af",
+      "allRawMetricsRecomputed": true,
+      "frames": 24014,
+      "phases": [
+        {
+          "kind": "pristine_idle",
+          "frames": 6405,
+          "seconds": 20.002912125000005,
+          "engineFramesOver16_667ms": 1,
+          "engineFramesOver33_333ms": 1,
+          "engineFramesOver100ms": 1,
+          "gcCollections": 1,
+          "metrics": {
+            "COO.ZoneRenderer.LateUpdate": {
+              "unit": "TimeNanoseconds",
+              "mean": 893132.1556596409,
+              "max": 3679708.0,
+              "p95": 987625.0,
+              "p99": 1058583.0
+            },
+            "COO.Input.Update": {
+              "unit": "TimeNanoseconds",
+              "mean": 11847.007494145199,
+              "max": 173791.0,
+              "p95": 16542.0,
+              "p99": 24083.0
+            },
+            "Main Thread": {
+              "unit": "TimeNanoseconds",
+              "mean": 3117024.7289617485,
+              "max": 673505917.0,
+              "p95": 3486083.0,
+              "p99": 3802083.0
+            },
+            "GC Allocated In Frame": {
+              "unit": "Bytes",
+              "mean": 29784.146916471505,
+              "max": 1275421.0,
+              "p95": 29867.0,
+              "p99": 30353.0
+            },
+            "Draw Calls Count": {
+              "unit": "Count",
+              "mean": 119.3943793911007,
+              "max": 120.0,
+              "p95": 120.0,
+              "p99": 120.0
+            },
+            "Triangles Count": {
+              "unit": "Count",
+              "mean": 292998.7887587822,
+              "max": 293000.0,
+              "p95": 293000.0,
+              "p99": 293000.0
+            },
+            "SetPass Calls Count": {
+              "unit": "Count",
+              "mean": 45.760655737704916,
+              "max": 50.0,
+              "p95": 50.0,
+              "p99": 50.0
+            },
+            "Batches Count": {
+              "unit": "Count",
+              "mean": 119.3943793911007,
+              "max": 120.0,
+              "p95": 120.0,
+              "p99": 120.0
+            },
+            "Render Textures Count": {
+              "unit": "Count",
+              "mean": 41.0,
+              "max": 41.0,
+              "p95": 41.0,
+              "p99": 41.0
+            },
+            "Render Textures Bytes": {
+              "unit": "Bytes",
+              "mean": 180942066.0,
+              "max": 180942066.0,
+              "p95": 180942066.0,
+              "p99": 180942066.0
+            },
+            "Texture Memory": {
+              "unit": "Bytes",
+              "mean": 279780722.0,
+              "max": 279780722.0,
+              "p95": 279780722.0,
+              "p99": 279780722.0
+            },
+            "GPU Frame Time": {
+              "unit": "TimeNanoseconds",
+              "mean": 1057017.3438967078,
+              "max": 2165500.191040337,
+              "p95": 1222250.0517964363,
+              "p99": 1270541.688427329
+            },
+            "Engine frame duration": {
+              "unit": "milliseconds",
+              "mean": 3.1230178293041377,
+              "max": 668.5279011726379,
+              "p95": 3.5030399449169636,
+              "p99": 3.852125955745578
+            }
+          },
+          "maxWitnesses": {
+            "engine_frame_ms": {
+              "sample": "301",
+              "unity_frame": "719",
+              "seconds": "2.1111965840000035",
+              "engine_frame_ms": "668.52790117263794",
+              "Main Thread": "3342750",
+              "GC Allocated In Frame": "35148",
+              "COO.ZoneRenderer.LateUpdate": "897084"
+            },
+            "Main Thread": {
+              "sample": "302",
+              "unity_frame": "720",
+              "seconds": "2.1177831250000008",
+              "engine_frame_ms": "8.4752123802900314",
+              "Main Thread": "673505917",
+              "GC Allocated In Frame": "1275421",
+              "COO.ZoneRenderer.LateUpdate": "1151667"
+            },
+            "GC Allocated In Frame": {
+              "sample": "302",
+              "unity_frame": "720",
+              "seconds": "2.1177831250000008",
+              "engine_frame_ms": "8.4752123802900314",
+              "Main Thread": "673505917",
+              "GC Allocated In Frame": "1275421",
+              "COO.ZoneRenderer.LateUpdate": "1151667"
+            },
+            "COO.ZoneRenderer.LateUpdate": {
+              "sample": "2960",
+              "unity_frame": "3378",
+              "seconds": "9.9823684170000089",
+              "engine_frame_ms": "9.0887043625116348",
+              "Main Thread": "6047000",
+              "GC Allocated In Frame": "29867",
+              "COO.ZoneRenderer.LateUpdate": "3679708"
+            }
+          }
+        },
+        {
+          "kind": "pristine_walk",
+          "frames": 6140,
+          "seconds": 20.002909458999994,
+          "engineFramesOver16_667ms": 26,
+          "engineFramesOver33_333ms": 0,
+          "engineFramesOver100ms": 0,
+          "gcCollections": 1,
+          "metrics": {
+            "COO.ZoneRenderer.LateUpdate": {
+              "unit": "TimeNanoseconds",
+              "mean": 990890.6571661237,
+              "max": 16396000.0,
+              "p95": 1028375.0,
+              "p99": 1105542.0
+            },
+            "COO.Input.Update": {
+              "unit": "TimeNanoseconds",
+              "mean": 28260.394951140064,
+              "max": 6150583.0,
+              "p95": 16584.0,
+              "p99": 27041.0
+            },
+            "Main Thread": {
+              "unit": "TimeNanoseconds",
+              "mean": 3251663.689576547,
+              "max": 25412000.0,
+              "p95": 3622125.0,
+              "p99": 4025916.0
+            },
+            "GC Allocated In Frame": {
+              "unit": "Bytes",
+              "mean": 29916.851954397393,
+              "max": 115527.0,
+              "p95": 29867.0,
+              "p99": 31987.0
+            },
+            "Draw Calls Count": {
+              "unit": "Count",
+              "mean": 119.23550488599348,
+              "max": 121.0,
+              "p95": 121.0,
+              "p99": 121.0
+            },
+            "Triangles Count": {
+              "unit": "Count",
+              "mean": 295161.3983713355,
+              "max": 295720.0,
+              "p95": 295720.0,
+              "p99": 295720.0
+            },
+            "SetPass Calls Count": {
+              "unit": "Count",
+              "mean": 43.15032573289902,
+              "max": 52.0,
+              "p95": 44.0,
+              "p99": 44.0
+            },
+            "Batches Count": {
+              "unit": "Count",
+              "mean": 119.23550488599348,
+              "max": 121.0,
+              "p95": 121.0,
+              "p99": 121.0
+            },
+            "Render Textures Count": {
+              "unit": "Count",
+              "mean": 41.0,
+              "max": 41.0,
+              "p95": 41.0,
+              "p99": 41.0
+            },
+            "Render Textures Bytes": {
+              "unit": "Bytes",
+              "mean": 180942066.0,
+              "max": 180942066.0,
+              "p95": 180942066.0,
+              "p99": 180942066.0
+            },
+            "Texture Memory": {
+              "unit": "Bytes",
+              "mean": 279780722.0,
+              "max": 279780722.0,
+              "p95": 279780722.0,
+              "p99": 279780722.0
+            },
+            "GPU Frame Time": {
+              "unit": "TimeNanoseconds",
+              "mean": 1062574.9385418156,
+              "max": 1898958.3477377892,
+              "p95": 1227749.977260828,
+              "p99": 1276625.0874847174
+            },
+            "Engine frame duration": {
+              "unit": "milliseconds",
+              "mean": 3.257828630872544,
+              "max": 25.52737295627594,
+              "p95": 3.6339994985610247,
+              "p99": 4.0767076425254345
+            }
+          },
+          "maxWitnesses": {
+            "engine_frame_ms": {
+              "sample": "6407",
+              "unity_frame": "6825",
+              "seconds": "20.599858084000012",
+              "engine_frame_ms": "25.52737295627594",
+              "Main Thread": "25412000",
+              "GC Allocated In Frame": "97405",
+              "COO.ZoneRenderer.LateUpdate": "16396000"
+            },
+            "Main Thread": {
+              "sample": "6407",
+              "unity_frame": "6825",
+              "seconds": "20.599858084000012",
+              "engine_frame_ms": "25.52737295627594",
+              "Main Thread": "25412000",
+              "GC Allocated In Frame": "97405",
+              "COO.ZoneRenderer.LateUpdate": "16396000"
+            },
+            "GC Allocated In Frame": {
+              "sample": "9726",
+              "unity_frame": "10144",
+              "seconds": "31.41339591700001",
+              "engine_frame_ms": "3.1902068294584751",
+              "Main Thread": "3162625",
+              "GC Allocated In Frame": "115527",
+              "COO.ZoneRenderer.LateUpdate": "918000"
+            },
+            "COO.ZoneRenderer.LateUpdate": {
+              "sample": "6407",
+              "unity_frame": "6825",
+              "seconds": "20.599858084000012",
+              "engine_frame_ms": "25.52737295627594",
+              "Main Thread": "25412000",
+              "GC Allocated In Frame": "97405",
+              "COO.ZoneRenderer.LateUpdate": "16396000"
+            }
+          }
+        },
+        {
+          "kind": "restored_idle",
+          "frames": 5527,
+          "seconds": 20.00080275,
+          "engineFramesOver16_667ms": 4,
+          "engineFramesOver33_333ms": 1,
+          "engineFramesOver100ms": 1,
+          "gcCollections": 3,
+          "metrics": {
+            "COO.ZoneRenderer.LateUpdate": {
+              "unit": "TimeNanoseconds",
+              "mean": 992329.4316989325,
+              "max": 3987875.0,
+              "p95": 1112292.0,
+              "p99": 1210792.0
+            },
+            "COO.Input.Update": {
+              "unit": "TimeNanoseconds",
+              "mean": 13850.106929618238,
+              "max": 115084.0,
+              "p95": 18416.0,
+              "p99": 26667.0
+            },
+            "Main Thread": {
+              "unit": "TimeNanoseconds",
+              "mean": 3612517.261624751,
+              "max": 705138625.0,
+              "p95": 4071250.0,
+              "p99": 4504667.0
+            },
+            "GC Allocated In Frame": {
+              "unit": "Bytes",
+              "mean": 88552.04215668536,
+              "max": 13524502.0,
+              "p95": 511371.0,
+              "p99": 1115377.0
+            },
+            "Draw Calls Count": {
+              "unit": "Count",
+              "mean": 127.31861769495205,
+              "max": 128.0,
+              "p95": 128.0,
+              "p99": 128.0
+            },
+            "Triangles Count": {
+              "unit": "Count",
+              "mean": 303366.7501356975,
+              "max": 303370.0,
+              "p95": 303370.0,
+              "p99": 303370.0
+            },
+            "SetPass Calls Count": {
+              "unit": "Count",
+              "mean": 46.23032386466438,
+              "max": 51.0,
+              "p95": 51.0,
+              "p99": 51.0
+            },
+            "Batches Count": {
+              "unit": "Count",
+              "mean": 127.31861769495205,
+              "max": 128.0,
+              "p95": 128.0,
+              "p99": 128.0
+            },
+            "Render Textures Count": {
+              "unit": "Count",
+              "mean": 41.0,
+              "max": 41.0,
+              "p95": 41.0,
+              "p99": 41.0
+            },
+            "Render Textures Bytes": {
+              "unit": "Bytes",
+              "mean": 180942066.0,
+              "max": 180942066.0,
+              "p95": 180942066.0,
+              "p99": 180942066.0
+            },
+            "Texture Memory": {
+              "unit": "Bytes",
+              "mean": 279780722.0,
+              "max": 279780722.0,
+              "p95": 279780722.0,
+              "p99": 279780722.0
+            },
+            "GPU Frame Time": {
+              "unit": "TimeNanoseconds",
+              "mean": 1094121.20838006,
+              "max": 1776166.6094884276,
+              "p95": 1268250.0528171659,
+              "p99": 1351499.930024147
+            },
+            "Engine frame duration": {
+              "unit": "milliseconds",
+              "mean": 3.6187243493439327,
+              "max": 701.9944787025452,
+              "p95": 4.085289314389229,
+              "p99": 4.540625028312206
+            }
+          },
+          "maxWitnesses": {
+            "engine_frame_ms": {
+              "sample": "16965",
+              "unity_frame": "18380",
+              "seconds": "62.872219334",
+              "engine_frame_ms": "701.99447870254517",
+              "Main Thread": "3305792",
+              "GC Allocated In Frame": "44042",
+              "COO.ZoneRenderer.LateUpdate": "1046125"
+            },
+            "Main Thread": {
+              "sample": "16966",
+              "unity_frame": "18381",
+              "seconds": "62.877235709000011",
+              "engine_frame_ms": "6.6935797221958637",
+              "Main Thread": "705138625",
+              "GC Allocated In Frame": "467480",
+              "COO.ZoneRenderer.LateUpdate": "1119334"
+            },
+            "GC Allocated In Frame": {
+              "sample": "14230",
+              "unity_frame": "15645",
+              "seconds": "52.811281375",
+              "engine_frame_ms": "4.0417090058326721",
+              "Main Thread": "3684000",
+              "GC Allocated In Frame": "13524502",
+              "COO.ZoneRenderer.LateUpdate": "1088917"
+            },
+            "COO.ZoneRenderer.LateUpdate": {
+              "sample": "14841",
+              "unity_frame": "16256",
+              "seconds": "55.163866209",
+              "engine_frame_ms": "9.7989160567522049",
+              "Main Thread": "6710167",
+              "GC Allocated In Frame": "1116507",
+              "COO.ZoneRenderer.LateUpdate": "3987875"
+            }
+          }
+        },
+        {
+          "kind": "restored_walk",
+          "frames": 5942,
+          "seconds": 20.000913874999995,
+          "engineFramesOver16_667ms": 26,
+          "engineFramesOver33_333ms": 0,
+          "engineFramesOver100ms": 0,
+          "gcCollections": 1,
+          "metrics": {
+            "COO.ZoneRenderer.LateUpdate": {
+              "unit": "TimeNanoseconds",
+              "mean": 1000800.6725008414,
+              "max": 14095334.0,
+              "p95": 1049083.0,
+              "p99": 1158250.0
+            },
+            "COO.Input.Update": {
+              "unit": "TimeNanoseconds",
+              "mean": 28240.15684954561,
+              "max": 5452709.0,
+              "p95": 17708.0,
+              "p99": 27625.0
+            },
+            "Main Thread": {
+              "unit": "TimeNanoseconds",
+              "mean": 3359785.971894985,
+              "max": 22475042.0,
+              "p95": 3923333.0,
+              "p99": 4636459.0
+            },
+            "GC Allocated In Frame": {
+              "unit": "Bytes",
+              "mean": 30036.986368226186,
+              "max": 114705.0,
+              "p95": 29919.0,
+              "p99": 38151.0
+            },
+            "Draw Calls Count": {
+              "unit": "Count",
+              "mean": 127.22685964321778,
+              "max": 129.0,
+              "p95": 129.0,
+              "p99": 129.0
+            },
+            "Triangles Count": {
+              "unit": "Count",
+              "mean": 313176.1100639515,
+              "max": 323244.0,
+              "p95": 323244.0,
+              "p99": 323244.0
+            },
+            "SetPass Calls Count": {
+              "unit": "Count",
+              "mean": 43.66728374284752,
+              "max": 52.0,
+              "p95": 44.0,
+              "p99": 44.0
+            },
+            "Batches Count": {
+              "unit": "Count",
+              "mean": 127.22685964321778,
+              "max": 129.0,
+              "p95": 129.0,
+              "p99": 129.0
+            },
+            "Render Textures Count": {
+              "unit": "Count",
+              "mean": 41.0,
+              "max": 41.0,
+              "p95": 41.0,
+              "p99": 41.0
+            },
+            "Render Textures Bytes": {
+              "unit": "Bytes",
+              "mean": 180942066.0,
+              "max": 180942066.0,
+              "p95": 180942066.0,
+              "p99": 180942066.0
+            },
+            "Texture Memory": {
+              "unit": "Bytes",
+              "mean": 279780722.0,
+              "max": 279780722.0,
+              "p95": 279780722.0,
+              "p99": 279780722.0
+            },
+            "GPU Frame Time": {
+              "unit": "TimeNanoseconds",
+              "mean": 1107957.0560296676,
+              "max": 2029624.8840168118,
+              "p95": 1282000.0993087888,
+              "p99": 1458000.04247576
+            },
+            "Engine frame duration": {
+              "unit": "milliseconds",
+              "mean": 3.3660031073701324,
+              "max": 22.541914135217667,
+              "p95": 3.957376815378666,
+              "p99": 4.6732923947274685
+            }
+          },
+          "maxWitnesses": {
+            "engine_frame_ms": {
+              "sample": "18074",
+              "unity_frame": "19489",
+              "seconds": "66.502229917",
+              "engine_frame_ms": "22.541914135217667",
+              "Main Thread": "22475042",
+              "GC Allocated In Frame": "111519",
+              "COO.ZoneRenderer.LateUpdate": "14095334"
+            },
+            "Main Thread": {
+              "sample": "18074",
+              "unity_frame": "19489",
+              "seconds": "66.502229917",
+              "engine_frame_ms": "22.541914135217667",
+              "Main Thread": "22475042",
+              "GC Allocated In Frame": "111519",
+              "COO.ZoneRenderer.LateUpdate": "14095334"
+            },
+            "GC Allocated In Frame": {
+              "sample": "23256",
+              "unity_frame": "24671",
+              "seconds": "83.736230709",
+              "engine_frame_ms": "3.5266722552478313",
+              "Main Thread": "3478417",
+              "GC Allocated In Frame": "114705",
+              "COO.ZoneRenderer.LateUpdate": "949583"
+            },
+            "COO.ZoneRenderer.LateUpdate": {
+              "sample": "18074",
+              "unity_frame": "19489",
+              "seconds": "66.502229917",
+              "engine_frame_ms": "22.541914135217667",
+              "Main Thread": "22475042",
+              "GC Allocated In Frame": "111519",
+              "COO.ZoneRenderer.LateUpdate": "14095334"
+            }
+          }
+        }
+      ],
+      "sameRecordedCameraAndHardwareSettings": true
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/MultiCellPilot/MCN-f8a9acbea29d442e9e75c6f04cc71aa6-profile-full.json",
+      "sha256": "36a68deaa65b354af1ea3aec95cf3d5a4437c0f11f28a3ee628453e379f8c6f0",
+      "rawPath": "/Users/steven/caves-of-ooo/Docs/Verification/MultiCellPilot/MCN-f8a9acbea29d442e9e75c6f04cc71aa6-profile-full-frames.csv.gz",
+      "rawSha256": "13ea6636327f1764505d0319e8e476b2032878c60b23777afd9eec4c1451efc1",
+      "allRawMetricsRecomputed": true,
+      "frames": 25171,
+      "phases": [
+        {
+          "kind": "pristine_idle",
+          "frames": 6701,
+          "seconds": 20.003088375,
+          "engineFramesOver16_667ms": 1,
+          "engineFramesOver33_333ms": 0,
+          "engineFramesOver100ms": 0,
+          "gcCollections": 1,
+          "metrics": {
+            "COO.ZoneRenderer.LateUpdate": {
+              "unit": "TimeNanoseconds",
+              "mean": 894593.5463363677,
+              "max": 3780750.0,
+              "p95": 999917.0,
+              "p99": 1078042.0
+            },
+            "COO.Input.Update": {
+              "unit": "TimeNanoseconds",
+              "mean": 12849.440382032533,
+              "max": 88125.0,
+              "p95": 17916.0,
+              "p99": 24667.0
+            },
+            "Main Thread": {
+              "unit": "TimeNanoseconds",
+              "mean": 2979095.670646172,
+              "max": 17372417.0,
+              "p95": 3457792.0,
+              "p99": 3850208.0
+            },
+            "GC Allocated In Frame": {
+              "unit": "Bytes",
+              "mean": 29409.800626772125,
+              "max": 77493.0,
+              "p95": 29357.0,
+              "p99": 29619.0
+            },
+            "Draw Calls Count": {
+              "unit": "Count",
+              "mean": 109.53678555439487,
+              "max": 110.0,
+              "p95": 110.0,
+              "p99": 110.0
+            },
+            "Triangles Count": {
+              "unit": "Count",
+              "mean": 291999.0735711088,
+              "max": 292000.0,
+              "p95": 292000.0,
+              "p99": 292000.0
+            },
+            "SetPass Calls Count": {
+              "unit": "Count",
+              "mean": 46.75749888076407,
+              "max": 50.0,
+              "p95": 50.0,
+              "p99": 50.0
+            },
+            "Batches Count": {
+              "unit": "Count",
+              "mean": 109.53678555439487,
+              "max": 110.0,
+              "p95": 110.0,
+              "p99": 110.0
+            },
+            "Render Textures Count": {
+              "unit": "Count",
+              "mean": 41.0,
+              "max": 41.0,
+              "p95": 41.0,
+              "p99": 41.0
+            },
+            "Render Textures Bytes": {
+              "unit": "Bytes",
+              "mean": 180942066.0,
+              "max": 180942066.0,
+              "p95": 180942066.0,
+              "p99": 180942066.0
+            },
+            "Texture Memory": {
+              "unit": "Bytes",
+              "mean": 279780722.0,
+              "max": 279780722.0,
+              "p95": 279780722.0,
+              "p99": 279780722.0
+            },
+            "GPU Frame Time": {
+              "unit": "TimeNanoseconds",
+              "mean": 1004182.7210869356,
+              "max": 1788625.0279843807,
+              "p95": 1392624.9230280519,
+              "p99": 1424374.9901652336
+            },
+            "Engine frame duration": {
+              "unit": "milliseconds",
+              "mean": 2.9850139163049247,
+              "max": 17.280668020248413,
+              "p95": 3.476211801171303,
+              "p99": 3.845748258754611
+            }
+          },
+          "maxWitnesses": {
+            "engine_frame_ms": {
+              "sample": "2387",
+              "unity_frame": "2884",
+              "seconds": "7.5675185",
+              "engine_frame_ms": "17.280668020248413",
+              "Main Thread": "6814042",
+              "GC Allocated In Frame": "29357",
+              "COO.ZoneRenderer.LateUpdate": "1048125"
+            },
+            "Main Thread": {
+              "sample": "2388",
+              "unity_frame": "2885",
+              "seconds": "7.571160291",
+              "engine_frame_ms": "3.8162486162036657",
+              "Main Thread": "17372417",
+              "GC Allocated In Frame": "29357",
+              "COO.ZoneRenderer.LateUpdate": "1090500"
+            },
+            "GC Allocated In Frame": {
+              "sample": "1456",
+              "unity_frame": "1953",
+              "seconds": "4.8218725830000029",
+              "engine_frame_ms": "3.2105441205203533",
+              "Main Thread": "3305834",
+              "GC Allocated In Frame": "77493",
+              "COO.ZoneRenderer.LateUpdate": "859167"
+            },
+            "COO.ZoneRenderer.LateUpdate": {
+              "sample": "2382",
+              "unity_frame": "2879",
+              "seconds": "7.5231690410000045",
+              "engine_frame_ms": "9.0829581022262573",
+              "Main Thread": "5971958",
+              "GC Allocated In Frame": "29357",
+              "COO.ZoneRenderer.LateUpdate": "3780750"
+            }
+          }
+        },
+        {
+          "kind": "pristine_walk",
+          "frames": 6062,
+          "seconds": 20.00034562500001,
+          "engineFramesOver16_667ms": 27,
+          "engineFramesOver33_333ms": 1,
+          "engineFramesOver100ms": 1,
+          "gcCollections": 1,
+          "metrics": {
+            "COO.ZoneRenderer.LateUpdate": {
+              "unit": "TimeNanoseconds",
+              "mean": 985044.9450676345,
+              "max": 19211416.0,
+              "p95": 1038291.0,
+              "p99": 1142125.0
+            },
+            "COO.Input.Update": {
+              "unit": "TimeNanoseconds",
+              "mean": 27813.425437149457,
+              "max": 4165542.0,
+              "p95": 18750.0,
+              "p99": 27291.0
+            },
+            "Main Thread": {
+              "unit": "TimeNanoseconds",
+              "mean": 3293507.390300231,
+              "max": 640292250.0,
+              "p95": 3648416.0,
+              "p99": 6633750.0
+            },
+            "GC Allocated In Frame": {
+              "unit": "Bytes",
+              "mean": 30017.435664797096,
+              "max": 1242936.0,
+              "p95": 29437.0,
+              "p99": 39751.0
+            },
+            "Draw Calls Count": {
+              "unit": "Count",
+              "mean": 109.83553282744968,
+              "max": 112.0,
+              "p95": 112.0,
+              "p99": 112.0
+            },
+            "Triangles Count": {
+              "unit": "Count",
+              "mean": 294316.44473771035,
+              "max": 294722.0,
+              "p95": 294722.0,
+              "p99": 294722.0
+            },
+            "SetPass Calls Count": {
+              "unit": "Count",
+              "mean": 44.16595183107885,
+              "max": 59.0,
+              "p95": 51.0,
+              "p99": 51.0
+            },
+            "Batches Count": {
+              "unit": "Count",
+              "mean": 109.83553282744968,
+              "max": 112.0,
+              "p95": 112.0,
+              "p99": 112.0
+            },
+            "Render Textures Count": {
+              "unit": "Count",
+              "mean": 41.0,
+              "max": 41.0,
+              "p95": 41.0,
+              "p99": 41.0
+            },
+            "Render Textures Bytes": {
+              "unit": "Bytes",
+              "mean": 180942066.0,
+              "max": 180942066.0,
+              "p95": 180942066.0,
+              "p99": 180942066.0
+            },
+            "Texture Memory": {
+              "unit": "Bytes",
+              "mean": 279780722.0,
+              "max": 279780722.0,
+              "p95": 279780722.0,
+              "p99": 279780722.0
+            },
+            "GPU Frame Time": {
+              "unit": "TimeNanoseconds",
+              "mean": 1011703.4739158694,
+              "max": 2097041.6953787208,
+              "p95": 1399374.9162182212,
+              "p99": 1457000.0348612666
+            },
+            "Engine frame duration": {
+              "unit": "milliseconds",
+              "mean": 3.299428511440756,
+              "max": 635.7611417770386,
+              "p95": 3.6662910133600235,
+              "p99": 6.651126779615879
+            }
+          },
+          "maxWitnesses": {
+            "engine_frame_ms": {
+              "sample": "12736",
+              "unity_frame": "13233",
+              "seconds": "40.494238375000009",
+              "engine_frame_ms": "635.76114177703857",
+              "Main Thread": "3130833",
+              "GC Allocated In Frame": "36156",
+              "COO.ZoneRenderer.LateUpdate": "950625"
+            },
+            "Main Thread": {
+              "sample": "12737",
+              "unity_frame": "13234",
+              "seconds": "40.500530125000012",
+              "engine_frame_ms": "7.7989581041038036",
+              "Main Thread": "640292250",
+              "GC Allocated In Frame": "1242936",
+              "COO.ZoneRenderer.LateUpdate": "1187958"
+            },
+            "GC Allocated In Frame": {
+              "sample": "12737",
+              "unity_frame": "13234",
+              "seconds": "40.500530125000012",
+              "engine_frame_ms": "7.7989581041038036",
+              "Main Thread": "640292250",
+              "GC Allocated In Frame": "1242936",
+              "COO.ZoneRenderer.LateUpdate": "1187958"
+            },
+            "COO.ZoneRenderer.LateUpdate": {
+              "sample": "6703",
+              "unity_frame": "7200",
+              "seconds": "20.608768625000003",
+              "engine_frame_ms": "25.264045223593712",
+              "Main Thread": "25193958",
+              "GC Allocated In Frame": "95923",
+              "COO.ZoneRenderer.LateUpdate": "19211416"
+            }
+          }
+        },
+        {
+          "kind": "restored_idle",
+          "frames": 6015,
+          "seconds": 20.000051583,
+          "engineFramesOver16_667ms": 4,
+          "engineFramesOver33_333ms": 2,
+          "engineFramesOver100ms": 1,
+          "gcCollections": 3,
+          "metrics": {
+            "COO.ZoneRenderer.LateUpdate": {
+              "unit": "TimeNanoseconds",
+              "mean": 959256.6954280965,
+              "max": 31492667.0,
+              "p95": 1107250.0,
+              "p99": 1343333.0
+            },
+            "COO.Input.Update": {
+              "unit": "TimeNanoseconds",
+              "mean": 13981.83591022444,
+              "max": 90375.0,
+              "p95": 19541.0,
+              "p99": 25792.0
+            },
+            "Main Thread": {
+              "unit": "TimeNanoseconds",
+              "mean": 3319729.535660848,
+              "max": 465756959.0,
+              "p95": 3971833.0,
+              "p99": 4593333.0
+            },
+            "GC Allocated In Frame": {
+              "unit": "Bytes",
+              "mean": 92644.2379052369,
+              "max": 60838813.0,
+              "p95": 493591.0,
+              "p99": 1077639.0
+            },
+            "Draw Calls Count": {
+              "unit": "Count",
+              "mean": 117.16209476309227,
+              "max": 118.0,
+              "p95": 118.0,
+              "p99": 118.0
+            },
+            "Triangles Count": {
+              "unit": "Count",
+              "mean": 302366.3241895262,
+              "max": 302368.0,
+              "p95": 302368.0,
+              "p99": 302368.0
+            },
+            "SetPass Calls Count": {
+              "unit": "Count",
+              "mean": 45.13466334164588,
+              "max": 51.0,
+              "p95": 51.0,
+              "p99": 51.0
+            },
+            "Batches Count": {
+              "unit": "Count",
+              "mean": 117.16209476309227,
+              "max": 118.0,
+              "p95": 118.0,
+              "p99": 118.0
+            },
+            "Render Textures Count": {
+              "unit": "Count",
+              "mean": 42.0,
+              "max": 42.0,
+              "p95": 42.0,
+              "p99": 42.0
+            },
+            "Render Textures Bytes": {
+              "unit": "Bytes",
+              "mean": 182282346.0,
+              "max": 182282346.0,
+              "p95": 182282346.0,
+              "p99": 182282346.0
+            },
+            "Texture Memory": {
+              "unit": "Bytes",
+              "mean": 281122290.0,
+              "max": 281122290.0,
+              "p95": 281122290.0,
+              "p99": 281122290.0
+            },
+            "GPU Frame Time": {
+              "unit": "TimeNanoseconds",
+              "mean": 1068540.8844613302,
+              "max": 2138999.872840941,
+              "p95": 1443166.6349992156,
+              "p99": 1498416.648246348
+            },
+            "Engine frame duration": {
+              "unit": "milliseconds",
+              "mean": 3.3250154201978708,
+              "max": 465.5267894268036,
+              "p95": 3.9891651831567287,
+              "p99": 4.618664737790823
+            }
+          },
+          "maxWitnesses": {
+            "engine_frame_ms": {
+              "sample": "18182",
+              "unity_frame": "19756",
+              "seconds": "64.545823875000011",
+              "engine_frame_ms": "465.52678942680359",
+              "Main Thread": "465756959",
+              "GC Allocated In Frame": "60838813",
+              "COO.ZoneRenderer.LateUpdate": "926166"
+            },
+            "Main Thread": {
+              "sample": "18182",
+              "unity_frame": "19756",
+              "seconds": "64.545823875000011",
+              "engine_frame_ms": "465.52678942680359",
+              "Main Thread": "465756959",
+              "GC Allocated In Frame": "60838813",
+              "COO.ZoneRenderer.LateUpdate": "926166"
+            },
+            "GC Allocated In Frame": {
+              "sample": "18182",
+              "unity_frame": "19756",
+              "seconds": "64.545823875000011",
+              "engine_frame_ms": "465.52678942680359",
+              "Main Thread": "465756959",
+              "GC Allocated In Frame": "60838813",
+              "COO.ZoneRenderer.LateUpdate": "926166"
+            },
+            "COO.ZoneRenderer.LateUpdate": {
+              "sample": "16793",
+              "unity_frame": "18367",
+              "seconds": "59.069630000000011",
+              "engine_frame_ms": "34.371625632047653",
+              "Main Thread": "37456083",
+              "GC Allocated In Frame": "2159129",
+              "COO.ZoneRenderer.LateUpdate": "31492667"
+            }
+          }
+        },
+        {
+          "kind": "restored_walk",
+          "frames": 6393,
+          "seconds": 20.001255,
+          "engineFramesOver16_667ms": 27,
+          "engineFramesOver33_333ms": 0,
+          "engineFramesOver100ms": 0,
+          "gcCollections": 2,
+          "metrics": {
+            "COO.ZoneRenderer.LateUpdate": {
+              "unit": "TimeNanoseconds",
+              "mean": 961655.5180666354,
+              "max": 16140333.0,
+              "p95": 1018334.0,
+              "p99": 1101333.0
+            },
+            "COO.Input.Update": {
+              "unit": "TimeNanoseconds",
+              "mean": 25501.258407633348,
+              "max": 3870375.0,
+              "p95": 17709.0,
+              "p99": 24584.0
+            },
+            "Main Thread": {
+              "unit": "TimeNanoseconds",
+              "mean": 3123755.3663381822,
+              "max": 21793667.0,
+              "p95": 3584167.0,
+              "p99": 4025125.0
+            },
+            "GC Allocated In Frame": {
+              "unit": "Bytes",
+              "mean": 29793.87236039418,
+              "max": 110037.0,
+              "p95": 29409.0,
+              "p99": 37637.0
+            },
+            "Draw Calls Count": {
+              "unit": "Count",
+              "mean": 116.85186923197247,
+              "max": 118.0,
+              "p95": 118.0,
+              "p99": 118.0
+            },
+            "Triangles Count": {
+              "unit": "Count",
+              "mean": 301992.0422336931,
+              "max": 303338.0,
+              "p95": 303338.0,
+              "p99": 303338.0
+            },
+            "SetPass Calls Count": {
+              "unit": "Count",
+              "mean": 48.72063194118567,
+              "max": 59.0,
+              "p95": 51.0,
+              "p99": 51.0
+            },
+            "Batches Count": {
+              "unit": "Count",
+              "mean": 116.85186923197247,
+              "max": 118.0,
+              "p95": 118.0,
+              "p99": 118.0
+            },
+            "Render Textures Count": {
+              "unit": "Count",
+              "mean": 42.0,
+              "max": 42.0,
+              "p95": 42.0,
+              "p99": 42.0
+            },
+            "Render Textures Bytes": {
+              "unit": "Bytes",
+              "mean": 182282346.0,
+              "max": 182282346.0,
+              "p95": 182282346.0,
+              "p99": 182282346.0
+            },
+            "Texture Memory": {
+              "unit": "Bytes",
+              "mean": 281122290.0,
+              "max": 281122290.0,
+              "p95": 281122290.0,
+              "p99": 281122290.0
+            },
+            "GPU Frame Time": {
+              "unit": "TimeNanoseconds",
+              "mean": 1067368.3789523302,
+              "max": 2205041.58642143,
+              "p95": 1442916.6913032532,
+              "p99": 1494208.350777626
+            },
+            "Engine frame duration": {
+              "unit": "milliseconds",
+              "mean": 3.1286563691356064,
+              "max": 21.893877536058426,
+              "p95": 3.601502161473036,
+              "p99": 4.039207939058542
+            }
+          },
+          "maxWitnesses": {
+            "engine_frame_ms": {
+              "sample": "23663",
+              "unity_frame": "25237",
+              "seconds": "81.596204541",
+              "engine_frame_ms": "21.893877536058426",
+              "Main Thread": "21793667",
+              "GC Allocated In Frame": "108770",
+              "COO.ZoneRenderer.LateUpdate": "16140333"
+            },
+            "Main Thread": {
+              "sample": "23663",
+              "unity_frame": "25237",
+              "seconds": "81.596204541",
+              "engine_frame_ms": "21.893877536058426",
+              "Main Thread": "21793667",
+              "GC Allocated In Frame": "108770",
+              "COO.ZoneRenderer.LateUpdate": "16140333"
+            },
+            "GC Allocated In Frame": {
+              "sample": "18780",
+              "unity_frame": "20354",
+              "seconds": "66.362018666000012",
+              "engine_frame_ms": "18.455123528838158",
+              "Main Thread": "18255500",
+              "GC Allocated In Frame": "110037",
+              "COO.ZoneRenderer.LateUpdate": "12732833"
+            },
+            "COO.ZoneRenderer.LateUpdate": {
+              "sample": "23663",
+              "unity_frame": "25237",
+              "seconds": "81.596204541",
+              "engine_frame_ms": "21.893877536058426",
+              "Main Thread": "21793667",
+              "GC Allocated In Frame": "108770",
+              "COO.ZoneRenderer.LateUpdate": "16140333"
+            }
+          }
+        }
+      ],
+      "sameRecordedCameraAndHardwareSettings": false
+    }
+  ],
+  "limits": [
+    "Integrity pass is not a frame-time budget pass.",
+    "All four chunks were captured; continuous profile covers only the south pilot.",
+    "Latest-completed profiler counters may lag the Unity frame; maxima do not identify a causal subsystem.",
+    "Historical runs are descriptive references, not a controlled A/B: current run caches four zones, older pilot runs cache two, and code/Editor background work can differ.",
+    "bindingSeconds=0 means no binding phase was sampled, not measured zero-cost binding.",
+    "Spell gate observes native effect meshes and bone motion during an actual cast; it does not compare against an idle-bone control or prove every casting clip."
+  ]
+}

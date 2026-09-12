@@ -1,0 +1,862 @@
+diff --git a/Assets/Editor/Art/VoxelWorldMeshBuilder.cs b/Assets/Editor/Art/VoxelWorldMeshBuilder.cs
+--- a/Assets/Editor/Art/VoxelWorldMeshBuilder.cs
++++ b/Assets/Editor/Art/VoxelWorldMeshBuilder.cs
+@@ -23,4 +23,5 @@
+             public int usages, sourceVertices, voxelVertices, sourceTriangles, voxelTriangles, submeshes, bones;
+             public int simplifiedPaintVertices;
++            public int objectPaintColors, objectPaintChangedVertices;
+             public float maxPrefabScale, localVoxelSize, worldVoxelSize;
+             public Vector3 sourceBoundsSize, voxelBoundsSize;
+@@ -44,4 +45,6 @@
+             public int PaintColumns;
+             public string PaintTexture;
++            public string ObjectTexture;
++            public bool SolidTint;
+         }
+         sealed class Prepared
+@@ -114,4 +117,5 @@
+                 }
+                 TrackGuid(CatalogPath,existingGuids);
++                ApplyObjectPalettes(prepared);
+                 CheckBorrowed(borrowed);
+                 EnsureFolder(ArtRoot+"/Meshes");EnsureFolder("Assets/Resources/VoxelWorld");
+@@ -174,4 +178,34 @@
+             destination.bounds=source.bounds;
+         }
++        static void ApplyObjectPalettes(List<Prepared> prepared)
++        {
++            var images=new Dictionary<string,VoxelWorldObjectPalette.ImagePixels>(StringComparer.Ordinal);
++            // Every native model is an FBX prefab. Its water and opaque child
++            // share one object budget rather than each getting two colors.
++            foreach(var group in prepared.GroupBy(p=>p.Source.Path,StringComparer.Ordinal))
++            {
++                var opaque=group.Where(p=>p.Source.ObjectTexture!=null).ToArray();
++                if(opaque.Length==0||group.Any(p=>p.Source.ObjectTexture==null&&!p.Source.SolidTint))continue;
++                string texture=opaque[0].Source.ObjectTexture;
++                if(opaque.Any(p=>p.Source.ObjectTexture!=texture))
++                    throw new InvalidOperationException("A native object has incompatible child palettes: "+group.Key);
++                int reserved=group.Count(p=>p.Source.SolidTint);
++                if(reserved>1)throw new InvalidOperationException("Native object exceeds its solid-color budget: "+group.Key);
++                if(!images.TryGetValue(texture,out var image))
++                {image=VoxelWorldObjectPalette.Load(texture);images.Add(texture,image);}
++                var input=opaque.SelectMany(p=>p.Mesh.uv).ToArray();
++                var output=reserved==0
++                    ?VoxelWorldObjectPalette.ReduceNativeObject(input,image.Pixels,image.Width,image.Height,group.Key,texture)
++                    :VoxelWorldObjectPalette.ReduceToBudget(input,image.Pixels,image.Width,image.Height,1);
++                int offset=0;
++                foreach(var entry in opaque)
++                {
++                    int length=entry.Mesh.vertexCount;var uv=new Vector2[length];
++                    Array.Copy(output,offset,uv,0,length);
++                    for(int i=0;i<length;i++)if(input[offset+i]!=uv[i])entry.Report.objectPaintChangedVertices++;
++                    entry.Mesh.uv=uv;entry.Report.objectPaintColors=uv.Distinct().Count();offset+=length;
++                }
++            }
++        }
+         static List<Source> Collect(GameObject[] prefabs,Dictionary<string,string> borrowed)
+         {
+@@ -209,5 +243,19 @@
+             var paintMaterial=renderer.sharedMaterials.Length==1?renderer.sharedMaterial:null;
+             string texture=paintMaterial!=null&&paintMaterial.HasProperty("_BaseMap")?AssetDatabase.GetAssetPath(paintMaterial.GetTexture("_BaseMap")):null;
+-            int columns=VoxelWorldPaintSimplifier.AtlasColumns(source.Path,texture,skinned);
++            bool knownPalette=texture=="Assets/Art3D/Village/Textures/VillagePalette.png"
++                ||texture=="Assets/Art3D/SpawnRing/Textures/SpawnRingPalette.png"
++                ||texture=="Assets/Art3D/MultiCellPilot/Textures/PilotPalette.png";
++            string objectTexture=paintMaterial!=null&&paintMaterial.shader.name=="CavesOfOoo/Village3D/Palette"
++                &&knownPalette&&paintMaterial.GetTextureScale("_BaseMap")==Vector2.one
++                &&paintMaterial.GetColor("_BaseColor")==Color.white
++                &&paintMaterial.GetTextureOffset("_BaseMap")==Vector2.zero?texture:null;
++            // Both offline paint passes require the same untransformed, untinted
++            // atlas contract. A foreign shared usage must veto S1 as well as P1.
++            int columns=objectTexture!=null?VoxelWorldPaintSimplifier.AtlasColumns(source.Path,texture,skinned):0;
++            bool solidTint=paintMaterial!=null&&paintMaterial.shader.name=="CavesOfOoo/Village3D/Water"
++                &&paintMaterial.GetTexture("_BaseMap")==null;
++            if(source.Usages==0){source.ObjectTexture=objectTexture;source.SolidTint=solidTint;}
++            else
++            {if(source.ObjectTexture!=objectTexture)source.ObjectTexture=null;source.SolidTint&=solidTint;}
+             if(source.Usages==0){source.PaintColumns=columns;source.PaintTexture=texture;}
+             // Any excluded or differently textured usage vetoes simplification of
+diff --git a/Assets/Tests/EditMode/VoxelWorldDensityArtTests.cs b/Assets/Tests/EditMode/VoxelWorldDensityArtTests.cs
+--- a/Assets/Tests/EditMode/VoxelWorldDensityArtTests.cs
++++ b/Assets/Tests/EditMode/VoxelWorldDensityArtTests.cs
+@@ -154,5 +154,6 @@
+                     CollectionAssert.AreEqual(fresh.vertices, row.Voxel.vertices, row.Source.name + " vertices");
+                     CollectionAssert.AreEqual(fresh.normals, row.Voxel.normals, row.Source.name + " normals");
+-                    CollectionAssert.AreEqual(fresh.uv, row.Voxel.uv, row.Source.name + " palette");
++                    // P1 deliberately recolors UV0. The complete-object palette
++                    // gate checks paint; this gate retains every rig/shape channel.
+                     CollectionAssert.AreEqual(fresh.boneWeights, row.Voxel.boneWeights, row.Source.name + " weights");
+                     CollectionAssert.AreEqual(fresh.bindposes, row.Voxel.bindposes, row.Source.name + " bindposes");
+@@ -207,5 +208,5 @@
+                 CollectionAssert.AreEqual(before.triangles, row.Voxel.triangles, row.Source.name + " faces");
+                 CollectionAssert.AreEqual(before.normals, row.Voxel.normals, row.Source.name + " normals");
+-                CollectionAssert.AreEqual(before.uv, row.Voxel.uv, row.Source.name + " palette");
++                // P1 changes paint; small-equipment geometry remains exact.
+             }
+         }
+@@ -234,5 +235,5 @@
+                 CollectionAssert.AreEqual(before.triangles, row.Voxel.triangles, path + " faces");
+                 CollectionAssert.AreEqual(before.normals, row.Voxel.normals, path + " normals");
+-                CollectionAssert.AreEqual(before.uv, row.Voxel.uv, path + " palette");
++                // P1 changes paint; the original pipe contact envelope survives.
+                 Assert.AreEqual(before.bounds, row.Voxel.bounds, path + " selection envelope");
+             }
+diff --git a/Assets/Tests/EditMode/VoxelWorldPaintTests.cs b/Assets/Tests/EditMode/VoxelWorldPaintTests.cs
+--- a/Assets/Tests/EditMode/VoxelWorldPaintTests.cs
++++ b/Assets/Tests/EditMode/VoxelWorldPaintTests.cs
+@@ -86,5 +86,5 @@
+             var renderers=village.Models.Select(m=>m.Prefab).Concat(ring.Models.Select(m=>m.Prefab))
+                 .SelectMany(p=>p.GetComponentsInChildren<Renderer>(true)).ToArray();
+-            int changed=0;var palettes=new System.Collections.Generic.Dictionary<string,Vector2[]>();
++            int changed=0;
+             foreach(var binding in catalog.Bindings)
+             {
+@@ -106,9 +106,8 @@
+                     if(excluded)
+                     {CollectionAssert.AreEqual(plain.uv,binding.Voxel.uv,path+" excluded water/material sibling");continue;}
+-                    if(!palettes.TryGetValue(atlas,out var swatches))
+-                    {swatches=(Vector2[])Call("LoadRepresentativeUvs",atlas,columns);palettes.Add(atlas,swatches);}
+-                    var expected=(Vector2[])Call("Consolidate",plain.uv,swatches,columns);
+-                    CollectionAssert.AreEqual(expected,binding.Voxel.uv,path+" baked UVs");
+-                    Assert.LessOrEqual(binding.Voxel.uv.Distinct().Count(),columns*8-3,path+" bounded paint vocabulary");
++                    // The later P1 pass reduces the complete object's paint to
++                    // two colors. S1's pure swatch contract remains tested above;
++                    // the final-art contract intentionally supersedes exact S1 UVs.
++                    Assert.LessOrEqual(binding.Voxel.uv.Distinct().Count(),2,path+" final bounded paint vocabulary");
+                     if(!plain.uv.SequenceEqual(binding.Voxel.uv))changed++;
+                 }
+diff --git a/Assets/Editor/Art/VoxelWorldObjectPalette.cs b/Assets/Editor/Art/VoxelWorldObjectPalette.cs
+new file mode 100644
+--- /dev/null
++++ b/Assets/Editor/Art/VoxelWorldObjectPalette.cs
+@@ -0,0 +1,136 @@
++#if UNITY_EDITOR
++using System;
++using System.Collections.Generic;
++using System.IO;
++using System.Linq;
++using UnityEngine;
++
++namespace CavesOfOoo.Editor
++{
++    /// <summary>Offline paint reduction to two existing opaque texture colors.
++    /// Frequency-weighted clustering is deterministic; only UV0 is rewritten.
++    /// Lighting, visibility, geometry and borrowed textures are untouched.</summary>
++    public static class VoxelWorldObjectPalette
++    {
++        public sealed class ImagePixels
++        {
++            public Color32[] Pixels;
++            public int Width,Height;
++        }
++        sealed class Sample
++        {
++            public int Key,Pixel,Count;
++            public Vector3 Color;
++        }
++        public static ImagePixels Load(string path)
++        {
++            var copy=new Texture2D(2,2,TextureFormat.RGBA32,false);
++            try
++            {
++                if(!ImageConversion.LoadImage(copy,File.ReadAllBytes(path),false))
++                    throw new ArgumentException("Cannot read the object palette.");
++                return new ImagePixels {Pixels=copy.GetPixels32(),Width=copy.width,Height=copy.height};
++            }
++            finally {UnityEngine.Object.DestroyImmediate(copy);}
++        }
++        public static Vector2[] Reduce(Vector2[] input,Color32[] pixels,int width,int height)
++            => ReduceToBudget(input,pixels,width,height,2);
++
++        /// <summary>The two authored Village stalls retain cloth versus wood.
++        /// Atlas roles come from ArtSource/Village3D/build_scene.py's COLORS and
++        /// stall recipe. All other models use ordinary two-color reduction.</summary>
++        public static Vector2[] ReduceNativeObject(Vector2[] input,Color32[] pixels,int width,int height,string sourcePath,string texturePath)
++        {
++            // The ordinary reducer validates every sample, including samples
++            // outside the two semantic anchor groups, before any result escapes.
++            var result=Reduce(input,pixels,width,height);
++            if(texturePath!="Assets/Art3D/Village/Textures/VillagePalette.png")return result;
++            bool teal=sourcePath=="Assets/Art3D/Village/Models/market-stall-0.fbx";
++            bool violet=sourcePath=="Assets/Art3D/Village/Models/market-stall-1.fbx";
++            if(!teal&&!violet)return result;
++            const int villageColumns=8;
++            if(width%villageColumns!=0||height%villageColumns!=0)
++                throw new ArgumentException("The authored stall requires the Village 8 by 8 atlas.");
++            int accentSlot=teal?22:23;
++            var accent=new List<Vector2>();var wood=new List<Vector2>();var cloth=new bool[input.Length];
++            for(int i=0;i<input.Length;i++)
++            {
++                int slot=Mathf.Min(7,Mathf.FloorToInt(input[i].y*villageColumns))*villageColumns
++                    +Mathf.Min(7,Mathf.FloorToInt(input[i].x*villageColumns));
++                if(slot==accentSlot)accent.Add(input[i]);
++                if(slot>=8&&slot<=11)wood.Add(input[i]);
++                cloth[i]=teal?(slot==21||slot==22||slot==49):(slot==23||slot==30);
++            }
++            if(accent.Count==0||wood.Count==0)
++                throw new ArgumentException("An authored stall must retain sampled cloth and wood anchors.");
++            var clothUv=ReduceToBudget(accent.ToArray(),pixels,width,height,1)[0];
++            var woodUv=ReduceToBudget(wood.ToArray(),pixels,width,height,1)[0];
++            for(int i=0;i<result.Length;i++)result[i]=cloth[i]?clothUv:woodUv;
++            return result;
++        }
++
++        /// <summary>A water/tar child already uses one solid paint color, so its
++        /// object's opaque geometry receives a one-color budget. No new RGB is
++        /// invented: cluster centers choose a medoid among sampled texels.</summary>
++        public static Vector2[] ReduceToBudget(Vector2[] input,Color32[] pixels,int width,int height,int maximumColors)
++        {
++            if(input==null||pixels==null||width<=0||height<=0||(long)width*height!=pixels.Length
++                ||pixels.Length>16777216||maximumColors<1||maximumColors>2)
++                throw new ArgumentException("A bounded image, UV buffer and one/two-color budget are required.");
++            var samples=new Dictionary<int,Sample>();var keys=new int[input.Length];
++            for(int i=0;i<input.Length;i++)
++            {
++                var uv=input[i];
++                if(!Finite(uv.x)||!Finite(uv.y)||uv.x<0||uv.y<0||uv.x>1||uv.y>1)
++                    throw new ArgumentException("Object paint UV must be finite and inside its texture.");
++                int index=Mathf.Min(height-1,Mathf.FloorToInt(uv.y*height))*width
++                    +Mathf.Min(width-1,Mathf.FloorToInt(uv.x*width));
++                var c=pixels[index];if(c.a!=255)throw new ArgumentException("Object paint must sample opaque texels.");
++                int key=c.r<<16|c.g<<8|c.b;keys[i]=key;
++                if(!samples.TryGetValue(key,out var sample))
++                {sample=new Sample {Key=key,Pixel=index,Color=new Vector3(c.r,c.g,c.b)};samples.Add(key,sample);}
++                sample.Count++;sample.Pixel=Math.Min(sample.Pixel,index);
++            }
++            var result=new Vector2[input.Length];if(samples.Count==0)return result;
++            var ordered=samples.Values.OrderBy(s=>s.Key).ToArray();
++            var mapping=new Dictionary<int,int>();
++            if(ordered.Length<=maximumColors)
++            {foreach(var sample in ordered)mapping[sample.Key]=sample.Pixel;}
++            else
++            {
++                var centers=new Vector3[maximumColors];var representatives=new Sample[maximumColors];
++                centers[0]=ordered.OrderByDescending(s=>s.Count).ThenBy(s=>s.Key).First().Color;
++                if(maximumColors==2)centers[1]=ordered.OrderByDescending(s=>(double)(s.Color-centers[0]).sqrMagnitude*s.Count)
++                    .ThenBy(s=>s.Key).First().Color;
++                var groups=new int[ordered.Length];
++                for(int step=0;step<12;step++)
++                {
++                    var sums=new double[maximumColors,3];var weights=new long[maximumColors];
++                    for(int i=0;i<ordered.Length;i++)
++                    {
++                        var sample=ordered[i];int group=Nearest(sample.Color,centers);groups[i]=group;
++                        weights[group]+=sample.Count;
++                        for(int axis=0;axis<3;axis++)sums[group,axis]+=(double)sample.Color[axis]*sample.Count;
++                    }
++                    for(int group=0;group<maximumColors;group++)if(weights[group]>0)
++                        centers[group]=new Vector3((float)(sums[group,0]/weights[group]),(float)(sums[group,1]/weights[group]),(float)(sums[group,2]/weights[group]));
++                }
++                for(int i=0;i<ordered.Length;i++)
++                {
++                    int group=Nearest(ordered[i].Color,centers);groups[i]=group;
++                    var previous=representatives[group];
++                    if(previous==null||(ordered[i].Color-centers[group]).sqrMagnitude<(previous.Color-centers[group]).sqrMagnitude)
++                        representatives[group]=ordered[i];
++                }
++                for(int i=0;i<ordered.Length;i++)mapping[ordered[i].Key]=representatives[groups[i]].Pixel;
++            }
++            for(int i=0;i<result.Length;i++)
++            {int index=mapping[keys[i]];result[i]=new Vector2((index%width+.5f)/width,(index/width+.5f)/height);}
++            return result;
++        }
++        static int Nearest(Vector3 color,Vector3[] centers)
++        {return centers.Length==1||(color-centers[0]).sqrMagnitude<=(color-centers[1]).sqrMagnitude?0:1;}
++        static bool Finite(float value)=>!float.IsNaN(value)&&!float.IsInfinity(value);
++    }
++}
++#endif
+diff --git a/Assets/Editor/Art/VoxelWorldObjectPalette.cs.meta b/Assets/Editor/Art/VoxelWorldObjectPalette.cs.meta
+new file mode 100644
+--- /dev/null
++++ b/Assets/Editor/Art/VoxelWorldObjectPalette.cs.meta
+@@ -0,0 +1,2 @@
++fileFormatVersion: 2
++guid: 6b6b1f049dd54be38750c075ce86855a
+diff --git a/Assets/Tests/EditMode/VoxelWorldObjectPaletteTests.cs b/Assets/Tests/EditMode/VoxelWorldObjectPaletteTests.cs
+new file mode 100644
+--- /dev/null
++++ b/Assets/Tests/EditMode/VoxelWorldObjectPaletteTests.cs
+@@ -0,0 +1,338 @@
++#if UNITY_EDITOR
++using System;
++using System.Linq;
++using System.Reflection;
++using CavesOfOoo.Rendering;
++using NUnit.Framework;
++using UnityEngine;
++
++namespace CavesOfOoo.Tests
++{
++    /// <summary>The offline object palette changes sampled paint only. Its two
++    /// colors remain actual opaque atlas colors, with deterministic mapping.</summary>
++    public sealed class VoxelWorldObjectPaletteTests
++    {
++        static readonly Color32 Red = new Color32(184, 47, 31, 255);
++        static readonly Color32 Green = new Color32(43, 116, 54, 255);
++        static readonly Color32 Blue = new Color32(38, 76, 172, 255);
++        static Vector2 Center(int index, int width = 4, int height = 2)
++            => new Vector2((index % width + .5f) / width, (index / width + .5f) / height);
++        static Color32[] Atlas() => new[] {Red, Green, Blue, Red, Green, Blue,
++            new Color32(237, 208, 97, 255), new Color32(18, 18, 18, 255)};
++        static Vector2[] Reduce(Vector2[] uv, Color32[] pixels, int width = 4, int height = 2)
++        {
++            var type = AppDomain.CurrentDomain.GetAssemblies().Select(a => a.GetType("CavesOfOoo.Editor.VoxelWorldObjectPalette"))
++                .FirstOrDefault(t => t != null);
++            Assert.NotNull(type, "Object color reduction must be an explicit offline step.");
++            var method = type.GetMethod("Reduce", BindingFlags.Public | BindingFlags.Static);
++            Assert.NotNull(method);
++            try { return (Vector2[])method.Invoke(null, new object[] {uv, pixels, width, height}); }
++            catch (TargetInvocationException error) { throw error.InnerException ?? error; }
++        }
++        static Vector2[] Budget(Vector2[] uv, Color32[] pixels, int maximum)
++        {
++            var type = AppDomain.CurrentDomain.GetAssemblies().Select(a => a.GetType("CavesOfOoo.Editor.VoxelWorldObjectPalette"))
++                .FirstOrDefault(t => t != null);
++            Assert.NotNull(type); var method = type.GetMethod("ReduceToBudget", BindingFlags.Public | BindingFlags.Static);
++            Assert.NotNull(method);
++            try { return (Vector2[])method.Invoke(null, new object[] {uv, pixels, 4, 2, maximum}); }
++            catch (TargetInvocationException error) { throw error.InnerException ?? error; }
++        }
++        static int Pixel(Vector2 uv, int width = 4, int height = 2)
++            => Mathf.Min(height - 1, Mathf.FloorToInt(uv.y * height)) * width
++                + Mathf.Min(width - 1, Mathf.FloorToInt(uv.x * width));
++        static int Rgb(Color32 color) => color.r << 16 | color.g << 8 | color.b;
++        static string StallPath(int variant) => "Assets/Art3D/Village/Models/market-stall-" + variant + ".fbx";
++        static int Slot(Vector2 uv) => Mathf.Min(7, Mathf.FloorToInt(uv.y * 8)) * 8
++            + Mathf.Min(7, Mathf.FloorToInt(uv.x * 8));
++        static Vector2 SlotSample(int slot, int corner = 0)
++            => Center((slot / 8 * 2 + corner / 2) * 16 + slot % 8 * 2 + corner % 2, 16, 16);
++        static Color32[] NativeAtlas() => Enumerable.Range(0, 256).Select(i => {
++            int slot = i / 32 * 8 + i % 16 / 2, corner = i / 16 % 2 * 2 + i % 2;
++            return new Color32((byte)(25 + slot * 3), (byte)(20 + corner * 30), (byte)(210 - slot * 2), 255);
++        }).ToArray();
++        static Vector2[] Native(Vector2[] input, Color32[] pixels, string sourcePath,
++            string texturePath = "Assets/Art3D/Village/Textures/VillagePalette.png")
++        {
++            var type = AppDomain.CurrentDomain.GetAssemblies().Select(a => a.GetType("CavesOfOoo.Editor.VoxelWorldObjectPalette"))
++                .FirstOrDefault(t => t != null);
++            Assert.NotNull(type);
++            var method = type.GetMethod("ReduceNativeObject", BindingFlags.Public | BindingFlags.Static);
++            Assert.NotNull(method, "Authored stall canopies need their semantic cloth/wood mapping before generic clustering.");
++            Assert.AreEqual(6, method.GetParameters().Length, "Semantic atlas roles require the source texture's identity as well as the model path.");
++            try { return (Vector2[])method.Invoke(null, new object[] {input, pixels, 16, 16, sourcePath, texturePath}); }
++            catch (TargetInvocationException error) { throw error.InnerException ?? error; }
++        }
++        static void Canonical(Vector2[] output, Color32[] pixels, int width = 4, int height = 2)
++        {
++            foreach (var uv in output)
++            {
++                Assert.IsFalse(float.IsNaN(uv.x) || float.IsInfinity(uv.x) || float.IsNaN(uv.y) || float.IsInfinity(uv.y));
++                Assert.That(uv.x, Is.InRange(0f, 1f)); Assert.That(uv.y, Is.InRange(0f, 1f));
++                int index = Pixel(uv, width, height);
++                Assert.That(Vector2.Distance(Center(index, width, height), uv), Is.LessThan(.000001f));
++                Assert.AreEqual(255, pixels[index].a, "Every returned center must sample opaque paint.");
++            }
++        }
++
++        [Test]
++        public void ThreeColorObjectsReduceToAtMostTwoExistingColorsAndKeepEachFaceConstant()
++        {
++            var pixels = Atlas();
++            var input = Enumerable.Range(0, 3).SelectMany(i => Enumerable.Repeat(Center(i), 4)).ToArray();
++            var output = Reduce(input, pixels);
++            Assert.AreEqual(input.Length, output.Length); Assert.AreNotSame(input, output);
++            var before = input.Select(uv => Rgb(pixels[Pixel(uv)])).Distinct().ToArray();
++            var after = output.Select(uv => Rgb(pixels[Pixel(uv)])).Distinct().ToArray();
++            Assert.AreEqual(3, before.Length); Assert.That(after.Length, Is.InRange(1, 2));
++            CollectionAssert.IsSubsetOf(after, before, "Do not invent blended RGB values or borrow an unsampled accent.");
++            for (int face = 0; face < 3; face++)
++                for (int corner = 1; corner < 4; corner++) Assert.AreEqual(output[face * 4], output[face * 4 + corner]);
++            Canonical(output, pixels);
++        }
++
++        [TestCase(1)] [TestCase(2)]
++        public void AlreadyCompliantObjectsPreserveEverySampledRgb(int colors)
++        {
++            var pixels = Atlas();
++            var input = Enumerable.Range(0, 12).Select(i => Center(i % colors) + new Vector2(.013f, -.021f)).ToArray();
++            var output = Reduce(input, pixels);
++            CollectionAssert.AreEqual(input.Select(uv => Rgb(pixels[Pixel(uv)])),
++                output.Select(uv => Rgb(pixels[Pixel(uv)])));
++            Assert.AreEqual(colors, output.Select(uv => Rgb(pixels[Pixel(uv)])).Distinct().Count());
++            Canonical(output, pixels);
++        }
++
++        [Test]
++        public void EqualRgbFromSeveralTexelsUsesOneCanonicalColorWithoutLosingThatColor()
++        {
++            var pixels = Enumerable.Repeat(Red, 8).ToArray();
++            var input = Enumerable.Range(0, 8).Select(i => Center(i) + new Vector2(.013f, -.021f)).ToArray();
++            var output = Reduce(input, pixels);
++            Assert.AreEqual(1, output.Distinct().Count());
++            Assert.IsTrue(output.All(uv => Rgb(pixels[Pixel(uv)]) == Rgb(Red)));
++            Canonical(output, pixels);
++        }
++
++        [Test]
++        public void RepeatedAndReorderedInputHasTheSamePerSampleMappingAndIsIdempotent()
++        {
++            var pixels = Atlas(); var input = new[] {Center(0), Center(1), Center(2), Center(2), Center(1), Center(0)};
++            var output = Reduce(input, pixels); var order = new[] {4, 2, 0, 5, 3, 1};
++            CollectionAssert.AreEqual(output, Reduce(input, pixels));
++            CollectionAssert.AreEqual(output, Reduce(output, pixels));
++            var shuffled = Reduce(order.Select(i => input[i]).ToArray(), pixels);
++            for (int i = 0; i < order.Length; i++) Assert.AreEqual(output[order[i]], shuffled[i], "Input order cannot break color-frequency ties.");
++        }
++
++        [Test]
++        public void ReductionDoesNotMutateBorrowedArraysOrConsumeUnityRandom()
++        {
++            var pixels = Atlas(); var input = new[] {Center(0), Center(1), Center(2)};
++            var oldPixels = pixels.ToArray(); var oldInput = input.ToArray(); var state = UnityEngine.Random.state;
++            var result = Reduce(input, pixels);
++            Assert.AreNotSame(input, result); CollectionAssert.AreEqual(oldInput, input); CollectionAssert.AreEqual(oldPixels, pixels);
++            Assert.AreEqual(state, UnityEngine.Random.state);
++        }
++
++        [TestCase(0)] [TestCase(254)]
++        public void NonopaqueSampleRejectsWhileUnusedTransparentAtlasPaddingIsAllowed(int alpha)
++        {
++            var pixels = Atlas(); pixels[1] = new Color32(Green.r, Green.g, Green.b, (byte)alpha);
++            var input = new[] {Center(0), Center(1)}; var old = input.ToArray(); var oldPixels = pixels.ToArray();
++            Assert.Catch<ArgumentException>(() => Reduce(input, pixels));
++            CollectionAssert.AreEqual(old, input); CollectionAssert.AreEqual(oldPixels, pixels);
++            var valid = Reduce(new[] {Center(0)}, pixels);
++            Assert.AreEqual(Rgb(Red), Rgb(pixels[Pixel(valid[0])])); Canonical(valid, pixels);
++        }
++
++        [TestCase(float.NaN)] [TestCase(float.PositiveInfinity)] [TestCase(float.NegativeInfinity)]
++        [TestCase(-.001f)] [TestCase(1.001f)]
++        public void NonfiniteOrOutOfRangeUvRejectsWithoutEditingEarlierValidSamples(float bad)
++        {
++            foreach (int axis in new[] {0, 1})
++            {
++                var invalid = Center(1); invalid[axis] = bad; var input = new[] {Center(0), invalid};
++                var before = input.ToArray(); var pixels = Atlas(); var oldPixels = pixels.ToArray();
++                Assert.Catch<ArgumentException>(() => Reduce(input, pixels));
++                for (int i = 0; i < input.Length; i++) for (int component = 0; component < 2; component++)
++                    Assert.AreEqual(BitConverter.SingleToInt32Bits(before[i][component]), BitConverter.SingleToInt32Bits(input[i][component]));
++                CollectionAssert.AreEqual(oldPixels, pixels);
++            }
++        }
++
++        [Test]
++        public void UvBoundaryCoordinatesResolveToActualEdgeTexels()
++        {
++            var pixels = Atlas(); var input = new[] {Vector2.zero, Vector2.one}; var output = Reduce(input, pixels);
++            Assert.AreEqual(Rgb(pixels[0]), Rgb(pixels[Pixel(output[0])]));
++            Assert.AreEqual(Rgb(pixels[7]), Rgb(pixels[Pixel(output[1])])); Canonical(output, pixels);
++        }
++
++        [TestCase(0, 2, 4)] [TestCase(-1, 2, 4)] [TestCase(2, 0, 4)]
++        [TestCase(2, 2, 3)] [TestCase(2, 2, 5)] [TestCase(int.MaxValue, 2, 4)]
++        public void MalformedTextureDimensionsRejectBeforeSamplingOrAllocating(int width, int height, int length)
++        {
++            var pixels = Enumerable.Repeat(Red, length).ToArray();
++            Assert.Catch<ArgumentException>(() => Reduce(new[] {Vector2.one * .5f}, pixels, width, height));
++        }
++
++        [Test]
++        public void NullBuffersRejectExplicitly()
++        {
++            Assert.Catch<ArgumentException>(() => Reduce(null, Atlas()));
++            Assert.Catch<ArgumentException>(() => Reduce(new[] {Center(0)}, null));
++        }
++
++        [Test]
++        public void WaterReservationCanReduceTheOpaqueSiblingToOneExistingColor()
++        {
++            var pixels = Atlas(); var input = new[] {Center(0), Center(1), Center(2)};
++            var output = Budget(input, pixels, 1);
++            Assert.AreEqual(1, output.Select(uv => Rgb(pixels[Pixel(uv)])).Distinct().Count());
++            CollectionAssert.IsSubsetOf(output.Select(uv => Rgb(pixels[Pixel(uv)])).Distinct().ToArray(),
++                input.Select(uv => Rgb(pixels[Pixel(uv)])).Distinct().ToArray());
++            CollectionAssert.AreEqual(output, Budget(output, pixels, 1)); Canonical(output, pixels);
++            CollectionAssert.AreEqual(Reduce(input, pixels), Budget(input, pixels, 2));
++        }
++
++        [TestCase(0)] [TestCase(-1)] [TestCase(3)] [TestCase(int.MaxValue)]
++        public void UnsupportedColorBudgetRejectsWithoutMutatingSamples(int maximum)
++        {
++            var pixels = Atlas(); var input = new[] {Center(0), Center(1)};
++            var before = input.ToArray(); var oldPixels = pixels.ToArray();
++            Assert.Catch<ArgumentException>(() => Budget(input, pixels, maximum));
++            CollectionAssert.AreEqual(before, input); CollectionAssert.AreEqual(oldPixels, pixels);
++        }
++
++        [TestCase(0)] [TestCase(1)]
++        public void NativeStallCanopyAndWoodUseTwoSampledAnchorsDeterministicallyWithoutMutation(int variant)
++        {
++            int accent = variant == 0 ? 22 : 23;
++            int[] cloth = variant == 0 ? new[] {21, 22, 49} : new[] {23, 30};
++            var input = cloth.SelectMany(slot => Enumerable.Repeat(SlotSample(slot), 4))
++                .Concat(new[] {SlotSample(accent, 3), SlotSample(8), SlotSample(8, 3), SlotSample(9),
++                    SlotSample(10), SlotSample(11), SlotSample(12), SlotSample(14), SlotSample(19) }).ToArray();
++            var pixels = NativeAtlas(); var oldInput = input.ToArray(); var oldPixels = pixels.ToArray();
++            var state = UnityEngine.Random.state;
++            var output = Native(input, pixels, StallPath(variant));
++            Assert.AreEqual(input.Length, output.Length); Assert.AreNotSame(input, output);
++            var accentPixels = input.Where(uv => Slot(uv) == accent).Select(uv => Pixel(uv, 16, 16)).ToArray();
++            var woodPixels = input.Where(uv => Slot(uv) >= 8 && Slot(uv) <= 11).Select(uv => Pixel(uv, 16, 16)).ToArray();
++            var paintedCloth = output.Where((uv, index) => cloth.Contains(Slot(input[index]))).Distinct().ToArray();
++            var paintedBody = output.Where((uv, index) => !cloth.Contains(Slot(input[index]))).Distinct().ToArray();
++            Assert.AreEqual(1, paintedCloth.Length); Assert.AreEqual(1, paintedBody.Length);
++            CollectionAssert.Contains(accentPixels, Pixel(paintedCloth[0], 16, 16), "Use an actually sampled teal/violet texel, not gold or a fabricated center.");
++            CollectionAssert.Contains(woodPixels, Pixel(paintedBody[0], 16, 16), "All remaining faces share one actually sampled wood texel.");
++            Assert.AreNotEqual(Rgb(pixels[Pixel(paintedCloth[0], 16, 16)]), Rgb(pixels[Pixel(paintedBody[0], 16, 16)]));
++            Canonical(output, pixels, 16, 16);
++            CollectionAssert.AreEqual(output, Native(input, pixels, StallPath(variant)));
++            CollectionAssert.AreEqual(output, Native(output, pixels, StallPath(variant)), "An already consolidated canopy remains stable.");
++            var order = Enumerable.Range(0, input.Length).Reverse().ToArray();
++            var shuffled = Native(order.Select(i => input[i]).ToArray(), pixels, StallPath(variant));
++            for (int i = 0; i < order.Length; i++) Assert.AreEqual(output[order[i]], shuffled[i]);
++            CollectionAssert.AreEqual(oldInput, input); CollectionAssert.AreEqual(oldPixels, pixels);
++            Assert.AreEqual(state, UnityEngine.Random.state);
++        }
++
++        [TestCase(0, true)] [TestCase(0, false)] [TestCase(1, true)] [TestCase(1, false)]
++        public void SupportedNativeStallMissingSampledAccentOrWoodFailsClosed(int variant, bool missingAccent)
++        {
++            int accent = variant == 0 ? 22 : 23, otherCloth = variant == 0 ? 21 : 30;
++            var input = new[] {SlotSample(otherCloth), SlotSample(missingAccent ? 8 : accent), SlotSample(12)};
++            var pixels = NativeAtlas(); var before = input.ToArray(); var oldPixels = pixels.ToArray();
++            Assert.Catch<ArgumentException>(() => Native(input, pixels, StallPath(variant)));
++            CollectionAssert.AreEqual(before, input); CollectionAssert.AreEqual(oldPixels, pixels);
++        }
++
++        [TestCase("Assets/Art3D/SpawnRing/Models/market-stall-0.fbx")]
++        [TestCase("Assets/Art3D/Village/Models/market-stall-0.fbx.backup")]
++        [TestCase("Assets/Art3D/Village/Models/market-stall-2.fbx")]
++        public void NativeCanopyMappingRequiresAnExactSupportedSourcePath(string path)
++        {
++            var pixels = NativeAtlas();
++            var input = new[] {SlotSample(21), SlotSample(22), SlotSample(49), SlotSample(8), SlotSample(12)};
++            CollectionAssert.AreEqual(Reduce(input, pixels, 16, 16), Native(input, pixels, path));
++        }
++
++        [TestCase("Assets/Art3D/SpawnRing/Textures/SpawnRingPalette.png")]
++        [TestCase("Assets/Art3D/MultiCellPilot/Textures/PilotPalette.png")]
++        [TestCase("Assets/Art3D/Village/Textures/VillagePalette.png.backup")]
++        public void AStallWithAnotherAtlasRetainsGenericReduction(string texture)
++        {
++            var pixels = NativeAtlas();
++            var input = new[] {SlotSample(21), SlotSample(22), SlotSample(49), SlotSample(8), SlotSample(12)};
++            CollectionAssert.AreEqual(Reduce(input, pixels, 16, 16), Native(input, pixels, StallPath(0), texture));
++            CollectionAssert.AreNotEqual(Reduce(input, pixels, 16, 16), Native(input, pixels, StallPath(0)),
++                "The identical fixture with the correct atlas must actually exercise the semantic rule.");
++        }
++
++        [TestCase("herb-pot", "tint", false)] [TestCase("herb-pot", "tint", true)]
++        [TestCase("herb-pot", "texture", false)] [TestCase("herb-pot", "texture", true)]
++        [TestCase("ground-patch-0", "tint", false)] [TestCase("ground-patch-0", "tint", true)]
++        [TestCase("ground-patch-0", "scale", false)] [TestCase("ground-patch-0", "scale", true)]
++        [TestCase("ground-patch-0", "offset", false)] [TestCase("ground-patch-0", "offset", true)]
++        [TestCase("ground-patch-0", "texture", false)] [TestCase("ground-patch-0", "texture", true)]
++        public void ASharedForeignUsagePermanentlyVetoesBothPaintPasses(string model, string unsupported, bool excludedFirst)
++        {
++            var type = AppDomain.CurrentDomain.GetAssemblies().Select(a => a.GetType("CavesOfOoo.Editor.VoxelWorldMeshBuilder"))
++                .FirstOrDefault(t => t != null);
++            Assert.NotNull(type); var sourceType = type.GetNestedType("Source", BindingFlags.NonPublic);
++            var add = type.GetMethod("Add", BindingFlags.NonPublic | BindingFlags.Static);
++            Assert.NotNull(sourceType); Assert.NotNull(add);
++            var dictionaryType = typeof(System.Collections.Generic.Dictionary<,>).MakeGenericType(typeof(Mesh), sourceType);
++            var rows = (System.Collections.IDictionary)Activator.CreateInstance(dictionaryType);
++            var library = Resources.Load<Village3DLibrary>(Village3DLibrary.ResourcePath); Assert.NotNull(library);
++            var prefab = library.FindModel(model); Assert.NotNull(prefab);
++            var mesh = prefab.GetComponentInChildren<MeshFilter>(true).sharedMesh;
++            var obj = new GameObject("disposable palette eligibility fixture"); var material = new Material(library.WorldMaterial);
++            try
++            {
++                var renderer = obj.AddComponent<MeshRenderer>(); renderer.sharedMaterial = material;
++                void Add(System.Collections.IDictionary target)
++                {
++                    try { add.Invoke(null, new object[] {mesh, renderer, false, target}); }
++                    catch (TargetInvocationException error) { throw error.InnerException ?? error; }
++                }
++                string Texture(System.Collections.IDictionary target)
++                    => (string)sourceType.GetField("ObjectTexture").GetValue(target[mesh]);
++                int Columns(System.Collections.IDictionary target)
++                    => (int)sourceType.GetField("PaintColumns").GetValue(target[mesh]);
++                void Configure(bool excluded)
++                {
++                    material.SetColor("_BaseColor", Color.white);
++                    material.SetTexture("_BaseMap", library.WorldMaterial.GetTexture("_BaseMap"));
++                    material.SetTextureScale("_BaseMap", Vector2.one);
++                    material.SetTextureOffset("_BaseMap", Vector2.zero);
++                    if (!excluded) return;
++                    switch (unsupported)
++                    {
++                        case "tint": material.SetColor("_BaseColor", Color.gray); break;
++                        case "texture": material.SetTexture("_BaseMap", null); break;
++                        case "scale": material.SetTextureScale("_BaseMap", new Vector2(2f, 1f)); break;
++                        case "offset": material.SetTextureOffset("_BaseMap", new Vector2(.125f, 0f)); break;
++                        default: Assert.Fail("Unsupported fixture mutation: " + unsupported); break;
++                    }
++                }
++                int expectedColumns = model == "ground-patch-0" ? 8 : 0;
++                Configure(false); Add(rows);
++                Assert.AreEqual("Assets/Art3D/Village/Textures/VillagePalette.png", Texture(rows));
++                Assert.AreEqual(expectedColumns, Columns(rows), "The ambient fixture must positively exercise S1 eligibility.");
++                rows.Clear();
++                foreach (bool excluded in new[] {excludedFirst, !excludedFirst})
++                { Configure(excluded); Add(rows); }
++                Assert.IsNull(Texture(rows), "A shared unsupported usage must veto the complete-object pass.");
++                Assert.AreEqual(0, Columns(rows), "An object-palette veto must also prevent the earlier ambient pass from recoloring the shared mesh.");
++                Configure(false); Add(rows);
++                Assert.IsNull(Texture(rows), "A later valid usage must not undo an earlier object-palette veto.");
++                Assert.AreEqual(0, Columns(rows), "A later valid usage must not reactivate ambient paint either.");
++                var fresh = (System.Collections.IDictionary)Activator.CreateInstance(dictionaryType);
++                Add(fresh);
++                Assert.AreEqual("Assets/Art3D/Village/Textures/VillagePalette.png", Texture(fresh), "A fresh source with only supported usage still qualifies.");
++                Assert.AreEqual(expectedColumns, Columns(fresh), "The veto belongs to the shared source's uses, not a global material or mesh flag.");
++            }
++            finally { UnityEngine.Object.DestroyImmediate(obj); UnityEngine.Object.DestroyImmediate(material); }
++        }
++    }
++}
++#endif
+diff --git a/Assets/Tests/EditMode/VoxelWorldObjectPaletteTests.cs.meta b/Assets/Tests/EditMode/VoxelWorldObjectPaletteTests.cs.meta
+new file mode 100644
+--- /dev/null
++++ b/Assets/Tests/EditMode/VoxelWorldObjectPaletteTests.cs.meta
+@@ -0,0 +1,2 @@
++fileFormatVersion: 2
++guid: b4acf0eeea36482c846a7f52590dd8d6
+\ No newline at end of file
+diff --git a/Assets/Tests/EditMode/VoxelWorldObjectPaletteArtTests.cs b/Assets/Tests/EditMode/VoxelWorldObjectPaletteArtTests.cs
+new file mode 100644
+--- /dev/null
++++ b/Assets/Tests/EditMode/VoxelWorldObjectPaletteArtTests.cs
+@@ -0,0 +1,223 @@
++#if UNITY_EDITOR
++using System;
++using System.Collections.Generic;
++using System.IO;
++using System.Linq;
++using CavesOfOoo.Rendering;
++using NUnit.Framework;
++using UnityEditor;
++using UnityEngine;
++using Object = UnityEngine.Object;
++
++namespace CavesOfOoo.Tests
++{
++    /// <summary>Counts authored base paint, not lighting/shadow pixels. The cap
++    /// belongs to the complete prefab, including separate water renderers.</summary>
++    [Category("VoxelWorldRealArt")]
++    public sealed class VoxelWorldObjectPaletteArtTests
++    {
++        const string PaletteShader = "CavesOfOoo/Village3D/Palette";
++        const string WaterShader = "CavesOfOoo/Village3D/Water";
++        const string ToolkitRoot = "Assets/Art3D/VoxelWorld/Toolkit/";
++        static readonly HashSet<string> PalettePaths = new HashSet<string>(StringComparer.Ordinal) {
++            "Assets/Art3D/Village/Textures/VillagePalette.png",
++            "Assets/Art3D/SpawnRing/Textures/SpawnRingPalette.png",
++            "Assets/Art3D/MultiCellPilot/Textures/PilotPalette.png"
++        };
++        sealed class Pixels { public Color32[] Colors; public int Width, Height; }
++        readonly Dictionary<string, Pixels> palettes = new Dictionary<string, Pixels>(StringComparer.Ordinal);
++        VoxelWorldMeshCatalog catalog;
++        GameObject[] prefabs;
++        Dictionary<Mesh, VoxelWorldMeshCatalog.Binding> bindings;
++
++        [OneTimeSetUp]
++        public void BorrowAllNativeLibraries()
++        {
++            catalog = Resources.Load<VoxelWorldMeshCatalog>(VoxelWorldMeshCatalog.ResourcePath);
++            Assert.NotNull(catalog); catalog.Validate();
++            var village = Resources.Load<Village3DLibrary>(Village3DLibrary.ResourcePath);
++            var ring = Resources.Load<SpawnRing3DLibrary>(SpawnRing3DLibrary.ResourcePath);
++            var pilot = Resources.Load<MultiCellPilot3DLibrary>(MultiCellPilot3DLibrary.ResourcePath);
++            Assert.NotNull(village); Assert.NotNull(ring); Assert.NotNull(pilot);
++            village.Validate(); ring.Validate(); pilot.Validate();
++            prefabs = village.Models.Select(m => m.Prefab).Concat(ring.Models.Select(m => m.Prefab))
++                .Concat(pilot.Models.Select(m => m.Prefab))
++                .Concat(ring.EquipmentLibrary.Models.Select(m => m.Prefab)).Distinct().ToArray();
++            bindings = catalog.Bindings.ToDictionary(b => b.Source);
++            Assert.AreEqual(392, prefabs.Length); Assert.AreEqual(406, bindings.Count);
++            var sources = new HashSet<Mesh>(prefabs.SelectMany(p => p.GetComponentsInChildren<Renderer>(true)).Select(Source));
++            Assert.IsFalse(sources.Contains(null)); CollectionAssert.AreEquivalent(sources, bindings.Keys);
++        }
++
++        static Mesh Source(Renderer renderer)
++            => renderer is SkinnedMeshRenderer skin ? skin.sharedMesh : renderer.GetComponent<MeshFilter>()?.sharedMesh;
++        static bool Water(Renderer renderer) => renderer.sharedMaterial.shader.name == WaterShader;
++        static int Rgb(Color32 value) => value.r << 16 | value.g << 8 | value.b;
++
++        Pixels ReadPalette(string path)
++        {
++            if (palettes.TryGetValue(path, out var pixels)) return pixels;
++            var copy = new Texture2D(2, 2, TextureFormat.RGBA32, false);
++            try
++            {
++                Assert.IsTrue(ImageConversion.LoadImage(copy, File.ReadAllBytes(path)), path);
++                pixels = new Pixels { Colors = copy.GetPixels32(), Width = copy.width, Height = copy.height };
++                palettes.Add(path, pixels); return pixels;
++            }
++            finally { Object.DestroyImmediate(copy); }
++        }
++
++        HashSet<int> Colors(Renderer renderer)
++        {
++            Assert.AreEqual(1, renderer.sharedMaterials.Length, renderer.name);
++            var material = renderer.sharedMaterial; Assert.NotNull(material);
++            Assert.IsTrue(material.HasProperty("_BaseColor"));
++            var tint = material.GetColor("_BaseColor"); Assert.AreEqual(1f, tint.a, material.name);
++            if (Water(renderer))
++            {
++                Assert.IsNull(material.GetTexture("_BaseMap"), "Water contributes its existing solid base color, not an invented palette sample.");
++                return new HashSet<int> {Rgb((Color32)tint)};
++            }
++            Assert.AreEqual(PaletteShader, material.shader.name, renderer.name);
++            Assert.AreEqual(Color.white, tint, "Only the verified white-tint native palette contract is supported.");
++            string path = AssetDatabase.GetAssetPath(material.GetTexture("_BaseMap"));
++            Assert.IsTrue(PalettePaths.Contains(path), "Unexpected source atlas: " + path);
++            var pixels = ReadPalette(path); var mesh = bindings[Source(renderer)].Voxel; var uv = mesh.uv;
++            Assert.AreEqual(mesh.vertexCount, uv.Length); var colors = new HashSet<int>();
++            foreach (var coordinate in uv)
++            {
++                Assert.That(coordinate.x, Is.InRange(0f, 1f)); Assert.That(coordinate.y, Is.InRange(0f, 1f));
++                int x = Mathf.Min(pixels.Width - 1, Mathf.FloorToInt(coordinate.x * pixels.Width));
++                int y = Mathf.Min(pixels.Height - 1, Mathf.FloorToInt(coordinate.y * pixels.Height));
++                Color32 pixel = pixels.Colors[y * pixels.Width + x]; Assert.AreEqual(255, pixel.a, renderer.name);
++                colors.Add(Rgb((Color32)((Color)pixel * tint)));
++            }
++            Assert.Greater(colors.Count, 0); return colors;
++        }
++
++        [Test]
++        public void All392CompleteNativeObjectsUseAtMostTwoAuthoredBaseColors()
++        {
++            var failures = new List<string>(); int twoColorObjects = 0, visited = 0;
++            foreach (var prefab in prefabs)
++            {
++                var colors = new HashSet<int>(); var renderers = prefab.GetComponentsInChildren<Renderer>(true);
++                Assert.Greater(renderers.Length, 0, prefab.name);
++                foreach (var renderer in renderers) colors.UnionWith(Colors(renderer));
++                if (colors.Count > 2) failures.Add(prefab.name + "=" + colors.Count);
++                if (colors.Count == 2) twoColorObjects++;
++                visited++;
++            }
++            Assert.AreEqual(392, visited);
++            Assert.IsEmpty(failures, "Whole-object palette violations: " + string.Join(", ", failures));
++            Assert.Greater(twoColorObjects, 0, "The gate must not pass by flattening every object to one color.");
++        }
++
++        [Test]
++        public void FourteenMixedWaterObjectsReserveOneColorAndStandaloneWaterKeepsItsSolidColor()
++        {
++            int checkedObjects = 0, standalone = 0;
++            foreach (var prefab in prefabs)
++            {
++                var renderers = prefab.GetComponentsInChildren<Renderer>(true);
++                var water = renderers.Where(Water).ToArray(); if (water.Length == 0) continue;
++                Assert.AreEqual(1, water.Length, prefab.name);
++                Assert.AreEqual(1, Colors(water[0]).Count, prefab.name + " solid water color");
++                if (renderers.Length == 1) { standalone++; continue; }
++                Assert.AreEqual(2, renderers.Length, prefab.name);
++                var opaque = renderers.Single(r => !Water(r));
++                Assert.AreEqual(1, Colors(opaque).Count, prefab.name + " must reserve the other color for its water renderer.");
++                checkedObjects++;
++            }
++            Assert.AreEqual(14, checkedObjects, "Do not omit water-bearing prefabs from the complete-object contract.");
++            Assert.AreEqual(1, standalone, "The standalone water object remains part of the complete-library check.");
++        }
++
++        [TestCase(0)] [TestCase(1)]
++        public void BothNativeStallsRetainTheirAuthoredCanopyIdentityAndOneWoodColor(int variant)
++        {
++            string path = "Assets/Art3D/Village/Models/market-stall-" + variant + ".fbx";
++            var row = catalog.Bindings.Single(b => AssetDatabase.GetAssetPath(b.Source) == path);
++            var fresh = VoxelWorldMeshBaker.Bake(row.Source, row.VoxelSize);
++            try
++            {
++                var pixels = ReadPalette("Assets/Art3D/Village/Textures/VillagePalette.png");
++                int Pixel(Vector2 uv) => Mathf.Min(pixels.Height - 1, Mathf.FloorToInt(uv.y * pixels.Height)) * pixels.Width
++                    + Mathf.Min(pixels.Width - 1, Mathf.FloorToInt(uv.x * pixels.Width));
++                int Slot(Vector2 uv) => Mathf.Min(7, Mathf.FloorToInt(uv.y * 8)) * 8
++                    + Mathf.Min(7, Mathf.FloorToInt(uv.x * 8));
++                int accent = variant == 0 ? 22 : 23;
++                int[] cloth = variant == 0 ? new[] {21, 22, 49} : new[] {23, 30};
++                var original = fresh.uv; var painted = row.Voxel.uv;
++                Assert.AreEqual(original.Length, painted.Length);
++                CollectionAssert.AreEqual(fresh.vertices, row.Voxel.vertices, "Original UV order must describe these exact final vertices.");
++                CollectionAssert.AreEqual(fresh.triangles, row.Voxel.triangles, "Per-face correspondence must survive publication.");
++                var accentPixels = new HashSet<int>(original.Where(uv => Slot(uv) == accent).Select(Pixel));
++                var woodPixels = new HashSet<int>(original.Where(uv => Slot(uv) >= 8 && Slot(uv) <= 11).Select(Pixel));
++                Assert.IsNotEmpty(accentPixels, path + " source accent anchor"); Assert.IsNotEmpty(woodPixels, path + " source wood anchor");
++                var canopy = new HashSet<int>(); var body = new HashSet<int>();
++                for (int i = 0; i < painted.Length; i++)
++                {
++                    bool isCloth = cloth.Contains(Slot(original[i])); int pixel = Pixel(painted[i]);
++                    Assert.IsTrue((isCloth ? accentPixels : woodPixels).Contains(pixel),
++                        path + " vertex " + i + " authored slot " + Slot(original[i]) + " must use a sampled " + (isCloth ? "canopy accent" : "wood") + " texel.");
++                    var center = new Vector2((pixel % pixels.Width + .5f) / pixels.Width, (pixel / pixels.Width + .5f) / pixels.Height);
++                    Assert.That(Vector2.Distance(center, painted[i]), Is.LessThan(.000001f));
++                    (isCloth ? canopy : body).Add(pixel);
++                }
++                Assert.AreEqual(1, canopy.Count, path + " contiguous canopy color");
++                Assert.AreEqual(1, body.Count, path + " consolidated wooden structure");
++                Assert.AreNotEqual(Rgb(pixels.Colors[canopy.Single()]), Rgb(pixels.Colors[body.Single()]));
++            }
++            finally { Object.DestroyImmediate(fresh); }
++        }
++
++        [Test]
++        public void ColorReductionPreservesAll368NativeGeometryAndSkinBindingsExactly()
++        {
++            int checkedMeshes = 0, toolkit = 0;
++            foreach (var row in catalog.Bindings)
++            {
++                if (AssetDatabase.GetAssetPath(row.Voxel).StartsWith(ToolkitRoot, StringComparison.Ordinal))
++                { toolkit++; continue; }
++                var fresh = VoxelWorldMeshBaker.Bake(row.Source, row.VoxelSize);
++                try
++                {
++                    CollectionAssert.AreEqual(fresh.vertices, row.Voxel.vertices, row.Source.name + " vertices");
++                    CollectionAssert.AreEqual(fresh.normals, row.Voxel.normals, row.Source.name + " normals");
++                    CollectionAssert.AreEqual(fresh.boneWeights, row.Voxel.boneWeights, row.Source.name + " weights");
++                    CollectionAssert.AreEqual(fresh.bindposes, row.Voxel.bindposes, row.Source.name + " bindposes");
++                    Assert.AreEqual(fresh.bounds, row.Voxel.bounds, row.Source.name + " bounds");
++                    Assert.AreEqual(fresh.subMeshCount, row.Voxel.subMeshCount, row.Source.name + " material slots");
++                    for (int sub = 0; sub < fresh.subMeshCount; sub++)
++                        CollectionAssert.AreEqual(fresh.GetTriangles(sub), row.Voxel.GetTriangles(sub), row.Source.name + " indices");
++                    checkedMeshes++;
++                }
++                finally { Object.DestroyImmediate(fresh); }
++            }
++            Assert.AreEqual(38, toolkit, "Recipe overrides retain their existing independent topology/fit gate.");
++            Assert.AreEqual(368, checkedMeshes);
++        }
++
++        [Test]
++        public void WaterGeometryAndUvsRemainExactlyOutsideThePaintRewrite()
++        {
++            var water = prefabs.SelectMany(p => p.GetComponentsInChildren<Renderer>(true)).Where(Water).ToArray();
++            Assert.AreEqual(15, water.Length, "All fourteen mixed-object waters and the standalone water retain their geometry.");
++            foreach (var renderer in water)
++            {
++                var row = bindings[Source(renderer)]; var fresh = VoxelWorldMeshBaker.Bake(row.Source, row.VoxelSize);
++                try
++                {
++                    Assert.IsNull(renderer.sharedMaterial.GetTexture("_BaseMap"));
++                    CollectionAssert.AreEqual(fresh.uv, row.Voxel.uv, renderer.name + " water UVs");
++                    CollectionAssert.AreEqual(fresh.vertices, row.Voxel.vertices, renderer.name + " water geometry");
++                    CollectionAssert.AreEqual(fresh.triangles, row.Voxel.triangles, renderer.name + " water faces");
++                    Assert.AreEqual(fresh.bounds, row.Voxel.bounds, renderer.name + " water bounds");
++                }
++                finally { Object.DestroyImmediate(fresh); }
++            }
++        }
++    }
++}
++#endif
+diff --git a/Assets/Tests/EditMode/VoxelWorldObjectPaletteArtTests.cs.meta b/Assets/Tests/EditMode/VoxelWorldObjectPaletteArtTests.cs.meta
+new file mode 100644
+--- /dev/null
++++ b/Assets/Tests/EditMode/VoxelWorldObjectPaletteArtTests.cs.meta
+@@ -0,0 +1,2 @@
++fileFormatVersion: 2
++guid: 098822ddb0774e7797c9e7d829a97959
+\ No newline at end of file

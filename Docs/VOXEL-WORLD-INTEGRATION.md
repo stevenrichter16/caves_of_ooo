@@ -323,3 +323,188 @@ Final D1 evidence: `D01-coarser/density-summary.json`,
 `ArtSource/VoxelTown/Output/native-region/coarse-comparison.png` (fine left,
 coarse right). The final native spawn image is
 `Verification/VoxelWorld/VWN-d437ca34fa414ebe9d5521de418a7f3b-spawn-town.png`.
+
+
+## P1 — two-color object paint (2026-09-12, complete)
+
+User feedback: colors and shades remain too noisy; bring each object down to a
+couple of colors. Scope: deterministic offline two-color paint for native voxel
+objects and a two-color exported visual palette for the procedural coarse profile.
+Keep D1 geometry/pitch, source textures, authored object ownership, rigs, camera,
+visibility/status signals and existing simulation intact. This is CoO-original art
+direction, not a Qud mechanics parity claim. Content readiness is green for the
+native palette objects and neutral toolkit export; the southern flat ground's
+separate non-atlas texture needs explicit visual assessment rather than an assumed
+catalog match.
+
+Pre-implementation verification:
+
+| Finding | Verified correction / decision |
+|---|---|
+| S1 only changed 60 ambient models and three bright swatches | A new object-wide paint cap is required; geometry reduction alone cannot remove these colors |
+| Toolkit recipes bypass the native mesh bake | Cap exported face/triangle/run materials after geometry generation; keep construction recipes and all geometry unchanged |
+| Same source mesh may have different renderer materials | Preflight material/texture agreement before publishing a shared mesh; never recolor a foreign shared source silently |
+| Existing density tests pin UVs as well as geometry | Preserve the geometry/rig/contact assertions, update only superseded exact-paint expectations with a separate two-color invariant |
+| WorldCamera disables postprocessing, but composited Main Camera still grades the result | Two paint colors are not a claim of exactly two final screen pixels after lighting/fog; inspect the real gameplay view |
+| Water/tar use solid base tints and waves; pilot flat ground uses world UV over a non-atlas texture outside the catalog | Do not mistake either for a standard object palette or break their visibility/material contract |
+
+Gate order: snapshot and plan; observed RED palette/counter/adversarial tests;
+implement cap and neutral export; rebuild; verify actual <=2 sampled paint colors
+and exact geometry/rig/GUID/source preservation; review native captures, fix rules
+if needed; final scoped tests and live audit; living docs and scoped commit. The
+last D13 full baseline is 11,737 pass / 32 exact pre-existing failures, zero C#
+errors. P01-two-colors/prechange.json captures 973 target files and exact copies
+before implementation. Unity was confirmed idle, with no unsaved scene marker,
+and closed normally before headless work.
+
+Performance: palette analysis runs offline, not per frame. Reuse loaded image
+pixels per texture; shared baked meshes stay shared. No runtime voxelization,
+per-cube GameObjects, simulation RNG or save migration. Build reports will include
+paint counts so the cap can be audited independently of a screenshot. A focused
+native live recording verifies the rendering result, not a general FPS claim.
+
+P1 implementation and verification log:
+
+- P02: 21 observed RED cases for the absent object-palette helper, zero C#
+  errors. P03 refused to launch while an unrelated idle Editor was open; it is
+  not test evidence. Closed that Editor normally, then resumed headless checks.
+- `VoxelWorldObjectPalette` selects one or two deterministic frequency-weighted
+  representative RGB colors from the object's actual opaque samples. UV0 moves
+  to canonical texel centers. No new atlas, runtime shader or random stream is
+  introduced. Invalid dimensions, nonfinite/out-of-range UVs and sampled alpha
+  reject before asset publication; unused transparent padding is harmless.
+- The native builder groups opaque and water children by source FBX, giving a
+  whole object two paint colors. Fourteen objects with water reserve one tint
+  for that child and one for the opaque structure; the fifteenth water renderer
+  is a standalone surface. Shared foreign textures, transforms or tints veto
+  object recoloring. Temporary baked meshes are owned before palette IO and
+  cleaned in the existing failure/finally path.
+- P04: 28/32 new cases passed; the actual catalog and water-sibling color caps
+  failed before regeneration. A nonwhite shared material correctly exposed a
+  missing eligibility guard, now fixed. A test counted only the 14 paired water
+  renderers; corrected it to include the standalone fifteenth water surface.
+- P05 rebuild: zero C# errors, all 406 native meshes and 38 procedural bindings
+  published with old GUIDs and borrowed assets intact. Native opaque meshes use
+  one color (28) or two (363), with 15 unchanged solid water meshes. Native raw
+  bake geometry remains 263,948 triangles; the toolkit uses the final two-color
+  coarse export SHA256 recorded in the toolkit's P1 phase.
+- P06: **258/258 voxel tests pass**, zero C# errors. New tests enumerate all 392
+  complete prefab objects after recipe overrides and count actual RGB values,
+  including water tints. All 368 native-baked catalog meshes match fresh geometry
+  and skin channels exactly; all 15 water meshes also retain exact UVs.
+- Updated four superseded exact-paint assertions in older density/S1 art tests.
+  Geometry, rig, bounds, pitch, picking-gap and source-water assertions remain;
+  the new complete-object RGB gate now owns the requested paint expectation.
+- 🟡 Independent review found that a shared tinted or UV-transformed material
+  vetoed P1 but could still be recolored by the earlier S1 ambient pass. The
+  expanded shared-use fixture tests ambient and ordinary objects in both
+  encounter orders. P07 confirmed six failing ambient cases and six passing
+  controls, zero C# errors. Both passes now require the same supported atlas,
+  white tint and identity UV transform; an unsupported use permanently vetoes
+  both passes for that source. No current shipped material uses the excluded
+  tint/transform, but the builder must remain safe for future shared usage.
+- P09 final rebuild: zero C# errors. All 892 captured generated art/catalog/meta
+  files are byte-identical to P05 after the shared-material guard fix; all 406
+  mesh report rows retain their geometry, pitch and paint metrics.
+- P10 final full regression: **11,811 total, 11,779 pass, 32 pre-existing failures,
+  zero compiler errors**. All failing names and messages exactly match D13;
+  no new failure remains. All **268 voxel cases** pass, including 42 new palette
+  cases and the expanded 12-case shared-use countercheck. The independent pure
+  toolkit suite passes **383/383**, adding 68 palette gates to its prior 315.
+- P08 final preservation audit: all 444 generated meshes retain every serialized
+  channel except UV0, with 390 changed UV buffers. Catalog bytes, 406 recorded
+  pitches, all 1,658 borrowed asset dependencies, 38 toolkit identity pins and
+  all old metas remain intact. All **5,035 GUIDs are valid and unique**. The
+  native implementation/test delta passes Git's reverse-application check.
+- P11 native audit: 44/44 checks, zero compiler/runtime errors, four chunk binds
+  without missing models, six normal-key borders and restored saves. Sources
+  stayed frozen. Run `2a7a6e0451754b12b732ea6ba40627a7` captures the first complete
+  two-color pass; it is superseded by the following visual refinement.
+- 🟡 Native look pass: roofs, the well and field vegetation are visibly calmer,
+  but frequency-only RGB reduction turned both market awnings brown. Their cloth
+  silhouettes no longer communicated the two distinct stalls clearly. Add an
+  offline semantic rule for the two authored Village market-stall models:
+  one sampled teal/violet cloth color and one sampled wood color, still exactly
+  two per complete object. Source proof is the stable Village atlas and `stall`
+  recipe in `ArtSource/Village3D/build_scene.py` (palette and lines 410–449).
+  This changes the generation rule, not individual scene placement. All other
+  native models keep generic reduction. Southern flat ground remains the separate
+  existing world-UV texture; its painted strata are outside this object-paint cap.
+- P12 confirmed 11 new RED cases with 42 existing palette cases still passing,
+  zero C# errors. The new cases pin sampled cloth/wood anchors, exact source
+  identity, missing-anchor rejection, determinism, unchanged inputs, stable
+  reapplication and original-vertex correspondence in both real stall assets.
+- P13 refinement rebuild succeeds; exactly two of the 444 generated meshes
+  differ from the preceding native pass. Each canopy now uses its existing
+  teal/violet sample, while the remaining structure uses one sampled wood tone.
+- 🔵 Review hardened the same rule against a swapped known atlas: semantic
+  reduction now receives the actual source texture path and requires the exact
+  Village palette, not merely dimensions divisible by eight. P14 confirmed three
+  RED cases for the missing texture-provenance contract; each pairs another
+  atlas with an otherwise identical genuine-Village positive control. Other
+  supported textures retain generic two-color reduction.
+- P15 final rebuild succeeds, zero C# errors. The exact two cloth-refined meshes
+  are the only generated asset changes after P09; all geometry and other objects
+  stay intact. Exact source and atlas checks were cold-eye reviewed independently
+  with no remaining blocker.
+- P16 final full regression after refinement: **11,825 total, 11,793 pass, 32 exact
+  pre-existing failures, zero compiler errors**. Failure names and messages still
+  match D13 exactly. All **282 voxel tests** pass, including all **56 new palette
+  cases**. This supersedes P10 as the final full-suite result. Pure toolkit remains
+  at its verified 383/383; its code/export did not change during native refinement.
+- P17 final native acceptance: **44/44 checks pass**, zero compiler/runtime
+  errors, all four chunk bindings active without missing meshes, six normal-key
+  border crossings and exact save restoration. Runtime sources stayed frozen.
+  Final run: `13560571d1354f60ae6b7f2c3b2460f1`.
+
+Final visual assessment: the actual gameplay view has broader, quieter paint on
+roofs, the well and ground objects. The two stalls again read as teal and violet
+cloth against wooden frames. Western field foliage uses clearer green forms
+against earth; southern rocks retain their outlines with simpler paint. The grove
+capture covers its normally visible entry area, not a fully revealed map. The
+separate southern flat ground retains its existing painted strata texture; the
+object-color cap does not claim to quantize that ground image or the entire screen.
+
+Can verify (script-observable): all 392 native prefab objects and all 59 coarse
+export records meet their two-base-color caps; water reserves its own tint;
+all geometry/rig/collision inputs and GUIDs remain intact; fresh-bake comparison,
+shared-use vetoes, deterministic reduction, targeting, destruction, hauling,
+animation signals and four chunk transitions pass their recorded gates.
+Cannot verify from this bounded run: exactly two final screen shades after
+lighting, fog and compositing; every future asset/scene; subjective long-session
+readability or a general performance improvement. No runtime color processing,
+new per-frame work, camera change, image editing or simulation change is added.
+
+P1 cold-eye/adversarial close-out: independent reviews covered shared-material
+symmetry, both encounter orders, source/texture identity, role anchors, deterministic
+ties, exception cleanup, geometry preservation, whole-prefab water budgets and the
+native screenshots. The confirmed shared-use guard and cloth-identity issues were
+fixed before commit. No unresolved production blocker remains in this scope.
+
+The native changes remain installed in the mixed working tree under D1's existing
+preservation boundary. Their exact helper/test additions and three existing-file
+edits are recorded in `Verification/VoxelWorld/P01-two-colors/implementation.patch`;
+Git's reverse-application check passes without altering the tree. The scoped commit
+contains the independent Python toolkit change, its export/tests, the native delta,
+verification records and final spawn image without absorbing unrelated foundations.
+
+Files: new native `VoxelWorldObjectPalette` and two palette test fixtures;
+modified native `VoxelWorldMeshBuilder`, density-art and ambient-paint tests;
+new toolkit `native_palette.py` and `test_native_palette.py`, modified
+`native_assets.py`, coarse export, README and both living docs. Final evidence:
+`P01-two-colors/palette-summary.json`, `P08-preservation/audit.json`,
+`P16-final-palette-full-regression/receipt.json`,
+`P01-two-colors/full-regression-comparison.json`, and
+`P17-final-palette-native/receipt.json`, all under `Verification/VoxelWorld`.
+Final image: `Verification/VoxelWorld/VWN-13560571d1354f60ae6b7f2c3b2460f1-spawn-town.png`.
+
+P17 independent inspection validates the artifact hashes, seven 1920×1080
+captures, four chunk bindings, six borders, source/save restoration and all
+21,580 recorded profile frames. Its bounded southern workload is about 80 seconds;
+p95 engine frames are 5.39–5.82 ms, but four frames exceed 100 ms and the maximum
+is 743.13 ms. Hitches remain; this offline color change makes no smoothness claim.
+The receipt is `P17-final-palette-native/independent-inspection.json`.
+
+Reopened the normal Unity project after all headless/native runs. Verified
+SampleScene is idle with no unsaved scene marker and zero console error/warning
+indicators. No further code or art changes followed final verification.

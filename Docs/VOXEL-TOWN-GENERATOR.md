@@ -445,3 +445,96 @@ a test weakness: counting at least four bed ground cells would also accept a sol
 plinth. The countercheck now explicitly requires air under the mattress and between
 the two front supports. Current geometry already satisfied those gaps; no further
 production or export change was necessary. The coarse export hash remains final.
+
+## P1 — two-color native exports (2026-09-12, toolkit complete)
+
+The user requested no more than a couple of colors or shades on each object.
+This phase caps every `native_coarse` export record at two existing palette IDs,
+with semantic pairs such as tree wood/foliage, bed wood/fabric and container
+wood/metal. A container only gets metal when its source recipe already has metal;
+otherwise it retains two wood tones. Fine exports and construction recipes stay
+unchanged. This is a visual export rule, not a change to voxel topology or assets'
+physical ownership. All geometry arrays, triangle/quad topology, voxel-run spans,
+model IDs, pivots, pitch, bounds and fitting metadata must remain exactly intact.
+
+Pre-implementation sweep confirmed that recoloring cell maps before greedy
+meshing would merge newly identical surfaces and change the geometry arrays.
+Therefore the rule runs after geometry generation in `asset_manifest`, remapping
+only exported face, triangle and voxel-run material IDs. It does not inject or
+modify cached mesh state. Two-color recipes need no remap. Higher-color recipes
+use explicit functional body/accent pairs; shade variants collapse into their
+corresponding material role. This is original CoO art tooling, not Qud parity.
+
+RED gates precede implementation: all 59 exported recipes, exact geometry and
+construction-material hashes, consistency between runs/quads/triangles, key
+semantic contrasts, deterministic export and byte-identical fine data. No Blender
+or Unity launch belongs to this bounded phase; native visual verification is
+coordinated by the parent integration task.
+
+Implementation and outcome:
+
+`native_palette.cap_export_materials(row)` applies one complete material mapping
+to `quadMaterials`, `triangleMaterials` and each voxel run's material ID. It runs
+only for the `native_coarse` export, after all geometry has been generated.
+Already one/two-color rows remain identical. Every selected ID already existed
+on the model; unknown higher-color families or absent semantic colors fail
+before publication instead of choosing arbitrary colors. No new cached mesh
+state or geometry manipulation was introduced.
+
+All **59 export records now use at most two palette IDs**: 58 use two, and the
+floor uses one. Exactly 35 records changed material assignments. Tree/palm pairs
+retain wood and foliage; beds retain wood and red fabric, with the pillow sharing
+the fabric color. Containers use wood/metal only when metal already existed,
+otherwise wood/wood-light. Other functional accents include water, embers,
+NPC skin/clothing and dry vegetation. Base colors are limited; lighting can still
+produce shaded pixels from each base color.
+
+The pre-cap geometry hash remains
+`997396e225abb8c3e02be18adf46abeba76db0ec84307b7515938a4b3194904f`,
+covering all 59 vertex/quad/triangle arrays, run spans, IDs, bounds, pivots, pitch
+and fitting metadata. Construction cells and materials retain hash
+`3887aabbd20439f77189517646f6851b9391faf65b82f943d1f453e127f9d403`.
+The original fine JSON still has hash
+`a7f350b3f54e4402e8500104aaa0f44732b79456515ea0077ab2a426e08ec7b2`.
+
+Current coarse export: `Output/native-region/assets-coarse.json`, SHA256
+`2f3ff7c6ca2ac0af1000809fa4f74bedc231a2b0f49bacd0036e631e9d5823ab`.
+This supersedes the previous coarse-geometry milestone's material assignments;
+that milestone's comparison image remains a historical geometry comparison.
+
+Self-review and independent review:
+
+- 🟡 The first policy pass omitted the trough family. The export failed closed
+  before writing; its explicit wood/water policy was added and retested.
+- 🔵 Recoloring before greedy meshing would change topology. The export-only
+  hook and exact geometry hash countercheck prevent this regression.
+- 🔵 Adjacent runs can now share a color. Their original spans/order are retained
+  deliberately, preserving all occupancy records instead of recanonicalizing RLE.
+- 🧪 This phase verifies palette IDs and unchanged geometry through pure tests.
+  It does not claim a Blender render or live-camera look pass; no Blender or
+  Unity process was launched here. Native RGB/UV and runtime verification belong
+  to the parent integration phase.
+
+Independent read-only review found no production blocker. It confirmed the
+post-geometry hook, common material map, unchanged source construction state,
+identity behavior for already-two-color models and fail-closed publication.
+
+Receipts under `Docs/Verification/VoxelTown`:
+
+- `palette-01-red.log`: observed RED; 35 models exceeded the cap, and the semantic
+  tree contrast gate also failed before implementation.
+- `palette-02-policy-gap-red.log`: first implementation rejected the omitted
+  trough policy before publishing output.
+- `palette-03-green.log`: initial 66 new tests pass, including 59 model gates.
+- `palette-04-full-suite.log`: all 381 tests at that point pass.
+- `palette-05-export.log`: per-model colors, exact previous geometry comparison
+  and final hashes; no changed geometry or metadata.
+- `palette-06-counters.log`: 68 palette tests pass after adding explicit unknown
+  family/absent-color failure atomicity counters.
+- `palette-07-final-suite.log`: final **383/383 pure tests**, retaining all prior
+  315 tests and adding 68 palette gates.
+
+Files changed: new `native_palette.py` and `test_native_palette.py`, the
+post-export hook in `native_assets.py`, regenerated `assets-coarse.json`, README,
+this P1 log and the listed receipts. Fine exports, construction recipes, native
+bindings, Unity source and rendered images were not changed in this phase.

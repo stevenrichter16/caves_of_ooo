@@ -1,0 +1,22 @@
+setUpClass (test_native_palette.NativePaletteTests) ... ERROR
+
+======================================================================
+ERROR: setUpClass (test_native_palette.NativePaletteTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_native_palette.py", line 37, in setUpClass
+    cls.rows={a['sourceAsset']:a for a in asset_manifest('native_coarse')['assets']}
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/native_assets.py", line 97, in asset_manifest
+    cap_export_materials(row)
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/native_palette.py", line 76, in cap_export_materials
+    body,accent,accent_sources=_semantic_pair(row['sourceAsset'],present)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/native_palette.py", line 62, in _semantic_pair
+    raise ValueError('Missing native two-color policy for '+key)
+ValueError: Missing native two-color policy for trough
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.021s
+
+FAILED (errors=1)

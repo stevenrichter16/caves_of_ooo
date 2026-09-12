@@ -1,0 +1,67 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CavesOfOoo.Tests.VoxelWorldObjectPalette",
+  "results": {
+    "id": "2",
+    "testcasecount": "53",
+    "result": "Failed(Child)",
+    "total": "53",
+    "passed": "42",
+    "failed": "11",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-12 15:33:15Z",
+    "end-time": "2026-09-12 15:33:21Z",
+    "duration": "5.6534186"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteArtTests.BothNativeStallsRetainTheirAuthoredCanopyIdentityAndOneWoodColor(0)",
+      "message": "  Assets/Art3D/Village/Models/market-stall-0.fbx vertex 152 authored slot 11 must use a sampled wood texel.\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteArtTests.BothNativeStallsRetainTheirAuthoredCanopyIdentityAndOneWoodColor(1)",
+      "message": "  Assets/Art3D/Village/Models/market-stall-1.fbx vertex 232 authored slot 23 must use a sampled canopy accent texel.\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.NativeCanopyMappingRequiresAnExactSupportedSourcePath(\"Assets/Art3D/SpawnRing/Models/market-stall-0.fbx\")",
+      "message": "  Authored stall canopies need their semantic cloth/wood mapping before generic clustering.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.NativeCanopyMappingRequiresAnExactSupportedSourcePath(\"Assets/Art3D/Village/Models/market-stall-0.fbx.backup\")",
+      "message": "  Authored stall canopies need their semantic cloth/wood mapping before generic clustering.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.NativeCanopyMappingRequiresAnExactSupportedSourcePath(\"Assets/Art3D/Village/Models/market-stall-2.fbx\")",
+      "message": "  Authored stall canopies need their semantic cloth/wood mapping before generic clustering.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.NativeStallCanopyAndWoodUseTwoSampledAnchorsDeterministicallyWithoutMutation(0)",
+      "message": "  Authored stall canopies need their semantic cloth/wood mapping before generic clustering.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.NativeStallCanopyAndWoodUseTwoSampledAnchorsDeterministicallyWithoutMutation(1)",
+      "message": "  Authored stall canopies need their semantic cloth/wood mapping before generic clustering.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.SupportedNativeStallMissingSampledAccentOrWoodFailsClosed(0,True)",
+      "message": "  Expected: instance of <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.SupportedNativeStallMissingSampledAccentOrWoodFailsClosed(0,False)",
+      "message": "  Expected: instance of <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.SupportedNativeStallMissingSampledAccentOrWoodFailsClosed(1,True)",
+      "message": "  Expected: instance of <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteTests.SupportedNativeStallMissingSampledAccentOrWoodFailsClosed(1,False)",
+      "message": "  Expected: instance of <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException>\n"
+    }
+  ]
+}

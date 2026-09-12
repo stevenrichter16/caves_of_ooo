@@ -177,7 +177,18 @@ each mesh declares its actual pitch, runs, bounds and uniform scale. It is an
 **import-only profile**: the fine candidate preview rejects it because coarse
 full-size footprints can differ. The original `assets.json` remains byte-for-byte
 unchanged. `Output/native-region/coarse-comparison.png` compares all 19 fine/coarse
-pairs at the same uniform owner envelopes, with fine on the left.
+pairs at the same uniform owner envelopes, with fine on the left. That image
+records the geometry milestone before the following color reduction.
+
+The coarse export now uses at most **two existing palette colors per model**.
+Trees keep wood and foliage; beds keep wood and red fabric; containers retain
+wood and metal where metal already existed, otherwise two wood tones. Fire and
+water remain distinct accents. All 59 exported models meet the cap (58 use two
+colors; the floor uses one). The rule changes only exported material IDs, after
+geometry generation, so vertices, faces, voxel-run spans, pivots and dimensions
+remain exact. Construction recipes retain their original semantic materials,
+and the fine export remains unchanged. This limits base palette colors; ordinary
+lighting still shades the surfaces.
 
 `assets.json` and `region.json` each publish through an atomic file replacement.
 Unrelated files survive. This native preview command does not claim the complete
@@ -256,8 +267,9 @@ python3 ArtSource/VoxelTown/verify.py \
   --fbx-example oasis-seed41
 ```
 
-The current pure suite passes **315/315 tests**, retaining the original 209,
-71 native-adapter/export cases and 35 coarse-profile gates. Actual Blender gates verify ownership,
+The current pure suite passes **383/383 tests**, retaining the original 209,
+71 native-adapter/export cases, 35 coarse-profile gates and 68 palette gates.
+Actual Blender gates verify ownership,
 manual-scene state, repeated realization, framed lots, saved exports and FBX
 roundtripping. The square full-planner sweep checks54 varied towns; the native
 adapter sweep passes95 four-chunk regions across seeds and rectangular sizes.
