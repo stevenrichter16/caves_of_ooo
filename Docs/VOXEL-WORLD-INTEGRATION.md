@@ -508,3 +508,47 @@ The receipt is `P17-final-palette-native/independent-inspection.json`.
 Reopened the normal Unity project after all headless/native runs. Verified
 SampleScene is idle with no unsaved scene marker and zero console error/warning
 indicators. No further code or art changes followed final verification.
+
+## R1 — temporary full 3D reveal (2026-09-12, complete)
+
+User request: disable the hiding of objects outside player line of sight for now.
+Reuse the existing native presenters' FullReveal display mode. The normal main
+scene enables ZoneRenderer.RevealEntire3DZone; its default is false for other
+scenes and isolated fixtures. SyncVillagePresentation forwards it to both town
+and ring presenters before binding/refresh, so it follows chunk changes and
+restarts. The camera, combat LOS, AI and native cell visibility/exploration data
+remain unchanged. Switch the scene option off to restore normal hiding.
+
+Verification sweep: both presenters already implement whole-ground fog reveal,
+transient-entity visibility and full-reveal picking, with existing positive and
+negative tests. Runtime component tooling reported a play-mode scene-dirty error
+after assigning the properties; readback confirmed both true, but the play session
+subsequently ended. The persistent scene option avoids relying on transient state.
+This is reversible configuration plumbing for existing behavior, not a new FOV
+algorithm or Qud parity claim. No added test suite for the configuration; run the
+existing FullReveal counterchecks and inspect native play before/after. The prior
+ordinary-FOV audit's !FullReveal assertions deliberately do not describe this
+requested temporary display mode. Performance: no new allocations or per-frame
+loop; existing full-reveal presentation can display more objects.
+
+R1 verification: existing FullReveal tests pass 3/3 with zero compiler errors
+(`R02-existing-full-reveal-tests/receipt.json`). Review of the exact two-file
+delta confirms the option reaches both presenters before Bind, defaults off in
+isolated fixtures, and changes no native FOV/exploration calculations. Existing
+adversarial coverage exercises restoring hiding and preserving unexplored cells.
+No additional code findings in this bounded review; no whole-game audit claim.
+
+Live follow-up found the graphics preference was off: an earlier F11 refresh
+attempt had left the game in its original 2D mode, whose FOV mask still applies.
+Restored 3D through F11 with the Game tab focused; readback confirms Enabled=true,
+persisted preference=1, both FullReveal flags=true, and the southern ring presenter
+active/ready with no failure. Visually inspected the running southern chunk:
+voxel geometry is restored and the former LOS wedge is gone. Camera unchanged;
+left the user's session playing. Evidence: `R01-full-reveal/live-verification.json`.
+
+Preservation boundary: the implementation remains installed in the mixed native
+working tree. `R01-full-reveal/implementation.patch` records only this request's
+scene/renderer delta; reverse-apply check passed. This commit records the patch,
+verification and living doc without absorbing unrelated native changes. The
+ordinary-FOV native audit was not rerun because its normal-hiding assertions are
+intentionally incompatible with this temporary display option.

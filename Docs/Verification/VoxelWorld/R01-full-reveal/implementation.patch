@@ -1,0 +1,27 @@
+diff --git a/Assets/Scripts/Presentation/Rendering/ZoneRenderer.cs b/Assets/Scripts/Presentation/Rendering/ZoneRenderer.cs
+--- a/Assets/Scripts/Presentation/Rendering/ZoneRenderer.cs
++++ b/Assets/Scripts/Presentation/Rendering/ZoneRenderer.cs
+@@ -46,4 +46,7 @@
+         /// </summary>
+         public int FovRadius = 999;
++
++        [Tooltip("Temporarily reveal the complete 3D zone without changing gameplay sight or exploration.")]
++        public bool RevealEntire3DZone;
+ 
+         /// <summary>
+@@ -1788,4 +1791,6 @@
+         private void SyncVillagePresentation(bool worldVisible)
+         {
++            if (_village3DPresenter != null) _village3DPresenter.FullReveal = RevealEntire3DZone;
++            if (_spawnRing3DPresenter != null) _spawnRing3DPresenter.FullReveal = RevealEntire3DZone;
+             _village3DPresenter?.Bind(CurrentZone, _mainCamera);
+             _village3DPresenter?.SetPresentationVisible(worldVisible && Village3DSettings.Enabled);
+diff --git a/Assets/Scenes/Main/SampleScene.unity b/Assets/Scenes/Main/SampleScene.unity
+--- a/Assets/Scenes/Main/SampleScene.unity
++++ b/Assets/Scenes/Main/SampleScene.unity
+@@ -564,4 +564,5 @@
+   Paused: 0
+   FovRadius: 999
++  RevealEntire3DZone: 1
+   SidebarWidthChars: 34
+   MessageReferenceZoom: 20
