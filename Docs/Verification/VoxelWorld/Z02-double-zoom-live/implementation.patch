@@ -1,0 +1,63 @@
+--- a/Assets/Scripts/Presentation/Cameras/CameraFollow.cs
++++ b/Assets/Scripts/Presentation/Cameras/CameraFollow.cs
+@@ -31,6 +31,8 @@
+         /// Legacy fallback if TargetVisibleTileRows is disabled or invalid.
+         /// </summary>
+         public float ZoomSize = 17f;
++        // Applied after native scene fitting so a chunk's fit cannot cancel zoom.
++        [Min(0.1f)] public float GameplayZoomMultiplier = 1f;
+         public int ReservedSidebarWidthChars = 34;
+         public float SidebarReferenceZoom = 20f;
+         public int ReservedHotbarHeightRows = GameplayViewportLayout.DefaultHotbarRows;
+@@ -302,6 +304,7 @@
+                     : FellingScenePresenter.CameraHalfHeight(_camera.aspect);
+                 if (HasVillage3DPresentation)
+                     _camera.orthographicSize = Mathf.Max(_camera.orthographicSize, NativeTownMinimumHalfHeight);
++                _camera.orthographicSize *= Mathf.Max(0.1f, GameplayZoomMultiplier);
+                 float sceneHalfWidth = _camera.orthographicSize * _camera.aspect;
+                 float sceneCenterX = 40;
+                 if (zoneX < (morrowfast ? 21 : 16) || zoneX >= (morrowfast ? 59 : 64))
+@@ -321,6 +324,7 @@
+                 return;
+             }
+ 
++            _camera.orthographicSize *= Mathf.Max(0.1f, GameplayZoomMultiplier);
+             float halfH = _camera.orthographicSize;
+             float halfW = halfH * _camera.aspect;
+             float targetX = zoneX + 0.5f;
+--- a/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs
++++ b/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs
+@@ -23,6 +23,7 @@
+ 
+         [Tooltip("Destination for fresh games only; continuing a save uses its saved location.")]
+         public string FreshGameZoneID = MorrowfastSceneRuntime.ZoneID;
++        [Min(0.1f)] public float GameplayZoomMultiplier = 1f;
+ 
+         /// <summary>
+         /// Fired exactly once per successful <see cref="Start"/>, after the zone,
+@@ -383,6 +384,7 @@
+                         cameraFollow = cam.gameObject.AddComponent<CameraFollow>();
+ 
+                     Camera sidebarCamera = EnsureSidebarCamera(cam);
++                    cameraFollow.GameplayZoomMultiplier = GameplayZoomMultiplier;
+                     Camera hotbarCamera = EnsureHotbarCamera(cam);
+                     Camera popupOverlayCamera = EnsurePopupOverlayCamera(cam);
+                     ConfigureCameraLayers(cam, sidebarCamera, hotbarCamera, popupOverlayCamera);
+@@ -972,6 +974,7 @@
+ 
+                 cameraFollow.Player = _player;
+                 cameraFollow.CurrentZone = _zone;
++                cameraFollow.GameplayZoomMultiplier = GameplayZoomMultiplier;
+                 cameraFollow.SnapToPlayer();
+             }
+ 
+--- a/Assets/Scenes/Main/SampleScene.unity
++++ b/Assets/Scenes/Main/SampleScene.unity
+@@ -514,6 +514,7 @@
+   m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.GameBootstrap
+   ZoneRenderer: {fileID: 2018787923}
+   FreshGameZoneID: Overworld.2.6.0
++  GameplayZoomMultiplier: 2
+ --- !u!4 &1522488187
+ Transform:
+   m_ObjectHideFlags: 0
