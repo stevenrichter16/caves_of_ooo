@@ -1,0 +1,23 @@
+..FF................
+======================================================================
+FAIL: test_civic_piers_cannot_intrude_into_an_accepted_offset_entrance (test_architecture.ArchitectureTests.test_civic_piers_cannot_intrude_into_an_accepted_offset_entrance) (role='shrine')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_architecture.py", line 125, in test_civic_piers_cannot_intrude_into_an_accepted_offset_entrance
+    with self.subTest(role=role), self.assertRaises(ValueError):
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_civic_piers_cannot_intrude_into_an_accepted_offset_entrance (test_architecture.ArchitectureTests.test_civic_piers_cannot_intrude_into_an_accepted_offset_entrance) (role='meeting_house')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_architecture.py", line 125, in test_civic_piers_cannot_intrude_into_an_accepted_offset_entrance
+    with self.subTest(role=role), self.assertRaises(ValueError):
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.278s
+
+FAILED (failures=2)

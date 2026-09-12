@@ -1,0 +1,26 @@
+test_hypothesis_coarse_voxels_keep_fields_and_doors_on_lattice (__main__.LayoutHypothesisTests.test_hypothesis_coarse_voxels_keep_fields_and_doors_on_lattice)
+Side-garden offsets and half-widths can quietly escape a coarse voxel grid. ... FAIL
+test_hypothesis_ellipse_crossing_without_corner_containment_is_rejected (__main__.LayoutHypothesisTests.test_hypothesis_ellipse_crossing_without_corner_containment_is_rejected)
+A long building edge can cross a water body with all four corners dry. ... ok
+test_hypothesis_fields_never_cross_unrelated_buildings (__main__.LayoutHypothesisTests.test_hypothesis_fields_never_cross_unrelated_buildings)
+Attached fields can escape the collision check applied only to house footprints. ... ok
+test_hypothesis_obstructed_public_endpoint_fails_closed (__main__.LayoutHypothesisTests.test_hypothesis_obstructed_public_endpoint_fails_closed)
+A generic routing caller must not get a route teleported out of a wall. ... ok
+test_hypothesis_population_and_dressing_do_not_shuffle_lots (__main__.LayoutHypothesisTests.test_hypothesis_population_and_dressing_do_not_shuffle_lots)
+Changing clutter or inhabitants must not randomize the underlying architecture. ... ok
+test_hypothesis_zero_agriculture_releases_attached_fields (__main__.LayoutHypothesisTests.test_hypothesis_zero_agriculture_releases_attached_fields)
+Zero agriculture must suppress fields despite still permitting farmhouse homes. ... ok
+
+======================================================================
+FAIL: test_hypothesis_coarse_voxels_keep_fields_and_doors_on_lattice (__main__.LayoutHypothesisTests.test_hypothesis_coarse_voxels_keep_fields_and_doors_on_lattice)
+Side-garden offsets and half-widths can quietly escape a coarse voxel grid.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_layout.py", line 147, in test_hypothesis_coarse_voxels_keep_fields_and_doors_on_lattice
+    self.assertAlmostEqual(value/size,round(value/size))
+AssertionError: 9.5 != 10 within 7 places (0.5 difference)
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.490s
+
+FAILED (failures=1)

@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_blender_integration.py", line 12, in <module>
+    scene,manifest,stats=realize(town)
+                         ~~~~~~~^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/scene.py", line 95, in realize
+    from .architecture import build_structure
+ModuleNotFoundError: No module named 'town_generator.architecture'
+
+Error: script failed, file: 'ArtSource/VoxelTown/tests/test_blender_integration.py', exiting.
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 01:35:57)
+
+Blender quit

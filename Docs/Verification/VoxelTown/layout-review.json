@@ -1,0 +1,93 @@
+{
+  "scope": "Pure Python deterministic semantic layout, no Blender/runtime integration claim",
+  "contracts": {
+    "api": "layout.generate_town(Config) -> Town; model.to_dict(Town)",
+    "coordinates": "Centered XY world units; quarter-turn building rotation; entrances/rooms are local; farms/paths/districts are world",
+    "defaults": "seed41,town80,10buildings,18people,4archetypes",
+    "optional_archetypes": [
+      "residence",
+      "workshop",
+      "trader",
+      "meeting_house",
+      "shrine",
+      "storehouse",
+      "farmhouse",
+      "bathhouse",
+      "animal_enclosure",
+      "guard_watch"
+    ]
+  },
+  "verification": {
+    "initial_red": "layout-01-red.log",
+    "initial_green": "layout-02-green-attempt.log",
+    "dedicated_adversarial_cases": 44,
+    "hypotheses": 6,
+    "final_tests": 62,
+    "final_green": "layout-07-final-green.log",
+    "seed_sweep": "layout-03-fuzz.log",
+    "seed_sweep_towns": 320,
+    "seed_sweep_failures": 0
+  },
+  "cold_eye": [
+    {
+      "severity": "notable",
+      "finding": "Farm gap1.25 and minimum5m building widths can escape coarse voxel lattice",
+      "classification": "confirmed hypothesis RED then fixed",
+      "receipt": "layout-04-hypotheses-red.log",
+      "fix": "Quantize side-garden gap and enforce even voxel building dimensions"
+    },
+    {
+      "severity": "notable",
+      "finding": "Direct route_path accepted zero/negative/nonfinite widths on obstacle-free maps",
+      "classification": "4 RED boundary cases then fixed",
+      "receipt": "layout-06-route-width-red.log",
+      "fix": "Reject invalid widths at API boundary"
+    },
+    {
+      "severity": "documented",
+      "finding": "Blocked layouts fail explicitly rather than silently omit requested buildings; valid parameter range does not promise every arbitrarily crowded archetype mix will fit"
+    },
+    {
+      "severity": "documented",
+      "finding": "District influence placement is original design inspired by visual reference; no Qud code parity claim"
+    },
+    {
+      "severity": "documented",
+      "finding": "Town_size controls extent, density controls clustering; geometry is cell-aligned quarter turns, organicity comes from unequal lots/spacing/landmark jitter and obstacle-routed graph"
+    },
+    {
+      "severity": "documented",
+      "finding": "Room records contain semantic accessible open plan; furniture/interior realization remains parent subsystem"
+    }
+  ],
+  "honesty_bounds": {
+    "can_verify": [
+      "Exact repeated seed data",
+      "Different seed changes positions",
+      "Role/disctrict priorities",
+      "No building-water overlaps",
+      "Actual entrance path endpoints",
+      "Widened route clearance",
+      "No diagonal corner cutting",
+      "Requested population identity counts",
+      "JSON-serializable independent snapshots",
+      "No global random-state mutation",
+      "All10 roles instantiate",
+      "Zero water/agriculture controls",
+      "320 varied town generation completions"
+    ],
+    "cannot_verify": [
+      "Blender visual quality",
+      "Final prop clearance until realization integration",
+      "Native Unity gameplay reachability/destruction",
+      "Every possible parameter/seed combination"
+    ]
+  },
+  "current_status": "Superseded by final layout64 tests and integrated dressing-review.json; original RED/GREEN history retained.",
+  "final_contract": {
+    "voxel_size": 0.25,
+    "town_size_multiple": 0.5,
+    "layout_tests": 64,
+    "receipt": "layout-16-final-green.log"
+  }
+}

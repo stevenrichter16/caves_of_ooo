@@ -1,0 +1,77 @@
+{
+  "status": "complete pure planning and collision gates; visual rendering is parent-owned",
+  "supported_integrated_town_contract": {
+    "voxel_size_m": 0.25,
+    "town_size_multiple_m": 0.5,
+    "default_archetypes": 4,
+    "optional_archetypes": 10,
+    "coordinates": "centered XY with quarter turns"
+  },
+  "verification": {
+    "layout_tests": 64,
+    "layout_receipt": "layout-16-final-green.log",
+    "dressing_tests": 44,
+    "dressing_receipt": "dressing-25-outdoor-final-green.log",
+    "final_varied_towns": 54,
+    "final_varied_towns_pass": 54,
+    "final_varied_towns_fail": 0,
+    "varied_receipt": "dressing-26-outdoor-54-town-gate.log",
+    "varied_seconds": 20.834789208020084,
+    "largest_town": "160m /50 buildings /200 residents",
+    "includes": "default and all10 archetypes across20 seeds, compact48m/7buildings, larger120m/30buildings,10 zero-wealth towns, exact oasis64 preset; actual architecture/prop/NPC/vegetation voxel intersections checked"
+  },
+  "confirmed_fixes": [
+    "Shared exact solid voxel reservations prevent prop-prop, NPC-NPC, NPC-prop and crop-irrigation intersections.",
+    "NPC overflow uses local front transforms and searches bounded clear land instead of walking into neighboring buildings.",
+    "Finite-size water clearance and large-radius path-bin queries now respect the supplied radius.",
+    "Essential primary well reserves its space before optional clutter.",
+    "Normal wall heights stay at least2.5m, preserving2m doorway height and lintel at zero wealth.",
+    "Shrine/meeting-house placement reserves their actual .75m corner piers.",
+    "Traders search front/back aprons and nearest usable district-market sites when immediate wings are blocked.",
+    "Water-dependent bathhouses reserve shore space before flexible uses, fixing oasis64 preset without altering its parameters."
+  ],
+  "new_generation_rules": [
+    "Individual ideal points within districts and mild anti-alignment scoring stagger lots while retaining semantic clustering.",
+    "Priority canopy placement reserves courtyard corners, farm outskirts and inhabited shore before herbaceous scatter.",
+    "Farm fence pieces carry semantic owner/role; house-facing gates preserve crop-free interior access.",
+    "One resident per trio prefers clear sides of its connected routes; chosen clothing variant rotates by trio. Home ID/role persist, activity/contexts describe placement intent, and unavailable outdoor sites fall back indoors. Livestock remain in enclosure."
+  ],
+  "scope_divergences": [
+    "M1 integrated towns explicitly reject non-.25m voxel sizes; the independent voxel mesh/asset primitives retain broader scale support. Preserved original coarse-size RED, replaced integrated acceptance with explicit rejection and positive .25m countercheck.",
+    "Integrated towns require .5m extent increments so centered edges align with voxel planes. The lower-level ground_cells helper separately supports clipped fractional extents; root implemented terrain fix.",
+    "This is original procedural generation inspired by supplied aesthetic, not Qud-code parity or native Unity integration."
+  ],
+  "visual_context": {
+    "inspected": "ArtSource/VoxelTown/Output/m1-seed41/gameplay.png",
+    "observations": "Initial workshops formed a near-straight column and only6 canopy objects were planned. Current default workshop X span13.5m versus1.25m; shade pass plans27 canopy objects. Final visual judgment belongs to regenerated parent renders."
+  },
+  "honesty_bounds": {
+    "verified": [
+      "pure deterministic planning",
+      "independence from caller-populated town.props/npcs",
+      "global RNG isolation",
+      "logical references and exact human counts",
+      "actual recipe solid-cell separation including shells",
+      "role-essential furniture, outdoor trader yards, gates",
+      "supported config validation",
+      "all64m oasis preset buildings fit"
+    ],
+    "not_verified": [
+      "Blender rendering/color/composition of latest scene",
+      "native Unity collision/destruction/pathfinding",
+      "every possible seed/configuration",
+      "whole-town runtime/export integration"
+    ]
+  },
+  "outdoor_activity_wave": {
+    "production_files": [
+      "town_generator/population.py"
+    ],
+    "red": "dressing-23-outdoor-activity-red.log",
+    "green": "dressing-25-outdoor-final-green.log",
+    "default": "6 outdoors /12 indoors, all3 outfit variants",
+    "oasis": "8 outdoors /16 indoors /2 livestock enclosed",
+    "additional_probe": "100/200/300 residents plus2 enclosed livestock succeed; dressing-27-dense-enclosure-probe.log",
+    "honesty": "These are initial semantic activity placements, not simulated errands or new AI behaviors."
+  }
+}

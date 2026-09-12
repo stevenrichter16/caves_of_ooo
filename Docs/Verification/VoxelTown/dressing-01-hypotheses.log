@@ -1,0 +1,117 @@
+test_coarse_voxel_furniture_fits_owner_interior (__main__.DressingHypothesisTests.test_coarse_voxel_furniture_fits_owner_interior)
+Asset recipes scale with voxel_size; meter-sized lots must account for this. ... FAIL
+test_dry_world_has_no_reeds_or_cultivated_plants (__main__.DressingHypothesisTests.test_dry_world_has_no_reeds_or_cultivated_plants)
+No natural water/agriculture must suppress wetland and crop families. ... ok
+test_exact_human_population_and_separate_livestock (__main__.DressingHypothesisTests.test_exact_human_population_and_separate_livestock) ... ok
+test_field_values_are_bounded_and_gradual (__main__.DressingHypothesisTests.test_field_values_are_bounded_and_gradual) ... ok
+test_fractional_terrain_size_does_not_protrude_outside_map (__main__.DressingHypothesisTests.test_fractional_terrain_size_does_not_protrude_outside_map)
+Ceil(tile-count) must clip the final tile rather than expanding map bounds. ... FAIL
+test_interior_entrance_aisles_remain_clear_of_solid_props (__main__.DressingHypothesisTests.test_interior_entrance_aisles_remain_clear_of_solid_props)
+A readable door must retain a one-meter central approach into the room. ... ok
+test_irrigation_and_crops_do_not_share_solid_voxels (__main__.DressingHypothesisTests.test_irrigation_and_crops_do_not_share_solid_voxels)
+Farm centerline equipment can cut into the first crop row. ... FAIL
+test_natural_props_use_full_shape_at_the_water_edge (__main__.DressingHypothesisTests.test_natural_props_use_full_shape_at_the_water_edge)
+A center just outside water is insufficient for a one-meter-radius object. ... FAIL
+test_npcs_do_not_interpenetrate_actual_body_voxels (__main__.DressingHypothesisTests.test_npcs_do_not_interpenetrate_actual_body_voxels)
+Three people spaced .65m apart may overlap their 1.25m-wide arms. ... FAIL
+test_npcs_do_not_materialize_inside_furniture (__main__.DressingHypothesisTests.test_npcs_do_not_materialize_inside_furniture)
+Independent furniture and population planners need shared reserved space. ... FAIL
+test_overflow_people_do_not_enter_unrelated_buildings (__main__.DressingHypothesisTests.test_overflow_people_do_not_enter_unrelated_buildings)
+A world-negative-Y overflow formula can put rotated-house crowds through walls. ... FAIL
+test_overflow_people_stay_on_land_and_inside_map (__main__.DressingHypothesisTests.test_overflow_people_stay_on_land_and_inside_map)
+Exterior crowd rows must respect rotated doors, shore, and finite terrain. ... ok
+test_props_do_not_interpenetrate_actual_solid_voxels (__main__.DressingHypothesisTests.test_props_do_not_interpenetrate_actual_solid_voxels)
+Center-only placement may permit furniture/lantern/clutter intersections. ... FAIL
+test_spatial_bins_honor_queries_larger_than_two_meters (__main__.DressingHypothesisTests.test_spatial_bins_honor_queries_larger_than_two_meters)
+Clearance pad is a public argument; pre-indexing must not impose hidden maxima. ... FAIL
+test_stages_are_repeatable_independent_and_nonmutating (__main__.DressingHypothesisTests.test_stages_are_repeatable_independent_and_nonmutating) ... ok
+test_zero_clutter_preserves_functional_furniture (__main__.DressingHypothesisTests.test_zero_clutter_preserves_functional_furniture) ... ok
+test_zero_ruins_removes_only_ancient_remnants (__main__.DressingHypothesisTests.test_zero_ruins_removes_only_ancient_remnants) ... ok
+test_zero_vegetation_removes_natural_plants_but_keeps_farmed_crops (__main__.DressingHypothesisTests.test_zero_vegetation_removes_natural_plants_but_keeps_farmed_crops)
+Natural vegetation and deliberate agriculture have independent controls. ... ok
+
+======================================================================
+FAIL: test_coarse_voxel_furniture_fits_owner_interior (__main__.DressingHypothesisTests.test_coarse_voxel_furniture_fits_owner_interior)
+Asset recipes scale with voxel_size; meter-sized lots must account for this.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_dressing.py", line 176, in test_coarse_voxel_furniture_fits_owner_interior
+    self.assertFalse(violations,violations[:8])
+AssertionError: [('prop-0000', 'bed', (-8, 14, -4, 22), (-8.0, 14.0, -2.0, 20.0)), ('prop-0001', 'table', (-7, 16, -1, 20), (-8.0, 14.0, -2.0, 20.0)), ('prop-0006', 'bed', (-9, 25, -5, 33), (-9.0, 25.0, -3.0, 31.0)), ('prop-0007', 'table', (-8, 27, -2, 31), (-9.0, 25.0, -3.0, 31.0)), ('prop-0013', 'workbench', (-1, -22, 7, -18), (-2.0, -23.0, 6.0, -15.0)), ('prop-0015', 'shelf', (1, -21, 7, -19), (-2.0, -23.0, 6.0, -15.0)), ('prop-0030', 'bed', (12, 8, 20, 12), (12.0, 6.0, 18.0, 12.0)), ('prop-0031', 'table', (14, 5, 18, 11), (12.0, 6.0, 18.0, 12.0)), ('prop-0036', 'workbench', (-13, -24, -5, -20), (-14.0, -25.0, -6.0, -17.0)), ('prop-0038', 'shelf', (-11, -23, -5, -21), (-14.0, -25.0, -6.0, -17.0)), ('prop-0045', 'workbench', (-1, -11, 7, -7), (-2.0, -11.0, 6.0, -5.0)), ('prop-0046', 'furnace', (-2, -12, 4, -6), (-2.0, -11.0, 6.0, -5.0)), ('prop-0047', 'shelf', (1, -10, 7, -8), (-2.0, -11.0, 6.0, -5.0)), ('prop-0052', 'bed', (12, -2, 20, 2), (11.0, -4.0, 19.0, 2.0)), ('prop-0053', 'table', (14, -5, 18, 1), (11.0, -4.0, 19.0, 2.0)), ('prop-0059', 'bed', (12, 17, 16, 25), (12.0, 16.0, 18.0, 24.0)), ('prop-0060', 'table', (13, 19, 19, 23), (12.0, 16.0, 18.0, 24.0))] is not false : [('prop-0000', 'bed', (-8, 14, -4, 22), (-8.0, 14.0, -2.0, 20.0)), ('prop-0001', 'table', (-7, 16, -1, 20), (-8.0, 14.0, -2.0, 20.0)), ('prop-0006', 'bed', (-9, 25, -5, 33), (-9.0, 25.0, -3.0, 31.0)), ('prop-0007', 'table', (-8, 27, -2, 31), (-9.0, 25.0, -3.0, 31.0)), ('prop-0013', 'workbench', (-1, -22, 7, -18), (-2.0, -23.0, 6.0, -15.0)), ('prop-0015', 'shelf', (1, -21, 7, -19), (-2.0, -23.0, 6.0, -15.0)), ('prop-0030', 'bed', (12, 8, 20, 12), (12.0, 6.0, 18.0, 12.0)), ('prop-0031', 'table', (14, 5, 18, 11), (12.0, 6.0, 18.0, 12.0))]
+
+======================================================================
+FAIL: test_fractional_terrain_size_does_not_protrude_outside_map (__main__.DressingHypothesisTests.test_fractional_terrain_size_does_not_protrude_outside_map)
+Ceil(tile-count) must clip the final tile rather than expanding map bounds.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_dressing.py", line 185, in test_fractional_terrain_size_does_not_protrude_outside_map
+    self.assertLessEqual(max(x+sx/2,y+sy/2),half+1e-6)
+AssertionError: 40.875 not less than or equal to 40.125001
+
+======================================================================
+FAIL: test_irrigation_and_crops_do_not_share_solid_voxels (__main__.DressingHypothesisTests.test_irrigation_and_crops_do_not_share_solid_voxels)
+Farm centerline equipment can cut into the first crop row.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_dressing.py", line 87, in test_irrigation_and_crops_do_not_share_solid_voxels
+    self.assertFalse(found,found[:12])
+AssertionError: [('prop-0004', 'vegetation-00538'), ('prop-0004', 'vegetation-00539'), ('prop-0011', 'vegetation-00574'), ('prop-0011', 'vegetation-00575')] is not false : [('prop-0004', 'vegetation-00538'), ('prop-0004', 'vegetation-00539'), ('prop-0011', 'vegetation-00574'), ('prop-0011', 'vegetation-00575')]
+
+======================================================================
+FAIL: test_natural_props_use_full_shape_at_the_water_edge (__main__.DressingHypothesisTests.test_natural_props_use_full_shape_at_the_water_edge)
+A center just outside water is insufficient for a one-meter-radius object.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_dressing.py", line 191, in test_natural_props_use_full_shape_at_the_water_edge
+    self.assertFalse(clear.free(3.25,0,radius=1))
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_npcs_do_not_interpenetrate_actual_body_voxels (__main__.DressingHypothesisTests.test_npcs_do_not_interpenetrate_actual_body_voxels)
+Three people spaced .65m apart may overlap their 1.25m-wide arms.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_dressing.py", line 74, in test_npcs_do_not_interpenetrate_actual_body_voxels
+    self.assertFalse(found,found[:12])
+AssertionError: [('npc-0000', 'npc-0001'), ('npc-0001', 'npc-0002'), ('npc-0003', 'npc-0004'), ('npc-0004', 'npc-0005'), ('npc-0006', 'npc-0007'), ('npc-0007', 'npc-0008'), ('npc-0010', 'npc-0011'), ('npc-0011', 'npc-0012'), ('npc-0016', 'npc-0017')] is not false : [('npc-0000', 'npc-0001'), ('npc-0001', 'npc-0002'), ('npc-0003', 'npc-0004'), ('npc-0004', 'npc-0005'), ('npc-0006', 'npc-0007'), ('npc-0007', 'npc-0008'), ('npc-0010', 'npc-0011'), ('npc-0011', 'npc-0012'), ('npc-0016', 'npc-0017')]
+
+======================================================================
+FAIL: test_npcs_do_not_materialize_inside_furniture (__main__.DressingHypothesisTests.test_npcs_do_not_materialize_inside_furniture)
+Independent furniture and population planners need shared reserved space.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_dressing.py", line 80, in test_npcs_do_not_materialize_inside_furniture
+    self.assertFalse(found,found[:12])
+AssertionError: [('prop-0002', 'npc-0000'), ('prop-0003', 'npc-0001'), ('prop-0003', 'npc-0002'), ('prop-0009', 'npc-0003'), ('prop-0010', 'npc-0005'), ('prop-0017', 'npc-0006'), ('prop-0030', 'npc-0010'), ('prop-0045', 'npc-0014'), ('prop-0059', 'npc-0016')] is not false : [('prop-0002', 'npc-0000'), ('prop-0003', 'npc-0001'), ('prop-0003', 'npc-0002'), ('prop-0009', 'npc-0003'), ('prop-0010', 'npc-0005'), ('prop-0017', 'npc-0006'), ('prop-0030', 'npc-0010'), ('prop-0045', 'npc-0014'), ('prop-0059', 'npc-0016')]
+
+======================================================================
+FAIL: test_overflow_people_do_not_enter_unrelated_buildings (__main__.DressingHypothesisTests.test_overflow_people_do_not_enter_unrelated_buildings)
+A world-negative-Y overflow formula can put rotated-house crowds through walls.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_dressing.py", line 120, in test_overflow_people_do_not_enter_unrelated_buildings
+    self.assertFalse(violations,violations[:12])
+AssertionError: [('npc-0043', 'building-000-farmhouse', (-4.5, 24.5, 0)), ('npc-0044', 'building-000-farmhouse', (-3.25, 24.5, 0)), ('npc-0063', 'building-000-farmhouse', (-4.5, 23.25, 0)), ('npc-0064', 'building-000-farmhouse', (-3.25, 23.25, 0)), ('npc-0083', 'building-000-farmhouse', (-4.5, 22.0, 0)), ('npc-0084', 'building-000-farmhouse', (-3.25, 22.0, 0)), ('npc-0088', 'building-008-residence', (14.0, 1.25, 0))] is not false : [('npc-0043', 'building-000-farmhouse', (-4.5, 24.5, 0)), ('npc-0044', 'building-000-farmhouse', (-3.25, 24.5, 0)), ('npc-0063', 'building-000-farmhouse', (-4.5, 23.25, 0)), ('npc-0064', 'building-000-farmhouse', (-3.25, 23.25, 0)), ('npc-0083', 'building-000-farmhouse', (-4.5, 22.0, 0)), ('npc-0084', 'building-000-farmhouse', (-3.25, 22.0, 0)), ('npc-0088', 'building-008-residence', (14.0, 1.25, 0))]
+
+======================================================================
+FAIL: test_props_do_not_interpenetrate_actual_solid_voxels (__main__.DressingHypothesisTests.test_props_do_not_interpenetrate_actual_solid_voxels)
+Center-only placement may permit furniture/lantern/clutter intersections.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_dressing.py", line 69, in test_props_do_not_interpenetrate_actual_solid_voxels
+    self.assertFalse(found,found[:12])
+AssertionError: [('prop-0015', 'prop-0018'), ('prop-0020', 'prop-0025'), ('prop-0028', 'prop-0031'), ('prop-0033', 'prop-0038'), ('prop-0036', 'prop-0037'), ('prop-0042', 'prop-0046'), ('prop-0043', 'prop-0046'), ('prop-0050', 'prop-0055'), ('prop-0053', 'prop-0054')] is not false : [('prop-0015', 'prop-0018'), ('prop-0020', 'prop-0025'), ('prop-0028', 'prop-0031'), ('prop-0033', 'prop-0038'), ('prop-0036', 'prop-0037'), ('prop-0042', 'prop-0046'), ('prop-0043', 'prop-0046'), ('prop-0050', 'prop-0055'), ('prop-0053', 'prop-0054')]
+
+======================================================================
+FAIL: test_spatial_bins_honor_queries_larger_than_two_meters (__main__.DressingHypothesisTests.test_spatial_bins_honor_queries_larger_than_two_meters)
+Clearance pad is a public argument; pre-indexing must not impose hidden maxima.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_dressing.py", line 198, in test_spatial_bins_honor_queries_larger_than_two_meters
+    self.assertTrue(clear.near_path(5,1,pad=6))
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 18 tests in 1.657s
+
+FAILED (failures=9)

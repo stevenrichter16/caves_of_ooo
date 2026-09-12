@@ -1,0 +1,47 @@
+test_invalid_functional_plan_preserves_previous_generation (__main__.PipelineReview.test_invalid_functional_plan_preserves_previous_generation) ... FAIL
+test_manual_collection_instance_keeps_borrowed_generated_content (__main__.PipelineReview.test_manual_collection_instance_keeps_borrowed_generated_content) ... FAIL
+test_manual_parented_child_retains_world_transform (__main__.PipelineReview.test_manual_parented_child_retains_world_transform) ... FAIL
+test_unparented_manual_transform_remains_unchanged_countercheck (__main__.PipelineReview.test_unparented_manual_transform_remains_unchanged_countercheck) ... ok
+
+======================================================================
+FAIL: test_invalid_functional_plan_preserves_previous_generation (__main__.PipelineReview.test_invalid_functional_plan_preserves_previous_generation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/blender_pipeline_review.py", line 37, in test_invalid_functional_plan_preserves_previous_generation
+    self.assertIn(name,bpy.data.objects,'A planning rejection erased the previous generated town')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'GeneratedParent' not found in <bpy_collection[93], BlendDataObjects> : A planning rejection erased the previous generated town
+
+======================================================================
+FAIL: test_manual_collection_instance_keeps_borrowed_generated_content (__main__.PipelineReview.test_manual_collection_instance_keeps_borrowed_generated_content)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/blender_pipeline_review.py", line 45, in test_manual_collection_instance_keeps_borrowed_generated_content
+    self.assertIsNotNone(instance.instance_collection,'A manually authored instance lost its source collection')
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : A manually authored instance lost its source collection
+
+======================================================================
+FAIL: test_manual_parented_child_retains_world_transform (__main__.PipelineReview.test_manual_parented_child_retains_world_transform)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/blender_pipeline_review.py", line 25, in test_manual_parented_child_retains_world_transform
+    self.assertLess(max(abs(manual.matrix_world[i][j]-before[i][j]) for i in range(4) for j in range(4)),1e-6)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 8.0 not less than 1e-06
+
+----------------------------------------------------------------------
+Ran 4 tests in 1.001s
+
+FAILED (failures=3)
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/blender_pipeline_review.py", line 51, in <module>
+    if not result.wasSuccessful():raise RuntimeError('Independent pipeline review failed')
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Independent pipeline review failed
+PIPELINE_REVIEW_RESULT {"tests": 4, "failures": 3, "errors": 0}
+
+Error: script failed, file: 'ArtSource/VoxelTown/tests/blender_pipeline_review.py', exiting.
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 01:35:57)
+
+Blender quit

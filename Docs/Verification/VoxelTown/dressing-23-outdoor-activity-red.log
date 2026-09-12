@@ -1,0 +1,23 @@
+test_a_third_of_residents_prefer_clear_outdoor_activity_spaces (__main__.DressingAdversarialTests.test_a_third_of_residents_prefer_clear_outdoor_activity_spaces) ... FAIL
+test_vegetation_reserves_outdoor_residents_consistently (__main__.DressingAdversarialTests.test_vegetation_reserves_outdoor_residents_consistently) ... FAIL
+
+======================================================================
+FAIL: test_a_third_of_residents_prefer_clear_outdoor_activity_spaces (__main__.DressingAdversarialTests.test_a_third_of_residents_prefer_clear_outdoor_activity_spaces)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_dressing.py", line 227, in test_a_third_of_residents_prefer_clear_outdoor_activity_spaces
+    self.assertGreaterEqual(len(outside),config.population//3)
+AssertionError: 0 not greater than or equal to 6
+
+======================================================================
+FAIL: test_vegetation_reserves_outdoor_residents_consistently (__main__.DressingAdversarialTests.test_vegetation_reserves_outdoor_residents_consistently)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_dressing.py", line 238, in test_vegetation_reserves_outdoor_residents_consistently
+    self.assertEqual(6,len(outdoor))
+AssertionError: 6 != 0
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.389s
+
+FAILED (failures=2)

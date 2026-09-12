@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "cliFlagsUnchanged": true,
+  "tests": 21,
+  "productionFilesChanged": [
+    "ArtSource/VoxelTown/town_generator/generate.py"
+  ],
+  "testFilesChanged": [
+    "ArtSource/VoxelTown/tests/test_pipeline_review.py"
+  ],
+  "sourceHashes": {
+    "ArtSource/VoxelTown/town_generator/generate.py": "749685a624cdafb7162ee402c7f4ed197f6bcee9f372e03924b73e4137777f91",
+    "ArtSource/VoxelTown/tests/test_pipeline_review.py": "915b0d0831ff0c7ab69141de8d20dd6d07e8fdff35e6b1102c98ef9aeb0e374d"
+  },
+  "redReceipts": [
+    "publication-red.log",
+    "publication-adversarial-red.log",
+    "publication-active-document-red.log"
+  ],
+  "greenReceipt": "publication-final-green.log",
+  "initialRed": {
+    "tests": 13,
+    "failures": 5,
+    "errors": 4
+  },
+  "adversarialRed": {
+    "tests": 20,
+    "failures": 1,
+    "errors": 0
+  },
+  "activeDocumentRed": {
+    "tests": 21,
+    "failures": 1,
+    "errors": 0
+  },
+  "behaviors": [
+    "Owned sibling staging directory is cleaned on failure",
+    "Previous complete bundle preserved on planning/export/render/save failure",
+    "Blender CANCELLED return and missing expected artifact reject publication",
+    "Per-file replacement rollback after injected publication I/O failure",
+    "Unrelated files/directories and external symlink targets preserved",
+    "bundle.json is replaced last and hashes all current artifacts except itself",
+    "Old optional artifacts remain on disk but are excluded from current bundle and explicitly listed as retainedPreviousArtifacts",
+    "stats.json refreshes in every mode with explicit artifacts flags",
+    "Data-only never imports bpy",
+    "FBX raw exporter output stored in fbx-export.log",
+    "Known repeated shared-mesh registration warnings aggregated only after matching shared slot layouts verified",
+    "All other warnings printed unchanged",
+    "Staged Blender save uses copy=True and durable destination render filepath"
+  ],
+  "reviewCorrection": "Initial injected publication failure compared /var temporary path against resolved /private/var output, so its hook did not fire. Corrected the test destination comparison to resolve(), then verified actual rollback. This was a fixture issue, not a production rollback failure.",
+  "honestyBounds": "Pure tests use a file-writing bpy double and real filesystem. Root owns real Blender final generation/render/export gates. Publication uses rollback on ordinary caught errors, not process-crash durability or concurrent-writer transactions. Consumers should verify bundle hashes; unrequested old optional files are deliberately retained and not current."
+}

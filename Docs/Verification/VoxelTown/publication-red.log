@@ -1,0 +1,135 @@
+test_data_only_and_fbx_are_rejected_before_output_mutation (test_pipeline_review.CliPipelineReview.test_data_only_and_fbx_are_rejected_before_output_mutation) ... ok
+test_data_only_and_render_are_rejected_before_output_mutation (test_pipeline_review.CliPipelineReview.test_data_only_and_render_are_rejected_before_output_mutation) ... ok
+test_data_only_succeeds_and_creates_only_semantic_output (test_pipeline_review.CliPipelineReview.test_data_only_succeeds_and_creates_only_semantic_output) ... ok
+test_data_only_never_imports_bpy_and_marks_prior_blend_not_current (test_pipeline_review.PublicationTests.test_data_only_never_imports_bpy_and_marks_prior_blend_not_current) ... ERROR
+test_export_failure_preserves_existing_bundle (test_pipeline_review.PublicationTests.test_export_failure_preserves_existing_bundle) ... FAIL
+test_fbx_raw_log_retains_both_known_and_unrelated_warnings (test_pipeline_review.PublicationTests.test_fbx_raw_log_retains_both_known_and_unrelated_warnings) ... ERROR
+test_planning_failure_preserves_existing_bundle (test_pipeline_review.PublicationTests.test_planning_failure_preserves_existing_bundle) ... FAIL
+test_publish_failure_rolls_back_partial_replacements (test_pipeline_review.PublicationTests.test_publish_failure_rolls_back_partial_replacements) ... FAIL
+test_render_failure_preserves_existing_bundle (test_pipeline_review.PublicationTests.test_render_failure_preserves_existing_bundle) ... FAIL
+test_save_failure_preserves_existing_bundle (test_pipeline_review.PublicationTests.test_save_failure_preserves_existing_bundle) ... FAIL
+test_success_publishes_complete_hash_manifest_and_preserves_manual_file (test_pipeline_review.PublicationTests.test_success_publishes_complete_hash_manifest_and_preserves_manual_file) ... ERROR
+test_unrelated_directory_named_as_artifact_rejects_before_replacing_any_file (test_pipeline_review.PublicationTests.test_unrelated_directory_named_as_artifact_rejects_before_replacing_any_file) ... ok
+test_unrequested_previous_optional_outputs_are_preserved_but_not_claimed_current (test_pipeline_review.PublicationTests.test_unrequested_previous_optional_outputs_are_preserved_but_not_claimed_current) ... ERROR
+
+======================================================================
+ERROR: test_data_only_never_imports_bpy_and_marks_prior_blend_not_current (test_pipeline_review.PublicationTests.test_data_only_never_imports_bpy_and_marks_prior_blend_not_current)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_pipeline_review.py", line 100, in test_data_only_never_imports_bpy_and_marks_prior_blend_not_current
+    bundle=json.loads((folder/'bundle.json').read_text());stats=json.loads((folder/'stats.json').read_text())
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/tmps81w9w2m/town/bundle.json'
+
+======================================================================
+ERROR: test_fbx_raw_log_retains_both_known_and_unrelated_warnings (test_pipeline_review.PublicationTests.test_fbx_raw_log_retains_both_known_and_unrelated_warnings)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_pipeline_review.py", line 123, in test_fbx_raw_log_retains_both_known_and_unrelated_warnings
+    self.assertEqual((folder/'fbx-export.log').read_text(),text)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/tmpalh63_hv/town/fbx-export.log'
+
+======================================================================
+ERROR: test_success_publishes_complete_hash_manifest_and_preserves_manual_file (test_pipeline_review.PublicationTests.test_success_publishes_complete_hash_manifest_and_preserves_manual_file)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_pipeline_review.py", line 77, in test_success_publishes_complete_hash_manifest_and_preserves_manual_file
+    bundle=json.loads((folder/'bundle.json').read_text())
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/tmp6zua0c61/town/bundle.json'
+
+======================================================================
+ERROR: test_unrequested_previous_optional_outputs_are_preserved_but_not_claimed_current (test_pipeline_review.PublicationTests.test_unrequested_previous_optional_outputs_are_preserved_but_not_claimed_current)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_pipeline_review.py", line 89, in test_unrequested_previous_optional_outputs_are_preserved_but_not_claimed_current
+    bundle=json.loads((folder/'bundle.json').read_text());stats=json.loads((folder/'stats.json').read_text())
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/tmpjcv23bwf/town/bundle.json'
+
+======================================================================
+FAIL: test_export_failure_preserves_existing_bundle (test_pipeline_review.PublicationTests.test_export_failure_preserves_existing_bundle)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_pipeline_review.py", line 71, in test_export_failure_preserves_existing_bundle
+    def test_export_failure_preserves_existing_bundle(self):self.assert_failure_preserves_bundle('export')
+                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_pipeline_review.py", line 68, in assert_failure_preserves_bundle
+    self.assertEqual(self.snapshot(folder),before)
+AssertionError: {'tow[98 chars]21\xaa\x05\x00\x1a\xef\xe7"\x16\x00\x00\x00', [6556 chars]}\n'} != {'tow[98 chars]21\xac\x05\x00\xd9\xbc\xca\t\x16\x00\x00\x00',[7640 chars]}\n'}
+Diff is 27259 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_planning_failure_preserves_existing_bundle (test_pipeline_review.PublicationTests.test_planning_failure_preserves_existing_bundle)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_pipeline_review.py", line 70, in test_planning_failure_preserves_existing_bundle
+    def test_planning_failure_preserves_existing_bundle(self):self.assert_failure_preserves_bundle('plan')
+                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_pipeline_review.py", line 68, in assert_failure_preserves_bundle
+    self.assertEqual(self.snapshot(folder),before)
+AssertionError: {'tow[769 chars]    -4.75,\n      19.0\n    ],\n    "main_entr[5886 chars]}\n'} != {'tow[769 chars]    -3.75,\n      21.25\n    ],\n    "main_ent[6969 chars]}\n'}
+Diff is 26905 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_publish_failure_rolls_back_partial_replacements (test_pipeline_review.PublicationTests.test_publish_failure_rolls_back_partial_replacements)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_pipeline_review.py", line 111, in test_publish_failure_rolls_back_partial_replacements
+    with patch('os.replace',side_effect=reject),self.assertRaisesRegex(OSError,'publish failed'):self.run_fake(folder,42)
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: OSError not raised
+
+======================================================================
+FAIL: test_render_failure_preserves_existing_bundle (test_pipeline_review.PublicationTests.test_render_failure_preserves_existing_bundle)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_pipeline_review.py", line 72, in test_render_failure_preserves_existing_bundle
+    def test_render_failure_preserves_existing_bundle(self):self.assert_failure_preserves_bundle('render')
+                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_pipeline_review.py", line 68, in assert_failure_preserves_bundle
+    self.assertEqual(self.snapshot(folder),before)
+AssertionError: {'tow[98 chars]21\xaa\x05\x00\x1a\xef\xe7"\x16\x00\x00\x00', [6557 chars]}\n'} != {'tow[98 chars]21\xac\x05\x00\xd9\xbc\xca\t\x16\x00\x00\x00',[7641 chars]}\n'}
+Diff is 27260 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_save_failure_preserves_existing_bundle (test_pipeline_review.PublicationTests.test_save_failure_preserves_existing_bundle)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_pipeline_review.py", line 73, in test_save_failure_preserves_existing_bundle
+    def test_save_failure_preserves_existing_bundle(self):self.assert_failure_preserves_bundle('save')
+                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_pipeline_review.py", line 68, in assert_failure_preserves_bundle
+    self.assertEqual(self.snapshot(folder),before)
+AssertionError: {'tow[98 chars]21\xaa\x05\x00\x1a\xef\xe7"\x16\x00\x00\x00', [6554 chars]}\n'} != {'tow[98 chars]21\xac\x05\x00\xd9\xbc\xca\t\x16\x00\x00\x00',[7638 chars]}\n'}
+Diff is 27257 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 13 tests in 1.456s
+
+FAILED (failures=5, errors=4)

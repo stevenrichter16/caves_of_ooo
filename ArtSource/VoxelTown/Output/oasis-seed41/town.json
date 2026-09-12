@@ -1,0 +1,1581 @@
+{
+  "anchors": {
+    "farming": [
+      -3.0,
+      17.0
+    ],
+    "main_entrance": [
+      16.5,
+      -27.75
+    ],
+    "market": [
+      13.0,
+      -13.25
+    ],
+    "plaza": [
+      2.5,
+      -1.5
+    ],
+    "ruin": [
+      20.25,
+      23.75
+    ],
+    "secondary_entrance": [
+      27.75,
+      13.5
+    ],
+    "water": [
+      -6.0,
+      -3.25
+    ]
+  },
+  "buildings": [
+    {
+      "depth": 8.0,
+      "entrances": [
+        [
+          0,
+          -4.0
+        ]
+      ],
+      "id": "building-000-animal_enclosure",
+      "material_set": "sandstone",
+      "occupants": [
+        "npc-0000",
+        "npc-0014"
+      ],
+      "position": [
+        0.0,
+        20.75
+      ],
+      "prop_profile": "livestock",
+      "role": "animal_enclosure",
+      "rooms": [
+        {
+          "center": [
+            0,
+            0
+          ],
+          "depth": 7.0,
+          "id": "building-000-animal_enclosure-room",
+          "role": "pen",
+          "width": 7.5
+        }
+      ],
+      "rotation": 0,
+      "wall_height": 1.5,
+      "width": 8.5
+    },
+    {
+      "depth": 5.5,
+      "entrances": [
+        [
+          0,
+          -2.75
+        ]
+      ],
+      "id": "building-001-farmhouse",
+      "material_set": "sandstone",
+      "occupants": [
+        "npc-0001",
+        "npc-0002",
+        "npc-0003",
+        "npc-0015",
+        "npc-0016",
+        "npc-0017"
+      ],
+      "position": [
+        -2.75,
+        9.25
+      ],
+      "prop_profile": "agricultural",
+      "role": "farmhouse",
+      "rooms": [
+        {
+          "center": [
+            0,
+            0
+          ],
+          "depth": 4.5,
+          "id": "building-001-farmhouse-room",
+          "role": "farm_kitchen",
+          "width": 5.5
+        }
+      ],
+      "rotation": 0,
+      "wall_height": 2.75,
+      "width": 6.5
+    },
+    {
+      "depth": 8.0,
+      "entrances": [
+        [
+          0,
+          -4.0
+        ]
+      ],
+      "id": "building-002-bathhouse",
+      "material_set": "sandstone",
+      "occupants": [
+        "npc-0004",
+        "npc-0018"
+      ],
+      "position": [
+        -5.5,
+        -10.5
+      ],
+      "prop_profile": "bathing",
+      "role": "bathhouse",
+      "rooms": [
+        {
+          "center": [
+            0,
+            0
+          ],
+          "depth": 7.0,
+          "id": "building-002-bathhouse-room",
+          "role": "bath",
+          "width": 7.5
+        }
+      ],
+      "rotation": 3.141592653589793,
+      "wall_height": 3.0,
+      "width": 8.5
+    },
+    {
+      "depth": 9.5,
+      "entrances": [
+        [
+          0,
+          -4.75
+        ]
+      ],
+      "id": "building-003-meeting_house",
+      "material_set": "earth",
+      "occupants": [
+        "npc-0005",
+        "npc-0019"
+      ],
+      "position": [
+        10.5,
+        -3.0
+      ],
+      "prop_profile": "community",
+      "role": "meeting_house",
+      "rooms": [
+        {
+          "center": [
+            0,
+            0
+          ],
+          "depth": 8.5,
+          "id": "building-003-meeting_house-room",
+          "role": "gathering",
+          "width": 8.5
+        }
+      ],
+      "rotation": 4.71238898038469,
+      "wall_height": 3.0,
+      "width": 9.5
+    },
+    {
+      "depth": 7.5,
+      "entrances": [
+        [
+          0,
+          -3.75
+        ]
+      ],
+      "id": "building-004-storehouse",
+      "material_set": "sandstone",
+      "occupants": [
+        "npc-0006",
+        "npc-0020"
+      ],
+      "position": [
+        6.0,
+        -16.25
+      ],
+      "prop_profile": "storage",
+      "role": "storehouse",
+      "rooms": [
+        {
+          "center": [
+            0,
+            0
+          ],
+          "depth": 6.5,
+          "id": "building-004-storehouse-room",
+          "role": "storage",
+          "width": 7.0
+        }
+      ],
+      "rotation": 3.141592653589793,
+      "wall_height": 2.75,
+      "width": 8.0
+    },
+    {
+      "depth": 7.5,
+      "entrances": [
+        [
+          0,
+          -3.75
+        ]
+      ],
+      "id": "building-005-shrine",
+      "material_set": "earth",
+      "occupants": [
+        "npc-0007",
+        "npc-0021"
+      ],
+      "position": [
+        17.0,
+        15.75
+      ],
+      "prop_profile": "ritual",
+      "role": "shrine",
+      "rooms": [
+        {
+          "center": [
+            0,
+            0
+          ],
+          "depth": 6.5,
+          "id": "building-005-shrine-room",
+          "role": "sanctum",
+          "width": 6.5
+        }
+      ],
+      "rotation": 0,
+      "wall_height": 3.0,
+      "width": 7.5
+    },
+    {
+      "depth": 6.5,
+      "entrances": [
+        [
+          0,
+          -3.25
+        ]
+      ],
+      "id": "building-006-workshop",
+      "material_set": "earth",
+      "occupants": [
+        "npc-0008",
+        "npc-0022"
+      ],
+      "position": [
+        -5.5,
+        -21.0
+      ],
+      "prop_profile": "crafting",
+      "role": "workshop",
+      "rooms": [
+        {
+          "center": [
+            0,
+            0
+          ],
+          "depth": 5.5,
+          "id": "building-006-workshop-room",
+          "role": "workroom",
+          "width": 7.5
+        }
+      ],
+      "rotation": 3.141592653589793,
+      "wall_height": 3.0,
+      "width": 8.5
+    },
+    {
+      "depth": 6.0,
+      "entrances": [
+        [
+          0,
+          -3.0
+        ]
+      ],
+      "id": "building-007-guard_watch",
+      "material_set": "sandstone",
+      "occupants": [
+        "npc-0009",
+        "npc-0023"
+      ],
+      "position": [
+        10.0,
+        -26.25
+      ],
+      "prop_profile": "guarding",
+      "role": "guard_watch",
+      "rooms": [
+        {
+          "center": [
+            0,
+            0
+          ],
+          "depth": 5.0,
+          "id": "building-007-guard_watch-room",
+          "role": "watch",
+          "width": 5.5
+        }
+      ],
+      "rotation": 3.141592653589793,
+      "wall_height": 3.75,
+      "width": 6.5
+    },
+    {
+      "depth": 7.5,
+      "entrances": [
+        [
+          0,
+          -3.75
+        ]
+      ],
+      "id": "building-008-residence",
+      "material_set": "earth",
+      "occupants": [
+        "npc-0010",
+        "npc-0011",
+        "npc-0012"
+      ],
+      "position": [
+        22.5,
+        5.5
+      ],
+      "prop_profile": "domestic",
+      "role": "residence",
+      "rooms": [
+        {
+          "center": [
+            0,
+            0
+          ],
+          "depth": 6.5,
+          "id": "building-008-residence-room",
+          "role": "living",
+          "width": 5.5
+        }
+      ],
+      "rotation": 4.71238898038469,
+      "wall_height": 2.75,
+      "width": 6.5
+    },
+    {
+      "depth": 7.0,
+      "entrances": [
+        [
+          0,
+          -3.5
+        ]
+      ],
+      "id": "building-009-trader",
+      "material_set": "sandstone",
+      "occupants": [
+        "npc-0013"
+      ],
+      "position": [
+        20.25,
+        -18.75
+      ],
+      "prop_profile": "merchandise",
+      "role": "trader",
+      "rooms": [
+        {
+          "center": [
+            0,
+            0
+          ],
+          "depth": 6.0,
+          "id": "building-009-trader-room",
+          "role": "shop",
+          "width": 5.5
+        }
+      ],
+      "rotation": 4.71238898038469,
+      "wall_height": 2.75,
+      "width": 6.5
+    }
+  ],
+  "config": {
+    "agriculture_amount": 0.65,
+    "archetypes": [
+      "residence",
+      "workshop",
+      "trader",
+      "meeting_house",
+      "shrine",
+      "storehouse",
+      "farmhouse",
+      "bathhouse",
+      "animal_enclosure",
+      "guard_watch"
+    ],
+    "building_count": 10,
+    "building_irregularity": 0.8,
+    "clutter_amount": 0.85,
+    "density": 0.72,
+    "path_irregularity": 0.5,
+    "population": 24,
+    "ruin_amount": 0.55,
+    "seed": 41,
+    "town_age": 0.8,
+    "town_size": 64,
+    "vegetation_amount": 0.9,
+    "voxel_size": 0.25,
+    "water_amount": 0.55,
+    "wealth": 0.65
+  },
+  "districts": [
+    {
+      "center": [
+        3.0,
+        -0.5
+      ],
+      "id": "district-civic",
+      "radius": 8.32,
+      "role": "civic"
+    },
+    {
+      "center": [
+        12.5,
+        6.5
+      ],
+      "id": "district-residential",
+      "radius": 12.16,
+      "role": "residential"
+    },
+    {
+      "center": [
+        -4.0,
+        17.75
+      ],
+      "id": "district-agricultural",
+      "radius": 10.24,
+      "role": "agricultural"
+    },
+    {
+      "center": [
+        12.0,
+        -12.75
+      ],
+      "id": "district-commercial",
+      "radius": 9.6,
+      "role": "commercial"
+    },
+    {
+      "center": [
+        1.0,
+        -16.25
+      ],
+      "id": "district-industrial",
+      "radius": 10.24,
+      "role": "industrial"
+    },
+    {
+      "center": [
+        -5.0,
+        -4.75
+      ],
+      "id": "district-water",
+      "radius": 7.68,
+      "role": "water"
+    },
+    {
+      "center": [
+        16.5,
+        19.0
+      ],
+      "id": "district-religious",
+      "radius": 7.68,
+      "role": "religious"
+    },
+    {
+      "center": [
+        15.5,
+        -27.0
+      ],
+      "id": "district-defensive",
+      "radius": 7.68,
+      "role": "defensive"
+    }
+  ],
+  "farms": [
+    {
+      "building_id": "building-001-farmhouse",
+      "center": [
+        5.75,
+        9.25
+      ],
+      "depth": 8.0,
+      "id": "building-001-farmhouse-field",
+      "width": 8.0
+    }
+  ],
+  "npcs": [],
+  "paths": [
+    {
+      "id": "path-000",
+      "points": [
+        [
+          16.5,
+          -27.75
+        ],
+        [
+          16.5,
+          -28.0
+        ],
+        [
+          16.5,
+          -27.5
+        ],
+        [
+          15.0,
+          -26.0
+        ],
+        [
+          15.0,
+          -20.0
+        ],
+        [
+          13.5,
+          -18.5
+        ],
+        [
+          13.5,
+          -15.5
+        ],
+        [
+          13.0,
+          -15.0
+        ],
+        [
+          13.0,
+          -13.0
+        ],
+        [
+          13.0,
+          -13.25
+        ]
+      ],
+      "purpose": "entrance-market",
+      "width": 2.25
+    },
+    {
+      "id": "path-001",
+      "points": [
+        [
+          13.0,
+          -13.25
+        ],
+        [
+          13.0,
+          -12.5
+        ],
+        [
+          11.0,
+          -10.5
+        ],
+        [
+          8.5,
+          -10.5
+        ],
+        [
+          7.5,
+          -9.5
+        ],
+        [
+          4.0,
+          -9.5
+        ],
+        [
+          3.5,
+          -9.0
+        ],
+        [
+          3.5,
+          -8.5
+        ],
+        [
+          3.0,
+          -8.0
+        ],
+        [
+          3.0,
+          -6.5
+        ],
+        [
+          2.5,
+          -6.0
+        ],
+        [
+          2.5,
+          -1.5
+        ]
+      ],
+      "purpose": "market-plaza",
+      "width": 2.25
+    },
+    {
+      "id": "path-002",
+      "points": [
+        [
+          2.5,
+          -1.5
+        ],
+        [
+          3.0,
+          -1.0
+        ],
+        [
+          3.0,
+          0.0
+        ],
+        [
+          3.5,
+          0.5
+        ],
+        [
+          3.5,
+          1.5
+        ],
+        [
+          4.5,
+          2.5
+        ],
+        [
+          4.5,
+          3.0
+        ],
+        [
+          5.5,
+          3.0
+        ],
+        [
+          7.0,
+          4.5
+        ],
+        [
+          8.0,
+          4.5
+        ],
+        [
+          9.0,
+          5.5
+        ],
+        [
+          9.5,
+          5.5
+        ],
+        [
+          10.0,
+          6.0
+        ],
+        [
+          11.0,
+          6.0
+        ],
+        [
+          12.5,
+          7.5
+        ],
+        [
+          13.0,
+          7.5
+        ],
+        [
+          14.0,
+          8.5
+        ],
+        [
+          15.0,
+          8.5
+        ],
+        [
+          16.0,
+          9.5
+        ],
+        [
+          16.5,
+          9.5
+        ],
+        [
+          17.0,
+          10.0
+        ],
+        [
+          17.5,
+          10.0
+        ],
+        [
+          18.0,
+          10.5
+        ],
+        [
+          24.0,
+          10.5
+        ],
+        [
+          25.5,
+          12.0
+        ],
+        [
+          26.0,
+          12.0
+        ],
+        [
+          26.5,
+          12.5
+        ],
+        [
+          27.0,
+          12.5
+        ],
+        [
+          28.0,
+          13.5
+        ],
+        [
+          27.75,
+          13.5
+        ]
+      ],
+      "purpose": "plaza-secondary",
+      "width": 1.75
+    },
+    {
+      "id": "path-003",
+      "points": [
+        [
+          2.5,
+          -1.5
+        ],
+        [
+          -2.5,
+          -1.5
+        ],
+        [
+          -3.0,
+          -2.0
+        ],
+        [
+          -4.0,
+          -2.0
+        ],
+        [
+          -5.0,
+          -3.0
+        ],
+        [
+          -6.0,
+          -3.0
+        ],
+        [
+          -6.0,
+          -3.25
+        ]
+      ],
+      "purpose": "plaza-water",
+      "width": 1.5
+    },
+    {
+      "id": "path-004",
+      "points": [
+        [
+          0.0,
+          16.75
+        ],
+        [
+          0.0,
+          14.75
+        ],
+        [
+          0.0,
+          15.0
+        ],
+        [
+          0.0,
+          14.5
+        ],
+        [
+          1.5,
+          13.0
+        ],
+        [
+          1.5,
+          11.5
+        ],
+        [
+          2.0,
+          11.0
+        ],
+        [
+          2.0,
+          5.0
+        ],
+        [
+          2.5,
+          4.5
+        ],
+        [
+          2.5,
+          0.5
+        ],
+        [
+          3.0,
+          0.0
+        ],
+        [
+          3.0,
+          -1.0
+        ],
+        [
+          2.5,
+          -1.5
+        ]
+      ],
+      "purpose": "animal_enclosure-plaza",
+      "width": 1.0
+    },
+    {
+      "id": "path-005",
+      "points": [
+        [
+          -2.75,
+          6.5
+        ],
+        [
+          -2.75,
+          4.5
+        ],
+        [
+          -3.0,
+          4.5
+        ],
+        [
+          -3.0,
+          4.0
+        ],
+        [
+          -3.5,
+          3.5
+        ],
+        [
+          -3.5,
+          2.0
+        ],
+        [
+          -4.0,
+          1.5
+        ],
+        [
+          -4.0,
+          1.0
+        ],
+        [
+          -5.0,
+          0.0
+        ],
+        [
+          -5.0,
+          -2.0
+        ],
+        [
+          -6.0,
+          -3.0
+        ],
+        [
+          -6.0,
+          -3.25
+        ]
+      ],
+      "purpose": "farm-water",
+      "width": 1.0
+    },
+    {
+      "id": "path-006",
+      "points": [
+        [
+          -5.5,
+          -6.5
+        ],
+        [
+          -5.5,
+          -3.5
+        ],
+        [
+          -4.0,
+          -2.0
+        ],
+        [
+          -3.0,
+          -2.0
+        ],
+        [
+          -2.5,
+          -1.5
+        ],
+        [
+          2.5,
+          -1.5
+        ]
+      ],
+      "purpose": "bathhouse-plaza",
+      "width": 1.0
+    },
+    {
+      "id": "path-007",
+      "points": [
+        [
+          5.75,
+          -3.0
+        ],
+        [
+          3.75,
+          -3.0
+        ],
+        [
+          4.0,
+          -3.0
+        ],
+        [
+          2.5,
+          -1.5
+        ]
+      ],
+      "purpose": "meeting_house-plaza",
+      "width": 1.0
+    },
+    {
+      "id": "path-008",
+      "points": [
+        [
+          6.0,
+          -12.5
+        ],
+        [
+          6.0,
+          -10.5
+        ],
+        [
+          5.0,
+          -9.5
+        ],
+        [
+          4.5,
+          -9.5
+        ],
+        [
+          3.0,
+          -8.0
+        ],
+        [
+          3.0,
+          -6.5
+        ],
+        [
+          2.5,
+          -6.0
+        ],
+        [
+          2.5,
+          -1.5
+        ]
+      ],
+      "purpose": "storehouse-plaza",
+      "width": 1.0
+    },
+    {
+      "id": "path-009",
+      "points": [
+        [
+          17.0,
+          12.0
+        ],
+        [
+          17.0,
+          10.0
+        ],
+        [
+          16.5,
+          9.5
+        ],
+        [
+          16.0,
+          9.5
+        ],
+        [
+          15.0,
+          8.5
+        ],
+        [
+          14.0,
+          8.5
+        ],
+        [
+          13.0,
+          7.5
+        ],
+        [
+          12.5,
+          7.5
+        ],
+        [
+          11.0,
+          6.0
+        ],
+        [
+          10.0,
+          6.0
+        ],
+        [
+          9.5,
+          5.5
+        ],
+        [
+          9.0,
+          5.5
+        ],
+        [
+          8.0,
+          4.5
+        ],
+        [
+          7.0,
+          4.5
+        ],
+        [
+          5.5,
+          3.0
+        ],
+        [
+          4.5,
+          3.0
+        ],
+        [
+          4.5,
+          2.5
+        ],
+        [
+          3.5,
+          1.5
+        ],
+        [
+          3.5,
+          0.5
+        ],
+        [
+          3.0,
+          0.0
+        ],
+        [
+          3.0,
+          -1.0
+        ],
+        [
+          2.5,
+          -1.5
+        ]
+      ],
+      "purpose": "shrine-plaza",
+      "width": 1.0
+    },
+    {
+      "id": "path-010",
+      "points": [
+        [
+          -5.5,
+          -17.75
+        ],
+        [
+          -5.5,
+          -15.75
+        ],
+        [
+          -5.5,
+          -16.0
+        ],
+        [
+          -5.0,
+          -16.0
+        ],
+        [
+          -4.5,
+          -15.5
+        ],
+        [
+          0.0,
+          -15.5
+        ],
+        [
+          0.0,
+          -13.0
+        ],
+        [
+          0.5,
+          -12.5
+        ],
+        [
+          0.5,
+          -12.0
+        ],
+        [
+          1.0,
+          -11.5
+        ],
+        [
+          1.0,
+          -10.5
+        ],
+        [
+          2.5,
+          -9.0
+        ],
+        [
+          2.5,
+          -8.5
+        ],
+        [
+          3.0,
+          -8.0
+        ],
+        [
+          3.0,
+          -6.5
+        ],
+        [
+          2.5,
+          -6.0
+        ],
+        [
+          2.5,
+          -1.5
+        ]
+      ],
+      "purpose": "workshop-plaza",
+      "width": 1.0
+    },
+    {
+      "id": "path-011",
+      "points": [
+        [
+          10.0,
+          -23.25
+        ],
+        [
+          10.0,
+          -21.0
+        ],
+        [
+          11.0,
+          -21.0
+        ],
+        [
+          11.0,
+          -11.5
+        ],
+        [
+          10.0,
+          -10.5
+        ],
+        [
+          8.5,
+          -10.5
+        ],
+        [
+          7.5,
+          -9.5
+        ],
+        [
+          4.5,
+          -9.5
+        ],
+        [
+          3.0,
+          -8.0
+        ],
+        [
+          3.0,
+          -6.5
+        ],
+        [
+          2.5,
+          -6.0
+        ],
+        [
+          2.5,
+          -1.5
+        ]
+      ],
+      "purpose": "guard_watch-plaza",
+      "width": 1.0
+    },
+    {
+      "id": "path-012",
+      "points": [
+        [
+          18.75,
+          5.5
+        ],
+        [
+          16.75,
+          5.5
+        ],
+        [
+          17.0,
+          5.5
+        ],
+        [
+          14.5,
+          5.5
+        ],
+        [
+          13.5,
+          6.5
+        ],
+        [
+          11.5,
+          6.5
+        ],
+        [
+          11.0,
+          6.0
+        ],
+        [
+          10.0,
+          6.0
+        ],
+        [
+          9.5,
+          5.5
+        ],
+        [
+          9.0,
+          5.5
+        ],
+        [
+          8.0,
+          4.5
+        ],
+        [
+          7.0,
+          4.5
+        ],
+        [
+          5.5,
+          3.0
+        ],
+        [
+          4.5,
+          3.0
+        ],
+        [
+          4.5,
+          2.5
+        ],
+        [
+          0.5,
+          -1.5
+        ],
+        [
+          -2.5,
+          -1.5
+        ],
+        [
+          -3.0,
+          -2.0
+        ],
+        [
+          -4.0,
+          -2.0
+        ],
+        [
+          -5.0,
+          -3.0
+        ],
+        [
+          -6.0,
+          -3.0
+        ],
+        [
+          -6.0,
+          -3.25
+        ]
+      ],
+      "purpose": "home-water",
+      "width": 1.0
+    },
+    {
+      "id": "path-013",
+      "points": [
+        [
+          16.75,
+          -18.75
+        ],
+        [
+          14.75,
+          -18.75
+        ],
+        [
+          15.0,
+          -19.0
+        ],
+        [
+          15.0,
+          -18.5
+        ],
+        [
+          13.5,
+          -17.0
+        ],
+        [
+          13.5,
+          -15.5
+        ],
+        [
+          13.0,
+          -15.0
+        ],
+        [
+          13.0,
+          -13.0
+        ],
+        [
+          13.0,
+          -13.25
+        ]
+      ],
+      "purpose": "trader-market",
+      "width": 1.0
+    },
+    {
+      "id": "path-014",
+      "points": [
+        [
+          -2.75,
+          6.5
+        ],
+        [
+          -2.75,
+          4.5
+        ],
+        [
+          -3.0,
+          4.5
+        ],
+        [
+          -3.0,
+          4.0
+        ],
+        [
+          1.5,
+          -0.5
+        ],
+        [
+          1.5,
+          -1.0
+        ],
+        [
+          2.5,
+          -2.0
+        ],
+        [
+          2.5,
+          -6.0
+        ],
+        [
+          3.0,
+          -6.5
+        ],
+        [
+          3.0,
+          -8.0
+        ],
+        [
+          4.5,
+          -9.5
+        ],
+        [
+          5.0,
+          -9.5
+        ],
+        [
+          6.0,
+          -10.5
+        ],
+        [
+          6.0,
+          -12.5
+        ]
+      ],
+      "purpose": "farmhouse-storage",
+      "width": 1
+    },
+    {
+      "id": "path-015",
+      "points": [
+        [
+          -5.5,
+          -17.75
+        ],
+        [
+          -5.5,
+          -15.75
+        ],
+        [
+          -5.5,
+          -16.0
+        ],
+        [
+          -5.0,
+          -16.0
+        ],
+        [
+          -4.5,
+          -15.5
+        ],
+        [
+          0.0,
+          -15.5
+        ],
+        [
+          0.0,
+          -13.0
+        ],
+        [
+          0.5,
+          -12.5
+        ],
+        [
+          0.5,
+          -12.0
+        ],
+        [
+          1.0,
+          -11.5
+        ],
+        [
+          2.5,
+          -11.5
+        ],
+        [
+          3.5,
+          -10.5
+        ],
+        [
+          6.0,
+          -10.5
+        ],
+        [
+          6.0,
+          -12.5
+        ]
+      ],
+      "purpose": "workshop-storage",
+      "width": 1
+    },
+    {
+      "id": "path-016",
+      "points": [
+        [
+          18.75,
+          5.5
+        ],
+        [
+          16.75,
+          5.5
+        ],
+        [
+          17.0,
+          5.5
+        ],
+        [
+          14.5,
+          5.5
+        ],
+        [
+          13.5,
+          6.5
+        ],
+        [
+          11.5,
+          6.5
+        ],
+        [
+          11.0,
+          6.0
+        ],
+        [
+          10.0,
+          6.0
+        ],
+        [
+          9.5,
+          5.5
+        ],
+        [
+          9.0,
+          5.5
+        ],
+        [
+          8.0,
+          4.5
+        ],
+        [
+          7.0,
+          4.5
+        ],
+        [
+          5.5,
+          3.0
+        ],
+        [
+          3.0,
+          3.0
+        ],
+        [
+          2.5,
+          3.5
+        ],
+        [
+          1.5,
+          3.5
+        ],
+        [
+          1.0,
+          4.0
+        ],
+        [
+          -2.5,
+          4.0
+        ],
+        [
+          -3.0,
+          4.5
+        ],
+        [
+          -2.75,
+          4.5
+        ],
+        [
+          -2.75,
+          6.5
+        ]
+      ],
+      "purpose": "home-farm",
+      "width": 1
+    }
+  ],
+  "props": [],
+  "water_bodies": [
+    {
+      "center": [
+        -22.5,
+        -1.0
+      ],
+      "id": "oasis-0",
+      "radii": [
+        11.0,
+        22.75
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+test_large_town_traders_can_share_the_district_market_outdoors (__main__.DressingAdversarialTests.test_large_town_traders_can_share_the_district_market_outdoors) ... ERROR
+
+======================================================================
+ERROR: test_large_town_traders_can_share_the_district_market_outdoors (__main__.DressingAdversarialTests.test_large_town_traders_can_share_the_district_market_outdoors)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_dressing.py", line 224, in test_large_town_traders_can_share_the_district_market_outdoors
+    props=plan_props(town)
+          ^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/props.py", line 74, in plan_props
+    if not found:raise ValueError(f'No usable outdoor trading yard for {b.id}')
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: No usable outdoor trading yard for building-015-trader
+
+----------------------------------------------------------------------
+Ran 1 test in 1.721s
+
+FAILED (errors=1)

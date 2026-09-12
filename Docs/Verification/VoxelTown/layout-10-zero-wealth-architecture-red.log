@@ -1,0 +1,9 @@
+0 building-002-workshop 2.25 wall_height must be finite and between 2.5 and 16
+Traceback (most recent call last):
+  File "<stdin>", line 9, in <module>
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/architecture.py", line 53, in build_structure
+    height = _number(building.wall_height, "wall_height", minimum_height, 16)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/architecture.py", line 19, in _number
+    raise ValueError(f"{label} must be finite and between {minimum} and {maximum}")
+ValueError: wall_height must be finite and between 2.5 and 16

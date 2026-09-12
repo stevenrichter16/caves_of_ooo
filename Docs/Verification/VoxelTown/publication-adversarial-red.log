@@ -1,0 +1,33 @@
+test_data_only_and_fbx_are_rejected_before_output_mutation (test_pipeline_review.CliPipelineReview.test_data_only_and_fbx_are_rejected_before_output_mutation) ... ok
+test_data_only_and_render_are_rejected_before_output_mutation (test_pipeline_review.CliPipelineReview.test_data_only_and_render_are_rejected_before_output_mutation) ... ok
+test_data_only_succeeds_and_creates_only_semantic_output (test_pipeline_review.CliPipelineReview.test_data_only_succeeds_and_creates_only_semantic_output) ... ok
+test_cancelled_render_preserves_bundle_even_without_python_exception (test_pipeline_review.PublicationTests.test_cancelled_render_preserves_bundle_even_without_python_exception) ... ok
+test_data_only_never_imports_bpy_and_marks_prior_blend_not_current (test_pipeline_review.PublicationTests.test_data_only_never_imports_bpy_and_marks_prior_blend_not_current) ... ok
+test_different_shared_slot_layouts_leave_all_warnings_visible (test_pipeline_review.PublicationTests.test_different_shared_slot_layouts_leave_all_warnings_visible) ... ok
+test_duplicate_warning_aggregation_requires_matching_shared_slot_layouts (test_pipeline_review.PublicationTests.test_duplicate_warning_aggregation_requires_matching_shared_slot_layouts) ... ok
+test_export_failure_preserves_existing_bundle (test_pipeline_review.PublicationTests.test_export_failure_preserves_existing_bundle) ... ok
+test_failed_first_publication_removes_only_own_new_files (test_pipeline_review.PublicationTests.test_failed_first_publication_removes_only_own_new_files) ... ok
+test_fbx_raw_log_retains_both_known_and_unrelated_warnings (test_pipeline_review.PublicationTests.test_fbx_raw_log_retains_both_known_and_unrelated_warnings) ... ok
+test_missing_export_file_rejects_success_return_without_mutating_destination (test_pipeline_review.PublicationTests.test_missing_export_file_rejects_success_return_without_mutating_destination) ... ok
+test_planning_failure_preserves_existing_bundle (test_pipeline_review.PublicationTests.test_planning_failure_preserves_existing_bundle) ... ok
+test_publish_failure_rolls_back_partial_replacements (test_pipeline_review.PublicationTests.test_publish_failure_rolls_back_partial_replacements) ... ok
+test_render_failure_preserves_existing_bundle (test_pipeline_review.PublicationTests.test_render_failure_preserves_existing_bundle) ... ok
+test_replace_owned_filename_symlink_does_not_modify_external_file (test_pipeline_review.PublicationTests.test_replace_owned_filename_symlink_does_not_modify_external_file) ... ok
+test_save_failure_preserves_existing_bundle (test_pipeline_review.PublicationTests.test_save_failure_preserves_existing_bundle) ... ok
+test_success_publishes_complete_hash_manifest_and_preserves_manual_file (test_pipeline_review.PublicationTests.test_success_publishes_complete_hash_manifest_and_preserves_manual_file) ... ok
+test_unrelated_directory_named_as_artifact_rejects_before_replacing_any_file (test_pipeline_review.PublicationTests.test_unrelated_directory_named_as_artifact_rejects_before_replacing_any_file) ... ok
+test_unrequested_previous_optional_outputs_are_preserved_but_not_claimed_current (test_pipeline_review.PublicationTests.test_unrequested_previous_optional_outputs_are_preserved_but_not_claimed_current) ... ok
+test_without_shared_mesh_borrowers_registration_warning_is_not_assumed_safe (test_pipeline_review.PublicationTests.test_without_shared_mesh_borrowers_registration_warning_is_not_assumed_safe) ... FAIL
+
+======================================================================
+FAIL: test_without_shared_mesh_borrowers_registration_warning_is_not_assumed_safe (test_pipeline_review.PublicationTests.test_without_shared_mesh_borrowers_registration_warning_is_not_assumed_safe)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_pipeline_review.py", line 178, in test_without_shared_mesh_borrowers_registration_warning_is_not_assumed_safe
+    self.assertIn('WARNING: Cannot register',console)
+AssertionError: 'WARNING: Cannot register' not found in 'WARNING: Unrelated warning stays visible\nFBX: 1 duplicate shared-mesh material registrations; identical slot layouts verified. Full output: fbx-export.log\n'
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.588s
+
+FAILED (failures=1)

@@ -1,0 +1,54 @@
+test_actual_voxel_collision_probe_has_disjoint_countercheck (__main__.DressingAdversarialTests.test_actual_voxel_collision_probe_has_disjoint_countercheck) ... ok
+test_allow_farm_releases_only_farm_reservation (__main__.DressingAdversarialTests.test_allow_farm_releases_only_farm_reservation) ... ok
+test_canopy_is_planned_for_inhabited_shade_not_only_random_understory (__main__.DressingAdversarialTests.test_canopy_is_planned_for_inhabited_shade_not_only_random_understory) ... ok
+test_furniture_and_population_do_not_intersect_real_structure_voxels (__main__.DressingAdversarialTests.test_furniture_and_population_do_not_intersect_real_structure_voxels) ... ok
+test_ignore_owner_does_not_ignore_its_neighbors (__main__.DressingAdversarialTests.test_ignore_owner_does_not_ignore_its_neighbors) ... ok
+test_integrated_town_extent_must_align_with_centered_voxel_grid (__main__.DressingAdversarialTests.test_integrated_town_extent_must_align_with_centered_voxel_grid) ... ok
+test_optional_clutter_cannot_take_the_primary_well_footprint (__main__.DressingAdversarialTests.test_optional_clutter_cannot_take_the_primary_well_footprint) ... ok
+test_prepopulated_town_lists_do_not_change_independent_planners (__main__.DressingAdversarialTests.test_prepopulated_town_lists_do_not_change_independent_planners) ... ok
+test_semantic_boundaries_00 (__main__.DressingAdversarialTests.test_semantic_boundaries_00) ... ok
+test_semantic_boundaries_01 (__main__.DressingAdversarialTests.test_semantic_boundaries_01) ... ok
+test_semantic_boundaries_02 (__main__.DressingAdversarialTests.test_semantic_boundaries_02) ... ok
+test_semantic_boundaries_03 (__main__.DressingAdversarialTests.test_semantic_boundaries_03) ... ok
+test_semantic_boundaries_04 (__main__.DressingAdversarialTests.test_semantic_boundaries_04) ... ok
+test_semantic_boundaries_05 (__main__.DressingAdversarialTests.test_semantic_boundaries_05) ... ok
+test_semantic_boundaries_06 (__main__.DressingAdversarialTests.test_semantic_boundaries_06) ... ok
+test_semantic_boundaries_07 (__main__.DressingAdversarialTests.test_semantic_boundaries_07) ... ok
+test_zero_length_path_has_finite_clearance (__main__.DressingAdversarialTests.test_zero_length_path_has_finite_clearance) ... ok
+test_zero_wealth_still_generates_buildable_accessible_shells (__main__.DressingAdversarialTests.test_zero_wealth_still_generates_buildable_accessible_shells) ... ok
+test_dry_world_has_no_reeds_or_cultivated_plants (__main__.DressingHypothesisTests.test_dry_world_has_no_reeds_or_cultivated_plants)
+No natural water/agriculture must suppress wetland and crop families. ... ok
+test_exact_human_population_and_separate_livestock (__main__.DressingHypothesisTests.test_exact_human_population_and_separate_livestock) ... ok
+test_field_values_are_bounded_and_gradual (__main__.DressingHypothesisTests.test_field_values_are_bounded_and_gradual) ... ok
+test_fractional_terrain_size_does_not_protrude_outside_map (__main__.DressingHypothesisTests.test_fractional_terrain_size_does_not_protrude_outside_map)
+Ceil(tile-count) must clip the final tile rather than expanding map bounds. ... ok
+test_interior_entrance_aisles_remain_clear_of_solid_props (__main__.DressingHypothesisTests.test_interior_entrance_aisles_remain_clear_of_solid_props)
+A readable door must retain a one-meter central approach into the room. ... ok
+test_irrigation_and_crops_do_not_share_solid_voxels (__main__.DressingHypothesisTests.test_irrigation_and_crops_do_not_share_solid_voxels)
+Farm centerline equipment can cut into the first crop row. ... ok
+test_natural_props_use_full_shape_at_the_water_edge (__main__.DressingHypothesisTests.test_natural_props_use_full_shape_at_the_water_edge)
+A center just outside water is insufficient for a one-meter-radius object. ... ok
+test_npcs_do_not_interpenetrate_actual_body_voxels (__main__.DressingHypothesisTests.test_npcs_do_not_interpenetrate_actual_body_voxels)
+Three people spaced .65m apart may overlap their 1.25m-wide arms. ... ok
+test_npcs_do_not_materialize_inside_furniture (__main__.DressingHypothesisTests.test_npcs_do_not_materialize_inside_furniture)
+Independent furniture and population planners need shared reserved space. ... ok
+test_overflow_people_do_not_enter_unrelated_buildings (__main__.DressingHypothesisTests.test_overflow_people_do_not_enter_unrelated_buildings)
+A world-negative-Y overflow formula can put rotated-house crowds through walls. ... ok
+test_overflow_people_stay_on_land_and_inside_map (__main__.DressingHypothesisTests.test_overflow_people_stay_on_land_and_inside_map)
+Exterior crowd rows must respect rotated doors, shore, and finite terrain. ... ok
+test_props_do_not_interpenetrate_actual_solid_voxels (__main__.DressingHypothesisTests.test_props_do_not_interpenetrate_actual_solid_voxels)
+Center-only placement may permit furniture/lantern/clutter intersections. ... ok
+test_spatial_bins_honor_queries_larger_than_two_meters (__main__.DressingHypothesisTests.test_spatial_bins_honor_queries_larger_than_two_meters)
+Clearance pad is a public argument; pre-indexing must not impose hidden maxima. ... ok
+test_stages_are_repeatable_independent_and_nonmutating (__main__.DressingHypothesisTests.test_stages_are_repeatable_independent_and_nonmutating) ... ok
+test_unsupported_town_voxel_scales_reject_before_invalid_furniture (__main__.DressingHypothesisTests.test_unsupported_town_voxel_scales_reject_before_invalid_furniture)
+M1 explicitly supports .25m; earlier coarse-scale interpenetration was RED. ... ok
+test_zero_clutter_preserves_functional_furniture (__main__.DressingHypothesisTests.test_zero_clutter_preserves_functional_furniture) ... ok
+test_zero_ruins_removes_only_ancient_remnants (__main__.DressingHypothesisTests.test_zero_ruins_removes_only_ancient_remnants) ... ok
+test_zero_vegetation_removes_natural_plants_but_keeps_farmed_crops (__main__.DressingHypothesisTests.test_zero_vegetation_removes_natural_plants_but_keeps_farmed_crops)
+Natural vegetation and deliberate agriculture have independent controls. ... ok
+
+----------------------------------------------------------------------
+Ran 36 tests in 7.104s
+
+OK

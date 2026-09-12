@@ -1,0 +1,70 @@
+........EE.....E......E...E...................
+======================================================================
+ERROR: test_adversarial_box_center_overflow_is_value_error (test_assets.VoxelAdversarialTests.test_adversarial_box_center_overflow_is_value_error)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_assets.py", line 236, in test_adversarial_box_center_overflow_is_value_error
+    VoxelMesh().box((1e308, 0, 0), (1e308, 1, 1), "wood")
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/mesh.py", line 69, in box
+    return self.bounds(tuple(c-s/2 for c, s in zip(center, size)),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/mesh.py", line 77, in bounds
+    lo, hi = tuple(map(self._snap, minimum)), tuple(map(self._snap, maximum))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/mesh.py", line 52, in _snap
+    return math.floor(scaled + .5) if scaled >= 0 else math.ceil(scaled - .5)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+OverflowError: cannot convert float infinity to integer
+
+======================================================================
+ERROR: test_adversarial_budget_repaint_does_not_need_extra_capacity (test_assets.VoxelAdversarialTests.test_adversarial_budget_repaint_does_not_need_extra_capacity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_assets.py", line 205, in test_adversarial_budget_repaint_does_not_need_extra_capacity
+    m.bounds((0, 0, 0), (1, 1, 1), "metal")
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/mesh.py", line 82, in bounds
+    raise ValueError("Voxel cell budget exceeded; use separate surface batches")
+ValueError: Voxel cell budget exceeded; use separate surface batches
+
+======================================================================
+ERROR: test_adversarial_finite_coordinate_ratio_overflow_is_value_error (test_assets.VoxelAdversarialTests.test_adversarial_finite_coordinate_ratio_overflow_is_value_error)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_assets.py", line 228, in test_adversarial_finite_coordinate_ratio_overflow_is_value_error
+    VoxelMesh().bounds((0, 0, 0), (1e308, 1, 1), "wood")
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/mesh.py", line 77, in bounds
+    lo, hi = tuple(map(self._snap, minimum)), tuple(map(self._snap, maximum))
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/mesh.py", line 52, in _snap
+    return math.floor(scaled + .5) if scaled >= 0 else math.ceil(scaled - .5)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+OverflowError: cannot convert float infinity to integer
+
+======================================================================
+ERROR: test_adversarial_partial_overlap_respects_exact_capacity (test_assets.VoxelAdversarialTests.test_adversarial_partial_overlap_respects_exact_capacity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_assets.py", line 213, in test_adversarial_partial_overlap_respects_exact_capacity
+    m.bounds((.5, 0, 0), (1.5, 1, 1), "metal")
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/mesh.py", line 82, in bounds
+    raise ValueError("Voxel cell budget exceeded; use separate surface batches")
+ValueError: Voxel cell budget exceeded; use separate surface batches
+
+======================================================================
+ERROR: test_adversarial_tiny_scale_ratio_overflow_is_value_error (test_assets.VoxelAdversarialTests.test_adversarial_tiny_scale_ratio_overflow_is_value_error)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_assets.py", line 232, in test_adversarial_tiny_scale_ratio_overflow_is_value_error
+    VoxelMesh(1e-308).bounds((0, 0, 0), (1e308, 1, 1), "wood")
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/mesh.py", line 77, in bounds
+    lo, hi = tuple(map(self._snap, minimum)), tuple(map(self._snap, maximum))
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/mesh.py", line 52, in _snap
+    return math.floor(scaled + .5) if scaled >= 0 else math.ceil(scaled - .5)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+OverflowError: cannot convert float infinity to integer
+
+----------------------------------------------------------------------
+Ran 46 tests in 0.075s
+
+FAILED (errors=5)

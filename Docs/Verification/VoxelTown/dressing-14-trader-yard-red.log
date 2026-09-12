@@ -1,0 +1,14 @@
+test_traders_find_merchandise_yards_when_side_wings_are_obstructed (__main__.DressingAdversarialTests.test_traders_find_merchandise_yards_when_side_wings_are_obstructed) ... FAIL
+
+======================================================================
+FAIL: test_traders_find_merchandise_yards_when_side_wings_are_obstructed (__main__.DressingAdversarialTests.test_traders_find_merchandise_yards_when_side_wings_are_obstructed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_dressing.py", line 227, in test_traders_find_merchandise_yards_when_side_wings_are_obstructed
+    self.assertTrue(any(p['owner']==building.id and p['role']=='trading-yard' and p['asset']=='market_stall' for p in props),building.id)
+AssertionError: False is not true : building-002-trader
+
+----------------------------------------------------------------------
+Ran 1 test in 0.130s
+
+FAILED (failures=1)

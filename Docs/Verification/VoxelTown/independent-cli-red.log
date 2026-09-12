@@ -1,0 +1,26 @@
+test_data_only_and_fbx_are_rejected_before_output_mutation (test_pipeline_review.CliPipelineReview.test_data_only_and_fbx_are_rejected_before_output_mutation) ... FAIL
+test_data_only_and_render_are_rejected_before_output_mutation (test_pipeline_review.CliPipelineReview.test_data_only_and_render_are_rejected_before_output_mutation) ... FAIL
+test_data_only_succeeds_and_creates_only_semantic_output (test_pipeline_review.CliPipelineReview.test_data_only_succeeds_and_creates_only_semantic_output) ... ok
+
+======================================================================
+FAIL: test_data_only_and_fbx_are_rejected_before_output_mutation (test_pipeline_review.CliPipelineReview.test_data_only_and_fbx_are_rejected_before_output_mutation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_pipeline_review.py", line 20, in test_data_only_and_fbx_are_rejected_before_output_mutation
+    with self.assertRaises(SystemExit) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: SystemExit not raised
+
+======================================================================
+FAIL: test_data_only_and_render_are_rejected_before_output_mutation (test_pipeline_review.CliPipelineReview.test_data_only_and_render_are_rejected_before_output_mutation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_pipeline_review.py", line 14, in test_data_only_and_render_are_rejected_before_output_mutation
+    with self.assertRaises(SystemExit) as caught:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: SystemExit not raised
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.067s
+
+FAILED (failures=2)

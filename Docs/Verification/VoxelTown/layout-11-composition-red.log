@@ -1,0 +1,16 @@
+test_repeated_workshops_form_staggered_lots_not_a_straight_column (__main__.LayoutTests.test_repeated_workshops_form_staggered_lots_not_a_straight_column)
+Visual M1 review found three workshops almost exactly on one X coordinate. ... FAIL
+
+======================================================================
+FAIL: test_repeated_workshops_form_staggered_lots_not_a_straight_column (__main__.LayoutTests.test_repeated_workshops_form_staggered_lots_not_a_straight_column)
+Visual M1 review found three workshops almost exactly on one X coordinate.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_layout.py", line 135, in test_repeated_workshops_form_staggered_lots_not_a_straight_column
+    self.assertGreater(max(b.position[0] for b in workshops)-min(b.position[0] for b in workshops),3)
+AssertionError: 1.25 not greater than 3
+
+----------------------------------------------------------------------
+Ran 1 test in 0.121s
+
+FAILED (failures=1)

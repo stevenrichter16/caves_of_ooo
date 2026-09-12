@@ -1,0 +1,32 @@
+test_optional_clutter_cannot_take_the_primary_well_footprint (__main__.DressingAdversarialTests.test_optional_clutter_cannot_take_the_primary_well_footprint) ... ERROR
+test_zero_wealth_still_generates_buildable_accessible_shells (__main__.DressingAdversarialTests.test_zero_wealth_still_generates_buildable_accessible_shells) ... ERROR
+
+======================================================================
+ERROR: test_optional_clutter_cannot_take_the_primary_well_footprint (__main__.DressingAdversarialTests.test_optional_clutter_cannot_take_the_primary_well_footprint)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_dressing.py", line 224, in test_optional_clutter_cannot_take_the_primary_well_footprint
+    town=generate_town(config);props=plan_props(town)
+                                     ^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/props.py", line 75, in plan_props
+    raise ValueError('Primary well does not fit its reserved water gathering space')
+ValueError: Primary well does not fit its reserved water gathering space
+
+======================================================================
+ERROR: test_zero_wealth_still_generates_buildable_accessible_shells (__main__.DressingAdversarialTests.test_zero_wealth_still_generates_buildable_accessible_shells)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_dressing.py", line 234, in test_zero_wealth_still_generates_buildable_accessible_shells
+    self.assertGreater(build_structure(building).cell_count,0)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/architecture.py", line 53, in build_structure
+    height = _number(building.wall_height, "wall_height", minimum_height, 16)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/architecture.py", line 19, in _number
+    raise ValueError(f"{label} must be finite and between {minimum} and {maximum}")
+ValueError: wall_height must be finite and between 2.5 and 16
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.249s
+
+FAILED (errors=2)

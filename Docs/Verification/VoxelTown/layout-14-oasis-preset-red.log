@@ -1,0 +1,20 @@
+test_oasis_preset_reserves_shore_for_water_dependent_buildings (__main__.LayoutTests.test_oasis_preset_reserves_shore_for_water_dependent_buildings) ... ERROR
+
+======================================================================
+ERROR: test_oasis_preset_reserves_shore_for_water_dependent_buildings (__main__.LayoutTests.test_oasis_preset_reserves_shore_for_water_dependent_buildings)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/tests/test_layout.py", line 141, in test_oasis_preset_reserves_shore_for_water_dependent_buildings
+    town=generate_town(Config(**data))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/layout.py", line 31, in generate_town
+    buildings,farms=place_buildings(config,anchors,districts,water,rng)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/VoxelTown/town_generator/buildings.py", line 145, in place_buildings
+    raise ValueError(f'Cannot place {role} {i+1}/{config.building_count}; enlarge town_size or reduce building_count')
+ValueError: Cannot place bathhouse 10/10; enlarge town_size or reduce building_count
+
+----------------------------------------------------------------------
+Ran 1 test in 0.191s
+
+FAILED (errors=1)
