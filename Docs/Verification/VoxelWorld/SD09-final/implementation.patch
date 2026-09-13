@@ -1,0 +1,114 @@
+--- a/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
++++ b/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
+@@ -115,7 +115,7 @@
+                 case BiomeType.Spread:
+                     return CreateSpreadPipeline(tier, composed: SpreadCompositionPlan.IsWildernessZone(zoneID));
+                 case BiomeType.Sodden:
+-                    return CreateSoddenPipeline(tier);
++                    return CreateSoddenPipeline(tier, composed: SoddenCompositionPlan.IsWildernessZone(zoneID));
+                 case BiomeType.Beating:
+                     if (zoneID == TenthFireZoneID)
+                         return CreateTenthFirePipeline(tier);
+@@ -456,8 +456,9 @@
+         /// <summary>The Sodden — the flood's country. Wetter and more
+         /// choked than the Spread; W3 brings the mires and the
+         /// Bog-Taken.</summary>
+-        private ZoneGenerationPipeline CreateSoddenPipeline(int tier = 1)
+-        {
++        private ZoneGenerationPipeline CreateSoddenPipeline(int tier = 1, bool composed = false)
++        {
++            if (composed) return CreateSurfacePipeline(BiomeType.Sodden, tier, new SoddenCompositionBuilder(WorldSeed));
+             var pipeline = CreateSurfacePipeline(BiomeType.Sodden, tier,
+                 new JungleBuilder { SeedChance = 52, TreeChance = 0.14f });
+             // W3.1 (Docs/FELLING-W3-PLAN.md): the anti-sameness machine
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DCatalog.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DCatalog.cs
+@@ -158,13 +158,13 @@
+             zoneIndex=new HashSet<string>(zones,StringComparer.Ordinal);
+         }
+         public Model FindModel(string modelId)
+-        {if(string.IsNullOrEmpty(modelId))return null;if(modelIndex==null)Validate();return modelIndex.TryGetValue(modelId,out var value)?value:SpreadVoxelLibrary.Load()?.Find(modelId)?.Spec;}
++        {if(string.IsNullOrEmpty(modelId))return null;if(modelIndex==null)Validate();return modelIndex.TryGetValue(modelId,out var value)?value:SpreadVoxelLibrary.Load()?.Find(modelId)?.Spec ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Spec;}
+         public BlueprintBinding FindBlueprint(string blueprint)
+         {if(string.IsNullOrEmpty(blueprint))return null;if(blueprintIndex==null)Validate();return blueprintIndex.TryGetValue(blueprint,out var value)?value:null;}
+         public FellingOwner FindFellingOwner(string componentId)
+         {if(string.IsNullOrEmpty(componentId))return null;if(fellingIndex==null)Validate();return fellingIndex.TryGetValue(componentId,out var value)?value:null;}
+         public bool SupportsZone(string zoneId)
+-        {if(string.IsNullOrEmpty(zoneId))return false;if(zoneIndex==null)Validate();return zoneIndex.Contains(zoneId)||(GrovelandsCompositionPlan.IsWildernessZone(zoneId) || SpreadCompositionPlan.IsWildernessZone(zoneId));}
++        {if(string.IsNullOrEmpty(zoneId))return false;if(zoneIndex==null)Validate();return zoneIndex.Contains(zoneId)||(GrovelandsCompositionPlan.IsWildernessZone(zoneId) || SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId));}
+         static bool SameNames(string[] values,string[] expected)
+         {
+             if(values==null||values.Length!=expected.Length)return false;
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DLibrary.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DLibrary.cs
+@@ -60,7 +60,7 @@
+             models=candidates;equipmentIds=new HashSet<string>(d.externalEquipment.models,StringComparer.Ordinal);
+         }
+         public GameObject FindModel(string modelId)
+-        {if(string.IsNullOrEmpty(modelId))return null;if(models==null)Validate();return models.TryGetValue(modelId,out var value)?value:SpreadVoxelLibrary.Load()?.Find(modelId)?.Prefab;}
++        {if(string.IsNullOrEmpty(modelId))return null;if(models==null)Validate();return models.TryGetValue(modelId,out var value)?value:SpreadVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Prefab;}
+         public GameObject FindEquipmentModel(string modelId)
+         {if(string.IsNullOrEmpty(modelId))return null;if(equipmentIds==null)Validate();return equipmentIds.Contains(modelId)?EquipmentLibrary.FindModel(modelId):null;}
+     }
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs
+@@ -98,7 +98,7 @@
+                 case "Overworld.2.5.0": case "Overworld.3.5.0": case "Overworld.4.5.0":
+                 case "Overworld.2.6.0": case "Overworld.4.6.0": case "Overworld.2.7.0":
+                 case "Overworld.3.7.0": case "Overworld.4.7.0": return true;
+-                default: return (GrovelandsCompositionPlan.IsWildernessZone(id) || SpreadCompositionPlan.IsWildernessZone(id));
++                default: return (GrovelandsCompositionPlan.IsWildernessZone(id) || SpreadCompositionPlan.IsWildernessZone(id) || SoddenCompositionPlan.IsWildernessZone(id));
+             }
+         }
+         /// <summary>Refresh native references after cell/FOV invalidation. Null
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs
+@@ -45,7 +45,18 @@
+             }
+             else
+             {
+-                if(SpreadCompositionPlan.IsWildernessZone(zone.ZoneID))
++                if(SoddenCompositionPlan.IsWildernessZone(zone.ZoneID))
++                {
++                    string family=SoddenVoxelLibrary.Family(entity.BlueprintName);
++                    if(family!=null)
++                    {
++                        string id=SoddenVoxelLibrary.ModelId(family,Variant(zone.ZoneID,entity.BlueprintName,entity.ID,cell.X,cell.Y,4));
++                        bool movable=entity.GetPart<PhysicsPart>()?.Takeable==true;
++                        return new SpawnRing3DRecipe(entity,id,null,Village3DProjection.CellCentre(cell.X,cell.Y),movable,!movable);
++                    }
++                }
++                if(SpreadCompositionPlan.IsWildernessZone(zone.ZoneID)
++                    || (SoddenCompositionPlan.IsWildernessZone(zone.ZoneID) && entity.BlueprintName=="Reeds"))
+                 {
+                     string family=SpreadVoxelLibrary.Family(entity.BlueprintName);
+                     if(family!=null)
+--- a/Assets/Scripts/Presentation/Rendering/VoxelWorldPresentation.cs
++++ b/Assets/Scripts/Presentation/Rendering/VoxelWorldPresentation.cs
+@@ -24,10 +24,16 @@
+         {
+             this.catalog = catalog; ZoneId = zoneId; catalog.Validate();
+             foreach (var binding in catalog.Bindings) generated.Add(binding.Voxel);
+-            if (SpreadCompositionPlan.IsWildernessZone(zoneId))
++            if (SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId))
+             {
+                 var kit=SpreadVoxelLibrary.Load();
+                 if(kit==null)throw new InvalidOperationException("Required Spread voxel kit missing.");
++                kit.Validate();foreach(var entry in kit.Entries)generated.Add(entry.Mesh);
++            }
++            if (SoddenCompositionPlan.IsWildernessZone(zoneId))
++            {
++                var kit=SoddenVoxelLibrary.Load();
++                if(kit==null)throw new InvalidOperationException("Required Sodden voxel kit missing.");
+                 kit.Validate();foreach(var entry in kit.Entries)generated.Add(entry.Mesh);
+             }
+         }
+@@ -37,7 +43,7 @@
+             {
+                 case "Overworld.2.6.0": case "Overworld.3.6.0":
+                 case "Overworld.3.7.0": case "Overworld.4.7.0": return true;
+-                default: return (GrovelandsCompositionPlan.IsWildernessZone(zoneId) || SpreadCompositionPlan.IsWildernessZone(zoneId));
++                default: return (GrovelandsCompositionPlan.IsWildernessZone(zoneId) || SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId));
+             }
+         }
+         public static bool IsEnabledFor(Zone zone)

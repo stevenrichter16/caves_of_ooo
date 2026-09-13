@@ -1,0 +1,39 @@
+{
+  "isolatedProject": "/tmp/coo-spread-validation",
+  "unityExit": 2,
+  "compileErrors": [],
+  "results": {
+    "id": "2",
+    "testcasecount": "29",
+    "result": "Failed(Child)",
+    "total": "29",
+    "passed": "25",
+    "failed": "4",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-13 03:49:31Z",
+    "end-time": "2026-09-13 03:49:31Z",
+    "duration": "0.4941183"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.SoddenVoxelKitTests.CutBanksUseTwoEarthTonesIndependentOfFlatBogGround",
+      "message": "  Banks need a readable exposed peat face, not ground-colored caps: sodden-peat-0\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SoddenVoxelKitTests.DuckboardTopStripsSpanAcrossTravelAndUseWeatheredWoodSwatches",
+      "message": "  sodden-boards-0\n  Expected: equivalent to < (0.72, 0.06), (0.97, 0.06) >\n  But was:  < (0.97, 0.06), (0.84, 0.06) >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SoddenVoxelKitTests.MajorLandmarkSilhouettesRemainTallEnoughForTheUnchangedGameplayCamera(\"snag\",2.7f,3.25f)",
+      "message": "  sodden-snag-0\n  Expected: in range (2.7,3.25)\n  But was:  1.52999997f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SoddenVoxelKitTests.MajorLandmarkSilhouettesRemainTallEnoughForTheUnchangedGameplayCamera(\"peat\",1.1f,1.5f)",
+      "message": "  sodden-peat-0\n  Expected: in range (1.1,1.5)\n  But was:  0.800000012f\n"
+    }
+  ]
+}

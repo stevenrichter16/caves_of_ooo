@@ -19,6 +19,12 @@ namespace CavesOfOoo.Tests
             { ""Name"": ""RoadStone"", ""Inherits"": ""Floor"" },
             { ""Name"": ""FlowerField"", ""Inherits"": ""Grass"" },
             { ""Name"": ""Reeds"", ""Inherits"": ""Grass"" },
+            { ""Name"": ""MirePool"", ""Inherits"": ""Grass"" },
+            { ""Name"": ""Duckboard"", ""Inherits"": ""Grass"" },
+            { ""Name"": ""BogTakenBody"", ""Inherits"": ""Grass"" },
+            { ""Name"": ""DeadTree"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Solid"", ""Value"": ""true"" }]}] },
+            { ""Name"": ""PeatBank"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Solid"", ""Value"": ""true"" }]}] },
+            { ""Name"": ""MawToad"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Solid"", ""Value"": ""true"" }]}] },
             {
               ""Name"": ""PhysicalObject"",
               ""Parts"": [

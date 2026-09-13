@@ -1,0 +1,7 @@
+<!doctype html><meta charset="utf-8"><title>The Sodden — native voxel previews</title>
+<style>body{margin:0;background:#151b18;color:#e7e4d7;font:16px system-ui;padding:32px}h1{font-size:26px}p{max-width:900px;color:#b6c4b9}main{display:grid;grid-template-columns:1fr 1fr;gap:24px}figure{margin:0;background:#202b25;padding:12px;border-radius:8px}img{width:100%;display:block}figcaption{padding-top:8px}a{color:#a9ccbb}</style>
+<h1>The Sodden</h1><p>Six procedural floodland formations, shown through the game's native voxel renderer. These whole-chunk overviews include the ordinary generation pipeline. Camera pitch matches gameplay; no HUD or player lightmap is included.</p><main id="gallery"></main>
+<script>
+const forms=['OpenMire','PeatCuts','ReedMaze','DrownedCopse','Causeway','BogFace'];
+for(const f of forms){const fig=document.createElement('figure');const a=document.createElement('a');a.href='../SD10-refined-native-preview/'+f+'-64.png';const img=document.createElement('img');img.src=a.href;img.alt=f;a.append(img);fig.append(a);const cap=document.createElement('figcaption');cap.textContent=f.replace(/([a-z])([A-Z])/g,'$1 $2')+' — seed 64';fig.append(cap);document.getElementById('gallery').append(fig);}
+</script>
