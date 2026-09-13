@@ -1,0 +1,1235 @@
+ M Assets/Editor/Scenarios/ScenarioMenuItems.cs
+ M Assets/Editor/SpriteImportPostprocessor.cs
+ M Assets/Resources/Content/Data/Factions.json
+ M Assets/Resources/Sprites/Environment/tree.png
+ M Assets/Scenes/Main/SampleScene.unity
+ M Assets/Scripts/Gameplay/AI/FindPath.cs
+ M Assets/Scripts/Gameplay/AI/Goals/KillGoal.cs
+ M Assets/Scripts/Gameplay/Combat/CombatSystem.cs
+ M Assets/Scripts/Gameplay/Combat/LineTargeting.cs
+ M Assets/Scripts/Gameplay/Combat/PhysicsPart.cs
+ M Assets/Scripts/Gameplay/Combat/SpellTargeting.cs
+ M Assets/Scripts/Gameplay/Effects/AsciiFxBus.cs
+ M Assets/Scripts/Gameplay/Effects/Concrete/HearthAuraEffect.cs
+ M Assets/Scripts/Gameplay/Effects/Concrete/HookedEffect.cs
+ M Assets/Scripts/Gameplay/Effects/Concrete/PoisonedByGasEffect.cs
+ M Assets/Scripts/Gameplay/Entities/Entity.cs
+ M Assets/Scripts/Gameplay/Entities/RenderPart.cs
+ M Assets/Scripts/Gameplay/Interaction/WorldInteractionSystem.cs
+ M Assets/Scripts/Gameplay/Magic/RiteTargeting.cs
+ M Assets/Scripts/Gameplay/Materials/GasSystem.cs
+ M Assets/Scripts/Gameplay/Materials/IObjectGasBehaviorPart.cs
+ M Assets/Scripts/Gameplay/Save/SaveSystem.cs
+ M Assets/Scripts/Gameplay/Skills/Acrobatics_Tumble.cs
+ M Assets/Scripts/Gameplay/Skills/Acrobatics_Vault.cs
+ M Assets/Scripts/Gameplay/Skills/Axe_HookAndDrag.cs
+ M Assets/Scripts/Gameplay/Skills/Axe_RendArmor.cs
+ M Assets/Scripts/Gameplay/Skills/Axe_Whirlwind.cs
+ M Assets/Scripts/Gameplay/Skills/ConsumingRiteSkillBase.cs
+ M Assets/Scripts/Gameplay/Skills/Corrosion_AcidRetort.cs
+ M Assets/Scripts/Gameplay/Skills/Corrosion_Etch.cs
+ M Assets/Scripts/Gameplay/Skills/Cryomancy_BrittleStrike.cs
+ M Assets/Scripts/Gameplay/Skills/Cryomancy_ChillDraft.cs
+ M Assets/Scripts/Gameplay/Skills/Cryomancy_ColdSnap.cs
+ M Assets/Scripts/Gameplay/Skills/Cryomancy_FrostRetort.cs
+ M Assets/Scripts/Gameplay/Skills/Cryomancy_Frostbind.cs
+ M Assets/Scripts/Gameplay/Skills/Cryomancy_GlacialWall.cs
+ M Assets/Scripts/Gameplay/Skills/Cryomancy_Hibernate.cs
+ M Assets/Scripts/Gameplay/Skills/Cryomancy_RimeGrip.cs
+ M Assets/Scripts/Gameplay/Skills/Cryomancy_RimeNova.cs
+ M Assets/Scripts/Gameplay/Skills/Cudgel_ChargingStrike.cs
+ M Assets/Scripts/Gameplay/Skills/Cudgel_Disarm.cs
+ M Assets/Scripts/Gameplay/Skills/Cudgel_GroundPound.cs
+ M Assets/Scripts/Gameplay/Skills/Cudgel_Slam.cs
+ M Assets/Scripts/Gameplay/Skills/Galvanism_BacklashCoil.cs
+ M Assets/Scripts/Gameplay/Skills/Galvanism_GroundStrike.cs
+ M Assets/Scripts/Gameplay/Skills/Galvanism_GroundSurge.cs
+ M Assets/Scripts/Gameplay/Skills/Galvanism_Overload.cs
+ M Assets/Scripts/Gameplay/Skills/Galvanism_RailSpike.cs
+ M Assets/Scripts/Gameplay/Skills/Galvanism_ShockRetort.cs
+ M Assets/Scripts/Gameplay/Skills/Galvanism_Thunderclap.cs
+ M Assets/Scripts/Gameplay/Skills/Hydromancy_ConjureRain.cs
+ M Assets/Scripts/Gameplay/Skills/Hydromancy_ConjureWater.cs
+ M Assets/Scripts/Gameplay/Skills/Hydromancy_DrenchLob.cs
+ M Assets/Scripts/Gameplay/Skills/Hydromancy_DryingBreeze.cs
+ M Assets/Scripts/Gameplay/Skills/Hydromancy_JetBlast.cs
+ M Assets/Scripts/Gameplay/Skills/Hydromancy_Undertow.cs
+ M Assets/Scripts/Gameplay/Skills/ProjectileSpellSkillBase.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_Backdraft.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_Charsplit.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_Conflagration.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_EmberSpit.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_EmberVein.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_FlameJet.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_FlamingHands.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_HeartFlame.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_Hearthwarm.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_KindleFlame.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_Oilmark.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_Pyroclasm.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_ScorchRetort.cs
+ M Assets/Scripts/Gameplay/Skills/Rites_BloodletterLedger.cs
+ M Assets/Scripts/Gameplay/Skills/ShortBlades_Backstab.cs
+ M Assets/Scripts/Gameplay/Skills/ShortBlades_Disengage.cs
+ M Assets/Scripts/Gameplay/Skills/ShortBlades_Flurry.cs
+ M Assets/Scripts/Gameplay/Skills/ShortBlades_Shank.cs
+ M Assets/Scripts/Gameplay/Skills/SkillCombatHelpers.cs
+ M Assets/Scripts/Gameplay/Skills/SkillLine.cs
+ M Assets/Scripts/Gameplay/Skills/Spellcraft_ArcaneSurge.cs
+ M Assets/Scripts/Gameplay/Skills/Spellcraft_Calm.cs
+ M Assets/Scripts/Gameplay/Skills/Spellcraft_LeyTap.cs
+ M Assets/Scripts/Gameplay/Skills/Spellcraft_WardGleam.cs
+ M Assets/Scripts/Gameplay/Turns/LiquidSlipSystem.cs
+ M Assets/Scripts/Gameplay/Turns/MovementSystem.cs
+ M Assets/Scripts/Gameplay/World/DestructionSystem.cs
+ M Assets/Scripts/Gameplay/World/DragSystem.cs
+ M Assets/Scripts/Gameplay/World/Generation/Builders/FellingSiteBuilder.cs
+ M Assets/Scripts/Gameplay/World/Generation/Builders/GrovelandsFormationBuilder.cs
+ M Assets/Scripts/Gameplay/World/LightMap.cs
+ M Assets/Scripts/Gameplay/World/Map/Cell.cs
+ M Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
+ M Assets/Scripts/Gameplay/World/Map/StumpBands.cs
+ M Assets/Scripts/Gameplay/World/Map/TilePropagationSystem.cs
+ M Assets/Scripts/Gameplay/World/Map/TileReactionSystem.cs
+ M Assets/Scripts/Gameplay/World/Map/WorldMap.cs
+ M Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs
+ M Assets/Scripts/Gameplay/World/Map/Zone.cs
+ M Assets/Scripts/Gameplay/World/Map/ZoneTileStateSystem.cs
+ M Assets/Scripts/Gameplay/World/ObjectStatusMatrix.cs
+ M Assets/Scripts/Gameplay/World/ZoneTransitionSystem.cs
+ M Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs
+ M Assets/Scripts/Presentation/Cameras/CameraFollow.cs
+ M Assets/Scripts/Presentation/Effects/GraphicsPolish.cs
+ M Assets/Scripts/Presentation/Effects/SpriteEnvToggleController.cs
+ M Assets/Scripts/Presentation/Input/InputHandler.cs
+ M Assets/Scripts/Presentation/Rendering/AnimatedEnvironmentRenderer.cs
+ M Assets/Scripts/Presentation/Rendering/AsciiFxRenderer.cs
+ M Assets/Scripts/Presentation/Rendering/EnvironmentSpriteRenderer.cs
+ M Assets/Scripts/Presentation/Rendering/WorldCursorRenderer.cs
+ M Assets/Scripts/Presentation/Rendering/ZoneRenderer.cs
+ M Assets/Scripts/Presentation/UI/WorldActionMenuUI.cs
+ M Assets/Scripts/Scenarios/Custom/FellingSiteBench.cs
+ M Assets/Scripts/Scenarios/README.md
+ M Assets/Settings/UniversalRP.asset
+ M Assets/Tests/EditMode/Gameplay/Anatomy/GameAuditNaturalWeaponActivationAdversarialTests.cs
+ M Assets/Tests/EditMode/Gameplay/Farming/CropWateringTests.cs
+ M Assets/Tests/EditMode/Gameplay/Farming/CropsWateringAdversarialTests.cs
+ M Assets/Tests/EditMode/Gameplay/Farming/FarmingAuditFixTests.cs
+ M Assets/Tests/EditMode/Gameplay/Save/Tier3SimplePartRoundTripTests.cs
+ M Assets/Tests/EditMode/Gameplay/Skills/ShortBladesShankTests.cs
+ M Assets/Tests/EditMode/Gameplay/Weaponcraft/ForgeCommandsTests.cs
+ M Assets/Tests/EditMode/Gameplay/World/FellingSiteAdversarialTests.cs
+ M Assets/Tests/EditMode/Gameplay/World/FellingSiteTests.cs
+ M Assets/Tests/EditMode/Gameplay/World/FellingW6AdversarialTests.cs
+ M Assets/Tests/EditMode/Presentation/Input/InteractKeyPileAndTakeTests.cs
+ M Assets/Tests/EditMode/Presentation/Rendering/AsciiFxRendererTests.cs
+ M Assets/Tests/EditMode/Presentation/Rendering/EnvironmentSpriteRendererHarnessTests.cs
+ M Assets/UnityMCP/Log/mcp.log
+ M Assets/UnityMCP/Log/mcpError.log
+ M Docs/GAMEPLAY-CAMERA-ZOOM.md
+ M Docs/STYLE-GUIDE.md
+ M ProjectSettings/QualitySettings.asset
+?? ArtSource/Audio/
+?? ArtSource/BuildingBlocks3D/
+?? ArtSource/CatacombVillage/
+?? ArtSource/FellingSite/
+?? ArtSource/ModelPolish3D/
+?? ArtSource/Morrowfast/
+?? ArtSource/MultiCellPilot3D/
+?? ArtSource/SpawnRing3D/
+?? ArtSource/StarterSpell3D/
+?? ArtSource/Village3D/
+?? ArtSource/World3D/
+?? ArtTools/__pycache__/
+?? ArtTools/catacomb_extract.py
+?? ArtTools/catacomb_scene.py
+?? ArtTools/coo_casting_poses.py
+?? ArtTools/coo_spell_fx.py
+?? ArtTools/coo_vertical_slice.py
+?? ArtTools/felling_components.py
+?? ArtTools/felling_components_contract.py
+?? ArtTools/felling_scene.py
+?? ArtTools/felling_unity_export.py
+?? ArtTools/morrowfast_actor_sheets.py
+?? ArtTools/morrowfast_components.py
+?? ArtTools/morrowfast_native_layout.py
+?? ArtTools/morrowfast_unity_export.py
+?? ArtTools/test_catacomb_adversarial.py
+?? ArtTools/test_catacomb_browser.cjs
+?? ArtTools/test_catacomb_extract.py
+?? ArtTools/test_catacomb_scene.py
+?? ArtTools/test_felling_components.py
+?? ArtTools/test_felling_components_adversarial.py
+?? ArtTools/test_felling_components_contract.py
+?? ArtTools/test_felling_components_viewer.cjs
+?? ArtTools/test_felling_preview.cjs
+?? ArtTools/test_felling_scene.py
+?? ArtTools/test_felling_unity_export.py
+?? ArtTools/test_morrowfast_actor_sheets.py
+?? ArtTools/test_morrowfast_components.py
+?? ArtTools/test_morrowfast_native_layout.py
+?? ArtTools/test_morrowfast_preview.cjs
+?? ArtTools/test_morrowfast_unity_export.py
+?? ArtTools/test_spell_fx_assets.py
+?? ArtTools/verify_catacomb_scene.py
+?? ArtTools/verify_felling_components.py
+?? ArtTools/verify_felling_scene.py
+?? ArtTools/verify_morrowfast.py
+?? Assets/Art3D.meta
+?? Assets/Art3D/
+?? Assets/Audio.meta
+?? Assets/Audio/
+?? Assets/Editor/Art.meta
+?? Assets/Editor/Art/
+?? Assets/Editor/Audio.meta
+?? Assets/Editor/Audio/
+?? Assets/Editor/FellingSceneArtImporter.cs
+?? Assets/Editor/FellingSceneArtImporter.cs.meta
+?? Assets/Editor/MorrowfastSceneArtImporter.cs
+?? Assets/Editor/MorrowfastSceneArtImporter.cs.meta
+?? Assets/Editor/Scenarios/EmberAudioNativeAudit.cs
+?? Assets/Editor/Scenarios/EmberAudioNativeAudit.cs.meta
+?? Assets/Editor/Scenarios/FellingScenePlayAuditMenu.cs
+?? Assets/Editor/Scenarios/FellingScenePlayAuditMenu.cs.meta
+?? Assets/Editor/Scenarios/MorrowfastScenePlayAuditMenu.cs
+?? Assets/Editor/Scenarios/MorrowfastScenePlayAuditMenu.cs.meta
+?? Assets/Editor/Scenarios/MultiCellPilotNativeAuditBatch.cs
+?? Assets/Editor/Scenarios/MultiCellPilotNativeAuditBatch.cs.meta
+?? Assets/Editor/Scenarios/SpawnRing3DNativeAuditBatch.cs
+?? Assets/Editor/Scenarios/SpawnRing3DNativeAuditBatch.cs.meta
+?? Assets/Editor/Scenarios/StarterSpell3DNativeAuditBatch.cs
+?? Assets/Editor/Scenarios/StarterSpell3DNativeAuditBatch.cs.meta
+?? Assets/Editor/Scenarios/StarterSpellAudioNativeAudit.cs
+?? Assets/Editor/Scenarios/StarterSpellAudioNativeAudit.cs.meta
+?? Assets/Editor/Scenarios/Village3DNativeAuditBatch.cs
+?? Assets/Editor/Scenarios/Village3DNativeAuditBatch.cs.meta
+?? Assets/Editor/Scenarios/VoxelWorldNativeAuditBatch.cs
+?? Assets/Editor/Scenarios/VoxelWorldNativeAuditBatch.cs.meta
+?? Assets/InitTestScene3702ca5b-f92b-48fa-92a0-976aef8efa7f.unity
+?? Assets/InitTestScene3702ca5b-f92b-48fa-92a0-976aef8efa7f.unity.meta
+?? Assets/InitTestScenedcab54b0-66de-4e6d-8cf6-c72ca524bef6.unity
+?? Assets/InitTestScenedcab54b0-66de-4e6d-8cf6-c72ca524bef6.unity.meta
+?? Assets/Resources/Audio.meta
+?? Assets/Resources/Audio/
+?? Assets/Resources/Content/Conversations/Morrowfast.json
+?? Assets/Resources/Content/Conversations/Morrowfast.json.meta
+?? Assets/Resources/Content/Data/EntityVisuals.json
+?? Assets/Resources/Content/Data/EntityVisuals.json.meta
+?? Assets/Resources/Content/Data/SpellVisuals.json
+?? Assets/Resources/Content/Data/SpellVisuals.json.meta
+?? Assets/Resources/Content/Data/Storylets/Morrowfast.json
+?? Assets/Resources/Content/Data/Storylets/Morrowfast.json.meta
+?? Assets/Resources/Content/MultiCellPilot.meta
+?? Assets/Resources/Content/MultiCellPilot/
+?? Assets/Resources/MultiCellPilot3D.meta
+?? Assets/Resources/MultiCellPilot3D/
+?? Assets/Resources/SceneArt.meta
+?? Assets/Resources/SceneArt/
+?? Assets/Resources/SpawnRing3D.meta
+?? Assets/Resources/SpawnRing3D/
+?? Assets/Resources/SpellFx3D.meta
+?? Assets/Resources/SpellFx3D/
+?? Assets/Resources/Sprites/Actors.meta
+?? Assets/Resources/Sprites/Actors/
+?? Assets/Resources/Sprites/Environment/copper_pipe.png
+?? Assets/Resources/Sprites/Environment/copper_pipe.png.meta
+?? Assets/Resources/Sprites/Environment/grass_macro8.png
+?? Assets/Resources/Sprites/Environment/grass_macro8.png.meta
+?? Assets/Resources/Sprites/Environment/maw_toad.png
+?? Assets/Resources/Sprites/Environment/maw_toad.png.meta
+?? Assets/Resources/Sprites/Environment/steam_vent.png
+?? Assets/Resources/Sprites/Environment/steam_vent.png.meta
+?? Assets/Resources/Sprites/Environment/tar_seep.png
+?? Assets/Resources/Sprites/Environment/tar_seep.png.meta
+?? Assets/Resources/Sprites/Environment/tepui_macro8.png
+?? Assets/Resources/Sprites/Environment/tepui_macro8.png.meta
+?? Assets/Resources/Sprites/Environment/tree_v1.png
+?? Assets/Resources/Sprites/Environment/tree_v1.png.meta
+?? Assets/Resources/Sprites/Environment/tree_v2.png
+?? Assets/Resources/Sprites/Environment/tree_v2.png.meta
+?? Assets/Resources/Sprites/Environment/tree_v3.png
+?? Assets/Resources/Sprites/Environment/tree_v3.png.meta
+?? Assets/Resources/Sprites/SpellFx.meta
+?? Assets/Resources/Sprites/SpellFx/
+?? Assets/Resources/Village3D.meta
+?? Assets/Resources/Village3D/
+?? Assets/Resources/VoxelWorld.meta
+?? Assets/Resources/VoxelWorld/
+?? Assets/Scripts/Gameplay/Bootstrap/NativeAuditBootstrapSettings.cs
+?? Assets/Scripts/Gameplay/Bootstrap/NativeAuditBootstrapSettings.cs.meta
+?? Assets/Scripts/Gameplay/Effects/SpellFxSequence.cs
+?? Assets/Scripts/Gameplay/Effects/SpellFxSequence.cs.meta
+?? Assets/Scripts/Gameplay/Entities/EntityVisualFacing.cs
+?? Assets/Scripts/Gameplay/Entities/EntityVisualFacing.cs.meta
+?? Assets/Scripts/Gameplay/Save/SessionTileStateSerializer.cs
+?? Assets/Scripts/Gameplay/Save/SessionTileStateSerializer.cs.meta
+?? Assets/Scripts/Gameplay/Skills/MultiCellAbilityQueries.cs
+?? Assets/Scripts/Gameplay/Skills/MultiCellAbilityQueries.cs.meta
+?? Assets/Scripts/Gameplay/Skills/SpellSkillPart.cs
+?? Assets/Scripts/Gameplay/Skills/SpellSkillPart.cs.meta
+?? Assets/Scripts/Gameplay/World/FellingSceneDefinition.cs
+?? Assets/Scripts/Gameplay/World/FellingSceneDefinition.cs.meta
+?? Assets/Scripts/Gameplay/World/FellingScenePopulation.cs
+?? Assets/Scripts/Gameplay/World/FellingScenePopulation.cs.meta
+?? Assets/Scripts/Gameplay/World/FellingScenePropPart.cs
+?? Assets/Scripts/Gameplay/World/FellingScenePropPart.cs.meta
+?? Assets/Scripts/Gameplay/World/FellingSceneRuntime.cs
+?? Assets/Scripts/Gameplay/World/FellingSceneRuntime.cs.meta
+?? Assets/Scripts/Gameplay/World/FellingSceneStatePart.cs
+?? Assets/Scripts/Gameplay/World/FellingSceneStatePart.cs.meta
+?? Assets/Scripts/Gameplay/World/Generation/Builders/MorrowfastBuilder.cs
+?? Assets/Scripts/Gameplay/World/Generation/Builders/MorrowfastBuilder.cs.meta
+?? Assets/Scripts/Gameplay/World/Generation/Builders/MultiCellPilotBuilder.cs
+?? Assets/Scripts/Gameplay/World/Generation/Builders/MultiCellPilotBuilder.cs.meta
+?? Assets/Scripts/Gameplay/World/MorrowfastContent.cs
+?? Assets/Scripts/Gameplay/World/MorrowfastContent.cs.meta
+?? Assets/Scripts/Gameplay/World/MorrowfastDoorPart.cs
+?? Assets/Scripts/Gameplay/World/MorrowfastDoorPart.cs.meta
+?? Assets/Scripts/Gameplay/World/MorrowfastFaunaPart.cs
+?? Assets/Scripts/Gameplay/World/MorrowfastFaunaPart.cs.meta
+?? Assets/Scripts/Gameplay/World/MorrowfastPropPart.cs
+?? Assets/Scripts/Gameplay/World/MorrowfastPropPart.cs.meta
+?? Assets/Scripts/Gameplay/World/MorrowfastQuests.cs
+?? Assets/Scripts/Gameplay/World/MorrowfastQuests.cs.meta
+?? Assets/Scripts/Gameplay/World/MorrowfastResidentPart.cs
+?? Assets/Scripts/Gameplay/World/MorrowfastResidentPart.cs.meta
+?? Assets/Scripts/Gameplay/World/MorrowfastSceneDefinition.cs
+?? Assets/Scripts/Gameplay/World/MorrowfastSceneDefinition.cs.meta
+?? Assets/Scripts/Gameplay/World/MorrowfastSceneRuntime.cs
+?? Assets/Scripts/Gameplay/World/MorrowfastSceneRuntime.cs.meta
+?? Assets/Scripts/Gameplay/World/MorrowfastSceneStatePart.cs
+?? Assets/Scripts/Gameplay/World/MorrowfastSceneStatePart.cs.meta
+?? Assets/Scripts/Gameplay/World/MorrowfastStartingGarden.cs
+?? Assets/Scripts/Gameplay/World/MorrowfastStartingGarden.cs.meta
+?? Assets/Scripts/Gameplay/World/MultiCellPilotPropPart.cs
+?? Assets/Scripts/Gameplay/World/MultiCellPilotPropPart.cs.meta
+?? Assets/Scripts/Gameplay/World/MultiCellPilotRuntime.cs
+?? Assets/Scripts/Gameplay/World/MultiCellPilotRuntime.cs.meta
+?? Assets/Scripts/Gameplay/World/MultiCellPilotStatePart.cs
+?? Assets/Scripts/Gameplay/World/MultiCellPilotStatePart.cs.meta
+?? Assets/Scripts/Gameplay/World/Spatial.meta
+?? Assets/Scripts/Gameplay/World/Spatial/
+?? Assets/Scripts/Presentation/Rendering/AnimatedEntityRenderer.cs
+?? Assets/Scripts/Presentation/Rendering/AnimatedEntityRenderer.cs.meta
+?? Assets/Scripts/Presentation/Rendering/EmberSpitAudioPlayer.cs
+?? Assets/Scripts/Presentation/Rendering/EmberSpitAudioPlayer.cs.meta
+?? Assets/Scripts/Presentation/Rendering/EntityVisualCatalog.cs
+?? Assets/Scripts/Presentation/Rendering/EntityVisualCatalog.cs.meta
+?? Assets/Scripts/Presentation/Rendering/EntityVisualHooks.cs
+?? Assets/Scripts/Presentation/Rendering/EntityVisualHooks.cs.meta
+?? Assets/Scripts/Presentation/Rendering/FellingDressingPresenter.cs
+?? Assets/Scripts/Presentation/Rendering/FellingDressingPresenter.cs.meta
+?? Assets/Scripts/Presentation/Rendering/FellingScenePresenter.cs
+?? Assets/Scripts/Presentation/Rendering/FellingScenePresenter.cs.meta
+?? Assets/Scripts/Presentation/Rendering/MorrowfastArtDefinition.cs
+?? Assets/Scripts/Presentation/Rendering/MorrowfastArtDefinition.cs.meta
+?? Assets/Scripts/Presentation/Rendering/MorrowfastScenePresenter.cs
+?? Assets/Scripts/Presentation/Rendering/MorrowfastScenePresenter.cs.meta
+?? Assets/Scripts/Presentation/Rendering/MultiCellPilot3DLibrary.cs
+?? Assets/Scripts/Presentation/Rendering/MultiCellPilot3DLibrary.cs.meta
+?? Assets/Scripts/Presentation/Rendering/NativeSpellCastPlayer.cs
+?? Assets/Scripts/Presentation/Rendering/NativeSpellCastPlayer.cs.meta
+?? Assets/Scripts/Presentation/Rendering/NativeSpellFxLibrary.cs
+?? Assets/Scripts/Presentation/Rendering/NativeSpellFxLibrary.cs.meta
+?? Assets/Scripts/Presentation/Rendering/NativeSpellFxRenderer.cs
+?? Assets/Scripts/Presentation/Rendering/NativeSpellFxRenderer.cs.meta
+?? Assets/Scripts/Presentation/Rendering/NativeZone3DRenderSurface.cs
+?? Assets/Scripts/Presentation/Rendering/NativeZone3DRenderSurface.cs.meta
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DCatalog.cs
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DCatalog.cs.meta
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DGroundPatches.cs
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DGroundPatches.cs.meta
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DLibrary.cs
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DLibrary.cs.meta
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs.meta
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs.meta
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DWaterMesh.cs
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DWaterMesh.cs.meta
+?? Assets/Scripts/Presentation/Rendering/SpellFxCatalog.cs
+?? Assets/Scripts/Presentation/Rendering/SpellFxCatalog.cs.meta
+?? Assets/Scripts/Presentation/Rendering/SpellFxSettings.cs
+?? Assets/Scripts/Presentation/Rendering/SpellFxSettings.cs.meta
+?? Assets/Scripts/Presentation/Rendering/SpellFxSettingsPanel.cs
+?? Assets/Scripts/Presentation/Rendering/SpellFxSettingsPanel.cs.meta
+?? Assets/Scripts/Presentation/Rendering/SpriteSpellFxRenderer.cs
+?? Assets/Scripts/Presentation/Rendering/SpriteSpellFxRenderer.cs.meta
+?? Assets/Scripts/Presentation/Rendering/StarterSpellAudioPlayer.cs
+?? Assets/Scripts/Presentation/Rendering/StarterSpellAudioPlayer.cs.meta
+?? Assets/Scripts/Presentation/Rendering/Village3DControls.cs
+?? Assets/Scripts/Presentation/Rendering/Village3DControls.cs.meta
+?? Assets/Scripts/Presentation/Rendering/Village3DEquipmentViews.cs
+?? Assets/Scripts/Presentation/Rendering/Village3DEquipmentViews.cs.meta
+?? Assets/Scripts/Presentation/Rendering/Village3DLibrary.cs
+?? Assets/Scripts/Presentation/Rendering/Village3DLibrary.cs.meta
+?? Assets/Scripts/Presentation/Rendering/Village3DManifest.cs
+?? Assets/Scripts/Presentation/Rendering/Village3DManifest.cs.meta
+?? Assets/Scripts/Presentation/Rendering/Village3DPresenter.cs
+?? Assets/Scripts/Presentation/Rendering/Village3DPresenter.cs.meta
+?? Assets/Scripts/Presentation/Rendering/Village3DProjection.cs
+?? Assets/Scripts/Presentation/Rendering/Village3DProjection.cs.meta
+?? Assets/Scripts/Presentation/Rendering/Village3DSettings.cs
+?? Assets/Scripts/Presentation/Rendering/Village3DSettings.cs.meta
+?? Assets/Scripts/Presentation/Rendering/Village3DShowcaseCutaway.cs
+?? Assets/Scripts/Presentation/Rendering/Village3DShowcaseCutaway.cs.meta
+?? Assets/Scripts/Presentation/Rendering/Village3DShowcaseFrame.cs
+?? Assets/Scripts/Presentation/Rendering/Village3DShowcaseFrame.cs.meta
+?? Assets/Scripts/Presentation/Rendering/Village3DVisibility.cs
+?? Assets/Scripts/Presentation/Rendering/Village3DVisibility.cs.meta
+?? Assets/Scripts/Presentation/Rendering/VoxelWorldMeshCatalog.cs
+?? Assets/Scripts/Presentation/Rendering/VoxelWorldMeshCatalog.cs.meta
+?? Assets/Scripts/Presentation/Rendering/VoxelWorldPresentation.cs
+?? Assets/Scripts/Presentation/Rendering/VoxelWorldPresentation.cs.meta
+?? Assets/Scripts/Presentation/Rendering/WorldFxCoordinator.cs
+?? Assets/Scripts/Presentation/Rendering/WorldFxCoordinator.cs.meta
+?? Assets/Scripts/Presentation/Rendering/WorldFxPlayback.cs
+?? Assets/Scripts/Presentation/Rendering/WorldFxPlayback.cs.meta
+?? Assets/Scripts/Scenarios/Custom/FellingScenePlayAudit.cs
+?? Assets/Scripts/Scenarios/Custom/FellingScenePlayAudit.cs.meta
+?? Assets/Scripts/Scenarios/Custom/MorrowfastScenePlayAudit.cs
+?? Assets/Scripts/Scenarios/Custom/MorrowfastScenePlayAudit.cs.meta
+?? Assets/Scripts/Scenarios/Custom/MultiCellPilotNativeAudit.Profile.cs
+?? Assets/Scripts/Scenarios/Custom/MultiCellPilotNativeAudit.Profile.cs.meta
+?? Assets/Scripts/Scenarios/Custom/MultiCellPilotNativeAudit.cs
+?? Assets/Scripts/Scenarios/Custom/MultiCellPilotNativeAudit.cs.meta
+?? Assets/Scripts/Scenarios/Custom/SpawnRing3DNativeAudit.Actions.cs
+?? Assets/Scripts/Scenarios/Custom/SpawnRing3DNativeAudit.Actions.cs.meta
+?? Assets/Scripts/Scenarios/Custom/SpawnRing3DNativeAudit.Profile.cs
+?? Assets/Scripts/Scenarios/Custom/SpawnRing3DNativeAudit.Profile.cs.meta
+?? Assets/Scripts/Scenarios/Custom/SpawnRing3DNativeAudit.cs
+?? Assets/Scripts/Scenarios/Custom/SpawnRing3DNativeAudit.cs.meta
+?? Assets/Scripts/Scenarios/Custom/SpellFxShowcase.cs
+?? Assets/Scripts/Scenarios/Custom/SpellFxShowcase.cs.meta
+?? Assets/Scripts/Scenarios/Custom/SpellFxShowcasePlayer.cs
+?? Assets/Scripts/Scenarios/Custom/SpellFxShowcasePlayer.cs.meta
+?? Assets/Scripts/Scenarios/Custom/StarterSpell3DEmberMotionCapture.cs
+?? Assets/Scripts/Scenarios/Custom/StarterSpell3DEmberMotionCapture.cs.meta
+?? Assets/Scripts/Scenarios/Custom/StarterSpell3DNativeAudit.cs
+?? Assets/Scripts/Scenarios/Custom/StarterSpell3DNativeAudit.cs.meta
+?? Assets/Scripts/Scenarios/Custom/Village3DNativeAudit.cs
+?? Assets/Scripts/Scenarios/Custom/Village3DNativeAudit.cs.meta
+?? Assets/Scripts/Scenarios/Custom/VoxelWorldNativeAudit.Profile.cs
+?? Assets/Scripts/Scenarios/Custom/VoxelWorldNativeAudit.Profile.cs.meta
+?? Assets/Scripts/Scenarios/Custom/VoxelWorldNativeAudit.Region.cs
+?? Assets/Scripts/Scenarios/Custom/VoxelWorldNativeAudit.Region.cs.meta
+?? Assets/Scripts/Scenarios/Custom/VoxelWorldNativeAudit.cs
+?? Assets/Scripts/Scenarios/Custom/VoxelWorldNativeAudit.cs.meta
+?? Assets/Tests/EditMode/Gameplay/Bootstrap.meta
+?? Assets/Tests/EditMode/Gameplay/Bootstrap/
+?? Assets/Tests/EditMode/Gameplay/Effects/SpellFxSequenceTests.cs
+?? Assets/Tests/EditMode/Gameplay/Effects/SpellFxSequenceTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/Effects/StarterSpell3DNativeAuditContractTests.cs
+?? Assets/Tests/EditMode/Gameplay/Effects/StarterSpell3DNativeAuditContractTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/Effects/StarterSpell3DOutcomeCaptureAdversarialTests.cs
+?? Assets/Tests/EditMode/Gameplay/Effects/StarterSpell3DOutcomeCaptureAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/Effects/StarterSpell3DOutcomeCaptureTests.cs
+?? Assets/Tests/EditMode/Gameplay/Effects/StarterSpell3DOutcomeCaptureTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/Save/GameAuditTileSessionSaveAdversarialTests.cs
+?? Assets/Tests/EditMode/Gameplay/Save/GameAuditTileSessionSaveAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/Save/GameAuditTileSessionSaveTests.cs
+?? Assets/Tests/EditMode/Gameplay/Save/GameAuditTileSessionSaveTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/Scenarios/SpellFxShowcaseTests.cs
+?? Assets/Tests/EditMode/Gameplay/Scenarios/SpellFxShowcaseTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/FellingSceneAdversarialTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/FellingSceneAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/FellingSceneIntegrationTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/FellingSceneIntegrationTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/FellingScenePopulationTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/FellingScenePopulationTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/GameAuditMorrowfastGardenAdversarialTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/GameAuditMorrowfastGardenAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/GameAuditMorrowfastGardenTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/GameAuditMorrowfastGardenTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/GameAuditMorrowfastStartTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/GameAuditMorrowfastStartTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastBridgeTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastBridgeTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastContentTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastContentTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastContentWorldTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastContentWorldTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastFaunaTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastFaunaTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastLegacyTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastLegacyTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastSceneAdversarialTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastSceneAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastSceneIntegrationTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastSceneIntegrationTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/MultiCellTransitionTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/MultiCellTransitionTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/Spatial.meta
+?? Assets/Tests/EditMode/Gameplay/World/Spatial/
+?? Assets/Tests/EditMode/Presentation/Input/FellingSceneInteractionTurnTests.cs
+?? Assets/Tests/EditMode/Presentation/Input/FellingSceneInteractionTurnTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Input/MorrowfastInteractionTests.cs
+?? Assets/Tests/EditMode/Presentation/Input/MorrowfastInteractionTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/BeatingVoxelKitTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/BeatingVoxelKitTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/BuildingBlockImportedArtTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/BuildingBlockImportedArtTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/EmberSpitAudioAdversarialTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/EmberSpitAudioAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/EmberSpitAudioTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/EmberSpitAudioTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/EntityVisualCatalogTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/EntityVisualCatalogTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/EntityVisualStateTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/EntityVisualStateTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/FellingCameraClearTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/FellingCameraClearTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/FellingDressingPresenterTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/FellingDressingPresenterTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/FellingSceneArtRuntimeTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/FellingSceneArtRuntimeTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/FellingSceneClaimTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/FellingSceneClaimTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/FellingScenePresenterTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/FellingScenePresenterTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Fixtures.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Fixtures/
+?? Assets/Tests/EditMode/Presentation/Rendering/GameAuditEquipmentGroundSpriteAdversarialTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/GameAuditEquipmentGroundSpriteAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastCameraHeadroomTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastCameraHeadroomTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastDerivedActorTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastDerivedActorTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastSceneArtAdversarialTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastSceneArtAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastSceneArtRuntimeTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastSceneArtRuntimeTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastScenePresenterTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastScenePresenterTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastSharedPresentationTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastSharedPresentationTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilot3DRenderingAdversarialTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilot3DRenderingAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilot3DRenderingTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilot3DRenderingTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilotHiddenContactPickingTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilotHiddenContactPickingTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilotNativeCleanupTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilotNativeCleanupTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilotNativePickingStimulusTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilotNativePickingStimulusTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilotNativeReportTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilotNativeReportTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilotPortablePickingTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilotPortablePickingTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeEmberProjectileRevisionTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeEmberProjectileRevisionTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeGroundStateReadabilityTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeGroundStateReadabilityTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellAuraReadabilityTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellAuraReadabilityTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellCastPlayerTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellCastPlayerTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellFxAdversarialTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellFxAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellFxGpuReportTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellFxGpuReportTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellFxImportTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellFxImportTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellFxRendererTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellFxRendererTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellHitchRecoveryTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellHitchRecoveryTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellPresenterTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellPresenterTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityAdversarialTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityGpuReportTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityGpuReportTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityImportGuardTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityImportGuardTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityLifecycleTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityLifecycleTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeZone3DCameraTiltTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeZone3DCameraTiltTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeZone3DRenderSurfaceAdversarialTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeZone3DRenderSurfaceAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeZone3DRenderSurfaceTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeZone3DRenderSurfaceTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DAdversarialTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DCameraIntegrationTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DCameraIntegrationTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DCatalogTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DCatalogTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DFallbackInvalidationTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DFallbackInvalidationTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DImportedArtTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DImportedArtTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DMovingLightTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DMovingLightTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DNativeReportTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DNativeReportTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DProfileWalkTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DProfileWalkTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DRecipeTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DRecipeTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DTiltHeadroomTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DTiltHeadroomTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DWaterMeshTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DWaterMeshTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DZoneWiringTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DZoneWiringTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpellFxCatalogTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpellFxCatalogTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpriteSpellFxRendererTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpriteSpellFxRendererTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/StarterSpell3DEmberMotionCaptureTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/StarterSpell3DEmberMotionCaptureTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/StarterSpell3DNativeDirectionTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/StarterSpell3DNativeDirectionTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/StarterSpellAudioAdversarialTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/StarterSpellAudioAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/StarterSpellAudioGeometryTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/StarterSpellAudioGeometryTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/StarterSpellAudioTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/StarterSpellAudioTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DControlsTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DControlsTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DEquipmentIntegrationTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DEquipmentIntegrationTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DImportContractTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DImportContractTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DIntegrationTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DIntegrationTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DManifestNativeContractTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DManifestNativeContractTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DManifestTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DManifestTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DNativeReportProvenanceTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DNativeReportProvenanceTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DPresenterAdversarialTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DPresenterAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DProjectionTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DProjectionTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DShowcaseTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DShowcaseTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DTiltHeadroomTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DTiltHeadroomTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/VillageDoorInvalidationTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/VillageDoorInvalidationTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/VoxelWorldMeshAdversarialTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/VoxelWorldMeshAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/VoxelWorldMeshTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/VoxelWorldMeshTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/VoxelWorldToolkitTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/VoxelWorldToolkitTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/WorldFxCoordinatorTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/WorldFxCoordinatorTests.cs.meta
+?? Assets/Tests/EditMode/VoxelWorldDensityArtTests.cs
+?? Assets/Tests/EditMode/VoxelWorldDensityArtTests.cs.meta
+?? Assets/Tests/EditMode/VoxelWorldDensityHoleTests.cs
+?? Assets/Tests/EditMode/VoxelWorldDensityHoleTests.cs.meta
+?? Assets/Tests/EditMode/VoxelWorldDensityTests.cs
+?? Assets/Tests/EditMode/VoxelWorldDensityTests.cs.meta
+?? Assets/Tests/EditMode/VoxelWorldImportedArtTests.cs
+?? Assets/Tests/EditMode/VoxelWorldImportedArtTests.cs.meta
+?? Assets/Tests/EditMode/VoxelWorldIntegrationAdversarialTests.cs
+?? Assets/Tests/EditMode/VoxelWorldIntegrationAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/VoxelWorldIntegrationTests.cs
+?? Assets/Tests/EditMode/VoxelWorldIntegrationTests.cs.meta
+?? Assets/Tests/EditMode/VoxelWorldObjectPaletteArtTests.cs
+?? Assets/Tests/EditMode/VoxelWorldObjectPaletteArtTests.cs.meta
+?? Assets/Tests/EditMode/VoxelWorldObjectPaletteTests.cs
+?? Assets/Tests/EditMode/VoxelWorldObjectPaletteTests.cs.meta
+?? Assets/Tests/EditMode/VoxelWorldPaintTests.cs
+?? Assets/Tests/EditMode/VoxelWorldPaintTests.cs.meta
+?? Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs
+?? Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/VoxelWorldToolkitAdversarialTests.cs
+?? Assets/Tests/EditMode/VoxelWorldToolkitAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/VoxelWorldToolkitPitchTests.cs
+?? Assets/Tests/EditMode/VoxelWorldToolkitPitchTests.cs.meta
+?? Docs/BLENDER-SPAWN-RING-3D-PLAN.md
+?? Docs/BLENDER-VILLAGE-3D-PLAN.md
+?? Docs/BUILDING-BLOCKS-3D.md
+?? Docs/CATACOMB-SCENE-PLAN.md
+?? Docs/EMBER-AUDIO-INTEGRATION.md
+?? Docs/EQUIPMENT-GROUND-SPRITES-PLAN.md
+?? Docs/FELLING-COMPONENT-EXTRACTION-PLAN.md
+?? Docs/FELLING-COMPONENT-EXTRACTION-PROMPT.md
+?? Docs/FELLING-SCENE-BUILD-PLAN.md
+?? Docs/FELLING-SOUTH-BUILD-PLAN.md
+?? Docs/FELLING-SOUTH-COMPONENT-CONTRACT.md
+?? Docs/FELLING-SOUTH-SETTLEMENT-DESIGN.md
+?? Docs/FELLING-SOUTH-UNITY-HANDOFF.md
+?? Docs/FELLING-UNITY-SCENE-INTEGRATION.md
+?? Docs/LIVING-WOODCUT-ART-DIRECTION.md
+?? Docs/MODEL-POLISH-3D.md
+?? Docs/MORROWFAST-UNITY-INTEGRATION.md
+?? Docs/MULTI-CELL-ENTITY-FEASIBILITY.md
+?? Docs/MULTI-CELL-PILOT-INTEGRATION-AUDIT.md
+?? Docs/MULTI-CELL-PILOT-NATIVE-ACCEPTANCE.md
+?? Docs/MULTI-CELL-PILOT-TARGETING-RUNTIME.md
+?? Docs/MULTI-CELL-PILOT.md
+?? Docs/NATIVE-3D-CAMERA-ANGLE.md
+?? Docs/References/
+?? Docs/SPAWN-RING-TILE-PERSISTENCE.md
+?? Docs/SPELL-3D-INTEGRATION.md
+?? Docs/SPELL-3D-READABILITY.md
+?? Docs/SPELL-EMBER-CONE-REVISION.md
+?? Docs/SPELL-FX-ART.md
+?? Docs/SPELL-FX.md
+?? Docs/STARTER-SPELL-3D-DESIGN.md
+?? Docs/STARTER-SPELL-AUDIO-DESIGN.md
+?? Docs/STARTER-SPELL-AUDIO-INTEGRATION.md
+?? Docs/SpellFx-atlas-preview.png
+?? Docs/SpellFx-casting-contact.png
+?? Docs/StyleExploration/Felling-2026-09-05/
+?? Docs/VILLAGE-3D-ASSET-GUIDE.md
+?? Docs/VISUAL-IDENTITY-BIBLE.md
+?? Docs/Verification/BuildingBlocks3D/
+?? Docs/Verification/EmberAudioIntegration/
+?? Docs/Verification/FellingScene/
+?? Docs/Verification/GameSystemAudit/GA03j-initial-red.log.gz
+?? Docs/Verification/GameSystemAudit/GA03j-initial-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC00-baseline-20260910.xml.gz
+?? Docs/Verification/GameSystemAudit/MC00-baseline-20260910.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC01-spatial-compile-red.log.gz
+?? Docs/Verification/GameSystemAudit/MC02-integration-compile-red.log.gz
+?? Docs/Verification/GameSystemAudit/MC03-core-targeting-transition-first.xml.gz
+?? Docs/Verification/GameSystemAudit/MC03-core-targeting-transition-first.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC04-contact-compile-red.log.gz
+?? Docs/Verification/GameSystemAudit/MC05-adversarial-behavior-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC05-adversarial-behavior-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC06-chunk-compile-red.log.gz
+?? Docs/Verification/GameSystemAudit/MC07-chunk-abilities-render-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC07-chunk-abilities-render-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC08-imported-integration.xml.gz
+?? Docs/Verification/GameSystemAudit/MC08-imported-integration.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC09-lifecycle-green-selector-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC09-lifecycle-green-selector-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC10-selectors-native-gate.xml.gz
+?? Docs/Verification/GameSystemAudit/MC10-selectors-native-gate.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC11-mobility-portable-cleanup-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC11-mobility-portable-cleanup-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC12-mobility-green-slip-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC12-mobility-green-slip-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC13-v8-first-full-regression.xml.gz
+?? Docs/Verification/GameSystemAudit/MC13-v8-first-full-regression.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC14-camera-tilt-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC14-camera-tilt-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC15-camera-full-pool-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC15-camera-full-pool-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC16-final-full-regression.xml.gz
+?? Docs/Verification/GameSystemAudit/MC16-final-full-regression.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC17-headroom-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC17-headroom-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC18-camera66-headroom-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC18-camera66-headroom-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC19-camera66-green-town-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC19-camera66-green-town-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC20-camera66-headroom-green.xml.gz
+?? Docs/Verification/GameSystemAudit/MC20-camera66-headroom-green.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC20b-town-registration-diagnostic.xml.gz
+?? Docs/Verification/GameSystemAudit/MC20b-town-registration-diagnostic.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC21-final-camera66-full-regression.xml.gz
+?? Docs/Verification/GameSystemAudit/MC21-final-camera66-full-regression.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC22-hidden-contact-red-gas-controls.xml.gz
+?? Docs/Verification/GameSystemAudit/MC22-hidden-contact-red-gas-controls.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC23-hidden-contact-native-stimulus-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC23-hidden-contact-native-stimulus-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC24-angle56-red-picking-green.xml.gz
+?? Docs/Verification/GameSystemAudit/MC24-angle56-red-picking-green.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC25-final-camera56-full-regression.xml.gz
+?? Docs/Verification/GameSystemAudit/MC25-final-camera56-full-regression.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC26-final-camera56-full-green.xml.gz
+?? Docs/Verification/GameSystemAudit/MC26-final-camera56-full-green.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/R3D-actual-art-adversarial-fixed-green.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-actual-art-adversarial-fixed-green.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/R3D-actual-art-core-adversarial-first.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-actual-art-core-adversarial-first.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/R3D-adaptive-profile-targeted-green.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-adaptive-profile-targeted-green.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/R3D-catalog-green-surface-adversarial-recipe-red-v2.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-foundation-green-attempt.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-foundation-green-wiring-red.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-foundation-village-regression-presenter-compile.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-moving-light-final-targeted-green.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-moving-light-final-targeted-green.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/R3D-moving-light-oracle-corrected-red.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-moving-light-oracle-corrected-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/R3D-moving-light-red.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-moving-light-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/R3D-native-pilot-followup-green.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-native-pilot-followup-green.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/R3D-native-pilot-followup-red.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-native-pilot-followup-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/R3D-ordinary-renderer-creation-green.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-recipe-green-water-red.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-recipe-three-policy-red.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-recipes-extra-presenter-camera-red.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-refined-full-suite.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-refined-full-suite.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/R3D-surface-green-tile-adversarial-red.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-surface-red-tile-initial-green-v2.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-surface-tile-green-catalog-red.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-tile-save-red.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-world-control-labels-red.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-0-axis.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-0-contracts-green.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-0-green.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-0-seed-axis-green.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-1-adversarial-red.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-1-door-red.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-1-first-integrated.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-1-manifest-native-red.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-2-review-green-report-red.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-3-controls-green.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-3-controls-red.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-3-equipment-controls-green.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-3-equipment-red.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-4-adversarial20-showcase.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-4-equipment-showcase-green.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-5-garden-red.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-5-new-spawn-green.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-5-new-spawn-red.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-baseline.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-preference-receipt-green.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-preference-receipt-red.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-refined-full-suite.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-refined-spawn-green-attempt.xml.gz
+?? Docs/Verification/ModelPolish3D/
+?? Docs/Verification/Morrowfast/
+?? Docs/Verification/MorrowfastScene/
+?? Docs/Verification/MultiCellPilot/
+?? Docs/Verification/SpawnRing3D/
+?? Docs/Verification/SpellFx/
+?? Docs/Verification/StarterSpell3D/
+?? Docs/Verification/StarterSpellAudioIntegration/
+?? Docs/Verification/Village3D/
+?? Docs/Verification/VoxelTown/native-region-06-multiseed.log
+?? Docs/Verification/VoxelWorld/D02-density-red/mcp-start.json
+?? Docs/Verification/VoxelWorld/D02-density-red/results.xml
+?? Docs/Verification/VoxelWorld/D02-density-red/unity.log
+?? Docs/Verification/VoxelWorld/D02-density-red/unity.log.gz
+?? Docs/Verification/VoxelWorld/D04-native-coarser-bake/mcp-start.json
+?? Docs/Verification/VoxelWorld/D04-native-coarser-bake/mesh-bake.json
+?? Docs/Verification/VoxelWorld/D04-native-coarser-bake/toolkit-import.json
+?? Docs/Verification/VoxelWorld/D04-native-coarser-bake/unity.log
+?? Docs/Verification/VoxelWorld/D05-coarser-voxel-tests/mcp-start.json
+?? Docs/Verification/VoxelWorld/D05-coarser-voxel-tests/results.xml
+?? Docs/Verification/VoxelWorld/D05-coarser-voxel-tests/unity.log
+?? Docs/Verification/VoxelWorld/D05-coarser-voxel-tests/unity.log.gz
+?? Docs/Verification/VoxelWorld/D06-published-skin-red/mcp-start.json
+?? Docs/Verification/VoxelWorld/D06-published-skin-red/results.xml
+?? Docs/Verification/VoxelWorld/D06-published-skin-red/unity.log
+?? Docs/Verification/VoxelWorld/D06-published-skin-red/unity.log.gz
+?? Docs/Verification/VoxelWorld/D07-fixed-coarse-bake/mcp-start.json
+?? Docs/Verification/VoxelWorld/D07-fixed-coarse-bake/mesh-bake.json
+?? Docs/Verification/VoxelWorld/D07-fixed-coarse-bake/toolkit-import.json
+?? Docs/Verification/VoxelWorld/D07-fixed-coarse-bake/unity.log
+?? Docs/Verification/VoxelWorld/D08-coarse-voxel-green/mcp-start.json
+?? Docs/Verification/VoxelWorld/D08-coarse-voxel-green/results.xml
+?? Docs/Verification/VoxelWorld/D08-coarse-voxel-green/unity.log
+?? Docs/Verification/VoxelWorld/D08-coarse-voxel-green/unity.log.gz
+?? Docs/Verification/VoxelWorld/D09-coarser-native/artifacts/
+?? Docs/Verification/VoxelWorld/D09-coarser-native/command.json
+?? Docs/Verification/VoxelWorld/D09-coarser-native/mcp-start.json
+?? Docs/Verification/VoxelWorld/D09-coarser-native/sources-after.json
+?? Docs/Verification/VoxelWorld/D09-coarser-native/sources-before.json
+?? Docs/Verification/VoxelWorld/D09-coarser-native/unity.log
+?? Docs/Verification/VoxelWorld/D09-coarser-native/unity.log.gz
+?? Docs/Verification/VoxelWorld/D10-coarse-full-regression/mcp-start.json
+?? Docs/Verification/VoxelWorld/D10-coarse-full-regression/results.xml
+?? Docs/Verification/VoxelWorld/D10-coarse-full-regression/unity.log
+?? Docs/Verification/VoxelWorld/D10-coarse-full-regression/unity.log.gz
+?? Docs/Verification/VoxelWorld/D11-thin-rod-red/mcp-start.json
+?? Docs/Verification/VoxelWorld/D11-thin-rod-red/results.xml
+?? Docs/Verification/VoxelWorld/D11-thin-rod-red/unity.log
+?? Docs/Verification/VoxelWorld/D11-thin-rod-red/unity.log.gz
+?? Docs/Verification/VoxelWorld/D12-coarse-thin-guard-bake/mcp-start.json
+?? Docs/Verification/VoxelWorld/D12-coarse-thin-guard-bake/mesh-bake.json
+?? Docs/Verification/VoxelWorld/D12-coarse-thin-guard-bake/toolkit-import.json
+?? Docs/Verification/VoxelWorld/D12-coarse-thin-guard-bake/unity.log
+?? Docs/Verification/VoxelWorld/D13-coarse-final-full-regression/mcp-start.json
+?? Docs/Verification/VoxelWorld/D13-coarse-final-full-regression/results.xml
+?? Docs/Verification/VoxelWorld/D13-coarse-final-full-regression/unity.log
+?? Docs/Verification/VoxelWorld/D13-coarse-final-full-regression/unity.log.gz
+?? Docs/Verification/VoxelWorld/D14-thin-guard-countercheck/mcp-start.json
+?? Docs/Verification/VoxelWorld/D14-thin-guard-countercheck/results.xml
+?? Docs/Verification/VoxelWorld/D14-thin-guard-countercheck/unity.log
+?? Docs/Verification/VoxelWorld/D14-thin-guard-countercheck/unity.log.gz
+?? Docs/Verification/VoxelWorld/D15-coarser-final-native/artifacts/
+?? Docs/Verification/VoxelWorld/D15-coarser-final-native/command.json
+?? Docs/Verification/VoxelWorld/D15-coarser-final-native/mcp-start.json
+?? Docs/Verification/VoxelWorld/D15-coarser-final-native/sources-after.json
+?? Docs/Verification/VoxelWorld/D15-coarser-final-native/sources-before.json
+?? Docs/Verification/VoxelWorld/D15-coarser-final-native/unity.log
+?? Docs/Verification/VoxelWorld/D15-coarser-final-native/unity.log.gz
+?? Docs/Verification/VoxelWorld/G01-composition-red/mcp-start.json
+?? Docs/Verification/VoxelWorld/G01-composition-red/unity.log
+?? Docs/Verification/VoxelWorld/G01-composition-red/unity.log.gz
+?? Docs/Verification/VoxelWorld/G02-composition-green/mcp-start.json
+?? Docs/Verification/VoxelWorld/G02-composition-green/results.xml
+?? Docs/Verification/VoxelWorld/G02-composition-green/unity.log
+?? Docs/Verification/VoxelWorld/G02-composition-green/unity.log.gz
+?? Docs/Verification/VoxelWorld/G03-composition-adversarial-red/mcp-start.json
+?? Docs/Verification/VoxelWorld/G03-composition-adversarial-red/results.xml
+?? Docs/Verification/VoxelWorld/G03-composition-adversarial-red/unity.log
+?? Docs/Verification/VoxelWorld/G03-composition-adversarial-red/unity.log.gz
+?? Docs/Verification/VoxelWorld/G04-composition-verification/mcp-start.json
+?? Docs/Verification/VoxelWorld/G04-composition-verification/results.xml
+?? Docs/Verification/VoxelWorld/G04-composition-verification/unity.log
+?? Docs/Verification/VoxelWorld/G04-composition-verification/unity.log.gz
+?? Docs/Verification/VoxelWorld/G05-composition-preview/
+?? Docs/Verification/VoxelWorld/G06-composition-review-red/mcp-start.json
+?? Docs/Verification/VoxelWorld/G06-composition-review-red/results.xml
+?? Docs/Verification/VoxelWorld/G06-composition-review-red/unity.log
+?? Docs/Verification/VoxelWorld/G06-composition-review-red/unity.log.gz
+?? Docs/Verification/VoxelWorld/G07-composition-review-green/mcp-start.json
+?? Docs/Verification/VoxelWorld/G07-composition-review-green/results.xml
+?? Docs/Verification/VoxelWorld/G07-composition-review-green/unity.log
+?? Docs/Verification/VoxelWorld/G07-composition-review-green/unity.log.gz
+?? Docs/Verification/VoxelWorld/G09-composition-full-regression/mcp-start.json
+?? Docs/Verification/VoxelWorld/G09-composition-full-regression/results.xml
+?? Docs/Verification/VoxelWorld/G09-composition-full-regression/unity.log
+?? Docs/Verification/VoxelWorld/G09-composition-full-regression/unity.log.gz
+?? Docs/Verification/VoxelWorld/G11-composition-final-targeted/mcp-start.json
+?? Docs/Verification/VoxelWorld/G11-composition-final-targeted/results.xml
+?? Docs/Verification/VoxelWorld/G11-composition-final-targeted/unity.log
+?? Docs/Verification/VoxelWorld/G11-composition-final-targeted/unity.log.gz
+?? Docs/Verification/VoxelWorld/G12-composition-final-full-regression/mcp-start.json
+?? Docs/Verification/VoxelWorld/G12-composition-final-full-regression/results.xml
+?? Docs/Verification/VoxelWorld/G12-composition-final-full-regression/unity.log
+?? Docs/Verification/VoxelWorld/G12-composition-final-full-regression/unity.log.gz
+?? Docs/Verification/VoxelWorld/P02-object-palette-red/mcp-start.json
+?? Docs/Verification/VoxelWorld/P02-object-palette-red/results.xml
+?? Docs/Verification/VoxelWorld/P02-object-palette-red/unity.log
+?? Docs/Verification/VoxelWorld/P02-object-palette-red/unity.log.gz
+?? Docs/Verification/VoxelWorld/P04-palette-contracts/mcp-start.json
+?? Docs/Verification/VoxelWorld/P04-palette-contracts/results.xml
+?? Docs/Verification/VoxelWorld/P04-palette-contracts/unity.log
+?? Docs/Verification/VoxelWorld/P04-palette-contracts/unity.log.gz
+?? Docs/Verification/VoxelWorld/P05-two-color-bake/mcp-start.json
+?? Docs/Verification/VoxelWorld/P05-two-color-bake/mesh-bake.json
+?? Docs/Verification/VoxelWorld/P05-two-color-bake/toolkit-import.json
+?? Docs/Verification/VoxelWorld/P05-two-color-bake/unity.log
+?? Docs/Verification/VoxelWorld/P06-two-color-voxel-tests/mcp-start.json
+?? Docs/Verification/VoxelWorld/P06-two-color-voxel-tests/results.xml
+?? Docs/Verification/VoxelWorld/P06-two-color-voxel-tests/unity.log
+?? Docs/Verification/VoxelWorld/P06-two-color-voxel-tests/unity.log.gz
+?? Docs/Verification/VoxelWorld/P07-shared-paint-red/mcp-start.json
+?? Docs/Verification/VoxelWorld/P07-shared-paint-red/results.xml
+?? Docs/Verification/VoxelWorld/P07-shared-paint-red/unity.log
+?? Docs/Verification/VoxelWorld/P07-shared-paint-red/unity.log.gz
+?? Docs/Verification/VoxelWorld/P09-final-two-color-bake/mcp-start.json
+?? Docs/Verification/VoxelWorld/P09-final-two-color-bake/mesh-bake.json
+?? Docs/Verification/VoxelWorld/P09-final-two-color-bake/toolkit-import.json
+?? Docs/Verification/VoxelWorld/P09-final-two-color-bake/unity.log
+?? Docs/Verification/VoxelWorld/P10-two-color-full-regression/mcp-start.json
+?? Docs/Verification/VoxelWorld/P10-two-color-full-regression/results.xml
+?? Docs/Verification/VoxelWorld/P10-two-color-full-regression/unity.log
+?? Docs/Verification/VoxelWorld/P10-two-color-full-regression/unity.log.gz
+?? Docs/Verification/VoxelWorld/P11-two-color-native/artifacts/
+?? Docs/Verification/VoxelWorld/P11-two-color-native/command.json
+?? Docs/Verification/VoxelWorld/P11-two-color-native/mcp-start.json
+?? Docs/Verification/VoxelWorld/P11-two-color-native/sources-after.json
+?? Docs/Verification/VoxelWorld/P11-two-color-native/sources-before.json
+?? Docs/Verification/VoxelWorld/P11-two-color-native/unity.log
+?? Docs/Verification/VoxelWorld/P11-two-color-native/unity.log.gz
+?? Docs/Verification/VoxelWorld/P12-awning-red/mcp-start.json
+?? Docs/Verification/VoxelWorld/P12-awning-red/results.xml
+?? Docs/Verification/VoxelWorld/P12-awning-red/unity.log
+?? Docs/Verification/VoxelWorld/P12-awning-red/unity.log.gz
+?? Docs/Verification/VoxelWorld/P13-cloth-refinement-bake/mcp-start.json
+?? Docs/Verification/VoxelWorld/P13-cloth-refinement-bake/mesh-bake.json
+?? Docs/Verification/VoxelWorld/P13-cloth-refinement-bake/toolkit-import.json
+?? Docs/Verification/VoxelWorld/P13-cloth-refinement-bake/unity.log
+?? Docs/Verification/VoxelWorld/P14-atlas-provenance-red/mcp-start.json
+?? Docs/Verification/VoxelWorld/P14-atlas-provenance-red/results.xml
+?? Docs/Verification/VoxelWorld/P14-atlas-provenance-red/unity.log
+?? Docs/Verification/VoxelWorld/P14-atlas-provenance-red/unity.log.gz
+?? Docs/Verification/VoxelWorld/P15-final-palette-bake/mcp-start.json
+?? Docs/Verification/VoxelWorld/P15-final-palette-bake/mesh-bake.json
+?? Docs/Verification/VoxelWorld/P15-final-palette-bake/toolkit-import.json
+?? Docs/Verification/VoxelWorld/P15-final-palette-bake/unity.log
+?? Docs/Verification/VoxelWorld/P16-final-palette-full-regression/mcp-start.json
+?? Docs/Verification/VoxelWorld/P16-final-palette-full-regression/results.xml
+?? Docs/Verification/VoxelWorld/P16-final-palette-full-regression/unity.log
+?? Docs/Verification/VoxelWorld/P16-final-palette-full-regression/unity.log.gz
+?? Docs/Verification/VoxelWorld/P17-final-palette-native/artifacts/
+?? Docs/Verification/VoxelWorld/P17-final-palette-native/command.json
+?? Docs/Verification/VoxelWorld/P17-final-palette-native/mcp-start.json
+?? Docs/Verification/VoxelWorld/P17-final-palette-native/sources-after.json
+?? Docs/Verification/VoxelWorld/P17-final-palette-native/sources-before.json
+?? Docs/Verification/VoxelWorld/P17-final-palette-native/unity.log
+?? Docs/Verification/VoxelWorld/P17-final-palette-native/unity.log.gz
+?? Docs/Verification/VoxelWorld/R02-existing-full-reveal-tests/mcp-start.json
+?? Docs/Verification/VoxelWorld/R02-existing-full-reveal-tests/results.xml
+?? Docs/Verification/VoxelWorld/R02-existing-full-reveal-tests/unity.log
+?? Docs/Verification/VoxelWorld/R02-existing-full-reveal-tests/unity.log.gz
+?? Docs/Verification/VoxelWorld/S01-simplify/prechange.json
+?? Docs/Verification/VoxelWorld/S01-west-spawn-red/mcp-start.json
+?? Docs/Verification/VoxelWorld/S01-west-spawn-red/results.xml
+?? Docs/Verification/VoxelWorld/S01-west-spawn-red/unity.log
+?? Docs/Verification/VoxelWorld/S01-west-spawn-red/unity.log.gz
+?? Docs/Verification/VoxelWorld/S02-west-spawn-green/mcp-start.json
+?? Docs/Verification/VoxelWorld/S02-west-spawn-green/results.xml
+?? Docs/Verification/VoxelWorld/S02-west-spawn-green/unity.log
+?? Docs/Verification/VoxelWorld/S02-west-spawn-green/unity.log.gz
+?? Docs/Verification/VoxelWorld/S03-paint-red/mcp-start.json
+?? Docs/Verification/VoxelWorld/S03-paint-red/results.xml
+?? Docs/Verification/VoxelWorld/S03-paint-red/unity.log
+?? Docs/Verification/VoxelWorld/S03-paint-red/unity.log.gz
+?? Docs/Verification/VoxelWorld/S04-quieter-ground-bake/
+?? Docs/Verification/VoxelWorld/S05-quieter-ground-bake/mcp-start.json
+?? Docs/Verification/VoxelWorld/S05-quieter-ground-bake/mesh-bake.json
+?? Docs/Verification/VoxelWorld/S05-quieter-ground-bake/toolkit-import.json
+?? Docs/Verification/VoxelWorld/S05-quieter-ground-bake/unity.log
+?? Docs/Verification/VoxelWorld/S06-paint-voxel-tests/
+?? Docs/Verification/VoxelWorld/S07-paint-voxel-green/mcp-start.json
+?? Docs/Verification/VoxelWorld/S07-paint-voxel-green/results.xml
+?? Docs/Verification/VoxelWorld/S07-paint-voxel-green/unity.log
+?? Docs/Verification/VoxelWorld/S07-paint-voxel-green/unity.log.gz
+?? Docs/Verification/VoxelWorld/S08-quieter-ground-native/artifacts/
+?? Docs/Verification/VoxelWorld/S08-quieter-ground-native/command.json
+?? Docs/Verification/VoxelWorld/S08-quieter-ground-native/mcp-start.json
+?? Docs/Verification/VoxelWorld/S08-quieter-ground-native/sources-after.json
+?? Docs/Verification/VoxelWorld/S08-quieter-ground-native/sources-before.json
+?? Docs/Verification/VoxelWorld/S08-quieter-ground-native/unity.log
+?? Docs/Verification/VoxelWorld/S08-quieter-ground-native/unity.log.gz
+?? Docs/Verification/VoxelWorld/SD01-composition-red/unity.log
+?? Docs/Verification/VoxelWorld/SD01-composition-red/unity.log.gz
+?? Docs/Verification/VoxelWorld/SD02-art-red/unity.log
+?? Docs/Verification/VoxelWorld/SD02-art-red/unity.log.gz
+?? Docs/Verification/VoxelWorld/SD03-native-art/mcp.log
+?? Docs/Verification/VoxelWorld/SD03-native-art/mcp.log.gz
+?? Docs/Verification/VoxelWorld/SD03-native-art/results.xml
+?? Docs/Verification/VoxelWorld/SD03-native-art/unity.log
+?? Docs/Verification/VoxelWorld/SD03-native-art/unity.log.gz
+?? Docs/Verification/VoxelWorld/SD04-integration-red/mcp.log
+?? Docs/Verification/VoxelWorld/SD04-integration-red/mcp.log.gz
+?? Docs/Verification/VoxelWorld/SD04-integration-red/results.xml
+?? Docs/Verification/VoxelWorld/SD04-integration-red/unity.log
+?? Docs/Verification/VoxelWorld/SD04-integration-red/unity.log.gz
+?? Docs/Verification/VoxelWorld/SD05-integrated/mcp.log
+?? Docs/Verification/VoxelWorld/SD05-integrated/mcp.log.gz
+?? Docs/Verification/VoxelWorld/SD05-integrated/results.xml
+?? Docs/Verification/VoxelWorld/SD05-integrated/unity.log
+?? Docs/Verification/VoxelWorld/SD05-integrated/unity.log.gz
+?? Docs/Verification/VoxelWorld/SD07-review/mcp.log
+?? Docs/Verification/VoxelWorld/SD07-review/mcp.log.gz
+?? Docs/Verification/VoxelWorld/SD07-review/results.xml
+?? Docs/Verification/VoxelWorld/SD07-review/unity.log
+?? Docs/Verification/VoxelWorld/SD07-review/unity.log.gz
+?? Docs/Verification/VoxelWorld/SD08-readability-red/mcp.log
+?? Docs/Verification/VoxelWorld/SD08-readability-red/mcp.log.gz
+?? Docs/Verification/VoxelWorld/SD08-readability-red/results.xml
+?? Docs/Verification/VoxelWorld/SD08-readability-red/unity.log
+?? Docs/Verification/VoxelWorld/SD08-readability-red/unity.log.gz
+?? Docs/Verification/VoxelWorld/SD09-final/SD03-kit-build.log.gz
+?? Docs/Verification/VoxelWorld/SD09-final/SD06-preview.log.gz
+?? Docs/Verification/VoxelWorld/SD09-final/SD10-preview.log.gz
+?? Docs/Verification/VoxelWorld/SD11-final-full/mcp.log
+?? Docs/Verification/VoxelWorld/SD11-final-full/results.xml
+?? Docs/Verification/VoxelWorld/SD11-final-full/unity.log
+?? Docs/Verification/VoxelWorld/SP01-composition-red/mcp-start.json
+?? Docs/Verification/VoxelWorld/SP01-composition-red/unity.log
+?? Docs/Verification/VoxelWorld/SP01-composition-red/unity.log.gz
+?? Docs/Verification/VoxelWorld/SP02-composition-green/mcp-start.json
+?? Docs/Verification/VoxelWorld/SP02-composition-green/results.xml
+?? Docs/Verification/VoxelWorld/SP02-composition-green/unity.log
+?? Docs/Verification/VoxelWorld/SP02-composition-green/unity.log.gz
+?? Docs/Verification/VoxelWorld/SP03-composition-adversarial/mcp-start.json
+?? Docs/Verification/VoxelWorld/SP03-composition-adversarial/unity.log
+?? Docs/Verification/VoxelWorld/SP03-composition-adversarial/unity.log.gz
+?? Docs/Verification/VoxelWorld/SP04-composition-adversarial/mcp-start.json
+?? Docs/Verification/VoxelWorld/SP04-composition-adversarial/results.xml
+?? Docs/Verification/VoxelWorld/SP04-composition-adversarial/unity.log
+?? Docs/Verification/VoxelWorld/SP04-composition-adversarial/unity.log.gz
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/Fallow-1729-plan.txt
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/Fallow-1729.png
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/Fallow-64-plan.txt
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/Fallow-64.png
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/Fallow-729490642-plan.txt
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/Fallow-729490642.png
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/FieldStrips-1729-plan.txt
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/FieldStrips-1729.png
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/FieldStrips-64-plan.txt
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/FieldStrips-64.png
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/FieldStrips-729490642-plan.txt
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/FieldStrips-729490642.png
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/FlowerMeadow-1729-plan.txt
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/FlowerMeadow-1729.png
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/FlowerMeadow-64-plan.txt
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/FlowerMeadow-64.png
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/FlowerMeadow-729490642-plan.txt
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/FlowerMeadow-729490642.png
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/Hedgerow-1729-plan.txt
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/Hedgerow-1729.png
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/Hedgerow-64-plan.txt
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/Hedgerow-64.png
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/Hedgerow-729490642-plan.txt
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/Hedgerow-729490642.png
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/OldRoad-1729-plan.txt
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/OldRoad-1729.png
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/OldRoad-64-plan.txt
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/OldRoad-64.png
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/OldRoad-729490642-plan.txt
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/OldRoad-729490642.png
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/RiverMeadow-1729-plan.txt
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/RiverMeadow-1729.png
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/RiverMeadow-64-plan.txt
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/RiverMeadow-64.png
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/RiverMeadow-729490642-plan.txt
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/RiverMeadow-729490642.png
+?? Docs/Verification/VoxelWorld/SP05-composition-preview/contact-sheet.png
+?? Docs/Verification/VoxelWorld/SP06-reservation-red/mcp-start.json
+?? Docs/Verification/VoxelWorld/SP06-reservation-red/results.xml
+?? Docs/Verification/VoxelWorld/SP06-reservation-red/unity.log
+?? Docs/Verification/VoxelWorld/SP06-reservation-red/unity.log.gz
+?? Docs/Verification/VoxelWorld/SP08-isolated-targeted/results.xml
+?? Docs/Verification/VoxelWorld/SP08-isolated-targeted/unity.log
+?? Docs/Verification/VoxelWorld/SP09-isolated-targeted/results.xml
+?? Docs/Verification/VoxelWorld/SP09-isolated-targeted/unity.log
+?? Docs/Verification/VoxelWorld/SP10-isolated-full/results.xml
+?? Docs/Verification/VoxelWorld/SP10-isolated-full/unity.log
+?? Docs/Verification/VoxelWorld/SP12-isolated-full/mcp.log
+?? Docs/Verification/VoxelWorld/SP12-isolated-full/results.xml
+?? Docs/Verification/VoxelWorld/SP12-isolated-full/unity.log
+?? Docs/Verification/VoxelWorld/SP13-transition-fixture/mcp.log
+?? Docs/Verification/VoxelWorld/SP13-transition-fixture/results.xml
+?? Docs/Verification/VoxelWorld/SP13-transition-fixture/unity.log
+?? Docs/Verification/VoxelWorld/SP14-transition-fixture/mcp.log
+?? Docs/Verification/VoxelWorld/SP14-transition-fixture/results.xml
+?? Docs/Verification/VoxelWorld/SP14-transition-fixture/unity.log
+?? Docs/Verification/VoxelWorld/SP16-final-full/mcp.log
+?? Docs/Verification/VoxelWorld/SP16-final-full/results.xml
+?? Docs/Verification/VoxelWorld/SP16-final-full/unity.log
+?? Docs/Verification/VoxelWorld/U00-baseline-launch/
+?? Docs/Verification/VoxelWorld/U01-mesh-red/
+?? Docs/Verification/VoxelWorld/U02-contract-red/
+?? Docs/Verification/VoxelWorld/U03-mesh-green-toolkit-audit-red/
+?? Docs/Verification/VoxelWorld/U04-contracts/
+?? Docs/Verification/VoxelWorld/U05-toolkit-harness-green/
+?? Docs/Verification/VoxelWorld/U06-initial-bake/
+?? Docs/Verification/VoxelWorld/U07-review-red/
+?? Docs/Verification/VoxelWorld/U08-review-green/
+?? Docs/Verification/VoxelWorld/U09-corrected-bake/
+?? Docs/Verification/VoxelWorld/U10-toolkit-ownership/
+?? Docs/Verification/VoxelWorld/U11-native-first/
+?? Docs/Verification/VoxelWorld/U12-full-regression-and-pitch-red/
+?? Docs/Verification/VoxelWorld/U13-glowmaw-repeat/
+?? Docs/Verification/VoxelWorld/U14-final-recipes/mcp-start.json
+?? Docs/Verification/VoxelWorld/U14-final-recipes/receipt.json
+?? Docs/Verification/VoxelWorld/U14-final-recipes/toolkit-import.json
+?? Docs/Verification/VoxelWorld/U14-final-recipes/unity.log
+?? Docs/Verification/VoxelWorld/U15-final-full-regression/mcp-start.json
+?? Docs/Verification/VoxelWorld/U15-final-full-regression/results.xml
+?? Docs/Verification/VoxelWorld/U15-final-full-regression/unity.log
+?? Docs/Verification/VoxelWorld/U15-final-full-regression/unity.log.gz
+?? Docs/Verification/VoxelWorld/VWN-13560571d1354f60ae6b7f2c3b2460f1-cleanup.json
+?? Docs/Verification/VoxelWorld/VWN-13560571d1354f60ae6b7f2c3b2460f1-destructible-ridge.png
+?? Docs/Verification/VoxelWorld/VWN-13560571d1354f60ae6b7f2c3b2460f1-eastern-grove.png
+?? Docs/Verification/VoxelWorld/VWN-13560571d1354f60ae6b7f2c3b2460f1-loaded-owners.json
+?? Docs/Verification/VoxelWorld/VWN-13560571d1354f60ae6b7f2c3b2460f1-loaded-tiles.json
+?? Docs/Verification/VoxelWorld/VWN-13560571d1354f60ae6b7f2c3b2460f1-native.json
+?? Docs/Verification/VoxelWorld/VWN-13560571d1354f60ae6b7f2c3b2460f1-profile-full-frames.csv.gz
+?? Docs/Verification/VoxelWorld/VWN-13560571d1354f60ae6b7f2c3b2460f1-profile-full.json
+?? Docs/Verification/VoxelWorld/VWN-13560571d1354f60ae6b7f2c3b2460f1-restored-save.png
+?? Docs/Verification/VoxelWorld/VWN-13560571d1354f60ae6b7f2c3b2460f1-saved-owners.json
+?? Docs/Verification/VoxelWorld/VWN-13560571d1354f60ae6b7f2c3b2460f1-saved-tiles.json
+?? Docs/Verification/VoxelWorld/VWN-13560571d1354f60ae6b7f2c3b2460f1-south-entry.png
+?? Docs/Verification/VoxelWorld/VWN-13560571d1354f60ae6b7f2c3b2460f1-southern-ridge.png
+?? Docs/Verification/VoxelWorld/VWN-13560571d1354f60ae6b7f2c3b2460f1-western-compost-field.png
+?? Docs/Verification/VoxelWorld/VWN-2a7a6e0451754b12b732ea6ba40627a7-cleanup.json
+?? Docs/Verification/VoxelWorld/VWN-2a7a6e0451754b12b732ea6ba40627a7-destructible-ridge.png
+?? Docs/Verification/VoxelWorld/VWN-2a7a6e0451754b12b732ea6ba40627a7-eastern-grove.png
+?? Docs/Verification/VoxelWorld/VWN-2a7a6e0451754b12b732ea6ba40627a7-loaded-owners.json
+?? Docs/Verification/VoxelWorld/VWN-2a7a6e0451754b12b732ea6ba40627a7-loaded-tiles.json
+?? Docs/Verification/VoxelWorld/VWN-2a7a6e0451754b12b732ea6ba40627a7-native.json
+?? Docs/Verification/VoxelWorld/VWN-2a7a6e0451754b12b732ea6ba40627a7-profile-full-frames.csv.gz
+?? Docs/Verification/VoxelWorld/VWN-2a7a6e0451754b12b732ea6ba40627a7-profile-full.json
+?? Docs/Verification/VoxelWorld/VWN-2a7a6e0451754b12b732ea6ba40627a7-restored-save.png
+?? Docs/Verification/VoxelWorld/VWN-2a7a6e0451754b12b732ea6ba40627a7-saved-owners.json
+?? Docs/Verification/VoxelWorld/VWN-2a7a6e0451754b12b732ea6ba40627a7-saved-tiles.json
+?? Docs/Verification/VoxelWorld/VWN-2a7a6e0451754b12b732ea6ba40627a7-south-entry.png
+?? Docs/Verification/VoxelWorld/VWN-2a7a6e0451754b12b732ea6ba40627a7-southern-ridge.png
+?? Docs/Verification/VoxelWorld/VWN-2a7a6e0451754b12b732ea6ba40627a7-spawn-town.png
+?? Docs/Verification/VoxelWorld/VWN-2a7a6e0451754b12b732ea6ba40627a7-western-compost-field.png
+?? Docs/Verification/VoxelWorld/VWN-56aa9606627046169cc525f753c0a6d3-cleanup.json
+?? Docs/Verification/VoxelWorld/VWN-56aa9606627046169cc525f753c0a6d3-destructible-ridge.png
+?? Docs/Verification/VoxelWorld/VWN-56aa9606627046169cc525f753c0a6d3-eastern-grove.png
+?? Docs/Verification/VoxelWorld/VWN-56aa9606627046169cc525f753c0a6d3-loaded-owners.json
+?? Docs/Verification/VoxelWorld/VWN-56aa9606627046169cc525f753c0a6d3-loaded-tiles.json
+?? Docs/Verification/VoxelWorld/VWN-56aa9606627046169cc525f753c0a6d3-native.json
+?? Docs/Verification/VoxelWorld/VWN-56aa9606627046169cc525f753c0a6d3-profile-full-frames.csv.gz
+?? Docs/Verification/VoxelWorld/VWN-56aa9606627046169cc525f753c0a6d3-profile-full.json
+?? Docs/Verification/VoxelWorld/VWN-56aa9606627046169cc525f753c0a6d3-restored-save.png
+?? Docs/Verification/VoxelWorld/VWN-56aa9606627046169cc525f753c0a6d3-saved-owners.json
+?? Docs/Verification/VoxelWorld/VWN-56aa9606627046169cc525f753c0a6d3-saved-tiles.json
+?? Docs/Verification/VoxelWorld/VWN-56aa9606627046169cc525f753c0a6d3-south-entry.png
+?? Docs/Verification/VoxelWorld/VWN-56aa9606627046169cc525f753c0a6d3-southern-ridge.png
+?? Docs/Verification/VoxelWorld/VWN-56aa9606627046169cc525f753c0a6d3-spawn-town.png
+?? Docs/Verification/VoxelWorld/VWN-56aa9606627046169cc525f753c0a6d3-western-compost-field.png
+?? Docs/Verification/VoxelWorld/VWN-6e3fde3722764cdcaefd83639b40702a-cleanup.json
+?? Docs/Verification/VoxelWorld/VWN-6e3fde3722764cdcaefd83639b40702a-destructible-ridge.png
+?? Docs/Verification/VoxelWorld/VWN-6e3fde3722764cdcaefd83639b40702a-eastern-grove.png
+?? Docs/Verification/VoxelWorld/VWN-6e3fde3722764cdcaefd83639b40702a-loaded-owners.json
+?? Docs/Verification/VoxelWorld/VWN-6e3fde3722764cdcaefd83639b40702a-loaded-tiles.json
+?? Docs/Verification/VoxelWorld/VWN-6e3fde3722764cdcaefd83639b40702a-native.json
+?? Docs/Verification/VoxelWorld/VWN-6e3fde3722764cdcaefd83639b40702a-profile-full-frames.csv.gz
+?? Docs/Verification/VoxelWorld/VWN-6e3fde3722764cdcaefd83639b40702a-profile-full.json
+?? Docs/Verification/VoxelWorld/VWN-6e3fde3722764cdcaefd83639b40702a-restored-save.png
+?? Docs/Verification/VoxelWorld/VWN-6e3fde3722764cdcaefd83639b40702a-saved-owners.json
+?? Docs/Verification/VoxelWorld/VWN-6e3fde3722764cdcaefd83639b40702a-saved-tiles.json
+?? Docs/Verification/VoxelWorld/VWN-6e3fde3722764cdcaefd83639b40702a-south-entry.png
+?? Docs/Verification/VoxelWorld/VWN-6e3fde3722764cdcaefd83639b40702a-southern-ridge.png
+?? Docs/Verification/VoxelWorld/VWN-6e3fde3722764cdcaefd83639b40702a-spawn-town.png
+?? Docs/Verification/VoxelWorld/VWN-6e3fde3722764cdcaefd83639b40702a-western-compost-field.png
+?? Docs/Verification/VoxelWorld/VWN-afe96ed1bd314955a438a1290d7a4470-cleanup.json
+?? Docs/Verification/VoxelWorld/VWN-afe96ed1bd314955a438a1290d7a4470-destructible-ridge.png
+?? Docs/Verification/VoxelWorld/VWN-afe96ed1bd314955a438a1290d7a4470-eastern-grove.png
+?? Docs/Verification/VoxelWorld/VWN-afe96ed1bd314955a438a1290d7a4470-loaded-owners.json
+?? Docs/Verification/VoxelWorld/VWN-afe96ed1bd314955a438a1290d7a4470-loaded-tiles.json
+?? Docs/Verification/VoxelWorld/VWN-afe96ed1bd314955a438a1290d7a4470-native.json
+?? Docs/Verification/VoxelWorld/VWN-afe96ed1bd314955a438a1290d7a4470-profile-full-frames.csv.gz
+?? Docs/Verification/VoxelWorld/VWN-afe96ed1bd314955a438a1290d7a4470-profile-full.json
+?? Docs/Verification/VoxelWorld/VWN-afe96ed1bd314955a438a1290d7a4470-restored-save.png
+?? Docs/Verification/VoxelWorld/VWN-afe96ed1bd314955a438a1290d7a4470-saved-owners.json
+?? Docs/Verification/VoxelWorld/VWN-afe96ed1bd314955a438a1290d7a4470-saved-tiles.json
+?? Docs/Verification/VoxelWorld/VWN-afe96ed1bd314955a438a1290d7a4470-south-entry.png
+?? Docs/Verification/VoxelWorld/VWN-afe96ed1bd314955a438a1290d7a4470-southern-ridge.png
+?? Docs/Verification/VoxelWorld/VWN-afe96ed1bd314955a438a1290d7a4470-spawn-town.png
+?? Docs/Verification/VoxelWorld/VWN-afe96ed1bd314955a438a1290d7a4470-western-compost-field.png
+?? Docs/Verification/VoxelWorld/VWN-d437ca34fa414ebe9d5521de418a7f3b-cleanup.json
+?? Docs/Verification/VoxelWorld/VWN-d437ca34fa414ebe9d5521de418a7f3b-destructible-ridge.png
+?? Docs/Verification/VoxelWorld/VWN-d437ca34fa414ebe9d5521de418a7f3b-eastern-grove.png
+?? Docs/Verification/VoxelWorld/VWN-d437ca34fa414ebe9d5521de418a7f3b-loaded-owners.json
+?? Docs/Verification/VoxelWorld/VWN-d437ca34fa414ebe9d5521de418a7f3b-loaded-tiles.json
+?? Docs/Verification/VoxelWorld/VWN-d437ca34fa414ebe9d5521de418a7f3b-native.json
+?? Docs/Verification/VoxelWorld/VWN-d437ca34fa414ebe9d5521de418a7f3b-profile-full-frames.csv.gz
+?? Docs/Verification/VoxelWorld/VWN-d437ca34fa414ebe9d5521de418a7f3b-profile-full.json
+?? Docs/Verification/VoxelWorld/VWN-d437ca34fa414ebe9d5521de418a7f3b-restored-save.png
+?? Docs/Verification/VoxelWorld/VWN-d437ca34fa414ebe9d5521de418a7f3b-saved-owners.json
+?? Docs/Verification/VoxelWorld/VWN-d437ca34fa414ebe9d5521de418a7f3b-saved-tiles.json
+?? Docs/Verification/VoxelWorld/VWN-d437ca34fa414ebe9d5521de418a7f3b-south-entry.png
+?? Docs/Verification/VoxelWorld/VWN-d437ca34fa414ebe9d5521de418a7f3b-southern-ridge.png
+?? Docs/Verification/VoxelWorld/VWN-d437ca34fa414ebe9d5521de418a7f3b-spawn-town.png
+?? Docs/Verification/VoxelWorld/VWN-d437ca34fa414ebe9d5521de418a7f3b-western-compost-field.png
+?? Docs/Verification/VoxelWorld/Z01-double-zoom-camera/mcp-start.json
+?? Docs/Verification/VoxelWorld/Z01-double-zoom-camera/results.xml
+?? Docs/Verification/VoxelWorld/Z01-double-zoom-camera/unity.log
+?? Docs/Verification/VoxelWorld/Z01-double-zoom-camera/unity.log.gz
+?? Docs/Verification/VoxelWorld/harness-source-receipt.json
+?? Docs/Verification/VoxelWorld/pending/
+?? Docs/Verification/VoxelWorld/prechange.json
+?? Docs/Verification/VoxelWorld/presentation-review-receipt.json
+?? Docs/Verification/VoxelWorld/toolkit-guid-pin.json
+?? Docs/Verification/World3D/
+?? Docs/WORK-LOG-2026-09-09.md
+?? Docs/WORK-LOG-2026-09-10.md
+?? Docs/WORK-LOG-2026-09-11.md
+?? Docs/WORLD-ART-3D-CONVERSION.md
+?? ProjectSettings/Packages/com.unity.probuilder/
+?? Tools/

@@ -1,0 +1,59 @@
+{
+  "isolatedProject": "/tmp/coo-spread-validation",
+  "unityExit": 2,
+  "compileErrors": [],
+  "results": {
+    "id": "2",
+    "testcasecount": "180",
+    "result": "Failed(Child)",
+    "total": "180",
+    "passed": "171",
+    "failed": "9",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-13 04:31:51Z",
+    "end-time": "2026-09-13 04:32:11Z",
+    "duration": "19.5710954"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.BeatingCompositionAdversarialTests.Adversarial_ApproachesSkirtThreeIntactNativeBrineBasins",
+      "message": "  Overworld.16.16.0 seed 0 fragmented lenses; areas=93,102,57,5\n  Expected: 3\n  But was:  4\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BeatingCompositionAdversarialTests.Adversarial_RuinStreetConnectsRoomCentresWithNativePaving",
+      "message": "  Ruin room 1 seed 0 has no continuous paved connection.\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BeatingCompositionRefinementTests.DuneBeltsHaveBroadBodiesInsteadOfOnlySingleCellFences",
+      "message": "  Dunes need substantial bodies, seed 0\n  Expected: greater than 5\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BeatingCompositionRefinementTests.DuneHeightFollowsCurrentNativeNeighboursAndNeverReconstructsRemovedTerrain",
+      "message": "  String lengths are both 14. Strings differ at index 13.\n  Expected: \"beating-dune-3\"\n  But was:  \"beating-dune-1\"\n  ------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BeatingVoxelKitTests.DunePaletteUsesMutedWarmStoneAndTheExistingSandRatherThanBrightGold",
+      "message": "  beating-dune-0\n  Expected: equivalent to < (0.47, 0.06), (0.03, 0.31) >\n  But was:  < (0.91, 0.06), (0.34, 0.19) >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BeatingVoxelKitTests.DuneVariantsProvideFlankShoulderCrestAndPeakWithoutMoreVoxels(0,0.4f,0.65f)",
+      "message": "  beating-dune-0\n  Expected: in range (0.4,0.65)\n  But was:  1.29999995f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BeatingVoxelKitTests.DuneVariantsProvideFlankShoulderCrestAndPeakWithoutMoreVoxels(1,0.65f,1.0f)",
+      "message": "  beating-dune-1\n  Expected: in range (0.65,1)\n  But was:  1.38f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BeatingVoxelKitTests.DuneVariantsProvideFlankShoulderCrestAndPeakWithoutMoreVoxels(2,1.1f,1.4f)",
+      "message": "  beating-dune-2\n  Expected: in range (1.1,1.4)\n  But was:  1.45999992f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BeatingVoxelKitTests.RuinFoundationSpansTheNativeCellInBothDirectionsNearGround",
+      "message": "  beating-ruin-0\n  Expected: greater than or equal to 0.899999976f\n  But was:  0.75999999f\n"
+    }
+  ]
+}

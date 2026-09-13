@@ -1,0 +1,31 @@
+{
+  "isolatedProject": "/tmp/coo-spread-validation",
+  "unityExit": 2,
+  "compileErrors": [],
+  "results": {
+    "id": "2",
+    "testcasecount": "105",
+    "result": "Failed(Child)",
+    "total": "105",
+    "passed": "103",
+    "failed": "2",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-13 04:22:52Z",
+    "end-time": "2026-09-13 04:23:11Z",
+    "duration": "18.3875147"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.BeatingCompositionAdversarialTests.Adversarial_CaravanPassingPlaceVisiblyWidensTheConnectedNativeRoad",
+      "message": "  No complete 5x5 paved passing place on the native road: seed 0 eastWest=True\n  Expected: greater than 0\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BeatingCompositionAdversarialTests.Adversarial_ThePaintedRoadItselfConnectsItsPrimaryEntries(False)",
+      "message": "  Painted road disconnected: seed 38 eastWest=False\n  Expected: True\n  But was:  False\n"
+    }
+  ]
+}
