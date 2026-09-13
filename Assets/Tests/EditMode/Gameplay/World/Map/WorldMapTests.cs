@@ -12,6 +12,13 @@ namespace CavesOfOoo.Tests
 
         private const string TestBlueprints = @"{
           ""Objects"": [
+            { ""Name"": ""GoldCoin"", ""Inherits"": ""PhysicalObject"" },
+            { ""Name"": ""WoodenBarrel"", ""Inherits"": ""PhysicalObject"" },
+            { ""Name"": ""Hedge"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Solid"", ""Value"": ""true"" }]}] },
+            { ""Name"": ""CropRow"", ""Inherits"": ""Grass"" },
+            { ""Name"": ""RoadStone"", ""Inherits"": ""Floor"" },
+            { ""Name"": ""FlowerField"", ""Inherits"": ""Grass"" },
+            { ""Name"": ""Reeds"", ""Inherits"": ""Grass"" },
             {
               ""Name"": ""PhysicalObject"",
               ""Parts"": [
