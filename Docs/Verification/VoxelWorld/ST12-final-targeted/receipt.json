@@ -1,0 +1,31 @@
+{
+  "isolatedProject": "/tmp/coo-spread-validation",
+  "unityExit": 2,
+  "compileErrors": [],
+  "results": {
+    "id": "2",
+    "testcasecount": "331",
+    "result": "Failed(Child)",
+    "total": "331",
+    "passed": "329",
+    "failed": "2",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-14 05:42:50Z",
+    "end-time": "2026-09-14 05:43:11Z",
+    "duration": "21.1836546"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.StumpCompositionAdversarialTests.Adversarial_AllEighteenFinalNativeZonesKeepPortalsResourcesAndBothHabitats(64)",
+      "message": "  Overworld.5.3.0 seed 64 stranded environmental cell 20,3 objects: TepuiStone neighbors: (19, 3)=TepuiStone,Wall;(21, 3)=TepuiStone;(20, 2)=TepuiStone,Wall;(20, 4)=TepuiStone\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StumpCompositionAdversarialTests.Adversarial_AllEighteenFinalNativeZonesKeepPortalsResourcesAndBothHabitats(729490642)",
+      "message": "  Overworld.2.5.0 seed 729490642 stranded environmental cell 63,3 objects: TepuiStone neighbors: (62, 3)=TepuiStone,Wall;(64, 3)=TepuiStone;(63, 2)=TepuiStone,Wall;(63, 4)=TepuiStone\n  Expected: True\n  But was:  False\n"
+    }
+  ]
+}

@@ -80,6 +80,7 @@ namespace CavesOfOoo.Core
 
                 var cell = zone.GetCell(x, y);
                 if (cell == null || cell.BlocksMovement()) continue;
+                if (zone.GenReservedCells.Contains((x, y))) continue;
 
                 // Never wall off a doorway or a corridor: a solid object in
                 // a one-cell gap can seal a zone, and the player has no verb

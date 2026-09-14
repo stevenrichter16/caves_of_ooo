@@ -1,0 +1,192 @@
+--- a/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
++++ b/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
+@@ -144,7 +144,7 @@
+                 case BiomeType.Overwrit:
+                     return CreateOverwritPipeline(tier);
+                 case BiomeType.Stump:
+-                    return CreateStumpPipeline(tier, StumpBands.BandAt(wx, wy));
++                    return CreateStumpPipeline(tier, StumpBands.BandAt(wx, wy), composed: StumpCompositionPlan.IsWildernessZone(zoneID));
+ 
+                 case BiomeType.Cave:
+                 default:
+@@ -590,8 +590,20 @@
+         /// <summary>The Stump — the petrified tepui. Rock and
+         /// fissure.</summary>
+         private ZoneGenerationPipeline CreateStumpPipeline(
+-            int tier = 1, StumpBand band = StumpBand.None)
+-        {
++            int tier = 1, StumpBand band = StumpBand.None, bool composed = false)
++        {
++            if (composed)
++            {
++                var terrain = new StumpCompositionBuilder(WorldSeed);
++                var composedPipeline = CreateSurfacePipeline(BiomeType.Stump, tier, terrain);
++                composedPipeline.RemoveBuilders<LandmarkBuilder>();
++                composedPipeline.AddBuilder(new LandmarkBuilder(BiomeType.Stump, tier,
++                    StumpCompositionBuilder.CreateLandmarkCatalog()));
++                composedPipeline.RemoveBuilders<PopulationBuilder>();
++                composedPipeline.AddBuilder(new StumpHabitatPopulationBuilder(terrain,
++                    PopulationTable.GetStumpTable(band, tier)));
++                return composedPipeline;
++            }
+             // W6.2a — the W0 placeholder (CaveBuilder 50/0.44, "rock
+             // and fissure") produced ~86% wall and zones that often
+             // could not be crossed at all (probe: open=245 of 1794,
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs
+@@ -45,6 +45,30 @@
+             }
+             else
+             {
++                if(StumpCompositionPlan.IsWildernessZone(zone.ZoneID))
++                {
++                    // Destruction leaves the same native Rubble identity as
++                    // sandstone country, so share its already-coarse body.
++                    if(entity.BlueprintName=="Rubble")
++                    {
++                        string id=BeatingVoxelLibrary.ModelId("rubble",Variant(zone.ZoneID,entity.BlueprintName,entity.ID,cell.X,cell.Y,4));
++                        bool movable=entity.GetPart<PhysicsPart>()?.Takeable==true;
++                        return new SpawnRing3DRecipe(entity,id,null,Village3DProjection.CellCentre(cell.X,cell.Y),movable,!movable);
++                    }
++                    string family=StumpVoxelLibrary.Family(entity.BlueprintName);
++                    if(family!=null)
++                    {
++                        bool actor=family=="singer"||family=="sentinel";
++                        if(actor && !MatchesNativeActorGlyph(entity.BlueprintName,render.RenderString))
++                            return Refused(entity,"reskinned-native-actor");
++                        int variant=family=="grain"||family=="dome"
++                            ? NativeHeightVariant(zone,cell,entity.BlueprintName)
++                            : Variant(zone.ZoneID,entity.BlueprintName,entity.ID,cell.X,cell.Y,4);
++                        string id=StumpVoxelLibrary.ModelId(family,variant);
++                        bool movable=actor||entity.GetPart<PhysicsPart>()?.Takeable==true;
++                        return new SpawnRing3DRecipe(entity,id,null,Village3DProjection.CellCentre(cell.X,cell.Y),movable,!movable);
++                    }
++                }
+                 if(BeatingCompositionPlan.IsWildernessZone(zone.ZoneID))
+                 {
+                     string family=BeatingVoxelLibrary.Family(entity.BlueprintName);
+@@ -54,7 +78,7 @@
+                         family="pan";
+                     if(family!=null)
+                     {
+-                        int variant=family=="dune"?DuneHeightVariant(zone,cell):Variant(zone.ZoneID,entity.BlueprintName,entity.ID,cell.X,cell.Y,4);
++                        int variant=family=="dune"?NativeHeightVariant(zone,cell,"DuneCrest"):Variant(zone.ZoneID,entity.BlueprintName,entity.ID,cell.X,cell.Y,4);
+                         string id=BeatingVoxelLibrary.ModelId(family,variant);
+                         bool movable=entity.GetPart<PhysicsPart>()?.Takeable==true;
+                         return new SpawnRing3DRecipe(entity,id,null,Village3DProjection.CellCentre(cell.X,cell.Y),movable,!movable);
+@@ -85,6 +109,10 @@
+                 // Existing green harvestable uses the shipped green plant family;
+                 // only its appearance is shared, never the Bush entity or mechanics.
+                 if (binding == null && entity.BlueprintName == "MendleafPlant") binding = catalog.FindBlueprint("Bush");
++                // Ambient Stump camps keep their real locked container owner;
++                // its existing chest body is only a visual alias.
++                if (binding == null && entity.BlueprintName == "LockedChest"
++                    && StumpCompositionPlan.IsWildernessZone(zone.ZoneID)) binding = catalog.FindBlueprint("Chest");
+                 if (binding == null && SpreadCompositionPlan.IsWildernessZone(zone.ZoneID))
+                     binding = catalog.FindBlueprint(SpreadArtFamily(entity.BlueprintName));
+                 if (binding == null || binding.models == null || binding.models.Length == 0) return Refused(entity, "unmodeled-native-blueprint");
+@@ -122,10 +150,10 @@
+                 Village3DProjection.CellCentre(cell.X, cell.Y),
+                 model.role == "actor" || entity.GetPart<PhysicsPart>()?.Takeable == true, false);
+         }
+-        // Four constant-size native queries give broad dunes a low flank and
++        // Four constant-size native queries give broad landforms a low flank and
+         // high core. Current membership/visibility drives the shape; removing a
+         // neighbour cannot be undone by replaying a procedural seed.
+-        private static int DuneHeightVariant(Zone zone,Cell cell)
++        private static int NativeHeightVariant(Zone zone,Cell cell,string blueprint)
+         {
+             int neighbours=0;
+             for(int d=0;d<4;d++)
+@@ -133,7 +161,7 @@
+                 var adjacent=zone.GetCell(cell.X+(d==0?1:d==1?-1:0),cell.Y+(d==2?1:d==3?-1:0));
+                 if(adjacent==null)continue;
+                 foreach(var entity in adjacent.Objects)
+-                    if(entity.BlueprintName=="DuneCrest"&&entity.GetPart<RenderPart>()?.Visible==true)
++                    if(entity.BlueprintName==blueprint&&entity.GetPart<RenderPart>()?.Visible==true)
+                     {neighbours++;break;}
+             }
+             return Math.Max(0,neighbours-1);
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DCatalog.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DCatalog.cs
+@@ -158,13 +158,13 @@
+             zoneIndex=new HashSet<string>(zones,StringComparer.Ordinal);
+         }
+         public Model FindModel(string modelId)
+-        {if(string.IsNullOrEmpty(modelId))return null;if(modelIndex==null)Validate();return modelIndex.TryGetValue(modelId,out var value)?value:SpreadVoxelLibrary.Load()?.Find(modelId)?.Spec ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Spec ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Spec;}
++        {if(string.IsNullOrEmpty(modelId))return null;if(modelIndex==null)Validate();return modelIndex.TryGetValue(modelId,out var value)?value:SpreadVoxelLibrary.Load()?.Find(modelId)?.Spec ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Spec ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Spec ?? StumpVoxelLibrary.Load()?.Find(modelId)?.Spec;}
+         public BlueprintBinding FindBlueprint(string blueprint)
+         {if(string.IsNullOrEmpty(blueprint))return null;if(blueprintIndex==null)Validate();return blueprintIndex.TryGetValue(blueprint,out var value)?value:null;}
+         public FellingOwner FindFellingOwner(string componentId)
+         {if(string.IsNullOrEmpty(componentId))return null;if(fellingIndex==null)Validate();return fellingIndex.TryGetValue(componentId,out var value)?value:null;}
+         public bool SupportsZone(string zoneId)
+-        {if(string.IsNullOrEmpty(zoneId))return false;if(zoneIndex==null)Validate();return zoneIndex.Contains(zoneId)||(GrovelandsCompositionPlan.IsWildernessZone(zoneId) || SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId) || BeatingCompositionPlan.IsWildernessZone(zoneId));}
++        {if(string.IsNullOrEmpty(zoneId))return false;if(zoneIndex==null)Validate();return zoneIndex.Contains(zoneId)||(GrovelandsCompositionPlan.IsWildernessZone(zoneId) || SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId) || BeatingCompositionPlan.IsWildernessZone(zoneId) || StumpCompositionPlan.IsWildernessZone(zoneId));}
+         static bool SameNames(string[] values,string[] expected)
+         {
+             if(values==null||values.Length!=expected.Length)return false;
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DLibrary.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DLibrary.cs
+@@ -60,7 +60,7 @@
+             models=candidates;equipmentIds=new HashSet<string>(d.externalEquipment.models,StringComparer.Ordinal);
+         }
+         public GameObject FindModel(string modelId)
+-        {if(string.IsNullOrEmpty(modelId))return null;if(models==null)Validate();return models.TryGetValue(modelId,out var value)?value:SpreadVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Prefab;}
++        {if(string.IsNullOrEmpty(modelId))return null;if(models==null)Validate();return models.TryGetValue(modelId,out var value)?value:SpreadVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? StumpVoxelLibrary.Load()?.Find(modelId)?.Prefab;}
+         public GameObject FindEquipmentModel(string modelId)
+         {if(string.IsNullOrEmpty(modelId))return null;if(equipmentIds==null)Validate();return equipmentIds.Contains(modelId)?EquipmentLibrary.FindModel(modelId):null;}
+     }
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs
+@@ -98,7 +98,7 @@
+                 case "Overworld.2.5.0": case "Overworld.3.5.0": case "Overworld.4.5.0":
+                 case "Overworld.2.6.0": case "Overworld.4.6.0": case "Overworld.2.7.0":
+                 case "Overworld.3.7.0": case "Overworld.4.7.0": return true;
+-                default: return (GrovelandsCompositionPlan.IsWildernessZone(id) || SpreadCompositionPlan.IsWildernessZone(id) || SoddenCompositionPlan.IsWildernessZone(id) || BeatingCompositionPlan.IsWildernessZone(id));
++                default: return (GrovelandsCompositionPlan.IsWildernessZone(id) || SpreadCompositionPlan.IsWildernessZone(id) || SoddenCompositionPlan.IsWildernessZone(id) || BeatingCompositionPlan.IsWildernessZone(id) || StumpCompositionPlan.IsWildernessZone(id));
+             }
+         }
+         /// <summary>Refresh native references after cell/FOV invalidation. Null
+--- a/Assets/Scripts/Presentation/Rendering/VoxelWorldPresentation.cs
++++ b/Assets/Scripts/Presentation/Rendering/VoxelWorldPresentation.cs
+@@ -36,6 +36,15 @@
+                 if(kit==null)throw new InvalidOperationException("Required Sodden voxel kit missing.");
+                 kit.Validate();foreach(var entry in kit.Entries)generated.Add(entry.Mesh);
+             }
++            if (StumpCompositionPlan.IsWildernessZone(zoneId))
++            {
++                var kit=StumpVoxelLibrary.Load();
++                if(kit==null)throw new InvalidOperationException("Required Stump voxel kit missing.");
++                kit.Validate();foreach(var entry in kit.Entries)generated.Add(entry.Mesh);
++                var rubble=BeatingVoxelLibrary.Load();
++                if(rubble==null)throw new InvalidOperationException("Required shared rubble voxel kit missing.");
++                for(int i=0;i<4;i++)generated.Add(rubble.Find(BeatingVoxelLibrary.ModelId("rubble",i)).Mesh);
++            }
+             if (BeatingCompositionPlan.IsWildernessZone(zoneId))
+             {
+                 var kit=BeatingVoxelLibrary.Load();
+@@ -49,7 +58,7 @@
+             {
+                 case "Overworld.2.6.0": case "Overworld.3.6.0":
+                 case "Overworld.3.7.0": case "Overworld.4.7.0": return true;
+-                default: return (GrovelandsCompositionPlan.IsWildernessZone(zoneId) || SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId) || BeatingCompositionPlan.IsWildernessZone(zoneId));
++                default: return (GrovelandsCompositionPlan.IsWildernessZone(zoneId) || SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId) || BeatingCompositionPlan.IsWildernessZone(zoneId) || StumpCompositionPlan.IsWildernessZone(zoneId));
+             }
+         }
+         public static bool IsEnabledFor(Zone zone)
+--- a/Assets/Tests/EditMode/VoxelWorldIntegrationTests.cs
++++ b/Assets/Tests/EditMode/VoxelWorldIntegrationTests.cs
+@@ -44,9 +44,11 @@
+ 
+         [TestCase(null)]
+         [TestCase("")]
+-        [TestCase("Overworld.2.5.0")]
++        // The ordinary Stump now has voxel authority; its authored mouth and
++        // Root remain protected, unsupported controls.
++        [TestCase("Overworld.2.4.0")]
+         [TestCase("Overworld.3.5.0")]
+-        [TestCase("Overworld.4.5.0")]
++        [TestCase("Overworld.3.3.0")]
+         [TestCase("Overworld.4.6.0")]
+         [TestCase("Overworld.2.7.0")]
+         [TestCase("Overworld.10.10.0")]

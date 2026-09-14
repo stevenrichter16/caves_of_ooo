@@ -1,0 +1,911 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5824ffc656df4eb3a7a880334f596e7c, type: 3}
+  m_Name: Library
+  m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.Rendering.StumpVoxelLibrary
+  Entries:
+  - Id: stump-ground-0
+    Prefab: {fileID: 1591815113071317808, guid: 3bbdc365aa59a4694b01cb4f0dc35c82, type: 3}
+    Mesh: {fileID: 4300000, guid: c13317df988e248ce9a430dc1ad7fdfc, type: 2}
+    Spec:
+      id: stump-ground-0
+      path: Assets/Resources/StumpVoxel3D/stump-ground-0.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.03, z: 0}
+      boundsSize: {x: 1, y: 0.06, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: stump-ground-1
+    Prefab: {fileID: 1480444751317418985, guid: ed18eb95bf685417683f76d28466a605, type: 3}
+    Mesh: {fileID: 4300000, guid: 6847da07272144b9ea28a35d43f62025, type: 2}
+    Spec:
+      id: stump-ground-1
+      path: Assets/Resources/StumpVoxel3D/stump-ground-1.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.033999998, z: 0}
+      boundsSize: {x: 1, y: 0.067999996, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: stump-ground-2
+    Prefab: {fileID: 6542984145026430771, guid: 58bf4c49a516e48d0871bdff36fedc58, type: 3}
+    Mesh: {fileID: 4300000, guid: 0d75b39d45e394760a30ac8ddfd8f92c, type: 2}
+    Spec:
+      id: stump-ground-2
+      path: Assets/Resources/StumpVoxel3D/stump-ground-2.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.038, z: 0}
+      boundsSize: {x: 1, y: 0.076, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: stump-ground-3
+    Prefab: {fileID: 5367090520220233304, guid: a541dae7cc00e461a8542dd4bd474299, type: 3}
+    Mesh: {fileID: 4300000, guid: 81b440cbae2634de9aee22b5bd028c32, type: 2}
+    Spec:
+      id: stump-ground-3
+      path: Assets/Resources/StumpVoxel3D/stump-ground-3.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.042, z: 0}
+      boundsSize: {x: 1, y: 0.084, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: stump-wall-0
+    Prefab: {fileID: 2097773183228216821, guid: f51296302b41143b5b12dcaf1b091f1b, type: 3}
+    Mesh: {fileID: 4300000, guid: 9ac6bf41505dd4eb4bfb37dc3e2250c5, type: 2}
+    Spec:
+      id: stump-wall-0
+      path: Assets/Resources/StumpVoxel3D/stump-wall-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.94000006, z: 0}
+      boundsSize: {x: 1, y: 1.8800001, z: 1}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: stump-wall-1
+    Prefab: {fileID: 2554241583464691864, guid: 6cf44273a5a0c4b8e82ef8d5319565f2, type: 3}
+    Mesh: {fileID: 4300000, guid: e49177d809dd24ba8a6029e2ce85e025, type: 2}
+    Spec:
+      id: stump-wall-1
+      path: Assets/Resources/StumpVoxel3D/stump-wall-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 1.01, z: 0}
+      boundsSize: {x: 1, y: 2.02, z: 1}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: stump-wall-2
+    Prefab: {fileID: 5175235615772957885, guid: e8a8c33a0740b47c4aad3833e88fb3e9, type: 3}
+    Mesh: {fileID: 4300000, guid: 297497d1c5edc4609b942641c2a781f5, type: 2}
+    Spec:
+      id: stump-wall-2
+      path: Assets/Resources/StumpVoxel3D/stump-wall-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 1.0799999, z: 0}
+      boundsSize: {x: 1, y: 2.1599998, z: 1}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: stump-wall-3
+    Prefab: {fileID: 5384443721515452850, guid: 0a28c40d732ef4455ab1de8c9f0092f2, type: 3}
+    Mesh: {fileID: 4300000, guid: 6a25f73e46afa4669b4495c128e7ed62, type: 2}
+    Spec:
+      id: stump-wall-3
+      path: Assets/Resources/StumpVoxel3D/stump-wall-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 1.15, z: 0}
+      boundsSize: {x: 1, y: 2.3, z: 1}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: stump-grain-0
+    Prefab: {fileID: 3423953627243945093, guid: 0165879840df74631957a67cdbc96be4, type: 3}
+    Mesh: {fileID: 4300000, guid: 4ba2fdf84baf74204a0159744793e28a, type: 2}
+    Spec:
+      id: stump-grain-0
+      path: Assets/Resources/StumpVoxel3D/stump-grain-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.31, z: 0}
+      boundsSize: {x: 1, y: 0.62, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: stump-grain-1
+    Prefab: {fileID: 6373860152585003246, guid: e07f16845bf804ce983d26af476bca70, type: 3}
+    Mesh: {fileID: 4300000, guid: c373b71bb56a9464681d1402f1c57116, type: 2}
+    Spec:
+      id: stump-grain-1
+      path: Assets/Resources/StumpVoxel3D/stump-grain-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.41, z: 0}
+      boundsSize: {x: 1, y: 0.82, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: stump-grain-2
+    Prefab: {fileID: 7540328252265579861, guid: 14fc9184ed3ca41aa9455f134d1dc53b, type: 3}
+    Mesh: {fileID: 4300000, guid: bc5d463d6d4c44648a68f01cdfc2a4e9, type: 2}
+    Spec:
+      id: stump-grain-2
+      path: Assets/Resources/StumpVoxel3D/stump-grain-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.54, z: 0}
+      boundsSize: {x: 1, y: 1.08, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: stump-grain-3
+    Prefab: {fileID: 5832458370407588185, guid: a8783a1a21972472f85d02c0787b65e2, type: 3}
+    Mesh: {fileID: 4300000, guid: 67e9a25fb2f1346be90e851ebc01ada3, type: 2}
+    Spec:
+      id: stump-grain-3
+      path: Assets/Resources/StumpVoxel3D/stump-grain-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.66, z: 0}
+      boundsSize: {x: 1, y: 1.32, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: stump-dome-0
+    Prefab: {fileID: 2543967587826991145, guid: 79793436c1cf7402f865d63577c14eb3, type: 3}
+    Mesh: {fileID: 4300000, guid: c7a94bb04535b400c8563afa8e479282, type: 2}
+    Spec:
+      id: stump-dome-0
+      path: Assets/Resources/StumpVoxel3D/stump-dome-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.36, z: 0}
+      boundsSize: {x: 1, y: 0.72, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: stump-dome-1
+    Prefab: {fileID: 6525073718392469179, guid: 71ab88dc7cc9a4a62971a05412a32493, type: 3}
+    Mesh: {fileID: 4300000, guid: dc96da51de1484ae9b424a3826362865, type: 2}
+    Spec:
+      id: stump-dome-1
+      path: Assets/Resources/StumpVoxel3D/stump-dome-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.45000002, z: 0}
+      boundsSize: {x: 1, y: 0.90000004, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: stump-dome-2
+    Prefab: {fileID: 3704160575819659607, guid: 80e2e57b384594095bd3c7a2bac755ea, type: 3}
+    Mesh: {fileID: 4300000, guid: cac25856442394db7a008909a56b1031, type: 2}
+    Spec:
+      id: stump-dome-2
+      path: Assets/Resources/StumpVoxel3D/stump-dome-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.54, z: 0}
+      boundsSize: {x: 1, y: 1.08, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: stump-dome-3
+    Prefab: {fileID: 7367163609698833183, guid: 1c072089f705840fdb82692a8249e9ed, type: 3}
+    Mesh: {fileID: 4300000, guid: 419ccfc6b488f40438b59629962a5e66, type: 2}
+    Spec:
+      id: stump-dome-3
+      path: Assets/Resources/StumpVoxel3D/stump-dome-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.63, z: 0}
+      boundsSize: {x: 1, y: 1.26, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: stump-ledge-0
+    Prefab: {fileID: 6142419137621696601, guid: 452ec6f56bc9b49d7a6367c6cca994b5, type: 3}
+    Mesh: {fileID: 4300000, guid: 74d8c9c93c86340938d8462988f873bc, type: 2}
+    Spec:
+      id: stump-ledge-0
+      path: Assets/Resources/StumpVoxel3D/stump-ledge-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.08, z: 0}
+      boundsSize: {x: 1, y: 0.16, z: 0.92}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: stump-ledge-1
+    Prefab: {fileID: 8296087747381992662, guid: 4f123501164ed47078c07fb9b020a902, type: 3}
+    Mesh: {fileID: 4300000, guid: 1ec71cdd729b64fa6bfd3a05d6e25b1b, type: 2}
+    Spec:
+      id: stump-ledge-1
+      path: Assets/Resources/StumpVoxel3D/stump-ledge-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.085999995, z: 0}
+      boundsSize: {x: 1, y: 0.17199999, z: 0.92}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: stump-ledge-2
+    Prefab: {fileID: 4263813578138799984, guid: 8c1fe6fba94a64ce281e3d83cc05ba68, type: 3}
+    Mesh: {fileID: 4300000, guid: e904dfd5e50e5472ca0c8a9b5c75c23c, type: 2}
+    Spec:
+      id: stump-ledge-2
+      path: Assets/Resources/StumpVoxel3D/stump-ledge-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.09199999, z: 0}
+      boundsSize: {x: 1, y: 0.18399999, z: 0.92}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: stump-ledge-3
+    Prefab: {fileID: 2758425730297715541, guid: 31ad9af78c63a46268ebf0efc5b6f5db, type: 3}
+    Mesh: {fileID: 4300000, guid: 02a43aef48c7b4f9ba58e6cd8ca75d80, type: 2}
+    Spec:
+      id: stump-ledge-3
+      path: Assets/Resources/StumpVoxel3D/stump-ledge-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.09799999, z: 0}
+      boundsSize: {x: 1, y: 0.19599998, z: 0.92}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: stump-spray-0
+    Prefab: {fileID: 2484734417319552831, guid: 586da7691e85a4b39b9a195195116fc9, type: 3}
+    Mesh: {fileID: 4300000, guid: f18228a0f21ca4d60b74880d2d5caae8, type: 2}
+    Spec:
+      id: stump-spray-0
+      path: Assets/Resources/StumpVoxel3D/stump-spray-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.0405, z: 0}
+      boundsSize: {x: 1, y: 0.015000001, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: stump-spray-1
+    Prefab: {fileID: 2993740412486000008, guid: c88f5be7382d142b2b01dcd8d0d0af23, type: 3}
+    Mesh: {fileID: 4300000, guid: d3ad1b97756ae4c4d9e2b87dd25e48ee, type: 2}
+    Spec:
+      id: stump-spray-1
+      path: Assets/Resources/StumpVoxel3D/stump-spray-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.0385, z: 0}
+      boundsSize: {x: 1, y: 0.019000001, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: stump-spray-2
+    Prefab: {fileID: 7622682815783656322, guid: f20a8e54be90e4e32a94ecc5295984f7, type: 3}
+    Mesh: {fileID: 4300000, guid: 606b58c97d198446e9b52aa2ad8938fa, type: 2}
+    Spec:
+      id: stump-spray-2
+      path: Assets/Resources/StumpVoxel3D/stump-spray-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.0365, z: 0}
+      boundsSize: {x: 1, y: 0.023000002, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: stump-spray-3
+    Prefab: {fileID: 4814258829495435428, guid: 8c05699aeb1c34823a57b1703c82037b, type: 3}
+    Mesh: {fileID: 4300000, guid: bc69ed7449e654265aaf0f01575c4a34, type: 2}
+    Spec:
+      id: stump-spray-3
+      path: Assets/Resources/StumpVoxel3D/stump-spray-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.0345, z: 0}
+      boundsSize: {x: 1, y: 0.027000003, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: stump-tank-0
+    Prefab: {fileID: 4072882363456765192, guid: 317fb002652ef47b3bef8617eeb88d22, type: 3}
+    Mesh: {fileID: 4300000, guid: e138954edd9e94a728da897ae25c7a8f, type: 2}
+    Spec:
+      id: stump-tank-0
+      path: Assets/Resources/StumpVoxel3D/stump-tank-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.275, z: 0}
+      boundsSize: {x: 0.97999996, y: 0.55, z: 0.97999996}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: stump-tank-1
+    Prefab: {fileID: 2804386121401778430, guid: 79528a2b42fbe4dcc83a1964b4622153, type: 3}
+    Mesh: {fileID: 4300000, guid: fffcb5d304f1b42ba9c880d773902a37, type: 2}
+    Spec:
+      id: stump-tank-1
+      path: Assets/Resources/StumpVoxel3D/stump-tank-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.305, z: 0}
+      boundsSize: {x: 0.97999996, y: 0.61, z: 0.97999996}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: stump-tank-2
+    Prefab: {fileID: 6704501992028065040, guid: 47f317f22655c43aa8847b639cd6bbdc, type: 3}
+    Mesh: {fileID: 4300000, guid: b0f95d01a2ee047b7b0697fb9ad590ac, type: 2}
+    Spec:
+      id: stump-tank-2
+      path: Assets/Resources/StumpVoxel3D/stump-tank-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.335, z: 0}
+      boundsSize: {x: 0.97999996, y: 0.67, z: 0.97999996}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: stump-tank-3
+    Prefab: {fileID: 3592613540890978311, guid: a7ae8cfaa93614345b7bc73eb692c35e, type: 3}
+    Mesh: {fileID: 4300000, guid: a3dce034b1c0f43049ad57589da8a2b4, type: 2}
+    Spec:
+      id: stump-tank-3
+      path: Assets/Resources/StumpVoxel3D/stump-tank-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.365, z: 0}
+      boundsSize: {x: 0.97999996, y: 0.73, z: 0.97999996}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: stump-vein-0
+    Prefab: {fileID: 5450836361074342532, guid: 8d72e0a1a336648f7965f3536c36ddde, type: 3}
+    Mesh: {fileID: 4300000, guid: 1c53cb4ed2e914feb9dfa6ddf89f3750, type: 2}
+    Spec:
+      id: stump-vein-0
+      path: Assets/Resources/StumpVoxel3D/stump-vein-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.49, z: 0.010750011}
+      boundsSize: {x: 0.94, y: 0.98, z: 0.80149996}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: stump-vein-1
+    Prefab: {fileID: 4931006028128916246, guid: fb341c6a14dbe459497562a1d0f48505, type: 3}
+    Mesh: {fileID: 4300000, guid: ec9bdc04b9867413ea63b8919065e26c, type: 2}
+    Spec:
+      id: stump-vein-1
+      path: Assets/Resources/StumpVoxel3D/stump-vein-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.54, z: 0.010750011}
+      boundsSize: {x: 0.94, y: 1.08, z: 0.80149996}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: stump-vein-2
+    Prefab: {fileID: 7116813011527199772, guid: 885420b297dae45a89fe76fc2af4a083, type: 3}
+    Mesh: {fileID: 4300000, guid: bf7c4dff882ff4e13b74c95010cb2ab4, type: 2}
+    Spec:
+      id: stump-vein-2
+      path: Assets/Resources/StumpVoxel3D/stump-vein-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.59, z: 0.010750011}
+      boundsSize: {x: 0.94, y: 1.18, z: 0.80149996}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: stump-vein-3
+    Prefab: {fileID: 2115766469544116356, guid: fd392a7c245ad4723becb2886c3b35b1, type: 3}
+    Mesh: {fileID: 4300000, guid: 30c2ddc388c0b40d2b6ce452dafe9f32, type: 2}
+    Spec:
+      id: stump-vein-3
+      path: Assets/Resources/StumpVoxel3D/stump-vein-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.64, z: 0.010750011}
+      boundsSize: {x: 0.94, y: 1.28, z: 0.80149996}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: stump-bone-0
+    Prefab: {fileID: 2387879987806833492, guid: 9725e1469a6c64861a31063f60e99131, type: 3}
+    Mesh: {fileID: 4300000, guid: 1d93fa5e3916f43479236337ace32b7a, type: 2}
+    Spec:
+      id: stump-bone-0
+      path: Assets/Resources/StumpVoxel3D/stump-bone-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.117000006, z: 0.010000005}
+      boundsSize: {x: 0.43, y: 0.23400001, z: 0.34}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: stump-bone-1
+    Prefab: {fileID: 5174171758941613158, guid: bc7fc86186ca6418293a263778c831b8, type: 3}
+    Mesh: {fileID: 4300000, guid: 69d23bac729cc42d6a303b077c14e578, type: 2}
+    Spec:
+      id: stump-bone-1
+      path: Assets/Resources/StumpVoxel3D/stump-bone-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.126, z: 0.010000005}
+      boundsSize: {x: 0.43, y: 0.252, z: 0.34}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: stump-bone-2
+    Prefab: {fileID: 8908974059731000192, guid: 059330769c81741699f7edc6b2c6c61c, type: 3}
+    Mesh: {fileID: 4300000, guid: e46373efefa3a4076b32a478d91fc4de, type: 2}
+    Spec:
+      id: stump-bone-2
+      path: Assets/Resources/StumpVoxel3D/stump-bone-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.135, z: 0.010000005}
+      boundsSize: {x: 0.43, y: 0.27, z: 0.34}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: stump-bone-3
+    Prefab: {fileID: 3056401248114673913, guid: 78511f2871eb248d5984ec15a4b72d40, type: 3}
+    Mesh: {fileID: 4300000, guid: bc3bea29ddd414478ac6208b74a7306f, type: 2}
+    Spec:
+      id: stump-bone-3
+      path: Assets/Resources/StumpVoxel3D/stump-bone-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.14400001, z: 0.010000005}
+      boundsSize: {x: 0.43, y: 0.28800002, z: 0.34}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: stump-tree-0
+    Prefab: {fileID: 1401786808724573960, guid: a60a3ba70a14242db96ee60d1a2eacf6, type: 3}
+    Mesh: {fileID: 4300000, guid: 2a91888f936444971b29ef5fdea58733, type: 2}
+    Spec:
+      id: stump-tree-0
+      path: Assets/Resources/StumpVoxel3D/stump-tree-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.76, z: 0}
+      boundsSize: {x: 0.92, y: 1.52, z: 0.78}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: stump-tree-1
+    Prefab: {fileID: 5374878036889197421, guid: f6e628ed8961640f89b3623be9c2e088, type: 3}
+    Mesh: {fileID: 4300000, guid: 29c18a016b0d146e1abad9d84ee0f1fb, type: 2}
+    Spec:
+      id: stump-tree-1
+      path: Assets/Resources/StumpVoxel3D/stump-tree-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.81000006, z: 0}
+      boundsSize: {x: 0.92, y: 1.6200001, z: 0.78}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: stump-tree-2
+    Prefab: {fileID: 3491232734626665927, guid: 993b2be71990145f5a175a56e323bcd3, type: 3}
+    Mesh: {fileID: 4300000, guid: ed020993f81764133b80b2999af75680, type: 2}
+    Spec:
+      id: stump-tree-2
+      path: Assets/Resources/StumpVoxel3D/stump-tree-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.86, z: 0}
+      boundsSize: {x: 0.92, y: 1.72, z: 0.78}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: stump-tree-3
+    Prefab: {fileID: 7739780289780505362, guid: d0eb83f966ff047b39b421eda1bef6b0, type: 3}
+    Mesh: {fileID: 4300000, guid: d2797ea336aec45bfa4814b950c04e88, type: 2}
+    Spec:
+      id: stump-tree-3
+      path: Assets/Resources/StumpVoxel3D/stump-tree-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.90999997, z: 0}
+      boundsSize: {x: 0.92, y: 1.8199999, z: 0.78}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: stump-bush-0
+    Prefab: {fileID: 3618910100885451016, guid: 55e50f8c896eb4e299d76224bde102f4, type: 3}
+    Mesh: {fileID: 4300000, guid: a29c541ca07414128b39fe17b5210a06, type: 2}
+    Spec:
+      id: stump-bush-0
+      path: Assets/Resources/StumpVoxel3D/stump-bush-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.25, z: 0}
+      boundsSize: {x: 0.81, y: 0.5, z: 0.66}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: stump-bush-1
+    Prefab: {fileID: 1763839565526763977, guid: 03d7d4755bc6a4d699a690f861447119, type: 3}
+    Mesh: {fileID: 4300000, guid: 83dc45691cbb74f159462c84ec62b633, type: 2}
+    Spec:
+      id: stump-bush-1
+      path: Assets/Resources/StumpVoxel3D/stump-bush-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.2825, z: 0}
+      boundsSize: {x: 0.81, y: 0.565, z: 0.66}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: stump-bush-2
+    Prefab: {fileID: 2030739381444167726, guid: 594480f00e7514b8fb6a0a0a8fadd054, type: 3}
+    Mesh: {fileID: 4300000, guid: a2bac891ac5ea4a0a869a33277fb662c, type: 2}
+    Spec:
+      id: stump-bush-2
+      path: Assets/Resources/StumpVoxel3D/stump-bush-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.315, z: 0}
+      boundsSize: {x: 0.81, y: 0.63, z: 0.66}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: stump-bush-3
+    Prefab: {fileID: 8112159301370988053, guid: 8bc8c97ef5881411d93c89943577d6c6, type: 3}
+    Mesh: {fileID: 4300000, guid: ad6a634a8237a4bc5a7ac7d6f5e16aed, type: 2}
+    Spec:
+      id: stump-bush-3
+      path: Assets/Resources/StumpVoxel3D/stump-bush-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.3475, z: 0}
+      boundsSize: {x: 0.81, y: 0.695, z: 0.66}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: stump-singer-0
+    Prefab: {fileID: 7372408121530021374, guid: 756b0e1ab3a2c4f74a30ee335f5e1370, type: 3}
+    Mesh: {fileID: 4300000, guid: 05cdb5726ab1441639d97537a2e077a7, type: 2}
+    Spec:
+      id: stump-singer-0
+      path: Assets/Resources/StumpVoxel3D/stump-singer-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.24749999, z: 0.047499985}
+      boundsSize: {x: 0.68, y: 0.475, z: 0.675}
+      triangles: 144
+      clips: []
+      sockets: []
+  - Id: stump-singer-1
+    Prefab: {fileID: 5100122674246835234, guid: d7ee73a8175de44d4aeeea0cc24e278d, type: 3}
+    Mesh: {fileID: 4300000, guid: dd9c11b0e4aae4acab37b67855b0b599, type: 2}
+    Spec:
+      id: stump-singer-1
+      path: Assets/Resources/StumpVoxel3D/stump-singer-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.2525, z: 0.047499985}
+      boundsSize: {x: 0.68, y: 0.48499998, z: 0.675}
+      triangles: 144
+      clips: []
+      sockets: []
+  - Id: stump-singer-2
+    Prefab: {fileID: 3347684167320509094, guid: 96180fee290294f0fac85230fe0fc262, type: 3}
+    Mesh: {fileID: 4300000, guid: 35139af439c974665a5d9dca63532803, type: 2}
+    Spec:
+      id: stump-singer-2
+      path: Assets/Resources/StumpVoxel3D/stump-singer-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.2575, z: 0.047499985}
+      boundsSize: {x: 0.68, y: 0.495, z: 0.675}
+      triangles: 144
+      clips: []
+      sockets: []
+  - Id: stump-singer-3
+    Prefab: {fileID: 7501112257281904376, guid: 5eaa42e3d3ef4439a9b9fd644ef7444c, type: 3}
+    Mesh: {fileID: 4300000, guid: b86bd450f6f1e48a7922921a1b0e16f7, type: 2}
+    Spec:
+      id: stump-singer-3
+      path: Assets/Resources/StumpVoxel3D/stump-singer-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.2625, z: 0.047499985}
+      boundsSize: {x: 0.68, y: 0.505, z: 0.675}
+      triangles: 144
+      clips: []
+      sockets: []
+  - Id: stump-sentinel-0
+    Prefab: {fileID: 3381561670759642135, guid: 2e8b98ec89e6a488d89293647c474dc9, type: 3}
+    Mesh: {fileID: 4300000, guid: c7a2927e41ede478e9b022fba4ac56e5, type: 2}
+    Spec:
+      id: stump-sentinel-0
+      path: Assets/Resources/StumpVoxel3D/stump-sentinel-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.15550001, z: -0.045000017}
+      boundsSize: {x: 0.62, y: 0.24100003, z: 0.89}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: stump-sentinel-1
+    Prefab: {fileID: 534878122577408268, guid: 6e886b85566744f358c96313151240cb, type: 3}
+    Mesh: {fileID: 4300000, guid: 6bf27f32b72fd46e9a7011a0d6dcb9de, type: 2}
+    Spec:
+      id: stump-sentinel-1
+      path: Assets/Resources/StumpVoxel3D/stump-sentinel-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.15550001, z: -0.045000017}
+      boundsSize: {x: 0.62, y: 0.24100003, z: 0.89}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: stump-sentinel-2
+    Prefab: {fileID: 6013363408327675108, guid: 1ab2d2537869d4f1cb1d17fd9410651e, type: 3}
+    Mesh: {fileID: 4300000, guid: 599924df5fe9b4dd7ada510db0c48e2d, type: 2}
+    Spec:
+      id: stump-sentinel-2
+      path: Assets/Resources/StumpVoxel3D/stump-sentinel-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.15550001, z: -0.045000017}
+      boundsSize: {x: 0.62, y: 0.24100003, z: 0.89}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: stump-sentinel-3
+    Prefab: {fileID: 3200085963372164880, guid: 3b1135fd44e784b4bb28d8d940d1d247, type: 3}
+    Mesh: {fileID: 4300000, guid: 4b547052f0cf64a4295528e6ac14e112, type: 2}
+    Spec:
+      id: stump-sentinel-3
+      path: Assets/Resources/StumpVoxel3D/stump-sentinel-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.15550001, z: -0.045000017}
+      boundsSize: {x: 0.62, y: 0.24100003, z: 0.89}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: stump-key-0
+    Prefab: {fileID: 2417592559055642411, guid: 23d989b9745064a309fd45d55bd26f43, type: 3}
+    Mesh: {fileID: 4300000, guid: 1ee6af6272f8e4d8cad895087f167326, type: 2}
+    Spec:
+      id: stump-key-0
+      path: Assets/Resources/StumpVoxel3D/stump-key-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0.0012499988, y: 0.04, z: 0}
+      boundsSize: {x: 0.90250003, y: 0.08, z: 0.38}
+      triangles: 84
+      clips: []
+      sockets: []
+  - Id: stump-key-1
+    Prefab: {fileID: 2978564400198817419, guid: f7eb25572039347eba943bf5681a15e7, type: 3}
+    Mesh: {fileID: 4300000, guid: c41a73dc3c5e745fc80c7865637d1995, type: 2}
+    Spec:
+      id: stump-key-1
+      path: Assets/Resources/StumpVoxel3D/stump-key-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0.0012499988, y: 0.044999998, z: 0.0050000027}
+      boundsSize: {x: 0.90250003, y: 0.089999996, z: 0.39}
+      triangles: 84
+      clips: []
+      sockets: []
+  - Id: stump-key-2
+    Prefab: {fileID: 4282891896284155850, guid: 11f3dc4a4cd8a4d84b81b0b54052521b, type: 3}
+    Mesh: {fileID: 4300000, guid: 5510333cf69484370a5b4e1752977e00, type: 2}
+    Spec:
+      id: stump-key-2
+      path: Assets/Resources/StumpVoxel3D/stump-key-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0.0012499988, y: 0.049999997, z: 0.010000005}
+      boundsSize: {x: 0.90250003, y: 0.099999994, z: 0.4}
+      triangles: 84
+      clips: []
+      sockets: []
+  - Id: stump-key-3
+    Prefab: {fileID: 866349042620947777, guid: 59a8b949a5e024ab6963fcafe946d5be, type: 3}
+    Mesh: {fileID: 4300000, guid: 8a0be70f4267a41b2a9f34f0dba09ff0, type: 2}
+    Spec:
+      id: stump-key-3
+      path: Assets/Resources/StumpVoxel3D/stump-key-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0.0012499988, y: 0.055, z: 0.015000001}
+      boundsSize: {x: 0.90250003, y: 0.11, z: 0.41}
+      triangles: 84
+      clips: []
+      sockets: []

@@ -100,6 +100,12 @@ namespace CavesOfOoo.Tests
                 ]}
               ]
             },
+            { ""Name"": ""SprayPool"", ""Inherits"": ""Terrain"", ""Parts"": [] },
+            { ""Name"": ""DescentLedge"", ""Inherits"": ""Terrain"", ""Parts"": [] },
+            { ""Name"": ""GrainRidge"", ""Inherits"": ""Terrain"", ""Parts"": [{ ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Solid"", ""Value"": ""true"" }] }] },
+            { ""Name"": ""StoneDome"", ""Inherits"": ""Terrain"", ""Parts"": [{ ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Solid"", ""Value"": ""true"" }] }] },
+            { ""Name"": ""TankBrocchinia"", ""Inherits"": ""Terrain"", ""Parts"": [] },
+            { ""Name"": ""TepuiboneVein"", ""Inherits"": ""Terrain"", ""Parts"": [{ ""Name"": ""Physics"", ""Params"": [{ ""Key"": ""Solid"", ""Value"": ""true"" }] }] },
             {
               ""Name"": ""TepuiWall"",
               ""Inherits"": ""Wall"",

@@ -1,0 +1,95 @@
+{
+  "isolatedProject": "/tmp/coo-spread-validation",
+  "unityExit": 2,
+  "compileErrors": [],
+  "results": {
+    "id": "2",
+    "testcasecount": "183",
+    "result": "Failed(Child)",
+    "total": "183",
+    "passed": "165",
+    "failed": "18",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-14 05:29:36Z",
+    "end-time": "2026-09-14 05:29:52Z",
+    "duration": "15.7807382"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.StumpCompositionAdversarialTests.Adversarial_AllEighteenFinalNativeZonesKeepPortalsResourcesAndBothHabitats(1729)",
+      "message": "  Overworld.4.2.0 obstructed (41, 10)\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StumpCompositionAdversarialTests.Adversarial_HabitatWindowRejectsDifferentNativeZoneWithSameAddress",
+      "message": "  An address is not ownership of another native Zone graph.\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StumpCompositionAdversarialTests.Adversarial_LaterNativeStairNeverReopensAsFaunaHabitat",
+      "message": "  Native stairs must remain reserved even while their SprayPool remains valid habitat.\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StumpCompositionRefinementTests.EverySummitTankBelongsToItsNativeActivityCluster(\"Overworld.3.2.0\",SummitScrub,\"StoneDome\",2)",
+      "message": "  SummitScrub seed 0 tank 34,4 is detached from StoneDome\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StumpCompositionRefinementTests.EverySummitTankBelongsToItsNativeActivityCluster(\"Overworld.2.3.0\",RimForest,\"Tree\",3)",
+      "message": "  RimForest seed 0 tank 39,4 is detached from Tree\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StumpCompositionRefinementTests.GorgeKeepsThreeIntactUnequalBasinsAcrossSeeds(\"Overworld.2.1.0\")",
+      "message": "  Overworld.2.1.0 seed 0 component sizes 2,59,73,83\n  Expected: 3\n  But was:  4\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StumpCompositionRefinementTests.GorgeKeepsThreeIntactUnequalBasinsAcrossSeeds(\"Overworld.1.2.0\")",
+      "message": "  Overworld.1.2.0 seed 0 component sizes 1,1,2,2,6,18,53,101\n  Expected: 3\n  But was:  8\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StumpCompositionRefinementTests.GorgeKeepsThreeIntactUnequalBasinsAcrossSeeds(\"Overworld.5.5.0\")",
+      "message": "  Overworld.5.5.0 seed 0 component sizes 3,4,6,22,86,94\n  Expected: 3\n  But was:  6\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StumpFormationTests.TheWallsAreTepuiStoneToo",
+      "message": "  the outcrops are the mountain's own stone\n  Expected: greater than 5\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StumpVoxelKitTests.ComposableDomeCellsStayBroadWhileWalkableLedgesRemainLow",
+      "message": "  Expected: greater than or equal to 0.899999976f\n  But was:  0.439999998f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StumpVoxelKitTests.MassBuildingSlabsJoinAcrossBothAxesWithoutPerCellWafflesOrRails(\"grain\",0)",
+      "message": "  stump-grain-0 south edge\n  Expected: -0.5d +/- 9.9999997473787516E-05d\n  But was:  -0.19999998807907104d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StumpVoxelKitTests.MassBuildingSlabsJoinAcrossBothAxesWithoutPerCellWafflesOrRails(\"grain\",1)",
+      "message": "  stump-grain-1 south edge\n  Expected: -0.5d +/- 9.9999997473787516E-05d\n  But was:  -0.19999998807907104d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StumpVoxelKitTests.MassBuildingSlabsJoinAcrossBothAxesWithoutPerCellWafflesOrRails(\"grain\",2)",
+      "message": "  stump-grain-2 south edge\n  Expected: -0.5d +/- 9.9999997473787516E-05d\n  But was:  -0.19999998807907104d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StumpVoxelKitTests.MassBuildingSlabsJoinAcrossBothAxesWithoutPerCellWafflesOrRails(\"grain\",3)",
+      "message": "  stump-grain-3 south edge\n  Expected: -0.5d +/- 9.9999997473787516E-05d\n  But was:  -0.19999998807907104d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StumpVoxelKitTests.MassBuildingSlabsJoinAcrossBothAxesWithoutPerCellWafflesOrRails(\"dome\",0)",
+      "message": "  Two coarse slabs are sufficient for a native height grade: stump-dome-0\n  Expected: less than or equal to 48\n  But was:  120\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StumpVoxelKitTests.MassBuildingSlabsJoinAcrossBothAxesWithoutPerCellWafflesOrRails(\"dome\",1)",
+      "message": "  Two coarse slabs are sufficient for a native height grade: stump-dome-1\n  Expected: less than or equal to 48\n  But was:  120\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StumpVoxelKitTests.MassBuildingSlabsJoinAcrossBothAxesWithoutPerCellWafflesOrRails(\"dome\",2)",
+      "message": "  Two coarse slabs are sufficient for a native height grade: stump-dome-2\n  Expected: less than or equal to 48\n  But was:  120\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StumpVoxelKitTests.MassBuildingSlabsJoinAcrossBothAxesWithoutPerCellWafflesOrRails(\"dome\",3)",
+      "message": "  Two coarse slabs are sufficient for a native height grade: stump-dome-3\n  Expected: less than or equal to 48\n  But was:  120\n"
+    }
+  ]
+}

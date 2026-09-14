@@ -346,7 +346,9 @@ namespace CavesOfOoo.Tests
         [Test]
         public void TheWallsAreTepuiStoneToo()
         {
-            var zone = StumpZone(2, 2);
+            // Ordinary slopes now express rock as GrainRidge; the foothill
+            // gorge retains native destructible TepuiWall outcrops.
+            var zone = StumpZone(2, 1);
             Assert.Greater(CountOf(zone, "TepuiWall"), 5,
                 "the outcrops are the mountain's own stone");
             Assert.AreEqual(0, CountOf(zone, "SandstoneWall"),
