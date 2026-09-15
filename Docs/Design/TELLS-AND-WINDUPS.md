@@ -8,6 +8,13 @@
 > reflexes." Plus: use **micro-ticks** to make this a minimal formal
 > system, with Perception detecting windup phases and **Reflexes**
 > governing what you can do inside them.
+>
+> **Refined same day:** countering mid-attack should be *configurable* —
+> the player chooses which skills and spells can be cast **partially**,
+> rather than every character sharing one fixed set of reaction verbs.
+> §5 is rewritten around that, and it also subsumes the earlier
+> reaction-cost model (partial completion and energy cost turn out to be
+> the same number).
 
 ## 0. The decisive finding: the micro-tick clock already exists
 
@@ -47,6 +54,8 @@ Two consequences worth stating plainly:
 | A Perception stat exists | It does not. Stats present: Strength, Agility, Toughness, Intelligence, Willpower, Ego, Speed. Adding Perception is a Qud divergence *and* needs blueprint backfill across ~31 armed creatures | Recommend skill lines gated on existing stats instead — see §3 |
 | Defender-side skill hooks exist to hang "Read" on | Thin: `BaseSkillPart` has `OnAttackerAfterAttack`, `OnAttackerMeleeMiss`, `OnDefenderAfterAttackMissed`, `OnWeaponMadeCriticalHit`. There is **no before-the-attack-lands defender hook at all** | One new additive virtual, following the shape of the four that exist |
 | Windup state must survive save/load | `SaveSystem` reflects public fields on Parts (confirmed earlier this session for `ContainerPart`) | A `WindupPart` with public int fields round-trips free |
+| Abilities have a cost to scale a partial cast against | They do **not**. `ActivatedAbilitySpec` carries only DisplayName / Command / Class / TargetingMode / Range / **Cooldown** — no mana or energy cost field. MP exists as a stat but was added for raising mutation ranks, not for casting | Partial casting must scale against the **energy** the window affords (§5), which is the currency the scheduler already runs on — not a new per-ability cost field |
+| A surface exists to configure abilities | **Yes**: `AbilityManagerUI`, opened with **M** (WSP8.0), with its own modal input state and activation callback | The prepared-reaction loadout extends an existing screen instead of adding one |
 
 ## 2. The core move: split declare from resolve
 
@@ -99,6 +108,9 @@ Rank determines *how much of the tell resolves into fact*:
 
 ### Reflexes — what you may do inside the window (the action half)
 
+A small set of built-in responses comes free with the line, so an
+untrained-but-observant player always has *something* to do with a tell:
+
 - **Interrupt** — attack into a windup; enough damage (or a stagger
   threshold) cancels the attack outright and the attacker loses the
   action it already paid for.
@@ -108,8 +120,11 @@ Rank determines *how much of the tell resolves into fact*:
   load-bearing.
 - **Brace** — commit to eating it at reduced damage in exchange for
   something concrete (no knockback, or a banked Momentum stack).
-- **Counter** (capstone) — correctly identify *and* answer in the right
-  window to strike into the windup at bonus effect. The riposte.
+
+But a fixed verb list means every character reacts identically, which
+is the weakest possible version of this system. The real content of the
+Reflexes line is **§5: how many of your own abilities you can hold
+ready, and how well they survive being compressed into a window.**
 
 ## 4. The feint layer — why this is poker and not Simon says
 
@@ -139,19 +154,95 @@ Two supporting details:
   the message when a feint lands on you should name what it was, so the
   player learns the liar's repertoire the honest way.
 
-## 5. What reacting costs
+## 5. The prepared loadout and partial casting (user refinement, 2026-09-15)
 
-A reaction must cost something or "always react" is trivially correct.
+> *"I'd also potentially make countering mid-attack configurable, so the
+> player can choose skills and spells to be able to cast partially."*
 
-**Recommended:** a reaction is drawn against your *next* action — you
-are spending your upcoming turn early and out of order. This reuses the
-energy ledger exactly as it already works, and it produces the right
-tension: a player who answers every telegraph never advances their own
-offense. Defense becomes a genuine tempo trade instead of free value.
+This replaces a fixed reaction verb list with a **build decision made
+before the fight**, which is both more expressive and more in keeping
+with the poker framing: you commit to a strategy, then read the hand.
 
-(Alternative considered and not recommended: N free reactions per
-windup gated by Reflexes rank. Simpler to tune, but it makes reacting
-strictly free value at high rank, which flattens the decision.)
+### The currency is already in the engine, and it is exact
+
+A full action costs `ActionThreshold = 1000` energy. A windup window of
+*N* ticks gives an observer *N × Speed* energy of room — at Speed 100, a
+four-tick window is 400 energy, or **40% of an action**.
+
+So "partially cast" is not a metaphor needing a new resource. It is
+literally: *you spend the energy the window actually affords, and the
+ability delivers in proportion.* Two things fall out of that for free:
+
+1. **The cost model and the partial model are the same number.** The
+   earlier draft of this section proposed that reactions be drawn
+   against your next action. Partial casting *is* that rule, made
+   precise: dump 400 energy into a counter and you arrive at your next
+   turn 400 later. No separate accounting.
+2. **`Speed` compounds again.** A fast character doesn't only get more
+   reaction windows (§2) — their partial casts come out *more complete*
+   in the same window. One stat, two escalating consequences, still no
+   change to the stat itself.
+
+### Per-ability degradation profiles (what "partially" means)
+
+Not every ability degrades sensibly. A half-strength firebolt is
+coherent; half a stun is not. So each ability carries a **profile**,
+and this is the axis the player configures:
+
+| Profile | Behavior | Fits |
+|---|---|---|
+| **Scaled** | effect scales with completion — a 40% cast does 40% damage/duration | damage and duration spells |
+| **Thresholded** | needs at least X% completion to fire at all, then fires at full effect; below the bar it fizzles and the energy is spent anyway | binary effects (stun, disarm, knockback) — a genuine gamble |
+| **Degraded form** | an authored lesser version that fits a window (a full Whirlwind becomes a single parrying strike; a full Pyroclasm becomes a spark that only interrupts) | the most interesting, the most authoring-expensive |
+
+**Authoring cost guard:** profiles must have sensible *defaults by
+category* — damage abilities default to Scaled, control abilities to
+Thresholded — so authoring a profile is an opt-in override, not a
+mandatory per-ability content pass across ~30 mutations and every skill
+active. Otherwise this feature blocks on a content sweep before it can
+ship at all.
+
+### Preparation is the cost, and Reflexes rank is the budget
+
+Flagging an ability as reaction-ready must be limited or everything gets
+flagged and the decision evaporates. **Reflexes rank buys prepared
+slots** — rank 1 holds one ability ready, rank 3 holds three. That
+turns the Reflexes line into "how much of your kit you can hold at the
+ready," which is a far better identity than a fixed list of four verbs,
+and it means two Reflexes characters with different prepared loadouts
+play differently.
+
+A pyromancer counters with a compressed firebolt. A cudgel bruiser
+counters with a shove. A scribe counters by stepping out of the way,
+because they prepared nothing and the free verbs are all they have.
+
+### The configuration UI already exists
+
+`AbilityManagerUI` (opened with **M**, WSP8.0) is already the
+player-facing surface for managing abilities, with its own modal input
+state and activation callback. Marking abilities as prepared and
+choosing their profile belongs there — no new screen, no new input
+state, one existing modal extended.
+
+### Where spells specialize
+
+`Spellcraft` is already a family of powers that modify *every* spell
+through hooks (`Spellcraft_Empower` adds flat damage via
+`OnGetSpellDamageModifier`, and its own docstring names planned siblings
+for cooldown reduction and repeat-cast bonuses). A partial-cast power
+belongs in exactly that pattern — e.g. **Quickening:** your prepared
+spells need meaningfully less completion to clear their threshold.
+
+That splits the two lines cleanly, with no overlap:
+- **Reflexes** — how many abilities you can hold ready, and whether you
+  can act in a window at all.
+- **Spellcraft** — how well *spells specifically* survive compression.
+
+### Symmetry
+
+Capable enemies get prepared reactions too. This is what makes feints
+(§4) cut both ways: baiting out an enemy's prepared counter and then
+cancelling is the same play they can run on you.
 
 ## 6. The honest risk: pacing collapse
 
@@ -229,6 +320,15 @@ mechanic proven); any new stat.
    investment, which is the correct baseline.
 3. **New defender-side hook** on `BaseSkillPart` (the before-it-lands
    virtual that does not exist yet) + the **Read** family, ranks 0–2.
-4. **Reflexes** family: Interrupt and Slip first; Brace and Counter
-   after the tempo cost from §5 is tuned in play.
-5. **Then** feints, then symmetry, then the knowledge economy.
+4. **Reflexes** family, free verbs only: Interrupt and Slip first,
+   Brace after the tempo cost is tuned in play. No prepared loadout
+   yet — confirm that reacting at all is fun before building
+   configuration on top of it.
+5. **The prepared loadout + partial casting** (§5): energy-proportional
+   completion, the two cheap profiles (Scaled, Thresholded) with
+   category defaults, prepared slots gated on Reflexes rank, and the
+   `AbilityManagerUI` extension to configure them. Authored **degraded
+   forms** are deferred content, added per-ability where they earn it.
+6. **Then** feints, then symmetry (including enemy prepared
+   reactions), then the knowledge economy, then a Spellcraft
+   partial-cast power.
