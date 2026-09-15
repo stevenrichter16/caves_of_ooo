@@ -244,6 +244,12 @@ Capable enemies get prepared reactions too. This is what makes feints
 (§4) cut both ways: baiting out an enemy's prepared counter and then
 cancelling is the same play they can run on you.
 
+**This is where the system grows a second one.** When *both* parties can
+read and counter, an exchange stops being one reaction and becomes a
+chain — counter, counter-to-the-counter, and so on. That is its own
+design, including who is rare enough to have it and how chains are
+authored and configured: see **`Docs/Design/COUNTER-CHAINS.md`**.
+
 ## 6. The honest risk: pacing collapse
 
 The standard failure mode of reaction systems in turn-based games is
