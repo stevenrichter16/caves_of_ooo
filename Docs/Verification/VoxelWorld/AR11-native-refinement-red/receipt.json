@@ -1,0 +1,47 @@
+{
+  "isolatedProject": "/tmp/coo-two-areas-validation",
+  "unityExit": 2,
+  "compileErrors": [],
+  "results": {
+    "id": "2",
+    "testcasecount": "145",
+    "result": "Failed(Child)",
+    "total": "145",
+    "passed": "139",
+    "failed": "6",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-15 18:30:12Z",
+    "end-time": "2026-09-15 18:30:18Z",
+    "duration": "6.4929507"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.GinmereCompositionAdversarialTests.Adversarial_MissingNativeContentCannotLeavePartialTerrain(\"SandstoneFloor\",0)",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GinmereCompositionTests.ExpeditionShelvesGrowFromCliffSidesRatherThanFloatingIsolatedStrips",
+      "message": "  Each connected shelf must meet a native cliff, seed 64\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GinmereCompositionTests.GinFrogsOccupyIrregularDryBankPositionsNearTheBasin",
+      "message": "  Residents must not line up on one programmed row.\n  Expected: greater than 1\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GinmereCompositionTests.MouthInteriorIsNativeBareStoneWhileOuterCountryRemainsPlantableGrass",
+      "message": "  Expected string length 14 but was 5. Strings differ at index 0.\n  Expected: \"SandstoneFloor\"\n  But was:  \"Grass\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GinmereCompositionTests.UndergroundCliffsHaveSolidInteriorMassRatherThanOnlyOneCellEdgeRails(1)",
+      "message": "  Cliff masses need coherent two-dimensional thickness, seed 64\n  Expected: greater than or equal to 100\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GinmereCompositionTests.UndergroundCliffsHaveSolidInteriorMassRatherThanOnlyOneCellEdgeRails(2)",
+      "message": "  Cliff masses need coherent two-dimensional thickness, seed 64\n  Expected: greater than or equal to 100\n  But was:  0\n"
+    }
+  ]
+}

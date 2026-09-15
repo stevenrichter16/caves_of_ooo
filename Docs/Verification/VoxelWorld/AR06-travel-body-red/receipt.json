@@ -1,0 +1,43 @@
+{
+  "isolatedProject": "/tmp/coo-two-areas-validation",
+  "unityExit": 2,
+  "compileErrors": [],
+  "results": {
+    "id": "2",
+    "testcasecount": "7",
+    "result": "Failed(Child)",
+    "total": "7",
+    "passed": "2",
+    "failed": "5",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-15 18:16:42Z",
+    "end-time": "2026-09-15 18:16:42Z",
+    "duration": "0.5963252"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.OverwritGinmereRenderingTests.MovingTheSameActorOrSupplyDoesNotRerollItsAuthoredBody(\"GinFrog\")",
+      "message": "  Native movement must not replace the body's variant.\n  String lengths are both 14. Strings differ at index 13.\n  Expected: \"ginmere-frog-2\"\n  But was:  \"ginmere-frog-3\"\n  ------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.OverwritGinmereRenderingTests.MovingTheSameActorOrSupplyDoesNotRerollItsAuthoredBody(\"PrickleBrowGecko\")",
+      "message": "  Native movement must not replace the body's variant.\n  String lengths are both 15. Strings differ at index 14.\n  Expected: \"ginmere-gecko-3\"\n  But was:  \"ginmere-gecko-2\"\n  -------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.OverwritGinmereRenderingTests.MovingTheSameActorOrSupplyDoesNotRerollItsAuthoredBody(\"Torch\")",
+      "message": "  Native movement must not replace the body's variant.\n  String lengths are both 15. Strings differ at index 14.\n  Expected: \"ginmere-torch-0\"\n  But was:  \"ginmere-torch-1\"\n  -------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.OverwritGinmereRenderingTests.MovingTheSameActorOrSupplyDoesNotRerollItsAuthoredBody(\"DriedMeat\")",
+      "message": "  Native movement must not replace the body's variant.\n  String lengths are both 14. Strings differ at index 13.\n  Expected: \"ginmere-meat-3\"\n  But was:  \"ginmere-meat-2\"\n  ------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.OverwritGinmereRenderingTests.MovingTheSameActorOrSupplyDoesNotRerollItsAuthoredBody(\"HealingTonic\")",
+      "message": "  Native movement must not replace the body's variant.\n  String lengths are both 15. Strings differ at index 14.\n  Expected: \"ginmere-tonic-1\"\n  But was:  \"ginmere-tonic-0\"\n  -------------------------^\n"
+    }
+  ]
+}

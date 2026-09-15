@@ -1,0 +1,1039 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fbb226b34894f8db6310fe9ef124ce3, type: 3}
+  m_Name: Library
+  m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.Rendering.GinmereVoxelLibrary
+  Entries:
+  - Id: ginmere-ground-0
+    Prefab: {fileID: 7538839204943423548, guid: a6ae54ee40b044adabb6139b98b3ab44, type: 3}
+    Mesh: {fileID: 4300000, guid: d53b00993a5da4811bca3af2c185b436, type: 2}
+    Spec:
+      id: ginmere-ground-0
+      path: Assets/Resources/GinmereVoxel3D/ginmere-ground-0.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0325, z: 0}
+      boundsSize: {x: 1, y: 0.065, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: ginmere-ground-1
+    Prefab: {fileID: 6700412928708555460, guid: 6c6dcb077c3ac47048b0d402a600f707, type: 3}
+    Mesh: {fileID: 4300000, guid: 88188ede43c5e444b8e66b0463a0c2de, type: 2}
+    Spec:
+      id: ginmere-ground-1
+      path: Assets/Resources/GinmereVoxel3D/ginmere-ground-1.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0365, z: 0}
+      boundsSize: {x: 1, y: 0.073, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: ginmere-ground-2
+    Prefab: {fileID: 533489449886039029, guid: 58272150982cd488fb8fa80f59fc8c4a, type: 3}
+    Mesh: {fileID: 4300000, guid: a08e805b78117494c9c67edc781d1100, type: 2}
+    Spec:
+      id: ginmere-ground-2
+      path: Assets/Resources/GinmereVoxel3D/ginmere-ground-2.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0405, z: 0}
+      boundsSize: {x: 1, y: 0.081, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: ginmere-ground-3
+    Prefab: {fileID: 4436970385242489875, guid: 0bc2a9fa4747e46f2b9aa96ba803543c, type: 3}
+    Mesh: {fileID: 4300000, guid: dc31fe7c36b224285bdd64ef575b006f, type: 2}
+    Spec:
+      id: ginmere-ground-3
+      path: Assets/Resources/GinmereVoxel3D/ginmere-ground-3.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0445, z: 0}
+      boundsSize: {x: 1, y: 0.089, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: ginmere-cliff-0
+    Prefab: {fileID: 6445537269163168128, guid: 57bbe4e79a48f445d902d8d1fa1b3134, type: 3}
+    Mesh: {fileID: 4300000, guid: e706a4a4a3cb64bffb30ccb85aaaf806, type: 2}
+    Spec:
+      id: ginmere-cliff-0
+      path: Assets/Resources/GinmereVoxel3D/ginmere-cliff-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.75, z: 0}
+      boundsSize: {x: 1, y: 1.5, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: ginmere-cliff-1
+    Prefab: {fileID: 7507251781516339226, guid: e8536450def534cc5b64be538a2d756a, type: 3}
+    Mesh: {fileID: 4300000, guid: 63b5a8092fc00410aa25e57125daeed6, type: 2}
+    Spec:
+      id: ginmere-cliff-1
+      path: Assets/Resources/GinmereVoxel3D/ginmere-cliff-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.85, z: 0}
+      boundsSize: {x: 1, y: 1.7, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: ginmere-cliff-2
+    Prefab: {fileID: 7556082199450747623, guid: 985f6bb445d1f414780b1bdedc08fc33, type: 3}
+    Mesh: {fileID: 4300000, guid: 6dc3bf96f1538460cb905147954fa087, type: 2}
+    Spec:
+      id: ginmere-cliff-2
+      path: Assets/Resources/GinmereVoxel3D/ginmere-cliff-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.95, z: 0}
+      boundsSize: {x: 1, y: 1.9, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: ginmere-cliff-3
+    Prefab: {fileID: 7640202614684050415, guid: 0ce74a1f132a240ef83952e65b7e3200, type: 3}
+    Mesh: {fileID: 4300000, guid: 872cd72d96fe544dc8154c981d1fa93d, type: 2}
+    Spec:
+      id: ginmere-cliff-3
+      path: Assets/Resources/GinmereVoxel3D/ginmere-cliff-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 1.05, z: 0}
+      boundsSize: {x: 1, y: 2.1, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: ginmere-rim-0
+    Prefab: {fileID: 150197579544270667, guid: 59800257a836342f7acc1296cd09b4f9, type: 3}
+    Mesh: {fileID: 4300000, guid: df3b4b6f313594b8f9b12d33d23c8aa1, type: 2}
+    Spec:
+      id: ginmere-rim-0
+      path: Assets/Resources/GinmereVoxel3D/ginmere-rim-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.3, z: 0}
+      boundsSize: {x: 1, y: 0.6, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: ginmere-rim-1
+    Prefab: {fileID: 5127538919972784906, guid: 12bfe4a5e15ae404ca0598052b7fed3e, type: 3}
+    Mesh: {fileID: 4300000, guid: 8875f79ef9a324f8899ddd5af1b52a16, type: 2}
+    Spec:
+      id: ginmere-rim-1
+      path: Assets/Resources/GinmereVoxel3D/ginmere-rim-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.39000002, z: 0}
+      boundsSize: {x: 1, y: 0.78000003, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: ginmere-rim-2
+    Prefab: {fileID: 2187013079712047136, guid: de825be7b2f6d4c2d96744bd9c55d1c7, type: 3}
+    Mesh: {fileID: 4300000, guid: d0ac1f3dc81ac4c5eaf107783eeaa7e4, type: 2}
+    Spec:
+      id: ginmere-rim-2
+      path: Assets/Resources/GinmereVoxel3D/ginmere-rim-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.48000002, z: 0}
+      boundsSize: {x: 1, y: 0.96000004, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: ginmere-rim-3
+    Prefab: {fileID: 7692406265921658679, guid: 3b35c8f984ed74528bd954c69b218c1a, type: 3}
+    Mesh: {fileID: 4300000, guid: ffb21fc30b4c24963b8092a6c078c9b3, type: 2}
+    Spec:
+      id: ginmere-rim-3
+      path: Assets/Resources/GinmereVoxel3D/ginmere-rim-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.57000005, z: 0}
+      boundsSize: {x: 1, y: 1.1400001, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: ginmere-ledge-0
+    Prefab: {fileID: 3304690324583829915, guid: cfa2232f1b17247a8ae53200bf0874c6, type: 3}
+    Mesh: {fileID: 4300000, guid: 9150793d4a6024439bc08aafac36c47d, type: 2}
+    Spec:
+      id: ginmere-ledge-0
+      path: Assets/Resources/GinmereVoxel3D/ginmere-ledge-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.07, z: 0}
+      boundsSize: {x: 1, y: 0.14, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: ginmere-ledge-1
+    Prefab: {fileID: 7082703934218066981, guid: 2c8cb3478e41a4641b3ee028899a2a43, type: 3}
+    Mesh: {fileID: 4300000, guid: 2da4d989d2e0c4745ad6d5d03676c876, type: 2}
+    Spec:
+      id: ginmere-ledge-1
+      path: Assets/Resources/GinmereVoxel3D/ginmere-ledge-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.08, z: 0}
+      boundsSize: {x: 1, y: 0.16, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: ginmere-ledge-2
+    Prefab: {fileID: 2425602737748116462, guid: 7dd41347fd501452784f2ef87ac12e14, type: 3}
+    Mesh: {fileID: 4300000, guid: a04a0787fc32949428b3370eb0486c67, type: 2}
+    Spec:
+      id: ginmere-ledge-2
+      path: Assets/Resources/GinmereVoxel3D/ginmere-ledge-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.09, z: 0}
+      boundsSize: {x: 1, y: 0.18, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: ginmere-ledge-3
+    Prefab: {fileID: 4483739991941412924, guid: 1669aadb82350481d9e8edaff767c0cf, type: 3}
+    Mesh: {fileID: 4300000, guid: 126daae6a28c542f6bce11fcebe06c01, type: 2}
+    Spec:
+      id: ginmere-ledge-3
+      path: Assets/Resources/GinmereVoxel3D/ginmere-ledge-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.1, z: 0}
+      boundsSize: {x: 1, y: 0.2, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: ginmere-water-0
+    Prefab: {fileID: 3897559800015770872, guid: 305f49b560d0f4c0fb678abe81f009ea, type: 3}
+    Mesh: {fileID: 4300000, guid: 8ecbb6b75acfd4859b317056284edfd5, type: 2}
+    Spec:
+      id: ginmere-water-0
+      path: Assets/Resources/GinmereVoxel3D/ginmere-water-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.041, z: 0}
+      boundsSize: {x: 1, y: 0.013999999, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: ginmere-water-1
+    Prefab: {fileID: 5845356224323453105, guid: aa9bda7968191478a891e7582fccd817, type: 3}
+    Mesh: {fileID: 4300000, guid: d9bdd158f0fde47ebb891019f82dc492, type: 2}
+    Spec:
+      id: ginmere-water-1
+      path: Assets/Resources/GinmereVoxel3D/ginmere-water-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.039499998, z: 0}
+      boundsSize: {x: 1, y: 0.017000003, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: ginmere-water-2
+    Prefab: {fileID: 8089861478067399266, guid: 053d545013e6a4eb0b5cb710eebc91c8, type: 3}
+    Mesh: {fileID: 4300000, guid: 49ca9d3344a8d4308b772b68c8c36145, type: 2}
+    Spec:
+      id: ginmere-water-2
+      path: Assets/Resources/GinmereVoxel3D/ginmere-water-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.038000003, z: 0}
+      boundsSize: {x: 1, y: 0.019999998, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: ginmere-water-3
+    Prefab: {fileID: 7902471633642165983, guid: 754500e0b49f44c5e8117d1bd1626558, type: 3}
+    Mesh: {fileID: 4300000, guid: f2c3c467547444894b68dc52cb98ef28, type: 2}
+    Spec:
+      id: ginmere-water-3
+      path: Assets/Resources/GinmereVoxel3D/ginmere-water-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.0365, z: 0}
+      boundsSize: {x: 1, y: 0.023000002, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: ginmere-anchor-0
+    Prefab: {fileID: 5342052653571138808, guid: 8860caed521a540dda456945f1451735, type: 3}
+    Mesh: {fileID: 4300000, guid: aea30aa6ce8d94fb79a5d508f9c44ba7, type: 2}
+    Spec:
+      id: ginmere-anchor-0
+      path: Assets/Resources/GinmereVoxel3D/ginmere-anchor-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0.065, y: 0.26250002, z: 0.015000001}
+      boundsSize: {x: 0.34, y: 0.52500004, z: 0.19}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: ginmere-anchor-1
+    Prefab: {fileID: 379202243909384846, guid: a30be04f0d12741fe912dfdf4f8d9620, type: 3}
+    Mesh: {fileID: 4300000, guid: 0e9eae9499d0a44e1b72e5b8f1f85f87, type: 2}
+    Spec:
+      id: ginmere-anchor-1
+      path: Assets/Resources/GinmereVoxel3D/ginmere-anchor-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0.065, y: 0.26250002, z: 0.015000001}
+      boundsSize: {x: 0.34, y: 0.52500004, z: 0.19}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: ginmere-anchor-2
+    Prefab: {fileID: 2619195862108199450, guid: f4ea820407fa04df4b44b1c88992efdb, type: 3}
+    Mesh: {fileID: 4300000, guid: 87a5430f7429448e49f0201dcb0e6081, type: 2}
+    Spec:
+      id: ginmere-anchor-2
+      path: Assets/Resources/GinmereVoxel3D/ginmere-anchor-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0.065, y: 0.26250002, z: 0.015000001}
+      boundsSize: {x: 0.34, y: 0.52500004, z: 0.19}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: ginmere-anchor-3
+    Prefab: {fileID: 4039223708946016214, guid: 35332e0f79e3a4b2e9fb65210ac22486, type: 3}
+    Mesh: {fileID: 4300000, guid: bed9cfd722f3b413eb0a28a650904edd, type: 2}
+    Spec:
+      id: ginmere-anchor-3
+      path: Assets/Resources/GinmereVoxel3D/ginmere-anchor-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0.065, y: 0.26250002, z: 0.015000001}
+      boundsSize: {x: 0.34, y: 0.52500004, z: 0.19}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: ginmere-nest-0
+    Prefab: {fileID: 5668227031878835996, guid: b15b272b0cadf44f4a2a2e6ff9e71d25, type: 3}
+    Mesh: {fileID: 4300000, guid: ff593ea963393403ba014417d780f7c8, type: 2}
+    Spec:
+      id: ginmere-nest-0
+      path: Assets/Resources/GinmereVoxel3D/ginmere-nest-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.12, z: 0}
+      boundsSize: {x: 0.84, y: 0.24, z: 0.84}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: ginmere-nest-1
+    Prefab: {fileID: 8909916647298652073, guid: 85247f9762a1a4bfc8b1edcdae0af70b, type: 3}
+    Mesh: {fileID: 4300000, guid: 7b37353adf3db43d2b164fce20dccf1b, type: 2}
+    Spec:
+      id: ginmere-nest-1
+      path: Assets/Resources/GinmereVoxel3D/ginmere-nest-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.13, z: 0}
+      boundsSize: {x: 0.85999995, y: 0.26, z: 0.85999995}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: ginmere-nest-2
+    Prefab: {fileID: 108482479781884889, guid: 57a8d468afb0743d6b886a0654c49f44, type: 3}
+    Mesh: {fileID: 4300000, guid: c4f82ce58f42b49f4b13416ff79c5097, type: 2}
+    Spec:
+      id: ginmere-nest-2
+      path: Assets/Resources/GinmereVoxel3D/ginmere-nest-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.14, z: 0}
+      boundsSize: {x: 0.88, y: 0.28, z: 0.88}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: ginmere-nest-3
+    Prefab: {fileID: 916452775595293253, guid: 612d86048a24242c79c9fce494722b4e, type: 3}
+    Mesh: {fileID: 4300000, guid: c26dea895c2e342e7b8a9fc17257fe89, type: 2}
+    Spec:
+      id: ginmere-nest-3
+      path: Assets/Resources/GinmereVoxel3D/ginmere-nest-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.14999999, z: 0}
+      boundsSize: {x: 0.9, y: 0.29999998, z: 0.9}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: ginmere-gecko-0
+    Prefab: {fileID: 9063757468038152901, guid: 55555287ad0394f19a544d842ba9d58b, type: 3}
+    Mesh: {fileID: 4300000, guid: 6d8100777b4474d20b6efac580125250, type: 2}
+    Spec:
+      id: ginmere-gecko-0
+      path: Assets/Resources/GinmereVoxel3D/ginmere-gecko-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.235, z: -0.0255}
+      boundsSize: {x: 0.64, y: 0.39000002, z: 0.90900004}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: ginmere-gecko-1
+    Prefab: {fileID: 219698375494622953, guid: faaa817c0f7ff40bfa7b02222ef9504f, type: 3}
+    Mesh: {fileID: 4300000, guid: 00a67bf779af24c7bbc0997d0b4cfd1c, type: 2}
+    Spec:
+      id: ginmere-gecko-1
+      path: Assets/Resources/GinmereVoxel3D/ginmere-gecko-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.2375, z: -0.0255}
+      boundsSize: {x: 0.64, y: 0.395, z: 0.90900004}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: ginmere-gecko-2
+    Prefab: {fileID: 7433077296132840895, guid: 8015040f2edd1496bb653f5b770bd36e, type: 3}
+    Mesh: {fileID: 4300000, guid: 057ab1173ed2e464eae97b870fa17836, type: 2}
+    Spec:
+      id: ginmere-gecko-2
+      path: Assets/Resources/GinmereVoxel3D/ginmere-gecko-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.24, z: -0.0255}
+      boundsSize: {x: 0.64, y: 0.4, z: 0.90900004}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: ginmere-gecko-3
+    Prefab: {fileID: 3987035513823131587, guid: af7e21a61b7814e07ad72dc50e64c41c, type: 3}
+    Mesh: {fileID: 4300000, guid: 0681b31e1142248cf8edcb8b13744e27, type: 2}
+    Spec:
+      id: ginmere-gecko-3
+      path: Assets/Resources/GinmereVoxel3D/ginmere-gecko-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.24249999, z: -0.0255}
+      boundsSize: {x: 0.64, y: 0.405, z: 0.90900004}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: ginmere-frog-0
+    Prefab: {fileID: 8799768024309235133, guid: ac058e173bf6646aebe53224783f9d08, type: 3}
+    Mesh: {fileID: 4300000, guid: 0f8c99e70c46e41658d0ef5c78cc374f, type: 2}
+    Spec:
+      id: ginmere-frog-0
+      path: Assets/Resources/GinmereVoxel3D/ginmere-frog-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.27124998, z: 0.027500004}
+      boundsSize: {x: 0.84000003, y: 0.5025, z: 0.72499996}
+      triangles: 96
+      clips: []
+      sockets: []
+  - Id: ginmere-frog-1
+    Prefab: {fileID: 4202878869026748149, guid: c36badc4901a54cd5b5aa4175841984b, type: 3}
+    Mesh: {fileID: 4300000, guid: a83e48cec9bea4e629a943b99045e1e7, type: 2}
+    Spec:
+      id: ginmere-frog-1
+      path: Assets/Resources/GinmereVoxel3D/ginmere-frog-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.27374998, z: 0.027500004}
+      boundsSize: {x: 0.84000003, y: 0.5075, z: 0.72499996}
+      triangles: 96
+      clips: []
+      sockets: []
+  - Id: ginmere-frog-2
+    Prefab: {fileID: 7324704602202956947, guid: 15202b046b4654f629d9bcc19d911ead, type: 3}
+    Mesh: {fileID: 4300000, guid: 375abe63f671443979378f8c4153a307, type: 2}
+    Spec:
+      id: ginmere-frog-2
+      path: Assets/Resources/GinmereVoxel3D/ginmere-frog-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.27624997, z: 0.027500004}
+      boundsSize: {x: 0.84000003, y: 0.5125, z: 0.72499996}
+      triangles: 96
+      clips: []
+      sockets: []
+  - Id: ginmere-frog-3
+    Prefab: {fileID: 1541904993170580115, guid: 24294ba8226d640c083e51b9c98f064c, type: 3}
+    Mesh: {fileID: 4300000, guid: 552360835b64e46bb981e00b58853eec, type: 2}
+    Spec:
+      id: ginmere-frog-3
+      path: Assets/Resources/GinmereVoxel3D/ginmere-frog-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.27874997, z: 0.027500004}
+      boundsSize: {x: 0.84000003, y: 0.5175, z: 0.72499996}
+      triangles: 96
+      clips: []
+      sockets: []
+  - Id: ginmere-torch-0
+    Prefab: {fileID: 3705133959752585343, guid: 1d6f791ba7d314ea6b8611db9a7ca673, type: 3}
+    Mesh: {fileID: 4300000, guid: 7d9962629d4a34e6fb88664dbf6f049f, type: 2}
+    Spec:
+      id: ginmere-torch-0
+      path: Assets/Resources/GinmereVoxel3D/ginmere-torch-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.43, z: 0}
+      boundsSize: {x: 0.22, y: 0.86, z: 0.18}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: ginmere-torch-1
+    Prefab: {fileID: 1395063647374058887, guid: c8e5b9f48eb2247ecab5bb7c65a74ee6, type: 3}
+    Mesh: {fileID: 4300000, guid: 7fdb788cfedb74841adde531aeb0293b, type: 2}
+    Spec:
+      id: ginmere-torch-1
+      path: Assets/Resources/GinmereVoxel3D/ginmere-torch-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.43, z: 0}
+      boundsSize: {x: 0.22, y: 0.86, z: 0.18}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: ginmere-torch-2
+    Prefab: {fileID: 3295029047082184493, guid: 31b3c4c3672b748a7869fb33bdf16c7f, type: 3}
+    Mesh: {fileID: 4300000, guid: e100b99f38f184bdbb11d340795cfe35, type: 2}
+    Spec:
+      id: ginmere-torch-2
+      path: Assets/Resources/GinmereVoxel3D/ginmere-torch-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.43, z: 0}
+      boundsSize: {x: 0.22, y: 0.86, z: 0.18}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: ginmere-torch-3
+    Prefab: {fileID: 2929361076088729157, guid: b1faa676632f64c0aa572ac8da82e898, type: 3}
+    Mesh: {fileID: 4300000, guid: d936d55eb0f714dd888ddc0ec7ebe56d, type: 2}
+    Spec:
+      id: ginmere-torch-3
+      path: Assets/Resources/GinmereVoxel3D/ginmere-torch-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.43, z: 0}
+      boundsSize: {x: 0.22, y: 0.86, z: 0.18}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: ginmere-meat-0
+    Prefab: {fileID: 2193117686182133268, guid: b71ed66bbf688495eb27bb6709489cc9, type: 3}
+    Mesh: {fileID: 4300000, guid: e0ba818e74a81474ab4f90e547672098, type: 2}
+    Spec:
+      id: ginmere-meat-0
+      path: Assets/Resources/GinmereVoxel3D/ginmere-meat-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: -0.0024999976, y: 0.07125, z: 0.044999994}
+      boundsSize: {x: 0.465, y: 0.1425, z: 0.31}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: ginmere-meat-1
+    Prefab: {fileID: 285960469990859069, guid: c2b486be0baee4d41829b54609b16266, type: 3}
+    Mesh: {fileID: 4300000, guid: e6505d5db2c964ef89b66b892852ca20, type: 2}
+    Spec:
+      id: ginmere-meat-1
+      path: Assets/Resources/GinmereVoxel3D/ginmere-meat-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.07125, z: 0.044999994}
+      boundsSize: {x: 0.46, y: 0.1425, z: 0.31}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: ginmere-meat-2
+    Prefab: {fileID: 7591443190331253948, guid: 223ea2fda1e614a02bf096e9bf08231f, type: 3}
+    Mesh: {fileID: 4300000, guid: f4150444f3a784190905ef01118d01c0, type: 2}
+    Spec:
+      id: ginmere-meat-2
+      path: Assets/Resources/GinmereVoxel3D/ginmere-meat-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.07125, z: 0.044999994}
+      boundsSize: {x: 0.46, y: 0.1425, z: 0.31}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: ginmere-meat-3
+    Prefab: {fileID: 4450309069629535429, guid: a1e5f570a7b664ba6b5f042786f8242f, type: 3}
+    Mesh: {fileID: 4300000, guid: 60ab60b2e27fc4b02b91ad5060add2c7, type: 2}
+    Spec:
+      id: ginmere-meat-3
+      path: Assets/Resources/GinmereVoxel3D/ginmere-meat-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0.0024999976, y: 0.07125, z: 0.044999994}
+      boundsSize: {x: 0.465, y: 0.1425, z: 0.31}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: ginmere-tonic-0
+    Prefab: {fileID: 8286190747029892960, guid: b4b017e4bb1de44dfb75909c8c26791d, type: 3}
+    Mesh: {fileID: 4300000, guid: 70e1a7017a9334e96b134f64278409d9, type: 2}
+    Spec:
+      id: ginmere-tonic-0
+      path: Assets/Resources/GinmereVoxel3D/ginmere-tonic-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.2475, z: 0}
+      boundsSize: {x: 0.24, y: 0.495, z: 0.24}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: ginmere-tonic-1
+    Prefab: {fileID: 4205716582825616194, guid: 454efd6d20eb3459f8bec5113b6fc37d, type: 3}
+    Mesh: {fileID: 4300000, guid: b8dd658bd550d431195bc476f9dfb529, type: 2}
+    Spec:
+      id: ginmere-tonic-1
+      path: Assets/Resources/GinmereVoxel3D/ginmere-tonic-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.2525, z: 0}
+      boundsSize: {x: 0.24, y: 0.505, z: 0.24}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: ginmere-tonic-2
+    Prefab: {fileID: 7425931024615715679, guid: 2414e173996fc4d8f87a6a21d8336bd2, type: 3}
+    Mesh: {fileID: 4300000, guid: b9d46395339004d9da8998dfa68fb131, type: 2}
+    Spec:
+      id: ginmere-tonic-2
+      path: Assets/Resources/GinmereVoxel3D/ginmere-tonic-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.2575, z: 0}
+      boundsSize: {x: 0.24, y: 0.515, z: 0.24}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: ginmere-tonic-3
+    Prefab: {fileID: 9222188315215160296, guid: db9abcb1f5ac74776958f4ca3e0ac40a, type: 3}
+    Mesh: {fileID: 4300000, guid: 150106f4bf7114d03b8e1245bcd0dae2, type: 2}
+    Spec:
+      id: ginmere-tonic-3
+      path: Assets/Resources/GinmereVoxel3D/ginmere-tonic-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.2625, z: 0}
+      boundsSize: {x: 0.24, y: 0.525, z: 0.24}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: ginmere-frost-0
+    Prefab: {fileID: 5860238751479871581, guid: 85c6495abf82a4ea480808b7c8aee30a, type: 3}
+    Mesh: {fileID: 4300000, guid: 4deac9c852e104e8a896f433393d6fef, type: 2}
+    Spec:
+      id: ginmere-frost-0
+      path: Assets/Resources/GinmereVoxel3D/ginmere-frost-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.14, z: 0}
+      boundsSize: {x: 0.78, y: 0.28, z: 0.78}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: ginmere-frost-1
+    Prefab: {fileID: 7231852295431207110, guid: 81be2c82d9422484987b9d6f41498fe4, type: 3}
+    Mesh: {fileID: 4300000, guid: 93f92747b89eb4cfdb66915377cde95b, type: 2}
+    Spec:
+      id: ginmere-frost-1
+      path: Assets/Resources/GinmereVoxel3D/ginmere-frost-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.1525, z: 0}
+      boundsSize: {x: 0.80999994, y: 0.305, z: 0.80999994}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: ginmere-frost-2
+    Prefab: {fileID: 6981389805122521491, guid: 9c56e739a759b44bab8296b3eaf489d0, type: 3}
+    Mesh: {fileID: 4300000, guid: 19321c42a47084160a519cb3f9bb9a48, type: 2}
+    Spec:
+      id: ginmere-frost-2
+      path: Assets/Resources/GinmereVoxel3D/ginmere-frost-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.165, z: 0}
+      boundsSize: {x: 0.84, y: 0.33, z: 0.84}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: ginmere-frost-3
+    Prefab: {fileID: 6826880113020254606, guid: e449693913ea041a9bf4c9f147940f47, type: 3}
+    Mesh: {fileID: 4300000, guid: 5a0120b7a6202405ca93987b74530263, type: 2}
+    Spec:
+      id: ginmere-frost-3
+      path: Assets/Resources/GinmereVoxel3D/ginmere-frost-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.1775, z: 0}
+      boundsSize: {x: 0.86999995, y: 0.355, z: 0.86999995}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: ginmere-ice-0
+    Prefab: {fileID: 8769405482583015574, guid: 679cb9d4a544540eb927117d3b6d0cb1, type: 3}
+    Mesh: {fileID: 4300000, guid: 33f79926ac97345ba844d22557fd22b4, type: 2}
+    Spec:
+      id: ginmere-ice-0
+      path: Assets/Resources/GinmereVoxel3D/ginmere-ice-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.046000004, z: 0}
+      boundsSize: {x: 1, y: 0.019999996, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: ginmere-ice-1
+    Prefab: {fileID: 843486334499055477, guid: 54991b2ac02f14062a1ed32f5c28a085, type: 3}
+    Mesh: {fileID: 4300000, guid: d0120c0f7339f48328c911a9f54a12e6, type: 2}
+    Spec:
+      id: ginmere-ice-1
+      path: Assets/Resources/GinmereVoxel3D/ginmere-ice-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.0445, z: 0}
+      boundsSize: {x: 1, y: 0.023000002, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: ginmere-ice-2
+    Prefab: {fileID: 1074831741628502124, guid: d4cfd0b5e9aa143b48a68a3fff4d993e, type: 3}
+    Mesh: {fileID: 4300000, guid: fef3f6cc39bb5445699a8a6edf2d5430, type: 2}
+    Spec:
+      id: ginmere-ice-2
+      path: Assets/Resources/GinmereVoxel3D/ginmere-ice-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.043, z: 0}
+      boundsSize: {x: 1, y: 0.026, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: ginmere-ice-3
+    Prefab: {fileID: 7806068404098090069, guid: 28b0499a828af48569afc94cada24a78, type: 3}
+    Mesh: {fileID: 4300000, guid: 7b2c0ec050f2142beb580f3ea5b01aa5, type: 2}
+    Spec:
+      id: ginmere-ice-3
+      path: Assets/Resources/GinmereVoxel3D/ginmere-ice-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.041500002, z: 0}
+      boundsSize: {x: 1, y: 0.029, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: ginmere-stalagmite-0
+    Prefab: {fileID: 7628144746514605559, guid: bb6a871052ab94dd9a4bf01d45d47409, type: 3}
+    Mesh: {fileID: 4300000, guid: 645544541df4f4443b1ad55901a519e6, type: 2}
+    Spec:
+      id: ginmere-stalagmite-0
+      path: Assets/Resources/GinmereVoxel3D/ginmere-stalagmite-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.6000001, z: 0}
+      boundsSize: {x: 0.7, y: 1.2000002, z: 0.64}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: ginmere-stalagmite-1
+    Prefab: {fileID: 1604614158218984956, guid: bbf04beb231b74865bdf078f7d7d6f0c, type: 3}
+    Mesh: {fileID: 4300000, guid: 3a3b6207969504272883a5f01058e878, type: 2}
+    Spec:
+      id: ginmere-stalagmite-1
+      path: Assets/Resources/GinmereVoxel3D/ginmere-stalagmite-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.675, z: 0}
+      boundsSize: {x: 0.7, y: 1.35, z: 0.64}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: ginmere-stalagmite-2
+    Prefab: {fileID: 3263090953493540217, guid: ab6fb128265cf459cae5629210843fd7, type: 3}
+    Mesh: {fileID: 4300000, guid: b7c06e1d288f04c4e877759ae9cf8125, type: 2}
+    Spec:
+      id: ginmere-stalagmite-2
+      path: Assets/Resources/GinmereVoxel3D/ginmere-stalagmite-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.75, z: 0}
+      boundsSize: {x: 0.7, y: 1.5, z: 0.64}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: ginmere-stalagmite-3
+    Prefab: {fileID: 3553820412599288409, guid: 9760441b17cf04aafba7063c8d4fc5d2, type: 3}
+    Mesh: {fileID: 4300000, guid: 929c786229b324a2e849198de98f6de7, type: 2}
+    Spec:
+      id: ginmere-stalagmite-3
+      path: Assets/Resources/GinmereVoxel3D/ginmere-stalagmite-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.8250001, z: 0}
+      boundsSize: {x: 0.7, y: 1.6500002, z: 0.64}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: ginmere-cache-0
+    Prefab: {fileID: 2837141933242337054, guid: 2f6344e3149a54810a8b89a94edae5d9, type: 3}
+    Mesh: {fileID: 4300000, guid: 7560a9a7d06d54afaababfcfa82c1b0c, type: 2}
+    Spec:
+      id: ginmere-cache-0
+      path: Assets/Resources/GinmereVoxel3D/ginmere-cache-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.24, z: 0}
+      boundsSize: {x: 0.76, y: 0.48, z: 0.65}
+      triangles: 96
+      clips: []
+      sockets: []
+  - Id: ginmere-cache-1
+    Prefab: {fileID: 3526517246855398142, guid: c66ae574c255049189f4a6cc87f28e3b, type: 3}
+    Mesh: {fileID: 4300000, guid: 69a41494be256402786f307038f53919, type: 2}
+    Spec:
+      id: ginmere-cache-1
+      path: Assets/Resources/GinmereVoxel3D/ginmere-cache-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.25, z: 0}
+      boundsSize: {x: 0.78, y: 0.5, z: 0.65}
+      triangles: 96
+      clips: []
+      sockets: []
+  - Id: ginmere-cache-2
+    Prefab: {fileID: 1954537015061982755, guid: a04294e066f054bf88e2b14780b9ff39, type: 3}
+    Mesh: {fileID: 4300000, guid: 7667e1f5298d1431986a52b05f38336f, type: 2}
+    Spec:
+      id: ginmere-cache-2
+      path: Assets/Resources/GinmereVoxel3D/ginmere-cache-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.26, z: 0}
+      boundsSize: {x: 0.8, y: 0.52, z: 0.65}
+      triangles: 96
+      clips: []
+      sockets: []
+  - Id: ginmere-cache-3
+    Prefab: {fileID: 5447455804971210167, guid: 94c320bfb47d74152b7bc370a892641f, type: 3}
+    Mesh: {fileID: 4300000, guid: 13d052f914d9a4d5b87849a2f0c5a91f, type: 2}
+    Spec:
+      id: ginmere-cache-3
+      path: Assets/Resources/GinmereVoxel3D/ginmere-cache-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.26999998, z: 0}
+      boundsSize: {x: 0.82, y: 0.53999996, z: 0.65}
+      triangles: 96
+      clips: []
+      sockets: []

@@ -1,0 +1,27 @@
+{
+  "isolatedProject": "/tmp/coo-two-areas-validation",
+  "unityExit": 2,
+  "compileErrors": [],
+  "results": {
+    "id": "2",
+    "testcasecount": "138",
+    "result": "Failed(Child)",
+    "total": "138",
+    "passed": "137",
+    "failed": "1",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-15 18:35:42Z",
+    "end-time": "2026-09-15 18:35:46Z",
+    "duration": "4.214065"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.OverwritVoxelKitTests.BlankGroundSamplesTheQuietNeutralPaletteInsteadOfYellowSand",
+      "message": "  The source swatch must be neutral before lighting, not sand disguised by a region-name assertion.\n  Expected: less than or equal to 0.0900000036f\n  But was:  0.129411787f\n"
+    }
+  ]
+}

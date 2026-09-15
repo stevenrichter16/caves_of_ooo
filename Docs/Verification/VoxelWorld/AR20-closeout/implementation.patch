@@ -1,0 +1,623 @@
+--- a/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
++++ b/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
+@@ -63,7 +63,12 @@
+             // the POI, and a sinkhole's own descent and floor generated
+             // as generic caves.
+             if (poi != null && poi.Type == POIType.Sinkhole)
++            {
++                if (GinmereCompositionPlan.IsSupportedZone(zoneID) && poi.Name == "Ginmere"
++                    && SinkholeArchetypes.ForSite(poi) == SinkholeArchetype.DrownedSima)
++                    return CreateGinmerePipeline(biome, wz, GetTierForCoords(wx, wy));
+                 return CreateSinkholePipeline(biome, poi, wx, wy, wz);
++            }
+ 
+             // Underground zones use a dedicated pipeline
+             if (wz > 0)
+@@ -142,7 +147,7 @@
+                     return grove;
+                 }
+                 case BiomeType.Overwrit:
+-                    return CreateOverwritPipeline(tier);
++                    return CreateOverwritPipeline(tier, zoneID);
+                 case BiomeType.Stump:
+                     return CreateStumpPipeline(tier, StumpBands.BandAt(wx, wy), composed: StumpCompositionPlan.IsWildernessZone(zoneID));
+ 
+@@ -236,6 +241,32 @@
+         /// not the generic <c>depth/3 + 1</c> the anonymous cave stack
+         /// uses. The two formulas would have disagreed; this is the one
+         /// that holds for holes.</para></summary>
++        private ZoneGenerationPipeline CreateGinmerePipeline(BiomeType biome, int depth, int surfaceTier)
++        {
++            var pipeline=new ZoneGenerationPipeline();
++            pipeline.AddBuilder(new GinmereCompositionBuilder(WorldSeed));
++            string floor=depth==0?"Grass":"SandstoneFloor";
++            pipeline.AddBuilder(new ConnectivityBuilder { FloorBlueprint=floor });
++            if(depth==0) pipeline.AddBuilder(new SinkholeMouthBuilder(this));
++            else
++            {
++                pipeline.AddBuilder(new StairsUpBuilder(this));
++                pipeline.AddBuilder(new StairsDownBuilder(this));
++                pipeline.AddBuilder(new StairConnectorBuilder(floor));
++            }
++            pipeline.AddBuilder(new GinmereArrivalReservationBuilder());
++            pipeline.AddBuilder(new HazardTerrainBuilder(depth==0?biome:BiomeType.Cave,underground:depth>0));
++            if(depth==2)pipeline.AddBuilder(new PopulationBuilder(PopulationTable.StumpSima()));
++            pipeline.AddBuilder(new PopulationBuilder(depth==0?PopulationTable.GetBiomeTable(biome,surfaceTier)
++                :PopulationTable.UndergroundTier(depth)) { HabitatFilter=StumpFaunaHabitat.Allows });
++            pipeline.AddBuilder(new ContainerBuilder(depth==0?biome:BiomeType.Cave,
++                depth==0?surfaceTier:System.Math.Min(surfaceTier+1,8),
++                depth==0?ContainerPlacementService.ZoneKind.Wilderness:ContainerPlacementService.ZoneKind.Underground));
++            if(depth==0)pipeline.AddBuilder(new TradeStockBuilder());
++            if(depth==2)pipeline.AddBuilder(new GinmereNestFinalizer());
++            return pipeline;
++        }
++
+         private ZoneGenerationPipeline CreateSinkholePipeline(
+             BiomeType biome, PointOfInterest poi, int wx, int wy, int wz)
+         {
+@@ -583,9 +614,23 @@
+         /// should be FULL. W7 adds the bleeds; the emptiness is already
+         /// the point.
+         /// </summary>
+-        private ZoneGenerationPipeline CreateOverwritPipeline(int tier = 1)
+-            => CreateSurfacePipeline(BiomeType.Overwrit, tier,
+-                new DesertBuilder { WallThreshold = 0.97f, RockChance = 0.005f });
++        private ZoneGenerationPipeline CreateOverwritPipeline(int tier = 1, string zoneID = null)
++        {
++            if (!OverwritCompositionPlan.IsWildernessZone(zoneID))
++                return CreateSurfacePipeline(BiomeType.Overwrit, tier,
++                    new DesertBuilder { WallThreshold = 0.97f, RockChance = 0.005f });
++            var pipeline = new ZoneGenerationPipeline();
++            var terrain=new OverwritCompositionBuilder(WorldSeed);
++            pipeline.AddBuilder(terrain);
++            pipeline.AddBuilder(new ConnectivityBuilder { FloorBlueprint = "OverwritGround" });
++            // Existing underground entry remains at the rim. The Blank stays
++            // flat; native ruins circulation remains outside this surface scope.
++            if (OverwritCompositionPlan.IsRimZone(zoneID))
++                pipeline.AddBuilder(new CaveEntranceBuilder(this) { PlacementFilter=(zone,cell)=>
++                    terrain.Plan!=null&&terrain.Plan.IsRim(cell.X,cell.Y)
++                    &&!terrain.Plan.IsApproach(cell.X,cell.Y)&&!zone.GenReservedCells.Contains((cell.X,cell.Y)) });
++            return pipeline;
++        }
+ 
+         /// <summary>The Stump — the petrified tepui. Rock and
+         /// fissure.</summary>
+@@ -839,6 +884,8 @@
+             SetTurnProvider(turnProvider);
+         }
+ 
++        protected override void OnZoneAttached(Zone zone) => AreaCompositionScope.Attach(zone,WorldMap);
++
+         protected override void OnZoneGenerated(Zone zone, string zoneID)
+         {
+             if (!WorldMap.IsOverworldZoneID(zoneID))
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs
+@@ -13,8 +13,9 @@
+         public readonly string ModelId, ComponentId, Failure;
+         public readonly Vector3 Position;
+         public readonly bool Transient, Batched;
+-        public SpawnRing3DRecipe(Entity owner, string modelId, string componentId, Vector3 position, bool transient, bool batched, string failure = null)
+-        { Owner = owner; ModelId = modelId; ComponentId = componentId; Position = position; Transient = transient; Batched = batched; Failure = failure; }
++        public readonly int QuarterTurns;
++        public SpawnRing3DRecipe(Entity owner, string modelId, string componentId, Vector3 position, bool transient, bool batched, string failure = null, int quarterTurns = 0)
++        { Owner = owner; ModelId = modelId; ComponentId = componentId; Position = position; Transient = transient; Batched = batched; Failure = failure; QuarterTurns = quarterTurns; }
+     }
+ 
+     /// <summary>Maps current native refs to explicit ring art without spawning,
+@@ -24,6 +25,7 @@
+         public static SpawnRing3DRecipe Resolve(Zone zone, Entity entity, SpawnRing3DCatalog catalog, MultiCellPilot3DCatalog pilot = null)
+         {
+             if (zone == null || catalog == null || !catalog.SupportsZone(zone.ZoneID)) return Refused(entity, "outside-ring");
++            if (!AreaCompositionScope.Allows(zone)) return Refused(entity,"runtime-place-authority");
+             if (zone.ZoneID == FellingSiteBuilder.ZoneID && !FellingSceneRuntime.IsActive(zone)) return Refused(entity, "missing-native-felling-contract");
+             if (entity == null) return Refused(null, "missing-native-entity");
+             var cell = zone.GetEntityCell(entity);
+@@ -45,6 +47,36 @@
+             }
+             else
+             {
++                bool overwrit=OverwritCompositionPlan.IsWildernessZone(zone.ZoneID);
++                bool ginmere=GinmereCompositionPlan.IsSupportedZone(zone.ZoneID);
++                if(overwrit||ginmere)
++                {
++                    string family=overwrit?OverwritVoxelLibrary.Family(entity.BlueprintName):GinmereVoxelLibrary.Family(entity.BlueprintName);
++                    if(family!=null)
++                    {
++                        bool actor=ginmere&&(family=="frog"||family=="gecko");
++                        if(actor&&!MatchesNativeActorGlyph(entity.BlueprintName,render.RenderString))
++                            return Refused(entity,"reskinned-native-actor");
++                        bool movable=actor||entity.GetPart<PhysicsPart>()?.Takeable==true;
++                        int variant=ginmere&&(family=="cliff"||family=="rim")
++                            ?NativeHeightVariant(zone,cell,entity.BlueprintName)
++                            // Portable bodies keep their shape when carried
++                            // between Ginmere levels as well as within a cell grid.
++                            :Variant(movable?null:zone.ZoneID,entity.BlueprintName,entity.ID,movable?0:cell.X,movable?0:cell.Y,4);
++                        string id=overwrit?OverwritVoxelLibrary.ModelId(family,variant):GinmereVoxelLibrary.ModelId(family,variant);
++                        int facing=overwrit&&(family=="bench"||family=="waymarker")?OverwritCompositionPlan.InwardQuarterTurns(zone.ZoneID):0;
++                        return new SpawnRing3DRecipe(entity,id,null,Village3DProjection.CellCentre(cell.X,cell.Y),movable,!movable,quarterTurns:facing);
++                    }
++                    // Share only the art of current native wreckage. No region
++                    // builder is consulted to restore a destroyed object.
++                    if(entity.BlueprintName=="Rubble"||ginmere&&entity.BlueprintName=="Bones")
++                    {
++                        string wreckage=BeatingVoxelLibrary.Family(entity.BlueprintName);
++                        string id=BeatingVoxelLibrary.ModelId(wreckage,Variant(zone.ZoneID,entity.BlueprintName,entity.ID,cell.X,cell.Y,4));
++                        bool movable=entity.GetPart<PhysicsPart>()?.Takeable==true;
++                        return new SpawnRing3DRecipe(entity,id,null,Village3DProjection.CellCentre(cell.X,cell.Y),movable,!movable);
++                    }
++                }
+                 if(StumpCompositionPlan.IsWildernessZone(zone.ZoneID))
+                 {
+                     // Destruction leaves the same native Rubble identity as
+@@ -106,6 +138,10 @@
+                     }
+                 }
+                 var binding = catalog.FindBlueprint(entity.HasTag("Player") ? "Player" : entity.BlueprintName);
++                // Native cave snapjaw roles share the species' body while their
++                // real brains, equipment and glyph-reskin guard remain intact.
++                if(binding==null&&ginmere&&(entity.BlueprintName=="SnapjawScavenger"||entity.BlueprintName=="SnapjawHunter"))
++                    binding=catalog.FindBlueprint("Snapjaw");
+                 // Existing green harvestable uses the shipped green plant family;
+                 // only its appearance is shared, never the Bush entity or mechanics.
+                 if (binding == null && entity.BlueprintName == "MendleafPlant") binding = catalog.FindBlueprint("Bush");
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DCatalog.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DCatalog.cs
+@@ -158,13 +158,13 @@
+             zoneIndex=new HashSet<string>(zones,StringComparer.Ordinal);
+         }
+         public Model FindModel(string modelId)
+-        {if(string.IsNullOrEmpty(modelId))return null;if(modelIndex==null)Validate();return modelIndex.TryGetValue(modelId,out var value)?value:SpreadVoxelLibrary.Load()?.Find(modelId)?.Spec ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Spec ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Spec ?? StumpVoxelLibrary.Load()?.Find(modelId)?.Spec;}
++        {if(string.IsNullOrEmpty(modelId))return null;if(modelIndex==null)Validate();return modelIndex.TryGetValue(modelId,out var value)?value:SpreadVoxelLibrary.Load()?.Find(modelId)?.Spec ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Spec ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Spec ?? StumpVoxelLibrary.Load()?.Find(modelId)?.Spec ?? OverwritVoxelLibrary.Load()?.Find(modelId)?.Spec ?? GinmereVoxelLibrary.Load()?.Find(modelId)?.Spec;}
+         public BlueprintBinding FindBlueprint(string blueprint)
+         {if(string.IsNullOrEmpty(blueprint))return null;if(blueprintIndex==null)Validate();return blueprintIndex.TryGetValue(blueprint,out var value)?value:null;}
+         public FellingOwner FindFellingOwner(string componentId)
+         {if(string.IsNullOrEmpty(componentId))return null;if(fellingIndex==null)Validate();return fellingIndex.TryGetValue(componentId,out var value)?value:null;}
+         public bool SupportsZone(string zoneId)
+-        {if(string.IsNullOrEmpty(zoneId))return false;if(zoneIndex==null)Validate();return zoneIndex.Contains(zoneId)||(GrovelandsCompositionPlan.IsWildernessZone(zoneId) || SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId) || BeatingCompositionPlan.IsWildernessZone(zoneId) || StumpCompositionPlan.IsWildernessZone(zoneId));}
++        {if(string.IsNullOrEmpty(zoneId))return false;if(zoneIndex==null)Validate();return zoneIndex.Contains(zoneId)||(GrovelandsCompositionPlan.IsWildernessZone(zoneId) || SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId) || BeatingCompositionPlan.IsWildernessZone(zoneId) || StumpCompositionPlan.IsWildernessZone(zoneId) || OverwritCompositionPlan.IsWildernessZone(zoneId) || GinmereCompositionPlan.IsSupportedZone(zoneId));}
+         static bool SameNames(string[] values,string[] expected)
+         {
+             if(values==null||values.Length!=expected.Length)return false;
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DLibrary.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DLibrary.cs
+@@ -60,7 +60,7 @@
+             models=candidates;equipmentIds=new HashSet<string>(d.externalEquipment.models,StringComparer.Ordinal);
+         }
+         public GameObject FindModel(string modelId)
+-        {if(string.IsNullOrEmpty(modelId))return null;if(models==null)Validate();return models.TryGetValue(modelId,out var value)?value:SpreadVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? StumpVoxelLibrary.Load()?.Find(modelId)?.Prefab;}
++        {if(string.IsNullOrEmpty(modelId))return null;if(models==null)Validate();return models.TryGetValue(modelId,out var value)?value:SpreadVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? StumpVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? OverwritVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? GinmereVoxelLibrary.Load()?.Find(modelId)?.Prefab;}
+         public GameObject FindEquipmentModel(string modelId)
+         {if(string.IsNullOrEmpty(modelId))return null;if(equipmentIds==null)Validate();return equipmentIds.Contains(modelId)?EquipmentLibrary.FindModel(modelId):null;}
+     }
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs
+@@ -49,7 +49,7 @@
+         public int VoxelAppliedMeshCount => voxel?.AppliedMeshCount ?? 0;
+         public int VoxelMissingMeshCount => voxel?.MissingMeshCount ?? 0;
+         public bool FullReveal { get; set; }
+-        private bool PresentationRequested => IsReady && requestedVisible && Village3DSettings.Enabled && source != null && isActiveAndEnabled;
++        private bool PresentationRequested => IsReady && requestedVisible && Village3DSettings.Enabled && source != null && isActiveAndEnabled && AreaCompositionScope.Allows(CurrentZone);
+         public bool PresentationVisible => PresentationRequested && surface != null && surface.IsVisible;
+         public NativeZone3DRenderSurface ActiveSurface => PresentationVisible ? surface : null;
+         public int GroundBuildCount => ground?.GroundBuildCount ?? 0;
+@@ -59,6 +59,8 @@
+ 
+         public void Bind(Zone zone, Camera sourceCamera)
+         {
++            if(zone!=null&&!AreaCompositionScope.Allows(zone))
++            {Release();CurrentZone=zone;source=sourceCamera;return;}
+             if (ReferenceEquals(CurrentZone, zone) && (IsReady || Failure != null))
+             { source = sourceCamera; SyncCamera(); return; }
+             Release(); CurrentZone = zone; source = sourceCamera;
+@@ -98,7 +100,7 @@
+                 case "Overworld.2.5.0": case "Overworld.3.5.0": case "Overworld.4.5.0":
+                 case "Overworld.2.6.0": case "Overworld.4.6.0": case "Overworld.2.7.0":
+                 case "Overworld.3.7.0": case "Overworld.4.7.0": return true;
+-                default: return (GrovelandsCompositionPlan.IsWildernessZone(id) || SpreadCompositionPlan.IsWildernessZone(id) || SoddenCompositionPlan.IsWildernessZone(id) || BeatingCompositionPlan.IsWildernessZone(id) || StumpCompositionPlan.IsWildernessZone(id));
++                default: return (GrovelandsCompositionPlan.IsWildernessZone(id) || SpreadCompositionPlan.IsWildernessZone(id) || SoddenCompositionPlan.IsWildernessZone(id) || BeatingCompositionPlan.IsWildernessZone(id) || StumpCompositionPlan.IsWildernessZone(id) || OverwritCompositionPlan.IsWildernessZone(id) || GinmereCompositionPlan.IsSupportedZone(id));
+             }
+         }
+         /// <summary>Refresh native references after cell/FOV invalidation. Null
+@@ -106,6 +108,8 @@
+         public void Refresh(LightMap light, HashSet<int> dirtyCells = null)
+         {
+             if (!IsReady || CurrentZone == null) return;
++            if(!AreaCompositionScope.Allows(CurrentZone))
++            {var zone=CurrentZone;var camera=source;Release();CurrentZone=zone;source=camera;return;}
+             try { RefreshCurrent(light, dirtyCells); }
+             catch (Exception e)
+             {
+@@ -151,7 +155,7 @@
+             RefreshEquipment(true); SyncCamera();
+         }
+         private static bool SameGeometry(SpawnRing3DRecipe a, SpawnRing3DRecipe b)
+-            => a.ModelId == b.ModelId && a.Position == b.Position && a.Batched == b.Batched;
++            => a.ModelId == b.ModelId && a.Position == b.Position && a.Batched == b.Batched && a.QuarterTurns == b.QuarterTurns;
+         private void Mark(SpawnRing3DRecipe recipe)
+         {
+             if (recipe.Batched && Village3DProjection.TryWorldToCell(recipe.Position, out int x, out int y)) ground.Mark(x, y);
+--- a/Assets/Scripts/Presentation/Rendering/VoxelWorldPresentation.cs
++++ b/Assets/Scripts/Presentation/Rendering/VoxelWorldPresentation.cs
+@@ -51,6 +51,31 @@
+                 if(kit==null)throw new InvalidOperationException("Required Beating voxel kit missing.");
+                 kit.Validate();foreach(var entry in kit.Entries)generated.Add(entry.Mesh);
+             }
++            if (OverwritCompositionPlan.IsWildernessZone(zoneId))
++            {
++                var kit=OverwritVoxelLibrary.Load();
++                if(kit==null)throw new InvalidOperationException("Required Overwrit voxel kit missing.");
++                kit.Validate();foreach(var entry in kit.Entries)generated.Add(entry.Mesh);
++                RegisterWreckage(false);
++            }
++            if (GinmereCompositionPlan.IsSupportedZone(zoneId))
++            {
++                var kit=GinmereVoxelLibrary.Load();
++                if(kit==null)throw new InvalidOperationException("Required Ginmere voxel kit missing.");
++                kit.Validate();foreach(var entry in kit.Entries)generated.Add(entry.Mesh);
++                RegisterWreckage(true);
++            }
++        }
++        private void RegisterWreckage(bool bones)
++        {
++            var kit=BeatingVoxelLibrary.Load();
++            if(kit==null)throw new InvalidOperationException("Required shared wreckage voxel kit missing.");
++            kit.Validate();
++            for(int i=0;i<4;i++)
++            {
++                generated.Add(kit.Find(BeatingVoxelLibrary.ModelId("rubble",i)).Mesh);
++                if(bones)generated.Add(kit.Find(BeatingVoxelLibrary.ModelId("bones",i)).Mesh);
++            }
+         }
+         public static bool IsSupported(string zoneId)
+         {
+@@ -58,11 +83,11 @@
+             {
+                 case "Overworld.2.6.0": case "Overworld.3.6.0":
+                 case "Overworld.3.7.0": case "Overworld.4.7.0": return true;
+-                default: return (GrovelandsCompositionPlan.IsWildernessZone(zoneId) || SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId) || BeatingCompositionPlan.IsWildernessZone(zoneId) || StumpCompositionPlan.IsWildernessZone(zoneId));
++                default: return (GrovelandsCompositionPlan.IsWildernessZone(zoneId) || SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId) || BeatingCompositionPlan.IsWildernessZone(zoneId) || StumpCompositionPlan.IsWildernessZone(zoneId) || OverwritCompositionPlan.IsWildernessZone(zoneId) || GinmereCompositionPlan.IsSupportedZone(zoneId));
+             }
+         }
+         public static bool IsEnabledFor(Zone zone)
+-            => Village3DSettings.Enabled && zone != null && IsSupported(zone.ZoneID);
++            => Village3DSettings.Enabled && zone != null && IsSupported(zone.ZoneID) && AreaCompositionScope.Allows(zone);
+ 
+         /// <summary>Unsupported zones do not load resources. Invalid required
+         /// resources throw into the presenter's existing cleanup/fallback path.</summary>
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DGroundPatches.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DGroundPatches.cs
+@@ -139,10 +139,11 @@
+                         throw new InvalidOperationException("Unsupported batched ring model: " + recipe.ModelId);
+                     ground |= spec.kind == "ground"; contributions++;
+                     Mix(ref hash, recipe.ModelId); Mix(ref hash, recipe.Position);
++                    Mix(ref hash, (uint)recipe.QuarterTurns);
+                     Mix(ref hash, IsPilotGround(owner) ? 1u : 0u);
+                 }
+                 Mix(ref hash, (uint)contributions);
+-                if (!ground) { Mix(ref hash, fallback); Mix(ref hash, Village3DProjection.CellCentre(x,y)); }
++                if (!ground && fallback != null) { Mix(ref hash, fallback); Mix(ref hash, Village3DProjection.CellCentre(x,y)); }
+                 bool water = SpawnRing3DRecipes.HasPermanentWater(zone,x,y);
+                 Mix(ref hash, water ? (uint)(DryMask(zone,x,y) + 1) : 0u);
+             }
+@@ -163,9 +164,9 @@
+                     Entity owner = objects[n];
+                     if (!recipes.TryGetValue(owner, out var recipe) || !recipe.Batched || recipe.Transient) continue;
+                     ValidateRecipe(owner, recipe); Model model = GetModel(recipe.ModelId); ground |= model.Ground;
+-                    if (IsPilotGround(owner)) AppendPilotGround(x, y, toLocal); else Append(model, recipe.Position, x, y, toLocal);
++                    if (IsPilotGround(owner)) AppendPilotGround(x, y, toLocal); else Append(model, recipe.Position, x, y, toLocal,recipe.QuarterTurns);
+                 }
+-                if (!ground) Append(GetModel(fallback), Village3DProjection.CellCentre(x,y), x, y, toLocal);
++                if (!ground && fallback != null) Append(GetModel(fallback), Village3DProjection.CellCentre(x,y), x, y, toLocal);
+                 if (SpawnRing3DRecipes.HasPermanentWater(zone,x,y))
+                     waterPieces.Add(new CombineInstance { mesh = waterMeshes[DryMask(zone,x,y)], subMeshIndex = 0,
+                         transform = toLocal * Matrix4x4.Translate(Village3DProjection.CellCentre(x,y,catalog.tileState.height)) });
+@@ -212,9 +213,9 @@
+             try { mesh.SetVertices(pilotVertices); mesh.SetUVs(0,pilotUvs); mesh.SetTriangles(pilotTriangles,0); mesh.RecalculateNormals(); mesh.RecalculateBounds(); return mesh; }
+             catch { DestroyOwned(mesh); throw; }
+         }
+-        private void Append(Model model, Vector3 position, int x, int y, Matrix4x4 toLocal)
+-        {
+-            Quaternion rotation = model.Ground ? Quaternion.Euler(0, GroundRotation(x,y), 0) : Quaternion.identity;
++        private void Append(Model model, Vector3 position, int x, int y, Matrix4x4 toLocal, int quarterTurns=0)
++        {
++            Quaternion rotation = Quaternion.Euler(0, model.Ground ? GroundRotation(x,y) : quarterTurns*90, 0);
+             Matrix4x4 placement = toLocal * Matrix4x4.TRS(position, rotation, Vector3.one) * model.RootTransform;
+             for (int i = 0; i < model.Fragments.Length; i++)
+             {
+@@ -283,6 +284,10 @@
+         }
+         private string FallbackModel(Zone zone)
+         {
++            // These native compositions explicitly own every real floor cell.
++            // If native ground is removed, fallback grass would fabricate a
++            // surface. Ginmere's normal mouth retains its native stone landing.
++            if(OverwritCompositionPlan.IsWildernessZone(zone.ZoneID)||GinmereCompositionPlan.IsSupportedZone(zone.ZoneID))return null;
+             bool stone = MultiCellPilotRuntime.IsActive(zone) || zone.ZoneID == "Overworld.2.5.0" || zone.ZoneID == "Overworld.3.5.0" || zone.ZoneID == "Overworld.4.5.0";
+             var binding = catalog.FindBlueprint(stone ? "TepuiStone" : "Grass");
+             if (binding?.models == null || binding.models.Length == 0) throw new InvalidOperationException("Clean ring ground fallback is unavailable.");
+--- a/Assets/Scripts/Presentation/Rendering/BiomePalette.cs
++++ b/Assets/Scripts/Presentation/Rendering/BiomePalette.cs
+@@ -58,7 +58,7 @@
+                 case BiomeType.Sodden: return Sodden;
+                 case BiomeType.Beating: return Desert;
+                 case BiomeType.Grovelands: return Grovelands;
+-                case BiomeType.Overwrit: return Ruins;
++                case BiomeType.Overwrit: return Overwrit;
+                 case BiomeType.Stump: return Cave;
+                 default:               return Cave;
+             }
+@@ -126,5 +126,11 @@
+             contrast: -8f,
+             saturation: -25f,
+             vignetteIntensity: 0f /* round 6: vignette removed (user call) */);
++
++        /// <summary>Felling world design §3.5: scraped and faint. This is
++        /// the ordinary surface palette; no bleed mask or reveal is implied.</summary>
++        public static readonly BiomePalette Overwrit = new BiomePalette(
++            BiomeType.Overwrit, new Color(.9f,.9f,.9f,1f),
++            contrast:-10f, saturation:-40f, vignetteIntensity:0f);
+     }
+ }
+--- a/Assets/Resources/Content/Blueprints/Objects.json
++++ b/Assets/Resources/Content/Blueprints/Objects.json
+@@ -32057,6 +32057,124 @@
+         }
+       ],
+       "Tags": []
++    },
++    {
++      "Name": "OverwritGround",
++      "Inherits": "Terrain",
++      "Parts": [
++        { "Name": "Render", "Params": [
++          { "Key": "DisplayName", "Value": "scraped ground" },
++          { "Key": "RenderString", "Value": "." },
++          { "Key": "ColorString", "Value": "&w" },
++          { "Key": "RenderLayer", "Value": "0" }
++        ] },
++        { "Name": "Examinable", "Params": [
++          { "Key": "Description", "Value": "Smooth ground. No stones break the surface." }
++        ] }
++      ],
++      "Stats": [],
++      "Tags": []
++    },
++    {
++      "Name": "OverwritNewGrowth",
++      "Inherits": "Terrain",
++      "Parts": [
++        { "Name": "Render", "Params": [
++          { "Key": "DisplayName", "Value": "short new growth" },
++          { "Key": "RenderString", "Value": "," },
++          { "Key": "ColorString", "Value": "&g" },
++          { "Key": "RenderLayer", "Value": "1" }
++        ] },
++        { "Name": "Destructible", "Params": [
++          { "Key": "HP", "Value": "4" },
++          { "Key": "MaxHP", "Value": "4" }
++        ] },
++        { "Name": "Material", "Params": [
++          { "Key": "MaterialID", "Value": "Plant" },
++          { "Key": "Combustibility", "Value": "0.6" },
++          { "Key": "MaterialTagsRaw", "Value": "Organic,Plant" }
++        ] },
++        { "Name": "Thermal", "Params": [
++          { "Key": "FlameTemperature", "Value": "320" },
++          { "Key": "HeatCapacity", "Value": "1.0" },
++          { "Key": "AmbientDecayRate", "Value": "0.05" }
++        ] },
++        { "Name": "Examinable", "Params": [
++          { "Key": "Description", "Value": "A few pale shoots. Every tip reaches the same height." }
++        ] }
++      ],
++      "Stats": [],
++      "Tags": [ { "Key": "Vegetation", "Value": "" } ]
++    },
++    {
++      "Name": "OverwritWaymarker",
++      "Inherits": "PhysicalObject",
++      "Parts": [
++        { "Name": "Render", "Params": [
++          { "Key": "DisplayName", "Value": "blank waymarker" },
++          { "Key": "RenderString", "Value": "|" },
++          { "Key": "ColorString", "Value": "&w" },
++          { "Key": "RenderLayer", "Value": "1" }
++        ] },
++        { "Name": "Physics", "Params": [
++          { "Key": "Solid", "Value": "true" },
++          { "Key": "Takeable", "Value": "false" },
++          { "Key": "Weight", "Value": "25" }
++        ] },
++        { "Name": "Destructible", "Params": [
++          { "Key": "HP", "Value": "24" },
++          { "Key": "MaxHP", "Value": "24" },
++          { "Key": "Hardness", "Value": "2" },
++          { "Key": "WreckageBlueprint", "Value": "Rubble" }
++        ] },
++        { "Name": "Material", "Params": [
++          { "Key": "MaterialID", "Value": "Stone" },
++          { "Key": "Combustibility", "Value": "0" },
++          { "Key": "MaterialTagsRaw", "Value": "Stone,Mineral" }
++        ] },
++        { "Name": "Examinable", "Params": [
++          { "Key": "Description", "Value": "A short stone at the edge of the blank ground. Its face carries no legible mark." }
++        ] }
++      ],
++      "Stats": [],
++      "Tags": []
++    },
++    {
++      "Name": "OverwritPilgrimBench",
++      "Inherits": "PhysicalObject",
++      "Parts": [
++        { "Name": "Render", "Params": [
++          { "Key": "DisplayName", "Value": "inward-facing bench" },
++          { "Key": "RenderString", "Value": "_" },
++          { "Key": "ColorString", "Value": "&y" },
++          { "Key": "RenderLayer", "Value": "1" }
++        ] },
++        { "Name": "Physics", "Params": [
++          { "Key": "Solid", "Value": "true" },
++          { "Key": "Takeable", "Value": "false" },
++          { "Key": "Weight", "Value": "18" }
++        ] },
++        { "Name": "Destructible", "Params": [
++          { "Key": "HP", "Value": "12" },
++          { "Key": "MaxHP", "Value": "12" },
++          { "Key": "Hardness", "Value": "1" }
++        ] },
++        { "Name": "Material", "Params": [
++          { "Key": "MaterialID", "Value": "Wood" },
++          { "Key": "Combustibility", "Value": "0.6" },
++          { "Key": "MaterialTagsRaw", "Value": "Organic,Wood" }
++        ] },
++        { "Name": "Thermal", "Params": [
++          { "Key": "FlameTemperature", "Value": "350" },
++          { "Key": "HeatCapacity", "Value": "1.4" },
++          { "Key": "AmbientDecayRate", "Value": "0.04" }
++        ] },
++        { "Name": "Examinable", "Params": [
++          { "Key": "Description", "Value": "A plain wooden bench turned toward the empty ground." }
++        ] }
++      ],
++      "Stats": [],
++      "Tags": []
+     }
+   ]
+ }
+--- a/Assets/Resources/Content/Data/Loot/LootTables.json
++++ b/Assets/Resources/Content/Data/Loot/LootTables.json
+@@ -670,6 +670,10 @@
+           "Chance": 30
+         },
+         {
++          "Blueprint": "DryingBreezeGrimoire",
++          "Chance": 30
++        },
++        {
+           "Blueprint": "ChillDraftGrimoire",
+           "Chance": 30
+         },
+--- a/Assets/Scripts/Presentation/Rendering/EnvironmentSpriteRenderer.cs
++++ b/Assets/Scripts/Presentation/Rendering/EnvironmentSpriteRenderer.cs
+@@ -218,6 +218,10 @@
+             // nothing else can claim it.
+             ("SinkholeLip", "sinkhole_lip"), ("DescentLedge", "descent_ledge"),
+             ("RopeAnchor", "rope_anchor"),
++            ("OverwritGround", "overwrit_ground"),
++            ("OverwritNewGrowth", "overwrit_new_growth"),
++            ("OverwritWaymarker", "overwrit_waymarker"),
++            ("OverwritPilgrimBench", "overwrit_pilgrim_bench"),
+             ("HearthPatch", "hearth_patch"), ("NicheHome", "niche_home"),
+             ("DroseraRing", "drosera_ring"), ("BeetleJar", "beetle_jar"),
+             ("PebbleSundewThreshold", "pebble_sundew"),
+@@ -265,6 +269,9 @@
+             new Dictionary<string, int>
+         {
+             { "Tree", 4 },
++            { "OverwritNewGrowth", 4 },
++            { "OverwritWaymarker", 4 },
++            { "OverwritPilgrimBench", 4 },
+             { "SubstrateVault", 4 },
+             { "GrainRidge", 4 },
+             { "StoneDome", 3 },
+--- a/Assets/Scripts/Gameplay/World/Generation/Builders/CaveEntranceBuilder.cs
++++ b/Assets/Scripts/Gameplay/World/Generation/Builders/CaveEntranceBuilder.cs
+@@ -11,6 +11,10 @@
+     {
+         public string Name => "CaveEntranceBuilder";
+         public int Priority => 3500;
++
++        /// <summary>Optional semantic placement constraint. Ordinary callers
++        /// retain the existing chance/search; composed margins can veto cells.</summary>
++        public System.Func<Zone, Cell, bool> PlacementFilter;
+ 
+         private ZoneManager _zoneManager;
+ 
+@@ -36,6 +40,7 @@
+ 
+                 var cell = zone.GetCell(x, y);
+                 if (cell == null || !cell.IsPassable()) continue;
++                if (PlacementFilter != null && !PlacementFilter(zone, cell)) continue;
+ 
+                 Entity stairs = factory.CreateEntity("StairsDown");
+                 if (stairs == null) return true;
+--- a/Assets/Scripts/Gameplay/World/Map/ZoneManager.cs
++++ b/Assets/Scripts/Gameplay/World/Map/ZoneManager.cs
+@@ -46,11 +46,17 @@
+             PrepareZoneForAccess(zoneID);
+ 
+             if (CachedZones.TryGetValue(zoneID, out Zone zone))
++            {
++                OnZoneAttached(zone);
+                 return zone;
++            }
+ 
+             zone = GenerateZone(zoneID);
+             if (zone != null)
++            {
+                 CachedZones[zoneID] = zone;
++                OnZoneAttached(zone);
++            }
+             return zone;
+         }
+ 
+@@ -62,8 +68,13 @@
+         public void SetActiveZone(Zone zone)
+         {
+             CachedZones[zone.ZoneID] = zone;
++            OnZoneAttached(zone);
+             ActiveZone = zone;
+         }
++
++        /// <summary>Derived, nonpersistent context for generated, accessed or
++        /// restored native graphs. This hook must never rebuild their contents.</summary>
++        protected virtual void OnZoneAttached(Zone zone) { }
+ 
+         private Zone GenerateZone(string zoneID)
+         {
+@@ -203,6 +214,7 @@
+         {
+             CachedZones = cachedZones ?? new Dictionary<string, Zone>();
+             _connections = connections ?? new Dictionary<string, List<ZoneConnection>>();
++            foreach(var zone in CachedZones.Values) OnZoneAttached(zone);
+ 
+             if (!string.IsNullOrEmpty(activeZoneID) && CachedZones.TryGetValue(activeZoneID, out Zone active))
+                 ActiveZone = active;
+--- a/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs
++++ b/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs
+@@ -331,12 +331,13 @@
+             }
+         }
+         [TestCase(SpawnRing3DIntegrationFixture.Grove,true)]
+-        [TestCase(SpawnRing3DIntegrationFixture.Fen,false)]
++        [TestCase(SpawnRing3DIntegrationFixture.Fen,true)]
++        [TestCase("Overworld.4.6.0",false)]
+         public void TwoHandedItemMakesOneRealSharedBladeAttachment(string zoneId,bool voxelExpected)
+         {
+             using(var f=new SpawnRing3DIntegrationFixture(zoneId))
+             {
+-                Assert.AreEqual(voxelExpected,VoxelWorldPresentation.IsEnabledFor(f.Zone),"The native fen controls unchanged equipment art outside the voxel region.");
++                Assert.AreEqual(voxelExpected,VoxelWorldPresentation.IsEnabledFor(f.Zone),"Ginmere now uses voxel art; Olderdeep retains the unchanged non-voxel equipment control.");
+                 f.CleanGear(f.Player);var item=f.Equip(f.Player,"Greatsword");f.Refresh();Assert.AreEqual(2,f.Player.GetPart<InventoryPart>().EquippedItems.Values.Count(v=>ReferenceEquals(v,item)));
+                 Assert.IsTrue(f.Equipment(f.Player,item,out var view));var model=f.Library.FindEquipmentModel("equipment-blade");Assert.NotNull(model);
+                 var meshes=model.GetComponentsInChildren<MeshFilter>(true).Select(m=>m.sharedMesh).ToArray();Assert.IsNotEmpty(meshes);
+--- a/Assets/Tests/EditMode/VoxelWorldIntegrationTests.cs
++++ b/Assets/Tests/EditMode/VoxelWorldIntegrationTests.cs
+@@ -45,12 +45,13 @@
+         [TestCase(null)]
+         [TestCase("")]
+         // The ordinary Stump now has voxel authority; its authored mouth and
+-        // Root remain protected, unsupported controls.
++        // Root remain protected, unsupported controls. Ginmere's first three
++        // levels are now supported, while its deeper catacombs remain excluded.
+         [TestCase("Overworld.2.4.0")]
+         [TestCase("Overworld.3.5.0")]
+         [TestCase("Overworld.3.3.0")]
+         [TestCase("Overworld.4.6.0")]
+-        [TestCase("Overworld.2.7.0")]
++        [TestCase("Overworld.2.7.3")]
+         [TestCase("Overworld.10.10.0")]
+         [TestCase("Overworld.3.6.1")]
+         [TestCase("overworld.3.6.0")]

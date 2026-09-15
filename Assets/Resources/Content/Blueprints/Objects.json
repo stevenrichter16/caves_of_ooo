@@ -32057,6 +32057,124 @@
         }
       ],
       "Tags": []
+    },
+    {
+      "Name": "OverwritGround",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "scraped ground" },
+          { "Key": "RenderString", "Value": "." },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "0" }
+        ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "Smooth ground. No stones break the surface." }
+        ] }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "OverwritNewGrowth",
+      "Inherits": "Terrain",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "short new growth" },
+          { "Key": "RenderString", "Value": "," },
+          { "Key": "ColorString", "Value": "&g" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ] },
+        { "Name": "Destructible", "Params": [
+          { "Key": "HP", "Value": "4" },
+          { "Key": "MaxHP", "Value": "4" }
+        ] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Plant" },
+          { "Key": "Combustibility", "Value": "0.6" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Plant" }
+        ] },
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "320" },
+          { "Key": "HeatCapacity", "Value": "1.0" },
+          { "Key": "AmbientDecayRate", "Value": "0.05" }
+        ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A few pale shoots. Every tip reaches the same height." }
+        ] }
+      ],
+      "Stats": [],
+      "Tags": [ { "Key": "Vegetation", "Value": "" } ]
+    },
+    {
+      "Name": "OverwritWaymarker",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "blank waymarker" },
+          { "Key": "RenderString", "Value": "|" },
+          { "Key": "ColorString", "Value": "&w" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ] },
+        { "Name": "Physics", "Params": [
+          { "Key": "Solid", "Value": "true" },
+          { "Key": "Takeable", "Value": "false" },
+          { "Key": "Weight", "Value": "25" }
+        ] },
+        { "Name": "Destructible", "Params": [
+          { "Key": "HP", "Value": "24" },
+          { "Key": "MaxHP", "Value": "24" },
+          { "Key": "Hardness", "Value": "2" },
+          { "Key": "WreckageBlueprint", "Value": "Rubble" }
+        ] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Stone" },
+          { "Key": "Combustibility", "Value": "0" },
+          { "Key": "MaterialTagsRaw", "Value": "Stone,Mineral" }
+        ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A short stone at the edge of the blank ground. Its face carries no legible mark." }
+        ] }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "OverwritPilgrimBench",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "inward-facing bench" },
+          { "Key": "RenderString", "Value": "_" },
+          { "Key": "ColorString", "Value": "&y" },
+          { "Key": "RenderLayer", "Value": "1" }
+        ] },
+        { "Name": "Physics", "Params": [
+          { "Key": "Solid", "Value": "true" },
+          { "Key": "Takeable", "Value": "false" },
+          { "Key": "Weight", "Value": "18" }
+        ] },
+        { "Name": "Destructible", "Params": [
+          { "Key": "HP", "Value": "12" },
+          { "Key": "MaxHP", "Value": "12" },
+          { "Key": "Hardness", "Value": "1" }
+        ] },
+        { "Name": "Material", "Params": [
+          { "Key": "MaterialID", "Value": "Wood" },
+          { "Key": "Combustibility", "Value": "0.6" },
+          { "Key": "MaterialTagsRaw", "Value": "Organic,Wood" }
+        ] },
+        { "Name": "Thermal", "Params": [
+          { "Key": "FlameTemperature", "Value": "350" },
+          { "Key": "HeatCapacity", "Value": "1.4" },
+          { "Key": "AmbientDecayRate", "Value": "0.04" }
+        ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A plain wooden bench turned toward the empty ground." }
+        ] }
+      ],
+      "Stats": [],
+      "Tags": []
     }
   ]
 }

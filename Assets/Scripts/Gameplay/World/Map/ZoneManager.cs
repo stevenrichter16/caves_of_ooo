@@ -46,11 +46,17 @@ namespace CavesOfOoo.Core
             PrepareZoneForAccess(zoneID);
 
             if (CachedZones.TryGetValue(zoneID, out Zone zone))
+            {
+                OnZoneAttached(zone);
                 return zone;
+            }
 
             zone = GenerateZone(zoneID);
             if (zone != null)
+            {
                 CachedZones[zoneID] = zone;
+                OnZoneAttached(zone);
+            }
             return zone;
         }
 
@@ -62,8 +68,13 @@ namespace CavesOfOoo.Core
         public void SetActiveZone(Zone zone)
         {
             CachedZones[zone.ZoneID] = zone;
+            OnZoneAttached(zone);
             ActiveZone = zone;
         }
+
+        /// <summary>Derived, nonpersistent context for generated, accessed or
+        /// restored native graphs. This hook must never rebuild their contents.</summary>
+        protected virtual void OnZoneAttached(Zone zone) { }
 
         private Zone GenerateZone(string zoneID)
         {
@@ -203,6 +214,7 @@ namespace CavesOfOoo.Core
         {
             CachedZones = cachedZones ?? new Dictionary<string, Zone>();
             _connections = connections ?? new Dictionary<string, List<ZoneConnection>>();
+            foreach(var zone in CachedZones.Values) OnZoneAttached(zone);
 
             if (!string.IsNullOrEmpty(activeZoneID) && CachedZones.TryGetValue(activeZoneID, out Zone active))
                 ActiveZone = active;

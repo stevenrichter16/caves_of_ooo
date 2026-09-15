@@ -1,0 +1,55 @@
+{
+  "isolatedProject": "/tmp/coo-two-areas-validation",
+  "unityExit": 2,
+  "compileErrors": [],
+  "results": {
+    "id": "2",
+    "testcasecount": "39",
+    "result": "Failed(Child)",
+    "total": "39",
+    "passed": "31",
+    "failed": "8",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-15 18:14:21Z",
+    "end-time": "2026-09-15 18:14:22Z",
+    "duration": "1.4757675"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.OverwritCompositionTests.NativeRimCaveEntrancesStayInThePhysicalMargin(0)",
+      "message": "  Overworld.2.9.0 has stairs in the blank interior at 16,8\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.OverwritCompositionTests.NativeRimCaveEntrancesStayInThePhysicalMargin(64)",
+      "message": "  Overworld.1.9.0 has stairs in the blank interior at 5,12\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.OverwritCompositionTests.NativeRimCaveEntrancesStayInThePhysicalMargin(1729)",
+      "message": "  Overworld.2.9.0 has stairs in the blank interior at 69,13\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.OverwritCompositionTests.SillsRealArcanistCanRestockAllSixUtilityBooksAndWorkshopSchematics",
+      "message": "  A reachable renewing native merchant must keep DryingBreezeGrimoire in circulation.\n  Expected: collection containing \"DryingBreezeGrimoire\"\n  But was:  < \"InkVial\", \"StormAnvilGrimoire\", \"HangingBoltGrimoire\", \"KindleGrimoire\", \"QuenchGrimoire\", \"KindleFlameGrimoire\", \"HearthwarmGrimoire\", \"WardGleamGrimoire\", \"SchematicHonedEdge\", \"SchematicReinforcedPlating\", \"GlowQuartz\", \"SchematicDuelistCut\", \"ConjureWaterGrimoire\", \"ChillDraftGrimoire\", \"RenderedSteamGrimoire\", \"PaleSalt\", \"FulminationGrimoire\", \"ScaldingVeilGrimoire\", \"ChoirIron\" >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.OverwritFallbackSpriteTests.NativeFallbackKeepsExactIdentityAndRealQuietSixteenPixelArt(\"OverwritGround\",\"overwrit_ground\",1)",
+      "message": "  Expected: \"overwrit_ground\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.OverwritFallbackSpriteTests.NativeFallbackKeepsExactIdentityAndRealQuietSixteenPixelArt(\"OverwritNewGrowth\",\"overwrit_new_growth\",4)",
+      "message": "  Expected: \"overwrit_new_growth\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.OverwritFallbackSpriteTests.NativeFallbackKeepsExactIdentityAndRealQuietSixteenPixelArt(\"OverwritWaymarker\",\"overwrit_waymarker\",4)",
+      "message": "  Expected: \"overwrit_waymarker\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.OverwritFallbackSpriteTests.NativeFallbackKeepsExactIdentityAndRealQuietSixteenPixelArt(\"OverwritPilgrimBench\",\"overwrit_pilgrim_bench\",4)",
+      "message": "  Expected: \"overwrit_pilgrim_bench\"\n  But was:  null\n"
+    }
+  ]
+}

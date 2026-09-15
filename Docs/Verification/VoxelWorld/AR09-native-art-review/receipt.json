@@ -1,0 +1,63 @@
+{
+  "isolatedProject": "/tmp/coo-two-areas-validation",
+  "unityExit": 2,
+  "compileErrors": [],
+  "results": {
+    "id": "2",
+    "testcasecount": "255",
+    "result": "Failed(Child)",
+    "total": "255",
+    "passed": "245",
+    "failed": "10",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-15 18:20:51Z",
+    "end-time": "2026-09-15 18:21:00Z",
+    "duration": "9.1185047"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.GinmereCompositionAdversarialTests.Adversarial_RemovedNativeWaterDriesWhileSurvivingWaterRenewsItsLease(False)",
+      "message": "  The player should encounter water on the first action, not only after a terrain tick.\n  Expected: 4\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GinmereCompositionAdversarialTests.Adversarial_RemovedNativeWaterDriesWhileSurvivingWaterRenewsItsLease(True)",
+      "message": "  The player should encounter water on the first action, not only after a terrain tick.\n  Expected: 4\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.OverwritCompositionTests.NativeRimCaveEntrancesStayInThePhysicalMargin(0)",
+      "message": "  Overworld.1.9.0: stairs replace a reserved arrival lane\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.OverwritGinmereRenderingTests.EveryVisibleNativeOwnerAcrossBothAreasHasAnExplicitReadOnlyRecipe(64)",
+      "message": "  Overworld.2.7.1 FrostVent: unmodeled-native-blueprint\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.OverwritGinmereRenderingTests.EveryVisibleNativeOwnerAcrossBothAreasHasAnExplicitReadOnlyRecipe(1729)",
+      "message": "  Overworld.2.7.1 SnapjawScavenger: unmodeled-native-blueprint\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.OverwritGinmereRenderingTests.EveryVisibleNativeOwnerAcrossBothAreasHasAnExplicitReadOnlyRecipe(729490642)",
+      "message": "  Overworld.2.7.1 IceSheet: unmodeled-native-blueprint\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.OverwritVoxelKitTests.EveryUpwardGrowthTipReachesTheSameHeightInsteadOfOnlyTheTallestShoot(0)",
+      "message": "  overwrit-growth-0: every shoot tip matches the shared cut height.\n  Expected: 0.31999999284744263d +/- 9.9999997473787516E-05d\n  But was:  0.2199999988079071d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.OverwritVoxelKitTests.EveryUpwardGrowthTipReachesTheSameHeightInsteadOfOnlyTheTallestShoot(1)",
+      "message": "  overwrit-growth-1: every shoot tip matches the shared cut height.\n  Expected: 0.31999999284744263d +/- 9.9999997473787516E-05d\n  But was:  0.2199999988079071d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.OverwritVoxelKitTests.EveryUpwardGrowthTipReachesTheSameHeightInsteadOfOnlyTheTallestShoot(2)",
+      "message": "  overwrit-growth-2: every shoot tip matches the shared cut height.\n  Expected: 0.31999999284744263d +/- 9.9999997473787516E-05d\n  But was:  0.2199999988079071d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.OverwritVoxelKitTests.EveryUpwardGrowthTipReachesTheSameHeightInsteadOfOnlyTheTallestShoot(3)",
+      "message": "  overwrit-growth-3: every shoot tip matches the shared cut height.\n  Expected: 0.31999999284744263d +/- 9.9999997473787516E-05d\n  But was:  0.2199999988079071d\n"
+    }
+  ]
+}

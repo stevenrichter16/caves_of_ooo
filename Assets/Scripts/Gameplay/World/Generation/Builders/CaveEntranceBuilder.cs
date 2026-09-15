@@ -12,6 +12,10 @@ namespace CavesOfOoo.Core
         public string Name => "CaveEntranceBuilder";
         public int Priority => 3500;
 
+        /// <summary>Optional semantic placement constraint. Ordinary callers
+        /// retain the existing chance/search; composed margins can veto cells.</summary>
+        public System.Func<Zone, Cell, bool> PlacementFilter;
+
         private ZoneManager _zoneManager;
 
         public CaveEntranceBuilder(ZoneManager zoneManager)
@@ -36,6 +40,7 @@ namespace CavesOfOoo.Core
 
                 var cell = zone.GetCell(x, y);
                 if (cell == null || !cell.IsPassable()) continue;
+                if (PlacementFilter != null && !PlacementFilter(zone, cell)) continue;
 
                 Entity stairs = factory.CreateEntity("StairsDown");
                 if (stairs == null) return true;

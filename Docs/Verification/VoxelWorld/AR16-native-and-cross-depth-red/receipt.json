@@ -1,0 +1,43 @@
+{
+  "isolatedProject": "/Users/steven/.cache/caves-of-ooo-validation/two-areas/project",
+  "unityExit": 2,
+  "compileErrors": [],
+  "results": {
+    "id": "2",
+    "testcasecount": "307",
+    "result": "Failed(Child)",
+    "total": "307",
+    "passed": "302",
+    "failed": "5",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-15 18:41:26Z",
+    "end-time": "2026-09-15 18:41:39Z",
+    "duration": "12.6932001"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.AreaCompositionRenderingAdversarialTests.Adversarial_MovableGinmereFamilyRetainsItsBodyAcrossNativeMovement(\"Torch\",True)",
+      "message": "  An unchanged native owner must keep its body through movement and the descent.\n  String lengths are both 15. Strings differ at index 14.\n  Expected: \"ginmere-torch-3\"\n  But was:  \"ginmere-torch-0\"\n  -------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.AreaCompositionRenderingAdversarialTests.Adversarial_MovableGinmereFamilyRetainsItsBodyAcrossNativeMovement(\"DriedMeat\",True)",
+      "message": "  An unchanged native owner must keep its body through movement and the descent.\n  String lengths are both 14. Strings differ at index 13.\n  Expected: \"ginmere-meat-0\"\n  But was:  \"ginmere-meat-3\"\n  ------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.AreaCompositionRenderingAdversarialTests.Adversarial_MovableGinmereFamilyRetainsItsBodyAcrossNativeMovement(\"HealingTonic\",True)",
+      "message": "  An unchanged native owner must keep its body through movement and the descent.\n  String lengths are both 15. Strings differ at index 14.\n  Expected: \"ginmere-tonic-0\"\n  But was:  \"ginmere-tonic-1\"\n  -------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.AreaCompositionRenderingAdversarialTests.Adversarial_MovableGinmereFamilyRetainsItsBodyAcrossNativeMovement(\"GinFrog\",True)",
+      "message": "  An unchanged native owner must keep its body through movement and the descent.\n  String lengths are both 14. Strings differ at index 13.\n  Expected: \"ginmere-frog-1\"\n  But was:  \"ginmere-frog-2\"\n  ------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.AreaCompositionRenderingAdversarialTests.Adversarial_MovableGinmereFamilyRetainsItsBodyAcrossNativeMovement(\"PrickleBrowGecko\",True)",
+      "message": "  An unchanged native owner must keep its body through movement and the descent.\n  String lengths are both 15. Strings differ at index 14.\n  Expected: \"ginmere-gecko-2\"\n  But was:  \"ginmere-gecko-3\"\n  -------------------------^\n"
+    }
+  ]
+}

@@ -58,7 +58,7 @@ namespace CavesOfOoo.Presentation.Rendering
                 case BiomeType.Sodden: return Sodden;
                 case BiomeType.Beating: return Desert;
                 case BiomeType.Grovelands: return Grovelands;
-                case BiomeType.Overwrit: return Ruins;
+                case BiomeType.Overwrit: return Overwrit;
                 case BiomeType.Stump: return Cave;
                 default:               return Cave;
             }
@@ -126,5 +126,11 @@ namespace CavesOfOoo.Presentation.Rendering
             contrast: -8f,
             saturation: -25f,
             vignetteIntensity: 0f /* round 6: vignette removed (user call) */);
+
+        /// <summary>Felling world design §3.5: scraped and faint. This is
+        /// the ordinary surface palette; no bleed mask or reveal is implied.</summary>
+        public static readonly BiomePalette Overwrit = new BiomePalette(
+            BiomeType.Overwrit, new Color(.9f,.9f,.9f,1f),
+            contrast:-10f, saturation:-40f, vignetteIntensity:0f);
     }
 }
