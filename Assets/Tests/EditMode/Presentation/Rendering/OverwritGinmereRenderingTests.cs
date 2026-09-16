@@ -109,7 +109,7 @@ namespace CavesOfOoo.Tests
 
         [TestCase("Overworld.2.7.3")] [TestCase("Overworld.2.11.0")]
         [TestCase("Overworld.0.11.1")] [TestCase("Overworld.02.7.1")]
-        [TestCase("Overworld.4.6.2")] [TestCase("Overworld.5.4.2")]
+        [TestCase("Overworld.4.6.2")] [TestCase("Overworld.5.4.3")]
         public void NeighboringSpecialPlacesAndDepthsDoNotAcquireTheNewVoxelScope(string id)
         {
             Assert.IsFalse(OverwritCompositionPlan.IsWildernessZone(id));

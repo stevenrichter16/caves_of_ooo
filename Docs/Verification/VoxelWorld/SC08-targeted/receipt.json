@@ -1,0 +1,55 @@
+{
+  "isolatedProject": "/Users/steven/.cache/caves-of-ooo-validation/sanctums/project",
+  "unityExit": 2,
+  "compileErrors": [],
+  "results": {
+    "id": "2",
+    "testcasecount": "514",
+    "result": "Failed(Child)",
+    "total": "514",
+    "passed": "506",
+    "failed": "8",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-16 00:50:24Z",
+    "end-time": "2026-09-16 00:50:45Z",
+    "duration": "20.5405699"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.SanctumRenderingAdversarialTests.Adversarial_SharedStumpSuppliesKeepTheirShapeInStillleaf(\"IronKey\",False)",
+      "message": "  String lengths are both 11. Strings differ at index 10.\n  Expected: \"stump-key-1\"\n  But was:  \"stump-key-2\"\n  ---------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SanctumRenderingAdversarialTests.Adversarial_SharedStumpSuppliesKeepTheirShapeInStillleaf(\"IronKey\",True)",
+      "message": "  String lengths are both 11. Strings differ at index 10.\n  Expected: \"stump-key-1\"\n  But was:  \"stump-key-2\"\n  ---------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SanctumRenderingAdversarialTests.Adversarial_SharedStumpSuppliesKeepTheirShapeInStillleaf(\"Tepuibone\",False)",
+      "message": "  String lengths are both 12. Strings differ at index 11.\n  Expected: \"stump-bone-1\"\n  But was:  \"stump-bone-2\"\n  ----------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SanctumRenderingAdversarialTests.Adversarial_SharedStumpSuppliesKeepTheirShapeInStillleaf(\"Tepuibone\",True)",
+      "message": "  String lengths are both 12. Strings differ at index 11.\n  Expected: \"stump-bone-1\"\n  But was:  \"stump-bone-2\"\n  ----------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StillleafVoxelKitTests.NativeCaveBearIsABroadQuadrupedWithASnoutAndPairedShortEars(0)",
+      "message": "  Expected: less than 0.400000006f\n  But was:  0.400000006f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StillleafVoxelKitTests.NativeCaveBearIsABroadQuadrupedWithASnoutAndPairedShortEars(1)",
+      "message": "  Expected: less than 0.400000006f\n  But was:  0.400000006f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StillleafVoxelKitTests.NativeCaveBearIsABroadQuadrupedWithASnoutAndPairedShortEars(2)",
+      "message": "  Expected: less than 0.400000006f\n  But was:  0.400000006f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StillleafVoxelKitTests.NativeCaveBearIsABroadQuadrupedWithASnoutAndPairedShortEars(3)",
+      "message": "  Expected: less than 0.400000006f\n  But was:  0.400000006f\n"
+    }
+  ]
+}

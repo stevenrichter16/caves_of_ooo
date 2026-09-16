@@ -2,7 +2,7 @@ using System.Runtime.CompilerServices;
 
 namespace CavesOfOoo.Core
 {
-    /// <summary>Derived authority for the two new composed areas. A weak zone
+    /// <summary>Derived authority for composed wilderness and named sinkhole areas. A weak zone
     /// key ties each managed graph to its own map, including restored graphs;
     /// no global active-world lookup, entity marker or saved field is required.</summary>
     public static class AreaCompositionScope
@@ -16,7 +16,14 @@ namespace CavesOfOoo.Core
             var at=WorldMap.FromZoneID(zone.ZoneID);
             source.Map=map;source.Id=zone.ZoneID;source.X=at.x;source.Y=at.y;
         }
-        private static bool IsCandidate(string id)=>OverwritCompositionPlan.IsWildernessZone(id)||GinmereCompositionPlan.IsSupportedZone(id);
+        private static bool IsCandidate(string id)=>OverwritCompositionPlan.IsWildernessZone(id)||GinmereCompositionPlan.IsSupportedZone(id)
+            ||CathedralCompositionPlan.IsSupportedZone(id)||StillleafCompositionPlan.IsSupportedZone(id);
+        internal static bool IsCathedralSite(PointOfInterest poi)
+            =>poi!=null&&poi.Type==POIType.Sinkhole&&poi.Name=="the Deepest Cathedral"
+                &&SinkholeArchetypes.ForSite(poi)==SinkholeArchetype.ChoirCathedral;
+        internal static bool IsStillleafSite(PointOfInterest poi)
+            =>poi!=null&&poi.Type==POIType.Sinkhole
+                &&SinkholeArchetypes.ForSite(poi)==SinkholeArchetype.SealedLibrary;
         /// <summary>Standalone native graphs use the finite address contract.
         /// Managed graphs additionally honor their own current biome and POI.
         /// A destroyed floor never changes this authority or regenerates content.</summary>
@@ -28,6 +35,8 @@ namespace CavesOfOoo.Core
             var poi=source.Map.GetPOI(source.X,source.Y);
             if(OverwritCompositionPlan.IsWildernessZone(zone.ZoneID))
                 return poi==null&&source.Map.GetBiome(source.X,source.Y)==BiomeType.Overwrit;
+            if(CathedralCompositionPlan.IsSupportedZone(zone.ZoneID))return IsCathedralSite(poi);
+            if(StillleafCompositionPlan.IsSupportedZone(zone.ZoneID))return IsStillleafSite(poi);
             return poi!=null&&poi.Type==POIType.Sinkhole&&poi.Name=="Ginmere"
                 &&SinkholeArchetypes.ForSite(poi)==SinkholeArchetype.DrownedSima;
         }

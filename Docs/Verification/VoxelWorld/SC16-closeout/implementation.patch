@@ -1,0 +1,406 @@
+--- a/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
++++ b/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
+@@ -67,6 +67,10 @@
+                 if (GinmereCompositionPlan.IsSupportedZone(zoneID) && poi.Name == "Ginmere"
+                     && SinkholeArchetypes.ForSite(poi) == SinkholeArchetype.DrownedSima)
+                     return CreateGinmerePipeline(biome, wz, GetTierForCoords(wx, wy));
++                if(CathedralCompositionPlan.IsSupportedZone(zoneID)&&AreaCompositionScope.IsCathedralSite(poi))
++                    return CreateSanctumPipeline(biome,wx,wy,wz,true);
++                if(StillleafCompositionPlan.IsSupportedZone(zoneID)&&AreaCompositionScope.IsStillleafSite(poi))
++                    return CreateSanctumPipeline(biome,wx,wy,wz,false);
+                 return CreateSinkholePipeline(biome, poi, wx, wy, wz);
+             }
+ 
+@@ -267,6 +271,39 @@
+             return pipeline;
+         }
+ 
++        // Finite authored stacks share the native travel/population spine.
++        // Their bases shape useful spaces; existing stamps still own the Choir
++        // residents and the archive's seal. Nothing repairs the sealed room.
++        private ZoneGenerationPipeline CreateSanctumPipeline(BiomeType biome,int wx,int wy,int depth,bool cathedral)
++        {
++            int surfaceTier=GetTierForCoords(wx,wy);
++            var pipeline=new ZoneGenerationPipeline();
++            pipeline.AddBuilder(cathedral?(IZoneBuilder)new CathedralCompositionBuilder(WorldSeed):new StillleafCompositionBuilder(WorldSeed));
++            string floor=depth==0?(cathedral?"Grass":"TepuiStone"):"SandstoneFloor";
++            pipeline.AddBuilder(new ConnectivityBuilder{FloorBlueprint=floor});
++            if(depth==0)pipeline.AddBuilder(new SinkholeMouthBuilder(this));
++            else
++            {
++                if(depth==2&&cathedral)pipeline.AddBuilder(new ChoirCathedralBuilder());
++                pipeline.AddBuilder(new StairsUpBuilder(this));
++                pipeline.AddBuilder(new StairsDownBuilder(this));
++                pipeline.AddBuilder(new StairConnectorBuilder(floor));
++                if(depth==2&&!cathedral)pipeline.AddBuilder(new SealedLibraryBuilder());
++            }
++            pipeline.AddBuilder(cathedral?(IZoneBuilder)new CathedralArrivalReservationBuilder():new StillleafArrivalReservationBuilder());
++            pipeline.AddBuilder(new HazardTerrainBuilder(depth==0?biome:BiomeType.Cave,underground:depth>0));
++            var population=depth==0
++                ?(biome==BiomeType.Stump?PopulationTable.GetStumpTable(StumpBands.BandAt(wx,wy),surfaceTier):PopulationTable.GetBiomeTable(biome,surfaceTier))
++                :(!cathedral&&depth==2?PopulationTable.CaveTier3():PopulationTable.UndergroundTier(depth));
++            pipeline.AddBuilder(new PopulationBuilder(population){HabitatFilter=StumpFaunaHabitat.Allows});
++            pipeline.AddBuilder(new ContainerBuilder(depth==0?biome:BiomeType.Cave,
++                depth==0?surfaceTier:(!cathedral&&depth==2?3:System.Math.Min(surfaceTier+1,8)),
++                depth==0?ContainerPlacementService.ZoneKind.Wilderness:ContainerPlacementService.ZoneKind.Underground));
++            if(depth==0)pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
++            if(Diag.IsChannelEnabled("worldmap"))Diag.Record("worldmap","SanctumRouted",payload:new{wx,wy,depth,cathedral});
++            return pipeline;
++        }
++
+         private ZoneGenerationPipeline CreateSinkholePipeline(
+             BiomeType biome, PointOfInterest poi, int wx, int wy, int wz)
+         {
+--- a/Assets/Scripts/Gameplay/World/Generation/AreaCompositionScope.cs
++++ b/Assets/Scripts/Gameplay/World/Generation/AreaCompositionScope.cs
+@@ -2,7 +2,7 @@
+ 
+ namespace CavesOfOoo.Core
+ {
+-    /// <summary>Derived authority for the two new composed areas. A weak zone
++    /// <summary>Derived authority for composed wilderness and named sinkhole areas. A weak zone
+     /// key ties each managed graph to its own map, including restored graphs;
+     /// no global active-world lookup, entity marker or saved field is required.</summary>
+     public static class AreaCompositionScope
+@@ -16,7 +16,14 @@
+             var at=WorldMap.FromZoneID(zone.ZoneID);
+             source.Map=map;source.Id=zone.ZoneID;source.X=at.x;source.Y=at.y;
+         }
+-        private static bool IsCandidate(string id)=>OverwritCompositionPlan.IsWildernessZone(id)||GinmereCompositionPlan.IsSupportedZone(id);
++        private static bool IsCandidate(string id)=>OverwritCompositionPlan.IsWildernessZone(id)||GinmereCompositionPlan.IsSupportedZone(id)
++            ||CathedralCompositionPlan.IsSupportedZone(id)||StillleafCompositionPlan.IsSupportedZone(id);
++        internal static bool IsCathedralSite(PointOfInterest poi)
++            =>poi!=null&&poi.Type==POIType.Sinkhole&&poi.Name=="the Deepest Cathedral"
++                &&SinkholeArchetypes.ForSite(poi)==SinkholeArchetype.ChoirCathedral;
++        internal static bool IsStillleafSite(PointOfInterest poi)
++            =>poi!=null&&poi.Type==POIType.Sinkhole
++                &&SinkholeArchetypes.ForSite(poi)==SinkholeArchetype.SealedLibrary;
+         /// <summary>Standalone native graphs use the finite address contract.
+         /// Managed graphs additionally honor their own current biome and POI.
+         /// A destroyed floor never changes this authority or regenerates content.</summary>
+@@ -28,6 +35,8 @@
+             var poi=source.Map.GetPOI(source.X,source.Y);
+             if(OverwritCompositionPlan.IsWildernessZone(zone.ZoneID))
+                 return poi==null&&source.Map.GetBiome(source.X,source.Y)==BiomeType.Overwrit;
++            if(CathedralCompositionPlan.IsSupportedZone(zone.ZoneID))return IsCathedralSite(poi);
++            if(StillleafCompositionPlan.IsSupportedZone(zone.ZoneID))return IsStillleafSite(poi);
+             return poi!=null&&poi.Type==POIType.Sinkhole&&poi.Name=="Ginmere"
+                 &&SinkholeArchetypes.ForSite(poi)==SinkholeArchetype.DrownedSima;
+         }
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs
+@@ -47,18 +47,52 @@
+             }
+             else
+             {
++                bool cathedral=CathedralCompositionPlan.IsSupportedZone(zone.ZoneID);
++                bool stillleaf=StillleafCompositionPlan.IsSupportedZone(zone.ZoneID);
++                if(cathedral||stillleaf)
++                {
++                    bool cathedralModel=cathedral;
++                    string family=cathedral?CathedralVoxelLibrary.Family(entity.BlueprintName):StillleafVoxelLibrary.Family(entity.BlueprintName);
++                    // Portable inhabitants and supplies can cross between the
++                    // two stacks without losing their exact native body.
++                    if(family==null&&cathedral)
++                    {
++                        string shared=StillleafVoxelLibrary.Family(entity.BlueprintName);
++                        if(shared=="bear"||shared=="slime"||shared=="boots"||shared=="spring")
++                        {family=shared;cathedralModel=false;}
++                    }
++                    else if(family==null&&stillleaf)
++                    {
++                        string shared=CathedralVoxelLibrary.Family(entity.BlueprintName);
++                        if(shared=="elder"||shared=="tendril"){family=shared;cathedralModel=true;}
++                    }
++                    if(family!=null)
++                    {
++                        bool actor=family=="elder"||family=="tendril"||family=="bear"||family=="slime";
++                        if(actor&&!MatchesNativeActorGlyph(entity.BlueprintName,render.RenderString))return Refused(entity,"reskinned-native-actor");
++                        if(family=="door"&&entity.GetPart<SealedLibraryBarrierPart>()?.IsClosed==false
++                            &&entity.GetPart<PhysicsPart>()?.Solid==false)family="open-door";
++                        bool movable=actor||entity.GetPart<PhysicsPart>()?.Takeable==true;
++                        int variant=Variant(movable?null:zone.ZoneID,entity.BlueprintName,entity.ID,movable?0:cell.X,movable?0:cell.Y,4);
++                        string id=cathedralModel?CathedralVoxelLibrary.ModelId(family,variant):StillleafVoxelLibrary.ModelId(family,variant);
++                        int facing=family=="door"||family=="open-door"?1:family=="elder"&&cell.Y<12?2:0;
++                        return new SpawnRing3DRecipe(entity,id,null,Village3DProjection.CellCentre(cell.X,cell.Y),movable,!movable,quarterTurns:facing);
++                    }
++                }
+                 bool overwrit=OverwritCompositionPlan.IsWildernessZone(zone.ZoneID);
+-                bool ginmere=GinmereCompositionPlan.IsSupportedZone(zone.ZoneID);
+-                if(overwrit||ginmere)
++                // These exact native cave identities share their established art
++                // in all composed stacks; no area plan is replayed by rendering.
++                bool caveArt=GinmereCompositionPlan.IsSupportedZone(zone.ZoneID)||cathedral||stillleaf;
++                if(overwrit||caveArt)
+                 {
+                     string family=overwrit?OverwritVoxelLibrary.Family(entity.BlueprintName):GinmereVoxelLibrary.Family(entity.BlueprintName);
+                     if(family!=null)
+                     {
+-                        bool actor=ginmere&&(family=="frog"||family=="gecko");
++                        bool actor=caveArt&&(family=="frog"||family=="gecko");
+                         if(actor&&!MatchesNativeActorGlyph(entity.BlueprintName,render.RenderString))
+                             return Refused(entity,"reskinned-native-actor");
+                         bool movable=actor||entity.GetPart<PhysicsPart>()?.Takeable==true;
+-                        int variant=ginmere&&(family=="cliff"||family=="rim")
++                        int variant=caveArt&&(family=="cliff"||family=="rim")
+                             ?NativeHeightVariant(zone,cell,entity.BlueprintName)
+                             // Portable bodies keep their shape when carried
+                             // between Ginmere levels as well as within a cell grid.
+@@ -69,7 +103,7 @@
+                     }
+                     // Share only the art of current native wreckage. No region
+                     // builder is consulted to restore a destroyed object.
+-                    if(entity.BlueprintName=="Rubble"||ginmere&&entity.BlueprintName=="Bones")
++                    if(entity.BlueprintName=="Rubble"||caveArt&&entity.BlueprintName=="Bones")
+                     {
+                         string wreckage=BeatingVoxelLibrary.Family(entity.BlueprintName);
+                         string id=BeatingVoxelLibrary.ModelId(wreckage,Variant(zone.ZoneID,entity.BlueprintName,entity.ID,cell.X,cell.Y,4));
+@@ -77,7 +111,7 @@
+                         return new SpawnRing3DRecipe(entity,id,null,Village3DProjection.CellCentre(cell.X,cell.Y),movable,!movable);
+                     }
+                 }
+-                if(StumpCompositionPlan.IsWildernessZone(zone.ZoneID))
++                if(StumpCompositionPlan.IsWildernessZone(zone.ZoneID)||stillleaf)
+                 {
+                     // Destruction leaves the same native Rubble identity as
+                     // sandstone country, so share its already-coarse body.
+@@ -93,11 +127,12 @@
+                         bool actor=family=="singer"||family=="sentinel";
+                         if(actor && !MatchesNativeActorGlyph(entity.BlueprintName,render.RenderString))
+                             return Refused(entity,"reskinned-native-actor");
++                        bool movable=actor||entity.GetPart<PhysicsPart>()?.Takeable==true;
++                        bool stableBody=stillleaf&&movable;
+                         int variant=family=="grain"||family=="dome"
+                             ? NativeHeightVariant(zone,cell,entity.BlueprintName)
+-                            : Variant(zone.ZoneID,entity.BlueprintName,entity.ID,cell.X,cell.Y,4);
++                            : Variant(stableBody?null:zone.ZoneID,entity.BlueprintName,entity.ID,stableBody?0:cell.X,stableBody?0:cell.Y,4);
+                         string id=StumpVoxelLibrary.ModelId(family,variant);
+-                        bool movable=actor||entity.GetPart<PhysicsPart>()?.Takeable==true;
+                         return new SpawnRing3DRecipe(entity,id,null,Village3DProjection.CellCentre(cell.X,cell.Y),movable,!movable);
+                     }
+                 }
+@@ -140,7 +175,7 @@
+                 var binding = catalog.FindBlueprint(entity.HasTag("Player") ? "Player" : entity.BlueprintName);
+                 // Native cave snapjaw roles share the species' body while their
+                 // real brains, equipment and glyph-reskin guard remain intact.
+-                if(binding==null&&ginmere&&(entity.BlueprintName=="SnapjawScavenger"||entity.BlueprintName=="SnapjawHunter"))
++                if(binding==null&&caveArt&&(entity.BlueprintName=="SnapjawScavenger"||entity.BlueprintName=="SnapjawHunter"))
+                     binding=catalog.FindBlueprint("Snapjaw");
+                 // Existing green harvestable uses the shipped green plant family;
+                 // only its appearance is shared, never the Bush entity or mechanics.
+@@ -148,7 +183,7 @@
+                 // Ambient Stump camps keep their real locked container owner;
+                 // its existing chest body is only a visual alias.
+                 if (binding == null && entity.BlueprintName == "LockedChest"
+-                    && StumpCompositionPlan.IsWildernessZone(zone.ZoneID)) binding = catalog.FindBlueprint("Chest");
++                    && (StumpCompositionPlan.IsWildernessZone(zone.ZoneID)||stillleaf)) binding = catalog.FindBlueprint("Chest");
+                 if (binding == null && SpreadCompositionPlan.IsWildernessZone(zone.ZoneID))
+                     binding = catalog.FindBlueprint(SpreadArtFamily(entity.BlueprintName));
+                 if (binding == null || binding.models == null || binding.models.Length == 0) return Refused(entity, "unmodeled-native-blueprint");
+@@ -220,7 +255,7 @@
+                 // values are pinned by the all-species recipe positive controls.
+                 switch (blueprint)
+                 {
+-                    case "Player": canonical = '@'; break;
++                    case "Player": case "EncasedElder": canonical = '@'; break;
+                     case "Snapjaw": canonical = 's'; break;
+                     case "Shambler": canonical = 'z'; break;
+                     case "MawToad": canonical = 't'; break;
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DCatalog.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DCatalog.cs
+@@ -158,13 +158,13 @@
+             zoneIndex=new HashSet<string>(zones,StringComparer.Ordinal);
+         }
+         public Model FindModel(string modelId)
+-        {if(string.IsNullOrEmpty(modelId))return null;if(modelIndex==null)Validate();return modelIndex.TryGetValue(modelId,out var value)?value:SpreadVoxelLibrary.Load()?.Find(modelId)?.Spec ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Spec ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Spec ?? StumpVoxelLibrary.Load()?.Find(modelId)?.Spec ?? OverwritVoxelLibrary.Load()?.Find(modelId)?.Spec ?? GinmereVoxelLibrary.Load()?.Find(modelId)?.Spec;}
++        {if(string.IsNullOrEmpty(modelId))return null;if(modelIndex==null)Validate();return modelIndex.TryGetValue(modelId,out var value)?value:SpreadVoxelLibrary.Load()?.Find(modelId)?.Spec ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Spec ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Spec ?? StumpVoxelLibrary.Load()?.Find(modelId)?.Spec ?? OverwritVoxelLibrary.Load()?.Find(modelId)?.Spec ?? GinmereVoxelLibrary.Load()?.Find(modelId)?.Spec ?? CathedralVoxelLibrary.Load()?.Find(modelId)?.Spec ?? StillleafVoxelLibrary.Load()?.Find(modelId)?.Spec;}
+         public BlueprintBinding FindBlueprint(string blueprint)
+         {if(string.IsNullOrEmpty(blueprint))return null;if(blueprintIndex==null)Validate();return blueprintIndex.TryGetValue(blueprint,out var value)?value:null;}
+         public FellingOwner FindFellingOwner(string componentId)
+         {if(string.IsNullOrEmpty(componentId))return null;if(fellingIndex==null)Validate();return fellingIndex.TryGetValue(componentId,out var value)?value:null;}
+         public bool SupportsZone(string zoneId)
+-        {if(string.IsNullOrEmpty(zoneId))return false;if(zoneIndex==null)Validate();return zoneIndex.Contains(zoneId)||(GrovelandsCompositionPlan.IsWildernessZone(zoneId) || SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId) || BeatingCompositionPlan.IsWildernessZone(zoneId) || StumpCompositionPlan.IsWildernessZone(zoneId) || OverwritCompositionPlan.IsWildernessZone(zoneId) || GinmereCompositionPlan.IsSupportedZone(zoneId));}
++        {if(string.IsNullOrEmpty(zoneId))return false;if(zoneIndex==null)Validate();return zoneIndex.Contains(zoneId)||(GrovelandsCompositionPlan.IsWildernessZone(zoneId) || SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId) || BeatingCompositionPlan.IsWildernessZone(zoneId) || StumpCompositionPlan.IsWildernessZone(zoneId) || OverwritCompositionPlan.IsWildernessZone(zoneId) || GinmereCompositionPlan.IsSupportedZone(zoneId) || CathedralCompositionPlan.IsSupportedZone(zoneId) || StillleafCompositionPlan.IsSupportedZone(zoneId));}
+         static bool SameNames(string[] values,string[] expected)
+         {
+             if(values==null||values.Length!=expected.Length)return false;
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DLibrary.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DLibrary.cs
+@@ -60,7 +60,7 @@
+             models=candidates;equipmentIds=new HashSet<string>(d.externalEquipment.models,StringComparer.Ordinal);
+         }
+         public GameObject FindModel(string modelId)
+-        {if(string.IsNullOrEmpty(modelId))return null;if(models==null)Validate();return models.TryGetValue(modelId,out var value)?value:SpreadVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? StumpVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? OverwritVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? GinmereVoxelLibrary.Load()?.Find(modelId)?.Prefab;}
++        {if(string.IsNullOrEmpty(modelId))return null;if(models==null)Validate();return models.TryGetValue(modelId,out var value)?value:SpreadVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? StumpVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? OverwritVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? GinmereVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? CathedralVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? StillleafVoxelLibrary.Load()?.Find(modelId)?.Prefab;}
+         public GameObject FindEquipmentModel(string modelId)
+         {if(string.IsNullOrEmpty(modelId))return null;if(equipmentIds==null)Validate();return equipmentIds.Contains(modelId)?EquipmentLibrary.FindModel(modelId):null;}
+     }
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs
+@@ -15,12 +15,13 @@
+         {
+             public Entity Owner;
+             public string ModelId;
++            public int AuthoredQuarterTurns;
+             public GameObject Root;
+             public Renderer[] Renderers;
+             public Collider[] Colliders;
+             public Animator Animator;
+             public NativeSpellCastPlayer Cast;
+-            public bool Transient, Drawn;
++            public bool Transient, Drawn, AuthoredIdleFacing;
+             public Vector3 Target, Start;
+             public float MoveStart, MoveDuration, ActionUntil;
+             public string Clip;
+@@ -100,7 +101,7 @@
+                 case "Overworld.2.5.0": case "Overworld.3.5.0": case "Overworld.4.5.0":
+                 case "Overworld.2.6.0": case "Overworld.4.6.0": case "Overworld.2.7.0":
+                 case "Overworld.3.7.0": case "Overworld.4.7.0": return true;
+-                default: return (GrovelandsCompositionPlan.IsWildernessZone(id) || SpreadCompositionPlan.IsWildernessZone(id) || SoddenCompositionPlan.IsWildernessZone(id) || BeatingCompositionPlan.IsWildernessZone(id) || StumpCompositionPlan.IsWildernessZone(id) || OverwritCompositionPlan.IsWildernessZone(id) || GinmereCompositionPlan.IsSupportedZone(id));
++                default: return (GrovelandsCompositionPlan.IsWildernessZone(id) || SpreadCompositionPlan.IsWildernessZone(id) || SoddenCompositionPlan.IsWildernessZone(id) || BeatingCompositionPlan.IsWildernessZone(id) || StumpCompositionPlan.IsWildernessZone(id) || OverwritCompositionPlan.IsWildernessZone(id) || GinmereCompositionPlan.IsSupportedZone(id) || CathedralCompositionPlan.IsSupportedZone(id) || StillleafCompositionPlan.IsSupportedZone(id));
+             }
+         }
+         /// <summary>Refresh native references after cell/FOV invalidation. Null
+@@ -137,6 +138,10 @@
+                 { if (views.TryGetValue(entity, out var old)) RemoveView(old); continue; }
+                 if (!views.TryGetValue(entity, out var view) || view.ModelId != recipe.ModelId)
+                 { if (view != null) RemoveView(view); view = AddView(recipe); }
++                // Apply an authored rest-facing only when that recipe changes;
++                // ordinary movement, combat and cast facing retain their pose.
++                if(view.AuthoredQuarterTurns!=recipe.QuarterTurns)
++                {view.Root.transform.localRotation=Quaternion.Euler(0,recipe.QuarterTurns*90,0);view.AuthoredQuarterTurns=recipe.QuarterTurns;}
+                 var cell = CurrentZone.GetEntityCell(entity);
+                 if (view.Target != recipe.Position || !Application.isPlaying || !PresentationVisible || view.MoveDuration <= 0)
+                 { view.Target = recipe.Position; view.Root.transform.position = recipe.Position; view.MoveDuration = 0; }
+@@ -166,8 +171,11 @@
+             if (prefab == null) throw new InvalidOperationException("Missing ring model " + recipe.ModelId);
+             var root = Instantiate(prefab, surface.ContentRoot, false); root.name = recipe.ComponentId ?? recipe.ModelId;
+             root.transform.position = recipe.Position;
++            if(recipe.QuarterTurns!=0)root.transform.localRotation=Quaternion.Euler(0,recipe.QuarterTurns*90,0);
+             PrepareModel(root, recipe.Transient);
+             var view = new View { Owner = recipe.Owner, ModelId = recipe.ModelId, Root = root, Target = recipe.Position,
++                AuthoredQuarterTurns=recipe.QuarterTurns,
++                AuthoredIdleFacing=recipe.ModelId.StartsWith("cathedral-elder-",StringComparison.Ordinal),
+                 Transient = recipe.Transient, Renderers = root.GetComponentsInChildren<Renderer>(true),
+                 Animator = root.GetComponentInChildren<Animator>(true) };
+             if (view.Renderers.Length == 0) { DestroyOwned(root); throw new InvalidOperationException("Empty ring model " + recipe.ModelId); }
+@@ -338,6 +346,11 @@
+         private static void Play(View view, string clip)
+         {
+             if (view.Cast?.IsActive == true) { view.Cast.Clear(); view.Clip = null; }
++            // Encased elders have an architectural rest pose even without a rig.
++            // All gesture/movement expiry paths settle through Idle; other actors
++            // keep the facing selected by their own native actions.
++            if(clip=="Idle"&&view.AuthoredIdleFacing)
++                view.Root.transform.localRotation=Quaternion.Euler(0,view.AuthoredQuarterTurns*90,0);
+             if (view.Animator == null || view.Clip == clip || !Application.isPlaying || !view.Root.activeInHierarchy) return;
+             if (!view.Animator.HasState(0, Animator.StringToHash(clip))) return;
+             view.Animator.CrossFadeInFixedTime(clip, .065f); view.Clip = clip;
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DGroundPatches.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DGroundPatches.cs
+@@ -287,7 +287,8 @@
+             // These native compositions explicitly own every real floor cell.
+             // If native ground is removed, fallback grass would fabricate a
+             // surface. Ginmere's normal mouth retains its native stone landing.
+-            if(OverwritCompositionPlan.IsWildernessZone(zone.ZoneID)||GinmereCompositionPlan.IsSupportedZone(zone.ZoneID))return null;
++            if(OverwritCompositionPlan.IsWildernessZone(zone.ZoneID)||GinmereCompositionPlan.IsSupportedZone(zone.ZoneID)
++                ||CathedralCompositionPlan.IsSupportedZone(zone.ZoneID)||StillleafCompositionPlan.IsSupportedZone(zone.ZoneID))return null;
+             bool stone = MultiCellPilotRuntime.IsActive(zone) || zone.ZoneID == "Overworld.2.5.0" || zone.ZoneID == "Overworld.3.5.0" || zone.ZoneID == "Overworld.4.5.0";
+             var binding = catalog.FindBlueprint(stone ? "TepuiStone" : "Grass");
+             if (binding?.models == null || binding.models.Length == 0) throw new InvalidOperationException("Clean ring ground fallback is unavailable.");
+--- a/Assets/Scripts/Presentation/Rendering/VoxelWorldPresentation.cs
++++ b/Assets/Scripts/Presentation/Rendering/VoxelWorldPresentation.cs
+@@ -58,7 +58,24 @@
+                 kit.Validate();foreach(var entry in kit.Entries)generated.Add(entry.Mesh);
+                 RegisterWreckage(false);
+             }
+-            if (GinmereCompositionPlan.IsSupportedZone(zoneId))
++            bool cathedral=CathedralCompositionPlan.IsSupportedZone(zoneId);
++            bool stillleaf=StillleafCompositionPlan.IsSupportedZone(zoneId);
++            if(cathedral||stillleaf)
++            {
++                var kit=CathedralVoxelLibrary.Load();
++                if(kit==null)throw new InvalidOperationException("Required Cathedral voxel kit missing.");
++                kit.Validate();foreach(var entry in kit.Entries)generated.Add(entry.Mesh);
++            }
++            if(stillleaf||cathedral)
++            {
++                var kit=StillleafVoxelLibrary.Load();
++                if(kit==null)throw new InvalidOperationException("Required Stillleaf voxel kit missing.");
++                kit.Validate();foreach(var entry in kit.Entries)generated.Add(entry.Mesh);
++                var stump=StumpVoxelLibrary.Load();
++                if(stump==null)throw new InvalidOperationException("Required shared Stump voxel kit missing.");
++                stump.Validate();foreach(var entry in stump.Entries)generated.Add(entry.Mesh);
++            }
++            if (GinmereCompositionPlan.IsSupportedZone(zoneId)||cathedral||stillleaf)
+             {
+                 var kit=GinmereVoxelLibrary.Load();
+                 if(kit==null)throw new InvalidOperationException("Required Ginmere voxel kit missing.");
+@@ -83,7 +100,7 @@
+             {
+                 case "Overworld.2.6.0": case "Overworld.3.6.0":
+                 case "Overworld.3.7.0": case "Overworld.4.7.0": return true;
+-                default: return (GrovelandsCompositionPlan.IsWildernessZone(zoneId) || SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId) || BeatingCompositionPlan.IsWildernessZone(zoneId) || StumpCompositionPlan.IsWildernessZone(zoneId) || OverwritCompositionPlan.IsWildernessZone(zoneId) || GinmereCompositionPlan.IsSupportedZone(zoneId));
++                default: return (GrovelandsCompositionPlan.IsWildernessZone(zoneId) || SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId) || BeatingCompositionPlan.IsWildernessZone(zoneId) || StumpCompositionPlan.IsWildernessZone(zoneId) || OverwritCompositionPlan.IsWildernessZone(zoneId) || GinmereCompositionPlan.IsSupportedZone(zoneId) || CathedralCompositionPlan.IsSupportedZone(zoneId) || StillleafCompositionPlan.IsSupportedZone(zoneId));
+             }
+         }
+         public static bool IsEnabledFor(Zone zone)
+--- a/Assets/Tests/EditMode/Presentation/Rendering/OverwritGinmereRenderingTests.cs
++++ b/Assets/Tests/EditMode/Presentation/Rendering/OverwritGinmereRenderingTests.cs
+@@ -109,7 +109,7 @@
+ 
+         [TestCase("Overworld.2.7.3")] [TestCase("Overworld.2.11.0")]
+         [TestCase("Overworld.0.11.1")] [TestCase("Overworld.02.7.1")]
+-        [TestCase("Overworld.4.6.2")] [TestCase("Overworld.5.4.2")]
++        [TestCase("Overworld.4.6.2")] [TestCase("Overworld.5.4.3")]
+         public void NeighboringSpecialPlacesAndDepthsDoNotAcquireTheNewVoxelScope(string id)
+         {
+             Assert.IsFalse(OverwritCompositionPlan.IsWildernessZone(id));
+--- a/Assets/Scripts/Gameplay/Economy/TraderRestockSystem.cs
++++ b/Assets/Scripts/Gameplay/Economy/TraderRestockSystem.cs
+@@ -5,9 +5,11 @@
+     /// the player sold a village out of drams, the trader could NEVER
+     /// buy again: blueprint Drams were seeded at spawn and only ever
+     /// drained. On each zone entry (InputHandler.HandleZoneTransition),
+-    /// villager-faction entities that carry a Drams property and whose
+-    /// last restock is at least <see cref="RestockIntervalTurns"/> old
+-    /// are topped back up to <see cref="DramsFloor"/>.
++    /// villager-faction entities and explicitly authored TraderPart merchants
++    /// that carry a Drams property and whose last restock is more than
++    /// <see cref="RestockIntervalTurns"/> old are topped back up to
++    /// <see cref="DramsFloor"/>. Other factions require a nonempty declared
++    /// TraderPart.StockTable; a stock property alone does not grant eligibility.
+     ///
+     /// <para>Save-safe: the per-trader stamp lives in the entity's int
+     /// properties (round-trip through the save graph, like Drams
+@@ -48,7 +50,12 @@
+             {
+                 var e = creatures[i];
+                 string faction;
+-                if (!e.Tags.TryGetValue("Faction", out faction) || faction != "Villagers")
++                // Authored non-village merchants seed their purse and stock
++                // through TraderPart too. Preserve legacy Villagers, while a
++                // forged stock property alone cannot opt another creature in.
++                var declaredTrader = e.GetPart<TraderPart>();
++                bool authoredTrader = declaredTrader != null && !string.IsNullOrEmpty(declaredTrader.StockTable);
++                if ((!e.Tags.TryGetValue("Faction", out faction) || faction != "Villagers") && !authoredTrader)
+                     continue;
+                 // "Is a trader" = carries the Drams property at all
+                 // (blueprint-seeded); ordinary villagers have none.
+--- a/Assets/Tests/EditMode/VoxelWorldIntegrationTests.cs
++++ b/Assets/Tests/EditMode/VoxelWorldIntegrationTests.cs
+@@ -44,10 +44,10 @@
+ 
+         [TestCase(null)]
+         [TestCase("")]
+-        // The ordinary Stump now has voxel authority; its authored mouth and
+-        // Root remain protected, unsupported controls. Ginmere's first three
+-        // levels are now supported, while its deeper catacombs remain excluded.
+-        [TestCase("Overworld.2.4.0")]
++        // The ordinary Stump and Stillleaf's first three levels have voxel
++        // authority; deeper Stillleaf, the Root, and other authored sites remain
++        // excluded. Ginmere's deeper catacombs also stay outside its composition.
++        [TestCase("Overworld.2.4.3")]
+         [TestCase("Overworld.3.5.0")]
+         [TestCase("Overworld.3.3.0")]
+         [TestCase("Overworld.4.6.0")]

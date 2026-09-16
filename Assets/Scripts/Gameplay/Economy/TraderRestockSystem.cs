@@ -5,9 +5,11 @@ namespace CavesOfOoo.Core
     /// the player sold a village out of drams, the trader could NEVER
     /// buy again: blueprint Drams were seeded at spawn and only ever
     /// drained. On each zone entry (InputHandler.HandleZoneTransition),
-    /// villager-faction entities that carry a Drams property and whose
-    /// last restock is at least <see cref="RestockIntervalTurns"/> old
-    /// are topped back up to <see cref="DramsFloor"/>.
+    /// villager-faction entities and explicitly authored TraderPart merchants
+    /// that carry a Drams property and whose last restock is more than
+    /// <see cref="RestockIntervalTurns"/> old are topped back up to
+    /// <see cref="DramsFloor"/>. Other factions require a nonempty declared
+    /// TraderPart.StockTable; a stock property alone does not grant eligibility.
     ///
     /// <para>Save-safe: the per-trader stamp lives in the entity's int
     /// properties (round-trip through the save graph, like Drams
@@ -48,7 +50,12 @@ namespace CavesOfOoo.Core
             {
                 var e = creatures[i];
                 string faction;
-                if (!e.Tags.TryGetValue("Faction", out faction) || faction != "Villagers")
+                // Authored non-village merchants seed their purse and stock
+                // through TraderPart too. Preserve legacy Villagers, while a
+                // forged stock property alone cannot opt another creature in.
+                var declaredTrader = e.GetPart<TraderPart>();
+                bool authoredTrader = declaredTrader != null && !string.IsNullOrEmpty(declaredTrader.StockTable);
+                if ((!e.Tags.TryGetValue("Faction", out faction) || faction != "Villagers") && !authoredTrader)
                     continue;
                 // "Is a trader" = carries the Drams property at all
                 // (blueprint-seeded); ordinary villagers have none.

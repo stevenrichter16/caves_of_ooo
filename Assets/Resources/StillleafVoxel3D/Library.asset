@@ -1,0 +1,847 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd6ef78f17aa41d191235d702d599cef, type: 3}
+  m_Name: Library
+  m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.Rendering.StillleafVoxelLibrary
+  Entries:
+  - Id: stillleaf-ground-0
+    Prefab: {fileID: 5646244197193469774, guid: 07f4cbdee1ceb4154bd4f6a8363dae0c, type: 3}
+    Mesh: {fileID: 4300000, guid: 3da75c02db7dc4363bc699d1ab0c456e, type: 2}
+    Spec:
+      id: stillleaf-ground-0
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-ground-0.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0325, z: 0}
+      boundsSize: {x: 1, y: 0.065, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: stillleaf-ground-1
+    Prefab: {fileID: 2972337495932781364, guid: 39dbfb950065d44e1b979f2cc635e79d, type: 3}
+    Mesh: {fileID: 4300000, guid: 4626aac21a4e5499bb4a1e156e1079f3, type: 2}
+    Spec:
+      id: stillleaf-ground-1
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-ground-1.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0365, z: 0}
+      boundsSize: {x: 1, y: 0.073, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: stillleaf-ground-2
+    Prefab: {fileID: 6634533701016679150, guid: fa0ddeafe6fc0461ab02d9bb1e1d01f8, type: 3}
+    Mesh: {fileID: 4300000, guid: bedc74485c5914e279ce3d6f51199d33, type: 2}
+    Spec:
+      id: stillleaf-ground-2
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-ground-2.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0405, z: 0}
+      boundsSize: {x: 1, y: 0.081, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: stillleaf-ground-3
+    Prefab: {fileID: 1118725461360970734, guid: 3ef45f718cd4943538a9cdecf465bca6, type: 3}
+    Mesh: {fileID: 4300000, guid: baddfc733219a4a059389c44f16d1ad3, type: 2}
+    Spec:
+      id: stillleaf-ground-3
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-ground-3.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0445, z: 0}
+      boundsSize: {x: 1, y: 0.089, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: stillleaf-floor-0
+    Prefab: {fileID: 7778757181598254846, guid: e74d794187a8047d7bbdf3476113fd2a, type: 3}
+    Mesh: {fileID: 4300000, guid: 9ebca158e73e14d19a7073700910f961, type: 2}
+    Spec:
+      id: stillleaf-floor-0
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-floor-0.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0325, z: 0}
+      boundsSize: {x: 1, y: 0.065, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: stillleaf-floor-1
+    Prefab: {fileID: 4644385664344655869, guid: 3fa9a162ef61340618e494d0fb281cd7, type: 3}
+    Mesh: {fileID: 4300000, guid: f2a7a10200e0a40c8ae34020062b174a, type: 2}
+    Spec:
+      id: stillleaf-floor-1
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-floor-1.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0365, z: 0}
+      boundsSize: {x: 1, y: 0.073, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: stillleaf-floor-2
+    Prefab: {fileID: 6767613446682549560, guid: 1d6641c0ce7d545278fac207eb6c8726, type: 3}
+    Mesh: {fileID: 4300000, guid: 80dd2ae003f9540e79422c56c898d77a, type: 2}
+    Spec:
+      id: stillleaf-floor-2
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-floor-2.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0405, z: 0}
+      boundsSize: {x: 1, y: 0.081, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: stillleaf-floor-3
+    Prefab: {fileID: 751256431597681076, guid: 398fbdf4f69d74d1c9a5fd9f4ccd2d03, type: 3}
+    Mesh: {fileID: 4300000, guid: 4c4ba3455b3ca4051a28feb3372a5461, type: 2}
+    Spec:
+      id: stillleaf-floor-3
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-floor-3.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0445, z: 0}
+      boundsSize: {x: 1, y: 0.089, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: stillleaf-tepuibone-0
+    Prefab: {fileID: 4946835468450544898, guid: a3094ca5306c348ada682897be70dab7, type: 3}
+    Mesh: {fileID: 4300000, guid: 118d0c859e351498d89b49afaf3dc25c, type: 2}
+    Spec:
+      id: stillleaf-tepuibone-0
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-tepuibone-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.90000004, z: 0}
+      boundsSize: {x: 1, y: 1.8000001, z: 1}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: stillleaf-tepuibone-1
+    Prefab: {fileID: 7166529478335017468, guid: f58f287e26d9a44eb960e50e5832404d, type: 3}
+    Mesh: {fileID: 4300000, guid: 7d9e02766a1e5415cbd3b7ad042e0f35, type: 2}
+    Spec:
+      id: stillleaf-tepuibone-1
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-tepuibone-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.90000004, z: 0}
+      boundsSize: {x: 1, y: 1.8000001, z: 1}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: stillleaf-tepuibone-2
+    Prefab: {fileID: 5478707268836383801, guid: b643a13b800e941ebb5bd751d9350504, type: 3}
+    Mesh: {fileID: 4300000, guid: d0707b69ed4f44f6a8e4c1ffc76017d4, type: 2}
+    Spec:
+      id: stillleaf-tepuibone-2
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-tepuibone-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.90000004, z: 0}
+      boundsSize: {x: 1, y: 1.8000001, z: 1}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: stillleaf-tepuibone-3
+    Prefab: {fileID: 6512241512670665977, guid: 17a77ef0441184274a8ca61a89245036, type: 3}
+    Mesh: {fileID: 4300000, guid: f52000944e09e44ad941a7705a049d21, type: 2}
+    Spec:
+      id: stillleaf-tepuibone-3
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-tepuibone-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.90000004, z: 0}
+      boundsSize: {x: 1, y: 1.8000001, z: 1}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: stillleaf-marble-0
+    Prefab: {fileID: 7896506589252374978, guid: a39d0387b3e4d434cba89ad4b223f2c6, type: 3}
+    Mesh: {fileID: 4300000, guid: 7ff3cb97207ce4ae3a71348384c8b0c6, type: 2}
+    Spec:
+      id: stillleaf-marble-0
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-marble-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.9, z: 0}
+      boundsSize: {x: 1, y: 1.8, z: 1}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: stillleaf-marble-1
+    Prefab: {fileID: 349539637761229012, guid: 19ebd4085531b42c0917f1d49620745a, type: 3}
+    Mesh: {fileID: 4300000, guid: e9affbdecbeda4335b3477b89016ec9c, type: 2}
+    Spec:
+      id: stillleaf-marble-1
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-marble-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.9, z: 0}
+      boundsSize: {x: 1, y: 1.8, z: 1}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: stillleaf-marble-2
+    Prefab: {fileID: 9096531016440875367, guid: b80a8f42c7df74aec897abce0182477c, type: 3}
+    Mesh: {fileID: 4300000, guid: 639cb67e739fb46a6936ab4de6f018b7, type: 2}
+    Spec:
+      id: stillleaf-marble-2
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-marble-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.9, z: 0}
+      boundsSize: {x: 1, y: 1.8, z: 1}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: stillleaf-marble-3
+    Prefab: {fileID: 6732454436583437038, guid: fcf8c60b83a5c4ba7bde8da034542de4, type: 3}
+    Mesh: {fileID: 4300000, guid: 834f86f690c034cfbb408ff735ccdbeb, type: 2}
+    Spec:
+      id: stillleaf-marble-3
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-marble-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.9, z: 0}
+      boundsSize: {x: 1, y: 1.8, z: 1}
+      triangles: 36
+      clips: []
+      sockets: []
+  - Id: stillleaf-iron-0
+    Prefab: {fileID: 1153385326495260219, guid: a8daaa3792d3445709432d168b9339f0, type: 3}
+    Mesh: {fileID: 4300000, guid: 10e71fe8e0d974d2988b604852e7ee19, type: 2}
+    Spec:
+      id: stillleaf-iron-0
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-iron-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.9, z: 0}
+      boundsSize: {x: 1, y: 1.8, z: 1}
+      triangles: 84
+      clips: []
+      sockets: []
+  - Id: stillleaf-iron-1
+    Prefab: {fileID: 426597609902407678, guid: 0ebc9463bebda475784a30c5df1036c1, type: 3}
+    Mesh: {fileID: 4300000, guid: da27f8ee4748b47e29b5a091d8932d29, type: 2}
+    Spec:
+      id: stillleaf-iron-1
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-iron-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.9, z: 0}
+      boundsSize: {x: 1, y: 1.8, z: 1}
+      triangles: 84
+      clips: []
+      sockets: []
+  - Id: stillleaf-iron-2
+    Prefab: {fileID: 2971105922082927936, guid: 740404184c0564fd0ac93903a99ed946, type: 3}
+    Mesh: {fileID: 4300000, guid: 0ebe3af79ee39487898afc206ca66ed7, type: 2}
+    Spec:
+      id: stillleaf-iron-2
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-iron-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.9, z: 0}
+      boundsSize: {x: 1, y: 1.8, z: 1}
+      triangles: 84
+      clips: []
+      sockets: []
+  - Id: stillleaf-iron-3
+    Prefab: {fileID: 5132312329956919259, guid: e322fd337d4c944ce98c6f83d1977f21, type: 3}
+    Mesh: {fileID: 4300000, guid: 40d80d412e74f4c91aff8e7688c56019, type: 2}
+    Spec:
+      id: stillleaf-iron-3
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-iron-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.9, z: 0}
+      boundsSize: {x: 1, y: 1.8, z: 1}
+      triangles: 84
+      clips: []
+      sockets: []
+  - Id: stillleaf-door-0
+    Prefab: {fileID: 2180812439643814921, guid: 26a78590bd99b48e2861f421c8c03f7f, type: 3}
+    Mesh: {fileID: 4300000, guid: ae791efc8a0ce498b84a129898ac13d4, type: 2}
+    Spec:
+      id: stillleaf-door-0
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-door-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.925, z: 0}
+      boundsSize: {x: 1, y: 1.85, z: 0.44}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: stillleaf-door-1
+    Prefab: {fileID: 3959067143315045825, guid: c1b73d098bffe44a19d3de17b615ed0b, type: 3}
+    Mesh: {fileID: 4300000, guid: d8d66068a56524b87bf6065eea7c0ca7, type: 2}
+    Spec:
+      id: stillleaf-door-1
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-door-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.925, z: 0}
+      boundsSize: {x: 1, y: 1.85, z: 0.44}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: stillleaf-door-2
+    Prefab: {fileID: 7115816755648798429, guid: 2068fde99722f4f439c06ed6f1a5099b, type: 3}
+    Mesh: {fileID: 4300000, guid: 9ae68a2662c3f4222b0b7240aa9f0e9d, type: 2}
+    Spec:
+      id: stillleaf-door-2
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-door-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.925, z: 0}
+      boundsSize: {x: 1, y: 1.85, z: 0.44}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: stillleaf-door-3
+    Prefab: {fileID: 8890468141079603087, guid: 5777f589bb79246a7ac7faeee9dc56e9, type: 3}
+    Mesh: {fileID: 4300000, guid: f4ef125931a5c46389bd36c0b25a7139, type: 2}
+    Spec:
+      id: stillleaf-door-3
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-door-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.925, z: 0}
+      boundsSize: {x: 1, y: 1.85, z: 0.44}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: stillleaf-open-door-0
+    Prefab: {fileID: 4703909013787865704, guid: d17884667722c4858965c27e2ebf1cd0, type: 3}
+    Mesh: {fileID: 4300000, guid: 33b5f8c73db164c73a3bba25b4553fee, type: 2}
+    Spec:
+      id: stillleaf-open-door-0
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-open-door-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.08, z: 0}
+      boundsSize: {x: 1, y: 0.16, z: 0.44}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: stillleaf-open-door-1
+    Prefab: {fileID: 4008208768780992721, guid: d30da44ae7fc94e4d9a13f4fe9296063, type: 3}
+    Mesh: {fileID: 4300000, guid: 0b3c90936adae46a4acb90d081816769, type: 2}
+    Spec:
+      id: stillleaf-open-door-1
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-open-door-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.08, z: 0}
+      boundsSize: {x: 1, y: 0.16, z: 0.44}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: stillleaf-open-door-2
+    Prefab: {fileID: 513191302496136610, guid: bf852cd06541d4a7992bb753eb10d73f, type: 3}
+    Mesh: {fileID: 4300000, guid: 4fa30313a21d6412fb1b045d0606ba2b, type: 2}
+    Spec:
+      id: stillleaf-open-door-2
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-open-door-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.08, z: 0}
+      boundsSize: {x: 1, y: 0.16, z: 0.44}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: stillleaf-open-door-3
+    Prefab: {fileID: 5352210219168661621, guid: 00f67d6ab8fea4a018c8fffd1ddecdad, type: 3}
+    Mesh: {fileID: 4300000, guid: fa9870cc9a4f24331932b6b8e783f490, type: 2}
+    Spec:
+      id: stillleaf-open-door-3
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-open-door-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.08, z: 0}
+      boundsSize: {x: 1, y: 0.16, z: 0.44}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: stillleaf-shelf-0
+    Prefab: {fileID: 2942667428439293592, guid: 4ec55606936e3450aa06a7e929bd61d0, type: 3}
+    Mesh: {fileID: 4300000, guid: c57370f652fdb4834a2b59b6fe9f29f7, type: 2}
+    Spec:
+      id: stillleaf-shelf-0
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-shelf-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.63, z: 0}
+      boundsSize: {x: 0.9, y: 1.26, z: 0.46}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: stillleaf-shelf-1
+    Prefab: {fileID: 4037002167001085011, guid: b5ddf7a812d6f494eadaff74736c3a8a, type: 3}
+    Mesh: {fileID: 4300000, guid: c2857806e90bb49ecaa0a598adc475f1, type: 2}
+    Spec:
+      id: stillleaf-shelf-1
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-shelf-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.63, z: 0}
+      boundsSize: {x: 0.9, y: 1.26, z: 0.46}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: stillleaf-shelf-2
+    Prefab: {fileID: 8069698753314895369, guid: 0b6f241e6069540478055693cb492f48, type: 3}
+    Mesh: {fileID: 4300000, guid: 15b6cc98a691e49658b90676429c8d66, type: 2}
+    Spec:
+      id: stillleaf-shelf-2
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-shelf-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.63, z: 0}
+      boundsSize: {x: 0.9, y: 1.26, z: 0.46}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: stillleaf-shelf-3
+    Prefab: {fileID: 5043791476775990864, guid: 2442c7975de7f4395b0990379ffd6c9d, type: 3}
+    Mesh: {fileID: 4300000, guid: ac6a5f63080fe465da66e3f4759275f6, type: 2}
+    Spec:
+      id: stillleaf-shelf-3
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-shelf-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.63, z: 0}
+      boundsSize: {x: 0.9, y: 1.26, z: 0.46}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: stillleaf-bear-0
+    Prefab: {fileID: 6169831134333598234, guid: b43fed26cb49d40119f73bbaf48e31d0, type: 3}
+    Mesh: {fileID: 4300000, guid: 3a6a955247a414b4ab1a46919a15eb6c, type: 2}
+    Spec:
+      id: stillleaf-bear-0
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-bear-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.4525, z: 0.034999996}
+      boundsSize: {x: 0.74, y: 0.905, z: 0.91}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: stillleaf-bear-1
+    Prefab: {fileID: 1992547086077848395, guid: 9940de9910a264ca3a0ed99c940e8e21, type: 3}
+    Mesh: {fileID: 4300000, guid: 4dfbdb80f46b743c0a504777831c66aa, type: 2}
+    Spec:
+      id: stillleaf-bear-1
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-bear-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.4525, z: 0.034999996}
+      boundsSize: {x: 0.74, y: 0.905, z: 0.91}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: stillleaf-bear-2
+    Prefab: {fileID: 5888506882606060538, guid: 32f5281fd811b41f29e7df5feb4d0889, type: 3}
+    Mesh: {fileID: 4300000, guid: 1e06b16344cdc49e58bcd37cdb9635ac, type: 2}
+    Spec:
+      id: stillleaf-bear-2
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-bear-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.4525, z: 0.034999996}
+      boundsSize: {x: 0.74, y: 0.905, z: 0.91}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: stillleaf-bear-3
+    Prefab: {fileID: 5937533527199883521, guid: 8717b81ac9f6240b39d0cd0ae7c508f2, type: 3}
+    Mesh: {fileID: 4300000, guid: 496b28af770fc43f6a5a226472fab3ca, type: 2}
+    Spec:
+      id: stillleaf-bear-3
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-bear-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.4525, z: 0.034999996}
+      boundsSize: {x: 0.74, y: 0.905, z: 0.91}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: stillleaf-slime-0
+    Prefab: {fileID: 8042853370041375603, guid: 3a81b518fff944253a48e25f65da9a88, type: 3}
+    Mesh: {fileID: 4300000, guid: 49d15c0f6451f49199b237b8b0beb65f, type: 2}
+    Spec:
+      id: stillleaf-slime-0
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-slime-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: -0.015000001, y: 0.25, z: 0.024999991}
+      boundsSize: {x: 0.83000004, y: 0.5, z: 0.71000004}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: stillleaf-slime-1
+    Prefab: {fileID: 4990319454408893776, guid: 9e9f5398680e64a988986c8264a457d4, type: 3}
+    Mesh: {fileID: 4300000, guid: 83191e121774b4227bfb873fcff86b6a, type: 2}
+    Spec:
+      id: stillleaf-slime-1
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-slime-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: -0.015000001, y: 0.25, z: 0.024999991}
+      boundsSize: {x: 0.83000004, y: 0.5, z: 0.71000004}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: stillleaf-slime-2
+    Prefab: {fileID: 2305537547082488617, guid: ffa293c751ff44ffd95a4cf3a0235252, type: 3}
+    Mesh: {fileID: 4300000, guid: 2c7680a73e3dd470c9721b5afd6c29ce, type: 2}
+    Spec:
+      id: stillleaf-slime-2
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-slime-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: -0.015000001, y: 0.25, z: 0.024999991}
+      boundsSize: {x: 0.83000004, y: 0.5, z: 0.71000004}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: stillleaf-slime-3
+    Prefab: {fileID: 8730893357612314673, guid: dbac610d4f43d45c7a8395698291b9bd, type: 3}
+    Mesh: {fileID: 4300000, guid: d16fb54518ba0488a8371b8e5974aa50, type: 2}
+    Spec:
+      id: stillleaf-slime-3
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-slime-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: -0.015000001, y: 0.25, z: 0.024999991}
+      boundsSize: {x: 0.83000004, y: 0.5, z: 0.71000004}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: stillleaf-spring-0
+    Prefab: {fileID: 8045824984498288642, guid: 9ea1e5390e02540fd86892ee553f18e8, type: 3}
+    Mesh: {fileID: 4300000, guid: dc6f0b3f086064a4ea2a7af8308bc7ac, type: 2}
+    Spec:
+      id: stillleaf-spring-0
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-spring-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.041, z: 0}
+      boundsSize: {x: 1, y: 0.013999999, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: stillleaf-spring-1
+    Prefab: {fileID: 3386220812516800304, guid: cfcc1fcf8c2bb475cac598c2e1be6dcd, type: 3}
+    Mesh: {fileID: 4300000, guid: f04fca2cbe66a47e7abcb7d827d4394a, type: 2}
+    Spec:
+      id: stillleaf-spring-1
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-spring-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.039499998, z: 0}
+      boundsSize: {x: 1, y: 0.017000003, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: stillleaf-spring-2
+    Prefab: {fileID: 6375594014418901500, guid: 359457a7cd3864cffa17827b9ad314c5, type: 3}
+    Mesh: {fileID: 4300000, guid: d68d62548d63b4c248aca13b8edd9c21, type: 2}
+    Spec:
+      id: stillleaf-spring-2
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-spring-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.038000003, z: 0}
+      boundsSize: {x: 1, y: 0.019999998, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: stillleaf-spring-3
+    Prefab: {fileID: 2020956779460437253, guid: 467681c590fc846d396b50eb46bdb99f, type: 3}
+    Mesh: {fileID: 4300000, guid: b093b72db72ac4c03b6982eca42c3ee6, type: 2}
+    Spec:
+      id: stillleaf-spring-3
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-spring-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.0365, z: 0}
+      boundsSize: {x: 1, y: 0.023000002, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: stillleaf-boots-0
+    Prefab: {fileID: 3482261369711021169, guid: b304dddcf72774975abbda42276ec1c0, type: 3}
+    Mesh: {fileID: 4300000, guid: 2b7ec826e36224a3dbcf149494549b2b, type: 2}
+    Spec:
+      id: stillleaf-boots-0
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-boots-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.2425, z: 0.0375}
+      boundsSize: {x: 0.56, y: 0.485, z: 0.425}
+      triangles: 72
+      clips: []
+      sockets: []
+  - Id: stillleaf-boots-1
+    Prefab: {fileID: 8705677022922637363, guid: c3f8894084a6d405eb4a9cb32985b1a3, type: 3}
+    Mesh: {fileID: 4300000, guid: bee30507cb8424eb79e916f65235924f, type: 2}
+    Spec:
+      id: stillleaf-boots-1
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-boots-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.255, z: 0.0375}
+      boundsSize: {x: 0.56, y: 0.51, z: 0.425}
+      triangles: 72
+      clips: []
+      sockets: []
+  - Id: stillleaf-boots-2
+    Prefab: {fileID: 8516979037420237636, guid: 3900a7a72c5684ed0b3292108e8b1566, type: 3}
+    Mesh: {fileID: 4300000, guid: accdbd0b3b50a4d288daace68f5eb54f, type: 2}
+    Spec:
+      id: stillleaf-boots-2
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-boots-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.26749998, z: 0.0375}
+      boundsSize: {x: 0.56, y: 0.53499997, z: 0.425}
+      triangles: 72
+      clips: []
+      sockets: []
+  - Id: stillleaf-boots-3
+    Prefab: {fileID: 335536731022443331, guid: 23622388691dc4c2594c8c2ec2a26c95, type: 3}
+    Mesh: {fileID: 4300000, guid: 9a8b139b023ad4db28c0eddaf98d4fb3, type: 2}
+    Spec:
+      id: stillleaf-boots-3
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-boots-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.27999997, z: 0.0375}
+      boundsSize: {x: 0.56, y: 0.55999994, z: 0.425}
+      triangles: 72
+      clips: []
+      sockets: []
+  - Id: stillleaf-wall-0
+    Prefab: {fileID: 2527490232020525148, guid: bbca45d58e69842eb9e61633ebe0bd44, type: 3}
+    Mesh: {fileID: 4300000, guid: 77aeccffe387646cabe1b23d24ba82de, type: 2}
+    Spec:
+      id: stillleaf-wall-0
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-wall-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 1, z: 0}
+      boundsSize: {x: 1, y: 2, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: stillleaf-wall-1
+    Prefab: {fileID: 9097123921136364592, guid: d111ff3ca760a43928fdb0ba7b36e500, type: 3}
+    Mesh: {fileID: 4300000, guid: bc0c0f4aace4840169c7e400e3abaac5, type: 2}
+    Spec:
+      id: stillleaf-wall-1
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-wall-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.99999994, z: 0}
+      boundsSize: {x: 1, y: 1.9999999, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: stillleaf-wall-2
+    Prefab: {fileID: 4114120065373538153, guid: 9c43737ff6bf34b34af5435100ffb812, type: 3}
+    Mesh: {fileID: 4300000, guid: 5f52abd1baa974bc2b1700e6663fca74, type: 2}
+    Spec:
+      id: stillleaf-wall-2
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-wall-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 1, z: 0}
+      boundsSize: {x: 1, y: 2, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: stillleaf-wall-3
+    Prefab: {fileID: 2571386349628483696, guid: 23fb28c882b104eeba07ba6d77ec884c, type: 3}
+    Mesh: {fileID: 4300000, guid: 83227a8e7b0c74c02b5eeeb8abb28d9c, type: 2}
+    Spec:
+      id: stillleaf-wall-3
+      path: Assets/Resources/StillleafVoxel3D/stillleaf-wall-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 1, z: 0}
+      boundsSize: {x: 1, y: 2, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
