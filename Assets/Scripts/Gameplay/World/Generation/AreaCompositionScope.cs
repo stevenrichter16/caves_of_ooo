@@ -19,7 +19,8 @@ namespace CavesOfOoo.Core
         private static bool IsCandidate(string id)=>OverwritCompositionPlan.IsWildernessZone(id)||GinmereCompositionPlan.IsSupportedZone(id)
             ||CathedralCompositionPlan.IsSupportedZone(id)||StillleafCompositionPlan.IsSupportedZone(id)
             ||OlderdeepCompositionPlan.IsSupportedZone(id)||WellmeetCompositionPlan.IsSupportedZone(id)
-            ||CinderholdCompositionPlan.IsSupportedZone(id)||SumpholdCompositionPlan.IsSupportedZone(id);
+            ||CinderholdCompositionPlan.IsSupportedZone(id)||SumpholdCompositionPlan.IsSupportedZone(id)
+            ||DrownedLedgerCompositionPlan.IsSupportedZone(id)||MarrowstyeCompositionPlan.IsSupportedZone(id);
         internal static bool IsCathedralSite(PointOfInterest poi)
             =>poi!=null&&poi.Type==POIType.Sinkhole&&poi.Name=="the Deepest Cathedral"
                 &&SinkholeArchetypes.ForSite(poi)==SinkholeArchetype.ChoirCathedral;
@@ -35,6 +36,10 @@ namespace CavesOfOoo.Core
             =>poi!=null&&poi.Type==POIType.Village&&poi.Profile=="PruningPost";
         internal static bool IsSumpholdSite(PointOfInterest poi)
             =>poi!=null&&poi.Type==POIType.Village&&poi.Profile=="Boatyard";
+        internal static bool IsDrownedLedgerSite(PointOfInterest poi)
+            =>poi!=null&&poi.Type==POIType.Village&&poi.Profile=="ExcavationCamp";
+        internal static bool IsMarrowstyeSite(PointOfInterest poi)
+            =>poi!=null&&poi.Type==POIType.Village&&poi.Profile=="Intake";
         /// <summary>Standalone native graphs use the finite address contract.
         /// Managed graphs additionally honor their own current biome and POI.
         /// A destroyed floor never changes this authority or regenerates content.</summary>
@@ -50,6 +55,8 @@ namespace CavesOfOoo.Core
             if(WellmeetCompositionPlan.IsSupportedZone(zone.ZoneID))return IsWellmeetSite(poi);
             if(CinderholdCompositionPlan.IsSupportedZone(zone.ZoneID))return IsCinderholdSite(poi);
             if(SumpholdCompositionPlan.IsSupportedZone(zone.ZoneID))return IsSumpholdSite(poi);
+            if(DrownedLedgerCompositionPlan.IsSupportedZone(zone.ZoneID))return IsDrownedLedgerSite(poi);
+            if(MarrowstyeCompositionPlan.IsSupportedZone(zone.ZoneID))return IsMarrowstyeSite(poi);
             if(CathedralCompositionPlan.IsSupportedZone(zone.ZoneID))return IsCathedralSite(poi);
             if(StillleafCompositionPlan.IsSupportedZone(zone.ZoneID))return IsStillleafSite(poi);
             return poi!=null&&poi.Type==POIType.Sinkhole&&poi.Name=="Ginmere"

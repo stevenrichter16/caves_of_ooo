@@ -1,0 +1,51 @@
+{
+  "isolatedProject": "/Users/steven/.cache/caves-of-ooo-validation/sanctums/project",
+  "unityExit": 2,
+  "compileErrors": [],
+  "results": {
+    "id": "2",
+    "testcasecount": "260",
+    "result": "Failed(Child)",
+    "total": "260",
+    "passed": "253",
+    "failed": "7",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-16 04:01:07Z",
+    "end-time": "2026-09-16 04:01:13Z",
+    "duration": "6.309005"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.DrownedLedgerCompositionAdversarialTests.FailSoftNativeFieldsAreRejectedBeforeMutatingAnyCell(\"ReadingTable\",\"Physics\",\"Solid\",\"false\")",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MarrowstyeCompositionAdversarialTests.ActualCargoHaulsAtItsThresholdAndBlockedMovementIsAtomic(\"StoneCoffer\",14,110)",
+      "message": "  Expected: 56\n  But was:  30\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MarrowstyeCompositionAdversarialTests.ActualCargoHaulsAtItsThresholdAndBlockedMovementIsAtomic(\"SaltCuredBody\",12,90)",
+      "message": "  Expected: 64\n  But was:  30\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MarrowstyeCompositionAdversarialTests.ManagerCaveFilterUsesRealizedPlanAndRejectsBlockedArrivalNeighbor",
+      "message": "  Center remains open, but native stair arrival cannot be blocked on an adjacent cell.\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WitnessIntakeRenderingTests.EveryVisibleNativeOwnerAcrossTwoChunksHasAReadOnlyModel(64)",
+      "message": "  Overworld.12.12.0 Bones: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"Overworld.12.12.0 Bones: unmodeled-native-blueprint\" >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WitnessIntakeRenderingTests.EveryVisibleNativeOwnerAcrossTwoChunksHasAReadOnlyModel(1729)",
+      "message": "  Overworld.12.12.0 Bones: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"Overworld.12.12.0 Bones: unmodeled-native-blueprint\" >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WitnessIntakeRenderingTests.EveryVisibleNativeOwnerAcrossTwoChunksHasAReadOnlyModel(729490642)",
+      "message": "  Overworld.12.12.0 Bones: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"Overworld.12.12.0 Bones: unmodeled-native-blueprint\" >\n"
+    }
+  ]
+}
