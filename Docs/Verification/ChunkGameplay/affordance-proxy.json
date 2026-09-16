@@ -1,0 +1,6939 @@
+{
+  "seed": 141343545,
+  "native_census_sha256": "638cb340b6b6c048800bd0591a11413ff07d972bd75152d754ead934de02e56a",
+  "blueprints_sha256": "8bc5110a507dd3dc819f80c00a2f798e6db724062b2875889d0d6fa9e607f915",
+  "method": "Actual fresh native entity occurrences joined to static inherited blueprint Parts/Tags. All400 surface cells, including settlements. Counts are chunks with at least one matching object.",
+  "limitations": [
+    "Creature includes passive fauna, not just enemies.",
+    "Container does not mean stocked or rewarding.",
+    "Conversation/Trader are static capability presence, not service availability or distinct story count.",
+    "Runtime-injected Parts/blueprints are not inferred; unresolved owners are listed.",
+    "No new native execution or playthrough in this analysis."
+  ],
+  "by_biome": {
+    "Grovelands": {
+      "chunks": 43,
+      "Conversation": 16,
+      "Trader": 16,
+      "Container": 41,
+      "Harvestable": 27,
+      "Campfire": 11,
+      "Sanctuary": 1,
+      "Forge": 1,
+      "AlchemyStill": 0,
+      "Creature": 43
+    },
+    "Spread": {
+      "chunks": 142,
+      "Conversation": 39,
+      "Trader": 39,
+      "Container": 142,
+      "Harvestable": 133,
+      "Campfire": 9,
+      "Sanctuary": 39,
+      "Forge": 1,
+      "AlchemyStill": 1,
+      "Creature": 142
+    },
+    "Sodden": {
+      "chunks": 63,
+      "Conversation": 14,
+      "Trader": 14,
+      "Container": 63,
+      "Harvestable": 11,
+      "Campfire": 14,
+      "Sanctuary": 2,
+      "Forge": 0,
+      "AlchemyStill": 0,
+      "Creature": 63
+    },
+    "Stump": {
+      "chunks": 22,
+      "Conversation": 6,
+      "Trader": 6,
+      "Container": 20,
+      "Harvestable": 9,
+      "Campfire": 5,
+      "Sanctuary": 0,
+      "Forge": 0,
+      "AlchemyStill": 0,
+      "Creature": 22
+    },
+    "Overwrit": {
+      "chunks": 23,
+      "Conversation": 0,
+      "Trader": 0,
+      "Container": 1,
+      "Harvestable": 0,
+      "Campfire": 0,
+      "Sanctuary": 0,
+      "Forge": 0,
+      "AlchemyStill": 0,
+      "Creature": 1
+    },
+    "Beating": {
+      "chunks": 107,
+      "Conversation": 59,
+      "Trader": 40,
+      "Container": 106,
+      "Harvestable": 35,
+      "Campfire": 40,
+      "Sanctuary": 4,
+      "Forge": 0,
+      "AlchemyStill": 0,
+      "Creature": 107
+    }
+  },
+  "unknown_blueprint_counts": {
+    "FellingSceneProp": 55,
+    "MorrowfastEdden": 1,
+    "MorrowfastFarra": 1,
+    "MorrowfastHesta": 1,
+    "MorrowfastNemm": 1,
+    "MorrowfastOrrit": 1,
+    "MorrowfastPell": 1,
+    "MorrowfastSceneProp": 63,
+    "MorrowfastSella": 1,
+    "MorrowfastVennit": 1,
+    "HiddenShrineMarker": 3,
+    "CrunchyLocket": 2,
+    "DetectiveNotebook": 1,
+    "OldStump": 1
+  },
+  "rows": [
+    {
+      "id": "Overworld.0.0.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.1.0.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.2.0.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.3.0.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.4.0.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.5.0.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.6.0.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.7.0.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.8.0.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.9.0.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.10.0.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.11.0.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.12.0.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.13.0.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.14.0.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.15.0.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.16.0.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.17.0.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.18.0.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.19.0.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.0.1.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.1.1.0",
+      "biome": "Grovelands",
+      "map_type": "MerchantCamp",
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.2.1.0",
+      "biome": "Stump",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.3.1.0",
+      "biome": "Stump",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.4.1.0",
+      "biome": "Stump",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.5.1.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.6.1.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.7.1.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.8.1.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.9.1.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.10.1.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.11.1.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.12.1.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.13.1.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.14.1.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.15.1.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.16.1.0",
+      "biome": "Sodden",
+      "map_type": "Village",
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.17.1.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.18.1.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.19.1.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.0.2.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.1.2.0",
+      "biome": "Stump",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.2.2.0",
+      "biome": "Stump",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.3.2.0",
+      "biome": "Stump",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.4.2.0",
+      "biome": "Stump",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.5.2.0",
+      "biome": "Stump",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.6.2.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.7.2.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.8.2.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.9.2.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.10.2.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.11.2.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.12.2.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.13.2.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.14.2.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.15.2.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.16.2.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.17.2.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.18.2.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.19.2.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.0.3.0",
+      "biome": "Grovelands",
+      "map_type": "Lair",
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.1.3.0",
+      "biome": "Stump",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.2.3.0",
+      "biome": "Stump",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.3.3.0",
+      "biome": "Stump",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.4.3.0",
+      "biome": "Stump",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.5.3.0",
+      "biome": "Stump",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.6.3.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.7.3.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.8.3.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.9.3.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.10.3.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.11.3.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.12.3.0",
+      "biome": "Spread",
+      "map_type": "Sinkhole",
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.13.3.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.14.3.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.15.3.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.16.3.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.17.3.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.18.3.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.19.3.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.0.4.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.1.4.0",
+      "biome": "Stump",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.2.4.0",
+      "biome": "Stump",
+      "map_type": "Sinkhole",
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.3.4.0",
+      "biome": "Stump",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.4.4.0",
+      "biome": "Stump",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.5.4.0",
+      "biome": "Grovelands",
+      "map_type": "Sinkhole",
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.6.4.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.7.4.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.8.4.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.9.4.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.10.4.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.11.4.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.12.4.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.13.4.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.14.4.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.15.4.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.16.4.0",
+      "biome": "Sodden",
+      "map_type": "Sinkhole",
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.17.4.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.18.4.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.19.4.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.0.5.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.1.5.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.2.5.0",
+      "biome": "Stump",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.3.5.0",
+      "biome": "Stump",
+      "map_type": "FellingSite",
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": [
+        "FellingSceneProp"
+      ]
+    },
+    {
+      "id": "Overworld.4.5.0",
+      "biome": "Stump",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.5.5.0",
+      "biome": "Stump",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.6.5.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.7.5.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.8.5.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.9.5.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.10.5.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.11.5.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.12.5.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.13.5.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.14.5.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.15.5.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.16.5.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.17.5.0",
+      "biome": "Sodden",
+      "map_type": "Village",
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.18.5.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.19.5.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.0.6.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.1.6.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.2.6.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.3.6.0",
+      "biome": "Grovelands",
+      "map_type": "Village",
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": [
+        "MorrowfastEdden",
+        "MorrowfastFarra",
+        "MorrowfastHesta",
+        "MorrowfastNemm",
+        "MorrowfastOrrit",
+        "MorrowfastPell",
+        "MorrowfastSceneProp",
+        "MorrowfastSella",
+        "MorrowfastVennit"
+      ]
+    },
+    {
+      "id": "Overworld.4.6.0",
+      "biome": "Grovelands",
+      "map_type": "Sinkhole",
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.5.6.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.6.6.0",
+      "biome": "Grovelands",
+      "map_type": "Village",
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": true,
+        "Forge": true,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.7.6.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.8.6.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.9.6.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.10.6.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.11.6.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.12.6.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.13.6.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.14.6.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.15.6.0",
+      "biome": "Spread",
+      "map_type": "Village",
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.16.6.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.17.6.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.18.6.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.19.6.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.0.7.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.1.7.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.2.7.0",
+      "biome": "Grovelands",
+      "map_type": "Sinkhole",
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.3.7.0",
+      "biome": "Stump",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": false,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.4.7.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.5.7.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.6.7.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.7.7.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.8.7.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.9.7.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.10.7.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.11.7.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.12.7.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.13.7.0",
+      "biome": "Spread",
+      "map_type": "Village",
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.14.7.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.15.7.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.16.7.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.17.7.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.18.7.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.19.7.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.0.8.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.1.8.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.2.8.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.3.8.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.4.8.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.5.8.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.6.8.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.7.8.0",
+      "biome": "Spread",
+      "map_type": "Village",
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": [
+        "HiddenShrineMarker"
+      ]
+    },
+    {
+      "id": "Overworld.8.8.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.9.8.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.10.8.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.11.8.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.12.8.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.13.8.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.14.8.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.15.8.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.16.8.0",
+      "biome": "Sodden",
+      "map_type": "MerchantCamp",
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.17.8.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.18.8.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.19.8.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.0.9.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": false
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.1.9.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": false
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.2.9.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": false
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.3.9.0",
+      "biome": "Grovelands",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.4.9.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.5.9.0",
+      "biome": "Spread",
+      "map_type": "Village",
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": [
+        "CrunchyLocket"
+      ]
+    },
+    {
+      "id": "Overworld.6.9.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.7.9.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.8.9.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.9.9.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.10.9.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.11.9.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.12.9.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.13.9.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.14.9.0",
+      "biome": "Spread",
+      "map_type": "Village",
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.15.9.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.16.9.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.17.9.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.18.9.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.19.9.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.0.10.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": false
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.1.10.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": false
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.2.10.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": false
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.3.10.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": false
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.4.10.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.5.10.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.6.10.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.7.10.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.8.10.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.9.10.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.10.10.0",
+      "biome": "Spread",
+      "map_type": "Village",
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": true,
+        "Forge": true,
+        "AlchemyStill": true,
+        "Creature": true
+      },
+      "unresolved_blueprints": [
+        "DetectiveNotebook",
+        "OldStump"
+      ]
+    },
+    {
+      "id": "Overworld.11.10.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.12.10.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.13.10.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.14.10.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.15.10.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.16.10.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.17.10.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.18.10.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.19.10.0",
+      "biome": "Sodden",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.0.11.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": false
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.1.11.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": false
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.2.11.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.3.11.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": false
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.4.11.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": false
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.5.11.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.6.11.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.7.11.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.8.11.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.9.11.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.10.11.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.11.11.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.12.11.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.13.11.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.14.11.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.15.11.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.16.11.0",
+      "biome": "Spread",
+      "map_type": "Village",
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": [
+        "HiddenShrineMarker"
+      ]
+    },
+    {
+      "id": "Overworld.17.11.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.18.11.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.19.11.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.0.12.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": false
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.1.12.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": false
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.2.12.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": false
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.3.12.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": false
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.4.12.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": false
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.5.12.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.6.12.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.7.12.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.8.12.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.9.12.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.10.12.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.11.12.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.12.12.0",
+      "biome": "Spread",
+      "map_type": "Village",
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": [
+        "CrunchyLocket"
+      ]
+    },
+    {
+      "id": "Overworld.13.12.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.14.12.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.15.12.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.16.12.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.17.12.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.18.12.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.19.12.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.0.13.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": false
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.1.13.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": false
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.2.13.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": false
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.3.13.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": false
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.4.13.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.5.13.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.6.13.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.7.13.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.8.13.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.9.13.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.10.13.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.11.13.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.12.13.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.13.13.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.14.13.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.15.13.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.16.13.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.17.13.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.18.13.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.19.13.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.0.14.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.1.14.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.2.14.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": false
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.3.14.0",
+      "biome": "Overwrit",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": false
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.4.14.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.5.14.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.6.14.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.7.14.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.8.14.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.9.14.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.10.14.0",
+      "biome": "Spread",
+      "map_type": "Village",
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.11.14.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.12.14.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.13.14.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.14.14.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.15.14.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.16.14.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.17.14.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.18.14.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.19.14.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.0.15.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.1.15.0",
+      "biome": "Beating",
+      "map_type": "MerchantCamp",
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.2.15.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.3.15.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.4.15.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.5.15.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.6.15.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.7.15.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.8.15.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.9.15.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.10.15.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.11.15.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.12.15.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.13.15.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.14.15.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.15.15.0",
+      "biome": "Beating",
+      "map_type": "Village",
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.16.15.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.17.15.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.18.15.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.19.15.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.0.16.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.1.16.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.2.16.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.3.16.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.4.16.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.5.16.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.6.16.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.7.16.0",
+      "biome": "Spread",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.8.16.0",
+      "biome": "Beating",
+      "map_type": "Village",
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": [
+        "HiddenShrineMarker"
+      ]
+    },
+    {
+      "id": "Overworld.9.16.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.10.16.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.11.16.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.12.16.0",
+      "biome": "Beating",
+      "map_type": "Lair",
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.13.16.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.14.16.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.15.16.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.16.16.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.17.16.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.18.16.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.19.16.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.0.17.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.1.17.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.2.17.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.3.17.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.4.17.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.5.17.0",
+      "biome": "Beating",
+      "map_type": "Village",
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.6.17.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.7.17.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.8.17.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.9.17.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.10.17.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.11.17.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.12.17.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.13.17.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.14.17.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.15.17.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.16.17.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.17.17.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.18.17.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.19.17.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.0.18.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.1.18.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.2.18.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.3.18.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.4.18.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.5.18.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.6.18.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.7.18.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.8.18.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.9.18.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.10.18.0",
+      "biome": "Beating",
+      "map_type": "Lair",
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.11.18.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.12.18.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.13.18.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.14.18.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.15.18.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.16.18.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.17.18.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.18.18.0",
+      "biome": "Beating",
+      "map_type": "Village",
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": true,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.19.18.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.0.19.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.1.19.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.2.19.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": false,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.3.19.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.4.19.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.5.19.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.6.19.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.7.19.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.8.19.0",
+      "biome": "Beating",
+      "map_type": "Lair",
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.9.19.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.10.19.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.11.19.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.12.19.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.13.19.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": true,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.14.19.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.15.19.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.16.19.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.17.19.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": false,
+        "Trader": false,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": false,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.18.19.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    },
+    {
+      "id": "Overworld.19.19.0",
+      "biome": "Beating",
+      "map_type": null,
+      "features": {
+        "Conversation": true,
+        "Trader": true,
+        "Container": true,
+        "Harvestable": false,
+        "Campfire": true,
+        "Sanctuary": false,
+        "Forge": false,
+        "AlchemyStill": false,
+        "Creature": true
+      },
+      "unresolved_blueprints": []
+    }
+  ],
+  "spread_authored_crop_rows": {
+    "poi_free_chunks": 132,
+    "chunks_with_crop_rows": 30,
+    "crop_row_owners": 3277
+  },
+  "overwrit_composed_chunks_with_only_ground_growth_and_possible_stair": 22,
+  "overwrit_composed_chunks_with_stairs": 7,
+  "helmwood_selection_index_for_seed": 3,
+  "helmwood_eligible_for_seed": false
+}
