@@ -1,0 +1,63 @@
+{
+  "isolatedProject": "/Users/steven/.cache/caves-of-ooo-validation/sanctums/project",
+  "unityExit": 2,
+  "compileErrors": [],
+  "results": {
+    "id": "2",
+    "testcasecount": "253",
+    "result": "Failed(Child)",
+    "total": "253",
+    "passed": "243",
+    "failed": "10",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-16 03:14:14Z",
+    "end-time": "2026-09-16 03:14:19Z",
+    "duration": "5.1323033"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.CinderholdCompositionAdversarialTests.RefusedBaseCallDoesNotInvalidateTheSuccessfulOwnersPendingProfile(False)",
+      "message": "  Expected: same as <CavesOfOoo.Core.CinderholdCompositionPlan>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.CinderholdCompositionAdversarialTests.RefusedBaseCallDoesNotInvalidateTheSuccessfulOwnersPendingProfile(True)",
+      "message": "  Expected: same as <CavesOfOoo.Core.CinderholdCompositionPlan>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SumpholdCompositionAdversarialTests.ActualRolledStairsAreDryAndReservedBeforeServices",
+      "message": "System.InvalidOperationException : Sumphold dry destination is inaccessible."
+    },
+    {
+      "name": "CavesOfOoo.Tests.SumpholdCompositionAdversarialTests.RealHouseDramaRespectsOptInReservedInteriorAndWetFallback(False,False)",
+      "message": "  Scoped opt-in must not change other villages by default.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SumpholdCompositionAdversarialTests.RealHouseDramaRespectsOptInReservedInteriorAndWetFallback(False,True)",
+      "message": "  Scoped opt-in must not change other villages by default.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SumpholdCompositionAdversarialTests.RealHouseDramaRespectsOptInReservedInteriorAndWetFallback(True,False)",
+      "message": "  Scoped opt-in must not change other villages by default.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SumpholdCompositionAdversarialTests.RealHouseDramaRespectsOptInReservedInteriorAndWetFallback(True,True)",
+      "message": "  Scoped opt-in must not change other villages by default.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WorkshopBogRenderingTests.EveryVisibleNativeOwnerAcrossTwoChunksHasAReadOnlyModel(64)",
+      "message": "  Overworld.6.6.0 MarketStall: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"Overworld.6.6.0 MarketStall: unmodeled-native-blueprint\" >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WorkshopBogRenderingTests.EveryVisibleNativeOwnerAcrossTwoChunksHasAReadOnlyModel(1729)",
+      "message": "  Overworld.6.6.0 MarketStall: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"Overworld.6.6.0 MarketStall: unmodeled-native-blueprint\" >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WorkshopBogRenderingTests.EveryVisibleNativeOwnerAcrossTwoChunksHasAReadOnlyModel(729490642)",
+      "message": "  Overworld.6.6.0 MarketStall: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"Overworld.6.6.0 MarketStall: unmodeled-native-blueprint\" >\n"
+    }
+  ]
+}

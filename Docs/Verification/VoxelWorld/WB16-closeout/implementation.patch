@@ -1,0 +1,268 @@
+--- a/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
++++ b/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
+@@ -797,8 +797,13 @@
+             }
+             bool isStartingTown = zoneID == VillagePopulationBuilder.StartingVillageZoneId;
+             bool wellmeet=WellmeetCompositionPlan.IsSupportedZone(zoneID)&&AreaCompositionScope.IsWellmeetSite(poi);
++            bool cinderhold=CinderholdCompositionPlan.IsSupportedZone(zoneID)&&AreaCompositionScope.IsCinderholdSite(poi);
++            bool sumphold=SumpholdCompositionPlan.IsSupportedZone(zoneID)&&AreaCompositionScope.IsSumpholdSite(poi);
++            bool composed=wellmeet||cinderhold||sumphold;
+             var camp=wellmeet?new WellmeetCompositionBuilder(WorldSeed):null;
+-            pipeline.AddBuilder(wellmeet?(IZoneBuilder)camp:new VillageBuilder(biome, poi, SettlementManager, largeTown: isStartingTown));
++            var post=cinderhold?new CinderholdCompositionBuilder(WorldSeed):null;
++            var yard=sumphold?new SumpholdCompositionBuilder(WorldSeed):null;
++            pipeline.AddBuilder(wellmeet?(IZoneBuilder)camp:cinderhold?post:sumphold?yard:new VillageBuilder(biome, poi, SettlementManager, largeTown: isStartingTown));
+ 
+             // W2.6 (Docs/FELLING-W1-W2-PLAN.md §7.6, decision D5): the
+             // first consumer of Place.Faction — until now all sixteen
+@@ -840,12 +845,14 @@
+                     profileStamps.Add(StampCatalog.CurationIntake());
+                     break;
+                 case "Boatyard":
+-                    profileStamps.Add(StampCatalog.SumpholdBoatyard());
++                    if(sumphold)pipeline.AddBuilder(new SumpholdProfileBuilder(yard));
++                    else profileStamps.Add(StampCatalog.SumpholdBoatyard());
+                     break;
+                 // W4.6: Cinderhold — the Concord's Grovelands post and
+                 // the pruning contract's home.
+                 case "PruningPost":
+-                    profileStamps.Add(StampCatalog.PruningPost());
++                    if(cinderhold)pipeline.AddBuilder(new CinderholdProfileBuilder(post));
++                    else profileStamps.Add(StampCatalog.PruningPost());
+                     break;
+                 case null:
+                 case "":
+@@ -871,7 +878,7 @@
+             }
+             pipeline.AddBuilder(new ConnectivityBuilder{FloorBlueprint=wellmeet?"Sand":"Floor"});
+             var entrance=new CaveEntranceBuilder(this);
+-            if(wellmeet)entrance.PlacementFilter=(zone,cell)=>!cell.IsInterior&&!zone.GenReservedCells.Contains((cell.X,cell.Y));
++            if(composed)entrance.PlacementFilter=(zone,cell)=>!cell.IsInterior&&!zone.GenReservedCells.Contains((cell.X,cell.Y));
+             pipeline.AddBuilder(entrance);
+             // Narrow HTML-style water channel running west → east along the
+             // BOTTOM of the village. halfWidth=2.0 gives a ~4-cell-tall
+@@ -884,14 +891,16 @@
+             // runs before VillagePopulationBuilder (4000) so NPCs don't
+             // spawn in water (though they may still spawn on cells where
+             // we just removed structures — acceptable collateral).
+-            if(!wellmeet)pipeline.AddBuilder(new RiverChunkBuilder(
++            if(!composed)pipeline.AddBuilder(new RiverChunkBuilder(
+                 halfWidthBase: 2.0f,
+                 skipBanks: true,
+                 direction: RiverFlowDirection.East,
+                 crossCenterOffset: 8,
+                 clearSolidEntities: true));
+             if(wellmeet)pipeline.AddBuilder(new WellmeetArrivalReservationBuilder(camp));
+-            pipeline.AddBuilder(new VillagePopulationBuilder(poi, SettlementManager){RespectInteriorReservations=wellmeet});
++            if(cinderhold)pipeline.AddBuilder(new CinderholdArrivalReservationBuilder(post));
++            if(sumphold)pipeline.AddBuilder(new SumpholdArrivalReservationBuilder(yard));
++            pipeline.AddBuilder(new VillagePopulationBuilder(poi, SettlementManager){RespectInteriorReservations=composed});
+             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
+             pipeline.AddBuilder(new ContainerBuilder(BiomeType.Cave, 1,
+                 ContainerPlacementService.ZoneKind.Village));
+@@ -904,7 +913,7 @@
+             {
+                 int zoneSeed = WorldSeed ^ zoneID.GetHashCode();
+                 int pick = (zoneSeed & int.MaxValue) % dramaIds.Count;
+-                pipeline.AddBuilder(new HouseDramaZoneBuilder(dramaIds[pick]));
++                pipeline.AddBuilder(new HouseDramaZoneBuilder(dramaIds[pick]){RespectReservations=cinderhold||sumphold});
+             }
+ 
+             return pipeline;
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs
+@@ -47,8 +47,45 @@
+             }
+             else
+             {
++                bool cinderhold=CinderholdCompositionPlan.IsSupportedZone(zone.ZoneID);
++                bool sumphold=SumpholdCompositionPlan.IsSupportedZone(zone.ZoneID);
++                bool workingTown=cinderhold||sumphold;
++                if(workingTown)
++                {
++                    if(entity.BlueprintName=="CrunchyLocket"&&render.RenderString=="*")
++                    {
++                        var objective=entity.GetPart<CavesOfOoo.Storylets.CompleteObjectiveOnTaken>();
++                        if(objective?.Quest!="CrunchyLocket"||objective.Objective!="find_locket"||entity.GetPart<PhysicsPart>()?.Takeable!=true)
++                            return Refused(entity,"unrecognized-native-quest-token");
++                        return new SpawnRing3DRecipe(entity,CinderholdVoxelKitLibrary.ModelId("token",Variant(null,entity.BlueprintName,entity.ID,0,0,4)),
++                            null,Village3DProjection.CellCentre(cell.X,cell.Y),true,false);
++                    }
++                    string ownFamily=CinderholdVoxelKitLibrary.Family(entity.BlueprintName);
++                    bool post=cinderhold;
++                    // Ground and architecture stay local; portable named actors
++                    // retain their exact native identity between these two towns.
++                    if(!cinderhold)ownFamily=SumpholdVoxelKitLibrary.Family(entity.BlueprintName);
++                    if(ownFamily==null&&entity.BlueprintName=="MarketStall")
++                    {post=true;ownFamily="stall";}
++                    if(ownFamily==null&&entity.HasTag("Creature"))
++                    {post=!post;ownFamily=post?CinderholdVoxelKitLibrary.Family(entity.BlueprintName):SumpholdVoxelKitLibrary.Family(entity.BlueprintName);}
++                    if(ownFamily!=null)
++                    {
++                        bool moving=entity.HasTag("Creature")||entity.GetPart<PhysicsPart>()?.Takeable==true;
++                        if(entity.HasTag("Creature")&&!MatchesNativeActorGlyph(entity.BlueprintName,render.RenderString))return Refused(entity,"reskinned-native-actor");
++                        int v=Variant(moving?null:zone.ZoneID,entity.BlueprintName,entity.ID,moving?0:cell.X,moving?0:cell.Y,4);
++                        string id=post?CinderholdVoxelKitLibrary.ModelId(ownFamily,v):SumpholdVoxelKitLibrary.ModelId(ownFamily,v);
++                        return new SpawnRing3DRecipe(entity,id,null,Village3DProjection.CellCentre(cell.X,cell.Y),moving,!moving);
++                    }
++                    if(entity.BlueprintName=="Snapjaw"&&render.RenderString=="g")
++                    {
++                        var fact=entity.GetPart<CavesOfOoo.Storylets.AddFactWhenSlain>();
++                        if(fact?.Fact!="warren_gnomes_routed"||fact.Amount!=1)return Refused(entity,"reskinned-native-actor");
++                        return new SpawnRing3DRecipe(entity,WellmeetVoxelLibrary.ModelId("child",2),null,Village3DProjection.CellCentre(cell.X,cell.Y),true,false);
++                    }
++                }
+                 bool olderdeep=OlderdeepCompositionPlan.IsSupportedZone(zone.ZoneID);
+-                bool wellmeet=WellmeetCompositionPlan.IsSupportedZone(zone.ZoneID);
++                bool wellmeet=WellmeetCompositionPlan.IsSupportedZone(zone.ZoneID)||workingTown;
+                 if(olderdeep||wellmeet)
+                 {
+                     if(olderdeep&&zone.ZoneID=="Overworld.4.6.2"&&entity.BlueprintName=="SandstoneWall")
+@@ -69,7 +106,7 @@
+                         bool panicked=entity.BlueprintName=="Villager"&&render.RenderString=="p"
+                             &&(entity.GetPart<CavesOfOoo.Storylets.QuestBeaconPart>()?.Quest=="StrongestInOoo"
+                                 ||entity.GetPart<CavesOfOoo.Storylets.QuestBeaconPart>()?.Quest=="HiddenShrine");
+-                        if(actor&&!panicked&&!MatchesNativeActorGlyph(entity.BlueprintName,render.RenderString))return Refused(entity,"reskinned-native-actor");
++                        if(actor&&!panicked&&!(workingTown&&MatchesWorkingTownQuestAppearance(entity,render.RenderString))&&!MatchesNativeActorGlyph(entity.BlueprintName,render.RenderString))return Refused(entity,"reskinned-native-actor");
+                         bool movable=actor||entity.GetPart<PhysicsPart>()?.Takeable==true;
+                         int variant=Variant(movable?null:zone.ZoneID,entity.BlueprintName,entity.ID,movable?0:cell.X,movable?0:cell.Y,4);
+                         if(!founding)
+@@ -200,7 +237,7 @@
+                         return new SpawnRing3DRecipe(entity,id,null,Village3DProjection.CellCentre(cell.X,cell.Y),movable,!movable);
+                     }
+                 }
+-                if(SoddenCompositionPlan.IsWildernessZone(zone.ZoneID))
++                if(SoddenCompositionPlan.IsWildernessZone(zone.ZoneID)||sumphold)
+                 {
+                     string family=SoddenVoxelLibrary.Family(entity.BlueprintName);
+                     if(family!=null)
+@@ -211,7 +248,7 @@
+                     }
+                 }
+                 if(SpreadCompositionPlan.IsWildernessZone(zone.ZoneID)
+-                    || (SoddenCompositionPlan.IsWildernessZone(zone.ZoneID) && entity.BlueprintName=="Reeds"))
++                    || ((SoddenCompositionPlan.IsWildernessZone(zone.ZoneID)||sumphold) && entity.BlueprintName=="Reeds"))
+                 {
+                     string family=SpreadVoxelLibrary.Family(entity.BlueprintName);
+                     if(family!=null)
+@@ -345,6 +382,24 @@
+             }
+             return 0;
+         }
++        // Native village quests deliberately reskin generic Villager owners.
++        // Both conversation and quest identity distinguish those from unrelated
++        // content that should keep its ordinary render fallback.
++        private static bool MatchesWorkingTownQuestAppearance(Entity owner,string glyph)
++        {
++            if(owner.BlueprintName!="Villager")return false;
++            string conversation=owner.GetPart<ConversationPart>()?.ConversationID;
++            string quest=owner.GetPart<CavesOfOoo.Storylets.QuestBeaconPart>()?.Quest;
++            switch(glyph)
++            {
++                case "b":return conversation=="Baker_Quest"&&quest=="MessageForHermit";
++                case "h":return conversation=="Hermit_Quest";
++                case "f":return conversation=="Warren_Quest"&&quest=="ClearTheWarren";
++                case "P":return conversation=="CandyTax_Quest"&&quest=="TheCandyTax";
++                case "c":return conversation=="CandyCitizen"||conversation=="Crunchy_Quest"&&quest=="CrunchyLocket";
++                default:return false;
++            }
++        }
+         private static bool MatchesNativeActorGlyph(string blueprint, string glyph)
+         {
+             char canonical = EnvironmentSpriteRenderer.NamedActorCanonicalGlyph(blueprint);
+@@ -355,6 +410,7 @@
+                 switch (blueprint)
+                 {
+                     case "Player": case "EncasedElder":
++                    case "ConcordFactor":case "Weaponsmith":case "PeatCutter":
+                     case "FoundingListener":case "FoundingPlaqueTender":
+                     case "TentRightHost":case "SaltMaster":case "Elder":case "Innkeeper":
+                     case "Merchant":case "Quartermaster":case "Scribe":case "Tinker":
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DCatalog.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DCatalog.cs
+@@ -158,13 +158,13 @@
+             zoneIndex=new HashSet<string>(zones,StringComparer.Ordinal);
+         }
+         public Model FindModel(string modelId)
+-        {if(string.IsNullOrEmpty(modelId))return null;if(modelIndex==null)Validate();return modelIndex.TryGetValue(modelId,out var value)?value:SpreadVoxelLibrary.Load()?.Find(modelId)?.Spec ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Spec ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Spec ?? StumpVoxelLibrary.Load()?.Find(modelId)?.Spec ?? OverwritVoxelLibrary.Load()?.Find(modelId)?.Spec ?? GinmereVoxelLibrary.Load()?.Find(modelId)?.Spec ?? CathedralVoxelLibrary.Load()?.Find(modelId)?.Spec ?? StillleafVoxelLibrary.Load()?.Find(modelId)?.Spec ?? OlderdeepVoxelLibrary.Load()?.Find(modelId)?.Spec ?? WellmeetVoxelLibrary.Load()?.Find(modelId)?.Spec;}
++        {if(string.IsNullOrEmpty(modelId))return null;if(modelIndex==null)Validate();return modelIndex.TryGetValue(modelId,out var value)?value:SpreadVoxelLibrary.Load()?.Find(modelId)?.Spec ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Spec ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Spec ?? StumpVoxelLibrary.Load()?.Find(modelId)?.Spec ?? OverwritVoxelLibrary.Load()?.Find(modelId)?.Spec ?? GinmereVoxelLibrary.Load()?.Find(modelId)?.Spec ?? CathedralVoxelLibrary.Load()?.Find(modelId)?.Spec ?? StillleafVoxelLibrary.Load()?.Find(modelId)?.Spec ?? OlderdeepVoxelLibrary.Load()?.Find(modelId)?.Spec ?? WellmeetVoxelLibrary.Load()?.Find(modelId)?.Spec ?? CinderholdVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? SumpholdVoxelKitLibrary.Load()?.Find(modelId)?.Spec;}
+         public BlueprintBinding FindBlueprint(string blueprint)
+         {if(string.IsNullOrEmpty(blueprint))return null;if(blueprintIndex==null)Validate();return blueprintIndex.TryGetValue(blueprint,out var value)?value:null;}
+         public FellingOwner FindFellingOwner(string componentId)
+         {if(string.IsNullOrEmpty(componentId))return null;if(fellingIndex==null)Validate();return fellingIndex.TryGetValue(componentId,out var value)?value:null;}
+         public bool SupportsZone(string zoneId)
+-        {if(string.IsNullOrEmpty(zoneId))return false;if(zoneIndex==null)Validate();return zoneIndex.Contains(zoneId)||(GrovelandsCompositionPlan.IsWildernessZone(zoneId) || SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId) || BeatingCompositionPlan.IsWildernessZone(zoneId) || StumpCompositionPlan.IsWildernessZone(zoneId) || OverwritCompositionPlan.IsWildernessZone(zoneId) || GinmereCompositionPlan.IsSupportedZone(zoneId) || CathedralCompositionPlan.IsSupportedZone(zoneId) || StillleafCompositionPlan.IsSupportedZone(zoneId) || OlderdeepCompositionPlan.IsSupportedZone(zoneId) || WellmeetCompositionPlan.IsSupportedZone(zoneId));}
++        {if(string.IsNullOrEmpty(zoneId))return false;if(zoneIndex==null)Validate();return zoneIndex.Contains(zoneId)||(GrovelandsCompositionPlan.IsWildernessZone(zoneId) || SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId) || BeatingCompositionPlan.IsWildernessZone(zoneId) || StumpCompositionPlan.IsWildernessZone(zoneId) || OverwritCompositionPlan.IsWildernessZone(zoneId) || GinmereCompositionPlan.IsSupportedZone(zoneId) || CathedralCompositionPlan.IsSupportedZone(zoneId) || StillleafCompositionPlan.IsSupportedZone(zoneId) || OlderdeepCompositionPlan.IsSupportedZone(zoneId) || WellmeetCompositionPlan.IsSupportedZone(zoneId) || CinderholdCompositionPlan.IsSupportedZone(zoneId) || SumpholdCompositionPlan.IsSupportedZone(zoneId));}
+         static bool SameNames(string[] values,string[] expected)
+         {
+             if(values==null||values.Length!=expected.Length)return false;
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DLibrary.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DLibrary.cs
+@@ -60,7 +60,7 @@
+             models=candidates;equipmentIds=new HashSet<string>(d.externalEquipment.models,StringComparer.Ordinal);
+         }
+         public GameObject FindModel(string modelId)
+-        {if(string.IsNullOrEmpty(modelId))return null;if(models==null)Validate();return models.TryGetValue(modelId,out var value)?value:SpreadVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? StumpVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? OverwritVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? GinmereVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? CathedralVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? StillleafVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? OlderdeepVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? WellmeetVoxelLibrary.Load()?.Find(modelId)?.Prefab;}
++        {if(string.IsNullOrEmpty(modelId))return null;if(models==null)Validate();return models.TryGetValue(modelId,out var value)?value:SpreadVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? StumpVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? OverwritVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? GinmereVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? CathedralVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? StillleafVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? OlderdeepVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? WellmeetVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? CinderholdVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? SumpholdVoxelKitLibrary.Load()?.Find(modelId)?.Prefab;}
+         public GameObject FindEquipmentModel(string modelId)
+         {if(string.IsNullOrEmpty(modelId))return null;if(equipmentIds==null)Validate();return equipmentIds.Contains(modelId)?EquipmentLibrary.FindModel(modelId):null;}
+     }
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs
+@@ -101,7 +101,7 @@
+                 case "Overworld.2.5.0": case "Overworld.3.5.0": case "Overworld.4.5.0":
+                 case "Overworld.2.6.0": case "Overworld.4.6.0": case "Overworld.2.7.0":
+                 case "Overworld.3.7.0": case "Overworld.4.7.0": return true;
+-                default: return (GrovelandsCompositionPlan.IsWildernessZone(id) || SpreadCompositionPlan.IsWildernessZone(id) || SoddenCompositionPlan.IsWildernessZone(id) || BeatingCompositionPlan.IsWildernessZone(id) || StumpCompositionPlan.IsWildernessZone(id) || OverwritCompositionPlan.IsWildernessZone(id) || GinmereCompositionPlan.IsSupportedZone(id) || CathedralCompositionPlan.IsSupportedZone(id) || StillleafCompositionPlan.IsSupportedZone(id) || OlderdeepCompositionPlan.IsSupportedZone(id) || WellmeetCompositionPlan.IsSupportedZone(id));
++                default: return (GrovelandsCompositionPlan.IsWildernessZone(id) || SpreadCompositionPlan.IsWildernessZone(id) || SoddenCompositionPlan.IsWildernessZone(id) || BeatingCompositionPlan.IsWildernessZone(id) || StumpCompositionPlan.IsWildernessZone(id) || OverwritCompositionPlan.IsWildernessZone(id) || GinmereCompositionPlan.IsSupportedZone(id) || CathedralCompositionPlan.IsSupportedZone(id) || StillleafCompositionPlan.IsSupportedZone(id) || OlderdeepCompositionPlan.IsSupportedZone(id) || WellmeetCompositionPlan.IsSupportedZone(id) || CinderholdCompositionPlan.IsSupportedZone(id) || SumpholdCompositionPlan.IsSupportedZone(id));
+             }
+         }
+         /// <summary>Refresh native references after cell/FOV invalidation. Null
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DGroundPatches.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DGroundPatches.cs
+@@ -289,7 +289,8 @@
+             // surface. Ginmere's normal mouth retains its native stone landing.
+             if(OverwritCompositionPlan.IsWildernessZone(zone.ZoneID)||GinmereCompositionPlan.IsSupportedZone(zone.ZoneID)
+                 ||CathedralCompositionPlan.IsSupportedZone(zone.ZoneID)||StillleafCompositionPlan.IsSupportedZone(zone.ZoneID)
+-                ||OlderdeepCompositionPlan.IsSupportedZone(zone.ZoneID)||WellmeetCompositionPlan.IsSupportedZone(zone.ZoneID))return null;
++                ||OlderdeepCompositionPlan.IsSupportedZone(zone.ZoneID)||WellmeetCompositionPlan.IsSupportedZone(zone.ZoneID)
++                ||CinderholdCompositionPlan.IsSupportedZone(zone.ZoneID)||SumpholdCompositionPlan.IsSupportedZone(zone.ZoneID))return null;
+             bool stone = MultiCellPilotRuntime.IsActive(zone) || zone.ZoneID == "Overworld.2.5.0" || zone.ZoneID == "Overworld.3.5.0" || zone.ZoneID == "Overworld.4.5.0";
+             var binding = catalog.FindBlueprint(stone ? "TepuiStone" : "Grass");
+             if (binding?.models == null || binding.models.Length == 0) throw new InvalidOperationException("Clean ring ground fallback is unavailable.");
+--- a/Assets/Scripts/Presentation/Rendering/VoxelWorldPresentation.cs
++++ b/Assets/Scripts/Presentation/Rendering/VoxelWorldPresentation.cs
+@@ -58,8 +58,23 @@
+                 kit.Validate();foreach(var entry in kit.Entries)generated.Add(entry.Mesh);
+                 RegisterWreckage(false);
+             }
++            bool cinderhold=CinderholdCompositionPlan.IsSupportedZone(zoneId);
++            bool sumphold=SumpholdCompositionPlan.IsSupportedZone(zoneId);
++            if(cinderhold||sumphold)
++            {
++                var post=CinderholdVoxelKitLibrary.Load();var yard=SumpholdVoxelKitLibrary.Load();
++                if(post==null||yard==null)throw new InvalidOperationException("Required workshop/boatyard voxel kits missing.");
++                post.Validate();yard.Validate();
++                foreach(var entry in post.Entries)generated.Add(entry.Mesh);
++                foreach(var entry in yard.Entries)generated.Add(entry.Mesh);
++                var wet=SoddenVoxelLibrary.Load();var reeds=SpreadVoxelLibrary.Load();
++                if(wet==null||reeds==null)throw new InvalidOperationException("Required native wet-margin art missing.");
++                wet.Validate();reeds.Validate();
++                foreach(var entry in wet.Entries)generated.Add(entry.Mesh);
++                foreach(var entry in reeds.Entries)generated.Add(entry.Mesh);
++            }
+             bool olderdeep=OlderdeepCompositionPlan.IsSupportedZone(zoneId);
+-            bool wellmeet=WellmeetCompositionPlan.IsSupportedZone(zoneId);
++            bool wellmeet=WellmeetCompositionPlan.IsSupportedZone(zoneId)||cinderhold||sumphold;
+             if(olderdeep||wellmeet)
+             {
+                 var founding=OlderdeepVoxelLibrary.Load();
+@@ -119,7 +134,7 @@
+             {
+                 case "Overworld.2.6.0": case "Overworld.3.6.0":
+                 case "Overworld.3.7.0": case "Overworld.4.7.0": return true;
+-                default: return (GrovelandsCompositionPlan.IsWildernessZone(zoneId) || SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId) || BeatingCompositionPlan.IsWildernessZone(zoneId) || StumpCompositionPlan.IsWildernessZone(zoneId) || OverwritCompositionPlan.IsWildernessZone(zoneId) || GinmereCompositionPlan.IsSupportedZone(zoneId) || CathedralCompositionPlan.IsSupportedZone(zoneId) || StillleafCompositionPlan.IsSupportedZone(zoneId) || OlderdeepCompositionPlan.IsSupportedZone(zoneId) || WellmeetCompositionPlan.IsSupportedZone(zoneId));
++                default: return (GrovelandsCompositionPlan.IsWildernessZone(zoneId) || SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId) || BeatingCompositionPlan.IsWildernessZone(zoneId) || StumpCompositionPlan.IsWildernessZone(zoneId) || OverwritCompositionPlan.IsWildernessZone(zoneId) || GinmereCompositionPlan.IsSupportedZone(zoneId) || CathedralCompositionPlan.IsSupportedZone(zoneId) || StillleafCompositionPlan.IsSupportedZone(zoneId) || OlderdeepCompositionPlan.IsSupportedZone(zoneId) || WellmeetCompositionPlan.IsSupportedZone(zoneId) || CinderholdCompositionPlan.IsSupportedZone(zoneId) || SumpholdCompositionPlan.IsSupportedZone(zoneId));
+             }
+         }
+         public static bool IsEnabledFor(Zone zone)

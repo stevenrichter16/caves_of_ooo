@@ -1,0 +1,655 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b3aa491a69346b4a3f0797242d2d5db, type: 3}
+  m_Name: Library
+  m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.Rendering.CinderholdVoxelKitLibrary
+  Entries:
+  - Id: cinderhold-ground-0
+    Prefab: {fileID: 4322118707513142935, guid: 6d17bb5a6ff3942c1a19378d12b96179, type: 3}
+    Mesh: {fileID: 4300000, guid: 2db926f45ab7642f28f68b8e044fce84, type: 2}
+    Spec:
+      id: cinderhold-ground-0
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-ground-0.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0325, z: 0}
+      boundsSize: {x: 1, y: 0.065, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: cinderhold-ground-1
+    Prefab: {fileID: 7158969369830053226, guid: b89f0239e3c2d4e609b27d584d3df204, type: 3}
+    Mesh: {fileID: 4300000, guid: b93fff7a37d0140bb8cee5ac6d239b41, type: 2}
+    Spec:
+      id: cinderhold-ground-1
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-ground-1.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0365, z: 0}
+      boundsSize: {x: 1, y: 0.073, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: cinderhold-ground-2
+    Prefab: {fileID: 952945191535693219, guid: f3e26837dbaf547ca9443e757a837bfd, type: 3}
+    Mesh: {fileID: 4300000, guid: 7640188c7a228478f9bd037d3a6ed7a1, type: 2}
+    Spec:
+      id: cinderhold-ground-2
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-ground-2.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0405, z: 0}
+      boundsSize: {x: 1, y: 0.081, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: cinderhold-ground-3
+    Prefab: {fileID: 1566664104514671696, guid: f68b9abf3613c4d8e80fe1c6ab932711, type: 3}
+    Mesh: {fileID: 4300000, guid: 28bd7a3aee27948ba87d0e88ae992e1a, type: 2}
+    Spec:
+      id: cinderhold-ground-3
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-ground-3.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0445, z: 0}
+      boundsSize: {x: 1, y: 0.089, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: cinderhold-wall-0
+    Prefab: {fileID: 1872332395752972557, guid: c0c6f6e1dd9c94c80b9bfbafccd928b6, type: 3}
+    Mesh: {fileID: 4300000, guid: ef2b4c992ccb5452294f7490c7605fad, type: 2}
+    Spec:
+      id: cinderhold-wall-0
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-wall-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.54999995, z: 0}
+      boundsSize: {x: 1, y: 1.0999999, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: cinderhold-wall-1
+    Prefab: {fileID: 558116958816689173, guid: 162849af0e3ac4491af333d5f9895fb5, type: 3}
+    Mesh: {fileID: 4300000, guid: 529c9c18c0b854eef8a1b57fa7d61ad1, type: 2}
+    Spec:
+      id: cinderhold-wall-1
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-wall-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.55, z: 0}
+      boundsSize: {x: 1, y: 1.1, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: cinderhold-wall-2
+    Prefab: {fileID: 942365758502968237, guid: 51a9a6ca7d8744a699f6216e1c4a6e90, type: 3}
+    Mesh: {fileID: 4300000, guid: 6b202feeb795741eba6c13097cc945aa, type: 2}
+    Spec:
+      id: cinderhold-wall-2
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-wall-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.55, z: 0}
+      boundsSize: {x: 1, y: 1.1, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: cinderhold-wall-3
+    Prefab: {fileID: 5858157321195161473, guid: 8df50e6c79c7f4c52b907b159d4ceeb9, type: 3}
+    Mesh: {fileID: 4300000, guid: 08efb1281fcdb4762a5ae164aa04ba82, type: 2}
+    Spec:
+      id: cinderhold-wall-3
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-wall-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.55, z: 0}
+      boundsSize: {x: 1, y: 1.1, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: cinderhold-factor-0
+    Prefab: {fileID: 8101582171822110752, guid: aa85b1eb148584bc78d69a234f5474c5, type: 3}
+    Mesh: {fileID: 4300000, guid: 3391e941c608244348d2d1468b4c38e9, type: 2}
+    Spec:
+      id: cinderhold-factor-0
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-factor-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.755, z: 0.052500002}
+      boundsSize: {x: 0.71, y: 1.51, z: 0.445}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: cinderhold-factor-1
+    Prefab: {fileID: 4035416379268174632, guid: c6e2ee8942c02423088f4f27bd0d012b, type: 3}
+    Mesh: {fileID: 4300000, guid: db6cc9a3f0773444596c5b45f55e5f2b, type: 2}
+    Spec:
+      id: cinderhold-factor-1
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-factor-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.755, z: 0.052500002}
+      boundsSize: {x: 0.71, y: 1.51, z: 0.445}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: cinderhold-factor-2
+    Prefab: {fileID: 7189756227383314281, guid: 94b7bbccd59944a7fa0abe7b32068207, type: 3}
+    Mesh: {fileID: 4300000, guid: 8a02f690443e14fd2a57a44b24b1798a, type: 2}
+    Spec:
+      id: cinderhold-factor-2
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-factor-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.755, z: 0.052500002}
+      boundsSize: {x: 0.71, y: 1.51, z: 0.445}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: cinderhold-factor-3
+    Prefab: {fileID: 4419582965471246753, guid: aefa8e3df2e384f61ad5ef089312b5ea, type: 3}
+    Mesh: {fileID: 4300000, guid: 30477985e8ad14a5db55eebf60a334b5, type: 2}
+    Spec:
+      id: cinderhold-factor-3
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-factor-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.755, z: 0.052500002}
+      boundsSize: {x: 0.71, y: 1.51, z: 0.445}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: cinderhold-notice-0
+    Prefab: {fileID: 3234716362023529606, guid: 1eaec09a8c51e44668acbae7bdcf4673, type: 3}
+    Mesh: {fileID: 4300000, guid: bef468fa0c8da420eaec46cd8ddcad52, type: 2}
+    Spec:
+      id: cinderhold-notice-0
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-notice-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.735, z: -0.0375}
+      boundsSize: {x: 0.88, y: 1.47, z: 0.205}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: cinderhold-notice-1
+    Prefab: {fileID: 5192156328128053890, guid: 4f281c543ba6e4cd495e14e4f0809061, type: 3}
+    Mesh: {fileID: 4300000, guid: 3fff1ba3a06f84b4b89f18dba3158c93, type: 2}
+    Spec:
+      id: cinderhold-notice-1
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-notice-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.735, z: -0.0375}
+      boundsSize: {x: 0.88, y: 1.47, z: 0.205}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: cinderhold-notice-2
+    Prefab: {fileID: 696423328693452697, guid: 20bbb44c9016e49259ea737c2b487514, type: 3}
+    Mesh: {fileID: 4300000, guid: 87ca6767692244c62a8063e926c91484, type: 2}
+    Spec:
+      id: cinderhold-notice-2
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-notice-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.735, z: -0.0375}
+      boundsSize: {x: 0.88, y: 1.47, z: 0.205}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: cinderhold-notice-3
+    Prefab: {fileID: 6503523981106052974, guid: d5f57316e144f47fe955b744791a964c, type: 3}
+    Mesh: {fileID: 4300000, guid: ea71ae87067c5460fae39935a0610881, type: 2}
+    Spec:
+      id: cinderhold-notice-3
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-notice-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.735, z: -0.0375}
+      boundsSize: {x: 0.88, y: 1.47, z: 0.205}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: cinderhold-forge-0
+    Prefab: {fileID: 2883098941087189056, guid: 7c82d9f60f994438e9419a38dce58494, type: 3}
+    Mesh: {fileID: 4300000, guid: a8c82a80fb4774e23bac71084af610d1, type: 2}
+    Spec:
+      id: cinderhold-forge-0
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-forge-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.74, z: 0.000000014901161}
+      boundsSize: {x: 0.81, y: 1.48, z: 0.91999996}
+      triangles: 84
+      clips: []
+      sockets: []
+  - Id: cinderhold-forge-1
+    Prefab: {fileID: 4956350386923600374, guid: ccbcf6d0043d1485491c3bf0d794cf5c, type: 3}
+    Mesh: {fileID: 4300000, guid: fa072365e4e484a75bbcdc5715d2615c, type: 2}
+    Spec:
+      id: cinderhold-forge-1
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-forge-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.7575, z: 0.000000014901161}
+      boundsSize: {x: 0.81, y: 1.515, z: 0.91999996}
+      triangles: 84
+      clips: []
+      sockets: []
+  - Id: cinderhold-forge-2
+    Prefab: {fileID: 6910252539488547773, guid: 415817ef424cd41dcbd102be5610e422, type: 3}
+    Mesh: {fileID: 4300000, guid: 96c8c8288b7d34f619f9b2f011c63e74, type: 2}
+    Spec:
+      id: cinderhold-forge-2
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-forge-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.77500004, z: 0.000000014901161}
+      boundsSize: {x: 0.81, y: 1.5500001, z: 0.91999996}
+      triangles: 84
+      clips: []
+      sockets: []
+  - Id: cinderhold-forge-3
+    Prefab: {fileID: 2055879324918504754, guid: 19285a390a5154ce8b6975abf086e0a4, type: 3}
+    Mesh: {fileID: 4300000, guid: 6d614e783c82a4e149b2850dd054c91f, type: 2}
+    Spec:
+      id: cinderhold-forge-3
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-forge-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.7925, z: 0.000000014901161}
+      boundsSize: {x: 0.81, y: 1.585, z: 0.91999996}
+      triangles: 84
+      clips: []
+      sockets: []
+  - Id: cinderhold-anvil-0
+    Prefab: {fileID: 5829143209404015082, guid: 2f23f76afac9741b593006e1cf5cef96, type: 3}
+    Mesh: {fileID: 4300000, guid: b758da3681af84c448f35ac6cab37401, type: 2}
+    Spec:
+      id: cinderhold-anvil-0
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-anvil-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0.06999999, y: 0.34, z: 0}
+      boundsSize: {x: 0.82, y: 0.68, z: 0.5}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: cinderhold-anvil-1
+    Prefab: {fileID: 6130787867157501559, guid: 0a676c2671aac4b3bba165c3ed323837, type: 3}
+    Mesh: {fileID: 4300000, guid: cc7b84a660f244b56a06d77246d9f6bc, type: 2}
+    Spec:
+      id: cinderhold-anvil-1
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-anvil-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0.06999999, y: 0.34, z: 0}
+      boundsSize: {x: 0.82, y: 0.68, z: 0.5}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: cinderhold-anvil-2
+    Prefab: {fileID: 8671003913952395496, guid: 94a8bc6bde7dc4ce38c9590fdb9690b3, type: 3}
+    Mesh: {fileID: 4300000, guid: 240c9b8162afa4595b021edaa4e27096, type: 2}
+    Spec:
+      id: cinderhold-anvil-2
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-anvil-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0.06999999, y: 0.34, z: 0}
+      boundsSize: {x: 0.82, y: 0.68, z: 0.5}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: cinderhold-anvil-3
+    Prefab: {fileID: 2202668458736128390, guid: 7b2d9572fc7564157938574929aa1ffc, type: 3}
+    Mesh: {fileID: 4300000, guid: ff2bca1277e524e84a5779566a92f46c, type: 2}
+    Spec:
+      id: cinderhold-anvil-3
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-anvil-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0.06999999, y: 0.34, z: 0}
+      boundsSize: {x: 0.82, y: 0.68, z: 0.5}
+      triangles: 48
+      clips: []
+      sockets: []
+  - Id: cinderhold-smith-0
+    Prefab: {fileID: 6174960477304441073, guid: f85ccc2a3784841ac96ab8dd0046f22c, type: 3}
+    Mesh: {fileID: 4300000, guid: e3ea07278fdd3419f9e17be9480076dd, type: 2}
+    Spec:
+      id: cinderhold-smith-0
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-smith-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.73499995, z: 0.016999997}
+      boundsSize: {x: 0.88, y: 1.4699999, z: 0.394}
+      triangles: 96
+      clips: []
+      sockets: []
+  - Id: cinderhold-smith-1
+    Prefab: {fileID: 6851655742349155403, guid: 9aa25a4c9b3c34cd79d7135f054eae4f, type: 3}
+    Mesh: {fileID: 4300000, guid: a2ab1eae9b41c4ac6a0388cd8508a715, type: 2}
+    Spec:
+      id: cinderhold-smith-1
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-smith-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.73499995, z: 0.016999997}
+      boundsSize: {x: 0.88, y: 1.4699999, z: 0.394}
+      triangles: 96
+      clips: []
+      sockets: []
+  - Id: cinderhold-smith-2
+    Prefab: {fileID: 6589783429658077350, guid: 9b43fffc052fe46b6a254c22ed059b0e, type: 3}
+    Mesh: {fileID: 4300000, guid: 1ec2acd9bb473480fadd87a9c2cdf854, type: 2}
+    Spec:
+      id: cinderhold-smith-2
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-smith-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.73499995, z: 0.016999997}
+      boundsSize: {x: 0.88, y: 1.4699999, z: 0.394}
+      triangles: 96
+      clips: []
+      sockets: []
+  - Id: cinderhold-smith-3
+    Prefab: {fileID: 7262253919419406172, guid: 0dbc3057efeaf4ce6b3bdb1f793bbf27, type: 3}
+    Mesh: {fileID: 4300000, guid: 5a93e0ae398164817a9b8d50f7833ee5, type: 2}
+    Spec:
+      id: cinderhold-smith-3
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-smith-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.73499995, z: 0.016999997}
+      boundsSize: {x: 0.88, y: 1.4699999, z: 0.394}
+      triangles: 96
+      clips: []
+      sockets: []
+  - Id: cinderhold-stall-0
+    Prefab: {fileID: 7656831840823752487, guid: bd08cdd320a5c4790ab9cf688e2f5e3d, type: 3}
+    Mesh: {fileID: 4300000, guid: 548e1ce8c630e4ed2ab9b0ba8dbd0fe6, type: 2}
+    Spec:
+      id: cinderhold-stall-0
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-stall-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.77, z: 0}
+      boundsSize: {x: 1, y: 1.54, z: 0.8}
+      triangles: 96
+      clips: []
+      sockets: []
+  - Id: cinderhold-stall-1
+    Prefab: {fileID: 8073083159291844800, guid: e7892df47c173414b89c57827a47fde8, type: 3}
+    Mesh: {fileID: 4300000, guid: 62202ac51f09f4c0f94e7f490e6dde53, type: 2}
+    Spec:
+      id: cinderhold-stall-1
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-stall-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.77, z: 0}
+      boundsSize: {x: 1, y: 1.54, z: 0.8}
+      triangles: 96
+      clips: []
+      sockets: []
+  - Id: cinderhold-stall-2
+    Prefab: {fileID: 6431852182628036126, guid: 66ffc45d5fef248e6a45abac6a4d86a4, type: 3}
+    Mesh: {fileID: 4300000, guid: 6855af1b6432c491bbe3459f0a7c8fee, type: 2}
+    Spec:
+      id: cinderhold-stall-2
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-stall-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.77, z: 0}
+      boundsSize: {x: 1, y: 1.54, z: 0.8}
+      triangles: 96
+      clips: []
+      sockets: []
+  - Id: cinderhold-stall-3
+    Prefab: {fileID: 5348172977935865539, guid: 6688c005e1fb94e39bf725865ff26c7c, type: 3}
+    Mesh: {fileID: 4300000, guid: e14775fd81793462a8c09517551a62b3, type: 2}
+    Spec:
+      id: cinderhold-stall-3
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-stall-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.77, z: 0}
+      boundsSize: {x: 1, y: 1.54, z: 0.8}
+      triangles: 96
+      clips: []
+      sockets: []
+  - Id: cinderhold-token-0
+    Prefab: {fileID: 7395353637352333748, guid: 4d6db92c4881a4408941f6ad479c3550, type: 3}
+    Mesh: {fileID: 4300000, guid: b1eaac428bae5433aa8a38fd73ca4f22, type: 2}
+    Spec:
+      id: cinderhold-token-0
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-token-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.065, z: -0.024999991}
+      boundsSize: {x: 0.42000002, y: 0.13, z: 0.75}
+      triangles: 72
+      clips: []
+      sockets: []
+  - Id: cinderhold-token-1
+    Prefab: {fileID: 3258942534376137909, guid: 9e1977fffeb264b7db8db2cbeaf553d5, type: 3}
+    Mesh: {fileID: 4300000, guid: 9852c18683f95427f964bc095971f717, type: 2}
+    Spec:
+      id: cinderhold-token-1
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-token-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.065, z: -0.024999991}
+      boundsSize: {x: 0.42000002, y: 0.13, z: 0.75}
+      triangles: 72
+      clips: []
+      sockets: []
+  - Id: cinderhold-token-2
+    Prefab: {fileID: 1600240635599627519, guid: 19f03899ba7de442681242bbd2a53696, type: 3}
+    Mesh: {fileID: 4300000, guid: c9e2b6aeb068e41f0bd98454c65b572e, type: 2}
+    Spec:
+      id: cinderhold-token-2
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-token-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.065, z: -0.024999991}
+      boundsSize: {x: 0.42000002, y: 0.13, z: 0.75}
+      triangles: 72
+      clips: []
+      sockets: []
+  - Id: cinderhold-token-3
+    Prefab: {fileID: 5012297148080903666, guid: a03523b01d1fd47799cc6b2fc90449a1, type: 3}
+    Mesh: {fileID: 4300000, guid: ab19ac1f144b64c3182e4d39fec6e382, type: 2}
+    Spec:
+      id: cinderhold-token-3
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-token-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.065, z: -0.024999991}
+      boundsSize: {x: 0.42000002, y: 0.13, z: 0.75}
+      triangles: 72
+      clips: []
+      sockets: []
+  - Id: cinderhold-path-0
+    Prefab: {fileID: 3118952980677376300, guid: 10b62c3da7cc94842b57b51a2b2f0608, type: 3}
+    Mesh: {fileID: 4300000, guid: 1646c9fae056b4185aab6dc2137de28b, type: 2}
+    Spec:
+      id: cinderhold-path-0
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-path-0.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0325, z: 0}
+      boundsSize: {x: 1, y: 0.065, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: cinderhold-path-1
+    Prefab: {fileID: 5132273845292606473, guid: 3b5129c23faa94c44947baa890d18ff3, type: 3}
+    Mesh: {fileID: 4300000, guid: 13977cedea5eb46a1a030ce4fe834a0e, type: 2}
+    Spec:
+      id: cinderhold-path-1
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-path-1.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0365, z: 0}
+      boundsSize: {x: 1, y: 0.073, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: cinderhold-path-2
+    Prefab: {fileID: 5940629401644416364, guid: c5e191cdd412845a3bc02dd42a9f7397, type: 3}
+    Mesh: {fileID: 4300000, guid: 6ab1d716c4a334bdab0f7d13e0148bee, type: 2}
+    Spec:
+      id: cinderhold-path-2
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-path-2.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0405, z: 0}
+      boundsSize: {x: 1, y: 0.081, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: cinderhold-path-3
+    Prefab: {fileID: 1910726565102557117, guid: c2a07bb4d696d41f3bafc5c67f451e21, type: 3}
+    Mesh: {fileID: 4300000, guid: 56db4655b5d7c4cfda7f31ae6becb27d, type: 2}
+    Spec:
+      id: cinderhold-path-3
+      path: Assets/Resources/CinderholdVoxel3D/cinderhold-path-3.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0445, z: 0}
+      boundsSize: {x: 1, y: 0.089, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []

@@ -1,0 +1,399 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49bebc7c90374ee39fb270fd48bf59d2, type: 3}
+  m_Name: Library
+  m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.Rendering.SumpholdVoxelKitLibrary
+  Entries:
+  - Id: sumphold-ground-0
+    Prefab: {fileID: 2147901642520805642, guid: 5962af1f0ca124d36b83feb729ad2c3f, type: 3}
+    Mesh: {fileID: 4300000, guid: 889c6ad83eba44e87a9ef8292b361862, type: 2}
+    Spec:
+      id: sumphold-ground-0
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-ground-0.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0325, z: 0}
+      boundsSize: {x: 1, y: 0.065, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: sumphold-ground-1
+    Prefab: {fileID: 6517848278249647098, guid: 66d78b65c3fda4d7c881775e9b60dd62, type: 3}
+    Mesh: {fileID: 4300000, guid: 34bbea3bcad084428ab027a0a9851fda, type: 2}
+    Spec:
+      id: sumphold-ground-1
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-ground-1.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0365, z: 0}
+      boundsSize: {x: 1, y: 0.073, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: sumphold-ground-2
+    Prefab: {fileID: 5056837519736791340, guid: e50da8a4e038348238592346d774b994, type: 3}
+    Mesh: {fileID: 4300000, guid: 6b41378c3c098405b8e48a47ebd81248, type: 2}
+    Spec:
+      id: sumphold-ground-2
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-ground-2.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0405, z: 0}
+      boundsSize: {x: 1, y: 0.081, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: sumphold-ground-3
+    Prefab: {fileID: 3159981557361169352, guid: 2e9684774a9a64aeca678786ed65a444, type: 3}
+    Mesh: {fileID: 4300000, guid: 0c7dbbf4931734db5bfbf2592565e73d, type: 2}
+    Spec:
+      id: sumphold-ground-3
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-ground-3.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0445, z: 0}
+      boundsSize: {x: 1, y: 0.089, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: sumphold-wall-0
+    Prefab: {fileID: 4370382805252949179, guid: 7e16b3487354249e6872bfa00678b9ee, type: 3}
+    Mesh: {fileID: 4300000, guid: 2bb594d60f6ca4f0887988b90dd0a18a, type: 2}
+    Spec:
+      id: sumphold-wall-0
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-wall-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.525, z: 0}
+      boundsSize: {x: 1, y: 1.05, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: sumphold-wall-1
+    Prefab: {fileID: 2267336151026930703, guid: da9cf1f87bf394274985690a0356ba92, type: 3}
+    Mesh: {fileID: 4300000, guid: 22aa9dba2cf4248b5a5b66587bdfb600, type: 2}
+    Spec:
+      id: sumphold-wall-1
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-wall-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.525, z: 0}
+      boundsSize: {x: 1, y: 1.05, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: sumphold-wall-2
+    Prefab: {fileID: 4003349848512292936, guid: 00d8d5cc378e94e20a238dfc549c8aee, type: 3}
+    Mesh: {fileID: 4300000, guid: 8244e8157ce9f4c17ab655fd059fca9d, type: 2}
+    Spec:
+      id: sumphold-wall-2
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-wall-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.525, z: 0}
+      boundsSize: {x: 1, y: 1.05, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: sumphold-wall-3
+    Prefab: {fileID: 105242472863827332, guid: c5d88f16e7ca54403847407ab4b1f0f0, type: 3}
+    Mesh: {fileID: 4300000, guid: d9bbbf7d32dec40cdab26eb1e13900ce, type: 2}
+    Spec:
+      id: sumphold-wall-3
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-wall-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.525, z: 0}
+      boundsSize: {x: 1, y: 1.05, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: sumphold-hull-0
+    Prefab: {fileID: 5344171419872919074, guid: c71c99ec453d7472ca4d88f359df2d3f, type: 3}
+    Mesh: {fileID: 4300000, guid: f699c51dd847a42bcaee03105c60abe3, type: 2}
+    Spec:
+      id: sumphold-hull-0
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-hull-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.395, z: 0}
+      boundsSize: {x: 0.96, y: 0.79, z: 0.76}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: sumphold-hull-1
+    Prefab: {fileID: 1297364201148881895, guid: 1b7dfe0d954df482bb507e0eef6fb0bd, type: 3}
+    Mesh: {fileID: 4300000, guid: b08c3af2149244003b36e68f2bf950fa, type: 2}
+    Spec:
+      id: sumphold-hull-1
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-hull-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.395, z: 0}
+      boundsSize: {x: 0.96, y: 0.79, z: 0.76}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: sumphold-hull-2
+    Prefab: {fileID: 3628232344212734909, guid: 9840c621582684d469bf3722bcc72a2c, type: 3}
+    Mesh: {fileID: 4300000, guid: e172254e7caec447fad97b5e65972ded, type: 2}
+    Spec:
+      id: sumphold-hull-2
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-hull-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.395, z: 0}
+      boundsSize: {x: 0.96, y: 0.79, z: 0.76}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: sumphold-hull-3
+    Prefab: {fileID: 4877252452131625768, guid: fb5437c96721a4ccc8a0722f3b5c82e3, type: 3}
+    Mesh: {fileID: 4300000, guid: 7e9e18744bd1348c7800f751c96083c9, type: 2}
+    Spec:
+      id: sumphold-hull-3
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-hull-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.395, z: 0}
+      boundsSize: {x: 0.96, y: 0.79, z: 0.76}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: sumphold-rolls-0
+    Prefab: {fileID: 4619529034338946448, guid: 0f39928d528fc4f8290d81dae62bea0f, type: 3}
+    Mesh: {fileID: 4300000, guid: 09acea35d1f684c6b8fea38839b51dd2, type: 2}
+    Spec:
+      id: sumphold-rolls-0
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-rolls-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.64, z: -0.03999999}
+      boundsSize: {x: 1, y: 1.28, z: 0.78}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: sumphold-rolls-1
+    Prefab: {fileID: 245626149595210947, guid: 91abdf1428baa4b2a85ffe11313ae52a, type: 3}
+    Mesh: {fileID: 4300000, guid: cfd16c945c0c5455faaff20da5404c0b, type: 2}
+    Spec:
+      id: sumphold-rolls-1
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-rolls-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.64, z: -0.03999999}
+      boundsSize: {x: 1, y: 1.28, z: 0.78}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: sumphold-rolls-2
+    Prefab: {fileID: 7875455281326634771, guid: c4ce6528281f642fe82984d632ab2784, type: 3}
+    Mesh: {fileID: 4300000, guid: 4876b80f369c8461584685aa5264ae28, type: 2}
+    Spec:
+      id: sumphold-rolls-2
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-rolls-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.64, z: -0.03999999}
+      boundsSize: {x: 1, y: 1.28, z: 0.78}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: sumphold-rolls-3
+    Prefab: {fileID: 3688845423898748216, guid: 4832155e0bbd4415a8b3c5538213f99c, type: 3}
+    Mesh: {fileID: 4300000, guid: 7923abdecf6e4445e9f40bf386f1c966, type: 2}
+    Spec:
+      id: sumphold-rolls-3
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-rolls-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.64, z: -0.03999999}
+      boundsSize: {x: 1, y: 1.28, z: 0.78}
+      triangles: 108
+      clips: []
+      sockets: []
+  - Id: sumphold-cutter-0
+    Prefab: {fileID: 2346003591974050247, guid: dfc7288b7f0e24a9ea11409f4fed98f4, type: 3}
+    Mesh: {fileID: 4300000, guid: 3bc0daa1c4aa34ca184004c46d4181ec, type: 2}
+    Spec:
+      id: sumphold-cutter-0
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-cutter-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0.075, y: 0.75, z: 0.024750002}
+      boundsSize: {x: 0.83000004, y: 1.5, z: 0.36949998}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: sumphold-cutter-1
+    Prefab: {fileID: 4486121164448544254, guid: 297c5b75664d647c681809653d8e9821, type: 3}
+    Mesh: {fileID: 4300000, guid: 15f6d51ab18634494a4243ccd069e248, type: 2}
+    Spec:
+      id: sumphold-cutter-1
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-cutter-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0.075, y: 0.75, z: 0.024750002}
+      boundsSize: {x: 0.83000004, y: 1.5, z: 0.36949998}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: sumphold-cutter-2
+    Prefab: {fileID: 7187314315269648392, guid: 33c87a61dc9ef4a2e9a4dff9a16da105, type: 3}
+    Mesh: {fileID: 4300000, guid: a9eef009adbe6423688ceb02d5d25059, type: 2}
+    Spec:
+      id: sumphold-cutter-2
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-cutter-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0.075, y: 0.75, z: 0.024750002}
+      boundsSize: {x: 0.83000004, y: 1.5, z: 0.36949998}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: sumphold-cutter-3
+    Prefab: {fileID: 1488701159121485688, guid: c3037044c12a44d46bae12b6ee3be8ca, type: 3}
+    Mesh: {fileID: 4300000, guid: b1a849ee3392546fe8e45bdf98387bfe, type: 2}
+    Spec:
+      id: sumphold-cutter-3
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-cutter-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0.075, y: 0.75, z: 0.024750002}
+      boundsSize: {x: 0.83000004, y: 1.5, z: 0.36949998}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: sumphold-water-0
+    Prefab: {fileID: 5013282047699749369, guid: 1fd6062ce957946838fc53485257d162, type: 3}
+    Mesh: {fileID: 4300000, guid: c933339e8db7e48a1b137ceec115c8a1, type: 2}
+    Spec:
+      id: sumphold-water-0
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-water-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0255, z: 0}
+      boundsSize: {x: 1, y: 0.075, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: sumphold-water-1
+    Prefab: {fileID: 5746913291369078472, guid: b532da34ad6ac4989ab011c12d8e1dfa, type: 3}
+    Mesh: {fileID: 4300000, guid: 419511b7648cf40e78bdd6ef4da71fea, type: 2}
+    Spec:
+      id: sumphold-water-1
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-water-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0295, z: 0}
+      boundsSize: {x: 1, y: 0.083000004, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: sumphold-water-2
+    Prefab: {fileID: 8865786006659802804, guid: 16562c77947b042a8a978382703338a7, type: 3}
+    Mesh: {fileID: 4300000, guid: 89cac7752be674df1afa550f073339b6, type: 2}
+    Spec:
+      id: sumphold-water-2
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-water-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0335, z: 0}
+      boundsSize: {x: 1, y: 0.091000006, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: sumphold-water-3
+    Prefab: {fileID: 5769436053957735575, guid: 2fcfafdba5d714f41916d61e84c8b8c8, type: 3}
+    Mesh: {fileID: 4300000, guid: 584eaaeb1187f48d1a9994cce9f6dc46, type: 2}
+    Spec:
+      id: sumphold-water-3
+      path: Assets/Resources/SumpholdVoxel3D/sumphold-water-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0375, z: 0}
+      boundsSize: {x: 1, y: 0.09900001, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []

@@ -16,6 +16,10 @@ namespace CavesOfOoo.Core
     public class HouseDramaZoneBuilder : IZoneBuilder
     {
         public string Name => "HouseDramaZoneBuilder";
+        /// <summary>Named composed towns reserve dry approaches and work cells
+        /// before late drama placement. Other villages keep their existing policy.</summary>
+        public bool RespectReservations { get; set; }
+
         public int Priority => 4500;
 
         private readonly string _dramaId;
@@ -162,12 +166,12 @@ namespace CavesOfOoo.Core
             return factory.CreateEntity(blueprint);
         }
 
-        private static List<(int x, int y)> GatherInteriorCells(Zone zone)
+        private List<(int x, int y)> GatherInteriorCells(Zone zone)
         {
             var cells = new List<(int x, int y)>();
             zone.ForEachCell((cell, x, y) =>
             {
-                if (!cell.IsPassable()) return;
+                if (!cell.IsPassable() || RespectReservations && zone.GenReservedCells.Contains((x,y))) return;
                 for (int i = 0; i < cell.Objects.Count; i++)
                 {
                     if (cell.Objects[i].BlueprintName == "StoneFloor")
@@ -180,12 +184,12 @@ namespace CavesOfOoo.Core
             return cells;
         }
 
-        private static List<(int x, int y)> GatherOpenCells(Zone zone)
+        private List<(int x, int y)> GatherOpenCells(Zone zone)
         {
             var cells = new List<(int x, int y)>();
             zone.ForEachCell((cell, x, y) =>
             {
-                if (cell.IsPassable())
+                if (cell.IsPassable() && (!RespectReservations || !zone.GenReservedCells.Contains((x,y))))
                     cells.Add((x, y));
             });
             return cells;
