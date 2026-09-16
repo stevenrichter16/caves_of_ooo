@@ -36,6 +36,7 @@ namespace CavesOfOoo.Rendering
             new Row("Tab / Esc", "pause menu (save, load, controls, quit)"),
             new Row("F5", "quick save"),
             new Row("F6", "quick load"),
+            new Row("F12", "toggle player invincibility (debug; resets on load)"),
             new Row("<  >", "take stairs up / down"),
             new Row("F1 / ?", "this controls list"),
         };

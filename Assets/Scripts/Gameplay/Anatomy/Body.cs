@@ -249,6 +249,7 @@ namespace CavesOfOoo.Core
             if (part == null || _body == null) return false;
             if (part == _body) return false; // Can't dismember root
             if (part.ParentPart == null) return false; // Already detached
+            if (DebugInvincibility.Blocks(ParentEntity, "dismemberment", source)) return false;
 
             // Gate check
             var beforeEvent = GameEvent.New("BeforeDismember");

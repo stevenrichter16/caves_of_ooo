@@ -1,0 +1,48 @@
+--- a/Assets/Scripts/Gameplay/Combat/CombatSystem.cs
++++ b/Assets/Scripts/Gameplay/Combat/CombatSystem.cs
+@@ -851,6 +851,7 @@
+             using (PerformanceMarkers.Combat.ApplyDamage.Auto())
+             {
+                 if (target == null || damage == null) return;
++                if (DebugInvincibility.Blocks(target, "damage", source)) return;
+ 
+                 if (damage.Amount <= 0)
+                 {
+@@ -1292,6 +1293,7 @@
+         /// </summary>
+         public static void HandleDeath(Entity target, Entity killer, Zone zone)
+         {
++            if (DebugInvincibility.Blocks(target, "death", killer)) return;
+             if (IsDeathHandled(target)) return;
+             target.Tags[DEATH_HANDLED_TAG] = "";
+             var hp = target.GetStat("Hitpoints");
+--- a/Assets/Scripts/Presentation/Input/InputHandler.cs
++++ b/Assets/Scripts/Presentation/Input/InputHandler.cs
+@@ -14,8 +14,8 @@
+     /// Supports WASD, arrow keys, numpad (8-directional), H/J/K/Y/U/B/N movement,
+     /// L for Look (with full vi cursor directions inside Look),
+     /// item pickup (G/comma), ability activation (1-9 + direction/immediate cast),
+-    /// and debug keys: F6 (grant mutation), F7 (dump body parts),
+-    /// F8 (dismember limb), F9 (debug craft recipe), P (cycle well state).
++    /// F12 (toggle player invincibility), plus DevMode debug keys:
++    /// F7 (dump body parts), F8 (dismember limb), F9 (craft), P (cycle well state).
+     /// This is the input boundary — the only place Unity input touches the simulation.
+     /// </summary>
+     public class InputHandler : MonoBehaviour
+@@ -435,6 +435,16 @@
+                     }
+                     if (_pauseMenuUI.IsOpen)
+                         return;  // suppress other input while modal up
++                }
++
++                // Explicit player debug shortcut, independent of the full
++                // DevMode sandbox. Before held-wait/rate limits; no turn cost.
++                if (InputHelper.GetKeyDown(KeyCode.F12))
++                {
++                    if (DebugInvincibility.TryToggle(PlayerEntity, out bool invincible))
++                        MessageLog.Add(invincible ? "Debug: player invincibility ON. [F12] to turn off."
++                            : "Debug: player invincibility OFF.");
++                    return;
+                 }
+ 
+                 // ST.7b — KeyCode.X opens the skills screen. Gated on
