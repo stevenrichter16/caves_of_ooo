@@ -71,7 +71,11 @@ namespace CavesOfOoo.Tests
             var pipeline=(ZoneGenerationPipeline)typeof(OverworldZoneManager).GetMethod("GetPipelineForZone",BindingFlags.Instance|BindingFlags.NonPublic)
                 .Invoke(m,new object[]{z.ZoneID});
             Assert.IsTrue(pipeline.Builders.OfType<CaveEntranceBuilder>().Any(),"Preserve the existing cave entrance roll, not a fabricated guaranteed stair.");
-            Assert.IsTrue(m.GetZone("Overworld.5.17.0").GetAllEntities().Any(e=>e.BlueprintName=="WaterPuddle"),"Other village river behavior remains unchanged.");
+            // First Tent now has its own composition. Use the same address
+            // with an actual ordinary-village profile as the legacy countercase.
+            m.WorldMap.SetPOI(5,17,new PointOfInterest(POIType.Village,"Ordinary village control",tier:3));
+            Assert.IsTrue(CinderholdCompositionTests.Pipeline(m,"Overworld.5.17.0").Builders.OfType<VillageBuilder>().Any());
+            Assert.IsTrue(m.GetZone("Overworld.5.17.0").GetAllEntities().Any(e=>e.BlueprintName=="WaterPuddle"),"Ordinary village river behavior remains unchanged.");
         }
         [Test] public void RepairTrackingIsExactWellmeetTentCampAndKeepsAllThreeNativeSites()
         {

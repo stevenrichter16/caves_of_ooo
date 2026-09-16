@@ -132,6 +132,11 @@ namespace CavesOfOoo.Tests
                 HouseDramaLoader.Register(drama);HouseDramaRuntime.RegisterDrama(drama);HouseDramaRuntime.ActivateDrama(drama.ID);
                 var manager=new OverworldZoneManager(GrovelandsCompositionTests.Factory(),64);
                 var method=typeof(OverworldZoneManager).GetMethod("GetPipelineForZone",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic);
+                // The newly composed First Tent opts in too; an ordinary place
+                // at this same address must retain the legacy unreserved policy.
+                var first=(ZoneGenerationPipeline)method.Invoke(manager,new object[]{"Overworld.5.17.0"});
+                Assert.IsTrue(first.Builders.OfType<HouseDramaZoneBuilder>().Single().RespectReservations);
+                manager.WorldMap.SetPOI(5,17,new PointOfInterest(POIType.Village,"Ordinary village control",tier:3));
                 foreach(var id in new[]{SumpholdCompositionTests.Id,"Overworld.6.6.0","Overworld.5.17.0"})
                 {
                     var pipeline=(ZoneGenerationPipeline)method.Invoke(manager,new object[]{id});var pop=pipeline.Builders.OfType<HouseDramaZoneBuilder>().Single();

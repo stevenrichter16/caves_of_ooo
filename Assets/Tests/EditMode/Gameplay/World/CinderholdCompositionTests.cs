@@ -113,7 +113,11 @@ namespace CavesOfOoo.Tests
                 Assert.AreEqual(1,z.GetCell(40,12).Objects.Count(e=>e.BlueprintName=="Well"));Assert.IsFalse(z.GetAllEntities().Any(e=>e.HasPart<LiquidPoolPart>()));
                 Assert.IsTrue(z.GetAllEntities().Any(e=>e.BlueprintName=="Shrine"));
                 Assert.IsNull(m.SettlementManager.GetSite(Id,SettlementSiteDefinitions.MainWellSiteId),"This composition does not expand Wellmeet's repair economy.");
-                Assert.IsTrue(Pipeline(m,"Overworld.18.18.0").Builders.OfType<RiverChunkBuilder>().Any(),"An unrelated village keeps its native pipeline.");
+                // Last Counter is now composed. Flip its actual profile to an
+                // ordinary village before asking for the legacy control pipeline.
+                m.WorldMap.SetPOI(18,18,new PointOfInterest(POIType.Village,"Ordinary village control",tier:3));
+                Assert.IsTrue(Pipeline(m,"Overworld.18.18.0").Builders.OfType<VillageBuilder>().Any());
+                Assert.IsTrue(Pipeline(m,"Overworld.18.18.0").Builders.OfType<RiverChunkBuilder>().Any(),"An ordinary village keeps its native pipeline.");
             }finally{LootTableRegistry.ResetForTests();}
         }
 

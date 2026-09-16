@@ -34,7 +34,7 @@ namespace CavesOfOoo.Tests
                 var kit=SpreadVoxelLibrary.Load();
                 foreach(var e in kit.Entries)Assert.AreSame(e.Mesh,p.Resolve(e.Mesh));
                 Assert.AreEqual(0,p.MissingMeshCount);Assert.AreEqual(0,z.EntityCount);
-                Assert.IsNull(VoxelWorldPresentation.ForZone(new Zone("Overworld.18.18.0")));
+                Assert.IsNull(VoxelWorldPresentation.ForZone(new Zone("Overworld.18.18.1")));
             }
             finally{Village3DSettings.Enabled=old;}
         }

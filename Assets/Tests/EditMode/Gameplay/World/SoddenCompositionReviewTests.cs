@@ -65,7 +65,8 @@ namespace CavesOfOoo.Tests
                 Assert.AreEqual(0, bridge.MissingMeshCount);
                 Assert.AreEqual(0, bridge.AppliedMeshCount);
                 Assert.AreEqual(0, zone.EntityCount);
-                Assert.IsNull(VoxelWorldPresentation.ForZone(new Zone("Overworld.18.18.0")));
+                // The surface Counter now has its own kit; its depth1 remains uncomposed.
+                Assert.IsNull(VoxelWorldPresentation.ForZone(new Zone("Overworld.18.18.1")));
             }
             finally { Village3DSettings.Enabled = old; }
         }

@@ -32,7 +32,7 @@ namespace CavesOfOoo.Tests
         }
 
         [TestCase("Overworld.6.6.1")] [TestCase("Overworld.15.6.1")]
-        [TestCase("Overworld.5.17.0")] [TestCase("Overworld.12.3.2")]
+        [TestCase("Overworld.5.17.1")] [TestCase("Overworld.12.3.2")]
         [TestCase("Overworld.06.6.0")] [TestCase("Overworld.15.06.0")]
         public void NeighboringPlacesAndDeeperCatacombsRetainTheirPresentation(string id)
             =>Assert.IsFalse(VoxelWorldPresentation.IsSupported(id));
