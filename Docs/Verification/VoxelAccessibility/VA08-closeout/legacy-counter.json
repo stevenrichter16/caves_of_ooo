@@ -1,0 +1,34 @@
+{
+  "sameSevenFailuresWhenNewTestsDoNotRun": true,
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.WorldMapTraversalTests.Ascend_FromCenter10_10_PlacesAtEmbedded40_13",
+      "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WorldMapTraversalTests.Ascend_FromGroundZone_TransitionsToWorldMap",
+      "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WorldMapTraversalTests.Ascend_SavesLastZoneIDAndCell_OnWorldMapPart",
+      "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WorldMapTraversalTests.Ascend_Then_Descend_RoundTripsExactCell",
+      "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WorldMapTraversalTests.Descend_FirstVisit_PlacesAtZoneCenter",
+      "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WorldMapTraversalTests.Descend_FromGroundZone_Refuses",
+      "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WorldMapTraversalTests.Descend_FromWorldMapCell_TransitionsToGroundZone",
+      "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect"
+    }
+  ],
+  "cause": "Legacy minimal-blueprint WorldMapTraversal fixture logs missing Crate/other containers when isolated; its container Factory depends on prior tests. No production traversal regression inferred."
+}

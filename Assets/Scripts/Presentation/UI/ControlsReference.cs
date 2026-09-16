@@ -37,7 +37,9 @@ namespace CavesOfOoo.Rendering
             new Row("F5", "quick save"),
             new Row("F6", "quick load"),
             new Row("F12", "toggle player invincibility (debug; resets on load)"),
-            new Row("<  >", "take stairs up / down"),
+            new Row("< / Shift+,", "stairs up; from the surface, open the world map"),
+            new Row("> / Shift+.", "stairs down; on the world map, enter the selected destination"),
+            new Row("World map: !", "named settlement; move onto its marker, then > to enter"),
             new Row("F1 / ?", "this controls list"),
         };
 
@@ -50,13 +52,14 @@ namespace CavesOfOoo.Rendering
                 log($"{Bindings[i].Key} — {Bindings[i].What}");
         }
 
-        /// <summary>The glanceable first-boot text: 3 lines of core
-        /// keys plus the call-to-adventure.</summary>
+        /// <summary>The glanceable first-boot text: core keys, the
+        /// surface/map travel loop and the call-to-adventure.</summary>
         public static void PrintBootSummary(Action<string> log)
         {
             if (log == null) return;
             log("Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.");
             log("[X] skills, [M] abilities, [F5] save, [F1] full controls.");
+            log("Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.");
             log("Villagers have work for you — press [Q] for your quest log.");
         }
     }
