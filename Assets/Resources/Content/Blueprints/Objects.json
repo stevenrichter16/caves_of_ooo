@@ -32175,6 +32175,1043 @@
       ],
       "Stats": [],
       "Tags": []
+    },
+    {
+      "Name": "GantryTimberWall",
+      "Inherits": "Wall",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "Gantry timber partition"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "#"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Wood"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.7"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Solid,Organic,Combustible"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "FlameTemperature",
+              "Value": "400"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "1.5"
+            },
+            {
+              "Key": "AmbientDecayRate",
+              "Value": "0.05"
+            }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            {
+              "Key": "HP",
+              "Value": "24"
+            },
+            {
+              "Key": "MaxHP",
+              "Value": "24"
+            },
+            {
+              "Key": "Hardness",
+              "Value": "1"
+            },
+            {
+              "Key": "WreckageBlueprint",
+              "Value": ""
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Wide weathered boards braced into a low timber wall. Local carpenters replace one section at a time."
+            }
+          ]
+        }
+      ],
+      "Tags": []
+    },
+    {
+      "Name": "GantryRegistryDesk",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "registry desk"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Wood"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.7"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Solid,Organic,Combustible"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "FlameTemperature",
+              "Value": "400"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "1.5"
+            },
+            {
+              "Key": "AmbientDecayRate",
+              "Value": "0.05"
+            }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            {
+              "Key": "HP",
+              "Value": "12"
+            },
+            {
+              "Key": "MaxHP",
+              "Value": "12"
+            },
+            {
+              "Key": "Hardness",
+              "Value": "1"
+            },
+            {
+              "Key": "WreckageBlueprint",
+              "Value": ""
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A broad writing desk, weighted against the crossing wind. This office keeps ordinary road and household records."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Furniture",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "GantryExchangeCounter",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "exchange counter"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Wood"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.7"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Solid,Organic,Combustible"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "FlameTemperature",
+              "Value": "400"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "1.5"
+            },
+            {
+              "Key": "AmbientDecayRate",
+              "Value": "0.05"
+            }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            {
+              "Key": "HP",
+              "Value": "12"
+            },
+            {
+              "Key": "MaxHP",
+              "Value": "12"
+            },
+            {
+              "Key": "Hardness",
+              "Value": "1"
+            },
+            {
+              "Key": "WreckageBlueprint",
+              "Value": ""
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A portable timber counter with storage beneath its broad trading surface."
+            }
+          ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "MaxItems",
+              "Value": "8"
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Furniture",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "GantryWayboard",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "crossing wayboard"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "|"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Wood"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.7"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Solid,Organic,Combustible"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "FlameTemperature",
+              "Value": "400"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "1.5"
+            },
+            {
+              "Key": "AmbientDecayRate",
+              "Value": "0.05"
+            }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            {
+              "Key": "HP",
+              "Value": "12"
+            },
+            {
+              "Key": "MaxHP",
+              "Value": "12"
+            },
+            {
+              "Key": "Hardness",
+              "Value": "1"
+            },
+            {
+              "Key": "WreckageBlueprint",
+              "Value": ""
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Exchange and stores; the records office; the caravan rest. Three stout arms point into the public courts of Gantry."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Furniture",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "GantryRegistrar",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "Gantry registrar"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "@"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "10"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Armor",
+          "Params": [
+            {
+              "Key": "AV",
+              "Value": "0"
+            },
+            {
+              "Key": "DV",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "Wanders",
+              "Value": "false"
+            },
+            {
+              "Key": "WandersRandomly",
+              "Value": "false"
+            },
+            {
+              "Key": "Staying",
+              "Value": "true"
+            },
+            {
+              "Key": "Passive",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Conversation",
+          "Params": [
+            {
+              "Key": "ConversationID",
+              "Value": "GantryRegistrar_1"
+            }
+          ]
+        },
+        {
+          "Name": "AISelfPreservation",
+          "Params": [
+            {
+              "Key": "RetreatThreshold",
+              "Value": "0.8"
+            },
+            {
+              "Key": "SafeThreshold",
+              "Value": "0.95"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A Pale Curation clerk with wind-flattened sleeves and ordinary ink on both hands. Their work concerns the living: road accounts, tenancy and the careful spelling of names."
+            }
+          ]
+        },
+        {
+          "Name": "Loadout",
+          "Params": [
+            {
+              "Key": "Equip",
+              "Value": "LeatherGloves;LeatherBoots"
+            },
+            {
+              "Key": "Carry",
+              "Value": ""
+            },
+            {
+              "Key": "Pick",
+              "Value": ""
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 20,
+          "Min": 0,
+          "Max": 20
+        },
+        {
+          "Name": "Speed",
+          "Value": 100
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Faction",
+          "Value": "PaleCuration"
+        },
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ]
+    },
+    {
+      "Name": "QuillholdArchiveWall",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "archive marble wall"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "#"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&c"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            },
+            {
+              "Key": "Weight",
+              "Value": "90"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Clouded gray marble, fitted around a public reading room. Ordinary joints admit ordinary tools; this is a working archive, not a sealed one."
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "MemoryMarble"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0"
+            },
+            {
+              "Key": "Conductivity",
+              "Value": "0"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Stone,Mineral"
+            }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            {
+              "Key": "HP",
+              "Value": "45"
+            },
+            {
+              "Key": "MaxHP",
+              "Value": "45"
+            },
+            {
+              "Key": "Hardness",
+              "Value": "3"
+            },
+            {
+              "Key": "Indestructible",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": []
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Solid",
+          "Value": ""
+        },
+        {
+          "Key": "Wall",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "QuillholdArchiveShelf",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "archive shelf"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "n"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            },
+            {
+              "Key": "Weight",
+              "Value": "25"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Maintained wooden shelves hold tied folios beside their variants. Nothing is written over: additions wait beside the older hands."
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Wood"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.5"
+            },
+            {
+              "Key": "Conductivity",
+              "Value": "0"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Organic,Wood"
+            }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            {
+              "Key": "HP",
+              "Value": "18"
+            },
+            {
+              "Key": "MaxHP",
+              "Value": "18"
+            },
+            {
+              "Key": "Hardness",
+              "Value": "1"
+            },
+            {
+              "Key": "Indestructible",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "MaxItems",
+              "Value": "8"
+            },
+            {
+              "Key": "Locked",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": []
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Solid",
+          "Value": ""
+        },
+        {
+          "Key": "Furniture",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "QuillholdCopyDesk",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "copying desk"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            },
+            {
+              "Key": "Weight",
+              "Value": "25"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A low desk with a sloped folio board and an ink groove. The village scribe makes copies here; the original stays with its bearer."
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Wood"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.5"
+            },
+            {
+              "Key": "Conductivity",
+              "Value": "0"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Organic,Wood"
+            }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            {
+              "Key": "HP",
+              "Value": "14"
+            },
+            {
+              "Key": "MaxHP",
+              "Value": "14"
+            },
+            {
+              "Key": "Hardness",
+              "Value": "1"
+            },
+            {
+              "Key": "Indestructible",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": []
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Solid",
+          "Value": ""
+        },
+        {
+          "Key": "Furniture",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "QuillholdRefectoryTable",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "refectory table"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            },
+            {
+              "Key": "Weight",
+              "Value": "25"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A broad, scrubbed table for meals shared between shifts in the archive. The folios stay in the reading rooms; ink-stained hands rest here."
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Wood"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.5"
+            },
+            {
+              "Key": "Conductivity",
+              "Value": "0"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Organic,Wood"
+            }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            {
+              "Key": "HP",
+              "Value": "14"
+            },
+            {
+              "Key": "MaxHP",
+              "Value": "14"
+            },
+            {
+              "Key": "Hardness",
+              "Value": "1"
+            },
+            {
+              "Key": "Indestructible",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": []
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Solid",
+          "Value": ""
+        },
+        {
+          "Key": "Furniture",
+          "Value": ""
+        }
+      ]
     }
   ]
 }

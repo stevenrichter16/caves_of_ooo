@@ -1,0 +1,47 @@
+{
+  "Conversations": [
+    {
+      "ID": "GantryRegistrar_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "The registrar shelters a drying page with one hand. \"Names for the road ledger, household copies, disputed measurements. Gantry gets the work that follows people through a crossing.\"",
+          "Choices": [
+            {
+              "Text": "Who shares this crossing?",
+              "Target": "Crossing"
+            },
+            {
+              "Text": "Is this an intake office?",
+              "Target": "Records"
+            },
+            {
+              "Text": "Good day.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Crossing",
+          "Text": "\"The Concord exchanges goods in the open courts. Tent-Right keeps a place for arrivals to sit. We keep the records. Three different reasons to stop walking, under the same weather.\"",
+          "Choices": [
+            {
+              "Text": "Back.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Records",
+          "Text": "\"Ordinary records. The body intake is at Marrowstye. If you need a grimoire copied, speak with the scribe here; mine is the less remarkable handwriting.\"",
+          "Choices": [
+            {
+              "Text": "Understood.",
+              "Target": "Start"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

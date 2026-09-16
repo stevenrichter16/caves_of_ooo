@@ -1,0 +1,335 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faae112473844850845c7fb5817c3630, type: 3}
+  m_Name: Library
+  m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.Rendering.TineVoxelKitLibrary
+  Entries:
+  - Id: tine-ground-0
+    Prefab: {fileID: 4644084088524101066, guid: e80c4392fbd4f40e6bfa3dc4bb1c5d13, type: 3}
+    Mesh: {fileID: 4300000, guid: 76465e99988fb48458c79a18786f4895, type: 2}
+    Spec:
+      id: tine-ground-0
+      path: Assets/Resources/TineVoxel3D/tine-ground-0.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0325, z: 0}
+      boundsSize: {x: 1, y: 0.065, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: tine-ground-1
+    Prefab: {fileID: 4157585202243711115, guid: 935e5c3327fb24090a0f0f2408a208c7, type: 3}
+    Mesh: {fileID: 4300000, guid: c2b691696a112428cb91d54d7a975077, type: 2}
+    Spec:
+      id: tine-ground-1
+      path: Assets/Resources/TineVoxel3D/tine-ground-1.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0365, z: 0}
+      boundsSize: {x: 1, y: 0.073, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: tine-ground-2
+    Prefab: {fileID: 508344697813783367, guid: e98b44c00114c4d85b99c1b259a4fd13, type: 3}
+    Mesh: {fileID: 4300000, guid: c1f886c4d5c6e428bb4c1bd5a79af0d3, type: 2}
+    Spec:
+      id: tine-ground-2
+      path: Assets/Resources/TineVoxel3D/tine-ground-2.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0405, z: 0}
+      boundsSize: {x: 1, y: 0.081, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: tine-ground-3
+    Prefab: {fileID: 4436104293574609455, guid: 355eba2a441f1481baaeffb61c4232c2, type: 3}
+    Mesh: {fileID: 4300000, guid: 62f4c3627c2a14fa093f83df200ae2b4, type: 2}
+    Spec:
+      id: tine-ground-3
+      path: Assets/Resources/TineVoxel3D/tine-ground-3.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0445, z: 0}
+      boundsSize: {x: 1, y: 0.089, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: tine-wall-0
+    Prefab: {fileID: 3801075280587275075, guid: b2ab5fc98c1d94efdbb22499586f5cea, type: 3}
+    Mesh: {fileID: 4300000, guid: ce16681b6c0cf4bf58b008211e2280f8, type: 2}
+    Spec:
+      id: tine-wall-0
+      path: Assets/Resources/TineVoxel3D/tine-wall-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.525, z: 0}
+      boundsSize: {x: 1, y: 1.05, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: tine-wall-1
+    Prefab: {fileID: 3928371412393023324, guid: 02b980859c006485c8e36fe5d84dee14, type: 3}
+    Mesh: {fileID: 4300000, guid: b3fba422549ad4ed5a50f2cd96eb1a06, type: 2}
+    Spec:
+      id: tine-wall-1
+      path: Assets/Resources/TineVoxel3D/tine-wall-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.525, z: 0}
+      boundsSize: {x: 1, y: 1.05, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: tine-wall-2
+    Prefab: {fileID: 759923007540982204, guid: fd853960472fa4695b2b7552312662f8, type: 3}
+    Mesh: {fileID: 4300000, guid: 6ae6d261131704ee2b5e15683c5d22bd, type: 2}
+    Spec:
+      id: tine-wall-2
+      path: Assets/Resources/TineVoxel3D/tine-wall-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.525, z: 0}
+      boundsSize: {x: 1, y: 1.05, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: tine-wall-3
+    Prefab: {fileID: 8600688320580923948, guid: 442b166711d284111b065fc7b0c7fc4c, type: 3}
+    Mesh: {fileID: 4300000, guid: 65aa2baff8a73462aa24b34ac1ef10df, type: 2}
+    Spec:
+      id: tine-wall-3
+      path: Assets/Resources/TineVoxel3D/tine-wall-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.525, z: 0}
+      boundsSize: {x: 1, y: 1.05, z: 1}
+      triangles: 24
+      clips: []
+      sockets: []
+  - Id: tine-water-0
+    Prefab: {fileID: 4247041158283861448, guid: 425df794cf8984b57a1bb2aea63044a1, type: 3}
+    Mesh: {fileID: 4300000, guid: 0dd145721ad22474dbcea6bbc8451328, type: 2}
+    Spec:
+      id: tine-water-0
+      path: Assets/Resources/TineVoxel3D/tine-water-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.035, z: 0}
+      boundsSize: {x: 1, y: 0.07, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: tine-water-1
+    Prefab: {fileID: 6452123386037209575, guid: 621f0cc55a50047ccb625b848751a356, type: 3}
+    Mesh: {fileID: 4300000, guid: 205dfea9fdf144801aa4914f77a78809, type: 2}
+    Spec:
+      id: tine-water-1
+      path: Assets/Resources/TineVoxel3D/tine-water-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.039, z: 0}
+      boundsSize: {x: 1, y: 0.078, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: tine-water-2
+    Prefab: {fileID: 5959980386056031391, guid: 6e8d03cf42f22415ab6871b4cdb08fb5, type: 3}
+    Mesh: {fileID: 4300000, guid: 9d9f8304de21b4ccc9777ef763b3d89a, type: 2}
+    Spec:
+      id: tine-water-2
+      path: Assets/Resources/TineVoxel3D/tine-water-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.043, z: 0}
+      boundsSize: {x: 1, y: 0.086, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: tine-water-3
+    Prefab: {fileID: 8866641557508863977, guid: a01675e8da8e14857ab995dbf70477d0, type: 3}
+    Mesh: {fileID: 4300000, guid: f0be96494f9984687993550251a80910, type: 2}
+    Spec:
+      id: tine-water-3
+      path: Assets/Resources/TineVoxel3D/tine-water-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.047000002, z: 0}
+      boundsSize: {x: 1, y: 0.094000004, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: tine-pier-0
+    Prefab: {fileID: 2029814815329278576, guid: 0da470ed3b121466b9e9439a2bfba79e, type: 3}
+    Mesh: {fileID: 4300000, guid: 058a53033d43d420b82c08cbb0e11af1, type: 2}
+    Spec:
+      id: tine-pier-0
+      path: Assets/Resources/TineVoxel3D/tine-pier-0.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.08499999, z: 0}
+      boundsSize: {x: 0.96, y: 0.16999999, z: 0.98}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: tine-pier-1
+    Prefab: {fileID: 4832567558423846269, guid: 35d645fc3cf27491caa6364e204c9ab4, type: 3}
+    Mesh: {fileID: 4300000, guid: d498423fcf056432a92c07675dfff72f, type: 2}
+    Spec:
+      id: tine-pier-1
+      path: Assets/Resources/TineVoxel3D/tine-pier-1.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.08499999, z: 0}
+      boundsSize: {x: 0.96, y: 0.16999999, z: 0.968}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: tine-pier-2
+    Prefab: {fileID: 6977699306851316436, guid: ae220cc91578d4adbab3d18fe0f7c941, type: 3}
+    Mesh: {fileID: 4300000, guid: 21b7ba1ceb9a04b049bad631664d51f9, type: 2}
+    Spec:
+      id: tine-pier-2
+      path: Assets/Resources/TineVoxel3D/tine-pier-2.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.08499999, z: 0}
+      boundsSize: {x: 0.96, y: 0.16999999, z: 0.95600003}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: tine-pier-3
+    Prefab: {fileID: 8363286693521553413, guid: 9ca899aedf9a940fe90cc78b7dd1a20f, type: 3}
+    Mesh: {fileID: 4300000, guid: 430e1f902f4fa48528af35fe7931add1, type: 2}
+    Spec:
+      id: tine-pier-3
+      path: Assets/Resources/TineVoxel3D/tine-pier-3.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.08499999, z: 0}
+      boundsSize: {x: 0.96, y: 0.16999999, z: 0.944}
+      triangles: 60
+      clips: []
+      sockets: []
+  - Id: tine-path-0
+    Prefab: {fileID: 222913650399125639, guid: 1ed142543769a4df5ab8714d43c395a1, type: 3}
+    Mesh: {fileID: 4300000, guid: a86a873f479f149cba31a0528d8cb1ae, type: 2}
+    Spec:
+      id: tine-path-0
+      path: Assets/Resources/TineVoxel3D/tine-path-0.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0325, z: 0}
+      boundsSize: {x: 1, y: 0.065, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: tine-path-1
+    Prefab: {fileID: 550842704078148612, guid: c329419311ec742fca63ea979e970fe4, type: 3}
+    Mesh: {fileID: 4300000, guid: 292a6bb2a1697421097cb81b526b7125, type: 2}
+    Spec:
+      id: tine-path-1
+      path: Assets/Resources/TineVoxel3D/tine-path-1.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0365, z: 0}
+      boundsSize: {x: 1, y: 0.073, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: tine-path-2
+    Prefab: {fileID: 6092415916622304380, guid: 6ab016985778c46a497a8d337c2fd38c, type: 3}
+    Mesh: {fileID: 4300000, guid: c3fc024e369e841dbac834dcbb56c687, type: 2}
+    Spec:
+      id: tine-path-2
+      path: Assets/Resources/TineVoxel3D/tine-path-2.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0405, z: 0}
+      boundsSize: {x: 1, y: 0.081, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: tine-path-3
+    Prefab: {fileID: 8778769019151580324, guid: 2b65f832234244c2da941446051924ed, type: 3}
+    Mesh: {fileID: 4300000, guid: d060ad3c060ab4af6bbb373034374988, type: 2}
+    Spec:
+      id: tine-path-3
+      path: Assets/Resources/TineVoxel3D/tine-path-3.prefab
+      kind: ground
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: 
+      rigged: 0
+      boundsCenter: {x: 0, y: -0.0445, z: 0}
+      boundsSize: {x: 1, y: 0.089, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []

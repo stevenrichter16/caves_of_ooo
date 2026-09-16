@@ -97,7 +97,8 @@ namespace CavesOfOoo.Tests
             new EquipmentContentKit("TentRightHost", "LeatherBoots;LeatherCap", carry: "Dagger"),
             new EquipmentContentKit("SaltMaster", "LeatherGloves;LeatherBoots"),
             new EquipmentContentKit("RecensionScribe", "LeatherGloves;LeatherBoots"),
-            new EquipmentContentKit("CurationSorter", "LeatherGloves;LeatherCap")
+            new EquipmentContentKit("CurationSorter", "LeatherGloves;LeatherCap"),
+            new EquipmentContentKit("GantryRegistrar", "LeatherGloves;LeatherBoots")
         };
 
         [TestCaseSource(nameof(Kits))]

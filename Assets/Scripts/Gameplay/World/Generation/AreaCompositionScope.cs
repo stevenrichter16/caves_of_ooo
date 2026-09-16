@@ -21,7 +21,8 @@ namespace CavesOfOoo.Core
             ||OlderdeepCompositionPlan.IsSupportedZone(id)||WellmeetCompositionPlan.IsSupportedZone(id)
             ||CinderholdCompositionPlan.IsSupportedZone(id)||SumpholdCompositionPlan.IsSupportedZone(id)
             ||DrownedLedgerCompositionPlan.IsSupportedZone(id)||MarrowstyeCompositionPlan.IsSupportedZone(id)
-            ||FirstTentCompositionPlan.IsSupportedZone(id)||LastCounterCompositionPlan.IsSupportedZone(id);
+            ||FirstTentCompositionPlan.IsSupportedZone(id)||LastCounterCompositionPlan.IsSupportedZone(id)
+            ||GantryCompositionPlan.IsSupportedZone(id)||TineCompositionPlan.IsSupportedZone(id)||QuillholdCompositionPlan.IsSupportedZone(id)||TallyCompositionPlan.IsSupportedZone(id);
         internal static bool IsCathedralSite(PointOfInterest poi)
             =>poi!=null&&poi.Type==POIType.Sinkhole&&poi.Name=="the Deepest Cathedral"
                 &&SinkholeArchetypes.ForSite(poi)==SinkholeArchetype.ChoirCathedral;
@@ -45,6 +46,14 @@ namespace CavesOfOoo.Core
             =>poi!=null&&poi.Type==POIType.Village&&poi.Profile=="TentCampFirst";
         internal static bool IsLastCounterSite(PointOfInterest poi)
             =>poi!=null&&poi.Type==POIType.Village&&poi.Profile=="ConcordPost";
+        internal static bool IsGantrySite(PointOfInterest poi)
+            =>poi!=null&&poi.Type==POIType.Village&&poi.Profile==GantryCompositionPlan.ProfileID;
+        internal static bool IsTineSite(PointOfInterest poi)
+            =>poi!=null&&poi.Type==POIType.Village&&poi.Profile==TineCompositionPlan.ProfileID;
+        internal static bool IsQuillholdSite(PointOfInterest poi)
+            =>poi!=null&&poi.Type==POIType.Village&&poi.Profile==QuillholdCompositionPlan.ProfileID;
+        internal static bool IsTallySite(PointOfInterest poi)
+            =>poi!=null&&poi.Type==POIType.Village&&poi.Profile==TallyCompositionPlan.ProfileID;
         /// <summary>Standalone native graphs use the finite address contract.
         /// Managed graphs additionally honor their own current biome and POI.
         /// A destroyed floor never changes this authority or regenerates content.</summary>
@@ -56,6 +65,10 @@ namespace CavesOfOoo.Core
             var poi=source.Map.GetPOI(source.X,source.Y);
             if(OverwritCompositionPlan.IsWildernessZone(zone.ZoneID))
                 return poi==null&&source.Map.GetBiome(source.X,source.Y)==BiomeType.Overwrit;
+            if(GantryCompositionPlan.IsSupportedZone(zone.ZoneID))return IsGantrySite(poi);
+            if(TineCompositionPlan.IsSupportedZone(zone.ZoneID))return IsTineSite(poi);
+            if(QuillholdCompositionPlan.IsSupportedZone(zone.ZoneID))return IsQuillholdSite(poi);
+            if(TallyCompositionPlan.IsSupportedZone(zone.ZoneID))return IsTallySite(poi);
             if(FirstTentCompositionPlan.IsSupportedZone(zone.ZoneID))return IsFirstTentSite(poi);
             if(LastCounterCompositionPlan.IsSupportedZone(zone.ZoneID))return IsLastCounterSite(poi);
             if(OlderdeepCompositionPlan.IsSupportedZone(zone.ZoneID))return IsOlderdeepSite(poi);

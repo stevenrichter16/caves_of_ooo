@@ -71,11 +71,13 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void Tine_IsNotABoatTown()
+        public void APlainVillageDoesNotGrowTheSumpholdBoatyard()
         {
-            // Counter-check on the name key: another Villagers-faction
-            // place must not grow the boatyard.
-            var zone = Generate("Overworld.13.7.0");
+            // Tine now has its own lake-working profile. Explicitly remove
+            // that profile on this manager to retain the ordinary-place control.
+            var plain = new OverworldZoneManager(_factory, worldSeed: 42);
+            plain.WorldMap.SetPOI(13, 7, new PointOfInterest(POIType.Village, "plain village", faction: "Villagers"));
+            var zone = plain.GetZone("Overworld.13.7.0");
 
             Assert.AreEqual(0, CountOf(zone, "BoatFrame"));
             Assert.AreEqual(0, CountOf(zone, "TollRolls"));

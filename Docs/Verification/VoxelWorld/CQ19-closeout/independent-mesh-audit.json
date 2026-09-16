@@ -1,0 +1,1821 @@
+{
+  "summary": {
+    "models": 92,
+    "families": 23,
+    "max_vertices": 240,
+    "max_swatches": 2,
+    "models_per_kit": {
+      "Gantry": 28,
+      "Tine": 20,
+      "Quillhold": 28,
+      "Tally": 16
+    },
+    "findings": []
+  },
+  "models": [
+    {
+      "id": "gantry-ground-0",
+      "vertices": 24,
+      "palette": [
+        111
+      ],
+      "min": [
+        -0.5,
+        -0.07000000029802322,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "55ad7d26d18f53d04c463e066cb1a85d0f863f09fb41a87c39030e5603731e3c",
+      "vertex_sha256": "367aeb990f4cdb149638c0926e26e6624702f5f163163debbd06fd6d760f943c"
+    },
+    {
+      "id": "gantry-ground-1",
+      "vertices": 24,
+      "palette": [
+        111
+      ],
+      "min": [
+        -0.5,
+        -0.07800000160932541,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "9ffb6aac8196ea0859f6476701de253e07b519bced9188547309de3ac78edb54",
+      "vertex_sha256": "781097c2e45acf7634a850ed8ab0f4ae12a04f21b6df889b9b209215bdcb04ca"
+    },
+    {
+      "id": "gantry-ground-2",
+      "vertices": 24,
+      "palette": [
+        111
+      ],
+      "min": [
+        -0.5,
+        -0.0860000029206276,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "b0869eb3af369ad39be75151a4c79da37af9a4cf9800cbb7d16686df1af46bc8",
+      "vertex_sha256": "f260085acf8069c2e3784de43919e0d2e95648d33b5521be692b9980026e2f10"
+    },
+    {
+      "id": "gantry-ground-3",
+      "vertices": 24,
+      "palette": [
+        111
+      ],
+      "min": [
+        -0.5,
+        -0.09400000423192978,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "2883b01c05ff4863a685b028dfab0e40261885795ad112f33d4e631e1eb300eb",
+      "vertex_sha256": "244eaf21c69b48d00cf876ded1d1fad02dca90d2cb0b6bd881d40dd3f938809f"
+    },
+    {
+      "id": "gantry-path-0",
+      "vertices": 24,
+      "palette": [
+        64
+      ],
+      "min": [
+        -0.5,
+        -0.07000000029802322,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "99dac8a6c9cb01660bf6171dfb052762105703015f3e4aae1d2f64d0f45767bb",
+      "vertex_sha256": "367aeb990f4cdb149638c0926e26e6624702f5f163163debbd06fd6d760f943c"
+    },
+    {
+      "id": "gantry-path-1",
+      "vertices": 24,
+      "palette": [
+        64
+      ],
+      "min": [
+        -0.5,
+        -0.07800000160932541,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "adeb5fec059f85e20395822503b48d8713b8752dad8b244f81ae4a8fefd6306a",
+      "vertex_sha256": "781097c2e45acf7634a850ed8ab0f4ae12a04f21b6df889b9b209215bdcb04ca"
+    },
+    {
+      "id": "gantry-path-2",
+      "vertices": 24,
+      "palette": [
+        64
+      ],
+      "min": [
+        -0.5,
+        -0.0860000029206276,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "b0580d4fcd5b2f3c630ba614bd9a5a702f10b8950a2473018e9e2bdc3f7f2e9b",
+      "vertex_sha256": "f260085acf8069c2e3784de43919e0d2e95648d33b5521be692b9980026e2f10"
+    },
+    {
+      "id": "gantry-path-3",
+      "vertices": 24,
+      "palette": [
+        64
+      ],
+      "min": [
+        -0.5,
+        -0.09400000423192978,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "464a130ed1a6bf6cfb3dbb0daf30b35a0ed1bae5c8e6f6dc0e3172f0623081f1",
+      "vertex_sha256": "244eaf21c69b48d00cf876ded1d1fad02dca90d2cb0b6bd881d40dd3f938809f"
+    },
+    {
+      "id": "gantry-wall-0",
+      "vertices": 72,
+      "palette": [
+        12,
+        102
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.3400000035762787
+      ],
+      "max": [
+        0.5,
+        1.059999942779541,
+        0.3400000035762787
+      ],
+      "sha256": "da2629c036b5720cb46911c758afb1f952b747f52137d367d828a3147fd5c847",
+      "vertex_sha256": "180e71d8a6b93d8c28ed3dd5355b182d013c889bcb59f07a09a1807888a41613"
+    },
+    {
+      "id": "gantry-wall-1",
+      "vertices": 72,
+      "palette": [
+        12,
+        102
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.3400000035762787
+      ],
+      "max": [
+        0.5,
+        1.059999942779541,
+        0.3400000035762787
+      ],
+      "sha256": "34cac7074eff1796aff2bdb9f4faa05b997a38a02623325616693f423f36ed7d",
+      "vertex_sha256": "b3002cd844997da2ca85669a5505e8eec5c8b81ecf2beff68a486ebd52a0e4ad"
+    },
+    {
+      "id": "gantry-wall-2",
+      "vertices": 72,
+      "palette": [
+        12,
+        102
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.3400000035762787
+      ],
+      "max": [
+        0.5,
+        1.059999942779541,
+        0.3400000035762787
+      ],
+      "sha256": "c87e4fa4339ef94b8e65ef4e3bc2a4330f5d6bc4a1a54217faac2e2ffefbd173",
+      "vertex_sha256": "58d2b4c4e8d25c2ef6eea01fffc219e482a0b5d5e845ddb8208e5e72d998263e"
+    },
+    {
+      "id": "gantry-wall-3",
+      "vertices": 72,
+      "palette": [
+        12,
+        102
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.3400000035762787
+      ],
+      "max": [
+        0.5,
+        1.059999942779541,
+        0.3400000035762787
+      ],
+      "sha256": "8d5184c0a60bdce8fa7a1cb6096a28df9b986af43b41acfc070545fa8128f307",
+      "vertex_sha256": "1349bad6a6dcfed091b5dbf30b427a7335bfed2b54cc838d5ac6d40db4d0330a"
+    },
+    {
+      "id": "gantry-desk-0",
+      "vertices": 96,
+      "palette": [
+        102,
+        108
+      ],
+      "min": [
+        -0.47999998927116394,
+        0.0,
+        -0.3799999952316284
+      ],
+      "max": [
+        0.47999998927116394,
+        0.7749999761581421,
+        0.3799999952316284
+      ],
+      "sha256": "7290222ad7f176b1eaea58f595d5997696c6c3abbb96ebcf7156f0bb047810df",
+      "vertex_sha256": "8ddbe1f790da8d1988f81ae513479d66976a1ad8fadd01b2774e11e45e6035b1"
+    },
+    {
+      "id": "gantry-desk-1",
+      "vertices": 96,
+      "palette": [
+        102,
+        108
+      ],
+      "min": [
+        -0.47999998927116394,
+        0.0,
+        -0.3799999952316284
+      ],
+      "max": [
+        0.47999998927116394,
+        0.7749999761581421,
+        0.3799999952316284
+      ],
+      "sha256": "c749ecd3fa3041fef78f044e54a3c5e0251f82e85efa4aef57d3cf228d737430",
+      "vertex_sha256": "f0908299d7e9e4634b31da54dead0edfd36d900f15e4a82ccacf2847c737f00d"
+    },
+    {
+      "id": "gantry-desk-2",
+      "vertices": 96,
+      "palette": [
+        102,
+        108
+      ],
+      "min": [
+        -0.47999998927116394,
+        0.0,
+        -0.3799999952316284
+      ],
+      "max": [
+        0.47999998927116394,
+        0.7749999761581421,
+        0.3799999952316284
+      ],
+      "sha256": "10294e977b082094dff43e34139ad32d5cb753eb616436baea872ac8d18f8fbd",
+      "vertex_sha256": "08ff949dc51efcf59cbb2c025dff7a7b32d45283c21d1f16461af49c91cfef1b"
+    },
+    {
+      "id": "gantry-desk-3",
+      "vertices": 96,
+      "palette": [
+        102,
+        108
+      ],
+      "min": [
+        -0.47999998927116394,
+        0.0,
+        -0.3799999952316284
+      ],
+      "max": [
+        0.47999998927116394,
+        0.7749999761581421,
+        0.3799999952316284
+      ],
+      "sha256": "3a359c797267db4c68e4cd59788b7bf62641dc9c7797b1828a4c7c3fd501877e",
+      "vertex_sha256": "f2eb250d063ed05567c298c8b7f827bf0428a3586f8bed2c15a710df4798dbdd"
+    },
+    {
+      "id": "gantry-counter-0",
+      "vertices": 72,
+      "palette": [
+        32,
+        102
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.46000000834465027
+      ],
+      "max": [
+        0.5,
+        1.0299999713897705,
+        0.46000000834465027
+      ],
+      "sha256": "f0a030a063aec3cdefcd250c831b7f5ff511ff6eca2eea3d2f4445d8fb9a4a1e",
+      "vertex_sha256": "4870d1c811cae36b7e3c44bf7f31f9f46a30c08fccb5082f55ae5830b7fcdeaf"
+    },
+    {
+      "id": "gantry-counter-1",
+      "vertices": 72,
+      "palette": [
+        32,
+        102
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.46000000834465027
+      ],
+      "max": [
+        0.5,
+        1.0299999713897705,
+        0.46000000834465027
+      ],
+      "sha256": "6aae4e1779992869042c90387201066f42ae11dcc63f45e31ed1270e795f0445",
+      "vertex_sha256": "68c9995b923ebb98fecf1bdffa8ed1c80771e66c209afe58ad83ce6ff7cce18e"
+    },
+    {
+      "id": "gantry-counter-2",
+      "vertices": 72,
+      "palette": [
+        32,
+        102
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.46000000834465027
+      ],
+      "max": [
+        0.5,
+        1.0299999713897705,
+        0.46000000834465027
+      ],
+      "sha256": "14424f73e3ba40319e2dddb8f6b5363f74210a533f08151a11ced62387af7b72",
+      "vertex_sha256": "d20b861e61579c95fcfab340d857b96f8bcbe77b548fa13d55700e8a58bdda01"
+    },
+    {
+      "id": "gantry-counter-3",
+      "vertices": 72,
+      "palette": [
+        32,
+        102
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.46000000834465027
+      ],
+      "max": [
+        0.5,
+        1.0299999713897705,
+        0.46000000834465027
+      ],
+      "sha256": "97fbe983b26c99c5c758a0507331fee51b58895364a36c9d19567ee356d98d84",
+      "vertex_sha256": "2b0543fad6ae21fd303bc75ba3edbd5cbe350df84f666460d38518a11dea4cbf"
+    },
+    {
+      "id": "gantry-registrar-0",
+      "vertices": 240,
+      "palette": [
+        12,
+        35
+      ],
+      "min": [
+        -0.35499998927116394,
+        0.0,
+        -0.16500000655651093
+      ],
+      "max": [
+        0.35499998927116394,
+        1.4950000047683716,
+        0.3050000071525574
+      ],
+      "sha256": "026aad42d05d2e8f3076aac0b4cf8e5afcc360793de7898bb782b2fd96ce634f",
+      "vertex_sha256": "0bc5c62a42b5cd6b1446d6afd2e75edb12fa6d9c707e7ec76ea3454f34303971"
+    },
+    {
+      "id": "gantry-registrar-1",
+      "vertices": 240,
+      "palette": [
+        12,
+        35
+      ],
+      "min": [
+        -0.35499998927116394,
+        0.0,
+        -0.16500000655651093
+      ],
+      "max": [
+        0.35499998927116394,
+        1.4950000047683716,
+        0.3050000071525574
+      ],
+      "sha256": "283dee972326663543dd5f96de7b789be207a094fc1500bd2dea3b14f390a649",
+      "vertex_sha256": "74d0354a28927d27258d3bedfce1c01f2509cecdbee40a8aab9d731c4215c31b"
+    },
+    {
+      "id": "gantry-registrar-2",
+      "vertices": 240,
+      "palette": [
+        12,
+        35
+      ],
+      "min": [
+        -0.35499998927116394,
+        0.0,
+        -0.16500000655651093
+      ],
+      "max": [
+        0.35499998927116394,
+        1.4950000047683716,
+        0.3050000071525574
+      ],
+      "sha256": "48e80ee7713b5c8e1f73418bf59fa2ef9307cd2ce57b8319a39d01329c12fc88",
+      "vertex_sha256": "4b017a9a48a77cacf1ff594fe780085a2f28b8c776184a35d30e6113dffb6898"
+    },
+    {
+      "id": "gantry-registrar-3",
+      "vertices": 240,
+      "palette": [
+        12,
+        35
+      ],
+      "min": [
+        -0.35499998927116394,
+        0.0,
+        -0.16500000655651093
+      ],
+      "max": [
+        0.35499998927116394,
+        1.4950000047683716,
+        0.3050000071525574
+      ],
+      "sha256": "13982bab142e77c674ccd95f8e0d0e33d6f6de8b4f3ac8b5e6277b422db70059",
+      "vertex_sha256": "19bb66ff31c779a3da0c7f33bc73dac6c4755fe6bc240e4d2e4ecfed1ccc0400"
+    },
+    {
+      "id": "gantry-wayboard-0",
+      "vertices": 96,
+      "palette": [
+        12,
+        32
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.0949999988079071
+      ],
+      "max": [
+        0.5,
+        1.7050000429153442,
+        0.0949999988079071
+      ],
+      "sha256": "b362be663d162f432b8e7de83cc87a3e2a03c521ed901a982a6018c6961d3d0c",
+      "vertex_sha256": "641fe8e506b0e8c2f7af91570ad676bc21d5d3eab3fd8ecadc651ed10b37971f"
+    },
+    {
+      "id": "gantry-wayboard-1",
+      "vertices": 96,
+      "palette": [
+        12,
+        32
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.0949999988079071
+      ],
+      "max": [
+        0.5,
+        1.7300000190734863,
+        0.0949999988079071
+      ],
+      "sha256": "e6a0ba22cd5e73aa8e641f28b2de3f91d67943a2cd26810823a7e4c712b4f535",
+      "vertex_sha256": "4b6b11f821c6453c7f38d39f4398828a5711a6639c60d2ca16a53ed53fa023a7"
+    },
+    {
+      "id": "gantry-wayboard-2",
+      "vertices": 96,
+      "palette": [
+        12,
+        32
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.0949999988079071
+      ],
+      "max": [
+        0.5,
+        1.7549999952316284,
+        0.0949999988079071
+      ],
+      "sha256": "f5bbe5ed823e4fa6638ab665a032a8f5b08aeaf349a7dffeaad9860d479c199b",
+      "vertex_sha256": "5965d5e0c6686e89a1ec27cb9bbe6e84f3e7b06853efa7d47286934d757dd680"
+    },
+    {
+      "id": "gantry-wayboard-3",
+      "vertices": 96,
+      "palette": [
+        12,
+        32
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.0949999988079071
+      ],
+      "max": [
+        0.5,
+        1.78000009059906,
+        0.0949999988079071
+      ],
+      "sha256": "c18787898dd432bb195c2e661fed3c77bc32472b243d80710749fce89cd7f16c",
+      "vertex_sha256": "7dbf7ad01c5f2d8497b90959fb41ce685f538a376a76a59b531b24e186fb2ff4"
+    },
+    {
+      "id": "tine-ground-0",
+      "vertices": 24,
+      "palette": [
+        106
+      ],
+      "min": [
+        -0.5,
+        -0.06499999761581421,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "a8ae9a8d22a5fbddf5c38286ac4fcb527c2c68c1c199b6e97a7e207001b039a0",
+      "vertex_sha256": "eaf2700c243253135674d5206138169fe288e3fbe1de923fcc561c0642736384"
+    },
+    {
+      "id": "tine-ground-1",
+      "vertices": 24,
+      "palette": [
+        106
+      ],
+      "min": [
+        -0.5,
+        -0.0729999989271164,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "43869acc723dbf02680c48c08412c3aa611b5cf9ac85ddefcb07f67767c66ff2",
+      "vertex_sha256": "3cb0a9fcbd0642d3be9f875b05e8bb439518a6d22fc194779dff94a115288ec3"
+    },
+    {
+      "id": "tine-ground-2",
+      "vertices": 24,
+      "palette": [
+        106
+      ],
+      "min": [
+        -0.5,
+        -0.08100000023841858,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "2605a0ef720c1cff3807b07ed9568dca418e408aa3729ad667d71bf8cc2194e3",
+      "vertex_sha256": "b361aa8513f8415fd6b6d12432ee9c5912d28d5039a42f6cf2d4f81a017d2d73"
+    },
+    {
+      "id": "tine-ground-3",
+      "vertices": 24,
+      "palette": [
+        106
+      ],
+      "min": [
+        -0.5,
+        -0.08900000154972076,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "6652ea4bb8677b7a38c43356b191b02393b2b5089dda25c78596f91e5ce1afce",
+      "vertex_sha256": "5320195c09341392e89a1bb0f753e160c3e66599b715405bcc9a9a8a13d853c6"
+    },
+    {
+      "id": "tine-wall-0",
+      "vertices": 48,
+      "palette": [
+        56,
+        107
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        1.0499999523162842,
+        0.5
+      ],
+      "sha256": "889953aa56a124ed300b43bfc3162e9842a722a4def96fca376935bf8298b4c1",
+      "vertex_sha256": "387066e3fe1eabceb40339469f9d31a0c825882ab422c54839091d4afd98e5f1"
+    },
+    {
+      "id": "tine-wall-1",
+      "vertices": 48,
+      "palette": [
+        56,
+        107
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        1.0499999523162842,
+        0.5
+      ],
+      "sha256": "a95b7cc5fb39d5368011180928d6e4d313b10d298550f0086f1cfefc4ac6e473",
+      "vertex_sha256": "d99beb11c185b22808f7dd8ca7d221f9096e2b63e956afa732ed12487d07744d"
+    },
+    {
+      "id": "tine-wall-2",
+      "vertices": 48,
+      "palette": [
+        56,
+        107
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        1.0499999523162842,
+        0.5
+      ],
+      "sha256": "26642e1330f64b55d1f1b3463d5c0adca80c7a4beb1b21d3c87f8beffdf9216f",
+      "vertex_sha256": "c03b78762b4c391c815daea93b90ea7413f2f58979732521c342e5045ad1a5b4"
+    },
+    {
+      "id": "tine-wall-3",
+      "vertices": 48,
+      "palette": [
+        56,
+        107
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        1.0499999523162842,
+        0.5
+      ],
+      "sha256": "4af30e8c7cda4757a4e41c5bc039688d10997aae5a58f8c7c166730221bf1268",
+      "vertex_sha256": "9946cf2e0f37289ead7afa4423d9af23ab5e9a2566c280ffd4afe5ec95dde6d3"
+    },
+    {
+      "id": "tine-water-0",
+      "vertices": 24,
+      "palette": [
+        24
+      ],
+      "min": [
+        -0.5,
+        -0.07000000029802322,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "cf39b85b65cb5f8febe25f14d243e83062cb74349ef34e55353c420b9881cdc3",
+      "vertex_sha256": "367aeb990f4cdb149638c0926e26e6624702f5f163163debbd06fd6d760f943c"
+    },
+    {
+      "id": "tine-water-1",
+      "vertices": 24,
+      "palette": [
+        24
+      ],
+      "min": [
+        -0.5,
+        -0.07800000160932541,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "4bff10414c66bb71e614fffb2de6f164e238cf84bb1dd3657b7b588583b369e4",
+      "vertex_sha256": "781097c2e45acf7634a850ed8ab0f4ae12a04f21b6df889b9b209215bdcb04ca"
+    },
+    {
+      "id": "tine-water-2",
+      "vertices": 24,
+      "palette": [
+        24
+      ],
+      "min": [
+        -0.5,
+        -0.0860000029206276,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "dbca5a0cd48d2662a069724a75b0b1131dd5ff39cea4b23bb3ff023c2b1785ed",
+      "vertex_sha256": "f260085acf8069c2e3784de43919e0d2e95648d33b5521be692b9980026e2f10"
+    },
+    {
+      "id": "tine-water-3",
+      "vertices": 24,
+      "palette": [
+        24
+      ],
+      "min": [
+        -0.5,
+        -0.09400000423192978,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "65098df7fc4b65f77a8873fd8cd746c011d34efcf5bd5494f6f2bb8d210d02bc",
+      "vertex_sha256": "244eaf21c69b48d00cf876ded1d1fad02dca90d2cb0b6bd881d40dd3f938809f"
+    },
+    {
+      "id": "tine-pier-0",
+      "vertices": 120,
+      "palette": [
+        64,
+        106
+      ],
+      "min": [
+        -0.47999998927116394,
+        0.0,
+        -0.49000000953674316
+      ],
+      "max": [
+        0.47999998927116394,
+        0.16999998688697815,
+        0.49000000953674316
+      ],
+      "sha256": "e2afb07b39f736debf2ecda5d615cb1fe16db4e4a8566d8c775d19c21b748ffe",
+      "vertex_sha256": "0a7b9b54619172d8ccde49e102ca7fac41074aa0bf8ac8110530a30cb75a16ca"
+    },
+    {
+      "id": "tine-pier-1",
+      "vertices": 120,
+      "palette": [
+        64,
+        106
+      ],
+      "min": [
+        -0.47999998927116394,
+        0.0,
+        -0.48399999737739563
+      ],
+      "max": [
+        0.47999998927116394,
+        0.16999998688697815,
+        0.48399999737739563
+      ],
+      "sha256": "65934a242ae75820190f612a9746e31835bd1c098fbdc218720ded65a154f6c2",
+      "vertex_sha256": "9010472028e2d48b404f8a044d44ed1e0c4123d66a644fa18b50030fb135c454"
+    },
+    {
+      "id": "tine-pier-2",
+      "vertices": 120,
+      "palette": [
+        64,
+        106
+      ],
+      "min": [
+        -0.47999998927116394,
+        0.0,
+        -0.4780000150203705
+      ],
+      "max": [
+        0.47999998927116394,
+        0.16999998688697815,
+        0.4780000150203705
+      ],
+      "sha256": "ecac18ca37410ed85b46873c4ba70526828e79a86604537664cc2110e5060254",
+      "vertex_sha256": "1b31aac225456a859faf1d5892fc8088dcba988a5cd77512f17c49717ed1a9a3"
+    },
+    {
+      "id": "tine-pier-3",
+      "vertices": 120,
+      "palette": [
+        64,
+        106
+      ],
+      "min": [
+        -0.47999998927116394,
+        0.0,
+        -0.47200000286102295
+      ],
+      "max": [
+        0.47999998927116394,
+        0.16999998688697815,
+        0.47200000286102295
+      ],
+      "sha256": "77b5adbe9d327ce0b02bb6d38772de17a44267a8a4864ca5752e93bb9906cea1",
+      "vertex_sha256": "632b18d3ca882cf9d0f1498c57ad616118a8c6d1a141a64885fe873decff91ea"
+    },
+    {
+      "id": "tine-path-0",
+      "vertices": 24,
+      "palette": [
+        64
+      ],
+      "min": [
+        -0.5,
+        -0.06499999761581421,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "b6fe1321bc91e21425ed374c97bd5aaf9023692acee0f2592ffd34e9f3ea8b86",
+      "vertex_sha256": "eaf2700c243253135674d5206138169fe288e3fbe1de923fcc561c0642736384"
+    },
+    {
+      "id": "tine-path-1",
+      "vertices": 24,
+      "palette": [
+        64
+      ],
+      "min": [
+        -0.5,
+        -0.0729999989271164,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "5c9770ae4d6c55878753f06bf5ecfb23429ad81cdc970cb9760982405563a584",
+      "vertex_sha256": "3cb0a9fcbd0642d3be9f875b05e8bb439518a6d22fc194779dff94a115288ec3"
+    },
+    {
+      "id": "tine-path-2",
+      "vertices": 24,
+      "palette": [
+        64
+      ],
+      "min": [
+        -0.5,
+        -0.08100000023841858,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "b7b34f12da33f12286e953dc0715d8230746b5fe22f90d2dfe00149b53114f6b",
+      "vertex_sha256": "b361aa8513f8415fd6b6d12432ee9c5912d28d5039a42f6cf2d4f81a017d2d73"
+    },
+    {
+      "id": "tine-path-3",
+      "vertices": 24,
+      "palette": [
+        64
+      ],
+      "min": [
+        -0.5,
+        -0.08900000154972076,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "c313abdcee7896ced681d8994b73f02dcd3bd2681fbd276c7a08b222530f9469",
+      "vertex_sha256": "5320195c09341392e89a1bb0f753e160c3e66599b715405bcc9a9a8a13d853c6"
+    },
+    {
+      "id": "quillhold-ground-0",
+      "vertices": 24,
+      "palette": [
+        106
+      ],
+      "min": [
+        -0.5,
+        -0.05999999865889549,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "4ac44c8ff2e4f1218533ed71caf94bc7393576b8173eb857b19d7ceeab8fda47",
+      "vertex_sha256": "d1b3d1561f91b32d180c321c426c8badd5c8d6f335dff0b7f7aab04234ba71a9"
+    },
+    {
+      "id": "quillhold-ground-1",
+      "vertices": 24,
+      "palette": [
+        106
+      ],
+      "min": [
+        -0.5,
+        -0.06799999624490738,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "a20d55c020b5523775465b41d172160a292eec6ee44937ef275738430c5cbb78",
+      "vertex_sha256": "7b84cd74d667d3826cae6bd6d9e8d346982960096281deea9af4727a8e86d63a"
+    },
+    {
+      "id": "quillhold-ground-2",
+      "vertices": 24,
+      "palette": [
+        106
+      ],
+      "min": [
+        -0.5,
+        -0.07599999755620956,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "d83dce98d0010a17b10f2144d67595ce9cad2928f2586e472f2397003f016240",
+      "vertex_sha256": "67bb9e00efc4c1d7d4a3dc23c66ab5193b12294cdeb8a1a16055d2c3da843a1d"
+    },
+    {
+      "id": "quillhold-ground-3",
+      "vertices": 24,
+      "palette": [
+        106
+      ],
+      "min": [
+        -0.5,
+        -0.08399999886751175,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "a038518dbe1ce7b303c5b4394c910ac123db41e19f9d61177066ae05052e724b",
+      "vertex_sha256": "c265e853e91896c203af6d5cf67f21da6e82dbb6239c9ecf391bc6a88cd13e71"
+    },
+    {
+      "id": "quillhold-path-0",
+      "vertices": 24,
+      "palette": [
+        64
+      ],
+      "min": [
+        -0.5,
+        -0.05999999865889549,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "ac35e5b66682505a6240f4a14afa00e48db553436ace473179679701b4c6b853",
+      "vertex_sha256": "d1b3d1561f91b32d180c321c426c8badd5c8d6f335dff0b7f7aab04234ba71a9"
+    },
+    {
+      "id": "quillhold-path-1",
+      "vertices": 24,
+      "palette": [
+        64
+      ],
+      "min": [
+        -0.5,
+        -0.06799999624490738,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "2da323407408f93dd2fa58a370678973fa41bb02fb88d23a560554173b561dc8",
+      "vertex_sha256": "7b84cd74d667d3826cae6bd6d9e8d346982960096281deea9af4727a8e86d63a"
+    },
+    {
+      "id": "quillhold-path-2",
+      "vertices": 24,
+      "palette": [
+        64
+      ],
+      "min": [
+        -0.5,
+        -0.07599999755620956,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "3225860f128ce3c3b1bbb87bc66d3659b259acbaa817bc1e45ae4c523b047167",
+      "vertex_sha256": "67bb9e00efc4c1d7d4a3dc23c66ab5193b12294cdeb8a1a16055d2c3da843a1d"
+    },
+    {
+      "id": "quillhold-path-3",
+      "vertices": 24,
+      "palette": [
+        64
+      ],
+      "min": [
+        -0.5,
+        -0.08399999886751175,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "2175f8ce86cbe6f3ceefed102dd600e0bb94477805f5b65b902a0cc16520e422",
+      "vertex_sha256": "c265e853e91896c203af6d5cf67f21da6e82dbb6239c9ecf391bc6a88cd13e71"
+    },
+    {
+      "id": "quillhold-wall-0",
+      "vertices": 72,
+      "palette": [
+        13,
+        56
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        1.0,
+        0.5
+      ],
+      "sha256": "a13736967715efe723fd1055f9d62070dc214b2614af3838b91073f671045c1d",
+      "vertex_sha256": "19e74fc1495ad54be84106ca42f673c879816fadb7a550c54be983951588b53c"
+    },
+    {
+      "id": "quillhold-wall-1",
+      "vertices": 72,
+      "palette": [
+        13,
+        56
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        1.0,
+        0.5
+      ],
+      "sha256": "9a8881239b33cc234fa35a3bdb09a45cc1fed6c2f29c4c816dc62c4bb3e0098f",
+      "vertex_sha256": "4d4e64470ddf3ba13be47bcfc0540bba097de9e4d19b8e9a8f3fd9cacc0b509b"
+    },
+    {
+      "id": "quillhold-wall-2",
+      "vertices": 72,
+      "palette": [
+        13,
+        56
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        1.0,
+        0.5
+      ],
+      "sha256": "aa9eb5b0c11d6b678fc8562b5f719febaccfd09d0da9a91bcd0ae2b6778b779c",
+      "vertex_sha256": "4ba75c03bd009cec6e5c36242b747026ee1c11b6ba17f634b0c7a9c41417c646"
+    },
+    {
+      "id": "quillhold-wall-3",
+      "vertices": 72,
+      "palette": [
+        13,
+        56
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        1.0,
+        0.5
+      ],
+      "sha256": "83dcdfd846fc79b6df4d663abf22b2aca8b67955fc616afc8b5fa91dafb85181",
+      "vertex_sha256": "5d21186aaff6ee01215a5df2a21e32459e76da5838e7bb35944f685697bfb8d8"
+    },
+    {
+      "id": "quillhold-shelf-0",
+      "vertices": 192,
+      "palette": [
+        8,
+        19
+      ],
+      "min": [
+        -0.4599999785423279,
+        0.0,
+        -0.2199999988079071
+      ],
+      "max": [
+        0.4599999785423279,
+        0.8199999928474426,
+        0.2199999988079071
+      ],
+      "sha256": "03395fa28df64ef4dda0758d9597d0bdf335080128a405e5bf72e97b045bf917",
+      "vertex_sha256": "f8e892ac4b47320736607953ac147254700c57fdd18e4a62efa8032f809dba6d"
+    },
+    {
+      "id": "quillhold-shelf-1",
+      "vertices": 192,
+      "palette": [
+        8,
+        19
+      ],
+      "min": [
+        -0.4599999785423279,
+        0.0,
+        -0.2199999988079071
+      ],
+      "max": [
+        0.4599999785423279,
+        0.8199999928474426,
+        0.2199999988079071
+      ],
+      "sha256": "e7a3d08e73c96b78d7be0969261eda8fee29e92306ba00aa126fd47492189c94",
+      "vertex_sha256": "5f887ba8495da0da06882c4e75dc63a83da8e6720a0d79439c34d9056433e215"
+    },
+    {
+      "id": "quillhold-shelf-2",
+      "vertices": 192,
+      "palette": [
+        8,
+        19
+      ],
+      "min": [
+        -0.4599999785423279,
+        0.0,
+        -0.2199999988079071
+      ],
+      "max": [
+        0.4599999785423279,
+        0.8199999928474426,
+        0.2199999988079071
+      ],
+      "sha256": "b442d8440b6adb1a435904161357171840ffde6b05ac9738b11c45d2f4c6d362",
+      "vertex_sha256": "ee3b51b6a4807c33048e9e84d8a8ee047a046b96515e442edd06f0c8e6db40c3"
+    },
+    {
+      "id": "quillhold-shelf-3",
+      "vertices": 192,
+      "palette": [
+        8,
+        19
+      ],
+      "min": [
+        -0.4599999785423279,
+        0.0,
+        -0.2199999988079071
+      ],
+      "max": [
+        0.4599999785423279,
+        0.8199999928474426,
+        0.2199999988079071
+      ],
+      "sha256": "19f33c62cef91cd7a051d7964ff8bb0ab0868f7482aa5018bced51dcb0b62881",
+      "vertex_sha256": "4990201b520d059e3a3342ab2cba60f0f769a6a346f61e40c05d84cc769d86fc"
+    },
+    {
+      "id": "quillhold-desk-0",
+      "vertices": 96,
+      "palette": [
+        8,
+        19
+      ],
+      "min": [
+        -0.4300000071525574,
+        0.0,
+        -0.3199999928474426
+      ],
+      "max": [
+        0.4300000071525574,
+        0.5424999594688416,
+        0.3199999928474426
+      ],
+      "sha256": "8ac38cd4ebeeb71fd19b48bdc1f96e5e20eee98461f7478670bc987e0f2a096a",
+      "vertex_sha256": "6d11dc533d0d10706ae1941e24a949148f3f90bcafd447d5c66617c1d6631991"
+    },
+    {
+      "id": "quillhold-desk-1",
+      "vertices": 96,
+      "palette": [
+        8,
+        19
+      ],
+      "min": [
+        -0.4300000071525574,
+        0.0,
+        -0.3199999928474426
+      ],
+      "max": [
+        0.4300000071525574,
+        0.5424999594688416,
+        0.3199999928474426
+      ],
+      "sha256": "c1b06f7604614c3b5a17c1f36640cb62bd7f5280058f0fbcdce94ab07bfb9f9b",
+      "vertex_sha256": "c772208d37a50b3d2b79e189d01d57312a3a6e1fcc37837cc2f6bc9237930567"
+    },
+    {
+      "id": "quillhold-desk-2",
+      "vertices": 96,
+      "palette": [
+        8,
+        19
+      ],
+      "min": [
+        -0.4300000071525574,
+        0.0,
+        -0.3199999928474426
+      ],
+      "max": [
+        0.4300000071525574,
+        0.5424999594688416,
+        0.3199999928474426
+      ],
+      "sha256": "c69692498d0e2ce125d03e3801290cb92fb756d74d5e6427d1448789cfa07e10",
+      "vertex_sha256": "f0472259c8360574e0fd9334b31d911e8cf3830bcdc70e8d817ef39c3e39c0cd"
+    },
+    {
+      "id": "quillhold-desk-3",
+      "vertices": 96,
+      "palette": [
+        8,
+        19
+      ],
+      "min": [
+        -0.4300000071525574,
+        0.0,
+        -0.3199999928474426
+      ],
+      "max": [
+        0.4300000071525574,
+        0.5424999594688416,
+        0.3199999928474426
+      ],
+      "sha256": "055527dc91508dd7dd78860a8f5aa78e4c4cd739b25298caada646388444281c",
+      "vertex_sha256": "8c2806e484d7bc76ad0b1a2fc04b2da79acf2dfcea2ab876203966e6e22be426"
+    },
+    {
+      "id": "quillhold-scribe-0",
+      "vertices": 240,
+      "palette": [
+        22,
+        32
+      ],
+      "min": [
+        -0.3499999940395355,
+        0.0,
+        -0.17000000178813934
+      ],
+      "max": [
+        0.3400000035762787,
+        1.5399999618530273,
+        0.4150000214576721
+      ],
+      "sha256": "6791ebfab8c269d1782032c5b144e568e9f2983a2ade45f3b3d9e95681e2a6f5",
+      "vertex_sha256": "6d4b9eedd7504e540ad2754881584ea20a1eeea475b0fc3ac319c20ac3b02f7c"
+    },
+    {
+      "id": "quillhold-scribe-1",
+      "vertices": 240,
+      "palette": [
+        22,
+        32
+      ],
+      "min": [
+        -0.3499999940395355,
+        0.0,
+        -0.17000000178813934
+      ],
+      "max": [
+        0.3400000035762787,
+        1.5399999618530273,
+        0.4150000214576721
+      ],
+      "sha256": "c3f81f7c3126007ca109787b15c64412ae3b4616cdfef95879ba0dddabc84c45",
+      "vertex_sha256": "bf9c6bf2ae7eef48afce9d3fdf5bba39201a1aa90bf964b1b564e31b6f3808ef"
+    },
+    {
+      "id": "quillhold-scribe-2",
+      "vertices": 240,
+      "palette": [
+        22,
+        32
+      ],
+      "min": [
+        -0.3499999940395355,
+        0.0,
+        -0.17000000178813934
+      ],
+      "max": [
+        0.3400000035762787,
+        1.5399999618530273,
+        0.4150000214576721
+      ],
+      "sha256": "7358b487f530409f673853752b51e3e7766f53a96532f53944ddcab09911d026",
+      "vertex_sha256": "9a77a1cc277015cd27f3dd83d416b183c248feaf4bb9beb3469d1e7d7e22a3ab"
+    },
+    {
+      "id": "quillhold-scribe-3",
+      "vertices": 240,
+      "palette": [
+        22,
+        32
+      ],
+      "min": [
+        -0.3499999940395355,
+        0.0,
+        -0.17000000178813934
+      ],
+      "max": [
+        0.3400000035762787,
+        1.5399999618530273,
+        0.4150000214576721
+      ],
+      "sha256": "4395a94e9bdc781cbed184959038f96c612abc76e4050ddf84b18c8041ac72ce",
+      "vertex_sha256": "c1bedcd4b4b69d0bc45df50ab02d9d223d5dc987b5ff316ef73a862a6f1022f0"
+    },
+    {
+      "id": "quillhold-table-0",
+      "vertices": 120,
+      "palette": [
+        8,
+        64
+      ],
+      "min": [
+        -0.49000000953674316,
+        0.0,
+        -0.44999998807907104
+      ],
+      "max": [
+        0.49000000953674316,
+        0.5600000023841858,
+        0.44999998807907104
+      ],
+      "sha256": "db9167ce4a77fc2c45b3bbd4e30bdd381d537b5318bb7d2a55c7634519394d35",
+      "vertex_sha256": "763977df350e25a7fef6ac503854378f5b4d6a0328d4a86295fd4f63370eed45"
+    },
+    {
+      "id": "quillhold-table-1",
+      "vertices": 120,
+      "palette": [
+        8,
+        64
+      ],
+      "min": [
+        -0.49000000953674316,
+        0.0,
+        -0.44999998807907104
+      ],
+      "max": [
+        0.49000000953674316,
+        0.5600000023841858,
+        0.44999998807907104
+      ],
+      "sha256": "683b4bc76f56eb96b74bf89b308e1e39a92f5f3dfbedd873942439414547af13",
+      "vertex_sha256": "8e2e32c9e323fcae6640e8cb895faa275c21676239f9b9fda786be085f25983d"
+    },
+    {
+      "id": "quillhold-table-2",
+      "vertices": 120,
+      "palette": [
+        8,
+        64
+      ],
+      "min": [
+        -0.49000000953674316,
+        0.0,
+        -0.44999998807907104
+      ],
+      "max": [
+        0.49000000953674316,
+        0.5600000023841858,
+        0.44999998807907104
+      ],
+      "sha256": "21a271e84d68e0cacdac8f0cb5bbb996fe029ee93b3dcdadca1599f0eb7af4ac",
+      "vertex_sha256": "c2dcaf9b09841a5cbd4bcfe2270407d4667c193e9740e86d46d09c38d98f3944"
+    },
+    {
+      "id": "quillhold-table-3",
+      "vertices": 120,
+      "palette": [
+        8,
+        64
+      ],
+      "min": [
+        -0.49000000953674316,
+        0.0,
+        -0.44999998807907104
+      ],
+      "max": [
+        0.49000000953674316,
+        0.5600000023841858,
+        0.44999998807907104
+      ],
+      "sha256": "fa9346136fec1d89bc893e8eda1b3d4e0d218930f6a8f13706f13d5414ac1053",
+      "vertex_sha256": "51e90bd289778924b87e81044adff9a8966ed5d7caac8efc6f1091080f85464a"
+    },
+    {
+      "id": "tally-ground-0",
+      "vertices": 24,
+      "palette": [
+        64
+      ],
+      "min": [
+        -0.5,
+        -0.06499999761581421,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "d9d941ea0204d7c61bba0050a3455cfbb2268348942fe04542802d64cc7ad8ff",
+      "vertex_sha256": "eaf2700c243253135674d5206138169fe288e3fbe1de923fcc561c0642736384"
+    },
+    {
+      "id": "tally-ground-1",
+      "vertices": 24,
+      "palette": [
+        64
+      ],
+      "min": [
+        -0.5,
+        -0.0729999989271164,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "69217b9eb7213c30b8dc878f5888cd0d92c6eae17ef562a4877b9423bd07980f",
+      "vertex_sha256": "3cb0a9fcbd0642d3be9f875b05e8bb439518a6d22fc194779dff94a115288ec3"
+    },
+    {
+      "id": "tally-ground-2",
+      "vertices": 24,
+      "palette": [
+        64
+      ],
+      "min": [
+        -0.5,
+        -0.08100000023841858,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "578ebfc61f644dee641f619a2868c854746cb8048dddc79de869e86a1d5f31f6",
+      "vertex_sha256": "b361aa8513f8415fd6b6d12432ee9c5912d28d5039a42f6cf2d4f81a017d2d73"
+    },
+    {
+      "id": "tally-ground-3",
+      "vertices": 24,
+      "palette": [
+        64
+      ],
+      "min": [
+        -0.5,
+        -0.08900000154972076,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "ffb4793fce4a86967119fdbb71582fc193200f1ac8d6462899555eccd114e715",
+      "vertex_sha256": "5320195c09341392e89a1bb0f753e160c3e66599b715405bcc9a9a8a13d853c6"
+    },
+    {
+      "id": "tally-path-0",
+      "vertices": 24,
+      "palette": [
+        106
+      ],
+      "min": [
+        -0.5,
+        -0.07500000298023224,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "683f850b5cb22f6ff15eff0ff559a2b665fa8502efa31ba2f368a0be0ffc8097",
+      "vertex_sha256": "5ab76e6f67754872ab195d17c75fcc08b4bccf15eae8b4738eea0c42b50c8322"
+    },
+    {
+      "id": "tally-path-1",
+      "vertices": 24,
+      "palette": [
+        106
+      ],
+      "min": [
+        -0.5,
+        -0.08300000429153442,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "8b92e6e76ccc46a2a858eb1781d01305ffb7363aed62d675d1165f256a70a173",
+      "vertex_sha256": "30873ec7030fa84ab3511d93dbaef50dce6df033c3db90ee2a7c83c08ba37f5f"
+    },
+    {
+      "id": "tally-path-2",
+      "vertices": 24,
+      "palette": [
+        106
+      ],
+      "min": [
+        -0.5,
+        -0.09100000560283661,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "cb25844baa88736aec32c5e974a4a66adb43273086552b653c61f402028a98f9",
+      "vertex_sha256": "4b11ac445b0ec2043f01adcef99573cf32398843788e16231adfec40b38bf5b6"
+    },
+    {
+      "id": "tally-path-3",
+      "vertices": 24,
+      "palette": [
+        106
+      ],
+      "min": [
+        -0.5,
+        -0.0990000069141388,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "sha256": "f360d352c5e9c3b1a704d56161f164f7a8027beac3af93af16c432e0d68c0077",
+      "vertex_sha256": "e8ca5720e5e8932f3b7fca6f1e2646f5962ad73c22409042ea02590b4540afdb"
+    },
+    {
+      "id": "tally-wall-0",
+      "vertices": 48,
+      "palette": [
+        12,
+        107
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.8500000238418579,
+        0.5
+      ],
+      "sha256": "3dd1f5464e9f5a163907b63f21eeb14f868a0539243508de8b67677f0411855f",
+      "vertex_sha256": "e08c8b02255ca09779fbc15dc485bfa8356228c4171ce38c6001b14d54ca7d9d"
+    },
+    {
+      "id": "tally-wall-1",
+      "vertices": 48,
+      "palette": [
+        12,
+        107
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.875,
+        0.5
+      ],
+      "sha256": "801542f2724bc93893279217efbcdc94238e9f9273c55f654c1affce226f29ac",
+      "vertex_sha256": "b465c3d02c89099a054e990b200289bf1623460cb1d48edc67261357368620eb"
+    },
+    {
+      "id": "tally-wall-2",
+      "vertices": 48,
+      "palette": [
+        12,
+        107
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.8999999761581421,
+        0.5
+      ],
+      "sha256": "a12f4d11614a8190e7a71b04cb983963a387a39c32477b9d228c2aa59e6ecb55",
+      "vertex_sha256": "7092bbbb609907b7dfdb7ee103dadcca61cbef85b88734f719dc7187e1141677"
+    },
+    {
+      "id": "tally-wall-3",
+      "vertices": 48,
+      "palette": [
+        12,
+        107
+      ],
+      "min": [
+        -0.5,
+        0.0,
+        -0.5
+      ],
+      "max": [
+        0.5,
+        0.9250000715255737,
+        0.5
+      ],
+      "sha256": "56e0f85ae89c5e5d1cc9ad415f042b2eb9a2c1cb47fd249d8e2cba61efe3c0f3",
+      "vertex_sha256": "99ff8a500ecd893a7fa33c311853d8e15bd52af2b4ec84a8735fcf006ef636a9"
+    },
+    {
+      "id": "tally-crate-0",
+      "vertices": 48,
+      "palette": [
+        8,
+        9
+      ],
+      "min": [
+        -0.4000000059604645,
+        0.0,
+        -0.38999998569488525
+      ],
+      "max": [
+        0.4000000059604645,
+        0.6300000548362732,
+        0.38999998569488525
+      ],
+      "sha256": "d3d0a15e8899ca9cc9d383bd8569f586260838c13c220cb2763fe12c924a7458",
+      "vertex_sha256": "085a3ad0583a9e416f76641fdbc4e755f5392aeba5268b1726ad236efdff4bfa"
+    },
+    {
+      "id": "tally-crate-1",
+      "vertices": 48,
+      "palette": [
+        8,
+        9
+      ],
+      "min": [
+        -0.4000000059604645,
+        0.0,
+        -0.38999998569488525
+      ],
+      "max": [
+        0.4000000059604645,
+        0.6700000762939453,
+        0.38999998569488525
+      ],
+      "sha256": "c80873349fc07f96811ffb9d6dca489a32daf5c249a6ede9c4d6891b5a7fe42d",
+      "vertex_sha256": "d71c587abe637b238d64d7b24190d37d6f3e14d31eac80d7a0c9d9bc0ad936d1"
+    },
+    {
+      "id": "tally-crate-2",
+      "vertices": 48,
+      "palette": [
+        8,
+        9
+      ],
+      "min": [
+        -0.4000000059604645,
+        0.0,
+        -0.38999998569488525
+      ],
+      "max": [
+        0.4000000059604645,
+        0.7100000381469727,
+        0.38999998569488525
+      ],
+      "sha256": "06d1195146d54b42fc4648dbae77aba3074f44ae3d29ed3bb6e40112ec51674e",
+      "vertex_sha256": "d7b32df987341ce477fafeb840fa900e158bf19e28647932ca1a4ce3f6a3eb8f"
+    },
+    {
+      "id": "tally-crate-3",
+      "vertices": 48,
+      "palette": [
+        8,
+        9
+      ],
+      "min": [
+        -0.4000000059604645,
+        0.0,
+        -0.38999998569488525
+      ],
+      "max": [
+        0.4000000059604645,
+        0.7500000596046448,
+        0.38999998569488525
+      ],
+      "sha256": "db40e27fd1335ccfa62d7df037abb582f95943a39bc0d086bd95f3647750969f",
+      "vertex_sha256": "82370774db1a46dcc0a992757e7941978d8b14e94d579c8a88c665c726f301bd"
+    }
+  ]
+}

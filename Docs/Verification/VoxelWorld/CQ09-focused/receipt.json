@@ -1,0 +1,35 @@
+{
+  "isolatedProject": "/Users/steven/.cache/caves-of-ooo-validation/sanctums/project",
+  "unityExit": 2,
+  "compileErrors": [],
+  "results": {
+    "id": "2",
+    "testcasecount": "448",
+    "result": "Failed(Child)",
+    "total": "448",
+    "passed": "445",
+    "failed": "3",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-16 18:00:21Z",
+    "end-time": "2026-09-16 18:00:36Z",
+    "duration": "15.15618"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.CivicQuartetRenderingAdversarialTests.ATravellingPersonDoesNotChangeBodyBetweenTheFourCivicAreas(\"TentRightHost\")",
+      "message": "  A town's art palette may not change the same person's body: Overworld.13.7.0\n  Expected string length 16 but was 15. Strings differ at index 0.\n  Expected: \"firsttent-host-2\"\n  But was:  \"wellmeet-host-2\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.CivicQuartetRenderingAdversarialTests.ATravellingPersonDoesNotChangeBodyBetweenTheFourCivicAreas(\"Scribe\")",
+      "message": "  A town's art palette may not change the same person's body: Overworld.14.9.0\n  Expected string length 16 but was 18. Strings differ at index 0.\n  Expected: \"wellmeet-adult-1\"\n  But was:  \"quillhold-scribe-3\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PlaceProfileTests.TheProfileTable_IsData_AndComplete",
+      "message": "  Morrowfast is a plain village\n  Expected: True\n  But was:  False\n"
+    }
+  ]
+}

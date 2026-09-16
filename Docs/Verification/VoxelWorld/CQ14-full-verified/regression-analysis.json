@@ -1,0 +1,8 @@
+{
+  "baselineFailures": 32,
+  "unchangedNamesAndMessages": true,
+  "additionalFailures": {
+    "CavesOfOoo.Tests.GameAuditEntityEquipmentAdversarialTests.Adversarial_OnlySelectedContentGetsLoadoutsAndDerivedHumanoidLoot": "  Expected: equivalent to < \"Snapjaw\", \"SnapjawScavenger\", \"SnapjawHunter\", \"SnapjawChieftain\", \"SnapjawWarlord\", \"DesertBandit\", \"RuinScavenger\", \"SkeletalSentry\", \"AmbushBandit\", \"RuneCultist\", \"Warden\", \"Quartermaster\", \"Weaponsmith\", \"Tinker\", \"Farmer\", \"WellKeeper\", \"PeatCutter\", \"Elder\", \"Scribe\", \"Merchant\", \"TentRightHost\", \"SaltMaster\", \"RecensionScribe\", \"CurationSorter\" >\n  But was:  < \"Snapjaw\", \"SnapjawScavenger\", \"SnapjawHunter\", \"Elder\", \"Weaponsmith\", \"Tinker\", \"Merchant\", \"Quartermaster\", \"DesertBandit\", \"RuinScavenger\"... >\n"
+  },
+  "correction": "Add GantryRegistrar LeatherGloves;LeatherBoots to literal kit contracts; existing assertions retained. CQ17 passes75/75 equipment checks."
+}

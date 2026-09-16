@@ -90,9 +90,11 @@ namespace CavesOfOoo.Tests
         [Test]
         public void AGenericSpreadVillage_IsUntouched()
         {
-            // Counter-check: Gantry (7,8), Faction Villagers — no tents,
-            // no cloth, no Concord board. The profiles must not leak.
-            var zone = Generate("Overworld.7.8.0");
+            // Explicit ordinary Village at the same address: Gantry now has
+            // its own crossroads profile, so it is no longer a plain control.
+            var plain = new OverworldZoneManager(_factory, worldSeed: 42);
+            plain.WorldMap.SetPOI(7, 8, new PointOfInterest(POIType.Village, "plain crossing", faction: "Villagers"));
+            var zone = plain.GetZone("Overworld.7.8.0");
 
             Assert.AreEqual(0, CountOf(zone, "TentWall"));
             Assert.AreEqual(0, CountOf(zone, "GuestClothPole"));

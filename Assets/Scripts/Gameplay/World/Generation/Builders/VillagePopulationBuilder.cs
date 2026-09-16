@@ -16,6 +16,12 @@ namespace CavesOfOoo.Core
         /// <summary>Opt-in for semantic camps whose reserved indoor routes must remain free. Ordinary villages retain their existing placement.</summary>
         public bool RespectInteriorReservations { get; set; }
 
+        /// <summary>Optional semantic service position on this freshly generated
+        /// graph. Invalid/foreign/occupied cells fall back to ordinary placement.
+        /// Positions are claimed before decor and other residents are rolled.</summary>
+        public Func<Zone,string,Cell> PreferredServiceCell { get; set; }
+        private readonly Dictionary<string,Cell> preferredServices=new Dictionary<string,Cell>();
+        private static readonly string[] ServiceRoles={"Merchant","Quartermaster","Scribe","Innkeeper","Elder","Tinker","Warden","WellKeeper","Farmer"};
         public int Priority => 4000;
         // Public since STARTING TOWN: OverworldZoneManager gates the
         // shop-stamp pipeline on this ID.
@@ -45,6 +51,7 @@ namespace CavesOfOoo.Core
         {
             var openCells = GatherOpenCells(zone);
             if (openCells.Count == 0) return true;
+            PrepareServiceCells(zone,openCells);
 
             string settlementId = zone.ZoneID;
             var settlement = _settlementManager?.GetOrCreateSettlement(settlementId, _poi);
@@ -1193,7 +1200,7 @@ namespace CavesOfOoo.Core
             var cells = new List<(int x, int y)>();
             zone.ForEachCell((cell, x, y) =>
             {
-                if (!cell.IsPassable() || (RespectInteriorReservations && zone.GenReservedCells.Contains((x,y)))) return;
+                if (!cell.IsPassable() || (RespectInteriorReservations && zone.GenReservedCells.Contains((x,y))) || IsPreferredServiceCell(cell)) return;
 
                 bool isInterior = false;
                 bool hasFurniture = false;
@@ -1220,6 +1227,20 @@ namespace CavesOfOoo.Core
             List<(int x, int y)> interiorCells, List<(int x, int y)> openCells,
             string blueprint, string settlementId)
         {
+            if(preferredServices.TryGetValue(blueprint,out var preferred))
+            {
+                preferredServices.Remove(blueprint);
+                if(ValidServiceCell(zone,preferred))
+                {
+                    var placed=TryCreateEntity(factory,blueprint);
+                    if(placed!=null&&zone.AddEntity(placed,preferred.X,preferred.Y))
+                    {
+                        interiorCells.Remove((preferred.X,preferred.Y));openCells.Remove((preferred.X,preferred.Y));WireNPC(placed,settlementId);
+                        CavesOfOoo.Diagnostics.Diag.Record("worldgen","VillageServicePlaced",payload:new{zoneId=zone.ZoneID,blueprint,x=preferred.X,y=preferred.Y});return placed;
+                    }
+                }
+                CavesOfOoo.Diagnostics.Diag.Record("worldgen","VillageServiceRejected",payload:new{zoneId=zone.ZoneID,blueprint,reason="changed-or-invalid-service-owner"});
+            }
             // Try interior first
             if (interiorCells.Count > 0)
             {
@@ -1239,6 +1260,31 @@ namespace CavesOfOoo.Core
 
             // Fallback to any open cell
             return PlaceNPC(zone, factory, rng, openCells, blueprint, settlementId);
+        }
+
+        private void PrepareServiceCells(Zone zone,List<(int x,int y)> openCells)
+        {
+            preferredServices.Clear();if(PreferredServiceCell==null)return;
+            foreach(string role in ServiceRoles)
+            {
+                var cell=PreferredServiceCell(zone,role);if(cell==null)continue;
+                if(!ValidServiceCell(zone,cell)||IsPreferredServiceCell(cell))
+                {CavesOfOoo.Diagnostics.Diag.Record("worldgen","VillageServiceRejected",payload:new{zoneId=zone.ZoneID,blueprint=role,reason="invalid-preferred-cell"});continue;}
+                preferredServices.Add(role,cell);openCells.Remove((cell.X,cell.Y));
+            }
+        }
+        private bool IsPreferredServiceCell(Cell cell)
+        {foreach(var claimed in preferredServices.Values)if(ReferenceEquals(claimed,cell))return true;return false;}
+        private static bool ValidServiceCell(Zone zone,Cell cell)
+        {
+            if(zone==null||cell==null||!ReferenceEquals(zone.GetCell(cell.X,cell.Y),cell)||!cell.IsInterior||!cell.IsPassable()||zone.GenReservedCells.Contains((cell.X,cell.Y)))return false;
+            bool floor=false;
+            foreach(var owner in cell.Objects)
+            {
+                if(owner.BlueprintName=="StoneFloor")floor=true;
+                if(owner.HasTag("Furniture")||owner.HasTag("Creature")||owner.HasPart<BrainPart>()||owner.HasPart<LiquidPoolPart>()||owner.HasPart<StairsUpPart>()||owner.HasPart<StairsDownPart>())return false;
+            }
+            return floor;
         }
 
         /// <summary>
