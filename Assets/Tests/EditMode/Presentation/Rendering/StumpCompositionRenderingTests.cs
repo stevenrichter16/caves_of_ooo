@@ -30,9 +30,10 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(18,zones);
         }
 
-        [Test] public void LockedCampChestKeepsItsNativeLockAndMembershipWhileSharingChestArtOnlyInStump()
+        [TestCase("Overworld.2.1.0")] [TestCase("Overworld.4.6.0")]
+        public void LockedCampChestKeepsItsNativeLockAndMembershipWhileSharingScopedChestArt(string id)
         {
-            var factory=GrovelandsCompositionTests.Factory();var zone=new Zone("Overworld.2.1.0");
+            var factory=GrovelandsCompositionTests.Factory();var zone=new Zone(id);
             var catalog=UnityEngine.Resources.Load<SpawnRing3DLibrary>(SpawnRing3DLibrary.ResourcePath).Definition;
             var chest=factory.CreateEntity("LockedChest");zone.AddEntity(chest,10,10);
             var lockPart=chest.GetPart<LockPart>();Assert.NotNull(lockPart);Assert.IsTrue(lockPart.IsLocked);
@@ -40,8 +41,8 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual("ring-chest",recipe.ModelId);Assert.AreSame(chest,recipe.Owner);Assert.IsTrue(lockPart.IsLocked);
             Assert.IsFalse(recipe.Transient);Assert.IsTrue(recipe.Batched);
             zone.RemoveEntity(chest);Assert.IsNull(SpawnRing3DRecipes.Resolve(zone,chest,catalog).ModelId);
-            var control=new Zone("Overworld.4.6.0");control.AddEntity(chest,10,10);
-            Assert.IsNull(SpawnRing3DRecipes.Resolve(control,chest,catalog).ModelId,"This is a scoped Stump visual alias.");
+            var control=new Zone("Overworld.4.6.3");control.AddEntity(chest,10,10);
+            Assert.IsNull(SpawnRing3DRecipes.Resolve(control,chest,catalog).ModelId,"Unsupported depths do not gain the shared chest visual alias.");
             Assert.IsTrue(lockPart.IsLocked);
         }
 

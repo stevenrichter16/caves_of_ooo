@@ -20,7 +20,8 @@ namespace CavesOfOoo.Core
         public static bool IsTrackedVillage(string settlementId, PointOfInterest poi)
         {
             return !string.IsNullOrEmpty(settlementId)
-                && settlementId == StartingVillageZoneId
+                && (settlementId == StartingVillageZoneId
+                    || (WellmeetCompositionPlan.IsSupportedZone(settlementId)&&AreaCompositionScope.IsWellmeetSite(poi)))
                 && poi != null
                 && poi.Type == POIType.Village;
         }

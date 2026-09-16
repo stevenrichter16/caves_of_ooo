@@ -49,7 +49,7 @@ namespace CavesOfOoo.Editor
                     "Overworld.2.4.0","Overworld.2.4.1","Overworld.2.4.2"})
                 foreach(int seed in new[]{64,1729,729490642})
                 {
-                    var manager=new OverworldZoneManager(factory,seed);
+                    var manager=OverworldZoneManager.CreateDetached(factory,seed);
                     // The manager's existing parent-first guard owns travel order.
                     var watch=System.Diagnostics.Stopwatch.StartNew();var zone=manager.GetZone(id);watch.Stop();
                     AddArrivingPlayer(zone,factory);

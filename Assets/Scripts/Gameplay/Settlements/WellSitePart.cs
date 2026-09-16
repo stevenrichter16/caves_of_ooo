@@ -17,6 +17,8 @@ namespace CavesOfOoo.Core
         private int _renderFrameCounter;
         private bool _proximityMessageShown;
         private RepairStage _lastAppliedStage = RepairStage.Fouled;
+        /// <summary>Last native stage applied to this owner. Presentation can read it without consulting another active world.</summary>
+        public RepairStage VisualStage => _lastAppliedStage;
         private bool _auraStarted;
 
         public override bool HandleEvent(GameEvent e)
@@ -137,7 +139,8 @@ namespace CavesOfOoo.Core
         /// </summary>
         public void StartAuraForStage(RepairStage stage, Zone zone)
         {
-            if (zone == null || ParentEntity == null)
+            if (zone == null || ParentEntity == null
+                || zone.GetEntityCell(ParentEntity) == null)
                 return;
 
             AsciiFxTheme? theme = GetAuraTheme(stage);

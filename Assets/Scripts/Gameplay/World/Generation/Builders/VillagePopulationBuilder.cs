@@ -13,6 +13,9 @@ namespace CavesOfOoo.Core
     public class VillagePopulationBuilder : IZoneBuilder
     {
         public string Name => "VillagePopulationBuilder";
+        /// <summary>Opt-in for semantic camps whose reserved indoor routes must remain free. Ordinary villages retain their existing placement.</summary>
+        public bool RespectInteriorReservations { get; set; }
+
         public int Priority => 4000;
         // Public since STARTING TOWN: OverworldZoneManager gates the
         // shop-stamp pipeline on this ID.
@@ -1190,7 +1193,7 @@ namespace CavesOfOoo.Core
             var cells = new List<(int x, int y)>();
             zone.ForEachCell((cell, x, y) =>
             {
-                if (!cell.IsPassable()) return;
+                if (!cell.IsPassable() || (RespectInteriorReservations && zone.GenReservedCells.Contains((x,y)))) return;
 
                 bool isInterior = false;
                 bool hasFurniture = false;

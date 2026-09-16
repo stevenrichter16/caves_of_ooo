@@ -1,0 +1,43 @@
+{
+  "isolatedProject": "/Users/steven/.cache/caves-of-ooo-validation/sanctums/project",
+  "unityExit": 2,
+  "compileErrors": [],
+  "results": {
+    "id": "2",
+    "testcasecount": "51",
+    "result": "Failed(Child)",
+    "total": "51",
+    "passed": "46",
+    "failed": "5",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-16 02:03:40Z",
+    "end-time": "2026-09-16 02:03:42Z",
+    "duration": "1.3822293"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.WellmeetCompositionAdversarialTests.ActualCaveStairRollsAreProtectedBeforeLateVillageResidents",
+      "message": "  Actual cave arrival must be reserved, seed 1\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WellmeetCompositionTests.OutdoorRoadsForkWithoutAnUnbrokenCrossAndPreserveStoneOnlyForShade(64)",
+      "message": "  Outdoor routes are packed earth, not indoor floor.\n  Expected: not equal to \"StoneFloor\"\n  But was:  \"StoneFloor\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WellmeetCompositionTests.OutdoorRoadsForkWithoutAnUnbrokenCrossAndPreserveStoneOnlyForShade(1729)",
+      "message": "  Outdoor routes are packed earth, not indoor floor.\n  Expected: not equal to \"StoneFloor\"\n  But was:  \"StoneFloor\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WellmeetCompositionTests.OutdoorRoadsForkWithoutAnUnbrokenCrossAndPreserveStoneOnlyForShade(729490642)",
+      "message": "  Outdoor routes are packed earth, not indoor floor.\n  Expected: not equal to \"StoneFloor\"\n  But was:  \"StoneFloor\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WellmeetCompositionTests.WorkAndSaltSheltersReadDifferentlyFromBedsAndSparseFringesFrameCamp",
+      "message": "  ServiceShelter\n  Expected: False\n  But was:  True\n"
+    }
+  ]
+}

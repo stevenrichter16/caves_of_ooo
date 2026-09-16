@@ -58,22 +58,25 @@ namespace CavesOfOoo.Tests
             }
         }
 
-        [Test]
-        public void EachDepth_RoutesToItsOwnPipeline()
+        [TestCase(4, 6, true)]
+        [TestCase(12, 3, false)]
+        public void EachDepth_RoutesToItsOwnPipeline(int x, int y, bool authoredOlderdeep)
         {
             // The 🔴: before this, z=1 and z=2 hit the generic
             // underground pipeline and the sinkhole may as well not
             // have existed below its lip.
             var mgr = new ExposingManager(_factory);
-            var (name, x, y) = SinkholeSites.All[0];
+            var name = mgr.WorldMap.GetPOI(x, y).Name;
 
             var mouth = mgr.Pipe($"Overworld.{x}.{y}.0");
             Assert.IsTrue(Carries<SinkholeMouthBuilder>(mouth),
                 $"{name} z=0 is a mouth — a void in the world, with a lip");
 
             var descent = mgr.Pipe($"Overworld.{x}.{y}.1");
-            Assert.IsTrue(Carries<SinkholeDescentBuilder>(descent),
-                "z=1 is the descent — ledges, anchors, and the way down");
+            Assert.AreEqual(authoredOlderdeep, Carries<OlderdeepCompositionBuilder>(descent),
+                "Olderdeep uses its authored descent; ordinary mouths keep their native descent builder.");
+            Assert.AreEqual(!authoredOlderdeep, Carries<SinkholeDescentBuilder>(descent),
+                "The authored and ordinary bases must not both stamp the same descent.");
             Assert.IsFalse(Carries<SinkholeMouthBuilder>(descent),
                 "and not a second lip");
         }
