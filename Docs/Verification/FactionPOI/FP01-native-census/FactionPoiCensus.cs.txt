@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using CavesOfOoo.Core;
+using CavesOfOoo.Data;
+using CavesOfOoo.Diagnostics;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using UnityEngine;
+namespace CavesOfOoo.Editor
+{
+ public static class FactionPoiCensus
+ {
+  public static void Run()
+  {
+   string output=Environment.GetEnvironmentVariable("FACTION_POI_OUT");
+   if(string.IsNullOrEmpty(output))throw new Exception("Explicit output required");
+   const int seed=141343545;
+   LootTableRegistry.Initialize(File.ReadAllText("Assets/Resources/Content/Data/Loot/LootTables.json"));
+   var factory=new EntityFactory();factory.LoadBlueprints(File.ReadAllText("Assets/Resources/Content/Blueprints/Objects.json"));
+   var manager=OverworldZoneManager.CreateDetached(factory,seed);
+   var ids=new List<string>();
+   for(int y=0;y<WorldMap.Height;y++)for(int x=0;x<WorldMap.Width;x++)ids.Add(WorldMap.ToZoneID(x,y,0));
+   foreach(var site in SinkholeSites.All)for(int z=1;z<3;z++)ids.Add(WorldMap.ToZoneID(site.X,site.Y,z));
+   // Record native owners alongside diagnostics so the classifier can check
+   // which emitted placements have defining objects in the finished graph.
+   var rows=new List<object>();
+   var errors=new List<string>();
+   Application.logMessageReceived+=(message,stack,type)=>{if(type==LogType.Exception||type==LogType.Error)errors.Add(message);};
+   foreach(string id in ids)
+   {
+    Diag.ResetAll();
+    foreach(string channel in new[]{"event","effect","damage","turn","furniture","trade","quest","skill","enhancement","mineral-trade","worldmap","liquid","gas","gasbench","questbench","alchemy","craft","crop","loot","spell","tile","drag","faction"})Diag.SetChannel(channel,false);
+    var at=WorldMap.FromZoneID(id);var poi=manager.WorldMap.GetPOI(at.x,at.y);
+    string error=null;Zone zone=null;try{zone=manager.GetZone(id);if(zone==null)error="GetZone returned null";}catch(Exception e){error=e.ToString();}
+    var owners=zone?.GetAllEntities().ToArray()??Array.Empty<Entity>();
+    var events=Diag.Snapshot(Diag.BufferCapacity).Where(e=>e.Category=="worldgen").Reverse().Select(e=>new{kind=e.Kind,payload=e.PayloadJson==null?null:JToken.Parse(e.PayloadJson)}).ToArray();
+    rows.Add(new{id,biome=manager.WorldMap.GetBiome(at.x,at.y).ToString(),tier=WorldMapAuthoring.TierAt(at.x,at.y),poi=poi?.Name,poiType=poi?.Type.ToString(),poiFaction=poi?.Faction,error,entities=owners.Length,
+     census=owners.GroupBy(e=>e.BlueprintName??"<null>").OrderBy(g=>g.Key).ToDictionary(g=>g.Key,g=>g.Count()),
+     factions=owners.Where(e=>e.GetTag("Faction")!=null).GroupBy(e=>e.GetTag("Faction")).OrderBy(g=>g.Key).ToDictionary(g=>g.Key,g=>g.Count()),
+     events,diagDropped=Diag.DroppedCount});
+    File.WriteAllText(Path.Combine(output,"native-census.json"),JsonConvert.SerializeObject(new{seed,scope="400 fresh surface chunks plus 12 named below-ground chunks; no player save loaded",complete=rows.Count==ids.Count,rows,errors},Formatting.Indented));
+    if(rows.Count%20==0)Debug.Log("[FactionPoiCensus] "+rows.Count+" / "+ids.Count);
+    manager.UnloadZone(id);
+    if(rows.Count%40==0)GC.Collect();
+   }
+  }
+ }
+}
