@@ -122,3 +122,7 @@ No dedicated ground-sprite native benchmark should be assumed to exist merely be
 ## Continuation override — R1 accepted 18 September 2026
 
 Read [RELEASE-R1-ACCEPTANCE](RELEASE-R1-ACCEPTANCE.md) before acting on earlier pending checkpoints. R1 runtime/art/native acceptance is complete and promoted to local main. Full R108 had one known timing flake; isolated fixture retry passed, reported separately. The next bounded implementation is [RELEASE-REGIONAL-OUTCOMES](RELEASE-REGIONAL-OUTCOMES.md). Keep the live Unity Editor open; never republish stale draft files over subsequent changes.
+
+### Latest continuation checkpoint — R2 accepted
+
+R1 and R2 are now on local main. Latest full suite:14,931/14,931, zero compiler errors; latest native journey:62/62 with rendered post-reload outcomes and visible delivered trade stock. Read [RELEASE-REGIONAL-OUTCOMES](RELEASE-REGIONAL-OUTCOMES.md). Next bounded repair is the observed full-screen trade/faction terrain leak, followed by explicit regional opt-in (plan and tests prepared, not implemented). Keep the user Editor open; preserve unrelated logs/cache.

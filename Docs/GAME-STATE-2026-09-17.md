@@ -388,3 +388,7 @@ Read older audits as dated snapshots. Later implementation can resolve a listed 
 ## Subsequent checkpoint — 18 September 2026
 
 This document remains the detailed dated inventory. Its32inherited failures have since been repaired in R1 and promoted to local main; see [R1 acceptance](RELEASE-R1-ACCEPTANCE.md) for exact full-suite, timing-flake retry, native vulnerable opening, equipment art and block import evidence. This is stabilization of the existing game, not implementation of the potential campaign/ending systems described above. R2 regional receipts are the next release slice.
+
+### R2 accepted — 18 September 2026
+
+Completed regional work now retains a truthful payment/stock/habitat receipt; released notes no longer advertise active delivery. All five finite bindings are covered, including rollback and full saves. Full suite14,931/14,931, native62/62, zero compiler errors; actual post-reload receipt and trader stock were inspected. See [RELEASE-REGIONAL-OUTCOMES](RELEASE-REGIONAL-OUTCOMES.md). No new economic simulation or ending spine is implied.

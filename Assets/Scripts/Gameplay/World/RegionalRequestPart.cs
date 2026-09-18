@@ -217,7 +217,11 @@ namespace CavesOfOoo.Core
             // transaction rolls these exact fields/properties back if any later
             // native AfterInventoryAction callback or currency check refuses.
             Accepted=false;Completed=true;actor.IntProperties[completionKey]=1;
-            RecordNote(actor,manager,"completed");
+            // Existing transaction undo restores this same note key. Publish
+            // the historical result before callbacks, alongside completion.
+            RegionalSituationNotes.RecordCompletion(actor,definition,expectedInstance,ParentEntity,manager.Factory,
+                definition.RewardDrams+preservation,
+                cargo!=null&&cargo.GetIntProperty(RegionalSituations.HabitatBonus)==3?(bool?)(preservation>0):null);
             tx.DeferCurrencyCredit(actor,definition.RewardDrams+preservation);
             var cell=zone.GetEntityCell(ParentEntity);if(cell!=null)ZoneRenderHooks.MarkCellDirty(cell.X,cell.Y,"RegionalRequestCompleted");
             string deliveryMessage="Delivered: "+definition.Title+". The goods join the recipient's trade stock."
@@ -231,7 +235,7 @@ namespace CavesOfOoo.Core
         private string RecordNote(Entity actor,OverworldZoneManager manager,string state)
         {
             bool available=true;
-            if(definition.Kind==RegionalSituationKind.Supply)
+            if(state=="accepted"&&definition.Kind==RegionalSituationKind.Supply)
             {
                 available=false;
                 if(RegionalSituations.SourceAllowed(definition,manager)

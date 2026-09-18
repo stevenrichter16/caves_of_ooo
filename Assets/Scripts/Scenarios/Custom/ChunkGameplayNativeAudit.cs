@@ -180,6 +180,10 @@ namespace CavesOfOoo.Scenarios.Custom
                 &&RegionalSituationNotes.Read(input.PlayerEntity).SequenceEqual(expectedRegionalNotes)
                 &&EntityUnits(restoredOrrit,"ChoirIron")==expectedRegionalStock);
             var sourceDefinition=RegionalSituations.Find("morrowfast-iron");
+            yield return Tap(Key.Q);yield return Tap(Key.Tab);
+            yield return InspectRegionalReceipt("regional_native_reloaded_receipt_visible",sourceDefinition,"regional-receipt-restored");yield return Tap(Key.Escape);
+            yield return Approach(restoredOrrit.ID);yield return OpenMenu(restoredOrrit);
+            Check("regional_native_reloaded_no_repeat",!Actions().Any(a=>a.Command=="RegionalRequest:deliver"));yield return Tap(Key.Escape);
             Check("regional_native_mined_source_stays_gone",!input.ZoneManager.GetZone(sourceDefinition.SourceZoneId).GetReadOnlyEntities()
                 .Any(e=>e.ID==RegionalSituations.SourceId(sourceDefinition,input.WorldMap.Seed)));
             yield return Approach(Farra().ID);CheckCue("reloaded",QuestCueState.None);yield return Capture("restored-completion");
@@ -262,8 +266,43 @@ namespace CavesOfOoo.Scenarios.Custom
             yield return Tap(Key.Q);yield return Tap(Key.Tab);
             var lines=(List<string>)typeof(QuestLogUI).GetField("_noteLines",Private).GetValue(input.QuestLogUI);
             Check("regional_native_note_visible",input.QuestLogUI.NotesVisible&&string.Join(" ",lines).Replace(" ","").Contains(definition.Title.Replace(" ","")));
-            yield return Capture("regional-notes");yield return Tap(Key.Escape);
+            yield return InspectRegionalReceipt("regional_native_receipt_visible",definition,"regional-notes");yield return Tap(Key.Escape);
+            yield return OpenMenu(giver);yield return SelectCommand("Chat");
+            yield return SelectDialogue(choice=>choice.Actions?.Any(a=>a.Key=="StartTrade")==true,"inspect delivered trade stock");
+            var tradeRows=(IList)typeof(TradeUI).GetField("_leftRows",Private).GetValue(input.TradeUI);
+            bool shownIron=false;
+            foreach(var row in tradeRows)
+            {
+                var item=(Entity)row.GetType().GetField("Item").GetValue(row);
+                if(item?.BlueprintName=="ChoirIron")shownIron=true;
+            }
+            Check("regional_native_delivered_stock_in_trade",State()=="TradeOpen"&&input.TradeUI.IsOpen&&shownIron);
+            yield return Capture("regional-trade-stock");yield return Tap(Key.Escape);
             yield return Tap(Key.F12);Check("regional_native_debug_restored",!DebugInvincibility.IsEnabled(input.PlayerEntity));
+        }
+        private IEnumerator InspectRegionalReceipt(string name,RegionalSituationDefinition definition,string capture)
+        {
+            // Read actual displayed glyphs, not the unpaginated backing buffer.
+            var glyphs=Enumerable.Range(32,95).ToDictionary(i=>CP437TilesetGenerator.GetTextTile((char)i),i=>(char)i);
+            bool visible=false;
+            for(int page=0;page<10;page++)
+            {
+                var text=new System.Text.StringBuilder();
+                for(int y=0;y<45;y++)for(int x=0;x<80;x++)
+                {
+                    var tile=input.QuestLogUI.Tilemap.GetTile(new Vector3Int(x,44-y,0)) as UnityEngine.Tilemaps.Tile;
+                    text.Append(tile!=null&&glyphs.TryGetValue(tile,out char c)?c:' ');
+                }
+                string drawn=System.Text.RegularExpressions.Regex.Replace(text.ToString(),@"\s+"," ");
+                visible=input.QuestLogUI.NotesVisible&&drawn.Contains("[completed]")
+                    &&drawn.Contains("Paid: "+definition.RewardDrams+" drams")&&drawn.Contains("trade stock")
+                    &&drawn.Contains("cannot pay again")&&!drawn.Contains("Bring ")&&!drawn.Contains("Read, deliver, or release");
+                if(visible)break;
+                int previous=input.QuestLogUI.NotesPage;yield return Tap(Key.PageDown);
+                if(previous==input.QuestLogUI.NotesPage)break;
+            }
+            Check(name,visible);Require(visible,"The actual journal page must draw the settled outcome and follow-up.");
+            yield return Capture(capture);
         }
         private static int EntityUnits(Entity owner,string blueprint)=>owner.GetPart<InventoryPart>().Objects.Where(e=>e.BlueprintName==blueprint).Sum(e=>e.GetPart<StackerPart>()?.StackCount??1);
 
@@ -426,7 +465,8 @@ namespace CavesOfOoo.Scenarios.Custom
             Require(Enum.TryParse(shortcut,out Key key)&&key!=Key.None,"A real labelled dialogue shortcut exists.");
             Debug.Log("[ChunkGameplayNativeAudit] Select "+label+" via "+shortcut+" from "+ConversationManager.CurrentNode?.ID+" to "+selected.Target);
             yield return Tap(key);
-            Require(selected.Target=="End"?State()=="Normal":State()=="DialogueOpen"
+            bool startsTrade=selected.Actions?.Any(a=>a.Key=="StartTrade")==true;
+            Require(selected.Target=="End"?State()==(startsTrade?"TradeOpen":"Normal"):State()=="DialogueOpen"
                 &&(string.IsNullOrEmpty(selected.Target)||ConversationManager.CurrentNode?.ID==selected.Target),"Native dialogue selected "+label+"; state="+State());
         }
         private IEnumerator Tap(params Key[] keys)

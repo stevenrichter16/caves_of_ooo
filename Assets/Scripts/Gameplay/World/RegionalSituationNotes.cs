@@ -5,8 +5,8 @@ using CavesOfOoo.Data;
 namespace CavesOfOoo.Core
 {
     /// <summary>Small persisted request ledger, separate from global storylets
-    /// and destination-keyed directions. Text is composed on interaction/journal
-    /// opening; cue queries read the integer completion key directly.</summary>
+    /// and destination-keyed directions. Text is recorded on interaction; journal opening reads the stored
+    /// receipt without world queries. Cues read the integer completion key directly.</summary>
     public static class RegionalSituationNotes
     {
         private const string Prefix="RegionalSituationNote:";
@@ -19,6 +19,26 @@ namespace CavesOfOoo.Core
             string text=Describe(definition,state,recipient,factory,localSupplyAvailable);
             player.Properties[NoteKey(instance)]=text;
             return text;
+        }
+        // Historical receipt composed from the successful transaction's own
+        // outcome. Reading it never rechecks shelves, habitats or living NPCs.
+        internal static void RecordCompletion(Entity player, RegionalSituationDefinition definition,
+            string instance, Entity recipient, EntityFactory factory, int paidDrams, bool? habitatPreserved)
+        {
+            string who=recipient?.GetDisplayName()??"the request's recipient";
+            string result=definition.Title+" [completed]. "
+                +(definition.Kind==RegionalSituationKind.Recovery?"The recovered consignment supplied ":"Delivered ")
+                +definition.ItemCount+" x "
+                +ItemName(factory,definition.ItemBlueprint)+" to "+who+" in "+definition.RecipientName
+                +" ("+definition.RecipientX+","+definition.RecipientY+"). Paid: "+paidDrams
+                +" drams and one "+ItemName(factory,definition.RewardBlueprint)+".";
+            if(habitatPreserved.HasValue)
+                result+=habitatPreserved.Value
+                    ?" The marked bank was preserved at delivery; the payment includes three extra drams."
+                    :" The marked bank was not preserved at delivery; no preservation bonus was paid.";
+            result+=" The goods joined the recipient's trade stock at delivery. If they remain available, "
+                +"their conversation offers trade; the goods may since have been sold. This request is settled and cannot pay again.";
+            player.Properties[NoteKey(instance)]=result;
         }
         // Definitions are already baked by the native factory. Read their labels
         // instead of creating throwaway items or printing internal blueprint IDs.
@@ -34,6 +54,13 @@ namespace CavesOfOoo.Core
         {
             string source=d.SourceX+","+d.SourceY,target=d.RecipientX+","+d.RecipientY;
             string who=recipient?.GetDisplayName()??"the request's recipient";
+            if(state=="released")
+                return d.Title+" [released]. You released this request with "+who+" in "+d.RecipientName
+                    +" ("+target+"). No goods or payment changed hands. You may inquire there again, "
+                    +(d.Kind==RegionalSituationKind.Recovery
+                        ?"if the recipient and marked consignment remain available."
+                        :"if the recipient remains available; outside goods are still accepted after reaccepting.")
+                    +" This is not an active delivery.";
             string request=d.Kind==RegionalSituationKind.Supply
                 ?"Bring "+d.ItemCount+" x "+ItemName(factory,d.ItemBlueprint)+"; bought or already carried goods are welcome."
                 :"Recover the marked sealed consignment intact; ordinary loose goods do not replace it.";
