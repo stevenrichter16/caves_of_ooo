@@ -58,3 +58,16 @@ reported as player construction or live destruction acceptance.
 
 CoO-original art and assembly design, no claim of Qud code parity. Review and
 implementation receipts live in Docs/Verification/BuildingBlocks3D.
+
+## R1 release-candidate status — 2026-09-18
+
+The installed kit's variant-publication defect (six families with fewer than
+four distinct mesh/UV fingerprints) was repaired by republishing the source kit
+through the existing asset builder, not by hand-editing meshes or weakening
+uniqueness: 72 FBXs, `catalog.json`, `BlockHouse.prefab` and the authoring
+material were regenerated (R102: Unity exit 0, zero C# errors, unchanged
+`.meta` GUIDs). `contract.py` gained `validate_variant_fingerprints`, covered by
+eight new offline tests (15/15 pass, re-run independently 2026-09-18). These
+files are committed on branch `release-candidate`, not `main`. Visual inspection
+of the imported variants in useful Editor views remains outstanding; milestone 4
+(native placement/destruction) is unchanged and still not started.

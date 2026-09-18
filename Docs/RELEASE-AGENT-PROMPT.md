@@ -104,6 +104,8 @@ For each milestone, report what changed, why it improves a player's decision, wh
 
 ## Final checkpoint from the handing-off agent
 
+**Branch note, 18 September 03:28 UTC:** the 99-file candidate below has since been applied, conflict-free, to Git branch `release-candidate` (from `main` at `41820270`) in the local repository; the unattended run could not push it (no credential), so run `git push -u origin release-candidate` from a normal terminal. `main` still carries only the accepted `26fbe544` runtime. The outstanding native/visual gates listed below are unchanged; finishing them and merging `release-candidate` into `main` is the next step. See `Docs/RELEASE-CANDIDATE-2026-09-18T032818Z.md`.
+
 **Checkpoint: 17 September 2026, 22:05 CDT / 18 September, 03:05 UTC.**
 
 - **R103 full candidate suite: 14,901/14,901 passed; zero failed, skipped or inconclusive; zero C# errors; Unity exit 0.** It ran for 389.804 seconds. Read `Docs/Verification/VoxelWorld/R103-release-full-candidate/receipt.json` and the compressed XML/log. All 32 inherited failures are resolved in this candidate.

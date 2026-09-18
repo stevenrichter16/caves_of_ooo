@@ -123,3 +123,9 @@ Implementation log (bottom-up status):
 - True native BEFORE must run with current generic assets/mappings and the final native harness before production sprite changes. Separate missing-resource RED follows assets/preload/exact mapping but precedes the ChooseTile guard.
 
 - Initial actual RED:32cases,3PASS/29FAIL,0CS (GA03j-initial-red.xml.gz/log.gz). Missing assets/mappings explain failures; missing-resource guard cases stop at explicit registration preconditions and do not yet prove that later branch. Three independent existing-family/control cases pass.
+
+## R1 release-candidate status — 2026-09-18
+
+- The seven sprites (`item_dagger/sword/spear/boots/gloves/helmet/mace.png` + GUID-only `.meta` copies), startup preload registration, ten exact blueprint routes (`Dagger`, `ShortSword`, `LongSword`, `Spear`, `LeatherBoots`, `IronshodBoots`, `LeatherGloves`, `LeatherCap`, `IronHelmet`, `Mace`) and the narrow missing-resource guard in `EnvironmentSpriteRenderer.ChooseTile` are now committed on branch `release-candidate` (not `main`). Generic unrelated fallbacks and glyph fallback remain.
+- Evidence: R101 reachable missing-resource RED (79 cases, 72 pass/7 fail, 0 CS) with the guard absent; R103 full candidate suite 14,901/14,901, 0 CS, in the isolated clone. Seven GUIDs audited unique against every `Assets/**/*.meta`; contact sheet inspected; `ArtSource/EquipmentGroundSprites/generate.py` re-run on an independent Linux host with Pillow 12.3 produced pixel-identical RGBA data for all seven sprites (PNG bytes differ only by encoder).
+- Still outstanding before this wave is release-accepted: the dedicated native idle/walk/pickup-drop before/after A/B bench described above (no such bench has been run; GA03i combat benches are not it), and cold-eye visual review of the sprites inside the tilted 1.2× view. Do not treat the R103 green as that acceptance.
