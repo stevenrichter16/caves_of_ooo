@@ -104,6 +104,8 @@ For each milestone, report what changed, why it improves a player's decision, wh
 
 ## Final checkpoint from the handing-off agent
 
+**Guard note, 18 September 03:46 UTC:** before any git write in this checkout, run `Tools/Release/release_candidate_status.sh`. Exit 2 means another (scheduled) run is still active — stand down; exit 3 means the branch or the 99-file manifest no longer verifies — investigate first; exit 0 with `origin/release-candidate is up to date` means the branch is pushed and the remaining work is the native/visual gates. The scheduled task that produced the earlier runs fires hourly at :39 UTC with this same prompt until it is edited. See `Docs/RELEASE-CANDIDATE-2026-09-18T034616Z-hourly-firing-and-guard.md`.
+
 **Branch note, 18 September 03:28 UTC:** the 99-file candidate below has since been applied, conflict-free, to Git branch `release-candidate` (from `main` at `41820270`) in the local repository; the unattended run could not push it (no credential), so run `git push -u origin release-candidate` from a normal terminal. `main` still carries only the accepted `26fbe544` runtime. The outstanding native/visual gates listed below are unchanged; finishing them and merging `release-candidate` into `main` is the next step. See `Docs/RELEASE-CANDIDATE-2026-09-18T032818Z.md`.
 
 **Checkpoint: 17 September 2026, 22:05 CDT / 18 September, 03:05 UTC.**
