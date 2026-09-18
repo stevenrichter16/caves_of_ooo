@@ -33,10 +33,11 @@ namespace CavesOfOoo.Rendering
     public class AnimatedEnvironmentRenderer : MonoBehaviour
     {
         // Sorting order for the three overlay tilemaps. Sits BETWEEN
-        // the main tilemap (0) and the FX tilemap. ZoneRenderer's
-        // FX renderer is at order 2; we bump it to 3 in init so
-        // these can fit at order 2 without conflict.
+        // the main tilemap (0) and the environment sprite tilemap (3).
+        // FX is promoted to order 8 so actor sprites and the cursor can
+        // sit between terrain and transient effects.
         private const int OverlaySortingOrder = 2;
+        private const int FxSortingOrder = 8;
 
         // Glyphs that map to each material. The main tilemap's
         // foreground glyph determines which overlay (if any)
@@ -74,7 +75,7 @@ namespace CavesOfOoo.Rendering
 
             // Ensure FX renders ABOVE our overlays.
             if (fxRenderer != null)
-                fxRenderer.sortingOrder = OverlaySortingOrder + 1;
+                fxRenderer.sortingOrder = FxSortingOrder;
 
             _waterMaterial = LoadMaterial("Assets/Materials/AnimatedEnvironment_Water.mat");
             _grassMaterial = LoadMaterial("Assets/Materials/AnimatedEnvironment_Grass.mat");

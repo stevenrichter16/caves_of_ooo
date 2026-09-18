@@ -1,0 +1,44 @@
+{
+    "runId": "416149ec14b44adfbbb91e49e8354439",
+    "saveRoot": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/9e2a783e71964133b5d4e37fdd83439f",
+    "gameId": "",
+    "markerId": "ChunkGameplay-native-marker-14c7938badcd40dc9d516277d40dad61",
+    "fatal": "System.InvalidOperationException: Native movement failed: (47, 11) -> (48, 11); state=Normal\n  at CavesOfOoo.Scenarios.Custom.ChunkGameplayNativeAudit+<Step>d__65.MoveNext () [0x00178] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ChunkGameplayNativeAudit.cs:240 \n  at CavesOfOoo.Scenarios.Custom.ChunkGameplayNativeAudit+<RunSafely>d__53.MoveNext () [0x00057] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ChunkGameplayNativeAudit.cs:70 ",
+    "bounds": "Actual native 1080p GameView and ordinary seed64 N bootstrap. No fixture placement, world replacement, direct quest action, direct inventory transfer, camera or reveal changes. Cardinal movement, three border crossings, action/loot/dialogue menus, Q/Tab travel notes, F5/F6 use queued native keys. Reflection observes live UI cursors only. Crops and summit water are covered by separate EditMode integration tests, not this journey. No FPS, complete-world, subjective readability or enjoyment claim.",
+    "failures": 1,
+    "unexpectedErrors": 0,
+    "worldSeed": 64,
+    "nativeSteps": 9,
+    "screenWidth": 1920,
+    "screenHeight": 1080,
+    "wallSeconds": 4.085634199999999,
+    "cameraSize": 16.80000114440918,
+    "townCameraSize": 0.0,
+    "fullReveal": true,
+    "workloadComplete": false,
+    "shutdownObserved": true,
+    "shutdownRootHeld": true,
+    "shutdownSavingUnregistered": true,
+    "displayPreferencesRestored": true,
+    "inputSettingsRestored": true,
+    "checks": [
+        {
+            "name": "native_N_real_new_game",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_cache_and_parcel_generated",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "fatal",
+            "detail": "System.InvalidOperationException: Native movement failed: (47, 11) -> (48, 11); state=Normal\n  at CavesOfOoo.Scenarios.Custom.ChunkGameplayNativeAudit+<Step>d__65.MoveNext () [0x00178] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ChunkGameplayNativeAudit.cs:240 \n  at CavesOfOoo.Scenarios.Custom.ChunkGameplayNativeAudit+<RunSafely>d__53.MoveNext () [0x00057] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ChunkGameplayNativeAudit.cs:70 ",
+            "pass": false
+        }
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/ChunkGameplayImplementation/CGN-416149ec14b44adfbbb91e49e8354439-western-spawn.png"
+    ]
+}

@@ -63,7 +63,10 @@ namespace CavesOfOoo.Skills
                 return false;
             }
             var landCell = ctx.Zone.GetCell(landX, landY);
-            if (ctx.Zone.GetCell(actorPos.x + dx, actorPos.y + dy)?.HasClosedArchiveBarrier() == true)
+            bool crossesArchive = false;
+            foreach (var cell in ctx.Zone.GetOccupiedCells(actor, actorPos.x + dx, actorPos.y + dy))
+                if (cell?.HasClosedArchiveBarrier() == true) { crossesArchive = true; break; }
+            if (crossesArchive)
             {
                 EmitSkillRejectedDiag(ctx, "sealed_barrier");
                 MessageLog.Add(actor.GetDisplayName() + " cannot vault through the sealed archive.");
@@ -75,22 +78,29 @@ namespace CavesOfOoo.Skills
                 MessageLog.Add(actor.GetDisplayName() + "'s vault has no clear landing.");
                 return false;
             }
-            // Creature at landing cell? Vault doesn't displace.
-            for (int i = 0; i < landCell.Objects.Count; i++)
+            // Check the complete landing body; vault never displaces a creature.
+            var landingCreature = MultiCellAbilityQueries.CreatureAtPlacement(ctx.Zone, actor, landX, landY);
+            if (landingCreature != null)
             {
-                var e = landCell.Objects[i];
-                if (e == null || e == actor) continue;
-                if (e.Tags.ContainsKey("Creature"))
-                {
-                    EmitSkillRejectedDiag(ctx, "landing_occupied");
-                    MessageLog.Add(actor.GetDisplayName() + "'s vault is blocked by " + e.GetDisplayName() + ".");
-                    return false;
-                }
+                EmitSkillRejectedDiag(ctx, "landing_occupied");
+                MessageLog.Add(actor.GetDisplayName() + "'s vault is blocked by " + landingCreature.GetDisplayName() + ".");
+                return false;
+            }
+
+            if (!ctx.Zone.CanPlaceFootprint(actor, landX, landY))
+            {
+                EmitSkillRejectedDiag(ctx, "landing_blocked");
+                MessageLog.Add(actor.GetDisplayName() + "'s vault has no clear landing.");
+                return false;
             }
 
             // Move actor directly to landing — skipping whatever was at
             // distance 1 (which is the whole point of Vault).
-            ctx.Zone.MoveEntity(actor, landX, landY);
+            if (!MovementSystem.ForceMoveTo(actor, ctx.Zone, landX, landY))
+            {
+                EmitSkillRejectedDiag(ctx, "landing_blocked");
+                return false;
+            }
             MessageLog.Add(actor.GetDisplayName() + " vaults forward!");
         
             return true;

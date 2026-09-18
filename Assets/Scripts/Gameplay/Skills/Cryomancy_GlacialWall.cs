@@ -24,7 +24,7 @@ namespace CavesOfOoo.Skills
     /// or stack a solid on an occupied cell; neither is a state the rest
     /// of the game is prepared for.</para>
     /// </summary>
-    public class Cryomancy_GlacialWall : BaseSkillPart
+    public class Cryomancy_GlacialWall : SpellSkillPart
     {
         public override string Name => nameof(Cryomancy_GlacialWall);
 
@@ -52,7 +52,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
@@ -91,9 +91,9 @@ namespace CavesOfOoo.Skills
 
                 // Never bury a creature.
                 bool occupied = false;
-                for (int i = 0; i < cell.Objects.Count; i++)
+                for (int i = 0; i < cell.Occupants.Count; i++)
                 {
-                    var e = cell.Objects[i];
+                    var e = cell.Occupants[i];
                     if (e == null) continue;
                     if (e.Tags.ContainsKey("Creature")) { occupied = true; break; }
                 }
@@ -105,6 +105,7 @@ namespace CavesOfOoo.Skills
                 if (ice == null) continue;
 
                 ctx.Zone.AddEntity(ice, x, y);
+                SpellFxCapture.AffectCell(ctx.Zone, x, y);
                 raised++;
             }
 

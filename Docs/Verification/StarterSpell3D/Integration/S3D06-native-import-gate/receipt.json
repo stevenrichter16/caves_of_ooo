@@ -1,0 +1,51 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "NativeSpell|StarterSpell3DOutcomeCapture|WorldFxCoordinatorTests",
+  "results": {
+    "id": "2",
+    "testcasecount": "183",
+    "result": "Failed(Child)",
+    "total": "183",
+    "passed": "176",
+    "failed": "7",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-11 03:29:31Z",
+    "end-time": "2026-09-11 03:29:33Z",
+    "duration": "2.3856177"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellCastPlayerTests.CompletedOrClearedCasts_ReuseTheirPrivateController(False)",
+      "message": "  Repeated casts reuse this actor's private override allocation.\n  Expected: same as <null>\n  But was:  <Native spell cast (owned) (UnityEngine.AnimatorOverrideController)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellCastPlayerTests.CompletedOrClearedCasts_ReuseTheirPrivateController(True)",
+      "message": "  Repeated casts reuse this actor's private override allocation.\n  Expected: same as <null>\n  But was:  <Native spell cast (owned) (UnityEngine.AnimatorOverrideController)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.CastDurationMustBeFinitePositiveAndBounded(3600.0f)",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.ClockMustMatchAuthored100FpsSchemaInsteadOfSilentlyRetimingOrHoldingPlayback(0.0001f)",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.ClockMustMatchAuthored100FpsSchemaInsteadOfSilentlyRetimingOrHoldingPlayback(200.0f)",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.NativeHierarchyOrSurfaceLossReleasesCoordinatorWaitAtTheSameUpdate(False)",
+      "message": "  A cancelled native backend must release its coordinator playback handle immediately.\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.NativeHierarchyOrSurfaceLossReleasesCoordinatorWaitAtTheSameUpdate(True)",
+      "message": "  A cancelled native backend must release its coordinator playback handle immediately.\n  Expected: False\n  But was:  True\n"
+    }
+  ]
+}

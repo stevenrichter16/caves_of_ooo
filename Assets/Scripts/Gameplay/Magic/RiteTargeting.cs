@@ -27,9 +27,10 @@ namespace CavesOfOoo.Core
                 var cell = zone.GetCell(x, y);
                 if (cell == null || cell.IsSolid()) break;
 
-                for (int i = 0; i < cell.Objects.Count; i++)
+                SpellFxCapture.PathCell(zone, x, y);
+                for (int i = 0; i < cell.Occupants.Count; i++)
                 {
-                    var e = cell.Objects[i];
+                    var e = cell.Occupants[i];
                     if (e == null || e == caster) continue;
                     if (e.Tags.ContainsKey("Creature")) return e;
                 }

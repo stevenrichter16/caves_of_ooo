@@ -1,0 +1,438 @@
+{
+    "runId": "16ac5dab4d1a4e579536be63b2ff95f9",
+    "saveRoot": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/4ed67ac092894a2d810b16b536764882",
+    "gameId": "4040588e8d8d47d9b56c71b56b5c2aa5",
+    "markerId": "StarterSpell3D-native-marker-a6a645b794b44681ab4230c30f361395",
+    "fatal": "System.InvalidOperationException: Ordinary keyboard starter cast must reach native art and finish its turn.\n  at CavesOfOoo.Scenarios.Custom.StarterSpell3DNativeAudit+<KeyboardCast>d__86.MoveNext () [0x0058b] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/StarterSpell3DNativeAudit.cs:151 \n  at CavesOfOoo.Scenarios.Custom.StarterSpell3DNativeAudit+<RunSafely>d__82.MoveNext () [0x00057] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/StarterSpell3DNativeAudit.cs:87 ",
+    "bounds": "Actual native1920x1080 Main GameView. One real current-hotbar Flaming Hands/direction cast and ordinary N/south seam input. Other casts are explicitly reset deterministic SkillsPart commands using the real player and disposable unfactioned recipient/crop fixtures; their copied queue records are observed without draining. Profile is four20s native render phases, paired Full/Reduced in town and south; startup/bind/screenshots excluded, fixture setup/observer/counter overhead included. World simulation does not advance during command-fixture playback. Captures use1x settings with measured wall timestamps; capture overhead may lower sampling rate. This establishes observable presentation and cleanup, not subjective comfort, process-cold/build performance or long-session leak confidence.",
+    "rawFrames": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-16ac5dab4d1a4e579536be63b2ff95f9-frames.csv",
+    "rawSha256": "6c563441f1a70a5206995673477872f58289e30e2cba34e4184dec33a4359fc7",
+    "unityVersion": "6000.3.4f1",
+    "gpu": "Apple M5",
+    "cpu": "Apple M5",
+    "failures": 2,
+    "unexpectedErrors": 0,
+    "worldSeed": 729490642,
+    "screenWidth": 1920,
+    "screenHeight": 1080,
+    "profileFrames": 0,
+    "activeFrames": 0,
+    "nativeKeyboardCasts": 0,
+    "targetFrameRate": -1,
+    "vSyncCount": 0,
+    "wallSeconds": 12.095003799999999,
+    "profileSeconds": 0.0,
+    "workloadComplete": false,
+    "shutdownObserved": true,
+    "shutdownRootHeld": true,
+    "shutdownSavingUnregistered": true,
+    "displayPreferencesRestored": true,
+    "inputSettingsRestored": true,
+    "checks": [
+        {
+            "name": "native_N_real_new_game",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_town_ready",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_keyboard_starter_cast",
+            "detail": "Actual hotbar slot1, directionD, peak native meshes0",
+            "pass": false
+        },
+        {
+            "name": "fatal",
+            "detail": "System.InvalidOperationException: Ordinary keyboard starter cast must reach native art and finish its turn.\n  at CavesOfOoo.Scenarios.Custom.StarterSpell3DNativeAudit+<KeyboardCast>d__86.MoveNext () [0x0058b] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/StarterSpell3DNativeAudit.cs:151 \n  at CavesOfOoo.Scenarios.Custom.StarterSpell3DNativeAudit+<RunSafely>d__82.MoveNext () [0x00057] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/StarterSpell3DNativeAudit.cs:87 ",
+            "pass": false
+        }
+    ],
+    "firstCast": {
+        "libraryInstancesBefore": 0,
+        "libraryInstancesAfter": 1,
+        "poolBefore": 0,
+        "poolAfter": 14,
+        "allocatedMemoryBefore": 445559034,
+        "allocatedMemoryAfter": 486525900,
+        "maxInputNanoseconds": 8506375,
+        "maxMainNanoseconds": 546567083,
+        "maxGcBytes": 3554641,
+        "startSeconds": 12.29253942006803,
+        "wallSeconds": 0.683693667,
+        "maxFrameSeconds": 0.5474229454994202,
+        "samples": [
+            {
+                "frame": 66,
+                "meshes": 0,
+                "pool": 0,
+                "seconds": 12.293646128068032,
+                "delta": 0.0033298328053206207,
+                "input": 11917,
+                "main": 3322917,
+                "gc": 29431
+            },
+            {
+                "frame": 67,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.84022367006803,
+                "delta": 0.004109955858439207,
+                "input": 14209,
+                "main": 4044917,
+                "gc": 30007
+            },
+            {
+                "frame": 68,
+                "meshes": 10,
+                "pool": 14,
+                "seconds": 12.84662021206803,
+                "delta": 0.5474229454994202,
+                "input": 8506375,
+                "main": 546567083,
+                "gc": 3554641
+            },
+            {
+                "frame": 69,
+                "meshes": 10,
+                "pool": 14,
+                "seconds": 12.868762545068032,
+                "delta": 0.023969296365976335,
+                "input": 250875,
+                "main": 24806042,
+                "gc": 3128437
+            },
+            {
+                "frame": 70,
+                "meshes": 10,
+                "pool": 14,
+                "seconds": 12.87311675306803,
+                "delta": 0.004425332881510258,
+                "input": 6458,
+                "main": 4513583,
+                "gc": 39463
+            },
+            {
+                "frame": 71,
+                "meshes": 10,
+                "pool": 14,
+                "seconds": 12.876958170068031,
+                "delta": 0.0037469174712896349,
+                "input": 6542,
+                "main": 3739417,
+                "gc": 37799
+            },
+            {
+                "frame": 72,
+                "meshes": 10,
+                "pool": 14,
+                "seconds": 12.880201128068033,
+                "delta": 0.0032832908909767868,
+                "input": 6625,
+                "main": 3179084,
+                "gc": 29455
+            },
+            {
+                "frame": 73,
+                "meshes": 10,
+                "pool": 14,
+                "seconds": 12.883467087068033,
+                "delta": 0.0032246243208646776,
+                "input": 8334,
+                "main": 3251041,
+                "gc": 29583
+            },
+            {
+                "frame": 74,
+                "meshes": 10,
+                "pool": 14,
+                "seconds": 12.88662675306803,
+                "delta": 0.0032133290078490974,
+                "input": 6667,
+                "main": 3304083,
+                "gc": 29519
+            },
+            {
+                "frame": 75,
+                "meshes": 10,
+                "pool": 14,
+                "seconds": 12.88979567006803,
+                "delta": 0.0031639598309993746,
+                "input": 8292,
+                "main": 3106959,
+                "gc": 29455
+            },
+            {
+                "frame": 76,
+                "meshes": 10,
+                "pool": 14,
+                "seconds": 12.892967170068032,
+                "delta": 0.0032276290003210308,
+                "input": 11417,
+                "main": 3203708,
+                "gc": 29583
+            },
+            {
+                "frame": 77,
+                "meshes": 10,
+                "pool": 14,
+                "seconds": 12.89596887806803,
+                "delta": 0.00284945429302752,
+                "input": 6041,
+                "main": 2968500,
+                "gc": 29519
+            },
+            {
+                "frame": 78,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.89929446206803,
+                "delta": 0.003229294205084443,
+                "input": 9541,
+                "main": 3107041,
+                "gc": 29455
+            },
+            {
+                "frame": 79,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.909574337068032,
+                "delta": 0.00326850195415318,
+                "input": 7083,
+                "main": 3322041,
+                "gc": 31583
+            },
+            {
+                "frame": 80,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.91317142006803,
+                "delta": 0.010804287157952786,
+                "input": 4688750,
+                "main": 10578292,
+                "gc": 66789
+            },
+            {
+                "frame": 81,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.916553295068029,
+                "delta": 0.0033736678306013347,
+                "input": 8416,
+                "main": 3580541,
+                "gc": 29577
+            },
+            {
+                "frame": 82,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.91980046206803,
+                "delta": 0.0033006661105901005,
+                "input": 9625,
+                "main": 3248625,
+                "gc": 29705
+            },
+            {
+                "frame": 83,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.923029128068033,
+                "delta": 0.0031228740699589254,
+                "input": 8417,
+                "main": 3138875,
+                "gc": 29641
+            },
+            {
+                "frame": 84,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.92616383706803,
+                "delta": 0.0032063776161521675,
+                "input": 11250,
+                "main": 3192167,
+                "gc": 29577
+            },
+            {
+                "frame": 85,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.929217837068033,
+                "delta": 0.0029974135104566814,
+                "input": 11875,
+                "main": 3011875,
+                "gc": 29705
+            },
+            {
+                "frame": 86,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.932385545068032,
+                "delta": 0.003193374490365386,
+                "input": 14291,
+                "main": 3180000,
+                "gc": 29641
+            },
+            {
+                "frame": 87,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.93530429506803,
+                "delta": 0.0029319231398403646,
+                "input": 8959,
+                "main": 3013666,
+                "gc": 29577
+            },
+            {
+                "frame": 88,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.938593795068032,
+                "delta": 0.003376580309122801,
+                "input": 9042,
+                "main": 3086541,
+                "gc": 29705
+            },
+            {
+                "frame": 89,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.94179158706803,
+                "delta": 0.003093587001785636,
+                "input": 8750,
+                "main": 3279875,
+                "gc": 29641
+            },
+            {
+                "frame": 90,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.945006503068031,
+                "delta": 0.0030731221195310356,
+                "input": 13959,
+                "main": 3077333,
+                "gc": 29577
+            },
+            {
+                "frame": 91,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.948530045068031,
+                "delta": 0.00374241778627038,
+                "input": 11625,
+                "main": 3613708,
+                "gc": 30093
+            },
+            {
+                "frame": 92,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.951715795068031,
+                "delta": 0.0031741212587803604,
+                "input": 8833,
+                "main": 3235042,
+                "gc": 29641
+            },
+            {
+                "frame": 93,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.95484854506803,
+                "delta": 0.003008964005857706,
+                "input": 13417,
+                "main": 3047625,
+                "gc": 29577
+            },
+            {
+                "frame": 94,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.957975962068032,
+                "delta": 0.003229790134355426,
+                "input": 14958,
+                "main": 3202750,
+                "gc": 29705
+            },
+            {
+                "frame": 95,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.961219087068029,
+                "delta": 0.003252458991482854,
+                "input": 13375,
+                "main": 3261458,
+                "gc": 29641
+            },
+            {
+                "frame": 96,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.964607670068033,
+                "delta": 0.0032362882047891618,
+                "input": 14208,
+                "main": 3307833,
+                "gc": 29577
+            },
+            {
+                "frame": 97,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.96782525306803,
+                "delta": 0.0034289611503481867,
+                "input": 8000,
+                "main": 3272083,
+                "gc": 29705
+            },
+            {
+                "frame": 98,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.97087458706803,
+                "delta": 0.00284937652759254,
+                "input": 9042,
+                "main": 2933583,
+                "gc": 29641
+            },
+            {
+                "frame": 99,
+                "meshes": 0,
+                "pool": 14,
+                "seconds": 12.974113045068032,
+                "delta": 0.003329372266307473,
+                "input": 14250,
+                "main": 3285792,
+                "gc": 29577
+            }
+        ]
+    },
+    "phases": [],
+    "casts": [],
+    "spells": [],
+    "screenshots": [],
+    "loopFrames": [],
+    "counterNames": [
+        "COO.ZoneRenderer.LateUpdate",
+        "COO.Input.Update",
+        "Main Thread",
+        "GC Allocated In Frame",
+        "Draw Calls Count",
+        "Triangles Count"
+    ],
+    "counterUnits": [
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        "Bytes",
+        "Count",
+        "Count"
+    ],
+    "counterAvailable": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+    ]
+}

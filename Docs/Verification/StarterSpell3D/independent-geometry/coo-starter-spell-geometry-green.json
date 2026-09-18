@@ -1,0 +1,249 @@
+{
+  "source": "/Users/steven/caves-of-ooo/ArtSource/StarterSpell3D/starter_spells.blend",
+  "sourceSha256": "d43a03b36b1bbc4e74bd98ca57a9e1cee89179e19831b5b87389743aec4b6020",
+  "blender": "5.2.1 LTS",
+  "method": "Read-only evaluated mesh world vertices and projected triangle clipping at stored phase markers; independent assertions, no render and no manifest truth booleans.",
+  "checks": [
+    {
+      "name": "Rain has actual crop geometry",
+      "passed": true,
+      "count": 3
+    },
+    {
+      "name": "Rain crop centres are source-relative integer cells within Chebyshev three",
+      "passed": true,
+      "frame": 34,
+      "source": [
+        -2.3499999046325684,
+        0.0,
+        0.0
+      ],
+      "cropOffsets": [
+        [
+          0.9999998807907104,
+          -1.0,
+          0.13500000536441803
+        ],
+        [
+          2.0,
+          1.0,
+          0.13500000536441803
+        ],
+        [
+          3.0,
+          0.0,
+          0.13500000536441803
+        ]
+      ]
+    },
+    {
+      "name": "Ground Surge has four distinct stitch groups",
+      "passed": true,
+      "groups": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "name": "Ground Surge group 1 occupies its actual forward cell",
+      "passed": true,
+      "frame": 34,
+      "relativeCentre": [
+        0.9988911747932434,
+        -0.004872903227806091,
+        0.15557415783405304
+      ],
+      "relativeBounds": [
+        [
+          0.5513359308242798,
+          1.446446418762207
+        ],
+        [
+          -0.28190475702285767,
+          0.2721589505672455
+        ],
+        [
+          0.061705827713012695,
+          0.24944248795509338
+        ]
+      ],
+      "objects": [
+        "Surge__cell_1_angular_stitch_-1",
+        "Surge__cell_1_angular_stitch_1"
+      ]
+    },
+    {
+      "name": "Ground Surge group 2 occupies its actual forward cell",
+      "passed": true,
+      "frame": 34,
+      "relativeCentre": [
+        1.9988911151885986,
+        -0.004872903227806091,
+        0.15557415783405304
+      ],
+      "relativeBounds": [
+        [
+          1.5513359308242798,
+          2.446446418762207
+        ],
+        [
+          -0.28190475702285767,
+          0.2721589505672455
+        ],
+        [
+          0.061705827713012695,
+          0.24944248795509338
+        ]
+      ],
+      "objects": [
+        "Surge__cell_2_angular_stitch_-1",
+        "Surge__cell_2_angular_stitch_1"
+      ]
+    },
+    {
+      "name": "Ground Surge group 3 occupies its actual forward cell",
+      "passed": true,
+      "frame": 34,
+      "relativeCentre": [
+        2.9988911151885986,
+        -0.004872903227806091,
+        0.15557415783405304
+      ],
+      "relativeBounds": [
+        [
+          2.5513358116149902,
+          3.446446418762207
+        ],
+        [
+          -0.28190475702285767,
+          0.2721589505672455
+        ],
+        [
+          0.061705827713012695,
+          0.24944248795509338
+        ]
+      ],
+      "objects": [
+        "Surge__cell_3_angular_stitch_-1",
+        "Surge__cell_3_angular_stitch_1"
+      ]
+    },
+    {
+      "name": "Ground Surge group 4 occupies its actual forward cell",
+      "passed": true,
+      "frame": 34,
+      "relativeCentre": [
+        3.9988911151885986,
+        -0.004872903227806091,
+        0.15557415783405304
+      ],
+      "relativeBounds": [
+        [
+          3.5513358116149902,
+          4.446446418762207
+        ],
+        [
+          -0.28190475702285767,
+          0.2721589505672455
+        ],
+        [
+          0.061705827713012695,
+          0.24944248795509338
+        ]
+      ],
+      "objects": [
+        "Surge__cell_4_angular_stitch_-1",
+        "Surge__cell_4_angular_stitch_1"
+      ]
+    },
+    {
+      "name": "Jet Blast has elevated broad flow meshes",
+      "passed": true,
+      "objects": [
+        "Jet__folded_river_strip_0",
+        "Jet__folded_river_strip_1",
+        "Jet__folded_river_strip_2",
+        "Jet__folded_river_strip_3",
+        "Jet__folded_river_strip_4",
+        "Jet__far_side_fold_-1",
+        "Jet__far_side_fold_1"
+      ]
+    },
+    {
+      "name": "Jet Blast covers resolved cell (1, 0)",
+      "passed": true,
+      "frame": 30,
+      "summedProjectedMeshArea": 1.206829557676717,
+      "minimumReadableArea": 0.01
+    },
+    {
+      "name": "Jet Blast covers resolved cell (2, 0)",
+      "passed": true,
+      "frame": 30,
+      "summedProjectedMeshArea": 1.9549386885572202,
+      "minimumReadableArea": 0.01
+    },
+    {
+      "name": "Jet Blast covers resolved cell (2, -1)",
+      "passed": true,
+      "frame": 30,
+      "summedProjectedMeshArea": 0.5180618225772999,
+      "minimumReadableArea": 0.01
+    },
+    {
+      "name": "Jet Blast covers resolved cell (2, 1)",
+      "passed": true,
+      "frame": 30,
+      "summedProjectedMeshArea": 0.5180618225772999,
+      "minimumReadableArea": 0.01
+    },
+    {
+      "name": "Jet Blast contains no broad ground puddle",
+      "passed": true,
+      "groundMeshes": []
+    },
+    {
+      "name": "Calm actual contact reaches the fourth forward cell",
+      "passed": true,
+      "frame": 32,
+      "relativeMeshCentre": [
+        3.9417057037353516,
+        0.007500000298023224,
+        0.9289003610610962
+      ],
+      "loopWorldLocation": [
+        1.5699999332427979,
+        0.0,
+        0.9599999785423279
+      ],
+      "source": [
+        -2.3499999046325684,
+        0.0,
+        0.0
+      ],
+      "objects": [
+        "Calm__ivory_open_binding",
+        "Calm__violet_return"
+      ]
+    },
+    {
+      "name": "Calm earlier hero pose is a distinct mid-flight control",
+      "passed": true,
+      "heroFrame": 25,
+      "heroRelativeMeshCentre": [
+        1.1355457305908203,
+        0.007500000298023224,
+        0.9759403467178345
+      ],
+      "contactRelativeMeshCentre": [
+        3.9417057037353516,
+        0.007500000298023224,
+        0.9289003610610962
+      ]
+    }
+  ],
+  "passed": 15,
+  "failed": 0
+}

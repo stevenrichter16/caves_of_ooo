@@ -1,0 +1,4921 @@
+{
+  "status": "passed",
+  "source": "Rebuilt adopted ArtSource/Village3D/build_scene.py without repository writes",
+  "artSeed": 9042026,
+  "modelCount": 123,
+  "ownerCount": 71,
+  "manifestSemanticallyEqual": true,
+  "normalizedManifestSha256": "310615f231816d28efe1feb4365a412d798594956369cbaa8c8c56d79d77308a",
+  "palettePngBytesEqual": true,
+  "palettePngSha256": "7409346db43b43cf60e82f81d75ad186b0055b353be08380ab2f2c1b82031c7f",
+  "semanticFailures": [],
+  "fbxByteEqualCount": 0,
+  "quantizationDecimals": 6,
+  "comparisonFields": [
+    "world-space mesh vertices",
+    "polygon topology and normals",
+    "smooth flags",
+    "UV and color layers",
+    "material slot identity and polygon assignment",
+    "vertex group names and weights",
+    "bone rest matrices and hierarchy",
+    "equipment socket names, parent bones and world matrices",
+    "animation take names, frame ranges and sampled curve key values"
+  ],
+  "limits": [
+    "This verifies exported content, not binary FBX determinism; creation timestamps, source paths and FBX container metadata may differ.",
+    "Mesh/transform values are normalized to six decimal places for stable numeric comparison.",
+    "Does not establish Unity shader quality, skin playback, input/state binding, or measured frame performance.",
+    "The separate diagnostic axis probe is excluded from runtime model hashes: final-v2 preserved the previously accepted fixture byte-for-byte. Its regenerated geometry, marker names and topology also match; source palette UVs evolved during art polish."
+  ],
+  "models": [
+    {
+      "id": "barrel-0",
+      "semanticEqual": true,
+      "originalSemanticSha256": "9c9bd2c3b69b0a6b5ef9205caf6a644a7c4fd8eeb67a1cbdf7113bc406563896",
+      "rebuiltSemanticSha256": "9c9bd2c3b69b0a6b5ef9205caf6a644a7c4fd8eeb67a1cbdf7113bc406563896",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "barrel-0__Geometry",
+            "vertices": 264,
+            "triangles": 368,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "a15d393cf7150b29ed487a52bcd185d6e8abfc399f88c1cde338ca0c4fe0f3c7"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "crate-0",
+      "semanticEqual": true,
+      "originalSemanticSha256": "008af51719d2d18a9b2f050b933be055ce8725d5970c10a7b75a7478f6cf4938",
+      "rebuiltSemanticSha256": "008af51719d2d18a9b2f050b933be055ce8725d5970c10a7b75a7478f6cf4938",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "crate-0__Geometry",
+            "vertices": 682,
+            "triangles": 1276,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "20df34aafe3f7138e40fa008ac3e683d445e0867b4c2d461530539c2bb33cec6"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "planter-0",
+      "semanticEqual": true,
+      "originalSemanticSha256": "6be2669afe13323cf36d1e22e87ebba33fb47e3288cdaa334d06f41dea0c64c0",
+      "rebuiltSemanticSha256": "6be2669afe13323cf36d1e22e87ebba33fb47e3288cdaa334d06f41dea0c64c0",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "planter-0__Geometry",
+            "vertices": 512,
+            "triangles": 892,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "b28e142ec8bd00cca3d1446b3915d7c5fc8a0b2988ee9681f255b35379c740f9"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "fence-0",
+      "semanticEqual": true,
+      "originalSemanticSha256": "6e39ed4302e445c8158e456030f8eacbef8c587fc38dfa97e590d58adf9a3051",
+      "rebuiltSemanticSha256": "6e39ed4302e445c8158e456030f8eacbef8c587fc38dfa97e590d58adf9a3051",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "fence-0__Geometry",
+            "vertices": 112,
+            "triangles": 200,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "975e1a48995f5fc9de399c6659300bf57b6a1019d5b371bcfaa357152e28be4c"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "shrub-0",
+      "semanticEqual": true,
+      "originalSemanticSha256": "f10b22ce6d1a9eeb8b83b6d299d10b280a8df5b232f15508d4e89712141435f5",
+      "rebuiltSemanticSha256": "f10b22ce6d1a9eeb8b83b6d299d10b280a8df5b232f15508d4e89712141435f5",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "shrub-0__Geometry",
+            "vertices": 264,
+            "triangles": 440,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "a7c7a12cc54398cf1dfad3a7e6154b9668bc981432d88b3b050d17c32379bd11"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "tree-0",
+      "semanticEqual": true,
+      "originalSemanticSha256": "4bc601f445827668cef4494a40b7fb843e2205200395f1acc4ab35a4b7ad9ab9",
+      "rebuiltSemanticSha256": "4bc601f445827668cef4494a40b7fb843e2205200395f1acc4ab35a4b7ad9ab9",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "tree-0__Geometry",
+            "vertices": 524,
+            "triangles": 876,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "de8750ed5a88abf86da832c47ba2fbd91762fd4033253134b07290f9e192b361"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "rocks-0",
+      "semanticEqual": true,
+      "originalSemanticSha256": "1a3c95eff870ced607d91aa9b8a6912c95c1f4c5c54c9be231f93d30f041fba5",
+      "rebuiltSemanticSha256": "1a3c95eff870ced607d91aa9b8a6912c95c1f4c5c54c9be231f93d30f041fba5",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "rocks-0__Geometry",
+            "vertices": 60,
+            "triangles": 100,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "295ba9fbcacb30ce01c597d3ad2617ec9656ee0d022759bc8bdfedd4ddeb9de5"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "grass-0",
+      "semanticEqual": true,
+      "originalSemanticSha256": "bf88096592c7acd917b194a3d2900872daf078845a62220bd9e4b652dcb5e46c",
+      "rebuiltSemanticSha256": "bf88096592c7acd917b194a3d2900872daf078845a62220bd9e4b652dcb5e46c",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "grass-0__Geometry",
+            "vertices": 56,
+            "triangles": 22,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "ad209a4b08144586378b3e6de4fe4d4c2a5bf5c544ec2664a29a5398ece85cc6"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "barrel-1",
+      "semanticEqual": true,
+      "originalSemanticSha256": "0513e839be65843f18b327a44b4e5fc4fb41bdd1d385128b11cc6d7db9437115",
+      "rebuiltSemanticSha256": "0513e839be65843f18b327a44b4e5fc4fb41bdd1d385128b11cc6d7db9437115",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "barrel-1__Geometry",
+            "vertices": 312,
+            "triangles": 464,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "5ffd69eb4752dc6bf89e38ef2d07b610884a6af50b65d4802f051f3eaa16a88a"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "crate-1",
+      "semanticEqual": true,
+      "originalSemanticSha256": "25067a36a4edf7dd1bedb68095ea4d8ff2856ae7a1364f141fda0f4becb3bdd9",
+      "rebuiltSemanticSha256": "25067a36a4edf7dd1bedb68095ea4d8ff2856ae7a1364f141fda0f4becb3bdd9",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "crate-1__Geometry",
+            "vertices": 604,
+            "triangles": 1116,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "d94c66ac5b1cb5c7eabfde8ab2b4224d2d159ef072ea23404bddd4008d4a069c"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "planter-1",
+      "semanticEqual": true,
+      "originalSemanticSha256": "498ea536669f4d1585ae1fdf0a307797b7c0b67b438455feaa29e2bc3a67b104",
+      "rebuiltSemanticSha256": "498ea536669f4d1585ae1fdf0a307797b7c0b67b438455feaa29e2bc3a67b104",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "planter-1__Geometry",
+            "vertices": 512,
+            "triangles": 892,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "37d7be88f1743d87afb2121350fa0281bad873fefe03a8e811a8d1c6328b820c"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "fence-1",
+      "semanticEqual": true,
+      "originalSemanticSha256": "8c60cc49dd76521cedfd54e1a644574c6237d7d1d8eb9f76edb58077fa04942f",
+      "rebuiltSemanticSha256": "8c60cc49dd76521cedfd54e1a644574c6237d7d1d8eb9f76edb58077fa04942f",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "fence-1__Geometry",
+            "vertices": 112,
+            "triangles": 200,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "28b595b043a42ff690922b28dd16898bf5490ecae8de3cb10a6e1bf5e13163d4"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "shrub-1",
+      "semanticEqual": true,
+      "originalSemanticSha256": "b528a25ca51ca2ed254c49f701214dd7e1f2ac231a3da2c51a21089cbdb9d92c",
+      "rebuiltSemanticSha256": "b528a25ca51ca2ed254c49f701214dd7e1f2ac231a3da2c51a21089cbdb9d92c",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "shrub-1__Geometry",
+            "vertices": 264,
+            "triangles": 440,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "28cae089ded1943b3a1ed2330a2f1c339b81c106d0ded9b2eba8b754288b182f"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "tree-1",
+      "semanticEqual": true,
+      "originalSemanticSha256": "04fda445bf298fb79175aca21c774e18f5f08439162ec10c1e7b11c42742b83c",
+      "rebuiltSemanticSha256": "04fda445bf298fb79175aca21c774e18f5f08439162ec10c1e7b11c42742b83c",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "tree-1__Geometry",
+            "vertices": 524,
+            "triangles": 876,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "573444743feac00d9aa8238c07a5a48dfbc2ec804980730765d83e45b09e92e7"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "rocks-1",
+      "semanticEqual": true,
+      "originalSemanticSha256": "fc201d5ac270bdbd05d84e8c116e4f3a2df1608c4f8b5cc36040bd6dd86ebfc9",
+      "rebuiltSemanticSha256": "fc201d5ac270bdbd05d84e8c116e4f3a2df1608c4f8b5cc36040bd6dd86ebfc9",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "rocks-1__Geometry",
+            "vertices": 72,
+            "triangles": 120,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "4a8a544b34d88f21e2814c5b5871b05d26813e750e885b70a03c203bb279f789"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "grass-1",
+      "semanticEqual": true,
+      "originalSemanticSha256": "e582b4d1e3e4f4f750cd5433510fc9229a22477e5332805ca7aaba04d2496e72",
+      "rebuiltSemanticSha256": "e582b4d1e3e4f4f750cd5433510fc9229a22477e5332805ca7aaba04d2496e72",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "grass-1__Geometry",
+            "vertices": 164,
+            "triangles": 118,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "a69c6ba34edf76fc66f1db54fe273ca6e2acdd683755e3ed7e24be4adc0fe491"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "barrel-2",
+      "semanticEqual": true,
+      "originalSemanticSha256": "4b65c3846acaf97a246f568ccf4dcfa24d6562e5e0829b745377fdb8c0c39a11",
+      "rebuiltSemanticSha256": "4b65c3846acaf97a246f568ccf4dcfa24d6562e5e0829b745377fdb8c0c39a11",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "barrel-2__Geometry",
+            "vertices": 296,
+            "triangles": 428,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "93c309a2b12c6ce6c9feb2c7786dbe6c2f7117704c36e5dd9db931ada2692949"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "crate-2",
+      "semanticEqual": true,
+      "originalSemanticSha256": "f7e2a958aafb8432769709e43a7347274de6c4d919233e9e0426d6180419aac2",
+      "rebuiltSemanticSha256": "f7e2a958aafb8432769709e43a7347274de6c4d919233e9e0426d6180419aac2",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "crate-2__Geometry",
+            "vertices": 682,
+            "triangles": 1276,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "bfd370ae0f7e6764964064c79579183195e4a5c0c70bbba148c1bc71c3c383ca"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "planter-2",
+      "semanticEqual": true,
+      "originalSemanticSha256": "49c3a4781a777645776d5c731b85668a61f197c544505fa2f1d1b102131e7fb1",
+      "rebuiltSemanticSha256": "49c3a4781a777645776d5c731b85668a61f197c544505fa2f1d1b102131e7fb1",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "planter-2__Geometry",
+            "vertices": 512,
+            "triangles": 892,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "fa601164db0c62c08caa26bfd7e09a76e6878735a0cbafbcd4c1551797db10b7"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "fence-2",
+      "semanticEqual": true,
+      "originalSemanticSha256": "414214744b5e52308bc247512b46d804f5abf2bf8b7398b38daeab93245b357f",
+      "rebuiltSemanticSha256": "414214744b5e52308bc247512b46d804f5abf2bf8b7398b38daeab93245b357f",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "fence-2__Geometry",
+            "vertices": 110,
+            "triangles": 196,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "41c13e4131e6cbe5365675a47476f50a8fe0f8de156f20d58dbb9907ae4b0b4d"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "shrub-2",
+      "semanticEqual": true,
+      "originalSemanticSha256": "feacc440a22906bc070324becfb4d6539e1f8c2dbd49f15b20a90e27bc5bac55",
+      "rebuiltSemanticSha256": "feacc440a22906bc070324becfb4d6539e1f8c2dbd49f15b20a90e27bc5bac55",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "shrub-2__Geometry",
+            "vertices": 264,
+            "triangles": 440,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "35f6e7881c163afdd1209c34389d658cf66fe7ba842c98f31efc6a75c62ee9ba"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "tree-2",
+      "semanticEqual": true,
+      "originalSemanticSha256": "ee0aa9c02cf9f3dd829e2012ac7086bee4c5b182bd7475ed26ff516d0e5f9753",
+      "rebuiltSemanticSha256": "ee0aa9c02cf9f3dd829e2012ac7086bee4c5b182bd7475ed26ff516d0e5f9753",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "tree-2__Geometry",
+            "vertices": 524,
+            "triangles": 876,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "cdbefee63155542d649d4bbff02c129330dab0e66e034d6d68907bd37f175f4f"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "rocks-2",
+      "semanticEqual": true,
+      "originalSemanticSha256": "01971d555e0f48aeefebe0feddb3ad5142e540d931db76c68b7f6bd2f70fd1a3",
+      "rebuiltSemanticSha256": "01971d555e0f48aeefebe0feddb3ad5142e540d931db76c68b7f6bd2f70fd1a3",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "rocks-2__Geometry",
+            "vertices": 60,
+            "triangles": 100,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "030d47effe2007eb898fee230b0dd7da46ec3c9b0aef249aef955e1dcb7609d3"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "grass-2",
+      "semanticEqual": true,
+      "originalSemanticSha256": "8dabf094f3f74bdc4ef48b047a525fe301db29080f188722a8a16204d24ee405",
+      "rebuiltSemanticSha256": "8dabf094f3f74bdc4ef48b047a525fe301db29080f188722a8a16204d24ee405",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "grass-2__Geometry",
+            "vertices": 56,
+            "triangles": 22,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "f779dcc93f7d1eca5a3157c519e988d84071dcb9bac33479106a41fc601016c1"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "barrel-3",
+      "semanticEqual": true,
+      "originalSemanticSha256": "9a480f5d657ab54928fe790e1b1aad261623a59af936095c3f138260ef76d8ef",
+      "rebuiltSemanticSha256": "9a480f5d657ab54928fe790e1b1aad261623a59af936095c3f138260ef76d8ef",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "barrel-3__Geometry",
+            "vertices": 280,
+            "triangles": 396,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "8da26674f8b422526c265c066330238451d51a6f4c261855a794d2539e1bd255"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "crate-3",
+      "semanticEqual": true,
+      "originalSemanticSha256": "7673137a73029f45fe2a7a6c3b8cd0841e674dbce865203d25970cdbe477f986",
+      "rebuiltSemanticSha256": "7673137a73029f45fe2a7a6c3b8cd0841e674dbce865203d25970cdbe477f986",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "crate-3__Geometry",
+            "vertices": 604,
+            "triangles": 1116,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "5b2924cec8dc56eabf43f9588d2bedb879eaab4fee198709d36b165a5419642a"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "planter-3",
+      "semanticEqual": true,
+      "originalSemanticSha256": "1395049f976d690b7a4c32016a36628d0c0ae623265292a9ef9de8e15ac171d1",
+      "rebuiltSemanticSha256": "1395049f976d690b7a4c32016a36628d0c0ae623265292a9ef9de8e15ac171d1",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "planter-3__Geometry",
+            "vertices": 416,
+            "triangles": 732,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "5447e555bea6d821b44432b7a371d2bfe9a4257d9167019967a6773d45c80854"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "fence-3",
+      "semanticEqual": true,
+      "originalSemanticSha256": "04e535563d88fdcc6d8a8fa815bf82cb9c31733ed04972c8069bff0f97a22ddd",
+      "rebuiltSemanticSha256": "04e535563d88fdcc6d8a8fa815bf82cb9c31733ed04972c8069bff0f97a22ddd",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "fence-3__Geometry",
+            "vertices": 124,
+            "triangles": 220,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "15ac66142a9aad1946b648800826771e1856afd8a6e1ae25d0464a8166b7d560"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "shrub-3",
+      "semanticEqual": true,
+      "originalSemanticSha256": "ec9421c12683b4ab3427810c1a53c8c666b927a605f90a964408642c069c0d47",
+      "rebuiltSemanticSha256": "ec9421c12683b4ab3427810c1a53c8c666b927a605f90a964408642c069c0d47",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "shrub-3__Geometry",
+            "vertices": 312,
+            "triangles": 520,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "3ddd1d90e982c7036bd7843c850ec8a6017d5e97d04833a0c3976848e740479c"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "tree-3",
+      "semanticEqual": true,
+      "originalSemanticSha256": "7487e845364218e68862bb2686ee69e1ac71d4fb7dd14c789d685adafff4c97a",
+      "rebuiltSemanticSha256": "7487e845364218e68862bb2686ee69e1ac71d4fb7dd14c789d685adafff4c97a",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "tree-3__Geometry",
+            "vertices": 572,
+            "triangles": 956,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "dcbeaa761b2fda3a366bfb2630721fc561cff9793ba92e65574bb3e6d5787f10"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "rocks-3",
+      "semanticEqual": true,
+      "originalSemanticSha256": "6b9bdc251c4093723e6a68913d30f3bff5921cc15bde07239443d1eb44811a1a",
+      "rebuiltSemanticSha256": "6b9bdc251c4093723e6a68913d30f3bff5921cc15bde07239443d1eb44811a1a",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "rocks-3__Geometry",
+            "vertices": 72,
+            "triangles": 120,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "fe1a4623d78ec2dde7115bfa791623cb8c2adef1a246cc36e5ae4cc67f7f0f45"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "grass-3",
+      "semanticEqual": true,
+      "originalSemanticSha256": "4bc3a7aba8deddd48e8c849bef02b5500aa0b948fff59842dc077e46888ea03f",
+      "rebuiltSemanticSha256": "4bc3a7aba8deddd48e8c849bef02b5500aa0b948fff59842dc077e46888ea03f",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "grass-3__Geometry",
+            "vertices": 164,
+            "triangles": 118,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "dc007ec3be803360a78a60b2d62d80f795f7b1cc2233f7961553708c99553c34"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "barrel-side",
+      "semanticEqual": true,
+      "originalSemanticSha256": "32a246d780f04e7b670f4d9d86ebf34cc6604c90ad9729f23a66f3496d177862",
+      "rebuiltSemanticSha256": "32a246d780f04e7b670f4d9d86ebf34cc6604c90ad9729f23a66f3496d177862",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "barrel-side__Geometry",
+            "vertices": 264,
+            "triangles": 368,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "2926120b272eed8e42d5fec95cb9f3ffab4c4af2691c93f21532d67b3e386bb7"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "bucket-0",
+      "semanticEqual": true,
+      "originalSemanticSha256": "e7eff90901cf90abe027eb1a32336b0e642cdff56f4954d61597a5a93b23b34f",
+      "rebuiltSemanticSha256": "e7eff90901cf90abe027eb1a32336b0e642cdff56f4954d61597a5a93b23b34f",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "bucket-0__Geometry",
+            "vertices": 208,
+            "triangles": 396,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "884feb9b9eae74592910208909139c600ac5bf6838ae3c67fe496dceea3f995d"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "bucket-1",
+      "semanticEqual": true,
+      "originalSemanticSha256": "0435b73729fe910df8e86a3736cde05f90e0859d17ee3fe8d7653f709145b401",
+      "rebuiltSemanticSha256": "0435b73729fe910df8e86a3736cde05f90e0859d17ee3fe8d7653f709145b401",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "bucket-1__Geometry",
+            "vertices": 208,
+            "triangles": 396,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "4ef2a856d03dfb2166baeb749c893af57323076df2d25e2c3bed158f4a635bc4"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "herb-pot",
+      "semanticEqual": true,
+      "originalSemanticSha256": "bfb113e38f60aabe4207b5289acedc2b621a8e788880ea9c862c7f4250d3a912",
+      "rebuiltSemanticSha256": "bfb113e38f60aabe4207b5289acedc2b621a8e788880ea9c862c7f4250d3a912",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "herb-pot__Geometry",
+            "vertices": 224,
+            "triangles": 408,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "19b356b7caea5a6464c01efed73a8d648bb906849611634a6050b745fd3c7ab7"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "bowl",
+      "semanticEqual": true,
+      "originalSemanticSha256": "73dd95b02e34dfb7465ad0326f09482c22cf20d89cf6d9a85dee8fabd3ff309b",
+      "rebuiltSemanticSha256": "73dd95b02e34dfb7465ad0326f09482c22cf20d89cf6d9a85dee8fabd3ff309b",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "bowl__Geometry",
+            "vertices": 64,
+            "triangles": 120,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "b8f6edecda24463ce2cd19c2aa1eff6a55184d73e76f257a1bdd5cf65eedda36"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "rope-coil",
+      "semanticEqual": true,
+      "originalSemanticSha256": "4445dc4bfaea112004fc1253634aa94086616b8c327bae2a47716de4bf7c3301",
+      "rebuiltSemanticSha256": "4445dc4bfaea112004fc1253634aa94086616b8c327bae2a47716de4bf7c3301",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "rope-coil__Geometry",
+            "vertices": 282,
+            "triangles": 560,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "3d405951dea74b32fffc6d223a478b5444a296def35a38744042a5e509b7764e"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "table-0",
+      "semanticEqual": true,
+      "originalSemanticSha256": "3abbfcd2950b9bd15bf5881c2c63adf160ad54df7fc1444f2869eee87211b673",
+      "rebuiltSemanticSha256": "3abbfcd2950b9bd15bf5881c2c63adf160ad54df7fc1444f2869eee87211b673",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "table-0__Geometry",
+            "vertices": 308,
+            "triangles": 572,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "7892d154956924440b5062f280effb550754c6ad1c65fa58033a4bb8bdad1125"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "table-1",
+      "semanticEqual": true,
+      "originalSemanticSha256": "c8845e284fdf13712003e382c2091fabb0ee413b633431899694f30dbfab8e1d",
+      "rebuiltSemanticSha256": "c8845e284fdf13712003e382c2091fabb0ee413b633431899694f30dbfab8e1d",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "table-1__Geometry",
+            "vertices": 330,
+            "triangles": 612,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "af0113d3f3f23f00a835db9dfcbc829ae873c5fb770249e11aaa6e223d1e9605"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "table-2",
+      "semanticEqual": true,
+      "originalSemanticSha256": "2cda3717d9c99f64f641fb76e5b52cdd6f8957261d7311aa3415de5e49c3f5cf",
+      "rebuiltSemanticSha256": "2cda3717d9c99f64f641fb76e5b52cdd6f8957261d7311aa3415de5e49c3f5cf",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "table-2__Geometry",
+            "vertices": 412,
+            "triangles": 776,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "5510741f744848699f5626ba88f336472b9e8d6c2e236677ce8bc04d1ee81ee1"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "stool",
+      "semanticEqual": true,
+      "originalSemanticSha256": "1e5bf627eec16ef369be2c762a82c6132e9343104db2e98210e45d5c21f1b944",
+      "rebuiltSemanticSha256": "1e5bf627eec16ef369be2c762a82c6132e9343104db2e98210e45d5c21f1b944",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "stool__Geometry",
+            "vertices": 66,
+            "triangles": 116,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "7b8201bfced09c2ef9a753631c0815fc715b9154d7e70f76a1f727a40403cf8c"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "bed-0",
+      "semanticEqual": true,
+      "originalSemanticSha256": "d1b62c93b9450920e0deb648df12b2370dd5f8e9d67d1d326a7171664401ce23",
+      "rebuiltSemanticSha256": "d1b62c93b9450920e0deb648df12b2370dd5f8e9d67d1d326a7171664401ce23",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "bed-0__Geometry",
+            "vertices": 256,
+            "triangles": 480,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "1eb03cef28c3d1806b379eed826da0fda20331704d16681f474d9c80915d2483"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "bed-1",
+      "semanticEqual": true,
+      "originalSemanticSha256": "aade872422ce5463bef409add78dd97392201c007aa504edd5839cd13c51b363",
+      "rebuiltSemanticSha256": "aade872422ce5463bef409add78dd97392201c007aa504edd5839cd13c51b363",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "bed-1__Geometry",
+            "vertices": 256,
+            "triangles": 480,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "30f9105062f860ba27a7abff084b96913a927e316e723a6a2fa0b04fedd2c0be"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "bookshelf",
+      "semanticEqual": true,
+      "originalSemanticSha256": "4b6d244fc45e894f7f40c9a7f734f8c15dc780f39a880908073fe72a4f71e1b5",
+      "rebuiltSemanticSha256": "4b6d244fc45e894f7f40c9a7f734f8c15dc780f39a880908073fe72a4f71e1b5",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "bookshelf__Geometry",
+            "vertices": 864,
+            "triangles": 1620,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "918645269c59b9179201f26a92791d93a11f5736f32bdbfd5572f4f5a3c4f572"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "bench",
+      "semanticEqual": true,
+      "originalSemanticSha256": "02cd8d7903352c4003621409e7fdb903cfb3bd8e32705efd9ba6981c822ca9fb",
+      "rebuiltSemanticSha256": "02cd8d7903352c4003621409e7fdb903cfb3bd8e32705efd9ba6981c822ca9fb",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "bench__Geometry",
+            "vertices": 160,
+            "triangles": 300,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "f1c5542dc80c3762a8ca84dfb9207c686021c3d97871d6b728ee7b8602290015"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "hearth-0",
+      "semanticEqual": true,
+      "originalSemanticSha256": "8b2f2a8ef96757a4e9cfe98d11da208f2fc2a1360a0dca3d72e68f1d57072ab2",
+      "rebuiltSemanticSha256": "8b2f2a8ef96757a4e9cfe98d11da208f2fc2a1360a0dca3d72e68f1d57072ab2",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "hearth-0__Geometry",
+            "vertices": 238,
+            "triangles": 432,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "4e939a14ddbdabef10b8332f97f79c5d632d37ad4d5524f997aa81ba4018600d"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "hearth-1",
+      "semanticEqual": true,
+      "originalSemanticSha256": "9bb758dd634bae57dde19b7fec0f2db366f87568a898ec08fbfcbb24c9a0665d",
+      "rebuiltSemanticSha256": "9bb758dd634bae57dde19b7fec0f2db366f87568a898ec08fbfcbb24c9a0665d",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "hearth-1__Geometry",
+            "vertices": 350,
+            "triangles": 652,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "c15b57cc97f207c55eed4dce761f35caa42ca99656fff6da3ca67149e8d6cfff"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "bread-oven",
+      "semanticEqual": true,
+      "originalSemanticSha256": "04a898b98ca3138e8dd1fe58c0f2b0261a9dbd1317bb827488a6c31a35869429",
+      "rebuiltSemanticSha256": "04a898b98ca3138e8dd1fe58c0f2b0261a9dbd1317bb827488a6c31a35869429",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "bread-oven__Geometry",
+            "vertices": 382,
+            "triangles": 660,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "fb065da8838bb9ca95765e9bd51795e0e21963c3b0b30297a52e4ead870ad6f1"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "central-well",
+      "semanticEqual": true,
+      "originalSemanticSha256": "89a60af3d5dd8a0d39d07d08127db1a74017609aaa00a9c21494af7dc5c892cd",
+      "rebuiltSemanticSha256": "89a60af3d5dd8a0d39d07d08127db1a74017609aaa00a9c21494af7dc5c892cd",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "central-well__Geometry",
+            "vertices": 2096,
+            "triangles": 3900,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "c6139f32de40d0ee6a3422e1fb679e926dd9c2c40be14f4e4c21a7dcc447b304"
+          },
+          {
+            "name": "central-well__Water",
+            "vertices": 80,
+            "triangles": 156,
+            "materialSlots": [
+              "VillageWater"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "1c594b344c597212987b1fb412534820f4dffa2e4422d59d9fd6a1fe7f69207e"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "oath-arch",
+      "semanticEqual": true,
+      "originalSemanticSha256": "db2ae123988b0773681e0e4a0ddf9ce5a172215b789c0a1757c146c23eda95eb",
+      "rebuiltSemanticSha256": "db2ae123988b0773681e0e4a0ddf9ce5a172215b789c0a1757c146c23eda95eb",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "oath-arch__Geometry",
+            "vertices": 438,
+            "triangles": 832,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "453d7e56374ec7a1db078a67f2023022a8339456839d123f59ea08ba961c6562"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "market-stall-0",
+      "semanticEqual": true,
+      "originalSemanticSha256": "3f9640c42f25c4d171f12380439f2f2aa1ee2efb267958a453512e712157a01e",
+      "rebuiltSemanticSha256": "3f9640c42f25c4d171f12380439f2f2aa1ee2efb267958a453512e712157a01e",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "market-stall-0__Geometry",
+            "vertices": 834,
+            "triangles": 1452,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "4e0a29a7f1848113f7cd6fc98359d543796b89d682b2301dd6a8327e82383d58"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "market-stall-1",
+      "semanticEqual": true,
+      "originalSemanticSha256": "089f460b9a3a687d8c01a3da4c74df35e50dc7345ef68a7218bcf76a0b585ba1",
+      "rebuiltSemanticSha256": "089f460b9a3a687d8c01a3da4c74df35e50dc7345ef68a7218bcf76a0b585ba1",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "market-stall-1__Geometry",
+            "vertices": 834,
+            "triangles": 1452,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "6f6e04454f7b5b758baef0d9fb433b5a21835b8306d5f4abc4695554629c5034"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "handcart",
+      "semanticEqual": true,
+      "originalSemanticSha256": "79f5739f6b2fdd9ebf47786845634fe9a7637d0717e397d1d15db9b9f7a8d988",
+      "rebuiltSemanticSha256": "79f5739f6b2fdd9ebf47786845634fe9a7637d0717e397d1d15db9b9f7a8d988",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "handcart__Geometry",
+            "vertices": 616,
+            "triangles": 1156,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "a7d53bdf42af400e07392f79fd757a6be9442674ce3b001fbe576a4651735f4f"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "footbridge",
+      "semanticEqual": true,
+      "originalSemanticSha256": "9682eed1a058a8f40dac8186e27b68bb5a491de678fc8a386c87f638a6e243f9",
+      "rebuiltSemanticSha256": "9682eed1a058a8f40dac8186e27b68bb5a491de678fc8a386c87f638a6e243f9",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "footbridge__Geometry",
+            "vertices": 412,
+            "triangles": 756,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "2e41d5e1db01048a74d423cccfaf7beaf574054aaa4ae1f17bb66b2bd1867b4b"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "chopping-block",
+      "semanticEqual": true,
+      "originalSemanticSha256": "44e890cfc3da04409a221b10e733ef7fadea0f2e915c4bc9e8c638c9b170f1d8",
+      "rebuiltSemanticSha256": "44e890cfc3da04409a221b10e733ef7fadea0f2e915c4bc9e8c638c9b170f1d8",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "chopping-block__Geometry",
+            "vertices": 48,
+            "triangles": 88,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "debbc69d0b4872d3d33882a79bb49de5fc2702298af64f4946ae2d4d43307168"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "tortoise",
+      "semanticEqual": true,
+      "originalSemanticSha256": "d18f1052d4f8be4276cfcecc598da961d1984e6ef40e2382c7f6a240c333f613",
+      "rebuiltSemanticSha256": "d18f1052d4f8be4276cfcecc598da961d1984e6ef40e2382c7f6a240c333f613",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "tortoise__Geometry",
+            "vertices": 102,
+            "triangles": 180,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "e1f59c3187b98a99721a3dcf1bf417e5f210f991cf44e942206474dbf36c267f"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "frog",
+      "semanticEqual": true,
+      "originalSemanticSha256": "85b3f65f13a34ce4688051ebfbfc87c0433230eded9cc70d10791cb1a74f997e",
+      "rebuiltSemanticSha256": "85b3f65f13a34ce4688051ebfbfc87c0433230eded9cc70d10791cb1a74f997e",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "frog__Geometry",
+            "vertices": 60,
+            "triangles": 100,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "2ba1f62f5ea151e0db6d55d6d97d7c8480df3b2d30008a536c4b691a01537311"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "keeper-gatehouse-shell",
+      "semanticEqual": true,
+      "originalSemanticSha256": "d50829652c35e9233b8b79eaa86506bd192015d4f23aaa83331981a857642c8b",
+      "rebuiltSemanticSha256": "d50829652c35e9233b8b79eaa86506bd192015d4f23aaa83331981a857642c8b",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "keeper-gatehouse-shell__Geometry",
+            "vertices": 2208,
+            "triangles": 4140,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "7a7dfa16d485427c4ca0d8dbf38f79b90c027f53f351b0da220989611d08e9cf"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "keeper-gatehouse-roof",
+      "semanticEqual": true,
+      "originalSemanticSha256": "2a2902d7d5e1b640fd0eeee206bb581470c40044397df9008d2abe6d606aa446",
+      "rebuiltSemanticSha256": "2a2902d7d5e1b640fd0eeee206bb581470c40044397df9008d2abe6d606aa446",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "keeper-gatehouse-roof__Geometry",
+            "vertices": 3622,
+            "triangles": 6693,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "f579a4a141b51b6b7af8aaa33837a9877b70d2cdb30b3eaab814f961788c9d4f"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "dry-hem-guesthouse-shell",
+      "semanticEqual": true,
+      "originalSemanticSha256": "6c6fe62438466c682dd34b2a852c77d88532d000eb4ad5e4783fca627437ad63",
+      "rebuiltSemanticSha256": "6c6fe62438466c682dd34b2a852c77d88532d000eb4ad5e4783fca627437ad63",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "dry-hem-guesthouse-shell__Geometry",
+            "vertices": 3840,
+            "triangles": 7200,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "6c0e8d634f69b5010dcf1cf356b61ca3ae89c7fab9dd120718ae104ddf15b3f0"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "dry-hem-guesthouse-roof",
+      "semanticEqual": true,
+      "originalSemanticSha256": "09e503f7e06641739b3e52b89d130d83807b47eb512e6ce934adb0982ab103d1",
+      "rebuiltSemanticSha256": "09e503f7e06641739b3e52b89d130d83807b47eb512e6ce934adb0982ab103d1",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "dry-hem-guesthouse-roof__Geometry",
+            "vertices": 7152,
+            "triangles": 13285,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "afd64e147f7eb488c054004216fcb06fbbfe300da5910463ae2face5de418804"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "long-loop-ropeshop-shell",
+      "semanticEqual": true,
+      "originalSemanticSha256": "3ae6d85e3bf2564326b8a90289070d30f7a5742ea654b85403ed5e610505814f",
+      "rebuiltSemanticSha256": "3ae6d85e3bf2564326b8a90289070d30f7a5742ea654b85403ed5e610505814f",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "long-loop-ropeshop-shell__Geometry",
+            "vertices": 3296,
+            "triangles": 6180,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "7c415ece95ae5d1070b725928eecb293c629970f6afdec2abb24d5f4839c0333"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "long-loop-ropeshop-roof",
+      "semanticEqual": true,
+      "originalSemanticSha256": "1135ada22c263b5aae0287fae552c92e7ebb1bea5cbf0989362b2f1a02e25daa",
+      "rebuiltSemanticSha256": "1135ada22c263b5aae0287fae552c92e7ebb1bea5cbf0989362b2f1a02e25daa",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "long-loop-ropeshop-roof__Geometry",
+            "vertices": 5378,
+            "triangles": 9957,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "7b9c32846b1aba083bfa96b05daecf33cdc7bbfea90fd47005ced05f20c0e600"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "return-desk-archive-shell",
+      "semanticEqual": true,
+      "originalSemanticSha256": "9a1722ed44f75f3b832af8a67879e3a59a86dff029d330320b903fa9f3f9cd98",
+      "rebuiltSemanticSha256": "9a1722ed44f75f3b832af8a67879e3a59a86dff029d330320b903fa9f3f9cd98",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "return-desk-archive-shell__Geometry",
+            "vertices": 3296,
+            "triangles": 6180,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "54c7ed58ec18aff16a0d28f9335efef98807ab6c0cd49f65bc90996952bf68eb"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "return-desk-archive-roof",
+      "semanticEqual": true,
+      "originalSemanticSha256": "4d56c584b88b5b20fd0412acb42866c8b4bc7e630a454f3f9a553a93600cfde4",
+      "rebuiltSemanticSha256": "4d56c584b88b5b20fd0412acb42866c8b4bc7e630a454f3f9a553a93600cfde4",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "return-desk-archive-roof__Geometry",
+            "vertices": 5410,
+            "triangles": 10017,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "2d8a4afaf3aa3256bcd2ea6bb90c9cdb20e6ed5755d53ba897980414aa21670e"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "second-bowl-kitchen-shell",
+      "semanticEqual": true,
+      "originalSemanticSha256": "fc4a8fae029df228da54752c61228a53e25957d31df57a25ad2dee9282899c17",
+      "rebuiltSemanticSha256": "fc4a8fae029df228da54752c61228a53e25957d31df57a25ad2dee9282899c17",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "second-bowl-kitchen-shell__Geometry",
+            "vertices": 2944,
+            "triangles": 5520,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "df1ef156a6b6db39584f8a2e5205218040e8f7d6519fb5339f79c6a1128b5e99"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "second-bowl-kitchen-roof",
+      "semanticEqual": true,
+      "originalSemanticSha256": "20b03bc6dbb40174f7fbd11e09450adc3c3001e2206d582987815c61e88ec42a",
+      "rebuiltSemanticSha256": "20b03bc6dbb40174f7fbd11e09450adc3c3001e2206d582987815c61e88ec42a",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "second-bowl-kitchen-roof__Geometry",
+            "vertices": 4870,
+            "triangles": 9033,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "899b0f0bce0360eba64119980ef384405a8fdaab2551a53f56353d1665b2d5b1"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "oak-door",
+      "semanticEqual": true,
+      "originalSemanticSha256": "f021e1a725c8b0f4360c431c73724ce2ea44e0867b03aeae2045128b7a5dd17f",
+      "rebuiltSemanticSha256": "f021e1a725c8b0f4360c431c73724ce2ea44e0867b03aeae2045128b7a5dd17f",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "oak-door__Geometry",
+            "vertices": 304,
+            "triangles": 572,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "de5f95caa2c601fcc087ac2e5dd5af169382310c8c10fdcd950683505cd10e1a"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "character-teal",
+      "semanticEqual": true,
+      "originalSemanticSha256": "706b6875f4db6af3cba29e0cc9dffd940bb9a27d7290972f31a6c42ff15e60a7",
+      "rebuiltSemanticSha256": "706b6875f4db6af3cba29e0cc9dffd940bb9a27d7290972f31a6c42ff15e60a7",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "character-teal__Geometry",
+            "vertices": 428,
+            "triangles": 800,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "4d76b0c2fa2d8deb263cc69a512e165f6749cb685d22dbf6052602613a66cdb8"
+          }
+        ],
+        "sockets": [
+          {
+            "name": "Equipment.Back",
+            "parentBone": "Spine",
+            "matrixWorld": [
+              [
+                -1.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.0,
+                -1.0,
+                -0.0,
+                -0.27
+              ],
+              [
+                0.0,
+                -1e-06,
+                1.0,
+                0.95
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          },
+          {
+            "name": "Equipment.Hand.L",
+            "parentBone": "Hand.L",
+            "matrixWorld": [
+              [
+                -1.0,
+                -1e-06,
+                -0.0,
+                0.46
+              ],
+              [
+                -0.0,
+                -1.0,
+                0.0,
+                0.02
+              ],
+              [
+                -1e-06,
+                -0.0,
+                1.0,
+                0.46
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          },
+          {
+            "name": "Equipment.Hand.R",
+            "parentBone": "Hand.R",
+            "matrixWorld": [
+              [
+                -0.999999,
+                0.0,
+                0.0,
+                -0.46
+              ],
+              [
+                -1e-06,
+                -1.0,
+                0.0,
+                0.02
+              ],
+              [
+                -0.0,
+                0.0,
+                0.999999,
+                0.46
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          },
+          {
+            "name": "Equipment.Head",
+            "parentBone": "Head",
+            "matrixWorld": [
+              [
+                -1.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.0,
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              [
+                0.0,
+                -1e-06,
+                1.0,
+                1.68
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          }
+        ],
+        "skeletons": [
+          {
+            "name": "character-teal__Rig",
+            "bones": [
+              {
+                "name": "Root",
+                "parent": "",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Spine",
+                "parent": "Root",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.42
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Head",
+                "parent": "Spine",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    1.0,
+                    0.0,
+                    1.1
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Arm.L",
+                "parent": "Spine",
+                "matrixLocal": [
+                  [
+                    0.904158,
+                    -0.309586,
+                    -0.294377,
+                    -0.31
+                  ],
+                  [
+                    0.309586,
+                    0.0,
+                    0.950871,
+                    0.0
+                  ],
+                  [
+                    -0.294377,
+                    -0.950872,
+                    0.095843,
+                    0.98
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Hand.L",
+                "parent": "Arm.L",
+                "matrixLocal": [
+                  [
+                    1.000001,
+                    -0.0,
+                    0.0,
+                    -0.45
+                  ],
+                  [
+                    0.0,
+                    -0.0,
+                    1.0,
+                    0.0
+                  ],
+                  [
+                    -1e-06,
+                    -1.0,
+                    -1e-06,
+                    0.55
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Arm.R",
+                "parent": "Spine",
+                "matrixLocal": [
+                  [
+                    0.904156,
+                    0.309586,
+                    0.294377,
+                    0.31
+                  ],
+                  [
+                    -0.309586,
+                    0.0,
+                    0.950871,
+                    0.0
+                  ],
+                  [
+                    0.294376,
+                    -0.950871,
+                    0.095843,
+                    0.98
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Hand.R",
+                "parent": "Arm.R",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.45
+                  ],
+                  [
+                    0.0,
+                    -0.0,
+                    1.0,
+                    0.0
+                  ],
+                  [
+                    -0.0,
+                    -1.0,
+                    -0.0,
+                    0.55
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Leg.L",
+                "parent": "Root",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    -0.16
+                  ],
+                  [
+                    -0.0,
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    -1.0,
+                    -0.0,
+                    0.5
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Leg.R",
+                "parent": "Root",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.16
+                  ],
+                  [
+                    -0.0,
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    -1.0,
+                    -0.0,
+                    0.5
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "takes": [
+          "Attack",
+          "Hit",
+          "Idle",
+          "Interact",
+          "Walk"
+        ],
+        "animationContentSha256": "3525bd28b4ef7ad1e418e9918fce18047e7f55401f692b3eb4afa41b33f4b43a",
+        "actionCount": 30
+      }
+    },
+    {
+      "id": "character-gold",
+      "semanticEqual": true,
+      "originalSemanticSha256": "f58a340e573a5676f21bd1aadd46a028a6c64c2890a85926238a4f9fc680f32d",
+      "rebuiltSemanticSha256": "f58a340e573a5676f21bd1aadd46a028a6c64c2890a85926238a4f9fc680f32d",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "character-gold__Geometry",
+            "vertices": 428,
+            "triangles": 800,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "0f494adf13aea1e60414a452f8786ccdb197d959c0895e1a40fc13e250eface1"
+          }
+        ],
+        "sockets": [
+          {
+            "name": "Equipment.Back",
+            "parentBone": "Spine",
+            "matrixWorld": [
+              [
+                -1.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.0,
+                -1.0,
+                -0.0,
+                -0.27
+              ],
+              [
+                0.0,
+                -1e-06,
+                1.0,
+                0.95
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          },
+          {
+            "name": "Equipment.Hand.L",
+            "parentBone": "Hand.L",
+            "matrixWorld": [
+              [
+                -1.0,
+                -1e-06,
+                -0.0,
+                0.46
+              ],
+              [
+                -0.0,
+                -1.0,
+                0.0,
+                0.02
+              ],
+              [
+                -1e-06,
+                -0.0,
+                1.0,
+                0.46
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          },
+          {
+            "name": "Equipment.Hand.R",
+            "parentBone": "Hand.R",
+            "matrixWorld": [
+              [
+                -0.999999,
+                0.0,
+                0.0,
+                -0.46
+              ],
+              [
+                -1e-06,
+                -1.0,
+                0.0,
+                0.02
+              ],
+              [
+                -0.0,
+                0.0,
+                0.999999,
+                0.46
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          },
+          {
+            "name": "Equipment.Head",
+            "parentBone": "Head",
+            "matrixWorld": [
+              [
+                -1.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.0,
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              [
+                0.0,
+                -1e-06,
+                1.0,
+                1.68
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          }
+        ],
+        "skeletons": [
+          {
+            "name": "character-gold__Rig",
+            "bones": [
+              {
+                "name": "Root",
+                "parent": "",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Spine",
+                "parent": "Root",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.42
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Head",
+                "parent": "Spine",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    1.0,
+                    0.0,
+                    1.1
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Arm.L",
+                "parent": "Spine",
+                "matrixLocal": [
+                  [
+                    0.904158,
+                    -0.309586,
+                    -0.294377,
+                    -0.31
+                  ],
+                  [
+                    0.309586,
+                    0.0,
+                    0.950871,
+                    0.0
+                  ],
+                  [
+                    -0.294377,
+                    -0.950872,
+                    0.095843,
+                    0.98
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Hand.L",
+                "parent": "Arm.L",
+                "matrixLocal": [
+                  [
+                    1.000001,
+                    -0.0,
+                    0.0,
+                    -0.45
+                  ],
+                  [
+                    0.0,
+                    -0.0,
+                    1.0,
+                    0.0
+                  ],
+                  [
+                    -1e-06,
+                    -1.0,
+                    -1e-06,
+                    0.55
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Arm.R",
+                "parent": "Spine",
+                "matrixLocal": [
+                  [
+                    0.904156,
+                    0.309586,
+                    0.294377,
+                    0.31
+                  ],
+                  [
+                    -0.309586,
+                    0.0,
+                    0.950871,
+                    0.0
+                  ],
+                  [
+                    0.294376,
+                    -0.950871,
+                    0.095843,
+                    0.98
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Hand.R",
+                "parent": "Arm.R",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.45
+                  ],
+                  [
+                    0.0,
+                    -0.0,
+                    1.0,
+                    0.0
+                  ],
+                  [
+                    -0.0,
+                    -1.0,
+                    -0.0,
+                    0.55
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Leg.L",
+                "parent": "Root",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    -0.16
+                  ],
+                  [
+                    -0.0,
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    -1.0,
+                    -0.0,
+                    0.5
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Leg.R",
+                "parent": "Root",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.16
+                  ],
+                  [
+                    -0.0,
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    -1.0,
+                    -0.0,
+                    0.5
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "takes": [
+          "Attack",
+          "Hit",
+          "Idle",
+          "Interact",
+          "Walk"
+        ],
+        "animationContentSha256": "4d636023acb292ee29c7cd103f44f9ffba0df281a770a28b45409c28b3700a34",
+        "actionCount": 30
+      }
+    },
+    {
+      "id": "character-violet",
+      "semanticEqual": true,
+      "originalSemanticSha256": "da4430e40e0a8a810f2a6df54d18fff7251cdedda678f7643fd167d6e3eb1028",
+      "rebuiltSemanticSha256": "da4430e40e0a8a810f2a6df54d18fff7251cdedda678f7643fd167d6e3eb1028",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "character-violet__Geometry",
+            "vertices": 428,
+            "triangles": 800,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "84d528d55b9d2a56cba6129c66b6416d17903bea4070aa4cd6a24184760a324c"
+          }
+        ],
+        "sockets": [
+          {
+            "name": "Equipment.Back",
+            "parentBone": "Spine",
+            "matrixWorld": [
+              [
+                -1.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.0,
+                -1.0,
+                -0.0,
+                -0.27
+              ],
+              [
+                0.0,
+                -1e-06,
+                1.0,
+                0.95
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          },
+          {
+            "name": "Equipment.Hand.L",
+            "parentBone": "Hand.L",
+            "matrixWorld": [
+              [
+                -1.0,
+                -1e-06,
+                -0.0,
+                0.46
+              ],
+              [
+                -0.0,
+                -1.0,
+                0.0,
+                0.02
+              ],
+              [
+                -1e-06,
+                -0.0,
+                1.0,
+                0.46
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          },
+          {
+            "name": "Equipment.Hand.R",
+            "parentBone": "Hand.R",
+            "matrixWorld": [
+              [
+                -0.999999,
+                0.0,
+                0.0,
+                -0.46
+              ],
+              [
+                -1e-06,
+                -1.0,
+                0.0,
+                0.02
+              ],
+              [
+                -0.0,
+                0.0,
+                0.999999,
+                0.46
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          },
+          {
+            "name": "Equipment.Head",
+            "parentBone": "Head",
+            "matrixWorld": [
+              [
+                -1.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.0,
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              [
+                0.0,
+                -1e-06,
+                1.0,
+                1.68
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          }
+        ],
+        "skeletons": [
+          {
+            "name": "character-violet__Rig",
+            "bones": [
+              {
+                "name": "Root",
+                "parent": "",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Spine",
+                "parent": "Root",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.42
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Head",
+                "parent": "Spine",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    1.0,
+                    0.0,
+                    1.1
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Arm.L",
+                "parent": "Spine",
+                "matrixLocal": [
+                  [
+                    0.904158,
+                    -0.309586,
+                    -0.294377,
+                    -0.31
+                  ],
+                  [
+                    0.309586,
+                    0.0,
+                    0.950871,
+                    0.0
+                  ],
+                  [
+                    -0.294377,
+                    -0.950872,
+                    0.095843,
+                    0.98
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Hand.L",
+                "parent": "Arm.L",
+                "matrixLocal": [
+                  [
+                    1.000001,
+                    -0.0,
+                    0.0,
+                    -0.45
+                  ],
+                  [
+                    0.0,
+                    -0.0,
+                    1.0,
+                    0.0
+                  ],
+                  [
+                    -1e-06,
+                    -1.0,
+                    -1e-06,
+                    0.55
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Arm.R",
+                "parent": "Spine",
+                "matrixLocal": [
+                  [
+                    0.904156,
+                    0.309586,
+                    0.294377,
+                    0.31
+                  ],
+                  [
+                    -0.309586,
+                    0.0,
+                    0.950871,
+                    0.0
+                  ],
+                  [
+                    0.294376,
+                    -0.950871,
+                    0.095843,
+                    0.98
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Hand.R",
+                "parent": "Arm.R",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.45
+                  ],
+                  [
+                    0.0,
+                    -0.0,
+                    1.0,
+                    0.0
+                  ],
+                  [
+                    -0.0,
+                    -1.0,
+                    -0.0,
+                    0.55
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Leg.L",
+                "parent": "Root",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    -0.16
+                  ],
+                  [
+                    -0.0,
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    -1.0,
+                    -0.0,
+                    0.5
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Leg.R",
+                "parent": "Root",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.16
+                  ],
+                  [
+                    -0.0,
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    -1.0,
+                    -0.0,
+                    0.5
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "takes": [
+          "Attack",
+          "Hit",
+          "Idle",
+          "Interact",
+          "Walk"
+        ],
+        "animationContentSha256": "0af7cd2c380319826a692fff9e453ecebb111ebf8eebf56606ba6e768c51ec79",
+        "actionCount": 30
+      }
+    },
+    {
+      "id": "character-olive",
+      "semanticEqual": true,
+      "originalSemanticSha256": "84d9649f315638cba771ef62cf926a8282d811f75c2eb13caa0af260d8fe6be0",
+      "rebuiltSemanticSha256": "84d9649f315638cba771ef62cf926a8282d811f75c2eb13caa0af260d8fe6be0",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "character-olive__Geometry",
+            "vertices": 428,
+            "triangles": 800,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "8ba70f7f8a657f7ebefac063e6bf974badf644af1ceb3f04b0acf8e3bd01d962"
+          }
+        ],
+        "sockets": [
+          {
+            "name": "Equipment.Back",
+            "parentBone": "Spine",
+            "matrixWorld": [
+              [
+                -1.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.0,
+                -1.0,
+                -0.0,
+                -0.27
+              ],
+              [
+                0.0,
+                -1e-06,
+                1.0,
+                0.95
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          },
+          {
+            "name": "Equipment.Hand.L",
+            "parentBone": "Hand.L",
+            "matrixWorld": [
+              [
+                -1.0,
+                -1e-06,
+                -0.0,
+                0.46
+              ],
+              [
+                -0.0,
+                -1.0,
+                0.0,
+                0.02
+              ],
+              [
+                -1e-06,
+                -0.0,
+                1.0,
+                0.46
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          },
+          {
+            "name": "Equipment.Hand.R",
+            "parentBone": "Hand.R",
+            "matrixWorld": [
+              [
+                -0.999999,
+                0.0,
+                0.0,
+                -0.46
+              ],
+              [
+                -1e-06,
+                -1.0,
+                0.0,
+                0.02
+              ],
+              [
+                -0.0,
+                0.0,
+                0.999999,
+                0.46
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          },
+          {
+            "name": "Equipment.Head",
+            "parentBone": "Head",
+            "matrixWorld": [
+              [
+                -1.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                -0.0,
+                -1.0,
+                -0.0,
+                -0.0
+              ],
+              [
+                0.0,
+                -1e-06,
+                1.0,
+                1.68
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ]
+          }
+        ],
+        "skeletons": [
+          {
+            "name": "character-olive__Rig",
+            "bones": [
+              {
+                "name": "Root",
+                "parent": "",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Spine",
+                "parent": "Root",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.42
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Head",
+                "parent": "Spine",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    1.0,
+                    0.0,
+                    1.1
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Arm.L",
+                "parent": "Spine",
+                "matrixLocal": [
+                  [
+                    0.904158,
+                    -0.309586,
+                    -0.294377,
+                    -0.31
+                  ],
+                  [
+                    0.309586,
+                    0.0,
+                    0.950871,
+                    0.0
+                  ],
+                  [
+                    -0.294377,
+                    -0.950872,
+                    0.095843,
+                    0.98
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Hand.L",
+                "parent": "Arm.L",
+                "matrixLocal": [
+                  [
+                    1.000001,
+                    -0.0,
+                    0.0,
+                    -0.45
+                  ],
+                  [
+                    0.0,
+                    -0.0,
+                    1.0,
+                    0.0
+                  ],
+                  [
+                    -1e-06,
+                    -1.0,
+                    -1e-06,
+                    0.55
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Arm.R",
+                "parent": "Spine",
+                "matrixLocal": [
+                  [
+                    0.904156,
+                    0.309586,
+                    0.294377,
+                    0.31
+                  ],
+                  [
+                    -0.309586,
+                    0.0,
+                    0.950871,
+                    0.0
+                  ],
+                  [
+                    0.294376,
+                    -0.950871,
+                    0.095843,
+                    0.98
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Hand.R",
+                "parent": "Arm.R",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.45
+                  ],
+                  [
+                    0.0,
+                    -0.0,
+                    1.0,
+                    0.0
+                  ],
+                  [
+                    -0.0,
+                    -1.0,
+                    -0.0,
+                    0.55
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Leg.L",
+                "parent": "Root",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    -0.16
+                  ],
+                  [
+                    -0.0,
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    -1.0,
+                    -0.0,
+                    0.5
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              },
+              {
+                "name": "Leg.R",
+                "parent": "Root",
+                "matrixLocal": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.16
+                  ],
+                  [
+                    -0.0,
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    -1.0,
+                    -0.0,
+                    0.5
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "takes": [
+          "Attack",
+          "Hit",
+          "Idle",
+          "Interact",
+          "Walk"
+        ],
+        "animationContentSha256": "8c4bc412a447ff8e95086efe61b51c0ba1d8365ea28c2daa2cedf9320a9d9df4",
+        "actionCount": 30
+      }
+    },
+    {
+      "id": "equipment-blade",
+      "semanticEqual": true,
+      "originalSemanticSha256": "3e77981861a6dd74d05d0b67499bbcee914908284a33e3b4f74176c041af789a",
+      "rebuiltSemanticSha256": "3e77981861a6dd74d05d0b67499bbcee914908284a33e3b4f74176c041af789a",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "equipment-blade__Geometry",
+            "vertices": 80,
+            "triangles": 148,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "d3616cd6a6494437e07e4205393f67b64e29bf506ec3535ee24daf3bbf37ad76"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "equipment-staff",
+      "semanticEqual": true,
+      "originalSemanticSha256": "441f1e3300790aaf88e86670840fcdb4f59b908e0445b7878a2c92015e8cf452",
+      "rebuiltSemanticSha256": "441f1e3300790aaf88e86670840fcdb4f59b908e0445b7878a2c92015e8cf452",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "equipment-staff__Geometry",
+            "vertices": 128,
+            "triangles": 248,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "146b04877c934508a90168d8812a960e98afe4fd338ec68b54026f2d4bbaa6e1"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "equipment-shield",
+      "semanticEqual": true,
+      "originalSemanticSha256": "58f0acdbab05903d649320d09ca99f3caabcf278e703c3b3605891e659daea74",
+      "rebuiltSemanticSha256": "58f0acdbab05903d649320d09ca99f3caabcf278e703c3b3605891e659daea74",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "equipment-shield__Geometry",
+            "vertices": 84,
+            "triangles": 160,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "074cea2ce5cf1e7e557a18acc9d81d84c6c523b55086e9e6c2bf5609b09128c5"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "equipment-club",
+      "semanticEqual": true,
+      "originalSemanticSha256": "f4d1b57abde50ae72ccd3a0d2378276f68b45843493955a61ee0a51731e51d55",
+      "rebuiltSemanticSha256": "f4d1b57abde50ae72ccd3a0d2378276f68b45843493955a61ee0a51731e51d55",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "equipment-club__Geometry",
+            "vertices": 142,
+            "triangles": 276,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "e4ab93a6daca71c6c62f66c2becea5edf4e59847beca2ea0d78272462fb40383"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "equipment-pack",
+      "semanticEqual": true,
+      "originalSemanticSha256": "5027bea6e62c0c77a68724824a9f7c8030c012a05cc8f8c7b4c91ae1aba29937",
+      "rebuiltSemanticSha256": "5027bea6e62c0c77a68724824a9f7c8030c012a05cc8f8c7b4c91ae1aba29937",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "equipment-pack__Geometry",
+            "vertices": 160,
+            "triangles": 300,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "da4d77d424a59104f3c5bfa4e4421510647f26583bf5311c310d6b29a0e46924"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "equipment-helmet",
+      "semanticEqual": true,
+      "originalSemanticSha256": "1cb8938775d126ed6422116aec70c5de838bd64140b8524dfe32c8f2cc65e3d8",
+      "rebuiltSemanticSha256": "1cb8938775d126ed6422116aec70c5de838bd64140b8524dfe32c8f2cc65e3d8",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "equipment-helmet__Geometry",
+            "vertices": 122,
+            "triangles": 236,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "d4135c0963f184dd23947c77ad5d5e3f62680e7bce67572732ef265800c93340"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "ground-patch-0",
+      "semanticEqual": true,
+      "originalSemanticSha256": "08d032ab2888689793bfe9385ac7595ffcb06b8ef522ddd2ce7851e48bf3a59a",
+      "rebuiltSemanticSha256": "08d032ab2888689793bfe9385ac7595ffcb06b8ef522ddd2ce7851e48bf3a59a",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "ground-patch-0__Geometry",
+            "vertices": 1052,
+            "triangles": 512,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "0e7e51e4fd9fb8b1192a015f141ce311b4be681164f31ff273b6ea3879158ce4"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "ground-patch-1",
+      "semanticEqual": true,
+      "originalSemanticSha256": "c0a27c02e227d56108c5d29cf292759c88f921ddbbda4c37c3ce4c8a30c5b914",
+      "rebuiltSemanticSha256": "c0a27c02e227d56108c5d29cf292759c88f921ddbbda4c37c3ce4c8a30c5b914",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "ground-patch-1__Geometry",
+            "vertices": 1052,
+            "triangles": 512,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "f17b3d66f9975bd34e5b137ac90e2c26f422811d11b8a03885e52cf183f335a1"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "ground-patch-2",
+      "semanticEqual": true,
+      "originalSemanticSha256": "94284941c54022cc48d74ea328d54fd45f9fc96c4d9fb6858c73c1e217a441ae",
+      "rebuiltSemanticSha256": "94284941c54022cc48d74ea328d54fd45f9fc96c4d9fb6858c73c1e217a441ae",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "ground-patch-2__Geometry",
+            "vertices": 1052,
+            "triangles": 512,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "c2289a400d64f15b68a0ec21cd2b878bd832cef9e25e862b14e7fbc8d5d8292f"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "ground-patch-3",
+      "semanticEqual": true,
+      "originalSemanticSha256": "fe79287374106d1153646575681516b9c1e81e609cb558527c44ecf155737151",
+      "rebuiltSemanticSha256": "fe79287374106d1153646575681516b9c1e81e609cb558527c44ecf155737151",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "ground-patch-3__Geometry",
+            "vertices": 1052,
+            "triangles": 512,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "4423ed16c84f197e0686e1635f5d48dbcae4b7bc8929025b6ca4cbaae5f57dae"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-00-00",
+      "semanticEqual": true,
+      "originalSemanticSha256": "6b4b8937571d56b5aa5a23b84432b610f7df8113c19ec5a227a490b08ab14a26",
+      "rebuiltSemanticSha256": "6b4b8937571d56b5aa5a23b84432b610f7df8113c19ec5a227a490b08ab14a26",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-00-00__Geometry",
+            "vertices": 2248,
+            "triangles": 1862,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "eaf4e9742c54c4ab89d5ebac76248249d8138f035b07d6f65d2ced9b8928eba5"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-01-00",
+      "semanticEqual": true,
+      "originalSemanticSha256": "5435187585a9f0a3e27ebf5eaf34fa86b6f6fea7d48a7a5b3b60bb6ae671b4dd",
+      "rebuiltSemanticSha256": "5435187585a9f0a3e27ebf5eaf34fa86b6f6fea7d48a7a5b3b60bb6ae671b4dd",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-01-00__Geometry",
+            "vertices": 2248,
+            "triangles": 1862,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "c30fec7b05fac986592e6a502484a18cf9171b5a8b5735250ef528ebf9e8d81c"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-02-00",
+      "semanticEqual": true,
+      "originalSemanticSha256": "96712e0eb67a010797226b2f7531a0ec143491f9677e20fd5f99431d76602ada",
+      "rebuiltSemanticSha256": "96712e0eb67a010797226b2f7531a0ec143491f9677e20fd5f99431d76602ada",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-02-00__Geometry",
+            "vertices": 6376,
+            "triangles": 4966,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "49c5ea47275b803f77a4685a6d14944da6490dd031d1f76b083a0c1630690fe9"
+          },
+          {
+            "name": "detail-patch-02-00__Water",
+            "vertices": 56,
+            "triangles": 28,
+            "materialSlots": [
+              "VillageWater"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "e4f124493982357eec7abf7c275520b3c7461ac5a8ac6bdc62325939b03442c8"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-03-00",
+      "semanticEqual": true,
+      "originalSemanticSha256": "6a6d02f7be78f27de1f77987d236442c023ae34d1f779aec42471d3164fdc67a",
+      "rebuiltSemanticSha256": "6a6d02f7be78f27de1f77987d236442c023ae34d1f779aec42471d3164fdc67a",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-03-00__Geometry",
+            "vertices": 8728,
+            "triangles": 9630,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "87b75b2b5640a5992bc76b509ca6bd4ebb7cf134c8103df1ddd6b14e0def190d"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-04-00",
+      "semanticEqual": true,
+      "originalSemanticSha256": "cf4474af4cf83b9926de49157a001e8bab23cfeeabd10ca82e315af0c185e88d",
+      "rebuiltSemanticSha256": "cf4474af4cf83b9926de49157a001e8bab23cfeeabd10ca82e315af0c185e88d",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-04-00__Geometry",
+            "vertices": 10744,
+            "triangles": 10664,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "758f22dc644b080d899c5d32f1e163a5ba6528199c305b06333c77a53d5b3e08"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-05-00",
+      "semanticEqual": true,
+      "originalSemanticSha256": "5f2284146332767b23f62e2dfd0ae97639b18ccd884cbc129849a81390626753",
+      "rebuiltSemanticSha256": "5f2284146332767b23f62e2dfd0ae97639b18ccd884cbc129849a81390626753",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-05-00__Geometry",
+            "vertices": 9716,
+            "triangles": 7962,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "dcfa202131587144c28ed9b1d7dc4422edc98781d536b4051c909f74a5e1a4b3"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-06-00",
+      "semanticEqual": true,
+      "originalSemanticSha256": "a8776bded67522f071d8a0648bf7499e05a688af369b8c099566ae4461aebddf",
+      "rebuiltSemanticSha256": "a8776bded67522f071d8a0648bf7499e05a688af369b8c099566ae4461aebddf",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-06-00__Geometry",
+            "vertices": 2248,
+            "triangles": 1862,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "d0fe5047a8308875e64fda2d4ea42b49371a728a8208bd90d511baaf5ec725ef"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-07-00",
+      "semanticEqual": true,
+      "originalSemanticSha256": "f96170c40808f9918a56afa237c5eca665f8e5989395f0c18fe3fb1a2f1ddc7a",
+      "rebuiltSemanticSha256": "f96170c40808f9918a56afa237c5eca665f8e5989395f0c18fe3fb1a2f1ddc7a",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-07-00__Geometry",
+            "vertices": 2248,
+            "triangles": 1862,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "ca0bc93bef8731d3f765aa1bbad00953412f13a9e500a593e25483f289444ef9"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-00-01",
+      "semanticEqual": true,
+      "originalSemanticSha256": "0af1303d185ea04d38875634a77c541134c9e3db1cf34e48a5f15bb790ae3db0",
+      "rebuiltSemanticSha256": "0af1303d185ea04d38875634a77c541134c9e3db1cf34e48a5f15bb790ae3db0",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-00-01__Geometry",
+            "vertices": 2248,
+            "triangles": 1862,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "56da99bcce9cac76f49fa42f8ebd60b0d9286502c4e824c71f6bdfa804e09455"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-01-01",
+      "semanticEqual": true,
+      "originalSemanticSha256": "3f64551bf4b5b5b0839ca3180bc84090f7d34b74de028fbf92212f7abbbba584",
+      "rebuiltSemanticSha256": "3f64551bf4b5b5b0839ca3180bc84090f7d34b74de028fbf92212f7abbbba584",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-01-01__Geometry",
+            "vertices": 2248,
+            "triangles": 1862,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "ad3a0b6119a80c62faaa70b64e9e81bd1e8633adca9647d592be8f06599b4a61"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-02-01",
+      "semanticEqual": true,
+      "originalSemanticSha256": "a9887cbde9f815b176da6f1f602e3dfb674a8b616e537ea361a79e4d5e86c5ea",
+      "rebuiltSemanticSha256": "a9887cbde9f815b176da6f1f602e3dfb674a8b616e537ea361a79e4d5e86c5ea",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-02-01__Geometry",
+            "vertices": 7508,
+            "triangles": 6676,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "c3b125071740b93917c28935d77fb24b374c47fb2d0180a72a49ca5536b3b6ed"
+          },
+          {
+            "name": "detail-patch-02-01__Water",
+            "vertices": 44,
+            "triangles": 22,
+            "materialSlots": [
+              "VillageWater"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "c70943dc0857c439e3483bc3fbb716a2209b3b57631974c5fe210c54fa84853f"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-03-01",
+      "semanticEqual": true,
+      "originalSemanticSha256": "c03e65617891b4530ce25850cead5ff54cb0eed9cfc9cc557098e42f47db7a5a",
+      "rebuiltSemanticSha256": "c03e65617891b4530ce25850cead5ff54cb0eed9cfc9cc557098e42f47db7a5a",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-03-01__Geometry",
+            "vertices": 6332,
+            "triangles": 5834,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "1171be1c5762745b4d743d2834a254cdcad58e067789b6cc73d97479f8736e03"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-04-01",
+      "semanticEqual": true,
+      "originalSemanticSha256": "7fc247e5ab3a53cb9e08fc255ad80ec0c83e787aaeb271addd62e55c176ae993",
+      "rebuiltSemanticSha256": "7fc247e5ab3a53cb9e08fc255ad80ec0c83e787aaeb271addd62e55c176ae993",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-04-01__Geometry",
+            "vertices": 11056,
+            "triangles": 9494,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "3c65e44cfee2deca2fb395324330db0422bc3500951f2a1845f444cc177136f5"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-05-01",
+      "semanticEqual": true,
+      "originalSemanticSha256": "139422c37beaeffa04734b189ee1bf5b96dacf50a339cb274b7f224a36bf881b",
+      "rebuiltSemanticSha256": "139422c37beaeffa04734b189ee1bf5b96dacf50a339cb274b7f224a36bf881b",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-05-01__Geometry",
+            "vertices": 5248,
+            "triangles": 4692,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "4889e3a33bcd7dd95e22d88fbbc2390f1a55c18fbf932f6ea452d5ebde5dd393"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-06-01",
+      "semanticEqual": true,
+      "originalSemanticSha256": "a89bbee205e37989ea40a47f247b17b03f920a2d1e7c438bfd2f7a91b24a3777",
+      "rebuiltSemanticSha256": "a89bbee205e37989ea40a47f247b17b03f920a2d1e7c438bfd2f7a91b24a3777",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-06-01__Geometry",
+            "vertices": 2248,
+            "triangles": 1862,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "08c960448a6d0282aab33da3328564506123fb4462c84d3dfac3609b16068972"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-07-01",
+      "semanticEqual": true,
+      "originalSemanticSha256": "b2b277262070d044b50e7368ad676f62c526486280317ad1798e7b7233b0bab6",
+      "rebuiltSemanticSha256": "b2b277262070d044b50e7368ad676f62c526486280317ad1798e7b7233b0bab6",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-07-01__Geometry",
+            "vertices": 2248,
+            "triangles": 1862,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "9b0e87fbb083d4736009279676e6cd6f04f07d3bbee9d0e3de9fa074e7a41ec4"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-00-02",
+      "semanticEqual": true,
+      "originalSemanticSha256": "f9a3bc1c9748235eb20b12d1902f63ca735174ba39ac8d588f7e4fb7e8449f43",
+      "rebuiltSemanticSha256": "f9a3bc1c9748235eb20b12d1902f63ca735174ba39ac8d588f7e4fb7e8449f43",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-00-02__Geometry",
+            "vertices": 2248,
+            "triangles": 1862,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "050eca8e0646b918705ae474df2f59a929f32e9f8e74cab69438bc0064e89aa6"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-01-02",
+      "semanticEqual": true,
+      "originalSemanticSha256": "70fd1fc460558383b7839444ed00b9460351609772954663f89a8eb25f6cf10f",
+      "rebuiltSemanticSha256": "70fd1fc460558383b7839444ed00b9460351609772954663f89a8eb25f6cf10f",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-01-02__Geometry",
+            "vertices": 2248,
+            "triangles": 1862,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "b6829d57862a8b88f00a78c9365ac6ecea8bd6d4a1a8de2e514259fb3e2c8535"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-02-02",
+      "semanticEqual": true,
+      "originalSemanticSha256": "a45e9d2a34cb6bade9dc8a7b5007dec003e9c117c81f454fc2ba10a4e05d0b0c",
+      "rebuiltSemanticSha256": "a45e9d2a34cb6bade9dc8a7b5007dec003e9c117c81f454fc2ba10a4e05d0b0c",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-02-02__Geometry",
+            "vertices": 6252,
+            "triangles": 7044,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "019e8ae49438676a0f4e4d84d8fde7d6180b006121ef4a3eba5bd928596c876f"
+          },
+          {
+            "name": "detail-patch-02-02__Water",
+            "vertices": 56,
+            "triangles": 28,
+            "materialSlots": [
+              "VillageWater"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "0fbefbb8d455b5ef59be6e1c5f737ddb078112f8251a1445310fdf70e4e8fbee"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-03-02",
+      "semanticEqual": true,
+      "originalSemanticSha256": "6f5b1b35e28a8859a5ab453cda775459dd466206894774d429731ef205e2d53a",
+      "rebuiltSemanticSha256": "6f5b1b35e28a8859a5ab453cda775459dd466206894774d429731ef205e2d53a",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-03-02__Geometry",
+            "vertices": 6876,
+            "triangles": 10082,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "316a86b10bb6ddae7d3034e1e18f3d8b1e9245f785c726bc0c5bf403e79092e3"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-04-02",
+      "semanticEqual": true,
+      "originalSemanticSha256": "2f9406205d8985112f8621f4b5176d0520ff330f4996e07619549db358443a0b",
+      "rebuiltSemanticSha256": "2f9406205d8985112f8621f4b5176d0520ff330f4996e07619549db358443a0b",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-04-02__Geometry",
+            "vertices": 7736,
+            "triangles": 7836,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "137a408bf91a056f4ded37455ab129a4d5d162c6c0152a7634fe4051b410d7e8"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-05-02",
+      "semanticEqual": true,
+      "originalSemanticSha256": "ef4261f4fcb256a735b9db99cdab6851806faf5f516b587e94f98f9c794e625d",
+      "rebuiltSemanticSha256": "ef4261f4fcb256a735b9db99cdab6851806faf5f516b587e94f98f9c794e625d",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-05-02__Geometry",
+            "vertices": 11092,
+            "triangles": 8740,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "e364dd554ec7101640285d8ada648b27512a03b1eeb19a02941dc96b87f815e4"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-06-02",
+      "semanticEqual": true,
+      "originalSemanticSha256": "5583efeb8412db45bb83161573a145966d9a058b1ee074e128450ac345b20d42",
+      "rebuiltSemanticSha256": "5583efeb8412db45bb83161573a145966d9a058b1ee074e128450ac345b20d42",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-06-02__Geometry",
+            "vertices": 2248,
+            "triangles": 1862,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "e118fd423a30a2b50aa0f95b44e5702f7af624089cfe832488f6a4b918b44185"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-07-02",
+      "semanticEqual": true,
+      "originalSemanticSha256": "5ff5528667d136e5ffa410c9918bb3c76311734425fdca76b31551d175047a16",
+      "rebuiltSemanticSha256": "5ff5528667d136e5ffa410c9918bb3c76311734425fdca76b31551d175047a16",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-07-02__Geometry",
+            "vertices": 2248,
+            "triangles": 1862,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "00c2ad08b99e87e79f02446708cdb3d4b6f6282dd4d5d7e5b9bdfb7e12ddc142"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-00-03",
+      "semanticEqual": true,
+      "originalSemanticSha256": "6852ddf95503e610c3a21c8ee419932d20e78343b1c7452b3f18af7653958162",
+      "rebuiltSemanticSha256": "6852ddf95503e610c3a21c8ee419932d20e78343b1c7452b3f18af7653958162",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-00-03__Geometry",
+            "vertices": 2248,
+            "triangles": 1862,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "7c62d619a50a9252b9aae58379d3b69be69e1a8836f65c397c9a8435e699119c"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-01-03",
+      "semanticEqual": true,
+      "originalSemanticSha256": "e16f0df646ffd0989838209c5f5258477d45c2a265605739456a6e2b996c4f26",
+      "rebuiltSemanticSha256": "e16f0df646ffd0989838209c5f5258477d45c2a265605739456a6e2b996c4f26",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-01-03__Geometry",
+            "vertices": 2248,
+            "triangles": 1862,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "ec7a90316b391a8e4b5ef0be29d549bf1a3a5a3633379fdb1f43879fb60caf0a"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-02-03",
+      "semanticEqual": true,
+      "originalSemanticSha256": "1fb3ec4fd3615a19b488031367d03fe935bf67f976fcab41609f26ae39e5efe6",
+      "rebuiltSemanticSha256": "1fb3ec4fd3615a19b488031367d03fe935bf67f976fcab41609f26ae39e5efe6",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-02-03__Geometry",
+            "vertices": 7476,
+            "triangles": 6024,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "cf614a589eadac89f15cb82b7a95fbc13d57f4635856b3d0d26d70049b1bd4a6"
+          },
+          {
+            "name": "detail-patch-02-03__Water",
+            "vertices": 48,
+            "triangles": 24,
+            "materialSlots": [
+              "VillageWater"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "76cdaeb9caf11cb9205e6ba32b46d138429d9209c5ae24ce45c01dd3c6972dd7"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-03-03",
+      "semanticEqual": true,
+      "originalSemanticSha256": "bd6a7f419577e31af4f605efa9d19fe19c220085c918f97d6a32560d07341cbe",
+      "rebuiltSemanticSha256": "bd6a7f419577e31af4f605efa9d19fe19c220085c918f97d6a32560d07341cbe",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-03-03__Geometry",
+            "vertices": 8760,
+            "triangles": 9268,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "1503b2f54eb1de2dc88c7e576d853c180900c32dc8325bdbdbc25622c144da1b"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-04-03",
+      "semanticEqual": true,
+      "originalSemanticSha256": "28a66b1558a05b4632913cf4ce474f345e6762809c5727dc8046075f8a4245cd",
+      "rebuiltSemanticSha256": "28a66b1558a05b4632913cf4ce474f345e6762809c5727dc8046075f8a4245cd",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-04-03__Geometry",
+            "vertices": 9048,
+            "triangles": 12118,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "572bb78434245aa881232f3fa08f1d234a0119278a46a4e938e40aa995d9d3c1"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-05-03",
+      "semanticEqual": true,
+      "originalSemanticSha256": "dd4c9865da256e47e092989fbe00bf1c5f93269bc828033de4c911105babb896",
+      "rebuiltSemanticSha256": "dd4c9865da256e47e092989fbe00bf1c5f93269bc828033de4c911105babb896",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-05-03__Geometry",
+            "vertices": 8908,
+            "triangles": 7094,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "78f07405349d862d392051d83a8521140770c1479df8b3fe2a714f4cca92c65d"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-06-03",
+      "semanticEqual": true,
+      "originalSemanticSha256": "577be0a43ee68563e50448e0b6851a6cab8bf16f22719461622f8e9fe0b7ca4a",
+      "rebuiltSemanticSha256": "577be0a43ee68563e50448e0b6851a6cab8bf16f22719461622f8e9fe0b7ca4a",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-06-03__Geometry",
+            "vertices": 2248,
+            "triangles": 1862,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "35381061597dab15e66e615c5b09bb82e2d3cd94a19e4e232fb0c305609bb4e4"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-07-03",
+      "semanticEqual": true,
+      "originalSemanticSha256": "9625a0ede78d63cac903a93907569cce19496f933891ae0c693cc07f748b2690",
+      "rebuiltSemanticSha256": "9625a0ede78d63cac903a93907569cce19496f933891ae0c693cc07f748b2690",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-07-03__Geometry",
+            "vertices": 2248,
+            "triangles": 1862,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "91d08e5632cd41877adf58c4426249c92f4de2ee406913477afa2c6c312992d9"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-00-04",
+      "semanticEqual": true,
+      "originalSemanticSha256": "9dc15cd8bbc7edd8ea2712df8d98e40babcdbb96ad507a97d4640d939346c9a5",
+      "rebuiltSemanticSha256": "9dc15cd8bbc7edd8ea2712df8d98e40babcdbb96ad507a97d4640d939346c9a5",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-00-04__Geometry",
+            "vertices": 2248,
+            "triangles": 1862,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "37f15ac5bbb7b037177abf722d956a81312f8d87fc612c36f01683b749d21b1b"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-01-04",
+      "semanticEqual": true,
+      "originalSemanticSha256": "2fe39a4cc915f2665210e5beb1b770a9ce587558ce5464d7ae13d75df676db5c",
+      "rebuiltSemanticSha256": "2fe39a4cc915f2665210e5beb1b770a9ce587558ce5464d7ae13d75df676db5c",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-01-04__Geometry",
+            "vertices": 2248,
+            "triangles": 1862,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "91e2836a78d1f6d59c93878ad45750bdbeec1b68fd04b50dd0c993813356c11e"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-02-04",
+      "semanticEqual": true,
+      "originalSemanticSha256": "5ebc664807fff4b9cd7e4d19a9f1e589f6661c2f4b38c82aa13e4991925a8e2f",
+      "rebuiltSemanticSha256": "5ebc664807fff4b9cd7e4d19a9f1e589f6661c2f4b38c82aa13e4991925a8e2f",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-02-04__Geometry",
+            "vertices": 6064,
+            "triangles": 5126,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "708a79f812872cb87721ba3eea676d17feabe932e28feb89e4e17a1e44e99d8b"
+          },
+          {
+            "name": "detail-patch-02-04__Water",
+            "vertices": 64,
+            "triangles": 32,
+            "materialSlots": [
+              "VillageWater"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "4f40e14571f6081a76a311734b066cbe7226c0f6cc347b10f04c2da6ccc6b527"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-03-04",
+      "semanticEqual": true,
+      "originalSemanticSha256": "8b4ce483dd2d4bf38c45c8392f6bce6d6b0429cea4176a071a0fbe48ac25b56a",
+      "rebuiltSemanticSha256": "8b4ce483dd2d4bf38c45c8392f6bce6d6b0429cea4176a071a0fbe48ac25b56a",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-03-04__Geometry",
+            "vertices": 7112,
+            "triangles": 6506,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "5ffb1702d7784a0c15583aebf454cb49075eb4670cdfd986f8d6c7830950dba7"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-04-04",
+      "semanticEqual": true,
+      "originalSemanticSha256": "5842c5d6ad6fe019744da967529661c7746532c8d0d72ca94eca1933a7808f80",
+      "rebuiltSemanticSha256": "5842c5d6ad6fe019744da967529661c7746532c8d0d72ca94eca1933a7808f80",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-04-04__Geometry",
+            "vertices": 6704,
+            "triangles": 5336,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "958a617ac22c4431910054a9c11299d0b5d8974a8f30cc8953fd236d5235f222"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-05-04",
+      "semanticEqual": true,
+      "originalSemanticSha256": "b4e56d61a9cb1b3ff307d1b15cb636ec1a804bc0329683fdc57853960727c309",
+      "rebuiltSemanticSha256": "b4e56d61a9cb1b3ff307d1b15cb636ec1a804bc0329683fdc57853960727c309",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-05-04__Geometry",
+            "vertices": 9280,
+            "triangles": 7416,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "2df5f10dace2c1d0b78b6585018dc49119a7bb331d6f244bee7981de82d64ff6"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-06-04",
+      "semanticEqual": true,
+      "originalSemanticSha256": "7fbdbaaefe3c4f49a605794d414b26154fffac87d8aa27f23228a5d966ea695f",
+      "rebuiltSemanticSha256": "7fbdbaaefe3c4f49a605794d414b26154fffac87d8aa27f23228a5d966ea695f",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-06-04__Geometry",
+            "vertices": 2248,
+            "triangles": 1862,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "c24323efc75f6d1bda3fd7db8a0f4a5804b93e6cfcfb631ff07ca136a7a9cb19"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    },
+    {
+      "id": "detail-patch-07-04",
+      "semanticEqual": true,
+      "originalSemanticSha256": "6d9d1f3156fc101e05f745f080670f5e007781a0d8bbc4a10637d6d936455e43",
+      "rebuiltSemanticSha256": "6d9d1f3156fc101e05f745f080670f5e007781a0d8bbc4a10637d6d936455e43",
+      "fbxBytesEqual": false,
+      "rebuilt": {
+        "meshes": [
+          {
+            "name": "detail-patch-07-04__Geometry",
+            "vertices": 2248,
+            "triangles": 1862,
+            "materialSlots": [
+              "VillagePalette"
+            ],
+            "uvLayers": 1,
+            "contentSha256": "ef07bc3384d6832cd11d32bd7c747ce3d29ce0e1bad349f6c3cc4cdffdeb2388"
+          }
+        ],
+        "sockets": [],
+        "skeletons": [],
+        "takes": [],
+        "animationContentSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "actionCount": 0
+      }
+    }
+  ],
+  "diagnosticProbeGeometryEqual": true,
+  "diagnosticProbeMeshNames": [
+    "X_EAST_RED.001",
+    "X_end_two_discs.001",
+    "Y_NORTH_GREEN.001",
+    "Y_end_square.001",
+    "Z_UP_BLUE.001",
+    "Z_end_ball.001",
+    "one_metre_cube.001"
+  ],
+  "adoptedSourceHashes": {
+    "build_scene.py": "628c3090ea7ada945ae6590c1ad9e637897366aa1ad00aece3a5df87bc7b2551",
+    "native-definition.json": "54ac630513b605d1ecaa261ce423532ed4ae87b9aa1292e24e6650ee89520d7d",
+    "art-definition.json": "6105a656757d58dc5fb8dfa7db2a2dad8b72375a868a9203ee1c23cfe296711c"
+  },
+  "blenderVersion": "5.2.1 LTS",
+  "rebuiltOutput": "/tmp/codex-village3d-rebuild",
+  "originalOutput": "/tmp/codex-village3d-art/final-v2"
+}

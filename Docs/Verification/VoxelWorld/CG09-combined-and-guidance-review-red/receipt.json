@@ -1,0 +1,51 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CanonicalVillageQuest|QuestVillagePoolTests|RegionalGuidance|MorrowfastExpedition|MorrowfastMerchantRestock|NativeQuestCue|BiomeAffordance|SpreadVoxelKitTests|MorrowfastContent|QuestBeacon",
+  "results": {
+    "id": "2",
+    "testcasecount": "218",
+    "result": "Failed(Child)",
+    "total": "218",
+    "passed": "211",
+    "failed": "7",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-17 01:32:41Z",
+    "end-time": "2026-09-17 01:32:49Z",
+    "duration": "8.2626945"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueAdversarialTests.SmallAndLargeActorsKeepReadableMarkersWithinOneGameplayCell(0.35f)",
+      "message": "  Expected: greater than 0.349999994f\n  But was:  0.17669794f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueAdversarialTests.SmallAndLargeActorsKeepReadableMarkersWithinOneGameplayCell(2.5f)",
+      "message": "  Expected: less than 0.899999976f\n  But was:  1.26212811f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueAdversarialTests.UnknownOrNonQuestDefinitionsCannotAdvertiseAPlayableQuest(False)",
+      "message": "  Expected: None\n  But was:  Available\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueAdversarialTests.UnknownOrNonQuestDefinitionsCannotAdvertiseAPlayableQuest(True)",
+      "message": "  Expected: None\n  But was:  Available\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalGuidanceAdversarialTests.DeathHandledPlayerWithPositiveHPStillCannotRecordNotes",
+      "message": "  Expected: <empty>\n  But was:  < <CavesOfOoo.Core.RegionalTravelLead>, <CavesOfOoo.Core.RegionalTravelLead>, <CavesOfOoo.Core.RegionalTravelLead>, <CavesOfOoo.Core.RegionalTravelLead> >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalGuidanceAdversarialTests.HostileContactCannotIssueDirectionsUnlessAuthoredToSpeakToHostiles",
+      "message": "  Expected: <empty>\n  But was:  < <CavesOfOoo.Core.RegionalTravelLead>, <CavesOfOoo.Core.RegionalTravelLead>, <CavesOfOoo.Core.RegionalTravelLead>, <CavesOfOoo.Core.RegionalTravelLead> >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalGuidanceAdversarialTests.LongObjectiveActuallyRendersReturnContactBeyondFirstLine",
+      "message": "  The player must see the return destination, not just the first66characters.\n  Expected: String containing \"MORROWFAST\"\n  But was:  \"                                                                                   ===== QUEST LOG =====                                                                                                                                             ACTIVE                                                                            TestTravel                                                                          > outbound                                                                           - Leave the village and follow the eastern road past the old hedges. S                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       [Tab] quests / travel notes  [PgUp/PgDn] pages  [Q/Esc] close                                                                                                   \"\n"
+    }
+  ]
+}

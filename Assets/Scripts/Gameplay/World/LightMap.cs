@@ -29,6 +29,7 @@ namespace CavesOfOoo.Core
         //       ones — rendered each other's light. Latent while every
         //       zone shared 0.4; a showstopper the moment it doesn't.
         private Zone _lastZone;
+        private string _lastMorrowfastDoors;
         private float _lastAmbientLevel = float.NaN;
         private Color _lastAmbientTint;
 
@@ -58,18 +59,21 @@ namespace CavesOfOoo.Core
         public void Compute(Zone zone)
         {
             int currentEquipmentVersion = EquipmentChangeBus.GlobalVersion;
+            string currentDoors = zone.ZoneID == MorrowfastSceneRuntime.ZoneID ? MorrowfastSceneRuntime.GetState(zone)?.OpenDoorIds : null;
             // Compare the ambient inputs by VALUE, not by bumping a
             // version — the day-cycle would otherwise force a full
             // recompute every turn whether or not the light changed.
             if (ReferenceEquals(zone, _lastZone)
                 && zone.EntityVersion == _lastEntityVersion
                 && currentEquipmentVersion == _lastEquipmentVersion
+                && currentDoors == _lastMorrowfastDoors
                 && zone.AmbientLevel == _lastAmbientLevel
                 && zone.AmbientTint == _lastAmbientTint)
                 return;
             _lastZone = zone;
             _lastEntityVersion = zone.EntityVersion;
             _lastEquipmentVersion = currentEquipmentVersion;
+            _lastMorrowfastDoors = currentDoors;
             _lastAmbientLevel = zone.AmbientLevel;
             _lastAmbientTint = zone.AmbientTint;
             AmbientLevel = zone.AmbientLevel;

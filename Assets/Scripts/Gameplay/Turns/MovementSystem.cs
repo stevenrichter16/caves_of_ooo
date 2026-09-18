@@ -19,22 +19,6 @@ namespace CavesOfOoo.Core
     /// </summary>
     public static class MovementSystem
     {
-        // Shared scratch list for FireCellEnteredEvents' non-mover snapshot.
-        // Reused across every move to avoid per-move List<Entity> allocation
-        // (P-01 in the M6 perf audit). Safe because movement is turn-serial:
-        // one move's dispatch completes before the next begins, and no M6
-        // listener triggers a nested move. If a future listener DOES need to
-        // re-enter movement, switch to ArrayPool<Entity> or gate re-entrance
-        // explicitly.
-        //
-        // The one thing that DOES re-enter movement — LiquidSlipSystem's
-        // slide (a ForceMoveTo) — is called by the three move methods AFTER
-        // FireCellEnteredEvents has returned, precisely so it never runs
-        // while this list is in use. Do not move the slip into an
-        // EntityEnteredCell handler (LiquidPoolPart's, say): the chained
-        // slide would corrupt this list. Docs/LIQUID-SLIP.md §8 R2.
-        private static readonly List<Entity> _enteredCellScratch = new List<Entity>(8);
-
         /// <summary>
         /// Attempt to move an entity in a direction (dx, dy).
         /// Returns true if the move succeeded, false if blocked.
@@ -90,6 +74,8 @@ namespace CavesOfOoo.Core
             int oldY = currentCell.Y;
             if (!zone.MoveEntity(entity, newX, newY)) return (false, null);
 
+            NotifyVisualMove(entity, zone, oldX, oldY, newX, newY, false);
+
             // Notify renderer: old cell needs re-render (entity gone) and
             // new cell needs re-render (entity arrived). For the player we
             // also need a full redraw because FOV / lightmap visibility
@@ -143,6 +129,8 @@ namespace CavesOfOoo.Core
             int oldX = currentCell?.X ?? -1;
             int oldY = currentCell?.Y ?? -1;
             if (!zone.MoveEntity(entity, x, y)) return false;
+
+            NotifyVisualMove(entity, zone, oldX, oldY, x, y, false);
 
             DirtyForMove(entity, oldX, oldY, x, y);
 
@@ -205,6 +193,8 @@ namespace CavesOfOoo.Core
             int oldY = currentCell?.Y ?? -1;
             if (!zone.MoveEntity(entity, x, y)) return false;
 
+            NotifyVisualMove(entity, zone, oldX, oldY, x, y, true);
+
             DirtyForMove(entity, oldX, oldY, x, y);
 
             var afterMove = GameEvent.New("AfterMove");
@@ -220,6 +210,41 @@ namespace CavesOfOoo.Core
             FireCellEnteredEvents(entity, currentCell, targetCell);
             LiquidSlipSystem.ResolveAfterMove(entity, zone, targetCell, slipChain);
             return true;
+        }
+
+        /// <summary>
+        /// Exchange two complete bodies atomically, then dispatch each owner's
+        /// landing reactions. Like forced movement, the exchange bypasses the
+        /// voluntary BeforeMove veto. A reaction may remove or relocate either
+        /// participant; never replay a stale landing after that happens.
+        /// </summary>
+        public static bool TrySwap(Entity actor, Entity target, Zone zone)
+        {
+            if (actor == null || target == null || zone == null) return false;
+            var actorCell = zone.GetEntityCell(actor);
+            var targetCell = zone.GetEntityCell(target);
+            if (actorCell == null || targetCell == null || !zone.TrySwapEntities(actor, target)) return false;
+            CompleteSwapLanding(actor, zone, actorCell, targetCell, false);
+            CompleteSwapLanding(target, zone, targetCell, actorCell, true);
+            return true;
+        }
+
+        private static void CompleteSwapLanding(Entity owner, Zone zone, Cell source, Cell destination, bool forced)
+        {
+            if (zone.GetEntityCell(owner) != destination || owner.GetStatValue("Hitpoints", 1) <= 0) return;
+            NotifyVisualMove(owner, zone, source.X, source.Y, destination.X, destination.Y, forced);
+            DirtyForMove(owner, source.X, source.Y, destination.X, destination.Y);
+            var afterMove = GameEvent.New("AfterMove");
+            afterMove.SetParameter("Actor", (object)owner);
+            afterMove.SetParameter("Cell", (object)destination);
+            afterMove.SetParameter("OldX", source.X);
+            afterMove.SetParameter("OldY", source.Y);
+            afterMove.SetParameter("NewX", destination.X);
+            afterMove.SetParameter("NewY", destination.Y);
+            afterMove.SetParameter("Forced", forced);
+            owner.FireEventAndRelease(afterMove);
+            FireCellEnteredEvents(owner, source, destination);
+            LiquidSlipSystem.ResolveAfterMove(owner, zone, destination);
         }
 
         /// <summary>
@@ -244,6 +269,36 @@ namespace CavesOfOoo.Core
             if (oldX >= 0 && oldY >= 0)
                 ZoneRenderHooks.MarkCellDirty(oldX, oldY, "Move.Old");
             ZoneRenderHooks.MarkCellDirty(newX, newY, "Move.New");
+        }
+
+        private static void NotifyVisualMove(
+            Entity entity,
+            Zone zone,
+            int oldX,
+            int oldY,
+            int newX,
+            int newY,
+            bool forced)
+        {
+            if (entity == null || (oldX == newX && oldY == newY)) return;
+
+            RenderPart render = entity.GetPart<RenderPart>();
+            if (render != null && oldX >= 0 && oldY >= 0)
+                render.VisualFacing = FacingForDelta(newX - oldX, newY - oldY, render.VisualFacing);
+
+            EntityVisualHooks.EmitMoved(entity, zone, oldX, oldY, newX, newY, forced);
+        }
+
+        private static EntityVisualFacing FacingForDelta(
+            int dx,
+            int dy,
+            EntityVisualFacing fallback)
+        {
+            if (System.Math.Abs(dx) >= System.Math.Abs(dy) && dx != 0)
+                return dx < 0 ? EntityVisualFacing.West : EntityVisualFacing.East;
+            if (dy != 0)
+                return dy < 0 ? EntityVisualFacing.North : EntityVisualFacing.South;
+            return fallback;
         }
 
         /// <summary>
@@ -294,42 +349,61 @@ namespace CavesOfOoo.Core
                 && sourceCell.X == targetCell.X
                 && sourceCell.Y == targetCell.Y)
                 return;
-            var occupants = targetCell.Objects;
-            if (occupants.Count == 0) return;
-            // Fast path: only occupant is the mover itself — no dispatch
-            // needed and we skip the scratch-list population cost.
-            if (occupants.Count == 1 && occupants[0] == mover) return;
-
-            // Populate the shared scratch list with non-mover occupants.
-            // Cleared at the start of every call so a prior invocation's
-            // leftovers never leak in. Static reuse avoids the per-move
-            // allocation (P-01 in the M6 perf audit).
-            _enteredCellScratch.Clear();
-            for (int i = 0; i < occupants.Count; i++)
+            var zone = targetCell.ParentZone;
+            if (zone == null) return;
+            // A nested entry (a trap teleports someone) owns a different pooled
+            // buffer. Snapshot both the recipient and contact cell before events.
+            var entries = UnityEngine.Pool.ListPool<(Entity owner, Cell cell)>.Get();
+            try
             {
-                var occ = occupants[i];
-                if (occ == null || occ == mover) continue;
-                _enteredCellScratch.Add(occ);
+                var oldCells = sourceCell == null ? default : zone.GetOccupiedCells(mover,sourceCell.X,sourceCell.Y);
+                foreach (var cell in zone.GetOccupiedCells(mover))
+                {
+                    if (cell == null) continue;
+                    bool wasCovered=false;
+                    foreach(var old in oldCells) if (old == cell) { wasCovered=true; break; }
+                    if(wasCovered) continue;
+                    foreach(var owner in cell.Occupants)
+                    {
+                        if(owner == null || owner == mover) continue;
+                        bool seen=false;
+                        foreach(var entry in entries) if(entry.owner == owner) { seen=true; break; }
+                        if(!seen) entries.Add((owner,cell));
+                    }
+                }
+                for(int entryIndex=0;entryIndex<entries.Count;entryIndex++)
+                {
+                    var entry=entries[entryIndex];
+                    if(mover.HasPart<SpatialFootprintPart>())
+                    {
+                        var gas=entry.owner.GetPart<IObjectGasBehaviorPart>();
+                        if(gas!=null)
+                        {
+                            bool superseded=false;
+                            for(int j=0;j<entries.Count;j++)
+                            {
+                                if(j==entryIndex) continue;
+                                var other=entries[j].owner.GetPart<IObjectGasBehaviorPart>();
+                                if(SpatialGasExposure.SameFamily(gas,other)
+                                    && (SpatialGasExposure.Stronger(other,gas)
+                                        || (!SpatialGasExposure.Stronger(gas,other) && j<entryIndex)))
+                                {superseded=true;break;}
+                            }
+                            if(superseded) continue;
+                        }
+                    }
+                    // Stop after death or a nested relocation. Removed listeners
+                    // cannot fire from a stale snapshot, but unrelated listeners can.
+                    if(zone.GetEntityCell(mover) != targetCell) break;
+                    if(!entry.cell.Occupants.Contains(entry.owner)) continue;
+                    var ev = GameEvent.New("EntityEnteredCell");
+                    ev.SetParameter("Actor", (object)mover);
+                    ev.SetParameter("Cell", (object)entry.cell);
+                    ev.SetParameter("Zone", (object)zone);
+                    entry.owner.FireEventAndRelease(ev);
+                }
             }
-
-            for (int i = 0; i < _enteredCellScratch.Count; i++)
-            {
-                // Mover removed from the target cell by a prior dispatch
-                // (death / teleport-out). Stop firing — further handlers
-                // would see a detached Actor and, in the death case,
-                // re-trigger HandleDeath. See CR-01 in the M6 review.
-                //
-                // `occupants.Contains(mover)` is a linear scan over a
-                // typically-tiny list (≤ ~5 entities) and is cheaper than
-                // a Dictionary<Entity, Cell> lookup on the zone (P-02).
-                if (!occupants.Contains(mover)) break;
-
-                var occ = _enteredCellScratch[i];
-                var ev = GameEvent.New("EntityEnteredCell");
-                ev.SetParameter("Actor", (object)mover);
-                ev.SetParameter("Cell", (object)targetCell);
-                occ.FireEventAndRelease(ev);
-            }
+            finally { UnityEngine.Pool.ListPool<(Entity owner, Cell cell)>.Release(entries); }
         }
 
         /// <summary>

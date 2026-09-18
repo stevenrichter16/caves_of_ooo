@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "id": "felling-scene-offline-verification",
+  "startedAt": "2026-09-05T19:37:41+00:00",
+  "repository": "/Users/steven/caves-of-ooo",
+  "unityExecuted": false,
+  "toolchain": {
+    "python": "/Users/steven/.pyenv/versions/3.12.12/bin/python3",
+    "pythonVersion": "3.12.12",
+    "node": "/opt/homebrew/bin/node",
+    "dotnet": "/opt/homebrew/bin/dotnet"
+  },
+  "steps": [
+    {
+      "name": "validate-assets",
+      "command": [
+        "/Users/steven/.pyenv/versions/3.12.12/bin/python3",
+        "/Users/steven/caves-of-ooo/ArtTools/felling_scene.py",
+        "validate",
+        "/Users/steven/caves-of-ooo/ArtSource/FellingSite/layout.json",
+        "--require-assets"
+      ],
+      "cwd": "/Users/steven/caves-of-ooo",
+      "startedAt": "2026-09-05T19:37:41+00:00",
+      "log": "validate-assets.log",
+      "exitCode": 0,
+      "status": "passed",
+      "findings": {
+        "structuralValidation": "passed",
+        "walkableCellCount": 306,
+        "routesVerified": 8,
+        "collisionGeometryStatus": "proposed; requires Unity visual and gameplay QA"
+      },
+      "durationSeconds": 0.159
+    },
+    {
+      "name": "export-prepared",
+      "command": [
+        "/Users/steven/.pyenv/versions/3.12.12/bin/python3",
+        "/Users/steven/caves-of-ooo/ArtTools/felling_scene.py",
+        "export",
+        "/Users/steven/caves-of-ooo/ArtSource/FellingSite/layout.json",
+        "--out",
+        "/Users/steven/caves-of-ooo/ArtSource/FellingSite/Prepared",
+        "--require-assets"
+      ],
+      "cwd": "/Users/steven/caves-of-ooo",
+      "startedAt": "2026-09-05T19:37:41+00:00",
+      "log": "export-prepared.log",
+      "exitCode": 0,
+      "status": "passed",
+      "findings": {
+        "structuralValidation": "passed",
+        "walkableCellCount": 306,
+        "routesVerified": 8,
+        "collisionGeometryStatus": "proposed; requires Unity visual and gameplay QA"
+      },
+      "durationSeconds": 0.166
+    },
+    {
+      "name": "python-tests",
+      "command": [
+        "/Users/steven/.pyenv/versions/3.12.12/bin/python3",
+        "-m",
+        "unittest",
+        "ArtTools.test_felling_scene"
+      ],
+      "cwd": "/Users/steven/caves-of-ooo",
+      "startedAt": "2026-09-05T19:37:41+00:00",
+      "log": "python-tests.log",
+      "exitCode": 0,
+      "status": "passed",
+      "tests": {
+        "total": 28
+      },
+      "durationSeconds": 0.609
+    },
+    {
+      "name": "node-tests",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "/Users/steven/caves-of-ooo/ArtTools/test_felling_preview.cjs"
+      ],
+      "cwd": "/Users/steven/caves-of-ooo",
+      "startedAt": "2026-09-05T19:37:42+00:00",
+      "log": "node-tests.log",
+      "exitCode": 0,
+      "status": "passed",
+      "tests": {
+        "tests": 16,
+        "pass": 16,
+        "fail": 0,
+        "skipped": 0
+      },
+      "durationSeconds": 0.193
+    },
+    {
+      "name": "dotnet-tests",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "/Users/steven/caves-of-ooo/ArtSource/FellingSite/Integration/Tests/FellingScene.Core.Tests.csproj"
+      ],
+      "cwd": "/Users/steven/caves-of-ooo",
+      "startedAt": "2026-09-05T19:37:42+00:00",
+      "log": "dotnet-tests.log",
+      "exitCode": 0,
+      "status": "passed",
+      "tests": {
+        "total": 17,
+        "passed": 17,
+        "failed": 0
+      },
+      "durationSeconds": 2.454
+    }
+  ],
+  "scope": "Offline geometry, asset metadata and pure-code contracts; Unity runtime and visual acceptance remain pending.",
+  "sourceLayoutFileSha256": "57bad05f05eebdb17c7290d85adbdc4b6f599a9127095185e47ac625fc08962d",
+  "preparedRefreshed": true,
+  "finishedAt": "2026-09-05T19:37:44+00:00",
+  "durationSeconds": 3.583,
+  "status": "passed"
+}

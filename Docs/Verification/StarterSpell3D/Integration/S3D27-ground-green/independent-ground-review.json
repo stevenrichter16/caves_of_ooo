@@ -1,0 +1,25 @@
+{
+  "scope": "Independent read-only production-line review after S3D27, while unchanged S3D28b native retry runs; no new native acceptance claimed.",
+  "additionalConcreteBlockers": [],
+  "sources": [
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Rendering/ZoneRenderer.cs",
+      "sha256": "035bcd4b1a2a63c3c36a39fa92eb6f0767bd847ddf6889e5998f31acfbec9283"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/NativeGroundStateReadabilityTests.cs",
+      "sha256": "417d0e552f2fe8fae72675e341482d487ec9038245bc507a57e0a43177acc358"
+    }
+  ],
+  "findings": [
+    "PaintTileStateMark writes a per-cell matrix after clearing TileFlags; identity is explicitly restored for every fallback paint. Borrowed CP437 Tile assets are not mutated.",
+    "Compact transform uses scale .35 and offset .28 on both axes. A centered unit tile bounds becomes [.105,.455] on each axis, entirely inside its own [-.5,.5] cell and clear of the center.",
+    "Native authorization is restricted to matching-current-zone Village/SpawnRing ClaimsCell, excluding two-dimensional Felling/Morrowfast art.",
+    "Ground-state priority, tint, lifetimes, layers, callbacks, fog clearing and permanent authored-water suppression are untouched. SpellFxMode.Off still renders the same compact native ground state.",
+    "SyncVillagePresentation caches the current native visibility result. Actual same-zone borrowed-camera loss/recovery changes _fullDirty once, preventing stale transforms without per-frame repaint during stable presentation.",
+    "The new redraw flag follows existing full-dirty processing and does not change Rain scheduling, spell pose timing, GPU color upload, gameplay resolution or resource prewarming.",
+    "Focused tests use the actual private paint/sync methods, borrowed native surfaces and real claims predicates; they include fallback/2D controls, hidden and stale-zone cases, mixed-state identity and callback preservation, clear/rewrite, and same-zone source loss/recovery."
+  ],
+  "testReceipt": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/S3D27-ground-green/receipt.json",
+  "testResult": "319/319 PASS, zero compile errors. Parent-run native retry is still required for visual/performance acceptance."
+}

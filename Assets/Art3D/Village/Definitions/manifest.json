@@ -1,0 +1,6843 @@
+{
+  "schemaVersion": 1,
+  "id": "morrowfast-village3d",
+  "artSeed": 9042026,
+  "coordinates": "Unity X east, Y height, Z north; one unit per cell",
+  "zoneWidth": 80,
+  "zoneHeight": 25,
+  "artOriginX": 21.25,
+  "artWidth": 37.5,
+  "paletteTexture": "textures/VillagePalette.png",
+  "models": [
+    {
+      "id": "barrel-0",
+      "path": "models/barrel-0.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 368,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.4615,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.9224,
+        "y": 0.923,
+        "z": 0.9224
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "crate-0",
+      "path": "models/crate-0.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 1276,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.386521,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.845,
+        "y": 0.823042,
+        "z": 0.845
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "planter-0",
+      "path": "models/planter-0.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 892,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.2775,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 2.0,
+        "y": 0.635,
+        "z": 1.06
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "fence-0",
+      "path": "models/fence-0.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 672,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.521,
+        "z": -0.005952
+      },
+      "boundsSize": {
+        "x": 2.76,
+        "y": 1.042,
+        "z": 0.371904
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "shrub-0",
+      "path": "models/shrub-0.fbx",
+      "kind": "vegetation",
+      "pivot": "ground-centre",
+      "triangles": 1820,
+      "boundsCenter": {
+        "x": -0.032878,
+        "y": 0.513714,
+        "z": -0.0109
+      },
+      "boundsSize": {
+        "x": 1.27942,
+        "y": 0.641644,
+        "z": 1.44035
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "tree-0",
+      "path": "models/tree-0.fbx",
+      "kind": "vegetation",
+      "pivot": "ground-centre",
+      "triangles": 4408,
+      "boundsCenter": {
+        "x": -0.092769,
+        "y": 0.940405,
+        "z": -0.012259
+      },
+      "boundsSize": {
+        "x": 2.702065,
+        "y": 1.88081,
+        "z": 2.980358
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "rocks-0",
+      "path": "models/rocks-0.fbx",
+      "kind": "decoration",
+      "pivot": "ground-centre",
+      "triangles": 100,
+      "boundsCenter": {
+        "x": -0.148794,
+        "y": 0.174199,
+        "z": -0.086342
+      },
+      "boundsSize": {
+        "x": 0.87914,
+        "y": 0.572368,
+        "z": 1.294051
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "grass-0",
+      "path": "models/grass-0.fbx",
+      "kind": "decoration",
+      "pivot": "ground-centre",
+      "triangles": 18,
+      "boundsCenter": {
+        "x": 0.002948,
+        "y": 0.049402,
+        "z": -0.02896
+      },
+      "boundsSize": {
+        "x": 0.764105,
+        "y": 0.098805,
+        "z": 0.709126
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "barrel-1",
+      "path": "models/barrel-1.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 464,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.5025,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.9224,
+        "y": 1.005,
+        "z": 0.9224
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "crate-1",
+      "path": "models/crate-1.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 1116,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.448828,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.845,
+        "y": 0.947656,
+        "z": 0.845
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "planter-1",
+      "path": "models/planter-1.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 892,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.2775,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 2.0,
+        "y": 0.635,
+        "z": 1.06
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "fence-1",
+      "path": "models/fence-1.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 672,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.521,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 2.76,
+        "y": 1.042,
+        "z": 0.36
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "shrub-1",
+      "path": "models/shrub-1.fbx",
+      "kind": "vegetation",
+      "pivot": "ground-centre",
+      "triangles": 1820,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.832138,
+        "y": 0.393732,
+        "z": 0.787464
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "tree-1",
+      "path": "models/tree-1.fbx",
+      "kind": "vegetation",
+      "pivot": "ground-centre",
+      "triangles": 4408,
+      "boundsCenter": {
+        "x": -0.056173,
+        "y": 0.929693,
+        "z": 0.02804
+      },
+      "boundsSize": {
+        "x": 2.845129,
+        "y": 1.859386,
+        "z": 2.927521
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "rocks-1",
+      "path": "models/rocks-1.fbx",
+      "kind": "decoration",
+      "pivot": "ground-centre",
+      "triangles": 120,
+      "boundsCenter": {
+        "x": 0.063459,
+        "y": 0.156823,
+        "z": 0.045365
+      },
+      "boundsSize": {
+        "x": 1.149612,
+        "y": 0.515275,
+        "z": 1.436051
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "grass-1",
+      "path": "models/grass-1.fbx",
+      "kind": "decoration",
+      "pivot": "ground-centre",
+      "triangles": 114,
+      "boundsCenter": {
+        "x": -0.020931,
+        "y": 0.0525,
+        "z": 0.016716
+      },
+      "boundsSize": {
+        "x": 0.864367,
+        "y": 0.105,
+        "z": 0.96742
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "barrel-2",
+      "path": "models/barrel-2.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 428,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.4875,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.9224,
+        "y": 0.975,
+        "z": 0.9224
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "crate-2",
+      "path": "models/crate-2.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 1276,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.82,
+        "y": 0.905097,
+        "z": 0.82
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "planter-2",
+      "path": "models/planter-2.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 892,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.28,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 2.0,
+        "y": 0.64,
+        "z": 1.06
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "fence-2",
+      "path": "models/fence-2.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 644,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.521,
+        "z": 0.015952
+      },
+      "boundsSize": {
+        "x": 2.76,
+        "y": 1.042,
+        "z": 0.391904
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "shrub-2",
+      "path": "models/shrub-2.fbx",
+      "kind": "vegetation",
+      "pivot": "ground-centre",
+      "triangles": 1820,
+      "boundsCenter": {
+        "x": 0.027806,
+        "y": 0.491094,
+        "z": 0.052297
+      },
+      "boundsSize": {
+        "x": 1.396672,
+        "y": 0.643996,
+        "z": 1.326625
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "tree-2",
+      "path": "models/tree-2.fbx",
+      "kind": "vegetation",
+      "pivot": "ground-centre",
+      "triangles": 4408,
+      "boundsCenter": {
+        "x": 0.043468,
+        "y": 0.917801,
+        "z": -0.041049
+      },
+      "boundsSize": {
+        "x": 2.885484,
+        "y": 1.835603,
+        "z": 3.089158
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "rocks-2",
+      "path": "models/rocks-2.fbx",
+      "kind": "decoration",
+      "pivot": "ground-centre",
+      "triangles": 100,
+      "boundsCenter": {
+        "x": -0.127174,
+        "y": 0.152367,
+        "z": -0.099614
+      },
+      "boundsSize": {
+        "x": 0.835899,
+        "y": 0.500634,
+        "z": 1.235929
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "grass-2",
+      "path": "models/grass-2.fbx",
+      "kind": "decoration",
+      "pivot": "ground-centre",
+      "triangles": 18,
+      "boundsCenter": {
+        "x": 0.002948,
+        "y": 0.041364,
+        "z": -0.02896
+      },
+      "boundsSize": {
+        "x": 0.764105,
+        "y": 0.082728,
+        "z": 0.709126
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "barrel-3",
+      "path": "models/barrel-3.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 396,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.47875,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.9224,
+        "y": 0.9575,
+        "z": 0.9224
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "crate-3",
+      "path": "models/crate-3.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 1116,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.448828,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.845,
+        "y": 0.947656,
+        "z": 0.845
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "planter-3",
+      "path": "models/planter-3.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 732,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.15,
+        "y": 0.58,
+        "z": 1.15
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "fence-3",
+      "path": "models/fence-3.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 696,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.521,
+        "z": 0.043308
+      },
+      "boundsSize": {
+        "x": 2.76,
+        "y": 1.042,
+        "z": 0.446616
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "shrub-3",
+      "path": "models/shrub-3.fbx",
+      "kind": "vegetation",
+      "pivot": "ground-centre",
+      "triangles": 2080,
+      "boundsCenter": {
+        "x": 0.017493,
+        "y": 0.535369,
+        "z": -0.085577
+      },
+      "boundsSize": {
+        "x": 1.546247,
+        "y": 0.696438,
+        "z": 1.26317
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "tree-3",
+      "path": "models/tree-3.fbx",
+      "kind": "vegetation",
+      "pivot": "ground-centre",
+      "triangles": 4668,
+      "boundsCenter": {
+        "x": 0.047397,
+        "y": 0.950033,
+        "z": -0.142887
+      },
+      "boundsSize": {
+        "x": 3.060369,
+        "y": 1.900067,
+        "z": 2.836617
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "rocks-3",
+      "path": "models/rocks-3.fbx",
+      "kind": "decoration",
+      "pivot": "ground-centre",
+      "triangles": 120,
+      "boundsCenter": {
+        "x": 0.045189,
+        "y": 0.139176,
+        "z": -0.018154
+      },
+      "boundsSize": {
+        "x": 0.994713,
+        "y": 0.457292,
+        "z": 1.358995
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "grass-3",
+      "path": "models/grass-3.fbx",
+      "kind": "decoration",
+      "pivot": "ground-centre",
+      "triangles": 114,
+      "boundsCenter": {
+        "x": -0.004307,
+        "y": 0.0525,
+        "z": 0.021943
+      },
+      "boundsSize": {
+        "x": 0.857987,
+        "y": 0.105,
+        "z": 0.935626
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "barrel-side",
+      "path": "models/barrel-side.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 368,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.48,
+        "z": 0.0185
+      },
+      "boundsSize": {
+        "x": 0.9224,
+        "y": 0.9224,
+        "z": 0.957
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "bucket-0",
+      "path": "models/bucket-0.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 396,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.4425,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.68,
+        "y": 0.845,
+        "z": 0.68
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "bucket-1",
+      "path": "models/bucket-1.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 396,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.4425,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.68,
+        "y": 0.845,
+        "z": 0.68
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "herb-pot",
+      "path": "models/herb-pot.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 408,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.4325,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.75,
+        "y": 0.835,
+        "z": 0.75
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "bowl",
+      "path": "models/bowl.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 120,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.1375,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.8,
+        "y": 0.245,
+        "z": 0.8
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "rope-coil",
+      "path": "models/rope-coil.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 560,
+      "boundsCenter": {
+        "x": 0.089369,
+        "y": 0.055,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.848739,
+        "y": 0.066574,
+        "z": 0.659821
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "table-0",
+      "path": "models/table-0.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 572,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.51,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.332,
+        "y": 1.02,
+        "z": 0.78
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "table-1",
+      "path": "models/table-1.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 612,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.617272,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.332,
+        "y": 1.234545,
+        "z": 0.78
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "table-2",
+      "path": "models/table-2.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 776,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.4625,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.682,
+        "y": 0.925,
+        "z": 0.78
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "stool",
+      "path": "models/stool.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 116,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.297889,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.54,
+        "y": 0.524223,
+        "z": 0.54
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "bed-0",
+      "path": "models/bed-0.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 480,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.325,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.86,
+        "y": 0.65,
+        "z": 1.72
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "bed-1",
+      "path": "models/bed-1.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 480,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.325,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.86,
+        "y": 0.65,
+        "z": 1.72
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "bookshelf",
+      "path": "models/bookshelf.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 1620,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.85,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.36,
+        "y": 1.7,
+        "z": 0.36
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "bench",
+      "path": "models/bench.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 300,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.505,
+        "z": 0.04
+      },
+      "boundsSize": {
+        "x": 1.5,
+        "y": 1.01,
+        "z": 0.48
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "hearth-0",
+      "path": "models/hearth-0.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 432,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.5275,
+        "z": -0.02
+      },
+      "boundsSize": {
+        "x": 1.24,
+        "y": 1.015,
+        "z": 0.85
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "hearth-1",
+      "path": "models/hearth-1.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 652,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.641643,
+        "z": -0.015
+      },
+      "boundsSize": {
+        "x": 1.24,
+        "y": 1.243287,
+        "z": 0.86
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "bread-oven",
+      "path": "models/bread-oven.fbx",
+      "kind": "hero",
+      "pivot": "ground-centre",
+      "triangles": 660,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.72,
+        "z": -0.125
+      },
+      "boundsSize": {
+        "x": 2.092327,
+        "y": 1.68,
+        "z": 2.41
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "central-well",
+      "path": "models/central-well.fbx",
+      "kind": "hero",
+      "pivot": "ground-centre",
+      "triangles": 3814,
+      "boundsCenter": {
+        "x": 0.012775,
+        "y": 0.551353,
+        "z": 0.005741
+      },
+      "boundsSize": {
+        "x": 3.75229,
+        "y": 1.182706,
+        "z": 3.739078
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "oath-arch",
+      "path": "models/oath-arch.fbx",
+      "kind": "hero",
+      "pivot": "ground-centre",
+      "triangles": 832,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 1.1975,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 4.19,
+        "y": 2.395,
+        "z": 0.59
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "market-stall-0",
+      "path": "models/market-stall-0.fbx",
+      "kind": "hero",
+      "pivot": "ground-centre",
+      "triangles": 4860,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 1.0375,
+        "z": -0.1715
+      },
+      "boundsSize": {
+        "x": 3.166296,
+        "y": 2.075,
+        "z": 3.223
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "market-stall-1",
+      "path": "models/market-stall-1.fbx",
+      "kind": "hero",
+      "pivot": "ground-centre",
+      "triangles": 4860,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 1.0375,
+        "z": -0.1715
+      },
+      "boundsSize": {
+        "x": 3.166296,
+        "y": 2.075,
+        "z": 3.223
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "handcart",
+      "path": "models/handcart.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 1156,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.6175,
+        "z": -0.592878
+      },
+      "boundsSize": {
+        "x": 1.56168,
+        "y": 1.285,
+        "z": 2.825755
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "footbridge",
+      "path": "models/footbridge.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 756,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.455,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 3.1,
+        "y": 0.95,
+        "z": 1.55
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "chopping-block",
+      "path": "models/chopping-block.fbx",
+      "kind": "prop",
+      "pivot": "ground-centre",
+      "triangles": 88,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.3175,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.8,
+        "y": 0.635,
+        "z": 0.8
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "tortoise",
+      "path": "models/tortoise.fbx",
+      "kind": "creature",
+      "pivot": "ground-centre",
+      "triangles": 180,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.345,
+        "z": -0.105064
+      },
+      "boundsSize": {
+        "x": 0.814662,
+        "y": 0.63,
+        "z": 1.250128
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "frog",
+      "path": "models/frog.fbx",
+      "kind": "creature",
+      "pivot": "ground-centre",
+      "triangles": 100,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.175,
+        "z": 0.005292
+      },
+      "boundsSize": {
+        "x": 0.704104,
+        "y": 0.37,
+        "z": 0.529673
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "keeper-gatehouse-shell",
+      "path": "models/keeper-gatehouse-shell.fbx",
+      "kind": "building-shell",
+      "pivot": "native-owner-anchor",
+      "triangles": 4140,
+      "boundsCenter": {
+        "x": -1.0,
+        "y": 0.8775,
+        "z": 2.79
+      },
+      "boundsSize": {
+        "x": 4.19,
+        "y": 1.755,
+        "z": 4.61
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "keeper-gatehouse-roof",
+      "path": "models/keeper-gatehouse-roof.fbx",
+      "kind": "roof",
+      "pivot": "native-owner-anchor",
+      "triangles": 5351,
+      "boundsCenter": {
+        "x": -1.001814,
+        "y": 1.940466,
+        "z": 3.008348
+      },
+      "boundsSize": {
+        "x": 4.48441,
+        "y": 0.640933,
+        "z": 4.491144
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "dry-hem-guesthouse-shell",
+      "path": "models/dry-hem-guesthouse-shell.fbx",
+      "kind": "building-shell",
+      "pivot": "native-owner-anchor",
+      "triangles": 7200,
+      "boundsCenter": {
+        "x": -1.5,
+        "y": 0.8775,
+        "z": 3.79
+      },
+      "boundsSize": {
+        "x": 7.19,
+        "y": 1.755,
+        "z": 6.61
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "dry-hem-guesthouse-roof",
+      "path": "models/dry-hem-guesthouse-roof.fbx",
+      "kind": "roof",
+      "pivot": "native-owner-anchor",
+      "triangles": 11535,
+      "boundsCenter": {
+        "x": -1.500905,
+        "y": 1.904673,
+        "z": 4.007513
+      },
+      "boundsSize": {
+        "x": 7.506356,
+        "y": 0.569347,
+        "z": 6.521381
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "long-loop-ropeshop-shell",
+      "path": "models/long-loop-ropeshop-shell.fbx",
+      "kind": "building-shell",
+      "pivot": "native-owner-anchor",
+      "triangles": 6180,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.8775,
+        "z": 3.29
+      },
+      "boundsSize": {
+        "x": 6.19,
+        "y": 1.755,
+        "z": 5.61
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "long-loop-ropeshop-roof",
+      "path": "models/long-loop-ropeshop-roof.fbx",
+      "kind": "roof",
+      "pivot": "native-owner-anchor",
+      "triangles": 7887,
+      "boundsCenter": {
+        "x": -0.002664,
+        "y": 1.909724,
+        "z": 3.496764
+      },
+      "boundsSize": {
+        "x": 6.490837,
+        "y": 0.579448,
+        "z": 5.480596
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "return-desk-archive-shell",
+      "path": "models/return-desk-archive-shell.fbx",
+      "kind": "building-shell",
+      "pivot": "native-owner-anchor",
+      "triangles": 6180,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.8775,
+        "z": 3.29
+      },
+      "boundsSize": {
+        "x": 6.19,
+        "y": 1.755,
+        "z": 5.61
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "return-desk-archive-roof",
+      "path": "models/return-desk-archive-roof.fbx",
+      "kind": "roof",
+      "pivot": "native-owner-anchor",
+      "triangles": 7667,
+      "boundsCenter": {
+        "x": -0.009808,
+        "y": 1.905697,
+        "z": 3.505209
+      },
+      "boundsSize": {
+        "x": 6.505417,
+        "y": 0.571394,
+        "z": 5.481801
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "second-bowl-kitchen-shell",
+      "path": "models/second-bowl-kitchen-shell.fbx",
+      "kind": "building-shell",
+      "pivot": "native-owner-anchor",
+      "triangles": 5520,
+      "boundsCenter": {
+        "x": 0.5,
+        "y": 0.8775,
+        "z": 3.29
+      },
+      "boundsSize": {
+        "x": 5.19,
+        "y": 1.755,
+        "z": 5.61
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "second-bowl-kitchen-roof",
+      "path": "models/second-bowl-kitchen-roof.fbx",
+      "kind": "roof",
+      "pivot": "native-owner-anchor",
+      "triangles": 7283,
+      "boundsCenter": {
+        "x": 0.49551,
+        "y": 1.940466,
+        "z": 3.493492
+      },
+      "boundsSize": {
+        "x": 5.485576,
+        "y": 0.640933,
+        "z": 5.49063
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "oak-door",
+      "path": "models/oak-door.fbx",
+      "kind": "door",
+      "pivot": "left-hinge-ground",
+      "triangles": 572,
+      "boundsCenter": {
+        "x": 0.4215,
+        "y": 0.83,
+        "z": -0.042
+      },
+      "boundsSize": {
+        "x": 0.953,
+        "y": 1.66,
+        "z": 0.224
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "character-teal",
+      "path": "models/character-teal.fbx",
+      "kind": "character",
+      "pivot": "feet-root",
+      "triangles": 1040,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.845,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.125718,
+        "y": 1.73,
+        "z": 0.85
+      },
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ]
+    },
+    {
+      "id": "character-gold",
+      "path": "models/character-gold.fbx",
+      "kind": "character",
+      "pivot": "feet-root",
+      "triangles": 1040,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.845,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.125718,
+        "y": 1.73,
+        "z": 0.85
+      },
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ]
+    },
+    {
+      "id": "character-violet",
+      "path": "models/character-violet.fbx",
+      "kind": "character",
+      "pivot": "feet-root",
+      "triangles": 1040,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.845,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.125718,
+        "y": 1.73,
+        "z": 0.85
+      },
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ]
+    },
+    {
+      "id": "character-olive",
+      "path": "models/character-olive.fbx",
+      "kind": "character",
+      "pivot": "feet-root",
+      "triangles": 1040,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.845,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.125718,
+        "y": 1.73,
+        "z": 0.85
+      },
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ]
+    },
+    {
+      "id": "equipment-blade",
+      "path": "models/equipment-blade.fbx",
+      "kind": "equipment",
+      "pivot": "grip",
+      "triangles": 148,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.32,
+        "y": 0.72,
+        "z": 0.08
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "equipment-staff",
+      "path": "models/equipment-staff.fbx",
+      "kind": "equipment",
+      "pivot": "grip",
+      "triangles": 248,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.178885,
+        "y": 1.55,
+        "z": 0.170128
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "equipment-shield",
+      "path": "models/equipment-shield.fbx",
+      "kind": "equipment",
+      "pivot": "grip",
+      "triangles": 160,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.63,
+        "y": 0.11,
+        "z": 0.63
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "equipment-club",
+      "path": "models/equipment-club.fbx",
+      "kind": "equipment",
+      "pivot": "grip",
+      "triangles": 276,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.3,
+        "y": 0.54,
+        "z": 0.285317
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "equipment-pack",
+      "path": "models/equipment-pack.fbx",
+      "kind": "equipment",
+      "pivot": "back-attachment",
+      "triangles": 300,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.48,
+        "y": 0.57,
+        "z": 0.23
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "equipment-helmet",
+      "path": "models/equipment-helmet.fbx",
+      "kind": "equipment",
+      "pivot": "head-attachment",
+      "triangles": 236,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.776,
+        "y": 0.44,
+        "z": 0.776
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "ground-patch-0",
+      "path": "models/ground-patch-0.fbx",
+      "kind": "terrain",
+      "pivot": "ground-centre",
+      "triangles": 512,
+      "boundsCenter": {
+        "x": 0.089078,
+        "y": -0.0845,
+        "z": -0.083488
+      },
+      "boundsSize": {
+        "x": 10.178157,
+        "y": 0.171,
+        "z": 5.166975
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "ground-patch-1",
+      "path": "models/ground-patch-1.fbx",
+      "kind": "terrain",
+      "pivot": "ground-centre",
+      "triangles": 512,
+      "boundsCenter": {
+        "x": 0.028546,
+        "y": -0.0845,
+        "z": 0.039665
+      },
+      "boundsSize": {
+        "x": 10.469265,
+        "y": 0.171,
+        "z": 5.07933
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "ground-patch-2",
+      "path": "models/ground-patch-2.fbx",
+      "kind": "terrain",
+      "pivot": "ground-centre",
+      "triangles": 512,
+      "boundsCenter": {
+        "x": -0.170343,
+        "y": -0.0845,
+        "z": -0.064826
+      },
+      "boundsSize": {
+        "x": 10.340687,
+        "y": 0.171,
+        "z": 5.270714
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "ground-patch-3",
+      "path": "models/ground-patch-3.fbx",
+      "kind": "terrain",
+      "pivot": "ground-centre",
+      "triangles": 512,
+      "boundsCenter": {
+        "x": 0.111948,
+        "y": -0.0845,
+        "z": 0.042447
+      },
+      "boundsSize": {
+        "x": 10.501889,
+        "y": 0.171,
+        "z": 5.443671
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-00-00",
+      "path": "models/detail-patch-00-00.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 1198,
+      "boundsCenter": {
+        "x": -0.106637,
+        "y": 0.0,
+        "z": -0.076796
+      },
+      "boundsSize": {
+        "x": 9.231647,
+        "y": 0.457894,
+        "z": 4.649726
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-01-00",
+      "path": "models/detail-patch-01-00.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 1198,
+      "boundsCenter": {
+        "x": 0.17258,
+        "y": 0.0,
+        "z": 0.020138
+      },
+      "boundsSize": {
+        "x": 9.121006,
+        "y": 0.457894,
+        "z": 4.586013
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-02-00",
+      "path": "models/detail-patch-02-00.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 9046,
+      "boundsCenter": {
+        "x": -0.00116,
+        "y": 0.0,
+        "z": -0.028748
+      },
+      "boundsSize": {
+        "x": 10.121337,
+        "y": 0.41222,
+        "z": 5.225748
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-03-00",
+      "path": "models/detail-patch-03-00.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 8490,
+      "boundsCenter": {
+        "x": 0.440127,
+        "y": 0.0,
+        "z": -0.115826
+      },
+      "boundsSize": {
+        "x": 9.469278,
+        "y": 0.400507,
+        "z": 5.004181
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-04-00",
+      "path": "models/detail-patch-04-00.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 10514,
+      "boundsCenter": {
+        "x": -0.183646,
+        "y": 0.0,
+        "z": -0.019047
+      },
+      "boundsSize": {
+        "x": 9.938937,
+        "y": 0.457894,
+        "z": 5.385434
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-05-00",
+      "path": "models/detail-patch-05-00.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 7682,
+      "boundsCenter": {
+        "x": 0.005676,
+        "y": 0.0,
+        "z": -0.193948
+      },
+      "boundsSize": {
+        "x": 9.983053,
+        "y": 0.457894,
+        "z": 5.04034
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-06-00",
+      "path": "models/detail-patch-06-00.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 1198,
+      "boundsCenter": {
+        "x": -0.013896,
+        "y": 0.0,
+        "z": -0.008166
+      },
+      "boundsSize": {
+        "x": 9.81249,
+        "y": 0.457894,
+        "z": 4.770606
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-07-00",
+      "path": "models/detail-patch-07-00.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 1198,
+      "boundsCenter": {
+        "x": -0.22622,
+        "y": 0.0,
+        "z": -0.243181
+      },
+      "boundsSize": {
+        "x": 8.947445,
+        "y": 0.457894,
+        "z": 3.692178
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-00-01",
+      "path": "models/detail-patch-00-01.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 1198,
+      "boundsCenter": {
+        "x": -0.001958,
+        "y": 0.0,
+        "z": 0.235482
+      },
+      "boundsSize": {
+        "x": 9.917622,
+        "y": 0.457894,
+        "z": 4.692592
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-01-01",
+      "path": "models/detail-patch-01-01.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 1198,
+      "boundsCenter": {
+        "x": 0.287487,
+        "y": 0.0,
+        "z": 0.008338
+      },
+      "boundsSize": {
+        "x": 8.824206,
+        "y": 0.457894,
+        "z": 4.432635
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-02-01",
+      "path": "models/detail-patch-02-01.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 6784,
+      "boundsCenter": {
+        "x": -0.161691,
+        "y": 0.0,
+        "z": 0.065687
+      },
+      "boundsSize": {
+        "x": 10.008302,
+        "y": 0.457894,
+        "z": 5.131374
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-03-01",
+      "path": "models/detail-patch-03-01.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 5188,
+      "boundsCenter": {
+        "x": 0.63375,
+        "y": 0.060114,
+        "z": -0.001399
+      },
+      "boundsSize": {
+        "x": 9.042194,
+        "y": 0.120229,
+        "z": 5.287505
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-04-01",
+      "path": "models/detail-patch-04-01.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 8520,
+      "boundsCenter": {
+        "x": -0.440396,
+        "y": 0.060692,
+        "z": -0.036467
+      },
+      "boundsSize": {
+        "x": 9.265203,
+        "y": 0.121383,
+        "z": 5.282573
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-05-01",
+      "path": "models/detail-patch-05-01.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 6062,
+      "boundsCenter": {
+        "x": 2.385517,
+        "y": 0.016042,
+        "z": -0.076319
+      },
+      "boundsSize": {
+        "x": 5.30105,
+        "y": 0.397917,
+        "z": 5.088913
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-06-01",
+      "path": "models/detail-patch-06-01.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 1198,
+      "boundsCenter": {
+        "x": -0.147252,
+        "y": 0.0,
+        "z": -0.073559
+      },
+      "boundsSize": {
+        "x": 9.561001,
+        "y": 0.457894,
+        "z": 4.494482
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-07-01",
+      "path": "models/detail-patch-07-01.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 1198,
+      "boundsCenter": {
+        "x": -0.006062,
+        "y": 0.0,
+        "z": 0.137802
+      },
+      "boundsSize": {
+        "x": 9.837761,
+        "y": 0.457894,
+        "z": 4.708221
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-00-02",
+      "path": "models/detail-patch-00-02.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 1198,
+      "boundsCenter": {
+        "x": 0.183321,
+        "y": 0.0,
+        "z": 0.008142
+      },
+      "boundsSize": {
+        "x": 9.75506,
+        "y": 0.457894,
+        "z": 5.06947
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-01-02",
+      "path": "models/detail-patch-01-02.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 1198,
+      "boundsCenter": {
+        "x": -1.074842,
+        "y": 0.0,
+        "z": -0.01202
+      },
+      "boundsSize": {
+        "x": 7.894817,
+        "y": 0.457894,
+        "z": 5.133216
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-02-02",
+      "path": "models/detail-patch-02-02.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 7740,
+      "boundsCenter": {
+        "x": -0.063166,
+        "y": 0.007373,
+        "z": -0.069352
+      },
+      "boundsSize": {
+        "x": 9.978764,
+        "y": 0.415254,
+        "z": 5.138704
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-03-02",
+      "path": "models/detail-patch-03-02.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 8722,
+      "boundsCenter": {
+        "x": 0.589975,
+        "y": 0.060876,
+        "z": -0.042016
+      },
+      "boundsSize": {
+        "x": 9.056907,
+        "y": 0.121752,
+        "z": 5.264537
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-04-02",
+      "path": "models/detail-patch-04-02.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 7304,
+      "boundsCenter": {
+        "x": -0.075693,
+        "y": 0.060985,
+        "z": 0.02192
+      },
+      "boundsSize": {
+        "x": 10.125447,
+        "y": 0.12197,
+        "z": 5.240191
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-05-02",
+      "path": "models/detail-patch-05-02.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 10392,
+      "boundsCenter": {
+        "x": 0.119579,
+        "y": 0.0,
+        "z": 0.024594
+      },
+      "boundsSize": {
+        "x": 9.687473,
+        "y": 0.457894,
+        "z": 5.195593
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-06-02",
+      "path": "models/detail-patch-06-02.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 1198,
+      "boundsCenter": {
+        "x": -1.004596,
+        "y": 0.0,
+        "z": 0.243632
+      },
+      "boundsSize": {
+        "x": 7.717978,
+        "y": 0.457894,
+        "z": 4.699679
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-07-02",
+      "path": "models/detail-patch-07-02.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 1198,
+      "boundsCenter": {
+        "x": -0.431227,
+        "y": 0.0,
+        "z": -0.080394
+      },
+      "boundsSize": {
+        "x": 9.200447,
+        "y": 0.457894,
+        "z": 4.835154
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-00-03",
+      "path": "models/detail-patch-00-03.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 1198,
+      "boundsCenter": {
+        "x": 0.133281,
+        "y": 0.0,
+        "z": 0.220185
+      },
+      "boundsSize": {
+        "x": 9.692843,
+        "y": 0.457894,
+        "z": 4.184626
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-01-03",
+      "path": "models/detail-patch-01-03.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 1198,
+      "boundsCenter": {
+        "x": -0.057918,
+        "y": 0.0,
+        "z": 0.210351
+      },
+      "boundsSize": {
+        "x": 10.117118,
+        "y": 0.457894,
+        "z": 4.530015
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-02-03",
+      "path": "models/detail-patch-02-03.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 5988,
+      "boundsCenter": {
+        "x": -0.285549,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 9.544352,
+        "y": 0.457894,
+        "z": 5.0
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-03-03",
+      "path": "models/detail-patch-03-03.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 7906,
+      "boundsCenter": {
+        "x": 0.348161,
+        "y": 0.060605,
+        "z": 0.033468
+      },
+      "boundsSize": {
+        "x": 9.562922,
+        "y": 0.12121,
+        "z": 5.073644
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-04-03",
+      "path": "models/detail-patch-04-03.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 11834,
+      "boundsCenter": {
+        "x": -0.084752,
+        "y": 0.060367,
+        "z": -0.017185
+      },
+      "boundsSize": {
+        "x": 10.155281,
+        "y": 0.120733,
+        "z": 5.279344
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-05-03",
+      "path": "models/detail-patch-05-03.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 8320,
+      "boundsCenter": {
+        "x": 0.229481,
+        "y": 0.0,
+        "z": -6.3e-05
+      },
+      "boundsSize": {
+        "x": 9.738737,
+        "y": 0.457894,
+        "z": 5.152759
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-06-03",
+      "path": "models/detail-patch-06-03.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 1198,
+      "boundsCenter": {
+        "x": 0.062247,
+        "y": 0.0,
+        "z": -0.059074
+      },
+      "boundsSize": {
+        "x": 10.045747,
+        "y": 0.457894,
+        "z": 4.339048
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-07-03",
+      "path": "models/detail-patch-07-03.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 1198,
+      "boundsCenter": {
+        "x": -0.674645,
+        "y": 0.0,
+        "z": -0.042261
+      },
+      "boundsSize": {
+        "x": 8.675056,
+        "y": 0.457894,
+        "z": 4.471293
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-00-04",
+      "path": "models/detail-patch-00-04.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 1198,
+      "boundsCenter": {
+        "x": 0.40603,
+        "y": 0.0,
+        "z": -0.015142
+      },
+      "boundsSize": {
+        "x": 8.261727,
+        "y": 0.457894,
+        "z": 4.932048
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-01-04",
+      "path": "models/detail-patch-01-04.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 1198,
+      "boundsCenter": {
+        "x": 0.204782,
+        "y": 0.0,
+        "z": -0.157069
+      },
+      "boundsSize": {
+        "x": 9.585457,
+        "y": 0.457894,
+        "z": 4.429731
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-02-04",
+      "path": "models/detail-patch-02-04.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 7924,
+      "boundsCenter": {
+        "x": -0.02132,
+        "y": 0.007373,
+        "z": 0.055498
+      },
+      "boundsSize": {
+        "x": 10.342522,
+        "y": 0.415254,
+        "z": 5.172247
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-03-04",
+      "path": "models/detail-patch-03-04.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 4970,
+      "boundsCenter": {
+        "x": 0.000561,
+        "y": 0.060732,
+        "z": 0.039917
+      },
+      "boundsSize": {
+        "x": 10.308563,
+        "y": 0.121465,
+        "z": 5.177023
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-04-04",
+      "path": "models/detail-patch-04-04.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 5652,
+      "boundsCenter": {
+        "x": -0.510064,
+        "y": 0.0,
+        "z": -0.031881
+      },
+      "boundsSize": {
+        "x": 9.158368,
+        "y": 0.457894,
+        "z": 5.19566
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-05-04",
+      "path": "models/detail-patch-05-04.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 10250,
+      "boundsCenter": {
+        "x": 0.372422,
+        "y": 0.0,
+        "z": -0.0981
+      },
+      "boundsSize": {
+        "x": 9.537006,
+        "y": 0.457894,
+        "z": 5.400695
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-06-04",
+      "path": "models/detail-patch-06-04.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 1198,
+      "boundsCenter": {
+        "x": -0.046445,
+        "y": 0.0,
+        "z": 0.002956
+      },
+      "boundsSize": {
+        "x": 9.224241,
+        "y": 0.457894,
+        "z": 4.854939
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    },
+    {
+      "id": "detail-patch-07-04",
+      "path": "models/detail-patch-07-04.fbx",
+      "kind": "terrain-detail",
+      "pivot": "ground-centre",
+      "triangles": 1198,
+      "boundsCenter": {
+        "x": -0.613236,
+        "y": 0.0,
+        "z": -0.06055
+      },
+      "boundsSize": {
+        "x": 8.881814,
+        "y": 0.457894,
+        "z": 4.712919
+      },
+      "rigged": false,
+      "clips": [],
+      "sockets": []
+    }
+  ],
+  "owners": [
+    {
+      "ownerId": "north-oath-arch",
+      "modelId": "oath-arch",
+      "kind": "gate",
+      "roomId": "",
+      "anchorX": 40,
+      "anchorY": 2,
+      "position": {
+        "x": 40.5,
+        "y": 0,
+        "z": 23.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 38,
+          "y": 1
+        },
+        {
+          "x": 42,
+          "y": 1
+        }
+      ]
+    },
+    {
+      "ownerId": "north-guard-west",
+      "modelId": "character-gold",
+      "kind": "npc",
+      "roomId": "",
+      "anchorX": 37,
+      "anchorY": 3,
+      "position": {
+        "x": 37.5,
+        "y": 0,
+        "z": 21.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 37,
+          "y": 3
+        }
+      ]
+    },
+    {
+      "ownerId": "north-guard-east",
+      "modelId": "character-violet",
+      "kind": "npc",
+      "roomId": "",
+      "anchorX": 42,
+      "anchorY": 3,
+      "position": {
+        "x": 42.5,
+        "y": 0,
+        "z": 21.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 42,
+          "y": 3
+        }
+      ]
+    },
+    {
+      "ownerId": "north-flower-planter",
+      "modelId": "planter-1",
+      "kind": "planter",
+      "roomId": "",
+      "anchorX": 44,
+      "anchorY": 4,
+      "position": {
+        "x": 44.5,
+        "y": 0,
+        "z": 20.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 43,
+          "y": 4
+        },
+        {
+          "x": 44,
+          "y": 3
+        },
+        {
+          "x": 44,
+          "y": 4
+        },
+        {
+          "x": 45,
+          "y": 4
+        }
+      ]
+    },
+    {
+      "ownerId": "northeast-herb-pot",
+      "modelId": "herb-pot",
+      "kind": "planter",
+      "roomId": "",
+      "anchorX": 52,
+      "anchorY": 6,
+      "position": {
+        "x": 52.5,
+        "y": 0,
+        "z": 18.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 52,
+          "y": 6
+        }
+      ]
+    },
+    {
+      "ownerId": "northeast-offering-bowl",
+      "modelId": "bowl",
+      "kind": "bowl",
+      "roomId": "",
+      "anchorX": 50,
+      "anchorY": 7,
+      "position": {
+        "x": 50.5,
+        "y": 0,
+        "z": 17.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": []
+    },
+    {
+      "ownerId": "east-robed-resident",
+      "modelId": "character-violet",
+      "kind": "npc",
+      "roomId": "",
+      "anchorX": 48,
+      "anchorY": 9,
+      "position": {
+        "x": 48.5,
+        "y": 0,
+        "z": 15.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 48,
+          "y": 9
+        }
+      ]
+    },
+    {
+      "ownerId": "western-shop-planter",
+      "modelId": "planter-0",
+      "kind": "planter",
+      "roomId": "",
+      "anchorX": 30,
+      "anchorY": 14,
+      "position": {
+        "x": 30.5,
+        "y": 0,
+        "z": 10.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 29,
+          "y": 13
+        },
+        {
+          "x": 30,
+          "y": 13
+        }
+      ]
+    },
+    {
+      "ownerId": "western-shop-crate",
+      "modelId": "crate-0",
+      "kind": "container",
+      "roomId": "",
+      "anchorX": 34,
+      "anchorY": 13,
+      "position": {
+        "x": 34.5,
+        "y": 0,
+        "z": 11.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 33,
+          "y": 13
+        },
+        {
+          "x": 34,
+          "y": 13
+        }
+      ]
+    },
+    {
+      "ownerId": "western-shopkeeper",
+      "modelId": "character-gold",
+      "kind": "npc",
+      "roomId": "",
+      "anchorX": 35,
+      "anchorY": 13,
+      "position": {
+        "x": 35.5,
+        "y": 0,
+        "z": 11.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 35,
+          "y": 13
+        }
+      ]
+    },
+    {
+      "ownerId": "central-cistern",
+      "modelId": "central-well",
+      "kind": "cistern",
+      "roomId": "",
+      "anchorX": 40,
+      "anchorY": 14,
+      "position": {
+        "x": 41.0,
+        "y": 0,
+        "z": 12.5
+      },
+      "visualOffset": {
+        "x": 0.5,
+        "y": 0,
+        "z": 2
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 39,
+          "y": 11
+        },
+        {
+          "x": 39,
+          "y": 12
+        },
+        {
+          "x": 39,
+          "y": 13
+        },
+        {
+          "x": 40,
+          "y": 10
+        },
+        {
+          "x": 40,
+          "y": 11
+        },
+        {
+          "x": 40,
+          "y": 12
+        },
+        {
+          "x": 40,
+          "y": 13
+        },
+        {
+          "x": 40,
+          "y": 14
+        },
+        {
+          "x": 41,
+          "y": 10
+        },
+        {
+          "x": 41,
+          "y": 11
+        },
+        {
+          "x": 41,
+          "y": 12
+        },
+        {
+          "x": 41,
+          "y": 13
+        },
+        {
+          "x": 41,
+          "y": 14
+        },
+        {
+          "x": 42,
+          "y": 11
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 13
+        }
+      ]
+    },
+    {
+      "ownerId": "cistern-bucket",
+      "modelId": "bucket-1",
+      "kind": "container",
+      "roomId": "",
+      "anchorX": 42,
+      "anchorY": 14,
+      "position": {
+        "x": 42.5,
+        "y": 0,
+        "z": 10.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 42,
+          "y": 14
+        }
+      ]
+    },
+    {
+      "ownerId": "provisioners-stall",
+      "modelId": "market-stall-0",
+      "kind": "shop-stall",
+      "roomId": "",
+      "anchorX": 47,
+      "anchorY": 14,
+      "position": {
+        "x": 47.0,
+        "y": 0,
+        "z": 13.0
+      },
+      "visualOffset": {
+        "x": -0.5,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1.06,
+        "y": 1,
+        "z": 1.1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 45,
+          "y": 10
+        },
+        {
+          "x": 45,
+          "y": 11
+        },
+        {
+          "x": 45,
+          "y": 12
+        },
+        {
+          "x": 45,
+          "y": 13
+        },
+        {
+          "x": 46,
+          "y": 10
+        },
+        {
+          "x": 46,
+          "y": 11
+        },
+        {
+          "x": 46,
+          "y": 12
+        },
+        {
+          "x": 46,
+          "y": 13
+        },
+        {
+          "x": 47,
+          "y": 10
+        },
+        {
+          "x": 47,
+          "y": 11
+        },
+        {
+          "x": 47,
+          "y": 12
+        },
+        {
+          "x": 47,
+          "y": 13
+        },
+        {
+          "x": 48,
+          "y": 10
+        },
+        {
+          "x": 48,
+          "y": 11
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 13
+        }
+      ]
+    },
+    {
+      "ownerId": "provisioners-water-barrel",
+      "modelId": "barrel-1",
+      "kind": "container",
+      "roomId": "",
+      "anchorX": 49,
+      "anchorY": 12,
+      "position": {
+        "x": 49.5,
+        "y": 0,
+        "z": 12.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 49,
+          "y": 12
+        }
+      ]
+    },
+    {
+      "ownerId": "provisioners-rope-basket",
+      "modelId": "bucket-0",
+      "kind": "container",
+      "roomId": "",
+      "anchorX": 49,
+      "anchorY": 13,
+      "position": {
+        "x": 49.5,
+        "y": 0,
+        "z": 11.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 49,
+          "y": 13
+        }
+      ]
+    },
+    {
+      "ownerId": "western-footbridge",
+      "modelId": "footbridge",
+      "kind": "bridge",
+      "roomId": "",
+      "anchorX": 24,
+      "anchorY": 14,
+      "position": {
+        "x": 24.5,
+        "y": 0,
+        "z": 10.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": []
+    },
+    {
+      "ownerId": "western-bank-frog",
+      "modelId": "frog",
+      "kind": "creature",
+      "roomId": "",
+      "anchorX": 22,
+      "anchorY": 18,
+      "position": {
+        "x": 22.5,
+        "y": 0,
+        "z": 6.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 22,
+          "y": 18
+        }
+      ]
+    },
+    {
+      "ownerId": "southwest-handcart",
+      "modelId": "handcart",
+      "kind": "cart",
+      "roomId": "",
+      "anchorX": 36,
+      "anchorY": 19,
+      "position": {
+        "x": 36.0,
+        "y": 0,
+        "z": 7.0
+      },
+      "visualOffset": {
+        "x": -0.5,
+        "y": 0,
+        "z": 1.5
+      },
+      "rotationY": -17.188733853924695,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 35,
+          "y": 17
+        },
+        {
+          "x": 35,
+          "y": 18
+        },
+        {
+          "x": 36,
+          "y": 16
+        },
+        {
+          "x": 36,
+          "y": 17
+        },
+        {
+          "x": 36,
+          "y": 18
+        }
+      ]
+    },
+    {
+      "ownerId": "southwest-sideways-barrel",
+      "modelId": "barrel-side",
+      "kind": "container",
+      "roomId": "",
+      "anchorX": 35,
+      "anchorY": 20,
+      "position": {
+        "x": 35.5,
+        "y": 0,
+        "z": 4.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -22.918311805232932,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 35,
+          "y": 20
+        }
+      ]
+    },
+    {
+      "ownerId": "southwest-worktable",
+      "modelId": "table-2",
+      "kind": "workstation",
+      "roomId": "",
+      "anchorX": 33,
+      "anchorY": 21,
+      "position": {
+        "x": 33.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 33,
+          "y": 20
+        },
+        {
+          "x": 33,
+          "y": 21
+        },
+        {
+          "x": 34,
+          "y": 20
+        },
+        {
+          "x": 34,
+          "y": 21
+        }
+      ]
+    },
+    {
+      "ownerId": "southwest-rope-coils",
+      "modelId": "rope-coil",
+      "kind": "salvage",
+      "roomId": "",
+      "anchorX": 30,
+      "anchorY": 22,
+      "position": {
+        "x": 30.5,
+        "y": 0,
+        "z": 2.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": []
+    },
+    {
+      "ownerId": "southwest-craftsperson",
+      "modelId": "character-teal",
+      "kind": "npc",
+      "roomId": "",
+      "anchorX": 32,
+      "anchorY": 21,
+      "position": {
+        "x": 32.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 32,
+          "y": 21
+        }
+      ]
+    },
+    {
+      "ownerId": "southern-food-stall",
+      "modelId": "market-stall-1",
+      "kind": "shop-stall",
+      "roomId": "",
+      "anchorX": 45,
+      "anchorY": 21,
+      "position": {
+        "x": 46.0,
+        "y": 0,
+        "z": 5.5
+      },
+      "visualOffset": {
+        "x": 0.5,
+        "y": 0,
+        "z": 2
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1.06,
+        "y": 1,
+        "z": 1.1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 44,
+          "y": 17
+        },
+        {
+          "x": 44,
+          "y": 18
+        },
+        {
+          "x": 44,
+          "y": 19
+        },
+        {
+          "x": 44,
+          "y": 20
+        },
+        {
+          "x": 44,
+          "y": 21
+        },
+        {
+          "x": 45,
+          "y": 17
+        },
+        {
+          "x": 45,
+          "y": 18
+        },
+        {
+          "x": 45,
+          "y": 19
+        },
+        {
+          "x": 45,
+          "y": 20
+        },
+        {
+          "x": 45,
+          "y": 21
+        },
+        {
+          "x": 46,
+          "y": 17
+        },
+        {
+          "x": 46,
+          "y": 18
+        },
+        {
+          "x": 46,
+          "y": 19
+        },
+        {
+          "x": 46,
+          "y": 20
+        },
+        {
+          "x": 46,
+          "y": 21
+        },
+        {
+          "x": 47,
+          "y": 18
+        },
+        {
+          "x": 47,
+          "y": 19
+        }
+      ]
+    },
+    {
+      "ownerId": "southern-food-vendor",
+      "modelId": "character-violet",
+      "kind": "npc",
+      "roomId": "",
+      "anchorX": 47,
+      "anchorY": 20,
+      "position": {
+        "x": 47.5,
+        "y": 0,
+        "z": 4.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 47,
+          "y": 20
+        }
+      ]
+    },
+    {
+      "ownerId": "food-stall-barrel",
+      "modelId": "barrel-0",
+      "kind": "container",
+      "roomId": "",
+      "anchorX": 43,
+      "anchorY": 20,
+      "position": {
+        "x": 43.5,
+        "y": 0,
+        "z": 4.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 43,
+          "y": 20
+        }
+      ]
+    },
+    {
+      "ownerId": "food-stall-bucket",
+      "modelId": "bucket-1",
+      "kind": "container",
+      "roomId": "",
+      "anchorX": 47,
+      "anchorY": 21,
+      "position": {
+        "x": 47.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 47,
+          "y": 21
+        }
+      ]
+    },
+    {
+      "ownerId": "inn-supply-barrel",
+      "modelId": "barrel-2",
+      "kind": "container",
+      "roomId": "",
+      "anchorX": 49,
+      "anchorY": 20,
+      "position": {
+        "x": 49.5,
+        "y": 0,
+        "z": 4.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 49,
+          "y": 20
+        }
+      ]
+    },
+    {
+      "ownerId": "inn-empty-bucket",
+      "modelId": "bucket-1",
+      "kind": "container",
+      "roomId": "",
+      "anchorX": 50,
+      "anchorY": 20,
+      "position": {
+        "x": 50.5,
+        "y": 0,
+        "z": 4.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 50,
+          "y": 20
+        }
+      ]
+    },
+    {
+      "ownerId": "inn-outdoor-stove",
+      "modelId": "hearth-1",
+      "kind": "workstation",
+      "roomId": "",
+      "anchorX": 49,
+      "anchorY": 21,
+      "position": {
+        "x": 49.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 49,
+          "y": 21
+        },
+        {
+          "x": 50,
+          "y": 21
+        }
+      ]
+    },
+    {
+      "ownerId": "inn-kindling-crate",
+      "modelId": "crate-1",
+      "kind": "container",
+      "roomId": "",
+      "anchorX": 49,
+      "anchorY": 21,
+      "position": {
+        "x": 49.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 49,
+          "y": 21
+        }
+      ]
+    },
+    {
+      "ownerId": "inn-chopping-block",
+      "modelId": "chopping-block",
+      "kind": "workstation",
+      "roomId": "",
+      "anchorX": 53,
+      "anchorY": 21,
+      "position": {
+        "x": 53.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 53,
+          "y": 21
+        }
+      ]
+    },
+    {
+      "ownerId": "inn-sideways-cask",
+      "modelId": "barrel-side",
+      "kind": "container",
+      "roomId": "",
+      "anchorX": 54,
+      "anchorY": 21,
+      "position": {
+        "x": 54.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -22.918311805232932,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 54,
+          "y": 21
+        }
+      ]
+    },
+    {
+      "ownerId": "inn-northern-barrel",
+      "modelId": "barrel-0",
+      "kind": "container",
+      "roomId": "",
+      "anchorX": 49,
+      "anchorY": 17,
+      "position": {
+        "x": 49.5,
+        "y": 0,
+        "z": 7.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 49,
+          "y": 16
+        },
+        {
+          "x": 49,
+          "y": 17
+        }
+      ]
+    },
+    {
+      "ownerId": "southern-bread-oven",
+      "modelId": "bread-oven",
+      "kind": "oven",
+      "roomId": "",
+      "anchorX": 34,
+      "anchorY": 24,
+      "position": {
+        "x": 35.0,
+        "y": 0,
+        "z": 1.5
+      },
+      "visualOffset": {
+        "x": 0.5,
+        "y": 0,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 34,
+          "y": 22
+        },
+        {
+          "x": 34,
+          "y": 23
+        },
+        {
+          "x": 34,
+          "y": 24
+        },
+        {
+          "x": 35,
+          "y": 22
+        },
+        {
+          "x": 35,
+          "y": 23
+        },
+        {
+          "x": 35,
+          "y": 24
+        }
+      ]
+    },
+    {
+      "ownerId": "southern-tortoise",
+      "modelId": "tortoise",
+      "kind": "creature",
+      "roomId": "",
+      "anchorX": 37,
+      "anchorY": 23,
+      "position": {
+        "x": 37.5,
+        "y": 0,
+        "z": 1.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 37,
+          "y": 23
+        }
+      ]
+    },
+    {
+      "ownerId": "keeper-gatehouse-shell",
+      "modelId": "keeper-gatehouse-shell",
+      "kind": "building-shell",
+      "roomId": "keeper-gatehouse",
+      "anchorX": 34,
+      "anchorY": 6,
+      "position": {
+        "x": 34.5,
+        "y": 0,
+        "z": 18.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": false,
+      "footprint": []
+    },
+    {
+      "ownerId": "keeper-gatehouse-roof",
+      "modelId": "keeper-gatehouse-roof",
+      "kind": "roof",
+      "roomId": "keeper-gatehouse",
+      "anchorX": 34,
+      "anchorY": 6,
+      "position": {
+        "x": 34.5,
+        "y": 0,
+        "z": 18.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": []
+    },
+    {
+      "ownerId": "keeper-door",
+      "modelId": "oak-door",
+      "kind": "door",
+      "roomId": "keeper-gatehouse",
+      "anchorX": 34,
+      "anchorY": 5,
+      "position": {
+        "x": 34.05,
+        "y": 0,
+        "z": 19.5
+      },
+      "visualOffset": {
+        "x": -0.45,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 34,
+          "y": 5
+        }
+      ]
+    },
+    {
+      "ownerId": "keeper-rest-bench",
+      "modelId": "bench",
+      "kind": "bench",
+      "roomId": "keeper-gatehouse",
+      "anchorX": 32,
+      "anchorY": 4,
+      "position": {
+        "x": 32.5,
+        "y": 0,
+        "z": 20.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 0.59,
+        "y": 0.88,
+        "z": 1
+      },
+      "visibleWhen": "room-open",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 32,
+          "y": 4
+        }
+      ]
+    },
+    {
+      "ownerId": "keeper-supply-chest",
+      "modelId": "crate-3",
+      "kind": "container",
+      "roomId": "keeper-gatehouse",
+      "anchorX": 34,
+      "anchorY": 2,
+      "position": {
+        "x": 34.5,
+        "y": 0,
+        "z": 22.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "room-open",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 34,
+          "y": 2
+        }
+      ]
+    },
+    {
+      "ownerId": "keeper-duty-desk",
+      "modelId": "table-1",
+      "kind": "table",
+      "roomId": "keeper-gatehouse",
+      "anchorX": 33,
+      "anchorY": 4,
+      "position": {
+        "x": 33.5,
+        "y": 0,
+        "z": 20.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 0.66,
+        "y": 0.85,
+        "z": 1
+      },
+      "visibleWhen": "room-open",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 33,
+          "y": 4
+        }
+      ]
+    },
+    {
+      "ownerId": "dry-hem-guesthouse-shell",
+      "modelId": "dry-hem-guesthouse-shell",
+      "kind": "building-shell",
+      "roomId": "dry-hem-guesthouse",
+      "anchorX": 32,
+      "anchorY": 14,
+      "position": {
+        "x": 32.5,
+        "y": 0,
+        "z": 10.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": false,
+      "footprint": []
+    },
+    {
+      "ownerId": "dry-hem-guesthouse-roof",
+      "modelId": "dry-hem-guesthouse-roof",
+      "kind": "roof",
+      "roomId": "dry-hem-guesthouse",
+      "anchorX": 32,
+      "anchorY": 14,
+      "position": {
+        "x": 32.5,
+        "y": 0,
+        "z": 10.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": []
+    },
+    {
+      "ownerId": "guesthouse-door",
+      "modelId": "oak-door",
+      "kind": "door",
+      "roomId": "dry-hem-guesthouse",
+      "anchorX": 32,
+      "anchorY": 13,
+      "position": {
+        "x": 32.05,
+        "y": 0,
+        "z": 11.5
+      },
+      "visualOffset": {
+        "x": -0.45,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 32,
+          "y": 13
+        }
+      ]
+    },
+    {
+      "ownerId": "guest-bed-west",
+      "modelId": "bed-0",
+      "kind": "bed",
+      "roomId": "dry-hem-guesthouse",
+      "anchorX": 29,
+      "anchorY": 10,
+      "position": {
+        "x": 29.5,
+        "y": 0,
+        "z": 14.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 0.82,
+        "z": 0.53
+      },
+      "visibleWhen": "room-open",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 29,
+          "y": 10
+        }
+      ]
+    },
+    {
+      "ownerId": "guest-bed-east",
+      "modelId": "bed-1",
+      "kind": "bed",
+      "roomId": "dry-hem-guesthouse",
+      "anchorX": 31,
+      "anchorY": 10,
+      "position": {
+        "x": 31.5,
+        "y": 0,
+        "z": 14.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 0.82,
+        "z": 0.53
+      },
+      "visibleWhen": "room-open",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 31,
+          "y": 10
+        }
+      ]
+    },
+    {
+      "ownerId": "guest-warming-stove",
+      "modelId": "hearth-0",
+      "kind": "hearth",
+      "roomId": "dry-hem-guesthouse",
+      "anchorX": 33,
+      "anchorY": 10,
+      "position": {
+        "x": 33.5,
+        "y": 0,
+        "z": 14.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 0.72,
+        "y": 0.9,
+        "z": 0.9
+      },
+      "visibleWhen": "room-open",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 33,
+          "y": 10
+        }
+      ]
+    },
+    {
+      "ownerId": "guest-supper-table",
+      "modelId": "table-0",
+      "kind": "table",
+      "roomId": "dry-hem-guesthouse",
+      "anchorX": 29,
+      "anchorY": 11,
+      "position": {
+        "x": 29.5,
+        "y": 0,
+        "z": 13.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 0.66,
+        "y": 0.85,
+        "z": 1
+      },
+      "visibleWhen": "room-open",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 29,
+          "y": 11
+        }
+      ]
+    },
+    {
+      "ownerId": "guest-stool-west",
+      "modelId": "stool",
+      "kind": "stool",
+      "roomId": "dry-hem-guesthouse",
+      "anchorX": 28,
+      "anchorY": 11,
+      "position": {
+        "x": 28.5,
+        "y": 0,
+        "z": 13.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "room-open",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 28,
+          "y": 11
+        }
+      ]
+    },
+    {
+      "ownerId": "guest-stool-east",
+      "modelId": "stool",
+      "kind": "stool",
+      "roomId": "dry-hem-guesthouse",
+      "anchorX": 30,
+      "anchorY": 11,
+      "position": {
+        "x": 30.5,
+        "y": 0,
+        "z": 13.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "room-open",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 30,
+          "y": 11
+        }
+      ]
+    },
+    {
+      "ownerId": "guest-stool-south",
+      "modelId": "stool",
+      "kind": "stool",
+      "roomId": "dry-hem-guesthouse",
+      "anchorX": 31,
+      "anchorY": 11,
+      "position": {
+        "x": 31.5,
+        "y": 0,
+        "z": 13.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "room-open",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 31,
+          "y": 11
+        }
+      ]
+    },
+    {
+      "ownerId": "long-loop-ropeshop-shell",
+      "modelId": "long-loop-ropeshop-shell",
+      "kind": "building-shell",
+      "roomId": "long-loop-ropeshop",
+      "anchorX": 31,
+      "anchorY": 21,
+      "position": {
+        "x": 31.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": false,
+      "footprint": []
+    },
+    {
+      "ownerId": "long-loop-ropeshop-roof",
+      "modelId": "long-loop-ropeshop-roof",
+      "kind": "roof",
+      "roomId": "long-loop-ropeshop",
+      "anchorX": 31,
+      "anchorY": 21,
+      "position": {
+        "x": 31.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": []
+    },
+    {
+      "ownerId": "ropeshop-door",
+      "modelId": "oak-door",
+      "kind": "door",
+      "roomId": "long-loop-ropeshop",
+      "anchorX": 31,
+      "anchorY": 20,
+      "position": {
+        "x": 31.05,
+        "y": 0,
+        "z": 4.5
+      },
+      "visualOffset": {
+        "x": -0.45,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 31,
+          "y": 20
+        }
+      ]
+    },
+    {
+      "ownerId": "rope-workbench",
+      "modelId": "table-2",
+      "kind": "workbench",
+      "roomId": "long-loop-ropeshop",
+      "anchorX": 31,
+      "anchorY": 18,
+      "position": {
+        "x": 31.5,
+        "y": 0,
+        "z": 6.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 0.53,
+        "y": 0.85,
+        "z": 1
+      },
+      "visibleWhen": "room-open",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 31,
+          "y": 18
+        }
+      ]
+    },
+    {
+      "ownerId": "rope-storage-barrel",
+      "modelId": "barrel-3",
+      "kind": "container",
+      "roomId": "long-loop-ropeshop",
+      "anchorX": 33,
+      "anchorY": 19,
+      "position": {
+        "x": 33.5,
+        "y": 0,
+        "z": 5.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "room-open",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 33,
+          "y": 19
+        }
+      ]
+    },
+    {
+      "ownerId": "rope-reserve-coil",
+      "modelId": "rope-coil",
+      "kind": "rope",
+      "roomId": "long-loop-ropeshop",
+      "anchorX": 29,
+      "anchorY": 18,
+      "position": {
+        "x": 29.5,
+        "y": 0,
+        "z": 6.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "room-open",
+      "mutable": true,
+      "footprint": []
+    },
+    {
+      "ownerId": "return-desk-archive-shell",
+      "modelId": "return-desk-archive-shell",
+      "kind": "building-shell",
+      "roomId": "return-desk-archive",
+      "anchorX": 49,
+      "anchorY": 7,
+      "position": {
+        "x": 49.5,
+        "y": 0,
+        "z": 17.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": false,
+      "footprint": []
+    },
+    {
+      "ownerId": "return-desk-archive-roof",
+      "modelId": "return-desk-archive-roof",
+      "kind": "roof",
+      "roomId": "return-desk-archive",
+      "anchorX": 49,
+      "anchorY": 7,
+      "position": {
+        "x": 49.5,
+        "y": 0,
+        "z": 17.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": []
+    },
+    {
+      "ownerId": "archive-door",
+      "modelId": "oak-door",
+      "kind": "door",
+      "roomId": "return-desk-archive",
+      "anchorX": 49,
+      "anchorY": 6,
+      "position": {
+        "x": 49.05,
+        "y": 0,
+        "z": 18.5
+      },
+      "visualOffset": {
+        "x": -0.45,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 49,
+          "y": 6
+        }
+      ]
+    },
+    {
+      "ownerId": "archive-shelf-north",
+      "modelId": "bookshelf",
+      "kind": "bookshelf",
+      "roomId": "return-desk-archive",
+      "anchorX": 49,
+      "anchorY": 3,
+      "position": {
+        "x": 49.5,
+        "y": 0,
+        "z": 21.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 0.65,
+        "y": 0.9,
+        "z": 1
+      },
+      "visibleWhen": "room-open",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 49,
+          "y": 3
+        }
+      ]
+    },
+    {
+      "ownerId": "archive-shelf-west",
+      "modelId": "bookshelf",
+      "kind": "bookshelf",
+      "roomId": "return-desk-archive",
+      "anchorX": 47,
+      "anchorY": 4,
+      "position": {
+        "x": 47.5,
+        "y": 0,
+        "z": 20.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -90.0,
+      "scale": {
+        "x": 0.65,
+        "y": 0.9,
+        "z": 1
+      },
+      "visibleWhen": "room-open",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 47,
+          "y": 4
+        }
+      ]
+    },
+    {
+      "ownerId": "archive-writing-desk",
+      "modelId": "table-1",
+      "kind": "table",
+      "roomId": "return-desk-archive",
+      "anchorX": 51,
+      "anchorY": 5,
+      "position": {
+        "x": 51.5,
+        "y": 0,
+        "z": 19.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 0.66,
+        "y": 0.85,
+        "z": 1
+      },
+      "visibleWhen": "room-open",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 51,
+          "y": 5
+        }
+      ]
+    },
+    {
+      "ownerId": "archive-storage-barrel",
+      "modelId": "barrel-3",
+      "kind": "container",
+      "roomId": "return-desk-archive",
+      "anchorX": 47,
+      "anchorY": 5,
+      "position": {
+        "x": 47.5,
+        "y": 0,
+        "z": 19.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "room-open",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 47,
+          "y": 5
+        }
+      ]
+    },
+    {
+      "ownerId": "second-bowl-kitchen-shell",
+      "modelId": "second-bowl-kitchen-shell",
+      "kind": "building-shell",
+      "roomId": "second-bowl-kitchen",
+      "anchorX": 51,
+      "anchorY": 21,
+      "position": {
+        "x": 51.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": false,
+      "footprint": []
+    },
+    {
+      "ownerId": "second-bowl-kitchen-roof",
+      "modelId": "second-bowl-kitchen-roof",
+      "kind": "roof",
+      "roomId": "second-bowl-kitchen",
+      "anchorX": 51,
+      "anchorY": 21,
+      "position": {
+        "x": 51.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": []
+    },
+    {
+      "ownerId": "kitchen-door",
+      "modelId": "oak-door",
+      "kind": "door",
+      "roomId": "second-bowl-kitchen",
+      "anchorX": 51,
+      "anchorY": 20,
+      "position": {
+        "x": 51.05,
+        "y": 0,
+        "z": 4.5
+      },
+      "visualOffset": {
+        "x": -0.45,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "owner-visible",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 51,
+          "y": 20
+        }
+      ]
+    },
+    {
+      "ownerId": "kitchen-masonry-hearth",
+      "modelId": "hearth-0",
+      "kind": "hearth",
+      "roomId": "second-bowl-kitchen",
+      "anchorX": 52,
+      "anchorY": 17,
+      "position": {
+        "x": 52.5,
+        "y": 0,
+        "z": 7.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 0.72,
+        "y": 0.9,
+        "z": 0.9
+      },
+      "visibleWhen": "room-open",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 52,
+          "y": 17
+        }
+      ]
+    },
+    {
+      "ownerId": "kitchen-prep-table",
+      "modelId": "table-0",
+      "kind": "table",
+      "roomId": "second-bowl-kitchen",
+      "anchorX": 50,
+      "anchorY": 18,
+      "position": {
+        "x": 50.5,
+        "y": 0,
+        "z": 6.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 0.66,
+        "y": 0.85,
+        "z": 1
+      },
+      "visibleWhen": "room-open",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 50,
+          "y": 18
+        }
+      ]
+    },
+    {
+      "ownerId": "kitchen-produce-barrel-north",
+      "modelId": "barrel-1",
+      "kind": "container",
+      "roomId": "second-bowl-kitchen",
+      "anchorX": 53,
+      "anchorY": 18,
+      "position": {
+        "x": 53.5,
+        "y": 0,
+        "z": 6.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "room-open",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 53,
+          "y": 18
+        }
+      ]
+    },
+    {
+      "ownerId": "kitchen-produce-barrel-south",
+      "modelId": "barrel-2",
+      "kind": "container",
+      "roomId": "second-bowl-kitchen",
+      "anchorX": 53,
+      "anchorY": 19,
+      "position": {
+        "x": 53.5,
+        "y": 0,
+        "z": 5.5
+      },
+      "visualOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visibleWhen": "room-open",
+      "mutable": true,
+      "footprint": [
+        {
+          "x": 53,
+          "y": 19
+        }
+      ]
+    }
+  ],
+  "staticPlacements": [
+    {
+      "id": "ground-00-00",
+      "modelId": "ground-patch-0",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-00-00",
+      "modelId": "detail-patch-00-00",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-01-00",
+      "modelId": "ground-patch-1",
+      "position": {
+        "x": 15,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-01-00",
+      "modelId": "detail-patch-01-00",
+      "position": {
+        "x": 15,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-02-00",
+      "modelId": "ground-patch-2",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-02-00",
+      "modelId": "detail-patch-02-00",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-03-00",
+      "modelId": "ground-patch-3",
+      "position": {
+        "x": 35,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-03-00",
+      "modelId": "detail-patch-03-00",
+      "position": {
+        "x": 35,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-04-00",
+      "modelId": "ground-patch-0",
+      "position": {
+        "x": 45,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-04-00",
+      "modelId": "detail-patch-04-00",
+      "position": {
+        "x": 45,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-05-00",
+      "modelId": "ground-patch-1",
+      "position": {
+        "x": 55,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-05-00",
+      "modelId": "detail-patch-05-00",
+      "position": {
+        "x": 55,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-06-00",
+      "modelId": "ground-patch-2",
+      "position": {
+        "x": 65,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-06-00",
+      "modelId": "detail-patch-06-00",
+      "position": {
+        "x": 65,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-07-00",
+      "modelId": "ground-patch-3",
+      "position": {
+        "x": 75,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-07-00",
+      "modelId": "detail-patch-07-00",
+      "position": {
+        "x": 75,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-00-01",
+      "modelId": "ground-patch-2",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-00-01",
+      "modelId": "detail-patch-00-01",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-01-01",
+      "modelId": "ground-patch-3",
+      "position": {
+        "x": 15,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-01-01",
+      "modelId": "detail-patch-01-01",
+      "position": {
+        "x": 15,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-02-01",
+      "modelId": "ground-patch-0",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-02-01",
+      "modelId": "detail-patch-02-01",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-03-01",
+      "modelId": "ground-patch-1",
+      "position": {
+        "x": 35,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-03-01",
+      "modelId": "detail-patch-03-01",
+      "position": {
+        "x": 35,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-04-01",
+      "modelId": "ground-patch-2",
+      "position": {
+        "x": 45,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-04-01",
+      "modelId": "detail-patch-04-01",
+      "position": {
+        "x": 45,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-05-01",
+      "modelId": "ground-patch-3",
+      "position": {
+        "x": 55,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-05-01",
+      "modelId": "detail-patch-05-01",
+      "position": {
+        "x": 55,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-06-01",
+      "modelId": "ground-patch-0",
+      "position": {
+        "x": 65,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-06-01",
+      "modelId": "detail-patch-06-01",
+      "position": {
+        "x": 65,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-07-01",
+      "modelId": "ground-patch-1",
+      "position": {
+        "x": 75,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-07-01",
+      "modelId": "detail-patch-07-01",
+      "position": {
+        "x": 75,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-00-02",
+      "modelId": "ground-patch-0",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-00-02",
+      "modelId": "detail-patch-00-02",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-01-02",
+      "modelId": "ground-patch-1",
+      "position": {
+        "x": 15,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-01-02",
+      "modelId": "detail-patch-01-02",
+      "position": {
+        "x": 15,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-02-02",
+      "modelId": "ground-patch-2",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-02-02",
+      "modelId": "detail-patch-02-02",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-03-02",
+      "modelId": "ground-patch-3",
+      "position": {
+        "x": 35,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-03-02",
+      "modelId": "detail-patch-03-02",
+      "position": {
+        "x": 35,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-04-02",
+      "modelId": "ground-patch-0",
+      "position": {
+        "x": 45,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-04-02",
+      "modelId": "detail-patch-04-02",
+      "position": {
+        "x": 45,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-05-02",
+      "modelId": "ground-patch-1",
+      "position": {
+        "x": 55,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-05-02",
+      "modelId": "detail-patch-05-02",
+      "position": {
+        "x": 55,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-06-02",
+      "modelId": "ground-patch-2",
+      "position": {
+        "x": 65,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-06-02",
+      "modelId": "detail-patch-06-02",
+      "position": {
+        "x": 65,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-07-02",
+      "modelId": "ground-patch-3",
+      "position": {
+        "x": 75,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-07-02",
+      "modelId": "detail-patch-07-02",
+      "position": {
+        "x": 75,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-00-03",
+      "modelId": "ground-patch-2",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-00-03",
+      "modelId": "detail-patch-00-03",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-01-03",
+      "modelId": "ground-patch-3",
+      "position": {
+        "x": 15,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-01-03",
+      "modelId": "detail-patch-01-03",
+      "position": {
+        "x": 15,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-02-03",
+      "modelId": "ground-patch-0",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-02-03",
+      "modelId": "detail-patch-02-03",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-03-03",
+      "modelId": "ground-patch-1",
+      "position": {
+        "x": 35,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-03-03",
+      "modelId": "detail-patch-03-03",
+      "position": {
+        "x": 35,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-04-03",
+      "modelId": "ground-patch-2",
+      "position": {
+        "x": 45,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-04-03",
+      "modelId": "detail-patch-04-03",
+      "position": {
+        "x": 45,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-05-03",
+      "modelId": "ground-patch-3",
+      "position": {
+        "x": 55,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-05-03",
+      "modelId": "detail-patch-05-03",
+      "position": {
+        "x": 55,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-06-03",
+      "modelId": "ground-patch-0",
+      "position": {
+        "x": 65,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-06-03",
+      "modelId": "detail-patch-06-03",
+      "position": {
+        "x": 65,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-07-03",
+      "modelId": "ground-patch-1",
+      "position": {
+        "x": 75,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-07-03",
+      "modelId": "detail-patch-07-03",
+      "position": {
+        "x": 75,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-00-04",
+      "modelId": "ground-patch-0",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-00-04",
+      "modelId": "detail-patch-00-04",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-01-04",
+      "modelId": "ground-patch-1",
+      "position": {
+        "x": 15,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-01-04",
+      "modelId": "detail-patch-01-04",
+      "position": {
+        "x": 15,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-02-04",
+      "modelId": "ground-patch-2",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-02-04",
+      "modelId": "detail-patch-02-04",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-03-04",
+      "modelId": "ground-patch-3",
+      "position": {
+        "x": 35,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-03-04",
+      "modelId": "detail-patch-03-04",
+      "position": {
+        "x": 35,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-04-04",
+      "modelId": "ground-patch-0",
+      "position": {
+        "x": 45,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-04-04",
+      "modelId": "detail-patch-04-04",
+      "position": {
+        "x": 45,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-05-04",
+      "modelId": "ground-patch-1",
+      "position": {
+        "x": 55,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-05-04",
+      "modelId": "detail-patch-05-04",
+      "position": {
+        "x": 55,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-06-04",
+      "modelId": "ground-patch-2",
+      "position": {
+        "x": 65,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-06-04",
+      "modelId": "detail-patch-06-04",
+      "position": {
+        "x": 65,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-07-04",
+      "modelId": "ground-patch-3",
+      "position": {
+        "x": 75,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-07-04",
+      "modelId": "detail-patch-07-04",
+      "position": {
+        "x": 75,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "accent-00",
+      "modelId": "tree-0",
+      "position": {
+        "x": 22.6,
+        "y": 0,
+        "z": 21.3
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.15,
+        "y": 1.15,
+        "z": 1.15
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-01",
+      "modelId": "tree-1",
+      "position": {
+        "x": 23.1,
+        "y": 0,
+        "z": 3.7
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.05,
+        "y": 1.05,
+        "z": 1.05
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-02",
+      "modelId": "tree-2",
+      "position": {
+        "x": 56.7,
+        "y": 0,
+        "z": 3.9
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 0.95,
+        "y": 0.95,
+        "z": 0.95
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-03",
+      "modelId": "tree-3",
+      "position": {
+        "x": 56.3,
+        "y": 0,
+        "z": 15.6
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.1,
+        "y": 1.1,
+        "z": 1.1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-04",
+      "modelId": "tree-1",
+      "position": {
+        "x": 54.8,
+        "y": 0,
+        "z": 20.6
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 0.8,
+        "y": 0.8,
+        "z": 0.8
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-05",
+      "modelId": "shrub-0",
+      "position": {
+        "x": 24.1,
+        "y": 0,
+        "z": 23.9
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 0.9,
+        "y": 0.9,
+        "z": 0.9
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-06",
+      "modelId": "shrub-2",
+      "position": {
+        "x": 57.1,
+        "y": 0,
+        "z": 23.1
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-07",
+      "modelId": "shrub-3",
+      "position": {
+        "x": 57.2,
+        "y": 0,
+        "z": 7.2
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 0.9,
+        "y": 0.9,
+        "z": 0.9
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-08",
+      "modelId": "rocks-0",
+      "position": {
+        "x": 24.0,
+        "y": 0,
+        "z": 24.1
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.3,
+        "y": 1.3,
+        "z": 1.3
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-09",
+      "modelId": "rocks-1",
+      "position": {
+        "x": 56.5,
+        "y": 0,
+        "z": 24.3
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.2,
+        "y": 1.2,
+        "z": 1.2
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-10",
+      "modelId": "rocks-2",
+      "position": {
+        "x": 23.1,
+        "y": 0,
+        "z": 18.8
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.2,
+        "y": 1.2,
+        "z": 1.2
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-11",
+      "modelId": "rocks-3",
+      "position": {
+        "x": 58.0,
+        "y": 0,
+        "z": 19.1
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.2,
+        "y": 1.2,
+        "z": 1.2
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-12",
+      "modelId": "rocks-2",
+      "position": {
+        "x": 25.2,
+        "y": 0,
+        "z": 1.9
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.15,
+        "y": 1.15,
+        "z": 1.15
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-13",
+      "modelId": "rocks-1",
+      "position": {
+        "x": 56.1,
+        "y": 0,
+        "z": 1.2
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.1,
+        "y": 1.1,
+        "z": 1.1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-14",
+      "modelId": "planter-0",
+      "position": {
+        "x": 25.9,
+        "y": 0,
+        "z": 17.2
+      },
+      "rotationY": -90,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-15",
+      "modelId": "planter-2",
+      "position": {
+        "x": 26.0,
+        "y": 0,
+        "z": 6.6
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-16",
+      "modelId": "planter-0",
+      "position": {
+        "x": 31.0,
+        "y": 0,
+        "z": 1.3
+      },
+      "rotationY": -90,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-17",
+      "modelId": "planter-1",
+      "position": {
+        "x": 55.0,
+        "y": 0,
+        "z": 15.7
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-00",
+      "modelId": "fence-0",
+      "position": {
+        "x": 30.0,
+        "y": 0,
+        "z": 24.0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-01",
+      "modelId": "fence-1",
+      "position": {
+        "x": 32.4,
+        "y": 0,
+        "z": 24.0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-02",
+      "modelId": "fence-2",
+      "position": {
+        "x": 34.8,
+        "y": 0,
+        "z": 24.0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-03",
+      "modelId": "fence-3",
+      "position": {
+        "x": 44.2,
+        "y": 0,
+        "z": 23.2
+      },
+      "rotationY": 25.783100780887047,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-04",
+      "modelId": "fence-0",
+      "position": {
+        "x": 46.4,
+        "y": 0,
+        "z": 22.1
+      },
+      "rotationY": 25.783100780887047,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-05",
+      "modelId": "fence-1",
+      "position": {
+        "x": 54.9,
+        "y": 0,
+        "z": 22.3
+      },
+      "rotationY": -5.729577951308233,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-06",
+      "modelId": "fence-2",
+      "position": {
+        "x": 56.1,
+        "y": 0,
+        "z": 10.1
+      },
+      "rotationY": 42.97183463481174,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-07",
+      "modelId": "fence-3",
+      "position": {
+        "x": 57.0,
+        "y": 0,
+        "z": 8.0
+      },
+      "rotationY": -90.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-08",
+      "modelId": "fence-0",
+      "position": {
+        "x": 57.0,
+        "y": 0,
+        "z": 5.6
+      },
+      "rotationY": -90.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-09",
+      "modelId": "fence-1",
+      "position": {
+        "x": 47.0,
+        "y": 0,
+        "z": 0.7
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-10",
+      "modelId": "fence-2",
+      "position": {
+        "x": 49.4,
+        "y": 0,
+        "z": 0.7
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-11",
+      "modelId": "fence-3",
+      "position": {
+        "x": 51.8,
+        "y": 0,
+        "z": 0.7
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-12",
+      "modelId": "fence-0",
+      "position": {
+        "x": 27.0,
+        "y": 0,
+        "z": 4.5
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    }
+  ],
+  "starterGardenCells": [
+    {
+      "x": 41,
+      "y": 21
+    },
+    {
+      "x": 41,
+      "y": 22
+    },
+    {
+      "x": 41,
+      "y": 23
+    },
+    {
+      "x": 42,
+      "y": 21
+    },
+    {
+      "x": 42,
+      "y": 22
+    },
+    {
+      "x": 42,
+      "y": 23
+    }
+  ],
+  "buildings": [
+    {
+      "id": "keeper-gatehouse",
+      "shellOwnerId": "keeper-gatehouse-shell",
+      "roofOwnerId": "keeper-gatehouse-roof",
+      "doorOwnerId": "keeper-door"
+    },
+    {
+      "id": "dry-hem-guesthouse",
+      "shellOwnerId": "dry-hem-guesthouse-shell",
+      "roofOwnerId": "dry-hem-guesthouse-roof",
+      "doorOwnerId": "guesthouse-door"
+    },
+    {
+      "id": "long-loop-ropeshop",
+      "shellOwnerId": "long-loop-ropeshop-shell",
+      "roofOwnerId": "long-loop-ropeshop-roof",
+      "doorOwnerId": "ropeshop-door"
+    },
+    {
+      "id": "return-desk-archive",
+      "shellOwnerId": "return-desk-archive-shell",
+      "roofOwnerId": "return-desk-archive-roof",
+      "doorOwnerId": "archive-door"
+    },
+    {
+      "id": "second-bowl-kitchen",
+      "shellOwnerId": "second-bowl-kitchen-shell",
+      "roofOwnerId": "second-bowl-kitchen-roof",
+      "doorOwnerId": "kitchen-door"
+    }
+  ],
+  "materials": [
+    {
+      "id": "VillagePalette",
+      "baseColorTexture": "textures/VillagePalette.png",
+      "roughness": 0.88,
+      "metallic": 0,
+      "opaque": true
+    },
+    {
+      "id": "VillageWater",
+      "baseColorTexture": "",
+      "baseColor": {
+        "r": 0.09,
+        "g": 0.21,
+        "b": 0.23,
+        "a": 1
+      },
+      "roughness": 0.43,
+      "metallic": 0.05,
+      "opaque": true
+    }
+  ]
+}

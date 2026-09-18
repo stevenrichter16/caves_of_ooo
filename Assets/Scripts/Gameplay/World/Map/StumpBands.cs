@@ -33,7 +33,7 @@ namespace CavesOfOoo.Core
     public static class StumpBands
     {
         // '.'=off-mountain, F=Foothills, S=Slopes, U=Summit.
-        // Mirrors BiomeRows rows 0-5; the T region spans cols 1-5.
+        // Mirrors BiomeRows: the main tepui plus its exposed southern root spur.
         private static readonly string[] BandRows =
         {
             "....................", // 0
@@ -42,6 +42,8 @@ namespace CavesOfOoo.Core
             ".FUUUF..............", // 3  (3,3) — the Root sleeps under the summit
             ".FSUF...............", // 4
             "..FSSF..............", // 5  (3,5) — the Felling-Site, base-slope
+            "....................", // 6
+            "...F................", // 7  (3,7) — exposed southern root spur
         };
 
         /// <summary>The tepui's warm base tint — pink-grey stone. One

@@ -56,6 +56,10 @@ namespace CavesOfOoo.Editor.Scenarios
         // Combat Stress
         // =========================================================
 
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Spell FX Showcase", priority = 99)]
+        private static void Launch_SpellFxShowcase()
+            => ScenarioRunner.Launch<SpellFxShowcase>();
+
         [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Five Snapjaw Ambush", priority = 100)]
         private static void Launch_FiveSnapjawAmbush()
             => ScenarioRunner.Launch<FiveSnapjawAmbush>();

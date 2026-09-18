@@ -1,0 +1,8 @@
+{
+  "mode": "built-in imagegen",
+  "id": "environment-props-alpha-attempt",
+  "prompt": "Edit the attached 1536x1024 prop sheet to deliver a real transparent-background RGBA PNG. Preserve all twelve isolated pixel-art props in exactly their existing 4-column by 3-row positions, the current canvas size, silhouettes, colors, scale, and details. REMOVE the entire pale white/light-grey checkerboard pattern from every background area, including holes within roots and spaces between plant stems. These background pixels must have alpha=0; opaque prop interiors alpha=255. Do not draw a checkerboard, white background, grey background, or any other background. The output is a game sprite atlas with actual alpha transparency, not an illustration of transparency. Do not add labels, shadows outside the props, borders, padding changes, or extra objects.",
+  "reference": "generated/studies/environment-props-v1.png",
+  "output": "generated/studies/environment-props-alpha-attempt.png",
+  "outcome": "RGB PNG with painted checkerboard; rejected as transparent sprite asset"
+}

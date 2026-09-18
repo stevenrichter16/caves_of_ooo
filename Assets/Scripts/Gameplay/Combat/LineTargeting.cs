@@ -163,13 +163,23 @@ namespace CavesOfOoo.Core
             if (cell == null)
                 return null;
 
-            for (int i = 0; i < cell.Objects.Count; i++)
+            for (int i = 0; i < cell.Occupants.Count; i++)
             {
-                Entity entity = cell.Objects[i];
+                Entity entity = cell.Occupants[i];
                 if (entity == caster)
                     continue;
-                if (entity.HasTag("Creature") || entity.HasTag("Wall") || entity.HasTag("Terrain"))
+                if (entity.HasTag("Creature"))
                     continue;
+                // Authored multi-cell scenery has one destructible owner at
+                // every occupied surface. Ordinary terrain retains its
+                // established geometry-only projectile behavior.
+                if (entity.HasTag("Wall") || entity.HasTag("Terrain"))
+                {
+                    if (entity.HasPart<SpatialFootprintPart>()
+                        && entity.GetPart<DestructiblePart>()?.Gone == false)
+                        return entity;
+                    continue;
+                }
 
                 if (entity.GetStat("Hitpoints") != null
                     || entity.GetPart<ThermalPart>() != null
@@ -188,9 +198,9 @@ namespace CavesOfOoo.Core
             if (cell == null)
                 return null;
 
-            for (int i = 0; i < cell.Objects.Count; i++)
+            for (int i = 0; i < cell.Occupants.Count; i++)
             {
-                Entity entity = cell.Objects[i];
+                Entity entity = cell.Occupants[i];
                 if (entity == caster)
                     continue;
                 if (entity.HasTag("Creature"))

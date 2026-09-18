@@ -1,0 +1,51 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "NativeSpellHitchRecoveryTests",
+  "results": {
+    "id": "2",
+    "testcasecount": "19",
+    "result": "Failed(Child)",
+    "total": "19",
+    "passed": "12",
+    "failed": "7",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-11 16:40:30Z",
+    "end-time": "2026-09-11 16:40:31Z",
+    "duration": "1.5336104"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.ConcurrentNativeHandlesAndTheirViewsAdvanceOnTheSameRecoveredClock",
+      "message": "  Expected: Playing\n  But was:  Completed\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.LongFramePreservesActualDirectionalSpellAndConditionalFeedback(\"Hydromancy_JetBlast\",Full)",
+      "message": "  The actual long frame must not erase an unseen contact interval.\n  Expected: Playing\n  But was:  Completed\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.LongFramePreservesActualDirectionalSpellAndConditionalFeedback(\"Hydromancy_JetBlast\",Reduced)",
+      "message": "  The actual long frame must not erase an unseen contact interval.\n  Expected: Playing\n  But was:  Completed\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.LongFramePreservesActualDirectionalSpellAndConditionalFeedback(\"Cryomancy_RimeGrip\",Full)",
+      "message": "  The actual long frame must not erase an unseen contact interval.\n  Expected: Playing\n  But was:  Completed\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.LongFramePreservesActualDirectionalSpellAndConditionalFeedback(\"Cryomancy_RimeGrip\",Reduced)",
+      "message": "  The actual long frame must not erase an unseen contact interval.\n  Expected: Playing\n  But was:  Completed\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.NativeRecoveryDoesNotSlowLegacyParticlesOrTheSpriteFallback",
+      "message": "  Expected: Completed\n  But was:  Playing\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.RecoveryDiagnosticsRetainRawWallTimeAndDistinguishAnOrdinaryFrame(True)",
+      "message": "  Expected: 1\n  But was:  0\n"
+    }
+  ]
+}

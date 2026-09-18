@@ -1,0 +1,4720 @@
+{
+    "runId": "fdd719181543455586a80feb4c30c1b7",
+    "saveRoot": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/7add6eeac1d1439cabdc5629aa378cd3",
+    "gameId": "40a8e9ab2f0c4164b4d96797066696d6",
+    "markerId": "StarterSpell3D-native-marker-af9a0dc901a14b43811f36fb1f55902e",
+    "fatal": "System.InvalidOperationException: Native fixture mismatch forCryomancy_RimeGrip:profile\n  at CavesOfOoo.Scenarios.Custom.StarterSpell3DNativeAudit+<CommandCase>d__89.MoveNext () [0x00e83] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/StarterSpell3DNativeAudit.cs:246 \n  at CavesOfOoo.Scenarios.Custom.StarterSpell3DNativeAudit+<RunSafely>d__84.MoveNext () [0x00057] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/StarterSpell3DNativeAudit.cs:87 ",
+    "bounds": "Actual native1920x1080 Main GameView. One real current-hotbar Flaming Hands/direction cast and ordinary N/south seam input. Other casts are explicitly reset deterministic SkillsPart commands using the real player and disposable unfactioned recipient/crop fixtures; their copied queue records are observed without draining. Showcase/control cases restore only their bounded lane's original ground before each command, so prior fixture writing is not mistaken for the next spell; ordinary accumulated writing remains during profile phases. Profile is four20s native render phases, paired Full/Reduced in town and south; startup/bind/screenshots excluded, fixture setup/observer/counter overhead included. World simulation does not advance during command-fixture playback. Captures use1x settings with measured wall timestamps; capture overhead may lower sampling rate. This establishes observable presentation and cleanup, not subjective comfort, process-cold/build performance or long-session leak confidence.",
+    "rawFrames": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-frames.csv",
+    "rawSha256": "12f186ff90bbcab22c9b43cca4d74ba551f0899958a10d402c919f6b4d03cc4d",
+    "unityVersion": "6000.3.4f1",
+    "gpu": "Apple M5",
+    "cpu": "Apple M5",
+    "failures": 2,
+    "unexpectedErrors": 0,
+    "worldSeed": 729490642,
+    "screenWidth": 1920,
+    "screenHeight": 1080,
+    "profileFrames": 10515,
+    "activeFrames": 3258,
+    "nativeKeyboardCasts": 1,
+    "targetFrameRate": -1,
+    "vSyncCount": 0,
+    "wallSeconds": 67.52111529999999,
+    "profileSeconds": 20.423985875000008,
+    "workloadComplete": false,
+    "shutdownObserved": true,
+    "shutdownRootHeld": true,
+    "shutdownSavingUnregistered": true,
+    "displayPreferencesRestored": true,
+    "inputSettingsRestored": true,
+    "checks": [
+        {
+            "name": "native_N_real_new_game",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_town_ready",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_spell_prepared_before_cast",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "first_cast_reuses_prepared_assets",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_keyboard_starter_cast",
+            "detail": "{\"slot\":1,\"damage\":3,\"cooldown\":9,\"ticks\":10,\"peakMeshes\":14,\"sawBlocking\":true,\"sourceUnchanged\":true,\"nativeEntry\":\"Pyromancy_FlamingHands\",\"finalState\":\"Normal\"}",
+            "pass": true
+        },
+        {
+            "name": "command_1_showcase_0",
+            "detail": "Real command/copy/native/cleanup; peak=23",
+            "pass": true
+        },
+        {
+            "name": "command_2_showcase_1",
+            "detail": "Real command/copy/native/cleanup; peak=14",
+            "pass": true
+        },
+        {
+            "name": "command_3_showcase_2",
+            "detail": "Real command/copy/native/cleanup; peak=35",
+            "pass": true
+        },
+        {
+            "name": "command_4_showcase_3",
+            "detail": "Real command/copy/native/cleanup; peak=17",
+            "pass": true
+        },
+        {
+            "name": "command_5_showcase_4",
+            "detail": "Real command/copy/native/cleanup; peak=15",
+            "pass": true
+        },
+        {
+            "name": "command_6_showcase_5",
+            "detail": "Real command/copy/native/cleanup; peak=7",
+            "pass": true
+        },
+        {
+            "name": "command_7_showcase_6",
+            "detail": "Real command/copy/native/cleanup; peak=15",
+            "pass": true
+        },
+        {
+            "name": "all_seven_command_outcomes",
+            "detail": "Pyromancy_EmberSpit,Pyromancy_FlamingHands,Hydromancy_JetBlast,Galvanism_GroundSurge,Cryomancy_RimeGrip,Spellcraft_Calm,Hydromancy_ConjureRain",
+            "pass": true
+        },
+        {
+            "name": "command_8_reduced-success_4",
+            "detail": "Real command/copy/native/cleanup; peak=7",
+            "pass": true
+        },
+        {
+            "name": "command_9_deny-frozen_4",
+            "detail": "Real command/copy/native/cleanup; peak=1",
+            "pass": true
+        },
+        {
+            "name": "rime_denied_reduced_feedback",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "command_10_reduced-success_5",
+            "detail": "Real command/copy/native/cleanup; peak=4",
+            "pass": true
+        },
+        {
+            "name": "command_11_peaceful_5",
+            "detail": "Real command/copy/native/cleanup; peak=2",
+            "pass": true
+        },
+        {
+            "name": "calm_peaceful_no_new_status",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "command_12_empty-rain_6",
+            "detail": "Real command/copy/native/cleanup; peak=0",
+            "pass": true
+        },
+        {
+            "name": "rain_empty_no_crop_mesh",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "command_13_profile_0",
+            "detail": "Real command/copy/native/cleanup; peak=23",
+            "pass": true
+        },
+        {
+            "name": "command_14_profile_1",
+            "detail": "Real command/copy/native/cleanup; peak=14",
+            "pass": true
+        },
+        {
+            "name": "command_15_profile_2",
+            "detail": "Real command/copy/native/cleanup; peak=35",
+            "pass": true
+        },
+        {
+            "name": "command_16_profile_3",
+            "detail": "Real command/copy/native/cleanup; peak=17",
+            "pass": true
+        },
+        {
+            "name": "command_17_profile_4",
+            "detail": "Real command/copy/native/cleanup; peak=18",
+            "pass": true
+        },
+        {
+            "name": "command_18_profile_5",
+            "detail": "Real command/copy/native/cleanup; peak=7",
+            "pass": true
+        },
+        {
+            "name": "command_19_profile_6",
+            "detail": "Real command/copy/native/cleanup; peak=15",
+            "pass": true
+        },
+        {
+            "name": "command_20_profile_0",
+            "detail": "Real command/copy/native/cleanup; peak=23",
+            "pass": true
+        },
+        {
+            "name": "command_21_profile_1",
+            "detail": "Real command/copy/native/cleanup; peak=14",
+            "pass": true
+        },
+        {
+            "name": "command_22_profile_2",
+            "detail": "Real command/copy/native/cleanup; peak=35",
+            "pass": true
+        },
+        {
+            "name": "command_23_profile_3",
+            "detail": "Real command/copy/native/cleanup; peak=17",
+            "pass": true
+        },
+        {
+            "name": "command_24_profile_4",
+            "detail": "Real command/copy/native/cleanup; peak=15",
+            "pass": true
+        },
+        {
+            "name": "command_25_profile_5",
+            "detail": "Real command/copy/native/cleanup; peak=7",
+            "pass": true
+        },
+        {
+            "name": "command_26_profile_0",
+            "detail": "Real command/copy/native/cleanup; peak=12",
+            "pass": true
+        },
+        {
+            "name": "command_27_profile_1",
+            "detail": "Real command/copy/native/cleanup; peak=12",
+            "pass": true
+        },
+        {
+            "name": "command_28_profile_2",
+            "detail": "Real command/copy/native/cleanup; peak=27",
+            "pass": true
+        },
+        {
+            "name": "command_29_profile_3",
+            "detail": "Real command/copy/native/cleanup; peak=13",
+            "pass": true
+        },
+        {
+            "name": "command_30_profile_4",
+            "detail": "Real command/copy/native/cleanup; peak=7",
+            "pass": true
+        },
+        {
+            "name": "command_31_profile_5",
+            "detail": "Real command/copy/native/cleanup; peak=4",
+            "pass": true
+        },
+        {
+            "name": "command_32_profile_6",
+            "detail": "Real command/copy/native/cleanup; peak=4",
+            "pass": true
+        },
+        {
+            "name": "command_33_profile_0",
+            "detail": "Real command/copy/native/cleanup; peak=12",
+            "pass": true
+        },
+        {
+            "name": "command_34_profile_1",
+            "detail": "Real command/copy/native/cleanup; peak=12",
+            "pass": true
+        },
+        {
+            "name": "command_35_profile_2",
+            "detail": "Real command/copy/native/cleanup; peak=27",
+            "pass": true
+        },
+        {
+            "name": "command_36_profile_3",
+            "detail": "Real command/copy/native/cleanup; peak=13",
+            "pass": true
+        },
+        {
+            "name": "command_37_profile_4",
+            "detail": "Real command/copy/native/cleanup; peak=0",
+            "pass": false
+        },
+        {
+            "name": "fatal",
+            "detail": "System.InvalidOperationException: Native fixture mismatch forCryomancy_RimeGrip:profile\n  at CavesOfOoo.Scenarios.Custom.StarterSpell3DNativeAudit+<CommandCase>d__89.MoveNext () [0x00e83] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/StarterSpell3DNativeAudit.cs:246 \n  at CavesOfOoo.Scenarios.Custom.StarterSpell3DNativeAudit+<RunSafely>d__84.MoveNext () [0x00057] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/StarterSpell3DNativeAudit.cs:87 ",
+            "pass": false
+        }
+    ],
+    "firstCast": {
+        "libraryInstancesBefore": 1,
+        "libraryInstancesAfter": 1,
+        "poolBefore": 384,
+        "poolAfter": 384,
+        "peakMeshes": 14,
+        "damage": 3,
+        "cooldown": 9,
+        "ticks": 10,
+        "sawBlocking": true,
+        "sourceUnchanged": true,
+        "nativeEntry": "Pyromancy_FlamingHands",
+        "finalState": "Normal",
+        "allocatedMemoryBefore": 471966035,
+        "allocatedMemoryAfter": 467872011,
+        "maxInputNanoseconds": 8450833,
+        "maxMainNanoseconds": 21293125,
+        "maxGcBytes": 2213989,
+        "startSeconds": 12.880181630435376,
+        "wallSeconds": 0.6143221659999973,
+        "maxFrameSeconds": 0.02156720496714115,
+        "samples": [
+            {
+                "frame": 66,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.881194380435373,
+                "delta": 0.0031982071232050659,
+                "input": 8125,
+                "main": 3201334,
+                "gc": 29199,
+                "blocking": false
+            },
+            {
+                "frame": 67,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.902361171435376,
+                "delta": 0.0038557539228349926,
+                "input": 7458,
+                "main": 3784709,
+                "gc": 29919,
+                "blocking": true
+            },
+            {
+                "frame": 68,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.906934463435375,
+                "delta": 0.02156720496714115,
+                "input": 8450833,
+                "main": 21293125,
+                "gc": 695073,
+                "blocking": true
+            },
+            {
+                "frame": 69,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.910651880435376,
+                "delta": 0.0041884141974151138,
+                "input": 98125,
+                "main": 4445333,
+                "gc": 29407,
+                "blocking": true
+            },
+            {
+                "frame": 70,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.914629171435374,
+                "delta": 0.004121166188269854,
+                "input": 10500,
+                "main": 3638209,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 71,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.932740963435374,
+                "delta": 0.018052713945508004,
+                "input": 7667,
+                "main": 18538083,
+                "gc": 2213989,
+                "blocking": true
+            },
+            {
+                "frame": 72,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.936306463435374,
+                "delta": 0.0037178287748247387,
+                "input": 8584,
+                "main": 3810291,
+                "gc": 31375,
+                "blocking": true
+            },
+            {
+                "frame": 73,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.939324171435376,
+                "delta": 0.002996166469529271,
+                "input": 6708,
+                "main": 3032333,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 74,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.942369880435374,
+                "delta": 0.0030528344213962557,
+                "input": 8917,
+                "main": 3007000,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 75,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.945349463435376,
+                "delta": 0.0028220450039952995,
+                "input": 5917,
+                "main": 2857083,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 76,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.948657838435376,
+                "delta": 0.0033744543325155975,
+                "input": 11250,
+                "main": 3230417,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 77,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.952830005435376,
+                "delta": 0.004255208186805248,
+                "input": 8417,
+                "main": 4342417,
+                "gc": 39729,
+                "blocking": true
+            },
+            {
+                "frame": 78,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.956414755435374,
+                "delta": 0.003599376417696476,
+                "input": 10834,
+                "main": 3647917,
+                "gc": 37503,
+                "blocking": true
+            },
+            {
+                "frame": 79,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.959484796435375,
+                "delta": 0.0030522888991981746,
+                "input": 6083,
+                "main": 2996250,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 80,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.962554005435374,
+                "delta": 0.0030571287497878076,
+                "input": 10584,
+                "main": 3091541,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 81,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.965979421435373,
+                "delta": 0.003229705151170492,
+                "input": 6083,
+                "main": 3039166,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 82,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.969287880435376,
+                "delta": 0.0036200822796672584,
+                "input": 11208,
+                "main": 3641750,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 83,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.972369546435376,
+                "delta": 0.0028896683361381294,
+                "input": 6000,
+                "main": 2996625,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 84,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.975561463435375,
+                "delta": 0.003256583120673895,
+                "input": 12209,
+                "main": 3208541,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 85,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.978667380435374,
+                "delta": 0.003117332700639963,
+                "input": 10959,
+                "main": 3175042,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 86,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.981654671435374,
+                "delta": 0.0028839213773608209,
+                "input": 9667,
+                "main": 2892250,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 87,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.984847505435374,
+                "delta": 0.0031533304136246444,
+                "input": 8250,
+                "main": 3197667,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 88,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.987732588435373,
+                "delta": 0.003073873231187463,
+                "input": 8708,
+                "main": 3038208,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 89,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.991410755435373,
+                "delta": 0.0035910431761294605,
+                "input": 8500,
+                "main": 3384208,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 90,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.994872005435374,
+                "delta": 0.0034735403023660185,
+                "input": 8000,
+                "main": 3573958,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 91,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 12.998052588435373,
+                "delta": 0.0031714215874671938,
+                "input": 12417,
+                "main": 3200792,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 92,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.001305671435374,
+                "delta": 0.0033068310003727676,
+                "input": 11708,
+                "main": 3288625,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 93,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.004563505435373,
+                "delta": 0.00310795777477324,
+                "input": 10917,
+                "main": 3159250,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 94,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.008381421435376,
+                "delta": 0.004013456404209137,
+                "input": 13333,
+                "main": 3833000,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 95,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.011479713435373,
+                "delta": 0.003049206454306841,
+                "input": 9875,
+                "main": 3196625,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 96,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.014847338435376,
+                "delta": 0.0032241709996014835,
+                "input": 10959,
+                "main": 3201709,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 97,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.018446838435376,
+                "delta": 0.003747668582946062,
+                "input": 11042,
+                "main": 3591375,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 98,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.021924880435373,
+                "delta": 0.003480661893263459,
+                "input": 8833,
+                "main": 3506834,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 99,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.025418588435374,
+                "delta": 0.0033204578794538976,
+                "input": 8542,
+                "main": 3465208,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 100,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.028501880435373,
+                "delta": 0.003264044877141714,
+                "input": 12750,
+                "main": 3204834,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 101,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.031590213435374,
+                "delta": 0.0029689555522054435,
+                "input": 10792,
+                "main": 3020209,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 102,
+                "meshes": 8,
+                "pool": 384,
+                "seconds": 13.035235005435374,
+                "delta": 0.003233375959098339,
+                "input": 10042,
+                "main": 3260458,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 103,
+                "meshes": 8,
+                "pool": 384,
+                "seconds": 13.038311588435376,
+                "delta": 0.003675170009955764,
+                "input": 7291,
+                "main": 3544375,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 104,
+                "meshes": 8,
+                "pool": 384,
+                "seconds": 13.041581671435376,
+                "delta": 0.0031718749087303879,
+                "input": 7333,
+                "main": 3159542,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 105,
+                "meshes": 8,
+                "pool": 384,
+                "seconds": 13.044825463435375,
+                "delta": 0.003104542149230838,
+                "input": 10458,
+                "main": 3181583,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 106,
+                "meshes": 8,
+                "pool": 384,
+                "seconds": 13.048131546435373,
+                "delta": 0.003399666864424944,
+                "input": 11292,
+                "main": 3407375,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 107,
+                "meshes": 8,
+                "pool": 384,
+                "seconds": 13.051363380435375,
+                "delta": 0.0032237032428383829,
+                "input": 10041,
+                "main": 3191917,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 108,
+                "meshes": 8,
+                "pool": 384,
+                "seconds": 13.062692671435374,
+                "delta": 0.011320712976157666,
+                "input": 11125,
+                "main": 11333666,
+                "gc": 940777,
+                "blocking": true
+            },
+            {
+                "frame": 109,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.066144421435374,
+                "delta": 0.003386536380276084,
+                "input": 5666,
+                "main": 3344417,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 110,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.069397255435375,
+                "delta": 0.003378876019269228,
+                "input": 9000,
+                "main": 3424625,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 111,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.072650713435375,
+                "delta": 0.003220542799681425,
+                "input": 12166,
+                "main": 3191083,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 112,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.075938046435374,
+                "delta": 0.0033108347561210396,
+                "input": 9542,
+                "main": 3292333,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 113,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.079177796435376,
+                "delta": 0.0032023312523961069,
+                "input": 10792,
+                "main": 3248125,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 114,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.082391880435376,
+                "delta": 0.0031510842964053156,
+                "input": 10833,
+                "main": 3031583,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 115,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.085622963435375,
+                "delta": 0.003278543008491397,
+                "input": 8709,
+                "main": 3321958,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 116,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.088997838435374,
+                "delta": 0.0032937501091510059,
+                "input": 8250,
+                "main": 3260167,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 117,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.092120963435376,
+                "delta": 0.0032318311277776958,
+                "input": 8542,
+                "main": 3301750,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 118,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.095378921435375,
+                "delta": 0.0033084184397011997,
+                "input": 5583,
+                "main": 3225500,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 119,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.098574255435376,
+                "delta": 0.0030074617825448515,
+                "input": 9084,
+                "main": 3094292,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 120,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.102717213435375,
+                "delta": 0.004419118631631136,
+                "input": 8625,
+                "main": 4324875,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 121,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.106722005435375,
+                "delta": 0.003739377949386835,
+                "input": 7291,
+                "main": 3830208,
+                "gc": 39793,
+                "blocking": true
+            },
+            {
+                "frame": 122,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.111040796435374,
+                "delta": 0.004571789875626564,
+                "input": 5959,
+                "main": 4536916,
+                "gc": 37567,
+                "blocking": true
+            },
+            {
+                "frame": 123,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.114082130435373,
+                "delta": 0.002953748684376478,
+                "input": 6208,
+                "main": 2965084,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 124,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.117362755435375,
+                "delta": 0.0032512117177248,
+                "input": 7125,
+                "main": 3185791,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 125,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.120457005435375,
+                "delta": 0.003100708592683077,
+                "input": 12250,
+                "main": 3169250,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 126,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.125141005435376,
+                "delta": 0.004622002597898245,
+                "input": 10166,
+                "main": 4544709,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 127,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.128220630435374,
+                "delta": 0.003116496605798602,
+                "input": 9375,
+                "main": 3246292,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 128,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.131253671435376,
+                "delta": 0.002966999774798751,
+                "input": 6667,
+                "main": 2918459,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 129,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.134465796435374,
+                "delta": 0.003303918754681945,
+                "input": 6916,
+                "main": 3205208,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 130,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.137839463435375,
+                "delta": 0.0033270407002419235,
+                "input": 13000,
+                "main": 3270583,
+                "gc": 29403,
+                "blocking": true
+            },
+            {
+                "frame": 131,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.141091546435375,
+                "delta": 0.003289916319772601,
+                "input": 7291,
+                "main": 3311834,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 132,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.144263921435373,
+                "delta": 0.0031018778681755068,
+                "input": 12750,
+                "main": 3198834,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 133,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.147437171435373,
+                "delta": 0.0032144556753337385,
+                "input": 10250,
+                "main": 3189292,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 134,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.150645005435374,
+                "delta": 0.003255123272538185,
+                "input": 13917,
+                "main": 3199750,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 135,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.153659213435374,
+                "delta": 0.003005123231559992,
+                "input": 9375,
+                "main": 3099792,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 136,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.156917463435376,
+                "delta": 0.003153004450723529,
+                "input": 5834,
+                "main": 3083916,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 137,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.160155421435375,
+                "delta": 0.003346789861097932,
+                "input": 10792,
+                "main": 3311958,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 138,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.163455255435375,
+                "delta": 0.003223540261387825,
+                "input": 9458,
+                "main": 3213708,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 139,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.166760255435376,
+                "delta": 0.0034304987639188768,
+                "input": 7625,
+                "main": 3378542,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 140,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.169704546435375,
+                "delta": 0.0029010416474193336,
+                "input": 7500,
+                "main": 3039500,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 141,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.172767588435376,
+                "delta": 0.0029640872962772848,
+                "input": 6417,
+                "main": 3030458,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 142,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.176020255435374,
+                "delta": 0.0033625424839556219,
+                "input": 7292,
+                "main": 3113917,
+                "gc": 29739,
+                "blocking": true
+            },
+            {
+                "frame": 143,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.179044796435376,
+                "delta": 0.00293524656444788,
+                "input": 7083,
+                "main": 3093375,
+                "gc": 29549,
+                "blocking": true
+            },
+            {
+                "frame": 144,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.182554213435376,
+                "delta": 0.00356129533611238,
+                "input": 9583,
+                "main": 3400584,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 145,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.185920755435375,
+                "delta": 0.0033447917085140945,
+                "input": 10000,
+                "main": 3422916,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 146,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.188964421435374,
+                "delta": 0.0030953302048146726,
+                "input": 9334,
+                "main": 3136500,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 147,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.192223255435375,
+                "delta": 0.0032096230424940588,
+                "input": 6000,
+                "main": 3210583,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 148,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.195645713435374,
+                "delta": 0.003441418753936887,
+                "input": 9417,
+                "main": 3311167,
+                "gc": 29613,
+                "blocking": true
+            },
+            {
+                "frame": 149,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.198970671435374,
+                "delta": 0.0032733771950006487,
+                "input": 9334,
+                "main": 3281583,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 150,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.202599255435376,
+                "delta": 0.003802536753937602,
+                "input": 14916,
+                "main": 3869416,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 151,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.205723630435374,
+                "delta": 0.0028822491876780988,
+                "input": 6333,
+                "main": 2921083,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 152,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.209111296435376,
+                "delta": 0.003439377760514617,
+                "input": 8458,
+                "main": 3405708,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 153,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.212439921435374,
+                "delta": 0.0034034154377877714,
+                "input": 9291,
+                "main": 3398541,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 154,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.215459546435375,
+                "delta": 0.0029934169724583627,
+                "input": 11875,
+                "main": 2977625,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 155,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.218445671435374,
+                "delta": 0.0030253755394369365,
+                "input": 12083,
+                "main": 3091208,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 156,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.221432255435376,
+                "delta": 0.003001126693561673,
+                "input": 8000,
+                "main": 2987666,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 157,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.224783463435374,
+                "delta": 0.003311543259769678,
+                "input": 5958,
+                "main": 3119584,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 158,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.228071713435375,
+                "delta": 0.003216872224584222,
+                "input": 7084,
+                "main": 3316584,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 159,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.231270755435374,
+                "delta": 0.0032418721821159126,
+                "input": 11042,
+                "main": 3276208,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 160,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.234624088435373,
+                "delta": 0.0034882156178355219,
+                "input": 9291,
+                "main": 3381000,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 161,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.237555296435373,
+                "delta": 0.002875453559681773,
+                "input": 6708,
+                "main": 3024083,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 162,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.240766796435376,
+                "delta": 0.0031206703279167415,
+                "input": 4541,
+                "main": 2879625,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 163,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.244394380435376,
+                "delta": 0.003700623521581292,
+                "input": 11500,
+                "main": 3799125,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 164,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.247681380435376,
+                "delta": 0.0033012896310538055,
+                "input": 6375,
+                "main": 3385292,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 165,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.250933505435376,
+                "delta": 0.003192212199792266,
+                "input": 8459,
+                "main": 3079917,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 166,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.254148963435375,
+                "delta": 0.0032226189505308868,
+                "input": 12500,
+                "main": 3212208,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 167,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.258143588435376,
+                "delta": 0.004060877487063408,
+                "input": 7667,
+                "main": 4177083,
+                "gc": 39729,
+                "blocking": true
+            },
+            {
+                "frame": 168,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.261829671435374,
+                "delta": 0.0036899589467793705,
+                "input": 11541,
+                "main": 3676833,
+                "gc": 37503,
+                "blocking": true
+            },
+            {
+                "frame": 169,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.264998088435375,
+                "delta": 0.002962081925943494,
+                "input": 5709,
+                "main": 3009458,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 170,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.268154171435376,
+                "delta": 0.0033037131652235986,
+                "input": 12083,
+                "main": 3202458,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 171,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.271139171435375,
+                "delta": 0.0029812499415129425,
+                "input": 7958,
+                "main": 3078792,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 172,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.274421880435375,
+                "delta": 0.003334204899147153,
+                "input": 7916,
+                "main": 3018750,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 173,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.277580880435375,
+                "delta": 0.0031234552152454855,
+                "input": 8208,
+                "main": 3375584,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 174,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.280596338435375,
+                "delta": 0.0030515873804688455,
+                "input": 9334,
+                "main": 3108417,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 175,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.284110171435375,
+                "delta": 0.0034422052558511497,
+                "input": 6666,
+                "main": 3309500,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 176,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.287166546435375,
+                "delta": 0.003030959516763687,
+                "input": 8792,
+                "main": 3074833,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 177,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.290665546435376,
+                "delta": 0.0033359196968376638,
+                "input": 10250,
+                "main": 3304792,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 178,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.294333505435374,
+                "delta": 0.003977912478148937,
+                "input": 10459,
+                "main": 3940500,
+                "gc": 29739,
+                "blocking": true
+            },
+            {
+                "frame": 179,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.297588213435374,
+                "delta": 0.0031276715453714134,
+                "input": 6667,
+                "main": 3153458,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 180,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.300856838435374,
+                "delta": 0.00327536859549582,
+                "input": 10375,
+                "main": 3289375,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 181,
+                "meshes": 14,
+                "pool": 384,
+                "seconds": 13.303995838435375,
+                "delta": 0.0030984622426331045,
+                "input": 6791,
+                "main": 3100250,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 182,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.307088630435376,
+                "delta": 0.0029970805626362564,
+                "input": 8709,
+                "main": 3073708,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 183,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.310381838435374,
+                "delta": 0.0034642077516764404,
+                "input": 9625,
+                "main": 3212583,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 184,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.314048796435375,
+                "delta": 0.0036732142325490715,
+                "input": 10584,
+                "main": 3788084,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 185,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.317399421435374,
+                "delta": 0.0033598709851503374,
+                "input": 14625,
+                "main": 3407250,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 186,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.320431921435374,
+                "delta": 0.00302304420620203,
+                "input": 11541,
+                "main": 3042208,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 187,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.323671005435374,
+                "delta": 0.003042998956516385,
+                "input": 5417,
+                "main": 3035125,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 188,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.326877338435376,
+                "delta": 0.0033605017233639957,
+                "input": 11125,
+                "main": 3313292,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 189,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.330061213435373,
+                "delta": 0.0032150368206202986,
+                "input": 9250,
+                "main": 3219750,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 190,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.333792546435375,
+                "delta": 0.0038106718566268684,
+                "input": 11792,
+                "main": 3728291,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 191,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.336765088435373,
+                "delta": 0.002877536928281188,
+                "input": 7459,
+                "main": 2970875,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 192,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.339919213435375,
+                "delta": 0.00304479175247252,
+                "input": 9375,
+                "main": 3051666,
+                "gc": 29275,
+                "blocking": true
+            },
+            {
+                "frame": 193,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.343244755435374,
+                "delta": 0.003477416466921568,
+                "input": 6667,
+                "main": 3396875,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 194,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.346327921435373,
+                "delta": 0.0029679208528250458,
+                "input": 12333,
+                "main": 3013917,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 195,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.349596046435375,
+                "delta": 0.0033626630902290346,
+                "input": 10250,
+                "main": 3287417,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 196,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.352742546435375,
+                "delta": 0.003196875099092722,
+                "input": 13208,
+                "main": 3258375,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 197,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.355918713435374,
+                "delta": 0.0030624999199062587,
+                "input": 9333,
+                "main": 3110834,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 198,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.358945963435373,
+                "delta": 0.003089753445237875,
+                "input": 8084,
+                "main": 3096208,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 199,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.362020713435376,
+                "delta": 0.0030724985990673305,
+                "input": 5667,
+                "main": 2981250,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 200,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.365208588435375,
+                "delta": 0.00296170637011528,
+                "input": 12750,
+                "main": 3019584,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 201,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.368420046435374,
+                "delta": 0.003403670620173216,
+                "input": 13917,
+                "main": 3392250,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 202,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.371478921435374,
+                "delta": 0.0030887045431882145,
+                "input": 8541,
+                "main": 3009875,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 203,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.374639005435375,
+                "delta": 0.0031810870859771969,
+                "input": 8667,
+                "main": 3187208,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 204,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.377529296435375,
+                "delta": 0.0028873723931610586,
+                "input": 10625,
+                "main": 2988625,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 205,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.380533880435375,
+                "delta": 0.0030811650212854149,
+                "input": 6750,
+                "main": 3006667,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 206,
+                "meshes": 12,
+                "pool": 384,
+                "seconds": 13.384047755435374,
+                "delta": 0.003470918396487832,
+                "input": 10166,
+                "main": 3384125,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 207,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.386985171435376,
+                "delta": 0.0029002055525779726,
+                "input": 6959,
+                "main": 3025125,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 208,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.389881796435374,
+                "delta": 0.002803046954795718,
+                "input": 6334,
+                "main": 2853292,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 209,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.393018921435376,
+                "delta": 0.003205746877938509,
+                "input": 8709,
+                "main": 3057833,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 210,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.396012088435376,
+                "delta": 0.003017835784703493,
+                "input": 11041,
+                "main": 3086208,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 211,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.399207255435373,
+                "delta": 0.0032607922330498697,
+                "input": 6291,
+                "main": 2967292,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 212,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.402642546435376,
+                "delta": 0.003406625473871827,
+                "input": 8833,
+                "main": 3588541,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 213,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.406127630435373,
+                "delta": 0.0033267077524214985,
+                "input": 7333,
+                "main": 3182334,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 214,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.411373546435373,
+                "delta": 0.005359162576496601,
+                "input": 8042,
+                "main": 5527250,
+                "gc": 39793,
+                "blocking": true
+            },
+            {
+                "frame": 215,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.415375505435373,
+                "delta": 0.003931958694010973,
+                "input": 7625,
+                "main": 3975916,
+                "gc": 38003,
+                "blocking": true
+            },
+            {
+                "frame": 216,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.419313921435374,
+                "delta": 0.004057171288877726,
+                "input": 7500,
+                "main": 4043167,
+                "gc": 37503,
+                "blocking": true
+            },
+            {
+                "frame": 217,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.422515255435373,
+                "delta": 0.0031119543127715589,
+                "input": 7209,
+                "main": 3029708,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 218,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.425828588435375,
+                "delta": 0.0032680414151400329,
+                "input": 13167,
+                "main": 3318125,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 219,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.428869546435374,
+                "delta": 0.003107334254309535,
+                "input": 10333,
+                "main": 3160708,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 220,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.431921046435376,
+                "delta": 0.0030513748060911896,
+                "input": 6333,
+                "main": 3023417,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 221,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.435029046435373,
+                "delta": 0.0031700043473392727,
+                "input": 7125,
+                "main": 3120042,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 222,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.437922671435376,
+                "delta": 0.002836245810613036,
+                "input": 9291,
+                "main": 2981291,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 223,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.441368671435376,
+                "delta": 0.003492545336484909,
+                "input": 6042,
+                "main": 3192667,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 224,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.444946296435374,
+                "delta": 0.0033062074799090626,
+                "input": 8959,
+                "main": 3435625,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 225,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.448568213435375,
+                "delta": 0.0036938705015927555,
+                "input": 10000,
+                "main": 3630458,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 226,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.451889838435376,
+                "delta": 0.0035345875658094885,
+                "input": 13500,
+                "main": 3516667,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 227,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.455116171435373,
+                "delta": 0.00310766720212996,
+                "input": 8208,
+                "main": 3200083,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 228,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.458349546435374,
+                "delta": 0.0032458333298563959,
+                "input": 12458,
+                "main": 3185125,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 229,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.461660921435373,
+                "delta": 0.003371790051460266,
+                "input": 13000,
+                "main": 3352250,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 230,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.465080963435375,
+                "delta": 0.0032611251808702947,
+                "input": 8791,
+                "main": 3340958,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 231,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.468277005435374,
+                "delta": 0.003339455695822835,
+                "input": 8958,
+                "main": 3292083,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 232,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.471459171435376,
+                "delta": 0.003116128034889698,
+                "input": 10333,
+                "main": 3145917,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 233,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.474925338435375,
+                "delta": 0.0035437499172985555,
+                "input": 7792,
+                "main": 3465167,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 234,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.477919088435373,
+                "delta": 0.003031377447769046,
+                "input": 11417,
+                "main": 3148375,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 235,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.480931963435376,
+                "delta": 0.0029838294722139837,
+                "input": 5625,
+                "main": 3007083,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 236,
+                "meshes": 10,
+                "pool": 384,
+                "seconds": 13.484227421435373,
+                "delta": 0.003200085135176778,
+                "input": 6792,
+                "main": 3112667,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 237,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.487442755435373,
+                "delta": 0.0031523313373327257,
+                "input": 13416,
+                "main": 3146750,
+                "gc": 29223,
+                "blocking": false
+            }
+        ]
+    },
+    "preparation": {
+        "LoadSeconds": 0.5252091,
+        "ValidationSeconds": 0.0034499,
+        "PoolSeconds": 0.0026242,
+        "ViewCount": 384,
+        "UsedCachedLibrary": false
+    },
+    "phases": [
+        {
+            "zoneId": "Overworld.3.6.0",
+            "mode": "Full",
+            "seconds": 20.423985875000008,
+            "firstFrame": 0,
+            "frames": 5673,
+            "casts": 13,
+            "activeFrames": 1830,
+            "maxMeshes": 35
+        },
+        {
+            "zoneId": "Overworld.3.6.0",
+            "mode": "Reduced",
+            "seconds": 0.0,
+            "firstFrame": 5673,
+            "frames": 4842,
+            "casts": 11,
+            "activeFrames": 1428,
+            "maxMeshes": 27
+        }
+    ],
+    "casts": [
+        {
+            "spell": "Pyromancy_EmberSpit",
+            "mode": "showcase",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Pyromancy_EmberSpit",
+            "gestureClip": "ember_spit_Cast",
+            "gestureControllerBefore": "character-teal",
+            "gestureControllerAfter": "character-teal",
+            "gesturePeakDegrees": 70.38771057128906,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 3,
+            "cooldown": 8,
+            "rngCalls": 0,
+            "peakMeshes": 23,
+            "gestureSamples": 72,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8"
+            ],
+            "affected": [
+                "43,8"
+            ],
+            "applied": [
+                "BurningEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->43,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": true,
+            "gestureRestored": true,
+            "groundFixtureReset": true,
+            "seconds": 1.2025810409999985,
+            "frames": [
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-000.png",
+                    "sha256": "",
+                    "wallSeconds": 0.007141665999998992,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-001.png",
+                    "sha256": "",
+                    "wallSeconds": 0.10347954099999868,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-002.png",
+                    "sha256": "",
+                    "wallSeconds": 0.20606245799999813,
+                    "meshes": 8
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-003.png",
+                    "sha256": "",
+                    "wallSeconds": 0.3044750829999998,
+                    "meshes": 23
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-004.png",
+                    "sha256": "",
+                    "wallSeconds": 0.4034812499999987,
+                    "meshes": 23
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-005.png",
+                    "sha256": "",
+                    "wallSeconds": 0.5044061249999992,
+                    "meshes": 16
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-006.png",
+                    "sha256": "",
+                    "wallSeconds": 0.6034524999999995,
+                    "meshes": 11
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-007.png",
+                    "sha256": "",
+                    "wallSeconds": 0.7058674579999966,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-008.png",
+                    "sha256": "",
+                    "wallSeconds": 0.8051753749999975,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-009.png",
+                    "sha256": "",
+                    "wallSeconds": 0.9045013329999989,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-010.png",
+                    "sha256": "",
+                    "wallSeconds": 1.0040363329999985,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-011.png",
+                    "sha256": "",
+                    "wallSeconds": 1.103385165999999,
+                    "meshes": 0
+                }
+            ]
+        },
+        {
+            "spell": "Pyromancy_FlamingHands",
+            "mode": "showcase",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Pyromancy_FlamingHands",
+            "gestureClip": "flaming_hands_Cast",
+            "gestureControllerBefore": "character-teal",
+            "gestureControllerAfter": "character-teal",
+            "gesturePeakDegrees": 60.57795333862305,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 1,
+            "cooldown": 10,
+            "rngCalls": 1,
+            "peakMeshes": 14,
+            "gestureSamples": 79,
+            "path": [],
+            "affected": [
+                "41,8"
+            ],
+            "applied": [],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "41,8->41,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": true,
+            "gestureRestored": true,
+            "groundFixtureReset": true,
+            "seconds": 1.2026646670000006,
+            "frames": [
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-000.png",
+                    "sha256": "",
+                    "wallSeconds": 0.007101583999997274,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-001.png",
+                    "sha256": "",
+                    "wallSeconds": 0.1047252919999977,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-002.png",
+                    "sha256": "",
+                    "wallSeconds": 0.20268270899999764,
+                    "meshes": 14
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-003.png",
+                    "sha256": "",
+                    "wallSeconds": 0.30423016700000007,
+                    "meshes": 14
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-004.png",
+                    "sha256": "",
+                    "wallSeconds": 0.404966709,
+                    "meshes": 14
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-005.png",
+                    "sha256": "",
+                    "wallSeconds": 0.5037952919999995,
+                    "meshes": 10
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-006.png",
+                    "sha256": "",
+                    "wallSeconds": 0.6046444169999994,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-007.png",
+                    "sha256": "",
+                    "wallSeconds": 0.7050929169999982,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-008.png",
+                    "sha256": "",
+                    "wallSeconds": 0.803290209,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-009.png",
+                    "sha256": "",
+                    "wallSeconds": 0.904288459,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-010.png",
+                    "sha256": "",
+                    "wallSeconds": 1.0053161250000003,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-011.png",
+                    "sha256": "",
+                    "wallSeconds": 1.1040797500000004,
+                    "meshes": 0
+                }
+            ]
+        },
+        {
+            "spell": "Hydromancy_JetBlast",
+            "mode": "showcase",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Hydromancy_JetBlast",
+            "gestureClip": "jet_blast_Cast",
+            "gestureControllerBefore": "character-teal",
+            "gestureControllerAfter": "character-teal",
+            "gesturePeakDegrees": 71.29545593261719,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 2,
+            "cooldown": 20,
+            "rngCalls": 0,
+            "peakMeshes": 35,
+            "gestureSamples": 80,
+            "path": [
+                "41,8",
+                "42,8"
+            ],
+            "affected": [
+                "41,8",
+                "42,7",
+                "42,8",
+                "42,9",
+                "43,8"
+            ],
+            "applied": [
+                "WetEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "42,8->43,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": true,
+            "gestureRestored": true,
+            "groundFixtureReset": true,
+            "seconds": 1.2021549999999977,
+            "frames": [
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-000.png",
+                    "sha256": "",
+                    "wallSeconds": 0.006528291000002184,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-001.png",
+                    "sha256": "",
+                    "wallSeconds": 0.103774915999999,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-002.png",
+                    "sha256": "",
+                    "wallSeconds": 0.20258912499999583,
+                    "meshes": 3
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-003.png",
+                    "sha256": "",
+                    "wallSeconds": 0.3050687909999965,
+                    "meshes": 35
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-004.png",
+                    "sha256": "",
+                    "wallSeconds": 0.4031505000000024,
+                    "meshes": 35
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-005.png",
+                    "sha256": "",
+                    "wallSeconds": 0.5046239579999963,
+                    "meshes": 18
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-006.png",
+                    "sha256": "",
+                    "wallSeconds": 0.6030476660000019,
+                    "meshes": 12
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-007.png",
+                    "sha256": "",
+                    "wallSeconds": 0.7035978749999998,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-008.png",
+                    "sha256": "",
+                    "wallSeconds": 0.8054974160000015,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-009.png",
+                    "sha256": "",
+                    "wallSeconds": 0.904870166000002,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-010.png",
+                    "sha256": "",
+                    "wallSeconds": 1.0040701659999983,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-011.png",
+                    "sha256": "",
+                    "wallSeconds": 1.103891124999997,
+                    "meshes": 0
+                }
+            ]
+        },
+        {
+            "spell": "Galvanism_GroundSurge",
+            "mode": "showcase",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Galvanism_GroundSurge",
+            "gestureClip": "ground_surge_Cast",
+            "gestureControllerBefore": "character-teal",
+            "gestureControllerAfter": "character-teal",
+            "gesturePeakDegrees": 67.43302917480469,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 6,
+            "cooldown": 30,
+            "rngCalls": 1,
+            "peakMeshes": 17,
+            "gestureSamples": 79,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8",
+                "44,8"
+            ],
+            "affected": [
+                "41,8",
+                "42,8",
+                "43,8",
+                "44,8"
+            ],
+            "applied": [
+                "StunnedEffect",
+                "ElectrifiedEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->44,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": true,
+            "gestureRestored": true,
+            "groundFixtureReset": true,
+            "seconds": 1.2026055830000005,
+            "frames": [
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-000.png",
+                    "sha256": "",
+                    "wallSeconds": 0.006459749999997655,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-001.png",
+                    "sha256": "",
+                    "wallSeconds": 0.10395204200000308,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-002.png",
+                    "sha256": "",
+                    "wallSeconds": 0.20294200000000019,
+                    "meshes": 3
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-003.png",
+                    "sha256": "",
+                    "wallSeconds": 0.3043579579999971,
+                    "meshes": 17
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-004.png",
+                    "sha256": "",
+                    "wallSeconds": 0.4032377500000024,
+                    "meshes": 17
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-005.png",
+                    "sha256": "",
+                    "wallSeconds": 0.5050669999999968,
+                    "meshes": 17
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-006.png",
+                    "sha256": "",
+                    "wallSeconds": 0.6050859169999967,
+                    "meshes": 5
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-007.png",
+                    "sha256": "",
+                    "wallSeconds": 0.7035148750000033,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-008.png",
+                    "sha256": "",
+                    "wallSeconds": 0.8036616249999966,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-009.png",
+                    "sha256": "",
+                    "wallSeconds": 0.9048322499999983,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-010.png",
+                    "sha256": "",
+                    "wallSeconds": 1.0029535420000003,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-011.png",
+                    "sha256": "",
+                    "wallSeconds": 1.1045376670000025,
+                    "meshes": 0
+                }
+            ]
+        },
+        {
+            "spell": "Cryomancy_RimeGrip",
+            "mode": "showcase",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Cryomancy_RimeGrip",
+            "gestureClip": "rime_grip_Cast",
+            "gestureControllerBefore": "character-teal",
+            "gestureControllerAfter": "character-teal",
+            "gesturePeakDegrees": 55.825260162353519,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 4,
+            "cooldown": 35,
+            "rngCalls": 0,
+            "peakMeshes": 15,
+            "gestureSamples": 73,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8"
+            ],
+            "affected": [
+                "43,8"
+            ],
+            "applied": [
+                "FrozenEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->43,8"
+            ],
+            "observedConditionalMeshes": [
+                "Rime__blunt_split_clamp_0",
+                "Rime__blunt_split_clamp_1",
+                "Rime__blunt_split_clamp_2",
+                "Rime__dark_carved_seam_0",
+                "Rime__dark_carved_seam_1",
+                "Rime__dark_carved_seam_2",
+                "Rime__pale_blunt_rim_0",
+                "Rime__pale_blunt_rim_1",
+                "Rime__pale_blunt_rim_2"
+            ],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": true,
+            "gestureRestored": true,
+            "groundFixtureReset": true,
+            "seconds": 1.201397415999999,
+            "frames": [
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-000.png",
+                    "sha256": "",
+                    "wallSeconds": 0.007316582999997934,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-001.png",
+                    "sha256": "",
+                    "wallSeconds": 0.10416533299999742,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-002.png",
+                    "sha256": "",
+                    "wallSeconds": 0.20351783299999938,
+                    "meshes": 12
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-003.png",
+                    "sha256": "",
+                    "wallSeconds": 0.3030528330000024,
+                    "meshes": 15
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-004.png",
+                    "sha256": "",
+                    "wallSeconds": 0.40512037500000278,
+                    "meshes": 15
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-005.png",
+                    "sha256": "",
+                    "wallSeconds": 0.5029830000000004,
+                    "meshes": 12
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-006.png",
+                    "sha256": "",
+                    "wallSeconds": 0.6034069159999973,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-007.png",
+                    "sha256": "",
+                    "wallSeconds": 0.7028148329999979,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-008.png",
+                    "sha256": "",
+                    "wallSeconds": 0.804809290999998,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-009.png",
+                    "sha256": "",
+                    "wallSeconds": 0.9035072910000039,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-010.png",
+                    "sha256": "",
+                    "wallSeconds": 1.0043129579999999,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-011.png",
+                    "sha256": "",
+                    "wallSeconds": 1.1030142079999977,
+                    "meshes": 0
+                }
+            ]
+        },
+        {
+            "spell": "Spellcraft_Calm",
+            "mode": "showcase",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Spellcraft_Calm",
+            "gestureClip": "calm_Cast",
+            "gestureControllerBefore": "character-teal",
+            "gestureControllerAfter": "character-teal",
+            "gesturePeakDegrees": 50.77528381347656,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 0,
+            "cooldown": 20,
+            "rngCalls": 0,
+            "peakMeshes": 7,
+            "gestureSamples": 77,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8"
+            ],
+            "affected": [
+                "43,8"
+            ],
+            "applied": [
+                "Pacified"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->43,8"
+            ],
+            "observedConditionalMeshes": [
+                "Calm__relaxing_angular_crossing_0",
+                "Calm__relaxing_angular_crossing_1",
+                "Calm__gentle_unfurl_arc_-1",
+                "Calm__gentle_unfurl_arc_1"
+            ],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": true,
+            "gestureRestored": true,
+            "groundFixtureReset": true,
+            "seconds": 1.2029275830000046,
+            "frames": [
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-000.png",
+                    "sha256": "",
+                    "wallSeconds": 0.004609333000004767,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-001.png",
+                    "sha256": "",
+                    "wallSeconds": 0.10457387499999982,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-002.png",
+                    "sha256": "",
+                    "wallSeconds": 0.20253866600000237,
+                    "meshes": 3
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-003.png",
+                    "sha256": "",
+                    "wallSeconds": 0.30560887500000435,
+                    "meshes": 5
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-004.png",
+                    "sha256": "",
+                    "wallSeconds": 0.4026881250000045,
+                    "meshes": 7
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-005.png",
+                    "sha256": "",
+                    "wallSeconds": 0.5036634580000055,
+                    "meshes": 6
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-006.png",
+                    "sha256": "",
+                    "wallSeconds": 0.6035473330000016,
+                    "meshes": 4
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-007.png",
+                    "sha256": "",
+                    "wallSeconds": 0.7034344160000003,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-008.png",
+                    "sha256": "",
+                    "wallSeconds": 0.803914791000004,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-009.png",
+                    "sha256": "",
+                    "wallSeconds": 0.9023792080000064,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-010.png",
+                    "sha256": "",
+                    "wallSeconds": 1.0026186660000037,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-011.png",
+                    "sha256": "",
+                    "wallSeconds": 1.1040722910000014,
+                    "meshes": 0
+                }
+            ]
+        },
+        {
+            "spell": "Hydromancy_ConjureRain",
+            "mode": "showcase",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Hydromancy_ConjureRain",
+            "gestureClip": "conjure_rain_Cast",
+            "gestureControllerBefore": "character-teal",
+            "gestureControllerAfter": "character-teal",
+            "gesturePeakDegrees": 61.1420783996582,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 0,
+            "cooldown": 5,
+            "rngCalls": 0,
+            "peakMeshes": 15,
+            "gestureSamples": 76,
+            "path": [],
+            "affected": [
+                "39,9"
+            ],
+            "applied": [],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-crop-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "39,9->39,9"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": true,
+            "gestureRestored": true,
+            "groundFixtureReset": true,
+            "seconds": 1.202899875,
+            "frames": [
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-000.png",
+                    "sha256": "",
+                    "wallSeconds": 0.007098958000000266,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-001.png",
+                    "sha256": "",
+                    "wallSeconds": 0.10554325000000375,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-002.png",
+                    "sha256": "",
+                    "wallSeconds": 0.20477720800000299,
+                    "meshes": 1
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-003.png",
+                    "sha256": "",
+                    "wallSeconds": 0.30375637499999899,
+                    "meshes": 15
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-004.png",
+                    "sha256": "",
+                    "wallSeconds": 0.40395266699999868,
+                    "meshes": 15
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-005.png",
+                    "sha256": "",
+                    "wallSeconds": 0.5044466249999999,
+                    "meshes": 3
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-006.png",
+                    "sha256": "",
+                    "wallSeconds": 0.6030936670000031,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-007.png",
+                    "sha256": "",
+                    "wallSeconds": 0.7046197499999991,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-008.png",
+                    "sha256": "",
+                    "wallSeconds": 0.8049957500000033,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-009.png",
+                    "sha256": "",
+                    "wallSeconds": 0.9023589580000007,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-010.png",
+                    "sha256": "",
+                    "wallSeconds": 1.0046941250000004,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-011.png",
+                    "sha256": "",
+                    "wallSeconds": 1.104386875000003,
+                    "meshes": 0
+                }
+            ]
+        },
+        {
+            "spell": "Cryomancy_RimeGrip",
+            "mode": "reduced-success",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Reduced",
+            "nativeEntry": "Cryomancy_RimeGrip",
+            "gestureClip": "rime_grip_Cast",
+            "gestureControllerBefore": "character-teal",
+            "gestureControllerAfter": "character-teal",
+            "gesturePeakDegrees": 55.94860076904297,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 4,
+            "cooldown": 35,
+            "rngCalls": 0,
+            "peakMeshes": 7,
+            "gestureSamples": 189,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8"
+            ],
+            "affected": [
+                "43,8"
+            ],
+            "applied": [
+                "FrozenEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->43,8"
+            ],
+            "observedConditionalMeshes": [
+                "Rime__blunt_split_clamp_0",
+                "Rime__blunt_split_clamp_1",
+                "Rime__blunt_split_clamp_2",
+                "Rime__dark_carved_seam_0",
+                "Rime__dark_carved_seam_1",
+                "Rime__dark_carved_seam_2"
+            ],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": true,
+            "gestureRestored": true,
+            "groundFixtureReset": true,
+            "seconds": 1.2018141250000057,
+            "frames": []
+        },
+        {
+            "spell": "Cryomancy_RimeGrip",
+            "mode": "deny-frozen",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Reduced",
+            "nativeEntry": "Cryomancy_RimeGrip",
+            "gestureClip": "rime_grip_Cast",
+            "gestureControllerBefore": "character-teal",
+            "gestureControllerAfter": "character-teal",
+            "gesturePeakDegrees": 55.894378662109378,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 4,
+            "cooldown": 35,
+            "rngCalls": 0,
+            "peakMeshes": 1,
+            "gestureSamples": 75,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8"
+            ],
+            "affected": [
+                "43,8"
+            ],
+            "applied": [],
+            "rejected": [
+                "FrozenEffect"
+            ],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->43,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": true,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": true,
+            "gestureRestored": true,
+            "groundFixtureReset": true,
+            "seconds": 1.2023362079999985,
+            "frames": [
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-000.png",
+                    "sha256": "",
+                    "wallSeconds": 0.005875875000000974,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-001.png",
+                    "sha256": "",
+                    "wallSeconds": 0.10350950000000126,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-002.png",
+                    "sha256": "",
+                    "wallSeconds": 0.20471533299999579,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-003.png",
+                    "sha256": "",
+                    "wallSeconds": 0.3052099999999953,
+                    "meshes": 1
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-004.png",
+                    "sha256": "",
+                    "wallSeconds": 0.4038512910000023,
+                    "meshes": 1
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-005.png",
+                    "sha256": "",
+                    "wallSeconds": 0.5052692909999976,
+                    "meshes": 1
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-006.png",
+                    "sha256": "",
+                    "wallSeconds": 0.6038032080000022,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-007.png",
+                    "sha256": "",
+                    "wallSeconds": 0.7038790000000006,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-008.png",
+                    "sha256": "",
+                    "wallSeconds": 0.8052104579999977,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-009.png",
+                    "sha256": "",
+                    "wallSeconds": 0.9045106660000002,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-010.png",
+                    "sha256": "",
+                    "wallSeconds": 1.0040364580000017,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-011.png",
+                    "sha256": "",
+                    "wallSeconds": 1.1061077499999997,
+                    "meshes": 0
+                }
+            ]
+        },
+        {
+            "spell": "Spellcraft_Calm",
+            "mode": "reduced-success",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Reduced",
+            "nativeEntry": "Spellcraft_Calm",
+            "gestureClip": "calm_Cast",
+            "gestureControllerBefore": "character-teal",
+            "gestureControllerAfter": "character-teal",
+            "gesturePeakDegrees": 50.77775573730469,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 0,
+            "cooldown": 20,
+            "rngCalls": 0,
+            "peakMeshes": 4,
+            "gestureSamples": 189,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8"
+            ],
+            "affected": [
+                "43,8"
+            ],
+            "applied": [
+                "Pacified"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->43,8"
+            ],
+            "observedConditionalMeshes": [
+                "Calm__relaxing_angular_crossing_0",
+                "Calm__relaxing_angular_crossing_1"
+            ],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": true,
+            "gestureRestored": true,
+            "groundFixtureReset": true,
+            "seconds": 1.2001530420000038,
+            "frames": []
+        },
+        {
+            "spell": "Spellcraft_Calm",
+            "mode": "peaceful",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Reduced",
+            "nativeEntry": "Spellcraft_Calm",
+            "gestureClip": "calm_Cast",
+            "gestureControllerBefore": "character-teal",
+            "gestureControllerAfter": "character-teal",
+            "gesturePeakDegrees": 50.780067443847659,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 0,
+            "cooldown": 20,
+            "rngCalls": 0,
+            "peakMeshes": 2,
+            "gestureSamples": 195,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8"
+            ],
+            "affected": [
+                "43,8"
+            ],
+            "applied": [],
+            "rejected": [
+                "Pacified"
+            ],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->43,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": true,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": true,
+            "gestureRestored": true,
+            "groundFixtureReset": true,
+            "seconds": 1.2013686250000007,
+            "frames": []
+        },
+        {
+            "spell": "Hydromancy_ConjureRain",
+            "mode": "empty-rain",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Reduced",
+            "nativeEntry": "Hydromancy_ConjureRain",
+            "gestureClip": "conjure_rain_Cast",
+            "gestureControllerBefore": "character-teal",
+            "gestureControllerAfter": "character-teal",
+            "gesturePeakDegrees": 61.150054931640628,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 0,
+            "damage": 0,
+            "cooldown": 5,
+            "rngCalls": 0,
+            "peakMeshes": 0,
+            "gestureSamples": 195,
+            "path": [],
+            "affected": [
+                "40,8"
+            ],
+            "applied": [],
+            "rejected": [],
+            "copiedTargetIds": [],
+            "targetCells": [],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": true,
+            "gestureRestored": true,
+            "groundFixtureReset": true,
+            "seconds": 1.2003452920000016,
+            "frames": []
+        },
+        {
+            "spell": "Pyromancy_EmberSpit",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Pyromancy_EmberSpit",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 3,
+            "cooldown": 8,
+            "rngCalls": 0,
+            "peakMeshes": 23,
+            "gestureSamples": 0,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8"
+            ],
+            "affected": [
+                "43,8"
+            ],
+            "applied": [
+                "BurningEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->43,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.2028087910000025,
+            "frames": []
+        },
+        {
+            "spell": "Pyromancy_FlamingHands",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Pyromancy_FlamingHands",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 1,
+            "cooldown": 10,
+            "rngCalls": 1,
+            "peakMeshes": 14,
+            "gestureSamples": 0,
+            "path": [],
+            "affected": [
+                "41,8"
+            ],
+            "applied": [],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "41,8->41,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.200005499999996,
+            "frames": []
+        },
+        {
+            "spell": "Hydromancy_JetBlast",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Hydromancy_JetBlast",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 2,
+            "cooldown": 20,
+            "rngCalls": 0,
+            "peakMeshes": 35,
+            "gestureSamples": 0,
+            "path": [
+                "41,8",
+                "42,8"
+            ],
+            "affected": [
+                "41,8",
+                "42,7",
+                "42,8",
+                "42,9",
+                "43,8"
+            ],
+            "applied": [
+                "WetEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "42,8->43,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.2008169170000045,
+            "frames": []
+        },
+        {
+            "spell": "Galvanism_GroundSurge",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Galvanism_GroundSurge",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 6,
+            "cooldown": 30,
+            "rngCalls": 1,
+            "peakMeshes": 17,
+            "gestureSamples": 0,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8",
+                "44,8"
+            ],
+            "affected": [
+                "41,8",
+                "42,8",
+                "43,8",
+                "44,8"
+            ],
+            "applied": [
+                "StunnedEffect",
+                "ElectrifiedEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->44,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.2019398750000008,
+            "frames": []
+        },
+        {
+            "spell": "Cryomancy_RimeGrip",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Cryomancy_RimeGrip",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 9,
+            "cooldown": 35,
+            "rngCalls": 0,
+            "peakMeshes": 18,
+            "gestureSamples": 0,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8"
+            ],
+            "affected": [
+                "43,8",
+                "42,8"
+            ],
+            "applied": [
+                "FrozenEffect",
+                "StunnedEffect",
+                "ElectrifiedEffect",
+                "FrozenEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->43,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.2026052909999976,
+            "frames": []
+        },
+        {
+            "spell": "Spellcraft_Calm",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Spellcraft_Calm",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 0,
+            "cooldown": 20,
+            "rngCalls": 0,
+            "peakMeshes": 7,
+            "gestureSamples": 0,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8"
+            ],
+            "affected": [
+                "43,8"
+            ],
+            "applied": [
+                "Pacified"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->43,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.2032903340000019,
+            "frames": []
+        },
+        {
+            "spell": "Hydromancy_ConjureRain",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Hydromancy_ConjureRain",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 0,
+            "cooldown": 5,
+            "rngCalls": 0,
+            "peakMeshes": 15,
+            "gestureSamples": 0,
+            "path": [],
+            "affected": [
+                "39,9"
+            ],
+            "applied": [],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-crop-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "39,9->39,9"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.201553582999999,
+            "frames": []
+        },
+        {
+            "spell": "Pyromancy_EmberSpit",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Pyromancy_EmberSpit",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 3,
+            "cooldown": 8,
+            "rngCalls": 0,
+            "peakMeshes": 23,
+            "gestureSamples": 0,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8"
+            ],
+            "affected": [
+                "43,8",
+                "42,8"
+            ],
+            "applied": [
+                "BurningEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->43,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.2019008749999998,
+            "frames": []
+        },
+        {
+            "spell": "Pyromancy_FlamingHands",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Pyromancy_FlamingHands",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 1,
+            "cooldown": 10,
+            "rngCalls": 1,
+            "peakMeshes": 14,
+            "gestureSamples": 0,
+            "path": [],
+            "affected": [
+                "41,8",
+                "42,8"
+            ],
+            "applied": [],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "41,8->41,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.2024170420000005,
+            "frames": []
+        },
+        {
+            "spell": "Hydromancy_JetBlast",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Hydromancy_JetBlast",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 7,
+            "cooldown": 20,
+            "rngCalls": 0,
+            "peakMeshes": 35,
+            "gestureSamples": 0,
+            "path": [
+                "41,8",
+                "42,8"
+            ],
+            "affected": [
+                "41,8",
+                "42,7",
+                "42,8",
+                "42,9",
+                "44,8"
+            ],
+            "applied": [
+                "WetEffect",
+                "StunnedEffect",
+                "ElectrifiedEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "42,8->44,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.201544208999998,
+            "frames": []
+        },
+        {
+            "spell": "Galvanism_GroundSurge",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Galvanism_GroundSurge",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 11,
+            "cooldown": 30,
+            "rngCalls": 1,
+            "peakMeshes": 17,
+            "gestureSamples": 0,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8",
+                "44,8"
+            ],
+            "affected": [
+                "41,8",
+                "42,8",
+                "43,8",
+                "44,8"
+            ],
+            "applied": [
+                "StunnedEffect",
+                "ElectrifiedEffect",
+                "ElectrifiedEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->44,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.2002352499999987,
+            "frames": []
+        },
+        {
+            "spell": "Cryomancy_RimeGrip",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Cryomancy_RimeGrip",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 4,
+            "cooldown": 35,
+            "rngCalls": 0,
+            "peakMeshes": 15,
+            "gestureSamples": 0,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8"
+            ],
+            "affected": [
+                "43,8",
+                "42,8",
+                "44,8"
+            ],
+            "applied": [
+                "FrozenEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->43,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.200868749999998,
+            "frames": []
+        },
+        {
+            "spell": "Spellcraft_Calm",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Spellcraft_Calm",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 0,
+            "cooldown": 20,
+            "rngCalls": 0,
+            "peakMeshes": 7,
+            "gestureSamples": 0,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8"
+            ],
+            "affected": [
+                "43,8"
+            ],
+            "applied": [
+                "Pacified"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->43,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.2011667499999988,
+            "frames": []
+        },
+        {
+            "spell": "Pyromancy_EmberSpit",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Reduced",
+            "nativeEntry": "Pyromancy_EmberSpit",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 3,
+            "cooldown": 8,
+            "rngCalls": 0,
+            "peakMeshes": 12,
+            "gestureSamples": 0,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8"
+            ],
+            "affected": [
+                "43,8",
+                "42,8",
+                "44,8"
+            ],
+            "applied": [
+                "BurningEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->43,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.2038306660000018,
+            "frames": []
+        },
+        {
+            "spell": "Pyromancy_FlamingHands",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Reduced",
+            "nativeEntry": "Pyromancy_FlamingHands",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 1,
+            "cooldown": 10,
+            "rngCalls": 1,
+            "peakMeshes": 12,
+            "gestureSamples": 0,
+            "path": [],
+            "affected": [
+                "41,8",
+                "42,8",
+                "44,8"
+            ],
+            "applied": [],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "41,8->41,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.2025120000000059,
+            "frames": []
+        },
+        {
+            "spell": "Hydromancy_JetBlast",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Reduced",
+            "nativeEntry": "Hydromancy_JetBlast",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 7,
+            "cooldown": 20,
+            "rngCalls": 0,
+            "peakMeshes": 27,
+            "gestureSamples": 0,
+            "path": [
+                "41,8",
+                "42,8"
+            ],
+            "affected": [
+                "41,8",
+                "42,7",
+                "42,8",
+                "42,9",
+                "43,8",
+                "44,8"
+            ],
+            "applied": [
+                "WetEffect",
+                "StunnedEffect",
+                "ElectrifiedEffect",
+                "FrozenEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "42,8->43,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.203694917000007,
+            "frames": []
+        },
+        {
+            "spell": "Galvanism_GroundSurge",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Reduced",
+            "nativeEntry": "Galvanism_GroundSurge",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 11,
+            "cooldown": 30,
+            "rngCalls": 1,
+            "peakMeshes": 13,
+            "gestureSamples": 0,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8",
+                "44,8"
+            ],
+            "affected": [
+                "41,8",
+                "42,8",
+                "43,8",
+                "44,8"
+            ],
+            "applied": [
+                "StunnedEffect",
+                "ElectrifiedEffect",
+                "ElectrifiedEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->44,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.2033755420000035,
+            "frames": []
+        },
+        {
+            "spell": "Cryomancy_RimeGrip",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Reduced",
+            "nativeEntry": "Cryomancy_RimeGrip",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 4,
+            "cooldown": 35,
+            "rngCalls": 0,
+            "peakMeshes": 7,
+            "gestureSamples": 0,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8"
+            ],
+            "affected": [
+                "43,8",
+                "42,8",
+                "44,8"
+            ],
+            "applied": [
+                "FrozenEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->43,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.2032399160000012,
+            "frames": []
+        },
+        {
+            "spell": "Spellcraft_Calm",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Reduced",
+            "nativeEntry": "Spellcraft_Calm",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 0,
+            "cooldown": 20,
+            "rngCalls": 0,
+            "peakMeshes": 4,
+            "gestureSamples": 0,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8"
+            ],
+            "affected": [
+                "43,8"
+            ],
+            "applied": [
+                "Pacified"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->43,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.2009467079999894,
+            "frames": []
+        },
+        {
+            "spell": "Hydromancy_ConjureRain",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Reduced",
+            "nativeEntry": "Hydromancy_ConjureRain",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 0,
+            "cooldown": 5,
+            "rngCalls": 0,
+            "peakMeshes": 4,
+            "gestureSamples": 0,
+            "path": [],
+            "affected": [
+                "39,9"
+            ],
+            "applied": [],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-crop-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "39,9->39,9"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.202841417000002,
+            "frames": []
+        },
+        {
+            "spell": "Pyromancy_EmberSpit",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Reduced",
+            "nativeEntry": "Pyromancy_EmberSpit",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 3,
+            "cooldown": 8,
+            "rngCalls": 0,
+            "peakMeshes": 12,
+            "gestureSamples": 0,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8"
+            ],
+            "affected": [
+                "43,8",
+                "42,8",
+                "44,8"
+            ],
+            "applied": [
+                "BurningEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->43,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.2003132500000078,
+            "frames": []
+        },
+        {
+            "spell": "Pyromancy_FlamingHands",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Reduced",
+            "nativeEntry": "Pyromancy_FlamingHands",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 1,
+            "cooldown": 10,
+            "rngCalls": 1,
+            "peakMeshes": 12,
+            "gestureSamples": 0,
+            "path": [],
+            "affected": [
+                "41,8",
+                "42,8",
+                "44,8"
+            ],
+            "applied": [],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "41,8->41,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.2024653339999958,
+            "frames": []
+        },
+        {
+            "spell": "Hydromancy_JetBlast",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Reduced",
+            "nativeEntry": "Hydromancy_JetBlast",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 7,
+            "cooldown": 20,
+            "rngCalls": 0,
+            "peakMeshes": 27,
+            "gestureSamples": 0,
+            "path": [
+                "41,8",
+                "42,8"
+            ],
+            "affected": [
+                "41,8",
+                "42,7",
+                "42,8",
+                "42,9",
+                "43,9",
+                "44,8"
+            ],
+            "applied": [
+                "WetEffect",
+                "StunnedEffect",
+                "ElectrifiedEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "42,8->43,9"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.2006209999999982,
+            "frames": []
+        },
+        {
+            "spell": "Galvanism_GroundSurge",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Reduced",
+            "nativeEntry": "Galvanism_GroundSurge",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 11,
+            "cooldown": 30,
+            "rngCalls": 1,
+            "peakMeshes": 13,
+            "gestureSamples": 0,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8",
+                "44,8"
+            ],
+            "affected": [
+                "41,8",
+                "42,8",
+                "43,8",
+                "44,8",
+                "43,9"
+            ],
+            "applied": [
+                "StunnedEffect",
+                "ElectrifiedEffect",
+                "ElectrifiedEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->44,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.202868041000002,
+            "frames": []
+        },
+        {
+            "spell": "Cryomancy_RimeGrip",
+            "mode": "profile",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Reduced",
+            "nativeEntry": "Cryomancy_RimeGrip",
+            "gestureClip": "",
+            "gestureControllerBefore": "",
+            "gestureControllerAfter": "",
+            "gesturePeakDegrees": 0.0,
+            "sourceX": 40,
+            "sourceY": 8,
+            "targets": 1,
+            "damage": 4,
+            "cooldown": 35,
+            "rngCalls": 0,
+            "peakMeshes": 0,
+            "gestureSamples": 0,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8"
+            ],
+            "affected": [
+                "43,8",
+                "42,8",
+                "43,9",
+                "44,8"
+            ],
+            "applied": [
+                "FrozenEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+            ],
+            "targetCells": [
+                "43,8->43,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": false,
+            "sawGesture": false,
+            "gestureRestored": false,
+            "groundFixtureReset": false,
+            "seconds": 1.2028253750000034,
+            "frames": []
+        }
+    ],
+    "spells": [
+        "Pyromancy_EmberSpit",
+        "Pyromancy_FlamingHands",
+        "Hydromancy_JetBlast",
+        "Galvanism_GroundSurge",
+        "Cryomancy_RimeGrip",
+        "Spellcraft_Calm",
+        "Hydromancy_ConjureRain"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-003.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-002.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-003.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-003.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-003.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-004.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-003.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-003.png"
+    ],
+    "loopFrames": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-000.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-001.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-002.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-003.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-004.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-005.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-006.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-007.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-008.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-009.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-010.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-0-011.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-000.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-001.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-002.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-003.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-004.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-005.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-006.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-007.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-008.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-009.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-010.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-1-011.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-000.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-001.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-002.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-003.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-004.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-005.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-006.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-007.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-008.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-009.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-010.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-2-011.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-000.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-001.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-002.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-003.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-004.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-005.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-006.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-007.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-008.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-009.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-010.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-3-011.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-000.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-001.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-002.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-003.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-004.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-005.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-006.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-007.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-008.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-009.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-010.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-4-011.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-000.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-001.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-002.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-003.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-004.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-005.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-006.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-007.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-008.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-009.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-010.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-5-011.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-000.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-001.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-002.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-003.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-004.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-005.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-006.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-007.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-008.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-009.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-010.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-showcase-6-011.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-000.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-001.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-002.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-003.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-004.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-005.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-006.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-007.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-008.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-009.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-010.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-deny-frozen-4-011.png"
+    ],
+    "counterNames": [
+        "COO.ZoneRenderer.LateUpdate",
+        "COO.Input.Update",
+        "Main Thread",
+        "GC Allocated In Frame",
+        "Draw Calls Count",
+        "Triangles Count"
+    ],
+    "counterUnits": [
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        "Bytes",
+        "Count",
+        "Count"
+    ],
+    "counterAvailable": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+    ]
+}

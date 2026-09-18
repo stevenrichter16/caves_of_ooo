@@ -63,16 +63,21 @@ namespace CavesOfOoo.Core
             WriteString(gameVersion);
         }
 
-        public void WriteCheck(string name)
+        internal static int CheckValue(string name)
         {
             unchecked
             {
                 int hash = 17;
                 for (int i = 0; i < name.Length; i++)
                     hash = hash * 31 + name[i];
-                Write(hash);
+                return hash;
             }
         }
+
+        public void WriteCheck(string name) => Write(CheckValue(name));
+
+        // Extension-only byte payloads; the legacy string encoding stays unchanged.
+        internal void WriteBytes(byte[] bytes) => _writer.Write(bytes);
 
         public void Write(int value) => _writer.Write(value);
         public void Write(long value) => _writer.Write(value);
@@ -161,16 +166,15 @@ namespace CavesOfOoo.Core
 
         public void ExpectCheck(string name)
         {
-            unchecked
-            {
-                int hash = 17;
-                for (int i = 0; i < name.Length; i++)
-                    hash = hash * 31 + name[i];
+            if (ReadInt() != SaveWriter.CheckValue(name))
+                throw new InvalidDataException($"Save section check failed: {name}.");
+        }
 
-                int actual = ReadInt();
-                if (actual != hash)
-                    throw new InvalidDataException($"Save section check failed: {name}.");
-            }
+        internal byte[] ReadBytesExactly(int count)
+        {
+            byte[] bytes = _reader.ReadBytes(count);
+            if (bytes.Length != count) throw new EndOfStreamException("Truncated save byte payload.");
+            return bytes;
         }
 
         public int ReadInt() => _reader.ReadInt32();
@@ -366,6 +370,7 @@ namespace CavesOfOoo.Core
             SaveGraphSerializer.SavePlayerReputation(writer);
 
             writer.WriteQueuedEntityBodies();
+            SessionTileStateSerializer.Write(ZoneManager, writer);
             writer.WriteCheck("GameSession.End");
         }
 
@@ -401,7 +406,12 @@ namespace CavesOfOoo.Core
             var reputation = SaveGraphSerializer.ReadPlayerReputation(reader);
 
             reader.ReadEntityBodies(runLoadHooks: false);
-            reader.ExpectCheck("GameSession.End");
+            // Body fields now exist. Every load hook observes the complete physical
+            // index, while parser/rebuild failure still leaves the live session intact.
+            if(state.ZoneManager?.CachedZones != null)
+                foreach(var zone in state.ZoneManager.CachedZones.Values) zone.RebuildEntityCellsFromCells();
+            var tileSnapshot = SessionTileStateSerializer.ReadOptionalAndEnd(state.ZoneManager, reader);
+            tileSnapshot?.Apply();
 
             // Parser failures leave the live session untouched. Load-hook or
             // bootstrap application exceptions are separate from this boundary.
@@ -409,8 +419,18 @@ namespace CavesOfOoo.Core
             state.ZoneManager?.SettlementManager?.Activate();
             messages.Apply();
             PlayerReputation.Restore(reputation);
+            // Transient presentation is reconstructed by OnAfterLoad and zone activation.
+            AsciiFxBus.Clear();
+            SpellFxBus.Clear();
             reader.RunLoadHooks();
+            // Hooks may deliberately change restored tiles. Preserve their
+            // completed result across reconstruction-only pool projections.
+            if (tileSnapshot != null)
+                tileSnapshot = SessionTileStateSerializer.Capture(state.ZoneManager);
             SaveGraphSerializer.RebuildLoadedWorld(state, reader.LoadedEntities);
+            // Scene migrations may AddEntity and project a liquid pool. The
+            // post-hook snapshot, including deliberately erased coatings, wins.
+            tileSnapshot?.Apply();
             return state;
         }
 
@@ -941,6 +961,25 @@ namespace CavesOfOoo.Core
             if (zones != null)
             {
                 foreach (var kvp in zones) kvp.Value.RebuildEntityCellsFromCells();
+                if(zones.TryGetValue(MultiCellPilotRuntime.ZoneID,out var pilotZone))
+                    MultiCellPilotRuntime.UpgradeCachedZone(pilotZone,state.ZoneManager.Factory);
+                // The active loaded zone may render without another GetZone call.
+                // Upgrade only the canonical saved Felling POI after identities
+                // and cell indexes are resolved; unknown saved occupants survive.
+                if (state.ZoneManager.WorldMap.GetPOI(FellingSiteBuilder.WorldX, FellingSiteBuilder.WorldY)?.Type == POIType.FellingSite
+                    && zones.TryGetValue(FellingSiteBuilder.ZoneID, out var fellingZone))
+                {
+                    FellingSceneRuntime.UpgradeCachedZone(fellingZone, state.ZoneManager.Factory);
+                    if (ReferenceEquals(state.ZoneManager.ActiveZone, fellingZone))
+                        FellingScenePopulation.RegisterActiveFauna(fellingZone, state.TurnManager);
+                }
+                if (state.ZoneManager.WorldMap.GetPOI(MorrowfastSceneRuntime.WorldX, MorrowfastSceneRuntime.WorldY)?.Profile == "Morrowfast"
+                    && zones.TryGetValue(MorrowfastSceneRuntime.ZoneID, out var morrowfastZone))
+                {
+                    MorrowfastSceneRuntime.UpgradeCachedZone(morrowfastZone, state.ZoneManager.Factory);
+                    if (ReferenceEquals(state.ZoneManager.ActiveZone, morrowfastZone))
+                        MorrowfastSceneRuntime.RegisterActiveActors(morrowfastZone, state.TurnManager);
+                }
                 // Entity bodies are now resolved. Repair derived map appearance
                 // without creating an uncached map or clearing saved occupants.
                 if (zones.TryGetValue(WorldMap.WorldMapZoneID, out var mapZone))
@@ -1211,6 +1250,8 @@ namespace CavesOfOoo.Core
             // Never overwrites: an existing POI (of any type) wins.
             map.RehydrateAuthoredSinkholes();
             map.RehydrateFellingSite();
+            map.RehydrateMorrowfast();
+            map.RehydrateMultiCellPilot();
             return map;
         }
 

@@ -1,0 +1,87 @@
+{
+  "status": "GREEN",
+  "assertions": 15,
+  "passed": 15,
+  "checks": [
+    {
+      "name": "Baseline caster gesture really moves",
+      "passed": true,
+      "actual": 1.0499999523162842
+    },
+    {
+      "name": "Removing the actual caster action is detected",
+      "passed": true,
+      "actual": 0.0
+    },
+    {
+      "name": "Baseline standalone effect transform really moves",
+      "passed": true,
+      "actual": 0.9956759214401245
+    },
+    {
+      "name": "Removing the actual mesh action is detected",
+      "passed": true,
+      "actual": 0.0
+    },
+    {
+      "name": "Baseline effect is completely cleared",
+      "passed": true,
+      "actual": 0.0
+    },
+    {
+      "name": "A real late lingering effect is detected",
+      "passed": true,
+      "actual": 0.20000000298023224
+    },
+    {
+      "name": "Baseline actor root is fixed",
+      "passed": true,
+      "actual": 0.0
+    },
+    {
+      "name": "Actual injected caster-root translation is detected",
+      "passed": true,
+      "actual": 0.5
+    },
+    {
+      "name": "Baseline required named caster root exists",
+      "passed": true,
+      "actual": "rime_grip__ActorRoot"
+    },
+    {
+      "name": "Renaming actual required hierarchy root is detected",
+      "passed": true,
+      "actual": [
+        "MUTATED_missing_required_actor_root"
+      ]
+    },
+    {
+      "name": "Baseline transient inventory matches manifest",
+      "passed": true,
+      "actual": 7
+    },
+    {
+      "name": "Deleting an actual named effect mesh is detected",
+      "passed": true,
+      "actual": 6
+    },
+    {
+      "name": "Baseline effect material is opaque",
+      "passed": true,
+      "actual": 1.0
+    },
+    {
+      "name": "Introducing actual shader transparency is detected",
+      "passed": true,
+      "actual": 0.5
+    },
+    {
+      "name": "In-memory mutations never alter delivered blend",
+      "passed": true,
+      "actual": {
+        "before": "cfaf8301d5829669f5026eea89b4d46201fad80bb4ebd33496bdfa817bea03e3",
+        "after": "cfaf8301d5829669f5026eea89b4d46201fad80bb4ebd33496bdfa817bea03e3"
+      }
+    }
+  ]
+}

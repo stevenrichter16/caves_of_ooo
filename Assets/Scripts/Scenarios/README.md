@@ -133,6 +133,32 @@ spawn time and remove by that key.
 
 ---
 
+## Spell FX Showcase
+
+`Caves Of Ooo > Scenarios > Combat Stress > Spell FX Showcase` runs actual
+skill commands through `SkillsPart` on fresh actors. The first eight cases
+are Kindle, Ember Vein, Jet Blast, Drench Lob, Thunderclap, Glacial Wall,
+Ward Gleam, and Bloodletter Ledger. Registry discovery then adds every other
+castable magic ability, every rite with zero marks, and resistance, blocked
+path, refusal, death, forced movement, and hidden-caster cases. Scalding
+Veil's zero-mark case is an intentional dry refusal, respecting its real gate.
+
+Use the onscreen Pause, Replay, and Next buttons to inspect a cast. The
+`SpellFxShowcasePlayer` component also exposes `Paused`, `CurrentCaseIndex`,
+`CurrentCaseLabel`, `CurrentStage`, `PrepareCase(index)`, `ExecutePrepared()`,
+and `PlayCase(index)` for editor automation and frame captures. Preparation
+does not cast; a stage executes at most once. The caster stands at (38, 12),
+the observer at (34, 12), and the primary target at (40, 12); hidden casts
+start at (8, 12). Field of view is recomputed normally. Playback cancels the
+previous transient effects before replacing the staged actors.
+
+This is a disposable scenario arena: it clears objects in its two test
+regions and restores clean material state between cases. The normal turn
+loop is not advanced by its timed demonstration. Persistent spell results
+remain visible during each case and are removed when the next case is staged.
+The completion message counts unexpected cast/refusal outcomes; visual
+quality, temporal readability, and frame registration still require inspection.
+
 ## Troubleshooting
 
 - **Scenario doesn't appear in the menu** → Check `ScenarioMenuItems.cs` has

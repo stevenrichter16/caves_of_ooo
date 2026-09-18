@@ -76,20 +76,7 @@ namespace CavesOfOoo.Skills
             }
 
             // Find adjacent Creature (mirrors Cudgel_Slam's pattern).
-            Entity target = null;
-            for (int dir = 0; dir < 8 && target == null; dir++)
-            {
-                var cell = ctx.Zone.GetCellInDirection(actorPos.x, actorPos.y, dir);
-                if (cell == null) continue;
-                for (int i = 0; i < cell.Objects.Count; i++)
-                {
-                    var e = cell.Objects[i];
-                    if (e == null || e == actor) continue;
-                    if (!e.Tags.ContainsKey("Creature")) continue;
-                    target = e;
-                    break;
-                }
-            }
+            var target = MultiCellAbilityQueries.FirstAdjacentCreature(ctx.Zone, actor, out _);
 
             if (target == null)
             {

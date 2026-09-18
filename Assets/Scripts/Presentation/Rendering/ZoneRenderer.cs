@@ -46,6 +46,9 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public int FovRadius = 999;
 
+        [Tooltip("Temporarily reveal the complete 3D zone without changing gameplay sight or exploration.")]
+        public bool RevealEntire3DZone;
+
         /// <summary>
         /// Persistent sidebar width in narrow text columns.
         /// </summary>
@@ -61,6 +64,7 @@ namespace CavesOfOoo.Rendering
         private Tilemap _bgTilemap;
         private Tilemap _fxTilemap;
         private AnimatedEnvironmentRenderer _animatedEnvRenderer; // Pass 5
+        private AnimatedEntityRenderer _entityVisualRenderer;
         // Pass 6 (GlyphGhostRenderer — motion-ghost trails) REMOVED.
         // It painted a fading CP437 copy of a mover at its previous cell.
         // Two defects made it unshippable and one made it unwanted:
@@ -74,6 +78,16 @@ namespace CavesOfOoo.Rendering
         //   - Asked about it, the user's answer was that the ghost should
         //     not appear at all. Removed rather than left disabled.
         private EnvironmentSpriteRenderer _envSpriteRenderer;     // Pass 7
+        private FellingScenePresenter _fellingScenePresenter;
+        public FellingScenePresenter FellingPresenter => _fellingScenePresenter;
+        private FellingDressingPresenter _fellingDressingPresenter;
+        public FellingDressingPresenter FellingDressingPresenter => _fellingDressingPresenter;
+        private MorrowfastScenePresenter _morrowfastScenePresenter;
+        private Village3DPresenter _village3DPresenter;
+        public Village3DPresenter Village3D => _village3DPresenter;
+        private SpawnRing3DPresenter _spawnRing3DPresenter;
+        public SpawnRing3DPresenter SpawnRing3D => _spawnRing3DPresenter;
+        public MorrowfastScenePresenter MorrowfastPresenter => _morrowfastScenePresenter;
         private CavesOfOoo.Presentation.Effects.LightSourceSpriteHook _lightSourceHook; // Pass 8
 
         /// <summary>
@@ -113,6 +127,8 @@ namespace CavesOfOoo.Rendering
         private Transform _popupOverlayGridTransform;
         private Material _popupOverlayUiMaterial;
         private AsciiFxRenderer _asciiFxRenderer;
+        private WorldFxCoordinator _worldFxCoordinator;
+        public WorldFxCoordinator WorldFx => _worldFxCoordinator;
         private CampfireEmberRenderer _campfireEmberRenderer;
         private AmbientMotesRenderer _ambientMotesRenderer;     // Round 5
         private WorldCursorRenderer _worldCursorRenderer;
@@ -235,7 +251,7 @@ namespace CavesOfOoo.Rendering
         private float _lastCameraSize = -1f;
         private float _lastCameraAspect = -1f;
 
-        public bool HasBlockingFx => _asciiFxRenderer?.HasBlockingFx ?? false;
+        public bool HasBlockingFx => _worldFxCoordinator?.HasBlockingFx ?? (_asciiFxRenderer?.HasBlockingFx ?? false);
 
         /// <summary>
         /// Exposed background tilemap (sortingOrder -1). UI overlays like DialogueUI
@@ -262,6 +278,8 @@ namespace CavesOfOoo.Rendering
 
         private void Awake()
         {
+            if (Application.isPlaying && GetComponent<Village3DControls>() == null)
+                gameObject.AddComponent<Village3DControls>();
             _lastFlashStamp = MessageLog.FlashStamp;
             _mainCamera = Camera.main;
             _tilemap = GetComponent<Tilemap>();
@@ -297,7 +315,7 @@ namespace CavesOfOoo.Rendering
             GameplayRenderLayers.SetLayerRecursive(fineWaterTmObj, GameplayRenderLayers.WorldLayer);
             _fineWaterTilemap = fineWaterTmObj.AddComponent<Tilemap>();
             var fineWaterRenderer = fineWaterTmObj.AddComponent<TilemapRenderer>();
-            fineWaterRenderer.sortingOrder = 1; // above main (0), below FX (2)
+            fineWaterRenderer.sortingOrder = 1; // above main (0), below animated environment (2)
             // No sharedMaterial → inherits Sprite-Lit-Default like the main tilemap.
 
             var fxTilemapObj = new GameObject("FxTilemap");
@@ -307,6 +325,16 @@ namespace CavesOfOoo.Rendering
             var fxRenderer = fxTilemapObj.AddComponent<TilemapRenderer>();
             fxRenderer.sortingOrder = 2; // bumped from 1 to make room for fine water at 1
             _asciiFxRenderer = new AsciiFxRenderer(_fxTilemap);
+            _worldFxCoordinator = new WorldFxCoordinator(_asciiFxRenderer, gridParent);
+            _worldFxCoordinator.CameraAccent = (strength, duration) =>
+            {
+                // Unity keeps a managed wrapper after native camera destruction.
+                // Teardown must still cancel playback and clear both effect queues.
+                if (_mainCamera == null) return;
+                var follow = _mainCamera.GetComponent<CameraFollow>();
+                if (follow != null) follow.Shake(strength, duration);
+            };
+            if (GetComponent<SpellFxSettingsPanel>() == null) gameObject.AddComponent<SpellFxSettingsPanel>();
 
             // PALIMPSEST P2b — tile-state marks (puddles, oil, embers,
             // charge) get their OWN tilemap.
@@ -321,16 +349,15 @@ namespace CavesOfOoo.Rendering
             // A dedicated tilemap is immune: the sprite pass only ever
             // writes _mainTilemap, _bgTilemap and _overlayTilemap.
             //
-            // Order 5 specifically: -1 bg, 0 main, 1 fine water, 2
-            // animated env, 3 FX + env-sprite overlay, 4 WorldCursor's
-            // LineRenderer, 6/7 popups. 5 is the only free slot below
-            // the popups.
+            // Stable order: -1 bg, 0 main, 1 fine water, 2 animated env,
+            // 3 environment sprites, 4 tile state, 5/6 actor shadow/body,
+            // 7 cursor, 8 FX, 20/21 fullscreen popups.
             var tileStateObj = new GameObject("TileStateTilemap");
             tileStateObj.transform.SetParent(gridParent, false);
             GameplayRenderLayers.SetLayerRecursive(tileStateObj, GameplayRenderLayers.WorldLayer);
             _tileStateTilemap = tileStateObj.AddComponent<Tilemap>();
             var tileStateRenderer = tileStateObj.AddComponent<TilemapRenderer>();
-            tileStateRenderer.sortingOrder = 5;
+            tileStateRenderer.sortingOrder = 4;
 
             // GLYPHS-ONLY GATE: Pass 5-11 visual layers are gated
             // behind GraphicsPolish.IsEnabled. When the master flag is
@@ -341,8 +368,8 @@ namespace CavesOfOoo.Rendering
             {
                 // Pass 5 §5A.3: animated-environment overlay layers
                 // (water UV scroll, grass vertex sway, fire flicker).
-                // Sits between fineWater (1) and FX (2) — we bump FX to
-                // 3 inside Init so the animated overlays slot at 2.
+                // Sits between fineWater (1) and environment sprites (3);
+                // Init moves FX to the stable top-of-world slot at 8.
                 // See Docs/GRAPHICS-PASS5.md.
                 var animEnvObj = new GameObject("AnimatedEnvironmentRenderer");
                 animEnvObj.transform.SetParent(gridParent, false);
@@ -350,7 +377,6 @@ namespace CavesOfOoo.Rendering
                 _animatedEnvRenderer = animEnvObj.AddComponent<AnimatedEnvironmentRenderer>();
                 _animatedEnvRenderer.Init(gridParent, _tilemap, fxRenderer);
 
-                // Pass 6 §6A: motion-ghost trails. Sits between
                 // Pass 7 §7B.1: hybrid sprite environment. Replaces
                 // wall/floor/water/door CP437 glyphs with 16×16 pixel-art
                 // sprites on a new overlay tilemap. Toggleable via the
@@ -364,6 +390,36 @@ namespace CavesOfOoo.Rendering
                 // ASCII cells' dark contrast boxes with the ground
                 // sprite — letters stand ON terrain, not on black tiles.
                 _envSpriteRenderer.Init(gridParent, _tilemap, _bgTilemap);
+
+                var fellingObject = new GameObject("FellingScenePresenter");
+                fellingObject.transform.SetParent(gridParent, false);
+                GameplayRenderLayers.SetLayerRecursive(fellingObject, GameplayRenderLayers.WorldLayer);
+                _fellingScenePresenter = fellingObject.AddComponent<FellingScenePresenter>();
+                var dressingObject = new GameObject("FellingDressingPresenter");
+                dressingObject.transform.SetParent(gridParent, false);
+                GameplayRenderLayers.SetLayerRecursive(dressingObject, GameplayRenderLayers.WorldLayer);
+                _fellingDressingPresenter = dressingObject.AddComponent<FellingDressingPresenter>();
+                var morrowfastObject = new GameObject("MorrowfastScenePresenter");
+                morrowfastObject.transform.SetParent(gridParent, false);
+                GameplayRenderLayers.SetLayerRecursive(morrowfastObject, GameplayRenderLayers.WorldLayer);
+                _morrowfastScenePresenter = morrowfastObject.AddComponent<MorrowfastScenePresenter>();
+                _envSpriteRenderer.SetAuthoredScenePredicates(ClaimsAuthoredSceneCell, IsAuthoredSceneEntity);
+
+                // Data-driven, pooled 16x24 actor sprites. Simulation stays
+                // turn-discrete; this layer only presents movement and combat.
+                var entityVisualObj = new GameObject("AnimatedEntityRenderer");
+                entityVisualObj.transform.SetParent(gridParent, false);
+                GameplayRenderLayers.SetLayerRecursive(entityVisualObj, GameplayRenderLayers.WorldLayer);
+                _entityVisualRenderer = entityVisualObj.AddComponent<AnimatedEntityRenderer>();
+                _entityVisualRenderer.Init(ResolveEntityVisualTint);
+                _entityVisualRenderer.SetSourceEntityPredicate(IsSourceSceneBody);
+                _envSpriteRenderer.SetEntityVisualPredicate(_entityVisualRenderer.CanRender);
+                var village3DObject = new GameObject("Village3DPresenter");
+                village3DObject.transform.SetParent(gridParent, false);
+                _village3DPresenter = village3DObject.AddComponent<Village3DPresenter>();
+                var ringObject = new GameObject("SpawnRing3DPresenter");
+                ringObject.transform.SetParent(gridParent, false);
+                _spawnRing3DPresenter = ringObject.AddComponent<SpawnRing3DPresenter>();
 
                 // Pass 8 §8E.1: Light2D point lights on campfire `*` and
                 // shrine `_` cells; biome-based ambient dim for dungeons;
@@ -474,14 +530,14 @@ namespace CavesOfOoo.Rendering
             GameplayRenderLayers.SetLayerRecursive(popupBgObj, GameplayRenderLayers.WorldLayer);
             _popupBgTilemap = popupBgObj.AddComponent<Tilemap>();
             var popupBgRenderer = popupBgObj.AddComponent<TilemapRenderer>();
-            popupBgRenderer.sortingOrder = 6;
+            popupBgRenderer.sortingOrder = 20;
 
             var popupFgObj = new GameObject("PopupFgTilemap");
             popupFgObj.transform.SetParent(gridParent, false);
             GameplayRenderLayers.SetLayerRecursive(popupFgObj, GameplayRenderLayers.WorldLayer);
             _popupFgTilemap = popupFgObj.AddComponent<Tilemap>();
             var popupFgRenderer = popupFgObj.AddComponent<TilemapRenderer>();
-            popupFgRenderer.sortingOrder = 7;
+            popupFgRenderer.sortingOrder = 21;
 
             // Wire up gameplay-side dirty hooks. Gameplay code (MovementSystem,
             // CombatSystem) calls into ZoneRenderHooks without directly
@@ -491,8 +547,26 @@ namespace CavesOfOoo.Rendering
             ZoneRenderHooks.FullDirtyCallback = MarkDirty;
         }
 
+        private void OnDisable()
+        {
+            _worldFxCoordinator?.CancelAll();
+            _fellingScenePresenter?.SetPresentationVisible(false);
+            _fellingDressingPresenter?.SetPresentationVisible(false);
+            _morrowfastScenePresenter?.SetPresentationVisible(false);
+            _village3DPresenter?.SetPresentationVisible(false);
+            _spawnRing3DPresenter?.SetPresentationVisible(false);
+        }
+
+        public void CancelWorldFx() { _worldFxCoordinator?.CancelAll(); }
+
         private void OnDestroy()
         {
+            _fellingScenePresenter?.Unbind();
+            _fellingDressingPresenter?.Unbind();
+            _morrowfastScenePresenter?.Unbind();
+            _village3DPresenter?.Bind(null, _mainCamera);
+            _spawnRing3DPresenter?.Bind(null, _mainCamera);
+            _worldFxCoordinator?.Dispose();
             DestroyOwnedMaterial(ref _sidebarUiMaterial);
             DestroyOwnedMaterial(ref _hotbarUiMaterial);
             DestroyOwnedMaterial(ref _popupOverlayUiMaterial);
@@ -517,7 +591,12 @@ namespace CavesOfOoo.Rendering
             // dirties cells in the one actually on screen.
             ZoneTileStateSystem.BindRenderHook(zone);
             CurrentZone = zone;
-            _asciiFxRenderer?.SetZone(zone);
+            _fellingScenePresenter?.Bind(zone);
+            _fellingDressingPresenter?.Bind(zone);
+            SyncVillagePresentation(!Paused);
+            _entityVisualRenderer?.SetZone(zone);
+            if (_worldFxCoordinator != null) _worldFxCoordinator.SetZone(zone);
+            else _asciiFxRenderer?.SetZone(zone);
             _worldCursorRenderer?.SetZone(zone);
             _sidebarRenderer?.ResetLogScroll();
             _sidebarRenderer?.Clear();
@@ -728,6 +807,15 @@ namespace CavesOfOoo.Rendering
 
                 if (Paused)
                 {
+                    _fellingScenePresenter?.SetPresentationVisible(false);
+                    _fellingDressingPresenter?.SetPresentationVisible(false);
+                    _morrowfastScenePresenter?.SetPresentationVisible(false);
+                    _village3DPresenter?.SetPresentationVisible(false);
+                    _spawnRing3DPresenter?.SetPresentationVisible(false);
+                    _worldFxCoordinator?.SetNativeSurface(null);
+                    _worldFxCoordinator?.Update(Time.unscaledDeltaTime,
+                        _envSpriteRenderer == null || _envSpriteRenderer.RenderingEnabled, false);
+                    _entityVisualRenderer?.SetPresentationVisible(false);
                     // Only clear auxiliary layers on the transition into paused state
                     if (!_wasPaused)
                     {
@@ -788,13 +876,21 @@ namespace CavesOfOoo.Rendering
                 }
 
                 // FX ticks only while the world is actually on screen.
+                _fellingScenePresenter?.SetPresentationVisible(_envSpriteRenderer != null && _envSpriteRenderer.RenderingEnabled);
+                SyncVillagePresentation(_envSpriteRenderer != null && _envSpriteRenderer.RenderingEnabled);
+                _fellingDressingPresenter?.SetPresentationVisible(_fellingScenePresenter != null && _fellingScenePresenter.PresentationVisible);
+                _entityVisualRenderer?.SetPresentationVisible(
+                    _envSpriteRenderer == null || _envSpriteRenderer.RenderingEnabled);
                 // AsciiFxRenderer.Render clears and repaints _fxTilemap
                 // (sortingOrder 2) whenever anything is alive, which is
                 // ABOVE the order-0 main tilemap a fullscreen UI paints
                 // on — ticking it above the Paused check let live
                 // effects keep drawing over the inventory for as long as
                 // they lasted.
-                _asciiFxRenderer?.Update(Time.deltaTime);
+                if (_worldFxCoordinator != null)
+                    _worldFxCoordinator.Update(Time.unscaledDeltaTime,
+                        _envSpriteRenderer == null || _envSpriteRenderer.RenderingEnabled);
+                else _asciiFxRenderer?.Update(Time.unscaledDeltaTime);
                 if (_asciiFxRenderer != null)
                 {
                     PerformanceDiagnostics.RecordAsciiFxCounts(
@@ -831,15 +927,30 @@ namespace CavesOfOoo.Rendering
                     }
                     else if (_dirtyCells.Count > 0)
                     {
-                        RenderDirtyCells();
-                        // Pass 13 + ROUND 4: the sprite pass runs on the
-                        // incremental path too, but now receives the
-                        // DIRTY SET and re-resolves only those cells
-                        // (plus neighbors) — the audit measured the old
-                        // full release/rescan at ~13-15k tilemap writes
-                        // per NPC step. Clear AFTER the sprite pass.
-                        if (_envSpriteRenderer != null)
-                            _envSpriteRenderer.PostRender(CurrentZone, Zone.Width, Zone.Height, _dirtyCells);
+                        _fellingScenePresenter?.Refresh();
+                        _fellingDressingPresenter?.Refresh();
+                        RefreshVillagePresentation();
+                        bool ringClaimsChanged = RefreshSpawnRingPresentation(_dirtyCells);
+                        if (ringClaimsChanged)
+                        {
+                            // A model failure releases the entire 3D surface. Every
+                            // native body it suppressed must return in this frame,
+                            // including cells outside the original dirty set.
+                            RenderZone();
+                        }
+                        else
+                        {
+                            RenderDirtyCells();
+                            // Pass 13 + ROUND 4: the sprite pass runs on the
+                            // incremental path too, but now receives the
+                            // DIRTY SET and re-resolves only those cells
+                            // (plus neighbors) — the audit measured the old
+                            // full release/rescan at ~13-15k tilemap writes
+                            // per NPC step. Clear AFTER the sprite pass.
+                            if (_envSpriteRenderer != null)
+                                _envSpriteRenderer.PostRender(CurrentZone, Zone.Width, Zone.Height, _dirtyCells);
+                            _entityVisualRenderer?.SyncZone(CurrentZone);
+                        }
                         _dirtyCells.Clear();
                     }
                 }
@@ -901,6 +1012,10 @@ namespace CavesOfOoo.Rendering
                 using (PerformanceMarkers.Zone.ComputeLightMap.Auto())
                     _lightMap.Compute(CurrentZone);
 
+                SyncVillagePresentation(!Paused && _envSpriteRenderer != null && _envSpriteRenderer.RenderingEnabled);
+                _village3DPresenter?.Refresh(_lightMap);
+                RefreshSpawnRingPresentation();
+
                 int cellsRendered = Zone.Width * Zone.Height;
                 PerformanceDiagnostics.RecordZoneRedraw(cellsRendered);
                 for (int x = 0; x < Zone.Width; x++)
@@ -926,8 +1041,15 @@ namespace CavesOfOoo.Rendering
                 // from the main tilemap and re-paint as sprites.
                 // Skips no-op-ly if RenderingEnabled is false
                 // (toggled via SpriteEnvToggleController).
+                _fellingScenePresenter?.Refresh();
+                _fellingDressingPresenter?.SetPresentationVisible(_fellingScenePresenter != null && _fellingScenePresenter.PresentationVisible);
+                _fellingDressingPresenter?.Refresh();
+                if (_village3DPresenter == null || !_village3DPresenter.PresentationVisible)
+                    _morrowfastScenePresenter?.Refresh();
                 if (_envSpriteRenderer != null)
                     _envSpriteRenderer.PostRender(CurrentZone, Zone.Width, Zone.Height);
+
+                _entityVisualRenderer?.SyncZone(CurrentZone);
 
                 // Pass 8 §8E.1: scan the env sprite overlay for
                 // campfire/shrine tiles and attach Light2D point lights.
@@ -1067,9 +1189,12 @@ namespace CavesOfOoo.Rendering
             RenderCellCore(x, y);
         }
 
-        /// <summary>Tile-state marks live here (sortingOrder 5), above
+        /// <summary>Tile-state marks live here (sortingOrder 4), above
         /// the environment sprite pass so they are never covered.</summary>
         private Tilemap _tileStateTilemap;
+        private bool _tileStateNativeVisible;
+        private static readonly Matrix4x4 NativeGroundMarkTransform = Matrix4x4.TRS(
+            new Vector3(.28f, .28f, 0f), Quaternion.identity, new Vector3(.35f, .35f, 1f));
 
         /// <summary>
         /// PALIMPSEST P2b — paints one glyph for whatever is written on
@@ -1119,7 +1244,7 @@ namespace CavesOfOoo.Rendering
             {
                 glyph = '~'; color = new Color(0.35f, 0.25f, 0.45f);     // oil
             }
-            else if (state.Coatings.Count > 0)
+            else if (state.Coatings.Count > 0 && !IsAuthoredRiverWater(x, y, cell, state))
             {
                 // Per-liquid tint: ice used to paint the same blue as
                 // water — indistinguishable even on the map (study §1).
@@ -1154,6 +1279,30 @@ namespace CavesOfOoo.Rendering
             _tileStateTilemap.SetTile(tilePos, tile);
             _tileStateTilemap.SetTileFlags(tilePos, TileFlags.None);
             _tileStateTilemap.SetColor(tilePos, color);
+            // Persistent hazards remain readable beside the native spell/actor,
+            // rather than covering it. Always reset fallback cells: tilemap
+            // transforms survive repaint, and shared CP437 tiles are borrowed.
+            bool nativeCell = (_village3DPresenter != null
+                    && ReferenceEquals(_village3DPresenter.CurrentZone, CurrentZone) && _village3DPresenter.ClaimsCell(x, y))
+                || (_spawnRing3DPresenter != null
+                    && ReferenceEquals(_spawnRing3DPresenter.CurrentZone, CurrentZone) && _spawnRing3DPresenter.ClaimsCell(x, y));
+            _tileStateTilemap.SetTransformMatrix(tilePos, nativeCell ? NativeGroundMarkTransform : Matrix4x4.identity);
+        }
+
+        private bool IsAuthoredRiverWater(int x, int y, Cell cell, ZoneTileState.TileState state)
+        {
+            if (!ClaimsAuthoredSceneCell(x, y) || cell == null || state == null
+                || state.Coatings.Count != 1 || state.Coatings[0].Id != "water"
+                || state.Coatings[0].Turns != ZoneTileState.Permanent) return false;
+            if (_spawnRing3DPresenter != null && ReferenceEquals(_spawnRing3DPresenter.CurrentZone, CurrentZone)
+                && _spawnRing3DPresenter.HasRepresentedWater(x, y)) return true;
+            foreach (Entity entity in cell.Objects)
+            {
+                if (!entity.HasTag(FellingSceneRuntime.TerrainTag) && !entity.HasTag("MorrowfastAuthoredTerrain")) continue;
+                var pool = entity.GetPart<LiquidPoolPart>();
+                if (pool != null && pool.LiquidId == "water" && pool.Volume > 0) return true;
+            }
+            return false;
         }
 
         private static bool HasLayer(System.Collections.Generic.List<ZoneTileState.Layer> layers, string id)
@@ -1326,6 +1475,21 @@ namespace CavesOfOoo.Rendering
                 _tilemap.SetTileFlags(tilePos, TileFlags.None);
                 _tilemap.SetColor(tilePos, BackgroundColor);
             }
+        }
+
+        private Color ResolveEntityVisualTint(Entity entity, int x, int y)
+        {
+            // The authored scene carries its shading in the source RGB. Avoid a
+            // second CPU attenuation on visible actors standing in that artwork;
+            // the actor renderer still owns actual FOV and its normal material.
+            if ((_village3DPresenter == null || !_village3DPresenter.PresentationVisible)
+                && (_spawnRing3DPresenter == null || !_spawnRing3DPresenter.PresentationVisible)
+                && ClaimsAuthoredSceneCell(x, y) && CurrentZone.GetCell(x, y)?.IsVisible == true)
+                return Color.white;
+            Color tint = Color.white;
+            if (_lightMap != null)
+                tint = _lightMap.ApplyToColor(tint, x, y);
+            return tint;
         }
 
         private void LogRenderIssueOnce(Entity entity, string issue)
@@ -1576,6 +1740,126 @@ namespace CavesOfOoo.Rendering
             y = zoneY;
             return true;
         }
+
+        /// <summary>Look uses visible sprite alpha to select its simulation owner.
+        /// Movement, targeting and throwing retain ScreenToZoneCell's geometric mapping.</summary>
+        public bool ScreenToLookCell(Vector2 screenPosition, Camera camera, out int x, out int y)
+        {
+            if (TryScreenToSceneOwner(screenPosition, camera, out _, out x, out y)) return true;
+            return ScreenToZoneCell(screenPosition, camera, out x, out y);
+        }
+
+        public bool TryScreenToSceneOwner(Vector2 screenPosition, Camera camera, out Entity owner, out int x, out int y)
+        {
+            owner = null; x = y = -1;
+            if (Paused || CurrentZone == null || !HasVisibleAuthoredScene
+                || camera == null || !camera.pixelRect.Contains(screenPosition)) return false;
+            // A live actor/item in the geometric cell remains selectable; scenery
+            // picking must not steal its ordinary interaction menu.
+            if (ScreenToZoneCell(screenPosition, camera, out int cellX, out int cellY))
+            {
+                Cell cell = CurrentZone.GetCell(cellX, cellY);
+                Entity top = cell?.GetTopVisibleObject();
+                if (cell != null && cell.IsVisible && top != null && !IsAuthoredSceneEntity(top)) return false;
+            }
+            Vector3 world = camera.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, -camera.transform.position.z));
+            if (_village3DPresenter != null && ReferenceEquals(_village3DPresenter.CurrentZone, CurrentZone)
+                && _village3DPresenter.TryPickWorld(world, out owner, out x, out y)) return true;
+            if (_spawnRing3DPresenter != null && ReferenceEquals(_spawnRing3DPresenter.CurrentZone, CurrentZone)
+                && _spawnRing3DPresenter.TryPickWorld(world, out owner, out x, out y)) return true;
+            int sourceOrder = 0; float sourceDepth = 0;
+            bool sourceHit = _fellingScenePresenter != null && _fellingScenePresenter.TryPickImage(
+                FellingScenePresenter.WorldToImage(world), out x, out y, out owner, out sourceOrder, out sourceDepth);
+            if (_morrowfastScenePresenter != null && _morrowfastScenePresenter.TryPickWorld(world,
+                out Entity morrowfast, out int morrowfastX, out int morrowfastY, out int morrowfastOrder, out float morrowfastDepth)
+                && (!sourceHit || morrowfastOrder > sourceOrder || (morrowfastOrder == sourceOrder && morrowfastDepth <= sourceDepth)))
+            {
+                owner = morrowfast; x = morrowfastX; y = morrowfastY;
+                sourceOrder = morrowfastOrder; sourceDepth = morrowfastDepth; sourceHit = true;
+            }
+            if (_fellingDressingPresenter != null && _fellingDressingPresenter.TryPickWorld(world,
+                out Entity dressing, out int dressingX, out int dressingY, out float dressingDepth)
+                && (!sourceHit || sourceOrder < AnimatedEntityRenderer.BodySortingOrder
+                    || (sourceOrder == AnimatedEntityRenderer.BodySortingOrder && dressingDepth <= sourceDepth)))
+            {
+                owner = dressing; x = dressingX; y = dressingY;
+                return true;
+            }
+            return sourceHit;
+        }
+
+        private void SyncVillagePresentation(bool worldVisible)
+        {
+            if (_village3DPresenter != null) _village3DPresenter.FullReveal = RevealEntire3DZone;
+            if (_spawnRing3DPresenter != null) _spawnRing3DPresenter.FullReveal = RevealEntire3DZone;
+            _village3DPresenter?.Bind(CurrentZone, _mainCamera);
+            _village3DPresenter?.SetPresentationVisible(worldVisible && Village3DSettings.Enabled);
+            bool threeD = _village3DPresenter != null && _village3DPresenter.PresentationVisible;
+            if (!threeD) _morrowfastScenePresenter?.Bind(CurrentZone);
+            _morrowfastScenePresenter?.SetPresentationVisible(worldVisible && !threeD);
+            _spawnRing3DPresenter?.Bind(CurrentZone, _mainCamera);
+            _spawnRing3DPresenter?.SetPresentationVisible(worldVisible && Village3DSettings.Enabled);
+            bool ring = _spawnRing3DPresenter != null && _spawnRing3DPresenter.PresentationVisible;
+            bool nativeMarks = (threeD && ReferenceEquals(_village3DPresenter.CurrentZone, CurrentZone))
+                || (ring && ReferenceEquals(_spawnRing3DPresenter.CurrentZone, CurrentZone));
+            if (_tileStateNativeVisible != nativeMarks)
+            {
+                // A borrowed camera/surface can disappear without a simulation
+                // write. Repaint existing marks once on loss and recovery.
+                _tileStateNativeVisible = nativeMarks;
+                _fullDirty = true;
+            }
+            _worldFxCoordinator?.SetNativeSurface(_village3DPresenter?.ActiveSurface ?? _spawnRing3DPresenter?.ActiveSurface);
+            _fellingScenePresenter?.SetPresentationVisible(worldVisible && !ring);
+            _fellingDressingPresenter?.SetPresentationVisible(worldVisible && !ring
+                && _fellingScenePresenter != null && _fellingScenePresenter.PresentationVisible);
+        }
+        private void RefreshVillagePresentation()
+        {
+            if (_village3DPresenter != null && _village3DPresenter.PresentationVisible)
+            { _lightMap.Compute(CurrentZone); _village3DPresenter.Refresh(_lightMap); }
+            else _morrowfastScenePresenter?.Refresh();
+        }
+
+        private bool RefreshSpawnRingPresentation(HashSet<int> dirtyCells = null)
+        {
+            bool wasVisible = _spawnRing3DPresenter != null && _spawnRing3DPresenter.PresentationVisible;
+            // NPC movement/equipment can change light without a full redraw.
+            // Compute's native version cache makes an unchanged pass a no-op.
+            if (wasVisible) _lightMap.Compute(CurrentZone);
+            _spawnRing3DPresenter?.Refresh(_lightMap, dirtyCells);
+            bool isVisible = _spawnRing3DPresenter != null && _spawnRing3DPresenter.PresentationVisible;
+            if (wasVisible == isVisible) return false;
+            SyncVillagePresentation(!Paused && _envSpriteRenderer != null && _envSpriteRenderer.RenderingEnabled);
+            return true;
+        }
+
+        private bool HasVisibleAuthoredScene
+            => (_spawnRing3DPresenter != null && _spawnRing3DPresenter.PresentationVisible && ReferenceEquals(_spawnRing3DPresenter.CurrentZone, CurrentZone))
+                || (_village3DPresenter != null && _village3DPresenter.PresentationVisible && ReferenceEquals(_village3DPresenter.CurrentZone, CurrentZone))
+                || (_fellingScenePresenter != null && _fellingScenePresenter.PresentationVisible && ReferenceEquals(_fellingScenePresenter.CurrentZone, CurrentZone))
+                || (_morrowfastScenePresenter != null && _morrowfastScenePresenter.PresentationVisible && ReferenceEquals(_morrowfastScenePresenter.CurrentZone, CurrentZone));
+
+        private bool ClaimsAuthoredSceneCell(int x, int y)
+            => (_spawnRing3DPresenter != null && ReferenceEquals(_spawnRing3DPresenter.CurrentZone, CurrentZone) && _spawnRing3DPresenter.ClaimsCell(x, y))
+                || (_village3DPresenter != null && ReferenceEquals(_village3DPresenter.CurrentZone, CurrentZone) && _village3DPresenter.ClaimsCell(x, y))
+                || (_fellingScenePresenter != null && ReferenceEquals(_fellingScenePresenter.CurrentZone, CurrentZone) && _fellingScenePresenter.ClaimsCell(x, y))
+                || (_morrowfastScenePresenter != null && ReferenceEquals(_morrowfastScenePresenter.CurrentZone, CurrentZone) && _morrowfastScenePresenter.ClaimsCell(x, y));
+
+        private bool IsAuthoredSceneEntity(Entity entity)
+            => (_spawnRing3DPresenter != null && ReferenceEquals(_spawnRing3DPresenter.CurrentZone, CurrentZone) && _spawnRing3DPresenter.IsAuthoredEntity(entity))
+                || (_village3DPresenter != null && _village3DPresenter.IsAuthoredEntity(entity))
+                || (_fellingScenePresenter != null && _fellingScenePresenter.IsAuthoredEntity(entity))
+                || (_morrowfastScenePresenter != null && _morrowfastScenePresenter.IsAuthoredEntity(entity))
+                || (_fellingDressingPresenter != null && _fellingDressingPresenter.IsRenderedEntity(entity));
+
+        private bool IsSourceSceneBody(Entity entity)
+            => (_spawnRing3DPresenter != null && ReferenceEquals(_spawnRing3DPresenter.CurrentZone, CurrentZone) && _spawnRing3DPresenter.IsRenderedEntity(entity))
+                || (_village3DPresenter != null && ReferenceEquals(_village3DPresenter.CurrentZone, CurrentZone) && _village3DPresenter.IsRenderedEntity(entity))
+                || (_morrowfastScenePresenter != null && ReferenceEquals(_morrowfastScenePresenter.CurrentZone, CurrentZone)
+                    && _morrowfastScenePresenter.IsRenderedEntity(entity))
+                || (_fellingDressingPresenter != null && ReferenceEquals(_fellingDressingPresenter.CurrentZone, CurrentZone)
+                    && _fellingDressingPresenter.IsRenderedEntity(entity));
 
         public bool TryGetHotbarSlotAtScreenPosition(Vector2 screenPosition, out int slot)
         {

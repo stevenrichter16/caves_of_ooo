@@ -54,18 +54,22 @@ namespace CavesOfOoo.Core
         /// after dispersal). Iterates a snapshot of the cell's objects and
         /// calls <see cref="ApplyGas"/> on each. Mirrors Qud
         /// <c>ApplyGas(Cell)</c>:53-79.</summary>
-        public void ApplyToCell(Cell cell, Zone zone)
+        public void ApplyToCell(Cell cell, Zone zone) => ApplyToCell(cell,zone,null);
+
+        internal void ApplyToCell(Cell cell,Zone zone,System.Collections.Generic.List<SpatialGasExposure.Dose> bodyDoses)
         {
             if (cell == null) return;
             // Snapshot the object list: ApplyGas may apply effects that
             // re-enter this code path (e.g. burning gas + acid coat
             // interaction in a future phase), and we don't want
             // mid-iteration mutation to corrupt the loop.
-            var snapshot = new System.Collections.Generic.List<Entity>(cell.Objects);
+            var snapshot = new System.Collections.Generic.List<Entity>(cell.Occupants);
             for (int i = 0; i < snapshot.Count; i++)
             {
                 if (snapshot[i] == ParentEntity) continue; // gas can't gas itself
-                ApplyGas(snapshot[i], zone);
+                if(bodyDoses!=null && snapshot[i].HasPart<SpatialFootprintPart>())
+                    SpatialGasExposure.Add(bodyDoses,snapshot[i],this,cell);
+                else ApplyGas(snapshot[i], zone);
             }
         }
 

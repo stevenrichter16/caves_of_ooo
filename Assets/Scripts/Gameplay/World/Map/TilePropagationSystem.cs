@@ -106,9 +106,8 @@ namespace CavesOfOoo.Core
             var cell = zone.GetCell(x, y);
             if (cell == null) return false;
 
-            for (int i = 0; i < cell.Objects.Count; i++)
+            foreach (var e in cell.Occupants)
             {
-                var e = cell.Objects[i];
                 if (e == null) continue;
                 var mat = e.GetPart<MaterialPart>();
                 if (mat == null) continue;
@@ -190,6 +189,7 @@ namespace CavesOfOoo.Core
                             _seen.Add(nkey);
                             _next.Add(nkey);
                             zone.TileState.AddCharge(nx, ny, 1);
+                            SpellFxCapture.RecordGround(zone, nx, ny, "energy", "charge", 1);
                             reached++;
                             if (metal) metalReached++;
                             if (nx < minX) minX = nx;
@@ -293,6 +293,7 @@ namespace CavesOfOoo.Core
                             _seen.Add(nkey);
                             _next.Add(nkey);
                             zone.TileState.WriteResidue(nx, ny, "embers", 3);
+                            SpellFxCapture.RecordGround(zone, nx, ny, "residue", "embers", 3);
                             spread++;
                             if (nx < minX) minX = nx;
                             if (ny < minY) minY = ny;

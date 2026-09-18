@@ -24,7 +24,11 @@ namespace CavesOfOoo.Skills
 
             var dmg = new Damage(RETORT_DAMAGE);
             dmg.AddAttribute("Electric");
-            CombatSystem.ApplyDamage(ctx.Attacker, dmg, ctx.Defender, ctx.Zone);
+            using (var capture = new SpellFxCapture(Name, ctx.Zone, ctx.Defender, blocking: false))
+            {
+                CombatSystem.ApplyDamage(ctx.Attacker, dmg, ctx.Defender, ctx.Zone);
+                capture.Commit();
+            }
             MessageLog.Add(ctx.Defender.GetDisplayName() + "'s static jumps to " +
                            ctx.Attacker.GetDisplayName() + "!");
         }

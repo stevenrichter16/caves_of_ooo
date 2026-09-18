@@ -1,4 +1,5 @@
 using UnityEngine;
+using CavesOfOoo.Core;
 using CavesOfOoo.Rendering;
 
 namespace CavesOfOoo.Presentation.Effects
@@ -40,6 +41,7 @@ namespace CavesOfOoo.Presentation.Effects
             if (CavesOfOoo.Rendering.InputHelper.GetKeyDown(ToggleKey))
             {
                 _renderer.RenderingEnabled = !_renderer.RenderingEnabled;
+                ZoneRenderHooks.MarkFullDirty("SpriteEnvironment.Toggle");
                 PlayerPrefs.SetInt(PREFS_KEY, _renderer.RenderingEnabled ? 1 : 0);
                 PlayerPrefs.Save();
                 Debug.Log($"[SpriteEnvToggle] Sprite environment "
@@ -53,6 +55,7 @@ namespace CavesOfOoo.Presentation.Effects
         {
             if (_renderer == null) return false;
             _renderer.RenderingEnabled = !_renderer.RenderingEnabled;
+            ZoneRenderHooks.MarkFullDirty("SpriteEnvironment.TestToggle");
             return _renderer.RenderingEnabled;
         }
 

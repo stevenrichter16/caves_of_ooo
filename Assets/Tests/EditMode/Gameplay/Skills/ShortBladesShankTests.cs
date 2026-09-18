@@ -226,16 +226,17 @@ namespace CavesOfOoo.Tests
         [Test]
         public void Shank_WithNoAdjacentTarget_FailsWithMessage()
         {
-            var (attacker, _, _, shank) = MakeShankFixture();
-            // Place attacker alone — drop the defender from MakeShankFixture's setup.
+            var (attacker, _, sourceZone, shank) = MakeShankFixture();
+            // Transfer attacker alone; the defender stays in the original zone.
             var emptyZone = new Zone();
-            emptyZone.AddEntity(attacker, 5, 5);
+            Assert.IsTrue(sourceZone.TryTransferEntityTo(attacker, emptyZone, 5, 5));
+            Assert.IsNull(sourceZone.GetEntityCell(attacker));
 
-            shank.OnCommand(new SkillEventContext
+            Assert.IsFalse(shank.OnCommand(new SkillEventContext
             {
                 Attacker = attacker, Defender = attacker,
                 Zone = emptyZone, Rng = new Random(0),
-            });
+            }));
 
             bool foundFailMessage = false;
             foreach (var msg in MessageLog.GetRecent(5))

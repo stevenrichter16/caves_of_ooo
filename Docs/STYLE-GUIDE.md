@@ -1,5 +1,12 @@
 # Caves of Ooo — Sprite & Tile Style Guide ("Muted Overgrowth")
 
+> Current production correction (2026-09-06): the user requires actual16×16
+> sprites with binary alpha and shared object outline RGB(30,32,28). Assets live
+> under `Assets/Resources/Sprites/Environment/`; copy a valid shipped metadata
+> template and change only its GUID. The historical no-outline and old-path
+> instructions below are superseded for current object art. Existing editable
+> item/outline helpers and EQUIPMENT-GROUND-SPRITES-PLAN document the applied pipeline.
+
 > The binding art ruleset for every 16×16 sprite and tile in sprite
 > mode. Chosen 2026-07-27 from a five-style comparison board (same
 > scene, five rulesets — see `Docs/StyleExploration/`); the user

@@ -1,0 +1,25 @@
+{
+  "archive": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T070845Z-native-3eef38e6476d424389d407d906f59987",
+  "command": [
+    "/Applications/Unity/Hub/Editor/6000.3.4f1/Unity.app/Contents/MacOS/Unity",
+    "-projectPath",
+    "/Users/steven/caves-of-ooo",
+    "-logFile",
+    "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T070845Z-native-3eef38e6476d424389d407d906f59987/unity.log",
+    "-executeMethod",
+    "CavesOfOoo.Editor.Village3DNativeAuditBatch.RunAfter"
+  ],
+  "concurrency": "Refuse any existing Unity process; never pkill Unity. Runner lock protects these two wrappers only.",
+  "fixed_native_outputs": [
+    "V3D-after-native.json",
+    "V3D-after-cleanup.json",
+    "V3D-after-frames.csv"
+  ],
+  "kind": "native",
+  "mcp_waits": [
+    2,
+    5
+  ],
+  "review_only": false,
+  "runner_run_id": "3eef38e6476d424389d407d906f59987"
+}

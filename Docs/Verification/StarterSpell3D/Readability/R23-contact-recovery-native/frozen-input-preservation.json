@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "inputCount": 993,
+  "manifestSha256": "e9e2e424cd256944188e0ec4eb3f4b5a1d8c8878e65daf9dd426de9089c20b9d",
+  "changedInputs": [],
+  "captureGaps": [
+    {
+      "spell": "Hydromancy_JetBlast",
+      "mode": "direction-south",
+      "captureCount": 10,
+      "largestGapSeconds": 0.693736916000006,
+      "peakMeshes": 89,
+      "peakCapturedMeshes": 89,
+      "pass": true,
+      "observedConditionalCount": 0
+    }
+  ],
+  "rawLongDeltaFrames": [
+    {
+      "phase": "1",
+      "unity_frame": "12560",
+      "wall_seconds": "64.178776167900239",
+      "unscaled_delta": "0.7554046",
+      "tick": "20",
+      "native_meshes": "0",
+      "allocated_views": "384",
+      "zone_renderer": "1157959",
+      "input": "13417",
+      "main_thread": "4206541",
+      "gc_bytes": "35586",
+      "draw_calls": "248",
+      "triangles": "674643"
+    },
+    {
+      "phase": "1",
+      "unity_frame": "13260",
+      "wall_seconds": "67.608862875900243",
+      "unscaled_delta": "0.5158158",
+      "tick": "20",
+      "native_meshes": "0",
+      "allocated_views": "384",
+      "zone_renderer": "977041",
+      "input": "13833",
+      "main_thread": "514706459",
+      "gc_bytes": "77812375",
+      "draw_calls": "231",
+      "triangles": "671149"
+    }
+  ],
+  "honesty": "Actual frame stalls remain present; normal native pass does not demonstrate their elimination. Recorded screenshots are sparse samples. Long-delta rows alone do not identify the cause or establish whether recovery activated."
+}

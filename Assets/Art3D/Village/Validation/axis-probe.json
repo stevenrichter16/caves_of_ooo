@@ -1,0 +1,57 @@
+{
+  "authoring": "Blender X east, Y north, Z up; metre units",
+  "export": {
+    "axis_forward": "Z",
+    "axis_up": "Y",
+    "bake_space_transform": true,
+    "apply_scale_options": "FBX_SCALE_UNITS",
+    "exportRootRotationBlenderZDegrees": 180
+  },
+  "cube": {
+    "dimensions": [
+      1,
+      1,
+      1
+    ],
+    "groundOrigin": [
+      0,
+      0,
+      0
+    ]
+  },
+  "endpointsBlender": {
+    "redX": [
+      2,
+      0,
+      0
+    ],
+    "greenY": [
+      0,
+      3,
+      0
+    ],
+    "blueZ": [
+      0,
+      0,
+      4
+    ]
+  },
+  "expectedUnityWorld": {
+    "redX": [
+      2,
+      0,
+      0
+    ],
+    "greenY": [
+      0,
+      0,
+      3
+    ],
+    "blueZ": [
+      0,
+      4,
+      0
+    ]
+  },
+  "status": "Unity must verify imported hierarchy and axes; this is a probe, not accepted orientation evidence"
+}

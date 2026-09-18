@@ -19,7 +19,7 @@ namespace CavesOfOoo.Skills
     /// shape free and the family's geometry would stop meaning
     /// anything.</para>
     /// </summary>
-    public class Pyromancy_EmberSpit : BaseSkillPart
+    public class Pyromancy_EmberSpit : SpellSkillPart
     {
         public override string Name => nameof(Pyromancy_EmberSpit);
 
@@ -52,7 +52,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
@@ -78,6 +78,7 @@ namespace CavesOfOoo.Skills
 
             // FIRST body only. SkillLine returns nearest-first.
             var target = line[0];
+            SpellFxCapture.EndPathAt(ctx.Zone, target);
 
             // PALIMPSEST P2 — embers stay on the ground after the
             // target is gone, and are what Oil ignites off in P3.

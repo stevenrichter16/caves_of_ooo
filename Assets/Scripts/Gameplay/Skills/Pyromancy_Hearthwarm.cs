@@ -13,7 +13,7 @@ namespace CavesOfOoo.Skills
     /// <c>HearthAuraEffect(x, y, duration 3, 60J/pulse)</c> to the
     /// caster. Refusal — no thermal target — is free.</para>
     /// </summary>
-    public class Pyromancy_Hearthwarm : BaseSkillPart
+    public class Pyromancy_Hearthwarm : SpellSkillPart
     {
         public override string Name => nameof(Pyromancy_Hearthwarm);
 
@@ -34,16 +34,16 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return false; }
             if (ctx.TargetCell == null) { EmitSkillRejectedDiag(ctx, "no_target_cell"); return false; }
 
             bool hasThermalTarget = false;
-            for (int i = 0; i < ctx.TargetCell.Objects.Count; i++)
+            for (int i = 0; i < ctx.TargetCell.Occupants.Count; i++)
             {
-                if (ctx.TargetCell.Objects[i].HasPart<ThermalPart>())
+                if (ctx.TargetCell.Occupants[i].HasPart<ThermalPart>())
                 {
                     hasThermalTarget = true;
                     break;
@@ -55,6 +55,7 @@ namespace CavesOfOoo.Skills
                 return false; // free — nothing there to warm
             }
 
+            SpellFxCapture.AffectCell(ctx.Zone, ctx.TargetCell.X, ctx.TargetCell.Y);
             ctx.Attacker.ApplyEffect(
                 new HearthAuraEffect(ctx.TargetCell.X, ctx.TargetCell.Y,
                     duration: AURA_DURATION, joulesPerPulse: JOULES_PER_PULSE),

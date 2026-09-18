@@ -1,0 +1,621 @@
+{
+  "schemaVersion": 1,
+  "coordinateConvention": "Source top-left pixels; grid x=floor(pixelX/32)+16, grid y=floor((pixelY-224)/32). Polygon coverage uses cell centers.",
+  "polygons": [
+    {
+      "id": "petrified-stump",
+      "kind": "cliff",
+      "blocksSight": true,
+      "polygon": [
+        [
+          300,
+          0
+        ],
+        [
+          1536,
+          0
+        ],
+        [
+          1536,
+          330
+        ],
+        [
+          1460,
+          359
+        ],
+        [
+          1430,
+          347
+        ],
+        [
+          1380,
+          380
+        ],
+        [
+          1280,
+          340
+        ],
+        [
+          1240,
+          273
+        ],
+        [
+          1140,
+          270
+        ],
+        [
+          1100,
+          370
+        ],
+        [
+          1000,
+          410
+        ],
+        [
+          950,
+          437
+        ],
+        [
+          820,
+          417
+        ],
+        [
+          766,
+          438
+        ],
+        [
+          680,
+          416
+        ],
+        [
+          628,
+          428
+        ],
+        [
+          587,
+          399
+        ],
+        [
+          544,
+          341
+        ],
+        [
+          478,
+          300
+        ],
+        [
+          405,
+          260
+        ],
+        [
+          355,
+          210
+        ]
+      ],
+      "note": "Immense cliff boundary; future dedicated non-destructible/explicitly authored physics, not default 40HP Wall."
+    },
+    {
+      "id": "blackwater",
+      "kind": "water",
+      "blocksSight": false,
+      "polygon": [
+        [
+          30,
+          250
+        ],
+        [
+          95,
+          300
+        ],
+        [
+          115,
+          370
+        ],
+        [
+          140,
+          440
+        ],
+        [
+          75,
+          480
+        ],
+        [
+          47,
+          550
+        ],
+        [
+          65,
+          650
+        ],
+        [
+          48,
+          680
+        ],
+        [
+          56,
+          750
+        ],
+        [
+          90,
+          820
+        ],
+        [
+          117,
+          879
+        ],
+        [
+          145,
+          950
+        ],
+        [
+          197,
+          1024
+        ],
+        [
+          288,
+          1024
+        ],
+        [
+          260,
+          968
+        ],
+        [
+          248,
+          920
+        ],
+        [
+          210,
+          891
+        ],
+        [
+          196,
+          826
+        ],
+        [
+          168,
+          804
+        ],
+        [
+          130,
+          750
+        ],
+        [
+          126,
+          682
+        ],
+        [
+          131,
+          635
+        ],
+        [
+          145,
+          570
+        ],
+        [
+          157,
+          525
+        ],
+        [
+          201,
+          486
+        ],
+        [
+          204,
+          436
+        ],
+        [
+          173,
+          415
+        ],
+        [
+          172,
+          380
+        ],
+        [
+          148,
+          352
+        ],
+        [
+          144,
+          320
+        ],
+        [
+          102,
+          293
+        ],
+        [
+          89,
+          254
+        ]
+      ],
+      "note": "Offline movement conservatively blocks deep water. Unity must use actual depth/swimming/liquid rules."
+    },
+    {
+      "id": "west-buttress",
+      "kind": "root",
+      "blocksSight": false,
+      "polygon": [
+        [
+          335,
+          460
+        ],
+        [
+          460,
+          453
+        ],
+        [
+          512,
+          490
+        ],
+        [
+          474,
+          547
+        ],
+        [
+          439,
+          570
+        ],
+        [
+          418,
+          660
+        ],
+        [
+          420,
+          720
+        ],
+        [
+          463,
+          766
+        ],
+        [
+          469,
+          818
+        ],
+        [
+          405,
+          829
+        ],
+        [
+          354,
+          713
+        ],
+        [
+          353,
+          608
+        ]
+      ],
+      "note": "Low root obstacle, separately distinguish solidity from sight."
+    },
+    {
+      "id": "east-buttress",
+      "kind": "root",
+      "blocksSight": false,
+      "polygon": [
+        [
+          1030,
+          407
+        ],
+        [
+          1154,
+          385
+        ],
+        [
+          1220,
+          457
+        ],
+        [
+          1238,
+          537
+        ],
+        [
+          1176,
+          576
+        ],
+        [
+          1155,
+          650
+        ],
+        [
+          1080,
+          703
+        ],
+        [
+          1052,
+          669
+        ],
+        [
+          1084,
+          598
+        ],
+        [
+          1050,
+          535
+        ]
+      ]
+    },
+    {
+      "id": "southwest-rock-foot",
+      "kind": "root",
+      "blocksSight": false,
+      "polygon": [
+        [
+          548,
+          888
+        ],
+        [
+          642,
+          888
+        ],
+        [
+          644,
+          916
+        ],
+        [
+          593,
+          933
+        ],
+        [
+          550,
+          916
+        ]
+      ],
+      "note": "Only footprint blocks; tall appearance above footprint is an occlusion overlay."
+    },
+    {
+      "id": "southeast-root-foot",
+      "kind": "root",
+      "blocksSight": false,
+      "polygon": [
+        [
+          950,
+          904
+        ],
+        [
+          1028,
+          914
+        ],
+        [
+          1062,
+          960
+        ],
+        [
+          1056,
+          1001
+        ],
+        [
+          1000,
+          1000
+        ],
+        [
+          968,
+          956
+        ]
+      ]
+    },
+    {
+      "id": "northwest-cliff",
+      "kind": "cliff",
+      "blocksSight": true,
+      "polygon": [
+        [
+          96,
+          0
+        ],
+        [
+          302,
+          0
+        ],
+        [
+          355,
+          210
+        ],
+        [
+          405,
+          260
+        ],
+        [
+          478,
+          300
+        ],
+        [
+          544,
+          341
+        ],
+        [
+          537,
+          393
+        ],
+        [
+          502,
+          433
+        ],
+        [
+          448,
+          443
+        ],
+        [
+          397,
+          378
+        ],
+        [
+          348,
+          324
+        ],
+        [
+          280,
+          282
+        ],
+        [
+          202,
+          276
+        ],
+        [
+          126,
+          252
+        ]
+      ],
+      "note": "Fixed left cliff shoulder; west ledge remains below its toe."
+    },
+    {
+      "id": "northeast-root-toe",
+      "kind": "root",
+      "blocksSight": false,
+      "polygon": [
+        [
+          1215,
+          343
+        ],
+        [
+          1255,
+          342
+        ],
+        [
+          1284,
+          414
+        ],
+        [
+          1315,
+          459
+        ],
+        [
+          1385,
+          537
+        ],
+        [
+          1374,
+          570
+        ],
+        [
+          1323,
+          552
+        ],
+        [
+          1244,
+          464
+        ]
+      ],
+      "note": "Low eastern outer-root footprint, independent of the tall visual silhouette."
+    },
+    {
+      "id": "east-root-branch",
+      "kind": "root",
+      "blocksSight": false,
+      "polygon": [
+        [
+          1139,
+          539
+        ],
+        [
+          1189,
+          563
+        ],
+        [
+          1256,
+          624
+        ],
+        [
+          1311,
+          660
+        ],
+        [
+          1302,
+          693
+        ],
+        [
+          1258,
+          683
+        ],
+        [
+          1193,
+          642
+        ],
+        [
+          1151,
+          610
+        ]
+      ],
+      "note": "Low root branch extends east from the main buttress."
+    }
+  ],
+  "explicitBlockedCells": [
+    [
+      48,
+      5
+    ]
+  ],
+  "explicitWalkableCells": [
+    [
+      28,
+      13
+    ],
+    [
+      48,
+      22
+    ],
+    [
+      56,
+      6
+    ]
+  ],
+  "exceptionReasons": [
+    {
+      "cell": [
+        28,
+        13
+      ],
+      "componentId": "red-west-middle",
+      "reason": "The exact mutable component owns the contact cell. Keep its repaired support traversable after removal; adjacent fixed root mass remains blocked."
+    },
+    {
+      "cell": [
+        48,
+        22
+      ],
+      "componentId": "red-southeast-inner",
+      "reason": "The exact mutable component owns the contact cell. Keep its repaired support traversable after removal; adjacent fixed root mass remains blocked."
+    },
+    {
+      "cell": [
+        56,
+        6
+      ],
+      "componentId": "cyan-east-root-tip",
+      "reason": "The exact mutable component owns the contact cell. Keep its repaired support traversable after removal; adjacent fixed root mass remains blocked."
+    }
+  ],
+  "blockedCellReasons": [
+    {
+      "cell": [
+        48,
+        5
+      ],
+      "reason": "Single isolated crevice enclosed by the main trunk and east buttress; fill rather than create an unreachable standable cell."
+    }
+  ],
+  "notes": [
+    "Use ordinary connected terrain in the 80\u00d725 zone except these fixed physical supports; the old central-only walkable polygon was a conservative browser study and excluded visible side ledges.",
+    "Seven loose rock props provide dynamic single-cell blocking; plants can remain passable but interactable. Every mutable contact cell has independent cardinal access even if all 39 props are treated as solid.",
+    "Fixed structures are persistent and indestructible, not ordinary 40HP destructible Wall objects. Tall sprite silhouettes do not all block movement.",
+    "Blackwater marks the deep channel; its polygon begins below the waterfall pool. The head pool remains a shallow traversable crossing joining the west bank to the side ledge. Use native liquid depths there if available; do not silently classify the whole stream bank as impassable water.",
+    "The northern midpoint is inside the giant trunk. Existing inward arrival search can land south of the trunk; the north edge itself stays usable via the outer side margins.",
+    "All six visible scar positions and the seventh wrong-air point use layout.json source-aligned coordinates. No historical identities or compass order are implied."
+  ],
+  "verification": {
+    "method": "Four-neighbor BFS from [40,20]; stricter than diagonal movement; seven dynamic rock cells excluded.",
+    "staticBlockedCellCount": 355,
+    "dynamicRockCellCount": 7,
+    "walkableCellCount": 1638,
+    "reachableCellCount": 1638,
+    "reachableArtCellCount": 838,
+    "mutableAnchorsWithReachableCardinalNeighbor": 39,
+    "landmarksReachable": 7,
+    "reachableEdgeCellCount": {
+      "north": 36,
+      "south": 77,
+      "west": 25,
+      "east": 25
+    },
+    "allMutableSolidReachableCellCount": 1605,
+    "allMutableSolidAnchorsWithReachableCardinalNeighbor": 39
+  }
+}

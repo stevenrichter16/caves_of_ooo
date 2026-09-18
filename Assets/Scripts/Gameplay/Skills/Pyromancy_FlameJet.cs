@@ -26,7 +26,7 @@ namespace CavesOfOoo.Skills
     /// of what teaches the player that soaking sets a target up for
     /// lightning and shields it from flame.</para>
     /// </summary>
-    public class Pyromancy_FlameJet : BaseSkillPart
+    public class Pyromancy_FlameJet : SpellSkillPart
     {
         public override string Name => nameof(Pyromancy_FlameJet);
 
@@ -53,7 +53,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;

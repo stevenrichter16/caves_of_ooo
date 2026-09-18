@@ -1,0 +1,725 @@
+{
+  "status": "GREEN",
+  "sourceBlendSha256": "7e13f1dce87c67f31e2c39bcbf7758cb16ae20e182618b6fb75bf929f50e6830",
+  "assertions": 102,
+  "passed": 102,
+  "meshCount": 373,
+  "pieceCount": 373,
+  "triangleCount": 45384,
+  "maxTrsRecompositionError": 2.384185791015625e-07,
+  "checks": [
+    {
+      "name": "All seven entries exported",
+      "passed": true,
+      "actual": 7
+    },
+    {
+      "name": "Every sampled matrix can be faithfully represented by TRS",
+      "passed": true,
+      "actual": 2.384185791015625e-07
+    },
+    {
+      "name": "No actor/stage/target/crop meshes in runtime library",
+      "passed": true,
+      "actual": 373
+    },
+    {
+      "name": "ember_spit has named mesh pieces and111 samples",
+      "passed": true,
+      "actual": 50
+    },
+    {
+      "name": "ember_spit clears every runtime piece",
+      "passed": true,
+      "actual": 50
+    },
+    {
+      "name": "flaming_hands has named mesh pieces and111 samples",
+      "passed": true,
+      "actual": 47
+    },
+    {
+      "name": "flaming_hands clears every runtime piece",
+      "passed": true,
+      "actual": 47
+    },
+    {
+      "name": "flaming_hands preserves captured-cell stencil",
+      "passed": true,
+      "actual": [
+        [
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "Flame__cushioned_contact_curl_-1__cell_1_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 108
+    },
+    {
+      "name": "Flame__cushioned_contact_curl_1__cell_1_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 108
+    },
+    {
+      "name": "Flame__ivory_palm_edge_-1__cell_1_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 108
+    },
+    {
+      "name": "Flame__ivory_palm_edge_1__cell_1_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 108
+    },
+    {
+      "name": "Flame__serrated_fan_-1_0__cell_1_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 18
+    },
+    {
+      "name": "Flame__serrated_fan_-1_1__cell_1_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 18
+    },
+    {
+      "name": "Flame__serrated_fan_-1_2__cell_1_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 18
+    },
+    {
+      "name": "Flame__serrated_fan_-1_3__cell_1_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 18
+    },
+    {
+      "name": "Flame__serrated_fan_1_0__cell_1_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 18
+    },
+    {
+      "name": "Flame__serrated_fan_1_1__cell_1_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 18
+    },
+    {
+      "name": "Flame__serrated_fan_1_2__cell_1_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 18
+    },
+    {
+      "name": "Flame__serrated_fan_1_3__cell_1_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 18
+    },
+    {
+      "name": "Flame__warm_inner_fold_-1__cell_1_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 108
+    },
+    {
+      "name": "Flame__warm_inner_fold_1__cell_1_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 108
+    },
+    {
+      "name": "jet_blast has named mesh pieces and111 samples",
+      "passed": true,
+      "actual": 89
+    },
+    {
+      "name": "jet_blast clears every runtime piece",
+      "passed": true,
+      "actual": 89
+    },
+    {
+      "name": "jet_blast preserves captured-cell stencil",
+      "passed": true,
+      "actual": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          -1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "Jet__broken_splash_0__cell_2_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 18
+    },
+    {
+      "name": "Jet__broken_splash_1__cell_2_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 27
+    },
+    {
+      "name": "Jet__broken_splash_1__cell_2_1 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 9
+    },
+    {
+      "name": "Jet__broken_splash_2__cell_2_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 18
+    },
+    {
+      "name": "Jet__broken_splash_3__cell_2_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 18
+    },
+    {
+      "name": "Jet__broken_splash_4__cell_2_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 18
+    },
+    {
+      "name": "Jet__far_side_fold_-1__cell_1_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 15
+    },
+    {
+      "name": "Jet__far_side_fold_-1__cell_2_-1 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 30
+    },
+    {
+      "name": "Jet__far_side_fold_-1__cell_2_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 6
+    },
+    {
+      "name": "Jet__far_side_fold_1__cell_1_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 15
+    },
+    {
+      "name": "Jet__far_side_fold_1__cell_2_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 6
+    },
+    {
+      "name": "Jet__far_side_fold_1__cell_2_1 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 30
+    },
+    {
+      "name": "Jet__far_side_lip_-1__cell_2_-1 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 108
+    },
+    {
+      "name": "Jet__far_side_lip_1__cell_2_1 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 108
+    },
+    {
+      "name": "Jet__folded_river_strip_0__cell_1_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 18
+    },
+    {
+      "name": "Jet__folded_river_strip_1__cell_1_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 18
+    },
+    {
+      "name": "Jet__folded_river_strip_2__cell_1_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 27
+    },
+    {
+      "name": "Jet__folded_river_strip_2__cell_2_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 21
+    },
+    {
+      "name": "Jet__folded_river_strip_3__cell_2_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 18
+    },
+    {
+      "name": "Jet__folded_river_strip_4__cell_2_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 18
+    },
+    {
+      "name": "Jet__ivory_wave_lip__cell_2_-1 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 54
+    },
+    {
+      "name": "Jet__ivory_wave_lip__cell_2_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 150
+    },
+    {
+      "name": "Jet__ivory_wave_lip__cell_2_1 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 54
+    },
+    {
+      "name": "Jet__settling_splash_crown_-1__cell_2_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 78
+    },
+    {
+      "name": "Jet__settling_splash_crown_1__cell_2_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 78
+    },
+    {
+      "name": "Jet__soft_fold_foam_1__cell_1_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 78
+    },
+    {
+      "name": "Jet__soft_fold_foam_3__cell_2_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 78
+    },
+    {
+      "name": "jet_blast__far_side_foam_-1_0__cell_2_-1 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 60
+    },
+    {
+      "name": "jet_blast__far_side_foam_-1_1__cell_2_-1 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 60
+    },
+    {
+      "name": "jet_blast__far_side_foam_1_0__cell_2_1 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 60
+    },
+    {
+      "name": "jet_blast__far_side_foam_1_1__cell_2_1 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 60
+    },
+    {
+      "name": "jet_blast__heavy_droplet_0__cell_1_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 57
+    },
+    {
+      "name": "jet_blast__heavy_droplet_0__cell_2_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 69
+    },
+    {
+      "name": "jet_blast__heavy_droplet_1__cell_2_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 60
+    },
+    {
+      "name": "jet_blast__heavy_droplet_2__cell_2_0 remains inside its cell at every envelope scale",
+      "passed": true,
+      "actual": 60
+    },
+    {
+      "name": "ground_surge has named mesh pieces and111 samples",
+      "passed": true,
+      "actual": 69
+    },
+    {
+      "name": "ground_surge clears every runtime piece",
+      "passed": true,
+      "actual": 69
+    },
+    {
+      "name": "rime_grip has named mesh pieces and111 samples",
+      "passed": true,
+      "actual": 61
+    },
+    {
+      "name": "rime_grip clears every runtime piece",
+      "passed": true,
+      "actual": 61
+    },
+    {
+      "name": "calm has named mesh pieces and111 samples",
+      "passed": true,
+      "actual": 42
+    },
+    {
+      "name": "calm clears every runtime piece",
+      "passed": true,
+      "actual": 42
+    },
+    {
+      "name": "conjure_rain has named mesh pieces and111 samples",
+      "passed": true,
+      "actual": 15
+    },
+    {
+      "name": "conjure_rain clears every runtime piece",
+      "passed": true,
+      "actual": 15
+    },
+    {
+      "name": "Only one crop cluster exported",
+      "passed": true,
+      "actual": [
+        "Rain__crop_0_bead_arc_0",
+        "Rain__crop_0_bead_arc_1",
+        "Rain__crop_0_bead_arc_2",
+        "Rain__crop_0_short_stroke_0",
+        "Rain__crop_0_short_stroke_1",
+        "Rain__crop_0_short_stroke_2",
+        "Rain__crop_0_short_stroke_3",
+        "Rain__crop_0_short_stroke_4",
+        "Rain__crop_0_short_stroke_5",
+        "Rain__crop_0_short_stroke_6",
+        "Rain__crop_0_short_stroke_7",
+        "Rain__crop_0_short_stroke_8",
+        "conjure_rain__crop_0_soft_bead_0",
+        "conjure_rain__crop_0_soft_bead_4",
+        "conjure_rain__crop_0_soft_bead_8"
+      ]
+    },
+    {
+      "name": "SpellFolk_charcoal is opaque",
+      "passed": true,
+      "actual": [
+        0.185,
+        0.165,
+        0.13,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_RD_molten_gold is opaque",
+      "passed": true,
+      "actual": [
+        1.0,
+        0.68,
+        0.1,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_RD_fire_coral is opaque",
+      "passed": true,
+      "actual": [
+        1.0,
+        0.28,
+        0.06,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_RD_hot_ivory is opaque",
+      "passed": true,
+      "actual": [
+        1.0,
+        0.94,
+        0.66,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_RD_fire_glow is opaque",
+      "passed": true,
+      "actual": [
+        1.0,
+        0.5,
+        0.055,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_flame is opaque",
+      "passed": true,
+      "actual": [
+        1.0,
+        0.6,
+        0.15,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_ivory is opaque",
+      "passed": true,
+      "actual": [
+        0.98,
+        0.9,
+        0.68,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_ember is opaque",
+      "passed": true,
+      "actual": [
+        0.91,
+        0.34,
+        0.075,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_ember_core is opaque",
+      "passed": true,
+      "actual": [
+        1.0,
+        0.73,
+        0.24,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_water_light is opaque",
+      "passed": true,
+      "actual": [
+        0.4,
+        0.79,
+        0.82,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_river is opaque",
+      "passed": true,
+      "actual": [
+        0.085,
+        0.41,
+        0.51,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_foam is opaque",
+      "passed": true,
+      "actual": [
+        0.7,
+        0.94,
+        0.91,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_RD_river_turquoise is opaque",
+      "passed": true,
+      "actual": [
+        0.045,
+        0.67,
+        0.77,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_RD_river_glow is opaque",
+      "passed": true,
+      "actual": [
+        0.12,
+        0.9,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_RD_river_pearl is opaque",
+      "passed": true,
+      "actual": [
+        0.86,
+        1.0,
+        0.96,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_RD_river_mint is opaque",
+      "passed": true,
+      "actual": [
+        0.44,
+        0.98,
+        0.94,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_RD_root_ivory is opaque",
+      "passed": true,
+      "actual": [
+        1.0,
+        0.97,
+        0.65,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_RD_root_glow is opaque",
+      "passed": true,
+      "actual": [
+        1.0,
+        0.84,
+        0.18,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_RD_root_gold is opaque",
+      "passed": true,
+      "actual": [
+        1.0,
+        0.73,
+        0.1,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_ochre is opaque",
+      "passed": true,
+      "actual": [
+        0.99,
+        0.71,
+        0.2,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_RD_frost_glow is opaque",
+      "passed": true,
+      "actual": [
+        0.36,
+        0.69,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_RD_frost_blue is opaque",
+      "passed": true,
+      "actual": [
+        0.3,
+        0.66,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_RD_frost_white is opaque",
+      "passed": true,
+      "actual": [
+        0.88,
+        0.98,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_RD_frost_indigo is opaque",
+      "passed": true,
+      "actual": [
+        0.14,
+        0.25,
+        0.58,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_ice is opaque",
+      "passed": true,
+      "actual": [
+        0.6,
+        0.81,
+        0.83,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_ice_shadow is opaque",
+      "passed": true,
+      "actual": [
+        0.235,
+        0.48,
+        0.6,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_ice_rim is opaque",
+      "passed": true,
+      "actual": [
+        0.83,
+        0.96,
+        0.97,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_violet_core is opaque",
+      "passed": true,
+      "actual": [
+        0.74,
+        0.56,
+        0.84,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_violet_light is opaque",
+      "passed": true,
+      "actual": [
+        0.85,
+        0.73,
+        0.83,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_RD_calm_ivory is opaque",
+      "passed": true,
+      "actual": [
+        1.0,
+        0.91,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_RD_calm_lilac is opaque",
+      "passed": true,
+      "actual": [
+        0.76,
+        0.52,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_RD_calm_violet is opaque",
+      "passed": true,
+      "actual": [
+        0.4,
+        0.23,
+        0.72,
+        1.0
+      ]
+    },
+    {
+      "name": "SpellFolk_RD_calm_glow is opaque",
+      "passed": true,
+      "actual": [
+        0.72,
+        0.44,
+        1.0,
+        1.0
+      ]
+    }
+  ]
+}

@@ -16,7 +16,7 @@ namespace CavesOfOoo.Skills
     /// always consumes even with zero crops nearby — the rain was
     /// called; the message tells the player what it found.</para>
     /// </summary>
-    public class Hydromancy_ConjureRain : BaseSkillPart
+    public class Hydromancy_ConjureRain : SpellSkillPart
     {
         public override string Name => nameof(Hydromancy_ConjureRain);
 
@@ -40,7 +40,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
@@ -55,6 +55,8 @@ namespace CavesOfOoo.Skills
             int maxY = Math.Min(Zone.Height - 1, sourceCell.Y + RADIUS);
 
             int cropsWatered = 0;
+            var targets = new System.Collections.Generic.List<(Entity owner, Cell contact)>();
+            var seen = new System.Collections.Generic.HashSet<Entity>();
             for (int y = minY; y <= maxY; y++)
             {
                 for (int x = minX; x <= maxX; x++)
@@ -66,18 +68,28 @@ namespace CavesOfOoo.Skills
                     if (cell == null)
                         continue;
 
-                    for (int i = 0; i < cell.Objects.Count; i++)
+                    for (int i = 0; i < cell.Occupants.Count; i++)
                     {
-                        var crop = cell.Objects[i].GetPart<CropPart>();
+                        var crop = cell.Occupants[i].GetPart<CropPart>();
                         if (crop == null)
                             continue;
 
-                        crop.Water(MOISTURE_TICKS);
-                        EmitRainFx(zone, x, y);
-                        cropsWatered++;
+                        var owner = cell.Occupants[i];
+                        if (seen.Add(owner)) targets.Add((owner, cell));
                         break; // one crop per cell by the planting gate
                     }
                 }
+            }
+
+            foreach (var target in targets)
+            {
+                if (zone.GetEntityCell(target.owner) == null) continue;
+                var crop = target.owner.GetPart<CropPart>();
+                if (crop == null) continue;
+                SpellFxCapture.TargetAt(zone, target.owner, new Point(target.contact.X, target.contact.Y));
+                crop.Water(MOISTURE_TICKS);
+                EmitRainFx(zone, target.contact.X, target.contact.Y);
+                cropsWatered++;
             }
 
             MessageLog.Add(cropsWatered > 0
@@ -93,14 +105,7 @@ namespace CavesOfOoo.Skills
 
         private static void EmitRainFx(Zone zone, int x, int y)
         {
-            AsciiFxBus.EmitParticle(zone, x, y - 2, '|', "&B",
-                lifetime: 0.25f, dy: 1, moveInterval: 0.1f, delay: 0f);
-            AsciiFxBus.EmitParticle(zone, x, y - 1, '\'', "&b",
-                lifetime: 0.15f, dy: 1, moveInterval: 0.1f, delay: 0.12f);
-            AsciiFxBus.EmitParticle(zone, x, y - 2, '.', "&B",
-                lifetime: 0.25f, dy: 1, moveInterval: 0.1f, delay: 0.24f);
-            AsciiFxBus.EmitBurst(zone, x, y, AsciiFxTheme.Water,
-                blocksTurnAdvance: false, delay: 0.3f);
+            SpellFxCapture.AffectCell(zone, x, y);
         }
     }
 }

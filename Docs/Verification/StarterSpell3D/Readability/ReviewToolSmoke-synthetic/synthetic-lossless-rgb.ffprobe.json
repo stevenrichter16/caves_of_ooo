@@ -1,0 +1,83 @@
+{
+  "path": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-media-codec-smoke-b6wh3b_g/synthetic-lossless-rgb.mp4",
+  "sha256": "8c23d7e36289dcb1c3fff119d0d615c2487b3d5d555bfb8f2ed4add35b0c39ef",
+  "width": 96,
+  "height": 64,
+  "pixelAspect": "1:1",
+  "codec": "lossless libx264rgb",
+  "decodedFrameCount": 4,
+  "decodedRgbMatchesEveryInput": true,
+  "maximumPtsErrorSeconds": 0.00037199999999998346,
+  "expectedSeconds": 0.450372,
+  "encodedSeconds": 0.451,
+  "ffprobe": {
+    "frames": [
+      {
+        "best_effort_timestamp_time": "0.000000",
+        "side_data_list": [
+          {
+            "side_data_type": "H.26[45] User Data Unregistered SEI message"
+          }
+        ]
+      },
+      {
+        "best_effort_timestamp_time": "0.127000"
+      },
+      {
+        "best_effort_timestamp_time": "0.361000"
+      },
+      {
+        "best_effort_timestamp_time": "0.450000"
+      }
+    ],
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "profile": "High 4:4:4 Predictive",
+        "width": 96,
+        "height": 64,
+        "sample_aspect_ratio": "1:1",
+        "pix_fmt": "gbrp",
+        "time_base": "1/1000000",
+        "disposition": {
+          "default": 1,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        },
+        "tags": {
+          "language": "und",
+          "handler_name": "VideoHandler",
+          "vendor_id": "[0][0][0][0]",
+          "encoder": "Lavc62.11.100 libx264rgb"
+        }
+      }
+    ],
+    "format": {
+      "duration": "0.451000",
+      "tags": {
+        "major_brand": "isom",
+        "minor_version": "512",
+        "compatible_brands": "isomiso2avc1mp41",
+        "encoder": "Lavf62.3.100"
+      }
+    }
+  }
+}

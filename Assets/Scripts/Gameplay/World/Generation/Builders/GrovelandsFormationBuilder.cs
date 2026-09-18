@@ -36,6 +36,10 @@ namespace CavesOfOoo.Core
 
         public Formation LastFormation { get; private set; }
 
+        /// <summary>Optional wilderness spatial plan; summit/legacy fixtures retain their original recipe.</summary>
+        public GrovelandsCompositionBuilder Composition;
+        private GrovelandsCompositionPlan Plan => Composition?.Plan;
+
         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
         {
             if (zone == null || factory == null || rng == null) return true;
@@ -44,6 +48,8 @@ namespace CavesOfOoo.Core
                 ? Override
                 : FormationSelector.For(BiomeType.Grovelands, zone.ZoneID);
             LastFormation = formation;
+            if (Plan != null)
+                rng = new System.Random(unchecked(Plan.Seed ^ FormationSelector.StableIndex(zone.ZoneID + ":features", int.MaxValue)));
 
             switch (formation)
             {
@@ -77,10 +83,10 @@ namespace CavesOfOoo.Core
         {
             var placed = new List<Entity>();
 
-            int cx = 18 + rng.Next(Zone.Width - 36);
-            int cy = 8 + rng.Next(Zone.Height - 16);
-            int rx = 6 + rng.Next(3);
-            int ry = 3 + rng.Next(2);
+            int cx = Plan?.FocalX ?? (18 + rng.Next(Zone.Width - 36));
+            int cy = Plan?.FocalY ?? (8 + rng.Next(Zone.Height - 16));
+            int rx = Plan?.RadiusX ?? (6 + rng.Next(3));
+            int ry = Plan?.RadiusY ?? (3 + rng.Next(2));
 
             // The OPEN FLOOR — the design table's own words. Look-pass
             // finding: in real forest the ring drowned in trees and the
@@ -103,7 +109,7 @@ namespace CavesOfOoo.Core
                 double a = step * (System.Math.PI * 2.0 / 28.0);
                 int x = cx + (int)System.Math.Round(rx * System.Math.Cos(a));
                 int y = cy + (int)System.Math.Round(ry * System.Math.Sin(a));
-                if (!IsOpenGround(zone, x, y)) continue;
+                if (!IsOpenGround(zone, x, y) || (Plan?.IsApproach(x,y) ?? false)) continue;
                 if (rng.Next(100) >= 65) continue;
                 var column = BuilderSpawn.TryPlace(zone, factory, "MycelialColumn", x, y);
                 if (column != null) placed.Add(column);
@@ -155,6 +161,7 @@ namespace CavesOfOoo.Core
                     int x = 3 + rng.Next(Zone.Width - 6);
                     int y = 2 + rng.Next(Zone.Height - 4);
                     int ddx = x - cx, ddy = y - cy;
+                    if (Plan != null && Plan.IsApproach(x,y)) continue;
                     if (ddx * ddx + ddy * ddy < rx * rx) continue;   // outside the grove proper
                     if (!IsOpenGround(zone, x, y)) continue;
                     var column = BuilderSpawn.TryPlace(zone, factory, "MycelialColumn", x, y);
@@ -213,8 +220,9 @@ namespace CavesOfOoo.Core
                 {
                     double vein1 = System.Math.Sin(x * 0.22 + phase1) * 6.0 + Zone.Height * 0.5;
                     double vein2 = System.Math.Sin(x * 0.15 + phase2) * 7.0 + Zone.Height * 0.5;
-                    double dist = System.Math.Min(
+                    double dist = Plan?.WaterDistance(x,y) ?? System.Math.Min(
                         System.Math.Abs(y - vein1), System.Math.Abs(y - vein2));
+                    if (Plan != null && Plan.IsApproach(x,y)) continue;
                     if (dist < 1.2)
                     {
                         // The old water-veins themselves.
@@ -245,6 +253,7 @@ namespace CavesOfOoo.Core
                     int x = 4 + rng.Next(Zone.Width - 8);
                     int y = 3 + rng.Next(Zone.Height - 6);
                     if (!IsOpenGround(zone, x, y)) continue;
+                    if (Plan != null && Plan.IsApproach(x,y)) continue;
                     var vein = BuilderSpawn.TryPlace(zone, factory, "ChoirIronVein", x, y);
                     if (vein != null) placed.Add(vein);
                     break;
@@ -266,6 +275,7 @@ namespace CavesOfOoo.Core
                 {
                     int x = 4 + rng.Next(Zone.Width - 8);
                     int y = 3 + rng.Next(Zone.Height - 6);
+                    if (Plan != null && (Plan.WaterDistance(x,y) > 3 || Plan.IsApproach(x,y))) continue;
                     if (PlaceSolidIfHarmless(zone, factory, "ChoirTendril", x, y) != null)
                         break;
                 }
@@ -281,16 +291,23 @@ namespace CavesOfOoo.Core
             // rejection as thin scatter, not "dense vertical growth".
             // More lines, fuller shelves.
             var placed = new List<Entity>();
-            int lines = 10 + rng.Next(4);
+            int lines = Plan == null ? 10 + rng.Next(4) : Plan.BedCount * 3;
             for (int l = 0; l < lines; l++)
             {
                 int x = 5 + rng.Next(Zone.Width - 10);
                 int y0 = 2 + rng.Next(Zone.Height - 12);
                 int len = 4 + rng.Next(5);
+                if (Plan != null)
+                {
+                    var bed = Plan.GetBed(l / 3);
+                    x = bed.X + (l % 3) * 4;
+                    y0 = bed.Y;
+                    len = bed.Height - (l % 2);
+                }
                 for (int y = y0; y < y0 + len && y < Zone.Height - 2; y++)
                 {
                     if (!IsOpenGround(zone, x, y)) continue;
-                    if (rng.Next(100) >= 90) continue;   // broken shelves
+                    if ((Plan?.IsApproach(x,y) ?? false) || rng.Next(100) >= 90) continue;   // broken shelves
                     var body = BuilderSpawn.TryPlace(zone, factory, "FruitingBody", x, y);
                     if (body != null) placed.Add(body);
                 }
@@ -301,9 +318,26 @@ namespace CavesOfOoo.Core
         /// <summary>Ordered rows of the half-taken-back. The rows are
         /// straight; nothing made them straight. Non-solid — you can
         /// walk the rows, which is the point and the problem.</summary>
-        private static void CompostingField(Zone zone, EntityFactory factory, System.Random rng)
+        private void CompostingField(Zone zone, EntityFactory factory, System.Random rng)
         {
             var rowCells = new List<(int x, int y)>();
+            if (Plan != null)
+            {
+                for (int b = 0; b < Plan.BedCount; b++)
+                {
+                    var bed = Plan.GetBed(b);
+                    for (int y = bed.Y; y < bed.Y + bed.Height; y += 3)
+                        for (int x = bed.X; x < bed.X + bed.Width; x++)
+                        {
+                            if (!IsOpenGround(zone,x,y) || Plan.IsApproach(x,y)) continue;
+                            if (Plan.Roll(x,y,71) >= 88 - bed.Stage * 16) continue;
+                            if (BuilderSpawn.TryPlaceOnce(zone,factory,"CompostRow",x,y) != null)
+                                rowCells.Add((x,y));
+                        }
+                }
+            }
+            else
+            {
             int y0 = 4 + rng.Next(3);
             for (int y = y0; y < Zone.Height - 3; y += 4)
             {
@@ -316,6 +350,8 @@ namespace CavesOfOoo.Core
                     if (BuilderSpawn.TryPlaceOnce(zone, factory, "CompostRow", x, y) != null)
                         rowCells.Add((x, y));
                 }
+            }
+
             }
 
             // The loot half (W4.3 review: NOT one coin-roll per row —
@@ -368,10 +404,10 @@ namespace CavesOfOoo.Core
         /// (occupying one open cell is not sealing it). Returns the
         /// entity, or null when the cell was closed, the blueprint
         /// unknown, or the placement sealed something.</summary>
-        private static Entity PlaceSolidIfHarmless(Zone zone, EntityFactory factory,
+        private Entity PlaceSolidIfHarmless(Zone zone, EntityFactory factory,
             string blueprint, int x, int y)
         {
-            if (!IsOpenGround(zone, x, y)) return null;
+            if (!IsOpenGround(zone, x, y) || (Plan?.IsApproach(x,y) ?? false)) return null;
 
             // W4.1 review: never occupy an ISOLATED open cell — filling
             // a one-cell pocket "improves" the unreached count while

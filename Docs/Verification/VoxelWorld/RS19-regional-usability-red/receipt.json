@@ -1,0 +1,43 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CavesOfOoo.Tests.RegionalSituation",
+  "results": {
+    "id": "2",
+    "testcasecount": "64",
+    "result": "Failed(Child)",
+    "total": "64",
+    "passed": "59",
+    "failed": "5",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-18 00:56:54Z",
+    "end-time": "2026-09-18 00:57:02Z",
+    "duration": "7.5720375"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationUsabilityTests.NotesNameNativeGoodsActualRecipientAndDestinationTown",
+      "message": "  morrowfast-iron recipient\n  Expected: String containing \"orrit coilstitch\"\n  But was:  \"iron for orrit's repairs [accepted]. source (1,5); return (3,6). bring 1 choiriron; bought or already carried goods are welcome. digging the local mineral vein costs choir standing. payment: 8 drams and one fireclay. read, deliver, or release through the recipient's [c] actions.\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationUsabilityTests.OneGrainExplainsTwoUnitRequirementAndSecondUnitThenWorks",
+      "message": "  The refusal must reach the player, not only diagnostics.\n  Expected: not <empty>\n  But was:  <string.Empty>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationUsabilityTests.PostActionFailureCannotPublishSuccessfulDeliveryReceipt(True)",
+      "message": "  Only committed actions may publish an applied receipt.\n  Expected: 0\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationUsabilityTests.RemovedSupplySourceGetsTruthfulNoteAndBroughtGoodsStillComplete",
+      "message": "  The note must disclose that the recorded local source is gone.\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationUsabilityTests.WrongCargoExplainsSealedConsignmentAndActualSource",
+      "message": "  Expected: not <empty>\n  But was:  <string.Empty>\n"
+    }
+  ]
+}

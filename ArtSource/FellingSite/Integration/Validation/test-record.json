@@ -1,0 +1,27 @@
+{
+  "scope": "Offline C# core only; staged Unity importer not compiled or run",
+  "sdk": "10.0.105",
+  "target_framework": "net10.0",
+  "language_version": "7.3",
+  "nuget_packages": [],
+  "command": "dotnet run --no-restore --project ArtSource/FellingSite/Integration/Tests/FellingScene.Core.Tests.csproj",
+  "red": {
+    "passed": 0,
+    "failed": 17,
+    "exit_code": 1,
+    "log": "red.log"
+  },
+  "green": {
+    "passed": 17,
+    "failed": 0,
+    "exit_code": 0,
+    "log": "green.log"
+  },
+  "sha256": {
+    "Core/FellingSceneCore.cs": "7172ab3f50edad264c20245904762c3ec9a14a9a0235939d358003d8a9918054",
+    "Tests/Program.cs": "b4fcfb80eba058463de0e6a13b8ab06e42105a5a0d36501e7e5eb37165b16490",
+    "Tests/FellingScene.Core.Tests.csproj": "70020c482d119072bba007d000946b6c1b3fba2441e87ee4bab68113d5de1578",
+    "Tests/NuGet.Config": "2142cfb2dfa2c7feefbe40fabcc68b0dfecadafa99a1db9b70239d977cf2a7ef",
+    "Unity/FellingSceneArtImporter.cs.txt": "fcf88ff5ea7bb32de0e14df37598f6c535a0b0d18fad9468f3e1614601278e85"
+  }
+}

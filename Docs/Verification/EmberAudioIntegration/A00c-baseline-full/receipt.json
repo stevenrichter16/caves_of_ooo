@@ -1,0 +1,147 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": null,
+  "results": {
+    "id": "2",
+    "testcasecount": "11386",
+    "result": "Failed(Child)",
+    "total": "11386",
+    "passed": "11355",
+    "failed": "31",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-11 23:35:54Z",
+    "end-time": "2026-09-11 23:39:22Z",
+    "duration": "208.4160209"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AllTenExactBlueprintsReachTheirRealResourcesSpriteAtUnflippedRow",
+      "message": "  Dagger\n  Expected: \"item_dagger\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_dagger\")",
+      "message": "  item_dagger production PNG is missing\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_sword\")",
+      "message": "  item_sword production PNG is missing\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_spear\")",
+      "message": "  item_spear production PNG is missing\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_boots\")",
+      "message": "  item_boots production PNG is missing\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_gloves\")",
+      "message": "  item_gloves production PNG is missing\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_helmet\")",
+      "message": "  item_helmet production PNG is missing\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_mace\")",
+      "message": "  item_mace production PNG is missing\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_BrightAndDimForegroundCarryHueAndAlphaWithoutAuthoredColorOverride",
+      "message": "  Expected string length 11 but was 10. Strings differ at index 5.\n  Expected: \"item_helmet\"\n  But was:  \"item_armor\"\n  ----------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_DirtyNeighborhoodPreservesDistantEquipmentClaimAndTint",
+      "message": "  Expected string length 10 but was 12. Strings differ at index 0.\n  Expected: \"item_sword\"\n  But was:  \"WeaponGround\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_DisablingSpriteModeRestoresEquipmentGlyphThenReclaimsOnEnable",
+      "message": "  String lengths are both 10. Strings differ at index 5.\n  Expected: \"item_boots\"\n  But was:  \"item_armor\"\n  ----------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_HigherLayerActorHidesGroundEquipmentUntilItLeaves",
+      "message": "  Expected string length 11 but was 12. Strings differ at index 0.\n  Expected: \"item_dagger\"\n  But was:  \"WeaponGround\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_IncrementalReplacementUsesNewGlyphColorAndBody",
+      "message": "  String lengths are both 9. Strings differ at index 5.\n  Expected: \"item_mace\"\n  But was:  \"item_vial\"\n  ----------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_InvisibleHigherItemDoesNotHideVisibleLowerItem",
+      "message": "  Expected string length 10 but was 12. Strings differ at index 0.\n  Expected: \"item_sword\"\n  But was:  \"WeaponGround\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_ItemRemovalExposesFreshUnmappedGlyphWithoutRestoringOldOne",
+      "message": "  String lengths are both 9. Strings differ at index 5.\n  Expected: \"item_mace\"\n  But was:  \"item_vial\"\n  ----------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"Dagger\",\"item_dagger\")",
+      "message": "  new body must be registered first\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"ShortSword\",\"item_sword\")",
+      "message": "  new body must be registered first\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"Spear\",\"item_spear\")",
+      "message": "  new body must be registered first\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"LeatherBoots\",\"item_boots\")",
+      "message": "  new body must be registered first\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"LeatherGloves\",\"item_gloves\")",
+      "message": "  new body must be registered first\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"LeatherCap\",\"item_helmet\")",
+      "message": "  new body must be registered first\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"Mace\",\"item_mace\")",
+      "message": "  new body must be registered first\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_NullNewTileRetainsMaceGlyphAndDoesNotBorrowVial",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_ReleaseClaimsRestoresOriginalGlyphAndTint",
+      "message": "  Expected string length 10 but was 12. Strings differ at index 0.\n  Expected: \"item_spear\"\n  But was:  \"WeaponGround\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_RememberedFogDoesNotRevealGroundEquipment",
+      "message": "  String lengths are both 9. Strings differ at index 5.\n  Expected: \"item_mace\"\n  But was:  \"item_vial\"\n  ----------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_SevenFamiliesHaveDifferentSilhouettesAndDistinctGuids",
+      "message": "  item_dagger\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_StationaryFullRepaintReplacesOldFamilyWithoutStaleClaim",
+      "message": "  Expected string length 11 but was 12. Strings differ at index 0.\n  Expected: \"item_dagger\"\n  But was:  \"WeaponGround\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_TwoSameBlueprintInstancesShareBodyWithoutSharingCellTint",
+      "message": "  Expected string length 11 but was 12. Strings differ at index 0.\n  Expected: \"item_dagger\"\n  But was:  \"WeaponGround\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_UnexploredCellCannotClaimNewItemArt",
+      "message": "  String lengths are both 10. Strings differ at index 5.\n  Expected: \"item_boots\"\n  But was:  \"item_armor\"\n  ----------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PlaceProfileTests.TheProfileTable_IsData_AndComplete",
+      "message": "  Morrowfast is a plain village\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WorldMapAuthoringTests.Sill_IsAtTheCentre_OnSpread_AtTierOne",
+      "message": "  Sill must be first \u2014 the start reads Places[0]\n  Expected string length 4 but was 10. Strings differ at index 0.\n  Expected: \"Sill\"\n  But was:  \"Morrowfast\"\n  -----------^\n"
+    }
+  ]
+}

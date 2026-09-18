@@ -30,6 +30,11 @@ namespace CavesOfOoo.Core
                 activate: activate);
         }
 
+        /// <summary>Disposable native world for previews/tools. It owns a normal
+        /// settlement registry without replacing the running game's static registry.</summary>
+        public static OverworldZoneManager CreateDetached(EntityFactory factory,int worldSeed)
+            =>new OverworldZoneManager(factory,worldSeed,activate:false);
+
         protected override ZoneGenerationPipeline GetPipelineForZone(string zoneID)
         {
             // World-map zone: a singular Zone the player physically
@@ -45,6 +50,13 @@ namespace CavesOfOoo.Core
             if (!WorldMap.InBounds(wx, wy))
                 return base.GetPipelineForZone(zoneID);
 
+            if (zoneID == MultiCellPilotRuntime.ZoneID)
+            {
+                var pilot = new ZoneGenerationPipeline();
+                pilot.AddBuilder(new MultiCellPilotBuilder());
+                return pilot;
+            }
+
             BiomeType biome = WorldMap.GetBiome(wx, wy);
             var poi = WorldMap.GetPOI(wx, wy);
 
@@ -56,7 +68,18 @@ namespace CavesOfOoo.Core
             // the POI, and a sinkhole's own descent and floor generated
             // as generic caves.
             if (poi != null && poi.Type == POIType.Sinkhole)
+            {
+                if (GinmereCompositionPlan.IsSupportedZone(zoneID) && poi.Name == "Ginmere"
+                    && SinkholeArchetypes.ForSite(poi) == SinkholeArchetype.DrownedSima)
+                    return CreateGinmerePipeline(biome, wz, GetTierForCoords(wx, wy));
+                if(CathedralCompositionPlan.IsSupportedZone(zoneID)&&AreaCompositionScope.IsCathedralSite(poi))
+                    return CreateSanctumPipeline(biome,wx,wy,wz,true);
+                if(StillleafCompositionPlan.IsSupportedZone(zoneID)&&AreaCompositionScope.IsStillleafSite(poi))
+                    return CreateSanctumPipeline(biome,wx,wy,wz,false);
+                if(OlderdeepCompositionPlan.IsSupportedZone(zoneID)&&AreaCompositionScope.IsOlderdeepSite(poi))
+                    return CreateOlderdeepPipeline(biome,wx,wy,wz);
                 return CreateSinkholePipeline(biome, poi, wx, wy, wz);
+            }
 
             // Underground zones use a dedicated pipeline
             if (wz > 0)
@@ -106,13 +129,13 @@ namespace CavesOfOoo.Core
                 // authored map ships walkable, not that it ships
                 // finished.
                 case BiomeType.Spread:
-                    return CreateSpreadPipeline(tier);
+                    return CreateSpreadPipeline(tier, composed: SpreadCompositionPlan.IsWildernessZone(zoneID));
                 case BiomeType.Sodden:
-                    return CreateSoddenPipeline(tier);
+                    return CreateSoddenPipeline(tier, composed: SoddenCompositionPlan.IsWildernessZone(zoneID));
                 case BiomeType.Beating:
                     if (zoneID == TenthFireZoneID)
                         return CreateTenthFirePipeline(tier);
-                    return CreateBeatingPipeline(tier, zoneID);
+                    return CreateBeatingPipeline(tier, zoneID, composed: BeatingCompositionPlan.IsWildernessZone(zoneID));
                 case BiomeType.Grovelands:
                 {
                     // W4.4 SM-D (R8): the Bloom-front registers HERE —
@@ -130,14 +153,14 @@ namespace CavesOfOoo.Core
                     // fauna, which belongs.
                     if (zoneID == WovenDollZoneID)
                         return CreateWovenDollPipeline(tier);
-                    var grove = CreateGrovelandsPipeline(tier);
+                    var grove = CreateGrovelandsPipeline(tier, composed: true);
                     grove.AddBuilder(new BloomFrontBuilder());
                     return grove;
                 }
                 case BiomeType.Overwrit:
-                    return CreateOverwritPipeline(tier);
+                    return CreateOverwritPipeline(tier, zoneID);
                 case BiomeType.Stump:
-                    return CreateStumpPipeline(tier, StumpBands.BandAt(wx, wy));
+                    return CreateStumpPipeline(tier, StumpBands.BandAt(wx, wy), composed: StumpCompositionPlan.IsWildernessZone(zoneID));
 
                 case BiomeType.Cave:
                 default:
@@ -229,6 +252,94 @@ namespace CavesOfOoo.Core
         /// not the generic <c>depth/3 + 1</c> the anonymous cave stack
         /// uses. The two formulas would have disagreed; this is the one
         /// that holds for holes.</para></summary>
+        private ZoneGenerationPipeline CreateGinmerePipeline(BiomeType biome, int depth, int surfaceTier)
+        {
+            var pipeline=new ZoneGenerationPipeline();
+            pipeline.AddBuilder(new GinmereCompositionBuilder(WorldSeed));
+            string floor=depth==0?"Grass":"SandstoneFloor";
+            pipeline.AddBuilder(new ConnectivityBuilder { FloorBlueprint=floor });
+            if(depth==0) pipeline.AddBuilder(new SinkholeMouthBuilder(this));
+            else
+            {
+                pipeline.AddBuilder(new StairsUpBuilder(this));
+                pipeline.AddBuilder(new StairsDownBuilder(this));
+                pipeline.AddBuilder(new StairConnectorBuilder(floor));
+            }
+            pipeline.AddBuilder(new GinmereArrivalReservationBuilder());
+            pipeline.AddBuilder(new HazardTerrainBuilder(depth==0?biome:BiomeType.Cave,underground:depth>0));
+            if(depth==2)pipeline.AddBuilder(new PopulationBuilder(PopulationTable.StumpSima()));
+            pipeline.AddBuilder(new PopulationBuilder(depth==0?PopulationTable.GetBiomeTable(biome,surfaceTier)
+                :PopulationTable.UndergroundTier(depth)) { HabitatFilter=StumpFaunaHabitat.Allows });
+            pipeline.AddBuilder(new ContainerBuilder(depth==0?biome:BiomeType.Cave,
+                depth==0?surfaceTier:System.Math.Min(surfaceTier+1,8),
+                depth==0?ContainerPlacementService.ZoneKind.Wilderness:ContainerPlacementService.ZoneKind.Underground));
+            if(depth==0)pipeline.AddBuilder(new TradeStockBuilder());
+            if(depth==2)pipeline.AddBuilder(new GinmereNestFinalizer());
+            return pipeline;
+        }
+
+        // Finite authored stacks share the native travel/population spine.
+        // Their bases shape useful spaces; existing stamps still own the Choir
+        // residents and the archive's seal. Nothing repairs the sealed room.
+        private ZoneGenerationPipeline CreateSanctumPipeline(BiomeType biome,int wx,int wy,int depth,bool cathedral)
+        {
+            int surfaceTier=GetTierForCoords(wx,wy);
+            var pipeline=new ZoneGenerationPipeline();
+            pipeline.AddBuilder(cathedral?(IZoneBuilder)new CathedralCompositionBuilder(WorldSeed):new StillleafCompositionBuilder(WorldSeed));
+            string floor=depth==0?(cathedral?"Grass":"TepuiStone"):"SandstoneFloor";
+            pipeline.AddBuilder(new ConnectivityBuilder{FloorBlueprint=floor});
+            if(depth==0)pipeline.AddBuilder(new SinkholeMouthBuilder(this));
+            else
+            {
+                if(depth==2&&cathedral)pipeline.AddBuilder(new ChoirCathedralBuilder());
+                pipeline.AddBuilder(new StairsUpBuilder(this));
+                pipeline.AddBuilder(new StairsDownBuilder(this));
+                pipeline.AddBuilder(new StairConnectorBuilder(floor));
+                if(depth==2&&!cathedral)pipeline.AddBuilder(new SealedLibraryBuilder());
+            }
+            pipeline.AddBuilder(cathedral?(IZoneBuilder)new CathedralArrivalReservationBuilder():new StillleafArrivalReservationBuilder());
+            pipeline.AddBuilder(new HazardTerrainBuilder(depth==0?biome:BiomeType.Cave,underground:depth>0));
+            var population=depth==0
+                ?(biome==BiomeType.Stump?PopulationTable.GetStumpTable(StumpBands.BandAt(wx,wy),surfaceTier):PopulationTable.GetBiomeTable(biome,surfaceTier))
+                :(!cathedral&&depth==2?PopulationTable.CaveTier3():PopulationTable.UndergroundTier(depth));
+            pipeline.AddBuilder(new PopulationBuilder(population){HabitatFilter=StumpFaunaHabitat.Allows});
+            pipeline.AddBuilder(new ContainerBuilder(depth==0?biome:BiomeType.Cave,
+                depth==0?surfaceTier:(!cathedral&&depth==2?3:System.Math.Min(surfaceTier+1,8)),
+                depth==0?ContainerPlacementService.ZoneKind.Wilderness:ContainerPlacementService.ZoneKind.Underground));
+            if(depth==0)pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
+            if(Diag.IsChannelEnabled("worldmap"))Diag.Record("worldmap","SanctumRouted",payload:new{wx,wy,depth,cathedral});
+            return pipeline;
+        }
+
+        // The native FoundingVillage stamp remains the sole author of the body,
+        // plume and attendants. This finite base supplies approaches and landings.
+        private ZoneGenerationPipeline CreateOlderdeepPipeline(BiomeType biome,int wx,int wy,int depth)
+        {
+            int tier=GetTierForCoords(wx,wy);
+            var pipeline=new ZoneGenerationPipeline();
+            pipeline.AddBuilder(new OlderdeepCompositionBuilder(WorldSeed));
+            string floor=depth==0?"Grass":"SandstoneFloor";
+            // The founding base already connects its four entrances. Generic
+            // random edge cuts would become sealed tails after the chamber stamp.
+            if(depth!=2)pipeline.AddBuilder(new ConnectivityBuilder{FloorBlueprint=floor});
+            if(depth==0)pipeline.AddBuilder(new SinkholeMouthBuilder(this));
+            else
+            {
+                pipeline.AddBuilder(new StairsUpBuilder(this));
+                pipeline.AddBuilder(new StairsDownBuilder(this));
+                pipeline.AddBuilder(new StairConnectorBuilder(floor));
+                if(depth==2)pipeline.AddBuilder(new FoundingVillageBuilder());
+            }
+            pipeline.AddBuilder(new OlderdeepArrivalReservationBuilder(WorldSeed));
+            pipeline.AddBuilder(new HazardTerrainBuilder(depth==0?biome:BiomeType.Cave,underground:depth>0));
+            pipeline.AddBuilder(new PopulationBuilder(depth==0?PopulationTable.GetBiomeTable(biome,tier):PopulationTable.UndergroundTier(depth))
+                {HabitatFilter=StumpFaunaHabitat.Allows});
+            pipeline.AddBuilder(new ContainerBuilder(depth==0?biome:BiomeType.Cave,depth==0?tier:System.Math.Min(tier+1,8),
+                depth==0?ContainerPlacementService.ZoneKind.Wilderness:ContainerPlacementService.ZoneKind.Underground));
+            if(depth==0)pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
+            return pipeline;
+        }
+
         private ZoneGenerationPipeline CreateSinkholePipeline(
             BiomeType biome, PointOfInterest poi, int wx, int wy, int wz)
         {
@@ -429,8 +540,9 @@ namespace CavesOfOoo.Core
         /// that started the overhaul: every Spread chunk used to be the
         /// same clearing with the grass moved around.</para>
         /// </summary>
-        private ZoneGenerationPipeline CreateSpreadPipeline(int tier = 1)
+        private ZoneGenerationPipeline CreateSpreadPipeline(int tier = 1, bool composed = false)
         {
+            if (composed) return CreateSurfacePipeline(BiomeType.Spread, tier, new SpreadCompositionBuilder(WorldSeed));
             var pipeline = CreateSurfacePipeline(BiomeType.Spread, tier,
                 new JungleBuilder { SeedChance = 40, TreeChance = 0.04f });
             pipeline.AddBuilder(new SpreadFormationBuilder());
@@ -448,8 +560,9 @@ namespace CavesOfOoo.Core
         /// <summary>The Sodden — the flood's country. Wetter and more
         /// choked than the Spread; W3 brings the mires and the
         /// Bog-Taken.</summary>
-        private ZoneGenerationPipeline CreateSoddenPipeline(int tier = 1)
+        private ZoneGenerationPipeline CreateSoddenPipeline(int tier = 1, bool composed = false)
         {
+            if (composed) return CreateSurfacePipeline(BiomeType.Sodden, tier, new SoddenCompositionBuilder(WorldSeed));
             var pipeline = CreateSurfacePipeline(BiomeType.Sodden, tier,
                 new JungleBuilder { SeedChance = 52, TreeChance = 0.14f });
             // W3.1 (Docs/FELLING-W3-PLAN.md): the anti-sameness machine
@@ -491,8 +604,9 @@ namespace CavesOfOoo.Core
         public static readonly string[] AuthoredWildernessZoneIDs =
             { TenthFireZoneID, WovenDollZoneID };
 
-        private ZoneGenerationPipeline CreateBeatingPipeline(int tier = 1, string zoneID = null)
+        private ZoneGenerationPipeline CreateBeatingPipeline(int tier = 1, string zoneID = null, bool composed = false)
         {
+            if (composed) return CreateSurfacePipeline(BiomeType.Beating, tier, new BeatingCompositionBuilder(WorldSeed));
             var pipeline = CreateSurfacePipeline(BiomeType.Beating, tier,
                 new DesertBuilder { WallThreshold = 0.88f, RockChance = 0.06f });
             // W2.1 (Docs/FELLING-W1-W2-PLAN.md §7.6): the anti-sameness
@@ -552,13 +666,18 @@ namespace CavesOfOoo.Core
 
         /// <summary>The Grovelands — Choir country. Dense growth with
         /// open cathedral floors between.</summary>
-        private ZoneGenerationPipeline CreateGrovelandsPipeline(int tier = 1)
+        private ZoneGenerationPipeline CreateGrovelandsPipeline(int tier = 1, bool composed = false)
         {
-            var pipeline = CreateSurfacePipeline(BiomeType.Grovelands, tier,
-                new JungleBuilder { SeedChance = 50, TreeChance = 0.16f });
-            // W4.1 (Docs/FELLING-W4-PLAN.md): the anti-sameness machine
-            // reaches Choir country — groves, fens, walls, the fields.
-            pipeline.AddBuilder(new GrovelandsFormationBuilder());
+            if (!composed)
+            {
+                var legacy = CreateSurfacePipeline(BiomeType.Grovelands, tier,
+                    new JungleBuilder { SeedChance = 50, TreeChance = 0.16f });
+                legacy.AddBuilder(new GrovelandsFormationBuilder());
+                return legacy;
+            }
+            var composition = new GrovelandsCompositionBuilder(WorldSeed);
+            var pipeline = CreateSurfacePipeline(BiomeType.Grovelands, tier, composition);
+            pipeline.AddBuilder(new GrovelandsFormationBuilder { Composition = composition });
             return pipeline;
         }
 
@@ -568,15 +687,41 @@ namespace CavesOfOoo.Core
         /// should be FULL. W7 adds the bleeds; the emptiness is already
         /// the point.
         /// </summary>
-        private ZoneGenerationPipeline CreateOverwritPipeline(int tier = 1)
-            => CreateSurfacePipeline(BiomeType.Overwrit, tier,
-                new DesertBuilder { WallThreshold = 0.97f, RockChance = 0.005f });
+        private ZoneGenerationPipeline CreateOverwritPipeline(int tier = 1, string zoneID = null)
+        {
+            if (!OverwritCompositionPlan.IsWildernessZone(zoneID))
+                return CreateSurfacePipeline(BiomeType.Overwrit, tier,
+                    new DesertBuilder { WallThreshold = 0.97f, RockChance = 0.005f });
+            var pipeline = new ZoneGenerationPipeline();
+            var terrain=new OverwritCompositionBuilder(WorldSeed);
+            pipeline.AddBuilder(terrain);
+            pipeline.AddBuilder(new ConnectivityBuilder { FloorBlueprint = "OverwritGround" });
+            // Existing underground entry remains at the rim. The Blank stays
+            // flat; native ruins circulation remains outside this surface scope.
+            if (OverwritCompositionPlan.IsRimZone(zoneID))
+                pipeline.AddBuilder(new CaveEntranceBuilder(this) { PlacementFilter=(zone,cell)=>
+                    terrain.Plan!=null&&terrain.Plan.IsRim(cell.X,cell.Y)
+                    &&!terrain.Plan.IsApproach(cell.X,cell.Y)&&!zone.GenReservedCells.Contains((cell.X,cell.Y)) });
+            return pipeline;
+        }
 
         /// <summary>The Stump — the petrified tepui. Rock and
         /// fissure.</summary>
         private ZoneGenerationPipeline CreateStumpPipeline(
-            int tier = 1, StumpBand band = StumpBand.None)
+            int tier = 1, StumpBand band = StumpBand.None, bool composed = false)
         {
+            if (composed)
+            {
+                var terrain = new StumpCompositionBuilder(WorldSeed);
+                var composedPipeline = CreateSurfacePipeline(BiomeType.Stump, tier, terrain);
+                composedPipeline.RemoveBuilders<LandmarkBuilder>();
+                composedPipeline.AddBuilder(new LandmarkBuilder(BiomeType.Stump, tier,
+                    StumpCompositionBuilder.CreateLandmarkCatalog()));
+                composedPipeline.RemoveBuilders<PopulationBuilder>();
+                composedPipeline.AddBuilder(new StumpHabitatPopulationBuilder(terrain,
+                    PopulationTable.GetStumpTable(band, tier)));
+                return composedPipeline;
+            }
             // W6.2a — the W0 placeholder (CaveBuilder 50/0.44, "rock
             // and fissure") produced ~86% wall and zones that often
             // could not be crossed at all (probe: open=245 of 1794,
@@ -645,8 +790,37 @@ namespace CavesOfOoo.Core
         private ZoneGenerationPipeline CreateVillagePipeline(BiomeType biome, PointOfInterest poi, string zoneID)
         {
             var pipeline = new ZoneGenerationPipeline();
+            if (zoneID == MorrowfastSceneRuntime.ZoneID && poi.Profile == "Morrowfast")
+            {
+                pipeline.AddBuilder(new MorrowfastBuilder());
+                return pipeline;
+            }
             bool isStartingTown = zoneID == VillagePopulationBuilder.StartingVillageZoneId;
-            pipeline.AddBuilder(new VillageBuilder(biome, poi, SettlementManager, largeTown: isStartingTown));
+            bool wellmeet=WellmeetCompositionPlan.IsSupportedZone(zoneID)&&AreaCompositionScope.IsWellmeetSite(poi);
+            bool cinderhold=CinderholdCompositionPlan.IsSupportedZone(zoneID)&&AreaCompositionScope.IsCinderholdSite(poi);
+            bool sumphold=SumpholdCompositionPlan.IsSupportedZone(zoneID)&&AreaCompositionScope.IsSumpholdSite(poi);
+            bool drownedLedger=DrownedLedgerCompositionPlan.IsSupportedZone(zoneID)&&AreaCompositionScope.IsDrownedLedgerSite(poi);
+            bool marrowstye=MarrowstyeCompositionPlan.IsSupportedZone(zoneID)&&AreaCompositionScope.IsMarrowstyeSite(poi);
+            bool firstTent=FirstTentCompositionPlan.IsSupportedZone(zoneID)&&AreaCompositionScope.IsFirstTentSite(poi);
+            bool lastCounter=LastCounterCompositionPlan.IsSupportedZone(zoneID)&&AreaCompositionScope.IsLastCounterSite(poi);
+            bool gantry=GantryCompositionPlan.IsSupportedZone(zoneID)&&AreaCompositionScope.IsGantrySite(poi);
+            bool tine=TineCompositionPlan.IsSupportedZone(zoneID)&&AreaCompositionScope.IsTineSite(poi);
+            bool quillhold=QuillholdCompositionPlan.IsSupportedZone(zoneID)&&AreaCompositionScope.IsQuillholdSite(poi);
+            bool tally=TallyCompositionPlan.IsSupportedZone(zoneID)&&AreaCompositionScope.IsTallySite(poi);
+            bool civicQuartet=gantry||tine||quillhold||tally;
+            bool composed=wellmeet||cinderhold||sumphold||drownedLedger||marrowstye||firstTent||lastCounter||civicQuartet;
+            var camp=wellmeet?new WellmeetCompositionBuilder(WorldSeed):null;
+            var post=cinderhold?new CinderholdCompositionBuilder(WorldSeed):null;
+            var yard=sumphold?new SumpholdCompositionBuilder(WorldSeed):null;
+            var ledger=drownedLedger?new DrownedLedgerCompositionBuilder(WorldSeed):null;
+            var intake=marrowstye?new MarrowstyeCompositionBuilder(WorldSeed):null;
+            var first=firstTent?new FirstTentCompositionBuilder(WorldSeed):null;
+            var last=lastCounter?new LastCounterCompositionBuilder(WorldSeed):null;
+            var gantryBase=gantry?new GantryCompositionBuilder(WorldSeed):null;
+            var tineBase=tine?new TineCompositionBuilder(WorldSeed):null;
+            var quillholdBase=quillhold?new QuillholdCompositionBuilder(WorldSeed):null;
+            var tallyBase=tally?new TallyCompositionBuilder(WorldSeed):null;
+            pipeline.AddBuilder(gantry?(IZoneBuilder)gantryBase:tine?tineBase:quillhold?quillholdBase:tally?tallyBase:firstTent?first:lastCounter?last:wellmeet?camp:cinderhold?post:sumphold?yard:drownedLedger?ledger:marrowstye?intake:new VillageBuilder(biome, poi, SettlementManager, largeTown: isStartingTown));
 
             // W2.6 (Docs/FELLING-W1-W2-PLAN.md §7.6, decision D5): the
             // first consumer of Place.Faction — until now all sixteen
@@ -667,32 +841,51 @@ namespace CavesOfOoo.Core
             switch (poi.Profile)
             {
                 case "TentCamp":
-                    profileStamps.Add(StampCatalog.TentRightProfileCamp());
+                    if(wellmeet)pipeline.AddBuilder(new WellmeetProfileBuilder(camp));
+                    else profileStamps.Add(StampCatalog.TentRightProfileCamp());
                     break;
                 case "TentCampFirst":
-                    profileStamps.Add(StampCatalog.TentRightProfileCamp());
-                    profileStamps.Add(StampCatalog.FirstTentMonument());
+                    if(firstTent)pipeline.AddBuilder(new FirstTentProfileBuilder(first));
+                    else
+                    {profileStamps.Add(StampCatalog.TentRightProfileCamp());profileStamps.Add(StampCatalog.FirstTentMonument());}
                     break;
                 case "ConcordPost":
-                    profileStamps.Add(StampCatalog.LastCounterPost());
+                    if(lastCounter)pipeline.AddBuilder(new LastCounterProfileBuilder(last));
+                    else profileStamps.Add(StampCatalog.LastCounterPost());
                     break;
                 // W3.2/W3.5: the Drowned Ledger — an expedition site,
                 // not a market town (the three pre-Felling preserved
                 // live here and nowhere else).
                 case "ExcavationCamp":
-                    profileStamps.Add(StampCatalog.ExcavationCamp());
+                    if(drownedLedger)pipeline.AddBuilder(new DrownedLedgerProfileBuilder(ledger));
+                    else profileStamps.Add(StampCatalog.ExcavationCamp());
                     break;
                 // W3.6: Marrowstye — the body-courier's destination.
                 case "Intake":
-                    profileStamps.Add(StampCatalog.CurationIntake());
+                    if(marrowstye)pipeline.AddBuilder(new MarrowstyeProfileBuilder(intake));
+                    else profileStamps.Add(StampCatalog.CurationIntake());
                     break;
                 case "Boatyard":
-                    profileStamps.Add(StampCatalog.SumpholdBoatyard());
+                    if(sumphold)pipeline.AddBuilder(new SumpholdProfileBuilder(yard));
+                    else profileStamps.Add(StampCatalog.SumpholdBoatyard());
                     break;
                 // W4.6: Cinderhold — the Concord's Grovelands post and
                 // the pruning contract's home.
                 case "PruningPost":
-                    profileStamps.Add(StampCatalog.PruningPost());
+                    if(cinderhold)pipeline.AddBuilder(new CinderholdProfileBuilder(post));
+                    else profileStamps.Add(StampCatalog.PruningPost());
+                    break;
+                case GantryCompositionPlan.ProfileID:
+                    if(gantry)pipeline.AddBuilder(new GantryProfileBuilder(gantryBase));
+                    break;
+                case TineCompositionPlan.ProfileID:
+                    if(tine)pipeline.AddBuilder(new TineProfileBuilder(tineBase));
+                    break;
+                case QuillholdCompositionPlan.ProfileID:
+                    if(quillhold)pipeline.AddBuilder(new QuillholdProfileBuilder(quillholdBase));
+                    break;
+                case TallyCompositionPlan.ProfileID:
+                    if(tally)pipeline.AddBuilder(new TallyProfileBuilder(tallyBase));
                     break;
                 case null:
                 case "":
@@ -716,8 +909,18 @@ namespace CavesOfOoo.Core
                 pipeline.AddBuilder(new LandmarkBuilder(biome, 1,
                     StampCatalog.Town(), priority: 3860, maxStructures: 5));
             }
-            pipeline.AddBuilder(new ConnectivityBuilder());
-            pipeline.AddBuilder(new CaveEntranceBuilder(this));
+            pipeline.AddBuilder(new ConnectivityBuilder{FloorBlueprint=(wellmeet||firstTent)?"Sand":"Floor"});
+            var entrance=new CaveEntranceBuilder(this);
+            if(composed)entrance.PlacementFilter=(zone,cell)=>!cell.IsInterior&&!zone.GenReservedCells.Contains((cell.X,cell.Y));
+            if(drownedLedger)entrance.PlacementFilter=ledger.CanPlaceCaveEntrance;
+            if(marrowstye)entrance.PlacementFilter=intake.CanPlaceCaveEntrance;
+            if(firstTent)entrance.PlacementFilter=first.CanPlaceCaveEntrance;
+            if(lastCounter)entrance.PlacementFilter=last.CanPlaceCaveEntrance;
+            if(gantry)entrance.PlacementFilter=gantryBase.CanPlaceCaveEntrance;
+            if(tine)entrance.PlacementFilter=tineBase.CanPlaceCaveEntrance;
+            if(quillhold)entrance.PlacementFilter=quillholdBase.CanPlaceCaveEntrance;
+            if(tally)entrance.PlacementFilter=tallyBase.CanPlaceCaveEntrance;
+            pipeline.AddBuilder(entrance);
             // Narrow HTML-style water channel running west → east along the
             // BOTTOM of the village. halfWidth=2.0 gives a ~4-cell-tall
             // channel; crossCenterOffset=+8 places the centerline around
@@ -729,13 +932,29 @@ namespace CavesOfOoo.Core
             // runs before VillagePopulationBuilder (4000) so NPCs don't
             // spawn in water (though they may still spawn on cells where
             // we just removed structures — acceptable collateral).
-            pipeline.AddBuilder(new RiverChunkBuilder(
+            if(!composed)pipeline.AddBuilder(new RiverChunkBuilder(
                 halfWidthBase: 2.0f,
                 skipBanks: true,
                 direction: RiverFlowDirection.East,
                 crossCenterOffset: 8,
                 clearSolidEntities: true));
-            pipeline.AddBuilder(new VillagePopulationBuilder(poi, SettlementManager));
+            if(wellmeet)pipeline.AddBuilder(new WellmeetArrivalReservationBuilder(camp));
+            if(cinderhold)pipeline.AddBuilder(new CinderholdArrivalReservationBuilder(post));
+            if(sumphold)pipeline.AddBuilder(new SumpholdArrivalReservationBuilder(yard));
+            if(drownedLedger)pipeline.AddBuilder(new DrownedLedgerArrivalReservationBuilder(ledger));
+            if(marrowstye)pipeline.AddBuilder(new MarrowstyeArrivalReservationBuilder(intake));
+            if(firstTent)pipeline.AddBuilder(new FirstTentArrivalReservationBuilder(first));
+            if(lastCounter)pipeline.AddBuilder(new LastCounterArrivalReservationBuilder(last));
+            if(gantry)pipeline.AddBuilder(new GantryArrivalReservationBuilder(gantryBase));
+            if(tine)pipeline.AddBuilder(new TineArrivalReservationBuilder(tineBase));
+            if(quillhold)pipeline.AddBuilder(new QuillholdArrivalReservationBuilder(quillholdBase));
+            if(tally)pipeline.AddBuilder(new TallyArrivalReservationBuilder(tallyBase));
+            var population=new VillagePopulationBuilder(poi, SettlementManager){RespectInteriorReservations=composed};
+            if(gantry)population.PreferredServiceCell=(zone,blueprint)=>gantryBase.TryGetServiceCell(blueprint,out int x,out int y)?zone.GetCell(x,y):null;
+            if(tine)population.PreferredServiceCell=(zone,blueprint)=>tineBase.TryGetServiceCell(blueprint,out int x,out int y)?zone.GetCell(x,y):null;
+            if(quillhold)population.PreferredServiceCell=(zone,blueprint)=>quillholdBase.TryGetServiceCell(blueprint,out int x,out int y)?zone.GetCell(x,y):null;
+            if(tally)population.PreferredServiceCell=(zone,blueprint)=>tallyBase.TryGetServiceCell(blueprint,out int x,out int y)?zone.GetCell(x,y):null;
+            pipeline.AddBuilder(population);
             pipeline.AddBuilder(new TradeStockBuilder(SettlementManager));
             pipeline.AddBuilder(new ContainerBuilder(BiomeType.Cave, 1,
                 ContainerPlacementService.ZoneKind.Village));
@@ -748,7 +967,7 @@ namespace CavesOfOoo.Core
             {
                 int zoneSeed = WorldSeed ^ zoneID.GetHashCode();
                 int pick = (zoneSeed & int.MaxValue) % dramaIds.Count;
-                pipeline.AddBuilder(new HouseDramaZoneBuilder(dramaIds[pick]));
+                pipeline.AddBuilder(new HouseDramaZoneBuilder(dramaIds[pick]){RespectReservations=cinderhold||sumphold||drownedLedger||marrowstye||firstTent||lastCounter||civicQuartet});
             }
 
             return pipeline;
@@ -807,6 +1026,12 @@ namespace CavesOfOoo.Core
             SetTurnProvider(turnProvider);
         }
 
+        protected override void OnZoneAttached(Zone zone)
+        {
+            AreaCompositionScope.Attach(zone, WorldMap);
+            WorldLocationContext.Attach(zone, this);
+        }
+
         protected override void OnZoneGenerated(Zone zone, string zoneID)
         {
             if (!WorldMap.IsOverworldZoneID(zoneID))
@@ -850,6 +1075,19 @@ namespace CavesOfOoo.Core
 
             if (!WorldMap.InBounds(wx, wy))
                 return;
+
+            RegionalSituations.OnZoneGenerated(zone, this);
+
+            if (zoneID == MorrowfastExpedition.FieldZoneId && WorldMap.GetPOI(wx, wy) == null
+                && WorldMap.GetBiome(wx, wy) == BiomeType.Grovelands)
+                MorrowfastExpedition.TryInstall(zone, Factory);
+
+            if (zoneID == MultiCellPilotRuntime.ZoneID)
+            {
+                zone.AmbientTint = StumpBands.BaseTint;
+                zone.AmbientLevel = Zone.DefaultAmbientLevel;
+                return;
+            }
 
             zone.AmbientTint = GetBiomeTint(WorldMap.GetBiome(wx, wy));
             zone.AmbientLevel = Zone.DefaultAmbientLevel;
@@ -942,6 +1180,14 @@ namespace CavesOfOoo.Core
 
         protected override void PrepareZoneForAccess(string zoneID)
         {
+            if (zoneID == MultiCellPilotRuntime.ZoneID)
+            {
+                WorldMap.RehydrateMultiCellPilot();
+                if (CachedZones.TryGetValue(zoneID, out var cachedPilot))
+                    MultiCellPilotRuntime.UpgradeCachedZone(cachedPilot, Factory);
+                return;
+            }
+
             if (!WorldMap.IsOverworldZoneID(zoneID))
                 return;
 
@@ -970,10 +1216,22 @@ namespace CavesOfOoo.Core
                 return;
 
             var poi = WorldMap.GetPOI(wx, wy);
+            // Authored scenery upgrades a previously cached legacy site without
+            // regenerating unrelated saved occupants or changing the travel route.
+            if (poi?.Type == POIType.FellingSite && zoneID == FellingSiteBuilder.ZoneID
+                && CachedZones.TryGetValue(zoneID, out var cachedFelling))
+                FellingSceneRuntime.UpgradeCachedZone(cachedFelling, Factory);
             if (poi == null || poi.Type != POIType.Village)
                 return;
 
             SettlementManager.GetOrCreateSettlement(zoneID, poi);
+            // Authored owners, finite stock and house state must survive visits.
+            if (zoneID == MorrowfastSceneRuntime.ZoneID && poi.Profile == "Morrowfast")
+            {
+                if (CachedZones.TryGetValue(zoneID, out var morrowfast))
+                    MorrowfastSceneRuntime.UpgradeCachedZone(morrowfast, Factory);
+                return;
+            }
             bool changed = SettlementManager.AdvanceSettlement(zoneID, GetCurrentTurn());
             if (changed && (ActiveZone == null || ActiveZone.ZoneID != zoneID))
                 UnloadZone(zoneID);

@@ -98,20 +98,17 @@ namespace CavesOfOoo.Skills
                 if (cell == null) break;
 
                 // Creature in path? Stop one short, set as target.
-                Entity creature = null;
-                for (int i = 0; i < cell.Objects.Count; i++)
-                {
-                    var e = cell.Objects[i];
-                    if (e == null || e == actor) continue;
-                    if (e.Tags.ContainsKey("Creature")) { creature = e; break; }
-                }
+                var creature = MultiCellAbilityQueries.CreatureAtPlacement(ctx.Zone, actor, nx, ny);
                 if (creature != null) { hitTarget = creature; break; }
 
                 if (cell.IsSolid()) break; // wall — actor stops here
 
                 // Open cell — advance.
-                ctx.Zone.MoveEntity(actor, nx, ny);
+                if (!ctx.Zone.CanPlaceFootprint(actor, nx, ny) || !MovementSystem.ForceMoveTo(actor, ctx.Zone, nx, ny)) break;
                 x = nx; y = ny;
+                // A trap, portal or slip can end the original charge trajectory.
+                if (ctx.Zone.GetEntityPosition(actor) != (nx, ny)
+                    || actor.GetStatValue("Hitpoints", 1) <= 0) break;
             }
 
             if (hitTarget == null)

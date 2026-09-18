@@ -1,0 +1,29 @@
+{
+    "errors": [
+        {
+            "type": "Exception",
+            "message": "ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.\nParameter name: index",
+            "trace": "System.Collections.Generic.List`1[T].get_Item (System.Int32 index) (at <032c206a1674455bacfc3546f1de5ef3>:0)\nUnityEditor.Search.SearchDatabase+<EnumerateAll>d__80.MoveNext () (at /Users/bokken/build/output/unity/unity/Modules/QuickSearch/Editor/Indexing/SearchDatabase.cs:445)\nSystem.Linq.Enumerable.TryGetFirst[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Boolean& found) (at <2a8fff6ff3e54cfa88259e180adc29eb>:0)\nSystem.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source) (at <2a8fff6ff3e54cfa88259e180adc29eb>:0)\nUnityEditor.Search.SearchDatabase.GetDefaultSearchDatabase () (at /Users/bokken/build/output/unity/unity/Modules/QuickSearch/Editor/Indexing/SearchDatabase.cs:420)\nUnityEditor.Search.SearchInit.IndexationOnStartup () (at /Users/bokken/build/output/unity/unity/Modules/QuickSearch/Editor/SearchInit.cs:109)\nUnityEditor.EditorApplication.Internal_CallDelayFunctions () (at /Users/bokken/build/output/unity/unity/Editor/Mono/EditorApplication.cs:407)\n",
+            "editorSeconds": 19.772828041
+        }
+    ],
+    "errorLedgerTruncated": false,
+    "profileCounterchecksPassed": false,
+    "runId": "0ff45cdabc25464aa8ce2e161d945498",
+    "privateRoot": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/3d6c2c3e9d8f4fc78b7ef88a98dbc868",
+    "sceneError": "",
+    "viewError": "",
+    "reportError": "",
+    "privateRootRemoved": true,
+    "scenesRestored": true,
+    "gameViewRestored": true,
+    "finalNativeVerified": false,
+    "seedSettingRestored": true,
+    "inheritedSaveRootRestored": true,
+    "lastGamePreferenceRestored": true,
+    "nativeCleanupCode": 0,
+    "exitCode": 4,
+    "oldRequestedSeed": 0,
+    "restoredRequestedSeed": 0,
+    "totalUnexpectedErrors": 1
+}

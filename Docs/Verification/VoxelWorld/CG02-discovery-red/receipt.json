@@ -1,0 +1,59 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CanonicalVillageQuestTests",
+  "results": {
+    "id": "2",
+    "testcasecount": "9",
+    "result": "Failed(Child)",
+    "total": "9",
+    "passed": "0",
+    "failed": "9",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-17 01:06:12Z",
+    "end-time": "2026-09-17 01:06:12Z",
+    "duration": "0.3957151"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.CanonicalVillageQuestTests.ActualNamedVillagePipelinesPlaceOneInstanceOfEachGlobalStory(64)",
+      "message": "  Overworld.16.1.0 must not duplicate another town's story.\n  Expected: <empty>\n  But was:  < <CavesOfOoo.Storylets.QuestBeaconPart> >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.CanonicalVillageQuestTests.ActualNamedVillagePipelinesPlaceOneInstanceOfEachGlobalStory(1729)",
+      "message": "  Overworld.16.1.0 must not duplicate another town's story.\n  Expected: <empty>\n  But was:  < <CavesOfOoo.Storylets.QuestBeaconPart> >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.CanonicalVillageQuestTests.AllSurfaceAddressesContainExactlySixUniqueCanonicalAssignments",
+      "message": "  Only actual assigned host towns may create these global stories.\n  Expected: equivalent to < \"Overworld.13.7.0\", \"Overworld.14.9.0\", \"Overworld.8.16.0\", \"Overworld.7.8.0\", \"Overworld.5.9.0\", \"Overworld.15.6.0\" >\n  But was:  < \"Overworld.0.0.0\", \"Overworld.1.0.0\", \"Overworld.2.0.0\", \"Overworld.3.0.0\", \"Overworld.4.0.0\", \"Overworld.5.0.0\", \"Overworld.6.0.0\", \"Overworld.7.0.0\", \"Overworld.8.0.0\", \"Overworld.9.0.0\"... >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.CanonicalVillageQuestTests.NonHostsHaveNoPoolAssignment(null)",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.CanonicalVillageQuestTests.NonHostsHaveNoPoolAssignment(\"\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.CanonicalVillageQuestTests.NonHostsHaveNoPoolAssignment(\"Overworld.13.7.1\")",
+      "message": "  Overworld.13.7.1\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.CanonicalVillageQuestTests.NonHostsHaveNoPoolAssignment(\"Overworld.3.6.0\")",
+      "message": "  Overworld.3.6.0\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.CanonicalVillageQuestTests.NonHostsHaveNoPoolAssignment(\"Overworld.10.10.0\")",
+      "message": "  Overworld.10.10.0\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.CanonicalVillageQuestTests.NonHostsHaveNoPoolAssignment(\"Overworld.0.0.0\")",
+      "message": "  Overworld.0.0.0\n  Expected: True\n  But was:  False\n"
+    }
+  ]
+}

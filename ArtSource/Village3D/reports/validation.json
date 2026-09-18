@@ -1,0 +1,34 @@
+{
+  "status": "Blender source/export validation; Unity import/runtime unverified",
+  "artSeed": 9042026,
+  "nativeOwners": 71,
+  "buildings": 5,
+  "models": 123,
+  "staticPlacements": 111,
+  "wholeZonePlacedTriangles": 362905,
+  "paletteSwatches": 64,
+  "rigClips": [
+    "Idle",
+    "Walk",
+    "Interact",
+    "Attack",
+    "Hit"
+  ],
+  "sourceDefinitionSha256": "54ac630513b605d1ecaa261ce423532ed4ae87b9aa1292e24e6650ee89520d7d",
+  "boundsValidated": true,
+  "ownerIdsComplete": true,
+  "groundCoverage": [
+    0,
+    0,
+    80,
+    25
+  ],
+  "exportPreset": "static bake_space_transform=True; rig=False, +Z forward/Y up, export-only Z rotation 180 degrees",
+  "knownLimits": [
+    "Unity must validate axes, materials, rig clips and sockets before acceptance",
+    "Native footprint/room layout takes priority over image ambiguities",
+    "Palette color/AO appearance requires actual Unity review",
+    "Procedural source has authored geometry and lighting, no photoreal texture bake",
+    "Showcase player is decorative preview only and omitted from owner manifest"
+  ]
+}

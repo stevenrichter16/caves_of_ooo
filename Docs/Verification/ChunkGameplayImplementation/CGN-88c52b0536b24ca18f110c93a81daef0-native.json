@@ -1,0 +1,213 @@
+{
+    "runId": "88c52b0536b24ca18f110c93a81daef0",
+    "saveRoot": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/e2e3cfcc5f1d4334ac81e1af161523ac",
+    "gameId": "b6980dae74a946138346a744d99b3312",
+    "markerId": "ChunkGameplay-native-marker-616aa389ba9842ea9ae2695d7b7a3a0b",
+    "fatal": "",
+    "bounds": "Actual native 1080p GameView and ordinary seed64 N bootstrap. No fixture placement, world replacement, direct quest action, direct inventory transfer, camera or reveal changes. Cardinal movement, three border crossings, action/loot/dialogue menus, Q/Tab travel notes, F5/F6 use queued native keys. Reflection observes live UI cursors only. Crops and summit water are covered by separate EditMode integration tests, not this journey. ProfilerRecorder covers a sixty-second native editor window including harness planning, screenshots, existing systems and loads; aggregate timing/allocation maxima do not isolate cue cost or establish FPS. No complete-world, subjective readability or enjoyment claim.",
+    "failures": 1,
+    "unexpectedErrors": 0,
+    "worldSeed": 64,
+    "nativeSteps": 221,
+    "stunnedTurns": 1,
+    "screenWidth": 1920,
+    "screenHeight": 1080,
+    "wallSeconds": 62.454854299999997,
+    "profileSeconds": 60.001352458,
+    "profileIdleSeconds": 1.9695697909999979,
+    "profileMetrics": [
+        {
+            "name": "Main Thread",
+            "units": "TimeNanoseconds",
+            "available": true,
+            "count": 15984,
+            "sum": 59887311816,
+            "max": 502526333
+        },
+        {
+            "name": "COO.Input.Update",
+            "units": "TimeNanoseconds",
+            "available": true,
+            "count": 15984,
+            "sum": 2651389989,
+            "max": 282595125
+        },
+        {
+            "name": "COO.ZoneRenderer.LateUpdate",
+            "units": "TimeNanoseconds",
+            "available": true,
+            "count": 15984,
+            "sum": 18060886543,
+            "max": 46450083
+        },
+        {
+            "name": "GC Allocated In Frame",
+            "units": "Bytes",
+            "available": true,
+            "count": 15984,
+            "sum": 1084320792,
+            "max": 81868804
+        }
+    ],
+    "cameraSize": 16.80000114440918,
+    "townCameraSize": 16.5,
+    "fullReveal": true,
+    "workloadComplete": true,
+    "shutdownObserved": true,
+    "shutdownRootHeld": true,
+    "shutdownSavingUnregistered": true,
+    "displayPreferencesRestored": true,
+    "inputSettingsRestored": true,
+    "checks": [
+        {
+            "name": "native_N_real_new_game",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_cache_and_parcel_generated",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_border_east_initial",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "quest_cue_available",
+            "detail": "Available",
+            "pass": true
+        },
+        {
+            "name": "native_conversation_accept",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "quest_cue_active",
+            "detail": "Active",
+            "pass": true
+        },
+        {
+            "name": "native_Q_journal",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_border_west_recovery",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "field_camera_restored",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_container_command_mode",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_TakeFromContainer_parcel",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_border_east_delivery",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_carried_parcel_crosses_border",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_conversation_delivery",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_one_reward",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_parcel_laid_at_supper",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "quest_cue_completed",
+            "detail": "None",
+            "pass": true
+        },
+        {
+            "name": "native_no_repeat_delivery_choice",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_regional_directions",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_travel_notes",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_F5_owned_checkpoint",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_F6_reloads_completion",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_notes_restored",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "quest_cue_reloaded",
+            "detail": "None",
+            "pass": true
+        },
+        {
+            "name": "camera_and_reveal_untouched",
+            "detail": "fieldSize=16.8 townSize=16.5 loadedTownSize=16.5 zoomMultiplier=1.2",
+            "pass": true
+        },
+        {
+            "name": "private_boot_marker_unchanged",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "owned_save_only",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_profile_evidence",
+            "detail": "",
+            "pass": false
+        }
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/ChunkGameplayImplementation/CGN-88c52b0536b24ca18f110c93a81daef0-western-spawn.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/ChunkGameplayImplementation/CGN-88c52b0536b24ca18f110c93a81daef0-cue-available.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/ChunkGameplayImplementation/CGN-88c52b0536b24ca18f110c93a81daef0-cue-active.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/ChunkGameplayImplementation/CGN-88c52b0536b24ca18f110c93a81daef0-journal.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/ChunkGameplayImplementation/CGN-88c52b0536b24ca18f110c93a81daef0-recovered-parcel.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/ChunkGameplayImplementation/CGN-88c52b0536b24ca18f110c93a81daef0-completed-supper.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/ChunkGameplayImplementation/CGN-88c52b0536b24ca18f110c93a81daef0-travel-notes.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/ChunkGameplayImplementation/CGN-88c52b0536b24ca18f110c93a81daef0-restored-completion.png"
+    ]
+}

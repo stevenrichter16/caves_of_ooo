@@ -1,0 +1,3345 @@
+{
+  "status": "PASS",
+  "stage": "final-ground-refinement-warm-editor",
+  "runId": "0d7a74963b314b6f9c9270a00d13846d",
+  "sourceReport": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-native.json",
+  "sourceReportSha256": "2971c5a062956a645037e9a2f7d8d986127db4e9eaec1fe8bb4bff7877da06bf",
+  "cleanupReport": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-cleanup.json",
+  "cleanupReportSha256": "ecec65b59be6dca6234d3feebd325ad13c16523c1c1bbfc4caffa71c1645ad92",
+  "rawCsv": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-frames.csv",
+  "rawSha256": "5ec74216b8ecb71ad5bd56f8a39f687eec3ea2280e1e4e31f7f39dd98f02c81d",
+  "assertions": 419,
+  "passed": 419,
+  "checks": [
+    {
+      "name": "complete_successful_native_report",
+      "pass": true
+    },
+    {
+      "name": "all_reported_checks_pass",
+      "pass": true
+    },
+    {
+      "name": "all_seven_spell_ids",
+      "pass": true
+    },
+    {
+      "name": "all_commands_succeeded_with_stable_results",
+      "pass": true
+    },
+    {
+      "name": "all_observed_nonprofile_gestures",
+      "pass": true
+    },
+    {
+      "name": "same_run_cleanup",
+      "pass": true
+    },
+    {
+      "name": "private_root_removed",
+      "pass": true
+    },
+    {
+      "name": "run_owned_raw_csv",
+      "pass": true
+    },
+    {
+      "name": "raw_sha256_matches",
+      "pass": true
+    },
+    {
+      "name": "exact_csv_columns",
+      "pass": true
+    },
+    {
+      "name": "raw_count_matches",
+      "pass": true
+    },
+    {
+      "name": "raw_monotonic_order",
+      "pass": true
+    },
+    {
+      "name": "raw_finite_nonnegative",
+      "pass": true
+    },
+    {
+      "name": "counter_names_units",
+      "pass": true
+    },
+    {
+      "name": "required_counters_available",
+      "pass": true
+    },
+    {
+      "name": "availability_values_zone_renderer",
+      "pass": true
+    },
+    {
+      "name": "availability_values_input",
+      "pass": true
+    },
+    {
+      "name": "availability_values_main_thread",
+      "pass": true
+    },
+    {
+      "name": "availability_values_gc_bytes",
+      "pass": true
+    },
+    {
+      "name": "availability_values_draw_calls",
+      "pass": true
+    },
+    {
+      "name": "availability_values_triangles",
+      "pass": true
+    },
+    {
+      "name": "one_cast_record_per_png",
+      "pass": true
+    },
+    {
+      "name": "screenshots_are_captured_frames",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-011.png",
+      "pass": true
+    },
+    {
+      "name": "capture_order_0",
+      "pass": true
+    },
+    {
+      "name": "capture_order_1",
+      "pass": true
+    },
+    {
+      "name": "capture_order_2",
+      "pass": true
+    },
+    {
+      "name": "capture_order_3",
+      "pass": true
+    },
+    {
+      "name": "capture_order_4",
+      "pass": true
+    },
+    {
+      "name": "capture_order_5",
+      "pass": true
+    },
+    {
+      "name": "capture_order_6",
+      "pass": true
+    },
+    {
+      "name": "capture_order_7",
+      "pass": true
+    },
+    {
+      "name": "capture_order_8",
+      "pass": true
+    },
+    {
+      "name": "capture_order_9",
+      "pass": true
+    },
+    {
+      "name": "capture_order_10",
+      "pass": true
+    },
+    {
+      "name": "capture_order_11",
+      "pass": true
+    },
+    {
+      "name": "capture_order_12",
+      "pass": true
+    },
+    {
+      "name": "capture_order_13",
+      "pass": true
+    },
+    {
+      "name": "capture_order_14",
+      "pass": true
+    },
+    {
+      "name": "capture_order_15",
+      "pass": true
+    },
+    {
+      "name": "capture_order_16",
+      "pass": true
+    },
+    {
+      "name": "capture_order_17",
+      "pass": true
+    },
+    {
+      "name": "capture_order_18",
+      "pass": true
+    },
+    {
+      "name": "capture_order_19",
+      "pass": true
+    },
+    {
+      "name": "capture_order_20",
+      "pass": true
+    },
+    {
+      "name": "capture_order_21",
+      "pass": true
+    },
+    {
+      "name": "capture_order_22",
+      "pass": true
+    },
+    {
+      "name": "capture_order_23",
+      "pass": true
+    },
+    {
+      "name": "capture_order_24",
+      "pass": true
+    },
+    {
+      "name": "capture_order_25",
+      "pass": true
+    },
+    {
+      "name": "capture_order_26",
+      "pass": true
+    },
+    {
+      "name": "capture_order_27",
+      "pass": true
+    },
+    {
+      "name": "capture_order_28",
+      "pass": true
+    },
+    {
+      "name": "capture_order_29",
+      "pass": true
+    },
+    {
+      "name": "capture_order_30",
+      "pass": true
+    },
+    {
+      "name": "capture_order_31",
+      "pass": true
+    },
+    {
+      "name": "capture_order_32",
+      "pass": true
+    },
+    {
+      "name": "capture_order_33",
+      "pass": true
+    },
+    {
+      "name": "capture_order_34",
+      "pass": true
+    },
+    {
+      "name": "capture_order_35",
+      "pass": true
+    },
+    {
+      "name": "capture_order_36",
+      "pass": true
+    },
+    {
+      "name": "capture_order_37",
+      "pass": true
+    },
+    {
+      "name": "capture_order_38",
+      "pass": true
+    },
+    {
+      "name": "capture_order_39",
+      "pass": true
+    },
+    {
+      "name": "capture_order_40",
+      "pass": true
+    },
+    {
+      "name": "capture_order_41",
+      "pass": true
+    },
+    {
+      "name": "capture_order_42",
+      "pass": true
+    },
+    {
+      "name": "capture_order_43",
+      "pass": true
+    },
+    {
+      "name": "capture_order_44",
+      "pass": true
+    },
+    {
+      "name": "capture_order_45",
+      "pass": true
+    },
+    {
+      "name": "capture_order_46",
+      "pass": true
+    },
+    {
+      "name": "capture_order_47",
+      "pass": true
+    },
+    {
+      "name": "capture_order_48",
+      "pass": true
+    },
+    {
+      "name": "capture_order_49",
+      "pass": true
+    },
+    {
+      "name": "capture_order_50",
+      "pass": true
+    },
+    {
+      "name": "capture_order_51",
+      "pass": true
+    },
+    {
+      "name": "capture_order_52",
+      "pass": true
+    },
+    {
+      "name": "capture_order_53",
+      "pass": true
+    },
+    {
+      "name": "capture_order_54",
+      "pass": true
+    },
+    {
+      "name": "capture_order_55",
+      "pass": true
+    },
+    {
+      "name": "capture_order_56",
+      "pass": true
+    },
+    {
+      "name": "capture_order_57",
+      "pass": true
+    },
+    {
+      "name": "capture_order_58",
+      "pass": true
+    },
+    {
+      "name": "capture_order_59",
+      "pass": true
+    },
+    {
+      "name": "capture_order_60",
+      "pass": true
+    },
+    {
+      "name": "capture_order_61",
+      "pass": true
+    },
+    {
+      "name": "capture_order_62",
+      "pass": true
+    },
+    {
+      "name": "capture_order_63",
+      "pass": true
+    },
+    {
+      "name": "capture_order_64",
+      "pass": true
+    },
+    {
+      "name": "phase_coverage_0",
+      "pass": true
+    },
+    {
+      "name": "phase_coverage_1",
+      "pass": true
+    },
+    {
+      "name": "phase_coverage_2",
+      "pass": true
+    },
+    {
+      "name": "phase_coverage_3",
+      "pass": true
+    },
+    {
+      "name": "phase_duration_and_count_totals",
+      "pass": true
+    },
+    {
+      "name": "profile_cast_total_matches_phase_sum",
+      "pass": true
+    },
+    {
+      "name": "profile_has_four_paired_20second_phases",
+      "pass": true
+    }
+  ],
+  "hardware": {
+    "unityVersion": "6000.3.4f1",
+    "gpu": "Apple M5",
+    "cpu": "Apple M5",
+    "screenWidth": 1920,
+    "screenHeight": 1080,
+    "targetFrameRate": -1,
+    "vSyncCount": 0
+  },
+  "profileSeconds": 81.68348904199999,
+  "profileFrames": 25835,
+  "activeFrames": 7901,
+  "commandCasts": 65,
+  "profileCommandCasts": 52,
+  "realKeyboardCasts": 1,
+  "commandModes": {
+    "showcase": 7,
+    "reduced-success": 2,
+    "deny-frozen": 1,
+    "peaceful": 1,
+    "empty-rain": 1,
+    "profile": 52,
+    "south-showcase": 1
+  },
+  "sevenShowcaseGestures": [
+    {
+      "spell": "Pyromancy_EmberSpit",
+      "peakDegrees": 70.346923828125,
+      "samples": 74,
+      "restored": true
+    },
+    {
+      "spell": "Pyromancy_FlamingHands",
+      "peakDegrees": 60.57659912109375,
+      "samples": 74,
+      "restored": true
+    },
+    {
+      "spell": "Hydromancy_JetBlast",
+      "peakDegrees": 71.29747009277344,
+      "samples": 79,
+      "restored": true
+    },
+    {
+      "spell": "Galvanism_GroundSurge",
+      "peakDegrees": 67.43524932861328,
+      "samples": 73,
+      "restored": true
+    },
+    {
+      "spell": "Cryomancy_RimeGrip",
+      "peakDegrees": 55.76881408691406,
+      "samples": 73,
+      "restored": true
+    },
+    {
+      "spell": "Spellcraft_Calm",
+      "peakDegrees": 50.77942657470703,
+      "samples": 76,
+      "restored": true
+    },
+    {
+      "spell": "Hydromancy_ConjureRain",
+      "peakDegrees": 61.142093658447266,
+      "samples": 77,
+      "restored": true
+    }
+  ],
+  "phases": [
+    {
+      "index": 0,
+      "zoneId": "Overworld.3.6.0",
+      "mode": "Full",
+      "seconds": 20.421005958000002,
+      "firstFrame": 0,
+      "frames": 5767,
+      "casts": 13,
+      "activeFrames": 1694,
+      "maxMeshes": 35,
+      "castsBySpell": {
+        "Pyromancy_EmberSpit": 2,
+        "Pyromancy_FlamingHands": 2,
+        "Hydromancy_JetBlast": 2,
+        "Galvanism_GroundSurge": 2,
+        "Cryomancy_RimeGrip": 2,
+        "Spellcraft_Calm": 2,
+        "Hydromancy_ConjureRain": 1
+      },
+      "activeFraction": 0.2937402462285417,
+      "renderFramesPerSecond": 282.4052846300041,
+      "metrics": {
+        "zone_renderer": {
+          "unit": "ms",
+          "count": 5767,
+          "mean": 1.027613637246402,
+          "p95": 1.1185875,
+          "p99": 1.1986237200000003,
+          "max": 22.827,
+          "min": 0.828167,
+          "sum": 5926.247846
+        },
+        "input": {
+          "unit": "ms",
+          "count": 5767,
+          "mean": 0.014878064158141148,
+          "p95": 0.021666,
+          "p99": 0.024597280000000006,
+          "max": 0.046667,
+          "min": 0.004667,
+          "sum": 85.801796
+        },
+        "main_thread": {
+          "unit": "ms",
+          "count": 5767,
+          "mean": 3.536180317842899,
+          "p95": 4.1611037,
+          "p99": 6.584471560000001,
+          "max": 603.199708,
+          "min": 2.412709,
+          "sum": 20393.151893
+        },
+        "gc_bytes": {
+          "unit": "bytes",
+          "count": 5767,
+          "mean": 31093.72498699497,
+          "p95": 38035.0,
+          "p99": 40325.0,
+          "max": 1163806.0,
+          "min": 29755.0,
+          "sum": 179317512.0
+        },
+        "draw_calls": {
+          "unit": "count",
+          "count": 5767,
+          "mean": 233.82954742500434,
+          "p95": 249.0,
+          "p99": 264.0,
+          "max": 265.0,
+          "min": 227.0,
+          "sum": 1348495.0
+        },
+        "triangles": {
+          "unit": "count",
+          "count": 5767,
+          "mean": 671281.5285243627,
+          "p95": 671671.0,
+          "p99": 671715.0,
+          "max": 671747.0,
+          "min": 671149.0,
+          "sum": 3871280575.0
+        }
+      },
+      "wallFrame": {
+        "unit": "ms",
+        "count": 5767,
+        "mean": 3.5410161129009885,
+        "p95": 4.149083095999999,
+        "p99": 6.6413541016,
+        "max": 601.003349,
+        "min": 2.450999,
+        "sum": 20421.0399231
+      },
+      "framesOver16_667ms": 14,
+      "framesOver50ms": 1,
+      "framesOver100ms": 1,
+      "largestMainFrames": [
+        {
+          "phase": 0,
+          "unity_frame": 4650,
+          "wall_seconds": 33.98077645861678,
+          "unscaled_delta": 0.007069827,
+          "tick": 20,
+          "native_meshes": 0,
+          "allocated_views": 384,
+          "zone_renderer": 1400792,
+          "input": 24625,
+          "main_thread": 603199708,
+          "gc_bytes": 1163806,
+          "draw_calls": 240,
+          "triangles": 671517
+        },
+        {
+          "phase": 0,
+          "unity_frame": 5392,
+          "wall_seconds": 36.66479000061678,
+          "unscaled_delta": 0.0263620038,
+          "tick": 20,
+          "native_meshes": 7,
+          "allocated_views": 384,
+          "zone_renderer": 22827000,
+          "input": 11125,
+          "main_thread": 28684958,
+          "gc_bytes": 32401,
+          "draw_calls": 236,
+          "triangles": 671711
+        },
+        {
+          "phase": 0,
+          "unity_frame": 7156,
+          "wall_seconds": 42.736775750616786,
+          "unscaled_delta": 0.02244317,
+          "tick": 20,
+          "native_meshes": 0,
+          "allocated_views": 384,
+          "zone_renderer": 4808917,
+          "input": 18709,
+          "main_thread": 22371166,
+          "gc_bytes": 529351,
+          "draw_calls": 229,
+          "triangles": 671203
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "zoneId": "Overworld.3.6.0",
+      "mode": "Reduced",
+      "seconds": 20.422602874999995,
+      "firstFrame": 5767,
+      "frames": 5312,
+      "casts": 13,
+      "activeFrames": 1599,
+      "maxMeshes": 27,
+      "castsBySpell": {
+        "Pyromancy_EmberSpit": 2,
+        "Pyromancy_FlamingHands": 2,
+        "Hydromancy_JetBlast": 2,
+        "Galvanism_GroundSurge": 2,
+        "Cryomancy_RimeGrip": 2,
+        "Spellcraft_Calm": 2,
+        "Hydromancy_ConjureRain": 1
+      },
+      "activeFraction": 0.30101656626506024,
+      "renderFramesPerSecond": 260.10396581243816,
+      "metrics": {
+        "zone_renderer": {
+          "unit": "ms",
+          "count": 5312,
+          "mean": 1.0995218535391567,
+          "p95": 1.22743125,
+          "p99": 1.6003716300000044,
+          "max": 11.559791,
+          "min": 0.922,
+          "sum": 5840.660086
+        },
+        "input": {
+          "unit": "ms",
+          "count": 5312,
+          "mean": 0.01592990079066265,
+          "p95": 0.022708,
+          "p99": 0.026203380000000012,
+          "max": 0.058166,
+          "min": 0.006584,
+          "sum": 84.619633
+        },
+        "main_thread": {
+          "unit": "ms",
+          "count": 5312,
+          "mean": 3.839304769201807,
+          "p95": 4.6148901,
+          "p99": 5.828885120000042,
+          "max": 482.730709,
+          "min": 2.7485,
+          "sum": 20394.386934
+        },
+        "gc_bytes": {
+          "unit": "bytes",
+          "count": 5312,
+          "mean": 108178.72684487952,
+          "p95": 608266.8999999999,
+          "p99": 1167334.5600000003,
+          "max": 66586437.0,
+          "min": 29755.0,
+          "sum": 574645397.0
+        },
+        "draw_calls": {
+          "unit": "count",
+          "count": 5312,
+          "mean": 232.6910768072289,
+          "p95": 243.0,
+          "p99": 257.0,
+          "max": 259.0,
+          "min": 227.0,
+          "sum": 1236055.0
+        },
+        "triangles": {
+          "unit": "count",
+          "count": 5312,
+          "mean": 671260.2085843374,
+          "p95": 671545.0,
+          "p99": 671609.0,
+          "max": 671613.0,
+          "min": 671151.0,
+          "sum": 3565734228.0
+        }
+      },
+      "wallFrame": {
+        "unit": "ms",
+        "count": 5312,
+        "mean": 3.8446548848550455,
+        "p95": 4.6519799985,
+        "p99": 5.53734781360001,
+        "max": 484.202832,
+        "min": 2.7050806699999996,
+        "sum": 20422.80674835
+      },
+      "framesOver16_667ms": 17,
+      "framesOver50ms": 1,
+      "framesOver100ms": 1,
+      "largestMainFrames": [
+        {
+          "phase": 1,
+          "unity_frame": 13757,
+          "wall_seconds": 67.5842499176168,
+          "unscaled_delta": 0.484202832,
+          "tick": 20,
+          "native_meshes": 0,
+          "allocated_views": 384,
+          "zone_renderer": 1041541,
+          "input": 12250,
+          "main_thread": 482730709,
+          "gc_bytes": 66586437,
+          "draw_calls": 235,
+          "triangles": 671359
+        },
+        {
+          "phase": 1,
+          "unity_frame": 12143,
+          "wall_seconds": 60.46684604261679,
+          "unscaled_delta": 0.02311075,
+          "tick": 20,
+          "native_meshes": 0,
+          "allocated_views": 384,
+          "zone_renderer": 5105583,
+          "input": 11084,
+          "main_thread": 22936291,
+          "gc_bytes": 3025194,
+          "draw_calls": 230,
+          "triangles": 671245
+        },
+        {
+          "phase": 1,
+          "unity_frame": 12908,
+          "wall_seconds": 63.66437525061679,
+          "unscaled_delta": 0.022698788,
+          "tick": 20,
+          "native_meshes": 0,
+          "allocated_views": 384,
+          "zone_renderer": 5581584,
+          "input": 14084,
+          "main_thread": 22542417,
+          "gc_bytes": 255525,
+          "draw_calls": 230,
+          "triangles": 671205
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "zoneId": "Overworld.3.7.0",
+      "mode": "Full",
+      "seconds": 20.420940459000008,
+      "firstFrame": 11079,
+      "frames": 7317,
+      "casts": 13,
+      "activeFrames": 2245,
+      "maxMeshes": 35,
+      "castsBySpell": {
+        "Pyromancy_EmberSpit": 2,
+        "Pyromancy_FlamingHands": 2,
+        "Hydromancy_JetBlast": 2,
+        "Galvanism_GroundSurge": 2,
+        "Cryomancy_RimeGrip": 2,
+        "Spellcraft_Calm": 2,
+        "Hydromancy_ConjureRain": 1
+      },
+      "activeFraction": 0.3068197348640153,
+      "renderFramesPerSecond": 358.3086692158303,
+      "metrics": {
+        "zone_renderer": {
+          "unit": "ms",
+          "count": 7317,
+          "mean": 0.9204100214568812,
+          "p95": 0.9894921999999999,
+          "p99": 1.0812635600000002,
+          "max": 6.774542,
+          "min": 0.745542,
+          "sum": 6734.640127
+        },
+        "input": {
+          "unit": "ms",
+          "count": 7317,
+          "mean": 0.009332393057263907,
+          "p95": 0.01375,
+          "p99": 0.017125,
+          "max": 0.030667,
+          "min": 0.003584,
+          "sum": 68.28512
+        },
+        "main_thread": {
+          "unit": "ms",
+          "count": 7317,
+          "mean": 2.7869680519338527,
+          "p95": 3.2207998,
+          "p99": 3.65134172,
+          "max": 19.256666,
+          "min": 1.984583,
+          "sum": 20392.245236
+        },
+        "gc_bytes": {
+          "unit": "bytes",
+          "count": 7317,
+          "mean": 30121.52671860052,
+          "p95": 29911.0,
+          "p99": 31016.04,
+          "max": 178081.0,
+          "min": 29817.0,
+          "sum": 220399211.0
+        },
+        "draw_calls": {
+          "unit": "count",
+          "count": 7317,
+          "mean": 126.03649036490364,
+          "p95": 140.0,
+          "p99": 157.0,
+          "max": 157.0,
+          "min": 122.0,
+          "sum": 922209.0
+        },
+        "triangles": {
+          "unit": "count",
+          "count": 7317,
+          "mean": 295417.78187781875,
+          "p95": 295830.0,
+          "p99": 295852.0,
+          "max": 295864.0,
+          "min": 295286.0,
+          "sum": 2161571910.0
+        }
+      },
+      "wallFrame": {
+        "unit": "ms",
+        "count": 7317,
+        "mean": 2.790969573079131,
+        "p95": 3.2593905039999997,
+        "p99": 3.6739572632000015,
+        "max": 19.321166,
+        "min": 1.975,
+        "sum": 20421.52436622
+      },
+      "framesOver16_667ms": 12,
+      "framesOver50ms": 0,
+      "framesOver100ms": 0,
+      "largestMainFrames": [
+        {
+          "phase": 2,
+          "unity_frame": 15080,
+          "wall_seconds": 73.13159450061679,
+          "unscaled_delta": 0.019321166,
+          "tick": 40,
+          "native_meshes": 0,
+          "allocated_views": 384,
+          "zone_renderer": 5913292,
+          "input": 12917,
+          "main_thread": 19256666,
+          "gc_bytes": 114440,
+          "draw_calls": 122,
+          "triangles": 295344
+        },
+        {
+          "phase": 2,
+          "unity_frame": 20765,
+          "wall_seconds": 89.13088275061679,
+          "unscaled_delta": 0.0191118345,
+          "tick": 40,
+          "native_meshes": 0,
+          "allocated_views": 384,
+          "zone_renderer": 6094042,
+          "input": 10459,
+          "main_thread": 19070709,
+          "gc_bytes": 153737,
+          "draw_calls": 122,
+          "triangles": 295298
+        },
+        {
+          "phase": 2,
+          "unity_frame": 21340,
+          "wall_seconds": 90.7316531676168,
+          "unscaled_delta": 0.0186055843,
+          "tick": 40,
+          "native_meshes": 0,
+          "allocated_views": 384,
+          "zone_renderer": 5524917,
+          "input": 10584,
+          "main_thread": 19052875,
+          "gc_bytes": 173441,
+          "draw_calls": 122,
+          "triangles": 295314
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "zoneId": "Overworld.3.7.0",
+      "mode": "Reduced",
+      "seconds": 20.418939749999993,
+      "firstFrame": 18396,
+      "frames": 7439,
+      "casts": 13,
+      "activeFrames": 2363,
+      "maxMeshes": 27,
+      "castsBySpell": {
+        "Pyromancy_EmberSpit": 2,
+        "Pyromancy_FlamingHands": 2,
+        "Hydromancy_JetBlast": 2,
+        "Galvanism_GroundSurge": 2,
+        "Cryomancy_RimeGrip": 2,
+        "Spellcraft_Calm": 2,
+        "Hydromancy_ConjureRain": 1
+      },
+      "activeFraction": 0.31765022180400593,
+      "renderFramesPerSecond": 364.31862237117394,
+      "metrics": {
+        "zone_renderer": {
+          "unit": "ms",
+          "count": 7439,
+          "mean": 0.8832967068154323,
+          "p95": 0.9833372,
+          "p99": 1.0944315399999998,
+          "max": 7.44775,
+          "min": 0.729625,
+          "sum": 6570.844202
+        },
+        "input": {
+          "unit": "ms",
+          "count": 7439,
+          "mean": 0.008833688130125018,
+          "p95": 0.013875,
+          "p99": 0.0175,
+          "max": 0.032209,
+          "min": 0.003542,
+          "sum": 65.713806
+        },
+        "main_thread": {
+          "unit": "ms",
+          "count": 7439,
+          "mean": 2.7410328562978896,
+          "p95": 3.2375585999999994,
+          "p99": 3.76963758,
+          "max": 570.393167,
+          "min": 1.889125,
+          "sum": 20390.543418
+        },
+        "gc_bytes": {
+          "unit": "bytes",
+          "count": 7439,
+          "mean": 30154.57790025541,
+          "p95": 29911.0,
+          "p99": 30994.279999999995,
+          "max": 534849.0,
+          "min": 29823.0,
+          "sum": 224319905.0
+        },
+        "draw_calls": {
+          "unit": "count",
+          "count": 7439,
+          "mean": 124.76502218040059,
+          "p95": 135.0,
+          "p99": 149.0,
+          "max": 149.0,
+          "min": 122.0,
+          "sum": 928127.0
+        },
+        "triangles": {
+          "unit": "count",
+          "count": 7439,
+          "mean": 295394.6982121253,
+          "p95": 295682.0,
+          "p99": 295732.0,
+          "max": 295732.0,
+          "min": 295286.0,
+          "sum": 2197441160.0
+        }
+      },
+      "wallFrame": {
+        "unit": "ms",
+        "count": 7439,
+        "mean": 2.7448646393950797,
+        "p95": 3.271535546999999,
+        "p99": 3.801461292199998,
+        "max": 558.8995,
+        "min": 1.87954225,
+        "sum": 20419.04805246
+      },
+      "framesOver16_667ms": 13,
+      "framesOver50ms": 1,
+      "framesOver100ms": 1,
+      "largestMainFrames": [
+        {
+          "phase": 3,
+          "unity_frame": 22593,
+          "wall_seconds": 94.61088458361678,
+          "unscaled_delta": 0.020957632,
+          "tick": 40,
+          "native_meshes": 0,
+          "allocated_views": 384,
+          "zone_renderer": 5534083,
+          "input": 19667,
+          "main_thread": 570393167,
+          "gc_bytes": 534849,
+          "draw_calls": 122,
+          "triangles": 295348
+        },
+        {
+          "phase": 3,
+          "unity_frame": 24759,
+          "wall_seconds": 100.46552445861678,
+          "unscaled_delta": 0.0207175873,
+          "tick": 40,
+          "native_meshes": 0,
+          "allocated_views": 384,
+          "zone_renderer": 6351250,
+          "input": 14542,
+          "main_thread": 20704458,
+          "gc_bytes": 164383,
+          "draw_calls": 122,
+          "triangles": 295314
+        },
+        {
+          "phase": 3,
+          "unity_frame": 28935,
+          "wall_seconds": 111.66106691761681,
+          "unscaled_delta": 0.0203855876,
+          "tick": 40,
+          "native_meshes": 0,
+          "allocated_views": 384,
+          "zone_renderer": 5143000,
+          "input": 9958,
+          "main_thread": 20346583,
+          "gc_bytes": 121324,
+          "draw_calls": 122,
+          "triangles": 295324
+        }
+      ]
+    }
+  ],
+  "preparation": {
+    "LoadSeconds": 0.5349238,
+    "ValidationSeconds": 0.0035871,
+    "PoolSeconds": 0.0026643,
+    "ViewCount": 384,
+    "UsedCachedLibrary": false
+  },
+  "firstCast": {
+    "libraryInstancesBefore": 1,
+    "libraryInstancesAfter": 1,
+    "poolBefore": 384,
+    "poolAfter": 384,
+    "peakMeshes": 14,
+    "damage": 1,
+    "cooldown": 9,
+    "ticks": 10,
+    "sawBlocking": true,
+    "sourceUnchanged": true,
+    "nativeEntry": "Pyromancy_FlamingHands",
+    "finalState": "Normal",
+    "allocatedMemoryBefore": 477069641,
+    "allocatedMemoryAfter": 473174217,
+    "maxInputNanoseconds": 8501917,
+    "maxMainNanoseconds": 24285666,
+    "maxGcBytes": 2204945,
+    "startSeconds": 12.46329695861678,
+    "wallSeconds": 0.6129200420000025,
+    "maxFrameSeconds": 0.024418707937002182
+  },
+  "imagesVerified": 108,
+  "screenshots": 9,
+  "imageFiles": [
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-000.png",
+      "sha256": "bd73725793c65602309b9fed40361938d8ac90be767458d0118fe79d888597b5",
+      "bytes": 1698723,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 0.007210541000002735,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-001.png",
+      "sha256": "b5168e8c2ebbbdb04f31418425c809b90c7381a6f487fb5cba1deffd6d1f604d",
+      "bytes": 1703798,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 0.1039336660000032,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-002.png",
+      "sha256": "b5501855d0e8b5c722093adbe1acfb106b445541051b2eb2bd62e074e7064153",
+      "bytes": 1703399,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 0.2044760000000032,
+      "observedMeshes": 8
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-003.png",
+      "sha256": "97354f53b9d02dbf0b3800991d1b845f67e5d664751cce1c62ab11b126231a45",
+      "bytes": 1699687,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 0.30348391600000113,
+      "observedMeshes": 23
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-004.png",
+      "sha256": "486bbbd1b4de5240dc9a3837c1abf54cacd8e0efefbd0821b247f67f7daa3a0c",
+      "bytes": 1699177,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 0.4031347500000031,
+      "observedMeshes": 23
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-005.png",
+      "sha256": "15fbfa2993f2e0e2607acb4a2acf3e68cc831d3669c2a6672543608b8f7a8dee",
+      "bytes": 1700469,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 0.5054620000000014,
+      "observedMeshes": 16
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-006.png",
+      "sha256": "0d5a05e041cdf2143d2f1dd8770d3bf4ba47693236cbc5263c552a8adbc18824",
+      "bytes": 1699331,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 0.6042012500000027,
+      "observedMeshes": 11
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-007.png",
+      "sha256": "2e533dab50b22efbaca18a7cd66abe049ea6df998337b59572f9bedf8eb3f774",
+      "bytes": 1701879,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 0.7033669580000002,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-008.png",
+      "sha256": "7d119448b3faf1ad38d7d13434065205c3fbaa0ad021237804b9721a7f317f46",
+      "bytes": 1702829,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 0.8049882910000008,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-009.png",
+      "sha256": "406d968561816dd78b3cab6ca7b12e4c29586148653e1fd816c9a41ae8b6a850",
+      "bytes": 1700907,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 0.9047328750000005,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-010.png",
+      "sha256": "eef2091781418fcd95957184949326d66705d3fd6673b627c407bdf151ca0bc0",
+      "bytes": 1699434,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 1.0035658750000032,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-0-011.png",
+      "sha256": "e37f6b8160ebd81dfb5f3ab876dadf9899d0b2b223b74cb460e22f05e0784c42",
+      "bytes": 1701507,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 1.1045956660000016,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-000.png",
+      "sha256": "cc9204c1a4db60aec08b8b16ac3b3aa446334b8a1ea4ca8587c2d8f9d7e1044f",
+      "bytes": 1701467,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 0.007999625000000066,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-001.png",
+      "sha256": "1a89205bc444c6ef0a796e2dc9888472c9dbf4623ac8f1126f18f90e7a481ce2",
+      "bytes": 1699815,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 0.10408091600000091,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-002.png",
+      "sha256": "9967c8a2b551c97a7feab449163e062f88a663515843f7b6482a353f976456d2",
+      "bytes": 1706378,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 0.20362187499999962,
+      "observedMeshes": 14
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-003.png",
+      "sha256": "c57e1e6f7ecb15edcee4539e485162c4617dd17b00e888018f7aaa831751ad42",
+      "bytes": 1709287,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 0.30389525000000006,
+      "observedMeshes": 14
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-004.png",
+      "sha256": "d557895aa2329c66e9fe8add3744e306d3c490040ba6ca50a3790ed00a2dc62e",
+      "bytes": 1699963,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 0.4049455000000002,
+      "observedMeshes": 14
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-005.png",
+      "sha256": "faa8d2268ac8639a603a4869f30065a7fb1075eb1ef6fc48e67e0c184795b0ad",
+      "bytes": 1701381,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 0.5047625410000016,
+      "observedMeshes": 10
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-006.png",
+      "sha256": "95da8946671d63d437601139b2422dcb586f68b9be830b93bd8bc3c97be1b628",
+      "bytes": 1698999,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 0.6029586249999994,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-007.png",
+      "sha256": "11b12677eac47aad01914bdb600446b450f8d90913083104649605677dd2c33b",
+      "bytes": 1707548,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 0.7032330410000007,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-008.png",
+      "sha256": "13c53faf035b20dd73e8e4be3ef93190f4e4d615b266869654a8f16c027f6e27",
+      "bytes": 1702854,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 0.8038651250000015,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-009.png",
+      "sha256": "a0972bfd0d0fec7d312725c23722d39e0186094e9039140b3020e368a5c91481",
+      "bytes": 1699821,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 0.9042658330000002,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-010.png",
+      "sha256": "d0b4a0e5d4b705b6d66b8a6fffc282fadab57a3d60575b534ebab4b82459a66e",
+      "bytes": 1700610,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 1.0032689579999996,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-1-011.png",
+      "sha256": "ea545bf46abdb0c07ccd8f72b283e3b8073c7ae60a3ab3ecfedfa46f100e8649",
+      "bytes": 1702075,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 1.1033725410000024,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-000.png",
+      "sha256": "aedfeb73c85356fbfa4a1bc051bb084da9099334fda3714899a00e47f54639f4",
+      "bytes": 1703834,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 0.006580958000000692,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-001.png",
+      "sha256": "a8ded0b41ec7e43bbe9bd6052b36aec280c480da9d98fe647ebff025c213d562",
+      "bytes": 1702820,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 0.10257358300000163,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-002.png",
+      "sha256": "3d281793058703ee6df0dcebc1b7829e5eb7f78dd68c468db2c2fca9feb21bb3",
+      "bytes": 1701689,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 0.20432358300000075,
+      "observedMeshes": 3
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-003.png",
+      "sha256": "3c98ab2a038bcd290a4a9bb7ac32d2480dc1e01cf29e0d9db6f304ae86b5950a",
+      "bytes": 1700521,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 0.30635249999999914,
+      "observedMeshes": 35
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-004.png",
+      "sha256": "a0a1a07af0a838732e540af23f5d758b2a53d4cb730259a56169e47e4b94a555",
+      "bytes": 1702244,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 0.40395133300000197,
+      "observedMeshes": 35
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-005.png",
+      "sha256": "3a666c763056fd0fc122f88f1afe351e822b82ce44ed48993ce99e18c91449da",
+      "bytes": 1709211,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 0.5038428330000002,
+      "observedMeshes": 18
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-006.png",
+      "sha256": "e3ac56569b25bdb37e6e4ce8988de53e8a7094787ec0493f25e1ff4f4425144a",
+      "bytes": 1703007,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 0.6043969999999987,
+      "observedMeshes": 12
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-007.png",
+      "sha256": "31b6312c31ec4a90809d50b65b146a56dbb94c9ec5c82e43e6704699c88cdeb6",
+      "bytes": 1700431,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 0.7043189160000018,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-008.png",
+      "sha256": "a3fce93bf4074f908696651209d8abb7eb3a74ad83e6687c399e96d36470db5b",
+      "bytes": 1701749,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 0.8041390409999991,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-009.png",
+      "sha256": "b7bba4c70d1c15370e90dcb9a20351457afb54436600b30bc10765338e838c1b",
+      "bytes": 1700688,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 0.9055346660000012,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-010.png",
+      "sha256": "ebcdd7780f79509352f16804b051a4b5c1c3d876f033759b2a6cfda66ffa54d3",
+      "bytes": 1703965,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 1.0029144999999993,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-2-011.png",
+      "sha256": "10bbf2ac278f150271682cb2e08ee4d762813377e09aec6ea90ea45361bf5119",
+      "bytes": 1697789,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 1.1055126249999994,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-000.png",
+      "sha256": "92d73fa6242d8d5b9b4991fbe493c7c06b63ef32e883e3b0e499b3035bce15a0",
+      "bytes": 1705281,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 0.006617250000001462,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-001.png",
+      "sha256": "97de7d2d15b3dd30c956413a2caa90aa9b2ffd8fa864fdfab04edadc8dedf0c1",
+      "bytes": 1697546,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 0.10432616599999989,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-002.png",
+      "sha256": "c2c1d29098b69a695891e2dd71cda65d3942213461bccf0e6d758e0b6afb5d0e",
+      "bytes": 1701856,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 0.2045262500000007,
+      "observedMeshes": 3
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-003.png",
+      "sha256": "feb25fa230926f3035318b67f22ef2e9d8a71bbb182576cf0325a546fa1820d0",
+      "bytes": 1701838,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 0.3027540000000002,
+      "observedMeshes": 17
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-004.png",
+      "sha256": "59a4508fe29befbcfc6e898f771a2f48631735be4016d395f9900d1fb2a207bb",
+      "bytes": 1703858,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 0.40372529100000065,
+      "observedMeshes": 17
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-005.png",
+      "sha256": "5aaac204cd5de502578770420b1024e385afa96035f92d7991180ede176ed659",
+      "bytes": 1704580,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 0.5035038329999999,
+      "observedMeshes": 17
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-006.png",
+      "sha256": "3b9cd0521a867589f7aca5c376119cc19ad8cbfab477cf52191d64f2772cf3b6",
+      "bytes": 1701786,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 0.6049584999999986,
+      "observedMeshes": 5
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-007.png",
+      "sha256": "d57136f59a4ab2062b6f08fd71b009d4d01bc03113cd5f33c1f50209163e45f8",
+      "bytes": 1701164,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 0.7028310409999996,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-008.png",
+      "sha256": "45ef052d5626fae4f8eab6fa8e644748adfdf5e33e0a95ff34b94e335e021eaf",
+      "bytes": 1702778,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 0.8029210410000012,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-009.png",
+      "sha256": "860c939c5c3252c53657f879327ab6d7e64004cc3ecac7a63680c16248382275",
+      "bytes": 1705557,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 0.9054585000000017,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-010.png",
+      "sha256": "0b088c39cd01bfb1d25241cc63bba97b29e9bc8638c9f1f0f76b0a8caa900e91",
+      "bytes": 1704243,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 1.0036829579999988,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-3-011.png",
+      "sha256": "3a729e880aa42c6f357080bf612e662fe83dc322dd758dc74c6c36c3108c71a1",
+      "bytes": 1699987,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 1.1033756250000017,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-000.png",
+      "sha256": "c4812686825a6f3dc8e9de99afbf273e4490807ccd0048933f14e36628cb239d",
+      "bytes": 1708141,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 0.005957708999996925,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-001.png",
+      "sha256": "e352f71d428d204de5fb6125ecc11e2e8b449cdec61d35b7976d7941fe4a2afa",
+      "bytes": 1700675,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 0.10320449999999681,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-002.png",
+      "sha256": "0f71f51bffe7b9b9cac91e58c5c3c4b4acdcd1c75a9d9027980b3fe7930d9272",
+      "bytes": 1699432,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 0.20625066699999905,
+      "observedMeshes": 12
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-003.png",
+      "sha256": "da7cfba47f70604e538d3192051c3b9c15d7a61c6bd390997ff1c716b11d2744",
+      "bytes": 1709959,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 0.30554020899999657,
+      "observedMeshes": 15
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-004.png",
+      "sha256": "ad8302cfc5faa4340dae76c23d140f014ff261fda3c63ef8cc67bb42c2bd67ca",
+      "bytes": 1700472,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 0.4056087919999989,
+      "observedMeshes": 15
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-005.png",
+      "sha256": "52d89cc3cb31c6eb3d049a63c056a63a613c0e1dfff19458e1300fd375a112b0",
+      "bytes": 1702866,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 0.5036316670000005,
+      "observedMeshes": 12
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-006.png",
+      "sha256": "7be7c215bc718e8f83cb8b95203a20d32d7e4e01cef287c97ae5fb8da7917580",
+      "bytes": 1700373,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 0.6033466250000004,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-007.png",
+      "sha256": "b8bb80ca4f7f09d374b5c1967ac888d075d159d4091afc41a17eb8c061043c8a",
+      "bytes": 1699956,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 0.7053397500000003,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-008.png",
+      "sha256": "1a1b4778e95b068a9cc6efb966df02f1187d758b6d085217d0031f3649a83354",
+      "bytes": 1703850,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 0.8025597919999967,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-009.png",
+      "sha256": "0cd77e11d8ab1f3249184df8cedf4bd7fb5d8f38c2430dae677fdd5148295266",
+      "bytes": 1703098,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 0.9047180839999953,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-010.png",
+      "sha256": "6a0cbb43904f648651f63e9cd8352ad9aa09f7d211ffc2dc8ad99e2189b7fbd7",
+      "bytes": 1699546,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 1.0040480839999972,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-4-011.png",
+      "sha256": "65bbb63fae646b4e08032e42d368438fd89bee896093d9958466ace487beaea0",
+      "bytes": 1704399,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 1.102662666999997,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-000.png",
+      "sha256": "f88d589a55056ecd398c03a596119c90d826ddcb6aa9d53253ad7e622ff0a70c",
+      "bytes": 1702529,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 0.005504166999998006,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-001.png",
+      "sha256": "ff0ee9ddcb547e8a6c17fca7ff2ce5bbcfadc0ecb8cebb0057b0a8f22e134299",
+      "bytes": 1707094,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 0.10560279199999911,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-002.png",
+      "sha256": "47d9b718354835de1bdaeecaefb03424975b86d061c0ff85338431b71809810b",
+      "bytes": 1699287,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 0.20343908299999924,
+      "observedMeshes": 3
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-003.png",
+      "sha256": "051076ce9763e7af18397b06c0765d12008f4db54812e547cf2e0488dd70a71d",
+      "bytes": 1702512,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 0.3030894999999987,
+      "observedMeshes": 5
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-004.png",
+      "sha256": "3454c85e43603b3dc8c2527b4b0a528fea72667122658d0921bdc8469edd4c1c",
+      "bytes": 1699267,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 0.4030415829999967,
+      "observedMeshes": 7
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-005.png",
+      "sha256": "9b9fed9e2f65a797a386e5c1a0d07e0a19194ae46b1e61736b529cf550a64a28",
+      "bytes": 1704469,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 0.5039743749999985,
+      "observedMeshes": 6
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-006.png",
+      "sha256": "3b74906a256c92fa22410c3bd3d879189fd38197311b56602b440a0dd4c3f816",
+      "bytes": 1704626,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 0.6034308329999973,
+      "observedMeshes": 4
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-007.png",
+      "sha256": "764ab2830886e12c0c375d53e57208a77716db159c6ef691f442b19a01629a9c",
+      "bytes": 1700762,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 0.705587291999997,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-008.png",
+      "sha256": "31e504fc4757607191ab039086903016ff1c610198a3730e8fcf8dfa39ccdc1a",
+      "bytes": 1703820,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 0.8047792079999994,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-009.png",
+      "sha256": "c64b80d56bc87fc4ac839cfadc6c5a0ca7b6ff56502ee22cf63ab5c8ded55788",
+      "bytes": 1703738,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 0.9034675419999942,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-010.png",
+      "sha256": "be5c53fa871c73d642e425dc38d3ce5e44c56010b502147ce9e77282b95759a7",
+      "bytes": 1705841,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 1.0058124169999942,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-011.png",
+      "sha256": "f89c904322e3e00a35d42072252eafe4cebda6c5d4af2e6ec3989ae7466b2c05",
+      "bytes": 1704733,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 1.1037780829999946,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-000.png",
+      "sha256": "b63c91ba92f0e0449c253a69935a48f4b36f86be757b14010f9584a70eb84a1b",
+      "bytes": 1704728,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 0.005517749999995658,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-001.png",
+      "sha256": "59f4531e1b01e799626c099baf4ba3968d2f0249b421b48957ed8d21cdf1a29c",
+      "bytes": 1702152,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 0.10359445899999997,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-002.png",
+      "sha256": "93f5402101459cf944eaebf842dd6f646ecebb9c48360f519574fc547d38ea8b",
+      "bytes": 1702781,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 0.2029463339999964,
+      "observedMeshes": 1
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-003.png",
+      "sha256": "1807646d48f36bf88eaa07c313207d7c46080f0043c7f64460ad91bca3e68c18",
+      "bytes": 1705909,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 0.3043613339999993,
+      "observedMeshes": 15
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-004.png",
+      "sha256": "45c1c47d9cc511e0af79b360200388a71bad1f70034885d49a772b8897cf196d",
+      "bytes": 1702429,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 0.4042682500000012,
+      "observedMeshes": 15
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-005.png",
+      "sha256": "dda1930ab56ed46e17895fe47f2780cd85be2fae312d773e2b0b72d9d48afa25",
+      "bytes": 1700928,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 0.5050014169999955,
+      "observedMeshes": 3
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-006.png",
+      "sha256": "2f73ec532f9f83f0537fb18fe411a295488d9af180f07a5426ddaaea4197dddf",
+      "bytes": 1699282,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 0.6054790419999989,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-007.png",
+      "sha256": "fe9f0dc3c1d914d4196740bec7b21a0523df9cfd142f0714269371552b7ce94d",
+      "bytes": 1701216,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 0.7054269169999969,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-008.png",
+      "sha256": "a9cde89c6f6f8f8b2c896545eb46ca2ec5c1e07c89f45e608e2dedaa223a5bde",
+      "bytes": 1703683,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 0.8033072089999962,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-009.png",
+      "sha256": "dab86ae3751b63e1c854e1a7a1e0e2aeee6d3f18a199b5cbe08cc07af414792c",
+      "bytes": 1702972,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 0.9041337499999997,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-010.png",
+      "sha256": "d03852796cb2a490b1273275aeee28c296ce4e84d15209f3cb612ae1877259be",
+      "bytes": 1702187,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 1.0050522089999987,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-011.png",
+      "sha256": "4b27e031cd322ac871af182ed182d7166e2c25507829c561168948b16e5888d7",
+      "bytes": 1706054,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 1.1034433749999977,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-000.png",
+      "sha256": "e5b44e7fcf5d8b8206201888b5103b31a72e7fbd6f0130ace666765f67c5d513",
+      "bytes": 1701488,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 0.006038625000002185,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-001.png",
+      "sha256": "3d47a122c1500d59f332eaadc7b3c3f90d049b822b25ddfb9d34ded8739f9091",
+      "bytes": 1703511,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 0.1026614170000002,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-002.png",
+      "sha256": "3f3818284fc8304854f2f98c476cf42a0030f540aca1ce4f928f3f759cdcaf5d",
+      "bytes": 1703625,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 0.20446791700000233,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-003.png",
+      "sha256": "f657a0e9ce4b7c7fe7c5b40540bb11b72e38f6e9f5581bca13831a92fa698ca7",
+      "bytes": 1701314,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 0.30531716700000544,
+      "observedMeshes": 1
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-004.png",
+      "sha256": "7ccd2daa04436442843fee9d1ca07d1bb89831194cc06e4a03ef92a5c36fe48b",
+      "bytes": 1710296,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 0.4054570420000019,
+      "observedMeshes": 1
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-005.png",
+      "sha256": "32c0f0d9c7606dc4c8996d36eb839ae6622ea242329da33d567ee5daa826885f",
+      "bytes": 1701119,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 0.5056222500000018,
+      "observedMeshes": 1
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-006.png",
+      "sha256": "0c7f79fe9b19d7f9a35d9145215bfd13b5ea8a9a8610d9ba2c3ca37d5ff6732f",
+      "bytes": 1704893,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 0.6057876250000049,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-007.png",
+      "sha256": "bec037d07e015516e057975dc1cdbbd7a8e3302abb02accc1bc0eae41d74c99a",
+      "bytes": 1705216,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 0.7055669170000058,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-008.png",
+      "sha256": "8e2d98747f2429b1cf10f03eb92b5d1173470e8b5a08fdd48b813e12f01eb193",
+      "bytes": 1707009,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 0.8026133340000001,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-009.png",
+      "sha256": "99ad0d3b9fcd5198e71f56eb472a0515d39dc1d7058ea3fee73fd24dacfc327c",
+      "bytes": 1702996,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 0.9041633340000033,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-010.png",
+      "sha256": "b8b24000b8c11463444573110b04be9e2234d6ae2841df5239dd17782d7c5164",
+      "bytes": 1706091,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 1.0048081670000002,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-deny-frozen-4-011.png",
+      "sha256": "13aeb6c71ad24d1ecc824fe9a5a1991283c4d3f37bd009ef64a9851af2b6deaa",
+      "bytes": 1701328,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 1.1043130840000046,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-000.png",
+      "sha256": "4734ce103040ba64ae4f863311d65358c5ee76ee31022be553939ede4d1ff73b",
+      "bytes": 827619,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 0.00748016599999346,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-001.png",
+      "sha256": "1f5e0abe0d54e99bf6e8234a2f04caf003cf40ba2d3cfdfcfce44bd3d5af53d9",
+      "bytes": 840023,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 0.10305729099999894,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-002.png",
+      "sha256": "38723c5bb4ac2c64976b259417c6ab3f5fe52bc4e9564d93a2f260bd9b7cc637",
+      "bytes": 825335,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 0.20377116599999567,
+      "observedMeshes": 6
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-003.png",
+      "sha256": "da66a63207cc75c459f87a1dee19a77c3e145d89836fd2f351c73fd31cb7aa8d",
+      "bytes": 823589,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 0.30383000000000493,
+      "observedMeshes": 12
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-004.png",
+      "sha256": "1ec1e7ad97cbf3fe83f78124b4f7d543571505af180619797b0a8ac1113651f1",
+      "bytes": 825904,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 0.4026341249999916,
+      "observedMeshes": 12
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-005.png",
+      "sha256": "bb9023c63462689db0a470de086768fed31fbd852fa5130895c35c251637ec01",
+      "bytes": 822702,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 0.5034997909999959,
+      "observedMeshes": 7
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-006.png",
+      "sha256": "3b23fe89d0a8f3c7f53688dbf014f21f2c16edd6dbd12ef8a0821c48a72dc343",
+      "bytes": 831661,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 0.6030803330000083,
+      "observedMeshes": 2
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-007.png",
+      "sha256": "3193dadb904f217eff19c61a8f553a99fb0319875f6e7c38e4ffba03e8f6c80b",
+      "bytes": 824154,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 0.7034543750000068,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-008.png",
+      "sha256": "6d655a1eecb3d1067da9a57780a9a1414b542709033ecd94c41dfa50d3b383b4",
+      "bytes": 824741,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 0.8036885410000139,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-009.png",
+      "sha256": "8edbac874e94094564c41ac8a0afba07b5bcc908b2c34b31e1ceb8056973ee54",
+      "bytes": 831508,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 0.9028321250000033,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-010.png",
+      "sha256": "33be4eb65a2c1442b006a86bb45c4b2cde63db626ad681afd403a8f7a6f9083d",
+      "bytes": 827761,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 1.0039355000000114,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-south-showcase-0-011.png",
+      "sha256": "77b06a2ce99f9c724e3e12a905a007124b993b492d5cc5a2f93e32489ac0311b",
+      "bytes": 825756,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 1.1044466660000012,
+      "observedMeshes": 0
+    }
+  ],
+  "quantileMethod": "Linear interpolation at index (N-1)*p (R7); all raw phase frames retained including startup-of-cast and worst outliers.",
+  "honestyBounds": "Actual native1920x1080 Main GameView. One real current-hotbar Flaming Hands/direction cast and ordinary N/south seam input. Other casts are explicitly reset deterministic SkillsPart commands using the real player and disposable unfactioned recipient/crop fixtures; their copied queue records are observed without draining. Showcase/control cases restore only their bounded lane's original ground before each command, so prior fixture writing is not mistaken for the next spell; ordinary accumulated writing remains during profile phases. Profile is four20s native render phases, paired Full/Reduced in town and south; startup/bind/screenshots excluded, fixture setup/observer/counter overhead included. World simulation does not advance during command-fixture playback. Captures use1x settings with measured wall timestamps; capture overhead may lower sampling rate. This establishes observable presentation and cleanup, not subjective comfort, process-cold/build performance or long-session leak confidence.",
+  "interpretation": "This is the final post-refinement native capture; prior intermediate receipts are preserved separately. The phases include whole-editor/game frame cost and deterministic fixture/counter overhead, not exclusive spell cost. Fixed sequential Full/Reduced runs are descriptive and do not establish that Reduced is faster. Startup preparation and screenshot/gesture-observation segments are excluded from the four measured phases."
+}

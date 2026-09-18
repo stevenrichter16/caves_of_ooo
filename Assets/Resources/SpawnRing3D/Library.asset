@@ -1,0 +1,458 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d771a723d94145baa72e1642e9fe7d, type: 3}
+  m_Name: Library
+  m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.Rendering.SpawnRing3DLibrary
+  Catalog: {fileID: 4900000, guid: 5e7291ffa52474b0fbb546f24af4a840, type: 3}
+  WorldMaterial: {fileID: 2100000, guid: 269a9cb52f6714d59b2dd8f8cc2dd7c0, type: 2}
+  WaterMaterial: {fileID: 2100000, guid: 1d95786395bec4325803d3faf7c690a0, type: 2}
+  CompositeMaterial: {fileID: 2100000, guid: 92f34a26152434c5fa82d3120afc9eac, type: 2}
+  Renderer: {fileID: 11400000, guid: ffee1e172837943818538e4230ac82e2, type: 2}
+  RendererIndex: 1
+  EquipmentLibrary: {fileID: 11400000, guid: facf7a6657186436c8889c004a0412be, type: 2}
+  Models:
+  - Id: ring-ash-bed-0
+    Prefab: {fileID: 7982167148567091544, guid: d4ce474b8efd440e5b39e5806e60544d, type: 3}
+  - Id: ring-ash-bed-1
+    Prefab: {fileID: 8822700184613115476, guid: 97a4527c079404bef94f27cacf53953c, type: 3}
+  - Id: ring-ash-bed-2
+    Prefab: {fileID: 4104675611423897717, guid: 7588172147f6743c0be38b12ceb6eaf8, type: 3}
+  - Id: ring-ash-bed-3
+    Prefab: {fileID: 5516082061711776744, guid: d50e9a422fe4747c29c92430d48c1697, type: 3}
+  - Id: ring-brine-pool-0
+    Prefab: {fileID: 445259206536129612, guid: 1e594633cbc954351b3f3273323b12ed, type: 3}
+  - Id: ring-brine-pool-1
+    Prefab: {fileID: 9222521234203133272, guid: f5d2e316ca16b4e02a465384e9ecd67c, type: 3}
+  - Id: ring-brine-pool-2
+    Prefab: {fileID: 3167141827711725244, guid: 13b43934d5d9b4a9cba6ef8265cea718, type: 3}
+  - Id: ring-brine-pool-3
+    Prefab: {fileID: 5205285021530747880, guid: ea4a0ef06176b4514a4745929280c67d, type: 3}
+  - Id: ring-bush-0
+    Prefab: {fileID: 7535198310060342083, guid: cb89456398c3e4a43808b55ddd13f46f, type: 3}
+  - Id: ring-bush-1
+    Prefab: {fileID: 8345361517999547995, guid: 32f982b75164f4cbb81e9fb4afa472da, type: 3}
+  - Id: ring-bush-2
+    Prefab: {fileID: 3542658826529369635, guid: b176d20d86d4045a5b9dd52eb90cb62a, type: 3}
+  - Id: ring-bush-3
+    Prefab: {fileID: 386889477948118640, guid: 9a1a04a1741364481b677bf5ebcf1244, type: 3}
+  - Id: ring-campfire
+    Prefab: {fileID: 5686798417959400112, guid: ff00248445b7749c18a0dd5d94375a2d, type: 3}
+  - Id: ring-cascade-father
+    Prefab: {fileID: 5938122401071211702, guid: 9b71cfb4ab54949c5ac3fbeefe21b3fe, type: 3}
+  - Id: ring-cave-hermit
+    Prefab: {fileID: 2039003840346613298, guid: 044b502af3fb84154abf2e89f341ea48, type: 3}
+  - Id: ring-chest
+    Prefab: {fileID: 6808440335946562938, guid: 1e03a3b5809144522a41a3a8b21e5a8c, type: 3}
+  - Id: ring-choir-iron-vein-0
+    Prefab: {fileID: 2368835026824306488, guid: 532df280ab4d14e94af80da5cf9b5b83, type: 3}
+  - Id: ring-choir-iron-vein-1
+    Prefab: {fileID: 1550656560794254828, guid: f613e3190633e4f7d9597d1691899987, type: 3}
+  - Id: ring-choir-iron-vein-2
+    Prefab: {fileID: 24731653568490660, guid: e30428638c11d4c068939d7253e9595c, type: 3}
+  - Id: ring-choir-iron-vein-3
+    Prefab: {fileID: 2767603553424068592, guid: db64c9db1963947969bedcf98645612e, type: 3}
+  - Id: ring-choir-tendril
+    Prefab: {fileID: 873842845311608229, guid: 2103f48a17f0743fd83579d7ed39b067, type: 3}
+  - Id: ring-compost-cache-0
+    Prefab: {fileID: 395181986383745412, guid: d24c3e9bc79aa4d67aa23c6456cc9251, type: 3}
+  - Id: ring-compost-cache-1
+    Prefab: {fileID: 5387857027946839256, guid: 92b1bc01645464536aebda4f0381cf36, type: 3}
+  - Id: ring-compost-cache-2
+    Prefab: {fileID: 7265785242726554580, guid: 4a4ebaa0588234a1787c0833ef2ce5bc, type: 3}
+  - Id: ring-compost-cache-3
+    Prefab: {fileID: 530158909973319568, guid: 484bd7dea26fc4f7e8995f646b527fb6, type: 3}
+  - Id: ring-compost-row-0
+    Prefab: {fileID: 4278508947627074099, guid: 235a0cb055cbd4a759a27d3d4a415ad7, type: 3}
+  - Id: ring-compost-row-1
+    Prefab: {fileID: 468731163635982823, guid: 4eb6310894c104c3dbbec98d82d0056a, type: 3}
+  - Id: ring-compost-row-2
+    Prefab: {fileID: 8165811791149626057, guid: 2e04af58ea7934338bc79da0bb1de174, type: 3}
+  - Id: ring-compost-row-3
+    Prefab: {fileID: 4898765935511596659, guid: 8431ba2ce6c9448e09fb5708f25f6e59, type: 3}
+  - Id: ring-copper-pipe
+    Prefab: {fileID: 4739536287760214095, guid: 2e22b573c0faa4d81bcc946a60f878d4, type: 3}
+  - Id: ring-crate
+    Prefab: {fileID: 8127134600120363929, guid: 4879e4a08e12f4b0c9503f5245c9ea78, type: 3}
+  - Id: ring-descent-ledge-0
+    Prefab: {fileID: 3102944897709772412, guid: 79ecef08ffb55403ba7601f1b5933ed9, type: 3}
+  - Id: ring-descent-ledge-1
+    Prefab: {fileID: 4449407304849017822, guid: c69d384d9afbe4e1e81bab8ea3d12d35, type: 3}
+  - Id: ring-descent-ledge-2
+    Prefab: {fileID: 4982878352910127214, guid: c9cd1d225a1014649b0203a43ded2d2a, type: 3}
+  - Id: ring-descent-ledge-3
+    Prefab: {fileID: 1228666122808010801, guid: 4ffad9d70f1e04576a1428b5a9d77da3, type: 3}
+  - Id: ring-dry-brush-0
+    Prefab: {fileID: 6246499596232420654, guid: c1611801bc92b4cafa20f4168dcb8557, type: 3}
+  - Id: ring-dry-brush-1
+    Prefab: {fileID: 2262334706677931564, guid: 8c5a9cd56802f4bfcb01b90c1f27da32, type: 3}
+  - Id: ring-dry-brush-2
+    Prefab: {fileID: 4134787979645132778, guid: e593dc01f39354428819cc8e61bee062, type: 3}
+  - Id: ring-dry-brush-3
+    Prefab: {fileID: 1378939330735119490, guid: 905c5278d2236422eb113a9020ca3d45, type: 3}
+  - Id: ring-fallen-beam-0
+    Prefab: {fileID: 1858742498403202576, guid: 3d28bd5b535c44a6e972c9e660ad0faf, type: 3}
+  - Id: ring-fallen-beam-1
+    Prefab: {fileID: 357459951372668559, guid: 335cfb09b02964e829f615bc6f9f070e, type: 3}
+  - Id: ring-fallen-beam-2
+    Prefab: {fileID: 5966683116388032663, guid: d394249a91b974b6b8f746561efa79c5, type: 3}
+  - Id: ring-fallen-beam-3
+    Prefab: {fileID: 8366500174275023219, guid: 6c86cb0f314f54db8a9cb7aa1f3b2a0c, type: 3}
+  - Id: ring-felling-bare-position
+    Prefab: {fileID: 8335221585079798167, guid: b87725ce5d84c42c090ed78f41e8d291, type: 3}
+  - Id: ring-floor-0
+    Prefab: {fileID: 8425315291946369603, guid: d8d3851d72e584f94af55771c5827b60, type: 3}
+  - Id: ring-floor-1
+    Prefab: {fileID: 1293373809138955439, guid: b810428a959ea4f95830ff0b0bf052ae, type: 3}
+  - Id: ring-floor-2
+    Prefab: {fileID: 950124715617725097, guid: eebf92540dd02489caa1b6c09c5d7fc7, type: 3}
+  - Id: ring-floor-3
+    Prefab: {fileID: 4565386079420387079, guid: 0b7ae53b3f2814ee383e01140eaeda99, type: 3}
+  - Id: ring-fruiting-body-0
+    Prefab: {fileID: 5260595265482095358, guid: 9d9e569b023be444186b2f1c8179b99f, type: 3}
+  - Id: ring-fruiting-body-1
+    Prefab: {fileID: 1326791991669859717, guid: 342c21e1627174df88daa9acba03f4f3, type: 3}
+  - Id: ring-fruiting-body-2
+    Prefab: {fileID: 5872589792330516343, guid: b53ea5d2e2fe2421d9f036be6ba27406, type: 3}
+  - Id: ring-fruiting-body-3
+    Prefab: {fileID: 4300357774735578010, guid: 8723f3267ce9b458eba37483dcb64a7a, type: 3}
+  - Id: ring-glasspane-frog
+    Prefab: {fileID: 6466993163053798648, guid: ea67c0ece19df4c8c8b239aa9a706af2, type: 3}
+  - Id: ring-glow-quartz-vein-0
+    Prefab: {fileID: 6178516915213103469, guid: cfd400f2199fb4427b537151e5bbbbdb, type: 3}
+  - Id: ring-glow-quartz-vein-1
+    Prefab: {fileID: 8860915579246880297, guid: 6ca708f0774bf473b8396b87528df81c, type: 3}
+  - Id: ring-glow-quartz-vein-2
+    Prefab: {fileID: 5144847029377171260, guid: 4bb419130ece645db84aad522ed392b7, type: 3}
+  - Id: ring-glow-quartz-vein-3
+    Prefab: {fileID: 7316159152137161514, guid: 52b4e5964b6f24b32a15cba0a5daee21, type: 3}
+  - Id: ring-grain-ridge-0
+    Prefab: {fileID: 3023459922340385439, guid: 5f30989daa4494d5eb487876604f24a9, type: 3}
+  - Id: ring-grain-ridge-1
+    Prefab: {fileID: 543022115375240803, guid: 69c4642820c484e16a4a79316d1d82f1, type: 3}
+  - Id: ring-grain-ridge-2
+    Prefab: {fileID: 80088791493821982, guid: 5e7a3ae4c35e34a34be296d68671e943, type: 3}
+  - Id: ring-grain-ridge-3
+    Prefab: {fileID: 5905166763930827545, guid: be1a3843b1cb441fea5e69df12465f12, type: 3}
+  - Id: ring-grass-0
+    Prefab: {fileID: 4830889665021611886, guid: 414aa3d3b169746319242a7979f8cf66, type: 3}
+  - Id: ring-grass-1
+    Prefab: {fileID: 8069556181545321638, guid: 3b342ff7f468240988e39702bf0be4f5, type: 3}
+  - Id: ring-grass-2
+    Prefab: {fileID: 4058338564537323775, guid: bcfeeed604f3e40d19dbf5be85746b77, type: 3}
+  - Id: ring-grass-3
+    Prefab: {fileID: 5327318720661110878, guid: 69574ad86c607495090a613446f42c48, type: 3}
+  - Id: ring-grib
+    Prefab: {fileID: 2036803152903075575, guid: 5bd2d3e8125c34cb0b5ec32cf0534416, type: 3}
+  - Id: ring-grove-red-growth-0
+    Prefab: {fileID: 6829860553648488235, guid: 7ca56c0c67847475b9428d326d2411a0, type: 3}
+  - Id: ring-grove-red-growth-1
+    Prefab: {fileID: 3491597594853556586, guid: 8738208f22f71480ab7013b84ab22e06, type: 3}
+  - Id: ring-grove-red-growth-2
+    Prefab: {fileID: 7455666920451110470, guid: 64460de5ac13f4adfb1c20ad4f6fcb3c, type: 3}
+  - Id: ring-grove-red-growth-3
+    Prefab: {fileID: 2199387533129611582, guid: e88a6ece4d7714a85b41340833514696, type: 3}
+  - Id: ring-grove-seep
+    Prefab: {fileID: 9025594110378665267, guid: 77da19d623dac420484fccc558ba67b5, type: 3}
+  - Id: ring-grove-sign
+    Prefab: {fileID: 5132473366318480495, guid: 41964f3849a674b9e8b0c5a674a4c0d4, type: 3}
+  - Id: ring-haul-barrel
+    Prefab: {fileID: 2981092869528803604, guid: 86d42a244713f4cff9cc482ec1fe1c4e, type: 3}
+  - Id: ring-helmwood-frog
+    Prefab: {fileID: 4889384751593637009, guid: 7275718b442c44298b88ca4ab0ae8ab2, type: 3}
+  - Id: ring-hollow-log-0
+    Prefab: {fileID: 8194361361273805412, guid: d967f018af10947478cf75369be3d963, type: 3}
+  - Id: ring-hollow-log-1
+    Prefab: {fileID: 2956962983583135489, guid: bbc327fea4572480b98e83592737f773, type: 3}
+  - Id: ring-hollow-log-2
+    Prefab: {fileID: 7244532104712098844, guid: b49e949a18a304acab9dcc7f9577cdb4, type: 3}
+  - Id: ring-hollow-log-3
+    Prefab: {fileID: 1714917048727098447, guid: 2b2a84f4f4d4f43c7898110f0616812d, type: 3}
+  - Id: ring-maw-toad
+    Prefab: {fileID: 4309257243714588477, guid: b0ca45002bc4a4ad8b8d40d2e3f8bf19, type: 3}
+  - Id: ring-mill-stone
+    Prefab: {fileID: 5949980610339698460, guid: 62d0bccfdb6994f3193487d94c6abacc, type: 3}
+  - Id: ring-mogu
+    Prefab: {fileID: 5468758460611616174, guid: 792c7fc6c9ac84c1788eced82b0ce906, type: 3}
+  - Id: ring-mosshulk
+    Prefab: {fileID: 2683018523175559770, guid: 74e3757923d0544e0b45b48dee203c9c, type: 3}
+  - Id: ring-mushroom-ring
+    Prefab: {fileID: 2832479713578124846, guid: a6b3e497868ec41969a898c3673cd900, type: 3}
+  - Id: ring-mycelial-column-0
+    Prefab: {fileID: 736403253400051382, guid: 737f1f97d35444ad2917b25ec951b463, type: 3}
+  - Id: ring-mycelial-column-1
+    Prefab: {fileID: 3808436967480756433, guid: fd318023a6a6347368000f54a527446f, type: 3}
+  - Id: ring-mycelial-column-2
+    Prefab: {fileID: 7394927567208018575, guid: 61a42d33ab6a845faa539d4f3a8196ea, type: 3}
+  - Id: ring-mycelial-column-3
+    Prefab: {fileID: 5612688134146272022, guid: e4e28a442059f4a95961ffafa8be44b7, type: 3}
+  - Id: ring-nam
+    Prefab: {fileID: 2989557399150332989, guid: 4fb0802edd7d947948005da87e9be2a6, type: 3}
+  - Id: ring-ore-cache
+    Prefab: {fileID: 1004684863543501018, guid: 8e6000a0131c54e4fb1cbfecb097241b, type: 3}
+  - Id: ring-peat-bog-0
+    Prefab: {fileID: 7032299551487187462, guid: d341e023aa42547c4a76a9837ff70a05, type: 3}
+  - Id: ring-peat-bog-1
+    Prefab: {fileID: 7634979359225416158, guid: cdb4b414529d44316bcb4364dfabb7bf, type: 3}
+  - Id: ring-peat-bog-2
+    Prefab: {fileID: 7033224103379584041, guid: 2e454b3638a92442e8e27b7a35c14867, type: 3}
+  - Id: ring-peat-bog-3
+    Prefab: {fileID: 8469195961120711977, guid: 4dc4ad4976cfc4e6c86bde4d077f14cd, type: 3}
+  - Id: ring-player
+    Prefab: {fileID: 6102347367577904545, guid: feb0b1cfb3cfa4853b88c81bd9fc5301, type: 3}
+  - Id: ring-rock-0
+    Prefab: {fileID: 1799529651829702294, guid: 9d8020b86fa70455b96370816ddc64a2, type: 3}
+  - Id: ring-rock-1
+    Prefab: {fileID: 2041485613231682944, guid: 9618f33f7298b419183140207dfc2fb7, type: 3}
+  - Id: ring-rock-2
+    Prefab: {fileID: 9036553298279951258, guid: 69496855620644836a049b4b0b768bbf, type: 3}
+  - Id: ring-rock-3
+    Prefab: {fileID: 477915223979123095, guid: a0ebd459440f74810806b139e43c9c46, type: 3}
+  - Id: ring-rotling
+    Prefab: {fileID: 8849135036817081305, guid: 9b19a3452b3094fe19ab5cddd2f52aa3, type: 3}
+  - Id: ring-sack
+    Prefab: {fileID: 1095915807004747855, guid: d2714f25e370f4f74b0c082115a3281a, type: 3}
+  - Id: ring-sari-snake
+    Prefab: {fileID: 5367343375044225755, guid: 0f9072206c04946f2b13efc99275ff14, type: 3}
+  - Id: ring-seventh-position
+    Prefab: {fileID: 963582122391691115, guid: d8d0401e4ce8248038663a1f14e606a3, type: 3}
+  - Id: ring-shambler
+    Prefab: {fileID: 774885315415883610, guid: aaad2dec606aa43e2ade87ab710e4540, type: 3}
+  - Id: ring-sien
+    Prefab: {fileID: 5435766281909364650, guid: 7209aaed5a5a14cfbbe2fd5355abf56e, type: 3}
+  - Id: ring-sinkhole-lip-0
+    Prefab: {fileID: 7032498731617775976, guid: 02d0dee71061148cabdbfc9029463c77, type: 3}
+  - Id: ring-sinkhole-lip-1
+    Prefab: {fileID: 6820573166767860812, guid: 26025729a1c674634b15a11a82a67c9f, type: 3}
+  - Id: ring-sinkhole-lip-2
+    Prefab: {fileID: 4094401308020274352, guid: 40d1aeecca2954ae0aa1ae913f600a01, type: 3}
+  - Id: ring-sinkhole-lip-3
+    Prefab: {fileID: 9220862788557812383, guid: ea8c95f1eeca9453f9322469783dcea0, type: 3}
+  - Id: ring-sky-sari
+    Prefab: {fileID: 310708582873098916, guid: 0a4c6c89d88a44f599740bcc499535d4, type: 3}
+  - Id: ring-snapjaw
+    Prefab: {fileID: 8453159250037016864, guid: a3cc22a9535c24b63b516762c4473eae, type: 3}
+  - Id: ring-snapjaw-warlord
+    Prefab: {fileID: 828624623024602790, guid: 7dc4d6b750ae24f4eacf7b1a2fc7f470, type: 3}
+  - Id: ring-sopp
+    Prefab: {fileID: 2586467680883170303, guid: ebcbba025f779418489788dae09accdf, type: 3}
+  - Id: ring-spray-pool-0
+    Prefab: {fileID: 6456413063624234056, guid: ab89e39120f7346ecbeccadf4766324f, type: 3}
+  - Id: ring-spray-pool-1
+    Prefab: {fileID: 6349980261493554361, guid: e4508a6dde254495e9c44c356efd9af3, type: 3}
+  - Id: ring-spray-pool-2
+    Prefab: {fileID: 8543830136622941283, guid: 3bb25f07fb6ab41469e16faf4f65da07, type: 3}
+  - Id: ring-spray-pool-3
+    Prefab: {fileID: 2966933713614592571, guid: beec4398097c14de58d548e68d1fe726, type: 3}
+  - Id: ring-stairs-down
+    Prefab: {fileID: 6936334520300193458, guid: 899582d8c71724f12be032703da15916, type: 3}
+  - Id: ring-stairs-up
+    Prefab: {fileID: 2273574759635639037, guid: 4f8de7f62b0e24dd580cee8c342bfab5, type: 3}
+  - Id: ring-steam-vent
+    Prefab: {fileID: 8229552439986994068, guid: a9f94222414114bc1b1db3f7a44cff9f, type: 3}
+  - Id: ring-stone-coffer
+    Prefab: {fileID: 1227195609006585560, guid: 23a1ded403baa487d8b5e445ef3745e4, type: 3}
+  - Id: ring-strong-box
+    Prefab: {fileID: 5430781977806474677, guid: 0015f52b051b548d7b134748cc844341, type: 3}
+  - Id: ring-tar-seep-0
+    Prefab: {fileID: 4647785010453238688, guid: 32b6a415b7c7c408789b3de3d98a2ca0, type: 3}
+  - Id: ring-tar-seep-1
+    Prefab: {fileID: 1833119670520397155, guid: d7b115e9e559b47ddabad387f66e9a27, type: 3}
+  - Id: ring-tar-seep-2
+    Prefab: {fileID: 5552640767255873962, guid: 0b9b132c3f3214908bd163248e4bf6f1, type: 3}
+  - Id: ring-tar-seep-3
+    Prefab: {fileID: 4937112504259708153, guid: 0775a1785b98b4571a6215f4af7d596c, type: 3}
+  - Id: ring-tepui-stone-0
+    Prefab: {fileID: 1855675267800200368, guid: fbb440cbfd9f14dbfb5c75f13083a330, type: 3}
+  - Id: ring-tepui-stone-1
+    Prefab: {fileID: 7726440733839419733, guid: 7d4ee2af67e3046f1b3004e5634900e3, type: 3}
+  - Id: ring-tepui-stone-2
+    Prefab: {fileID: 253096404364650110, guid: 310bac7ac19384c13aa2176c321fe74c, type: 3}
+  - Id: ring-tepui-stone-3
+    Prefab: {fileID: 5223926332574869547, guid: cfe5ae78738574784868fe0cfd7c8baa, type: 3}
+  - Id: ring-tepui-wall-0
+    Prefab: {fileID: 1129483092935594367, guid: 1fb690f8b35f34087b4d257a1cbebca4, type: 3}
+  - Id: ring-tepui-wall-1
+    Prefab: {fileID: 1959185633931497684, guid: 4fa439403826b40f7973356ba6d40c25, type: 3}
+  - Id: ring-tepui-wall-2
+    Prefab: {fileID: 6307194035380877318, guid: 0f650befc1ccc402393d54e4b038b6a4, type: 3}
+  - Id: ring-tepui-wall-3
+    Prefab: {fileID: 5344627450248899758, guid: 46afe8975421642ae89bc96942aa4dde, type: 3}
+  - Id: ring-tepuibone
+    Prefab: {fileID: 661995999007680621, guid: 40792999cd2104531a352259e40e267f, type: 3}
+  - Id: ring-tepuibone-vein-0
+    Prefab: {fileID: 4420367156601565742, guid: 2eafbe328fd6044cd8139f8a4c0f581f, type: 3}
+  - Id: ring-tepuibone-vein-1
+    Prefab: {fileID: 990652571183611974, guid: 07815f4d63c4745ac8ad7cf272dd1bc9, type: 3}
+  - Id: ring-tepuibone-vein-2
+    Prefab: {fileID: 9217430246177170437, guid: f553d5975ca164da784eb1f9f0c6b567, type: 3}
+  - Id: ring-tepuibone-vein-3
+    Prefab: {fileID: 2036548610218067011, guid: ae682d614399b4f549c55777f5dda1e2, type: 3}
+  - Id: ring-tree-0
+    Prefab: {fileID: 3624133297309886430, guid: dcdea2a7fd40444e8bb60626f921f4d0, type: 3}
+  - Id: ring-tree-1
+    Prefab: {fileID: 6072915065364066890, guid: 47ee98440e172451a8775c7285b3a588, type: 3}
+  - Id: ring-tree-2
+    Prefab: {fileID: 2614217189943514336, guid: 595c4e588556245468bafe1e60dd381b, type: 3}
+  - Id: ring-tree-3
+    Prefab: {fileID: 6427010430577376332, guid: a3aa2adcfdb8243d3b7d22c0b6285ac7, type: 3}
+  - Id: ring-vine-wall-0
+    Prefab: {fileID: 6818146125511602081, guid: 11ca1ca931ba24aa8aa0a910612cdfb8, type: 3}
+  - Id: ring-vine-wall-1
+    Prefab: {fileID: 8443019558021779497, guid: 42c91015030714abf9bcc18e9e6b2873, type: 3}
+  - Id: ring-vine-wall-2
+    Prefab: {fileID: 4331076385416811228, guid: 18efe8731fe6e4ad898741cefc7d01ce, type: 3}
+  - Id: ring-vine-wall-3
+    Prefab: {fileID: 454842726799362329, guid: afb90ef04e8ac490ebe0e84d0eef059e, type: 3}
+  - Id: ring-wall-0
+    Prefab: {fileID: 4598028894406551502, guid: 3a079205602994dc98f8d9fb1cd21d86, type: 3}
+  - Id: ring-wall-1
+    Prefab: {fileID: 2047547897454048573, guid: e288c2dc795c447ceac025d143e4f6ee, type: 3}
+  - Id: ring-wall-2
+    Prefab: {fileID: 4332252211236484492, guid: 8db74d2c8f93d4ee4b5cf5069b0d3d33, type: 3}
+  - Id: ring-wall-3
+    Prefab: {fileID: 4148942590124201164, guid: 58e9d40d1b11647de884ccdf19615d45, type: 3}
+  - Id: ring-wardline
+    Prefab: {fileID: 8718319572530654536, guid: 3f525072d29d94e1e9fce5535c5984e0, type: 3}
+  - Id: ring-water-puddle-0
+    Prefab: {fileID: 7696714741910726786, guid: 69a70ffa44f8c4f9c8d542a29bd90a82, type: 3}
+  - Id: ring-water-puddle-1
+    Prefab: {fileID: 7420975414827930296, guid: b59f2618ef36a415cb8ff2b72f4e03c5, type: 3}
+  - Id: ring-water-puddle-2
+    Prefab: {fileID: 5187098533056319724, guid: be337aac82296465ab909663888d2140, type: 3}
+  - Id: ring-water-puddle-3
+    Prefab: {fileID: 61016835308920148, guid: 4a9b030d8d80a435eb5424e2402bec0d, type: 3}
+  - Id: ring-wine-leaf-sundew-0
+    Prefab: {fileID: 3320209915515536167, guid: 6801845d375a7453fb6326d6853db004, type: 3}
+  - Id: ring-wine-leaf-sundew-1
+    Prefab: {fileID: 5222019064349903411, guid: a6c96ad81a42c47d38613ae761d85ec0, type: 3}
+  - Id: ring-wine-leaf-sundew-2
+    Prefab: {fileID: 5538477767041748505, guid: 3606041d2603a4599b93044c9b2eefbd, type: 3}
+  - Id: ring-wine-leaf-sundew-3
+    Prefab: {fileID: 6662973726752722387, guid: 91b8e389029b94bca8b28797e15394f8, type: 3}
+  - Id: ring-wooden-barrel
+    Prefab: {fileID: 6138466748736195133, guid: c90681634c22542b4bb284a669974fe8, type: 3}
+  - Id: ring-woven-basket
+    Prefab: {fileID: 5246511453741674210, guid: 435ea4ecf77d44b47ae1ceddf0523599, type: 3}
+  - Id: ring-yellowfoot-wayfarer
+    Prefab: {fileID: 6105018081690618771, guid: 2a3260bba6d814a1f824ff6c240e74b3, type: 3}
+  - Id: ring-felling-stump-main
+    Prefab: {fileID: 7739101781410250992, guid: 508f32b911c3e4f109ca6456ae919bb2, type: 3}
+  - Id: ring-felling-west-root-buttress
+    Prefab: {fileID: 6701052331807433088, guid: 4a1bcb78d436343bc8543a4bdff06fb0, type: 3}
+  - Id: ring-felling-east-root-buttress
+    Prefab: {fileID: 1784091625827964081, guid: 05ecd5ab048d94a4092cb1e845580cae, type: 3}
+  - Id: ring-felling-far-east-root-buttress
+    Prefab: {fileID: 4978923274312577386, guid: 17ba157c4b81d4a0a9c9d2e370716ea2, type: 3}
+  - Id: ring-felling-southwest-root-arch
+    Prefab: {fileID: 4388254977114552633, guid: 1404b1e84892340c2b3306c4fca19ad0, type: 3}
+  - Id: ring-felling-southwest-foreground-rock
+    Prefab: {fileID: 6899102053336531942, guid: 5078ed5f9a7854a85b531cc73bedf0a8, type: 3}
+  - Id: ring-felling-southeast-foreground-root
+    Prefab: {fileID: 915762395926565937, guid: 77586b89157244d088968865b5a0f409, type: 3}
+  - Id: ring-felling-southeast-middle-ridge
+    Prefab: {fileID: 8744325240178112686, guid: 37aa056708399453ea1302ebcb76adbe, type: 3}
+  - Id: ring-felling-boulder-west-approach
+    Prefab: {fileID: 120843527107818179, guid: 99f947dc23e1641188746b40c4a1b464, type: 3}
+  - Id: ring-felling-boulder-southwest-path
+    Prefab: {fileID: 3522109278057946, guid: d8a7baeef76b34b14a4bb9247aa94f1b, type: 3}
+  - Id: ring-felling-boulder-east-clearing
+    Prefab: {fileID: 1387399187113364086, guid: ef4fc32162bb44da9af4d4ea2c2bdefa, type: 3}
+  - Id: ring-felling-boulder-east-stream-bank
+    Prefab: {fileID: 2113407802211159121, guid: 544e10990f44b472592739085ffb5655, type: 3}
+  - Id: ring-felling-boulder-west-bank-mossy
+    Prefab: {fileID: 7651366667327951120, guid: dc0af483cb5cb46b4bbb9095f8ec158b, type: 3}
+  - Id: ring-felling-boulder-west-bank-mid
+    Prefab: {fileID: 3115739708178826407, guid: abcfdeac12208458a8539a941773b830, type: 3}
+  - Id: ring-felling-boulder-west-bottom-flat
+    Prefab: {fileID: 2203345934217433380, guid: 5624b7f5dc64b435bae9a802d942bac4, type: 3}
+  - Id: ring-felling-cyan-northwest
+    Prefab: {fileID: 7113514013119819948, guid: b2ff652fc7daf406d849c843e37e7035, type: 3}
+  - Id: ring-felling-cyan-west-clearing
+    Prefab: {fileID: 7741456537321460037, guid: 3b6c254bc937048b4b31ab8f39053593, type: 3}
+  - Id: ring-felling-cyan-west-approach
+    Prefab: {fileID: 281049384838692690, guid: 3ddbcf2fc264c471ab7e4fe1223109cd, type: 3}
+  - Id: ring-felling-cyan-southwest
+    Prefab: {fileID: 6618593792404650906, guid: 1bcb4e3d6d94b4f14845d2ee5a45955d, type: 3}
+  - Id: ring-felling-cyan-east-upper
+    Prefab: {fileID: 347881981266043944, guid: 6b8eda425b17b486dbc55bcd925237ed, type: 3}
+  - Id: ring-felling-cyan-east-middle
+    Prefab: {fileID: 1755942747889677097, guid: eaf1fdf26bf7c4ace8899bb42cc02365, type: 3}
+  - Id: ring-felling-cyan-southeast-edge
+    Prefab: {fileID: 9182022732488408386, guid: 8f90f7dcea08149a785582e6022b9b86, type: 3}
+  - Id: ring-felling-red-northwest
+    Prefab: {fileID: 599184391687409119, guid: 7e2d4c474798a4fd59cf616c262cb087, type: 3}
+  - Id: ring-felling-red-north-clearing-west
+    Prefab: {fileID: 133173017926295207, guid: 7a1bf2369dc3b49e3ba40b37bc0bde4f, type: 3}
+  - Id: ring-felling-red-north-clearing-east
+    Prefab: {fileID: 4949000254615036830, guid: 933ff284b43964d3291afc054df7b784, type: 3}
+  - Id: ring-felling-red-east-root-lip
+    Prefab: {fileID: 3713802384314866853, guid: d75c8bc8b28264a8398aa3263b37d341, type: 3}
+  - Id: ring-felling-red-far-east-upper
+    Prefab: {fileID: 4930237601928962631, guid: 669651fe0cd8140ca91de5ab4630b0fe, type: 3}
+  - Id: ring-felling-red-west-middle
+    Prefab: {fileID: 7075878022772739207, guid: 61b000bcd6e754c91b89fc98b74e172b, type: 3}
+  - Id: ring-felling-red-west-clearing-rim
+    Prefab: {fileID: 5268670268518002055, guid: fbbd218a64a7a4a489407b8096b64ab3, type: 3}
+  - Id: ring-felling-red-east-clearing-rim
+    Prefab: {fileID: 2424894538981007233, guid: 63acb3d870ddf44bf9edf3e97922b865, type: 3}
+  - Id: ring-felling-red-west-approach
+    Prefab: {fileID: 9100861633278055723, guid: e3ea3fdfe8d324f6b8d37a628671e91f, type: 3}
+  - Id: ring-felling-red-east-approach
+    Prefab: {fileID: 8204745420089405231, guid: a6b5ebf02f41142f79abd657bb5be07e, type: 3}
+  - Id: ring-felling-red-southeast-inner
+    Prefab: {fileID: 8106082535572123013, guid: 9a34c2f63c64948aa8e092fb6e0e1b0f, type: 3}
+  - Id: ring-felling-red-east-lower
+    Prefab: {fileID: 4199275693362517487, guid: 4e754582ab8aa4fc4b0191c845e0d27b, type: 3}
+  - Id: ring-felling-pink-west-bank
+    Prefab: {fileID: 6606712467117024550, guid: 0a4fad36114544f218bb48292f6c9ba9, type: 3}
+  - Id: ring-felling-pink-west-arch
+    Prefab: {fileID: 3535588420038152536, guid: 4d9689379c54a43b5a66dad2da09e2a4, type: 3}
+  - Id: ring-felling-pink-east-spires
+    Prefab: {fileID: 1834766720478611790, guid: 68703ab376b1344d4a6f990150766b9c, type: 3}
+  - Id: ring-felling-pink-east-middle
+    Prefab: {fileID: 6269789371357109359, guid: b0c601d7455794afa8d3e023fa9854b8, type: 3}
+  - Id: ring-felling-cream-east-inner
+    Prefab: {fileID: 8140145085831861421, guid: 0bff2ee44b5a848e98b4b4378793a38d, type: 3}
+  - Id: ring-felling-cream-west-boulder-foot
+    Prefab: {fileID: 6819439341235210937, guid: 12313ab6ddc0543a1992ae73d68a788e, type: 3}
+  - Id: ring-felling-pale-west-root-tubes
+    Prefab: {fileID: 2324084261804169804, guid: f9ffc52bd31b4453a895c19fc4b46a26, type: 3}
+  - Id: ring-felling-pale-north-inner-tubes
+    Prefab: {fileID: 174405067815396140, guid: ff68e3e780a624a9799f70fb7e74aaf6, type: 3}
+  - Id: ring-felling-pale-east-wall-tubes
+    Prefab: {fileID: 5421219720703181891, guid: ff260b44790fe4b488371cd3fdad5059, type: 3}
+  - Id: ring-felling-pale-east-tall-spires
+    Prefab: {fileID: 7649119353146863138, guid: 7d18933fbbab64623ab373f8df2f09f8, type: 3}
+  - Id: ring-felling-pale-east-lower-tubes
+    Prefab: {fileID: 4214294179093713998, guid: df94430a7e3424eab851757294a32f4d, type: 3}
+  - Id: ring-felling-waterfall-motion
+    Prefab: {fileID: 2951842877258019187, guid: 7dd92f420185b49708bc916ce7b20598, type: 3}
+  - Id: ring-felling-waterfall-mist
+    Prefab: {fileID: 3457427133391275274, guid: 9bad26bedde5046a9969e5c6be765f68, type: 3}
+  - Id: ring-felling-blackwater-flow
+    Prefab: {fileID: 5459014739803618830, guid: f31e661bec7ea42338107e87afad74d9, type: 3}
+  - Id: ring-felling-red-north-clearing-west-right
+    Prefab: {fileID: 4498629297234537406, guid: f24d237cb58db4c488073069aca01c1c, type: 3}
+  - Id: ring-felling-cyan-east-approach
+    Prefab: {fileID: 6479804799990387133, guid: f7f5b7d21b7024c73863b64993a76329, type: 3}
+  - Id: ring-felling-cyan-east-root-tip
+    Prefab: {fileID: 7017316861717581179, guid: f7f405f40ab644fac9f24dc8df8ba297, type: 3}
+  - Id: ring-felling-pink-southwest-streamside
+    Prefab: {fileID: 2472136376414629548, guid: 13564923e69534b76addc4b4edbb2992, type: 3}
+  - Id: ring-felling-pink-southwest-bottom-caps
+    Prefab: {fileID: 787133681112144038, guid: 130b2240bb871433d941ad8f77eb1874, type: 3}
+  - Id: ring-felling-blue-west-middle-rosette
+    Prefab: {fileID: 8578420316784197569, guid: db75d33013de04e3fb9fe7992c2f9da8, type: 3}
+  - Id: ring-felling-blue-west-lower-rosette
+    Prefab: {fileID: 8162965924568429404, guid: 9c8c8aad6fa844af4ba5d8243c9a6c9b, type: 3}
+  - Id: ring-water-surface
+    Prefab: {fileID: 8818166592201868650, guid: d57e322ca348e4f79ba78e73b2641614, type: 3}

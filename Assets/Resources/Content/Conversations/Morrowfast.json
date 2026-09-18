@@ -1,0 +1,817 @@
+{
+  "Conversations": [
+    {
+      "ID": "Morrowfast_Hesta",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Hesta keeps a finger on an unfinished notch. 'North is the Felling. The arch is open. I can give you the path's cautions, if you want them.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "What should I know before going north?",
+              "Target": "Path",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "What is the unfinished notch?",
+              "Target": "Notch",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "I will pass without registering.",
+              "Target": "End",
+              "Predicates": [
+                {
+                  "Key": "IfMorrowfastCan",
+                  "Value": "decline-register"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "MorrowfastAction",
+                  "Value": "decline-register"
+                }
+              ]
+            },
+            {
+              "Text": "Edden said you may know he is safe. Only that.",
+              "Target": "End",
+              "Predicates": [
+                {
+                  "Key": "IfMorrowfastCan",
+                  "Value": "report-return"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "MorrowfastAction",
+                  "Value": "report-return"
+                }
+              ]
+            },
+            {
+              "Text": "I need to release the promise about Edden.",
+              "Target": "End",
+              "Predicates": [
+                {
+                  "Key": "IfMorrowfastCan",
+                  "Value": "refuse-return"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "MorrowfastAction",
+                  "Value": "refuse-return"
+                }
+              ]
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "Path",
+          "Text": "'Stay on the path if you lose your bearings. Come back before exhaustion starts making decisions. Our cords are ordinary rescue cords; they promise no protection the hands holding them cannot give. You owe us neither a name nor a favor.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Back.",
+              "Target": "Start",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "Notch",
+          "Text": "'My brother Edden came back. I saw him at the south end of the square, and still I left his return notch open. That is my worry making work for other people.' She rubs the slate. 'Would you ask what he wants me told? Do not fetch his route for me.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "I will ask Edden what he consents to share.",
+              "Target": "End",
+              "Predicates": [
+                {
+                  "Key": "IfMorrowfastCan",
+                  "Value": "accept-return"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "MorrowfastAction",
+                  "Value": "accept-return"
+                }
+              ]
+            },
+            {
+              "Text": "I will leave his account to him.",
+              "Target": "Start",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "Morrowfast_Nemm",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Nemm waits for a frog to stop calling. 'There. Now neither of us has to raise our voice. Need the northern path, or just a place to stand?'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Why is your bell so muffled?",
+              "Target": "Bell",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "What do the Stillcord guard?",
+              "Target": "Watch",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "I will pass without registering.",
+              "Target": "End",
+              "Predicates": [
+                {
+                  "Key": "IfMorrowfastCan",
+                  "Value": "decline-register"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "MorrowfastAction",
+                  "Value": "decline-register"
+                }
+              ]
+            },
+            {
+              "Text": "The watch bell has been set.",
+              "Target": "End",
+              "Predicates": [
+                {
+                  "Key": "IfMorrowfastCan",
+                  "Value": "report-bell"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "MorrowfastAction",
+                  "Value": "report-bell"
+                }
+              ]
+            },
+            {
+              "Text": "I am leaving the bell work to the watch.",
+              "Target": "End",
+              "Predicates": [
+                {
+                  "Key": "IfMorrowfastCan",
+                  "Value": "refuse-bell"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "MorrowfastAction",
+                  "Value": "refuse-bell"
+                }
+              ]
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "Bell",
+          "Text": "'The clapper needs attention. A sleeve of fire clay gives us a close, quiet call. Bare metal carries across the whole square. Either is useful; making everyone jump is not always an emergency.' He nods southwest. 'Check the reserve coil inside Orrit's rope shop first. Then work at this arch. Orrit sells clay, but leaving the clapper bare costs nothing.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "I will check the cord and set the bell.",
+              "Target": "End",
+              "Predicates": [
+                {
+                  "Key": "IfMorrowfastCan",
+                  "Value": "accept-bell"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "MorrowfastAction",
+                  "Value": "accept-bell"
+                }
+              ]
+            },
+            {
+              "Text": "Back.",
+              "Target": "Start",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "Watch",
+          "Text": "'The path, mostly. Tired feet. A loose stone. People who think guarding a place means owning everyone who visits it. Some days I have to remind our own watch of that last one.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Back.",
+              "Target": "Start",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "Morrowfast_Vennit",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Vennit turns a sheet so you can see its blank margin. 'I record whose account I have. An unattributed certainty makes a poor neighbor.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Where could I go from here?",
+              "Target": "RegionOverview",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "What do you record about the Felling?",
+              "Target": "Accounts",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "May I decide what is recorded about me?",
+              "Target": "Consent",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Withdraw my passage entry.",
+              "Target": "End",
+              "Predicates": [
+                {
+                  "Key": "IfMorrowfastCan",
+                  "Value": "withdraw-record"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "MorrowfastAction",
+                  "Value": "withdraw-record"
+                }
+              ]
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "RegionOverview",
+          "Text": "Vennit marks a departure point. 'These directions begin here, in Morrowfast. A place on the map is not a promise about everyone living there. Keep the account in your travel notes.'",
+          "AllowEscape": true,
+          "Choices": [ { "Text": "Back.", "Target": "Start", "Predicates": [], "Actions": [] } ]
+        },
+        {
+          "ID": "Accounts",
+          "Text": "'Who returned, if they wish it recorded. What they say they saw, with their words distinguished from mine. The Recension teaches me to keep an account; it does not entitle me to complete another person's silence. I have no answer to the empty place north of here.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Back.",
+              "Target": "Start",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "Consent",
+          "Text": "'A simple passage entry says only that you passed Morrowfast. It includes no route, purpose, companions, or testimony. You may decline. You may withdraw it later.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Record only that I passed, with my permission.",
+              "Target": "End",
+              "Predicates": [
+                {
+                  "Key": "IfMorrowfastCan",
+                  "Value": "consent-record"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "MorrowfastAction",
+                  "Value": "consent-record"
+                }
+              ]
+            },
+            {
+              "Text": "Leave the page blank.",
+              "Target": "Start",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "Morrowfast_Pell",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Pell hangs a pair of wet boots toe-down. 'Dry Hem. Two beds, both ordinary, both yours to ask after. The floor is more useful without a puddle in the middle.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Can I rest here?",
+              "Target": "Beds",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Why are there no reservation slates?",
+              "Target": "Custom",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "Beds",
+          "Text": "'Open the western guesthouse door. Either of the two beds is free. Use the bed when you are ready: you will rest, your wounds will mend, and time will pass. Nobody sleeps safely with a hostile prowling close by.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Back.",
+              "Target": "Start",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "Custom",
+          "Text": "'I tried a slate. People started saving a second bed for someone who might arrive while someone already here stayed cold. Now we discuss the two people actually standing in the room. Farra calls that a philosophy. I call it counting beds.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Back.",
+              "Target": "Start",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "Morrowfast_Orrit",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Orrit takes a knot apart without looking up. 'A rope that cannot be inspected cannot be trusted. A mender who will not show the repair is much the same.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "What do you sell?",
+              "Target": "Stock",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Nemm mentioned the reserve coil.",
+              "Target": "Cord",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "Stock",
+          "Text": "'Torches, a few sound blades, a spear, leather armor, bone, and fire clay. What is on the shelf is what I have. We trade in the same water drams as everyone else. The clay is useful for the watch bell's quiet sleeve.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Back.",
+              "Target": "Start",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "Cord",
+          "Text": "'Inside this southwest shop. Check the reserve coil; no need to take it or cut anything from it. Sound cord is a reason to leave cord alone. At the arch, a clay sleeve quiets the clapper. Bare metal rings farther. Neither setting locks the path.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Back.",
+              "Target": "Start",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "Morrowfast_Sella",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Sella turns a bowl upside down to keep ash out of it. 'Second Bowl. Sit if there is space. Ask if there is not.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "What provisions do you have?",
+              "Target": "Stock",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Why leave an extra place?",
+              "Target": "Bowl",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "Stock",
+          "Text": "'Mushrooms and dried meat, a few healing tonics, burn salve, and water tonic. Real supplies; when a shelf is empty, it is empty. Look at the trade list for today's prices.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Back.",
+              "Target": "Start",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "Bowl",
+          "Text": "'A seat is an offer. It does not summon anyone, and it does not prove they are coming. Farra is making room at the guesthouse supper table. She can tell you what would help.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Back.",
+              "Target": "Start",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "Morrowfast_Farra",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Farra lifts an empty bowl and sets it down again. 'Before I arrange a place for someone, I try to remember that they may prefer a different place.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Do you need anything from outside town?",
+              "Target": "DryGoods",
+              "Predicates": [{"Key": "IfMorrowfastExpeditionCan", "Value": "accept"}],
+              "Actions": []
+            },
+            {
+              "Text": "Here is the recovered supper cloth.",
+              "Target": "End",
+              "Predicates": [{"Key": "IfMorrowfastExpeditionCan", "Value": "deliver"}],
+              "Actions": [{"Key": "MorrowfastExpedition", "Value": "deliver"}]
+            },
+            {
+              "Text": "I cannot bring the cloth back. Release the errand.",
+              "Target": "End",
+              "Predicates": [{"Key": "IfMorrowfastExpeditionCan", "Value": "release"}],
+              "Actions": [{"Key": "MorrowfastExpedition", "Value": "release"}]
+            },
+            {
+              "Text": "Does the supper room need a hand?",
+              "Target": "Supper",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Is arranging the room a Bower practice?",
+              "Target": "Bower",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "I moved the spare supper stool onto clear floor.",
+              "Target": "End",
+              "Predicates": [
+                {
+                  "Key": "IfMorrowfastCan",
+                  "Value": "report-supper"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "MorrowfastAction",
+                  "Value": "report-supper"
+                }
+              ]
+            },
+            {
+              "Text": "I need to leave the supper errand.",
+              "Target": "End",
+              "Predicates": [
+                {
+                  "Key": "IfMorrowfastCan",
+                  "Value": "refuse-supper"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "MorrowfastAction",
+                  "Value": "refuse-supper"
+                }
+              ]
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "DryGoods",
+          "Text": "'One chunk west, near the east edge of the compost field, we left a tagged basket of dry supper cloth. Open it and take the wrapped cloth before crossing back into town. Leave the living growth standing if you can: the Choir remembers fire. I can give you fifteen drams and fire clay; Nemm may have use for that clay at the northern bell. Your place at supper is offered either way.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "I will look for the tagged basket.",
+              "Target": "End",
+              "Predicates": [{"Key": "IfMorrowfastExpeditionCan", "Value": "accept"}],
+              "Actions": [{"Key": "MorrowfastExpedition", "Value": "accept"}]
+            },
+            {"Text": "Back.", "Target": "Start", "Predicates": [], "Actions": []},
+            {"Text": "Leave.", "Target": "End", "Predicates": [], "Actions": []}
+          ]
+        },
+        {
+          "ID": "Supper",
+          "Text": "'The western guesthouse has a spare stool beside its supper table. Could you shift it a little onto clear floor? Keep the doorway open. I can offer a place for another guest without reserving either bed or deciding where anyone has to sit.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "I will make room with the spare supper stool.",
+              "Target": "End",
+              "Predicates": [
+                {
+                  "Key": "IfMorrowfastCan",
+                  "Value": "accept-supper"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "MorrowfastAction",
+                  "Value": "accept-supper"
+                }
+              ]
+            },
+            {
+              "Text": "Back.",
+              "Target": "Start",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "Bower",
+          "Text": "'For me, yes. Attention to what shares a room. Other people here would describe it differently. No one has to use my words to sit at the table.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Back.",
+              "Target": "Start",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "Morrowfast_Edden",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Edden is mending a torn cuff in the southern square. 'If Hesta sent you, I am not missing. I am sitting.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "What would you like Hesta told?",
+              "Target": "Account",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "You do not owe me an account of the path.",
+              "Target": "Quiet",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "Account",
+          "Text": "'Tell her I am safe. That is all I want carried. Not where I went, not why I stayed out, and not what either of you thinks I ought to have found.' He looks up. 'Can that be enough?'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "I will carry only: Edden is safe.",
+              "Target": "End",
+              "Predicates": [
+                {
+                  "Key": "IfMorrowfastCan",
+                  "Value": "eddens-account"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "MorrowfastAction",
+                  "Value": "eddens-account"
+                }
+              ]
+            },
+            {
+              "Text": "I will leave your words here.",
+              "Target": "Start",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "Quiet",
+          "Text": "'Thank you. It is possible to return somewhere without being ready to be received by the whole place at once.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Back.",
+              "Target": "Start",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

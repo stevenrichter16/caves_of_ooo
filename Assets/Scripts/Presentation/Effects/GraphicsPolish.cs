@@ -26,7 +26,8 @@ namespace CavesOfOoo.Presentation.Effects
     public static class GraphicsPolish
     {
         /// <summary>
-        /// Master enable. <c>false</c> = pure CP437.
+        /// Master enable. <c>false</c> = pure CP437; <c>true</c> enables
+        /// sprite terrain, animated actor visuals, lighting, and effects.
         /// </summary>
         public const bool IsEnabled = true;
     }

@@ -1,5 +1,27 @@
 # Gameplay camera zoom
 
+## Current setting: 20% wider than original
+
+Latest user revision, 2026-09-12: Main SampleScene multiplier is **1.2**.
+Read-only live verification confirmed configured/applied 1.2, source and voxel
+camera sizes 16.8000011 (original 14), pitch 56 degrees, voxel presentation true
+and full reveal true. Only the serialized setting changed. Self-review and live
+numeric verification passed; no additional code or tests were needed. Unity is
+playing. These checks verify camera configuration, not subjective play feel.
+
+## Previous setting: 50% wider than original
+
+User revision, 2026-09-12: Main SampleScene now uses multiplier **1.5** instead
+of 2. Read-only live verification after scene reload confirmed configured and
+applied values 1.5, source and voxel camera sizes 21 (original 14), pitch 56
+degrees, voxel presentation true and full reveal true. Only the serialized
+setting changed; the 52-test implementation verification below still applies.
+Self-review: one setting, no code changes; live numeric verification passed.
+Can verify camera span and rendering flags; player preference remains subjective.
+Unity remains playing. The following section records the original implementation.
+
+## Original implementation
+
 Status: installed and live verified, 2026-09-12. CoO-original presentation setting;
 no Qud parity claim. User requested twice the previous zoom distance.
 

@@ -222,7 +222,10 @@ namespace CavesOfOoo.Core
                     if (amount <= 0) return 0;
 
                     int before = part.HP;
-                    Damage(target, amount, source, zone);
+                    SpellFxCapture.Target(zone, target);
+                    var verdict = Damage(target, amount, source, zone);
+                    SpellFxCapture.RecordDamage(zone, target, System.Math.Max(0, before - part.HP),
+                        resisted: verdict != DestroyVerdict.Damaged && verdict != DestroyVerdict.Destroyed);
                     return System.Math.Max(0, before - part.HP);
                 }
             }
@@ -275,13 +278,10 @@ namespace CavesOfOoo.Core
         public static bool IsWithinStrikeReach(Entity actor, Entity target, Zone zone)
         {
             if (actor == null || target == null || zone == null) return false;
+            if (MorrowfastSceneRuntime.IsActive(zone) && target.HasPart<MorrowfastPropPart>())
+                return MorrowfastSceneRuntime.WithinOwnerReach(actor, target, zone);
 
-            var (ax, ay) = zone.GetEntityPosition(actor);
-            var (tx, ty) = zone.GetEntityPosition(target);
-            if (ax < 0 || tx < 0) return false;
-
-            return System.Math.Abs(ax - tx) <= StrikeReach
-                && System.Math.Abs(ay - ty) <= StrikeReach;
+            return SpatialQuery.Distance(zone, actor, target) <= StrikeReach;
         }
 
         /// <summary>

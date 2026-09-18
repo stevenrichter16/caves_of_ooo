@@ -1,0 +1,242 @@
+{
+    "runId": "167ae61c6ec3423299d3d87d0dec7682",
+    "saveRoot": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/a81575ea97c74e5c8c173ac0ab2dc55a",
+    "gameId": "",
+    "markerId": "ChunkGameplay-native-marker-e8c28b74964f4aec9e86b6123a409592",
+    "fatal": "System.InvalidOperationException: Native voxel presentation must become ready.\n  at CavesOfOoo.Scenarios.Custom.ChunkGameplayNativeAudit+<WaitForVoxel>d__75.MoveNext () [0x00132] in /private/tmp/coo-regional-verification-20260917/Assets/Scripts/Scenarios/Custom/ChunkGameplayNativeAudit.cs:322 \n  at CavesOfOoo.Scenarios.Custom.ChunkGameplayNativeAudit+<RunSafely>d__62.MoveNext () [0x00057] in /private/tmp/coo-regional-verification-20260917/Assets/Scripts/Scenarios/Custom/ChunkGameplayNativeAudit.cs:78 ",
+    "bounds": "Actual native 1080p GameView and ordinary seed64 N bootstrap. No fixture placement, world replacement, direct quest action, direct inventory transfer, camera or reveal changes. Cardinal movement, nine border crossings, action/loot/dialogue menus, regional request/harvest/delivery, Q/Tab field notes and F5/F6 use queued native keys. F12 invincibility is explicitly enabled only for the long regional journey; combat balance is not tested. Profiling restarts at that journey. Reflection observes live UI cursors only. Crops and summit water are covered by separate EditMode integration tests, not this journey. ProfilerRecorder covers a sixty-second native editor window including harness planning, screenshots, existing systems and loads; aggregate timing/allocation maxima do not isolate cue cost or establish FPS. No complete-world, subjective readability or enjoyment claim.",
+    "failures": 2,
+    "unexpectedErrors": 0,
+    "worldSeed": 64,
+    "nativeSteps": 483,
+    "stunnedTurns": 1,
+    "screenWidth": 1920,
+    "screenHeight": 1080,
+    "wallSeconds": 114.51433329999999,
+    "profileSeconds": 32.898824250000007,
+    "profileIdleSeconds": 0.0,
+    "profileMetrics": [
+        {
+            "name": "Main Thread",
+            "units": "TimeNanoseconds",
+            "available": true,
+            "count": 11655,
+            "sum": 32842918306,
+            "max": 310286959
+        },
+        {
+            "name": "COO.Input.Update",
+            "units": "TimeNanoseconds",
+            "available": true,
+            "count": 11655,
+            "sum": 1027270536,
+            "max": 289406917
+        },
+        {
+            "name": "COO.ZoneRenderer.LateUpdate",
+            "units": "TimeNanoseconds",
+            "available": true,
+            "count": 11655,
+            "sum": 11163317804,
+            "max": 26065709
+        },
+        {
+            "name": "GC Allocated In Frame",
+            "units": "Bytes",
+            "available": true,
+            "count": 11655,
+            "sum": 454988212,
+            "max": 31736705
+        }
+    ],
+    "cameraSize": 16.80000114440918,
+    "townCameraSize": 16.5,
+    "fullReveal": true,
+    "workloadComplete": false,
+    "shutdownObserved": true,
+    "shutdownRootHeld": true,
+    "shutdownSavingUnregistered": true,
+    "displayPreferencesRestored": true,
+    "inputSettingsRestored": true,
+    "checks": [
+        {
+            "name": "native_N_real_new_game",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_cache_and_parcel_generated",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_border_east_initial",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "quest_cue_available",
+            "detail": "Available",
+            "pass": true
+        },
+        {
+            "name": "native_conversation_accept",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "quest_cue_active",
+            "detail": "Active",
+            "pass": true
+        },
+        {
+            "name": "native_Q_journal",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_border_west_recovery",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "field_camera_restored",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_container_command_mode",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_TakeFromContainer_parcel",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_border_east_delivery",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_carried_parcel_crosses_border",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_conversation_delivery",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_one_reward",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_parcel_laid_at_supper",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "quest_cue_completed",
+            "detail": "None",
+            "pass": true
+        },
+        {
+            "name": "native_no_repeat_delivery_choice",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "coarse_interior_keeper-gatehouse",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "coarse_closed_keeper-gatehouse",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "coarse_interior_dry-hem-guesthouse",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "coarse_closed_dry-hem-guesthouse",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "coarse_interior_long-loop-ropeshop",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "coarse_closed_long-loop-ropeshop",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "coarse_interior_return-desk-archive",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "coarse_closed_return-desk-archive",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "coarse_interior_second-bowl-kitchen",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "coarse_closed_second-bowl-kitchen",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "regional_native_available",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "regional_native_read",
+            "detail": "",
+            "pass": false
+        },
+        {
+            "name": "native_border_regional_west_spawn",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_border_regional_west_grove",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "fatal",
+            "detail": "System.InvalidOperationException: Native voxel presentation must become ready.\n  at CavesOfOoo.Scenarios.Custom.ChunkGameplayNativeAudit+<WaitForVoxel>d__75.MoveNext () [0x00132] in /private/tmp/coo-regional-verification-20260917/Assets/Scripts/Scenarios/Custom/ChunkGameplayNativeAudit.cs:322 \n  at CavesOfOoo.Scenarios.Custom.ChunkGameplayNativeAudit+<RunSafely>d__62.MoveNext () [0x00057] in /private/tmp/coo-regional-verification-20260917/Assets/Scripts/Scenarios/Custom/ChunkGameplayNativeAudit.cs:78 ",
+            "pass": false
+        }
+    ],
+    "screenshots": [
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-167ae61c6ec3423299d3d87d0dec7682-western-spawn.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-167ae61c6ec3423299d3d87d0dec7682-cue-available.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-167ae61c6ec3423299d3d87d0dec7682-cue-active.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-167ae61c6ec3423299d3d87d0dec7682-journal.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-167ae61c6ec3423299d3d87d0dec7682-recovered-parcel.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-167ae61c6ec3423299d3d87d0dec7682-completed-supper.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-167ae61c6ec3423299d3d87d0dec7682-interior-keeper-gatehouse.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-167ae61c6ec3423299d3d87d0dec7682-interior-dry-hem-guesthouse.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-167ae61c6ec3423299d3d87d0dec7682-interior-long-loop-ropeshop.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-167ae61c6ec3423299d3d87d0dec7682-interior-return-desk-archive.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-167ae61c6ec3423299d3d87d0dec7682-interior-second-bowl-kitchen.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-167ae61c6ec3423299d3d87d0dec7682-regional-request.png"
+    ]
+}

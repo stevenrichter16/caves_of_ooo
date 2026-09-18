@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "createdOn": "2026-09-06",
+  "tool": "built-in Imagegen",
+  "mode": "mixed create and edit",
+  "approvedReference": "reference.png",
+  "approvedSourceSha256": "c2fcc1c2c4c0c909a847be8089e40c3a955f58a16e14fff5f084f2cd3a5a2cc0",
+  "sources": [
+    {
+      "prompt": "prompts/01-master-scene.md",
+      "promptSha256": "f483ca5e365acba8c426fa0d03be542d011f09507300c0a782fc9f4786b3a373",
+      "output": "sources/01-master-oblique.png",
+      "outputSha256": "cd2deb80fcbb9c2f00c255be2f9a07a0fed7cf1f4509f274cfaaca6630129299",
+      "mode": "create",
+      "purpose": "Initial composition; retained iteration, superseded overhead camera",
+      "inputs": []
+    },
+    {
+      "prompt": "prompts/02-overhead-camera.md",
+      "promptSha256": "1ea3bde149315c6503ca3956686f7e7c1f8671c475bba8d4d4234279fd56cf4e",
+      "output": "reference.png",
+      "outputSha256": "c2fcc1c2c4c0c909a847be8089e40c3a955f58a16e14fff5f084f2cd3a5a2cc0",
+      "mode": "edit",
+      "purpose": "Approved high overhead master with shallow visible facades",
+      "inputs": [
+        "sources/01-master-oblique.png"
+      ]
+    },
+    {
+      "prompt": "prompts/03-cleared-ground.md",
+      "promptSha256": "9b99e1839ea78efd78825301b427ab8d80706507fca616380ae2163dd7851444",
+      "output": "sources/03-cleared-ground.png",
+      "outputSha256": "052747853d462d9a7929178e27fec6fdcd2621700c4031f8a0f839980f784eff",
+      "mode": "edit",
+      "purpose": "Inferred outdoor substrate",
+      "inputs": [
+        "reference.png"
+      ]
+    },
+    {
+      "prompt": "prompts/04-roof-off-interiors.md",
+      "promptSha256": "49be6524fa5f1b8c3bf8d0b3915e7e69850f088461d26976ef97822d5d8c17be",
+      "output": "sources/04-furnished-interiors.png",
+      "outputSha256": "7ca131ccf97b42e67b5da26b7b8dae7342211267a85cfd740c237d31518ff949",
+      "mode": "edit",
+      "purpose": "Inferred furnished rooms",
+      "inputs": [
+        "reference.png"
+      ]
+    },
+    {
+      "prompt": "prompts/05-empty-interiors.md",
+      "promptSha256": "e2436dc3677df6d59ef2ac0bc2c1a8dda1330190474f64d8029488e2b32b9e48",
+      "output": "sources/05-empty-interiors.png",
+      "outputSha256": "a6635fe9602f545fd26f5aaa83202fbf2661ddfc6f1836c7fdc7f866327f6e85",
+      "mode": "edit",
+      "purpose": "Inferred continuous empty floors",
+      "inputs": [
+        "sources/04-furnished-interiors.png"
+      ]
+    },
+    {
+      "prompt": "prompts/06-front-occlusion-repair.md",
+      "promptSha256": "5fcd6ce2dba1c1e123eb2e5833774a1fc23c65b79664cb1feed0db7115a6c954",
+      "output": "sources/06-front-repairs.png",
+      "outputSha256": "4273ebd8e1b3391853484ac6ea5fa9b0ae787c7f46522b2ce1760967ba4e9ff7",
+      "mode": "edit",
+      "purpose": "Inferred stationary surfaces behind foreground props",
+      "inputs": [
+        "reference.png"
+      ]
+    },
+    {
+      "prompt": "prompts/07-stove-occlusion-repair.md",
+      "promptSha256": "bd45ee158845f5699ff6bf8055f7ce0b50846ed7b6a2af5b851a3cd9d66671b5",
+      "output": "sources/07-stove-repairs.png",
+      "outputSha256": "5c0d83ebd36c407d4e4a172e576017d53a43b639dcd01a916d46669c09c83833",
+      "mode": "edit",
+      "purpose": "Inferred containers behind outdoor stove",
+      "inputs": [
+        "reference.png"
+      ]
+    },
+    {
+      "prompt": "prompts/08-plaza-repair.md",
+      "promptSha256": "73d9b9d2f662a6c51f63016a7a3edf09628c70eccba18708c194676084231cb1",
+      "output": "sources/08-plaza-repair.png",
+      "outputSha256": "a2d11d7c2d9e97a07194806f955ae6ed2d4d1b93fa9c9bcf0cc81beb4499e747",
+      "mode": "edit",
+      "purpose": "Inferred natural paving beneath removed cistern",
+      "inputs": [
+        "earlier working all-removed cutaway export; input snapshot is not separately archived"
+      ]
+    }
+  ],
+  "extraction": {
+    "tool": "deterministic Python/Pillow/NumPy/SciPy producer",
+    "command": "python3 -m ArtTools.morrowfast_components",
+    "sourcePolicy": "Visible subject pixels are exact source RGB with reviewed binary alpha. Known source pixels outside declared support remain unchanged.",
+    "hiddenPolicy": "Hidden surfaces are inferred, not recovered. Interior furniture is also inferred and has documented offsets.",
+    "contactPolicy": "Source contact collars stay at the authored position; free translation requires new runtime shadows and any missing geometry.",
+    "doorPolicy": "Original wooden leaf hides the threshold; open threshold is aligned by deterministic continuation of inferred indoor floor.",
+    "plazaPolicy": "Plate08 only contributes inside declared outdoor reveal supports. Cistern has18px source contact support and no dark-shadow palette transfer."
+  }
+}

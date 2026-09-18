@@ -39,9 +39,9 @@ namespace CavesOfOoo.Skills
             {
                 var cell = zone.GetCellInDirection(defPos.x, defPos.y, dir);
                 if (cell == null) continue;
-                for (int i = 0; i < cell.Objects.Count; i++)
+                for (int i = 0; i < cell.Occupants.Count; i++)
                 {
-                    var e = cell.Objects[i];
+                    var e = cell.Occupants[i];
                     if (e == null || e == attacker || e == defender) continue;
                     if (!e.Tags.ContainsKey("Creature")) continue;
                     return e;
@@ -303,8 +303,20 @@ namespace CavesOfOoo.Skills
 
                 var dest = zone.GetCell(nx, ny);
                 if (dest == null) break;                       // zone edge
-                if (dest.IsSolid()) break;                     // wall
-                if (CellHasOtherCreature(dest, target)) break; // occupied
+                if (target.HasPart<SpatialFootprintPart>())
+                {
+                    if (!zone.CanPlaceFootprint(target,nx,ny)) break;
+                    bool pullerOverlap=false;
+                    if (stopBefore.HasValue)
+                        foreach (var c in zone.GetOccupiedCells(target,nx,ny))
+                            if (c != null && c.X==stopBefore.Value.X && c.Y==stopBefore.Value.Y) pullerOverlap=true;
+                    if(pullerOverlap) break;
+                }
+                else
+                {
+                    if (dest.IsSolid()) break;                     // wall
+                    if (CellHasOtherCreature(dest, target)) break; // occupied
+                }
 
                 if (!MovementSystem.ForceMoveTo(target, zone, nx, ny)) break;
                 movedAny = true;
@@ -322,9 +334,9 @@ namespace CavesOfOoo.Skills
         private static bool CellHasOtherCreature(Cell cell, Entity exclude)
         {
             if (cell == null) return false;
-            for (int i = 0; i < cell.Objects.Count; i++)
+            for (int i = 0; i < cell.Occupants.Count; i++)
             {
-                var e = cell.Objects[i];
+                var e = cell.Occupants[i];
                 if (e == null || e == exclude) continue;
                 if (e.Tags.ContainsKey("Creature")) return true;
             }

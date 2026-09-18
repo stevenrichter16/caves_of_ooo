@@ -187,6 +187,23 @@ namespace CavesOfOoo.Core
 
         /// <summary>Repair pre-site saves only where no saved POI exists.
         /// Cached ground is preserved; this does not regenerate visited terrain.</summary>
+        public void RehydrateMorrowfast()
+        {
+            var poi = GetPOI(MorrowfastSceneRuntime.WorldX, MorrowfastSceneRuntime.WorldY);
+            if (poi == null)
+                SetPOI(MorrowfastSceneRuntime.WorldX, MorrowfastSceneRuntime.WorldY,
+                    new PointOfInterest(POIType.Village, "Morrowfast", "Stillcord", profile: "Morrowfast"));
+            else if (poi.Type == POIType.Village && poi.Name == "Morrowfast") poi.Profile = "Morrowfast";
+        }
+
+        /// <summary>Restore the pilot's authored biome on pre-pilot saves.
+        /// Saved landmarks, visitation and all neighboring cells remain intact.</summary>
+        public void RehydrateMultiCellPilot()
+        {
+            Tiles[MultiCellPilotRuntime.WorldX, MultiCellPilotRuntime.WorldY] =
+                WorldMapAuthoring.BiomeAt(MultiCellPilotRuntime.WorldX, MultiCellPilotRuntime.WorldY);
+        }
+
         public void RehydrateFellingSite()
         {
             if (GetPOI(FellingSiteBuilder.WorldX, FellingSiteBuilder.WorldY) == null)

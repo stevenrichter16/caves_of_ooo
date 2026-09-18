@@ -1,0 +1,213 @@
+{
+  "scope": "Independent presentation/importer cold-eye; no Unity launches or production edits by reviewer",
+  "upstreamReceipt": "Docs/Verification/VoxelWorld/U07-review-red/receipt.json",
+  "upstreamReceiptSha256": "3dec9e3caf838c07ba1b690bea519c08a1ac6b08ecfa37da981bfc3650d6673d",
+  "compilerErrors": 0,
+  "wholeFilterResult": {
+    "id": "2",
+    "testcasecount": "148",
+    "result": "Failed(Child)",
+    "total": "148",
+    "passed": "125",
+    "failed": "23",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-12 08:26:15Z",
+    "end-time": "2026-09-12 08:26:15Z",
+    "duration": "0.5749526"
+  },
+  "reviewOwnedTests": 42,
+  "reviewOwnedConfirmedRed": 22,
+  "reviewOwnedPassingControls": 20,
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_SourceKeysCannotEscapeOrAliasGeneratedAssetNames(\"../foreign\")",
+      "message": "  Toolkit publication concatenates SourceKey into an asset destination.\n  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_SourceKeysCannotEscapeOrAliasGeneratedAssetNames(\"../../foreign\")",
+      "message": "  Toolkit publication concatenates SourceKey into an asset destination.\n  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_SourceKeysCannotEscapeOrAliasGeneratedAssetNames(\"dir/file\")",
+      "message": "  Toolkit publication concatenates SourceKey into an asset destination.\n  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_SourceKeysCannotEscapeOrAliasGeneratedAssetNames(\"dir\\\\file\")",
+      "message": "  Toolkit publication concatenates SourceKey into an asset destination.\n  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_SourceKeysCannotEscapeOrAliasGeneratedAssetNames(\"/absolute\")",
+      "message": "  Toolkit publication concatenates SourceKey into an asset destination.\n  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_SourceKeysCannotEscapeOrAliasGeneratedAssetNames(\"\\\\absolute\")",
+      "message": "  Toolkit publication concatenates SourceKey into an asset destination.\n  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_SourceKeysCannotEscapeOrAliasGeneratedAssetNames(\".\")",
+      "message": "  Toolkit publication concatenates SourceKey into an asset destination.\n  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_SourceKeysCannotEscapeOrAliasGeneratedAssetNames(\"..\")",
+      "message": "  Toolkit publication concatenates SourceKey into an asset destination.\n  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_SourceKeysCannotEscapeOrAliasGeneratedAssetNames(\"file:name\")",
+      "message": "  Toolkit publication concatenates SourceKey into an asset destination.\n  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_SourceKeysCannotEscapeOrAliasGeneratedAssetNames(\" name\")",
+      "message": "  Toolkit publication concatenates SourceKey into an asset destination.\n  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_SourceKeysCannotEscapeOrAliasGeneratedAssetNames(\"name \")",
+      "message": "  Toolkit publication concatenates SourceKey into an asset destination.\n  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitAdversarialTests.Adversarial_DegenerateOrFoldedQuadCannotPublishHalfValidGeometry(\"secondTriangle\")",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitAdversarialTests.Adversarial_DegenerateOrFoldedQuadCannotPublishHalfValidGeometry(\"bowTie\")",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitAdversarialTests.Adversarial_IndicesRequireIntegerTokensRatherThanSilentNumericCoercion(\"faceFraction\")",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitAdversarialTests.Adversarial_IndicesRequireIntegerTokensRatherThanSilentNumericCoercion(\"materialFraction\")",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitAdversarialTests.Adversarial_IndicesRequireIntegerTokensRatherThanSilentNumericCoercion(\"faceString\")",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitAdversarialTests.Adversarial_IndicesRequireIntegerTokensRatherThanSilentNumericCoercion(\"materialString\")",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitAdversarialTests.Adversarial_MultiplyPoint3x4RequiresAnAffineMatrix(\"negativeW\")",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitAdversarialTests.Adversarial_MultiplyPoint3x4RequiresAnAffineMatrix(\"doubleW\")",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitAdversarialTests.Adversarial_MultiplyPoint3x4RequiresAnAffineMatrix(\"projectiveX\")",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitAdversarialTests.Adversarial_MultiplyPoint3x4RequiresAnAffineMatrix(\"projectiveY\")",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitAdversarialTests.Adversarial_MultiplyPoint3x4RequiresAnAffineMatrix(\"projectiveZ\")",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  null\n"
+    }
+  ],
+  "sourceConfirmedUntestedIssue": "Historical source-confirmed late destination validation: root implemented whole-set destination preflight before any mesh/catalog publication. No destructive shared-asset disk-failure reproduction was run.",
+  "implementationOwners": {
+    "sourceKeys": "voxel_assets",
+    "quadIntegerAndAffineParsing": "root",
+    "destinationPreflight": "root"
+  },
+  "tests": [
+    {
+      "path": "Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs",
+      "sha256": "2b9937985727d55e6b16a7acfc460bec642027bfa31c96763873b38e3465465c"
+    },
+    {
+      "path": "Assets/Tests/EditMode/VoxelWorldToolkitAdversarialTests.cs",
+      "sha256": "a37bb1efeb3d8c254842c8165366a54da7c5859e1de06bb0f13abdc3fa95554d"
+    }
+  ],
+  "status": "Complete within bounded review: all 167 voxel cases pass in U15, including 42 initial review cases, 13 pitch preflight cases and six actual imported-art cases. The complete suite has the same 32 failing names and messages as U00; U11 native receipt remains a separate qualified gate.",
+  "green": {
+    "path": "Docs/Verification/VoxelWorld/U08-review-green/receipt.json",
+    "sha256": "58cdd4024625a6501cc4620c489e127352208bef5696ea4e94943103a6226235",
+    "compileErrors": 0,
+    "results": {
+      "id": "2",
+      "testcasecount": "148",
+      "result": "Passed",
+      "total": "148",
+      "passed": "148",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-09-12 08:29:31Z",
+      "end-time": "2026-09-12 08:29:31Z",
+      "duration": "0.4313252"
+    }
+  },
+  "rootFixedSourceHashesAtReview": {
+    "Assets/Editor/Art/VoxelWorldToolkitImporter.cs": "fd10f3284e3d344c2d2e1e41e11255d1967d1579c0bf3977e1dde9a424c5bc1c",
+    "Assets/Scripts/Presentation/Rendering/VoxelWorldMeshCatalog.cs": "1bb0ee8a8df5c7a4e8eb9268a3a7c0a67ce6bae0169e89b03f5bf0a1a08ef268"
+  },
+  "actualRegenerationFinding": {
+    "red": "U09-corrected-bake/toolkit-import.json",
+    "redSha256": "bb42275d3a8d34be93179d257a3042a96ae2b2f1d9909a4184b3b597dcb4a542",
+    "problem": "Unity CreateAsset normalizes Mesh.name to the asset filename; a VX_Toolkit_ name ownership check wrongly rejected the earlier valid generated meshes.",
+    "fix": "Root replaced mutable name checking with AssetImporter.userData ownership tag CavesOfOoo.VoxelWorld.Toolkit/1; only the38 root-verified initial outputs were tagged.",
+    "green": "U10-toolkit-ownership/toolkit-import.json",
+    "greenSha256": "705dc618ef681d3364def6b2a8df18d5085419566ffcbcccdf61a540fd12fb8b",
+    "verifiedImported": 38,
+    "guidPin": "Docs/Verification/VoxelWorld/toolkit-guid-pin.json",
+    "guidPinSha256": "e6875ed02b223cd200f1833180faedc59859ef823f86576313e38ff4bf9188b1",
+    "guidPreservationScope": "Root reported GUIDs preserved during the38-file tag update; reviewer independently captured the post-U10 GUID baseline and verified all38 ownership tags."
+  },
+  "importedArtTests": {
+    "source": "Assets/Tests/EditMode/VoxelWorldImportedArtTests.cs",
+    "sourceSha256": "e528e35a8570881bf91ebbc8eac417b142cca9272f25884aec7c33fcfbbf5c1e",
+    "cases": 6,
+    "u12": "Passed",
+    "u15": "Passed",
+    "scope": "Actual mesh coverage, toolkit geometry/provenance/UV/materials, skins, source-prefab immutability/idempotence, ownership tags and post-U10 GUID preservation."
+  },
+  "pitchFinding": {
+    "problem": "During toolkit publication, local pitch divides by unchecked existing WorldVoxelSize. Zero/nonfinite old world pitch or new recipe pitch can invalidate metadata only after an asset has been changed.",
+    "currentArtifactScope": "U10 current valid bake is not claimed corrupt.",
+    "proposal": "Docs/Verification/VoxelWorld/pending/pitch-preflight-proposal.md",
+    "testCases": 13,
+    "testsRun": true,
+    "productionApplied": true,
+    "testSource": "Assets/Tests/EditMode/VoxelWorldToolkitPitchTests.cs",
+    "testSourceSha256": "d8ce2666bbf7689895935778491fb1fca43af6bae1305a92cb63c5a89986790e",
+    "fix": "ConvertedLocalPitch validates finite positive input/output and calculates with a double intermediate during preparation, before mesh creation/publication; publication assigns the prevalidated value.",
+    "red": {
+      "xml": "Docs/Verification/VoxelWorld/U12-full-regression-and-pitch-red/results.xml",
+      "sha256": "f8d886cfbc0a55052552151fcf1d53c8631986b4fb6cb51d4ebba9a35b930eb9",
+      "failed": 13
+    },
+    "green": {
+      "xml": "Docs/Verification/VoxelWorld/U15-final-full-regression/results.xml",
+      "sha256": "84aef329e672b4bc1d0b025aae3f91b183edce56bccd0d811bc643a9a35bb133",
+      "passed": 13
+    }
+  },
+  "finalComparison": {
+    "path": "Docs/Verification/VoxelWorld/U15-final-full-regression/independent-comparison.json",
+    "sha256": "5f7c1e48af8e81e835b0e4dbbfc2dfa386dda78984066b14e633ba2224d5d726",
+    "total": 11710,
+    "passed": 11678,
+    "failed": 32,
+    "voxelPassed": 167,
+    "compilerErrors": 0,
+    "failureNamesAndMessagesIdenticalToBaseline": true,
+    "outsideRegionEquipmentCountercase": "Passed"
+  },
+  "finalImporterSource": {
+    "path": "Assets/Editor/Art/VoxelWorldToolkitImporter.cs",
+    "sha256": "d3210ebe297ce6870878baf43c90b0e29051a2713f2289ed6932c093db7f4f8a"
+  }
+}

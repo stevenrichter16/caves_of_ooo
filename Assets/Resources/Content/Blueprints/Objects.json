@@ -28224,7 +28224,7 @@
           "Params": [
             {
               "Key": "DisplayName",
-              "Value": "crop row"
+              "Value": "cut emberwheat row"
             },
             {
               "Key": "RenderString",
@@ -28232,7 +28232,7 @@
             },
             {
               "Key": "ColorString",
-              "Value": "&W"
+              "Value": "&w"
             },
             {
               "Key": "RenderLayer",
@@ -28245,7 +28245,7 @@
           "Params": [
             {
               "Key": "Description",
-              "Value": "Barley, planted in the old strips. Someone is coming back for this."
+              "Value": "Cut emberwheat stubble in an old field strip. The grain has already been gathered."
             }
           ]
         }
@@ -28253,6 +28253,27 @@
       "Stats": [],
       "Tags": [
         { "Key": "Vegetation", "Value": "" } ]
+    },
+    {
+      "Name": "RipeCropRow",
+      "Inherits": "CropRow",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "ripe emberwheat row" },
+          { "Key": "RenderString", "Value": "Y" },
+          { "Key": "ColorString", "Value": "&Y" },
+          { "Key": "RenderLayer", "Value": "2" }
+        ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A few ripe emberwheat heads stand above the cut rows. Gather this gleaning by hand; the stubble will remain." }
+        ] },
+        { "Name": "FieldHarvest", "Params": [
+          { "Key": "YieldBlueprint", "Value": "Emberwheat" },
+          { "Key": "YieldCount", "Value": "1" }
+        ] }
+      ],
+      "Stats": [],
+      "Tags": []
     },
     {
       "Name": "RoadStone",
@@ -30690,6 +30711,7 @@
           ]
         },
         { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "false" } ] },
+        { "Name": "Well", "Params": [] },
         {
           "Name": "Examinable",
           "Params": [
@@ -30714,6 +30736,10 @@
             { "Key": "RenderLayer", "Value": "1" }
           ]
         },
+        { "Name": "LiquidPool", "Params": [
+          { "Key": "LiquidId", "Value": "water" },
+          { "Key": "Volume", "Value": "40" }
+        ] },
         {
           "Name": "Material",
           "Params": [

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -176,6 +177,7 @@ namespace CavesOfOoo.Rendering
             // art, which is the point of having art.
             ("SariSnake", "sari_snake", 's'),
             ("Wardline", "wardline", 's'),
+            ("MawToad", "maw_toad", 't'),
             ("CascadeFather", "cascade_father", 'f'),
             ("GlasspaneFrog", "glasspane_frog", 'f'),
             ("YellowfootWayfarer", "yellowfoot_wayfarer", 't'),
@@ -191,9 +193,12 @@ namespace CavesOfOoo.Rendering
         /// entity pre-pass (blueprint-keyed, glyph-independent).</summary>
         public static readonly (string Blueprint, string File)[] FixtureSprites =
         {
+            ("Tree", "tree"),
             ("BerryBush", "berry_bush"), ("Beehive", "beehive"),
             ("HollowStump", "hollow_stump"), ("MushroomRing", "mushroom_ring"),
             ("Signpost", "signpost"),
+            ("CopperPipe", "copper_pipe"), ("TarSeep", "tar_seep"),
+            ("SteamVent", "steam_vent"),
             // LOOT OVERHAUL SM4 — the container family. Blueprint-keyed
             // like every other fixture, so they resolve glyph-independently
             // through the entity pre-pass.
@@ -213,6 +218,10 @@ namespace CavesOfOoo.Rendering
             // nothing else can claim it.
             ("SinkholeLip", "sinkhole_lip"), ("DescentLedge", "descent_ledge"),
             ("RopeAnchor", "rope_anchor"),
+            ("OverwritGround", "overwrit_ground"),
+            ("OverwritNewGrowth", "overwrit_new_growth"),
+            ("OverwritWaymarker", "overwrit_waymarker"),
+            ("OverwritPilgrimBench", "overwrit_pilgrim_bench"),
             ("HearthPatch", "hearth_patch"), ("NicheHome", "niche_home"),
             ("DroseraRing", "drosera_ring"), ("BeetleJar", "beetle_jar"),
             ("PebbleSundewThreshold", "pebble_sundew"),
@@ -259,6 +268,10 @@ namespace CavesOfOoo.Rendering
         public static readonly Dictionary<string, int> FixtureVariantCounts =
             new Dictionary<string, int>
         {
+            { "Tree", 4 },
+            { "OverwritNewGrowth", 4 },
+            { "OverwritWaymarker", 4 },
+            { "OverwritPilgrimBench", 4 },
             { "SubstrateVault", 4 },
             { "GrainRidge", 4 },
             { "StoneDome", 3 },
@@ -290,6 +303,9 @@ namespace CavesOfOoo.Rendering
         // already cleared by us.
 
         public bool RenderingEnabled = true;
+        private Func<Entity, bool> _entityVisualPredicate;
+        private Func<int, int, bool> _authoredSceneClaim;
+        private Func<Entity, bool> _authoredSceneEntity;
 
         private Sprite[] _wallSprites;   // 4 variants from atlas
         private Sprite[] _floorSprites;  // 4 variants from atlas
@@ -443,6 +459,10 @@ namespace CavesOfOoo.Rendering
             switch (blueprintName)
             {
                 case "Grass":          return GroundMaterial.Grass;
+                // Native field rows retain the underlying grass field. Their
+                // state-aware crop sprite is chosen before this ground fallback.
+                case "CropRow":
+                case "RipeCropRow":    return GroundMaterial.Grass;
                 case "Sand":           return GroundMaterial.Sand;
                 case "SilverSand":     return GroundMaterial.Sand;
                 case "Bank":           return GroundMaterial.Bank;
@@ -543,6 +563,24 @@ namespace CavesOfOoo.Rendering
             LoadGroundSets();
 
             IsInitialized = true;
+        }
+
+        /// <summary>
+        /// The animated actor layer supplies this predicate. When it can draw the
+        /// top entity, this pass removes the displaced glyph/static sprite but still
+        /// paints the correct ground beneath it. Null preserves the legacy renderer.
+        /// </summary>
+        public void SetEntityVisualPredicate(Func<Entity, bool> predicate)
+        {
+            _entityVisualPredicate = predicate;
+        }
+
+        /// <summary>Authored scene claims suppress duplicate terrain while retaining
+        /// actual runtime actors and items. A failed/inactive presenter claims nothing.</summary>
+        public void SetAuthoredScenePredicates(Func<int, int, bool> claimsCell, Func<Entity, bool> ownsEntity)
+        {
+            _authoredSceneClaim = claimsCell;
+            _authoredSceneEntity = ownsEntity;
         }
 
         // PASS 15 R1 — sprites load via Resources (the assets live at
@@ -650,6 +688,17 @@ namespace CavesOfOoo.Rendering
                 var set = LoadTileSet(mat.ToString().ToLowerInvariant(), MacroSuffixes);
                 if (set.Length > 0) _groundMacroTiles[mat] = set;
             }
+
+            // The first remastered ground sheets are authored as contiguous 8x8
+            // macro fields. Prefer them when valid, while retaining the legacy
+            // sixteen-file sets as a safe fallback for every material.
+            var grassAtlas = LoadMacroAtlas("grass_macro8", 8);
+            if (grassAtlas.Length > 0)
+                _groundMacroTiles[GroundMaterial.Grass] = grassAtlas;
+            var tepuiAtlas = LoadMacroAtlas("tepui_macro8", 8);
+            if (tepuiAtlas.Length > 0)
+                _groundMacroTiles[GroundMaterial.Tepui] = tepuiAtlas;
+
             _waterMacroTiles = LoadTileSet("water", MacroSuffixes);
             _shoreEdgeTiles = LoadTileSet("water", SideSuffixes);
             _shoreOuterTiles = LoadTileSet("water", OuterSuffixes);
@@ -658,6 +707,44 @@ namespace CavesOfOoo.Rendering
             _vineWallTopTiles = LoadTileSet("vine_wall", WallVarSuffixes);
             _sandstoneWallTopTiles = LoadTileSet("sandstone_wall", WallVarSuffixes);
             _tepuiWallTopTiles     = LoadTileSet("tepui_wall", WallVarSuffixes);
+        }
+
+        private Tile[] LoadMacroAtlas(string file, int gridSize)
+        {
+            if (gridSize <= 0) return System.Array.Empty<Tile>();
+
+            var texture = Resources.Load<Texture2D>(SpriteRoot + file);
+            int expectedSize = gridSize * 16;
+            if (texture == null || texture.width != expectedSize || texture.height != expectedSize)
+                return System.Array.Empty<Tile>();
+
+            var tiles = new Tile[gridSize * gridSize];
+            string tilePrefix = file.EndsWith("_macro8", StringComparison.Ordinal)
+                ? file.Substring(0, file.Length - "_macro8".Length) + "_m"
+                : file + "_";
+            for (int row = 0; row < gridSize; row++)
+            {
+                for (int col = 0; col < gridSize; col++)
+                {
+                    int index = row * gridSize + col;
+                    var rect = new Rect(
+                        col * 16,
+                        texture.height - (row + 1) * 16,
+                        16,
+                        16);
+                    var sprite = Sprite.Create(
+                        texture,
+                        rect,
+                        new Vector2(0.5f, 0.5f),
+                        16f,
+                        0,
+                        SpriteMeshType.FullRect);
+                    sprite.name = tilePrefix + index.ToString("D2");
+                    sprite.hideFlags = HideFlags.DontSave;
+                    tiles[index] = MakeTile(sprite, sprite.name);
+                }
+            }
+            return tiles;
         }
 
         private static Tile MakeTile(Sprite s, string name)
@@ -941,6 +1028,36 @@ namespace CavesOfOoo.Rendering
                 ? cell.GetTopVisibleObject()
                 : TerrainEntityOf(cell);
 
+            if (_authoredSceneClaim != null && _authoredSceneClaim(x, zoneY))
+            {
+                if (topEntity == null || (_authoredSceneEntity != null && _authoredSceneEntity(topEntity))
+                    || (visible && _entityVisualPredicate != null && _entityVisualPredicate(topEntity)))
+                    ClaimMainCellWithoutOverlay(pos);
+                else
+                {
+                    // The authored ground is at order 3 with positive Z, so runtime
+                    // fallback glyphs/sprites here remain above it, unlike main order 0.
+                    Tile runtimeTile = visible ? TryEntityBasedTile(topEntity, x, zoneY) : null;
+                    if (runtimeTile == null) runtimeTile = _mainTilemap.GetTile<Tile>(pos);
+                    if (runtimeTile != null) ClaimCell(pos, runtimeTile, _mainTilemap.GetColor(pos));
+                }
+                return;
+            }
+
+            if (visible && topEntity != null
+                && _entityVisualPredicate != null
+                && _entityVisualPredicate(topEntity))
+            {
+                ClaimMainCellWithoutOverlay(pos);
+                PaintGroundUnderAscii(
+                    zone,
+                    x,
+                    zoneY,
+                    pos,
+                    topEntity.HasTag("Player") ? PlayerHighlightTint : tint);
+                return;
+            }
+
             // Pass 10 — entity-based pre-pass (chest/lantern/bed/corpse
             // + campfire): blueprint-keyed, glyph-independent.
             Tile entityTile = visible ? TryEntityBasedTile(topEntity, x, zoneY) : null;
@@ -966,9 +1083,9 @@ namespace CavesOfOoo.Rendering
             }
             else if (topGround != GroundMaterial.None
                 && _groundMacroTiles.TryGetValue(topGround, out var topMacro)
-                && topMacro.Length == 16)
+                && IsSquareMacroSet(topMacro))
             {
-                var mt = topMacro[MacroIndex(x, zoneY)];
+                var mt = topMacro[MacroIndex(x, zoneY, topMacro.Length)];
                 if (mt != null)
                 {
                     ClaimCell(pos, mt, tint);
@@ -1078,9 +1195,9 @@ namespace CavesOfOoo.Rendering
                 if (ground != GroundMaterial.None) break;
             }
             if (ground == GroundMaterial.None || ground == GroundMaterial.Water) return;
-            if (!_groundMacroTiles.TryGetValue(ground, out var macro) || macro.Length != 16) return;
+            if (!_groundMacroTiles.TryGetValue(ground, out var macro) || !IsSquareMacroSet(macro)) return;
 
-            var mt = macro[MacroIndex(x, zoneY)];
+            var mt = macro[MacroIndex(x, zoneY, macro.Length)];
             if (mt == null) return;
 
             if (_bgClaims.TryGetValue(pos, out var existingBg))
@@ -1208,6 +1325,23 @@ namespace CavesOfOoo.Rendering
             _mainTilemap.SetTile(pos, null);
         }
 
+        private void ClaimMainCellWithoutOverlay(Vector3Int pos)
+        {
+            Perf.ClaimsMade++;
+            if (!_claims.ContainsKey(pos))
+            {
+                _claims[pos] = new Claim
+                {
+                    Pos = pos,
+                    MainTile = _mainTilemap.GetTile(pos),
+                    MainColor = _mainTilemap.GetColor(pos),
+                };
+            }
+            _overlayTilemap.SetTile(pos, null);
+            _mainTilemap.SetTile(pos, null);
+            Perf.TilemapWrites += 2;
+        }
+
         /// <summary>
         /// Pass 10 — entity-based override. Returns a Tile when the
         /// cell hosts a chest / lantern blueprint, regardless of which
@@ -1225,7 +1359,9 @@ namespace CavesOfOoo.Rendering
         /// holds the glyph at that moment.</para>
         /// </summary>
         public bool WillRenderAsSprite(Entity entity)
-            => entity != null && TryEntityBasedTile(entity, 0, 0) != null;
+            => entity != null
+                && ((_entityVisualPredicate != null && _entityVisualPredicate(entity))
+                    || TryEntityBasedTile(entity, 0, 0) != null);
 
         private Tile TryEntityBasedTile(Entity topEntity, int x, int y)
         {
@@ -1379,6 +1515,16 @@ namespace CavesOfOoo.Rendering
             }
         }
 
+        /// <summary>Authored finite field rows use their saved harvest state,
+        /// while planted crops keep the existing moisture/growth stages.</summary>
+        public static CropSpriteKind ResolveFieldCropKind(Entity entity)
+        {
+            if(entity?.BlueprintName=="CropRow")return CropSpriteKind.Seed;
+            if(entity?.BlueprintName=="RipeCropRow")return entity.GetPart<FieldHarvestPart>()?.Harvested==true
+                ?CropSpriteKind.Seed:CropSpriteKind.Emberwheat;
+            return CropSpriteKind.None;
+        }
+
         private Tile ChooseTile(Zone zone, int x, int y, char glyph, Entity topEntity, out bool authoredColor)
         {
             authoredColor = false;
@@ -1462,7 +1608,9 @@ namespace CavesOfOoo.Rendering
                 int stage = -1;
                 if (bpName != null && bpName.EndsWith("Crop", System.StringComparison.Ordinal))
                     stage = topEntity?.GetPart<CropPart>()?.GrowthStage ?? -1;
-                switch (ResolveCropKind(bpName, stage))
+                var cropKind=ResolveFieldCropKind(topEntity);
+                if(cropKind==CropSpriteKind.None)cropKind=ResolveCropKind(bpName,stage);
+                switch (cropKind)
                 {
                     case CropSpriteKind.Seed:        if (_cropSeedTile != null) return _cropSeedTile; break;
                     case CropSpriteKind.CandyCarrot: if (_candyCarrotCropTile != null) return _candyCarrotCropTile; break;
@@ -1482,9 +1630,9 @@ namespace CavesOfOoo.Rendering
                 }
                 else if (ground != GroundMaterial.None
                     && _groundMacroTiles.TryGetValue(ground, out var macro)
-                    && macro.Length == 16)
+                    && IsSquareMacroSet(macro))
                 {
-                    var mt = macro[MacroIndex(x, y)];
+                    var mt = macro[MacroIndex(x, y, macro.Length)];
                     if (mt != null) return mt;
                 }
 
@@ -1569,9 +1717,9 @@ namespace CavesOfOoo.Rendering
                         && floorBp != "CampfireGroundMarker")
                         return null;
                     if (_groundMacroTiles.TryGetValue(GroundMaterial.Floor, out var stoneMacro)
-                        && stoneMacro.Length == 16)
+                        && IsSquareMacroSet(stoneMacro))
                     {
-                        var mt = stoneMacro[MacroIndex(x, y)];
+                        var mt = stoneMacro[MacroIndex(x, y, stoneMacro.Length)];
                         if (mt != null) { authoredColor = true; return mt; }
                     }
                     if (_floorTiles == null || _floorTiles.Length == 0) return null;
@@ -1848,9 +1996,24 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public static int MacroIndex(int x, int zoneY)
         {
-            int cx = ((x % 4) + 4) % 4;
-            int cy = ((zoneY % 4) + 4) % 4;
-            return cy * 4 + cx;
+            return MacroIndex(x, zoneY, 16);
+        }
+
+        public static int MacroIndex(int x, int zoneY, int tileCount)
+        {
+            int gridSize = Mathf.RoundToInt(Mathf.Sqrt(tileCount));
+            if (gridSize <= 0 || gridSize * gridSize != tileCount)
+                return 0;
+            int cx = ((x % gridSize) + gridSize) % gridSize;
+            int cy = ((zoneY % gridSize) + gridSize) % gridSize;
+            return cy * gridSize + cx;
+        }
+
+        private static bool IsSquareMacroSet(Tile[] tiles)
+        {
+            if (tiles == null || tiles.Length == 0) return false;
+            int side = Mathf.RoundToInt(Mathf.Sqrt(tiles.Length));
+            return side * side == tiles.Length;
         }
 
         /// <summary>
@@ -1890,7 +2053,7 @@ namespace CavesOfOoo.Rendering
             // Open water.
             if (_waterMacroTiles.Length == 16)
             {
-                var mt = _waterMacroTiles[MacroIndex(x, zoneY)];
+                var mt = _waterMacroTiles[MacroIndex(x, zoneY, _waterMacroTiles.Length)];
                 if (mt != null) return mt;
             }
             return null;
@@ -1975,4 +2138,3 @@ namespace CavesOfOoo.Rendering
         }
     }
 }
-

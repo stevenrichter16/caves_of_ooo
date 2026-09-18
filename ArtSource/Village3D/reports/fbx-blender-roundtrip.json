@@ -1,0 +1,394 @@
+{
+  "status": "Blender import passed; Unity rig/material behavior still requires separate verification",
+  "models": [
+    {
+      "id": "oak-door",
+      "meshCount": 1,
+      "materialSlots": [
+        "VillagePalette"
+      ],
+      "rigCount": 0,
+      "sockets": [],
+      "actions": [],
+      "meshes": [
+        {
+          "name": "oak-door__Geometry",
+          "vertices": 304,
+          "faces": 278,
+          "uvLayers": 1,
+          "armatureModifiers": 0,
+          "vertexGroups": 0
+        }
+      ]
+    },
+    {
+      "id": "central-well",
+      "meshCount": 2,
+      "materialSlots": [
+        "VillagePalette",
+        "VillageWater"
+      ],
+      "rigCount": 0,
+      "sockets": [],
+      "actions": [],
+      "meshes": [
+        {
+          "name": "central-well__Geometry",
+          "vertices": 2054,
+          "faces": 1591,
+          "uvLayers": 1,
+          "armatureModifiers": 0,
+          "vertexGroups": 0
+        },
+        {
+          "name": "central-well__Water",
+          "vertices": 96,
+          "faces": 50,
+          "uvLayers": 1,
+          "armatureModifiers": 0,
+          "vertexGroups": 0
+        }
+      ]
+    },
+    {
+      "id": "keeper-gatehouse-shell",
+      "meshCount": 1,
+      "materialSlots": [
+        "VillagePalette"
+      ],
+      "rigCount": 0,
+      "sockets": [],
+      "actions": [],
+      "meshes": [
+        {
+          "name": "keeper-gatehouse-shell__Geometry",
+          "vertices": 2208,
+          "faces": 2070,
+          "uvLayers": 1,
+          "armatureModifiers": 0,
+          "vertexGroups": 0
+        }
+      ]
+    },
+    {
+      "id": "character-teal",
+      "meshCount": 1,
+      "materialSlots": [
+        "VillagePalette"
+      ],
+      "rigCount": 1,
+      "sockets": [
+        "Equipment.Back",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Head"
+      ],
+      "actions": [
+        {
+          "name": "character-teal__Rig|Attack",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "character-teal__Rig|Hit",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "character-teal__Rig|Idle",
+          "range": [
+            1.0,
+            49.0
+          ]
+        },
+        {
+          "name": "character-teal__Rig|Interact",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "character-teal__Rig|Walk",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "character-teal|Attack",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "character-teal|Hit",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "character-teal|Idle",
+          "range": [
+            1.0,
+            49.0
+          ]
+        },
+        {
+          "name": "character-teal|Interact",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "character-teal|Walk",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "Equipment.Back|Attack",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "Equipment.Back|Hit",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "Equipment.Back|Idle",
+          "range": [
+            1.0,
+            49.0
+          ]
+        },
+        {
+          "name": "Equipment.Back|Interact",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "Equipment.Back|Walk",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "Equipment.Hand.L|Attack",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "Equipment.Hand.L|Hit",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "Equipment.Hand.L|Idle",
+          "range": [
+            1.0,
+            49.0
+          ]
+        },
+        {
+          "name": "Equipment.Hand.L|Interact",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "Equipment.Hand.L|Walk",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "Equipment.Hand.R|Attack",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "Equipment.Hand.R|Hit",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "Equipment.Hand.R|Idle",
+          "range": [
+            1.0,
+            49.0
+          ]
+        },
+        {
+          "name": "Equipment.Hand.R|Interact",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "Equipment.Hand.R|Walk",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "Equipment.Head|Attack",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "Equipment.Head|Hit",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "Equipment.Head|Idle",
+          "range": [
+            1.0,
+            49.0
+          ]
+        },
+        {
+          "name": "Equipment.Head|Interact",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "Equipment.Head|Walk",
+          "range": [
+            1.0,
+            25.0
+          ]
+        }
+      ],
+      "meshes": [
+        {
+          "name": "character-teal__Geometry",
+          "vertices": 548,
+          "faces": 744,
+          "uvLayers": 1,
+          "armatureModifiers": 1,
+          "vertexGroups": 8
+        }
+      ],
+      "animationTakes": [
+        "Attack",
+        "Hit",
+        "Idle",
+        "Interact",
+        "Walk"
+      ],
+      "rigActions": [
+        {
+          "name": "character-teal__Rig|Attack",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "character-teal__Rig|Hit",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "character-teal__Rig|Idle",
+          "range": [
+            1.0,
+            49.0
+          ]
+        },
+        {
+          "name": "character-teal__Rig|Interact",
+          "range": [
+            1.0,
+            25.0
+          ]
+        },
+        {
+          "name": "character-teal__Rig|Walk",
+          "range": [
+            1.0,
+            25.0
+          ]
+        }
+      ]
+    },
+    {
+      "id": "equipment-blade",
+      "meshCount": 1,
+      "materialSlots": [
+        "VillagePalette"
+      ],
+      "rigCount": 0,
+      "sockets": [],
+      "actions": [],
+      "meshes": [
+        {
+          "name": "equipment-blade__Geometry",
+          "vertices": 80,
+          "faces": 70,
+          "uvLayers": 1,
+          "armatureModifiers": 0,
+          "vertexGroups": 0
+        }
+      ]
+    },
+    {
+      "id": "equipment-pack",
+      "meshCount": 1,
+      "materialSlots": [
+        "VillagePalette"
+      ],
+      "rigCount": 0,
+      "sockets": [],
+      "actions": [],
+      "meshes": [
+        {
+          "name": "equipment-pack__Geometry",
+          "vertices": 160,
+          "faces": 150,
+          "uvLayers": 1,
+          "armatureModifiers": 0,
+          "vertexGroups": 0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,634 @@
+{
+    "status": "PASS",
+    "runId": "a2870f7316fe4c73a3821a6b0e0140d3",
+    "sourceSha256": "3f93199d43e71193da1ff48cf4b8592f100946991e1da247ac000c37bb7955ec",
+    "error": "",
+    "graphicsApi": "Metal",
+    "gpu": "Apple M5",
+    "unityVersion": "6000.3.4f1",
+    "startedUtc": "2026-09-11T14:19:49.4527790Z",
+    "finishedUtc": "2026-09-11T14:19:49.9823940Z",
+    "reportPath": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/gpu.json",
+    "width": 256,
+    "height": 256,
+    "activeScenePreserved": true,
+    "sceneDirtyFlagsPreserved": true,
+    "renderTextureActiveRestored": true,
+    "asyncCompilationRestored": true,
+    "ownedObjectsDisposed": true,
+    "unexpectedLogs": [],
+    "honestyBounds": [
+        "Actual URP draw/readback of the two production spell shaders on owned quad/fan fixtures at physical XZ cells. No gameplay commands, user cameras, imported mesh mutations or saves.",
+        "Dark positive controls keep fog alpha visible while RGB is black and ordinary ambient/sun terms are zero; emission-zero changes only that material parameter.",
+        "Split masks, memory/unseen alpha, physical out-of-world positions and missing/wrong-size textures verify fail-closed per-fragment visibility.",
+        "SoftGlow gradient is interpolated authored vertex alpha, paired with identical geometry whose alpha is flattened to one. BaseColor-alpha zero separately suppresses it.",
+        "Depth-write test deliberately renders invisible glow before an opaque blue rear plane, paired with a known opaque front-depth writer; this forces a detectable depth-state result.",
+        "These material contracts do not establish actual spell composition, occupied-cell placement, native player inputs, motion readability or performance. Existing imported-art and native gameplay probes remain separate gates."
+    ],
+    "shaderPaths": [
+        "Assets/Art3D/SpellFx/Shaders/Spell3DLuminous.shader",
+        "Assets/Art3D/SpellFx/Shaders/Spell3DSoftGlow.shader"
+    ],
+    "cases": [
+        {
+            "id": "Luminous:self-light-dark",
+            "error": "",
+            "passed": true,
+            "positivePixels": 25600,
+            "negativePixels": 0,
+            "counterPixels": 0,
+            "centerMean": 0.0,
+            "middleMean": 0.0,
+            "edgeMean": 0.0,
+            "framePaths": [
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_self-light-dark_visible_dark.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_self-light-dark_emission_zero.png"
+            ],
+            "frames": [
+                {
+                    "name": "visible_dark",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_self-light-dark_visible_dark.png",
+                    "sha256": "3b081faa401e03ad96330b0444a8a924b14f97881c1c7eaa65f41f8c90c7b23d",
+                    "coloredPixels": 25600
+                },
+                {
+                    "name": "emission_zero",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_self-light-dark_emission_zero.png",
+                    "sha256": "2e6f6f9919cbb1a9576bbaf7aecb65e4cbef5c8b3340bf30087799c004e46a97",
+                    "coloredPixels": 0
+                }
+            ]
+        },
+        {
+            "id": "Luminous:split-fog",
+            "error": "",
+            "passed": true,
+            "positivePixels": 12800,
+            "negativePixels": 0,
+            "counterPixels": 0,
+            "centerMean": 0.0,
+            "middleMean": 0.0,
+            "edgeMean": 0.0,
+            "framePaths": [
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_split-fog_visible_dark.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_split-fog_physical_split.png"
+            ],
+            "frames": [
+                {
+                    "name": "visible_dark",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_split-fog_visible_dark.png",
+                    "sha256": "3b081faa401e03ad96330b0444a8a924b14f97881c1c7eaa65f41f8c90c7b23d",
+                    "coloredPixels": 25600
+                },
+                {
+                    "name": "physical_split",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_split-fog_physical_split.png",
+                    "sha256": "ccbac2020d7df2a92e26dc3038ca52a96d46f169392fe3c2fffe66795ec30d2e",
+                    "coloredPixels": 12800
+                }
+            ]
+        },
+        {
+            "id": "Luminous:memory",
+            "error": "",
+            "passed": true,
+            "positivePixels": 25600,
+            "negativePixels": 0,
+            "counterPixels": 0,
+            "centerMean": 0.0,
+            "middleMean": 0.0,
+            "edgeMean": 0.0,
+            "framePaths": [
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_memory_visible_dark.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_memory_memory.png"
+            ],
+            "frames": [
+                {
+                    "name": "visible_dark",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_memory_visible_dark.png",
+                    "sha256": "3b081faa401e03ad96330b0444a8a924b14f97881c1c7eaa65f41f8c90c7b23d",
+                    "coloredPixels": 25600
+                },
+                {
+                    "name": "memory",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_memory_memory.png",
+                    "sha256": "2e6f6f9919cbb1a9576bbaf7aecb65e4cbef5c8b3340bf30087799c004e46a97",
+                    "coloredPixels": 0
+                }
+            ]
+        },
+        {
+            "id": "Luminous:unseen",
+            "error": "",
+            "passed": true,
+            "positivePixels": 25600,
+            "negativePixels": 0,
+            "counterPixels": 0,
+            "centerMean": 0.0,
+            "middleMean": 0.0,
+            "edgeMean": 0.0,
+            "framePaths": [
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_unseen_visible_dark.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_unseen_unseen.png"
+            ],
+            "frames": [
+                {
+                    "name": "visible_dark",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_unseen_visible_dark.png",
+                    "sha256": "3b081faa401e03ad96330b0444a8a924b14f97881c1c7eaa65f41f8c90c7b23d",
+                    "coloredPixels": 25600
+                },
+                {
+                    "name": "unseen",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_unseen_unseen.png",
+                    "sha256": "2e6f6f9919cbb1a9576bbaf7aecb65e4cbef5c8b3340bf30087799c004e46a97",
+                    "coloredPixels": 0
+                }
+            ]
+        },
+        {
+            "id": "Luminous:bounds",
+            "error": "",
+            "passed": true,
+            "positivePixels": 25600,
+            "negativePixels": 0,
+            "counterPixels": 0,
+            "centerMean": 0.0,
+            "middleMean": 0.0,
+            "edgeMean": 0.0,
+            "framePaths": [
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_bounds_visible_dark.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_bounds_outside_0.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_bounds_outside_1.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_bounds_outside_2.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_bounds_outside_3.png"
+            ],
+            "frames": [
+                {
+                    "name": "visible_dark",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_bounds_visible_dark.png",
+                    "sha256": "3b081faa401e03ad96330b0444a8a924b14f97881c1c7eaa65f41f8c90c7b23d",
+                    "coloredPixels": 25600
+                },
+                {
+                    "name": "outside_0",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_bounds_outside_0.png",
+                    "sha256": "2e6f6f9919cbb1a9576bbaf7aecb65e4cbef5c8b3340bf30087799c004e46a97",
+                    "coloredPixels": 0
+                },
+                {
+                    "name": "outside_1",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_bounds_outside_1.png",
+                    "sha256": "2e6f6f9919cbb1a9576bbaf7aecb65e4cbef5c8b3340bf30087799c004e46a97",
+                    "coloredPixels": 0
+                },
+                {
+                    "name": "outside_2",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_bounds_outside_2.png",
+                    "sha256": "2e6f6f9919cbb1a9576bbaf7aecb65e4cbef5c8b3340bf30087799c004e46a97",
+                    "coloredPixels": 0
+                },
+                {
+                    "name": "outside_3",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_bounds_outside_3.png",
+                    "sha256": "2e6f6f9919cbb1a9576bbaf7aecb65e4cbef5c8b3340bf30087799c004e46a97",
+                    "coloredPixels": 0
+                }
+            ]
+        },
+        {
+            "id": "Luminous:missing-fog",
+            "error": "",
+            "passed": true,
+            "positivePixels": 25600,
+            "negativePixels": 0,
+            "counterPixels": 0,
+            "centerMean": 0.0,
+            "middleMean": 0.0,
+            "edgeMean": 0.0,
+            "framePaths": [
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_missing-fog_visible_dark.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_missing-fog_missing_binding.png"
+            ],
+            "frames": [
+                {
+                    "name": "visible_dark",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_missing-fog_visible_dark.png",
+                    "sha256": "3b081faa401e03ad96330b0444a8a924b14f97881c1c7eaa65f41f8c90c7b23d",
+                    "coloredPixels": 25600
+                },
+                {
+                    "name": "missing_binding",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_missing-fog_missing_binding.png",
+                    "sha256": "2e6f6f9919cbb1a9576bbaf7aecb65e4cbef5c8b3340bf30087799c004e46a97",
+                    "coloredPixels": 0
+                }
+            ]
+        },
+        {
+            "id": "Luminous:wrong-dimensions",
+            "error": "",
+            "passed": true,
+            "positivePixels": 25600,
+            "negativePixels": 0,
+            "counterPixels": 0,
+            "centerMean": 0.0,
+            "middleMean": 0.0,
+            "edgeMean": 0.0,
+            "framePaths": [
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_wrong-dimensions_visible_dark.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_wrong-dimensions_16x16_binding.png"
+            ],
+            "frames": [
+                {
+                    "name": "visible_dark",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_wrong-dimensions_visible_dark.png",
+                    "sha256": "3b081faa401e03ad96330b0444a8a924b14f97881c1c7eaa65f41f8c90c7b23d",
+                    "coloredPixels": 25600
+                },
+                {
+                    "name": "16x16_binding",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_wrong-dimensions_16x16_binding.png",
+                    "sha256": "2e6f6f9919cbb1a9576bbaf7aecb65e4cbef5c8b3340bf30087799c004e46a97",
+                    "coloredPixels": 0
+                }
+            ]
+        },
+        {
+            "id": "Luminous:opaque-occlusion",
+            "error": "",
+            "passed": true,
+            "positivePixels": 25600,
+            "negativePixels": 0,
+            "counterPixels": 0,
+            "centerMean": 0.0,
+            "middleMean": 0.0,
+            "edgeMean": 0.0,
+            "framePaths": [
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_opaque-occlusion_visible_dark.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_opaque-occlusion_opaque_front.png"
+            ],
+            "frames": [
+                {
+                    "name": "visible_dark",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_opaque-occlusion_visible_dark.png",
+                    "sha256": "3b081faa401e03ad96330b0444a8a924b14f97881c1c7eaa65f41f8c90c7b23d",
+                    "coloredPixels": 25600
+                },
+                {
+                    "name": "opaque_front",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/Luminous_opaque-occlusion_opaque_front.png",
+                    "sha256": "2e6f6f9919cbb1a9576bbaf7aecb65e4cbef5c8b3340bf30087799c004e46a97",
+                    "coloredPixels": 0
+                }
+            ]
+        },
+        {
+            "id": "SoftGlow:self-light-dark",
+            "error": "",
+            "passed": true,
+            "positivePixels": 25600,
+            "negativePixels": 0,
+            "counterPixels": 0,
+            "centerMean": 0.0,
+            "middleMean": 0.0,
+            "edgeMean": 0.0,
+            "framePaths": [
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_self-light-dark_visible_dark.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_self-light-dark_emission_zero.png"
+            ],
+            "frames": [
+                {
+                    "name": "visible_dark",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_self-light-dark_visible_dark.png",
+                    "sha256": "aadad4952ed84d9e7b5065d365bf570eff7136fd966bbd3882b4e2536e9206ef",
+                    "coloredPixels": 25600
+                },
+                {
+                    "name": "emission_zero",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_self-light-dark_emission_zero.png",
+                    "sha256": "2e6f6f9919cbb1a9576bbaf7aecb65e4cbef5c8b3340bf30087799c004e46a97",
+                    "coloredPixels": 0
+                }
+            ]
+        },
+        {
+            "id": "SoftGlow:split-fog",
+            "error": "",
+            "passed": true,
+            "positivePixels": 12800,
+            "negativePixels": 0,
+            "counterPixels": 0,
+            "centerMean": 0.0,
+            "middleMean": 0.0,
+            "edgeMean": 0.0,
+            "framePaths": [
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_split-fog_visible_dark.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_split-fog_physical_split.png"
+            ],
+            "frames": [
+                {
+                    "name": "visible_dark",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_split-fog_visible_dark.png",
+                    "sha256": "aadad4952ed84d9e7b5065d365bf570eff7136fd966bbd3882b4e2536e9206ef",
+                    "coloredPixels": 25600
+                },
+                {
+                    "name": "physical_split",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_split-fog_physical_split.png",
+                    "sha256": "fa390719f22aed2315138466bbcaf47a988a0512ff774cbf796f14ead0a29fc1",
+                    "coloredPixels": 12800
+                }
+            ]
+        },
+        {
+            "id": "SoftGlow:memory",
+            "error": "",
+            "passed": true,
+            "positivePixels": 25600,
+            "negativePixels": 0,
+            "counterPixels": 0,
+            "centerMean": 0.0,
+            "middleMean": 0.0,
+            "edgeMean": 0.0,
+            "framePaths": [
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_memory_visible_dark.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_memory_memory.png"
+            ],
+            "frames": [
+                {
+                    "name": "visible_dark",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_memory_visible_dark.png",
+                    "sha256": "aadad4952ed84d9e7b5065d365bf570eff7136fd966bbd3882b4e2536e9206ef",
+                    "coloredPixels": 25600
+                },
+                {
+                    "name": "memory",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_memory_memory.png",
+                    "sha256": "2e6f6f9919cbb1a9576bbaf7aecb65e4cbef5c8b3340bf30087799c004e46a97",
+                    "coloredPixels": 0
+                }
+            ]
+        },
+        {
+            "id": "SoftGlow:unseen",
+            "error": "",
+            "passed": true,
+            "positivePixels": 25600,
+            "negativePixels": 0,
+            "counterPixels": 0,
+            "centerMean": 0.0,
+            "middleMean": 0.0,
+            "edgeMean": 0.0,
+            "framePaths": [
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_unseen_visible_dark.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_unseen_unseen.png"
+            ],
+            "frames": [
+                {
+                    "name": "visible_dark",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_unseen_visible_dark.png",
+                    "sha256": "aadad4952ed84d9e7b5065d365bf570eff7136fd966bbd3882b4e2536e9206ef",
+                    "coloredPixels": 25600
+                },
+                {
+                    "name": "unseen",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_unseen_unseen.png",
+                    "sha256": "2e6f6f9919cbb1a9576bbaf7aecb65e4cbef5c8b3340bf30087799c004e46a97",
+                    "coloredPixels": 0
+                }
+            ]
+        },
+        {
+            "id": "SoftGlow:bounds",
+            "error": "",
+            "passed": true,
+            "positivePixels": 25600,
+            "negativePixels": 0,
+            "counterPixels": 0,
+            "centerMean": 0.0,
+            "middleMean": 0.0,
+            "edgeMean": 0.0,
+            "framePaths": [
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_bounds_visible_dark.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_bounds_outside_0.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_bounds_outside_1.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_bounds_outside_2.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_bounds_outside_3.png"
+            ],
+            "frames": [
+                {
+                    "name": "visible_dark",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_bounds_visible_dark.png",
+                    "sha256": "aadad4952ed84d9e7b5065d365bf570eff7136fd966bbd3882b4e2536e9206ef",
+                    "coloredPixels": 25600
+                },
+                {
+                    "name": "outside_0",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_bounds_outside_0.png",
+                    "sha256": "2e6f6f9919cbb1a9576bbaf7aecb65e4cbef5c8b3340bf30087799c004e46a97",
+                    "coloredPixels": 0
+                },
+                {
+                    "name": "outside_1",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_bounds_outside_1.png",
+                    "sha256": "2e6f6f9919cbb1a9576bbaf7aecb65e4cbef5c8b3340bf30087799c004e46a97",
+                    "coloredPixels": 0
+                },
+                {
+                    "name": "outside_2",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_bounds_outside_2.png",
+                    "sha256": "2e6f6f9919cbb1a9576bbaf7aecb65e4cbef5c8b3340bf30087799c004e46a97",
+                    "coloredPixels": 0
+                },
+                {
+                    "name": "outside_3",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_bounds_outside_3.png",
+                    "sha256": "2e6f6f9919cbb1a9576bbaf7aecb65e4cbef5c8b3340bf30087799c004e46a97",
+                    "coloredPixels": 0
+                }
+            ]
+        },
+        {
+            "id": "SoftGlow:missing-fog",
+            "error": "",
+            "passed": true,
+            "positivePixels": 25600,
+            "negativePixels": 0,
+            "counterPixels": 0,
+            "centerMean": 0.0,
+            "middleMean": 0.0,
+            "edgeMean": 0.0,
+            "framePaths": [
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_missing-fog_visible_dark.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_missing-fog_missing_binding.png"
+            ],
+            "frames": [
+                {
+                    "name": "visible_dark",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_missing-fog_visible_dark.png",
+                    "sha256": "aadad4952ed84d9e7b5065d365bf570eff7136fd966bbd3882b4e2536e9206ef",
+                    "coloredPixels": 25600
+                },
+                {
+                    "name": "missing_binding",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_missing-fog_missing_binding.png",
+                    "sha256": "2e6f6f9919cbb1a9576bbaf7aecb65e4cbef5c8b3340bf30087799c004e46a97",
+                    "coloredPixels": 0
+                }
+            ]
+        },
+        {
+            "id": "SoftGlow:wrong-dimensions",
+            "error": "",
+            "passed": true,
+            "positivePixels": 25600,
+            "negativePixels": 0,
+            "counterPixels": 0,
+            "centerMean": 0.0,
+            "middleMean": 0.0,
+            "edgeMean": 0.0,
+            "framePaths": [
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_wrong-dimensions_visible_dark.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_wrong-dimensions_16x16_binding.png"
+            ],
+            "frames": [
+                {
+                    "name": "visible_dark",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_wrong-dimensions_visible_dark.png",
+                    "sha256": "aadad4952ed84d9e7b5065d365bf570eff7136fd966bbd3882b4e2536e9206ef",
+                    "coloredPixels": 25600
+                },
+                {
+                    "name": "16x16_binding",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_wrong-dimensions_16x16_binding.png",
+                    "sha256": "2e6f6f9919cbb1a9576bbaf7aecb65e4cbef5c8b3340bf30087799c004e46a97",
+                    "coloredPixels": 0
+                }
+            ]
+        },
+        {
+            "id": "SoftGlow:opaque-occlusion",
+            "error": "",
+            "passed": true,
+            "positivePixels": 25600,
+            "negativePixels": 0,
+            "counterPixels": 0,
+            "centerMean": 0.0,
+            "middleMean": 0.0,
+            "edgeMean": 0.0,
+            "framePaths": [
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_opaque-occlusion_visible_dark.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_opaque-occlusion_opaque_front.png"
+            ],
+            "frames": [
+                {
+                    "name": "visible_dark",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_opaque-occlusion_visible_dark.png",
+                    "sha256": "aadad4952ed84d9e7b5065d365bf570eff7136fd966bbd3882b4e2536e9206ef",
+                    "coloredPixels": 25600
+                },
+                {
+                    "name": "opaque_front",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_opaque-occlusion_opaque_front.png",
+                    "sha256": "2e6f6f9919cbb1a9576bbaf7aecb65e4cbef5c8b3340bf30087799c004e46a97",
+                    "coloredPixels": 0
+                }
+            ]
+        },
+        {
+            "id": "SoftGlow:vertex-gradient",
+            "error": "",
+            "passed": true,
+            "positivePixels": 24336,
+            "negativePixels": 0,
+            "counterPixels": 25596,
+            "centerMean": 0.44690191745758059,
+            "middleMean": 0.22509805858135224,
+            "edgeMean": 0.0313725508749485,
+            "framePaths": [
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_vertex-gradient_authored_vertex_gradient.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_vertex-gradient_flattened_alpha_counter.png"
+            ],
+            "frames": [
+                {
+                    "name": "authored_vertex_gradient",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_vertex-gradient_authored_vertex_gradient.png",
+                    "sha256": "764a392f8fdb1c046a7afbead5e1f30b124645eb82b4d9092f03e97424caaddc",
+                    "coloredPixels": 24336
+                },
+                {
+                    "name": "flattened_alpha_counter",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_vertex-gradient_flattened_alpha_counter.png",
+                    "sha256": "aadad4952ed84d9e7b5065d365bf570eff7136fd966bbd3882b4e2536e9206ef",
+                    "coloredPixels": 25600
+                }
+            ]
+        },
+        {
+            "id": "SoftGlow:alpha-zero",
+            "error": "",
+            "passed": true,
+            "positivePixels": 24336,
+            "negativePixels": 0,
+            "counterPixels": 0,
+            "centerMean": 0.0,
+            "middleMean": 0.0,
+            "edgeMean": 0.0,
+            "framePaths": [
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_alpha-zero_alpha_one.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_alpha-zero_alpha_zero.png"
+            ],
+            "frames": [
+                {
+                    "name": "alpha_one",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_alpha-zero_alpha_one.png",
+                    "sha256": "764a392f8fdb1c046a7afbead5e1f30b124645eb82b4d9092f03e97424caaddc",
+                    "coloredPixels": 24336
+                },
+                {
+                    "name": "alpha_zero",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_alpha-zero_alpha_zero.png",
+                    "sha256": "2e6f6f9919cbb1a9576bbaf7aecb65e4cbef5c8b3340bf30087799c004e46a97",
+                    "coloredPixels": 0
+                }
+            ]
+        },
+        {
+            "id": "SoftGlow:no-depth-write",
+            "error": "",
+            "passed": true,
+            "positivePixels": 25600,
+            "negativePixels": 0,
+            "counterPixels": 25600,
+            "centerMean": 0.0,
+            "middleMean": 0.0,
+            "edgeMean": 0.0,
+            "framePaths": [
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_no-depth-write_opaque_rear_reference.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_no-depth-write_invisible_glow_before_rear.png",
+                "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_no-depth-write_opaque_depth_writer_counter.png"
+            ],
+            "frames": [
+                {
+                    "name": "opaque_rear_reference",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_no-depth-write_opaque_rear_reference.png",
+                    "sha256": "ee4689cd1c8f0c0a2f304f914f31bc45255735a9dfa028298a58e3b246f57d4b",
+                    "coloredPixels": 25600
+                },
+                {
+                    "name": "invisible_glow_before_rear",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_no-depth-write_invisible_glow_before_rear.png",
+                    "sha256": "ee4689cd1c8f0c0a2f304f914f31bc45255735a9dfa028298a58e3b246f57d4b",
+                    "coloredPixels": 25600
+                },
+                {
+                    "name": "opaque_depth_writer_counter",
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R04-readability-gpu/SoftGlow_no-depth-write_opaque_depth_writer_counter.png",
+                    "sha256": "2e6f6f9919cbb1a9576bbaf7aecb65e4cbef5c8b3340bf30087799c004e46a97",
+                    "coloredPixels": 0
+                }
+            ]
+        }
+    ]
+}

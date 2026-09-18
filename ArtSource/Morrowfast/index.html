@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Morrowfast · Caves of Ooo</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="scene.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <header class="masthead">
+        <div>
+          <p class="eyebrow">
+            Caves of Ooo <span>/</span> The southern approach
+          </p>
+          <h1 id="scene-title">Morrowfast</h1>
+          <p class="intro">
+            A small fellowship keeps watch beneath the Felling. Between their
+            houses, rain is collected, cords are mended, and visitors are
+            remembered.
+          </p>
+        </div>
+        <div class="header-meta">
+          <span class="preview-badge">Component workbench</span
+          ><a
+            id="source-link"
+            href="reference.png"
+            target="_blank"
+            rel="noopener"
+            >Original artwork <span aria-hidden="true">↗</span></a
+          >
+        </div>
+      </header>
+      <div id="error" class="error" role="alert" hidden></div>
+      <section
+        class="workbench"
+        aria-label="Interactive Morrowfast scene study"
+      >
+        <div class="scene-column">
+          <div class="toolbar">
+            <div class="segmented" aria-label="Interaction mode">
+              <button id="mode-walk" aria-pressed="true">Walk</button
+              ><button id="mode-inspect" aria-pressed="false">Inspect</button>
+            </div>
+            <p id="mode-help">WASD / arrows · click ground to walk</p>
+            <button id="reset" class="quiet">Reset scene</button>
+          </div>
+          <div class="scene-frame">
+            <canvas
+              id="scene"
+              width="1536"
+              height="1024"
+              tabindex="0"
+              aria-label="Morrowfast component scene. Use arrow keys or WASD to move the surveyor; Inspect mode selects individual objects."
+            ></canvas>
+            <div id="loading" class="loading" role="status">
+              <span class="spinner"></span>Preparing the southern approach…
+            </div>
+            <span class="compass" aria-hidden="true"
+              >N ↑<small>THE FELLING</small></span
+            >
+          </div>
+          <div class="caption">
+            <p id="status-message" role="status">
+              Loading source layers and reconstructed surfaces…
+            </p>
+            <p id="surveyor-position">Surveyor —</p>
+          </div>
+          <div class="comparison-bar">
+            <div class="segmented" aria-label="Artwork comparison">
+              <button id="view-reconstruction" aria-pressed="true">
+                Reconstruction</button
+              ><button id="view-original" aria-pressed="false">Original</button
+              ><button id="view-base" aria-pressed="false">Backing</button>
+            </div>
+            <div class="options">
+              <label><input id="masks" type="checkbox" />Component masks</label
+              ><label><input id="grid" type="checkbox" />Walkable ground</label>
+            </div>
+          </div>
+          <div class="scene-actions">
+            <button id="open-interiors">Lift all roofs</button
+            ><button id="lift-outdoors">Lift outdoor props</button
+            ><button id="restore-all">Restore lifted components</button>
+          </div>
+          <div class="note">
+            <span class="note-symbol" aria-hidden="true">◇</span>
+            <div>
+              <p id="build-summary">Reading the scene inventory.</p>
+              <p class="subtle">
+                The small diamond is a surveyor for this art study. Roofs,
+                hidden rooms and cleared ground can be inspected here; native
+                Unity gameplay is a separate integration.
+              </p>
+            </div>
+          </div>
+          <details class="evidence">
+            <summary>How this scene is reconstructed</summary>
+            <p>
+              Individual source components are drawn over reconstructed backing
+              surfaces. Lifting an owner hides all of its visual layers and
+              removes its dynamic collision. Roofs reveal furnished interiors;
+              doors open a real gap in the preview’s walking mask. A blocking
+              component cannot be restored onto the surveyor. Lifting a bridge
+              closes its creek crossing and is refused while the surveyor or a
+              queued route depends on it.
+            </p>
+            <p>
+              The original image is the visual reference. Interiors and ground
+              hidden in that image are newly inferred surfaces. The comparison
+              buttons pause movement and leave your component state intact.
+            </p>
+            <p>
+              Character and shop cards show authored scene design. They do not
+              simulate purchases, currency, native AI, quests or faction
+              reputation.
+            </p>
+            <div class="state-tools">
+              <button id="export-state">Export workbench state</button
+              ><label class="file-button"
+                >Import state<input
+                  id="import-state"
+                  type="file"
+                  accept="application/json,.json"
+              /></label>
+            </div>
+            <p class="subtle">
+              Changes are saved only to this browser’s local workbench. Reset
+              returns the intact scene.
+            </p>
+          </details>
+        </div>
+        <aside class="inspector" aria-label="Scene component inspector">
+          <div class="inventory-heading">
+            <div>
+              <p class="eyebrow">Separate pieces, real surfaces</p>
+              <h2>Components <span id="component-count">0</span></h2>
+            </div>
+            <span id="hidden-count" class="count-tag">0 lifted</span>
+          </div>
+          <label class="sr-only" for="search">Search components</label
+          ><input
+            id="search"
+            type="search"
+            autocomplete="off"
+            placeholder="Find a house, keeper, mushroom…"
+          />
+          <div
+            id="component-list"
+            class="component-list"
+            role="group"
+            aria-label="Selectable scene components"
+          ></div>
+          <section class="selection" aria-label="Selected component">
+            <p class="eyebrow">Selected component</p>
+            <h3 id="selected-name">Choose a component</h3>
+            <p id="selected-state" class="subtle">
+              Select the artwork or a name above.
+            </p>
+            <div class="preview-wrap">
+              <canvas id="object-preview" width="1" height="1" hidden></canvas>
+            </div>
+            <p id="description">
+              Inspect the architecture, meet the watch, or lift a roof to reveal
+              the room beneath.
+            </p>
+            <div id="actions" class="object-actions"></div>
+            <p id="component-meta" class="fine-print"></p>
+          </section>
+          <section
+            id="conversation"
+            class="conversation"
+            aria-label="Authored character preview"
+            hidden
+          >
+            <div class="card-heading">
+              <span class="eyebrow">Character / shop preview</span
+              ><button
+                id="close-card"
+                class="quiet"
+                aria-label="Close character preview"
+              >
+                ×
+              </button>
+            </div>
+            <h3 id="card-title"></h3>
+            <p id="card-text"></p>
+            <div id="card-stock"></div>
+            <p class="fine-print">
+              Authored design card · no native gameplay transaction
+            </p>
+          </section>
+        </aside>
+      </section>
+      <footer>
+        <p>Overworld (3,6) · immediately south of the Felling</p>
+        <p>Source components + inferred interiors</p>
+      </footer>
+      <p id="announcement" class="sr-only" aria-live="polite"></p>
+    </main>
+  </body>
+</html>

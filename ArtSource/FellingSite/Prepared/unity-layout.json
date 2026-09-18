@@ -1,0 +1,866 @@
+{
+  "schemaVersion": 1,
+  "id": "felling-site",
+  "title": "The Felling-Site",
+  "reference": {
+    "path": "reference.png",
+    "width": 1536,
+    "height": 1024
+  },
+  "grid": {
+    "zoneWidth": 80,
+    "zoneHeight": 25,
+    "regionOrigin": [
+      16,
+      0
+    ],
+    "regionSize": [
+      48,
+      25
+    ],
+    "artPixelsPerCell": 32,
+    "imageGroundOrigin": [
+      0,
+      224
+    ]
+  },
+  "camera": {
+    "worldCenter": [
+      40,
+      16
+    ],
+    "orthographicSize": 16,
+    "referenceAspect": 1.5,
+    "artWorldBounds": [
+      16,
+      0,
+      48,
+      32
+    ],
+    "note": "Gameplay viewport only; actual HUD and camera-follow integration pending."
+  },
+  "spawn": {
+    "cell": [
+      40,
+      20
+    ],
+    "imageCenter": [
+      784.0,
+      880.0
+    ]
+  },
+  "entrance": {
+    "cell": [
+      40,
+      24
+    ],
+    "imageCenter": [
+      784.0,
+      1008.0
+    ]
+  },
+  "sterilePositions": [
+    {
+      "id": "strike-1",
+      "cell": [
+        36,
+        10
+      ],
+      "sourceCenter": [
+        670,
+        553
+      ],
+      "radiusPixels": 48,
+      "imageCenter": [
+        656.0,
+        560.0
+      ]
+    },
+    {
+      "id": "strike-2",
+      "cell": [
+        43,
+        10
+      ],
+      "sourceCenter": [
+        862,
+        554
+      ],
+      "radiusPixels": 48,
+      "imageCenter": [
+        880.0,
+        560.0
+      ]
+    },
+    {
+      "id": "strike-3",
+      "cell": [
+        33,
+        13
+      ],
+      "sourceCenter": [
+        570,
+        643
+      ],
+      "radiusPixels": 48,
+      "imageCenter": [
+        560.0,
+        656.0
+      ]
+    },
+    {
+      "id": "strike-4",
+      "cell": [
+        46,
+        13
+      ],
+      "sourceCenter": [
+        962,
+        644
+      ],
+      "radiusPixels": 48,
+      "imageCenter": [
+        976.0,
+        656.0
+      ]
+    },
+    {
+      "id": "strike-5",
+      "cell": [
+        36,
+        16
+      ],
+      "sourceCenter": [
+        655,
+        746
+      ],
+      "radiusPixels": 50,
+      "imageCenter": [
+        656.0,
+        752.0
+      ]
+    },
+    {
+      "id": "strike-6",
+      "cell": [
+        43,
+        16
+      ],
+      "sourceCenter": [
+        877,
+        746
+      ],
+      "radiusPixels": 50,
+      "imageCenter": [
+        880.0,
+        752.0
+      ]
+    }
+  ],
+  "seventh": {
+    "id": "seventh-absence",
+    "cell": [
+      40,
+      8
+    ],
+    "sourceCenter": [
+      768,
+      503
+    ],
+    "radiusPixels": 4,
+    "note": "A single point of wrong air; no actor, seventh patch, portal, or new narrative resolution.",
+    "imageCenter": [
+      784.0,
+      496.0
+    ]
+  },
+  "walkablePolygon": [
+    [
+      704,
+      440
+    ],
+    [
+      790,
+      448
+    ],
+    [
+      918,
+      474
+    ],
+    [
+      1004,
+      562
+    ],
+    [
+      1040,
+      652
+    ],
+    [
+      1008,
+      756
+    ],
+    [
+      1100,
+      872
+    ],
+    [
+      1120,
+      1024
+    ],
+    [
+      512,
+      1024
+    ],
+    [
+      484,
+      896
+    ],
+    [
+      424,
+      812
+    ],
+    [
+      392,
+      660
+    ],
+    [
+      440,
+      596
+    ],
+    [
+      460,
+      536
+    ],
+    [
+      596,
+      472
+    ],
+    [
+      672,
+      432
+    ]
+  ],
+  "blockers": [
+    {
+      "id": "petrified-stump",
+      "kind": "cliff",
+      "blocksSight": true,
+      "polygon": [
+        [
+          0,
+          0
+        ],
+        [
+          1536,
+          0
+        ],
+        [
+          1536,
+          330
+        ],
+        [
+          1300,
+          390
+        ],
+        [
+          1060,
+          450
+        ],
+        [
+          940,
+          432
+        ],
+        [
+          820,
+          412
+        ],
+        [
+          760,
+          426
+        ],
+        [
+          660,
+          412
+        ],
+        [
+          610,
+          452
+        ],
+        [
+          480,
+          450
+        ],
+        [
+          330,
+          525
+        ],
+        [
+          0,
+          550
+        ]
+      ],
+      "note": "Immense cliff boundary; future dedicated non-destructible/explicitly authored physics, not default 40HP Wall."
+    },
+    {
+      "id": "blackwater",
+      "kind": "water",
+      "blocksSight": false,
+      "polygon": [
+        [
+          0,
+          0
+        ],
+        [
+          108,
+          0
+        ],
+        [
+          156,
+          210
+        ],
+        [
+          232,
+          334
+        ],
+        [
+          204,
+          468
+        ],
+        [
+          236,
+          544
+        ],
+        [
+          211,
+          693
+        ],
+        [
+          258,
+          802
+        ],
+        [
+          228,
+          904
+        ],
+        [
+          267,
+          1024
+        ],
+        [
+          0,
+          1024
+        ]
+      ],
+      "note": "Offline movement conservatively blocks deep water. Unity must use actual depth/swimming/liquid rules."
+    },
+    {
+      "id": "west-buttress",
+      "kind": "root",
+      "blocksSight": false,
+      "polygon": [
+        [
+          335,
+          460
+        ],
+        [
+          460,
+          453
+        ],
+        [
+          512,
+          490
+        ],
+        [
+          474,
+          547
+        ],
+        [
+          439,
+          570
+        ],
+        [
+          418,
+          660
+        ],
+        [
+          420,
+          720
+        ],
+        [
+          463,
+          766
+        ],
+        [
+          469,
+          818
+        ],
+        [
+          405,
+          829
+        ],
+        [
+          354,
+          713
+        ],
+        [
+          353,
+          608
+        ]
+      ],
+      "note": "Low root obstacle, separately distinguish solidity from sight."
+    },
+    {
+      "id": "east-buttress",
+      "kind": "root",
+      "blocksSight": false,
+      "polygon": [
+        [
+          1030,
+          407
+        ],
+        [
+          1154,
+          385
+        ],
+        [
+          1220,
+          457
+        ],
+        [
+          1238,
+          537
+        ],
+        [
+          1176,
+          576
+        ],
+        [
+          1155,
+          650
+        ],
+        [
+          1080,
+          703
+        ],
+        [
+          1052,
+          669
+        ],
+        [
+          1084,
+          598
+        ],
+        [
+          1050,
+          535
+        ]
+      ]
+    },
+    {
+      "id": "southwest-rock-foot",
+      "kind": "root",
+      "blocksSight": false,
+      "polygon": [
+        [
+          548,
+          888
+        ],
+        [
+          642,
+          888
+        ],
+        [
+          644,
+          916
+        ],
+        [
+          593,
+          933
+        ],
+        [
+          550,
+          916
+        ]
+      ],
+      "note": "Only footprint blocks; tall appearance above footprint is an occlusion overlay."
+    },
+    {
+      "id": "southeast-root-foot",
+      "kind": "root",
+      "blocksSight": false,
+      "polygon": [
+        [
+          950,
+          904
+        ],
+        [
+          1028,
+          914
+        ],
+        [
+          1062,
+          960
+        ],
+        [
+          1056,
+          1001
+        ],
+        [
+          1000,
+          1000
+        ],
+        [
+          968,
+          956
+        ]
+      ]
+    }
+  ],
+  "occluders": [
+    {
+      "id": "southwest-rock",
+      "polygon": [
+        [
+          520,
+          860
+        ],
+        [
+          559,
+          828
+        ],
+        [
+          589,
+          818
+        ],
+        [
+          620,
+          842
+        ],
+        [
+          645,
+          856
+        ],
+        [
+          654,
+          897
+        ],
+        [
+          642,
+          916
+        ],
+        [
+          593,
+          933
+        ],
+        [
+          548,
+          906
+        ]
+      ],
+      "sortFootY": 916,
+      "ownerId": "southwest-rock-foot",
+      "fogPolicy": "owner-footprint",
+      "note": "Same-plate source sampling maintains exact alignment; masking edge is a review proposal."
+    },
+    {
+      "id": "southeast-root",
+      "polygon": [
+        [
+          924,
+          818
+        ],
+        [
+          961,
+          793
+        ],
+        [
+          989,
+          828
+        ],
+        [
+          992,
+          866
+        ],
+        [
+          1025,
+          891
+        ],
+        [
+          1028,
+          914
+        ],
+        [
+          1062,
+          960
+        ],
+        [
+          1056,
+          1001
+        ],
+        [
+          1000,
+          1000
+        ],
+        [
+          968,
+          956
+        ],
+        [
+          944,
+          899
+        ]
+      ],
+      "sortFootY": 972,
+      "ownerId": "southeast-root-foot",
+      "fogPolicy": "owner-footprint"
+    }
+  ],
+  "effects": [
+    {
+      "id": "waterfall",
+      "kind": "waterfall",
+      "polygon": [
+        [
+          35,
+          0
+        ],
+        [
+          103,
+          0
+        ],
+        [
+          112,
+          206
+        ],
+        [
+          145,
+          238
+        ],
+        [
+          124,
+          279
+        ],
+        [
+          44,
+          256
+        ]
+      ],
+      "speed": 0.7,
+      "opacity": 0.12,
+      "note": "Browser motion is indicative only; native water rendering pending."
+    },
+    {
+      "id": "spray",
+      "kind": "mist",
+      "polygon": [
+        [
+          71,
+          157
+        ],
+        [
+          174,
+          156
+        ],
+        [
+          220,
+          226
+        ],
+        [
+          180,
+          280
+        ],
+        [
+          75,
+          260
+        ],
+        [
+          38,
+          224
+        ]
+      ],
+      "opacity": 0.1
+    },
+    {
+      "id": "river-flow",
+      "kind": "water",
+      "polygon": [
+        [
+          105,
+          266
+        ],
+        [
+          203,
+          337
+        ],
+        [
+          177,
+          460
+        ],
+        [
+          193,
+          551
+        ],
+        [
+          173,
+          687
+        ],
+        [
+          217,
+          817
+        ],
+        [
+          192,
+          904
+        ],
+        [
+          226,
+          1024
+        ],
+        [
+          73,
+          1024
+        ],
+        [
+          122,
+          801
+        ],
+        [
+          110,
+          669
+        ],
+        [
+          148,
+          515
+        ],
+        [
+          115,
+          422
+        ]
+      ],
+      "opacity": 0.12
+    },
+    {
+      "id": "ground-life",
+      "kind": "motes",
+      "polygon": [
+        [
+          410,
+          448
+        ],
+        [
+          1098,
+          456
+        ],
+        [
+          1143,
+          813
+        ],
+        [
+          1015,
+          1015
+        ],
+        [
+          440,
+          1015
+        ],
+        [
+          365,
+          723
+        ]
+      ],
+      "count": 18,
+      "opacity": 0.35
+    }
+  ],
+  "assets": [
+    {
+      "id": "reference",
+      "path": "reference.png",
+      "role": "reference",
+      "status": "reference"
+    },
+    {
+      "id": "clean-plate",
+      "path": "generated/clean-plate.png",
+      "role": "background",
+      "status": "generated",
+      "patchRect": [
+        736,
+        800,
+        80,
+        96
+      ],
+      "compositionPolicy": "Draw original reference, then sample only this source/destination rectangle from the generated plate to remove the baked traveler. Preserve the original everywhere else."
+    },
+    {
+      "id": "ground-repair",
+      "path": "generated/ground-repair.png",
+      "role": "repair-study",
+      "status": "generated"
+    },
+    {
+      "id": "environment-props",
+      "path": "Components/build/prop-atlas.png",
+      "role": "extracted-prop-atlas",
+      "status": "generated",
+      "requireTransparency": true,
+      "studyPath": "generated/studies/environment-props-v1.png",
+      "readinessNote": "Superseded opaque concepts with true RGBA atlas of exact reference extractions. Rectangles/pivots: Components/build/prop-atlas.json. Component manifest controls removal/backing state; atlas alone does not grant gameplay interactions."
+    },
+    {
+      "id": "player",
+      "path": "player-sheet.png",
+      "role": "actor",
+      "status": "reference",
+      "frameWidth": 16,
+      "frameHeight": 24,
+      "columns": 4,
+      "rows": 16
+    }
+  ],
+  "policies": {
+    "collision": "Conservative offline polygon study; cell centers determine coverage. Full silhouette/cell intersection and actual water rules need Unity review.",
+    "diagonals": "8 neighbors, no corner cutting",
+    "visibility": "Browser line-of-sight approximation, not authoritative gameplay FOV.",
+    "destruction": "Scene-specific owner mapping and repair imagery staged; no game destruction enabled.",
+    "artOverhang": "Top224 pixels require explicit owning terrain cells for runtime visibility.",
+    "scope": "No endgame interactions or world routing installed."
+  },
+  "status": "prepared offline; not imported or verified in Unity",
+  "coordinateConvention": "image origin top-left; zone cell y increases downward; cell-center sampling",
+  "worldTransform": "Adapter must use the game's grid-to-world transform; image y is downward.",
+  "provenance": {
+    "sourceLayoutCanonicalSha256": "c6ee12a9d54e0a9958105d23fb0c861bebe6131886afa45db83eb59746528941",
+    "canonicalization": "UTF-8 JSON; keys sorted; compact separators; nonfinite values rejected",
+    "assets": [
+      {
+        "path": "reference.png",
+        "exists": true,
+        "sha256": "593830c2d22554db3aed9d593858f24df7cab0aec1e3de16563a877ecf0d6516"
+      },
+      {
+        "path": "generated/clean-plate.png",
+        "exists": true,
+        "sha256": "afa28a71c96f79fe33a5baa36b19d5de41b70d71811d02b5557e1ebe79f33369"
+      },
+      {
+        "path": "generated/ground-repair.png",
+        "exists": true,
+        "sha256": "b8f209b112610a723a2f31036a4cbb2a4778fe25388654ea3d136d842956e6f4"
+      },
+      {
+        "path": "Components/build/prop-atlas.png",
+        "exists": true,
+        "sha256": "fa0e788c910ade70fddd1a1211c2f4588c84704f07df7d59c88ac2693ddbb615"
+      },
+      {
+        "path": "player-sheet.png",
+        "exists": true,
+        "sha256": "25fc4b4991400144ae6bb5847ca43829a638795af3e860af92af858a6e36972d"
+      }
+    ],
+    "sourceLayoutFilename": "layout.json",
+    "sourceLayoutFileSha256": "57bad05f05eebdb17c7290d85adbdc4b6f599a9127095185e47ac625fc08962d"
+  },
+  "assetPathBase": "source layout directory; paths are not relative to this export directory"
+}

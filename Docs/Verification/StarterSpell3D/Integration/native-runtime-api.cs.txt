@@ -1,0 +1,97 @@
+// Current importer/runtime contract: S3D22 273/273 targeted cases, S3D23 21/21
+// actual GPU cases and S3D24 native gameplay acceptance passed. Whole-suite
+// close-out and subjective visual review remain separately recorded by root.
+namespace CavesOfOoo.Rendering
+{
+    public enum NativeSpellFxRole { SourceGather, ProjectileHead, ProjectileTrail, TargetImpact, GroundCell, ConeCell, CropCell, ReactionCell }
+    public enum NativeSpellFxAnchor { Source, ProjectileCarrier, Target, Cell }
+    public enum NativeSpellFxCondition { Always, FrozenApplied, PacifiedApplied, Rejected, Resisted, Died, FreezeWater }
+    [System.Serializable] public struct NativeSpellFxPose
+    {
+        public UnityEngine.Vector3 Position;
+        public UnityEngine.Quaternion Rotation;
+        public UnityEngine.Vector3 Scale;
+    }
+    [System.Serializable] public sealed class NativeSpellFxPiece
+    {
+        public string Id;
+        public UnityEngine.Mesh Mesh;
+        public UnityEngine.Color Color; // Linear RGB: importer uses rgbaSrgb.linear;
+        // runtime must upload through a fresh Vector-typed MPB entry, not SetColor.
+        public NativeSpellFxRole Role;
+        // SourceGather/ProjectileTrail => Source; ProjectileHead => ProjectileCarrier;
+        // TargetImpact => Target; Ground/Cone/Crop/ReactionCell => Cell. Validation
+        // rejects defined but incompatible pairs rather than silently reinterpreting poses.
+        public NativeSpellFxAnchor Anchor;
+        public NativeSpellFxCondition Condition;
+        public int ForwardCell, LateralCell, Variant;
+        public bool ReducedEssential = true;
+        public NativeSpellFxPose[] Poses; // Uniform 100fps source data; frames0..110,111 samples.
+    }
+    [System.Serializable] public sealed class NativeSpellCastBinding
+    {
+        public string RigPath;
+        public UnityEngine.AnimationClip Clip;
+    }
+    [System.Serializable] public sealed class NativeSpellFxEntry
+    {
+        public string SpellId;
+        public UnityEngine.AnimationClip CastClip;
+        public NativeSpellCastBinding[] CastBindings;
+        public UnityEngine.AnimationClip FindCastClip(UnityEngine.Animator animator);
+        public float CastDuration = .66f;
+        public float SampleRate = 100f;
+        public float ReleaseFrame = 22f;
+        public float StudyContactFrame;
+        public float StudyClearFrame;
+        public float AuthoredDistanceCells;
+        public float LaunchDistance = .36f;
+        // Source-relative authored carrier forward / AuthoredDistanceCells.
+        // Muzzle progress is .36/authoredDistance. Raw progress preserves authored
+        // contact offsets/follow-through (for example Calm .98 at contact).
+        public float[] ProjectileProgress; //111 samples for projectile studies; null/empty for others.
+        public NativeSpellFxPiece[] Pieces;
+    }
+    public sealed class NativeSpellFxLibrary : UnityEngine.ScriptableObject
+    {
+        public const string ResourcePath = "SpellFx3D/Library";
+        public const int SampleCount = 111;
+        public UnityEngine.Material Material; // Existing Village3D/Palette shader, white _BaseMap.
+        public NativeSpellFxEntry[] Entries;
+        public void Validate(); // Throws InvalidOperationException, publishes cache only after full validation.
+        public void InvalidateCaches();
+        public NativeSpellFxEntry Find(string spellId);
+    }
+    [System.Serializable] public sealed class NativeSpellFxPreparation
+    {
+        public double LoadSeconds, ValidationSeconds, PoolSeconds;
+        public int ViewCount;
+        public bool UsedCachedLibrary;
+    }
+    public sealed class NativeSpellFxRenderer : System.IDisposable
+    {
+        public NativeSpellFxRenderer(NativeSpellFxLibrary library = null);
+        public bool Prepare(); // Visible-surface readiness only; no cast or bus access, idempotent.
+        public bool IsPrepared { get; }
+        public NativeSpellFxPreparation LastPreparation { get; } // Preserved across no-op calls.
+        public void SetZone(CavesOfOoo.Core.Zone zone);
+        public void SetSurface(NativeZone3DRenderSurface surface);
+        public float Play(CavesOfOoo.Core.SpellFxSequence sequence); //0=>unsupported/fallback; no bus access.
+        public void Update(float playbackDelta);
+        public void ClearAll();
+        public void Dispose();
+        public UnityEngine.Transform Root { get; }
+        public int ActiveCount { get; }
+        public int ActiveMeshCount { get; }
+        public int AllocatedViewCount { get; }
+        public bool HasBlockingFx { get; }
+        public string Failure { get; }
+        public NativeSpellFxEntry LastEntry { get; }
+        internal int CancellationVersion { get; } // Coordinator releases only cancelled native handles.
+    }
+    // Existing coordinator constructor gains optional third library argument for deterministic tests:
+    // WorldFxCoordinator(AsciiFxRenderer ascii, Transform parent=null, NativeSpellFxLibrary nativeLibrary=null)
+    // public void SetNativeSurface(NativeZone3DRenderSurface surface)
+    // public NativeSpellFxRenderer NativeRenderer { get; }
+    // Native successful route emits full entry.CastDuration / current speed (no .24 clipping).
+}

@@ -37,7 +37,7 @@ namespace CavesOfOoo.Skills
     /// HangingBolt and StillHeart name their single victim.</item>
     /// </list>
     /// </summary>
-    public abstract class ConsumingRiteSkillBase : BaseSkillPart
+    public abstract class ConsumingRiteSkillBase : SpellSkillPart
     {
         /// <summary>Shape of the cast. <c>Self</c> spends from and
         /// applies to the caster (ScaldingVeil).</summary>
@@ -120,7 +120,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var caster = ctx.Attacker;
@@ -167,7 +167,9 @@ namespace CavesOfOoo.Skills
             for (int i = 0; i < targets.Count; i++)
             {
                 var target = targets[i];
+                SpellFxCapture.Target(zone, target);
                 var res = ResonanceSystem.Spend(target, Element, Slots, caster, zone);
+                SpellFxCapture.ConsumeMarks(zone, target, res.Consumed.Count, (float)res.Multiplier, res.Consumed);
                 marks += res.Consumed.Count;
 
                 int amount = ComputeDamage(res);

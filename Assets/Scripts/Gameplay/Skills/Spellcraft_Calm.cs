@@ -42,15 +42,21 @@ namespace CavesOfOoo.Skills
             if (target == null) return;
 
             var brain = target.GetPart<BrainPart>();
-            if (brain == null) return;
+            if (brain == null)
+            {
+                SpellFxCapture.RecordEffect(zone, target, "Pacified", applied: false);
+                return;
+            }
 
             if (brain.HasGoal<NoFightGoal>())
             {
+                SpellFxCapture.RecordEffect(zone, target, "Pacified", applied: false);
                 MessageLog.Add(target.GetDisplayName() + " is already at peace.");
                 return;
             }
 
             brain.PushGoal(new NoFightGoal(CALM_DURATION, wander: false));
+            SpellFxCapture.RecordEffect(zone, target, "Pacified", applied: true);
             MessageLog.Add(target.GetDisplayName() + " becomes peaceful.");
         }
     }

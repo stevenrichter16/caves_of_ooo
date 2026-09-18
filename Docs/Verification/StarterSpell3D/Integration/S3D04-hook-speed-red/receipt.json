@@ -1,0 +1,71 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "NativeSpellCastPlayerTests|NativeSpellPresenterTests|StarterSpell3DOutcomeCapture",
+  "results": {
+    "id": "2",
+    "testcasecount": "83",
+    "result": "Failed(Child)",
+    "total": "83",
+    "passed": "71",
+    "failed": "12",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-11 03:23:40Z",
+    "end-time": "2026-09-11 03:23:42Z",
+    "duration": "1.9892661"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellCastPlayerTests.InitialSpeed_UsesTheAlreadyScaledWallDurationExactlyOnce(2.0f,0.33f)",
+      "message": "  Expected: 2.0f +/- 0.00100000005f\n  But was:  4.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellCastPlayerTests.InitialSpeed_UsesTheAlreadyScaledWallDurationExactlyOnce(0.5f,1.32f)",
+      "message": "  Expected: 0.5f +/- 0.00100000005f\n  But was:  0.25f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellPresenterTests.ActualAttackHook_InterruptsCast(True)",
+      "message": "  A real native view must own its reversible spell gesture.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellPresenterTests.ActualAttackHook_InterruptsCast(False)",
+      "message": "  A real native view must own its reversible spell gesture.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellPresenterTests.CastHook_FacesAllEightCapturedDirections(True)",
+      "message": "  Expected: greater than 0.999000013f\n  But was:  0.707106769f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellPresenterTests.CastHook_FacesAllEightCapturedDirections(False)",
+      "message": "  Expected: greater than 0.999000013f\n  But was:  0.707106769f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellPresenterTests.HidingPresentation_ClearsGestureAndRestoresBorrowedAnimator(True)",
+      "message": "  A real native view must own its reversible spell gesture.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellPresenterTests.HidingPresentation_ClearsGestureAndRestoresBorrowedAnimator(False)",
+      "message": "  A real native view must own its reversible spell gesture.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellPresenterTests.KnownSpellHook_PlaysActualImportedGestureAndRefreshKeepsIt(True)",
+      "message": "  Expected: not same as <character-teal (UnityEngine.AnimatorController)>\n  But was:  <character-teal (UnityEngine.AnimatorController)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellPresenterTests.KnownSpellHook_PlaysActualImportedGestureAndRefreshKeepsIt(False)",
+      "message": "  Expected: not same as <ring-player (UnityEngine.AnimatorController)>\n  But was:  <ring-player (UnityEngine.AnimatorController)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellPresenterTests.OnlyActuallyVisibleSurface_IsExposedToTheCoordinator(True)",
+      "message": "  Coordinator must receive the actual visible native surface.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellPresenterTests.OnlyActuallyVisibleSurface_IsExposedToTheCoordinator(False)",
+      "message": "  Coordinator must receive the actual visible native surface.\n  Expected: not null\n  But was:  null\n"
+    }
+  ]
+}

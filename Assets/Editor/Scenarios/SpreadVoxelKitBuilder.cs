@@ -25,7 +25,7 @@ namespace CavesOfOoo.Editor
             var entries=new List<SpreadVoxelLibrary.Entry>();
             try
             {
-                foreach(string family in new[]{"hedge","barley","flowers","reeds"})for(int variant=0;variant<4;variant++)
+                foreach(string family in new[]{"hedge","barley","flowers","reeds","stubble"})for(int variant=0;variant<4;variant++)
                 {
                     string id="spread-"+family+"-"+variant;vertices.Clear();uvs.Clear();colors.Clear();triangles.Clear();
                     if(family=="hedge")
@@ -33,6 +33,16 @@ namespace CavesOfOoo.Editor
                         Box(new Vector3(0,.22f,0),new Vector3(.72f,.44f,.48f),18);
                         Box(new Vector3(0,.66f,0),new Vector3(.92f,.48f,.64f),16);
                         Box(new Vector3((variant-1.5f)*.08f,.95f,0),new Vector3(.64f,.18f,.48f),16);
+                    }
+                    else if(family=="stubble")
+                    {
+                        // Cut stalks leave broad quiet soil visible; no ripe heads.
+                        for(int i=0;i<3;i++)
+                        {
+                            float h=.055f+((i+variant)%3)*.025f;
+                            Box(new Vector3((i-1)*.24f,h*.5f,((i+variant)%3-1)*.19f+(variant==3?.04f:0)),
+                                new Vector3(.11f,h,.10f),i==1?64:106);
+                        }
                     }
                     else for(int i=0;i<3;i++)
                     {

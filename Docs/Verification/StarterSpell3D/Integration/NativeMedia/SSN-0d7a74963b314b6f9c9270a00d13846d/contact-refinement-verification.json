@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "nativeRunId": "0d7a74963b314b6f9c9270a00d13846d",
+  "originalSheet": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeMedia/SSN-0d7a74963b314b6f9c9270a00d13846d/starter-spells-unity-contact-sheet.png",
+    "sha256": "eb2dc8d7ed87d9997d63932244f18c75daa93e069cb01690f7748119fcaa7a2f"
+  },
+  "refinedSheet": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeMedia/SSN-0d7a74963b314b6f9c9270a00d13846d/starter-spells-unity-contact-sheet-refined.png",
+    "sha256": "e6ea363836cb1e5d01bddb1b2062cbcc66ab40184523db1dbff4a5186f570d1a"
+  },
+  "changes": [
+    {
+      "spell": "Spellcraft_Calm",
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-5-003.png",
+      "sha256": "051076ce9763e7af18397b06c0765d12008f4db54812e547cf2e0488dd70a71d",
+      "wallSeconds": 0.3030894999999987,
+      "crop": [
+        731,
+        265,
+        887,
+        361
+      ],
+      "magnification": 4,
+      "reason": "Earlier recorded open loop is clearer around the recipient; later0.403s primarily shows the lower settling arcs."
+    },
+    {
+      "spell": "Hydromancy_ConjureRain",
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-showcase-6-003.png",
+      "sha256": "1807646d48f36bf88eaa07c313207d7c46080f0043c7f64460ad91bca3e68c18",
+      "wallSeconds": 0.3043613339999993,
+      "crop": [
+        664,
+        274,
+        820,
+        370
+      ],
+      "magnification": 4,
+      "reason": "Earlier recorded falling strokes remain higher above the crop; later0.404s is closer to the ground. The4x crop makes the small original pixels inspectable without recoloring."
+    }
+  ],
+  "videoHashesUnchanged": {
+    "starter-spells-unity-native-timing.gif": "ebe1f4fc55d2bdaea84c58ac3cab53b944eb368a6f44358eb106c9bc0293924b",
+    "starter-spells-unity-native-timing.mp4": "e5d1427674218d42efdc4f0d48e5d57ae905b8e5338fec48f7bd857420f816c6"
+  },
+  "checks": [
+    "Both selections use the same successful native run.",
+    "Both original screenshot hashes verified.",
+    "Every4x scene pixel repeats an original pixel exactly.",
+    "No color change, retouching or interpolation.",
+    "All other cards and GIF/MP4 remain unchanged."
+  ]
+}

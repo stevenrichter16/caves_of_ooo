@@ -26,7 +26,7 @@ namespace CavesOfOoo.Skills
     /// belongs to whatever ignites it, which is the whole grammar this
     /// prototype is testing.</para>
     /// </summary>
-    public class Pyromancy_Oilmark : BaseSkillPart
+    public class Pyromancy_Oilmark : SpellSkillPart
     {
         public override string Name => nameof(Pyromancy_Oilmark);
 
@@ -53,7 +53,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;

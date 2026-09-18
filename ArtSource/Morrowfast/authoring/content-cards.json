@@ -1,0 +1,331 @@
+{
+  "north-guard-west": {
+    "name": "Nemm Hushbell",
+    "description": "The western entrance keeper wraps the bell because its clapper startles the creek frogs. He is tired of being called the new one.",
+    "dialogue": [
+      "“I can shout farther than that bell carries. Orrit says that isn't the point.”",
+      "“Hesta wants the cloth off. I want the joint mended. We could both get what we want, if somebody would look at the joint.”",
+      "Proposed conversation: ask about the road, the watch and the bell. The repair quest and alarm response are not implemented in this preview."
+    ]
+  },
+  "north-guard-east": {
+    "name": "Hesta Brack",
+    "description": "Captain of the Stillcord. She remembers the work of bringing people down the upper road, and sometimes mistakes concern for authority.",
+    "dialogue": [
+      "“You can go up. First, tell me which way you mean to come back.”",
+      "“You can leave a return plan with Vennit. Or you can tell me you would rather not. There is no toll.”",
+      "Proposed access dialogue: hear practical warnings and accept or decline the voluntary record. The existing Felling must remain reachable without a purchase or mandatory quest."
+    ]
+  },
+  "western-shopkeeper": {
+    "name": "Pell Drowse · The Dry Hem",
+    "description": "The guesthouse keeper collects abandoned boots and insists every pair is only waiting for its owner. He watches the courtyard for wet arrivals.",
+    "dialogue": [
+      "“Dry socks first. Tell the story after you've stopped dripping on it.”",
+      "“That pair under the eave is spoken for. Most of them are. I don't mind waiting.”",
+      "Proposed service: a rented bed and clearly assigned storage. Rest, payment, rental terms and healing effects are not performed by this preview."
+    ]
+  },
+  "southwest-craftsperson": {
+    "name": "Orrit Coilstitch · The Long Loop",
+    "description": "A mender who charges fairly for his time and quietly gives away fixes he thinks somebody cannot safely leave without.",
+    "dialogue": [
+      "“You brought me two ends. That's nearly a rope.”",
+      "“The finished tools are for sale. The loose cord is a job. Tell me what it has to hold before I tell you what it costs.”",
+      "Proposed merchant stock is listed below using existing item blueprints. Buying, stock depletion and prices belong to native commerce; the repair and rescue-line services still need implementation."
+    ],
+    "stock": [
+      {
+        "blueprint": "Torch",
+        "name": "Torch",
+        "quantity": 3,
+        "status": "proposed"
+      },
+      {
+        "blueprint": "Dagger",
+        "name": "Dagger",
+        "quantity": 2,
+        "status": "proposed"
+      },
+      {
+        "blueprint": "Spear",
+        "name": "Spear",
+        "quantity": 2,
+        "status": "proposed"
+      },
+      {
+        "blueprint": "LeatherArmor",
+        "name": "Leather armor",
+        "quantity": 1,
+        "status": "proposed"
+      },
+      {
+        "blueprint": "Tepuibone",
+        "name": "Tepuibone",
+        "quantity": 3,
+        "status": "proposed"
+      }
+    ]
+  },
+  "southern-food-vendor": {
+    "name": "Sella Kettle · The Second Bowl",
+    "description": "The cook keeps a public table despite the cost. Every new pot is introduced as yesterday's soup.",
+    "dialogue": [
+      "“Sit where you like. The tortoise has already tried that chair.”",
+      "“The cracked bowl is under the drip. Leave it there. It has finally found work it can do.”",
+      "Proposed food-and-tonic stock is listed below. Water tonic is an existing tonic, not ordinary drinking water. Purchases and any separate soup recipe still need native implementation."
+    ],
+    "stock": [
+      {
+        "blueprint": "Mushroom",
+        "name": "Mushroom",
+        "quantity": 8,
+        "status": "proposed"
+      },
+      {
+        "blueprint": "DriedMeat",
+        "name": "Dried meat",
+        "quantity": 5,
+        "status": "proposed"
+      },
+      {
+        "blueprint": "HealingTonic",
+        "name": "Healing tonic",
+        "quantity": 2,
+        "status": "proposed"
+      },
+      {
+        "blueprint": "BurnSalve",
+        "name": "Burn salve",
+        "quantity": 2,
+        "status": "proposed"
+      },
+      {
+        "blueprint": "WaterTonic",
+        "name": "Water tonic",
+        "quantity": 1,
+        "status": "proposed"
+      }
+    ]
+  },
+  "east-robed-resident": {
+    "name": "Vennit Rusk · The Return Desk",
+    "description": "A visiting Recension field scribe. His return accounts distinguish what someone saw, what someone said and what remains uncertain.",
+    "dialogue": [
+      "“You told Hesta you were expected. May I enter that, or only that you passed?”",
+      "“These two visitors disagree about the upper road. I have kept both accounts and the names they allowed me to use.”",
+      "Proposed conversation: offer or withdraw testimony, read attributed accounts, or decline the record. This preview does not save testimony consent or reveal a definitive account of the Felling."
+    ]
+  },
+  "provisioners-stall": {
+    "name": "The Long Loop · courtyard counter",
+    "description": "Ochre and green cloth shade Orrit's outside counter. The vessels and cord on display are furnishings for one shop, not duplicate free stock.",
+    "dialogue": [
+      "A practical place to set down a broken thing and explain what happened.",
+      "Proposed display for Orrit's Long Loop. These are examples from the same intended merchant inventory shown on Orrit's card; the counter is not a second stocked merchant."
+    ],
+    "stock": [
+      {
+        "blueprint": "Torch",
+        "name": "Torch",
+        "quantity": 3,
+        "status": "proposed"
+      },
+      {
+        "blueprint": "Dagger",
+        "name": "Dagger",
+        "quantity": 2,
+        "status": "proposed"
+      },
+      {
+        "blueprint": "Tepuibone",
+        "name": "Tepuibone",
+        "quantity": 3,
+        "status": "proposed"
+      }
+    ],
+    "stockOwnerId": "southwest-craftsperson"
+  },
+  "southern-food-stall": {
+    "name": "The Second Bowl · market counter",
+    "description": "Violet cloth shades bowls of provisions. One corner has been wiped much more often than the others.",
+    "dialogue": [
+      "Sella keeps the serving edge clear. Borrowed dishes can become a very short argument when people come back hungry.",
+      "Proposed display for The Second Bowl. Stock belongs to Sella's intended merchant inventory, not a second set of goods. No purchase or cooking transaction occurs in this preview."
+    ],
+    "stock": [
+      {
+        "blueprint": "Mushroom",
+        "name": "Mushroom",
+        "quantity": 8,
+        "status": "proposed"
+      },
+      {
+        "blueprint": "DriedMeat",
+        "name": "Dried meat",
+        "quantity": 5,
+        "status": "proposed"
+      },
+      {
+        "blueprint": "HealingTonic",
+        "name": "Healing tonic",
+        "quantity": 2,
+        "status": "proposed"
+      }
+    ],
+    "stockOwnerId": "southern-food-vendor"
+  },
+  "north-oath-arch": {
+    "name": "The Stillcord entrance arch",
+    "description": "Bound timber and hanging tokens frame the road north. The central way is physically open in this artwork; there are no painted gate leaves.",
+    "dialogue": [
+      "A watch cord means somebody has agreed to take a shift. It comes off at supper.",
+      "The arch can be examined and its parts reviewed. A closable gate, working bell and guard access policy would require their own native states and any missing art."
+    ]
+  },
+  "central-cistern": {
+    "name": "Morrowfast rain cistern",
+    "description": "A communal basin of dark rainwater, ringed with worn stone. Visitors can pass on both sides, even while somebody is filling a bucket.",
+    "dialogue": [
+      "The most polished stones are at the drawing side. Nobody remembers when the bucket handle was last comfortable.",
+      "Proposed public-water interaction: a real finite liquid supply with explicit amount and purity. This art preview does not draw or drink water."
+    ]
+  },
+  "cistern-bucket": {
+    "name": "Communal drawing bucket",
+    "description": "The bucket is older than its newest hoop. A pale worn patch shows where everybody grips it.",
+    "dialogue": [
+      "A communal utensil, not an unattended shop item. Ownership and liquid capacity must be authored before native use."
+    ]
+  },
+  "southern-bread-oven": {
+    "name": "The low southern oven",
+    "description": "A turf-backed stone oven faces the arrival lane. Its sheltered mouth gives tired visitors somewhere obvious to stop and set a load down.",
+    "dialogue": [
+      "Someone has swept the threshold and left the roof moss alone.",
+      "Baking and a distinct bread item are proposed content. The visible oven can be examined and its backing reviewed; it does not produce food in this preview."
+    ]
+  },
+  "southern-tortoise": {
+    "name": "Mossfoot",
+    "description": "A patient yellowfoot wayfarer beside the southern oven. There is room to walk around him, although Sella says he prefers the warmest route.",
+    "dialogue": [
+      "A tortoise the size of a footstool, going somewhere at its own rate.",
+      "Mossfoot is proposed as a native YellowfootWayfarer. This extracted source pose is static; movement, health, AI, pack cargo and recruitment are not inferred from the illustration."
+    ],
+    "blueprint": "YellowfootWayfarer"
+  },
+  "western-bank-frog": {
+    "name": "Stream-bank glasspane frog",
+    "description": "A pale frog has chosen a stone beside the crossing. Nemm lowers his voice here and denies doing it.",
+    "dialogue": [
+      "The settlement design uses the existing GlasspaneFrog species for this creek resident. The source image supplies one visible pose.",
+      "Native animation, ecology and reactions belong to the later game binding. Removing the review sprite reveals the stone it was sitting on."
+    ],
+    "blueprint": "GlasspaneFrog"
+  },
+  "western-footbridge": {
+    "name": "The western footbridge",
+    "description": "Short boards cross the dark creek to the guesthouse back walk. The center is worn smooth; the hand-lashed posts are newer.",
+    "dialogue": [
+      "A practical second route around the courtyard. A bridge-surface state must govern native travel; hiding its art in inspection is not a safe way to cross open water."
+    ]
+  },
+  "north-flower-planter": {
+    "name": "The entrance flower box",
+    "description": "Flowers soften the waiting space between the northern houses. A planter makes a better boundary here than another spear."
+  },
+  "northeast-herb-pot": {
+    "name": "The Return Desk herb pot",
+    "description": "A narrow round pot by the witness cottage. Its flowers have survived several explanations of who was meant to water it."
+  },
+  "northeast-offering-bowl": {
+    "name": "Doorstep sorting bowl",
+    "description": "A low bowl holds pale odds and ends beside the step. Its contents are not assigned a quest value or item blueprint yet."
+  },
+  "western-shop-planter": {
+    "name": "The Dry Hem flower box",
+    "description": "Pell tends this box while watching the road. He claims the flowers tell him nothing about who might be coming."
+  },
+  "western-shop-crate": {
+    "name": "The Dry Hem lost-property crate",
+    "description": "The small crate is meant for things left behind. Pell distinguishes abandoned property from property whose owner is late.",
+    "dialogue": [
+      "Proposed storage: owned lost property with explicit contents and permissions. Reviewing the lid or hiding the crate grants no inventory items."
+    ]
+  },
+  "provisioners-water-barrel": {
+    "name": "The Long Loop wash barrel",
+    "description": "A barrel of wash water stands beside the outside counter. The cleaner-looking cup is still a workshop cup, not a promise of drinking water."
+  },
+  "provisioners-rope-basket": {
+    "name": "Orrit's cord basket",
+    "description": "Orrit separates useful lengths from scraps here. A piece too short for one job may be exactly long enough for another.",
+    "dialogue": [
+      "The cord is visible workshop material. Portable rescue rope and its uses remain proposed mechanics, so this basket does not grant an invented rope item."
+    ]
+  },
+  "southwest-handcart": {
+    "name": "Orrit's loaded handcart",
+    "description": "Tools and bundled boards ride beside the Long Loop. The load is arranged so the things needed first are easiest to reach.",
+    "dialogue": [
+      "The cart and its pictured load form one authored owner. Hauling, cargo transfer and individually taking its tools are proposed states, not current preview transactions."
+    ]
+  },
+  "southwest-sideways-barrel": {
+    "name": "The Long Loop spare cask",
+    "description": "An empty cask lies where Orrit can brace it with a foot. Its hoops have been adjusted more recently than its staves."
+  },
+  "southwest-worktable": {
+    "name": "The Long Loop outside worktable",
+    "description": "A low table for cups, tools and jobs that should dry in the open air. Orrit leaves an empty patch for whatever the next visitor brings.",
+    "dialogue": [
+      "“Tell me what it has to hold.”",
+      "Proposed repair and crafting service. Inspecting this table performs no repair, consumes no material and creates no item in the preview."
+    ]
+  },
+  "southwest-rope-coils": {
+    "name": "Orrit's paired rope coils",
+    "description": "Two carefully laid coils keep their ends where somebody can find them. They are workshop property, not an unclaimed rescue reward."
+  },
+  "food-stall-barrel": {
+    "name": "The Second Bowl counter cask",
+    "description": "A small cask sits beside the serving counter. Sella has turned its roughest stave toward the stall."
+  },
+  "food-stall-bucket": {
+    "name": "The Second Bowl washing bucket",
+    "description": "A bucket waits near the counter leg. The washing water belongs here; Sella dislikes finding it beside the cistern dipper."
+  },
+  "inn-supply-barrel": {
+    "name": "The Second Bowl supply barrel",
+    "description": "A barrel of kitchen supplies stands outside the cookshop. The lid is set where Sella can reach it without putting down a bowl."
+  },
+  "inn-empty-bucket": {
+    "name": "The Second Bowl spare bucket",
+    "description": "An empty bucket waits between the supply barrel and the kitchen wall. It is small enough to disappear behind whichever job is urgent."
+  },
+  "inn-outdoor-stove": {
+    "name": "The Second Bowl outside stove",
+    "description": "A dark pot rests on a squat stone cooking stand. The space around it has been cleared for feet, kindling and the person carrying the hot bowl.",
+    "dialogue": [
+      "“Yesterday's soup,” Sella says, with the confidence of someone who has just changed it.",
+      "Cooking and a soup recipe are proposed native services. This preview shows the station and its reconstructed supporting surfaces; it does not cook or feed the player."
+    ]
+  },
+  "inn-kindling-crate": {
+    "name": "The Second Bowl kindling crate",
+    "description": "Long dry pieces stand beside the outdoor stove. The narrow crate keeps them upright and off the wet ground."
+  },
+  "inn-chopping-block": {
+    "name": "The Second Bowl chopping block",
+    "description": "A low block beside the kitchen has a useful flat top. The working face is small enough that it has escaped becoming a seat."
+  },
+  "inn-sideways-cask": {
+    "name": "The Second Bowl spare cask",
+    "description": "A cask lies beyond the chopping block, safely outside the door swing. Nobody calls it spare when the washing starts."
+  },
+  "inn-northern-barrel": {
+    "name": "The Second Bowl covered reserve",
+    "description": "A broad covered barrel stands above the cookshop. Its heavy-looking lid keeps the contents a matter for Sella rather than passing wildlife."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "texture": "textures/PilotGroundAlbedo.png",
+  "size": [
+    2172,
+    724
+  ],
+  "sRGB": true,
+  "alpha": false,
+  "wrap": "Clamp",
+  "filter": "Bilinear",
+  "coordinates": "u = UnityWorldX / 80; v = UnityWorldZ / 25; world origin is southwest corner; texture is only mineral albedo",
+  "nativeCellUV": "u=(cellX+localX+0.5)/80; v=(24.5-cellY+localNorth)/25",
+  "source": "ImageGen flat mineral albedo, byte-exact input; see imagegen-ground-provenance.json"
+}

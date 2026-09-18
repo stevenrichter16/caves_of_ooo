@@ -1,0 +1,407 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "NativeSpell|StarterSpell3DOutcomeCapture",
+  "results": {
+    "id": "2",
+    "testcasecount": "119",
+    "result": "Failed(Child)",
+    "total": "119",
+    "passed": "23",
+    "failed": "96",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-11 03:06:22Z",
+    "end-time": "2026-09-11 03:06:22Z",
+    "duration": "0.7417646"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellCastPlayerTests.Cast_OverridesOwnedControllerThenRestoresOriginalControllerAndSpeed",
+      "message": "SetUp :   Native casters must play distinct authored spell gestures with reversible ownership.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellCastPlayerTests.ClearingWorldEffects_ClearsCastOnTheNextTick",
+      "message": "SetUp :   Native casters must play distinct authored spell gestures with reversible ownership.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellCastPlayerTests.InvalidDuration_DoesNotReplaceTheController(0.0f)",
+      "message": "SetUp :   Native casters must play distinct authored spell gestures with reversible ownership.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellCastPlayerTests.InvalidDuration_DoesNotReplaceTheController(-1.0f)",
+      "message": "SetUp :   Native casters must play distinct authored spell gestures with reversible ownership.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellCastPlayerTests.InvalidDuration_DoesNotReplaceTheController(float.NaN)",
+      "message": "SetUp :   Native casters must play distinct authored spell gestures with reversible ownership.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellCastPlayerTests.InvalidDuration_DoesNotReplaceTheController(float.PositiveInfinity)",
+      "message": "SetUp :   Native casters must play distinct authored spell gestures with reversible ownership.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellCastPlayerTests.MissingClip_DoesNotCancelAnAlreadyPlayingValidCast",
+      "message": "SetUp :   Native casters must play distinct authored spell gestures with reversible ownership.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellCastPlayerTests.RepeatingSameSpell_RestartsItsPoseClock",
+      "message": "SetUp :   Native casters must play distinct authored spell gestures with reversible ownership.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellCastPlayerTests.SpeedChange_UpdatesAnimationAndCompletionTogether",
+      "message": "SetUp :   Native casters must play distinct authored spell gestures with reversible ownership.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellCastPlayerTests.TurningEffectsOff_ClearsCastAndRestoresController",
+      "message": "SetUp :   Native casters must play distinct authored spell gestures with reversible ownership.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.AbsentOrHiddenSurfaceCannotEmitNativeFragments",
+      "message": "  Expected: greater than 0.0f\n  But was:  0.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.ExternallyDestroyedEffectHierarchyDoesNotLeakOrHoldInput",
+      "message": "  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.ExtremeBurstHonorsBoundedScheduledAndLiveBudgetsWithoutDroppingAllWork",
+      "message": "  Expected: greater than 0.0f\n  But was:  0.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.MalformedAuthoredDataRejectsBeforeRenderingAndKeepsBorrowedAssets(\"missing_mesh\")",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.MalformedAuthoredDataRejectsBeforeRenderingAndKeepsBorrowedAssets(\"empty_samples\")",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.MalformedAuthoredDataRejectsBeforeRenderingAndKeepsBorrowedAssets(\"nonfinite_position\")",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.MalformedAuthoredDataRejectsBeforeRenderingAndKeepsBorrowedAssets(\"zero_quaternion\")",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.MalformedAuthoredDataRejectsBeforeRenderingAndKeepsBorrowedAssets(\"negative_scale\")",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.MalformedAuthoredDataRejectsBeforeRenderingAndKeepsBorrowedAssets(\"duplicate_piece\")",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.MalformedAuthoredDataRejectsBeforeRenderingAndKeepsBorrowedAssets(\"duplicate_entry\")",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.MalformedAuthoredDataRejectsBeforeRenderingAndKeepsBorrowedAssets(\"missing_material\")",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.MalformedAuthoredDataRejectsBeforeRenderingAndKeepsBorrowedAssets(\"invalid_clock\")",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.MalformedAuthoredDataRejectsBeforeRenderingAndKeepsBorrowedAssets(\"nonfinite_color\")",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.NonfiniteOrNegativeFrameDeltaDoesNotJumpClockOrPoisonTransforms(float.NaN)",
+      "message": "System.InvalidOperationException : Sequence contains no elements"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.NonfiniteOrNegativeFrameDeltaDoesNotJumpClockOrPoisonTransforms(float.PositiveInfinity)",
+      "message": "System.InvalidOperationException : Sequence contains no elements"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.NonfiniteOrNegativeFrameDeltaDoesNotJumpClockOrPoisonTransforms(-1.0f)",
+      "message": "System.InvalidOperationException : Sequence contains no elements"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.OutOfBoundsCopiedContactIsSkippedInsteadOfClampedIntoVisibleWorld",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.PassivePresentationNeverSetsBlockingFlag",
+      "message": "  Expected: greater than 0.0f\n  But was:  0.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.WrongZoneCannotRouteAndDoesNotReplaceCurrentNativeSurface",
+      "message": "  Expected: greater than 0.0f\n  But was:  0.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.ZoneChangeClearsPlayingAndScheduledWork",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxImportTests.ImportedCast_ActuallyMovesNativeBonesAndReturnsToRestWithoutRootMotion(\"Pyromancy_EmberSpit\")",
+      "message": "  Seven real Blender spell entries must be available in a player build.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxImportTests.ImportedCast_ActuallyMovesNativeBonesAndReturnsToRestWithoutRootMotion(\"Pyromancy_FlamingHands\")",
+      "message": "  Seven real Blender spell entries must be available in a player build.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxImportTests.ImportedCast_ActuallyMovesNativeBonesAndReturnsToRestWithoutRootMotion(\"Hydromancy_JetBlast\")",
+      "message": "  Seven real Blender spell entries must be available in a player build.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxImportTests.ImportedCast_ActuallyMovesNativeBonesAndReturnsToRestWithoutRootMotion(\"Galvanism_GroundSurge\")",
+      "message": "  Seven real Blender spell entries must be available in a player build.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxImportTests.ImportedCast_ActuallyMovesNativeBonesAndReturnsToRestWithoutRootMotion(\"Cryomancy_RimeGrip\")",
+      "message": "  Seven real Blender spell entries must be available in a player build.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxImportTests.ImportedCast_ActuallyMovesNativeBonesAndReturnsToRestWithoutRootMotion(\"Spellcraft_Calm\")",
+      "message": "  Seven real Blender spell entries must be available in a player build.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxImportTests.ImportedCast_ActuallyMovesNativeBonesAndReturnsToRestWithoutRootMotion(\"Hydromancy_ConjureRain\")",
+      "message": "  Seven real Blender spell entries must be available in a player build.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxImportTests.ImportedLibrary_HasExactlyTheSixStartingSpellsAndLearnableRain",
+      "message": "  Seven real Blender spell entries must be available in a player build.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxImportTests.ImportedPieces_HaveActualFiniteMeshAndMotionSamples(\"Pyromancy_EmberSpit\")",
+      "message": "  Seven real Blender spell entries must be available in a player build.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxImportTests.ImportedPieces_HaveActualFiniteMeshAndMotionSamples(\"Pyromancy_FlamingHands\")",
+      "message": "  Seven real Blender spell entries must be available in a player build.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxImportTests.ImportedPieces_HaveActualFiniteMeshAndMotionSamples(\"Hydromancy_JetBlast\")",
+      "message": "  Seven real Blender spell entries must be available in a player build.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxImportTests.ImportedPieces_HaveActualFiniteMeshAndMotionSamples(\"Galvanism_GroundSurge\")",
+      "message": "  Seven real Blender spell entries must be available in a player build.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxImportTests.ImportedPieces_HaveActualFiniteMeshAndMotionSamples(\"Cryomancy_RimeGrip\")",
+      "message": "  Seven real Blender spell entries must be available in a player build.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxImportTests.ImportedPieces_HaveActualFiniteMeshAndMotionSamples(\"Spellcraft_Calm\")",
+      "message": "  Seven real Blender spell entries must be available in a player build.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxImportTests.ImportedPieces_HaveActualFiniteMeshAndMotionSamples(\"Hydromancy_ConjureRain\")",
+      "message": "  Seven real Blender spell entries must be available in a player build.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.AuthoredMeshAndSampledPoseAppearAtCopiedContactWithoutColliderOrGameplayMutation",
+      "message": "  Expected: greater than 0.0f\n  But was:  0.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.CompletedAndCancelledViewsAreReusedAndBorrowedAssetsSurviveDisposal",
+      "message": "  Expected: greater than 0\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.ConeOnlyUsesRecordedStencilCellsAndRespectsFacing(1,0)",
+      "message": "  Expected: 3\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.ConeOnlyUsesRecordedStencilCellsAndRespectsFacing(0,-1)",
+      "message": "  Expected: 3\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.ConeOnlyUsesRecordedStencilCellsAndRespectsFacing(-1,1)",
+      "message": "  Expected: 3\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.CoordinatorOwnsNativeClockQueueCancellationAndFullCastGestureDuration",
+      "message": "  Expected: greater than 0\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.DuplicateOwnerResultsHaveOneImpactButDifferentOwnersInSameCellRetainTwo",
+      "message": "  Expected: 2\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.FragmentMaterialsUseBorrowedFogWithTransientPolicyAndNoShadow",
+      "message": "System.InvalidOperationException : Sequence contains no elements"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.GroundCellPiecesUseOnlyRecordedUniquePathCells",
+      "message": "  Expected: 2\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.HiddenOrUnexploredContactCannotDraw(False)",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.HiddenOrUnexploredContactCannotDraw(True)",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.RainUsesActualWateredTargetsAndNeverFallbackSourceOrUnrelatedAffectedCell",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.ReducedDropsDecorativePieceButKeepsEssentialShapeAndOffDropsEverything",
+      "message": "  Expected: 2\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.SuccessClampsAndBindingsRequireActualAppliedStatusAndLivingTarget(\"Cryomancy_RimeGrip\",FrozenApplied,\"FrozenEffect\")",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.SuccessClampsAndBindingsRequireActualAppliedStatusAndLivingTarget(\"Spellcraft_Calm\",PacifiedApplied,\"Pacified\")",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.WaterOnlyRimeUsesRecordedFreezeReactionRatherThanEveryObservedPathCell",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureAdversarialTests.Adversarial_CommittedContactAndEffectsDoNotFollowFutureMutationOrSecondCommit",
+      "message": "  Missing validated physical-contact capture API.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureAdversarialTests.Adversarial_FinalContactTracksOnlyActualAnchorTranslation(False)",
+      "message": "  Missing validated physical-contact capture API.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureAdversarialTests.Adversarial_FinalContactTracksOnlyActualAnchorTranslation(True)",
+      "message": "  Missing validated physical-contact capture API.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureAdversarialTests.Adversarial_FirstContactIsStableAcrossRepeatedCellsAndDamageHooks",
+      "message": "  Missing validated physical-contact capture API.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureAdversarialTests.Adversarial_InnerCaptureContactDoesNotOverwriteOuterContact",
+      "message": "  Missing validated physical-contact capture API.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureAdversarialTests.Adversarial_InvalidContactContextCannotBorrowTheActiveCapture(\"foreign-zone\")",
+      "message": "  Missing validated physical-contact capture API.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureAdversarialTests.Adversarial_InvalidContactContextCannotBorrowTheActiveCapture(\"null-zone\")",
+      "message": "  Missing validated physical-contact capture API.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureAdversarialTests.Adversarial_InvalidContactContextCannotBorrowTheActiveCapture(\"null-target\")",
+      "message": "  Missing validated physical-contact capture API.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureAdversarialTests.Adversarial_InvalidContactContextCannotBorrowTheActiveCapture(\"absent-target\")",
+      "message": "  Missing validated physical-contact capture API.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureAdversarialTests.Adversarial_NoScopeOrDisposedScopeCannotAccumulateLaterHits",
+      "message": "  Missing validated physical-contact capture API.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureAdversarialTests.Adversarial_OnlyAnActuallyOccupiedContactCanCreateAResult(6,10,True)",
+      "message": "  Missing validated physical-contact capture API.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureAdversarialTests.Adversarial_OnlyAnActuallyOccupiedContactCanCreateAResult(-1,10,False)",
+      "message": "  Missing validated physical-contact capture API.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureAdversarialTests.Adversarial_OnlyAnActuallyOccupiedContactCanCreateAResult(80,10,False)",
+      "message": "  Missing validated physical-contact capture API.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureAdversarialTests.Adversarial_OnlyAnActuallyOccupiedContactCanCreateAResult(6,9,False)",
+      "message": "  Missing validated physical-contact capture API.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureAdversarialTests.Adversarial_OnlyAnActuallyOccupiedContactCanCreateAResult(7,10,False)",
+      "message": "  Missing validated physical-contact capture API.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureAdversarialTests.Adversarial_PathClippingUsesOccupiedCellsAndPassesAnEmptyAnchorHole(True)",
+      "message": "  Expected: (7,10)\n  But was:  (6,10)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureAdversarialTests.Adversarial_PathClippingUsesOccupiedCellsAndPassesAnEmptyAnchorHole(False)",
+      "message": "  Expected: (9,10)\n  But was:  (6,10)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureAdversarialTests.Adversarial_RemovedOwnerRetainsContactButDoesNotInventAVisualDestination(False)",
+      "message": "  Missing validated physical-contact capture API.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureAdversarialTests.Adversarial_RemovedOwnerRetainsContactButDoesNotInventAVisualDestination(True)",
+      "message": "  Missing validated physical-contact capture API.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureAdversarialTests.Adversarial_SameBlueprintOwnersKeepDistinctContactAndDamage",
+      "message": "  Missing validated physical-contact capture API.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureTests.EmptyGroundSurgeConsumesItsGroundWorkAndCapturesImmediateWaterReaction(False)",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureTests.EmptyGroundSurgeConsumesItsGroundWorkAndCapturesImmediateWaterReaction(True)",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureTests.FirstBodyContactClipsThePath_AndItsAbsentBodyControlDoesNotHit(CavesOfOoo.Skills.Pyromancy_EmberSpit,True)",
+      "message": "  A line ends at its first physical contact, not beyond its body.\n  Expected: (8,10)\n  But was:  (9,10)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureTests.FirstBodyContactClipsThePath_AndItsAbsentBodyControlDoesNotHit(CavesOfOoo.Skills.Cryomancy_RimeGrip,True)",
+      "message": "  A line ends at its first physical contact, not beyond its body.\n  Expected: (8,10)\n  But was:  (10,10)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureTests.FirstBodyContactClipsThePath_AndItsAbsentBodyControlDoesNotHit(CavesOfOoo.Skills.Spellcraft_Calm,True)",
+      "message": "  Expected: (8,10)\n  But was:  (8,9)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureTests.FlamingHandsReportsSelectedBodyCell_AndEmptyControlStillCasts(True)",
+      "message": "  Expected: (6,10)\n  But was:  (6,9)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureTests.LethalPhysicalContactRetainsOneResultWithoutFalseDisplacementOrLivingStatus(CavesOfOoo.Skills.Pyromancy_EmberSpit)",
+      "message": "  Expected: (6,10)\n  But was:  (6,9)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureTests.LethalPhysicalContactRetainsOneResultWithoutFalseDisplacementOrLivingStatus(CavesOfOoo.Skills.Cryomancy_RimeGrip)",
+      "message": "  Expected: (6,10)\n  But was:  (6,9)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureTests.LethalPhysicalContactRetainsOneResultWithoutFalseDisplacementOrLivingStatus(CavesOfOoo.Skills.Hydromancy_JetBlast)",
+      "message": "  Expected: (6,10)\n  But was:  (6,9)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureTests.LethalPhysicalContactRetainsOneResultWithoutFalseDisplacementOrLivingStatus(CavesOfOoo.Skills.Galvanism_GroundSurge)",
+      "message": "  Expected: (6,10)\n  But was:  (6,9)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureTests.OffAnchorPushKeepsTheContactOffset_AndBlockedControlReportsNoMovement(CavesOfOoo.Skills.Hydromancy_JetBlast,False)",
+      "message": "  Expected: (6,10)\n  But was:  (6,9)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureTests.OffAnchorPushKeepsTheContactOffset_AndBlockedControlReportsNoMovement(CavesOfOoo.Skills.Hydromancy_JetBlast,True)",
+      "message": "  Expected: (6,10)\n  But was:  (6,9)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureTests.OffAnchorPushKeepsTheContactOffset_AndBlockedControlReportsNoMovement(CavesOfOoo.Skills.Galvanism_GroundSurge,False)",
+      "message": "  Expected: (6,10)\n  But was:  (6,9)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureTests.OffAnchorPushKeepsTheContactOffset_AndBlockedControlReportsNoMovement(CavesOfOoo.Skills.Galvanism_GroundSurge,True)",
+      "message": "  Expected: (6,10)\n  But was:  (6,9)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DOutcomeCaptureTests.RainReportsOnlyRealCropContact_WithoutPromotingFallbackSourceToACrop(True)",
+      "message": "  Expected: (7,10)\n  But was:  (6,10)\n"
+    }
+  ]
+}

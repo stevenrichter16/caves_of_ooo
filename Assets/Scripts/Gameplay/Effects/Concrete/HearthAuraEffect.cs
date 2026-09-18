@@ -41,9 +41,11 @@ namespace CavesOfOoo.Core
             if (cell == null)
                 return;
 
-            for (int i = cell.Objects.Count - 1; i >= 0; i--)
+            var targets = new System.Collections.Generic.List<Entity>(cell.Occupants);
+            for (int i = targets.Count - 1; i >= 0; i--)
             {
-                Entity entity = cell.Objects[i];
+                Entity entity = targets[i];
+                if (zone.GetEntityCell(entity) == null) continue;
                 if (!entity.HasPart<ThermalPart>())
                     continue;
 

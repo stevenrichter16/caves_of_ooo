@@ -1,0 +1,197 @@
+{
+  "status": "RETAINED_NATIVE_FAILURE",
+  "runId": "5ea941bdd3684fd29baf29cdc4778b45",
+  "nativeReportSha256": "ef74a69bcbc7172df8bcbe4fe95d03ce3ffdc7a927ffc87501a744791c09a51b",
+  "rawCsvSha256": "9dcaaa8ac144002b08c4beb8cba0ff21e6da6a8cb55053f9655771fdc008abc1",
+  "reportRawSha256": "9dcaaa8ac144002b08c4beb8cba0ff21e6da6a8cb55053f9655771fdc008abc1",
+  "rawRows": 13106,
+  "workloadComplete": false,
+  "failedCasts": [
+    {
+      "spell": "Hydromancy_JetBlast",
+      "mode": "profile",
+      "zoneId": "Overworld.3.7.0",
+      "fxMode": "Full",
+      "nativeEntry": "Hydromancy_JetBlast",
+      "gestureClip": "",
+      "gestureControllerBefore": "",
+      "gestureControllerAfter": "",
+      "gesturePeakDegrees": 0.0,
+      "sourceX": 40,
+      "sourceY": 12,
+      "directionX": 1,
+      "directionY": 0,
+      "intendedX": 42,
+      "intendedY": 12,
+      "finalX": 43,
+      "finalY": 12,
+      "targets": 1,
+      "damage": 2,
+      "cooldown": 20,
+      "rngCalls": 0,
+      "peakMeshes": 0,
+      "gestureSamples": 0,
+      "path": [
+        "41,12",
+        "42,12"
+      ],
+      "affected": [
+        "41,12",
+        "42,11",
+        "42,12",
+        "42,13",
+        "43,12"
+      ],
+      "applied": [
+        "WetEffect"
+      ],
+      "rejected": [],
+      "copiedTargetIds": [
+        "native-spell-target-5ea941bdd3684fd29baf29cdc4778b45"
+      ],
+      "targetCells": [
+        "42,12->43,12"
+      ],
+      "observedConditionalMeshes": [],
+      "rejectedFrozen": false,
+      "rejectedPacified": false,
+      "resultStable": true,
+      "pass": false,
+      "sawGesture": false,
+      "gestureRestored": false,
+      "groundFixtureReset": false,
+      "sourceVisible": true,
+      "targetVisible": true,
+      "seconds": 1.2016799590000034,
+      "frames": []
+    }
+  ],
+  "failedChecks": [
+    {
+      "name": "command_42_profile_2",
+      "detail": "Real command/copy/native/cleanup; peak=0",
+      "pass": false
+    },
+    {
+      "name": "fatal",
+      "detail": "System.InvalidOperationException: Native fixture mismatch forHydromancy_JetBlast:profile\n  at CavesOfOoo.Scenarios.Custom.StarterSpell3DNativeAudit+<CommandCase>d__91.MoveNext () [0x01251] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/StarterSpell3DNativeAudit.cs:267 \n  at CavesOfOoo.Scenarios.Custom.StarterSpell3DNativeAudit+<RunSafely>d__86.MoveNext () [0x00057] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/StarterSpell3DNativeAudit.cs:87 ",
+      "pass": false
+    }
+  ],
+  "frameBeforeStall": {
+    "phase": "2",
+    "unity_frame": "16854",
+    "wall_seconds": "77.261765543600916",
+    "unscaled_delta": "0.00294316188",
+    "tick": "40",
+    "native_meshes": "0",
+    "allocated_views": "384",
+    "zone_renderer": "855334",
+    "input": "10917",
+    "main_thread": "2907500",
+    "gc_bytes": "29823",
+    "draw_calls": "122",
+    "triangles": "295316"
+  },
+  "longDeltaFrame": {
+    "phase": "2",
+    "unity_frame": "16855",
+    "wall_seconds": "77.82437350260092",
+    "unscaled_delta": "0.5608244",
+    "tick": "40",
+    "native_meshes": "0",
+    "allocated_views": "384",
+    "zone_renderer": "857042",
+    "input": "10917",
+    "main_thread": "2967125",
+    "gc_bytes": "44272",
+    "draw_calls": "122",
+    "triangles": "295316"
+  },
+  "profilerFollowingFrame": {
+    "phase": "2",
+    "unity_frame": "16856",
+    "wall_seconds": "77.828950918600924",
+    "unscaled_delta": "0.006220373",
+    "tick": "40",
+    "native_meshes": "0",
+    "allocated_views": "384",
+    "zone_renderer": "1120291",
+    "input": "18292",
+    "main_thread": "563773208",
+    "gc_bytes": "450066",
+    "draw_calls": "122",
+    "triangles": "295316"
+  },
+  "observedWallGapSeconds": 0.5626079590000046,
+  "directionCasesExecuted": 0,
+  "captureCases": [
+    {
+      "mode": "showcase",
+      "spell": "Pyromancy_EmberSpit",
+      "peakMeshes": 61,
+      "pass": true,
+      "maxCaptureGapSeconds": 0.10251141600000224
+    },
+    {
+      "mode": "showcase",
+      "spell": "Pyromancy_FlamingHands",
+      "peakMeshes": 47,
+      "pass": true,
+      "maxCaptureGapSeconds": 0.10209324999999936
+    },
+    {
+      "mode": "showcase",
+      "spell": "Hydromancy_JetBlast",
+      "peakMeshes": 89,
+      "pass": true,
+      "maxCaptureGapSeconds": 0.10163324999999901
+    },
+    {
+      "mode": "showcase",
+      "spell": "Galvanism_GroundSurge",
+      "peakMeshes": 69,
+      "pass": true,
+      "maxCaptureGapSeconds": 0.10224166699999415
+    },
+    {
+      "mode": "showcase",
+      "spell": "Cryomancy_RimeGrip",
+      "peakMeshes": 58,
+      "pass": true,
+      "maxCaptureGapSeconds": 0.10243854200000158
+    },
+    {
+      "mode": "showcase",
+      "spell": "Spellcraft_Calm",
+      "peakMeshes": 42,
+      "pass": true,
+      "maxCaptureGapSeconds": 0.10208666599999816
+    },
+    {
+      "mode": "showcase",
+      "spell": "Hydromancy_ConjureRain",
+      "peakMeshes": 15,
+      "pass": true,
+      "maxCaptureGapSeconds": 0.10129383400000336
+    },
+    {
+      "mode": "deny-frozen",
+      "spell": "Cryomancy_RimeGrip",
+      "peakMeshes": 2,
+      "pass": true,
+      "maxCaptureGapSeconds": 0.1013170840000015
+    },
+    {
+      "mode": "south-showcase",
+      "spell": "Pyromancy_EmberSpit",
+      "peakMeshes": 25,
+      "pass": true,
+      "maxCaptureGapSeconds": 0.10218483299999548
+    }
+  ],
+  "frozenInputs": 991,
+  "changedInputs": [],
+  "finding": "The failed Jet command resolves correct copied path, cone, damage, Wet and displacement with stable outcome and native entry, but peak0. A560.8244ms unscaled frame delta/wall562.608ms gap spans roughly0.17..0.73sec of that cast; the subsequent profiler sample records563.773ms MainThread. This is consistent with the real native effect being skipped under a long walltime frame. The stall cause is not identified, and no art/runtime defect is established by this occurrence.",
+  "decision": "No automatic retry, source edit, runtime clock alteration or acceptance weakening. Parent review required before next controlled unchanged run. All failure artifacts are retained; full-suite and final art acceptance remain pending."
+}

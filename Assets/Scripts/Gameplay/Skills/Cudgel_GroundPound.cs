@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using CavesOfOoo.Core;
 
 namespace CavesOfOoo.Skills
@@ -77,23 +76,9 @@ namespace CavesOfOoo.Skills
                 return false;
             }
 
-            // Snapshot adjacent creatures + their direction-from-actor
-            // (used to push them away). Using a parallel list rather
-            // than a dict so the order stays N→NE→E→... for determinism.
-            var targets = new List<(Entity creature, int dirFromActor)>(8);
-            for (int dir = 0; dir < 8; dir++)
-            {
-                var cell = ctx.Zone.GetCellInDirection(actorPos.x, actorPos.y, dir);
-                if (cell == null) continue;
-                for (int i = 0; i < cell.Objects.Count; i++)
-                {
-                    var e = cell.Objects[i];
-                    if (e == null || e == actor) continue;
-                    if (!e.Tags.ContainsKey("Creature")) continue;
-                    targets.Add((e, dir));
-                    break;
-                }
-            }
+            // One strike per physical owner on the caster's perimeter.
+            // Snapshot before damage, push or reactive effects change occupancy.
+            var targets = MultiCellAbilityQueries.AdjacentCreatures(ctx.Zone, actor);
 
             if (targets.Count == 0)
             {
@@ -107,7 +92,9 @@ namespace CavesOfOoo.Skills
             // stunned + knocked back, which is the real value).
             for (int i = 0; i < targets.Count; i++)
             {
-                var (target, dirFromActor) = targets[i];
+                if (ctx.Zone.GetEntityCell(actor) == null || actor.GetStatValue("Hitpoints") <= 0) break;
+                var target = targets[i];
+                if (ctx.Zone.GetEntityCell(target) == null || target.GetStatValue("Hitpoints") <= 0) continue;
 
                 // Roll the weapon's base damage, scale to 75%, floor at 1.
                 int rolled = !string.IsNullOrEmpty(weapon.BaseDamage)

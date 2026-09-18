@@ -1,0 +1,35 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CanonicalVillageQuest|QuestVillagePoolTests|RegionalGuidance|MorrowfastExpedition|MorrowfastMerchantRestock|NativeQuestCue|BiomeAffordance|SpreadVoxelKitTests|MorrowfastContent|QuestBeacon",
+  "results": {
+    "id": "2",
+    "testcasecount": "221",
+    "result": "Failed(Child)",
+    "total": "221",
+    "passed": "218",
+    "failed": "3",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-17 01:39:16Z",
+    "end-time": "2026-09-17 01:39:24Z",
+    "duration": "8.1262378"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueAdversarialTests.MorrowfastOfferingOwnerCannotAdvertiseItsLocalErrandFromAnotherScene(False)",
+      "message": "  These authored conversations themselves require Morrowfast, unlike portable generic givers.\n  Expected: None\n  But was:  Available\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueAdversarialTests.MorrowfastOfferingOwnerCannotAdvertiseItsLocalErrandFromAnotherScene(True)",
+      "message": "  These authored conversations themselves require Morrowfast, unlike portable generic givers.\n  Expected: None\n  But was:  Available\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalGuidanceAdversarialTests.ActualMorrowfastClerkOffersNearbyDirectionsButAnImpostorCannot",
+      "message": "  Expected: True\n  But was:  False\n"
+    }
+  ]
+}

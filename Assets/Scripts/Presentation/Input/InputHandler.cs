@@ -14,8 +14,8 @@ namespace CavesOfOoo.Rendering
     /// Supports WASD, arrow keys, numpad (8-directional), H/J/K/Y/U/B/N movement,
     /// L for Look (with full vi cursor directions inside Look),
     /// item pickup (G/comma), ability activation (1-9 + direction/immediate cast),
-    /// and debug keys: F6 (grant mutation), F7 (dump body parts),
-    /// F8 (dismember limb), F9 (debug craft recipe), P (cycle well state).
+    /// F12 (toggle player invincibility), plus DevMode debug keys:
+    /// F7 (dump body parts), F8 (dismember limb), F9 (craft), P (cycle well state).
     /// This is the input boundary — the only place Unity input touches the simulation.
     /// </summary>
     public class InputHandler : MonoBehaviour
@@ -74,6 +74,7 @@ namespace CavesOfOoo.Rendering
         // A menu shortcut such as S (sleep) must be released before the
         // same held key can become ordinary movement after the menu closes.
         private KeyCode _worldActionKeyToRelease = KeyCode.None;
+        private float _fxWaitStartedAt;
         // Initialized to large-negative so the first tap of `.` fires
         // instantly (Time.time - (-999) always exceeds WaitHoldDelay).
         private float _lastWaitTime = -999f;
@@ -302,6 +303,7 @@ namespace CavesOfOoo.Rendering
 
         private void Update()
         {
+            if (SpellFxSettingsPanel.IsOpen) return;
             using (PerformanceMarkers.Input.Update.Auto())
             {
                 if (PlayerEntity == null || CurrentZone == null || TurnManager == null)
@@ -433,6 +435,16 @@ namespace CavesOfOoo.Rendering
                     }
                     if (_pauseMenuUI.IsOpen)
                         return;  // suppress other input while modal up
+                }
+
+                // Explicit player debug shortcut, independent of the full
+                // DevMode sandbox. Before held-wait/rate limits; no turn cost.
+                if (InputHelper.GetKeyDown(KeyCode.F12))
+                {
+                    if (DebugInvincibility.TryToggle(PlayerEntity, out bool invincible))
+                        MessageLog.Add(invincible ? "Debug: player invincibility ON. [F12] to turn off."
+                            : "Debug: player invincibility OFF.");
+                    return;
                 }
 
                 // ST.7b — KeyCode.X opens the skills screen. Gated on
@@ -1968,14 +1980,22 @@ namespace CavesOfOoo.Rendering
             {
                 // DIAG [Phase4d] — upstream-most log. Click detected in look mode.
                 int clickX = -1, clickY = -1;
+                Entity sceneOwner = null;
+                bool pickedSceneOwner = ZoneRenderer != null &&
+                    ZoneRenderer.TryScreenToSceneOwner(Input.mousePosition, Camera.main, out sceneOwner, out clickX, out clickY);
                 bool screenResolved = ZoneRenderer != null &&
-                    ZoneRenderer.ScreenToZoneCell(Input.mousePosition, Camera.main, out clickX, out clickY);
+                    (pickedSceneOwner || ZoneRenderer.ScreenToZoneCell(Input.mousePosition, Camera.main, out clickX, out clickY));
                 if (screenResolved)
                 {
                     _worldCursorState.SetPosition(clickX, clickY);
                     ClampLookCursorToVisibleFrame();
                     RefreshLookSnapshot();
-                    OpenWorldActionMenuOrThrow(_worldCursorState.X, _worldCursorState.Y);
+                    if (pickedSceneOwner)
+                    {
+                        _worldActionMenuReturnState = InputState.LookMode;
+                        OpenWorldActionMenuFor(sceneOwner, CurrentZone.GetCell(clickX, clickY), includeBackRow: false);
+                    }
+                    else OpenWorldActionMenuOrThrow(_worldCursorState.X, _worldCursorState.Y);
                     _lastMoveTime = Time.time;
                     return;
                 }
@@ -2077,7 +2097,7 @@ namespace CavesOfOoo.Rendering
 
             _lastLookMousePosition = mouse;
 
-            if (!ZoneRenderer.ScreenToZoneCell(mouse, Camera.main, out int x, out int y))
+            if (!ZoneRenderer.ScreenToLookCell(mouse, Camera.main, out int x, out int y))
                 return;
 
             if (x == _worldCursorState.X && y == _worldCursorState.Y)
@@ -2290,6 +2310,7 @@ namespace CavesOfOoo.Rendering
 
             ExitThrowTargetingToNormal();
             _inputState = InputState.WaitingForFxResolution;
+            _fxWaitStartedAt = Time.realtimeSinceStartup;
         }
 
         private void CancelThrowTargeting()
@@ -2396,6 +2417,24 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            // Contact cells containing real props or loose items retain the
+            // normal individual/pile picker. Bare terrain at a large object's
+            // side resolves to that footprint's actual owner instead.
+            bool hasLocalObject = false;
+            foreach (var occupant in cell.Objects)
+            {
+                if (occupant != null && !WorldInteractionSystem.IsTerrain(occupant))
+                {
+                    hasLocalObject = true;
+                    break;
+                }
+            }
+            var footprintOwner = MorrowfastSceneRuntime.BlockingOwner(cell);
+            if (!hasLocalObject && footprintOwner != null && footprintOwner.HasPart<MorrowfastPropPart>())
+            {
+                OpenWorldActionMenuFor(footprintOwner, CurrentZone.GetEntityCell(footprintOwner), includeBackRow: false);
+                return;
+            }
             Entity target = WorldInteractionSystem.ResolveTarget(cell);
             if (target == null)
             {
@@ -2415,7 +2454,8 @@ namespace CavesOfOoo.Rendering
                 var pileRows = WorldInteractionSystem.BuildPileSummaryActions(cell, PlayerEntity);
                 if (pileRows.Count > 0)
                 {
-                    WorldActionMenuUI.Open(PlayerEntity, target, cell, pileRows, CurrentZone);
+                    WorldActionMenuUI.Open(PlayerEntity, target, cell, pileRows, CurrentZone,
+                        isPileSummary: true);
                     _inputState = InputState.WorldActionMenuOpen;
                     EnterCenteredPopupOverlayView();
                     return;
@@ -2690,8 +2730,8 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Special case: pile-cell Examine → cell description rather than
-            // target's individual Examine.
+            // Only the pile SUMMARY examines the whole cell. A selected owner's
+            // menu uses its own Examine even when it shares that same cell.
             if (isPileCell && action.Command == "Examine")
             {
                 MessageLog.Add(WorldInteractionSystem.DescribeCell(cell, CurrentZone));
@@ -2737,6 +2777,41 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            // Clearing is a real turn only on successful simulation mutation. The
+            // generic inventory event path deliberately has no turn cost, so this
+            // belongs beside Take/Break and cannot be dispatched through that path.
+            if (MorrowfastQuests.IsWorldCommand(action.Command))
+            {
+                if (MorrowfastQuests.TryWorldAction(target, PlayerEntity, CurrentZone, action.Command, out int cost) && cost > 0)
+                    EndTurnAndProcess();
+                _inputState = _worldActionMenuReturnState;
+                RequestZoneRedraw("Morrowfast.QuestAction");
+                return;
+            }
+            if (action.Command == MorrowfastPropPart.ClearCommand || action.Command == MorrowfastPropPart.RoofCommand
+                || action.Command == MorrowfastDoorPart.OpenCommand || action.Command == MorrowfastDoorPart.CloseCommand)
+            {
+                bool changed = false;
+                if (action.Command == MorrowfastPropPart.ClearCommand)
+                    changed = target.GetPart<MorrowfastPropPart>()?.TryRemove(PlayerEntity, CurrentZone) == true;
+                else if (action.Command == MorrowfastPropPart.RoofCommand)
+                {
+                    var prop = target.GetPart<MorrowfastPropPart>();
+                    changed = prop != null && prop.TrySetRoofLifted(PlayerEntity, CurrentZone, !MorrowfastSceneRuntime.IsRoofLifted(CurrentZone, prop.ComponentId));
+                }
+                else changed = target.GetPart<MorrowfastDoorPart>()?.TrySetOpen(PlayerEntity, CurrentZone, action.Command == MorrowfastDoorPart.OpenCommand) == true;
+                if (changed) EndTurnAndProcess();
+                _inputState = _worldActionMenuReturnState;
+                return;
+            }
+            if (action.Command == FellingScenePropPart.ClearCommand)
+            {
+                if (target.GetPart<FellingScenePropPart>()?.TryClear(PlayerEntity, CurrentZone) == true)
+                    EndTurnAndProcess();
+                _inputState = _worldActionMenuReturnState;
+                return;
+            }
+
             // Special case: Break → one swing at a non-living thing. Needs
             // the zone and the combat RNG, neither of which reaches a Part
             // through the InventoryAction event, so it is dispatched here
@@ -2754,6 +2829,20 @@ namespace CavesOfOoo.Rendering
                 DestructionSystem.StrikeStructure(
                     target, PlayerEntity, CurrentZone, _combatRng);
                 EndTurnAndProcess();
+                _inputState = _worldActionMenuReturnState;
+                return;
+            }
+
+            // Regional deliveries must join the same native command transaction
+            // as inventory actions, including AfterInventoryAction rollback.
+            // Keep the existing zero-turn C-action policy; ordinary world verbs
+            // continue through their unchanged branches below.
+            if (action.Command.StartsWith("RegionalRequest:", StringComparison.Ordinal))
+            {
+                var result = InventorySystem.ExecuteCommand(
+                    new PerformInventoryActionCommand(target, action.Command), PlayerEntity, CurrentZone);
+                if (result.Success)
+                    RequestZoneRedraw("RegionalRequest.Action");
                 _inputState = _worldActionMenuReturnState;
                 return;
             }
@@ -3290,8 +3379,10 @@ namespace CavesOfOoo.Rendering
 
         private void HandleWaitingForFxResolution()
         {
-            if (ZoneRenderer != null && ZoneRenderer.HasBlockingFx)
+            bool timedOut = Time.realtimeSinceStartup - _fxWaitStartedAt >= WorldFxPlayback.HardTimeoutSeconds;
+            if (!timedOut && ZoneRenderer != null && ZoneRenderer.isActiveAndEnabled && ZoneRenderer.HasBlockingFx)
                 return;
+            if (timedOut) ZoneRenderer?.CancelWorldFx();
 
             _inputState = InputState.Normal;
             _pendingAbility = null;
@@ -3335,6 +3426,7 @@ namespace CavesOfOoo.Rendering
             if (blocksTurnAdvance)
             {
                 _inputState = InputState.WaitingForFxResolution;
+                _fxWaitStartedAt = Time.realtimeSinceStartup;
                 _lastMoveTime = Time.time;
                 SyncHotbarState();
                 return;

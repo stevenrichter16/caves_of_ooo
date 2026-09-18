@@ -89,22 +89,8 @@ namespace CavesOfOoo.Skills
             // Iterate the same 8-dir order as FindAdjacentCleaveTarget for
             // determinism. The slam direction is the same direction we
             // found the target — pushing them AWAY from the attacker.
-            Entity target = null;
-            int slamDir = -1;
-            for (int dir = 0; dir < 8 && target == null; dir++)
-            {
-                var cell = ctx.Zone.GetCellInDirection(actorPos.x, actorPos.y, dir);
-                if (cell == null) continue;
-                for (int i = 0; i < cell.Objects.Count; i++)
-                {
-                    var e = cell.Objects[i];
-                    if (e == null || e == actor) continue;
-                    if (!e.Tags.ContainsKey("Creature")) continue;
-                    target = e;
-                    slamDir = dir;
-                    break;
-                }
-            }
+            var target = MultiCellAbilityQueries.FirstAdjacentCreature(ctx.Zone, actor, out var contact);
+            int slamDir = MultiCellAbilityQueries.ContactDirection(ctx.Zone, actor, contact);
 
             if (target == null)
             {
@@ -122,7 +108,8 @@ namespace CavesOfOoo.Skills
                 var targetPos = ctx.Zone.GetEntityPosition(target);
                 if (targetPos.x < 0) break; // target left the zone (defense-in-depth)
                 var nextCell = ctx.Zone.GetCellInDirection(targetPos.x, targetPos.y, slamDir);
-                if (nextCell == null || nextCell.IsSolid() || CellHasOtherCreature(nextCell, target))
+                if (nextCell == null || !ctx.Zone.CanPlaceFootprint(target, nextCell.X, nextCell.Y)
+                    || MultiCellAbilityQueries.CreatureAtPlacement(ctx.Zone, target, nextCell.X, nextCell.Y) != null)
                 {
                     // Blocked by edge-of-map, by Solid-tagged terrain
                     // (wall/closed door), or by another creature in the
@@ -134,7 +121,7 @@ namespace CavesOfOoo.Skills
                     wallHits++;
                     break;
                 }
-                if (!ctx.Zone.MoveEntity(target, nextCell.X, nextCell.Y))
+                if (!MovementSystem.ForceMoveTo(target, ctx.Zone, nextCell.X, nextCell.Y))
                 {
                     // MoveEntity refused for some other reason. Treat as
                     // a wall hit (defense-in-depth — IsSolid() may not
@@ -144,6 +131,10 @@ namespace CavesOfOoo.Skills
                 }
                 cellsPushed++;
             }
+
+            // Entry reactions may remove or kill the pushed owner.
+            if (ctx.Zone.GetEntityCell(target) == null || target.GetStatValue("Hitpoints", 1) <= 0)
+                return true;
 
             // Bonus damage per wall hit, rolled from weapon BaseDamage.
             // Rolling fresh per wall keeps RNG-seeded tests deterministic
@@ -188,24 +179,6 @@ namespace CavesOfOoo.Skills
             return true;
         }
 
-        /// <summary>
-        /// Returns true if the cell contains a Creature-tagged entity
-        /// other than <paramref name="exclude"/>. Used by the slam push
-        /// loop to detect creature obstacles that <see cref="Cell.IsSolid"/>
-        /// misses (creatures live with <c>PhysicsPart.Solid = true</c>
-        /// but no Tag["Solid"]; the regular movement system checks both
-        /// at PhysicsPart.cs:69-71, but Cell.IsSolid only checks the tag).
-        /// </summary>
-        private static bool CellHasOtherCreature(Cell cell, Entity exclude)
-        {
-            if (cell == null) return false;
-            for (int i = 0; i < cell.Objects.Count; i++)
-            {
-                var e = cell.Objects[i];
-                if (e == null || e == exclude) continue;
-                if (e.Tags.ContainsKey("Creature")) return true;
-            }
-            return false;
-        }
+
     }
 }

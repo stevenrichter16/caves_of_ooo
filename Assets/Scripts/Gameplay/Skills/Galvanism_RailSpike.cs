@@ -24,7 +24,7 @@ namespace CavesOfOoo.Skills
     /// the back-line target the power exists to reach, and the family
     /// already has two shoves.</para>
     /// </summary>
-    public class Galvanism_RailSpike : BaseSkillPart
+    public class Galvanism_RailSpike : SpellSkillPart
     {
         public override string Name => nameof(Galvanism_RailSpike);
 
@@ -51,7 +51,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
@@ -85,6 +85,7 @@ namespace CavesOfOoo.Skills
             // Resolved before damage so a lethal hit cannot move the
             // "last" target out from under the charge mid-loop.
             Entity ground = targets[targets.Count - 1];
+            SpellFxCapture.EndPathAt(ctx.Zone, ground);
 
             for (int i = 0; i < targets.Count; i++)
             {

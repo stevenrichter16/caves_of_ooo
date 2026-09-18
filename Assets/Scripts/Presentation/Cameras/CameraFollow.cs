@@ -1,5 +1,6 @@
 using CavesOfOoo.Core;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace CavesOfOoo.Rendering
 {
@@ -30,11 +31,24 @@ namespace CavesOfOoo.Rendering
         /// Legacy fallback if TargetVisibleTileRows is disabled or invalid.
         /// </summary>
         public float ZoomSize = 17f;
+        // Applied after native scene fitting so a chunk's fit cannot cancel zoom.
+        [Min(0.1f)] public float GameplayZoomMultiplier = 1f;
         public int ReservedSidebarWidthChars = 34;
         public float SidebarReferenceZoom = 20f;
         public int ReservedHotbarHeightRows = GameplayViewportLayout.DefaultHotbarRows;
 
         private Camera _camera;
+        private Camera _letterboxClearCamera;
+        private FellingScenePresenter _scenePresenter;
+        private MorrowfastScenePresenter _morrowfastScenePresenter;
+        private Village3DPresenter _village3DPresenter;
+        private SpawnRing3DPresenter _spawnRing3DPresenter;
+        // Raised geometry shifts north under the56-degree native3D camera.
+        // One and a half cells fit the imported player at both borders and at smaller zooms.
+        private const float RingVerticalHeadroom = 1.5f;
+        // Retain the town's established12.75 center and width fit while giving
+        // the56-degree native player envelope room above the northern row.
+        private const float NativeTownMinimumHalfHeight = 13.75f;
         private bool _paused;
         private bool _centeredPopupOverlayActive;
 
@@ -53,10 +67,21 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public void SnapToPlayer()
         {
+            if (_scenePresenter == null)
+                _scenePresenter = FindFirstObjectByType<FellingScenePresenter>();
+            if (_morrowfastScenePresenter == null)
+                _morrowfastScenePresenter = FindFirstObjectByType<MorrowfastScenePresenter>();
+            if (_village3DPresenter == null)
+                _village3DPresenter = FindFirstObjectByType<Village3DPresenter>();
+            if (_spawnRing3DPresenter == null)
+                _spawnRing3DPresenter = FindFirstObjectByType<SpawnRing3DPresenter>();
             if (_camera == null)
                 _camera = GetComponent<Camera>();
             if (_camera == null)
+            {
+                DisableLetterboxClear();
                 return;
+            }
 
             _camera.orthographicSize = GetGameplayZoomSize();
             _camera.backgroundColor = new Color(0.05f, 0.05f, 0.05f);
@@ -209,7 +234,7 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         public void Shake(float intensity = 0.15f, float duration = 0.15f)
         {
-            _shakeIntensity = intensity;
+            _shakeIntensity = SpellFxSettings.Mode == SpellFxMode.Off ? 0f : intensity * SpellFxSettings.ShakeIntensity;
             _shakeTimeRemaining = duration;
         }
 
@@ -230,7 +255,7 @@ namespace CavesOfOoo.Rendering
                 float t = _shakeTimeRemaining; // use as a simple seed
                 float offsetX = (Mathf.PerlinNoise(t * 40f, 0f) - 0.5f) * 2f * _shakeIntensity;
                 float offsetY = (Mathf.PerlinNoise(0f, t * 40f) - 0.5f) * 2f * _shakeIntensity;
-                transform.position += new Vector3(offsetX, offsetY, 0f);
+                transform.position += new Vector3(Mathf.Round(offsetX * 16f) / 16f, Mathf.Round(offsetY * 16f) / 16f, 0f);
                 _shakeTimeRemaining -= Time.deltaTime;
             }
         }
@@ -239,6 +264,10 @@ namespace CavesOfOoo.Rendering
         {
             if (CurrentZone == null || _camera == null)
                 return;
+
+            // Leaving the scene, or disabling its art, restores ordinary zoom as
+            // well as bounds; the previous scene fit must not leak to other zones.
+            _camera.orthographicSize = GetGameplayZoomSize();
 
             int zoneX;
             int zoneY;
@@ -262,6 +291,40 @@ namespace CavesOfOoo.Rendering
                 zoneY = pos.y;
             }
 
+            bool felling = _scenePresenter != null && _scenePresenter.PresentationVisible
+                && ReferenceEquals(_scenePresenter.CurrentZone, CurrentZone);
+            bool morrowfast = HasMorrowfastPresentation;
+            bool ring = HasSpawnRingPresentation;
+            if (ring)
+                _camera.orthographicSize = Mathf.Min(GetGameplayZoomSize(), Zone.Height * 0.5f + RingVerticalHeadroom);
+            if (!ring && (felling || morrowfast))
+            {
+                _camera.orthographicSize = morrowfast
+                    ? MorrowfastScenePresenter.CameraHalfHeight(_camera.aspect)
+                    : FellingScenePresenter.CameraHalfHeight(_camera.aspect);
+                if (HasVillage3DPresentation)
+                    _camera.orthographicSize = Mathf.Max(_camera.orthographicSize, NativeTownMinimumHalfHeight);
+                _camera.orthographicSize *= Mathf.Max(0.1f, GameplayZoomMultiplier);
+                float sceneHalfWidth = _camera.orthographicSize * _camera.aspect;
+                float sceneCenterX = 40;
+                if (zoneX < (morrowfast ? 21 : 16) || zoneX >= (morrowfast ? 59 : 64))
+                {
+                    // Retain the source composition inside its bounds. On approach
+                    // routes, pan enough to keep either the player or Look target in
+                    // view; the scene's upper vertical projection remains fitted.
+                    float margin = sceneHalfWidth * Mathf.Clamp01(OverrideViewportMarginFraction);
+                    float innerHalfWidth = sceneHalfWidth - margin;
+                    float trackedX = zoneX + 0.5f;
+                    sceneCenterX += trackedX - Mathf.Clamp(trackedX, 40 - innerHalfWidth, 40 + innerHalfWidth);
+                    sceneCenterX = sceneHalfWidth < Zone.Width * 0.5f
+                        ? Mathf.Clamp(sceneCenterX, sceneHalfWidth, Zone.Width - sceneHalfWidth)
+                        : Zone.Width * 0.5f;
+                }
+                transform.position = new Vector3(sceneCenterX, morrowfast ? MorrowfastScenePresenter.CameraCenterY : 16f, transform.position.z);
+                return;
+            }
+
+            _camera.orthographicSize *= Mathf.Max(0.1f, GameplayZoomMultiplier);
             float halfH = _camera.orthographicSize;
             float halfW = halfH * _camera.aspect;
             float targetX = zoneX + 0.5f;
@@ -296,10 +359,12 @@ namespace CavesOfOoo.Rendering
                     desiredY += targetY - top;
             }
 
-            float minX = halfW - 0.5f;
-            float maxX = (Zone.Width - 1) + 0.5f - halfW;
-            float minY = halfH - 0.5f;
-            float maxY = (Zone.Height - 1) + 0.5f - halfH;
+            // Ring ground keeps its exact native horizontal limits. Its raised
+            // models need vertical headroom after the shared camera tilt.
+            float minX = ring ? halfW : halfW - 0.5f;
+            float maxX = ring ? Zone.Width - halfW : (Zone.Width - 1) + 0.5f - halfW;
+            float minY = ring ? halfH - RingVerticalHeadroom : halfH - 0.5f;
+            float maxY = ring ? Zone.Height + RingVerticalHeadroom - halfH : (Zone.Height - 1) + 0.5f - halfH;
 
             // If zone fits entirely within camera view on an axis, center it
             float clampedX = minX <= maxX ? Mathf.Clamp(desiredX, minX, maxX) : Zone.Width * 0.5f;
@@ -319,7 +384,10 @@ namespace CavesOfOoo.Rendering
         private void ApplyGameplayLayout()
         {
             if (_camera == null)
+            {
+                DisableLetterboxClear();
                 return;
+            }
 
             GameplayScreenLayout layout = GameplayViewportLayout.Measure(
                 _camera,
@@ -327,7 +395,24 @@ namespace CavesOfOoo.Rendering
                 ReservedSidebarWidthChars,
                 ReservedHotbarHeightRows);
 
-            ConfigureCameraRect(_camera, layout.MapRect, layout.MapAspect);
+            Rect mapRect = layout.MapRect;
+            float mapAspect = layout.MapAspect;
+            bool letterboxed = TracksInsideSceneArt();
+            if (letterboxed)
+            {
+                // Keep the complete source canvas and hide unrelated exterior floor
+                // margins. HUD and popup cameras retain the original gameplay layout.
+                // Morrowfast's native player needs a half-cell strip above its
+                // top-down source. Fit the same width rather than exposing side floor.
+                bool morrowfast = HasMorrowfastPresentation;
+                float sourceAspect = morrowfast ? MorrowfastScenePresenter.CameraAspect : 1.5f;
+                float width = Mathf.Min(mapRect.width, mapRect.height * sourceAspect / layout.DisplayAspect);
+                float height = width * layout.DisplayAspect / sourceAspect;
+                mapRect = new Rect(mapRect.center.x - width * 0.5f, mapRect.center.y - height * 0.5f, width, height);
+                mapAspect = sourceAspect;
+            }
+            ConfigureCameraRect(_camera, mapRect, mapAspect);
+            ConfigureLetterboxClear(layout.MapRect, layout.DisplayAspect, letterboxed);
             _camera.orthographic = true;
             _camera.cullingMask = GameplayRenderLayers.GameplayCameraMask;
 
@@ -336,8 +421,90 @@ namespace CavesOfOoo.Rendering
             ConfigurePopupOverlayCamera(layout);
         }
 
+        private void ConfigureLetterboxClear(Rect mapRect, float displayAspect, bool letterboxed)
+        {
+            if (!letterboxed || !isActiveAndEnabled || !_camera.enabled)
+            {
+                DisableLetterboxClear();
+                return;
+            }
+            if (_letterboxClearCamera == null)
+            {
+                var child = new GameObject("Felling Letterbox Clear Camera") { hideFlags = HideFlags.DontSave };
+                child.transform.SetParent(transform, false);
+                _letterboxClearCamera = child.AddComponent<Camera>();
+                _letterboxClearCamera.cullingMask = 0;
+                _letterboxClearCamera.clearFlags = CameraClearFlags.SolidColor;
+                _letterboxClearCamera.backgroundColor = Color.black;
+                _letterboxClearCamera.orthographic = true;
+                _letterboxClearCamera.allowHDR = false;
+                _letterboxClearCamera.allowMSAA = false;
+                _letterboxClearCamera.useOcclusionCulling = false;
+                var data = _letterboxClearCamera.GetUniversalAdditionalCameraData();
+                data.renderType = CameraRenderType.Base;
+                data.renderPostProcessing = false;
+                data.renderShadows = false;
+                data.requiresColorTexture = false;
+                data.requiresDepthTexture = false;
+                data.volumeLayerMask = 0;
+            }
+            // A narrower main viewport never clears pixels excluded from it. This
+            // empty pass clears the original map first, including any stale margins
+            // left by exterior tracking or modal views. HUD/popup cameras draw later.
+            _letterboxClearCamera.depth = _camera.depth - 1;
+            _letterboxClearCamera.targetDisplay = _camera.targetDisplay;
+            _letterboxClearCamera.targetTexture = _camera.targetTexture;
+            ConfigureCameraRect(_letterboxClearCamera, mapRect, displayAspect * mapRect.width / mapRect.height);
+            _letterboxClearCamera.enabled = true;
+        }
+
+        private void DisableLetterboxClear()
+        {
+            if (_letterboxClearCamera != null) _letterboxClearCamera.enabled = false;
+        }
+
+        private void OnDisable() => DisableLetterboxClear();
+
+        private void OnDestroy()
+        {
+            if (_letterboxClearCamera == null) return;
+            _letterboxClearCamera.enabled = false;
+            var child = _letterboxClearCamera.gameObject;
+            _letterboxClearCamera = null;
+            if (Application.isPlaying) Destroy(child); else DestroyImmediate(child);
+        }
+
+        private bool HasSpawnRingPresentation
+            => _spawnRing3DPresenter != null && _spawnRing3DPresenter.IsReady
+                && _spawnRing3DPresenter.PresentationVisible
+                && ReferenceEquals(_spawnRing3DPresenter.CurrentZone, CurrentZone);
+
+        private bool HasVillage3DPresentation
+            => _village3DPresenter != null && _village3DPresenter.PresentationVisible && ReferenceEquals(_village3DPresenter.CurrentZone, CurrentZone);
+
+        private bool HasMorrowfastPresentation
+            => HasVillage3DPresentation
+                || (_morrowfastScenePresenter != null && _morrowfastScenePresenter.PresentationVisible && ReferenceEquals(_morrowfastScenePresenter.CurrentZone, CurrentZone));
+
+        private bool TracksInsideSceneArt()
+        {
+            if (CurrentZone == null || HasSpawnRingPresentation) return false;
+            bool felling = _scenePresenter != null && _scenePresenter.PresentationVisible && ReferenceEquals(_scenePresenter.CurrentZone, CurrentZone);
+            bool morrowfast = HasMorrowfastPresentation;
+            if (!felling && !morrowfast) return false;
+            int x, y;
+            if (HasOverrideTarget) { x = OverrideZoneCell.x; y = OverrideZoneCell.y; }
+            else
+            {
+                if (Player == null) return false;
+                var position = CurrentZone.GetEntityPosition(Player); x = position.x; y = position.y;
+            }
+            return x >= (morrowfast ? 21 : 16) && x < (morrowfast ? 59 : 64) && y >= 0 && y < Zone.Height;
+        }
+
         private void ApplyUIViewLayout()
         {
+            DisableLetterboxClear();
             if (_camera == null)
                 return;
 

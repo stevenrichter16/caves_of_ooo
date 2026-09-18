@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "audit": "read existing exported PNGs; no rebuild",
+  "sourceSha256": "c2fcc1c2c4c0c909a847be8089e40c3a955f58a16e14fff5f084f2cd3a5a2cc0",
+  "manifestSha256": "36d3105c8d3a3599453ac9e85c59735aa4f30df3e00304041539fd8f35e3162e",
+  "sourcePixelCount": 1572864,
+  "intactDifferentPixels": 0,
+  "sourcePixelLayers": 90,
+  "inferredLayers": 55,
+  "owners": 71,
+  "masks": 71,
+  "pngFiles": 288,
+  "unownedBackingChanges": 0,
+  "removalInspections": 66,
+  "checks": [
+    "real RGBA and binary alpha",
+    "PNG bounds and nonempty masks",
+    "original-source layer RGB fidelity",
+    "fresh independent reconstruction equals source",
+    "known pixels outside source ownership unchanged",
+    "owner/layer references and removal inspections complete"
+  ]
+}

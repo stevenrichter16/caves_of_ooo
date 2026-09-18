@@ -92,15 +92,14 @@ namespace CavesOfOoo.Core
 
         private bool IsInMatchingGasCell(Entity target, Zone zone)
         {
-            var pos = zone.GetEntityPosition(target);
-            if (pos.x < 0) return false;
-            var cell = zone.GetCell(pos.x, pos.y);
-            if (cell == null) return false;
-            for (int i = 0; i < cell.Objects.Count; i++)
+            foreach (var cell in zone.GetOccupiedCells(target))
             {
-                var pool = cell.Objects[i].GetPart<GasPoolPart>();
-                if (pool != null && pool.GasType == GasTypeKey)
-                    return true;
+                if (cell == null) continue;
+                foreach (var entity in cell.Occupants)
+                {
+                    var pool = entity?.GetPart<GasPoolPart>();
+                    if (pool != null && pool.GasType == GasTypeKey) return true;
+                }
             }
             return false;
         }

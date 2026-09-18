@@ -1,0 +1,661 @@
+ M Assets/Editor/Scenarios/ScenarioMenuItems.cs
+ M Assets/Editor/SpriteImportPostprocessor.cs
+ M Assets/Resources/Content/Data/Factions.json
+ M Assets/Resources/Sprites/Environment/tree.png
+ M Assets/Scripts/Gameplay/AI/FindPath.cs
+ M Assets/Scripts/Gameplay/AI/Goals/KillGoal.cs
+ M Assets/Scripts/Gameplay/Combat/CombatSystem.cs
+ M Assets/Scripts/Gameplay/Combat/LineTargeting.cs
+ M Assets/Scripts/Gameplay/Combat/PhysicsPart.cs
+ M Assets/Scripts/Gameplay/Combat/SpellTargeting.cs
+ M Assets/Scripts/Gameplay/Effects/AsciiFxBus.cs
+ M Assets/Scripts/Gameplay/Effects/Concrete/HearthAuraEffect.cs
+ M Assets/Scripts/Gameplay/Effects/Concrete/HookedEffect.cs
+ M Assets/Scripts/Gameplay/Effects/Concrete/PoisonedByGasEffect.cs
+ M Assets/Scripts/Gameplay/Entities/Entity.cs
+ M Assets/Scripts/Gameplay/Entities/RenderPart.cs
+ M Assets/Scripts/Gameplay/Interaction/WorldInteractionSystem.cs
+ M Assets/Scripts/Gameplay/Magic/RiteTargeting.cs
+ M Assets/Scripts/Gameplay/Materials/GasSystem.cs
+ M Assets/Scripts/Gameplay/Materials/IObjectGasBehaviorPart.cs
+ M Assets/Scripts/Gameplay/Save/SaveSystem.cs
+ M Assets/Scripts/Gameplay/Skills/Acrobatics_Tumble.cs
+ M Assets/Scripts/Gameplay/Skills/Acrobatics_Vault.cs
+ M Assets/Scripts/Gameplay/Skills/Axe_HookAndDrag.cs
+ M Assets/Scripts/Gameplay/Skills/Axe_RendArmor.cs
+ M Assets/Scripts/Gameplay/Skills/Axe_Whirlwind.cs
+ M Assets/Scripts/Gameplay/Skills/ConsumingRiteSkillBase.cs
+ M Assets/Scripts/Gameplay/Skills/Corrosion_AcidRetort.cs
+ M Assets/Scripts/Gameplay/Skills/Corrosion_Etch.cs
+ M Assets/Scripts/Gameplay/Skills/Cryomancy_BrittleStrike.cs
+ M Assets/Scripts/Gameplay/Skills/Cryomancy_ChillDraft.cs
+ M Assets/Scripts/Gameplay/Skills/Cryomancy_ColdSnap.cs
+ M Assets/Scripts/Gameplay/Skills/Cryomancy_FrostRetort.cs
+ M Assets/Scripts/Gameplay/Skills/Cryomancy_Frostbind.cs
+ M Assets/Scripts/Gameplay/Skills/Cryomancy_GlacialWall.cs
+ M Assets/Scripts/Gameplay/Skills/Cryomancy_Hibernate.cs
+ M Assets/Scripts/Gameplay/Skills/Cryomancy_RimeGrip.cs
+ M Assets/Scripts/Gameplay/Skills/Cryomancy_RimeNova.cs
+ M Assets/Scripts/Gameplay/Skills/Cudgel_ChargingStrike.cs
+ M Assets/Scripts/Gameplay/Skills/Cudgel_Disarm.cs
+ M Assets/Scripts/Gameplay/Skills/Cudgel_GroundPound.cs
+ M Assets/Scripts/Gameplay/Skills/Cudgel_Slam.cs
+ M Assets/Scripts/Gameplay/Skills/Galvanism_BacklashCoil.cs
+ M Assets/Scripts/Gameplay/Skills/Galvanism_GroundStrike.cs
+ M Assets/Scripts/Gameplay/Skills/Galvanism_GroundSurge.cs
+ M Assets/Scripts/Gameplay/Skills/Galvanism_Overload.cs
+ M Assets/Scripts/Gameplay/Skills/Galvanism_RailSpike.cs
+ M Assets/Scripts/Gameplay/Skills/Galvanism_ShockRetort.cs
+ M Assets/Scripts/Gameplay/Skills/Galvanism_Thunderclap.cs
+ M Assets/Scripts/Gameplay/Skills/Hydromancy_ConjureRain.cs
+ M Assets/Scripts/Gameplay/Skills/Hydromancy_ConjureWater.cs
+ M Assets/Scripts/Gameplay/Skills/Hydromancy_DrenchLob.cs
+ M Assets/Scripts/Gameplay/Skills/Hydromancy_DryingBreeze.cs
+ M Assets/Scripts/Gameplay/Skills/Hydromancy_JetBlast.cs
+ M Assets/Scripts/Gameplay/Skills/Hydromancy_Undertow.cs
+ M Assets/Scripts/Gameplay/Skills/ProjectileSpellSkillBase.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_Backdraft.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_Charsplit.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_Conflagration.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_EmberSpit.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_EmberVein.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_FlameJet.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_FlamingHands.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_HeartFlame.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_Hearthwarm.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_KindleFlame.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_Oilmark.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_Pyroclasm.cs
+ M Assets/Scripts/Gameplay/Skills/Pyromancy_ScorchRetort.cs
+ M Assets/Scripts/Gameplay/Skills/Rites_BloodletterLedger.cs
+ M Assets/Scripts/Gameplay/Skills/ShortBlades_Backstab.cs
+ M Assets/Scripts/Gameplay/Skills/ShortBlades_Disengage.cs
+ M Assets/Scripts/Gameplay/Skills/ShortBlades_Flurry.cs
+ M Assets/Scripts/Gameplay/Skills/ShortBlades_Shank.cs
+ M Assets/Scripts/Gameplay/Skills/SkillCombatHelpers.cs
+ M Assets/Scripts/Gameplay/Skills/SkillLine.cs
+ M Assets/Scripts/Gameplay/Skills/Spellcraft_ArcaneSurge.cs
+ M Assets/Scripts/Gameplay/Skills/Spellcraft_Calm.cs
+ M Assets/Scripts/Gameplay/Skills/Spellcraft_LeyTap.cs
+ M Assets/Scripts/Gameplay/Skills/Spellcraft_WardGleam.cs
+ M Assets/Scripts/Gameplay/Turns/LiquidSlipSystem.cs
+ M Assets/Scripts/Gameplay/Turns/MovementSystem.cs
+ M Assets/Scripts/Gameplay/World/DestructionSystem.cs
+ M Assets/Scripts/Gameplay/World/DragSystem.cs
+ M Assets/Scripts/Gameplay/World/Generation/Builders/FellingSiteBuilder.cs
+ M Assets/Scripts/Gameplay/World/LightMap.cs
+ M Assets/Scripts/Gameplay/World/Map/Cell.cs
+ M Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
+ M Assets/Scripts/Gameplay/World/Map/StumpBands.cs
+ M Assets/Scripts/Gameplay/World/Map/TilePropagationSystem.cs
+ M Assets/Scripts/Gameplay/World/Map/TileReactionSystem.cs
+ M Assets/Scripts/Gameplay/World/Map/WorldMap.cs
+ M Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs
+ M Assets/Scripts/Gameplay/World/Map/Zone.cs
+ M Assets/Scripts/Gameplay/World/Map/ZoneTileStateSystem.cs
+ M Assets/Scripts/Gameplay/World/ObjectStatusMatrix.cs
+ M Assets/Scripts/Gameplay/World/ZoneTransitionSystem.cs
+ M Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs
+ M Assets/Scripts/Presentation/Cameras/CameraFollow.cs
+ M Assets/Scripts/Presentation/Effects/GraphicsPolish.cs
+ M Assets/Scripts/Presentation/Effects/SpriteEnvToggleController.cs
+ M Assets/Scripts/Presentation/Input/InputHandler.cs
+ M Assets/Scripts/Presentation/Rendering/AnimatedEnvironmentRenderer.cs
+ M Assets/Scripts/Presentation/Rendering/AsciiFxRenderer.cs
+ M Assets/Scripts/Presentation/Rendering/EnvironmentSpriteRenderer.cs
+ M Assets/Scripts/Presentation/Rendering/WorldCursorRenderer.cs
+ M Assets/Scripts/Presentation/Rendering/ZoneRenderer.cs
+ M Assets/Scripts/Presentation/UI/WorldActionMenuUI.cs
+ M Assets/Scripts/Scenarios/Custom/FellingSiteBench.cs
+ M Assets/Scripts/Scenarios/README.md
+ M Assets/Settings/UniversalRP.asset
+ M Assets/Tests/EditMode/Gameplay/Anatomy/GameAuditNaturalWeaponActivationAdversarialTests.cs
+ M Assets/Tests/EditMode/Gameplay/Farming/CropWateringTests.cs
+ M Assets/Tests/EditMode/Gameplay/Farming/CropsWateringAdversarialTests.cs
+ M Assets/Tests/EditMode/Gameplay/Farming/FarmingAuditFixTests.cs
+ M Assets/Tests/EditMode/Gameplay/Save/Tier3SimplePartRoundTripTests.cs
+ M Assets/Tests/EditMode/Gameplay/Skills/ShortBladesShankTests.cs
+ M Assets/Tests/EditMode/Gameplay/Weaponcraft/ForgeCommandsTests.cs
+ M Assets/Tests/EditMode/Gameplay/World/FellingSiteAdversarialTests.cs
+ M Assets/Tests/EditMode/Gameplay/World/FellingSiteTests.cs
+ M Assets/Tests/EditMode/Gameplay/World/FellingW6AdversarialTests.cs
+ M Assets/Tests/EditMode/Presentation/Input/InteractKeyPileAndTakeTests.cs
+ M Assets/Tests/EditMode/Presentation/Rendering/AsciiFxRendererTests.cs
+ M Assets/Tests/EditMode/Presentation/Rendering/EnvironmentSpriteRendererHarnessTests.cs
+ M Assets/UnityMCP/Log/mcp.log
+ M Assets/UnityMCP/Log/mcpError.log
+ M Docs/STYLE-GUIDE.md
+?? ArtSource/
+?? ArtTools/__pycache__/
+?? ArtTools/catacomb_extract.py
+?? ArtTools/catacomb_scene.py
+?? ArtTools/coo_casting_poses.py
+?? ArtTools/coo_spell_fx.py
+?? ArtTools/coo_vertical_slice.py
+?? ArtTools/felling_components.py
+?? ArtTools/felling_components_contract.py
+?? ArtTools/felling_scene.py
+?? ArtTools/felling_unity_export.py
+?? ArtTools/morrowfast_actor_sheets.py
+?? ArtTools/morrowfast_components.py
+?? ArtTools/morrowfast_native_layout.py
+?? ArtTools/morrowfast_unity_export.py
+?? ArtTools/test_catacomb_adversarial.py
+?? ArtTools/test_catacomb_browser.cjs
+?? ArtTools/test_catacomb_extract.py
+?? ArtTools/test_catacomb_scene.py
+?? ArtTools/test_felling_components.py
+?? ArtTools/test_felling_components_adversarial.py
+?? ArtTools/test_felling_components_contract.py
+?? ArtTools/test_felling_components_viewer.cjs
+?? ArtTools/test_felling_preview.cjs
+?? ArtTools/test_felling_scene.py
+?? ArtTools/test_felling_unity_export.py
+?? ArtTools/test_morrowfast_actor_sheets.py
+?? ArtTools/test_morrowfast_components.py
+?? ArtTools/test_morrowfast_native_layout.py
+?? ArtTools/test_morrowfast_preview.cjs
+?? ArtTools/test_morrowfast_unity_export.py
+?? ArtTools/test_spell_fx_assets.py
+?? ArtTools/verify_catacomb_scene.py
+?? ArtTools/verify_felling_components.py
+?? ArtTools/verify_felling_scene.py
+?? ArtTools/verify_morrowfast.py
+?? Assets/Art3D.meta
+?? Assets/Art3D/
+?? Assets/Editor/Art.meta
+?? Assets/Editor/Art/
+?? Assets/Editor/FellingSceneArtImporter.cs
+?? Assets/Editor/FellingSceneArtImporter.cs.meta
+?? Assets/Editor/MorrowfastSceneArtImporter.cs
+?? Assets/Editor/MorrowfastSceneArtImporter.cs.meta
+?? Assets/Editor/Scenarios/FellingScenePlayAuditMenu.cs
+?? Assets/Editor/Scenarios/FellingScenePlayAuditMenu.cs.meta
+?? Assets/Editor/Scenarios/MorrowfastScenePlayAuditMenu.cs
+?? Assets/Editor/Scenarios/MorrowfastScenePlayAuditMenu.cs.meta
+?? Assets/Editor/Scenarios/MultiCellPilotNativeAuditBatch.cs
+?? Assets/Editor/Scenarios/MultiCellPilotNativeAuditBatch.cs.meta
+?? Assets/Editor/Scenarios/SpawnRing3DNativeAuditBatch.cs
+?? Assets/Editor/Scenarios/SpawnRing3DNativeAuditBatch.cs.meta
+?? Assets/Editor/Scenarios/Village3DNativeAuditBatch.cs
+?? Assets/Editor/Scenarios/Village3DNativeAuditBatch.cs.meta
+?? Assets/InitTestScene3702ca5b-f92b-48fa-92a0-976aef8efa7f.unity
+?? Assets/InitTestScene3702ca5b-f92b-48fa-92a0-976aef8efa7f.unity.meta
+?? Assets/InitTestScenedcab54b0-66de-4e6d-8cf6-c72ca524bef6.unity
+?? Assets/InitTestScenedcab54b0-66de-4e6d-8cf6-c72ca524bef6.unity.meta
+?? Assets/Resources/Content/Conversations/Morrowfast.json
+?? Assets/Resources/Content/Conversations/Morrowfast.json.meta
+?? Assets/Resources/Content/Data/EntityVisuals.json
+?? Assets/Resources/Content/Data/EntityVisuals.json.meta
+?? Assets/Resources/Content/Data/SpellVisuals.json
+?? Assets/Resources/Content/Data/SpellVisuals.json.meta
+?? Assets/Resources/Content/Data/Storylets/Morrowfast.json
+?? Assets/Resources/Content/Data/Storylets/Morrowfast.json.meta
+?? Assets/Resources/Content/MultiCellPilot.meta
+?? Assets/Resources/Content/MultiCellPilot/
+?? Assets/Resources/MultiCellPilot3D.meta
+?? Assets/Resources/MultiCellPilot3D/
+?? Assets/Resources/SceneArt.meta
+?? Assets/Resources/SceneArt/
+?? Assets/Resources/SpawnRing3D.meta
+?? Assets/Resources/SpawnRing3D/
+?? Assets/Resources/Sprites/Actors.meta
+?? Assets/Resources/Sprites/Actors/
+?? Assets/Resources/Sprites/Environment/copper_pipe.png
+?? Assets/Resources/Sprites/Environment/copper_pipe.png.meta
+?? Assets/Resources/Sprites/Environment/grass_macro8.png
+?? Assets/Resources/Sprites/Environment/grass_macro8.png.meta
+?? Assets/Resources/Sprites/Environment/maw_toad.png
+?? Assets/Resources/Sprites/Environment/maw_toad.png.meta
+?? Assets/Resources/Sprites/Environment/steam_vent.png
+?? Assets/Resources/Sprites/Environment/steam_vent.png.meta
+?? Assets/Resources/Sprites/Environment/tar_seep.png
+?? Assets/Resources/Sprites/Environment/tar_seep.png.meta
+?? Assets/Resources/Sprites/Environment/tepui_macro8.png
+?? Assets/Resources/Sprites/Environment/tepui_macro8.png.meta
+?? Assets/Resources/Sprites/Environment/tree_v1.png
+?? Assets/Resources/Sprites/Environment/tree_v1.png.meta
+?? Assets/Resources/Sprites/Environment/tree_v2.png
+?? Assets/Resources/Sprites/Environment/tree_v2.png.meta
+?? Assets/Resources/Sprites/Environment/tree_v3.png
+?? Assets/Resources/Sprites/Environment/tree_v3.png.meta
+?? Assets/Resources/Sprites/SpellFx.meta
+?? Assets/Resources/Sprites/SpellFx/
+?? Assets/Resources/Village3D.meta
+?? Assets/Resources/Village3D/
+?? Assets/Scripts/Gameplay/Bootstrap/NativeAuditBootstrapSettings.cs
+?? Assets/Scripts/Gameplay/Bootstrap/NativeAuditBootstrapSettings.cs.meta
+?? Assets/Scripts/Gameplay/Effects/SpellFxSequence.cs
+?? Assets/Scripts/Gameplay/Effects/SpellFxSequence.cs.meta
+?? Assets/Scripts/Gameplay/Entities/EntityVisualFacing.cs
+?? Assets/Scripts/Gameplay/Entities/EntityVisualFacing.cs.meta
+?? Assets/Scripts/Gameplay/Save/SessionTileStateSerializer.cs
+?? Assets/Scripts/Gameplay/Save/SessionTileStateSerializer.cs.meta
+?? Assets/Scripts/Gameplay/Skills/MultiCellAbilityQueries.cs
+?? Assets/Scripts/Gameplay/Skills/MultiCellAbilityQueries.cs.meta
+?? Assets/Scripts/Gameplay/Skills/SpellSkillPart.cs
+?? Assets/Scripts/Gameplay/Skills/SpellSkillPart.cs.meta
+?? Assets/Scripts/Gameplay/World/FellingSceneDefinition.cs
+?? Assets/Scripts/Gameplay/World/FellingSceneDefinition.cs.meta
+?? Assets/Scripts/Gameplay/World/FellingScenePopulation.cs
+?? Assets/Scripts/Gameplay/World/FellingScenePopulation.cs.meta
+?? Assets/Scripts/Gameplay/World/FellingScenePropPart.cs
+?? Assets/Scripts/Gameplay/World/FellingScenePropPart.cs.meta
+?? Assets/Scripts/Gameplay/World/FellingSceneRuntime.cs
+?? Assets/Scripts/Gameplay/World/FellingSceneRuntime.cs.meta
+?? Assets/Scripts/Gameplay/World/FellingSceneStatePart.cs
+?? Assets/Scripts/Gameplay/World/FellingSceneStatePart.cs.meta
+?? Assets/Scripts/Gameplay/World/Generation/Builders/MorrowfastBuilder.cs
+?? Assets/Scripts/Gameplay/World/Generation/Builders/MorrowfastBuilder.cs.meta
+?? Assets/Scripts/Gameplay/World/Generation/Builders/MultiCellPilotBuilder.cs
+?? Assets/Scripts/Gameplay/World/Generation/Builders/MultiCellPilotBuilder.cs.meta
+?? Assets/Scripts/Gameplay/World/MorrowfastContent.cs
+?? Assets/Scripts/Gameplay/World/MorrowfastContent.cs.meta
+?? Assets/Scripts/Gameplay/World/MorrowfastDoorPart.cs
+?? Assets/Scripts/Gameplay/World/MorrowfastDoorPart.cs.meta
+?? Assets/Scripts/Gameplay/World/MorrowfastFaunaPart.cs
+?? Assets/Scripts/Gameplay/World/MorrowfastFaunaPart.cs.meta
+?? Assets/Scripts/Gameplay/World/MorrowfastPropPart.cs
+?? Assets/Scripts/Gameplay/World/MorrowfastPropPart.cs.meta
+?? Assets/Scripts/Gameplay/World/MorrowfastQuests.cs
+?? Assets/Scripts/Gameplay/World/MorrowfastQuests.cs.meta
+?? Assets/Scripts/Gameplay/World/MorrowfastResidentPart.cs
+?? Assets/Scripts/Gameplay/World/MorrowfastResidentPart.cs.meta
+?? Assets/Scripts/Gameplay/World/MorrowfastSceneDefinition.cs
+?? Assets/Scripts/Gameplay/World/MorrowfastSceneDefinition.cs.meta
+?? Assets/Scripts/Gameplay/World/MorrowfastSceneRuntime.cs
+?? Assets/Scripts/Gameplay/World/MorrowfastSceneRuntime.cs.meta
+?? Assets/Scripts/Gameplay/World/MorrowfastSceneStatePart.cs
+?? Assets/Scripts/Gameplay/World/MorrowfastSceneStatePart.cs.meta
+?? Assets/Scripts/Gameplay/World/MorrowfastStartingGarden.cs
+?? Assets/Scripts/Gameplay/World/MorrowfastStartingGarden.cs.meta
+?? Assets/Scripts/Gameplay/World/MultiCellPilotPropPart.cs
+?? Assets/Scripts/Gameplay/World/MultiCellPilotPropPart.cs.meta
+?? Assets/Scripts/Gameplay/World/MultiCellPilotRuntime.cs
+?? Assets/Scripts/Gameplay/World/MultiCellPilotRuntime.cs.meta
+?? Assets/Scripts/Gameplay/World/MultiCellPilotStatePart.cs
+?? Assets/Scripts/Gameplay/World/MultiCellPilotStatePart.cs.meta
+?? Assets/Scripts/Gameplay/World/Spatial.meta
+?? Assets/Scripts/Gameplay/World/Spatial/
+?? Assets/Scripts/Presentation/Rendering/AnimatedEntityRenderer.cs
+?? Assets/Scripts/Presentation/Rendering/AnimatedEntityRenderer.cs.meta
+?? Assets/Scripts/Presentation/Rendering/EntityVisualCatalog.cs
+?? Assets/Scripts/Presentation/Rendering/EntityVisualCatalog.cs.meta
+?? Assets/Scripts/Presentation/Rendering/EntityVisualHooks.cs
+?? Assets/Scripts/Presentation/Rendering/EntityVisualHooks.cs.meta
+?? Assets/Scripts/Presentation/Rendering/FellingDressingPresenter.cs
+?? Assets/Scripts/Presentation/Rendering/FellingDressingPresenter.cs.meta
+?? Assets/Scripts/Presentation/Rendering/FellingScenePresenter.cs
+?? Assets/Scripts/Presentation/Rendering/FellingScenePresenter.cs.meta
+?? Assets/Scripts/Presentation/Rendering/MorrowfastArtDefinition.cs
+?? Assets/Scripts/Presentation/Rendering/MorrowfastArtDefinition.cs.meta
+?? Assets/Scripts/Presentation/Rendering/MorrowfastScenePresenter.cs
+?? Assets/Scripts/Presentation/Rendering/MorrowfastScenePresenter.cs.meta
+?? Assets/Scripts/Presentation/Rendering/MultiCellPilot3DLibrary.cs
+?? Assets/Scripts/Presentation/Rendering/MultiCellPilot3DLibrary.cs.meta
+?? Assets/Scripts/Presentation/Rendering/NativeZone3DRenderSurface.cs
+?? Assets/Scripts/Presentation/Rendering/NativeZone3DRenderSurface.cs.meta
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DCatalog.cs
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DCatalog.cs.meta
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DGroundPatches.cs
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DGroundPatches.cs.meta
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DLibrary.cs
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DLibrary.cs.meta
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs.meta
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs.meta
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DWaterMesh.cs
+?? Assets/Scripts/Presentation/Rendering/SpawnRing3DWaterMesh.cs.meta
+?? Assets/Scripts/Presentation/Rendering/SpellFxCatalog.cs
+?? Assets/Scripts/Presentation/Rendering/SpellFxCatalog.cs.meta
+?? Assets/Scripts/Presentation/Rendering/SpellFxSettings.cs
+?? Assets/Scripts/Presentation/Rendering/SpellFxSettings.cs.meta
+?? Assets/Scripts/Presentation/Rendering/SpellFxSettingsPanel.cs
+?? Assets/Scripts/Presentation/Rendering/SpellFxSettingsPanel.cs.meta
+?? Assets/Scripts/Presentation/Rendering/SpriteSpellFxRenderer.cs
+?? Assets/Scripts/Presentation/Rendering/SpriteSpellFxRenderer.cs.meta
+?? Assets/Scripts/Presentation/Rendering/Village3DControls.cs
+?? Assets/Scripts/Presentation/Rendering/Village3DControls.cs.meta
+?? Assets/Scripts/Presentation/Rendering/Village3DEquipmentViews.cs
+?? Assets/Scripts/Presentation/Rendering/Village3DEquipmentViews.cs.meta
+?? Assets/Scripts/Presentation/Rendering/Village3DLibrary.cs
+?? Assets/Scripts/Presentation/Rendering/Village3DLibrary.cs.meta
+?? Assets/Scripts/Presentation/Rendering/Village3DManifest.cs
+?? Assets/Scripts/Presentation/Rendering/Village3DManifest.cs.meta
+?? Assets/Scripts/Presentation/Rendering/Village3DPresenter.cs
+?? Assets/Scripts/Presentation/Rendering/Village3DPresenter.cs.meta
+?? Assets/Scripts/Presentation/Rendering/Village3DProjection.cs
+?? Assets/Scripts/Presentation/Rendering/Village3DProjection.cs.meta
+?? Assets/Scripts/Presentation/Rendering/Village3DSettings.cs
+?? Assets/Scripts/Presentation/Rendering/Village3DSettings.cs.meta
+?? Assets/Scripts/Presentation/Rendering/Village3DShowcaseCutaway.cs
+?? Assets/Scripts/Presentation/Rendering/Village3DShowcaseCutaway.cs.meta
+?? Assets/Scripts/Presentation/Rendering/Village3DShowcaseFrame.cs
+?? Assets/Scripts/Presentation/Rendering/Village3DShowcaseFrame.cs.meta
+?? Assets/Scripts/Presentation/Rendering/Village3DVisibility.cs
+?? Assets/Scripts/Presentation/Rendering/Village3DVisibility.cs.meta
+?? Assets/Scripts/Presentation/Rendering/WorldFxCoordinator.cs
+?? Assets/Scripts/Presentation/Rendering/WorldFxCoordinator.cs.meta
+?? Assets/Scripts/Presentation/Rendering/WorldFxPlayback.cs
+?? Assets/Scripts/Presentation/Rendering/WorldFxPlayback.cs.meta
+?? Assets/Scripts/Scenarios/Custom/FellingScenePlayAudit.cs
+?? Assets/Scripts/Scenarios/Custom/FellingScenePlayAudit.cs.meta
+?? Assets/Scripts/Scenarios/Custom/MorrowfastScenePlayAudit.cs
+?? Assets/Scripts/Scenarios/Custom/MorrowfastScenePlayAudit.cs.meta
+?? Assets/Scripts/Scenarios/Custom/MultiCellPilotNativeAudit.Profile.cs
+?? Assets/Scripts/Scenarios/Custom/MultiCellPilotNativeAudit.Profile.cs.meta
+?? Assets/Scripts/Scenarios/Custom/MultiCellPilotNativeAudit.cs
+?? Assets/Scripts/Scenarios/Custom/MultiCellPilotNativeAudit.cs.meta
+?? Assets/Scripts/Scenarios/Custom/SpawnRing3DNativeAudit.Actions.cs
+?? Assets/Scripts/Scenarios/Custom/SpawnRing3DNativeAudit.Actions.cs.meta
+?? Assets/Scripts/Scenarios/Custom/SpawnRing3DNativeAudit.Profile.cs
+?? Assets/Scripts/Scenarios/Custom/SpawnRing3DNativeAudit.Profile.cs.meta
+?? Assets/Scripts/Scenarios/Custom/SpawnRing3DNativeAudit.cs
+?? Assets/Scripts/Scenarios/Custom/SpawnRing3DNativeAudit.cs.meta
+?? Assets/Scripts/Scenarios/Custom/SpellFxShowcase.cs
+?? Assets/Scripts/Scenarios/Custom/SpellFxShowcase.cs.meta
+?? Assets/Scripts/Scenarios/Custom/SpellFxShowcasePlayer.cs
+?? Assets/Scripts/Scenarios/Custom/SpellFxShowcasePlayer.cs.meta
+?? Assets/Scripts/Scenarios/Custom/Village3DNativeAudit.cs
+?? Assets/Scripts/Scenarios/Custom/Village3DNativeAudit.cs.meta
+?? Assets/Tests/EditMode/Gameplay/Bootstrap.meta
+?? Assets/Tests/EditMode/Gameplay/Bootstrap/
+?? Assets/Tests/EditMode/Gameplay/Effects/SpellFxSequenceTests.cs
+?? Assets/Tests/EditMode/Gameplay/Effects/SpellFxSequenceTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/Save/GameAuditTileSessionSaveAdversarialTests.cs
+?? Assets/Tests/EditMode/Gameplay/Save/GameAuditTileSessionSaveAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/Save/GameAuditTileSessionSaveTests.cs
+?? Assets/Tests/EditMode/Gameplay/Save/GameAuditTileSessionSaveTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/Scenarios/SpellFxShowcaseTests.cs
+?? Assets/Tests/EditMode/Gameplay/Scenarios/SpellFxShowcaseTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/FellingSceneAdversarialTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/FellingSceneAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/FellingSceneIntegrationTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/FellingSceneIntegrationTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/FellingScenePopulationTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/FellingScenePopulationTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/GameAuditMorrowfastGardenAdversarialTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/GameAuditMorrowfastGardenAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/GameAuditMorrowfastGardenTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/GameAuditMorrowfastGardenTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/GameAuditMorrowfastStartTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/GameAuditMorrowfastStartTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastBridgeTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastBridgeTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastContentTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastContentTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastContentWorldTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastContentWorldTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastFaunaTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastFaunaTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastLegacyTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastLegacyTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastSceneAdversarialTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastSceneAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastSceneIntegrationTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/MorrowfastSceneIntegrationTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/MultiCellTransitionTests.cs
+?? Assets/Tests/EditMode/Gameplay/World/MultiCellTransitionTests.cs.meta
+?? Assets/Tests/EditMode/Gameplay/World/Spatial.meta
+?? Assets/Tests/EditMode/Gameplay/World/Spatial/
+?? Assets/Tests/EditMode/Presentation/Input/FellingSceneInteractionTurnTests.cs
+?? Assets/Tests/EditMode/Presentation/Input/FellingSceneInteractionTurnTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Input/MorrowfastInteractionTests.cs
+?? Assets/Tests/EditMode/Presentation/Input/MorrowfastInteractionTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/EntityVisualCatalogTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/EntityVisualCatalogTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/EntityVisualStateTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/EntityVisualStateTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/FellingCameraClearTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/FellingCameraClearTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/FellingDressingPresenterTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/FellingDressingPresenterTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/FellingSceneArtRuntimeTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/FellingSceneArtRuntimeTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/FellingSceneClaimTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/FellingSceneClaimTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/FellingScenePresenterTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/FellingScenePresenterTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Fixtures.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Fixtures/
+?? Assets/Tests/EditMode/Presentation/Rendering/GameAuditEquipmentGroundSpriteAdversarialTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/GameAuditEquipmentGroundSpriteAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastCameraHeadroomTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastCameraHeadroomTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastDerivedActorTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastDerivedActorTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastSceneArtAdversarialTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastSceneArtAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastSceneArtRuntimeTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastSceneArtRuntimeTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastScenePresenterTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastScenePresenterTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastSharedPresentationTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MorrowfastSharedPresentationTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilot3DRenderingAdversarialTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilot3DRenderingAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilot3DRenderingTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilot3DRenderingTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilotHiddenContactPickingTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilotHiddenContactPickingTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilotNativeCleanupTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilotNativeCleanupTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilotNativePickingStimulusTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilotNativePickingStimulusTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilotNativeReportTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilotNativeReportTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilotPortablePickingTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/MultiCellPilotPortablePickingTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeZone3DCameraTiltTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeZone3DCameraTiltTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeZone3DRenderSurfaceAdversarialTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeZone3DRenderSurfaceAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeZone3DRenderSurfaceTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/NativeZone3DRenderSurfaceTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DAdversarialTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DCameraIntegrationTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DCameraIntegrationTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DCatalogTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DCatalogTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DFallbackInvalidationTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DFallbackInvalidationTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DImportedArtTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DImportedArtTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DMovingLightTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DMovingLightTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DNativeReportTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DNativeReportTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DProfileWalkTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DProfileWalkTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DRecipeTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DRecipeTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DTiltHeadroomTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DTiltHeadroomTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DWaterMeshTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DWaterMeshTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DZoneWiringTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DZoneWiringTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpellFxCatalogTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpellFxCatalogTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/SpriteSpellFxRendererTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/SpriteSpellFxRendererTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DControlsTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DControlsTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DEquipmentIntegrationTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DEquipmentIntegrationTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DImportContractTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DImportContractTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DIntegrationTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DIntegrationTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DManifestNativeContractTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DManifestNativeContractTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DManifestTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DManifestTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DNativeReportProvenanceTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DNativeReportProvenanceTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DPresenterAdversarialTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DPresenterAdversarialTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DProjectionTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DProjectionTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DShowcaseTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DShowcaseTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DTiltHeadroomTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/Village3DTiltHeadroomTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/VillageDoorInvalidationTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/VillageDoorInvalidationTests.cs.meta
+?? Assets/Tests/EditMode/Presentation/Rendering/WorldFxCoordinatorTests.cs
+?? Assets/Tests/EditMode/Presentation/Rendering/WorldFxCoordinatorTests.cs.meta
+?? Docs/BLENDER-SPAWN-RING-3D-PLAN.md
+?? Docs/BLENDER-VILLAGE-3D-PLAN.md
+?? Docs/CATACOMB-SCENE-PLAN.md
+?? Docs/EQUIPMENT-GROUND-SPRITES-PLAN.md
+?? Docs/FELLING-COMPONENT-EXTRACTION-PLAN.md
+?? Docs/FELLING-COMPONENT-EXTRACTION-PROMPT.md
+?? Docs/FELLING-SCENE-BUILD-PLAN.md
+?? Docs/FELLING-SOUTH-BUILD-PLAN.md
+?? Docs/FELLING-SOUTH-COMPONENT-CONTRACT.md
+?? Docs/FELLING-SOUTH-SETTLEMENT-DESIGN.md
+?? Docs/FELLING-SOUTH-UNITY-HANDOFF.md
+?? Docs/FELLING-UNITY-SCENE-INTEGRATION.md
+?? Docs/LIVING-WOODCUT-ART-DIRECTION.md
+?? Docs/MORROWFAST-UNITY-INTEGRATION.md
+?? Docs/MULTI-CELL-ENTITY-FEASIBILITY.md
+?? Docs/MULTI-CELL-PILOT-INTEGRATION-AUDIT.md
+?? Docs/MULTI-CELL-PILOT-NATIVE-ACCEPTANCE.md
+?? Docs/MULTI-CELL-PILOT-TARGETING-RUNTIME.md
+?? Docs/MULTI-CELL-PILOT.md
+?? Docs/NATIVE-3D-CAMERA-ANGLE.md
+?? Docs/References/
+?? Docs/SPAWN-RING-TILE-PERSISTENCE.md
+?? Docs/SPELL-FX-ART.md
+?? Docs/SPELL-FX.md
+?? Docs/STARTER-SPELL-3D-DESIGN.md
+?? Docs/SpellFx-atlas-preview.png
+?? Docs/SpellFx-casting-contact.png
+?? Docs/StyleExploration/Felling-2026-09-05/
+?? Docs/VILLAGE-3D-ASSET-GUIDE.md
+?? Docs/VISUAL-IDENTITY-BIBLE.md
+?? Docs/Verification/FellingScene/
+?? Docs/Verification/GameSystemAudit/GA03j-initial-red.log.gz
+?? Docs/Verification/GameSystemAudit/GA03j-initial-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC00-baseline-20260910.xml.gz
+?? Docs/Verification/GameSystemAudit/MC00-baseline-20260910.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC01-spatial-compile-red.log.gz
+?? Docs/Verification/GameSystemAudit/MC02-integration-compile-red.log.gz
+?? Docs/Verification/GameSystemAudit/MC03-core-targeting-transition-first.xml.gz
+?? Docs/Verification/GameSystemAudit/MC03-core-targeting-transition-first.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC04-contact-compile-red.log.gz
+?? Docs/Verification/GameSystemAudit/MC05-adversarial-behavior-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC05-adversarial-behavior-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC06-chunk-compile-red.log.gz
+?? Docs/Verification/GameSystemAudit/MC07-chunk-abilities-render-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC07-chunk-abilities-render-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC08-imported-integration.xml.gz
+?? Docs/Verification/GameSystemAudit/MC08-imported-integration.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC09-lifecycle-green-selector-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC09-lifecycle-green-selector-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC10-selectors-native-gate.xml.gz
+?? Docs/Verification/GameSystemAudit/MC10-selectors-native-gate.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC11-mobility-portable-cleanup-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC11-mobility-portable-cleanup-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC12-mobility-green-slip-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC12-mobility-green-slip-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC13-v8-first-full-regression.xml.gz
+?? Docs/Verification/GameSystemAudit/MC13-v8-first-full-regression.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC14-camera-tilt-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC14-camera-tilt-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC15-camera-full-pool-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC15-camera-full-pool-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC16-final-full-regression.xml.gz
+?? Docs/Verification/GameSystemAudit/MC16-final-full-regression.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC17-headroom-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC17-headroom-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC18-camera66-headroom-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC18-camera66-headroom-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC19-camera66-green-town-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC19-camera66-green-town-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC20-camera66-headroom-green.xml.gz
+?? Docs/Verification/GameSystemAudit/MC20-camera66-headroom-green.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC20b-town-registration-diagnostic.xml.gz
+?? Docs/Verification/GameSystemAudit/MC20b-town-registration-diagnostic.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC21-final-camera66-full-regression.xml.gz
+?? Docs/Verification/GameSystemAudit/MC21-final-camera66-full-regression.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC22-hidden-contact-red-gas-controls.xml.gz
+?? Docs/Verification/GameSystemAudit/MC22-hidden-contact-red-gas-controls.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC23-hidden-contact-native-stimulus-red.xml.gz
+?? Docs/Verification/GameSystemAudit/MC23-hidden-contact-native-stimulus-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC24-angle56-red-picking-green.xml.gz
+?? Docs/Verification/GameSystemAudit/MC24-angle56-red-picking-green.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC25-final-camera56-full-regression.xml.gz
+?? Docs/Verification/GameSystemAudit/MC25-final-camera56-full-regression.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/MC26-final-camera56-full-green.xml.gz
+?? Docs/Verification/GameSystemAudit/MC26-final-camera56-full-green.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/R3D-actual-art-adversarial-fixed-green.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-actual-art-adversarial-fixed-green.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/R3D-actual-art-core-adversarial-first.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-actual-art-core-adversarial-first.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/R3D-adaptive-profile-targeted-green.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-adaptive-profile-targeted-green.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/R3D-catalog-green-surface-adversarial-recipe-red-v2.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-foundation-green-attempt.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-foundation-green-wiring-red.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-foundation-village-regression-presenter-compile.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-moving-light-final-targeted-green.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-moving-light-final-targeted-green.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/R3D-moving-light-oracle-corrected-red.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-moving-light-oracle-corrected-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/R3D-moving-light-red.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-moving-light-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/R3D-native-pilot-followup-green.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-native-pilot-followup-green.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/R3D-native-pilot-followup-red.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-native-pilot-followup-red.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/R3D-ordinary-renderer-creation-green.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-recipe-green-water-red.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-recipe-three-policy-red.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-recipes-extra-presenter-camera-red.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-refined-full-suite.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-refined-full-suite.xml.gz.log.gz
+?? Docs/Verification/GameSystemAudit/R3D-surface-green-tile-adversarial-red.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-surface-red-tile-initial-green-v2.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-surface-tile-green-catalog-red.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-tile-save-red.xml.gz
+?? Docs/Verification/GameSystemAudit/R3D-world-control-labels-red.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-0-axis.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-0-contracts-green.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-0-green.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-0-seed-axis-green.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-1-adversarial-red.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-1-door-red.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-1-first-integrated.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-1-manifest-native-red.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-2-review-green-report-red.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-3-controls-green.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-3-controls-red.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-3-equipment-controls-green.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-3-equipment-red.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-4-adversarial20-showcase.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-4-equipment-showcase-green.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-5-garden-red.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-5-new-spawn-green.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-5-new-spawn-red.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-baseline.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-preference-receipt-green.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-preference-receipt-red.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-refined-full-suite.xml.gz
+?? Docs/Verification/GameSystemAudit/V3D-refined-spawn-green-attempt.xml.gz
+?? Docs/Verification/Morrowfast/
+?? Docs/Verification/MorrowfastScene/
+?? Docs/Verification/MultiCellPilot/
+?? Docs/Verification/SpawnRing3D/
+?? Docs/Verification/SpellFx/
+?? Docs/Verification/StarterSpell3D/
+?? Docs/Verification/Village3D/
+?? Docs/WORK-LOG-2026-09-09.md
+?? Docs/WORK-LOG-2026-09-10.md
+?? ProjectSettings/Packages/com.unity.probuilder/
+?? Tools/

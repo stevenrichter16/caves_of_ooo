@@ -48,14 +48,15 @@ namespace CavesOfOoo.Tests
             // Copy the private shared scratch result immediately.
             return slots.Cast<object>().Select(x => (MeleeWeaponPart)x.GetType().GetField("Weapon").GetValue(x)).ToList();
         }
-        static Entity RoundTrip(Entity actor)
+        static Entity RoundTrip(Entity actor) => RoundTripSession(actor).Player;
+        static GameSessionState RoundTripSession(Entity actor)
         {
             var zone = new Zone("Overworld.10.10.0"); Assert.IsTrue(zone.AddEntity(actor, 5, 5));
             var manager = new OverworldZoneManager(null, 333);
             manager.ReplaceLoadedState(new Dictionary<string, Zone> { { zone.ZoneID, zone } }, zone.ZoneID, new Dictionary<string, List<ZoneConnection>>());
             var turns = new TurnManager(); turns.RestoreSavedState(17, true, actor,
                 new List<TurnManager.SavedTurnEntry> { new TurnManager.SavedTurnEntry { Entity = actor, Energy = 1000 } });
-            return HotbarSaveFixture.RoundTrip(GameSessionState.Capture(Guid.NewGuid().ToString("N"), "natural adversarial", manager, turns, actor)).Player;
+            return HotbarSaveFixture.RoundTrip(GameSessionState.Capture(Guid.NewGuid().ToString("N"), "natural adversarial", manager, turns, actor));
         }
 
         [Test]
@@ -270,8 +271,9 @@ namespace CavesOfOoo.Tests
                 foreach (var item in inventory.GetAllEquipped().ToArray()) { Assert.IsTrue(InventorySystem.UnequipItem(actor, item)); Assert.IsTrue(inventory.RemoveObject(item)); }
                 foreach (var hand in Hands(actor)) { hand._DefaultBehavior = null; hand.FirstSlotForDefaultBehavior = false; }
                 Assert.AreEqual(0, Items(actor).Length); f.Messages.Clear();
-                var once = RoundTrip(actor); var twice = RoundTrip(once);
-                foreach (var loaded in new[] { once, twice })
+                // Resave the loaded session: its actor already belongs to its loaded zone.
+                var once = RoundTripSession(actor); var twice = HotbarSaveFixture.RoundTrip(once);
+                foreach (var loaded in new[] { once.Player, twice.Player })
                 { Assert.AreEqual(0, Items(loaded).Length); Assert.NotNull(loaded.GetPart<LoadoutPart>()); Assert.AreEqual(0, loaded.GetStat("Speed").Penalty); Assert.AreEqual(2, Weapons(loaded).Count); Assert.IsTrue(Hands(loaded).All(h => h._DefaultBehavior.GetPart<MeleeWeaponPart>().BaseDamage == "2d5")); }
                 Assert.IsFalse(f.Messages.Any(x => x.Contains(" equips ")));
             }

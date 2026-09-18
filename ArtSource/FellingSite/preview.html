@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>The Felling · Offline scene study</title>
+  <link rel="stylesheet" href="preview.css">
+  <script src="preview.js" defer></script>
+</head>
+<body>
+  <main>
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">Caves of Ooo / Art &amp; movement study</p>
+        <h1>The Felling-Site</h1>
+      </div>
+      <p class="validation-note">Offline scene study <span aria-hidden="true">·</span> Unity validation pending</p>
+    </header>
+
+    <section class="toolbar" aria-label="Scene controls">
+      <div class="view-switch" role="group" aria-label="Artwork source">
+        <button id="clean-view" type="button" aria-pressed="true" disabled>Clean plate</button>
+        <button id="reference-view" type="button" aria-pressed="false" disabled>Reference</button>
+      </div>
+      <div class="toggles">
+        <label><input id="show-grid" type="checkbox">Grid</label>
+        <label><input id="show-collision" type="checkbox">Collision study</label>
+        <label><input id="show-landmarks" type="checkbox">Landmarks</label>
+        <label><input id="show-occlusion" type="checkbox" checked>Occlusion</label>
+        <label><input id="show-fov" type="checkbox">FOV approximation</label>
+        <label><input id="show-effects" type="checkbox" checked>Ambient motion</label>
+      </div>
+      <button id="actual-size" class="text-button" type="button" aria-pressed="false" title="Toggle between fitting the complete scene and inspecting native 1536 × 1024 pixels">Actual size</button>
+      <button id="reset-position" class="text-button" type="button">Reset traveler</button>
+    </section>
+
+    <div id="error" class="error" role="alert" hidden></div>
+    <section id="scene-frame" class="scene-stage" aria-label="Interactive Felling-Site artwork viewport. In actual-size view, scroll to inspect the artwork, or focus the canvas to move the traveler.">
+      <canvas id="scene" width="1536" height="1024" tabindex="0" aria-label="Felling-Site scene study. Focus this canvas and use W, A, S, D or arrow keys to move the traveler. Click a walkable cell to find a route.">Your browser needs Canvas support to show this scene study.</canvas>
+      <div id="loading" class="loading" role="status">Loading scene study…</div>
+      <div id="fov-notice" class="canvas-notice" hidden>FOV preview approximation · not the game’s FOV</div>
+    </section>
+
+    <section class="readout" aria-label="Scene details">
+      <div class="readout-main">
+        <p id="asset-status">Reading asset manifest…</p>
+        <p class="instructions">Click to walk <span>·</span> WASD / arrows <span>·</span> Esc cancels route <span>·</span> R resets</p>
+      </div>
+      <dl>
+        <div><dt>Traveler</dt><dd id="player-cell">—</dd></div>
+        <div><dt>Pointer</dt><dd id="pointer-cell">—</dd></div>
+        <div><dt>Grid mapping</dt><dd id="grid-mapping">—</dd></div>
+      </dl>
+    </section>
+
+    <footer>
+      <p id="study-note">Collision, sight, effects, and foreground overlap are review approximations. Artwork and physics still require Unity validation.</p>
+      <div class="footer-actions">
+        <label><input id="reduce-motion" type="checkbox">Reduce motion</label>
+        <button id="reload-assets" class="text-button" type="button">Refresh assets</button>
+      </div>
+    </footer>
+    <p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
+  </main>
+</body>
+</html>

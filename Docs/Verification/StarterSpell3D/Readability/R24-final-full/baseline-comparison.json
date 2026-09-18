@@ -1,0 +1,384 @@
+{
+  "status": "PASS",
+  "baseline": {
+    "xml": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R01b-baseline/results.xml",
+    "sha256": "a2abfe02e36b07708a641a00b1bf89a9f5fa5fda0e5e62e530e3e791077dfc97",
+    "total": 11208,
+    "passed": 11177,
+    "failed": 31,
+    "skipped": 0,
+    "compileErrorLines": 0
+  },
+  "current": {
+    "xml": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/R24-final-full/results.xml",
+    "sha256": "f3a7453501873b56b7a98d7a4b0690674a9bea24d3643cd84b3cf322a8592ae6",
+    "total": 11338,
+    "passed": 11307,
+    "failed": 31,
+    "skipped": 0,
+    "compileErrorLines": 0
+  },
+  "newFailures": [],
+  "resolvedBaselineFailures": [],
+  "persistentFailureNames": [
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AllTenExactBlueprintsReachTheirRealResourcesSpriteAtUnflippedRow",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_boots\")",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_dagger\")",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_gloves\")",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_helmet\")",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_mace\")",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_spear\")",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_sword\")",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_BrightAndDimForegroundCarryHueAndAlphaWithoutAuthoredColorOverride",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_DirtyNeighborhoodPreservesDistantEquipmentClaimAndTint",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_DisablingSpriteModeRestoresEquipmentGlyphThenReclaimsOnEnable",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_HigherLayerActorHidesGroundEquipmentUntilItLeaves",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_IncrementalReplacementUsesNewGlyphColorAndBody",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_InvisibleHigherItemDoesNotHideVisibleLowerItem",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_ItemRemovalExposesFreshUnmappedGlyphWithoutRestoringOldOne",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"Dagger\",\"item_dagger\")",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"LeatherBoots\",\"item_boots\")",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"LeatherCap\",\"item_helmet\")",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"LeatherGloves\",\"item_gloves\")",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"Mace\",\"item_mace\")",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"ShortSword\",\"item_sword\")",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"Spear\",\"item_spear\")",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_NullNewTileRetainsMaceGlyphAndDoesNotBorrowVial",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_ReleaseClaimsRestoresOriginalGlyphAndTint",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_RememberedFogDoesNotRevealGroundEquipment",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_SevenFamiliesHaveDifferentSilhouettesAndDistinctGuids",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_StationaryFullRepaintReplacesOldFamilyWithoutStaleClaim",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_TwoSameBlueprintInstancesShareBodyWithoutSharingCellTint",
+    "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_UnexploredCellCannotClaimNewItemArt",
+    "CavesOfOoo.Tests.PlaceProfileTests.TheProfileTable_IsData_AndComplete",
+    "CavesOfOoo.Tests.WorldMapAuthoringTests.Sill_IsAtTheCentre_OnSpread_AtTierOne"
+  ],
+  "messagesExactlyEqual": true,
+  "persistentFailures": [
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AllTenExactBlueprintsReachTheirRealResourcesSpriteAtUnflippedRow",
+      "baselineMessage": "  Dagger\n  Expected: \"item_dagger\"\n  But was:  null\n",
+      "currentMessage": "  Dagger\n  Expected: \"item_dagger\"\n  But was:  null\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_boots\")",
+      "baselineMessage": "  item_boots production PNG is missing\n  Expected: True\n  But was:  False\n",
+      "currentMessage": "  item_boots production PNG is missing\n  Expected: True\n  But was:  False\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_dagger\")",
+      "baselineMessage": "  item_dagger production PNG is missing\n  Expected: True\n  But was:  False\n",
+      "currentMessage": "  item_dagger production PNG is missing\n  Expected: True\n  But was:  False\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_gloves\")",
+      "baselineMessage": "  item_gloves production PNG is missing\n  Expected: True\n  But was:  False\n",
+      "currentMessage": "  item_gloves production PNG is missing\n  Expected: True\n  But was:  False\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_helmet\")",
+      "baselineMessage": "  item_helmet production PNG is missing\n  Expected: True\n  But was:  False\n",
+      "currentMessage": "  item_helmet production PNG is missing\n  Expected: True\n  But was:  False\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_mace\")",
+      "baselineMessage": "  item_mace production PNG is missing\n  Expected: True\n  But was:  False\n",
+      "currentMessage": "  item_mace production PNG is missing\n  Expected: True\n  But was:  False\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_spear\")",
+      "baselineMessage": "  item_spear production PNG is missing\n  Expected: True\n  But was:  False\n",
+      "currentMessage": "  item_spear production PNG is missing\n  Expected: True\n  But was:  False\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_sword\")",
+      "baselineMessage": "  item_sword production PNG is missing\n  Expected: True\n  But was:  False\n",
+      "currentMessage": "  item_sword production PNG is missing\n  Expected: True\n  But was:  False\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_BrightAndDimForegroundCarryHueAndAlphaWithoutAuthoredColorOverride",
+      "baselineMessage": "  Expected string length 11 but was 10. Strings differ at index 5.\n  Expected: \"item_helmet\"\n  But was:  \"item_armor\"\n  ----------------^\n",
+      "currentMessage": "  Expected string length 11 but was 10. Strings differ at index 5.\n  Expected: \"item_helmet\"\n  But was:  \"item_armor\"\n  ----------------^\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_DirtyNeighborhoodPreservesDistantEquipmentClaimAndTint",
+      "baselineMessage": "  Expected string length 10 but was 12. Strings differ at index 0.\n  Expected: \"item_sword\"\n  But was:  \"WeaponGround\"\n  -----------^\n",
+      "currentMessage": "  Expected string length 10 but was 12. Strings differ at index 0.\n  Expected: \"item_sword\"\n  But was:  \"WeaponGround\"\n  -----------^\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_DisablingSpriteModeRestoresEquipmentGlyphThenReclaimsOnEnable",
+      "baselineMessage": "  String lengths are both 10. Strings differ at index 5.\n  Expected: \"item_boots\"\n  But was:  \"item_armor\"\n  ----------------^\n",
+      "currentMessage": "  String lengths are both 10. Strings differ at index 5.\n  Expected: \"item_boots\"\n  But was:  \"item_armor\"\n  ----------------^\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_HigherLayerActorHidesGroundEquipmentUntilItLeaves",
+      "baselineMessage": "  Expected string length 11 but was 12. Strings differ at index 0.\n  Expected: \"item_dagger\"\n  But was:  \"WeaponGround\"\n  -----------^\n",
+      "currentMessage": "  Expected string length 11 but was 12. Strings differ at index 0.\n  Expected: \"item_dagger\"\n  But was:  \"WeaponGround\"\n  -----------^\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_IncrementalReplacementUsesNewGlyphColorAndBody",
+      "baselineMessage": "  String lengths are both 9. Strings differ at index 5.\n  Expected: \"item_mace\"\n  But was:  \"item_vial\"\n  ----------------^\n",
+      "currentMessage": "  String lengths are both 9. Strings differ at index 5.\n  Expected: \"item_mace\"\n  But was:  \"item_vial\"\n  ----------------^\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_InvisibleHigherItemDoesNotHideVisibleLowerItem",
+      "baselineMessage": "  Expected string length 10 but was 12. Strings differ at index 0.\n  Expected: \"item_sword\"\n  But was:  \"WeaponGround\"\n  -----------^\n",
+      "currentMessage": "  Expected string length 10 but was 12. Strings differ at index 0.\n  Expected: \"item_sword\"\n  But was:  \"WeaponGround\"\n  -----------^\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_ItemRemovalExposesFreshUnmappedGlyphWithoutRestoringOldOne",
+      "baselineMessage": "  String lengths are both 9. Strings differ at index 5.\n  Expected: \"item_mace\"\n  But was:  \"item_vial\"\n  ----------------^\n",
+      "currentMessage": "  String lengths are both 9. Strings differ at index 5.\n  Expected: \"item_mace\"\n  But was:  \"item_vial\"\n  ----------------^\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"Dagger\",\"item_dagger\")",
+      "baselineMessage": "  new body must be registered first\n  Expected: True\n  But was:  False\n",
+      "currentMessage": "  new body must be registered first\n  Expected: True\n  But was:  False\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"LeatherBoots\",\"item_boots\")",
+      "baselineMessage": "  new body must be registered first\n  Expected: True\n  But was:  False\n",
+      "currentMessage": "  new body must be registered first\n  Expected: True\n  But was:  False\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"LeatherCap\",\"item_helmet\")",
+      "baselineMessage": "  new body must be registered first\n  Expected: True\n  But was:  False\n",
+      "currentMessage": "  new body must be registered first\n  Expected: True\n  But was:  False\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"LeatherGloves\",\"item_gloves\")",
+      "baselineMessage": "  new body must be registered first\n  Expected: True\n  But was:  False\n",
+      "currentMessage": "  new body must be registered first\n  Expected: True\n  But was:  False\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"Mace\",\"item_mace\")",
+      "baselineMessage": "  new body must be registered first\n  Expected: True\n  But was:  False\n",
+      "currentMessage": "  new body must be registered first\n  Expected: True\n  But was:  False\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"ShortSword\",\"item_sword\")",
+      "baselineMessage": "  new body must be registered first\n  Expected: True\n  But was:  False\n",
+      "currentMessage": "  new body must be registered first\n  Expected: True\n  But was:  False\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"Spear\",\"item_spear\")",
+      "baselineMessage": "  new body must be registered first\n  Expected: True\n  But was:  False\n",
+      "currentMessage": "  new body must be registered first\n  Expected: True\n  But was:  False\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_NullNewTileRetainsMaceGlyphAndDoesNotBorrowVial",
+      "baselineMessage": "  Expected: True\n  But was:  False\n",
+      "currentMessage": "  Expected: True\n  But was:  False\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_ReleaseClaimsRestoresOriginalGlyphAndTint",
+      "baselineMessage": "  Expected string length 10 but was 12. Strings differ at index 0.\n  Expected: \"item_spear\"\n  But was:  \"WeaponGround\"\n  -----------^\n",
+      "currentMessage": "  Expected string length 10 but was 12. Strings differ at index 0.\n  Expected: \"item_spear\"\n  But was:  \"WeaponGround\"\n  -----------^\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_RememberedFogDoesNotRevealGroundEquipment",
+      "baselineMessage": "  String lengths are both 9. Strings differ at index 5.\n  Expected: \"item_mace\"\n  But was:  \"item_vial\"\n  ----------------^\n",
+      "currentMessage": "  String lengths are both 9. Strings differ at index 5.\n  Expected: \"item_mace\"\n  But was:  \"item_vial\"\n  ----------------^\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_SevenFamiliesHaveDifferentSilhouettesAndDistinctGuids",
+      "baselineMessage": "  item_dagger\n  Expected: True\n  But was:  False\n",
+      "currentMessage": "  item_dagger\n  Expected: True\n  But was:  False\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_StationaryFullRepaintReplacesOldFamilyWithoutStaleClaim",
+      "baselineMessage": "  Expected string length 11 but was 12. Strings differ at index 0.\n  Expected: \"item_dagger\"\n  But was:  \"WeaponGround\"\n  -----------^\n",
+      "currentMessage": "  Expected string length 11 but was 12. Strings differ at index 0.\n  Expected: \"item_dagger\"\n  But was:  \"WeaponGround\"\n  -----------^\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_TwoSameBlueprintInstancesShareBodyWithoutSharingCellTint",
+      "baselineMessage": "  Expected string length 11 but was 12. Strings differ at index 0.\n  Expected: \"item_dagger\"\n  But was:  \"WeaponGround\"\n  -----------^\n",
+      "currentMessage": "  Expected string length 11 but was 12. Strings differ at index 0.\n  Expected: \"item_dagger\"\n  But was:  \"WeaponGround\"\n  -----------^\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_UnexploredCellCannotClaimNewItemArt",
+      "baselineMessage": "  String lengths are both 10. Strings differ at index 5.\n  Expected: \"item_boots\"\n  But was:  \"item_armor\"\n  ----------------^\n",
+      "currentMessage": "  String lengths are both 10. Strings differ at index 5.\n  Expected: \"item_boots\"\n  But was:  \"item_armor\"\n  ----------------^\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.PlaceProfileTests.TheProfileTable_IsData_AndComplete",
+      "baselineMessage": "  Morrowfast is a plain village\n  Expected: True\n  But was:  False\n",
+      "currentMessage": "  Morrowfast is a plain village\n  Expected: True\n  But was:  False\n",
+      "exactlyEqual": true
+    },
+    {
+      "fullname": "CavesOfOoo.Tests.WorldMapAuthoringTests.Sill_IsAtTheCentre_OnSpread_AtTierOne",
+      "baselineMessage": "  Sill must be first \u2014 the start reads Places[0]\n  Expected string length 4 but was 10. Strings differ at index 0.\n  Expected: \"Sill\"\n  But was:  \"Morrowfast\"\n  -----------^\n",
+      "currentMessage": "  Sill must be first \u2014 the start reads Places[0]\n  Expected string length 4 but was 10. Strings differ at index 0.\n  Expected: \"Sill\"\n  But was:  \"Morrowfast\"\n  -----------^\n",
+      "exactlyEqual": true
+    }
+  ],
+  "addedTests": [
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.ARequestQueuedDuringRecoveryStartsAtZeroRatherThanInheritingEitherDelta",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.ASecondLongFrameDoesNotReplayTheContactOrEmitAnotherRecovery",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.AccumulatedRawTimeoutSuppressesAnOtherwiseEligibleRecoveryAndItsDiagnostic",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.AnUnrenderableContactCannotManufactureAnExtraWait(False)",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.AnUnrenderableContactCannotManufactureAnExtraWait(True)",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.CancellationWinsOverLongFrameRecovery(\"clear\")",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.CancellationWinsOverLongFrameRecovery(\"hidden\")",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.CancellationWinsOverLongFrameRecovery(\"mode\")",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.CancellationWinsOverLongFrameRecovery(\"zone\")",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.ConcurrentNativeHandlesAndTheirViewsAdvanceOnTheSameRecoveredClock",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.ContactAlreadyDrawnIsNotReplayedByALaterLongFrame",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.EmptyActualRainKeepsItsGestureWithoutAcquiringAnImaginaryContact",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.FractionalContactUsesTheInterpolatedVisiblePoseInsteadOfTheEmptyFloorSample",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.HardFiveSecondRawDeadlineWinsBeforeAnUnseenContactCanRecover",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.LongFramePreservesActualDirectionalSpellAndConditionalFeedback(\"Cryomancy_RimeGrip\",Full)",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.LongFramePreservesActualDirectionalSpellAndConditionalFeedback(\"Cryomancy_RimeGrip\",Reduced)",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.LongFramePreservesActualDirectionalSpellAndConditionalFeedback(\"Hydromancy_JetBlast\",Full)",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.LongFramePreservesActualDirectionalSpellAndConditionalFeedback(\"Hydromancy_JetBlast\",Reduced)",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.LongWallFrameAtSlowSpeedDoesNotJumpOrDelayACastThatHasNotCrossedClear",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.NativeRecoveryDoesNotSlowLegacyParticlesOrTheSpriteFallback",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.OrdinaryShortWallFrameAtDoubleSpeedKeepsExistingCompletionContract",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.RecoveryDiagnosticsRetainRawWallTimeAndDistinguishAnOrdinaryFrame(False)",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.RecoveryDiagnosticsRetainRawWallTimeAndDistinguishAnOrdinaryFrame(True)",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.RecoveryThresholdMeasuresRawWallSecondsRatherThanSpeedScaledSeconds(0.3999f,False)",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.RecoveryThresholdMeasuresRawWallSecondsRatherThanSpeedScaledSeconds(0.4f,True)",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.UnmatchedConditionalGeometryDoesNotCreateAContactCheckpoint",
+    "CavesOfOoo.Tests.NativeSpellHitchRecoveryTests.VisibleOwnerDoesNotRecoverAContactWhoseSampledPoseLiesInFog",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.AirborneDecorationStillNeedsItsRecordedContactCell(ConeCell)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.AirborneDecorationStillNeedsItsRecordedContactCell(GroundCell)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.AllEightDirectionsFitSurfaceGeometryAndRetainAirborneSize(ConeCell)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.AllEightDirectionsFitSurfaceGeometryAndRetainAirborneSize(GroundCell)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.BaselineOpaquePieceNeedsNoOptionalMaterialOrVertexColors",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.GlowCancellationLeavesNoVisiblePooledGeometryOrBorrowedResourceDamage(\"clear\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.GlowCancellationLeavesNoVisiblePooledGeometryOrBorrowedResourceDamage(\"off\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.GlowCancellationLeavesNoVisiblePooledGeometryOrBorrowedResourceDamage(\"surface-hidden\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.GlowCancellationLeavesNoVisiblePooledGeometryOrBorrowedResourceDamage(\"zone-change\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.InvalidGlowDataRejectsAndTheSameCorrectedGeometryIsAccepted(\"excess-alpha\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.InvalidGlowDataRejectsAndTheSameCorrectedGeometryIsAccepted(\"excess-emission\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.InvalidGlowDataRejectsAndTheSameCorrectedGeometryIsAccepted(\"flat-alpha\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.InvalidGlowDataRejectsAndTheSameCorrectedGeometryIsAccepted(\"infinite-alpha\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.InvalidGlowDataRejectsAndTheSameCorrectedGeometryIsAccepted(\"infinite-emission\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.InvalidGlowDataRejectsAndTheSameCorrectedGeometryIsAccepted(\"nan-alpha\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.InvalidGlowDataRejectsAndTheSameCorrectedGeometryIsAccepted(\"nan-emission\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.InvalidGlowDataRejectsAndTheSameCorrectedGeometryIsAccepted(\"negative-alpha\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.InvalidGlowDataRejectsAndTheSameCorrectedGeometryIsAccepted(\"negative-emission\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.InvalidGlowDataRejectsAndTheSameCorrectedGeometryIsAccepted(\"no-alpha\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.InvalidGlowDataRejectsAndTheSameCorrectedGeometryIsAccepted(\"zero-alpha\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.InvalidGlowDataRejectsAndTheSameCorrectedGeometryIsAccepted(\"zero-glow-emission\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.LateEssentialSurvivesEarlierOptionalTemplatesBeyondTheScheduleLimit(Full)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.LateEssentialSurvivesEarlierOptionalTemplatesBeyondTheScheduleLimit(Reduced)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.LaterAcceptedCastCoreDrawsBeforeOlderCastOptionalSaturation",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.NewPresentationFieldsHaveTheAgreedPublicTypes",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.OnePooledViewResetsPaletteLuminousGlowAndBackWithoutMutatingBorrowedMaterials",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.RequiredSelectedMaterialCannotBeMissingOrUseTheWrongShader(False,False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.RequiredSelectedMaterialCannotBeMissingOrUseTheWrongShader(False,True)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.RequiredSelectedMaterialCannotBeMissingOrUseTheWrongShader(True,False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.RequiredSelectedMaterialCannotBeMissingOrUseTheWrongShader(True,True)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.ValidFilteredEntryRetainsItsCasterGestureWithoutInventingGeometry(\"empty-recorded-path\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.ValidFilteredEntryRetainsItsCasterGestureWithoutInventingGeometry(\"reduced-optional\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityAdversarialTests.ValidFilteredEntryRetainsItsCasterGestureWithoutInventingGeometry(\"unmatched-outcome\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ExistingColorReferenceKeepsActualEmissionInAnIndependentRawVectorBlock(0.0f)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ExistingColorReferenceKeepsActualEmissionInAnIndependentRawVectorBlock(0.63f)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ExistingColorReferenceKeepsActualEmissionInAnIndependentRawVectorBlock(1.0f)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ReadabilityReceiptRequiresCompletePairedPhysicalGpuEvidence(\"backward-time\",False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ReadabilityReceiptRequiresCompletePairedPhysicalGpuEvidence(\"blank-positive\",False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ReadabilityReceiptRequiresCompletePairedPhysicalGpuEvidence(\"borrowed-rt\",False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ReadabilityReceiptRequiresCompletePairedPhysicalGpuEvidence(\"depth-write\",False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ReadabilityReceiptRequiresCompletePairedPhysicalGpuEvidence(\"dirty-scene\",False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ReadabilityReceiptRequiresCompletePairedPhysicalGpuEvidence(\"duplicate-case\",False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ReadabilityReceiptRequiresCompletePairedPhysicalGpuEvidence(\"failed\",False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ReadabilityReceiptRequiresCompletePairedPhysicalGpuEvidence(\"flat-gradient\",False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ReadabilityReceiptRequiresCompletePairedPhysicalGpuEvidence(\"fog-leak\",False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ReadabilityReceiptRequiresCompletePairedPhysicalGpuEvidence(\"indistinguishable-counter\",False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ReadabilityReceiptRequiresCompletePairedPhysicalGpuEvidence(\"missing-case\",False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ReadabilityReceiptRequiresCompletePairedPhysicalGpuEvidence(\"missing-frame\",False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ReadabilityReceiptRequiresCompletePairedPhysicalGpuEvidence(\"nonfinite-gradient\",False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ReadabilityReceiptRequiresCompletePairedPhysicalGpuEvidence(\"null-gpu\",False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ReadabilityReceiptRequiresCompletePairedPhysicalGpuEvidence(\"out-of-bounds-leak\",False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ReadabilityReceiptRequiresCompletePairedPhysicalGpuEvidence(\"owned-leak\",False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ReadabilityReceiptRequiresCompletePairedPhysicalGpuEvidence(\"stale-run\",False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ReadabilityReceiptRequiresCompletePairedPhysicalGpuEvidence(\"stale-source\",False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ReadabilityReceiptRequiresCompletePairedPhysicalGpuEvidence(\"unexpected-error\",False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityGpuReportTests.ReadabilityReceiptRequiresCompletePairedPhysicalGpuEvidence(\"valid\",True)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests.MalformedNewArtMetadataIsRejectedBeforeAssetReplacement(\"emission\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests.MalformedNewArtMetadataIsRejectedBeforeAssetReplacement(\"flat-gradient\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests.MalformedNewArtMetadataIsRejectedBeforeAssetReplacement(\"gradient-bounds\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests.MalformedNewArtMetadataIsRejectedBeforeAssetReplacement(\"gradient-count\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests.MalformedNewArtMetadataIsRejectedBeforeAssetReplacement(\"missing-gradient\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests.MalformedNewArtMetadataIsRejectedBeforeAssetReplacement(\"unknown-bounds\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests.ValidSolidAndGradientGlowPassPreflightWithoutImportingAssets",
+    "CavesOfOoo.Tests.NativeSpellReadabilityLifecycleTests.ActiveMaterialLossCancelsTheRealCoordinatorWaitAndCanRecover(\"glow\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityLifecycleTests.ActiveMaterialLossCancelsTheRealCoordinatorWaitAndCanRecover(\"luminous\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityLifecycleTests.ActiveMaterialLossCancelsTheRealCoordinatorWaitAndCanRecover(\"palette\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityLifecycleTests.DestroyedIdleOwnedMaterialRecoversBeforeTheNextCast(\"glow\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityLifecycleTests.DestroyedIdleOwnedMaterialRecoversBeforeTheNextCast(\"luminous\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityLifecycleTests.DestroyedIdleOwnedMaterialRecoversBeforeTheNextCast(\"palette\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityLifecycleTests.IntactReadinessPreservesItsReceiptPoolAndAllThreeOwnedMaterials",
+    "CavesOfOoo.Tests.NativeSpellReadabilityLifecycleTests.SuccessfulActualRainKeepsItsImportedCasterGestureWithOnlyRealCropMeshes(False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityLifecycleTests.SuccessfulActualRainKeepsItsImportedCasterGestureWithOnlyRealCropMeshes(True)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityTests.ApprovedConceptImportsConnectedGeometryAndLocalGlow(\"Cryomancy_RimeGrip\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityTests.ApprovedConceptImportsConnectedGeometryAndLocalGlow(\"Galvanism_GroundSurge\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityTests.ApprovedConceptImportsConnectedGeometryAndLocalGlow(\"Hydromancy_JetBlast\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityTests.ApprovedConceptImportsConnectedGeometryAndLocalGlow(\"Pyromancy_EmberSpit\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityTests.ApprovedConceptImportsConnectedGeometryAndLocalGlow(\"Spellcraft_Calm\")",
+    "CavesOfOoo.Tests.NativeSpellReadabilityTests.AuthoredEmissionSelectsOwnedMaterialAndUploadsWithoutMutatingSharedAssets(0.0f)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityTests.AuthoredEmissionSelectsOwnedMaterialAndUploadsWithoutMutatingSharedAssets(0.85f)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityTests.FilteredBodyKeepsTheValidNativeCasterGestureWithoutInventingImpactGeometry",
+    "CavesOfOoo.Tests.NativeSpellReadabilityTests.GlowUsesAuthoredAlphaGradientAndCanReturnItsPooledViewToOpaque(False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityTests.GlowUsesAuthoredAlphaGradientAndCanReturnItsPooledViewToOpaque(True)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityTests.LaterCastCoreSurvivesEarlierOptionalDrawPressure(False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityTests.LaterCastCoreSurvivesEarlierOptionalDrawPressure(True)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityTests.LaterEssentialContactSurvivesDenseOptionalPieces(False)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityTests.LaterEssentialContactSurvivesDenseOptionalPieces(True)",
+    "CavesOfOoo.Tests.NativeSpellReadabilityTests.TargetAccentWaitsForRecordedContactWhileGatherCanAnticipate",
+    "CavesOfOoo.Tests.StarterSpell3DNativeDirectionTests.AuthoredCropOutsideTheRayStillProtectsTheExistingRainIsolationRadius",
+    "CavesOfOoo.Tests.StarterSpell3DNativeDirectionTests.ClearDirectionalCorridorRejectsAnActualNonSolidSideConeRecipientWithoutDeletingIt(0,-1)",
+    "CavesOfOoo.Tests.StarterSpell3DNativeDirectionTests.ClearDirectionalCorridorRejectsAnActualNonSolidSideConeRecipientWithoutDeletingIt(0,1)",
+    "CavesOfOoo.Tests.StarterSpell3DNativeDirectionTests.ClearDirectionalCorridorRejectsAnActualNonSolidSideConeRecipientWithoutDeletingIt(1,-1)",
+    "CavesOfOoo.Tests.StarterSpell3DNativeDirectionTests.CompleteFifteenCastDirectionalMatrixAcceptsMetadataWithoutSubstitutingForNativeFiles",
+    "CavesOfOoo.Tests.StarterSpell3DNativeDirectionTests.EdgeClippedDirectionalLaneIsRejectedButTheSameDirectionWorksInTheInterior(40,21,0,1)",
+    "CavesOfOoo.Tests.StarterSpell3DNativeDirectionTests.EdgeClippedDirectionalLaneIsRejectedButTheSameDirectionWorksInTheInterior(40,3,0,-1)",
+    "CavesOfOoo.Tests.StarterSpell3DNativeDirectionTests.EdgeClippedDirectionalLaneIsRejectedButTheSameDirectionWorksInTheInterior(77,3,1,-1)",
+    "CavesOfOoo.Tests.StarterSpell3DNativeDirectionTests.NorthLaneRestoresItsOldGroundIncludingChargeBeyondAnEastRectangleAndPreservesOutsideWritingAndEntities",
+    "CavesOfOoo.Tests.StarterSpell3DNativeDirectionTests.PositiveLookingDirectionalLabelsCannotReplaceTheActualOutcomeEvidence(\"east-relabelled\")",
+    "CavesOfOoo.Tests.StarterSpell3DNativeDirectionTests.PositiveLookingDirectionalLabelsCannotReplaceTheActualOutcomeEvidence(\"hidden-recipient\")",
+    "CavesOfOoo.Tests.StarterSpell3DNativeDirectionTests.PositiveLookingDirectionalLabelsCannotReplaceTheActualOutcomeEvidence(\"jet-center-only\")",
+    "CavesOfOoo.Tests.StarterSpell3DNativeDirectionTests.PositiveLookingDirectionalLabelsCannotReplaceTheActualOutcomeEvidence(\"missed-visual-capture\")",
+    "CavesOfOoo.Tests.StarterSpell3DNativeDirectionTests.PositiveLookingDirectionalLabelsCannotReplaceTheActualOutcomeEvidence(\"missing-direction\")",
+    "CavesOfOoo.Tests.StarterSpell3DNativeDirectionTests.PositiveLookingDirectionalLabelsCannotReplaceTheActualOutcomeEvidence(\"rime-neutral-only\")",
+    "CavesOfOoo.Tests.StarterSpell3DNativeDirectionTests.PositiveLookingDirectionalLabelsCannotReplaceTheActualOutcomeEvidence(\"surge-not-pushed\")"
+  ],
+  "addedAllPass": true,
+  "removedTests": [],
+  "duplicateFullnames": {
+    "baseline": [],
+    "current": []
+  },
+  "scope": "Exact NUnit fullname and unnormalized message comparison. Known baseline failures remain failures, not ignored or converted to passes."
+}

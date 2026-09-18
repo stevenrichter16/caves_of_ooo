@@ -422,6 +422,19 @@ namespace CavesOfOoo.Core
             PendingRequests.Enqueue(req);
         }
 
+        public static int PendingCount => PendingRequests.Count;
+        /// <summary>Invalidates active presentation when a load or new world clears the bus.</summary>
+        public static int ClearVersion { get; private set; }
+        public static bool HasPendingBlocking
+        {
+            get
+            {
+                foreach (var request in PendingRequests)
+                    if (request != null && request.BlocksTurnAdvance) return true;
+                return false;
+            }
+        }
+
         public static List<AsciiFxRequest> Drain()
         {
             var drained = new List<AsciiFxRequest>(PendingRequests.Count);
@@ -432,6 +445,7 @@ namespace CavesOfOoo.Core
 
         public static void Clear()
         {
+            unchecked { ClearVersion++; }
             // Recycle dropped requests back into the pool so a Clear() that
             // happens mid-combat doesn't permanently shrink the pool.
             while (PendingRequests.Count > 0)

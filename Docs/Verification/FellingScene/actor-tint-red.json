@@ -1,0 +1,45 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"success\":true,\"message\":\"Test job status retrieved.\",\"error\":null,\"data\":{\"job_id\":\"37da3b3d7e574e45a2475f736e3afc9b\",\"status\":\"failed\",\"mode\":\"EditMode\",\"started_unix_ms\":1788712923044,\"finished_unix_ms\":1788712923724,\"last_update_unix_ms\":1788712923724,\"progress\":{\"completed\":4,\"total\":4,\"current_test_full_name\":null,\"current_test_started_unix_ms\":1788712923645,\"last_finished_test_full_name\":\"CavesOfOoo.Tests.FellingSceneArtRuntimeTests.ActorTintPreservesSourceColorOnlyInVisibleFellingArt(True,True,False)\",\"last_finished_unix_ms\":1788712923679,\"stuck_suspected\":false,\"editor_is_focused\":true,\"blocked_reason\":null,\"failures_so_far\":[{\"full_name\":\"CavesOfOoo.Tests.FellingSceneArtRuntimeTests.ActorTintPreservesSourceColorOnlyInVisibleFellingArt(True,True,True)\",\"message\":\"  Expected: RGBA(1.000, 1.000, 1.000, 1.000)\\n  But was:  RGBA(0.200, 0.200, 0.200, 1.000)\\n\"}],\"failures_capped\":false},\"error\":null,\"result\":null},\"hint\":null}"
+    }
+  ],
+  "structuredContent": {
+    "result": {
+      "success": true,
+      "message": "Test job status retrieved.",
+      "error": null,
+      "data": {
+        "job_id": "37da3b3d7e574e45a2475f736e3afc9b",
+        "status": "failed",
+        "mode": "EditMode",
+        "started_unix_ms": 1788712923044,
+        "finished_unix_ms": 1788712923724,
+        "last_update_unix_ms": 1788712923724,
+        "progress": {
+          "completed": 4,
+          "total": 4,
+          "current_test_full_name": null,
+          "current_test_started_unix_ms": 1788712923645,
+          "last_finished_test_full_name": "CavesOfOoo.Tests.FellingSceneArtRuntimeTests.ActorTintPreservesSourceColorOnlyInVisibleFellingArt(True,True,False)",
+          "last_finished_unix_ms": 1788712923679,
+          "stuck_suspected": false,
+          "editor_is_focused": true,
+          "blocked_reason": null,
+          "failures_so_far": [
+            {
+              "full_name": "CavesOfOoo.Tests.FellingSceneArtRuntimeTests.ActorTintPreservesSourceColorOnlyInVisibleFellingArt(True,True,True)",
+              "message": "  Expected: RGBA(1.000, 1.000, 1.000, 1.000)\n  But was:  RGBA(0.200, 0.200, 0.200, 1.000)\n"
+            }
+          ],
+          "failures_capped": false
+        },
+        "error": null,
+        "result": null
+      },
+      "hint": null
+    }
+  },
+  "isError": false
+}

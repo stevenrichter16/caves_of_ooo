@@ -24,7 +24,7 @@ namespace CavesOfOoo.Skills
     /// §4.2 — composes the existing ActivatedAbilitiesPart cooldown
     /// model.</para>
     /// </summary>
-    public class Spellcraft_ArcaneSurge : BaseSkillPart
+    public class Spellcraft_ArcaneSurge : SpellSkillPart
     {
         public override string Name => nameof(Spellcraft_ArcaneSurge);
 
@@ -43,7 +43,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;

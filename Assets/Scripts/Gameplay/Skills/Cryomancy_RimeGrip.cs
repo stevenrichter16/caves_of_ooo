@@ -17,7 +17,7 @@ namespace CavesOfOoo.Skills
     /// ALL action while present, so a version that froze a whole line
     /// would end fights outright rather than shape them.</para>
     /// </summary>
-    public class Cryomancy_RimeGrip : BaseSkillPart
+    public class Cryomancy_RimeGrip : SpellSkillPart
     {
         public override string Name => nameof(Cryomancy_RimeGrip);
 
@@ -42,7 +42,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
@@ -91,6 +91,7 @@ namespace CavesOfOoo.Skills
             }
 
             var target = line[0];   // nearest — the grip takes ONE
+            SpellFxCapture.EndPathAt(ctx.Zone, target);
             // Capture the ground BEFORE damage: a shattered target may be
             // gone from the zone by the time we ice its cell (live find:
             // Rime Grip at a chest on water shattered the chest and the

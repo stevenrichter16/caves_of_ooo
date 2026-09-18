@@ -1,0 +1,95 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "NativeSpellReadability",
+  "results": {
+    "id": "2",
+    "testcasecount": "85",
+    "result": "Failed(Child)",
+    "total": "85",
+    "passed": "67",
+    "failed": "18",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-11 14:17:34Z",
+    "end-time": "2026-09-11 14:17:36Z",
+    "duration": "1.2079994"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests.MalformedNewArtMetadataIsRejectedBeforeAssetReplacement(\"emission\")",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  <NUnit.Framework.AssertionException:   Validate incoming Blender data before any owned asset is overwritten.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests.Validate (System.String material, System.String colors, System.String semantics) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityImportGuardTests.cs:17 \n  at CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests+<>c__DisplayClass8_0.<MalformedNewArtMetadataIsRejectedBeforeAssetReplacement>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityImportGuardTests.cs:41 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests.MalformedNewArtMetadataIsRejectedBeforeAssetReplacement(\"gradient-count\")",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  <NUnit.Framework.AssertionException:   Validate incoming Blender data before any owned asset is overwritten.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests.Validate (System.String material, System.String colors, System.String semantics) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityImportGuardTests.cs:17 \n  at CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests+<>c__DisplayClass8_0.<MalformedNewArtMetadataIsRejectedBeforeAssetReplacement>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityImportGuardTests.cs:41 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests.MalformedNewArtMetadataIsRejectedBeforeAssetReplacement(\"gradient-bounds\")",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  <NUnit.Framework.AssertionException:   Validate incoming Blender data before any owned asset is overwritten.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests.Validate (System.String material, System.String colors, System.String semantics) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityImportGuardTests.cs:17 \n  at CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests+<>c__DisplayClass8_0.<MalformedNewArtMetadataIsRejectedBeforeAssetReplacement>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityImportGuardTests.cs:41 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests.MalformedNewArtMetadataIsRejectedBeforeAssetReplacement(\"missing-gradient\")",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  <NUnit.Framework.AssertionException:   Validate incoming Blender data before any owned asset is overwritten.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests.Validate (System.String material, System.String colors, System.String semantics) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityImportGuardTests.cs:17 \n  at CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests+<>c__DisplayClass8_0.<MalformedNewArtMetadataIsRejectedBeforeAssetReplacement>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityImportGuardTests.cs:41 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests.MalformedNewArtMetadataIsRejectedBeforeAssetReplacement(\"flat-gradient\")",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  <NUnit.Framework.AssertionException:   Validate incoming Blender data before any owned asset is overwritten.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests.Validate (System.String material, System.String colors, System.String semantics) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityImportGuardTests.cs:17 \n  at CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests+<>c__DisplayClass8_0.<MalformedNewArtMetadataIsRejectedBeforeAssetReplacement>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityImportGuardTests.cs:41 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests.MalformedNewArtMetadataIsRejectedBeforeAssetReplacement(\"unknown-bounds\")",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  <NUnit.Framework.AssertionException:   Validate incoming Blender data before any owned asset is overwritten.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests.Validate (System.String material, System.String colors, System.String semantics) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityImportGuardTests.cs:17 \n  at CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests+<>c__DisplayClass8_0.<MalformedNewArtMetadataIsRejectedBeforeAssetReplacement>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityImportGuardTests.cs:41 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests.ValidSolidAndGradientGlowPassPreflightWithoutImportingAssets",
+      "message": "  Expected: No Exception to be thrown\n  But was:  <NUnit.Framework.AssertionException:   Validate incoming Blender data before any owned asset is overwritten.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests.Validate (System.String material, System.String colors, System.String semantics) [0x00012] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityImportGuardTests.cs:17 \n  at CavesOfOoo.Tests.NativeSpellReadabilityImportGuardTests+<>c.<ValidSolidAndGradientGlowPassPreflightWithoutImportingAssets>b__7_0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityImportGuardTests.cs:29 \n  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00041] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellReadabilityLifecycleTests.ActiveMaterialLossCancelsTheRealCoordinatorWaitAndCanRecover(\"palette\")",
+      "message": "  Expected: Cancelled\n  But was:  Playing\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellReadabilityLifecycleTests.ActiveMaterialLossCancelsTheRealCoordinatorWaitAndCanRecover(\"luminous\")",
+      "message": "  Expected: Cancelled\n  But was:  Playing\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellReadabilityLifecycleTests.ActiveMaterialLossCancelsTheRealCoordinatorWaitAndCanRecover(\"glow\")",
+      "message": "  Expected: Cancelled\n  But was:  Playing\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellReadabilityLifecycleTests.DestroyedIdleOwnedMaterialRecoversBeforeTheNextCast(\"palette\")",
+      "message": "  Prepare must repair the missing clone, not merely return true with an existing root.\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellReadabilityLifecycleTests.DestroyedIdleOwnedMaterialRecoversBeforeTheNextCast(\"luminous\")",
+      "message": "  Prepare must repair the missing clone, not merely return true with an existing root.\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellReadabilityLifecycleTests.DestroyedIdleOwnedMaterialRecoversBeforeTheNextCast(\"glow\")",
+      "message": "  Prepare must repair the missing clone, not merely return true with an existing root.\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellReadabilityTests.ApprovedConceptImportsConnectedGeometryAndLocalGlow(\"Pyromancy_EmberSpit\")",
+      "message": "  Each approved concept needs a bright connected main shape.\n  Expected: not <empty>\n  But was:  <empty>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellReadabilityTests.ApprovedConceptImportsConnectedGeometryAndLocalGlow(\"Hydromancy_JetBlast\")",
+      "message": "  Each approved concept needs a bright connected main shape.\n  Expected: not <empty>\n  But was:  <empty>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellReadabilityTests.ApprovedConceptImportsConnectedGeometryAndLocalGlow(\"Galvanism_GroundSurge\")",
+      "message": "  Each approved concept needs a bright connected main shape.\n  Expected: not <empty>\n  But was:  <empty>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellReadabilityTests.ApprovedConceptImportsConnectedGeometryAndLocalGlow(\"Cryomancy_RimeGrip\")",
+      "message": "  Each approved concept needs a bright connected main shape.\n  Expected: not <empty>\n  But was:  <empty>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellReadabilityTests.ApprovedConceptImportsConnectedGeometryAndLocalGlow(\"Spellcraft_Calm\")",
+      "message": "  Each approved concept needs a bright connected main shape.\n  Expected: not <empty>\n  But was:  <empty>\n"
+    }
+  ]
+}

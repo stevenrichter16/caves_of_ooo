@@ -1,0 +1,113 @@
+{
+    "runId": "b1c1c3905c0947f89a9d8dc30020ebf4",
+    "startedUtc": "2026-09-10T06:38:27.1003600Z",
+    "finishedUtc": "2026-09-10T06:38:31.1630710Z",
+    "status": "PASS",
+    "error": "",
+    "importerReport": "/tmp/codex-ring-import-ADawEIYq/import.json",
+    "cleanControlVerified": true,
+    "dirtyControlVerified": true,
+    "importScenesPreserved": true,
+    "originalScenesPreserved": true,
+    "ownedScenesClosed": true,
+    "originalBefore": [
+        {
+            "handle": -1328,
+            "path": "Assets/Scenes/Main/SampleScene.unity",
+            "name": "SampleScene",
+            "loaded": true,
+            "dirty": false,
+            "active": true,
+            "rootInstanceIds": [
+                53534,
+                53544,
+                53550,
+                53556,
+                53562,
+                53568
+            ]
+        }
+    ],
+    "originalAfter": [
+        {
+            "handle": -1328,
+            "path": "Assets/Scenes/Main/SampleScene.unity",
+            "name": "SampleScene",
+            "loaded": true,
+            "dirty": false,
+            "active": true,
+            "rootInstanceIds": [
+                53534,
+                53544,
+                53550,
+                53556,
+                53562,
+                53568
+            ]
+        }
+    ],
+    "importBefore": [
+        {
+            "handle": -1330,
+            "path": "",
+            "name": "",
+            "loaded": true,
+            "dirty": true,
+            "active": false,
+            "rootInstanceIds": [
+                -1340
+            ]
+        },
+        {
+            "handle": -1328,
+            "path": "Assets/Scenes/Main/SampleScene.unity",
+            "name": "SampleScene",
+            "loaded": true,
+            "dirty": false,
+            "active": true,
+            "rootInstanceIds": [
+                53534,
+                53544,
+                53550,
+                53556,
+                53562,
+                53568
+            ]
+        }
+    ],
+    "importAfter": [
+        {
+            "handle": -1330,
+            "path": "",
+            "name": "",
+            "loaded": true,
+            "dirty": true,
+            "active": false,
+            "rootInstanceIds": [
+                -1340
+            ]
+        },
+        {
+            "handle": -1328,
+            "path": "Assets/Scenes/Main/SampleScene.unity",
+            "name": "SampleScene",
+            "loaded": true,
+            "dirty": false,
+            "active": true,
+            "rootInstanceIds": [
+                53534,
+                53544,
+                53550,
+                53556,
+                53562,
+                53568
+            ]
+        }
+    ],
+    "unexpectedLogs": [],
+    "honestyBounds": [
+        "This explicit CLI import preserves scene handles, dirty flags, active scene and root identities; it does not render native gameplay.",
+        "The clean active saved scene and owned dirty inactive scene are explicit controls. A proven empty clean untitled batch placeholder is replaced before the receipt; no user scene is saved. Original saved scene identities are compared before fixture setup and after teardown.",
+        "Asset/source hashes and existing GUID preservation are checked by the external runner; no claim of transactional rollback on failed imports."
+    ]
+}

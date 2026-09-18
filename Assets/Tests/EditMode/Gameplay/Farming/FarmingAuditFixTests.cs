@@ -403,13 +403,14 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void Sm7d_RainDrops_NeverTravelBelowTheCropRow()
+        public void Sm7d_RainSequence_EndsAtTheCropRow()
         {
             // Blue finding: lifetime 0.45 / moveInterval 0.1 gave every
             // drop 4 moves — drops rained 2-3 tiles THROUGH the soil
             // after the splash landed. Lifetime is the travel budget:
             // spawn N cells above the crop → at most N moves.
             AsciiFxBus.Clear();
+            SpellFxBus.Clear();
             var zone = new Zone("z");
             var caster = new Entity { ID = "caster", BlueprintName = "TestCaster" };
             caster.Tags["Creature"] = "";
@@ -431,18 +432,11 @@ namespace CavesOfOoo.Tests
             caster.FireEvent(cmd);
             cmd.Release();
 
-            var requests = AsciiFxBus.Drain();
-            int fallingDrops = 0;
-            for (int i = 0; i < requests.Count; i++)
-            {
-                var req = requests[i];
-                if (req.Type != AsciiFxRequestType.Particle || req.DY <= 0) continue;
-                fallingDrops++;
-                int maxMoves = (int)(req.Lifetime / req.MoveInterval);
-                Assert.LessOrEqual(req.Y + maxMoves * req.DY, cropY,
-                    $"drop spawned at y={req.Y} (lifetime {req.Lifetime}) must die at or above the crop row");
-            }
-            Assert.AreEqual(3, fallingDrops, "sanity: the three staggered drops were emitted");
+            var sequences = SpellFxBus.Drain();
+            Assert.AreEqual(1, sequences.Count);
+            Assert.AreEqual(1, sequences[0].AffectedCells.Count);
+            Assert.AreEqual(cropY, sequences[0].AffectedCells[0].Y,
+                "the gameplay endpoint is the crop row; renderer travel may not change it");
         }
 
         [Test]

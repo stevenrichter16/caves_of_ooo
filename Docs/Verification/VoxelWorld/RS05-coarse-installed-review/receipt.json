@@ -1,0 +1,63 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CavesOfOoo.Tests.MorrowfastCoarseVoxelTests|CavesOfOoo.Tests.MorrowfastCoarseVoxelAdversarialTests|CavesOfOoo.Tests.VoxelWorldImportedArtTests|CavesOfOoo.Tests.VoxelWorldObjectPaletteArtTests|CavesOfOoo.Tests.VoxelWorldDensityArtTests",
+  "results": {
+    "id": "2",
+    "testcasecount": "76",
+    "result": "Failed(Child)",
+    "total": "76",
+    "passed": "66",
+    "failed": "10",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-17 22:26:42Z",
+    "end-time": "2026-09-17 22:26:45Z",
+    "duration": "3.1826996"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastCoarseVoxelTests.WesternFootbridgeHasReadableDryApproachesWithoutPavingItsNativeWater(22)",
+      "message": "  The road should visibly reach the existing bridge's dry bank.\n  Expected: greater than 0.00999999978f\n  But was:  -Infinity\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastCoarseVoxelTests.WesternFootbridgeHasReadableDryApproachesWithoutPavingItsNativeWater(26)",
+      "message": "  The road should visibly reach the existing bridge's dry bank.\n  Expected: greater than 0.00999999978f\n  But was:  -Infinity\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityArtTests.CompleteNativeCoverageKeepsEveryBaselineBoundsEdgeWithinOneNewCell",
+      "message": "  detail-patch-04-04__Geometry maximum edge moved too far on axis 0\n  Expected: less than or equal to 0.250099987f\n  But was:  8.19999981f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityArtTests.OrdinaryPropCharacterAndTerrainContainFewerActualCellsAtCoarserPitch(\"herb-pot\")",
+      "message": "  f92f55095f45f42f68986aec655b5af2_8221866331634946278 volume must represent an integral number of cells.\n  Expected: less than 0.0050000000000000001d\n  But was:  0.49382387480979162d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldImportedArtTests.CorrectedToolkitRegenerationKeepsTheCapturedThirtyEightAssetGuids",
+      "message": "  Expected string length 90 but was 93. Strings differ at index 24.\n  Expected: \"Assets/Art3D/VoxelWorld/Toolkit/f98cd198348294880a78dc4598f1d...\"\n  But was:  \"Assets/Art3D/VoxelWorld/Morrowfast/f98cd198348294880a78dc4598...\"\n  -----------------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldImportedArtTests.EveryToolkitBindingUsesItsActualRecipeTopologyWithUniformNativeFit",
+      "message": "  crate-0 must use the recipe override, not its original voxelized model.\n  Expected string length 90 but was 93. Strings differ at index 24.\n  Expected: \"Assets/Art3D/VoxelWorld/Toolkit/f98cd198348294880a78dc4598f1d...\"\n  But was:  \"Assets/Art3D/VoxelWorld/Morrowfast/f98cd198348294880a78dc4598...\"\n  -----------------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteArtTests.BothNativeStallsRetainTheirAuthoredCanopyIdentityAndOneWoodColor(0)",
+      "message": "  Expected: 3188\n  But was:  192\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteArtTests.BothNativeStallsRetainTheirAuthoredCanopyIdentityAndOneWoodColor(1)",
+      "message": "  Expected: 3188\n  But was:  192\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteArtTests.ColorReductionPreservesAll368NativeGeometryAndSkinBindingsExactly",
+      "message": "  grass-2__Geometry vertices\n  Expected is <UnityEngine.Vector3[152]>, actual is <UnityEngine.Vector3[72]>\n  Values differ at index [0]\n  Expected: (-0.50, 0.00, 0.25)\n  But was:  (-0.30, 0.00, -0.22)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteArtTests.WaterGeometryAndUvsRemainExactlyOutsideThePaintRewrite",
+      "message": "  central-well__Water water UVs\n  Expected is <UnityEngine.Vector2[1184]>, actual is <UnityEngine.Vector2[24]>\n  Values differ at index [0]\n  Expected: (0.01, 0.43)\n  But was:  (0.06, 0.44)\n"
+    }
+  ]
+}

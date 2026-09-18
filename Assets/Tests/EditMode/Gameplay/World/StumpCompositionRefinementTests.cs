@@ -74,41 +74,58 @@ namespace CavesOfOoo.Tests
                 "The cluster requirement must not introduce summit tanks on the slopes.");
         }
 
-        // H3: rendering richer pools and cups accidentally adds permanent
-        // wetness, drinking or combat-liquid contact. Inspect actual generated
-        // owners, then run the native source consumer with a real brine control.
+        // H3: native spray now really is water, while drinking from a bromeliad
+        // must not soak its cell. Art must not add a competing coating writer;
+        // removal of an unrelated brine source cannot erase live spray water.
         [TestCase("Overworld.2.1.0", Formation.CascadeGorge, "SprayPool")]
         [TestCase("Overworld.3.2.0", Formation.SummitScrub, "TankBrocchinia")]
         [TestCase("Overworld.2.3.0", Formation.RimForest, "TankBrocchinia")]
-        public void RefinedWaterSceneryDoesNotInventLiquidOrTileStateMechanics(string id, Formation form, string blueprint)
+        public void RefinedWaterUsesPoolOwnershipWhileDrinkingCupsStayDry(string id, Formation form, string blueprint)
         {
             var zone = Build(id, 64, form, out _);
             var scenery = zone.GetAllEntities().Where(e => e.BlueprintName == blueprint).ToArray();
             Assert.IsNotEmpty(scenery, "The test must exercise actual generated scenery.");
-            Assert.AreEqual(0, zone.TileState.WrittenCount);
+            bool spray=blueprint=="SprayPool";
+            int nativeWaterCells=spray?scenery.Length:0;
+            Assert.AreEqual(nativeWaterCells, zone.TileState.WrittenCount);
             foreach (var owner in scenery)
             {
-                Assert.IsNull(owner.GetPart<LiquidPoolPart>(), blueprint + " is not a liquid interaction source.");
-                Assert.IsNull(owner.GetPart<TileStateSourcePart>(), blueprint + " is not a native coating source.");
+                var cell=zone.GetEntityCell(owner);
+                if(spray)
+                {
+                    var pool=owner.GetPart<LiquidPoolPart>();Assert.NotNull(pool);Assert.AreEqual("water",pool.LiquidId);Assert.AreEqual(40,pool.Volume);
+                    Assert.AreEqual(ZoneTileState.Permanent,zone.TileState.CoatingTurns(cell.X,cell.Y,"water"));
+                    Assert.IsNull(owner.GetPart<WellPart>(),"Walking in water and drawing drinking water remain different actions.");
+                }
+                else
+                {
+                    Assert.IsNull(owner.GetPart<LiquidPoolPart>());Assert.NotNull(owner.GetPart<WellPart>());
+                    Assert.IsFalse(zone.TileState.HasCoating(cell.X,cell.Y,"water"),"The tank holds its water above the ground.");
+                }
+                Assert.IsNull(owner.GetPart<TileStateSourcePart>(), blueprint + " must not add a competing terrain source.");
                 Assert.IsFalse(owner.GetPart<PhysicsPart>().Solid);
             }
+            string nativeWater=zone.TileState.ToSaveString();
             ZoneTileStateSystem.SeedTerrainSources(zone);
-            Assert.AreEqual(0, zone.TileState.WrittenCount, "Art refinement must not write hidden permanent water.");
+            Assert.AreEqual(nativeWater,zone.TileState.ToSaveString(),"Only the actual native pools project permanent water.");
 
             var source = factory.CreateEntity("BrinePool");
             Assert.NotNull(source.GetPart<LiquidPoolPart>());
             Assert.NotNull(source.GetPart<TileStateSourcePart>());
+            Assert.IsFalse(zone.TileState.HasCoating(0,0,"water"),"Brine control needs its own dry cell.");
             Assert.IsTrue(zone.AddEntity(source, 0, 0));
             ZoneTileStateSystem.SeedTerrainSources(zone);
             Assert.AreEqual(4, zone.TileState.CoatingTurns(0, 0, "water"), "Real native water must still seed normally.");
-            Assert.AreEqual(1, zone.TileState.WrittenCount);
+            Assert.AreEqual(nativeWaterCells+1, zone.TileState.WrittenCount);
             zone.RemoveEntity(source);
             for (int turn = 0; turn < 6; turn++)
             {
                 ZoneTileStateSystem.SeedTerrainSources(zone);
                 zone.TileState.Tick();
             }
-            Assert.AreEqual(0, zone.TileState.WrittenCount, "Scenery must not renew the removed real source.");
+            Assert.AreEqual(nativeWaterCells, zone.TileState.WrittenCount, "The removed brine source expires without erasing surviving spray water.");
+            Assert.IsFalse(zone.TileState.HasCoating(0,0,"water"));
+            Assert.AreEqual(nativeWater,zone.TileState.ToSaveString());
             foreach (var owner in scenery) Assert.NotNull(zone.GetEntityCell(owner), "The scenery control survives source removal.");
         }
 

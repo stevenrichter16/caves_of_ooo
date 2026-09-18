@@ -1,0 +1,83 @@
+{
+  "status": "GREEN",
+  "assertions": 9,
+  "passed": 9,
+  "sourceSha256": "f8c7ef56cad60393c001829a84e2e85dbfda5d5979d3480a48ac687ae3215ff3",
+  "checks": [
+    {
+      "name": "ember_spit has bounded non-popping effect envelopes",
+      "passed": true,
+      "actual": {
+        "meshes": 23,
+        "worstStepPer10ms": 0.19210004677102077,
+        "failures": []
+      }
+    },
+    {
+      "name": "flaming_hands has bounded non-popping effect envelopes",
+      "passed": true,
+      "actual": {
+        "meshes": 14,
+        "worstStepPer10ms": 0.23683929443359375,
+        "failures": []
+      }
+    },
+    {
+      "name": "jet_blast has bounded non-popping effect envelopes",
+      "passed": true,
+      "actual": {
+        "meshes": 26,
+        "worstStepPer10ms": 0.2407408356666565,
+        "failures": []
+      }
+    },
+    {
+      "name": "ground_surge has bounded non-popping effect envelopes",
+      "passed": true,
+      "actual": {
+        "meshes": 17,
+        "worstStepPer10ms": 0.2355557680130005,
+        "failures": []
+      }
+    },
+    {
+      "name": "rime_grip has bounded non-popping effect envelopes",
+      "passed": true,
+      "actual": {
+        "meshes": 13,
+        "worstStepPer10ms": 0.19616693258285522,
+        "failures": []
+      }
+    },
+    {
+      "name": "calm has bounded non-popping effect envelopes",
+      "passed": true,
+      "actual": {
+        "meshes": 7,
+        "worstStepPer10ms": 0.1835937798023224,
+        "failures": []
+      }
+    },
+    {
+      "name": "conjure_rain has bounded non-popping effect envelopes",
+      "passed": true,
+      "actual": {
+        "meshes": 45,
+        "worstStepPer10ms": 0.24740741292635587,
+        "failures": []
+      }
+    },
+    {
+      "name": "Unmodified reveal control passes before mutation",
+      "passed": true,
+      "actual": 1.0
+    },
+    {
+      "name": "Actual one-frame pop is rejected",
+      "passed": true,
+      "actual": {
+        "maxJump": 1.0
+      }
+    }
+  ]
+}

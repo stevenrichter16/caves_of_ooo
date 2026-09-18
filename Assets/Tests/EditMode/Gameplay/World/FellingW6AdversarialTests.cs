@@ -207,7 +207,12 @@ namespace CavesOfOoo.Tests
                 Assert.AreEqual(id==ids[0]?1:0,entities.Count(e=>e.BlueprintName=="TheRooted"));
                 Assert.AreEqual(id==ids[2]?1:0,entities.Count(e=>e.BlueprintName=="SealedLibraryDoor"));
                 Assert.AreEqual(id==ids[1]?1:0,entities.Count(e=>e.BlueprintName=="SeventhPosition"));
-                if(id==ids[1]) Assert.IsFalse(entities.Any(e=>e.HasTag("Creature")&&e!=load.Player));
+                if(id==ids[1])
+                {
+                    var wildlife=entities.Where(e=>e.HasTag("Creature")&&e!=load.Player).ToArray();
+                    Assert.AreEqual(3,wildlife.Length);
+                    Assert.IsTrue(wildlife.All(e=>e.HasTag(FellingScenePopulation.FaunaTag)&&e.GetPart<BrainPart>()?.Passive==true));
+                }
                 if(id==ids[2]) Assert.IsFalse(entities.Any(e=>e.HasPart<WaterPassagePart>()||e.BlueprintName=="PricklebrowNest"));
             }
         }

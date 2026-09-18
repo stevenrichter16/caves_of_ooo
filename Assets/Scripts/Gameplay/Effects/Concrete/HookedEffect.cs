@@ -100,88 +100,33 @@ namespace CavesOfOoo.Core
         /// target 1 cell toward the Hooker — choosing the cardinal/
         /// diagonal direction that minimizes Chebyshev distance. Skip
         /// the move if the chosen cell is solid or contains another
-        /// creature (mirrors Cudgel_Slam's CellHasOtherCreature gate).
-        /// No-op if target is already adjacent (no need to drag).
+        /// creature. The complete destination must fit, and physical
+        /// adjacency to the hooker stops the pull before bodies overlap.
         /// </summary>
         private void DragTowardHooker(Entity target, Zone zone)
         {
             var targetPos = zone.GetEntityPosition(target);
-            var hookerPos = zone.GetEntityPosition(Hooker);
-            if (targetPos.x < 0 || hookerPos.x < 0) return;
+            if (targetPos.x < 0 || zone.GetEntityCell(Hooker) == null) return;
+            if (SpatialQuery.Distance(zone, target, Hooker) <= 1) return;
 
-            int dx = hookerPos.x - targetPos.x;
-            int dy = hookerPos.y - targetPos.y;
-            // Already adjacent — no drag needed.
-            if (System.Math.Abs(dx) <= 1 && System.Math.Abs(dy) <= 1) return;
-
-            // Pick a direction matching the existing 8-dir convention
-            // in Zone.GetCellInDirection (0=N, 1=NE, 2=E, ..., 7=NW).
-            // Step toward hooker on each axis (-1, 0, +1).
-            int stepX = System.Math.Sign(dx);
-            int stepY = System.Math.Sign(dy);
-            int dir = DirectionFromStep(stepX, stepY);
-            if (dir < 0) return;
-
-            var nextCell = zone.GetCellInDirection(targetPos.x, targetPos.y, dir);
-            if (nextCell == null) return;
-            if (nextCell.IsSolid()) return;
-            if (CellHasOtherCreature(nextCell, target)) return;
-
-            zone.MoveEntity(target, nextCell.X, nextCell.Y);
-            MessageLog.Add(target.GetDisplayName() + " is dragged toward " + Hooker.GetDisplayName() + ".");
-        }
-
-        /// <summary>
-        /// Convert a unit step (-1/0/+1, -1/0/+1) into the 8-dir index
-        /// used by <see cref="Zone.GetCellInDirection"/>.
-        /// Returns -1 if the step is (0, 0) — no movement.
-        /// </summary>
-        private static int DirectionFromStep(int dx, int dy)
-        {
-            // 0=N(0,-1), 1=NE(+1,-1), 2=E(+1,0), 3=SE(+1,+1),
-            // 4=S(0,+1), 5=SW(-1,+1), 6=W(-1,0), 7=NW(-1,-1)
-            if (dx ==  0 && dy == -1) return 0;
-            if (dx ==  1 && dy == -1) return 1;
-            if (dx ==  1 && dy ==  0) return 2;
-            if (dx ==  1 && dy ==  1) return 3;
-            if (dx ==  0 && dy ==  1) return 4;
-            if (dx == -1 && dy ==  1) return 5;
-            if (dx == -1 && dy ==  0) return 6;
-            if (dx == -1 && dy == -1) return 7;
-            return -1;
-        }
-
-        /// <summary>Iterates the cell looking for a Creature-tagged
-        /// entity that isn't the excluded one. Mirrors
-        /// <see cref="CavesOfOoo.Skills.Cudgel_Slam"/>'s helper.</summary>
-        private static bool CellHasOtherCreature(Cell cell, Entity exclude)
-        {
-            if (cell == null) return false;
-            for (int i = 0; i < cell.Objects.Count; i++)
+            Cell targetContact = null, hookContact = null;
+            int bestDistance = int.MaxValue;
+            foreach (var cell in zone.GetOccupiedCells(target))
             {
-                var e = cell.Objects[i];
-                if (e == null || e == exclude) continue;
-                if (e.Tags.ContainsKey("Creature")) return true;
+                var other = SpatialQuery.ClosestCell(zone, Hooker, cell.X, cell.Y);
+                if (other == null) continue;
+                int distance = Math.Max(Math.Abs(cell.X - other.X), Math.Abs(cell.Y - other.Y));
+                if (distance < bestDistance) { bestDistance = distance; targetContact = cell; hookContact = other; }
             }
-            return false;
+            if (targetContact == null) return;
+            int nx = targetPos.x + Math.Sign(hookContact.X - targetContact.X);
+            int ny = targetPos.y + Math.Sign(hookContact.Y - targetContact.Y);
+            if (!zone.CanPlaceFootprint(target, nx, ny)
+                || CavesOfOoo.Skills.MultiCellAbilityQueries.CreatureAtPlacement(zone, target, nx, ny) != null
+                || SpatialQuery.DistanceAt(zone, target, nx, ny, Hooker) == 0) return;
+            if (MovementSystem.ForceMoveTo(target, zone, nx, ny))
+                MessageLog.Add(target.GetDisplayName() + " is dragged toward " + Hooker.GetDisplayName() + ".");
         }
 
-        public override bool OnStack(Effect incoming)
-        {
-            // Stacking refreshes the duration and re-stamps the hooker —
-            // re-hooking an already-hooked target gives the new attacker
-            // control. Mirrors Qud's "RemoveAllEffects<Hooked>" + reapply
-            // pattern from various dismember sites (the new hook always
-            // wins).
-            if (incoming is HookedEffect newHook)
-            {
-                Duration = newHook.Duration;
-                Hooker = newHook.Hooker;
-                SaveTarget = newHook.SaveTarget;
-                Rng = newHook.Rng;
-                return true;
-            }
-            return false;
-        }
     }
 }

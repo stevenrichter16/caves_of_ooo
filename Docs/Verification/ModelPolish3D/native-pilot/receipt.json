@@ -1,0 +1,159 @@
+{
+  "exit": 0,
+  "compileErrors": [],
+  "cleanupReport": "/Users/steven/caves-of-ooo/Docs/Verification/MultiCellPilot/MCN-f366498a6c9f458e816cb91a73eeaac4-cleanup.json",
+  "nativeReport": "/Users/steven/caves-of-ooo/Docs/Verification/MultiCellPilot/MCN-f366498a6c9f458e816cb91a73eeaac4-native.json",
+  "cleanup": {
+    "errors": [],
+    "errorLedgerTruncated": false,
+    "runId": "f366498a6c9f458e816cb91a73eeaac4",
+    "privateRoot": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/9574058368ba4eb59b76b3f46b157251",
+    "sceneError": "",
+    "viewError": "",
+    "reportError": "",
+    "privateRootRemoved": true,
+    "scenesRestored": true,
+    "gameViewRestored": true,
+    "finalNativeVerified": true,
+    "seedSettingRestored": true,
+    "inheritedSaveRootRestored": true,
+    "lastGamePreferenceRestored": true,
+    "nativeCleanupCode": 0,
+    "exitCode": 0,
+    "oldRequestedSeed": 0,
+    "restoredRequestedSeed": 0,
+    "totalUnexpectedErrors": 0
+  },
+  "nativeChecks": [
+    {
+      "name": "native_N_real_new_game",
+      "detail": "",
+      "pass": true
+    },
+    {
+      "name": "native_south_entry",
+      "detail": "",
+      "pass": true
+    },
+    {
+      "name": "authored_native_owner_contract",
+      "detail": "",
+      "pass": true
+    },
+    {
+      "name": "native_presenter_binding",
+      "detail": "",
+      "pass": true
+    },
+    {
+      "name": "physical_edge_selection_and_hole",
+      "detail": "",
+      "pass": true
+    },
+    {
+      "name": "native_physical_edge_pick",
+      "detail": "Actual camera projection of imported mesh contact (8.50, 1.04, 22.50) in physical cell(8,2); cursor (8.50, 23.20). The separate occupancy-hole gate remains authoritative; a tilted ray may cross geometry outside its flat cell.",
+      "pass": true
+    },
+    {
+      "name": "physical_edge_reach",
+      "detail": "",
+      "pass": true
+    },
+    {
+      "name": "one_structural_damage_owner",
+      "detail": "Named RouteDamage API stimulus at a physically reachable edge; independent neighbor is the countercheck.",
+      "pass": true
+    },
+    {
+      "name": "destroy_clears_whole_body_once",
+      "detail": "",
+      "pass": true
+    },
+    {
+      "name": "duplicate_destroy_is_idempotent",
+      "detail": "",
+      "pass": true
+    },
+    {
+      "name": "destroyed_owner_view_removed",
+      "detail": "Actual pre-hit visible GameObject must be destroyed or inactive, not merely rejected by the canonical-membership API.",
+      "pass": true
+    },
+    {
+      "name": "large_creature_path_respects_full_body",
+      "detail": "Read-only native A* and out-of-bounds-body countercheck; does not manufacture a chase or alter canon ambush behavior.",
+      "pass": true
+    },
+    {
+      "name": "large_creature_blocked_far_edge_atomic",
+      "detail": "Named temporary native Rock, released in finally; no terrain clearing.",
+      "pass": true
+    },
+    {
+      "name": "large_creature_forced_motion_and_restoration",
+      "detail": "",
+      "pass": true
+    },
+    {
+      "name": "pipe_force_move_whole_body",
+      "detail": "Named force-move API stimulus, no position-field edits.",
+      "pass": true
+    },
+    {
+      "name": "pipe_blocked_displacement_atomic",
+      "detail": "",
+      "pass": true
+    },
+    {
+      "name": "pipe_native_drag_preserves_grip",
+      "detail": "",
+      "pass": true
+    },
+    {
+      "name": "pipe_not_takeable_or_throwable",
+      "detail": "",
+      "pass": true
+    },
+    {
+      "name": "revisit_preserves_damage_absence_and_pipe",
+      "detail": "",
+      "pass": true
+    },
+    {
+      "name": "native_F5_preserves_player_boundary",
+      "detail": "",
+      "pass": true
+    },
+    {
+      "name": "postcheckpoint_countermutation",
+      "detail": "",
+      "pass": true
+    },
+    {
+      "name": "native_F6_exact_owner_and_tile_state",
+      "detail": "",
+      "pass": true
+    },
+    {
+      "name": "native_F6_replaces_all_owner_aliases",
+      "detail": "",
+      "pass": true
+    },
+    {
+      "name": "native_pilot_80second_profile_complete",
+      "detail": "Four20s ordinary FOV phases: pristine/restored idle and live keyboard walking; setup/capture excluded.",
+      "pass": true
+    },
+    {
+      "name": "private_boot_marker_unchanged",
+      "detail": "",
+      "pass": true
+    },
+    {
+      "name": "owned_save_only",
+      "detail": "",
+      "pass": true
+    }
+  ]
+}

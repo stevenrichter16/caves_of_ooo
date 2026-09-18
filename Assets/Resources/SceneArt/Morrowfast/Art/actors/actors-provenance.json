@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "sourceScene": "morrowfast",
+  "frameWidth": 48,
+  "frameHeight": 64,
+  "pixelsPerUnit": 41,
+  "sourceOwnersChanged": 0,
+  "actors": [
+    {
+      "id": "farra",
+      "name": "Farra Sprig",
+      "blueprint": "MorrowfastFarra",
+      "visualId": "actor.morrowfast_farra",
+      "file": "morrowfast_farra_sheet.png",
+      "source": "build/sprites/western-shopkeeper-sprite.png",
+      "sourceSha256": "8617790301b411a47b2a902de4a9d2ff4ac89af393d29128b6de18a92eecb71e",
+      "sheetSha256": "55525c66eab91362639e2eaccafe2378f8c9073497910993ff6fcfec14c32c52",
+      "sourceBodySize": [
+        39,
+        59
+      ],
+      "bodyOffset": [
+        5,
+        3
+      ],
+      "pivot": [
+        0.5,
+        0.09375
+      ],
+      "paletteChange": {
+        "region": "upper 14 source rows, alpha > 0, saturation >= 0.08, value >= 0.13",
+        "hat": "weathered olive",
+        "hue": 0.27,
+        "saturation": "min(0.35, original * 0.85)",
+        "value": "unchanged"
+      },
+      "motion": "static source pose repeated for four facings and four states",
+      "unusedColumns": "three fully transparent columns; frame count is one for every state",
+      "contactsIncluded": false
+    },
+    {
+      "id": "edden",
+      "name": "Edden Brack",
+      "blueprint": "MorrowfastEdden",
+      "visualId": "actor.morrowfast_edden",
+      "file": "morrowfast_edden_sheet.png",
+      "source": "build/sprites/east-robed-resident-sprite.png",
+      "sourceSha256": "72b1f752791ced2653b7203a9bb15475278de22580efbe0ca9ca802dd5e628db",
+      "sheetSha256": "6f8194c07f3283c139d5eb53e5f2ab36d6447780ea08ac0ea94fe1f5216b4788",
+      "sourceBodySize": [
+        39,
+        60
+      ],
+      "bodyOffset": [
+        4,
+        3
+      ],
+      "pivot": [
+        0.5,
+        0.078125
+      ],
+      "paletteChange": {
+        "region": "upper 14 source rows, alpha > 0, saturation >= 0.08, value >= 0.13",
+        "hat": "muted blue-grey",
+        "hue": 0.55,
+        "saturation": "min(0.35, original * 0.85)",
+        "value": "unchanged"
+      },
+      "motion": "static source pose repeated for four facings and four states",
+      "unusedColumns": "three fully transparent columns; frame count is one for every state",
+      "contactsIncluded": false
+    }
+  ]
+}

@@ -24,7 +24,7 @@ namespace CavesOfOoo.Skills
     /// everything in the line regardless of conductivity, and its job is
     /// to CREATE the conductors Overload needs.</para>
     /// </summary>
-    public class Galvanism_GroundSurge : BaseSkillPart
+    public class Galvanism_GroundSurge : SpellSkillPart
     {
         public override string Name => nameof(Galvanism_GroundSurge);
 
@@ -58,7 +58,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
@@ -98,6 +98,15 @@ namespace CavesOfOoo.Skills
                 // different answers to a player asking why the cast did
                 // nothing, so they get different reason strings.
                 EmitSkillRejectedDiag(ctx, blockedByWall ? "line_blocked" : "no_target");
+                if (lineCells.Count > 0)
+                {
+                    // Bare ground still received charge. Resolve its reactions now and consume
+                    // the cast so cooldown and the captured wave match that completed work.
+                    ZoneTileStateSystem.ResolveAfterAbility(ctx.Zone, actor);
+                    MessageLog.Add(actor.GetDisplayName()
+                        + "'s ground surge crackles across bare ground.");
+                    return true;
+                }
                 MessageLog.Add(actor.GetDisplayName()
                     + "'s ground surge rolls away into nothing.");
                 return false;
@@ -109,6 +118,7 @@ namespace CavesOfOoo.Skills
             for (int i = 0; i < targets.Count; i++)
             {
                 var target = targets[i];
+                SpellFxCapture.TargetOnPath(ctx.Zone, target);
 
                 var dmg = new Damage(SURGE_DAMAGE);
                 dmg.AddAttribute("Electric");

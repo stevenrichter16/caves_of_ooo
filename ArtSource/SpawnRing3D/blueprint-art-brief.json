@@ -1,0 +1,2129 @@
+{
+  "ChoirTendril": {
+    "Name": "ChoirTendril",
+    "Inherits": "Creature",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "choir tendril"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "F"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&G"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "10"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Solid",
+            "Value": "true"
+          }
+        ]
+      },
+      {
+        "Name": "Armor",
+        "Params": [
+          {
+            "Key": "AV",
+            "Value": "3"
+          },
+          {
+            "Key": "DV",
+            "Value": "0"
+          }
+        ]
+      },
+      {
+        "Name": "Brain",
+        "Params": [
+          {
+            "Key": "SightRadius",
+            "Value": "12"
+          },
+          {
+            "Key": "Wanders",
+            "Value": "false"
+          }
+        ]
+      },
+      {
+        "Name": "Conversation",
+        "Params": [
+          {
+            "Key": "ConversationID",
+            "Value": "ChoirTendril_1"
+          }
+        ]
+      },
+      {
+        "Name": "GivesRep",
+        "Params": [
+          {
+            "Key": "Value",
+            "Value": "25"
+          }
+        ]
+      },
+      {
+        "Name": "Trader",
+        "Params": [
+          {
+            "Key": "StockTable",
+            "Value": "ChoirStock"
+          },
+          {
+            "Key": "Drams",
+            "Value": "70"
+          }
+        ]
+      }
+    ],
+    "Stats": [
+      {
+        "Name": "Hitpoints",
+        "Value": 80,
+        "Min": 0,
+        "Max": 80
+      },
+      {
+        "Name": "Strength",
+        "Value": 20
+      },
+      {
+        "Name": "Toughness",
+        "Value": 22
+      },
+      {
+        "Name": "Willpower",
+        "Value": 18
+      },
+      {
+        "Name": "Ego",
+        "Value": 20
+      },
+      {
+        "Name": "XPValue",
+        "Value": 350
+      }
+    ],
+    "Props": [
+      {
+        "Key": "NaturalWeapon",
+        "Value": "ChoirLash"
+      }
+    ],
+    "Tags": [
+      {
+        "Key": "SpeaksToHostiles",
+        "Value": ""
+      },
+      {
+        "Key": "Faction",
+        "Value": "RotChoir"
+      },
+      {
+        "Key": "Tier",
+        "Value": "3"
+      },
+      {
+        "Key": "BloodColor",
+        "Value": "&G"
+      }
+    ]
+  },
+  "Mosshulk": {
+    "Name": "Mosshulk",
+    "Inherits": "Creature",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "mosshulk"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "M"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&g"
+          }
+        ]
+      },
+      {
+        "Name": "Armor",
+        "Params": [
+          {
+            "Key": "AV",
+            "Value": "6"
+          },
+          {
+            "Key": "DV",
+            "Value": "0"
+          }
+        ]
+      },
+      {
+        "Name": "Corpse",
+        "Params": [
+          {
+            "Key": "HarvestBlueprint",
+            "Value": "MendleafSprig"
+          },
+          {
+            "Key": "HarvestMin",
+            "Value": "2"
+          },
+          {
+            "Key": "HarvestMax",
+            "Value": "2"
+          },
+          {
+            "Key": "HarvestChance",
+            "Value": "100"
+          }
+        ]
+      }
+    ],
+    "Stats": [
+      {
+        "Name": "Hitpoints",
+        "Value": 55,
+        "Min": 0,
+        "Max": 55
+      },
+      {
+        "Name": "Strength",
+        "Value": 24
+      },
+      {
+        "Name": "Agility",
+        "Value": 8
+      },
+      {
+        "Name": "Speed",
+        "Value": 70
+      },
+      {
+        "Name": "XPValue",
+        "Value": 400
+      }
+    ],
+    "Props": [
+      {
+        "Key": "NaturalWeapon",
+        "Value": "MosshulkSlam"
+      }
+    ],
+    "Tags": [
+      {
+        "Key": "Faction",
+        "Value": "Beasts"
+      },
+      {
+        "Key": "Tier",
+        "Value": "3"
+      },
+      {
+        "Key": "BloodColor",
+        "Value": "&g"
+      }
+    ]
+  },
+  "Rotling": {
+    "Name": "Rotling",
+    "Inherits": "Creature",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "rotling"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "r"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&g"
+          }
+        ]
+      },
+      {
+        "Name": "Armor",
+        "Params": [
+          {
+            "Key": "AV",
+            "Value": "0"
+          },
+          {
+            "Key": "DV",
+            "Value": "2"
+          }
+        ]
+      },
+      {
+        "Name": "Material",
+        "Params": [
+          {
+            "Key": "MaterialID",
+            "Value": "Fungal"
+          },
+          {
+            "Key": "Combustibility",
+            "Value": "0.5"
+          },
+          {
+            "Key": "MaterialTagsRaw",
+            "Value": "Organic,Fungal,Living"
+          }
+        ]
+      },
+      {
+        "Name": "GasImmunity",
+        "Params": [
+          {
+            "Key": "GasType",
+            "Value": "poison-vapor"
+          }
+        ]
+      }
+    ],
+    "Stats": [
+      {
+        "Name": "Hitpoints",
+        "Value": 8,
+        "Min": 0,
+        "Max": 8
+      },
+      {
+        "Name": "Strength",
+        "Value": 10
+      },
+      {
+        "Name": "Agility",
+        "Value": 16
+      },
+      {
+        "Name": "Speed",
+        "Value": 110
+      },
+      {
+        "Name": "XPValue",
+        "Value": 8
+      }
+    ],
+    "Props": [
+      {
+        "Key": "NaturalWeapon",
+        "Value": "RotlingClaw"
+      }
+    ],
+    "Tags": [
+      {
+        "Key": "Faction",
+        "Value": "Beasts"
+      },
+      {
+        "Key": "Tier",
+        "Value": "1"
+      },
+      {
+        "Key": "BloodColor",
+        "Value": "&g"
+      }
+    ]
+  },
+  "ChoirIronVein": {
+    "Name": "ChoirIronVein",
+    "Inherits": "PhysicalObject",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "choir iron vein"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "*"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&m"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "4"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Solid",
+            "Value": "true"
+          }
+        ]
+      },
+      {
+        "Name": "Harvestable",
+        "Params": [
+          {
+            "Key": "YieldBlueprint",
+            "Value": "ChoirIron"
+          },
+          {
+            "Key": "YieldMin",
+            "Value": "1"
+          },
+          {
+            "Key": "YieldMax",
+            "Value": "2"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Description",
+            "Value": "Dark ore that rings like a struck bell when chipped. The Rot Choir prizes it."
+          }
+        ]
+      }
+    ],
+    "Stats": [],
+    "Tags": [
+      {
+        "Key": "Solid",
+        "Value": ""
+      },
+      {
+        "Key": "MineralVein",
+        "Value": ""
+      }
+    ]
+  },
+  "MawToad": {
+    "Name": "MawToad",
+    "Inherits": "Creature",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "maw-toad"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "t"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&w"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "10"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Solid",
+            "Value": "true"
+          }
+        ]
+      },
+      {
+        "Name": "Brain",
+        "Params": [
+          {
+            "Key": "SightRadius",
+            "Value": "10"
+          },
+          {
+            "Key": "Wanders",
+            "Value": "false"
+          },
+          {
+            "Key": "Staying",
+            "Value": "true"
+          }
+        ]
+      },
+      {
+        "Name": "Armor",
+        "Params": [
+          {
+            "Key": "AV",
+            "Value": "2"
+          },
+          {
+            "Key": "DV",
+            "Value": "-2"
+          }
+        ]
+      },
+      {
+        "Name": "Corpse",
+        "Params": [
+          {
+            "Key": "HarvestBlueprint",
+            "Value": "FrogOil"
+          },
+          {
+            "Key": "HarvestMin",
+            "Value": "2"
+          },
+          {
+            "Key": "HarvestMax",
+            "Value": "4"
+          },
+          {
+            "Key": "HarvestChance",
+            "Value": "90"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Description",
+            "Value": "Mostly mouth. It sits where the dead trees stand in the water and it does not chase, because it has never needed to."
+          }
+        ]
+      }
+    ],
+    "Stats": [
+      {
+        "Name": "Hitpoints",
+        "Value": 22,
+        "Min": 0,
+        "Max": 22
+      },
+      {
+        "Name": "Strength",
+        "Value": 16
+      },
+      {
+        "Name": "Agility",
+        "Value": 8
+      },
+      {
+        "Name": "Toughness",
+        "Value": 14
+      },
+      {
+        "Name": "XPValue",
+        "Value": 40
+      }
+    ],
+    "Tags": [
+      {
+        "Key": "Faction",
+        "Value": "Beasts"
+      },
+      {
+        "Key": "Tier",
+        "Value": "2"
+      },
+      {
+        "Key": "BloodColor",
+        "Value": "&G"
+      }
+    ]
+  },
+  "MycelialColumn": {
+    "Name": "MycelialColumn",
+    "Inherits": "Terrain",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "mycelial column"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "O"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&w"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "2"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Solid",
+            "Value": "true"
+          }
+        ]
+      },
+      {
+        "Name": "Material",
+        "Params": [
+          {
+            "Key": "MaterialID",
+            "Value": "Plant"
+          },
+          {
+            "Key": "Combustibility",
+            "Value": "0.1"
+          },
+          {
+            "Key": "MaterialTagsRaw",
+            "Value": "Plant,Organic"
+          }
+        ]
+      },
+      {
+        "Name": "Thermal",
+        "Params": [
+          {
+            "Key": "FlameTemperature",
+            "Value": "420"
+          },
+          {
+            "Key": "HeatCapacity",
+            "Value": "2.0"
+          }
+        ]
+      },
+      {
+        "Name": "Destructible",
+        "Params": [
+          {
+            "Key": "HP",
+            "Value": "25"
+          },
+          {
+            "Key": "MaxHP",
+            "Value": "25"
+          }
+        ]
+      },
+      {
+        "Name": "LightSource",
+        "Params": [
+          {
+            "Key": "Radius",
+            "Value": "3"
+          },
+          {
+            "Key": "LightColor",
+            "Value": "&G"
+          },
+          {
+            "Key": "Intensity",
+            "Value": "0.5"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Description",
+            "Value": "A column of pale growth, waist-thick and faintly warm, veined violet under the skin. The light in the veins moves slowly, always in the same direction. It holds up nothing. It is not for holding up."
+          }
+        ]
+      }
+    ],
+    "Stats": [],
+    "Tags": [
+      {
+        "Key": "Vegetation",
+        "Value": ""
+      },
+      {
+        "Key": "Solid",
+        "Value": ""
+      }
+    ]
+  },
+  "FruitingBody": {
+    "Name": "FruitingBody",
+    "Inherits": "Terrain",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "fruiting body"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "%"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&m"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "2"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Solid",
+            "Value": "true"
+          }
+        ]
+      },
+      {
+        "Name": "Material",
+        "Params": [
+          {
+            "Key": "MaterialID",
+            "Value": "Plant"
+          },
+          {
+            "Key": "Combustibility",
+            "Value": "0.3"
+          },
+          {
+            "Key": "MaterialTagsRaw",
+            "Value": "Plant,Organic"
+          }
+        ]
+      },
+      {
+        "Name": "Thermal",
+        "Params": [
+          {
+            "Key": "FlameTemperature",
+            "Value": "320"
+          },
+          {
+            "Key": "HeatCapacity",
+            "Value": "1.2"
+          }
+        ]
+      },
+      {
+        "Name": "Destructible",
+        "Params": [
+          {
+            "Key": "HP",
+            "Value": "8"
+          },
+          {
+            "Key": "MaxHP",
+            "Value": "8"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Description",
+            "Value": "Growth in shelves and closed fists, violet over ochre. It was not this size last season. It will not be this size next season."
+          }
+        ]
+      }
+    ],
+    "Stats": [],
+    "Tags": [
+      {
+        "Key": "Vegetation",
+        "Value": ""
+      },
+      {
+        "Key": "Solid",
+        "Value": ""
+      }
+    ]
+  },
+  "SinkholeLip": {
+    "Name": "SinkholeLip",
+    "Inherits": "Terrain",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "sinkhole lip"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "#"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&y"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "2"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Solid",
+            "Value": "true"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Description",
+            "Value": "Undercut rock at the rim, wet with spray from below. The green here grows thicker than the green anywhere else in the chunk, and leans in."
+          }
+        ]
+      }
+    ],
+    "Stats": [],
+    "Tags": [
+      {
+        "Key": "Solid",
+        "Value": ""
+      }
+    ]
+  },
+  "SariSnake": {
+    "Name": "SariSnake",
+    "Inherits": "Creature",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "sari-snake"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "s"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&r"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "10"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Solid",
+            "Value": "true"
+          }
+        ]
+      },
+      {
+        "Name": "Brain",
+        "Params": [
+          {
+            "Key": "SightRadius",
+            "Value": "6"
+          },
+          {
+            "Key": "Wanders",
+            "Value": "false"
+          }
+        ]
+      },
+      {
+        "Name": "MeleeWeapon",
+        "Params": [
+          {
+            "Key": "BaseDamage",
+            "Value": "1d6"
+          },
+          {
+            "Key": "OnHitEffectsRaw",
+            "Value": "Bleeding,45,1d3,8,0"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Description",
+            "Value": "A heavy pit viper the colour of wet stone, coiled where the litter is deepest. It does not rattle and it does not flee. Where these are thick on a slope, something underneath is awake."
+          }
+        ]
+      }
+    ],
+    "Stats": [
+      {
+        "Name": "Hitpoints",
+        "Value": 14,
+        "Min": 0,
+        "Max": 14
+      },
+      {
+        "Name": "Strength",
+        "Value": 12
+      },
+      {
+        "Name": "Agility",
+        "Value": 16
+      },
+      {
+        "Name": "Toughness",
+        "Value": 10
+      },
+      {
+        "Name": "XPValue",
+        "Value": 28
+      }
+    ],
+    "Props": [
+      {
+        "Key": "Anatomy",
+        "Value": "Simple"
+      }
+    ],
+    "Tags": [
+      {
+        "Key": "BodyNaturalAttack",
+        "Value": ""
+      },
+      {
+        "Key": "Faction",
+        "Value": "Beasts"
+      },
+      {
+        "Key": "Tier",
+        "Value": "2"
+      },
+      {
+        "Key": "BloodColor",
+        "Value": "&r"
+      }
+    ]
+  },
+  "Wardline": {
+    "Name": "Wardline",
+    "Inherits": "Creature",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "wardline"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "s"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&g"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "10"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Solid",
+            "Value": "true"
+          }
+        ]
+      },
+      {
+        "Name": "Brain",
+        "Params": [
+          {
+            "Key": "SightRadius",
+            "Value": "8"
+          },
+          {
+            "Key": "Wanders",
+            "Value": "true"
+          },
+          {
+            "Key": "Passive",
+            "Value": "true"
+          },
+          {
+            "Key": "FleeThreshold",
+            "Value": "0.5"
+          }
+        ]
+      },
+      {
+        "Name": "MeleeWeapon",
+        "Params": [
+          {
+            "Key": "BaseDamage",
+            "Value": "1d4"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Description",
+            "Value": "A long olive colubrid draped along a branch, watching the ground with more attention than it spends on you. Villages that have one nearby say so the way other places mention a good well."
+          }
+        ]
+      }
+    ],
+    "Stats": [
+      {
+        "Name": "Hitpoints",
+        "Value": 16,
+        "Min": 0,
+        "Max": 16
+      },
+      {
+        "Name": "Strength",
+        "Value": 10
+      },
+      {
+        "Name": "Agility",
+        "Value": 17
+      },
+      {
+        "Name": "Toughness",
+        "Value": 11
+      },
+      {
+        "Name": "XPValue",
+        "Value": 22
+      }
+    ],
+    "Props": [
+      {
+        "Key": "Anatomy",
+        "Value": "Simple"
+      }
+    ],
+    "Tags": [
+      {
+        "Key": "BodyNaturalAttack",
+        "Value": ""
+      },
+      {
+        "Key": "Faction",
+        "Value": "Beasts"
+      },
+      {
+        "Key": "Tier",
+        "Value": "2"
+      },
+      {
+        "Key": "BloodColor",
+        "Value": "&r"
+      }
+    ]
+  },
+  "CascadeFather": {
+    "Name": "CascadeFather",
+    "Inherits": "Creature",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "cascade-father"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "f"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&C"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "10"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Solid",
+            "Value": "true"
+          }
+        ]
+      },
+      {
+        "Name": "Brain",
+        "Params": [
+          {
+            "Key": "SightRadius",
+            "Value": "6"
+          },
+          {
+            "Key": "Wanders",
+            "Value": "true"
+          },
+          {
+            "Key": "WandersRandomly",
+            "Value": "true"
+          },
+          {
+            "Key": "Passive",
+            "Value": "true"
+          },
+          {
+            "Key": "FleeThreshold",
+            "Value": "0.95"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Description",
+            "Value": "A thumbnail of a frog, pale-striped, sitting in the spray with a back full of young. It has no call. Where the water is good, they are everywhere; where the water has gone wrong, they are the first thing missing."
+          }
+        ]
+      }
+    ],
+    "Stats": [
+      {
+        "Name": "Hitpoints",
+        "Value": 3,
+        "Min": 0,
+        "Max": 3
+      },
+      {
+        "Name": "Strength",
+        "Value": 2
+      },
+      {
+        "Name": "Agility",
+        "Value": 19
+      },
+      {
+        "Name": "Toughness",
+        "Value": 3
+      },
+      {
+        "Name": "XPValue",
+        "Value": 4
+      }
+    ],
+    "Tags": [
+      {
+        "Key": "Faction",
+        "Value": "Beasts"
+      },
+      {
+        "Key": "Tier",
+        "Value": "1"
+      },
+      {
+        "Key": "AllowIdleBehavior",
+        "Value": ""
+      },
+      {
+        "Key": "BloodColor",
+        "Value": "&C"
+      }
+    ]
+  },
+  "GlasspaneFrog": {
+    "Name": "GlasspaneFrog",
+    "Inherits": "Creature",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "glasspane frog"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "f"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&G"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "10"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Solid",
+            "Value": "true"
+          }
+        ]
+      },
+      {
+        "Name": "Brain",
+        "Params": [
+          {
+            "Key": "SightRadius",
+            "Value": "6"
+          },
+          {
+            "Key": "Wanders",
+            "Value": "true"
+          },
+          {
+            "Key": "WandersRandomly",
+            "Value": "true"
+          },
+          {
+            "Key": "Passive",
+            "Value": "true"
+          },
+          {
+            "Key": "FleeThreshold",
+            "Value": "0.9"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Description",
+            "Value": "Its underside is a window. You can watch the heart work from here, which is a thing it cannot hide from you and does not seem to mind. The Bower-Folk pay for these alive and unbruised."
+          }
+        ]
+      }
+    ],
+    "Stats": [
+      {
+        "Name": "Hitpoints",
+        "Value": 3,
+        "Min": 0,
+        "Max": 3
+      },
+      {
+        "Name": "Strength",
+        "Value": 2
+      },
+      {
+        "Name": "Agility",
+        "Value": 18
+      },
+      {
+        "Name": "Toughness",
+        "Value": 3
+      },
+      {
+        "Name": "XPValue",
+        "Value": 5
+      }
+    ],
+    "Tags": [
+      {
+        "Key": "Faction",
+        "Value": "Beasts"
+      },
+      {
+        "Key": "Tier",
+        "Value": "1"
+      },
+      {
+        "Key": "AllowIdleBehavior",
+        "Value": ""
+      },
+      {
+        "Key": "BloodColor",
+        "Value": "&G"
+      }
+    ]
+  },
+  "YellowfootWayfarer": {
+    "Name": "YellowfootWayfarer",
+    "Inherits": "Creature",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "yellowfoot wayfarer"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "t"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&w"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "10"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Solid",
+            "Value": "true"
+          }
+        ]
+      },
+      {
+        "Name": "Brain",
+        "Params": [
+          {
+            "Key": "SightRadius",
+            "Value": "4"
+          },
+          {
+            "Key": "Wanders",
+            "Value": "true"
+          },
+          {
+            "Key": "WandersRandomly",
+            "Value": "true"
+          },
+          {
+            "Key": "Passive",
+            "Value": "true"
+          }
+        ]
+      },
+      {
+        "Name": "Armor",
+        "Params": [
+          {
+            "Key": "AV",
+            "Value": "6"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Description",
+            "Value": "A tortoise the size of a footstool, going somewhere at its own rate. Some villages have kept one for six generations and treat it as the oldest thing that remembers them."
+          }
+        ]
+      }
+    ],
+    "Stats": [
+      {
+        "Name": "Hitpoints",
+        "Value": 26,
+        "Min": 0,
+        "Max": 26
+      },
+      {
+        "Name": "Strength",
+        "Value": 12
+      },
+      {
+        "Name": "Agility",
+        "Value": 4
+      },
+      {
+        "Name": "Toughness",
+        "Value": 18
+      },
+      {
+        "Name": "XPValue",
+        "Value": 12
+      }
+    ],
+    "Tags": [
+      {
+        "Key": "Faction",
+        "Value": "Beasts"
+      },
+      {
+        "Key": "Tier",
+        "Value": "1"
+      },
+      {
+        "Key": "AllowIdleBehavior",
+        "Value": ""
+      },
+      {
+        "Key": "BloodColor",
+        "Value": "&r"
+      }
+    ]
+  },
+  "CompostRow": {
+    "Name": "CompostRow",
+    "Inherits": "PhysicalObject",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "compost row"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "%"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&w"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "1"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Solid",
+            "Value": "false"
+          },
+          {
+            "Key": "Takeable",
+            "Value": "false"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Description",
+            "Value": "A tidy row of what is being taken back: cloth gone to lace, a boot, chitin, a shape further along than the rest. The rows are straight. Nothing made them straight; they grew that way. Everything here is somebody."
+          }
+        ]
+      }
+    ],
+    "Stats": [],
+    "Tags": []
+  },
+  "GroveRedGrowth": {
+    "Name": "GroveRedGrowth",
+    "Inherits": "PhysicalObject",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "red growth"
+          },
+          {
+            "Key": "RenderString",
+            "Value": ";"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&R"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "1"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Solid",
+            "Value": "false"
+          },
+          {
+            "Key": "Takeable",
+            "Value": "false"
+          }
+        ]
+      },
+      {
+        "Name": "Harvestable",
+        "Params": [
+          {
+            "Key": "YieldBlueprint",
+            "Value": "GroveRed"
+          },
+          {
+            "Key": "YieldMin",
+            "Value": "1"
+          },
+          {
+            "Key": "YieldMax",
+            "Value": "2"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Description",
+            "Value": "Low growth heavy with red, at the grove edge, where the sign can see it. The sign says eat nothing red. Nothing stops you picking it."
+          }
+        ]
+      }
+    ],
+    "Stats": [],
+    "Tags": [
+      {
+        "Key": "Vegetation",
+        "Value": ""
+      }
+    ]
+  },
+  "Shambler": {
+    "Name": "Shambler",
+    "Inherits": "Creature",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "spore shambler"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "z"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&m"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "10"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Solid",
+            "Value": "true"
+          }
+        ]
+      },
+      {
+        "Name": "Brain",
+        "Params": [
+          {
+            "Key": "SightRadius",
+            "Value": "8"
+          },
+          {
+            "Key": "Wanders",
+            "Value": "true"
+          }
+        ]
+      },
+      {
+        "Name": "Corpse",
+        "Params": [
+          {
+            "Key": "HarvestBlueprint",
+            "Value": "ShamblerSporeSac"
+          },
+          {
+            "Key": "HarvestMin",
+            "Value": "1"
+          },
+          {
+            "Key": "HarvestMax",
+            "Value": "1"
+          },
+          {
+            "Key": "HarvestChance",
+            "Value": "80"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Description",
+            "Value": "It was somebody's shape once, and the growth kept the shape because the shape still walked. It is not in a hurry. Nothing here is."
+          }
+        ]
+      }
+    ],
+    "Stats": [
+      {
+        "Name": "Hitpoints",
+        "Value": 16,
+        "Min": 0,
+        "Max": 16
+      },
+      {
+        "Name": "Strength",
+        "Value": 13
+      },
+      {
+        "Name": "Agility",
+        "Value": 6
+      },
+      {
+        "Name": "Toughness",
+        "Value": 12
+      },
+      {
+        "Name": "Speed",
+        "Value": 80
+      },
+      {
+        "Name": "XPValue",
+        "Value": 25
+      }
+    ],
+    "Tags": [
+      {
+        "Key": "Faction",
+        "Value": "Beasts"
+      },
+      {
+        "Key": "Tier",
+        "Value": "2"
+      },
+      {
+        "Key": "BloodColor",
+        "Value": "&m"
+      }
+    ]
+  },
+  "WineLeafSundew": {
+    "Name": "WineLeafSundew",
+    "Inherits": "PhysicalObject",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "wine-leaf sundew"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "v"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&r"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "2"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Solid",
+            "Value": "false"
+          },
+          {
+            "Key": "Takeable",
+            "Value": "false"
+          }
+        ]
+      },
+      {
+        "Name": "GreatdewSnare",
+        "Params": [
+          {
+            "Key": "GrabChance",
+            "Value": "45"
+          },
+          {
+            "Key": "HoldTurns",
+            "Value": "3"
+          },
+          {
+            "Key": "Corrosion",
+            "Value": "1.5"
+          }
+        ]
+      },
+      {
+        "Name": "Material",
+        "Params": [
+          {
+            "Key": "MaterialID",
+            "Value": "Plant"
+          },
+          {
+            "Key": "MaterialTagsRaw",
+            "Value": "Plant,Organic"
+          }
+        ]
+      },
+      {
+        "Name": "Destructible",
+        "Params": [
+          {
+            "Key": "HP",
+            "Value": "8"
+          },
+          {
+            "Key": "MaxHP",
+            "Value": "8"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Description",
+            "Value": "Leaves the color of wine going darker, beaded sticky at every edge. How dark the leaves are is how recently it has eaten. These are quite dark."
+          }
+        ]
+      }
+    ],
+    "Stats": [],
+    "Tags": [
+      {
+        "Key": "Vegetation",
+        "Value": ""
+      }
+    ]
+  },
+  "CompostCache": {
+    "Name": "CompostCache",
+    "Inherits": "PhysicalObject",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "compost find"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "%"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&W"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "1"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Solid",
+            "Value": "false"
+          },
+          {
+            "Key": "Takeable",
+            "Value": "false"
+          }
+        ]
+      },
+      {
+        "Name": "Harvestable",
+        "Params": [
+          {
+            "Key": "YieldBlueprint",
+            "Value": "GoldCoin"
+          },
+          {
+            "Key": "YieldMin",
+            "Value": "1"
+          },
+          {
+            "Key": "YieldMax",
+            "Value": "3"
+          },
+          {
+            "Key": "YieldChance",
+            "Value": "60"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Description",
+            "Value": "A spot in the row where the taking-back has further to go. Some of what comes up still has pockets. The grove does not mind; it was never after the pockets."
+          }
+        ]
+      }
+    ],
+    "Stats": [],
+    "Tags": []
+  },
+  "SkySari": {
+    "Name": "SkySari",
+    "Inherits": "Creature",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "sky-sari"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "E"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&W"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "10"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Solid",
+            "Value": "true"
+          }
+        ]
+      },
+      {
+        "Name": "Brain",
+        "Params": [
+          {
+            "Key": "Passive",
+            "Value": "false"
+          },
+          {
+            "Key": "Wanders",
+            "Value": "true"
+          },
+          {
+            "Key": "SightRadius",
+            "Value": "10"
+          }
+        ]
+      },
+      {
+        "Name": "MeleeWeapon",
+        "Params": [
+          {
+            "Key": "BaseDamage",
+            "Value": "2d8"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Description",
+            "Value": "An immense ash-pale eagle, dark beneath the wings. Its talons close slowly on nothing. People who know the slopes watch the ground when this shadow crosses them: what coils below and what circles above have begun keeping the same hours."
+          }
+        ]
+      }
+    ],
+    "Stats": [
+      {
+        "Name": "Hitpoints",
+        "Value": 58,
+        "Min": 0,
+        "Max": 58
+      },
+      {
+        "Name": "Strength",
+        "Value": 23
+      },
+      {
+        "Name": "Agility",
+        "Value": 18
+      },
+      {
+        "Name": "Toughness",
+        "Value": 16
+      },
+      {
+        "Name": "XPValue",
+        "Value": 140
+      }
+    ],
+    "Props": [
+      {
+        "Key": "Anatomy",
+        "Value": "Avian"
+      }
+    ],
+    "Tags": [
+      {
+        "Key": "BodyNaturalAttack",
+        "Value": ""
+      },
+      {
+        "Key": "Faction",
+        "Value": "Beasts"
+      },
+      {
+        "Key": "Tier",
+        "Value": "4"
+      }
+    ]
+  },
+  "HelmwoodFrog": {
+    "Name": "HelmwoodFrog",
+    "Inherits": "Creature",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "helmwood frog"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "f"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&y"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "10"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Solid",
+            "Value": "true"
+          }
+        ]
+      },
+      {
+        "Name": "Brain",
+        "Params": [
+          {
+            "Key": "Passive",
+            "Value": "true"
+          },
+          {
+            "Key": "Wanders",
+            "Value": "true"
+          },
+          {
+            "Key": "SightRadius",
+            "Value": "6"
+          }
+        ]
+      },
+      {
+        "Name": "MeleeWeapon",
+        "Params": [
+          {
+            "Key": "BaseDamage",
+            "Value": "1d2"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Description",
+            "Value": "A broad-headed forest frog with a bony casque like a weathered wooden helm. A bead of water clings below its jaw. Underground, such a visitor is worth following: forest frogs do not arrive in sealed rooms."
+          }
+        ]
+      }
+    ],
+    "Stats": [
+      {
+        "Name": "Hitpoints",
+        "Value": 12,
+        "Min": 0,
+        "Max": 12
+      },
+      {
+        "Name": "Strength",
+        "Value": 6
+      },
+      {
+        "Name": "Agility",
+        "Value": 13
+      },
+      {
+        "Name": "Toughness",
+        "Value": 8
+      },
+      {
+        "Name": "XPValue",
+        "Value": 7
+      }
+    ],
+    "Props": [
+      {
+        "Key": "Anatomy",
+        "Value": "Frog"
+      }
+    ],
+    "Tags": [
+      {
+        "Key": "BodyNaturalAttack",
+        "Value": ""
+      },
+      {
+        "Key": "Faction",
+        "Value": "Beasts"
+      },
+      {
+        "Key": "Tier",
+        "Value": "1"
+      }
+    ]
+  },
+  "TepuiboneVein": {
+    "Name": "TepuiboneVein",
+    "Inherits": "PhysicalObject",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "tepuibone vein"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "*"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&W"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "4"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Solid",
+            "Value": "true"
+          }
+        ]
+      },
+      {
+        "Name": "Harvestable",
+        "Params": [
+          {
+            "Key": "YieldBlueprint",
+            "Value": "Tepuibone"
+          },
+          {
+            "Key": "YieldMin",
+            "Value": "1"
+          },
+          {
+            "Key": "YieldMax",
+            "Value": "2"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Description",
+            "Value": "A pale seam holds its line through the pink-grey stone. The mountain remembers a grain older than rock. Even a loose chip seems unwilling to be lifted."
+          }
+        ]
+      }
+    ],
+    "Tags": [
+      {
+        "Key": "Solid",
+        "Value": ""
+      },
+      {
+        "Key": "MineralVein",
+        "Value": ""
+      }
+    ]
+  }
+}

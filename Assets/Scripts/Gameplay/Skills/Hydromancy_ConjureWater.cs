@@ -22,7 +22,7 @@ namespace CavesOfOoo.Skills
     /// dispatcher's proper lift, so the port fixes that bug by
     /// construction — audit F17.)</para>
     /// </summary>
-    public class Hydromancy_ConjureWater : BaseSkillPart
+    public class Hydromancy_ConjureWater : SpellSkillPart
     {
         public override string Name => nameof(Hydromancy_ConjureWater);
 
@@ -42,7 +42,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
@@ -71,9 +71,9 @@ namespace CavesOfOoo.Skills
                     break;
 
                 bool holdsBurning = false;
-                for (int i = 0; i < candidate.Objects.Count; i++)
+                for (int i = 0; i < candidate.Occupants.Count; i++)
                 {
-                    if (candidate.Objects[i].HasEffect<BurningEffect>())
+                    if (candidate.Occupants[i].HasEffect<BurningEffect>())
                     {
                         holdsBurning = true;
                         break;
@@ -82,12 +82,14 @@ namespace CavesOfOoo.Skills
                 if (holdsBurning)
                 {
                     targetCell = candidate;
+                    SpellFxCapture.PathCell(zone, tx, ty);
                     break;
                 }
 
                 if (!candidate.IsPassable())
                     break;
                 targetCell = candidate;
+                SpellFxCapture.PathCell(zone, tx, ty);
             }
 
             if (targetCell == null) { EmitSkillRejectedDiag(ctx, "no_landable_cell"); return false; }
@@ -101,12 +103,14 @@ namespace CavesOfOoo.Skills
                 return false;
             }
             zone.AddEntity(puddle, targetCell.X, targetCell.Y);
+            SpellFxCapture.AffectCell(zone, targetCell.X, targetCell.Y);
 
             // Soak the cell: everything gets Wet, and burning occupants
             // get their reactions re-run so the douse extinguishes.
-            for (int i = targetCell.Objects.Count - 1; i >= 0; i--)
+            var targets = MultiCellAbilityQueries.SnapshotOccupants(new[] { targetCell }, puddle, reverse: true);
+            foreach (var entity in targets)
             {
-                Entity entity = targetCell.Objects[i];
+                if (zone.GetEntityCell(entity) == null) continue;
                 if (entity == puddle)
                     continue;
                 entity.ApplyEffect(new WetEffect(0.5f), actor, zone);

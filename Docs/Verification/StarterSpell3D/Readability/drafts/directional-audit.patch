@@ -1,0 +1,274 @@
+--- a/Assets/Scripts/Scenarios/Custom/StarterSpell3DNativeAudit.cs
++++ b/Assets/Scripts/Scenarios/Custom/StarterSpell3DNativeAudit.cs
+@@ -47,7 +47,7 @@
+         readonly string[] prefKeys={Village3DSettings.PreferenceKey,Village3DSettings.LowDetailPreferenceKey};
+         int failures,unexpected,nativeKeyboardCasts,currentPhase=-1,frameCount,activeFrames;
+         string saveRoot,markerId,gameId,fatal;byte[] markerBytes;
+-        Entity dummy,crop;Zone fixtureZone;ZoneTileState fixtureGroundBaseline; (int x,int y) lane;
++        Entity dummy,crop;Zone fixtureZone;ZoneTileState fixtureGroundBaseline; (int x,int y) lane; int directionX=1,directionY;
+         Stack<IEnumerator> activeSteps;System.Diagnostics.Stopwatch watch;Report report;
+         readonly ColdSample[] coldFrames=new ColdSample[512];
+         bool coldArmed;int coldCount;ColdReport cold;NativeSpellFxPreparation preparation;
+@@ -123,7 +123,7 @@
+             yield return Tap(Key.S);Require(Position()==(40,24),"Ordinary first south road step.");yield return Tap(Key.S);
+             Check("native_south_entry",input.CurrentZone.ZoneID=="Overworld.3.7.0"&&Position()==(40,0));Require(checks.Last().pass,"Ordinary south seam transition failed.");
+             lane=FindLane(input.CurrentZone);FixturePlace(input.CurrentZone,lane);yield return WaitForNative();PrepareFixtures();input.ZoneRenderer.RenderZone();yield return null;
+-            yield return CommandCase(0,"south-showcase",true);yield return ProfilePair();RemoveFixtures();
++            yield return CommandCase(0,"south-showcase",true);yield return ProfilePair();yield return DirectionalMatrix();RemoveFixtures();
+             double total=phases.Sum(p=>p.seconds);Check("paired_80second_profile_complete",phases.Count==4&&phases.All(p=>p.seconds>=20&&p.seconds<=23&&p.casts>=7&&p.activeFrames>0)&&total>=80&&total<=90);
+             Check("private_boot_marker_unchanged",File.ReadAllBytes(Path.Combine(saveRoot,markerId,"Quick.sav.gz")).SequenceEqual(markerBytes));
+             Check("owned_save_only",SaveGameService.SaveRootOverride==saveRoot&&!string.IsNullOrEmpty(gameId)&&gameId!=markerId&&Directory.Exists(Path.Combine(saveRoot,gameId))&&!Directory.Exists(Path.Combine(Application.persistentDataPath,"Saves",gameId)));
+@@ -175,20 +175,29 @@
+             ability.CooldownRemaining=0; // Explicit deterministic fixture reset; ordinary keyboard proof above never resets it.
+             var rng=new FixedRng(mode=="deny-charge"?99:0);int tick=input.TurnManager.TickCount;
+             Require(SpellFxBus.PendingCount==0,"Fixture cannot mix an older queued sequence.");
+-            var source=input.CurrentZone.GetEntityCell(input.PlayerEntity);var selected=input.CurrentZone.GetCell(source.X+1,source.Y);
+-            bool consumed=input.PlayerEntity.GetPart<SkillsPart>().TryRouteSkillCommand(ability.Command,input.CurrentZone,rng,1,0,source,selected,ability.Range,out bool blocks);
++            var source=input.CurrentZone.GetEntityCell(input.PlayerEntity);var selected=input.CurrentZone.GetCell(source.X+directionX,source.Y+directionY);
++            var intended=fixtureZone.GetEntityPosition(dummy);bool sourceVisible=source.IsVisible&&source.Explored;
++            bool targetVisible=fixtureZone.GetCell(intended.x,intended.y).IsVisible&&fixtureZone.GetCell(intended.x,intended.y).Explored;
++            if(mode.StartsWith("direction-",StringComparison.Ordinal))
++            {
++                Require(sourceVisible&&targetVisible,"Directional source and actual recipient must both be in ordinary live FOV.");
++                Require(ProjectionRoundTrips(source.X,source.Y)&&ProjectionRoundTrips(intended.x,intended.y),"Directional simulation cells must agree with the native XZ projection.");
++            }
++            bool consumed=input.PlayerEntity.GetPart<SkillsPart>().TryRouteSkillCommand(ability.Command,input.CurrentZone,rng,directionX,directionY,source,selected,ability.Range,out bool blocks);
+             // Observation only, synchronously before yielding. The real coordinator alone drains Pending.
+             var pending=(IList)typeof(SpellFxBus).GetField("Pending",BindingFlags.NonPublic|BindingFlags.Static).GetValue(null);
+             Require(consumed&&blocks&&pending.Count==1,"Actual command must emit one accepted sequence.");var sequence=(SpellFxSequence)pending[0];
+             Require(sequence.SpellId==SpellIds[index]&&ReferenceEquals(sequence.Zone,input.CurrentZone),"Copied outcome belongs to this exact skill/zone.");
+             var row=new CastRow{spell=sequence.SpellId,mode=mode,zoneId=input.CurrentZone.ZoneID,fxMode=SpellFxSettings.Mode.ToString(),sourceX=sequence.Source.X,sourceY=sequence.Source.Y,
++                directionX=directionX,directionY=directionY,intendedX=intended.x,intendedY=intended.y,
++                finalX=fixtureZone.GetEntityPosition(dummy).x,finalY=fixtureZone.GetEntityPosition(dummy).y,sourceVisible=sourceVisible,targetVisible=targetVisible,
+                 targets=sequence.Targets.Count,path=sequence.Path.Select(p=>p.X+","+p.Y).ToArray(),affected=sequence.AffectedCells.Select(p=>p.X+","+p.Y).ToArray(),
+                 damage=sequence.Targets.Sum(t=>t.Damage),applied=sequence.Targets.SelectMany(t=>t.AppliedEffects).ToArray(),rejected=sequence.Targets.SelectMany(t=>t.RejectedEffects).ToArray(),
+                 copiedTargetIds=sequence.Targets.Select(t=>t.TargetId).ToArray(),targetCells=sequence.Targets.Select(t=>t.Cell.X+","+t.Cell.Y+"->"+t.FinalCell.X+","+t.FinalCell.Y).ToArray(),
+                 rejectedFrozen=sequence.Targets.Any(t=>t.RejectedEffects.Contains(nameof(FrozenEffect))),rejectedPacified=sequence.Targets.Any(t=>t.RejectedEffects.Contains("Pacified")),
+                 cooldown=ability.CooldownRemaining,rngCalls=rng.Calls,groundFixtureReset=mode!="profile"};casts.Add(row);
+             Require(ability.CooldownRemaining>0,"Actual command applies its normal cooldown.");
+-            if(mode=="showcase"||mode=="south-showcase")
++            if(mode=="showcase"||mode=="south-showcase"||mode.StartsWith("direction-",StringComparison.Ordinal))
+             {
+                 Require(sequence.Targets.Any(t=>t.TargetId==(index==6?crop.ID:dummy.ID)),"Showcase must resolve on its actual intended recipient.");
+                 if(index<=4)Require(row.damage>0,"Damage spell showcase must hit, not merely display an empty lane.");
+@@ -197,6 +206,18 @@
+                 if(index==4)Require(row.applied.Contains(nameof(FrozenEffect)),"Rime showcase must apply its actual freeze.");
+                 if(index==5)Require(row.applied.Contains("Pacified")&&dummy.GetPart<BrainPart>().HasGoal<NoFightGoal>(),"Calm showcase must pacify its real brain-bearing recipient.");
+                 if(index==6)Require(crop.GetPart<CropPart>().MoistureTicks>0,"Rain showcase must actually water its crop.");
++            }
++            if(mode.StartsWith("direction-",StringComparison.Ordinal))
++            {
++                Require(sequence.Targets.Count==1&&sequence.Targets[0].TargetId==dummy.ID,"Directional corridor may hit only its owned recipient, including the Jet cone's side cells.");
++                var contact=sequence.Targets[0];int push=index==2||index==3?1:0;
++                Require(contact.Cell.X==intended.x&&contact.Cell.Y==intended.y
++                    &&contact.FinalCell.X==intended.x+directionX*push&&contact.FinalCell.Y==intended.y+directionY*push,
++                    "Actual copied contact and displacement must follow the requested native direction.");
++                Require(ProjectionRoundTrips(contact.FinalCell.X,contact.FinalCell.Y),"Final copied contact must remain in the native cell projection.");
++                int pathLength=index==2?2:index==3?4:3;
++                Require(row.path.SequenceEqual(Enumerable.Range(1,pathLength).Select(n=>(source.X+n*directionX)+","+(source.Y+n*directionY))),"Directional path must contain exactly the real ray, without an east-only fallback.");
++                if(index==2)Require(new HashSet<string>(row.affected).SetEquals(JetCells(source.X,source.Y,directionX,directionY).Concat(new[]{contact.FinalCell.X+","+contact.FinalCell.Y})),"Directional Jet must retain its four-cell cone plus the actual pushed wet-ground cell.");
+             }
+             bool observeConditional=(index==4||index==5)&&mode!="profile";
+             var conditional=new Dictionary<Mesh,string>();var observedConditional=new HashSet<string>(StringComparer.Ordinal);
+@@ -306,9 +327,9 @@
+             dummy=new Entity{ID="native-spell-target-"+RunId,BlueprintName="CaveHermit"};dummy.SetTag("Creature");dummy.AddPart(new RenderPart{DisplayName="spell study recipient",RenderString=canonical.RenderString,ColorString=canonical.ColorString,RenderLayer=canonical.RenderLayer});
+             dummy.AddPart(new PhysicsPart{Solid=false});dummy.AddPart(new StatusEffectsPart());dummy.AddPart(new SpatialFootprintPart{CellsRaw="0,0"});dummy.AddPart(new MultiCellPilotPropPart{OwnerId="spell-study-"+RunId,ModelId="PilotHermit",Role="actor"});
+             dummy.Statistics["Hitpoints"]=new Stat{Owner=dummy,Name="Hitpoints",BaseValue=1000,Min=0,Max=1000};
+-            Require(fixtureZone.AddEntity(dummy,lane.x+3,lane.y),"Fixture recipient placement must be real.");fixtureEntities.Add(dummy);
++            Require(fixtureZone.AddEntity(dummy,lane.x+3*directionX,lane.y+3*directionY),"Fixture recipient placement must be real.");fixtureEntities.Add(dummy);
+             crop=input.EntityFactory.CreateEntity("CandyCarrotCrop");crop.ID="native-spell-crop-"+RunId;
+-            Require(fixtureZone.AddEntity(crop,lane.x-1,lane.y+1),"Fixture crop placement must be real.");fixtureEntities.Add(crop);
++            Require(fixtureZone.AddEntity(crop,lane.x-directionX-directionY,lane.y-directionY+directionX),"Fixture crop placement must be real.");fixtureEntities.Add(crop);
+         }
+         void ResetTarget(int spell,string mode)
+         {
+@@ -318,30 +339,16 @@
+             if(spell==5){brain=new BrainPart();dummy.AddPart(brain);if(mode=="peaceful")brain.PushGoal(new NoFightGoal(50,false));}
+             if(mode=="deny-frozen")dummy.AddPart(new FrozenVeto());
+             if(fixtureZone.GetEntityCell(dummy)!=null)Require(fixtureZone.RemoveEntity(dummy),"Reset existing fixture target membership.");
+-            Require(fixtureZone.AddEntity(dummy,lane.x+(spell==1?1:spell==2?2:3),lane.y),"Reset target must occupy its exact actual cell.");
++            int distance=spell==1?1:spell==2?2:3;Require(fixtureZone.AddEntity(dummy,lane.x+distance*directionX,lane.y+distance*directionY),"Reset target must occupy its exact actual cell.");
+             bool present=fixtureZone.GetEntityCell(crop)!=null;
+             if(mode=="empty-rain"){if(present)Require(fixtureZone.RemoveEntity(crop),"Remove only owned crop for empty control.");}
+-            else if(!present)Require(fixtureZone.AddEntity(crop,lane.x-1,lane.y+1),"Restore owned crop membership.");
++            else if(!present)Require(fixtureZone.AddEntity(crop,lane.x-directionX-directionY,lane.y-directionY+directionX),"Restore owned crop membership.");
+             if(crop.GetPart<CropPart>()!=null)crop.GetPart<CropPart>().MoistureTicks=0;
+         }
+         void ResetFixtureGround()
+         {
+             Require(fixtureZone==input.CurrentZone&&fixtureGroundBaseline!=null,"Owned showcase lane snapshot required.");
+-            // Only the bounded command-fixture lane returns to its original writing.
+-            // Other cells, terrain sources and current spell writes remain authoritative.
+-            // Steady profile phases deliberately retain ordinary accumulating reactions.
+-            for(int y=lane.y-3;y<=lane.y+3;y++)for(int x=lane.x-3;x<=lane.x+5;x++)
+-            {
+-                var original=fixtureGroundBaseline.Get(x,y);var current=fixtureZone.TileState.Get(x,y);
+-                if(JsonUtility.ToJson(original)==JsonUtility.ToJson(current))continue;
+-                fixtureZone.TileState.Clear(x,y);
+-                if(original==null)continue;
+-                foreach(var layer in original.Coatings)fixtureZone.TileState.WriteCoating(x,y,layer.Id,layer.Turns);
+-                foreach(var layer in original.Residues)fixtureZone.TileState.WriteResidue(x,y,layer.Id,layer.Turns);
+-                fixtureZone.TileState.AddHeat(x,y,original.Heat);fixtureZone.TileState.AddCold(x,y,original.Cold);fixtureZone.TileState.AddCharge(x,y,original.Charge);
+-                fixtureZone.TileState.WriteCloud(x,y,original.Cloud,original.CloudTurns);
+-                Require(JsonUtility.ToJson(original)==JsonUtility.ToJson(fixtureZone.TileState.Get(x,y)),"Restore the original fixture-lane ground exactly.");
+-            }
++            RestoreFixtureGround(fixtureZone,fixtureGroundBaseline,FixtureGroundBounds(lane.x,lane.y,directionX,directionY));
+         }
+         string TargetDigest()=>dummy.ID+":"+dummy.GetStatValue("Hitpoints")+":"+fixtureZone.GetEntityPosition(dummy)+":"+string.Join(",",dummy.GetPart<StatusEffectsPart>().GetAllEffects().Select(e=>e.GetType().Name+"="+e.Duration))+":"+(crop.GetPart<CropPart>()?.MoistureTicks??0);
+         void RemoveFixtures(bool refresh=true)
+@@ -361,6 +368,127 @@
+             }
+             throw new InvalidOperationException("No native empty fixture lane; audit refuses to erase town/pilot scenery.");
+         }
++
++        // These methods belong only to the explicit acceptance scenario. Ordinary
++        // gameplay never selects, clears, relocates or acquires these fixtures.
++        IEnumerator DirectionalMatrix()
++        {
++            // Keep all four original profile phases and their east-facing workloads
++            // before this matrix. Capturing images is never part of profile timing.
++            foreach(var direction in new[]{(name:"north",dx:0,dy:-1),(name:"south",dx:0,dy:1),(name:"northeast",dx:1,dy:-1)})
++            {
++                yield return WaitForFx();yield return WaitForIdleGesture();
++                // Restore while the previous lane and snapshot still belong together.
++                // Only owned dummy/crop membership is removed; never erase scenery.
++                ResetFixtureGround();RemoveFixtures();
++                directionX=direction.dx;directionY=direction.dy;SpellFxSettings.Mode=SpellFxMode.Full;
++                lane=FindDirectionalLane(input.CurrentZone,directionX,directionY);
++                FixturePlace(input.CurrentZone,lane);yield return WaitForNative();
++                PrepareFixtures();input.ZoneRenderer.RenderZone();yield return null;
++                foreach(int index in new[]{0,2,3,4,5})yield return CommandCase(index,"direction-"+direction.name,true);
++            }
++            yield return WaitForFx();yield return WaitForIdleGesture();ResetFixtureGround();RemoveFixtures();
++            directionX=1;directionY=0;
++            bool pass=HasDirectionalEvidence(casts.ToArray());
++            Check("native_direction_matrix",pass,"15 actual command casts: Ember, Jet, Surge, Rime, Calm × north/south/northeast, with live FOV, contact, displacement, geometry, gesture and bounded cleanup.");
++            Require(pass,"Directional native matrix is incomplete or inconsistent with actual copied outcomes.");
++        }
++        (int x,int y) FindDirectionalLane(Zone zone,int dx,int dy)
++        {
++            for(int distance=0;distance<Zone.Width+Zone.Height;distance++)for(int y=3;y<Zone.Height-3;y++)for(int x=3;x<Zone.Width-3;x++)
++                if(Math.Abs(x-40)+Math.Abs(y-12)==distance&&CanUseDirectionalLane(zone,input.PlayerEntity,x,y,dx,dy))return(x,y);
++            throw new InvalidOperationException("No clear native directional corridor for ("+dx+","+dy+"); audit refuses to erase authored scenery or use a clipped lane.");
++        }
++        static bool CanUseDirectionalLane(Zone zone,Entity actor,int x,int y,int dx,int dy)
++        {
++            if(zone==null||actor==null||Math.Abs(dx)>1||Math.Abs(dy)>1||(dx==0&&dy==0))return false;
++            var bounds=FixtureGroundBounds(x,y,dx,dy);
++            if(!zone.InBounds(bounds.xMin,bounds.yMin)||!zone.InBounds(bounds.xMax-1,bounds.yMax-1))return false;
++            // The full one-cell margin contains Jet's real diagonal side cells as
++            // well as the center ray, target and both push destinations. Occupants
++            // includes off-anchor footprint contacts, not just canonical entities.
++            for(int step=-1;step<=5;step++)for(int oy=-1;oy<=1;oy++)for(int ox=-1;ox<=1;ox++)
++            {
++                var cell=zone.GetCell(x+step*dx+ox,y+step*dy+oy);
++                if(cell==null||cell.IsSolid()||cell.BlocksMovement(actor)
++                    ||cell.Occupants.Any(e=>e!=actor&&AbilityTargeting.IsElementalTarget(e,actor)))return false;
++            }
++            for(int cy=y-3;cy<=y+3;cy++)for(int cx=x-3;cx<=x+3;cx++)
++                if(zone.GetCell(cx,cy).Occupants.Any(e=>e.HasPart<CropPart>()))return false;
++            return true;
++        }
++        static RectInt FixtureGroundBounds(int x,int y,int dx,int dy)
++        {
++            int minX=x+Math.Min(-3,5*dx),maxX=x+Math.Max(3,5*dx);
++            int minY=y+Math.Min(-3,5*dy),maxY=y+Math.Max(3,5*dy);
++            return new RectInt(minX,minY,maxX-minX+1,maxY-minY+1);
++        }
++        static void RestoreFixtureGround(Zone zone,ZoneTileState baseline,RectInt bounds)
++        {
++            Require(zone!=null&&baseline!=null&&zone.InBounds(bounds.xMin,bounds.yMin)&&zone.InBounds(bounds.xMax-1,bounds.yMax-1),"Only an owned in-bounds fixture snapshot can be restored.");
++            // Preserve every entity and all writing outside the old lane. Original
++            // east bounds remain exactly x[-3,+5], y[-3,+3]. Profiles still accumulate.
++            for(int y=bounds.yMin;y<bounds.yMax;y++)for(int x=bounds.xMin;x<bounds.xMax;x++)
++            {
++                var original=baseline.Get(x,y);var current=zone.TileState.Get(x,y);
++                if(JsonUtility.ToJson(original)==JsonUtility.ToJson(current))continue;
++                zone.TileState.Clear(x,y);
++                if(original!=null)
++                {
++                    foreach(var layer in original.Coatings)zone.TileState.WriteCoating(x,y,layer.Id,layer.Turns);
++                    foreach(var layer in original.Residues)zone.TileState.WriteResidue(x,y,layer.Id,layer.Turns);
++                    zone.TileState.AddHeat(x,y,original.Heat);zone.TileState.AddCold(x,y,original.Cold);zone.TileState.AddCharge(x,y,original.Charge);
++                    zone.TileState.WriteCloud(x,y,original.Cloud,original.CloudTurns);
++                }
++                Require(JsonUtility.ToJson(original)==JsonUtility.ToJson(zone.TileState.Get(x,y)),"Restore the original fixture-lane ground exactly.");
++            }
++        }
++        static bool ProjectionRoundTrips(int x,int y)
++        {
++            if(x<0||x>=Zone.Width||y<0||y>=Zone.Height)return false;
++            return Village3DProjection.TryWorldToCell(Village3DProjection.CellCentre(x,y),out int actualX,out int actualY)&&x==actualX&&y==actualY;
++        }
++        static IEnumerable<string> JetCells(int x,int y,int dx,int dy)
++        {
++            yield return (x+dx)+","+(y+dy);
++            for(int off=-1;off<=1;off++)yield return (x+2*dx-dy*off)+","+(y+2*dy+dx*off);
++        }
++        /// <summary>Audit-only metadata gate shared by the native launcher. It
++        /// rejects relabelled east casts, missing directions and neutral-only art;
++        /// screenshots and hashes still pass the launcher's separate file gate.</summary>
++        public static bool HasDirectionalEvidence(CastRow[] rows)
++        {
++            if(rows==null)return false;
++            var directional=rows.Where(r=>r!=null&&r.mode!=null&&r.mode.StartsWith("direction-",StringComparison.Ordinal)).ToArray();
++            if(directional.Length!=15)return false;
++            foreach(var direction in new[]{(name:"north",dx:0,dy:-1),(name:"south",dx:0,dy:1),(name:"northeast",dx:1,dy:-1)})
++                foreach(int index in new[]{0,2,3,4,5})
++                {
++                    var matches=directional.Where(r=>r.mode=="direction-"+direction.name&&r.spell==SpellIds[index]).ToArray();
++                    if(matches.Length!=1)return false;var r=matches[0];int distance=index==2?2:3,push=index==2||index==3?1:0;
++                    int tx=r.sourceX+distance*direction.dx,ty=r.sourceY+distance*direction.dy;
++                    int fx=tx+push*direction.dx,fy=ty+push*direction.dy;
++                    if(r.zoneId!="Overworld.3.7.0"||r.fxMode!="Full"||r.directionX!=direction.dx||r.directionY!=direction.dy
++                        ||!r.sourceVisible||!r.targetVisible||!ProjectionRoundTrips(r.sourceX,r.sourceY)||!ProjectionRoundTrips(tx,ty)||!ProjectionRoundTrips(fx,fy)
++                        ||r.intendedX!=tx||r.intendedY!=ty||r.finalX!=fx||r.finalY!=fy||r.targets!=1
++                        ||r.targetCells==null||r.targetCells.Length!=1||r.targetCells[0]!=tx+","+ty+"->"+fx+","+fy
++                        ||r.copiedTargetIds==null||r.copiedTargetIds.Length!=1||string.IsNullOrEmpty(r.copiedTargetIds[0])
++                        ||r.nativeEntry!=r.spell||!r.pass||!r.resultStable||r.cooldown<=0||r.peakMeshes<=0||!r.groundFixtureReset
++                        ||!r.sawGesture||!r.gestureRestored||r.gestureSamples<2||float.IsNaN(r.gesturePeakDegrees)||float.IsInfinity(r.gesturePeakDegrees)||r.gesturePeakDegrees<=3
++                        ||double.IsNaN(r.seconds)||double.IsInfinity(r.seconds)||r.seconds<1.2||r.seconds>=4||r.frames==null||r.frames.Count<4)return false;
++                    int length=index==2?2:index==3?4:3;
++                    if(r.path==null||!r.path.SequenceEqual(Enumerable.Range(1,length).Select(n=>(r.sourceX+n*direction.dx)+","+(r.sourceY+n*direction.dy))))return false;
++                    if(index!=5&&r.damage<=0||index==5&&r.damage!=0)return false;
++                    if(index==2&&(r.applied==null||!r.applied.Contains(nameof(WetEffect))||r.affected==null||!new HashSet<string>(r.affected).SetEquals(JetCells(r.sourceX,r.sourceY,direction.dx,direction.dy).Concat(new[]{fx+","+fy}))))return false;
++                    if(index==4||index==5)
++                    {
++                        string status=index==4?nameof(FrozenEffect):"Pacified";
++                        if(r.applied==null||!r.applied.Contains(status)||r.observedConditionalMeshes==null||r.observedConditionalMeshes.Length==0)return false;
++                    }
++                }
++            return true;
++        }
++
+         void FixturePlace(Zone zone,(int x,int y) at)
+         {
+             Require(State()=="Normal"&&input.PlayerEntity.GetStatValue("Hitpoints")>0&&!zone.GetCell(at.x,at.y).BlocksMovement(input.PlayerEntity),"Fixture position requires a live unblocked player.");
+@@ -450,7 +578,7 @@
+                 wallSeconds=watch?.Elapsed.TotalSeconds??0,workloadComplete=completed,nativeKeyboardCasts=nativeKeyboardCasts,profileSeconds=phases.Sum(p=>p.seconds),profileFrames=frameCount,activeFrames=activeFrames,
+                 firstCast=cold,preparation=preparation,phases=phases.ToArray(),casts=casts.ToArray(),spells=exercised.ToArray(),screenshots=screenshots.ToArray(),loopFrames=loopFrames.ToArray(),rawFrames=raw,rawSha256=FileHash(raw),counterNames=Counters,counterUnits=counterUnits,counterAvailable=counterAvailable,
+                 unityVersion=Application.unityVersion,gpu=SystemInfo.graphicsDeviceName,cpu=SystemInfo.processorType,targetFrameRate=Application.targetFrameRate,vSyncCount=QualitySettings.vSyncCount,
+-                bounds="Actual native1920x1080 Main GameView. One real current-hotbar Flaming Hands/direction cast and ordinary N/south seam input. Other casts are explicitly reset deterministic SkillsPart commands using the real player and disposable unfactioned recipient/crop fixtures; their copied queue records are observed without draining. Showcase/control cases restore only their bounded lane's original ground before each command, so prior fixture writing is not mistaken for the next spell; ordinary accumulated writing remains during profile phases. Profile is four20s native render phases, paired Full/Reduced in town and south; startup/bind/screenshots excluded, fixture setup/observer/counter overhead included. World simulation does not advance during command-fixture playback. Captures use1x settings with measured wall timestamps; capture overhead may lower sampling rate. This establishes observable presentation and cleanup, not subjective comfort, process-cold/build performance or long-session leak confidence."};
++                bounds="Actual native1920x1080 Main GameView. One real current-hotbar Flaming Hands/direction cast and ordinary N/south seam input. Other casts are explicitly reset deterministic SkillsPart commands using the real player and disposable unfactioned recipient/crop fixtures; their copied queue records are observed without draining. Showcase/control cases restore only their bounded lane's original ground before each command, so prior fixture writing is not mistaken for the next spell; ordinary accumulated writing remains during profile phases. Profile is four20s native render phases, paired Full/Reduced in town and south; startup/bind/screenshots excluded, fixture setup/observer/counter overhead included. After all profile phases,15 additional Full-mode command fixtures capture Ember/Jet/Surge/Rime/Calm facing north,south,northeast in clear native south-chunk corridors. Source/recipient live FOV, actual direction/contact/push and XZ cell projection are asserted; no authored scenery is erased. World simulation does not advance during command-fixture playback. Captures use1x settings with measured wall timestamps; capture overhead may lower sampling rate. This establishes observable presentation and cleanup, not subjective comfort, process-cold/build performance or long-session leak confidence."};
+             WriteReport();Finished=true;
+         }
+         void WriteReport(){report.failures=Failures;report.unexpectedErrors=unexpected;report.checks=checks.ToArray();File.WriteAllText(ReportPath,JsonUtility.ToJson(report,true));}
+@@ -489,7 +617,7 @@
+         [Serializable] public sealed class Phase{public string zoneId,mode;public double seconds;public int firstFrame,frames,casts,activeFrames,maxMeshes;}
+         [Serializable] public sealed class CaptureFrame{public string path,sha256;public double wallSeconds;public int meshes;}
+         [Serializable] public sealed class CastRow
+-        {public string spell,mode,zoneId,fxMode,nativeEntry,gestureClip,gestureControllerBefore,gestureControllerAfter;public float gesturePeakDegrees;public int sourceX,sourceY,targets,damage,cooldown,rngCalls,peakMeshes,gestureSamples;public string[] path,affected,applied,rejected,copiedTargetIds,targetCells,observedConditionalMeshes;public bool rejectedFrozen,rejectedPacified,resultStable,pass,sawGesture,gestureRestored,groundFixtureReset;public double seconds;public List<CaptureFrame> frames=new List<CaptureFrame>();}
++        {public string spell,mode,zoneId,fxMode,nativeEntry,gestureClip,gestureControllerBefore,gestureControllerAfter;public float gesturePeakDegrees;public int sourceX,sourceY,directionX,directionY,intendedX,intendedY,finalX,finalY,targets,damage,cooldown,rngCalls,peakMeshes,gestureSamples;public string[] path,affected,applied,rejected,copiedTargetIds,targetCells,observedConditionalMeshes;public bool rejectedFrozen,rejectedPacified,resultStable,pass,sawGesture,gestureRestored,groundFixtureReset,sourceVisible,targetVisible;public double seconds;public List<CaptureFrame> frames=new List<CaptureFrame>();}
+         struct Frame{public int phase,frame,tick,meshes,pool;public double seconds;public float dt;public long zone,input,main,gc,draws,triangles;}
+         [Serializable] public sealed class Report
+         {public string runId,saveRoot,gameId,markerId,fatal,bounds,rawFrames,rawSha256,unityVersion,gpu,cpu;public int failures,unexpectedErrors,worldSeed,screenWidth,screenHeight,profileFrames,activeFrames,nativeKeyboardCasts,targetFrameRate,vSyncCount;
+--- a/Assets/Editor/Scenarios/StarterSpell3DNativeAuditBatch.cs
++++ b/Assets/Editor/Scenarios/StarterSpell3DNativeAuditBatch.cs
+@@ -271,6 +271,7 @@
+                 for(int i=0;i<6;i++)
+                     if(f.counterAvailable[i]&&f.counterUnits[i]!=(i<3?"TimeNanoseconds":i==3?"Bytes":"Count"))return false;
+                 if(f.casts==null||f.casts.Length<40||f.casts.Any(c=>c==null||!c.pass||!c.resultStable||c.cooldown<=0))return false;
++                if(!f.checks.Any(c=>c.name=="native_direction_matrix"&&c.pass)||!StarterSpell3DNativeAudit.HasDirectionalEvidence(f.casts))return false;
+                 // Every captured file must belong to exactly one cast in this run and
+                 // retain the bytes recorded after ScreenCapture finished writing.
+                 var captures=new Dictionary<string,StarterSpell3DNativeAudit.CaptureFrame>(StringComparer.Ordinal);

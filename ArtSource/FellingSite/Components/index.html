@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>The Felling-Site · Component review</title>
+  <link rel="stylesheet" href="viewer.css">
+  <script src="viewer.js" defer></script>
+</head>
+<body>
+<main>
+  <header>
+    <div><p class="eyebrow">Caves of Ooo / Component &amp; underlay review</p><h1>The Felling-Site</h1></div>
+    <div class="header-meta"><p>Offline asset review · Unity validation pending</p><a href="../preview.html">Scene study ↗</a></div>
+  </header>
+  <section class="toolbar" aria-label="Composition controls">
+    <div class="view-switch" role="group" aria-label="Image comparison">
+      <button data-view="reference" type="button" aria-pressed="false">Original</button>
+      <button data-view="baseline" type="button" aria-pressed="false">Baseline</button>
+      <button data-view="reconstructed" type="button" aria-pressed="true">Reconstructed</button>
+      <button data-view="base" type="button" aria-pressed="false">Underlay</button>
+    </div>
+    <label><input id="show-masks" type="checkbox">Masks</label>
+    <label><input id="show-inference" type="checkbox">Inferred regions</label>
+    <label><input id="show-exploded" type="checkbox">Exploded layers</label>
+    <button id="actual-size" class="text-button" type="button" aria-pressed="false">Actual size</button>
+    <button id="refresh" class="text-button" type="button">Refresh build</button>
+  </section>
+  <div class="composition-actions"><p id="inventory-status">Reading component manifest…</p><div><button id="remove-mutable" type="button" class="text-button" disabled>Remove all mutable</button><button id="restore-all" type="button" class="text-button" disabled>Restore all</button></div></div>
+  <div id="error" class="error" role="alert" hidden></div>
+  <section id="workspace" class="workspace" aria-label="Scene and components">
+    <div id="scene-column" class="scene-column">
+      <div id="scene-frame" class="scene-frame" aria-label="Artwork viewport; scroll in actual-size view">
+        <canvas id="scene" width="1536" height="1024" tabindex="0" aria-label="Component artwork. Click a component to select it. With this canvas focused, H hides or restores the selection, S toggles solo, L locates it, and Escape exits solo.">Canvas is required to review the artwork.</canvas>
+        <div id="loading" class="loading" role="status">Loading build…</div>
+      </div>
+      <div class="scene-readout"><p id="view-status">No reconstruction loaded.</p><output id="pointer-status" aria-label="Pointer image coordinates">—</output></div>
+      <p id="overlay-legend" class="overlay-legend" hidden></p>
+    </div>
+    <aside id="inspector" aria-label="Component inspector">
+      <div class="panel-title"><h2>Components</h2><span id="component-count">0</span></div>
+      <label class="sr-only" for="component-search">Find a component</label><input id="component-search" class="search" type="search" placeholder="Find a component…" autocomplete="off">
+      <ul id="component-list" class="component-list" aria-label="Select a component"></ul>
+      <section id="selection" class="selection" aria-label="Selected component details">
+        <p class="eyebrow">Selection</p><h2 id="selection-name">Choose a component</h2>
+        <p id="selection-state">Click the artwork or use the component list.</p>
+        <div class="selection-actions"><button id="hide-selected" type="button" disabled>Hide</button><button id="solo-selected" type="button" aria-pressed="false" disabled>Solo</button><button id="locate-selected" type="button" disabled>Locate</button></div>
+        <p id="retained-note" class="subtle" hidden>Retained in base; inspection cutout. It cannot be hidden independently.</p>
+        <dl id="selection-details"></dl>
+        <p id="fidelity-status" class="fidelity">Source fidelity unverified.</p>
+        <ul id="extraction-notes" class="notes"></ul>
+        <div id="overlap-picker" hidden><p class="eyebrow">At this point</p><div id="overlap-list"></div></div>
+        <a id="compare-link" href="#comparisons" hidden>Inspect aligned crops ↓</a>
+      </section>
+    </aside>
+  </section>
+  <section class="verification" aria-label="Reconstruction verification">
+    <p id="assembly-status">Assembly comparison pending.</p>
+    <p>Visible reconstruction can be compared with the baseline. Hidden-ground repairs are inferred; their appearance has no source-image ground truth.</p>
+  </section>
+  <section id="comparisons" class="comparisons" aria-label="Selected component image comparisons" hidden>
+    <div class="comparison-heading"><h2 id="comparison-title">Aligned component crops</h2><label><input id="native-crops" type="checkbox">Native crop pixels</label></div>
+    <div class="crop-grid">
+      <figure><figcaption>Original source</figcaption><div class="crop-frame"><canvas id="crop-reference" width="1" height="1"></canvas></div></figure>
+      <figure><figcaption>Baseline target</figcaption><div class="crop-frame"><canvas id="crop-baseline" width="1" height="1"></canvas></div></figure>
+      <figure><figcaption>Extracted sprite</figcaption><div class="crop-frame checker"><canvas id="crop-sprite" width="1" height="1"></canvas></div></figure>
+      <figure><figcaption>Base underlay</figcaption><div class="crop-frame checker"><canvas id="crop-base" width="1" height="1"></canvas></div></figure>
+    </div>
+    <p id="crop-description" class="subtle"></p>
+  </section>
+  <details class="build-details"><summary>Build evidence &amp; asset loading</summary><p id="report-status">Build report not loaded.</p><ul id="asset-errors"></ul><pre id="report-content"></pre></details>
+  <footer><p>Visibility changes are local review operations. Source files, image exports, and game behavior remain untouched.</p><p>Static viewer · no animated motion</p></footer>
+  <p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
+</main>
+</body>
+</html>

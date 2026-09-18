@@ -1,0 +1,31 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CavesOfOoo.Tests.VoxelWorld",
+  "results": {
+    "id": "2",
+    "testcasecount": "192",
+    "result": "Failed(Child)",
+    "total": "192",
+    "passed": "190",
+    "failed": "2",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-12 12:27:09Z",
+    "end-time": "2026-09-12 12:27:11Z",
+    "duration": "2.0368205"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.ActualAmbientAssetsKeepEveryGeometryChannelAndOnlyConsolidateUv0",
+      "message": "  Assets/Art3D/Village/Models/detail-patch-02-04.fbx baked UVs\n  Expected and actual are both <UnityEngine.Vector2[3888]>\n  Values differ at index [0]\n  Expected: (0.01, 0.38)\n  But was:  (0.02, 0.38)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPaintTests.InvalidUvRejectsBeforePublishingAnyReplacement(float.NaN)",
+      "message": "  Expected and actual are both <UnityEngine.Vector2[2]>\n  Values differ at index [1]\n  Expected: (NaN, 0.50)\n  But was:  (NaN, 0.50)\n"
+    }
+  ]
+}

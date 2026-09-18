@@ -1,8 +1,15 @@
 # Chunk gameplay audit
 
-Status: audit complete; recommendations not implemented, 2026-09-16. User request: assess actual chunk gameplay,
-engagement and meaningful player activity across biomes and named areas.
-Read-only audit: recommendations will not be represented as implemented work.
+Status: completed audit of the pre-implementation world, 2026-09-16. User request:
+assess actual chunk gameplay, engagement and meaningful player activity across
+biomes and named areas. The findings below retain that dated snapshot.
+
+The user subsequently authorized discovery/interaction repairs and one complete
+early expedition. Their changes and verification are tracked separately in
+[Chunk gameplay implementation](CHUNK-GAMEPLAY-IMPLEMENTATION.md). That work
+adds finite ripe field rows, drinkable tanks, actual spray water, regional notes,
+canonical quest homes, native quest cues, merchant renewal and Farra's expedition.
+Other recommendations below remain proposals.
 
 ## Method and scope
 
@@ -35,7 +42,7 @@ modifiers, not permanent changes to the intended game balance.
   tests. Record misleading visual promises and dormant mechanics explicitly.
 - Review findings from the player's sequence of actions, not only file-by-file.
 - Write a ranked improvement plan with concrete gameplay outcomes and success
-  criteria. This deliverable is analysis; proposed gameplay changes remain unimplemented.
+  criteria. This deliverable is the original analysis; subsequent implementation status belongs to the linked implementation log.
 
 Qud reference: none required; this assesses Caves of Ooo on its own implemented
 player experience. TDD is not applicable to documentation-only analysis.
@@ -65,7 +72,7 @@ comprehension require a player session. They cannot be measured from a census.
 | Working loop | Actual implementation | Practical limit for chunk engagement |
 |---|---|---|
 | Fight and develop a build | Six starter skills; cooldowns; kills award XP; levels grant HP, MP and SP; X-screen skill purchases enforce costs/prerequisites | Different terrain can change tactics, but many encounters lack a distinct local objective beyond killing/looting |
-| Harvest and make equipment/consumables | One-shot sources, weapon component crafting, alchemy at appropriate facilities, separate tinkering recipes/bits | Starting kit already grants two of every 13 production reagents and six weapon components; helpful experimentation may weaken the first regional supply expedition |
+| Harvest and make equipment/consumables | One-shot sources, weapon component crafting, alchemy at appropriate facilities, separate tinkering recipes/bits | Correction, 2026-09-16: that large materials grant is developer-only (`DevMode.Enabled` defaults false). Normal play starts with Dagger ×1, HealingTonic ×2 and DriedMeat ×2, plus the separately granted farming and spell kits; a focused supply expedition can matter immediately |
 | Trade, recover and prepare | Real inventories/drams, eligible trader restocking, safe rest, wells, sanctuary donations | Shared services dominate many settlements; replenishment is not a simulated regional economy |
 | Change the physical space | Destructible owners, container contents spill, constrained hauling with movement cost | Destruction depends on the owner's Parts; voxel appearance alone does not confer it. No general player-facing construct-a-house loop was found |
 | Cultivate plants | Seeds, plantable ground, watering and crop growth | Growth processes the active zone; leaving a farm does not simulate its growth. Most authored field rows are a different, non-harvestable object |
@@ -368,9 +375,10 @@ so that finding does not depend on the static-capability proxy.
    stages, high/low water and reclamation vary at generation. Most do not become
    ongoing local stories. Visual variation remains valuable, but its gameplay
    contribution is mostly navigation/encounter geometry.
-3. **Regional supplies are not yet the strongest early motivator.** Broad starter
-   materials make experimenting easy. Without clear resource goals, the player
-   has less reason to cross a dangerous region for a particular ingredient.
+3. **Regional supplies lack explicit early goals.** Normal starting supplies are
+   modest; the broad materials grant belongs to developer mode, not normal play.
+   The gap is a clear reason and usable lead to obtain a particular ingredient,
+   not an already overflowing ordinary inventory.
 4. **Consequences persist more often than opportunities evolve.** Cached chunks
    preserve looting and destruction instead of rebuilding. Trader restocking,
    specific quests and repairs are exceptions; an ordinary revisit is not a new

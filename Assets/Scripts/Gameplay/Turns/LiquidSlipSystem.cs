@@ -17,10 +17,9 @@ namespace CavesOfOoo.Core
     ///
     /// <para><b>Called by <see cref="MovementSystem"/> after
     /// <c>FireCellEnteredEvents</c> returns — never from inside an
-    /// <c>EntityEnteredCell</c> handler.</b> That dispatch reuses a
-    /// static scratch list and forbids nested moves; the slide IS a
-    /// nested move (<see cref="MovementSystem.ForceMoveTo"/>), so it
-    /// must run once the outer dispatch is done. The landed cell's tile
+    /// <c>EntityEnteredCell</c> handler.</b> The slide is a nested move
+    /// (<see cref="MovementSystem.ForceMoveTo"/>), resolved after the
+    /// original landing's contact recipients have reacted. The body's tile
     /// layer is read here, so <see cref="LiquidPoolPart"/>'s own
     /// entered-cell handler stays a coat-only handler.</para>
     ///
@@ -67,7 +66,14 @@ namespace CavesOfOoo.Core
             // MoverDiesOnLanding_ChainStopsCleanly.
             if (!ReferenceEquals(zone.GetEntityCell(mover), landed)) return false;
 
-            var def = FindSlipperyLiquid(zone, landed);
+            LiquidDefinition def = null;
+            // One decision for the whole physical body, including a far foot.
+            // An unoccupied anchor/hole contributes no ground contact.
+            foreach (var contact in zone.GetOccupiedCells(mover))
+            {
+                def = FindSlipperyLiquid(zone, contact);
+                if (def != null) break;
+            }
             if (def == null) return false;                     // the overwhelmingly common early-out
 
             int chance = Clamp(def.SlipChance, 0, 100);
@@ -95,8 +101,7 @@ namespace CavesOfOoo.Core
             int d = rng.Next(DirX.Length);
             int nx = landed.X + DirX[d], ny = landed.Y + DirY[d];
             bool displaced = false;
-            var dest = zone.GetCell(nx, ny);
-            if (dest != null && !dest.IsSolid() && !CellHasOtherCreature(dest, mover))
+            if (zone.CanPlaceFootprint(mover, nx, ny) && !BodyHasOtherCreature(zone, mover, nx, ny))
                 displaced = MovementSystem.ForceMoveTo(mover, zone, nx, ny, slipChain: chainDepth + 1);
 
             if (Diag.IsChannelEnabled("liquid"))
@@ -136,12 +141,13 @@ namespace CavesOfOoo.Core
             return null;
         }
 
-        private static bool CellHasOtherCreature(Cell cell, Entity exclude)
+        private static bool BodyHasOtherCreature(Zone zone, Entity mover, int x, int y)
         {
-            for (int i = 0; i < cell.Objects.Count; i++)
+            foreach (var cell in zone.GetOccupiedCells(mover, x, y))
             {
-                var o = cell.Objects[i];
-                if (o != null && o != exclude && o.HasTag("Creature")) return true;
+                if (cell == null) continue;
+                foreach (var other in cell.Occupants)
+                    if (other != null && other != mover && other.HasTag("Creature")) return true;
             }
             return false;
         }

@@ -31,10 +31,13 @@ namespace CavesOfOoo.Tests
             var manager = new OverworldZoneManager(_factory, 64); var zone = manager.GetZone("Overworld.3.5.0");
             Assert.AreEqual(6, zone.GetAllEntities().Count(e => e.BlueprintName == "FellingBarePosition"));
             Assert.AreEqual(1, zone.GetAllEntities().Count(e => e.BlueprintName == "SeventhPosition"));
-            Assert.Greater(zone.GetAllEntities().Count(e => e.BlueprintName == "FellingScar"), 20);
+            Assert.AreEqual(0, zone.GetAllEntities().Count(e => e.BlueprintName == "FellingScar"), "The exact source ground replaces the old glyph circle.");
+            Assert.IsTrue(FellingSceneRuntime.IsActive(zone));
             Assert.IsFalse(zone.GetCell(40, 12).Objects.Any(e => e.BlueprintName == "SeventhPosition"));
             Assert.AreEqual(0f, zone.UrquBleedLevel);
-            Assert.IsFalse(zone.GetAllEntities().Any(e => e.HasTag("Creature") || e.HasPart<StairsDownPart>() || e.HasPart<ContainerPart>()));
+            Assert.AreEqual(3, zone.GetAllEntities().Count(e => e.HasTag(FellingScenePopulation.FaunaTag)));
+            Assert.IsTrue(zone.GetEntitiesWithTag("Creature").All(e => e.GetPart<BrainPart>()?.Passive == true));
+            Assert.IsFalse(zone.GetAllEntities().Any(e => e.HasPart<StairsDownPart>() || e.HasPart<ContainerPart>()));
             foreach (var e in zone.GetAllEntities().Where(e => e.BlueprintName == "FellingBarePosition" || e.BlueprintName == "SeventhPosition"))
             {
                 Assert.IsFalse(zone.GetEntityCell(e).BlocksMovement());

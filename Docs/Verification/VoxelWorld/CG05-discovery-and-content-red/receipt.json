@@ -1,0 +1,167 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CanonicalVillageQuest|MorrowfastExpeditionTests|MorrowfastMerchantRestockTests|NativeQuestCueTests|BiomeAffordanceTests|BiomeAffordanceRenderingTests",
+  "results": {
+    "id": "2",
+    "testcasecount": "92",
+    "result": "Failed(Child)",
+    "total": "92",
+    "passed": "56",
+    "failed": "36",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-17 01:22:01Z",
+    "end-time": "2026-09-17 01:22:05Z",
+    "duration": "4.2736628"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.BiomeAffordanceRenderingTests.HarvestedNativeStateSelectsStubbleAndDroppedGrainRetainsAnExplicitPortableModel",
+      "message": "System.InvalidOperationException : Spread voxel kit must have four variants of five families."
+    },
+    {
+      "name": "CavesOfOoo.Tests.BiomeAffordanceRenderingTests.SpentStubbleHasFourQuietLowVariantsDistinctFromStandingRipeGrain",
+      "message": "System.InvalidOperationException : Spread voxel kit must have four variants of five families."
+    },
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastMerchantRestockTests.ActualMerchantDeclaresItsOwnRealNonemptyStockTable(False)",
+      "message": "  Expected: not <empty>\n  But was:  <string.Empty>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastMerchantRestockTests.ActualMerchantDeclaresItsOwnRealNonemptyStockTable(True)",
+      "message": "  Expected: not <empty>\n  But was:  <string.Empty>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastMerchantRestockTests.BuyingOutThenRevisitingAfterTheIntervalRefillsTheSameLivingMerchant(False)",
+      "message": "  Expected: 100\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastMerchantRestockTests.BuyingOutThenRevisitingAfterTheIntervalRefillsTheSameLivingMerchant(True)",
+      "message": "  Expected: 100\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastMerchantRestockTests.CurrentSaveGraphRetainsDeclarationAndRemainingStockWithoutRefillingOnLoad(False)",
+      "message": "  Expected: equivalent to < \"Torch\", \"Torch\", \"Torch\", \"Torch\", \"Dagger\", \"Dagger\", \"Spear\", \"LeatherArmor\", \"Tepuibone\", \"Tepuibone\", \"Tepuibone\", \"FireClay\", \"FireClay\", \"FireClay\", \"FireClay\" >\n  But was:  <empty>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastMerchantRestockTests.CurrentSaveGraphRetainsDeclarationAndRemainingStockWithoutRefillingOnLoad(True)",
+      "message": "  Expected: equivalent to < \"Mushroom\", \"Mushroom\", \"Mushroom\", \"Mushroom\", \"Mushroom\", \"Mushroom\", \"Mushroom\", \"Mushroom\", \"DriedMeat\", \"DriedMeat\", \"DriedMeat\", \"DriedMeat\", \"HealingTonic\", \"HealingTonic\", \"BurnSalve\", \"BurnSalve\", \"WaterTonic\", \"WaterTonic\", \"WaterTonic\" >\n  But was:  <empty>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastMerchantRestockTests.ExactIntervalDoesNotRefillButNextTurnDoes(False)",
+      "message": "  Expected: equivalent to < \"Torch\", \"Torch\", \"Torch\", \"Torch\", \"Dagger\", \"Dagger\", \"Spear\", \"LeatherArmor\", \"Tepuibone\", \"Tepuibone\", \"Tepuibone\", \"FireClay\", \"FireClay\", \"FireClay\", \"FireClay\" >\n  But was:  <empty>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastMerchantRestockTests.ExactIntervalDoesNotRefillButNextTurnDoes(True)",
+      "message": "  Expected: equivalent to < \"Mushroom\", \"Mushroom\", \"Mushroom\", \"Mushroom\", \"Mushroom\", \"Mushroom\", \"Mushroom\", \"Mushroom\", \"DriedMeat\", \"DriedMeat\", \"DriedMeat\", \"DriedMeat\", \"HealingTonic\", \"HealingTonic\", \"BurnSalve\", \"BurnSalve\", \"WaterTonic\", \"WaterTonic\", \"WaterTonic\" >\n  But was:  <empty>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastMerchantRestockTests.LegacyVillagePurseAndExistingDeclaredChoirMerchantRetainTheirEligibility",
+      "message": "  Expected: null\n  But was:  <CavesOfOoo.Core.TraderPart>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.ActualMorrowfastOfferingResidentsDeclareTheirRealQuest(\"north-guard-west\",\"MorrowfastBell\")",
+      "message": "  Authored residents must opt into the same native cue contract.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.ActualMorrowfastOfferingResidentsDeclareTheirRealQuest(\"north-guard-east\",\"MorrowfastReturnNotch\")",
+      "message": "  Authored residents must opt into the same native cue contract.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.ActualMorrowfastOfferingResidentsDeclareTheirRealQuest(\"farra-sprig\",\"MorrowfastDryGoods\")",
+      "message": "  Authored residents must opt into the same native cue contract.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.HostilitySuppressesDiscoveryUntilTheActualFactionRelationshipRecovers(False)",
+      "message": "  Presenter must expose its native owner-bound cue for lifecycle inspection.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.HostilitySuppressesDiscoveryUntilTheActualFactionRelationshipRecovers(True)",
+      "message": "  Presenter must expose its native owner-bound cue for lifecycle inspection.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.LeavingNativeZoneReleasesOnlyOwnedMarkersAndKeepsBorrowedCamera(False)",
+      "message": "  Presenter must expose its native owner-bound cue for lifecycle inspection.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.LeavingNativeZoneReleasesOnlyOwnedMarkersAndKeepsBorrowedCamera(True)",
+      "message": "  Presenter must expose its native owner-bound cue for lifecycle inspection.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.MarkerSharesOwnerVisibilityAndNeverRevealsAnUnseenGiver(False)",
+      "message": "  Presenter must expose its native owner-bound cue for lifecycle inspection.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.MarkerSharesOwnerVisibilityAndNeverRevealsAnUnseenGiver(True)",
+      "message": "  Presenter must expose its native owner-bound cue for lifecycle inspection.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.NativeQueryRejectsOwnersThatCannotOfferAVisibleLivingInteraction(\"empty-quest\")",
+      "message": "  Native availability must be a shared query rather than forced renderer color.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.NativeQueryRejectsOwnersThatCannotOfferAVisibleLivingInteraction(\"no-part\")",
+      "message": "  Native availability must be a shared query rather than forced renderer color.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.NativeQueryRejectsOwnersThatCannotOfferAVisibleLivingInteraction(\"detached\")",
+      "message": "  Native availability must be a shared query rather than forced renderer color.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.NativeQueryRejectsOwnersThatCannotOfferAVisibleLivingInteraction(\"dead\")",
+      "message": "  Native availability must be a shared query rather than forced renderer color.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.NativeQueryRejectsOwnersThatCannotOfferAVisibleLivingInteraction(\"invisible\")",
+      "message": "  Native availability must be a shared query rather than forced renderer color.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.NativeQueryRejectsOwnersThatCannotOfferAVisibleLivingInteraction(\"no-player\")",
+      "message": "  Native availability must be a shared query rather than forced renderer color.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.NativeQueryUsesActualJournalStateAndNeverClaimsTurnInReadiness(\"available\",\"Available\")",
+      "message": "  Native availability must be a shared query rather than forced renderer color.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.NativeQueryUsesActualJournalStateAndNeverClaimsTurnInReadiness(\"active\",\"Active\")",
+      "message": "  Native availability must be a shared query rather than forced renderer color.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.NativeQueryUsesActualJournalStateAndNeverClaimsTurnInReadiness(\"complete\",\"None\")",
+      "message": "  Native availability must be a shared query rather than forced renderer color.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.NativeQueryUsesActualJournalStateAndNeverClaimsTurnInReadiness(\"no-journal\",\"None\")",
+      "message": "  Native availability must be a shared query rather than forced renderer color.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.RealPresenterShowsAvailableThenActiveThenNoneWithoutDirtyCells(False)",
+      "message": "  Presenter must expose its native owner-bound cue for lifecycle inspection.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.RealPresenterShowsAvailableThenActiveThenNoneWithoutDirtyCells(True)",
+      "message": "  Presenter must expose its native owner-bound cue for lifecycle inspection.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.RemovingOrKillingOwnerImmediatelyHidesTheExistingMarker(False)",
+      "message": "  Presenter must expose its native owner-bound cue for lifecycle inspection.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.RemovingOrKillingOwnerImmediatelyHidesTheExistingMarker(True)",
+      "message": "  Presenter must expose its native owner-bound cue for lifecycle inspection.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.RepeatedRefreshReusesGeometryAndDoesNotAddCollidersOrChangeNativeState(False)",
+      "message": "  Presenter must expose its native owner-bound cue for lifecycle inspection.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueTests.RepeatedRefreshReusesGeometryAndDoesNotAddCollidersOrChangeNativeState(True)",
+      "message": "  Presenter must expose its native owner-bound cue for lifecycle inspection.\n  Expected: not null\n  But was:  null\n"
+    }
+  ]
+}

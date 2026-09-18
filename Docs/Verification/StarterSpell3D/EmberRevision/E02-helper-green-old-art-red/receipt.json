@@ -1,0 +1,67 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "NativeEmberProjectileRevisionTests|StarterSpell3DEmberMotionCaptureTests",
+  "results": {
+    "id": "2",
+    "testcasecount": "48",
+    "result": "Failed(Child)",
+    "total": "48",
+    "passed": "37",
+    "failed": "11",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-11 18:05:02Z",
+    "end-time": "2026-09-11 18:05:04Z",
+    "duration": "1.3527202"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.NativeEmberProjectileRevisionTests.EmberImpactIsCompactAndClearlySmallerThanTheUnchangedHandsCrown(Full)",
+      "message": "  Ember's small hit must not retain its former radial fire crown.\n  Expected: less than or equal to 1.14999998f\n  But was:  4.01281738f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeEmberProjectileRevisionTests.EmberImpactIsCompactAndClearlySmallerThanTheUnchangedHandsCrown(Reduced)",
+      "message": "  Ember's small hit must not retain its former radial fire crown.\n  Expected: less than or equal to 1.14999998f\n  But was:  3.67108154f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeEmberProjectileRevisionTests.FourCellShotRetainsLongContinuousTailBeforeItsSmallImpact(1,0,Full)",
+      "message": "  A long filled wake must follow the recorded route; separated soot specks do not satisfy this longitudinal coverage gate.\n  Expected: greater than or equal to 2.25f\n  But was:  0.139181137f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeEmberProjectileRevisionTests.FourCellShotRetainsLongContinuousTailBeforeItsSmallImpact(1,-1,Reduced)",
+      "message": "  A long filled wake must follow the recorded route; separated soot specks do not satisfy this longitudinal coverage gate.\n  Expected: greater than or equal to 3.18198037f\n  But was:  0.139181852f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeEmberProjectileRevisionTests.PartialFogKeepsTheVisibleProjectileWhileFullFogHidesAndRestoresIt(\"rear-hidden\",Reduced)",
+      "message": "  A hidden source/rear segment must not suppress the still-visible travelling wake.\n  Expected: not <empty>\n  But was:  <empty>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeEmberProjectileRevisionTests.ShortAndDiagonalShotsKeepEveryDrawnProjectileVertexBetweenCasterAndContactCell(1,1,0,Full)",
+      "message": "  RD_Ember_fine_ivory_ridge extends behind the caster at study frame 14\n  Expected: greater than or equal to -0.0250000004f\n  But was:  -0.293324471f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeEmberProjectileRevisionTests.ShortAndDiagonalShotsKeepEveryDrawnProjectileVertexBetweenCasterAndContactCell(1,1,-1,Reduced)",
+      "message": "  RD_Ember_fine_ivory_ridge extends behind the caster at study frame 14\n  Expected: greater than or equal to -0.0250000004f\n  But was:  -0.29332453f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeEmberProjectileRevisionTests.ShortAndDiagonalShotsKeepEveryDrawnProjectileVertexBetweenCasterAndContactCell(2,0,-1,Reduced)",
+      "message": "  RD_Ember_fine_ivory_ridge extends behind the caster at study frame 14\n  Expected: greater than or equal to -0.0250000004f\n  But was:  -0.293324471f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeEmberProjectileRevisionTests.ShortAndDiagonalShotsKeepEveryDrawnProjectileVertexBetweenCasterAndContactCell(2,-1,1,Full)",
+      "message": "  RD_Ember_fine_ivory_ridge extends behind the caster at study frame 14\n  Expected: greater than or equal to -0.0250000004f\n  But was:  -0.29332453f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeEmberProjectileRevisionTests.ShortAndDiagonalShotsKeepEveryDrawnProjectileVertexBetweenCasterAndContactCell(4,1,0,Full)",
+      "message": "  RD_Ember_fine_ivory_ridge extends behind the caster at study frame 14\n  Expected: greater than or equal to -0.0250000004f\n  But was:  -0.293324471f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeEmberProjectileRevisionTests.ShortAndDiagonalShotsKeepEveryDrawnProjectileVertexBetweenCasterAndContactCell(4,1,-1,Reduced)",
+      "message": "  RD_Ember_fine_ivory_ridge extends behind the caster at study frame 14\n  Expected: greater than or equal to -0.0250000004f\n  But was:  -0.29332453f\n"
+    }
+  ]
+}

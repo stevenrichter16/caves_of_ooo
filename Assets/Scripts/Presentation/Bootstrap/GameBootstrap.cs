@@ -21,6 +21,10 @@ namespace CavesOfOoo
         [Header("References")]
         public ZoneRenderer ZoneRenderer;
 
+        [Tooltip("Destination for fresh games only; continuing a save uses its saved location.")]
+        public string FreshGameZoneID = MorrowfastSceneRuntime.ZoneID;
+        [Min(0.1f)] public float GameplayZoomMultiplier = 1f;
+
         /// <summary>
         /// Fired exactly once per successful <see cref="Start"/>, after the zone,
         /// player, factory, and turn manager are fully wired and the game is ready
@@ -78,6 +82,7 @@ namespace CavesOfOoo
             using (PerformanceMarkers.Bootstrap.DoStart.Auto())
             {
                 AsciiFxBus.Clear();
+                SpellFxBus.Clear();
                 // ALPHA save-lifeline SM2: a restarted run must not open
                 // with the previous life's "You are dead" spam.
                 MessageLog.Clear();
@@ -267,20 +272,7 @@ namespace CavesOfOoo
                 }
 
                 Debug.Log("[Bootstrap] Step 5/9: Generating starting zone...");
-                bool zoneGenerated = PerformanceDiagnostics.MeasureStartupPhase("GenerateZone", PerformanceMarkers.Bootstrap.GenerateZone, () =>
-                {
-                    _zoneManager = new OverworldZoneManager(_factory);
-                    _zone = _zoneManager.GetZone(WorldMap.StartingZoneID);
-                    _zoneManager.SetActiveZone(_zone);
-                    if (_zone == null)
-                    {
-                        Debug.LogError("[Bootstrap] FAILED: Zone generation returned null");
-                        return false;
-                    }
-
-                    Debug.Log($"[Bootstrap] Zone generated: {_zone.EntityCount} entities");
-                    return true;
-                });
+                bool zoneGenerated = PerformanceDiagnostics.MeasureStartupPhase("GenerateZone", PerformanceMarkers.Bootstrap.GenerateZone, GenerateStartingZone);
                 if (!zoneGenerated)
                     return;
 
@@ -392,6 +384,7 @@ namespace CavesOfOoo
                         cameraFollow = cam.gameObject.AddComponent<CameraFollow>();
 
                     Camera sidebarCamera = EnsureSidebarCamera(cam);
+                    cameraFollow.GameplayZoomMultiplier = GameplayZoomMultiplier;
                     Camera hotbarCamera = EnsureHotbarCamera(cam);
                     Camera popupOverlayCamera = EnsurePopupOverlayCamera(cam);
                     ConfigureCameraLayers(cam, sidebarCamera, hotbarCamera, popupOverlayCamera);
@@ -699,6 +692,8 @@ namespace CavesOfOoo
                 // player ever sees. Three glanceable lines + the
                 // call-to-adventure, in the visible message log.
                 CavesOfOoo.Rendering.ControlsReference.PrintBootSummary(MessageLog.Add);
+                string expeditionHint = MorrowfastExpedition.ArrivalHint(_zone);
+                if (expeditionHint != null) MessageLog.Add(expeditionHint);
 
                 Debug.Log($"[Bootstrap] DONE. Zone has {_zone.EntityCount} entities. WASD/arrows to move.");
             }
@@ -981,6 +976,7 @@ namespace CavesOfOoo
 
                 cameraFollow.Player = _player;
                 cameraFollow.CurrentZone = _zone;
+                cameraFollow.GameplayZoomMultiplier = GameplayZoomMultiplier;
                 cameraFollow.SnapToPlayer();
             }
 
@@ -1316,13 +1312,43 @@ namespace CavesOfOoo
         }
 
         /// <summary>
-        /// Find an open cell near the center of the zone to place the player.
-        /// Searches outward from center in a spiral.
+        /// Create the fresh world at the scene's configured starting chunk. Loading a
+        /// saved graph uses ApplyLoadedGame and never calls this start selection.
+        /// </summary>
+        private bool GenerateStartingZone()
+        {
+            _zoneManager = new OverworldZoneManager(_factory, NativeAuditBootstrapSettings.ResolveSeed());
+            _zone = _zoneManager.GetZone(FreshGameZoneID);
+            _zoneManager.SetActiveZone(_zone);
+            if (_zone == null)
+            {
+                Debug.LogError("[Bootstrap] FAILED: Zone generation returned null");
+                return false;
+            }
+
+            if (MorrowfastSceneRuntime.IsActive(_zone)
+                && MorrowfastStartingGarden.Ensure(_zone) != FarmPlotSeeder.MIN_PLANTABLE_CELLS)
+            {
+                Debug.LogError("[Bootstrap] FAILED: Morrowfast's starter garden could not be prepared");
+                return false;
+            }
+
+            Debug.Log($"[Bootstrap] Zone generated: {_zone.EntityCount} entities");
+            return true;
+        }
+
+        private const int MorrowfastStartX = 40;
+        private const int MorrowfastStartY = 23;
+
+        /// <summary>
+        /// Place a fresh character just inside Morrowfast's southern road,
+        /// searching outward if occupied. Other zones retain the center search.
         /// </summary>
         private void PlacePlayerInOpenCell()
         {
-            int cx = Zone.Width / 2;
-            int cy = Zone.Height / 2;
+            bool morrowfast = MorrowfastSceneRuntime.IsActive(_zone);
+            int cx = morrowfast ? MorrowfastStartX : Zone.Width / 2;
+            int cy = morrowfast ? MorrowfastStartY : Zone.Height / 2;
 
             for (int radius = 0; radius < Math.Max(Zone.Width, Zone.Height); radius++)
             {
@@ -1344,7 +1370,7 @@ namespace CavesOfOoo
                 }
             }
 
-            // Fallback: place at center regardless
+            // Fallback: retain the preferred starting cell if no open cell exists
             _zone.AddEntity(_player, cx, cy);
         }
 

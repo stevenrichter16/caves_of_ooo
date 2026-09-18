@@ -54,11 +54,13 @@ namespace CavesOfOoo.Core
                     break;
 
                 result.Path.Add(new Point(x, y));
+                SpellFxCapture.PathCell(zone, x, y);
+                SpellFxCapture.AffectCell(zone, x, y);
                 result.ImpactCell = cell;
 
-                for (int i = 0; i < cell.Objects.Count; i++)
+                for (int i = 0; i < cell.Occupants.Count; i++)
                 {
-                    Entity entity = cell.Objects[i];
+                    Entity entity = cell.Occupants[i];
                     if (entity == caster || !entity.HasTag("Creature") || !seenEntities.Add(entity))
                         continue;
 
@@ -86,6 +88,7 @@ namespace CavesOfOoo.Core
             if (zone == null || radius < 0)
                 return result;
 
+            var seen = new HashSet<Entity>();
             int minX = Math.Max(0, centerX - radius);
             int maxX = Math.Min(Zone.Width - 1, centerX + radius);
             int minY = Math.Max(0, centerY - radius);
@@ -103,10 +106,11 @@ namespace CavesOfOoo.Core
                     if (cell == null)
                         continue;
 
-                    for (int i = 0; i < cell.Objects.Count; i++)
+                    SpellFxCapture.AffectCell(zone, x, y);
+                    for (int i = 0; i < cell.Occupants.Count; i++)
                     {
-                        Entity entity = cell.Objects[i];
-                        if (entity == exclude || !entity.HasTag("Creature"))
+                        Entity entity = cell.Occupants[i];
+                        if (entity == exclude || !entity.HasTag("Creature") || !seen.Add(entity))
                             continue;
 
                         result.Add(entity);
@@ -137,7 +141,7 @@ namespace CavesOfOoo.Core
                 if (currentCell == null)
                     break;
 
-                Entity next = FindNearestUntargetedCreature(zone, currentCell.X, currentCell.Y, searchRadius, visited);
+                Entity next = FindNearestUntargetedCreature(zone, current, searchRadius, visited);
                 if (next == null)
                     break;
 
@@ -151,8 +155,7 @@ namespace CavesOfOoo.Core
 
         private static Entity FindNearestUntargetedCreature(
             Zone zone,
-            int centerX,
-            int centerY,
+            Entity current,
             int radius,
             HashSet<Entity> excluded)
         {
@@ -162,16 +165,29 @@ namespace CavesOfOoo.Core
             int bestScanOrder = int.MaxValue;
             int scanOrder = 0;
 
-            int minX = Math.Max(0, centerX - radius);
-            int maxX = Math.Min(Zone.Width - 1, centerX + radius);
-            int minY = Math.Max(0, centerY - radius);
-            int maxY = Math.Min(Zone.Height - 1, centerY + radius);
+            // Search the body perimeter, not its canonical save/render anchor.
+            // Scanning cells in row order preserves the ordinary single-cell tie rule.
+            var body = zone.GetOccupiedCells(current);
+            if (body.Count == 0) return null;
+            int minX = Zone.Width - 1, maxX = 0, minY = Zone.Height - 1, maxY = 0;
+            foreach (var occupied in body)
+            {
+                minX = Math.Min(minX, occupied.X);
+                maxX = Math.Max(maxX, occupied.X);
+                minY = Math.Min(minY, occupied.Y);
+                maxY = Math.Max(maxY, occupied.Y);
+            }
+            int boundedRadius = Math.Min(radius, Math.Max(Zone.Width, Zone.Height));
+            minX = Math.Max(0, minX - boundedRadius);
+            maxX = Math.Min(Zone.Width - 1, maxX + boundedRadius);
+            minY = Math.Max(0, minY - boundedRadius);
+            maxY = Math.Min(Zone.Height - 1, maxY + boundedRadius);
 
             for (int y = minY; y <= maxY; y++)
             {
                 for (int x = minX; x <= maxX; x++)
                 {
-                    int chebyshev = Math.Max(Math.Abs(x - centerX), Math.Abs(y - centerY));
+                    int chebyshev = SpatialQuery.DistanceToCell(zone, current, x, y);
                     if (chebyshev > radius)
                         continue;
 
@@ -179,16 +195,18 @@ namespace CavesOfOoo.Core
                     if (cell == null)
                         continue;
 
-                    for (int i = 0; i < cell.Objects.Count; i++)
+                    for (int i = 0; i < cell.Occupants.Count; i++)
                     {
-                        Entity entity = cell.Objects[i];
+                        Entity entity = cell.Occupants[i];
                         if (!entity.HasTag("Creature") || excluded.Contains(entity))
                         {
                             scanOrder++;
                             continue;
                         }
 
-                        int manhattan = Math.Abs(x - centerX) + Math.Abs(y - centerY);
+                        int manhattan = int.MaxValue;
+                        foreach (var occupied in body)
+                            manhattan = Math.Min(manhattan, Math.Abs(x - occupied.X) + Math.Abs(y - occupied.Y));
                         if (chebyshev < bestChebyshev ||
                             (chebyshev == bestChebyshev && manhattan < bestManhattan) ||
                             (chebyshev == bestChebyshev && manhattan == bestManhattan && scanOrder < bestScanOrder))
@@ -284,10 +302,11 @@ namespace CavesOfOoo.Core
                     // the spread past it on this ray.
                     if (HasBlockingSolid(cell, caster)) continue;
                     openNow.Add(off);
+                    SpellFxCapture.AffectCell(zone, x, y);
 
-                    for (int i = 0; i < cell.Objects.Count; i++)
+                    for (int i = 0; i < cell.Occupants.Count; i++)
                     {
-                        Entity entity = cell.Objects[i];
+                        Entity entity = cell.Occupants[i];
                         if (entity == caster || !entity.HasTag("Creature"))
                             continue;
                         if (!seen.Add(entity)) continue;
@@ -307,9 +326,9 @@ namespace CavesOfOoo.Core
             if (cell == null)
                 return false;
 
-            for (int i = 0; i < cell.Objects.Count; i++)
+            for (int i = 0; i < cell.Occupants.Count; i++)
             {
-                Entity entity = cell.Objects[i];
+                Entity entity = cell.Occupants[i];
                 if (entity == caster || entity.HasTag("Creature"))
                     continue;
                 if (entity.HasTag("Solid"))

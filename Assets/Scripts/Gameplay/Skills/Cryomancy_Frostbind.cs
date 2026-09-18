@@ -22,7 +22,7 @@ namespace CavesOfOoo.Skills
     /// "the only ability that locks a target's MOVEMENT but not their
     /// actions."</para>
     /// </summary>
-    public class Cryomancy_Frostbind : BaseSkillPart
+    public class Cryomancy_Frostbind : SpellSkillPart
     {
         public override string Name => nameof(Cryomancy_Frostbind);
 
@@ -42,7 +42,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
@@ -50,20 +50,7 @@ namespace CavesOfOoo.Skills
             var actorPos = ctx.Zone.GetEntityPosition(actor);
             if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return false; }
 
-            Entity target = null;
-            for (int dir = 0; dir < 8 && target == null; dir++)
-            {
-                var cell = ctx.Zone.GetCellInDirection(actorPos.x, actorPos.y, dir);
-                if (cell == null) continue;
-                for (int i = 0; i < cell.Objects.Count; i++)
-                {
-                    var e = cell.Objects[i];
-                    if (e == null || e == actor) continue;
-                    if (!e.Tags.ContainsKey("Creature")) continue;
-                    target = e;
-                    break;
-                }
-            }
+            var target = MultiCellAbilityQueries.FirstAdjacentCreature(ctx.Zone, actor, out _);
             if (target == null)
             {
                 MessageLog.Add(actor.GetDisplayName() + " has no target to frostbind.");

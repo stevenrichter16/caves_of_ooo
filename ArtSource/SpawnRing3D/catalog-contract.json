@@ -1,0 +1,3652 @@
+{
+  "schemaVersion": 1,
+  "id": "spawn-ring-3d",
+  "zoneWidth": 80,
+  "zoneHeight": 25,
+  "coordinates": "Unity X east,Y height,Z north; 1 unit per native cell; source Blender X east,Y north,Z up",
+  "paletteTexture": "textures/SpawnRingPalette.png",
+  "models": [
+    {
+      "id": "ring-ash-bed-0",
+      "path": "models/ring-ash-bed-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "AshBed",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-ash-bed-1",
+      "path": "models/ring-ash-bed-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "AshBed",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-ash-bed-2",
+      "path": "models/ring-ash-bed-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "AshBed",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-ash-bed-3",
+      "path": "models/ring-ash-bed-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "AshBed",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-brine-pool-0",
+      "path": "models/ring-brine-pool-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "BrinePool",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-brine-pool-1",
+      "path": "models/ring-brine-pool-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "BrinePool",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-brine-pool-2",
+      "path": "models/ring-brine-pool-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "BrinePool",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-brine-pool-3",
+      "path": "models/ring-brine-pool-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "BrinePool",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-bush-0",
+      "path": "models/ring-bush-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Bush",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-bush-1",
+      "path": "models/ring-bush-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Bush",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-bush-2",
+      "path": "models/ring-bush-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Bush",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-bush-3",
+      "path": "models/ring-bush-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Bush",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-campfire",
+      "path": "models/ring-campfire.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Campfire",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-cascade-father",
+      "path": "models/ring-cascade-father.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "frog",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "sourceBlueprint": "CascadeFather",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-cave-hermit",
+      "path": "models/ring-cave-hermit.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "sourceBlueprint": "CaveHermit",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-chest",
+      "path": "models/ring-chest.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Chest",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-choir-iron-vein-0",
+      "path": "models/ring-choir-iron-vein-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "ChoirIronVein",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-choir-iron-vein-1",
+      "path": "models/ring-choir-iron-vein-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "ChoirIronVein",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-choir-iron-vein-2",
+      "path": "models/ring-choir-iron-vein-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "ChoirIronVein",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-choir-iron-vein-3",
+      "path": "models/ring-choir-iron-vein-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "ChoirIronVein",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-choir-tendril",
+      "path": "models/ring-choir-tendril.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "rooted",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "sourceBlueprint": "ChoirTendril",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-compost-cache-0",
+      "path": "models/ring-compost-cache-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "CompostCache",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-compost-cache-1",
+      "path": "models/ring-compost-cache-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "CompostCache",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-compost-cache-2",
+      "path": "models/ring-compost-cache-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "CompostCache",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-compost-cache-3",
+      "path": "models/ring-compost-cache-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "CompostCache",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-compost-row-0",
+      "path": "models/ring-compost-row-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "CompostRow",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-compost-row-1",
+      "path": "models/ring-compost-row-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "CompostRow",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-compost-row-2",
+      "path": "models/ring-compost-row-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "CompostRow",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-compost-row-3",
+      "path": "models/ring-compost-row-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "CompostRow",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-copper-pipe",
+      "path": "models/ring-copper-pipe.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "CopperPipe",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-crate",
+      "path": "models/ring-crate.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Crate",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-descent-ledge-0",
+      "path": "models/ring-descent-ledge-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "DescentLedge",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-descent-ledge-1",
+      "path": "models/ring-descent-ledge-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "DescentLedge",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-descent-ledge-2",
+      "path": "models/ring-descent-ledge-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "DescentLedge",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-descent-ledge-3",
+      "path": "models/ring-descent-ledge-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "DescentLedge",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-dry-brush-0",
+      "path": "models/ring-dry-brush-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "DryBrush",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-dry-brush-1",
+      "path": "models/ring-dry-brush-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "DryBrush",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-dry-brush-2",
+      "path": "models/ring-dry-brush-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "DryBrush",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-dry-brush-3",
+      "path": "models/ring-dry-brush-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "DryBrush",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-fallen-beam-0",
+      "path": "models/ring-fallen-beam-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "FallenBeam",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-fallen-beam-1",
+      "path": "models/ring-fallen-beam-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "FallenBeam",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-fallen-beam-2",
+      "path": "models/ring-fallen-beam-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "FallenBeam",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-fallen-beam-3",
+      "path": "models/ring-fallen-beam-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "FallenBeam",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-felling-bare-position",
+      "path": "models/ring-felling-bare-position.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "FellingBarePosition",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-floor-0",
+      "path": "models/ring-floor-0.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Floor",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-floor-1",
+      "path": "models/ring-floor-1.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Floor",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-floor-2",
+      "path": "models/ring-floor-2.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Floor",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-floor-3",
+      "path": "models/ring-floor-3.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Floor",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-fruiting-body-0",
+      "path": "models/ring-fruiting-body-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "FruitingBody",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-fruiting-body-1",
+      "path": "models/ring-fruiting-body-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "FruitingBody",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-fruiting-body-2",
+      "path": "models/ring-fruiting-body-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "FruitingBody",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-fruiting-body-3",
+      "path": "models/ring-fruiting-body-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "FruitingBody",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-glasspane-frog",
+      "path": "models/ring-glasspane-frog.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "frog",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "sourceBlueprint": "GlasspaneFrog",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-grain-ridge-0",
+      "path": "models/ring-grain-ridge-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "GrainRidge",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-grain-ridge-1",
+      "path": "models/ring-grain-ridge-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "GrainRidge",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-grain-ridge-2",
+      "path": "models/ring-grain-ridge-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "GrainRidge",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-grain-ridge-3",
+      "path": "models/ring-grain-ridge-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "GrainRidge",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-grass-0",
+      "path": "models/ring-grass-0.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Grass",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-grass-1",
+      "path": "models/ring-grass-1.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Grass",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-grass-2",
+      "path": "models/ring-grass-2.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Grass",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-grass-3",
+      "path": "models/ring-grass-3.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Grass",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-grib",
+      "path": "models/ring-grib.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "sourceBlueprint": "Grib",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-grove-red-growth-0",
+      "path": "models/ring-grove-red-growth-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "GroveRedGrowth",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-grove-red-growth-1",
+      "path": "models/ring-grove-red-growth-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "GroveRedGrowth",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-grove-red-growth-2",
+      "path": "models/ring-grove-red-growth-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "GroveRedGrowth",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-grove-red-growth-3",
+      "path": "models/ring-grove-red-growth-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "GroveRedGrowth",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-grove-seep",
+      "path": "models/ring-grove-seep.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "GroveSeep",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-grove-sign",
+      "path": "models/ring-grove-sign.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "GroveSign",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-haul-barrel",
+      "path": "models/ring-haul-barrel.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "HaulBarrel",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-helmwood-frog",
+      "path": "models/ring-helmwood-frog.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "frog",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "sourceBlueprint": "HelmwoodFrog",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-hollow-log-0",
+      "path": "models/ring-hollow-log-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "HollowLog",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-hollow-log-1",
+      "path": "models/ring-hollow-log-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "HollowLog",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-hollow-log-2",
+      "path": "models/ring-hollow-log-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "HollowLog",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-hollow-log-3",
+      "path": "models/ring-hollow-log-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "HollowLog",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-maw-toad",
+      "path": "models/ring-maw-toad.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "frog",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "sourceBlueprint": "MawToad",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-mill-stone",
+      "path": "models/ring-mill-stone.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "MillStone",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-mogu",
+      "path": "models/ring-mogu.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "sourceBlueprint": "Mogu",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-mosshulk",
+      "path": "models/ring-mosshulk.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "fungal",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "sourceBlueprint": "Mosshulk",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-mushroom-ring",
+      "path": "models/ring-mushroom-ring.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "MushroomRing",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-mycelial-column-0",
+      "path": "models/ring-mycelial-column-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "MycelialColumn",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-mycelial-column-1",
+      "path": "models/ring-mycelial-column-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "MycelialColumn",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-mycelial-column-2",
+      "path": "models/ring-mycelial-column-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "MycelialColumn",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-mycelial-column-3",
+      "path": "models/ring-mycelial-column-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "MycelialColumn",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-nam",
+      "path": "models/ring-nam.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "sourceBlueprint": "Nam",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-ore-cache",
+      "path": "models/ring-ore-cache.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "OreCache",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-peat-bog-0",
+      "path": "models/ring-peat-bog-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "PeatBog",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-peat-bog-1",
+      "path": "models/ring-peat-bog-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "PeatBog",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-peat-bog-2",
+      "path": "models/ring-peat-bog-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "PeatBog",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-peat-bog-3",
+      "path": "models/ring-peat-bog-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "PeatBog",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-player",
+      "path": "models/ring-player.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "sourceBlueprint": "Player",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-rock-0",
+      "path": "models/ring-rock-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Rock",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-rock-1",
+      "path": "models/ring-rock-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Rock",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-rock-2",
+      "path": "models/ring-rock-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Rock",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-rock-3",
+      "path": "models/ring-rock-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Rock",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-rotling",
+      "path": "models/ring-rotling.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "fungal",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "sourceBlueprint": "Rotling",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-sack",
+      "path": "models/ring-sack.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Sack",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-sari-snake",
+      "path": "models/ring-sari-snake.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "serpent",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "sourceBlueprint": "SariSnake",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-seventh-position",
+      "path": "models/ring-seventh-position.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "SeventhPosition",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-shambler",
+      "path": "models/ring-shambler.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "fungal",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "sourceBlueprint": "Shambler",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-sien",
+      "path": "models/ring-sien.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "sourceBlueprint": "Sien",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-sinkhole-lip-0",
+      "path": "models/ring-sinkhole-lip-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "SinkholeLip",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-sinkhole-lip-1",
+      "path": "models/ring-sinkhole-lip-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "SinkholeLip",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-sinkhole-lip-2",
+      "path": "models/ring-sinkhole-lip-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "SinkholeLip",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-sinkhole-lip-3",
+      "path": "models/ring-sinkhole-lip-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "SinkholeLip",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-sky-sari",
+      "path": "models/ring-sky-sari.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "avian",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "sourceBlueprint": "SkySari",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-snapjaw",
+      "path": "models/ring-snapjaw.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "sourceBlueprint": "Snapjaw",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-snapjaw-warlord",
+      "path": "models/ring-snapjaw-warlord.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "sourceBlueprint": "SnapjawWarlord",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-sopp",
+      "path": "models/ring-sopp.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "sourceBlueprint": "Sopp",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-spray-pool-0",
+      "path": "models/ring-spray-pool-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "SprayPool",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-spray-pool-1",
+      "path": "models/ring-spray-pool-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "SprayPool",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-spray-pool-2",
+      "path": "models/ring-spray-pool-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "SprayPool",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-spray-pool-3",
+      "path": "models/ring-spray-pool-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "SprayPool",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-stairs-down",
+      "path": "models/ring-stairs-down.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "StairsDown",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-stairs-up",
+      "path": "models/ring-stairs-up.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "StairsUp",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-steam-vent",
+      "path": "models/ring-steam-vent.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "SteamVent",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-stone-coffer",
+      "path": "models/ring-stone-coffer.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "StoneCoffer",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-strong-box",
+      "path": "models/ring-strong-box.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "StrongBox",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-tar-seep-0",
+      "path": "models/ring-tar-seep-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "TarSeep",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-tar-seep-1",
+      "path": "models/ring-tar-seep-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "TarSeep",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-tar-seep-2",
+      "path": "models/ring-tar-seep-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "TarSeep",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-tar-seep-3",
+      "path": "models/ring-tar-seep-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "TarSeep",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-tepui-stone-0",
+      "path": "models/ring-tepui-stone-0.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "TepuiStone",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-tepui-stone-1",
+      "path": "models/ring-tepui-stone-1.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "TepuiStone",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-tepui-stone-2",
+      "path": "models/ring-tepui-stone-2.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "TepuiStone",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-tepui-stone-3",
+      "path": "models/ring-tepui-stone-3.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "TepuiStone",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-tepui-wall-0",
+      "path": "models/ring-tepui-wall-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "TepuiWall",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-tepui-wall-1",
+      "path": "models/ring-tepui-wall-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "TepuiWall",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-tepui-wall-2",
+      "path": "models/ring-tepui-wall-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "TepuiWall",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-tepui-wall-3",
+      "path": "models/ring-tepui-wall-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "TepuiWall",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-tepuibone",
+      "path": "models/ring-tepuibone.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Tepuibone",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-tepuibone-vein-0",
+      "path": "models/ring-tepuibone-vein-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "TepuiboneVein",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-tepuibone-vein-1",
+      "path": "models/ring-tepuibone-vein-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "TepuiboneVein",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-tepuibone-vein-2",
+      "path": "models/ring-tepuibone-vein-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "TepuiboneVein",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-tepuibone-vein-3",
+      "path": "models/ring-tepuibone-vein-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "TepuiboneVein",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-tree-0",
+      "path": "models/ring-tree-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Tree",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-tree-1",
+      "path": "models/ring-tree-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Tree",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-tree-2",
+      "path": "models/ring-tree-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Tree",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-tree-3",
+      "path": "models/ring-tree-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Tree",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-vine-wall-0",
+      "path": "models/ring-vine-wall-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "VineWall",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-vine-wall-1",
+      "path": "models/ring-vine-wall-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "VineWall",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-vine-wall-2",
+      "path": "models/ring-vine-wall-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "VineWall",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-vine-wall-3",
+      "path": "models/ring-vine-wall-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "VineWall",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-wall-0",
+      "path": "models/ring-wall-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Wall",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-wall-1",
+      "path": "models/ring-wall-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Wall",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-wall-2",
+      "path": "models/ring-wall-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Wall",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-wall-3",
+      "path": "models/ring-wall-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "Wall",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-wardline",
+      "path": "models/ring-wardline.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "serpent",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "sourceBlueprint": "Wardline",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-water-puddle-0",
+      "path": "models/ring-water-puddle-0.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "WaterPuddle",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-water-puddle-1",
+      "path": "models/ring-water-puddle-1.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "WaterPuddle",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-water-puddle-2",
+      "path": "models/ring-water-puddle-2.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "WaterPuddle",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-water-puddle-3",
+      "path": "models/ring-water-puddle-3.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "WaterPuddle",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-wine-leaf-sundew-0",
+      "path": "models/ring-wine-leaf-sundew-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "WineLeafSundew",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-wine-leaf-sundew-1",
+      "path": "models/ring-wine-leaf-sundew-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "WineLeafSundew",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-wine-leaf-sundew-2",
+      "path": "models/ring-wine-leaf-sundew-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "WineLeafSundew",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-wine-leaf-sundew-3",
+      "path": "models/ring-wine-leaf-sundew-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "WineLeafSundew",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-wooden-barrel",
+      "path": "models/ring-wooden-barrel.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "WoodenBarrel",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-woven-basket",
+      "path": "models/ring-woven-basket.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "WovenBasket",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-yellowfoot-wayfarer",
+      "path": "models/ring-yellowfoot-wayfarer.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "tortoise",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "sourceBlueprint": "YellowfootWayfarer",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-felling-stump-main",
+      "path": "models/ring-felling-stump-main.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-west-root-buttress",
+      "path": "models/ring-felling-west-root-buttress.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-east-root-buttress",
+      "path": "models/ring-felling-east-root-buttress.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-far-east-root-buttress",
+      "path": "models/ring-felling-far-east-root-buttress.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-southwest-root-arch",
+      "path": "models/ring-felling-southwest-root-arch.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-southwest-foreground-rock",
+      "path": "models/ring-felling-southwest-foreground-rock.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-southeast-foreground-root",
+      "path": "models/ring-felling-southeast-foreground-root.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-southeast-middle-ridge",
+      "path": "models/ring-felling-southeast-middle-ridge.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-boulder-west-approach",
+      "path": "models/ring-felling-boulder-west-approach.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-boulder-southwest-path",
+      "path": "models/ring-felling-boulder-southwest-path.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-boulder-east-clearing",
+      "path": "models/ring-felling-boulder-east-clearing.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-boulder-east-stream-bank",
+      "path": "models/ring-felling-boulder-east-stream-bank.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-boulder-west-bank-mossy",
+      "path": "models/ring-felling-boulder-west-bank-mossy.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-boulder-west-bank-mid",
+      "path": "models/ring-felling-boulder-west-bank-mid.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-boulder-west-bottom-flat",
+      "path": "models/ring-felling-boulder-west-bottom-flat.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-cyan-northwest",
+      "path": "models/ring-felling-cyan-northwest.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-cyan-west-clearing",
+      "path": "models/ring-felling-cyan-west-clearing.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-cyan-west-approach",
+      "path": "models/ring-felling-cyan-west-approach.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-cyan-southwest",
+      "path": "models/ring-felling-cyan-southwest.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-cyan-east-upper",
+      "path": "models/ring-felling-cyan-east-upper.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-cyan-east-middle",
+      "path": "models/ring-felling-cyan-east-middle.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-cyan-southeast-edge",
+      "path": "models/ring-felling-cyan-southeast-edge.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-red-northwest",
+      "path": "models/ring-felling-red-northwest.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-red-north-clearing-west",
+      "path": "models/ring-felling-red-north-clearing-west.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-red-north-clearing-east",
+      "path": "models/ring-felling-red-north-clearing-east.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-red-east-root-lip",
+      "path": "models/ring-felling-red-east-root-lip.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-red-far-east-upper",
+      "path": "models/ring-felling-red-far-east-upper.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-red-west-middle",
+      "path": "models/ring-felling-red-west-middle.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-red-west-clearing-rim",
+      "path": "models/ring-felling-red-west-clearing-rim.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-red-east-clearing-rim",
+      "path": "models/ring-felling-red-east-clearing-rim.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-red-west-approach",
+      "path": "models/ring-felling-red-west-approach.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-red-east-approach",
+      "path": "models/ring-felling-red-east-approach.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-red-southeast-inner",
+      "path": "models/ring-felling-red-southeast-inner.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-red-east-lower",
+      "path": "models/ring-felling-red-east-lower.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-pink-west-bank",
+      "path": "models/ring-felling-pink-west-bank.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-pink-west-arch",
+      "path": "models/ring-felling-pink-west-arch.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-pink-east-spires",
+      "path": "models/ring-felling-pink-east-spires.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-pink-east-middle",
+      "path": "models/ring-felling-pink-east-middle.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-cream-east-inner",
+      "path": "models/ring-felling-cream-east-inner.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-cream-west-boulder-foot",
+      "path": "models/ring-felling-cream-west-boulder-foot.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-pale-west-root-tubes",
+      "path": "models/ring-felling-pale-west-root-tubes.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-pale-north-inner-tubes",
+      "path": "models/ring-felling-pale-north-inner-tubes.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-pale-east-wall-tubes",
+      "path": "models/ring-felling-pale-east-wall-tubes.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-pale-east-tall-spires",
+      "path": "models/ring-felling-pale-east-tall-spires.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-pale-east-lower-tubes",
+      "path": "models/ring-felling-pale-east-lower-tubes.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-waterfall-motion",
+      "path": "models/ring-felling-waterfall-motion.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-waterfall-mist",
+      "path": "models/ring-felling-waterfall-mist.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-blackwater-flow",
+      "path": "models/ring-felling-blackwater-flow.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-red-north-clearing-west-right",
+      "path": "models/ring-felling-red-north-clearing-west-right.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-cyan-east-approach",
+      "path": "models/ring-felling-cyan-east-approach.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-cyan-east-root-tip",
+      "path": "models/ring-felling-cyan-east-root-tip.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-pink-southwest-streamside",
+      "path": "models/ring-felling-pink-southwest-streamside.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-pink-southwest-bottom-caps",
+      "path": "models/ring-felling-pink-southwest-bottom-caps.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-blue-west-middle-rosette",
+      "path": "models/ring-felling-blue-west-middle-rosette.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-felling-blue-west-lower-rosette",
+      "path": "models/ring-felling-blue-west-lower-rosette.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-water-surface",
+      "path": "models/ring-water-surface.fbx",
+      "kind": "tile-overlay",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-water",
+      "clips": [],
+      "sockets": [],
+      "metadataStatus": "planned"
+    },
+    {
+      "id": "ring-glow-quartz-vein-0",
+      "path": "models/ring-glow-quartz-vein-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "GlowQuartzVein",
+      "metadataStatus": "planned; actual seed1729 native producer confirmed"
+    },
+    {
+      "id": "ring-glow-quartz-vein-1",
+      "path": "models/ring-glow-quartz-vein-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "GlowQuartzVein",
+      "metadataStatus": "planned; actual seed1729 native producer confirmed"
+    },
+    {
+      "id": "ring-glow-quartz-vein-2",
+      "path": "models/ring-glow-quartz-vein-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "GlowQuartzVein",
+      "metadataStatus": "planned; actual seed1729 native producer confirmed"
+    },
+    {
+      "id": "ring-glow-quartz-vein-3",
+      "path": "models/ring-glow-quartz-vein-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "sourceBlueprint": "GlowQuartzVein",
+      "metadataStatus": "planned; actual seed1729 native producer confirmed"
+    }
+  ],
+  "blueprints": [
+    {
+      "blueprint": "AshBed",
+      "models": [
+        "ring-ash-bed-0",
+        "ring-ash-bed-1",
+        "ring-ash-bed-2",
+        "ring-ash-bed-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "BrinePool",
+      "models": [
+        "ring-brine-pool-0",
+        "ring-brine-pool-1",
+        "ring-brine-pool-2",
+        "ring-brine-pool-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Bush",
+      "models": [
+        "ring-bush-0",
+        "ring-bush-1",
+        "ring-bush-2",
+        "ring-bush-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Campfire",
+      "models": [
+        "ring-campfire"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "CascadeFather",
+      "models": [
+        "ring-cascade-father"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "CaveHermit",
+      "models": [
+        "ring-cave-hermit"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "Chest",
+      "models": [
+        "ring-chest"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "ChoirIronVein",
+      "models": [
+        "ring-choir-iron-vein-0",
+        "ring-choir-iron-vein-1",
+        "ring-choir-iron-vein-2",
+        "ring-choir-iron-vein-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "ChoirTendril",
+      "models": [
+        "ring-choir-tendril"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "CompostCache",
+      "models": [
+        "ring-compost-cache-0",
+        "ring-compost-cache-1",
+        "ring-compost-cache-2",
+        "ring-compost-cache-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "CompostRow",
+      "models": [
+        "ring-compost-row-0",
+        "ring-compost-row-1",
+        "ring-compost-row-2",
+        "ring-compost-row-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "CopperPipe",
+      "models": [
+        "ring-copper-pipe"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Crate",
+      "models": [
+        "ring-crate"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "DescentLedge",
+      "models": [
+        "ring-descent-ledge-0",
+        "ring-descent-ledge-1",
+        "ring-descent-ledge-2",
+        "ring-descent-ledge-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "DryBrush",
+      "models": [
+        "ring-dry-brush-0",
+        "ring-dry-brush-1",
+        "ring-dry-brush-2",
+        "ring-dry-brush-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "FallenBeam",
+      "models": [
+        "ring-fallen-beam-0",
+        "ring-fallen-beam-1",
+        "ring-fallen-beam-2",
+        "ring-fallen-beam-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "FellingBarePosition",
+      "models": [
+        "ring-felling-bare-position"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "FellingSceneProp",
+      "models": [],
+      "role": "felling-component",
+      "resolver": "FellingSceneProp.ComponentId"
+    },
+    {
+      "blueprint": "Floor",
+      "models": [
+        "ring-floor-0",
+        "ring-floor-1",
+        "ring-floor-2",
+        "ring-floor-3"
+      ],
+      "role": "ground"
+    },
+    {
+      "blueprint": "FruitingBody",
+      "models": [
+        "ring-fruiting-body-0",
+        "ring-fruiting-body-1",
+        "ring-fruiting-body-2",
+        "ring-fruiting-body-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "GlasspaneFrog",
+      "models": [
+        "ring-glasspane-frog"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "GlowQuartzVein",
+      "models": [
+        "ring-glow-quartz-vein-0",
+        "ring-glow-quartz-vein-1",
+        "ring-glow-quartz-vein-2",
+        "ring-glow-quartz-vein-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "GrainRidge",
+      "models": [
+        "ring-grain-ridge-0",
+        "ring-grain-ridge-1",
+        "ring-grain-ridge-2",
+        "ring-grain-ridge-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Grass",
+      "models": [
+        "ring-grass-0",
+        "ring-grass-1",
+        "ring-grass-2",
+        "ring-grass-3"
+      ],
+      "role": "ground"
+    },
+    {
+      "blueprint": "Grib",
+      "models": [
+        "ring-grib"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "GroveRedGrowth",
+      "models": [
+        "ring-grove-red-growth-0",
+        "ring-grove-red-growth-1",
+        "ring-grove-red-growth-2",
+        "ring-grove-red-growth-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "GroveSeep",
+      "models": [
+        "ring-grove-seep"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "GroveSign",
+      "models": [
+        "ring-grove-sign"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "HaulBarrel",
+      "models": [
+        "ring-haul-barrel"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "HelmwoodFrog",
+      "models": [
+        "ring-helmwood-frog"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "HollowLog",
+      "models": [
+        "ring-hollow-log-0",
+        "ring-hollow-log-1",
+        "ring-hollow-log-2",
+        "ring-hollow-log-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "MawToad",
+      "models": [
+        "ring-maw-toad"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "MillStone",
+      "models": [
+        "ring-mill-stone"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Mogu",
+      "models": [
+        "ring-mogu"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "Mosshulk",
+      "models": [
+        "ring-mosshulk"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "MushroomRing",
+      "models": [
+        "ring-mushroom-ring"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "MycelialColumn",
+      "models": [
+        "ring-mycelial-column-0",
+        "ring-mycelial-column-1",
+        "ring-mycelial-column-2",
+        "ring-mycelial-column-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Nam",
+      "models": [
+        "ring-nam"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "OreCache",
+      "models": [
+        "ring-ore-cache"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "PeatBog",
+      "models": [
+        "ring-peat-bog-0",
+        "ring-peat-bog-1",
+        "ring-peat-bog-2",
+        "ring-peat-bog-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Player",
+      "models": [
+        "ring-player"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "Rock",
+      "models": [
+        "ring-rock-0",
+        "ring-rock-1",
+        "ring-rock-2",
+        "ring-rock-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Rotling",
+      "models": [
+        "ring-rotling"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "Sack",
+      "models": [
+        "ring-sack"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "SariSnake",
+      "models": [
+        "ring-sari-snake"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "SeventhPosition",
+      "models": [
+        "ring-seventh-position"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Shambler",
+      "models": [
+        "ring-shambler"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "Sien",
+      "models": [
+        "ring-sien"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "SinkholeLip",
+      "models": [
+        "ring-sinkhole-lip-0",
+        "ring-sinkhole-lip-1",
+        "ring-sinkhole-lip-2",
+        "ring-sinkhole-lip-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "SkySari",
+      "models": [
+        "ring-sky-sari"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "Snapjaw",
+      "models": [
+        "ring-snapjaw"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "SnapjawWarlord",
+      "models": [
+        "ring-snapjaw-warlord"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "Sopp",
+      "models": [
+        "ring-sopp"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "SprayPool",
+      "models": [
+        "ring-spray-pool-0",
+        "ring-spray-pool-1",
+        "ring-spray-pool-2",
+        "ring-spray-pool-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "StairsDown",
+      "models": [
+        "ring-stairs-down"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "StairsUp",
+      "models": [
+        "ring-stairs-up"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "SteamVent",
+      "models": [
+        "ring-steam-vent"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "StoneCoffer",
+      "models": [
+        "ring-stone-coffer"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "StrongBox",
+      "models": [
+        "ring-strong-box"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "TarSeep",
+      "models": [
+        "ring-tar-seep-0",
+        "ring-tar-seep-1",
+        "ring-tar-seep-2",
+        "ring-tar-seep-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "TepuiStone",
+      "models": [
+        "ring-tepui-stone-0",
+        "ring-tepui-stone-1",
+        "ring-tepui-stone-2",
+        "ring-tepui-stone-3"
+      ],
+      "role": "ground"
+    },
+    {
+      "blueprint": "TepuiWall",
+      "models": [
+        "ring-tepui-wall-0",
+        "ring-tepui-wall-1",
+        "ring-tepui-wall-2",
+        "ring-tepui-wall-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Tepuibone",
+      "models": [
+        "ring-tepuibone"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "TepuiboneVein",
+      "models": [
+        "ring-tepuibone-vein-0",
+        "ring-tepuibone-vein-1",
+        "ring-tepuibone-vein-2",
+        "ring-tepuibone-vein-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Tree",
+      "models": [
+        "ring-tree-0",
+        "ring-tree-1",
+        "ring-tree-2",
+        "ring-tree-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "VineWall",
+      "models": [
+        "ring-vine-wall-0",
+        "ring-vine-wall-1",
+        "ring-vine-wall-2",
+        "ring-vine-wall-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Wall",
+      "models": [
+        "ring-wall-0",
+        "ring-wall-1",
+        "ring-wall-2",
+        "ring-wall-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Wardline",
+      "models": [
+        "ring-wardline"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "WaterPuddle",
+      "models": [
+        "ring-water-puddle-0",
+        "ring-water-puddle-1",
+        "ring-water-puddle-2",
+        "ring-water-puddle-3"
+      ],
+      "role": "ground"
+    },
+    {
+      "blueprint": "WineLeafSundew",
+      "models": [
+        "ring-wine-leaf-sundew-0",
+        "ring-wine-leaf-sundew-1",
+        "ring-wine-leaf-sundew-2",
+        "ring-wine-leaf-sundew-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "WoodenBarrel",
+      "models": [
+        "ring-wooden-barrel"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "WovenBasket",
+      "models": [
+        "ring-woven-basket"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "YellowfootWayfarer",
+      "models": [
+        "ring-yellowfoot-wayfarer"
+      ],
+      "role": "actor"
+    }
+  ],
+  "fellingOwners": [
+    {
+      "componentId": "stump-main",
+      "modelId": "ring-felling-stump-main",
+      "mutable": false
+    },
+    {
+      "componentId": "west-root-buttress",
+      "modelId": "ring-felling-west-root-buttress",
+      "mutable": false
+    },
+    {
+      "componentId": "east-root-buttress",
+      "modelId": "ring-felling-east-root-buttress",
+      "mutable": false
+    },
+    {
+      "componentId": "far-east-root-buttress",
+      "modelId": "ring-felling-far-east-root-buttress",
+      "mutable": false
+    },
+    {
+      "componentId": "southwest-root-arch",
+      "modelId": "ring-felling-southwest-root-arch",
+      "mutable": false
+    },
+    {
+      "componentId": "southwest-foreground-rock",
+      "modelId": "ring-felling-southwest-foreground-rock",
+      "mutable": false
+    },
+    {
+      "componentId": "southeast-foreground-root",
+      "modelId": "ring-felling-southeast-foreground-root",
+      "mutable": false
+    },
+    {
+      "componentId": "southeast-middle-ridge",
+      "modelId": "ring-felling-southeast-middle-ridge",
+      "mutable": false
+    },
+    {
+      "componentId": "boulder-west-approach",
+      "modelId": "ring-felling-boulder-west-approach",
+      "mutable": true
+    },
+    {
+      "componentId": "boulder-southwest-path",
+      "modelId": "ring-felling-boulder-southwest-path",
+      "mutable": true
+    },
+    {
+      "componentId": "boulder-east-clearing",
+      "modelId": "ring-felling-boulder-east-clearing",
+      "mutable": true
+    },
+    {
+      "componentId": "boulder-east-stream-bank",
+      "modelId": "ring-felling-boulder-east-stream-bank",
+      "mutable": true
+    },
+    {
+      "componentId": "boulder-west-bank-mossy",
+      "modelId": "ring-felling-boulder-west-bank-mossy",
+      "mutable": true
+    },
+    {
+      "componentId": "boulder-west-bank-mid",
+      "modelId": "ring-felling-boulder-west-bank-mid",
+      "mutable": true
+    },
+    {
+      "componentId": "boulder-west-bottom-flat",
+      "modelId": "ring-felling-boulder-west-bottom-flat",
+      "mutable": true
+    },
+    {
+      "componentId": "cyan-northwest",
+      "modelId": "ring-felling-cyan-northwest",
+      "mutable": true
+    },
+    {
+      "componentId": "cyan-west-clearing",
+      "modelId": "ring-felling-cyan-west-clearing",
+      "mutable": true
+    },
+    {
+      "componentId": "cyan-west-approach",
+      "modelId": "ring-felling-cyan-west-approach",
+      "mutable": true
+    },
+    {
+      "componentId": "cyan-southwest",
+      "modelId": "ring-felling-cyan-southwest",
+      "mutable": true
+    },
+    {
+      "componentId": "cyan-east-upper",
+      "modelId": "ring-felling-cyan-east-upper",
+      "mutable": true
+    },
+    {
+      "componentId": "cyan-east-middle",
+      "modelId": "ring-felling-cyan-east-middle",
+      "mutable": true
+    },
+    {
+      "componentId": "cyan-southeast-edge",
+      "modelId": "ring-felling-cyan-southeast-edge",
+      "mutable": true
+    },
+    {
+      "componentId": "red-northwest",
+      "modelId": "ring-felling-red-northwest",
+      "mutable": true
+    },
+    {
+      "componentId": "red-north-clearing-west",
+      "modelId": "ring-felling-red-north-clearing-west",
+      "mutable": true
+    },
+    {
+      "componentId": "red-north-clearing-east",
+      "modelId": "ring-felling-red-north-clearing-east",
+      "mutable": true
+    },
+    {
+      "componentId": "red-east-root-lip",
+      "modelId": "ring-felling-red-east-root-lip",
+      "mutable": true
+    },
+    {
+      "componentId": "red-far-east-upper",
+      "modelId": "ring-felling-red-far-east-upper",
+      "mutable": true
+    },
+    {
+      "componentId": "red-west-middle",
+      "modelId": "ring-felling-red-west-middle",
+      "mutable": true
+    },
+    {
+      "componentId": "red-west-clearing-rim",
+      "modelId": "ring-felling-red-west-clearing-rim",
+      "mutable": true
+    },
+    {
+      "componentId": "red-east-clearing-rim",
+      "modelId": "ring-felling-red-east-clearing-rim",
+      "mutable": true
+    },
+    {
+      "componentId": "red-west-approach",
+      "modelId": "ring-felling-red-west-approach",
+      "mutable": true
+    },
+    {
+      "componentId": "red-east-approach",
+      "modelId": "ring-felling-red-east-approach",
+      "mutable": true
+    },
+    {
+      "componentId": "red-southeast-inner",
+      "modelId": "ring-felling-red-southeast-inner",
+      "mutable": true
+    },
+    {
+      "componentId": "red-east-lower",
+      "modelId": "ring-felling-red-east-lower",
+      "mutable": true
+    },
+    {
+      "componentId": "pink-west-bank",
+      "modelId": "ring-felling-pink-west-bank",
+      "mutable": true
+    },
+    {
+      "componentId": "pink-west-arch",
+      "modelId": "ring-felling-pink-west-arch",
+      "mutable": true
+    },
+    {
+      "componentId": "pink-east-spires",
+      "modelId": "ring-felling-pink-east-spires",
+      "mutable": true
+    },
+    {
+      "componentId": "pink-east-middle",
+      "modelId": "ring-felling-pink-east-middle",
+      "mutable": true
+    },
+    {
+      "componentId": "cream-east-inner",
+      "modelId": "ring-felling-cream-east-inner",
+      "mutable": true
+    },
+    {
+      "componentId": "cream-west-boulder-foot",
+      "modelId": "ring-felling-cream-west-boulder-foot",
+      "mutable": true
+    },
+    {
+      "componentId": "pale-west-root-tubes",
+      "modelId": "ring-felling-pale-west-root-tubes",
+      "mutable": false
+    },
+    {
+      "componentId": "pale-north-inner-tubes",
+      "modelId": "ring-felling-pale-north-inner-tubes",
+      "mutable": false
+    },
+    {
+      "componentId": "pale-east-wall-tubes",
+      "modelId": "ring-felling-pale-east-wall-tubes",
+      "mutable": false
+    },
+    {
+      "componentId": "pale-east-tall-spires",
+      "modelId": "ring-felling-pale-east-tall-spires",
+      "mutable": false
+    },
+    {
+      "componentId": "pale-east-lower-tubes",
+      "modelId": "ring-felling-pale-east-lower-tubes",
+      "mutable": false
+    },
+    {
+      "componentId": "waterfall-motion",
+      "modelId": "ring-felling-waterfall-motion",
+      "mutable": false
+    },
+    {
+      "componentId": "waterfall-mist",
+      "modelId": "ring-felling-waterfall-mist",
+      "mutable": false
+    },
+    {
+      "componentId": "blackwater-flow",
+      "modelId": "ring-felling-blackwater-flow",
+      "mutable": false
+    },
+    {
+      "componentId": "red-north-clearing-west-right",
+      "modelId": "ring-felling-red-north-clearing-west-right",
+      "mutable": true
+    },
+    {
+      "componentId": "cyan-east-approach",
+      "modelId": "ring-felling-cyan-east-approach",
+      "mutable": true
+    },
+    {
+      "componentId": "cyan-east-root-tip",
+      "modelId": "ring-felling-cyan-east-root-tip",
+      "mutable": true
+    },
+    {
+      "componentId": "pink-southwest-streamside",
+      "modelId": "ring-felling-pink-southwest-streamside",
+      "mutable": true
+    },
+    {
+      "componentId": "pink-southwest-bottom-caps",
+      "modelId": "ring-felling-pink-southwest-bottom-caps",
+      "mutable": true
+    },
+    {
+      "componentId": "blue-west-middle-rosette",
+      "modelId": "ring-felling-blue-west-middle-rosette",
+      "mutable": true
+    },
+    {
+      "componentId": "blue-west-lower-rosette",
+      "modelId": "ring-felling-blue-west-lower-rosette",
+      "mutable": true
+    }
+  ],
+  "tileState": {
+    "waterModel": "ring-water-surface",
+    "height": 0.035,
+    "rule": "Current native coatings/pool state only; no seed restoration"
+  },
+  "zones": [
+    "Overworld.2.5.0",
+    "Overworld.2.6.0",
+    "Overworld.2.7.0",
+    "Overworld.3.5.0",
+    "Overworld.3.7.0",
+    "Overworld.4.5.0",
+    "Overworld.4.6.0",
+    "Overworld.4.7.0"
+  ],
+  "externalEquipment": {
+    "library": "Village3D/Library",
+    "models": [
+      "equipment-blade",
+      "equipment-club",
+      "equipment-staff",
+      "equipment-shield",
+      "equipment-pack",
+      "equipment-helmet"
+    ]
+  },
+  "materialSlots": [
+    "SpawnRingPalette",
+    "SpawnRingWater"
+  ],
+  "metadataConvention": "final boundsCenter and boundsSize each {x,y,z} in Unity basis; positive finite triangles; path is models/<id>.fbx",
+  "status": "contract proposal, not shipped assets"
+}

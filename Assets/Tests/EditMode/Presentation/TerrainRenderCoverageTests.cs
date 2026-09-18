@@ -68,7 +68,7 @@ namespace CavesOfOoo.Tests
             // claims the cell for the ground tile and the glyph disappears,
             // so a flower meadow would become a lawn and a tar seep would
             // become clean stone. They need their own 16×16 tiles.
-            "CropRow", "CharmFlowers", "FlowerField", "Reeds",
+            "CharmFlowers", "FlowerField", "Reeds",
             "SaltCrust", "DuneCrest", "Bones", "TentWall", "UntendedFire",
             "MirePool", "Duckboard", "DeadTree", "PeatBank",
             "MycelialColumn", "GroveSeep", "FruitingBody",
@@ -208,6 +208,17 @@ namespace CavesOfOoo.Tests
                 EnvironmentSpriteRenderer.ResolveGroundMaterial("WaterPuddle"));
             Assert.AreEqual(EnvironmentSpriteRenderer.GroundMaterial.None,
                 EnvironmentSpriteRenderer.ResolveGroundMaterial("NotARealBlueprint"));
+        }
+
+        [TestCase("CropRow",EnvironmentSpriteRenderer.CropSpriteKind.Seed,"crop_seed")]
+        [TestCase("RipeCropRow",EnvironmentSpriteRenderer.CropSpriteKind.Emberwheat,"emberwheat_crop")]
+        public void FieldRowsKeepGroundCoverageAndTheirDistinctRealCropSprites(string blueprint,EnvironmentSpriteRenderer.CropSpriteKind kind,string sprite)
+        {
+            Assert.AreEqual(EnvironmentSpriteRenderer.GroundMaterial.Grass,EnvironmentSpriteRenderer.ResolveGroundMaterial(blueprint));
+            Assert.AreEqual(kind,EnvironmentSpriteRenderer.ResolveFieldCropKind(_factory.CreateEntity(blueprint)));
+            Assert.NotNull(Resources.Load<Sprite>("Sprites/Environment/"+sprite));
+            Assert.IsFalse(GlyphOnlyByDesign.Contains(blueprint),"Authored crop art is not a glyph-only debt exception.");
+            Assert.AreEqual(EnvironmentSpriteRenderer.CropSpriteKind.None,EnvironmentSpriteRenderer.ResolveFieldCropKind(_factory.CreateEntity("Grass")));
         }
 
         // ════════════════════════════════════════════════════════

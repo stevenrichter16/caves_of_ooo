@@ -1,0 +1,416 @@
+{
+  "status": "FAILED_RUN_RETAINED; not accepted",
+  "scope": "Independent read-only partial-profile failure analysis; unchanged runtime. No new performance acceptance or clock alteration.",
+  "report": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-native.json",
+    "sha256": "3eb9b25dadb7718bb877c8bee69f54e9e628ad3017f647c980de47c6f3d4b0ae"
+  },
+  "rawCsv": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-fdd719181543455586a80feb4c30c1b7-frames.csv",
+    "sha256": "12f186ff90bbcab22c9b43cca4d74ba551f0899958a10d402c919f6b4d03cc4d",
+    "matchesReport": true,
+    "rows": 10515
+  },
+  "failedCast": {
+    "spell": "Cryomancy_RimeGrip",
+    "mode": "profile",
+    "zoneId": "Overworld.3.6.0",
+    "fxMode": "Reduced",
+    "nativeEntry": "Cryomancy_RimeGrip",
+    "gestureClip": "",
+    "gestureControllerBefore": "",
+    "gestureControllerAfter": "",
+    "gesturePeakDegrees": 0.0,
+    "sourceX": 40,
+    "sourceY": 8,
+    "targets": 1,
+    "damage": 4,
+    "cooldown": 35,
+    "rngCalls": 0,
+    "peakMeshes": 0,
+    "gestureSamples": 0,
+    "path": [
+      "41,8",
+      "42,8",
+      "43,8"
+    ],
+    "affected": [
+      "43,8",
+      "42,8",
+      "43,9",
+      "44,8"
+    ],
+    "applied": [
+      "FrozenEffect"
+    ],
+    "rejected": [],
+    "copiedTargetIds": [
+      "native-spell-target-fdd719181543455586a80feb4c30c1b7"
+    ],
+    "targetCells": [
+      "43,8->43,8"
+    ],
+    "observedConditionalMeshes": [],
+    "rejectedFrozen": false,
+    "rejectedPacified": false,
+    "resultStable": true,
+    "pass": false,
+    "sawGesture": false,
+    "gestureRestored": false,
+    "groundFixtureReset": false,
+    "seconds": 1.2028253750000033,
+    "frames": []
+  },
+  "partialPhases": [
+    {
+      "zoneId": "Overworld.3.6.0",
+      "mode": "Full",
+      "seconds": 20.423985875000007,
+      "firstFrame": 0,
+      "frames": 5673,
+      "casts": 13,
+      "activeFrames": 1830,
+      "maxMeshes": 35
+    },
+    {
+      "zoneId": "Overworld.3.6.0",
+      "mode": "Reduced",
+      "seconds": 0.0,
+      "firstFrame": 5673,
+      "frames": 4842,
+      "casts": 11,
+      "activeFrames": 1428,
+      "maxMeshes": 27
+    }
+  ],
+  "stallFrameContext": [
+    {
+      "phase": 1,
+      "unity_frame": 13603,
+      "wall_seconds": 67.36012363043538,
+      "unscaled_delta": 0.0033573343,
+      "tick": 20,
+      "native_meshes": 0,
+      "allocated_views": 384,
+      "zone_renderer": 1059708,
+      "input": 13042,
+      "main_thread": 3298500,
+      "gc_bytes": 30357,
+      "draw_calls": 230,
+      "triangles": 671197
+    },
+    {
+      "phase": 1,
+      "unity_frame": 13604,
+      "wall_seconds": 67.36376692143538,
+      "unscaled_delta": 0.0035482496,
+      "tick": 20,
+      "native_meshes": 0,
+      "allocated_views": 384,
+      "zone_renderer": 974959,
+      "input": 18375,
+      "main_thread": 3484750,
+      "gc_bytes": 29819,
+      "draw_calls": 230,
+      "triangles": 671197
+    },
+    {
+      "phase": 1,
+      "unity_frame": 13605,
+      "wall_seconds": 67.36740079643539,
+      "unscaled_delta": 0.0037625425,
+      "tick": 20,
+      "native_meshes": 0,
+      "allocated_views": 384,
+      "zone_renderer": 1092042,
+      "input": 22958,
+      "main_thread": 3808250,
+      "gc_bytes": 29755,
+      "draw_calls": 230,
+      "triangles": 671197
+    },
+    {
+      "phase": 1,
+      "unity_frame": 13606,
+      "wall_seconds": 67.37106508843539,
+      "unscaled_delta": 0.003508709,
+      "tick": 20,
+      "native_meshes": 0,
+      "allocated_views": 384,
+      "zone_renderer": 1053125,
+      "input": 14750,
+      "main_thread": 3383042,
+      "gc_bytes": 57125,
+      "draw_calls": 230,
+      "triangles": 671197
+    },
+    {
+      "phase": 1,
+      "unity_frame": 13607,
+      "wall_seconds": 67.84800183843538,
+      "unscaled_delta": 0.003863166,
+      "tick": 20,
+      "native_meshes": 0,
+      "allocated_views": 384,
+      "zone_renderer": 1146250,
+      "input": 20750,
+      "main_thread": 3903167,
+      "gc_bytes": 30985,
+      "draw_calls": 230,
+      "triangles": 671197
+    },
+    {
+      "phase": 1,
+      "unity_frame": 13608,
+      "wall_seconds": 67.85676179643539,
+      "unscaled_delta": 0.480188072,
+      "tick": 20,
+      "native_meshes": 0,
+      "allocated_views": 384,
+      "zone_renderer": 1127583,
+      "input": 24334,
+      "main_thread": 478662833,
+      "gc_bytes": 66465973,
+      "draw_calls": 230,
+      "triangles": 671197
+    },
+    {
+      "phase": 1,
+      "unity_frame": 13609,
+      "wall_seconds": 67.86051871343538,
+      "unscaled_delta": 0.00556695741,
+      "tick": 20,
+      "native_meshes": 0,
+      "allocated_views": 384,
+      "zone_renderer": 1047667,
+      "input": 16041,
+      "main_thread": 7142959,
+      "gc_bytes": 868981,
+      "draw_calls": 230,
+      "triangles": 671197
+    },
+    {
+      "phase": 1,
+      "unity_frame": 13610,
+      "wall_seconds": 67.86498471343539,
+      "unscaled_delta": 0.004369707,
+      "tick": 20,
+      "native_meshes": 0,
+      "allocated_views": 384,
+      "zone_renderer": 1001750,
+      "input": 18083,
+      "main_thread": 4380167,
+      "gc_bytes": 32311,
+      "draw_calls": 231,
+      "triangles": 671197
+    },
+    {
+      "phase": 1,
+      "unity_frame": 13611,
+      "wall_seconds": 67.86876050543539,
+      "unscaled_delta": 0.003899171,
+      "tick": 20,
+      "native_meshes": 0,
+      "allocated_views": 384,
+      "zone_renderer": 1122250,
+      "input": 12042,
+      "main_thread": 3933167,
+      "gc_bytes": 30841,
+      "draw_calls": 231,
+      "triangles": 671197
+    },
+    {
+      "phase": 1,
+      "unity_frame": 13612,
+      "wall_seconds": 67.87177996343539,
+      "unscaled_delta": 0.003069834,
+      "tick": 20,
+      "native_meshes": 0,
+      "allocated_views": 384,
+      "zone_renderer": 981750,
+      "input": 10500,
+      "main_thread": 3135125,
+      "gc_bytes": 29883,
+      "draw_calls": 231,
+      "triangles": 671197
+    },
+    {
+      "phase": 1,
+      "unity_frame": 13613,
+      "wall_seconds": 67.87559371343539,
+      "unscaled_delta": 0.00371853751,
+      "tick": 20,
+      "native_meshes": 0,
+      "allocated_views": 384,
+      "zone_renderer": 1022875,
+      "input": 8791,
+      "main_thread": 3516042,
+      "gc_bytes": 29819,
+      "draw_calls": 231,
+      "triangles": 671197
+    }
+  ],
+  "candidateTimeline": {
+    "startBoundFrames": [
+      13578,
+      13579
+    ],
+    "startIsInferred": "Last raw sample minus recorded cast seconds bounds the start near 67.2594 s; exact per-cast start frame is not recorded. Coordinator accepts pending commands in the same LateUpdate, consistent with frame 13579.",
+    "acceptanceFrame": 13579,
+    "sumAgeBeforeStallSeconds": 0.12330675174,
+    "sumAgeAfterStallSeconds": 0.6034948237400001,
+    "clearSeconds": 0.6,
+    "firstReducedPositiveAuthoredFrame": 18,
+    "sampleRate": 100
+  },
+  "controls": [
+    {
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "fxMode": "Full",
+      "nativeEntry": "Pyromancy_EmberSpit",
+      "peakMeshes": 23,
+      "resultStable": true,
+      "pass": true
+    },
+    {
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "fxMode": "Full",
+      "nativeEntry": "Pyromancy_FlamingHands",
+      "peakMeshes": 14,
+      "resultStable": true,
+      "pass": true
+    },
+    {
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "fxMode": "Full",
+      "nativeEntry": "Hydromancy_JetBlast",
+      "peakMeshes": 35,
+      "resultStable": true,
+      "pass": true
+    },
+    {
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "fxMode": "Full",
+      "nativeEntry": "Galvanism_GroundSurge",
+      "peakMeshes": 17,
+      "resultStable": true,
+      "pass": true
+    },
+    {
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "fxMode": "Full",
+      "nativeEntry": "Cryomancy_RimeGrip",
+      "peakMeshes": 15,
+      "resultStable": true,
+      "pass": true
+    },
+    {
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "fxMode": "Full",
+      "nativeEntry": "Spellcraft_Calm",
+      "peakMeshes": 7,
+      "resultStable": true,
+      "pass": true
+    },
+    {
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "fxMode": "Full",
+      "nativeEntry": "Hydromancy_ConjureRain",
+      "peakMeshes": 15,
+      "resultStable": true,
+      "pass": true
+    },
+    {
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "reduced-success",
+      "fxMode": "Reduced",
+      "nativeEntry": "Cryomancy_RimeGrip",
+      "peakMeshes": 7,
+      "resultStable": true,
+      "pass": true
+    },
+    {
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "fxMode": "Reduced",
+      "nativeEntry": "Cryomancy_RimeGrip",
+      "peakMeshes": 1,
+      "resultStable": true,
+      "pass": true
+    },
+    {
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "profile",
+      "fxMode": "Full",
+      "nativeEntry": "Cryomancy_RimeGrip",
+      "peakMeshes": 18,
+      "resultStable": true,
+      "pass": true
+    },
+    {
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "profile",
+      "fxMode": "Full",
+      "nativeEntry": "Cryomancy_RimeGrip",
+      "peakMeshes": 15,
+      "resultStable": true,
+      "pass": true
+    },
+    {
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "profile",
+      "fxMode": "Reduced",
+      "nativeEntry": "Cryomancy_RimeGrip",
+      "peakMeshes": 7,
+      "resultStable": true,
+      "pass": true
+    },
+    {
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "profile",
+      "fxMode": "Reduced",
+      "nativeEntry": "Cryomancy_RimeGrip",
+      "peakMeshes": 0,
+      "resultStable": true,
+      "pass": false
+    }
+  ],
+  "noPositiveMeshRowsDuringFailedInterval": true,
+  "cleanup": {
+    "errors": [],
+    "errorLedgerTruncated": false,
+    "runId": "fdd719181543455586a80feb4c30c1b7",
+    "privateRoot": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/7add6eeac1d1439cabdc5629aa378cd3",
+    "sceneError": "",
+    "viewError": "",
+    "reportError": "",
+    "privateRootRemoved": true,
+    "scenesRestored": true,
+    "gameViewRestored": true,
+    "finalNativeVerified": false,
+    "seedSettingRestored": true,
+    "inheritedSaveRootRestored": true,
+    "lastGamePreferenceRestored": true,
+    "nativeCleanupCode": 1,
+    "exitCode": 4,
+    "oldRequestedSeed": 0,
+    "restoredRequestedSeed": 0,
+    "totalUnexpectedErrors": 0
+  },
+  "conclusions": [
+    "A 480.188 ms actual unscaled frame delta accompanies 478.663 ms Main Thread and 66,465,973 bytes GC Allocated In Frame. Input is 0.024 ms and ZoneRenderer 1.128 ms. These are actual profiler observations; GC bytes do not prove a GC collection caused the duration.",
+    "A raw CPU mesh count of zero throughout the failed cast supports true presentation starvation rather than only sparse showcase screenshots. The existing wall-time advance can cross from pre-visible pose to cleared without rendering an intermediate pose.",
+    "The preceding seven showcases, Reduced-success Rime, denied-Frozen neutral feedback, and earlier Full/Reduced profile Rime all pass on identical runtime. Source-specific native acceptance is still withheld.",
+    "MCP resource discovery is a candidate test-environment startup cost. Its log event precedes later successful commands and this failed Rime; no timestamp links it to frame 13608, so cached discovery warming is an experiment, not a proved fix for all Editor stalls.",
+    "Recommend explicit measured cached Editor resource/tool discovery preparation before native workload, recorded outside profiling. Preserve every native visual, command, timing, profiling, artifact and cleanup gate. A repeated failure after warmup requires further attribution rather than a sequence of blind retries.",
+    "Do not change the runtime visual delta clock in this diagnostic step. A cap would alter existing tested wall-time semantics and require coordinated actor Animator timing; that is a separate product behavior change."
+  ],
+  "unexpectedErrorsDuringObservedRun": 0
+}

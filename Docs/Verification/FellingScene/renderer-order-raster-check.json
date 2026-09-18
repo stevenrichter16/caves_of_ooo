@@ -1,0 +1,84 @@
+{
+  "scope": "Independent source-raster simulation of proposed Unity sorting; GPU output and imported renderer state require separate Unity checks.",
+  "utc": "2026-09-06T16:00:14.363746+00:00",
+  "manifestSha256": "d4fe2b9e5298fedc35fbf761acba4c17604c68e1ddc83fb5f041b372155701d6",
+  "baselineSha256": "805491701a8ef3e79d18af284edd8a0600f0eac1e35cd1cbe06ed4cb61f07fdf",
+  "pixelsCompared": 1572864,
+  "initialDifferentPixels": 7566,
+  "correctedDifferentPixels": 0,
+  "algorithm": "Process source depth/id order. Foreground views inherit the maximum effective footY of earlier foreground views whose sprite/contact alpha actually overlaps. Tie-break source rank at1e-7Z. Contacts share owner order6 and sit1e-8Zbehind owner. Nonforeground source layers remain order3.",
+  "adjustedLayers": [
+    {
+      "id": "pink-west-arch",
+      "sourceFootY": 778,
+      "visualSortFootY": 897,
+      "sourceOverlapParents": [
+        "southwest-root-arch"
+      ],
+      "physicalAnchorUnchanged": [
+        26,
+        17
+      ]
+    },
+    {
+      "id": "red-east-approach",
+      "sourceFootY": 825,
+      "visualSortFootY": 988,
+      "sourceOverlapParents": [
+        "southeast-foreground-root"
+      ],
+      "physicalAnchorUnchanged": [
+        46,
+        18
+      ]
+    },
+    {
+      "id": "blue-west-middle-rosette",
+      "sourceFootY": 850,
+      "visualSortFootY": 897,
+      "sourceOverlapParents": [
+        "southwest-root-arch"
+      ],
+      "physicalAnchorUnchanged": [
+        27,
+        19
+      ]
+    },
+    {
+      "id": "boulder-west-approach",
+      "sourceFootY": 882,
+      "visualSortFootY": 925,
+      "sourceOverlapParents": [
+        "southwest-foreground-rock"
+      ],
+      "physicalAnchorUnchanged": [
+        34,
+        20
+      ]
+    },
+    {
+      "id": "red-west-approach",
+      "sourceFootY": 901,
+      "visualSortFootY": 925,
+      "sourceOverlapParents": [
+        "southwest-foreground-rock"
+      ],
+      "physicalAnchorUnchanged": [
+        31,
+        21
+      ]
+    },
+    {
+      "id": "red-southeast-inner",
+      "sourceFootY": 951,
+      "visualSortFootY": 988,
+      "sourceOverlapParents": [
+        "southeast-foreground-root"
+      ],
+      "physicalAnchorUnchanged": [
+        48,
+        22
+      ]
+    }
+  ]
+}

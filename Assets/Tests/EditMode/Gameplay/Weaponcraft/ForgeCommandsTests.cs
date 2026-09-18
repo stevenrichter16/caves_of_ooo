@@ -407,7 +407,8 @@ namespace CavesOfOoo.Tests.Gameplay.Weaponcraft
 
             // Walk away: a fresh zone with no forge.
             var fieldZone = new Zone("Field");
-            Assert.IsTrue(fieldZone.AddEntity(smith, 5, 5));
+            Assert.IsTrue(forgeZone.TryTransferEntityTo(smith, fieldZone, 5, 5));
+            Assert.IsNull(forgeZone.GetEntityCell(smith));
 
             var spike = GiveItem(smith, factory, "IronSpike");
             var result = InventorySystem.ExecuteCommand(

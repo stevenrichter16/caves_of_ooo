@@ -1,0 +1,91 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CanonicalVillageQuest|QuestVillagePoolTests|RegionalGuidanceTests|MorrowfastExpedition|MorrowfastMerchantRestockTests|NativeQuestCueTests|BiomeAffordance|SpreadVoxelKitTests",
+  "results": {
+    "id": "2",
+    "testcasecount": "167",
+    "result": "Failed(Child)",
+    "total": "167",
+    "passed": "150",
+    "failed": "17",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-17 01:28:34Z",
+    "end-time": "2026-09-17 01:28:40Z",
+    "duration": "6.1834999"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.BiomeAffordanceRenderingTests.ActualPresenterReplacesOnlyTheHarvestedRowsMeshAndRemovesTheSpentOwnerNormally",
+      "message": "  Spread voxel kit must have four variants of five families.\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BiomeAffordanceRenderingTests.HarvestedNativeStateSelectsStubbleAndDroppedGrainRetainsAnExplicitPortableModel",
+      "message": "System.InvalidOperationException : Spread voxel kit must have four variants of five families."
+    },
+    {
+      "name": "CavesOfOoo.Tests.BiomeAffordanceRenderingTests.SpentStubbleHasFourQuietLowVariantsDistinctFromStandingRipeGrain",
+      "message": "System.InvalidOperationException : Spread voxel kit must have four variants of five families."
+    },
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastExpeditionAdversarialTests.ArrivalHintNamesRealEastwardTownOnlyWhenWesternCacheExists",
+      "message": "  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastExpeditionAdversarialTests.ChangedDestinationCannotAdvertiseAnErrand",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastExpeditionAdversarialTests.DetachedCachedTownCannotAcceptOrPay",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastExpeditionAdversarialTests.FullInventoryDropsRewardOnActualReturnCellWithoutLosingIt",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastExpeditionAdversarialTests.MalformedCarriedParcelRejectsBeforeAnyRewardOrTransfer(\"Render\")",
+      "message": "System.NullReferenceException : Object reference not set to an instance of an object"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastExpeditionAdversarialTests.MalformedCarriedParcelRejectsBeforeAnyRewardOrTransfer(\"Examinable\")",
+      "message": "System.NullReferenceException : Object reference not set to an instance of an object"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastExpeditionAdversarialTests.MissingAuthoredDependencyDoesNotPartiallyInstallCache(\"WovenBasket\",\"Physics\")",
+      "message": "System.NullReferenceException : Object reference not set to an instance of an object"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastExpeditionAdversarialTests.MissingAuthoredDependencyDoesNotPartiallyInstallCache(\"WovenBasket\",\"Examinable\")",
+      "message": "System.NullReferenceException : Object reference not set to an instance of an object"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastExpeditionAdversarialTests.MissingAuthoredDependencyDoesNotPartiallyInstallCache(\"Sack\",\"Render\")",
+      "message": "System.NullReferenceException : Object reference not set to an instance of an object"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastExpeditionAdversarialTests.MissingAuthoredDependencyDoesNotPartiallyInstallCache(\"Sack\",\"Examinable\")",
+      "message": "System.NullReferenceException : Object reference not set to an instance of an object"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastExpeditionAdversarialTests.MissingTableExaminationDoesNotConsumeParcelWithoutResolution",
+      "message": "System.NullReferenceException : Object reference not set to an instance of an object"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastMerchantRestockTests.LegacyVillagePurseAndExistingDeclaredChoirMerchantRetainTheirEligibility",
+      "message": "  Expected: null\n  But was:  <CavesOfOoo.Core.TraderPart>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadVoxelKitTests.AlreadyVoxelKitIsBorrowedWithoutMissingMappingOrWorldMutation",
+      "message": "System.InvalidOperationException : Spread voxel kit must have four variants of five families."
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadVoxelKitTests.KitHasFourDistinctCoarseVariantsPerFamilyWithOnlyTwoSwatches",
+      "message": "System.InvalidOperationException : Spread voxel kit must have four variants of five families."
+    }
+  ]
+}

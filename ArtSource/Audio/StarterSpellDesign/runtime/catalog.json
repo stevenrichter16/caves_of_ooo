@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": 1,
+  "sampleRate": 48000,
+  "sourceManifestSha256": "0f32e12303f04e5691b3f801b57760064d68d987d7f6cc51fa5ea6fea7289ab7",
+  "neutralCrossoverSamples": 960,
+  "neutralCrossoverSeconds": 0.02,
+  "commonGain": 0.7768969,
+  "spells": [
+    {
+      "spellId": "Pyromancy_FlamingHands",
+      "id": "flaming_hands",
+      "referenceContactSeconds": 0.22,
+      "variants": [
+        {
+          "variant": 1,
+          "layers": [
+            {
+              "name": "palms_catch",
+              "gate": "always",
+              "sourceLayer": "layers/flaming_hands_01_palms_catch.wav",
+              "sourceLayerSha256": "76be38a08b9408b3ffcc88b81932085b20945acc6d3b78b0b5bcb34b674f44fa",
+              "originalSamples": 74400,
+              "prefix": {
+                "resourceBase": "flaming_hands_01_palms_catch_pre",
+                "file": "wav/flaming_hands_01_palms_catch_pre.wav",
+                "samples": 11520
+              },
+              "suffix": {
+                "resourceBase": "flaming_hands_01_palms_catch_post",
+                "file": "wav/flaming_hands_01_palms_catch_post.wav",
+                "samples": 63840
+              }
+            },
+            {
+              "name": "combustion_body",
+              "gate": "always",
+              "sourceLayer": "layers/flaming_hands_01_combustion_body.wav",
+              "sourceLayerSha256": "1fa34ea4b18713f4f7f5183d2cfb294596892ab127498136f75a28425a2ccc06",
+              "originalSamples": 74400,
+              "prefix": {
+                "resourceBase": "flaming_hands_01_combustion_body_pre",
+                "file": "wav/flaming_hands_01_combustion_body_pre.wav",
+                "samples": 11520
+              },
+              "suffix": {
+                "resourceBase": "flaming_hands_01_combustion_body_post",
+                "file": "wav/flaming_hands_01_combustion_body_post.wav",
+                "samples": 63840
+              }
+            },
+            {
+              "name": "dry_afterburn",
+              "gate": "always",
+              "sourceLayer": "layers/flaming_hands_01_dry_afterburn.wav",
+              "sourceLayerSha256": "9880648d6c5bda8ee6a700a0a9af302a7b4cbf18527d10ec19e00d1719df7085",
+              "originalSamples": 74400,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "flaming_hands_01_dry_afterburn_post",
+                "file": "wav/flaming_hands_01_dry_afterburn_post.wav",
+                "samples": 63840
+              }
+            }
+          ]
+        },
+        {
+          "variant": 2,
+          "layers": [
+            {
+              "name": "palms_catch",
+              "gate": "always",
+              "sourceLayer": "layers/flaming_hands_02_palms_catch.wav",
+              "sourceLayerSha256": "a7112e75e5e5eacda7982898ac852970c74ca6dc55c977fd1ef9125502160222",
+              "originalSamples": 74400,
+              "prefix": {
+                "resourceBase": "flaming_hands_02_palms_catch_pre",
+                "file": "wav/flaming_hands_02_palms_catch_pre.wav",
+                "samples": 11520
+              },
+              "suffix": {
+                "resourceBase": "flaming_hands_02_palms_catch_post",
+                "file": "wav/flaming_hands_02_palms_catch_post.wav",
+                "samples": 63840
+              }
+            },
+            {
+              "name": "combustion_body",
+              "gate": "always",
+              "sourceLayer": "layers/flaming_hands_02_combustion_body.wav",
+              "sourceLayerSha256": "19386aca6381a0530b5dd8486c57ad77e681daa2d7cc2b8c1e06ebdb9e991c08",
+              "originalSamples": 74400,
+              "prefix": {
+                "resourceBase": "flaming_hands_02_combustion_body_pre",
+                "file": "wav/flaming_hands_02_combustion_body_pre.wav",
+                "samples": 11520
+              },
+              "suffix": {
+                "resourceBase": "flaming_hands_02_combustion_body_post",
+                "file": "wav/flaming_hands_02_combustion_body_post.wav",
+                "samples": 63840
+              }
+            },
+            {
+              "name": "dry_afterburn",
+              "gate": "always",
+              "sourceLayer": "layers/flaming_hands_02_dry_afterburn.wav",
+              "sourceLayerSha256": "3791b568141d9440820069b4677d6e79860cbca18859d029f90c2063f8ecf912",
+              "originalSamples": 74400,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "flaming_hands_02_dry_afterburn_post",
+                "file": "wav/flaming_hands_02_dry_afterburn_post.wav",
+                "samples": 63840
+              }
+            }
+          ]
+        },
+        {
+          "variant": 3,
+          "layers": [
+            {
+              "name": "palms_catch",
+              "gate": "always",
+              "sourceLayer": "layers/flaming_hands_03_palms_catch.wav",
+              "sourceLayerSha256": "eaa2fcdf86e2f58af576ff25dfd1c88d3f589dd422ac8e63bd999a0d2a02a7d6",
+              "originalSamples": 74400,
+              "prefix": {
+                "resourceBase": "flaming_hands_03_palms_catch_pre",
+                "file": "wav/flaming_hands_03_palms_catch_pre.wav",
+                "samples": 11520
+              },
+              "suffix": {
+                "resourceBase": "flaming_hands_03_palms_catch_post",
+                "file": "wav/flaming_hands_03_palms_catch_post.wav",
+                "samples": 63840
+              }
+            },
+            {
+              "name": "combustion_body",
+              "gate": "always",
+              "sourceLayer": "layers/flaming_hands_03_combustion_body.wav",
+              "sourceLayerSha256": "f45c47663698c272c6fd376fcad1d390ad373ff85a9adc17b5782ad6f1e2f4b0",
+              "originalSamples": 74400,
+              "prefix": {
+                "resourceBase": "flaming_hands_03_combustion_body_pre",
+                "file": "wav/flaming_hands_03_combustion_body_pre.wav",
+                "samples": 11520
+              },
+              "suffix": {
+                "resourceBase": "flaming_hands_03_combustion_body_post",
+                "file": "wav/flaming_hands_03_combustion_body_post.wav",
+                "samples": 63840
+              }
+            },
+            {
+              "name": "dry_afterburn",
+              "gate": "always",
+              "sourceLayer": "layers/flaming_hands_03_dry_afterburn.wav",
+              "sourceLayerSha256": "a3e933e74c951215a3794cce806e102baf9b4baf62cb6e1197a8183112483b2e",
+              "originalSamples": 74400,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "flaming_hands_03_dry_afterburn_post",
+                "file": "wav/flaming_hands_03_dry_afterburn_post.wav",
+                "samples": 63840
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "spellId": "Hydromancy_JetBlast",
+      "id": "jet_blast",
+      "referenceContactSeconds": 0.27,
+      "variants": [
+        {
+          "variant": 1,
+          "layers": [
+            {
+              "name": "liquid_gather",
+              "gate": "always",
+              "sourceLayer": "layers/jet_blast_01_liquid_gather.wav",
+              "sourceLayerSha256": "78397a559f5ac2df32b07ba609428888efa462173db057d91bedc9ac7b4d0486",
+              "originalSamples": 81600,
+              "prefix": {
+                "resourceBase": "jet_blast_01_liquid_gather_pre",
+                "file": "wav/jet_blast_01_liquid_gather_pre.wav",
+                "samples": 13920
+              },
+              "suffix": {
+                "resourceBase": "jet_blast_01_liquid_gather_post",
+                "file": "wav/jet_blast_01_liquid_gather_post.wav",
+                "samples": 68640
+              }
+            },
+            {
+              "name": "pressurized_water",
+              "gate": "always",
+              "sourceLayer": "layers/jet_blast_01_pressurized_water.wav",
+              "sourceLayerSha256": "9da560f2e581248561d6816e5fa395264d065d5d8e91ed9a2d8b0ed81b220c66",
+              "originalSamples": 81600,
+              "prefix": {
+                "resourceBase": "jet_blast_01_pressurized_water_pre",
+                "file": "wav/jet_blast_01_pressurized_water_pre.wav",
+                "samples": 13920
+              },
+              "suffix": {
+                "resourceBase": "jet_blast_01_pressurized_water_post",
+                "file": "wav/jet_blast_01_pressurized_water_post.wav",
+                "samples": 68640
+              }
+            },
+            {
+              "name": "wet_slap",
+              "gate": "target",
+              "sourceLayer": "layers/jet_blast_01_wet_slap.wav",
+              "sourceLayerSha256": "1a3664eef3d766e3b70bab39c40c6b1e48d5ccfe15e3b9ecdb308a04057ed5ec",
+              "originalSamples": 81600,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "jet_blast_01_wet_slap_post",
+                "file": "wav/jet_blast_01_wet_slap_post.wav",
+                "samples": 68640
+              }
+            },
+            {
+              "name": "bubbles_and_runoff",
+              "gate": "always",
+              "sourceLayer": "layers/jet_blast_01_bubbles_and_runoff.wav",
+              "sourceLayerSha256": "878c2717935c72325993d7caeaaa8679d3a32e40c95123a15d2c9cb37ae43784",
+              "originalSamples": 81600,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "jet_blast_01_bubbles_and_runoff_post",
+                "file": "wav/jet_blast_01_bubbles_and_runoff_post.wav",
+                "samples": 68640
+              }
+            }
+          ]
+        },
+        {
+          "variant": 2,
+          "layers": [
+            {
+              "name": "liquid_gather",
+              "gate": "always",
+              "sourceLayer": "layers/jet_blast_02_liquid_gather.wav",
+              "sourceLayerSha256": "2d6dd8019d2e7619c24430a2624f42a3b8a48e40f079aa0e2b55d5b4cc70f839",
+              "originalSamples": 81600,
+              "prefix": {
+                "resourceBase": "jet_blast_02_liquid_gather_pre",
+                "file": "wav/jet_blast_02_liquid_gather_pre.wav",
+                "samples": 13920
+              },
+              "suffix": {
+                "resourceBase": "jet_blast_02_liquid_gather_post",
+                "file": "wav/jet_blast_02_liquid_gather_post.wav",
+                "samples": 68640
+              }
+            },
+            {
+              "name": "pressurized_water",
+              "gate": "always",
+              "sourceLayer": "layers/jet_blast_02_pressurized_water.wav",
+              "sourceLayerSha256": "513695ba1c62355b70cc34bd0efd3f4296521888fd0216c4c77e6b3d59c13e97",
+              "originalSamples": 81600,
+              "prefix": {
+                "resourceBase": "jet_blast_02_pressurized_water_pre",
+                "file": "wav/jet_blast_02_pressurized_water_pre.wav",
+                "samples": 13920
+              },
+              "suffix": {
+                "resourceBase": "jet_blast_02_pressurized_water_post",
+                "file": "wav/jet_blast_02_pressurized_water_post.wav",
+                "samples": 68640
+              }
+            },
+            {
+              "name": "wet_slap",
+              "gate": "target",
+              "sourceLayer": "layers/jet_blast_02_wet_slap.wav",
+              "sourceLayerSha256": "e75b3cbed01fd04eac49849f187be4a1911594f0e7eedc5f672a90adbc831985",
+              "originalSamples": 81600,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "jet_blast_02_wet_slap_post",
+                "file": "wav/jet_blast_02_wet_slap_post.wav",
+                "samples": 68640
+              }
+            },
+            {
+              "name": "bubbles_and_runoff",
+              "gate": "always",
+              "sourceLayer": "layers/jet_blast_02_bubbles_and_runoff.wav",
+              "sourceLayerSha256": "67d64d93e7b17fce2fb4adc3e1c0ca9f20cf3c332777c46268111c44dbe0a0e4",
+              "originalSamples": 81600,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "jet_blast_02_bubbles_and_runoff_post",
+                "file": "wav/jet_blast_02_bubbles_and_runoff_post.wav",
+                "samples": 68640
+              }
+            }
+          ]
+        },
+        {
+          "variant": 3,
+          "layers": [
+            {
+              "name": "liquid_gather",
+              "gate": "always",
+              "sourceLayer": "layers/jet_blast_03_liquid_gather.wav",
+              "sourceLayerSha256": "c43aea7b645dad1e0c07f487c5b12433f70d3edec8462adda37dfda7f5433363",
+              "originalSamples": 81600,
+              "prefix": {
+                "resourceBase": "jet_blast_03_liquid_gather_pre",
+                "file": "wav/jet_blast_03_liquid_gather_pre.wav",
+                "samples": 13920
+              },
+              "suffix": {
+                "resourceBase": "jet_blast_03_liquid_gather_post",
+                "file": "wav/jet_blast_03_liquid_gather_post.wav",
+                "samples": 68640
+              }
+            },
+            {
+              "name": "pressurized_water",
+              "gate": "always",
+              "sourceLayer": "layers/jet_blast_03_pressurized_water.wav",
+              "sourceLayerSha256": "b625c3ab9477cd3dcf1b7d284c514a2d9cdc55caa3a55a1e9f0fa34230c0defb",
+              "originalSamples": 81600,
+              "prefix": {
+                "resourceBase": "jet_blast_03_pressurized_water_pre",
+                "file": "wav/jet_blast_03_pressurized_water_pre.wav",
+                "samples": 13920
+              },
+              "suffix": {
+                "resourceBase": "jet_blast_03_pressurized_water_post",
+                "file": "wav/jet_blast_03_pressurized_water_post.wav",
+                "samples": 68640
+              }
+            },
+            {
+              "name": "wet_slap",
+              "gate": "target",
+              "sourceLayer": "layers/jet_blast_03_wet_slap.wav",
+              "sourceLayerSha256": "5ab936713d8328591eaea0a2e4c7f4431259d3f65e066f638a83b9497eae2702",
+              "originalSamples": 81600,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "jet_blast_03_wet_slap_post",
+                "file": "wav/jet_blast_03_wet_slap_post.wav",
+                "samples": 68640
+              }
+            },
+            {
+              "name": "bubbles_and_runoff",
+              "gate": "always",
+              "sourceLayer": "layers/jet_blast_03_bubbles_and_runoff.wav",
+              "sourceLayerSha256": "c8c4bef442cef42cc7b59c49f580130c2b99ab70540f24e42ea4c4a194e1d539",
+              "originalSamples": 81600,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "jet_blast_03_bubbles_and_runoff_post",
+                "file": "wav/jet_blast_03_bubbles_and_runoff_post.wav",
+                "samples": 68640
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "spellId": "Galvanism_GroundSurge",
+      "id": "ground_surge",
+      "referenceContactSeconds": 0.32,
+      "variants": [
+        {
+          "variant": 1,
+          "layers": [
+            {
+              "name": "charging_current",
+              "gate": "always",
+              "sourceLayer": "layers/ground_surge_01_charging_current.wav",
+              "sourceLayerSha256": "b26b99592c677cd79eb8fc41e0cc3ebded81a872ea816f6ccfeb9ffe5a860832",
+              "originalSamples": 60000,
+              "prefix": {
+                "resourceBase": "ground_surge_01_charging_current_pre",
+                "file": "wav/ground_surge_01_charging_current_pre.wav",
+                "samples": 16320
+              },
+              "suffix": null
+            },
+            {
+              "name": "advancing_arcs",
+              "gate": "always",
+              "sourceLayer": "layers/ground_surge_01_advancing_arcs.wav",
+              "sourceLayerSha256": "cdd3a9355fdcdbfde481c0939ffe7292adc09962a986912ad1f3b4c2a8e4e8c1",
+              "originalSamples": 60000,
+              "prefix": {
+                "resourceBase": "ground_surge_01_advancing_arcs_pre",
+                "file": "wav/ground_surge_01_advancing_arcs_pre.wav",
+                "samples": 16320
+              },
+              "suffix": {
+                "resourceBase": "ground_surge_01_advancing_arcs_post",
+                "file": "wav/ground_surge_01_advancing_arcs_post.wav",
+                "samples": 44640
+              }
+            },
+            {
+              "name": "ground_fracture",
+              "gate": "always",
+              "sourceLayer": "layers/ground_surge_01_ground_fracture.wav",
+              "sourceLayerSha256": "8d3c665dcb985d9b6890aedb3a3783aca9ef7386d2fe4a9af123992f74328f64",
+              "originalSamples": 60000,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "ground_surge_01_ground_fracture_post",
+                "file": "wav/ground_surge_01_ground_fracture_post.wav",
+                "samples": 44640
+              }
+            },
+            {
+              "name": "grit_displacement",
+              "gate": "moved",
+              "sourceLayer": "layers/ground_surge_01_grit_displacement.wav",
+              "sourceLayerSha256": "553061ce40907574cb613096d36df97fcedb4b6c56fe48ed6eeed8976deaa0b7",
+              "originalSamples": 60000,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "ground_surge_01_grit_displacement_post",
+                "file": "wav/ground_surge_01_grit_displacement_post.wav",
+                "samples": 44640
+              }
+            }
+          ]
+        },
+        {
+          "variant": 2,
+          "layers": [
+            {
+              "name": "charging_current",
+              "gate": "always",
+              "sourceLayer": "layers/ground_surge_02_charging_current.wav",
+              "sourceLayerSha256": "d00d2c6ab4395631c0ebf9059b5fefc213b652ab04439a1cdafa4d31a2d1b4b2",
+              "originalSamples": 60000,
+              "prefix": {
+                "resourceBase": "ground_surge_02_charging_current_pre",
+                "file": "wav/ground_surge_02_charging_current_pre.wav",
+                "samples": 16320
+              },
+              "suffix": {
+                "resourceBase": "ground_surge_02_charging_current_post",
+                "file": "wav/ground_surge_02_charging_current_post.wav",
+                "samples": 44640
+              }
+            },
+            {
+              "name": "advancing_arcs",
+              "gate": "always",
+              "sourceLayer": "layers/ground_surge_02_advancing_arcs.wav",
+              "sourceLayerSha256": "8d6bc04237f24b2d0205768774b636e63a935e07bdfcaa49f02e8d08793b96fb",
+              "originalSamples": 60000,
+              "prefix": {
+                "resourceBase": "ground_surge_02_advancing_arcs_pre",
+                "file": "wav/ground_surge_02_advancing_arcs_pre.wav",
+                "samples": 16320
+              },
+              "suffix": {
+                "resourceBase": "ground_surge_02_advancing_arcs_post",
+                "file": "wav/ground_surge_02_advancing_arcs_post.wav",
+                "samples": 44640
+              }
+            },
+            {
+              "name": "ground_fracture",
+              "gate": "always",
+              "sourceLayer": "layers/ground_surge_02_ground_fracture.wav",
+              "sourceLayerSha256": "81d82ad43ebf47f0ae74fd5cfa31c03fd0b8ba904263d6857b0a534c5d6ed7b4",
+              "originalSamples": 60000,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "ground_surge_02_ground_fracture_post",
+                "file": "wav/ground_surge_02_ground_fracture_post.wav",
+                "samples": 44640
+              }
+            },
+            {
+              "name": "grit_displacement",
+              "gate": "moved",
+              "sourceLayer": "layers/ground_surge_02_grit_displacement.wav",
+              "sourceLayerSha256": "a7233533c02027ff2ab11c0354231fe2d5ab82dd35e8d38265814a0622074ad8",
+              "originalSamples": 60000,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "ground_surge_02_grit_displacement_post",
+                "file": "wav/ground_surge_02_grit_displacement_post.wav",
+                "samples": 44640
+              }
+            }
+          ]
+        },
+        {
+          "variant": 3,
+          "layers": [
+            {
+              "name": "charging_current",
+              "gate": "always",
+              "sourceLayer": "layers/ground_surge_03_charging_current.wav",
+              "sourceLayerSha256": "db11bb7afd3c1648e65a4f159cc2675b41a348f662675999e74fd5381d89017e",
+              "originalSamples": 60000,
+              "prefix": {
+                "resourceBase": "ground_surge_03_charging_current_pre",
+                "file": "wav/ground_surge_03_charging_current_pre.wav",
+                "samples": 16320
+              },
+              "suffix": null
+            },
+            {
+              "name": "advancing_arcs",
+              "gate": "always",
+              "sourceLayer": "layers/ground_surge_03_advancing_arcs.wav",
+              "sourceLayerSha256": "ee9ab3f65c26bdecce2dd4c904067af78629d3a863d2f20c7825d1d7d86b4d02",
+              "originalSamples": 60000,
+              "prefix": {
+                "resourceBase": "ground_surge_03_advancing_arcs_pre",
+                "file": "wav/ground_surge_03_advancing_arcs_pre.wav",
+                "samples": 16320
+              },
+              "suffix": {
+                "resourceBase": "ground_surge_03_advancing_arcs_post",
+                "file": "wav/ground_surge_03_advancing_arcs_post.wav",
+                "samples": 44640
+              }
+            },
+            {
+              "name": "ground_fracture",
+              "gate": "always",
+              "sourceLayer": "layers/ground_surge_03_ground_fracture.wav",
+              "sourceLayerSha256": "bade6913a22d492b6ff0656c3e39f7e31a63d436c8c4bd19a79cc2ea516732f4",
+              "originalSamples": 60000,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "ground_surge_03_ground_fracture_post",
+                "file": "wav/ground_surge_03_ground_fracture_post.wav",
+                "samples": 44640
+              }
+            },
+            {
+              "name": "grit_displacement",
+              "gate": "moved",
+              "sourceLayer": "layers/ground_surge_03_grit_displacement.wav",
+              "sourceLayerSha256": "b3d952b9a05fde5357936081844afd494132b45f3a62451bd73794ba27e75c47",
+              "originalSamples": 60000,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "ground_surge_03_grit_displacement_post",
+                "file": "wav/ground_surge_03_grit_displacement_post.wav",
+                "samples": 44640
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "spellId": "Cryomancy_RimeGrip",
+      "id": "rime_grip",
+      "referenceContactSeconds": 0.22,
+      "variants": [
+        {
+          "variant": 1,
+          "layers": [
+            {
+              "name": "inward_ice_stress",
+              "gate": "always",
+              "sourceLayer": "layers/rime_grip_01_inward_ice_stress.wav",
+              "sourceLayerSha256": "46352ba7b15a4833dbb51bf7fb569d52f889bbcbb4af216e4c1cace2777db7fa",
+              "originalSamples": 79200,
+              "prefix": {
+                "resourceBase": "rime_grip_01_inward_ice_stress_pre",
+                "file": "wav/rime_grip_01_inward_ice_stress_pre.wav",
+                "samples": 11520
+              },
+              "suffix": {
+                "resourceBase": "rime_grip_01_inward_ice_stress_post",
+                "file": "wav/rime_grip_01_inward_ice_stress_post.wav",
+                "samples": 68640
+              }
+            },
+            {
+              "name": "brittle_lock",
+              "gate": "frozen",
+              "sourceLayer": "layers/rime_grip_01_brittle_lock.wav",
+              "sourceLayerSha256": "43b4b9cd932d4064e54b6b73f6068c8ea7295e2f0a9c48a83dbd0263cf02568a",
+              "originalSamples": 79200,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "rime_grip_01_brittle_lock_post",
+                "file": "wav/rime_grip_01_brittle_lock_post.wav",
+                "samples": 68640
+              }
+            },
+            {
+              "name": "settling_fragments",
+              "gate": "frozen",
+              "sourceLayer": "layers/rime_grip_01_settling_fragments.wav",
+              "sourceLayerSha256": "b8d67896bfa1e5cf43626a41b5ece2c8ca34de136c5c175d85ff93c18ee04773",
+              "originalSamples": 79200,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "rime_grip_01_settling_fragments_post",
+                "file": "wav/rime_grip_01_settling_fragments_post.wav",
+                "samples": 68640
+              }
+            }
+          ]
+        },
+        {
+          "variant": 2,
+          "layers": [
+            {
+              "name": "inward_ice_stress",
+              "gate": "always",
+              "sourceLayer": "layers/rime_grip_02_inward_ice_stress.wav",
+              "sourceLayerSha256": "640f58754fd22ac2de8ecb2e3a2ac0b2213c7b7b3db7659ee8dbe0408c4a015d",
+              "originalSamples": 79200,
+              "prefix": {
+                "resourceBase": "rime_grip_02_inward_ice_stress_pre",
+                "file": "wav/rime_grip_02_inward_ice_stress_pre.wav",
+                "samples": 11520
+              },
+              "suffix": {
+                "resourceBase": "rime_grip_02_inward_ice_stress_post",
+                "file": "wav/rime_grip_02_inward_ice_stress_post.wav",
+                "samples": 68640
+              }
+            },
+            {
+              "name": "brittle_lock",
+              "gate": "frozen",
+              "sourceLayer": "layers/rime_grip_02_brittle_lock.wav",
+              "sourceLayerSha256": "0819c3be034d452e610f714351345f32c17725474860f3d1c6db191552e6ae5c",
+              "originalSamples": 79200,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "rime_grip_02_brittle_lock_post",
+                "file": "wav/rime_grip_02_brittle_lock_post.wav",
+                "samples": 68640
+              }
+            },
+            {
+              "name": "settling_fragments",
+              "gate": "frozen",
+              "sourceLayer": "layers/rime_grip_02_settling_fragments.wav",
+              "sourceLayerSha256": "aabcc36a7103e83e151382cc15ee78d8a19c2259051faf4f43d33917059ab4f9",
+              "originalSamples": 79200,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "rime_grip_02_settling_fragments_post",
+                "file": "wav/rime_grip_02_settling_fragments_post.wav",
+                "samples": 68640
+              }
+            }
+          ]
+        },
+        {
+          "variant": 3,
+          "layers": [
+            {
+              "name": "inward_ice_stress",
+              "gate": "always",
+              "sourceLayer": "layers/rime_grip_03_inward_ice_stress.wav",
+              "sourceLayerSha256": "58dd646fe4fbe9c8a821d874ce4820468a08329d3b73f4e9dbf248dfc0b204a4",
+              "originalSamples": 79200,
+              "prefix": {
+                "resourceBase": "rime_grip_03_inward_ice_stress_pre",
+                "file": "wav/rime_grip_03_inward_ice_stress_pre.wav",
+                "samples": 11520
+              },
+              "suffix": {
+                "resourceBase": "rime_grip_03_inward_ice_stress_post",
+                "file": "wav/rime_grip_03_inward_ice_stress_post.wav",
+                "samples": 68640
+              }
+            },
+            {
+              "name": "brittle_lock",
+              "gate": "frozen",
+              "sourceLayer": "layers/rime_grip_03_brittle_lock.wav",
+              "sourceLayerSha256": "541cc0e6a43fc9de82f2502f501b38bc17bd3a1a86ad3ccf518f664d6f254006",
+              "originalSamples": 79200,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "rime_grip_03_brittle_lock_post",
+                "file": "wav/rime_grip_03_brittle_lock_post.wav",
+                "samples": 68640
+              }
+            },
+            {
+              "name": "settling_fragments",
+              "gate": "frozen",
+              "sourceLayer": "layers/rime_grip_03_settling_fragments.wav",
+              "sourceLayerSha256": "6bc8b32a714b33f7a320c04f191f2882584fc7420068a8f22f9f5041228f25cd",
+              "originalSamples": 79200,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "rime_grip_03_settling_fragments_post",
+                "file": "wav/rime_grip_03_settling_fragments_post.wav",
+                "samples": 68640
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "spellId": "Spellcraft_Calm",
+      "id": "calm",
+      "referenceContactSeconds": 0.32,
+      "variants": [
+        {
+          "variant": 1,
+          "layers": [
+            {
+              "name": "warm_bowl_body",
+              "gate": "always",
+              "sourceLayer": "layers/calm_01_warm_bowl_body.wav",
+              "sourceLayerSha256": "89ed44f3b9f56b0d836228cfb09c096f1212fcca77075ab0eb0ef7c6d7c8e2c7",
+              "originalSamples": 112800,
+              "prefix": {
+                "resourceBase": "calm_01_warm_bowl_body_pre",
+                "file": "wav/calm_01_warm_bowl_body_pre.wav",
+                "samples": 16320
+              },
+              "suffix": {
+                "resourceBase": "calm_01_warm_bowl_body_post",
+                "file": "wav/calm_01_warm_bowl_body_post.wav",
+                "samples": 97440
+              }
+            },
+            {
+              "name": "resolved_overtone",
+              "gate": "pacified",
+              "sourceLayer": "layers/calm_01_resolved_overtone.wav",
+              "sourceLayerSha256": "3be7d8a224a4f1e4af5b16c4bbbcb88fa5d5e0c937cad049bff7a7ef6c73c953",
+              "originalSamples": 112800,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "calm_01_resolved_overtone_post",
+                "file": "wav/calm_01_resolved_overtone_post.wav",
+                "samples": 97440
+              }
+            },
+            {
+              "name": "human_exhale",
+              "gate": "always",
+              "sourceLayer": "layers/calm_01_human_exhale.wav",
+              "sourceLayerSha256": "11cc0c67de7b63db1048ff4d4dd6b577ab4103a4d78e6c66a98d921bc604b07d",
+              "originalSamples": 112800,
+              "prefix": {
+                "resourceBase": "calm_01_human_exhale_pre",
+                "file": "wav/calm_01_human_exhale_pre.wav",
+                "samples": 16320
+              },
+              "suffix": {
+                "resourceBase": "calm_01_human_exhale_post",
+                "file": "wav/calm_01_human_exhale_post.wav",
+                "samples": 97440
+              }
+            }
+          ]
+        },
+        {
+          "variant": 2,
+          "layers": [
+            {
+              "name": "warm_bowl_body",
+              "gate": "always",
+              "sourceLayer": "layers/calm_02_warm_bowl_body.wav",
+              "sourceLayerSha256": "a49f4b236f3248aadfe3e67f53ab5d97360898404001afe4c9481e20692ef932",
+              "originalSamples": 112800,
+              "prefix": {
+                "resourceBase": "calm_02_warm_bowl_body_pre",
+                "file": "wav/calm_02_warm_bowl_body_pre.wav",
+                "samples": 16320
+              },
+              "suffix": {
+                "resourceBase": "calm_02_warm_bowl_body_post",
+                "file": "wav/calm_02_warm_bowl_body_post.wav",
+                "samples": 97440
+              }
+            },
+            {
+              "name": "resolved_overtone",
+              "gate": "pacified",
+              "sourceLayer": "layers/calm_02_resolved_overtone.wav",
+              "sourceLayerSha256": "7a0775984bdd4d01165cca4a8c18f5bdde3693a9d850f50585a80f7a154de3e4",
+              "originalSamples": 112800,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "calm_02_resolved_overtone_post",
+                "file": "wav/calm_02_resolved_overtone_post.wav",
+                "samples": 97440
+              }
+            },
+            {
+              "name": "human_exhale",
+              "gate": "always",
+              "sourceLayer": "layers/calm_02_human_exhale.wav",
+              "sourceLayerSha256": "4634fbb25b444424936024e6bea38f90398d90114a42ce8870a91ccf451ab824",
+              "originalSamples": 112800,
+              "prefix": {
+                "resourceBase": "calm_02_human_exhale_pre",
+                "file": "wav/calm_02_human_exhale_pre.wav",
+                "samples": 16320
+              },
+              "suffix": {
+                "resourceBase": "calm_02_human_exhale_post",
+                "file": "wav/calm_02_human_exhale_post.wav",
+                "samples": 97440
+              }
+            }
+          ]
+        },
+        {
+          "variant": 3,
+          "layers": [
+            {
+              "name": "warm_bowl_body",
+              "gate": "always",
+              "sourceLayer": "layers/calm_03_warm_bowl_body.wav",
+              "sourceLayerSha256": "80a1ff024deaf2bc89252d0d46e9daf9e99ff84b3f26280061204a6ba5bece1b",
+              "originalSamples": 112800,
+              "prefix": {
+                "resourceBase": "calm_03_warm_bowl_body_pre",
+                "file": "wav/calm_03_warm_bowl_body_pre.wav",
+                "samples": 16320
+              },
+              "suffix": {
+                "resourceBase": "calm_03_warm_bowl_body_post",
+                "file": "wav/calm_03_warm_bowl_body_post.wav",
+                "samples": 97440
+              }
+            },
+            {
+              "name": "resolved_overtone",
+              "gate": "pacified",
+              "sourceLayer": "layers/calm_03_resolved_overtone.wav",
+              "sourceLayerSha256": "3026e1834f18ff8013918595b77e213ec18fcd86f978cddbf7249ed8a3c632ff",
+              "originalSamples": 112800,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "calm_03_resolved_overtone_post",
+                "file": "wav/calm_03_resolved_overtone_post.wav",
+                "samples": 97440
+              }
+            },
+            {
+              "name": "human_exhale",
+              "gate": "always",
+              "sourceLayer": "layers/calm_03_human_exhale.wav",
+              "sourceLayerSha256": "9bfb6a882c19e8d7ed7b7ea7dfe023d8d52f3be0276e8b3c93a03b624640012e",
+              "originalSamples": 112800,
+              "prefix": {
+                "resourceBase": "calm_03_human_exhale_pre",
+                "file": "wav/calm_03_human_exhale_pre.wav",
+                "samples": 16320
+              },
+              "suffix": {
+                "resourceBase": "calm_03_human_exhale_post",
+                "file": "wav/calm_03_human_exhale_post.wav",
+                "samples": 97440
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "spellId": "Hydromancy_ConjureRain",
+      "id": "conjure_rain",
+      "referenceContactSeconds": 0.22,
+      "variants": [
+        {
+          "variant": 1,
+          "layers": [
+            {
+              "name": "leaf_rain",
+              "gate": "watered",
+              "sourceLayer": "layers/conjure_rain_01_leaf_rain.wav",
+              "sourceLayerSha256": "5f3b3377cc14f9da926d91bc3f50eed15f93b0bd4d732ca06fccdbfdb637997c",
+              "originalSamples": 108000,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "conjure_rain_01_leaf_rain_post",
+                "file": "wav/conjure_rain_01_leaf_rain_post.wav",
+                "samples": 97440
+              }
+            },
+            {
+              "name": "close_leaf_patter",
+              "gate": "watered",
+              "sourceLayer": "layers/conjure_rain_01_close_leaf_patter.wav",
+              "sourceLayerSha256": "b777ebfef0eb1ccb270e44d14c978dce4a9d4880459da2561026848b0f3ce638",
+              "originalSamples": 108000,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "conjure_rain_01_close_leaf_patter_post",
+                "file": "wav/conjure_rain_01_close_leaf_patter_post.wav",
+                "samples": 97440
+              }
+            },
+            {
+              "name": "individual_drips",
+              "gate": "watered",
+              "sourceLayer": "layers/conjure_rain_01_individual_drips.wav",
+              "sourceLayerSha256": "f84a01d6126c46669f1464355e2247fc28f99d90cc37b58d3556083e2b8b3827",
+              "originalSamples": 108000,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "conjure_rain_01_individual_drips_post",
+                "file": "wav/conjure_rain_01_individual_drips_post.wav",
+                "samples": 97440
+              }
+            }
+          ]
+        },
+        {
+          "variant": 2,
+          "layers": [
+            {
+              "name": "leaf_rain",
+              "gate": "watered",
+              "sourceLayer": "layers/conjure_rain_02_leaf_rain.wav",
+              "sourceLayerSha256": "0663c858bdb9cf6c655b1f28553d0fe76a6c8d1556d6e34d497d78b414e35c9b",
+              "originalSamples": 108000,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "conjure_rain_02_leaf_rain_post",
+                "file": "wav/conjure_rain_02_leaf_rain_post.wav",
+                "samples": 97440
+              }
+            },
+            {
+              "name": "close_leaf_patter",
+              "gate": "watered",
+              "sourceLayer": "layers/conjure_rain_02_close_leaf_patter.wav",
+              "sourceLayerSha256": "a194078da02caef19ff0ec75411e61c9045baf714cf1c1d6f31bf73df9ac307a",
+              "originalSamples": 108000,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "conjure_rain_02_close_leaf_patter_post",
+                "file": "wav/conjure_rain_02_close_leaf_patter_post.wav",
+                "samples": 97440
+              }
+            },
+            {
+              "name": "individual_drips",
+              "gate": "watered",
+              "sourceLayer": "layers/conjure_rain_02_individual_drips.wav",
+              "sourceLayerSha256": "c55f96b9aff0f2428056b21b12cc004eb09d6fd5a30272c84b7eaf331a923efb",
+              "originalSamples": 108000,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "conjure_rain_02_individual_drips_post",
+                "file": "wav/conjure_rain_02_individual_drips_post.wav",
+                "samples": 97440
+              }
+            }
+          ]
+        },
+        {
+          "variant": 3,
+          "layers": [
+            {
+              "name": "leaf_rain",
+              "gate": "watered",
+              "sourceLayer": "layers/conjure_rain_03_leaf_rain.wav",
+              "sourceLayerSha256": "137c944b403fdaef1fbcf988fb41f3e968c136f0ca23a3b48f592cb726b078b9",
+              "originalSamples": 108000,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "conjure_rain_03_leaf_rain_post",
+                "file": "wav/conjure_rain_03_leaf_rain_post.wav",
+                "samples": 97440
+              }
+            },
+            {
+              "name": "close_leaf_patter",
+              "gate": "watered",
+              "sourceLayer": "layers/conjure_rain_03_close_leaf_patter.wav",
+              "sourceLayerSha256": "0dc1a6f7a892355c7e77af36d5b478f23686273dfa800e67e6dd736d7bc4cde8",
+              "originalSamples": 108000,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "conjure_rain_03_close_leaf_patter_post",
+                "file": "wav/conjure_rain_03_close_leaf_patter_post.wav",
+                "samples": 97440
+              }
+            },
+            {
+              "name": "individual_drips",
+              "gate": "watered",
+              "sourceLayer": "layers/conjure_rain_03_individual_drips.wav",
+              "sourceLayerSha256": "77ce5781fb4d34058f68fe842e10881a5dfa45303f608abcea233fc651ebb1b6",
+              "originalSamples": 108000,
+              "prefix": null,
+              "suffix": {
+                "resourceBase": "conjure_rain_03_individual_drips_post",
+                "file": "wav/conjure_rain_03_individual_drips_post.wav",
+                "samples": 97440
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "gainPolicy": "Apply this fixed common gain equally to every prefix and suffix; source PCM partitions themselves are not normalized",
+  "worstRetimedPeakBeforeGain": 0.8905054846431891,
+  "worstRetimedPeakAfterGain": 0.6918309504522913,
+  "allRetimingPeakBoundBeforeGain": 1.1075355270350096,
+  "allRetimingPeakBoundAfterGain": 0.8604409175933652,
+  "allRetimingBoundPolicy": "For every variant and gated subset: maxabs(sum prefixes) + maxabs(sum selected suffixes), four-times oversampled; applies to arbitrary relative offset",
+  "audioHashes": {
+    "wav/flaming_hands_01_palms_catch_pre.wav": "83ea93d119b96be514071665f5b0de16d8aa0ae2804da21eab30ce85fa47c4a9",
+    "wav/flaming_hands_01_palms_catch_post.wav": "2532e3748b176cbdaa0a0b76064d105f40e72a8347d1b1b43cc9d5096aef08cd",
+    "wav/flaming_hands_01_combustion_body_pre.wav": "13ffd680550ac6c77e5728e663052e3d5c7392c6c8b41947e2ef047a6dfbd34c",
+    "wav/flaming_hands_01_combustion_body_post.wav": "dddf9e5fa6246dcf54dcacaf7ae996127d3f26168b97053d1e24154e980aea19",
+    "wav/flaming_hands_01_dry_afterburn_post.wav": "1b5b3f575a122c4bdfe5efc71dbb9a95c393e8f3c248cd7b2ce7bf2c8a0dc4ce",
+    "wav/flaming_hands_02_palms_catch_pre.wav": "0737404ee62d3e33680562855cfa936ee341d5c868fafe798479d865b1537b76",
+    "wav/flaming_hands_02_palms_catch_post.wav": "59c57b34dc8d9f89ddce87e896f43e510cd2021b4e6976ac0fcb4293bdfb2c57",
+    "wav/flaming_hands_02_combustion_body_pre.wav": "8383100e993f014a0b732cfbb7b5819f475cf554f68a2fe71d63e094ee8d897f",
+    "wav/flaming_hands_02_combustion_body_post.wav": "8b9348bdd73be0d48f4ed80ddc1bafb2d3ef90559974261f7fac8d9176d845d9",
+    "wav/flaming_hands_02_dry_afterburn_post.wav": "ba691be18f7264b391d3ac3cb81179932d439b3744bb95dd5a223a6a7f93fb0b",
+    "wav/flaming_hands_03_palms_catch_pre.wav": "41d9714c67bc82d78752e0f7b136f3e078a49b63920e1b7182be6a2fd155023f",
+    "wav/flaming_hands_03_palms_catch_post.wav": "334014629d654582f062348e2683d24b3235988e131b52a304eb3db69702a215",
+    "wav/flaming_hands_03_combustion_body_pre.wav": "3a8c58afa399bf52465dd1797a7872a3978712633967ead76622347fe92d3c83",
+    "wav/flaming_hands_03_combustion_body_post.wav": "23b5d3ee9e7136c8984d818d31eb47aafeadd22ac92fd126e99b86d77afdd9be",
+    "wav/flaming_hands_03_dry_afterburn_post.wav": "d26ab16b70eda7c28fd3d7b3564287c1c579ab2c1c4b567b13ef6c3769f94cb1",
+    "wav/jet_blast_01_liquid_gather_pre.wav": "45acda2a01dd42729f6e71d26977584ad8d3536f5ada9fb6ae1fbbded218ed14",
+    "wav/jet_blast_01_liquid_gather_post.wav": "ff0a56e1472339b47daf99a52cb80343c076e8b4d92899e67f010e5eba98a891",
+    "wav/jet_blast_01_pressurized_water_pre.wav": "cc73f0935ec4f42373f45be7be527beb7bd8204899ac2c9c79d0ddbf81123e0a",
+    "wav/jet_blast_01_pressurized_water_post.wav": "5d824e3ab6497432389d0cf1e024338cd2590150ca1b409d93caeba5d612e3f9",
+    "wav/jet_blast_01_wet_slap_post.wav": "a4669c8e82e4c41864e3c89521be114ea9b6c77a32cfcf5a778ab0c110d758a8",
+    "wav/jet_blast_01_bubbles_and_runoff_post.wav": "255bf5584ffafbf3cda45d3108b347cc51ba2c73754f79ca0f0f1a3e0bfa24fa",
+    "wav/jet_blast_02_liquid_gather_pre.wav": "03eafca0445b50fc06cf90e25c95398944e288e5f05c4b8316332d7dc318892c",
+    "wav/jet_blast_02_liquid_gather_post.wav": "c0f5d59acebd5b41239a5e91e4c720b9578a22ba175880926527d8ae1941512a",
+    "wav/jet_blast_02_pressurized_water_pre.wav": "210ad43afb2da8b312a2c6f16542f52220d4470f7e6308f2f34b06fa3cc5db8f",
+    "wav/jet_blast_02_pressurized_water_post.wav": "2004a84d7bb5a5e11d3f99f14f58172a0b9201fb861a42d355213da9a8216ae6",
+    "wav/jet_blast_02_wet_slap_post.wav": "bedea6bd87246990b62a779a3e433df28d4712aacc5cb7c2823da77141b8accf",
+    "wav/jet_blast_02_bubbles_and_runoff_post.wav": "d7ac9d7c3f70daafec0adbef8a5959bc79ab1bf1afe176b63f8d2bd75a0fcdb9",
+    "wav/jet_blast_03_liquid_gather_pre.wav": "cc0badf7765bb5da69ab3a2a1d7b215c7748e04a49f907e4cf638e8a0fbfdac4",
+    "wav/jet_blast_03_liquid_gather_post.wav": "9777ffa781db60ebe8e6e88eb788d9121056fd5a9688c973b0c0a749c292f3b1",
+    "wav/jet_blast_03_pressurized_water_pre.wav": "56dbb0eb4b0474a6462306fca05e75452653e3c6adcad5a68e102bf8aa459935",
+    "wav/jet_blast_03_pressurized_water_post.wav": "88c367006c91178b253952d45f7870221dbc8d87ef474b43374f878cddc12037",
+    "wav/jet_blast_03_wet_slap_post.wav": "8ee27c46aafcb86710592bcf225ddb0a99c4b25253de0fd1fe6e40172121ba52",
+    "wav/jet_blast_03_bubbles_and_runoff_post.wav": "7053fe78e4ff790a647bc7310ddfc9725fed47ffe58b2ce9f8415442f3edbcf2",
+    "wav/ground_surge_01_charging_current_pre.wav": "a6ea3a30f463fb8d84d83670570311df8d9c91a8c5d1cf372d8bb2bd0211c847",
+    "wav/ground_surge_01_advancing_arcs_pre.wav": "979291302dc8bc04a91e7261a3219fa23e40805b043ab5e4062c0cca564ab9fb",
+    "wav/ground_surge_01_advancing_arcs_post.wav": "51461ff90590800f41a500e895df0bdfbf8595183e8acdf5856ce11f574af235",
+    "wav/ground_surge_01_ground_fracture_post.wav": "d1ae87348cf5e78a5a8dded50ccf3459a028e4aef543ec1766a2a1c7a12a4f94",
+    "wav/ground_surge_01_grit_displacement_post.wav": "c6b5bcb77081e2e2731fd8e410c7c69da570f14ad0f175cbcb5fd2fb84b20627",
+    "wav/ground_surge_02_charging_current_pre.wav": "ca467566086d8873a6acf6c94140ddd24429c0ac30b1beb0e034e8eba3afd711",
+    "wav/ground_surge_02_charging_current_post.wav": "57b6cbf13721a24e0b07452c358ed719f923e5f5923e5468baa038d664200187",
+    "wav/ground_surge_02_advancing_arcs_pre.wav": "12993549a4881451826a59941a6b2f58f549956176669c788a207cc7414ec9a1",
+    "wav/ground_surge_02_advancing_arcs_post.wav": "5afc4d653d46954489c073c1a74fd6e6de33d362844782abd1b3cfe4571757e4",
+    "wav/ground_surge_02_ground_fracture_post.wav": "b621e80d7c78e4968545c32fd8c618fbc0ce268be4219a92d8c50dfa2d93e3d6",
+    "wav/ground_surge_02_grit_displacement_post.wav": "7b94c27865c5e758bbea561feb18bc41410c074d19d7bc201579d13dedf0ee7a",
+    "wav/ground_surge_03_charging_current_pre.wav": "ba39350387095129d649229c21a5fc530a5675c64da820c6adff0983d82922c9",
+    "wav/ground_surge_03_advancing_arcs_pre.wav": "43a28642351b5432833a49107c3b0d2e60c5ff8b3503275de2e1a60a4ac89486",
+    "wav/ground_surge_03_advancing_arcs_post.wav": "bf98b2a4d6b2a66ab466130ccd3c71d1a5e80d73ec4be949f5acaa4c0f05625c",
+    "wav/ground_surge_03_ground_fracture_post.wav": "5cc09dc7f67381f7ee2f946b374581886e979c557168b3332d65fd961dd30be4",
+    "wav/ground_surge_03_grit_displacement_post.wav": "9755ea37513c766a0ac54b66423b18cced8485234fd89a6f713220074f2de5cd",
+    "wav/rime_grip_01_inward_ice_stress_pre.wav": "b35ebed394e6187498e937428471e91cc7e0c6da5ec48ad5b2e37ec7b46aae18",
+    "wav/rime_grip_01_inward_ice_stress_post.wav": "cee91abcb38e891fd8f4698e3f08e0aba0e263ea31358ba40a27d07cde507482",
+    "wav/rime_grip_01_brittle_lock_post.wav": "0ab4b04e1b37676a4a1fb5db06f8594ee5c786e8f299f4fff5a96c20fc59daaa",
+    "wav/rime_grip_01_settling_fragments_post.wav": "c43220fc00f0cfc454c3332b266a08a4b332ba3158d17ea3749cf1b4929d708c",
+    "wav/rime_grip_02_inward_ice_stress_pre.wav": "fdf7deefc2eff631118a46020bef74e765b83631718694b9118d196f1bbede0d",
+    "wav/rime_grip_02_inward_ice_stress_post.wav": "00d1450c8c024e694a63857afb55f679d449b0214fd82ca59b09edcdfcc6b030",
+    "wav/rime_grip_02_brittle_lock_post.wav": "b4a1fca15656637f0ba48490d129f5cdd01d54a7de7fd4c06e149eab679dc653",
+    "wav/rime_grip_02_settling_fragments_post.wav": "861bd21b1d056a5da1eba1f3d07bc723d531a6f35f6302c7808c2c028af7942a",
+    "wav/rime_grip_03_inward_ice_stress_pre.wav": "7dc7042ec63338d12ac7c3b13e117549d8e0da0142ca5249f1776095e26b3b10",
+    "wav/rime_grip_03_inward_ice_stress_post.wav": "3875c297de704ef26da0e5222b9b7fb2b878deb76583440bb5ca6c430c99cec5",
+    "wav/rime_grip_03_brittle_lock_post.wav": "49a08831341f87cf5266f1545e9dc68bbd73ec363b8dbfed423e6979d5411eb1",
+    "wav/rime_grip_03_settling_fragments_post.wav": "21d4bb41891acc1ba72824fd5bc407c06acc0688a2ace2dc04dcdb163c79e9b0",
+    "wav/calm_01_warm_bowl_body_pre.wav": "db3a3571eadfaa3902ac775472afa5d658f55f7047668e1e231945ef628edcfe",
+    "wav/calm_01_warm_bowl_body_post.wav": "4ca130c3f564cb1dfe27217b37c9af151a9785650d57518c6f5f1129fa3d7160",
+    "wav/calm_01_resolved_overtone_post.wav": "7fce266f4bb715f4867ee764f282a5cab34004dcd995c6b71883177825a32189",
+    "wav/calm_01_human_exhale_pre.wav": "c94a2cdb4886781563e58b2f8fc71f9be1f6f2574143aa6c2cadc0fdf8d080b2",
+    "wav/calm_01_human_exhale_post.wav": "3cc2b502159d90086f1c91c3e0a22526052e8aed1566d3af44c63f3dd6eed30b",
+    "wav/calm_02_warm_bowl_body_pre.wav": "72b5c09451ab9f7777662857bdec41dc849ae63d41c302106e9f84dd063162d7",
+    "wav/calm_02_warm_bowl_body_post.wav": "825b3ccc5b824ef995ee6755b92a2be714c0a0f219a5b665a368d725a94e7a22",
+    "wav/calm_02_resolved_overtone_post.wav": "2f4134ae01cf9e210b06c401de74667dae2d50583b0d6d006470e145fdae306c",
+    "wav/calm_02_human_exhale_pre.wav": "c9976d62cbc986ade4ac6d98ffb1a860d5cdac77f77b116774c1e63bf069dae0",
+    "wav/calm_02_human_exhale_post.wav": "11a5c62a4432c5f300adddb91de8ce975f96f73a47abc3d7afb2ac84b93858fb",
+    "wav/calm_03_warm_bowl_body_pre.wav": "894cf4320af5c1874d514a0df0c84f06fc9e0e3b9e3b464589e504f957a3da6f",
+    "wav/calm_03_warm_bowl_body_post.wav": "a7f44b23ab8e815b59c009d8a233c27713db54d6029e8ab6e153e7f59b52672b",
+    "wav/calm_03_resolved_overtone_post.wav": "f1fe9b1681c74eb873a607c06a8fd5a62d44aee875bbd5e24c83a1be8beb6c19",
+    "wav/calm_03_human_exhale_pre.wav": "efea5d3f51e8acdc664eb15521690dd6bbe1234e1fff2ac52e6c455d692cae3b",
+    "wav/calm_03_human_exhale_post.wav": "43940d31e336bb380a567066a9c4a6f70646d24c8b43e7781f5bbb301eea859e",
+    "wav/conjure_rain_01_leaf_rain_post.wav": "af5766de9034c4acc5906550fb0231cd982fbedd8f6e1db19e8d4da05977d654",
+    "wav/conjure_rain_01_close_leaf_patter_post.wav": "5cf3ef3e2dd525017faacb31b67054ed0282ecfc331f0189935689ee3ef8a6c4",
+    "wav/conjure_rain_01_individual_drips_post.wav": "9a5fa065ead0b481a36237519e18b1ec9c883f9f5c50c9f7710de7698095d7f0",
+    "wav/conjure_rain_02_leaf_rain_post.wav": "9edbeb2478c4edb8ace8dcb57589f3a7ab5a25c78f19ba3376f39622cbc44f67",
+    "wav/conjure_rain_02_close_leaf_patter_post.wav": "6cdc4b677508d4ae9572a6d5332b516df5533d883efaa703f43ed206eebd7f35",
+    "wav/conjure_rain_02_individual_drips_post.wav": "6e4094eea5ec6f2fefd8802bfce1f6ac94465e4e8723719c38e68fe9e083a787",
+    "wav/conjure_rain_03_leaf_rain_post.wav": "b89bae0fdc49ecddc413115f61710679d9b9b225bac99f98e9f5394599d841e3",
+    "wav/conjure_rain_03_close_leaf_patter_post.wav": "4ad8a4dde70b87a5e5ef668bb7bc9c954c6474c571ddff08940f906c6022b8ba",
+    "wav/conjure_rain_03_individual_drips_post.wav": "afa90be8b452211570336a8ea71b9dab67684a146618d7cd109ad5a14c14deb5"
+  }
+}

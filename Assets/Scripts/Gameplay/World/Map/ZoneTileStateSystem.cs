@@ -71,10 +71,8 @@ namespace CavesOfOoo.Core
                 var source = e?.GetPart<TileStateSourcePart>();
                 if (source == null) continue;
 
-                (int x, int y) = zone.GetEntityPosition(e);
-                if (x < 0 || y < 0) continue;
-
-                source.Seed(zone, x, y);
+                foreach(var cell in zone.GetOccupiedCells(e))
+                    if(cell!=null) source.Seed(zone,cell.X,cell.Y);
             }
         }
 
@@ -110,6 +108,9 @@ namespace CavesOfOoo.Core
         {
             if (zone == null) return;
 
+            var bodyHits=UnityEngine.Pool.HashSetPool<(Entity owner,string reaction)>.Get();
+            try
+            {
             // PROPAGATE FIRST, then react. The spec's §26 puts local
             // reactions before propagation, and that order is WRONG for
             // this architecture: electrify_water CONSUMES the charge, so
@@ -118,7 +119,7 @@ namespace CavesOfOoo.Core
             // comes first anyway — current fills the conductor, and THEN
             // everything standing in it gets shocked at once.
             TilePropagationSystem.PropagateCharge(zone, caster);
-            TileReactionSystem.ResolveZone(zone, caster);
+            TileReactionSystem.ResolveZone(zone, caster, bodyHits);
 
             // One more round, for the other direction: a reaction can
             // CREATE something that spreads (oil ignites -> embers ->
@@ -129,7 +130,9 @@ namespace CavesOfOoo.Core
             int spread = TilePropagationSystem.PropagateFire(zone, caster);
             spread += TilePropagationSystem.PropagateCharge(zone, caster);
             if (spread > 0)
-                TileReactionSystem.ResolveZone(zone, caster);
+                TileReactionSystem.ResolveZone(zone, caster, bodyHits);
+            }
+            finally {UnityEngine.Pool.HashSetPool<(Entity owner,string reaction)>.Release(bodyHits);}
         }
 
         /// <summary>
@@ -153,6 +156,7 @@ namespace CavesOfOoo.Core
         {
             if (zone == null) return;
             zone.TileState.WriteCoating(x, y, liquidId, turns);
+            SpellFxCapture.RecordGround(zone, x, y, "coating", liquidId, turns);
             Emit(zone, x, y, "coating", liquidId, turns, source, ability);
         }
 
@@ -161,6 +165,7 @@ namespace CavesOfOoo.Core
         {
             if (zone == null) return;
             zone.TileState.WriteResidue(x, y, residueId, turns);
+            SpellFxCapture.RecordGround(zone, x, y, "residue", residueId, turns);
             Emit(zone, x, y, "residue", residueId, turns, source, ability);
         }
 
@@ -169,6 +174,7 @@ namespace CavesOfOoo.Core
         {
             if (zone == null) return;
             zone.TileState.AddCharge(x, y, amount);
+            SpellFxCapture.RecordGround(zone, x, y, "energy", "charge", amount);
             Emit(zone, x, y, "energy", "charge", amount, source, ability);
         }
 
@@ -177,6 +183,7 @@ namespace CavesOfOoo.Core
         {
             if (zone == null) return;
             zone.TileState.AddHeat(x, y, amount);
+            SpellFxCapture.RecordGround(zone, x, y, "energy", "heat", amount);
             Emit(zone, x, y, "energy", "heat", amount, source, ability);
         }
 
@@ -185,6 +192,7 @@ namespace CavesOfOoo.Core
         {
             if (zone == null) return;
             zone.TileState.AddCold(x, y, amount);
+            SpellFxCapture.RecordGround(zone, x, y, "energy", "cold", amount);
             Emit(zone, x, y, "energy", "cold", amount, source, ability);
         }
 

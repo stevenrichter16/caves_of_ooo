@@ -1,0 +1,82 @@
+{
+  "comparisonCount": 39,
+  "comparisonFiles": [
+    "blue-west-lower-rosette.png",
+    "blue-west-middle-rosette.png",
+    "boulder-east-clearing.png",
+    "boulder-east-stream-bank.png",
+    "boulder-southwest-path.png",
+    "boulder-west-approach.png",
+    "boulder-west-bank-mid.png",
+    "boulder-west-bank-mossy.png",
+    "boulder-west-bottom-flat.png",
+    "cream-east-inner.png",
+    "cream-west-boulder-foot.png",
+    "cyan-east-approach.png",
+    "cyan-east-middle.png",
+    "cyan-east-root-tip.png",
+    "cyan-east-upper.png",
+    "cyan-northwest.png",
+    "cyan-southeast-edge.png",
+    "cyan-southwest.png",
+    "cyan-west-approach.png",
+    "cyan-west-clearing.png",
+    "pink-east-middle.png",
+    "pink-east-spires.png",
+    "pink-southwest-bottom-caps.png",
+    "pink-southwest-streamside.png",
+    "pink-west-arch.png",
+    "pink-west-bank.png",
+    "red-east-approach.png",
+    "red-east-clearing-rim.png",
+    "red-east-lower.png",
+    "red-east-root-lip.png",
+    "red-far-east-upper.png",
+    "red-north-clearing-east.png",
+    "red-north-clearing-west-right.png",
+    "red-north-clearing-west.png",
+    "red-northwest.png",
+    "red-southeast-inner.png",
+    "red-west-approach.png",
+    "red-west-clearing-rim.png",
+    "red-west-middle.png"
+  ],
+  "authoringChanges": [
+    "red-north-clearing-west",
+    "cyan-east-approach",
+    "cyan-east-middle",
+    "cyan-east-root-tip",
+    "cyan-east-upper",
+    "cyan-northwest",
+    "cyan-southeast-edge",
+    "cyan-southwest",
+    "cyan-west-approach",
+    "cyan-west-clearing"
+  ],
+  "newCyanStemInclusionPolygons": 29,
+  "redChanges": {
+    "expandedBounds": [
+      554,
+      438,
+      58,
+      47
+    ],
+    "newTipInclusions": 1,
+    "newStaticExclusions": 1,
+    "priorExclusionsPreserved": true
+  },
+  "notChanged": "Seven loose stones and two blue rosettes show no clear remaining subject silhouette. Other pink fungi and red clusters do not show a confidently identified missing visible stem requiring new authoring beyond the separate algorithm review.",
+  "residualLimitations": [
+    "Updated extraction has not yet run; the next sprite contact sheet and all affected removal crops must confirm these authored additions.",
+    "Thin dark stems are partly blended with moss; source tracing uses a small opaque band and can retain some local fringe pixels.",
+    "Disconnected cream flecks, ground moss and dark basal fragments were not assumed to belong to each plant.",
+    "Red threshold fragmentation is an extraction-algorithm issue handled by root, not fixed or validated by this authoring-only change.",
+    "Backing ground is reconstructed and its fine texture/lighting may differ from the original hidden surface."
+  ],
+  "postRebuildReview": {
+    "status": "reviewed-offline-removal-study",
+    "authoringSha256": "df0d549054626af018615ffd64e05f66b3484e0a282879caad168de7ba10f840",
+    "contactSheet": "final-corrected-removals.png",
+    "findings": "All ten rebuilt affected source/removal pairs were visually inspected. Previously missed cyan stems/curls and the northwestern red terminal sprig now disappear. Adjacent stones and separately owned neighboring cyan clusters remain. Remaining cream flecks and pink/stone debris are preserved as ambiguous background, not silently erased. Ground reconstruction is locally plausible at the authored scale; this is not recovered hidden geometry."
+  }
+}

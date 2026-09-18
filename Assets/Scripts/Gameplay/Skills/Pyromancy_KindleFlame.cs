@@ -15,7 +15,7 @@ namespace CavesOfOoo.Skills
     /// exactly as the mutation only charged its cooldown when something
     /// was affected.</para>
     /// </summary>
-    public class Pyromancy_KindleFlame : BaseSkillPart
+    public class Pyromancy_KindleFlame : SpellSkillPart
     {
         public override string Name => nameof(Pyromancy_KindleFlame);
 
@@ -35,16 +35,17 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             if (ctx.Zone == null) { EmitSkillRejectedDiag(ctx, "no_zone"); return false; }
             if (ctx.TargetCell == null) { EmitSkillRejectedDiag(ctx, "no_target_cell"); return false; }
 
             bool affectedAny = false;
-            for (int i = ctx.TargetCell.Objects.Count - 1; i >= 0; i--)
+            var targets = MultiCellAbilityQueries.SnapshotOccupants(new[] { ctx.TargetCell }, reverse: true);
+            foreach (var entity in targets)
             {
-                Entity entity = ctx.TargetCell.Objects[i];
+                if (ctx.Zone.GetEntityCell(entity) == null) continue;
                 if (entity.HasTag("Creature"))
                     continue;
 
@@ -57,6 +58,7 @@ namespace CavesOfOoo.Skills
                 heatEvent.SetParameter("Radiant", (object)false);
                 heatEvent.SetParameter("Source", (object)ctx.Attacker);
                 heatEvent.SetParameter("Zone", (object)ctx.Zone);
+                SpellFxCapture.Target(ctx.Zone, entity);
                 entity.FireEvent(heatEvent);
                 heatEvent.Release();
                 affectedAny = true;

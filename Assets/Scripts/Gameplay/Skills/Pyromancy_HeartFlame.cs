@@ -34,7 +34,7 @@ namespace CavesOfOoo.Skills
     /// (<c>Docs/SKILL-ACTIVES-BRAINSTORM.md §Pyromancy_HeartFlame</c>):
     /// "trades HP but for fire-specific bonus; LeyTap is universal."</para>
     /// </summary>
-    public class Pyromancy_HeartFlame : BaseSkillPart
+    public class Pyromancy_HeartFlame : SpellSkillPart
     {
         public override string Name => nameof(Pyromancy_HeartFlame);
 
@@ -67,7 +67,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
@@ -83,7 +83,9 @@ namespace CavesOfOoo.Skills
                 EmitSkillRejectedDiag(ctx, "insufficient_hp");
                 return false;
             }
+            SpellFxCapture.Target(ctx.Zone, actor);
             hp.BaseValue -= sacrifice;
+            SpellFxCapture.RecordDamage(ctx.Zone, actor, sacrifice, resisted: false);
 
             _chargesRemaining = BUFF_CHARGES;
             _expiresAtTurn = (TurnManager.Active?.TickCount ?? 0) + BUFF_DURATION;

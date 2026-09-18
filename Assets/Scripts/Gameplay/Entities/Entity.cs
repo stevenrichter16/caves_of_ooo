@@ -39,24 +39,35 @@ namespace CavesOfOoo.Core
         /// </summary>
         public Dictionary<string, int> IntProperties = new Dictionary<string, int>();
 
+        // Derived location; save files still serialize one canonical cell reference.
+        internal Zone SpatialZone;
+
         // --- Part Management ---
 
         public void AddPart(Part part)
         {
+            if(part is SpatialFootprintPart && HasPart<SpatialFootprintPart>())
+                throw new InvalidOperationException("An entity has exactly one physical footprint.");
             part.ParentEntity = this;
             Parts.Add(part);
+            if(part is SpatialFootprintPart && SpatialZone != null && !SpatialZone.RefreshFootprint(this))
+            {
+                Parts.Remove(part); part.ParentEntity=null;
+                throw new InvalidOperationException("The complete footprint cannot be placed here.");
+            }
             part.Initialize();
         }
 
         public bool RemovePart(Part part)
         {
-            if (Parts.Remove(part))
-            { 
-                part.Remove();
-                part.ParentEntity = null;
-                return true;
-            }
-            return false;
+            int index=Parts.IndexOf(part);
+            if(index<0) return false;
+            Parts.RemoveAt(index);
+            if(part is SpatialFootprintPart && SpatialZone != null && !SpatialZone.RefreshFootprint(this))
+            {Parts.Insert(index,part);return false;}
+            part.Remove();
+            part.ParentEntity = null;
+            return true;
         }
 
         public T GetPart<T>() where T : Part
@@ -329,9 +340,15 @@ namespace CavesOfOoo.Core
         /// </summary>
         public bool ApplyEffect(Effect effect, Entity source = null, Zone zone = null)
         {
+            SpellFxCapture.Target(zone, this);
             if (!ObjectStatusMatrix.PassesTheDoor(effect, this, source))
+            {
+                SpellFxCapture.RecordEffect(zone, this, effect?.GetType().Name, applied: false);
                 return false;
-            return EnsureStatusEffectsPart().ApplyEffect(effect, source, zone);
+            }
+            bool applied = EnsureStatusEffectsPart().ApplyEffect(effect, source, zone);
+            SpellFxCapture.RecordEffect(zone, this, effect?.GetType().Name, applied);
+            return applied;
         }
 
         /// <summary>
@@ -343,9 +360,15 @@ namespace CavesOfOoo.Core
         /// </summary>
         public bool ForceApplyEffect(Effect effect, Entity source = null, Zone zone = null)
         {
+            SpellFxCapture.Target(zone, this);
             if (!ObjectStatusMatrix.PassesTheDoor(effect, this, source))
+            {
+                SpellFxCapture.RecordEffect(zone, this, effect?.GetType().Name, applied: false);
                 return false;
-            return EnsureStatusEffectsPart().ForceApplyEffect(effect, source, zone);
+            }
+            bool applied = EnsureStatusEffectsPart().ForceApplyEffect(effect, source, zone);
+            SpellFxCapture.RecordEffect(zone, this, effect?.GetType().Name, applied);
+            return applied;
         }
 
         public bool HasEffect<T>() where T : Effect

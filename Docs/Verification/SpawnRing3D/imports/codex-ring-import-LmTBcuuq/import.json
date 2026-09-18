@@ -1,0 +1,1467 @@
+{
+    "runId": "9b69d285c9c74d168a661b640255eca4",
+    "sourceRoot": "/Users/steven/caves-of-ooo/ArtSource/SpawnRing3D",
+    "catalogSha256": "e233215413e4d5ee149a370d5ebed2f9cb2604c575f36d571c1afe6623919c23",
+    "startedUtc": "2026-09-10T05:08:08.3937350Z",
+    "finishedUtc": "2026-09-10T05:08:14.9437450Z",
+    "status": "failed",
+    "error": "System.InvalidOperationException: Imported triangle count disagrees with completed export: ring-glow-quartz-vein-0 actual=210 expected=260\n  at CavesOfOoo.Editor.SpawnRing3DAssetBuilder.ValidateImportedModel (CavesOfOoo.Rendering.SpawnRing3DCatalog+Model model, UnityEngine.GameObject wrapper, System.String asset, System.String prefab, System.Collections.Generic.Dictionary`2[TKey,TValue] clips) [0x00434] in /Users/steven/caves-of-ooo/Assets/Editor/Art/SpawnRing3DAssetBuilder.cs:308 \n  at CavesOfOoo.Editor.SpawnRing3DAssetBuilder.Build (System.String sourceDirectory, System.String reportPath) [0x0070c] in /Users/steven/caves-of-ooo/Assets/Editor/Art/SpawnRing3DAssetBuilder.cs:133 ",
+    "libraryAsset": "Assets/Resources/SpawnRing3D/Library.asset",
+    "modelCount": 218,
+    "blueprintCount": 73,
+    "fellingOwnerCount": 55,
+    "rendererIndex": 1,
+    "changedFiles": [
+        "Assets/Art3D/SpawnRing/Definitions/catalog.json",
+        "Assets/Art3D/SpawnRing/Textures/SpawnRingPalette.png",
+        "Assets/Art3D/SpawnRing/Textures/SpawnRingFogUnbound.asset",
+        "Assets/Art3D/SpawnRing/Materials/SpawnRingPalette.mat",
+        "Assets/Art3D/SpawnRing/Materials/SpawnRingWater.mat",
+        "Assets/Art3D/SpawnRing/Models/ring-ash-bed-0.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-ash-bed-1.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-ash-bed-2.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-ash-bed-3.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-brine-pool-0.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-brine-pool-1.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-brine-pool-2.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-brine-pool-3.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-bush-0.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-bush-1.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-bush-2.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-bush-3.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-campfire.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-cascade-father.fbx",
+        "Assets/Art3D/SpawnRing/Animations/ring-cascade-father.controller",
+        "Assets/Art3D/SpawnRing/Models/ring-cave-hermit.fbx",
+        "Assets/Art3D/SpawnRing/Animations/ring-cave-hermit.controller",
+        "Assets/Art3D/SpawnRing/Models/ring-chest.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-choir-iron-vein-0.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-choir-iron-vein-1.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-choir-iron-vein-2.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-choir-iron-vein-3.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-choir-tendril.fbx",
+        "Assets/Art3D/SpawnRing/Animations/ring-choir-tendril.controller",
+        "Assets/Art3D/SpawnRing/Models/ring-compost-cache-0.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-compost-cache-1.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-compost-cache-2.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-compost-cache-3.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-compost-row-0.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-compost-row-1.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-compost-row-2.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-compost-row-3.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-copper-pipe.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-crate.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-descent-ledge-0.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-descent-ledge-1.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-descent-ledge-2.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-descent-ledge-3.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-dry-brush-0.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-dry-brush-1.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-dry-brush-2.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-dry-brush-3.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-fallen-beam-0.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-fallen-beam-1.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-fallen-beam-2.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-fallen-beam-3.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-felling-bare-position.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-floor-0.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-floor-1.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-floor-2.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-floor-3.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-fruiting-body-0.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-fruiting-body-1.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-fruiting-body-2.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-fruiting-body-3.fbx",
+        "Assets/Art3D/SpawnRing/Models/ring-glasspane-frog.fbx",
+        "Assets/Art3D/SpawnRing/Animations/ring-glasspane-frog.controller",
+        "Assets/Art3D/SpawnRing/Models/ring-glow-quartz-vein-0.fbx",
+        "Assets/Art3D/SpawnRing/Definitions/catalog.json.meta",
+        "Assets/Art3D/SpawnRing/Textures/SpawnRingPalette.png.meta",
+        "Assets/Art3D/SpawnRing/Textures/SpawnRingFogUnbound.asset.meta",
+        "Assets/Art3D/SpawnRing/Materials/SpawnRingPalette.mat.meta",
+        "Assets/Art3D/SpawnRing/Materials/SpawnRingWater.mat.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-ash-bed-0.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-ash-bed-0.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-ash-bed-0.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-ash-bed-1.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-ash-bed-1.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-ash-bed-1.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-ash-bed-2.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-ash-bed-2.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-ash-bed-2.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-ash-bed-3.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-ash-bed-3.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-ash-bed-3.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-brine-pool-0.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-brine-pool-0.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-brine-pool-0.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-brine-pool-1.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-brine-pool-1.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-brine-pool-1.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-brine-pool-2.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-brine-pool-2.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-brine-pool-2.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-brine-pool-3.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-brine-pool-3.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-brine-pool-3.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-bush-0.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-bush-0.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-bush-0.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-bush-1.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-bush-1.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-bush-1.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-bush-2.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-bush-2.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-bush-2.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-bush-3.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-bush-3.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-bush-3.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-campfire.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-campfire.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-campfire.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-cascade-father.fbx.meta",
+        "Assets/Art3D/SpawnRing/Animations/ring-cascade-father.controller.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-cascade-father.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-cascade-father.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-cave-hermit.fbx.meta",
+        "Assets/Art3D/SpawnRing/Animations/ring-cave-hermit.controller.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-cave-hermit.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-cave-hermit.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-chest.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-chest.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-chest.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-choir-iron-vein-0.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-choir-iron-vein-0.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-choir-iron-vein-0.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-choir-iron-vein-1.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-choir-iron-vein-1.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-choir-iron-vein-1.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-choir-iron-vein-2.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-choir-iron-vein-2.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-choir-iron-vein-2.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-choir-iron-vein-3.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-choir-iron-vein-3.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-choir-iron-vein-3.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-choir-tendril.fbx.meta",
+        "Assets/Art3D/SpawnRing/Animations/ring-choir-tendril.controller.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-choir-tendril.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-choir-tendril.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-compost-cache-0.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-compost-cache-0.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-compost-cache-0.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-compost-cache-1.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-compost-cache-1.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-compost-cache-1.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-compost-cache-2.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-compost-cache-2.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-compost-cache-2.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-compost-cache-3.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-compost-cache-3.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-compost-cache-3.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-compost-row-0.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-compost-row-0.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-compost-row-0.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-compost-row-1.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-compost-row-1.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-compost-row-1.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-compost-row-2.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-compost-row-2.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-compost-row-2.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-compost-row-3.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-compost-row-3.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-compost-row-3.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-copper-pipe.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-copper-pipe.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-copper-pipe.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-crate.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-crate.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-crate.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-descent-ledge-0.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-descent-ledge-0.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-descent-ledge-0.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-descent-ledge-1.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-descent-ledge-1.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-descent-ledge-1.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-descent-ledge-2.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-descent-ledge-2.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-descent-ledge-2.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-descent-ledge-3.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-descent-ledge-3.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-descent-ledge-3.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-dry-brush-0.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-dry-brush-0.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-dry-brush-0.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-dry-brush-1.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-dry-brush-1.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-dry-brush-1.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-dry-brush-2.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-dry-brush-2.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-dry-brush-2.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-dry-brush-3.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-dry-brush-3.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-dry-brush-3.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-fallen-beam-0.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-fallen-beam-0.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-fallen-beam-0.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-fallen-beam-1.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-fallen-beam-1.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-fallen-beam-1.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-fallen-beam-2.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-fallen-beam-2.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-fallen-beam-2.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-fallen-beam-3.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-fallen-beam-3.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-fallen-beam-3.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-felling-bare-position.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-felling-bare-position.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-felling-bare-position.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-floor-0.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-floor-0.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-floor-0.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-floor-1.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-floor-1.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-floor-1.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-floor-2.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-floor-2.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-floor-2.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-floor-3.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-floor-3.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-floor-3.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-fruiting-body-0.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-fruiting-body-0.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-fruiting-body-0.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-fruiting-body-1.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-fruiting-body-1.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-fruiting-body-1.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-fruiting-body-2.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-fruiting-body-2.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-fruiting-body-2.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-fruiting-body-3.fbx.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-fruiting-body-3.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-fruiting-body-3.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-glasspane-frog.fbx.meta",
+        "Assets/Art3D/SpawnRing/Animations/ring-glasspane-frog.controller.meta",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-glasspane-frog.prefab",
+        "Assets/Art3D/SpawnRing/Prefabs/ring-glasspane-frog.prefab.meta",
+        "Assets/Art3D/SpawnRing/Models/ring-glow-quartz-vein-0.fbx.meta"
+    ],
+    "warnings": [],
+    "borrowedAssets": [
+        "Assets/Resources/Village3D/Library.asset",
+        "Assets/Resources/Village3D/Library.asset.meta",
+        "Assets/Settings/UniversalRP.asset",
+        "Assets/Settings/UniversalRP.asset.meta",
+        "Assets/Art3D/Village/Rendering/Village3DRenderer.asset",
+        "Assets/Art3D/Village/Rendering/Village3DRenderer.asset.meta",
+        "Assets/Art3D/Village/Materials/VillageWorld.mat",
+        "Assets/Art3D/Village/Materials/VillageWorld.mat.meta",
+        "Assets/Art3D/Village/Materials/VillageWater.mat",
+        "Assets/Art3D/Village/Materials/VillageWater.mat.meta",
+        "Assets/Art3D/Village/Materials/VillageComposite.mat",
+        "Assets/Art3D/Village/Materials/VillageComposite.mat.meta",
+        "Assets/Art3D/Village/Shaders/Village3DPalette.shader",
+        "Assets/Art3D/Village/Shaders/Village3DPalette.shader.meta",
+        "Assets/Art3D/Village/Shaders/Village3DWater.shader",
+        "Assets/Art3D/Village/Shaders/Village3DWater.shader.meta",
+        "Assets/Art3D/Village/Shaders/Village3DComposite.shader",
+        "Assets/Art3D/Village/Shaders/Village3DComposite.shader.meta"
+    ],
+    "borrowedAssetsUnchanged": false,
+    "models": [
+        {
+            "id": "ring-ash-bed-0",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-ash-bed-0.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-ash-bed-0.prefab",
+            "guid": "d4ce474b8efd440e5b39e5806e60544d",
+            "vertices": 640,
+            "triangles": 520,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": 0.040903542190790179,
+                "y": 0.04807369410991669,
+                "z": 0.06927340477705002
+            },
+            "boundsSize": {
+                "x": 0.795008659362793,
+                "y": 0.08714738488197327,
+                "z": 0.6625217199325562
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-ash-bed-1",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-ash-bed-1.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-ash-bed-1.prefab",
+            "guid": "97a4527c079404bef94f27cacf53953c",
+            "vertices": 640,
+            "triangles": 520,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": 0.023054800927639009,
+                "y": 0.04807369410991669,
+                "z": 0.05065854266285896
+            },
+            "boundsSize": {
+                "x": 0.6682947278022766,
+                "y": 0.08714738488197327,
+                "z": 0.6529752016067505
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-ash-bed-2",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-ash-bed-2.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-ash-bed-2.prefab",
+            "guid": "7588172147f6743c0be38b12ceb6eaf8",
+            "vertices": 640,
+            "triangles": 520,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": 0.030308092013001443,
+                "y": 0.04807369410991669,
+                "z": 0.04136181250214577
+            },
+            "boundsSize": {
+                "x": 0.6116811037063599,
+                "y": 0.08714738488197327,
+                "z": 0.6829580664634705
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-ash-bed-3",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-ash-bed-3.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-ash-bed-3.prefab",
+            "guid": "d50e9a422fe4747c29c92430d48c1697",
+            "vertices": 640,
+            "triangles": 520,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": 0.02548147179186344,
+                "y": 0.04807369410991669,
+                "z": 0.031388480216264728
+            },
+            "boundsSize": {
+                "x": 0.7786423563957214,
+                "y": 0.08714738488197327,
+                "z": 0.5675442218780518
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-brine-pool-0",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-brine-pool-0.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-brine-pool-0.prefab",
+            "guid": "1e594633cbc954351b3f3273323b12ed",
+            "vertices": 104,
+            "triangles": 132,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -4.347496277046509e-18,
+                "y": 0.03550000116229057,
+                "z": 4.347495863456203e-18
+            },
+            "boundsSize": {
+                "x": 1.0000001192092896,
+                "y": 0.03700000047683716,
+                "z": 1.0000001192092896
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-brine-pool-1",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-brine-pool-1.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-brine-pool-1.prefab",
+            "guid": "f5d2e316ca16b4e02a465384e9ecd67c",
+            "vertices": 104,
+            "triangles": 132,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -4.347496277046509e-18,
+                "y": 0.03550000116229057,
+                "z": 4.347495863456203e-18
+            },
+            "boundsSize": {
+                "x": 1.0000001192092896,
+                "y": 0.03700000047683716,
+                "z": 1.0000001192092896
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-brine-pool-2",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-brine-pool-2.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-brine-pool-2.prefab",
+            "guid": "13b43934d5d9b4a9cba6ef8265cea718",
+            "vertices": 104,
+            "triangles": 132,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -4.347496277046509e-18,
+                "y": 0.03550000116229057,
+                "z": 4.347495863456203e-18
+            },
+            "boundsSize": {
+                "x": 1.0000001192092896,
+                "y": 0.03700000047683716,
+                "z": 1.0000001192092896
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-brine-pool-3",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-brine-pool-3.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-brine-pool-3.prefab",
+            "guid": "ea4a0ef06176b4514a4745929280c67d",
+            "vertices": 104,
+            "triangles": 132,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -4.347496277046509e-18,
+                "y": 0.03550000116229057,
+                "z": 4.347495863456203e-18
+            },
+            "boundsSize": {
+                "x": 1.0000001192092896,
+                "y": 0.03700000047683716,
+                "z": 1.0000001192092896
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-bush-0",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-bush-0.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-bush-0.prefab",
+            "guid": "cb89456398c3e4a43808b55ddd13f46f",
+            "vertices": 988,
+            "triangles": 1220,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -0.07679492235183716,
+                "y": 0.44920021295547488,
+                "z": -0.004151147324591875
+            },
+            "boundsSize": {
+                "x": 0.8051115870475769,
+                "y": 0.5015995502471924,
+                "z": 0.9768468737602234
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-bush-1",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-bush-1.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-bush-1.prefab",
+            "guid": "32f982b75164f4cbb81e9fb4afa472da",
+            "vertices": 912,
+            "triangles": 1200,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -0.03675975278019905,
+                "y": 0.48990827798843386,
+                "z": 0.02119106985628605
+            },
+            "boundsSize": {
+                "x": 0.8925307989120483,
+                "y": 0.5289669036865234,
+                "z": 0.8458777666091919
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-bush-2",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-bush-2.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-bush-2.prefab",
+            "guid": "b176d20d86d4045a5b9dd52eb90cb62a",
+            "vertices": 1136,
+            "triangles": 1380,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -0.022992460057139398,
+                "y": 0.4362190365791321,
+                "z": -0.016684580594301225
+            },
+            "boundsSize": {
+                "x": 0.9851194024085999,
+                "y": 0.5275619029998779,
+                "z": 0.8936688899993897
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-bush-3",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-bush-3.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-bush-3.prefab",
+            "guid": "9a1a04a1741364481b677bf5ebcf1244",
+            "vertices": 912,
+            "triangles": 1200,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -0.024898745119571687,
+                "y": 0.39797642827033999,
+                "z": -0.0553327240049839
+            },
+            "boundsSize": {
+                "x": 0.9490435123443604,
+                "y": 0.4687792658805847,
+                "z": 0.914169430732727
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-campfire",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-campfire.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-campfire.prefab",
+            "guid": "ff00248445b7749c18a0dd5d94375a2d",
+            "vertices": 572,
+            "triangles": 520,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": 0.012524589896202088,
+                "y": 0.17249998450279237,
+                "z": 0.001848982647061348
+            },
+            "boundsSize": {
+                "x": 0.7382234334945679,
+                "y": 0.3149999976158142,
+                "z": 0.740546464920044
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-cascade-father",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-cascade-father.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-cascade-father.prefab",
+            "guid": "9b71cfb4ab54949c5ac3fbeefe21b3fe",
+            "vertices": 1160,
+            "triangles": 892,
+            "renderers": 1,
+            "skinnedRenderers": 1,
+            "boundsCenter": {
+                "x": -0.0012449035421013833,
+                "y": 0.15800069272518159,
+                "z": 0.010529913939535618
+            },
+            "boundsSize": {
+                "x": 0.9245557188987732,
+                "y": 0.40768927335739138,
+                "z": 0.5666474103927612
+            },
+            "clips": [
+                "Idle",
+                "Walk",
+                "Interact",
+                "Attack",
+                "Hit"
+            ],
+            "sockets": []
+        },
+        {
+            "id": "ring-cave-hermit",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-cave-hermit.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-cave-hermit.prefab",
+            "guid": "044b502af3fb84154abf2e89f341ea48",
+            "vertices": 1098,
+            "triangles": 1140,
+            "renderers": 1,
+            "skinnedRenderers": 1,
+            "boundsCenter": {
+                "x": 6.556617471176196e-10,
+                "y": 0.8624995946884155,
+                "z": -0.007499881088733673
+            },
+            "boundsSize": {
+                "x": 1.2181984186172486,
+                "y": 1.7649993896484376,
+                "z": 0.8649999499320984
+            },
+            "clips": [
+                "Idle",
+                "Walk",
+                "Interact",
+                "Attack",
+                "Hit"
+            ],
+            "sockets": [
+                "Equipment.Head",
+                "Equipment.Hand.L",
+                "Equipment.Hand.R",
+                "Equipment.Back"
+            ]
+        },
+        {
+            "id": "ring-chest",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-chest.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-chest.prefab",
+            "guid": "1e03a3b5809144522a41a3a8b21e5a8c",
+            "vertices": 488,
+            "triangles": 300,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": 3.0199176492828885e-9,
+                "y": 0.3112499713897705,
+                "z": -0.02000001072883606
+            },
+            "boundsSize": {
+                "x": 0.7500000596046448,
+                "y": 0.5824999809265137,
+                "z": 0.5600001215934753
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-choir-iron-vein-0",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-choir-iron-vein-0.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-choir-iron-vein-0.prefab",
+            "guid": "532df280ab4d14e94af80da5cf9b5b83",
+            "vertices": 477,
+            "triangles": 402,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -0.0030018757097423078,
+                "y": 0.2064218521118164,
+                "z": -0.05192743241786957
+            },
+            "boundsSize": {
+                "x": 0.9714597463607788,
+                "y": 0.4128437042236328,
+                "z": 0.7072982788085938
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-choir-iron-vein-1",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-choir-iron-vein-1.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-choir-iron-vein-1.prefab",
+            "guid": "f613e3190633e4f7d9597d1691899987",
+            "vertices": 477,
+            "triangles": 402,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -0.0030018805991858246,
+                "y": 0.2064218521118164,
+                "z": -0.020355746150016786
+            },
+            "boundsSize": {
+                "x": 0.9714597463607788,
+                "y": 0.4128437042236328,
+                "z": 0.6381664276123047
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-choir-iron-vein-2",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-choir-iron-vein-2.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-choir-iron-vein-2.prefab",
+            "guid": "e30428638c11d4c068939d7253e9595c",
+            "vertices": 477,
+            "triangles": 402,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -0.0030018831603229048,
+                "y": 0.2064218521118164,
+                "z": -0.002460197079926729
+            },
+            "boundsSize": {
+                "x": 0.9714597463607788,
+                "y": 0.4128437042236328,
+                "z": 0.601527214050293
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-choir-iron-vein-3",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-choir-iron-vein-3.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-choir-iron-vein-3.prefab",
+            "guid": "db64c9db1963947969bedcf98645612e",
+            "vertices": 477,
+            "triangles": 402,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -0.0030018838588148357,
+                "y": 0.2064218521118164,
+                "z": 0.0013839001767337323
+            },
+            "boundsSize": {
+                "x": 0.971459686756134,
+                "y": 0.4128437042236328,
+                "z": 0.5862239599227905
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-choir-tendril",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-choir-tendril.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-choir-tendril.prefab",
+            "guid": "2103f48a17f0743fd83579d7ed39b067",
+            "vertices": 884,
+            "triangles": 828,
+            "renderers": 1,
+            "skinnedRenderers": 1,
+            "boundsCenter": {
+                "x": 0.009400218725204468,
+                "y": 0.5368875861167908,
+                "z": 0.00322723644785583
+            },
+            "boundsSize": {
+                "x": 0.885662317276001,
+                "y": 1.113775372505188,
+                "z": 0.8646901845932007
+            },
+            "clips": [
+                "Idle",
+                "Walk",
+                "Interact",
+                "Attack",
+                "Hit"
+            ],
+            "sockets": []
+        },
+        {
+            "id": "ring-compost-cache-0",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-compost-cache-0.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-compost-cache-0.prefab",
+            "guid": "d24c3e9bc79aa4d67aa23c6456cc9251",
+            "vertices": 661,
+            "triangles": 526,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -0.041662707924842837,
+                "y": 0.1469999998807907,
+                "z": -0.012040532194077969
+            },
+            "boundsSize": {
+                "x": 0.8771857619285584,
+                "y": 0.2840000092983246,
+                "z": 0.5313418507575989
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-compost-cache-1",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-compost-cache-1.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-compost-cache-1.prefab",
+            "guid": "92b1bc01645464536aebda4f0381cf36",
+            "vertices": 655,
+            "triangles": 526,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": 0.09706325083971024,
+                "y": 0.1469999998807907,
+                "z": -0.039503566920757297
+            },
+            "boundsSize": {
+                "x": 0.837835967540741,
+                "y": 0.2840000092983246,
+                "z": 0.49730175733566286
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-compost-cache-2",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-compost-cache-2.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-compost-cache-2.prefab",
+            "guid": "4a4ebaa0588234a1787c0833ef2ce5bc",
+            "vertices": 674,
+            "triangles": 524,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": 0.0786648765206337,
+                "y": 0.1469999998807907,
+                "z": -0.0287555493414402
+            },
+            "boundsSize": {
+                "x": 0.8422836065292358,
+                "y": 0.2840000092983246,
+                "z": 0.5600875616073608
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-compost-cache-3",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-compost-cache-3.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-compost-cache-3.prefab",
+            "guid": "484bd7dea26fc4f7e8995f646b527fb6",
+            "vertices": 650,
+            "triangles": 524,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": 0.06423790752887726,
+                "y": 0.1469999998807907,
+                "z": -0.0022915578447282316
+            },
+            "boundsSize": {
+                "x": 0.781094491481781,
+                "y": 0.2840000092983246,
+                "z": 0.42872726917266848
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-compost-row-0",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-compost-row-0.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-compost-row-0.prefab",
+            "guid": "235a0cb055cbd4a759a27d3d4a415ad7",
+            "vertices": 587,
+            "triangles": 490,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -0.041662707924842837,
+                "y": 0.10999999940395355,
+                "z": -0.012040532194077969
+            },
+            "boundsSize": {
+                "x": 0.8771857619285584,
+                "y": 0.21000000834465028,
+                "z": 0.5313418507575989
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-compost-row-1",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-compost-row-1.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-compost-row-1.prefab",
+            "guid": "4eb6310894c104c3dbbec98d82d0056a",
+            "vertices": 553,
+            "triangles": 450,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": 0.09706325083971024,
+                "y": 0.10999999940395355,
+                "z": -0.039503566920757297
+            },
+            "boundsSize": {
+                "x": 0.837835967540741,
+                "y": 0.21000000834465028,
+                "z": 0.49730175733566286
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-compost-row-2",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-compost-row-2.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-compost-row-2.prefab",
+            "guid": "2e04af58ea7934338bc79da0bb1de174",
+            "vertices": 600,
+            "triangles": 488,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": 0.04203866794705391,
+                "y": 0.10999999940395355,
+                "z": -0.02875555492937565
+            },
+            "boundsSize": {
+                "x": 0.9155359864234924,
+                "y": 0.21000000834465028,
+                "z": 0.5600875616073608
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-compost-row-3",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-compost-row-3.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-compost-row-3.prefab",
+            "guid": "8431ba2ce6c9448e09fb5708f25f6e59",
+            "vertices": 548,
+            "triangles": 448,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": 0.06423790752887726,
+                "y": 0.10999999940395355,
+                "z": -0.0022915578447282316
+            },
+            "boundsSize": {
+                "x": 0.781094491481781,
+                "y": 0.21000000834465028,
+                "z": 0.42872726917266848
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-copper-pipe",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-copper-pipe.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-copper-pipe.prefab",
+            "guid": "2e22b573c0faa4d81bcc946a60f878d4",
+            "vertices": 264,
+            "triangles": 276,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -1.2246467698671066e-17,
+                "y": 0.09999999403953552,
+                "z": 1.2246466871490454e-17
+            },
+            "boundsSize": {
+                "x": 0.9399999976158142,
+                "y": 0.18000000715255738,
+                "z": 0.1711903214454651
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-crate",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-crate.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-crate.prefab",
+            "guid": "4879e4a08e12f4b0c9503f5245c9ea78",
+            "vertices": 2196,
+            "triangles": 1276,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -4.7335192177665297e-17,
+                "y": 0.3865211606025696,
+                "z": 4.7335185560220397e-17
+            },
+            "boundsSize": {
+                "x": 0.845000147819519,
+                "y": 0.8230422735214233,
+                "z": 0.845000147819519
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-descent-ledge-0",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-descent-ledge-0.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-descent-ledge-0.prefab",
+            "guid": "79ecef08ffb55403ba7601f1b5933ed9",
+            "vertices": 201,
+            "triangles": 156,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -0.004163962323218584,
+                "y": 0.11201751977205277,
+                "z": -0.020444273948669435
+            },
+            "boundsSize": {
+                "x": 0.974398136138916,
+                "y": 0.23403503000736237,
+                "z": 0.930782675743103
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-descent-ledge-1",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-descent-ledge-1.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-descent-ledge-1.prefab",
+            "guid": "c69d384d9afbe4e1e81bab8ea3d12d35",
+            "vertices": 141,
+            "triangles": 136,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": 0.00977775827050209,
+                "y": 0.11201751977205277,
+                "z": -0.02612536959350109
+            },
+            "boundsSize": {
+                "x": 0.9254696369171143,
+                "y": 0.23403503000736237,
+                "z": 0.925297200679779
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-descent-ledge-2",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-descent-ledge-2.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-descent-ledge-2.prefab",
+            "guid": "c9cd1d225a1014649b0203a43ded2d2a",
+            "vertices": 201,
+            "triangles": 156,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": 0.008845269680023194,
+                "y": 0.11201751977205277,
+                "z": -0.002545370254665613
+            },
+            "boundsSize": {
+                "x": 0.9501074552536011,
+                "y": 0.23403503000736237,
+                "z": 0.87098228931427
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-descent-ledge-3",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-descent-ledge-3.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-descent-ledge-3.prefab",
+            "guid": "4ffad9d70f1e04576a1428b5a9d77da3",
+            "vertices": 141,
+            "triangles": 136,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -0.0010223101126030088,
+                "y": 0.11201751977205277,
+                "z": 0.006927236914634705
+            },
+            "boundsSize": {
+                "x": 1.026058316230774,
+                "y": 0.23403503000736237,
+                "z": 0.94492107629776
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-dry-brush-0",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-dry-brush-0.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-dry-brush-0.prefab",
+            "guid": "c1611801bc92b4cafa20f4168dcb8557",
+            "vertices": 237,
+            "triangles": 156,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -2.3695678870628824e-17,
+                "y": 0.1934898942708969,
+                "z": 2.3695677216267599e-17
+            },
+            "boundsSize": {
+                "x": 0.6673858165740967,
+                "y": 0.404098778963089,
+                "z": 0.5811930894851685
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-dry-brush-1",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-dry-brush-1.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-dry-brush-1.prefab",
+            "guid": "8c5a9cd56802f4bfcb01b90c1f27da32",
+            "vertices": 237,
+            "triangles": 156,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -2.3695678870628824e-17,
+                "y": 0.1934898942708969,
+                "z": 2.3695677216267599e-17
+            },
+            "boundsSize": {
+                "x": 0.6673858165740967,
+                "y": 0.404098778963089,
+                "z": 0.5811930894851685
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-dry-brush-2",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-dry-brush-2.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-dry-brush-2.prefab",
+            "guid": "e593dc01f39354428819cc8e61bee062",
+            "vertices": 237,
+            "triangles": 156,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -2.3695678870628824e-17,
+                "y": 0.1934898942708969,
+                "z": 2.3695677216267599e-17
+            },
+            "boundsSize": {
+                "x": 0.6673858165740967,
+                "y": 0.404098778963089,
+                "z": 0.5811930894851685
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-dry-brush-3",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-dry-brush-3.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-dry-brush-3.prefab",
+            "guid": "905c5278d2236422eb113a9020ca3d45",
+            "vertices": 237,
+            "triangles": 156,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -2.3695678870628824e-17,
+                "y": 0.1934898942708969,
+                "z": 2.3695677216267599e-17
+            },
+            "boundsSize": {
+                "x": 0.6673858165740967,
+                "y": 0.404098778963089,
+                "z": 0.5811930894851685
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-fallen-beam-0",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-fallen-beam-0.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-fallen-beam-0.prefab",
+            "guid": "3d28bd5b535c44a6e972c9e660ad0faf",
+            "vertices": 160,
+            "triangles": 96,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -1.6440884690787594e-17,
+                "y": 0.1342500001192093,
+                "z": 1.6440883036426369e-17
+            },
+            "boundsSize": {
+                "x": 0.89000004529953,
+                "y": 0.25850000977516177,
+                "z": 0.24000012874603272
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-fallen-beam-1",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-fallen-beam-1.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-fallen-beam-1.prefab",
+            "guid": "335cfb09b02964e829f615bc6f9f070e",
+            "vertices": 160,
+            "triangles": 96,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -1.6440884690787594e-17,
+                "y": 0.1342500001192093,
+                "z": 1.6440883036426369e-17
+            },
+            "boundsSize": {
+                "x": 0.905478835105896,
+                "y": 0.25850000977516177,
+                "z": 0.3307633697986603
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-fallen-beam-2",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-fallen-beam-2.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-fallen-beam-2.prefab",
+            "guid": "d394249a91b974b6b8f746561efa79c5",
+            "vertices": 160,
+            "triangles": 96,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -1.6440884690787594e-17,
+                "y": 0.1342500001192093,
+                "z": 1.6440883036426369e-17
+            },
+            "boundsSize": {
+                "x": 0.9100123643875122,
+                "y": 0.25850000977516177,
+                "z": 0.4175284206867218
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-fallen-beam-3",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-fallen-beam-3.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-fallen-beam-3.prefab",
+            "guid": "6c86cb0f314f54db8a9cb7aa1f3b2a0c",
+            "vertices": 160,
+            "triangles": 96,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -1.6440884690787594e-17,
+                "y": 0.1342500001192093,
+                "z": 1.6440883036426369e-17
+            },
+            "boundsSize": {
+                "x": 0.9035459756851196,
+                "y": 0.25850000977516177,
+                "z": 0.4992464482784271
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-felling-bare-position",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-felling-bare-position.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-felling-bare-position.prefab",
+            "guid": "b87725ce5d84c42c090ed78f41e8d291",
+            "vertices": 128,
+            "triangles": 192,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -1.9594353611829627e-18,
+                "y": 0.01600000262260437,
+                "z": 1.9594351543878096e-18
+            },
+            "boundsSize": {
+                "x": 0.8040001392364502,
+                "y": 0.04399999976158142,
+                "z": 0.8040001392364502
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-floor-0",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-floor-0.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-floor-0.prefab",
+            "guid": "d8d3851d72e584f94af55771c5827b60",
+            "vertices": 24,
+            "triangles": 12,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": 4.898587162186488e-18,
+                "y": -0.03999999910593033,
+                "z": -4.898586748596181e-18
+            },
+            "boundsSize": {
+                "x": 1.0000001192092896,
+                "y": 0.07999999821186066,
+                "z": 1.0000001192092896
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-floor-1",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-floor-1.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-floor-1.prefab",
+            "guid": "b810428a959ea4f95830ff0b0bf052ae",
+            "vertices": 253,
+            "triangles": 186,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": 3.1228493831023108e-18,
+                "y": -0.025499999523162843,
+                "z": -3.1228491763071577e-18
+            },
+            "boundsSize": {
+                "x": 1.0000001192092896,
+                "y": 0.10899999737739563,
+                "z": 1.0000001192092896
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-floor-2",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-floor-2.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-floor-2.prefab",
+            "guid": "eebf92540dd02489caa1b6c09c5d7fc7",
+            "vertices": 253,
+            "triangles": 186,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": 3.1228493831023108e-18,
+                "y": -0.025499999523162843,
+                "z": -3.1228491763071577e-18
+            },
+            "boundsSize": {
+                "x": 1.0000001192092896,
+                "y": 0.10899999737739563,
+                "z": 1.0000001192092896
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-floor-3",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-floor-3.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-floor-3.prefab",
+            "guid": "0b7ae53b3f2814ee383e01140eaeda99",
+            "vertices": 159,
+            "triangles": 156,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": 3.367778803250181e-18,
+                "y": -0.027499999850988389,
+                "z": -3.3677783896598748e-18
+            },
+            "boundsSize": {
+                "x": 1.0000001192092896,
+                "y": 0.10499999672174454,
+                "z": 1.0000001192092896
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-fruiting-body-0",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-fruiting-body-0.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-fruiting-body-0.prefab",
+            "guid": "9d9e569b023be444186b2f1c8179b99f",
+            "vertices": 606,
+            "triangles": 740,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": 0.009851307608187199,
+                "y": 0.39114493131637576,
+                "z": -0.0063921199180185799
+            },
+            "boundsSize": {
+                "x": 0.8537041544914246,
+                "y": 0.8197101354598999,
+                "z": 0.6804179549217224
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-fruiting-body-1",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-fruiting-body-1.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-fruiting-body-1.prefab",
+            "guid": "342c21e1627174df88daa9acba03f4f3",
+            "vertices": 592,
+            "triangles": 740,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -0.013090391643345356,
+                "y": 0.39114493131637576,
+                "z": 0.02786622755229473
+            },
+            "boundsSize": {
+                "x": 0.8544597625732422,
+                "y": 0.8197101354598999,
+                "z": 0.628997802734375
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-fruiting-body-2",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-fruiting-body-2.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-fruiting-body-2.prefab",
+            "guid": "b53ea5d2e2fe2421d9f036be6ba27406",
+            "vertices": 592,
+            "triangles": 740,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -0.011628965847194195,
+                "y": 0.39114493131637576,
+                "z": -0.03351163864135742
+            },
+            "boundsSize": {
+                "x": 0.7929376363754273,
+                "y": 0.8197101354598999,
+                "z": 0.7022300958633423
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-fruiting-body-3",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-fruiting-body-3.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-fruiting-body-3.prefab",
+            "guid": "8723f3267ce9b458eba37483dcb64a7a",
+            "vertices": 604,
+            "triangles": 740,
+            "renderers": 1,
+            "skinnedRenderers": 0,
+            "boundsCenter": {
+                "x": -0.041298236697912219,
+                "y": 0.39114493131637576,
+                "z": -0.03195086866617203
+            },
+            "boundsSize": {
+                "x": 0.7046013474464417,
+                "y": 0.8197101354598999,
+                "z": 0.6409270167350769
+            },
+            "clips": [],
+            "sockets": []
+        },
+        {
+            "id": "ring-glasspane-frog",
+            "asset": "Assets/Art3D/SpawnRing/Models/ring-glasspane-frog.fbx",
+            "prefab": "Assets/Art3D/SpawnRing/Prefabs/ring-glasspane-frog.prefab",
+            "guid": "ea67c0ece19df4c8c8b239aa9a706af2",
+            "vertices": 972,
+            "triangles": 772,
+            "renderers": 1,
+            "skinnedRenderers": 1,
+            "boundsCenter": {
+                "x": -0.0011893664486706257,
+                "y": 0.15916912257671357,
+                "z": 0.005222418811172247
+            },
+            "boundsSize": {
+                "x": 0.9705172181129456,
+                "y": 0.40584826469421389,
+                "z": 0.6084448099136353
+            },
+            "clips": [
+                "Idle",
+                "Walk",
+                "Interact",
+                "Attack",
+                "Hit"
+            ],
+            "sockets": []
+        }
+    ]
+}

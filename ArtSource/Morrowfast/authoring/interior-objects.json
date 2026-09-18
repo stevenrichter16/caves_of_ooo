@@ -1,0 +1,1664 @@
+{
+  "schemaVersion": 1,
+  "sourcePath": "../sources/04-furnished-interiors.png",
+  "canvas": [
+    1536,
+    1024
+  ],
+  "coordinateConvention": "Absolute source pixels, origin top-left; bounds half-open [x,y,w,h].",
+  "authoringStatus": "Visually reviewed full source and enlarged coordinate crops. 21 individual furniture/stock owners. All novel interiors are inferred Imagegen artwork, not recovered original pixels.",
+  "placementPolicy": "Source placement preserves the generated interior study. SuggestedOffset is optional, in pixels, for the composed playable scene: move indicated furniture on the reconstructed empty interior backing before enabling original-door access. Do not expand roof masks over original visible front walls to cover generated alignment drift.",
+  "actionsPolicy": "Actions name intended owner behaviors; these labels do not assert Unity implementations. Use native or explicitly authored actions when integrated.",
+  "entries": [
+    {
+      "id": "keeper-rest-bench",
+      "label": "Watch rest bench",
+      "kind": "bench",
+      "roomId": "keeper-gatehouse",
+      "bounds": [
+        454,
+        123,
+        21,
+        78
+      ],
+      "candidatePolygon": [
+        [
+          455,
+          125
+        ],
+        [
+          462,
+          123
+        ],
+        [
+          466,
+          129
+        ],
+        [
+          470,
+          127
+        ],
+        [
+          474,
+          132
+        ],
+        [
+          474,
+          193
+        ],
+        [
+          469,
+          200
+        ],
+        [
+          460,
+          197
+        ],
+        [
+          454,
+          190
+        ]
+      ],
+      "foot": [
+        465,
+        197
+      ],
+      "solid": true,
+      "actions": [
+        "Examine",
+        "Rest"
+      ],
+      "description": "A narrow bench faces the spare equipment. Its longest scratches are at boot height.",
+      "maskMethod": "polygon"
+    },
+    {
+      "id": "keeper-supply-chest",
+      "label": "Watch supply chest",
+      "kind": "container",
+      "roomId": "keeper-gatehouse",
+      "bounds": [
+        540,
+        98,
+        38,
+        37
+      ],
+      "candidatePolygon": [
+        [
+          540,
+          99
+        ],
+        [
+          571,
+          98
+        ],
+        [
+          577,
+          104
+        ],
+        [
+          577,
+          132
+        ],
+        [
+          569,
+          134
+        ],
+        [
+          542,
+          133
+        ],
+        [
+          540,
+          123
+        ]
+      ],
+      "foot": [
+        559,
+        132
+      ],
+      "solid": true,
+      "actions": [
+        "Open",
+        "Examine"
+      ],
+      "description": "The common chest holds equipment already paid for by watch shifts.",
+      "maskMethod": "polygon"
+    },
+    {
+      "id": "keeper-duty-desk",
+      "label": "Duty desk",
+      "kind": "table",
+      "roomId": "keeper-gatehouse",
+      "bounds": [
+        540,
+        166,
+        41,
+        57
+      ],
+      "candidatePolygon": [
+        [
+          544,
+          166
+        ],
+        [
+          576,
+          166
+        ],
+        [
+          580,
+          171
+        ],
+        [
+          580,
+          205
+        ],
+        [
+          576,
+          212
+        ],
+        [
+          575,
+          219
+        ],
+        [
+          569,
+          220
+        ],
+        [
+          568,
+          214
+        ],
+        [
+          548,
+          214
+        ],
+        [
+          547,
+          222
+        ],
+        [
+          541,
+          220
+        ],
+        [
+          540,
+          173
+        ]
+      ],
+      "foot": [
+        560,
+        220
+      ],
+      "solid": true,
+      "actions": [
+        "Read",
+        "Examine"
+      ],
+      "description": "Weighted local return notes sit on the duty desk. None claims to explain the Felling.",
+      "maskMethod": "polygon",
+      "suggestedOffset": [
+        -48,
+        -6
+      ]
+    },
+    {
+      "id": "guest-bed-west",
+      "label": "Western guest bed",
+      "kind": "bed",
+      "roomId": "dry-hem-guesthouse",
+      "bounds": [
+        314,
+        350,
+        48,
+        84
+      ],
+      "candidatePolygon": [
+        [
+          314,
+          353
+        ],
+        [
+          322,
+          350
+        ],
+        [
+          329,
+          355
+        ],
+        [
+          351,
+          355
+        ],
+        [
+          355,
+          350
+        ],
+        [
+          361,
+          354
+        ],
+        [
+          361,
+          430
+        ],
+        [
+          355,
+          433
+        ],
+        [
+          349,
+          426
+        ],
+        [
+          325,
+          426
+        ],
+        [
+          320,
+          433
+        ],
+        [
+          314,
+          430
+        ]
+      ],
+      "foot": [
+        338,
+        430
+      ],
+      "solid": true,
+      "actions": [
+        "Rest",
+        "Examine"
+      ],
+      "description": "A separate paid bed with a green cover, blanket and wooden frame.",
+      "maskMethod": "polygon"
+    },
+    {
+      "id": "guest-bed-east",
+      "label": "Eastern guest bed",
+      "kind": "bed",
+      "roomId": "dry-hem-guesthouse",
+      "bounds": [
+        391,
+        350,
+        50,
+        84
+      ],
+      "candidatePolygon": [
+        [
+          391,
+          354
+        ],
+        [
+          398,
+          351
+        ],
+        [
+          405,
+          355
+        ],
+        [
+          428,
+          355
+        ],
+        [
+          433,
+          350
+        ],
+        [
+          440,
+          354
+        ],
+        [
+          440,
+          431
+        ],
+        [
+          434,
+          433
+        ],
+        [
+          429,
+          426
+        ],
+        [
+          404,
+          426
+        ],
+        [
+          398,
+          433
+        ],
+        [
+          391,
+          430
+        ]
+      ],
+      "foot": [
+        416,
+        430
+      ],
+      "solid": true,
+      "actions": [
+        "Rest",
+        "Examine"
+      ],
+      "description": "The second bed is its own owner; booking or moving one bed does not change the other.",
+      "maskMethod": "polygon"
+    },
+    {
+      "id": "guest-warming-stove",
+      "label": "Guesthouse warming stove",
+      "kind": "hearth",
+      "roomId": "dry-hem-guesthouse",
+      "bounds": [
+        500,
+        356,
+        41,
+        64
+      ],
+      "candidatePolygon": [
+        [
+          504,
+          360
+        ],
+        [
+          511,
+          356
+        ],
+        [
+          524,
+          356
+        ],
+        [
+          530,
+          362
+        ],
+        [
+          535,
+          363
+        ],
+        [
+          540,
+          370
+        ],
+        [
+          539,
+          414
+        ],
+        [
+          533,
+          419
+        ],
+        [
+          504,
+          419
+        ],
+        [
+          500,
+          413
+        ],
+        [
+          500,
+          369
+        ]
+      ],
+      "foot": [
+        521,
+        417
+      ],
+      "solid": true,
+      "actions": [
+        "Warm hands",
+        "Examine"
+      ],
+      "description": "A little stove and kettle warm the common room. The flame must follow the stove active state.",
+      "maskMethod": "polygon"
+    },
+    {
+      "id": "guest-supper-table",
+      "label": "Guesthouse supper table",
+      "kind": "table",
+      "roomId": "dry-hem-guesthouse",
+      "bounds": [
+        311,
+        448,
+        58,
+        72
+      ],
+      "candidatePolygon": [
+        [
+          313,
+          448
+        ],
+        [
+          359,
+          448
+        ],
+        [
+          368,
+          453
+        ],
+        [
+          368,
+          501
+        ],
+        [
+          365,
+          505
+        ],
+        [
+          364,
+          518
+        ],
+        [
+          358,
+          519
+        ],
+        [
+          356,
+          508
+        ],
+        [
+          322,
+          508
+        ],
+        [
+          321,
+          519
+        ],
+        [
+          313,
+          518
+        ],
+        [
+          311,
+          502
+        ]
+      ],
+      "foot": [
+        340,
+        516
+      ],
+      "solid": true,
+      "actions": [
+        "Examine"
+      ],
+      "description": "A household table with ordinary dishes and a folded note; its fixed drawn settings are inspected through the table owner.",
+      "maskMethod": "polygon",
+      "suggestedOffset": [
+        0,
+        -12
+      ],
+      "excludePolygons": [
+        [
+          [
+            298,
+            473
+          ],
+          [
+            306,
+            471
+          ],
+          [
+            312,
+            476
+          ],
+          [
+            312,
+            489
+          ],
+          [
+            309,
+            492
+          ],
+          [
+            308,
+            504
+          ],
+          [
+            302,
+            504
+          ],
+          [
+            300,
+            493
+          ],
+          [
+            297,
+            490
+          ]
+        ],
+        [
+          [
+            332,
+            507
+          ],
+          [
+            342,
+            507
+          ],
+          [
+            348,
+            513
+          ],
+          [
+            346,
+            518
+          ],
+          [
+            344,
+            525
+          ],
+          [
+            337,
+            526
+          ],
+          [
+            333,
+            520
+          ],
+          [
+            329,
+            517
+          ]
+        ]
+      ],
+      "ownershipNotes": "The two stool outlines previously shared 39 dark contact/gap fringe pixels with the table outline. Those visible-source pixels belong solely to the independent stool owners. Enlarged source review found no substantial concealed tabletop geometry at these intersections; use inferred empty-floor/contact backing when the stools are absent.",
+      "occlusionMetadata": [
+        {
+          "frontOwner": "guest-stool-west",
+          "sourceOverlapPixels": 16,
+          "sourceOverlapBounds": [
+            311,
+            476,
+            2,
+            15
+          ],
+          "classification": "shared dark contact fringe; not a concealed table surface",
+          "backObjectCompletionRequired": false
+        },
+        {
+          "frontOwner": "guest-stool-south",
+          "sourceOverlapPixels": 23,
+          "sourceOverlapBounds": [
+            332,
+            507,
+            12,
+            2
+          ],
+          "classification": "shared dark gap/contact fringe above stool seat",
+          "backObjectCompletionRequired": false
+        }
+      ]
+    },
+    {
+      "id": "guest-stool-west",
+      "label": "Western supper stool",
+      "kind": "stool",
+      "roomId": "dry-hem-guesthouse",
+      "bounds": [
+        297,
+        471,
+        16,
+        34
+      ],
+      "candidatePolygon": [
+        [
+          298,
+          473
+        ],
+        [
+          306,
+          471
+        ],
+        [
+          312,
+          476
+        ],
+        [
+          312,
+          489
+        ],
+        [
+          309,
+          492
+        ],
+        [
+          308,
+          504
+        ],
+        [
+          302,
+          504
+        ],
+        [
+          300,
+          493
+        ],
+        [
+          297,
+          490
+        ]
+      ],
+      "foot": [
+        305,
+        502
+      ],
+      "solid": true,
+      "actions": [
+        "Sit",
+        "Examine"
+      ],
+      "description": "A small stool beside the supper table.",
+      "maskMethod": "polygon",
+      "suggestedOffset": [
+        0,
+        -12
+      ],
+      "ownershipNotes": "Owns its complete independently traced silhouette, including the small dark fringe formerly shared with the supper table. Removing this stool must not remove the table or the other stools."
+    },
+    {
+      "id": "guest-stool-east",
+      "label": "Eastern supper stool",
+      "kind": "stool",
+      "roomId": "dry-hem-guesthouse",
+      "bounds": [
+        369,
+        473,
+        18,
+        29
+      ],
+      "candidatePolygon": [
+        [
+          374,
+          473
+        ],
+        [
+          382,
+          474
+        ],
+        [
+          386,
+          481
+        ],
+        [
+          384,
+          494
+        ],
+        [
+          382,
+          500
+        ],
+        [
+          375,
+          501
+        ],
+        [
+          373,
+          491
+        ],
+        [
+          369,
+          488
+        ],
+        [
+          370,
+          478
+        ]
+      ],
+      "foot": [
+        378,
+        500
+      ],
+      "solid": true,
+      "actions": [
+        "Sit",
+        "Examine"
+      ],
+      "description": "The eastern stool can be inspected or moved independently.",
+      "maskMethod": "polygon",
+      "suggestedOffset": [
+        0,
+        -12
+      ]
+    },
+    {
+      "id": "guest-stool-south",
+      "label": "Spare supper stool",
+      "kind": "stool",
+      "roomId": "dry-hem-guesthouse",
+      "bounds": [
+        329,
+        507,
+        20,
+        20
+      ],
+      "candidatePolygon": [
+        [
+          332,
+          507
+        ],
+        [
+          342,
+          507
+        ],
+        [
+          348,
+          513
+        ],
+        [
+          346,
+          518
+        ],
+        [
+          344,
+          525
+        ],
+        [
+          337,
+          526
+        ],
+        [
+          333,
+          520
+        ],
+        [
+          329,
+          517
+        ]
+      ],
+      "foot": [
+        339,
+        524
+      ],
+      "solid": true,
+      "actions": [
+        "Sit",
+        "Examine"
+      ],
+      "description": "A spare stool has been set back from the table on open floor. It leaves room to walk between the table and the guest beds.",
+      "maskMethod": "polygon",
+      "suggestedOffset": [
+        75,
+        -43
+      ],
+      "ownershipNotes": "Owns its complete independently traced silhouette, including the small dark fringe formerly shared with the supper table. Removing this stool must not remove the table or the other stools.",
+      "placementReason": "Actual preview navigation found the former table-side foot at339,510 below the room's safe interior floor boundary490. Move the complete sprite into open center-floor, foot414,481; preserve the fa\u00e7ade and existing collision outline."
+    },
+    {
+      "id": "archive-shelf-north",
+      "label": "Northern record shelf",
+      "kind": "bookshelf",
+      "roomId": "return-desk-archive",
+      "bounds": [
+        1127,
+        80,
+        71,
+        63
+      ],
+      "candidatePolygon": [
+        [
+          1127,
+          80
+        ],
+        [
+          1193,
+          80
+        ],
+        [
+          1197,
+          87
+        ],
+        [
+          1197,
+          134
+        ],
+        [
+          1192,
+          140
+        ],
+        [
+          1185,
+          140
+        ],
+        [
+          1183,
+          136
+        ],
+        [
+          1138,
+          137
+        ],
+        [
+          1135,
+          142
+        ],
+        [
+          1128,
+          141
+        ]
+      ],
+      "foot": [
+        1161,
+        139
+      ],
+      "solid": true,
+      "actions": [
+        "Read",
+        "Examine"
+      ],
+      "description": "Bound local witness records sit in rows. Accounts are attributed and may diverge.",
+      "maskMethod": "polygon"
+    },
+    {
+      "id": "archive-shelf-west",
+      "label": "Western record shelf",
+      "kind": "bookshelf",
+      "roomId": "return-desk-archive",
+      "bounds": [
+        1068,
+        113,
+        34,
+        87
+      ],
+      "candidatePolygon": [
+        [
+          1068,
+          114
+        ],
+        [
+          1097,
+          113
+        ],
+        [
+          1101,
+          118
+        ],
+        [
+          1100,
+          194
+        ],
+        [
+          1094,
+          198
+        ],
+        [
+          1089,
+          195
+        ],
+        [
+          1076,
+          195
+        ],
+        [
+          1073,
+          199
+        ],
+        [
+          1068,
+          197
+        ]
+      ],
+      "foot": [
+        1085,
+        195
+      ],
+      "solid": true,
+      "actions": [
+        "Read",
+        "Examine"
+      ],
+      "description": "A second, separately owned record shelf holds field copies.",
+      "maskMethod": "polygon"
+    },
+    {
+      "id": "archive-writing-desk",
+      "label": "Witness writing desk",
+      "kind": "table",
+      "roomId": "return-desk-archive",
+      "bounds": [
+        1198,
+        147,
+        47,
+        87
+      ],
+      "candidatePolygon": [
+        [
+          1200,
+          147
+        ],
+        [
+          1238,
+          148
+        ],
+        [
+          1244,
+          153
+        ],
+        [
+          1244,
+          216
+        ],
+        [
+          1241,
+          220
+        ],
+        [
+          1240,
+          231
+        ],
+        [
+          1234,
+          233
+        ],
+        [
+          1230,
+          221
+        ],
+        [
+          1209,
+          221
+        ],
+        [
+          1208,
+          232
+        ],
+        [
+          1202,
+          231
+        ],
+        [
+          1198,
+          215
+        ]
+      ],
+      "foot": [
+        1220,
+        230
+      ],
+      "solid": true,
+      "actions": [
+        "Read",
+        "Examine"
+      ],
+      "description": "Weights, ink and a copy in progress. Personal testimony requires its speaker's consent.",
+      "maskMethod": "polygon"
+    },
+    {
+      "id": "archive-storage-barrel",
+      "label": "Archive storage barrel",
+      "kind": "container",
+      "roomId": "return-desk-archive",
+      "bounds": [
+        1066,
+        200,
+        35,
+        43
+      ],
+      "candidatePolygon": [
+        [
+          1070,
+          202
+        ],
+        [
+          1088,
+          200
+        ],
+        [
+          1097,
+          204
+        ],
+        [
+          1100,
+          213
+        ],
+        [
+          1099,
+          233
+        ],
+        [
+          1093,
+          240
+        ],
+        [
+          1078,
+          242
+        ],
+        [
+          1068,
+          237
+        ],
+        [
+          1066,
+          227
+        ],
+        [
+          1067,
+          209
+        ]
+      ],
+      "foot": [
+        1084,
+        239
+      ],
+      "solid": true,
+      "actions": [
+        "Open",
+        "Examine"
+      ],
+      "description": "A dry barrel for ordinary station supplies.",
+      "maskMethod": "polygon",
+      "suggestedOffset": [
+        0,
+        -7
+      ]
+    },
+    {
+      "id": "rope-workbench",
+      "label": "Mender interior workbench",
+      "kind": "workbench",
+      "roomId": "long-loop-ropeshop",
+      "bounds": [
+        368,
+        682,
+        120,
+        66
+      ],
+      "candidatePolygon": [
+        [
+          370,
+          685
+        ],
+        [
+          462,
+          682
+        ],
+        [
+          473,
+          685
+        ],
+        [
+          484,
+          687
+        ],
+        [
+          487,
+          696
+        ],
+        [
+          486,
+          730
+        ],
+        [
+          481,
+          733
+        ],
+        [
+          480,
+          745
+        ],
+        [
+          473,
+          746
+        ],
+        [
+          470,
+          733
+        ],
+        [
+          382,
+          734
+        ],
+        [
+          380,
+          746
+        ],
+        [
+          373,
+          747
+        ],
+        [
+          371,
+          734
+        ],
+        [
+          368,
+          728
+        ]
+      ],
+      "foot": [
+        428,
+        744
+      ],
+      "solid": true,
+      "actions": [
+        "Examine",
+        "Mend"
+      ],
+      "description": "The long bench holds tools for actual paid work; service authoring must name its consumed material and result.",
+      "maskMethod": "polygon"
+    },
+    {
+      "id": "rope-storage-barrel",
+      "label": "Mender storage barrel",
+      "kind": "container",
+      "roomId": "long-loop-ropeshop",
+      "bounds": [
+        491,
+        739,
+        43,
+        72
+      ],
+      "candidatePolygon": [
+        [
+          500,
+          740
+        ],
+        [
+          519,
+          739
+        ],
+        [
+          529,
+          745
+        ],
+        [
+          533,
+          756
+        ],
+        [
+          532,
+          797
+        ],
+        [
+          527,
+          808
+        ],
+        [
+          498,
+          810
+        ],
+        [
+          492,
+          803
+        ],
+        [
+          491,
+          756
+        ],
+        [
+          494,
+          747
+        ]
+      ],
+      "foot": [
+        513,
+        807
+      ],
+      "solid": true,
+      "actions": [
+        "Open",
+        "Examine"
+      ],
+      "description": "A bound barrel stands inside the mender's house.",
+      "maskMethod": "polygon"
+    },
+    {
+      "id": "rope-reserve-coil",
+      "label": "Reserve rescue cord",
+      "kind": "rope",
+      "roomId": "long-loop-ropeshop",
+      "bounds": [
+        324,
+        718,
+        36,
+        79
+      ],
+      "candidatePolygon": [
+        [
+          335,
+          718
+        ],
+        [
+          344,
+          718
+        ],
+        [
+          350,
+          724
+        ],
+        [
+          350,
+          735
+        ],
+        [
+          346,
+          741
+        ],
+        [
+          356,
+          748
+        ],
+        [
+          359,
+          760
+        ],
+        [
+          353,
+          772
+        ],
+        [
+          345,
+          777
+        ],
+        [
+          345,
+          785
+        ],
+        [
+          352,
+          789
+        ],
+        [
+          351,
+          796
+        ],
+        [
+          343,
+          795
+        ],
+        [
+          337,
+          788
+        ],
+        [
+          334,
+          778
+        ],
+        [
+          328,
+          773
+        ],
+        [
+          324,
+          765
+        ],
+        [
+          324,
+          752
+        ],
+        [
+          329,
+          743
+        ],
+        [
+          330,
+          735
+        ],
+        [
+          328,
+          728
+        ]
+      ],
+      "foot": [
+        341,
+        794
+      ],
+      "solid": false,
+      "actions": [
+        "Examine",
+        "Take"
+      ],
+      "description": "A separately owned coil belongs to the common watch supply. Its use or loan needs an actual inventory outcome.",
+      "maskMethod": "polygon",
+      "excludePolygons": [
+        [
+          [
+            335,
+            724
+          ],
+          [
+            342,
+            722
+          ],
+          [
+            346,
+            726
+          ],
+          [
+            345,
+            733
+          ],
+          [
+            341,
+            737
+          ],
+          [
+            335,
+            735
+          ]
+        ],
+        [
+          [
+            333,
+            748
+          ],
+          [
+            342,
+            745
+          ],
+          [
+            350,
+            750
+          ],
+          [
+            351,
+            757
+          ],
+          [
+            347,
+            762
+          ],
+          [
+            337,
+            764
+          ],
+          [
+            331,
+            759
+          ],
+          [
+            330,
+            754
+          ]
+        ]
+      ],
+      "suggestedOffset": [
+        0,
+        -18
+      ],
+      "placementReason": "Actual preview navigation found the source foot at341,794 below the safe interior floor boundary785. Move the complete coil18pixels north onto pictured floor left of the workbench, foot341,776; no fa\u00e7ade cells are made walkable."
+    },
+    {
+      "id": "kitchen-masonry-hearth",
+      "label": "Kitchen hearth",
+      "kind": "hearth",
+      "roomId": "second-bowl-kitchen",
+      "bounds": [
+        1243,
+        653,
+        65,
+        63
+      ],
+      "candidatePolygon": [
+        [
+          1244,
+          654
+        ],
+        [
+          1300,
+          653
+        ],
+        [
+          1307,
+          660
+        ],
+        [
+          1307,
+          712
+        ],
+        [
+          1247,
+          715
+        ],
+        [
+          1243,
+          709
+        ]
+      ],
+      "foot": [
+        1274,
+        712
+      ],
+      "solid": true,
+      "actions": [
+        "Cook",
+        "Warm hands",
+        "Examine"
+      ],
+      "description": "The hearth is an owned heat source and cooking fixture. Fire and steam must cease when it is cold or absent.",
+      "maskMethod": "polygon"
+    },
+    {
+      "id": "kitchen-prep-table",
+      "label": "Kitchen preparation table",
+      "kind": "table",
+      "roomId": "second-bowl-kitchen",
+      "bounds": [
+        1203,
+        726,
+        42,
+        99
+      ],
+      "candidatePolygon": [
+        [
+          1208,
+          726
+        ],
+        [
+          1237,
+          726
+        ],
+        [
+          1242,
+          731
+        ],
+        [
+          1244,
+          800
+        ],
+        [
+          1240,
+          807
+        ],
+        [
+          1238,
+          823
+        ],
+        [
+          1231,
+          824
+        ],
+        [
+          1229,
+          810
+        ],
+        [
+          1217,
+          809
+        ],
+        [
+          1215,
+          824
+        ],
+        [
+          1208,
+          824
+        ],
+        [
+          1204,
+          805
+        ],
+        [
+          1203,
+          735
+        ]
+      ],
+      "foot": [
+        1224,
+        821
+      ],
+      "solid": true,
+      "actions": [
+        "Examine",
+        "Prepare food"
+      ],
+      "description": "A chopping board and bowl on an ordinary narrow table; recipe outcomes are separately authored.",
+      "maskMethod": "polygon",
+      "suggestedOffset": [
+        0,
+        -9
+      ]
+    },
+    {
+      "id": "kitchen-produce-barrel-north",
+      "label": "Northern produce barrel",
+      "kind": "container",
+      "roomId": "second-bowl-kitchen",
+      "bounds": [
+        1309,
+        731,
+        45,
+        52
+      ],
+      "candidatePolygon": [
+        [
+          1320,
+          731
+        ],
+        [
+          1339,
+          732
+        ],
+        [
+          1348,
+          738
+        ],
+        [
+          1353,
+          750
+        ],
+        [
+          1351,
+          770
+        ],
+        [
+          1346,
+          778
+        ],
+        [
+          1334,
+          782
+        ],
+        [
+          1321,
+          779
+        ],
+        [
+          1312,
+          773
+        ],
+        [
+          1309,
+          758
+        ],
+        [
+          1311,
+          742
+        ]
+      ],
+      "foot": [
+        1332,
+        779
+      ],
+      "solid": true,
+      "actions": [
+        "Open",
+        "Examine"
+      ],
+      "description": "One finite produce container. It is not a repeatable harvest source or a duplicate of merchant inventory.",
+      "maskMethod": "polygon",
+      "suggestedOffset": [
+        0,
+        -15
+      ]
+    },
+    {
+      "id": "kitchen-produce-barrel-south",
+      "label": "Southern produce barrel",
+      "kind": "container",
+      "roomId": "second-bowl-kitchen",
+      "bounds": [
+        1309,
+        784,
+        45,
+        51
+      ],
+      "candidatePolygon": [
+        [
+          1320,
+          784
+        ],
+        [
+          1339,
+          784
+        ],
+        [
+          1348,
+          791
+        ],
+        [
+          1353,
+          803
+        ],
+        [
+          1351,
+          820
+        ],
+        [
+          1347,
+          830
+        ],
+        [
+          1334,
+          834
+        ],
+        [
+          1321,
+          831
+        ],
+        [
+          1312,
+          826
+        ],
+        [
+          1309,
+          811
+        ],
+        [
+          1311,
+          796
+        ]
+      ],
+      "foot": [
+        1332,
+        831
+      ],
+      "solid": true,
+      "actions": [
+        "Open",
+        "Examine"
+      ],
+      "description": "The second barrel has independent contents and state.",
+      "maskMethod": "polygon",
+      "suggestedOffset": [
+        0,
+        -15
+      ]
+    }
+  ],
+  "ownershipValidation": "2026-09-06: validated with ArtTools.morrowfast_components.entry_mask and actual building-mask minus outdoor-union clipping. All 21 furniture masks are nonempty and pairwise disjoint within their rooms. The two guest-table/stool fringe intersections (39 pixels total) are assigned explicitly to stools.",
+  "placementValidation": "2026-09-06: actual rebuilt preview test \"actual opened houses and intact outdoor props allow an approach to every semantic owner\" passes after relocating only the guest spare stool tofoot414,481 and reserve cord tofoot341,776. Building interior polygons and fa\u00e7ade collision unchanged. Refreshed build/interiors.png visually reviewed: stool on clear guest-room floor and cord left of the workbench, with no new furniture overlap."
+}

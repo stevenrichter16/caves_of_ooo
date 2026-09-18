@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using CavesOfOoo.Core;
 
 namespace CavesOfOoo.Skills
@@ -80,27 +79,9 @@ namespace CavesOfOoo.Skills
                 return false;
             }
 
-            // Snapshot adjacent creatures BEFORE swinging. PerformSingleAttack
-            // can move/kill targets mid-loop (dismember, push effects,
-            // reflexive counter-moves) — iterating the live cells would
-            // be unstable. The snapshot freezes the target list at "8-dir
-            // adjacency at activation time" which matches the player's
-            // mental model: "I spin once and hit whoever's standing
-            // around me NOW".
-            var targets = new List<Entity>(8);
-            for (int dir = 0; dir < 8; dir++)
-            {
-                var cell = ctx.Zone.GetCellInDirection(actorPos.x, actorPos.y, dir);
-                if (cell == null) continue;
-                for (int i = 0; i < cell.Objects.Count; i++)
-                {
-                    var e = cell.Objects[i];
-                    if (e == null || e == actor) continue;
-                    if (!e.Tags.ContainsKey("Creature")) continue;
-                    targets.Add(e);
-                    break; // one creature per cell — first hit
-                }
-            }
+            // One strike per physical owner on the caster's perimeter.
+            // Snapshot before damage, push or reactive effects change occupancy.
+            var targets = MultiCellAbilityQueries.AdjacentCreatures(ctx.Zone, actor);
 
             if (targets.Count == 0)
             {
@@ -109,15 +90,14 @@ namespace CavesOfOoo.Skills
                 return false;
             }
 
-            // Strike each snapshot target. PerformSingleAttack handles
-            // dead defenders (HP ≤ 0 short-circuits without crashing),
-            // so a target killed by an earlier strike's dismember-burst
-            // — or one already dying when Whirlwind fired — won't crash
-            // the loop. Each strike fires the attacker's normal on-hit
-            // hooks (Cleave can chain off ANY of the 8 strikes; Dismember
-            // can roll independently per strike).
+            // Revalidate presence and life before each strike: earlier
+            // damage hooks may remove either participant. Each valid strike
+            // still runs the normal on-hit pipeline (including Cleave and
+            // Dismember independently for each selected owner).
             for (int i = 0; i < targets.Count; i++)
             {
+                if (ctx.Zone.GetEntityCell(actor) == null || actor.GetStatValue("Hitpoints") <= 0) break;
+                if (ctx.Zone.GetEntityCell(targets[i]) == null || targets[i].GetStatValue("Hitpoints") <= 0) continue;
                 CombatSystem.PerformSingleAttack(
                     attacker: actor, defender: targets[i],
                     weapon: weapon, isPrimary: true,

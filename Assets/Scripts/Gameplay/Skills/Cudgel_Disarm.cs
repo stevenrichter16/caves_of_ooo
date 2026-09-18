@@ -60,20 +60,7 @@ namespace CavesOfOoo.Skills
             if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return false; }
 
             // Find adjacent target.
-            Entity target = null;
-            for (int dir = 0; dir < 8 && target == null; dir++)
-            {
-                var cell = ctx.Zone.GetCellInDirection(actorPos.x, actorPos.y, dir);
-                if (cell == null) continue;
-                for (int i = 0; i < cell.Objects.Count; i++)
-                {
-                    var e = cell.Objects[i];
-                    if (e == null || e == actor) continue;
-                    if (!e.Tags.ContainsKey("Creature")) continue;
-                    target = e;
-                    break;
-                }
-            }
+            var target = MultiCellAbilityQueries.FirstAdjacentCreature(ctx.Zone, actor, out _);
             if (target == null)
             {
                 MessageLog.Add(actor.GetDisplayName() + " has nothing to disarm.");
@@ -99,6 +86,15 @@ namespace CavesOfOoo.Skills
             {
                 MessageLog.Add(target.GetDisplayName() + " has no weapon to disarm.");
                 EmitSkillRejectedDiag(ctx, "target_unarmed");
+                return false;
+            }
+
+            // Equipped multi-cell items are outside the pilot's handling
+            // contract. Refuse before changing either binding or ownership.
+            if (weaponEntity.HasPart<SpatialFootprintPart>())
+            {
+                EmitSkillRejectedDiag(ctx, "weapon_too_large");
+                MessageLog.Add("That weapon is too large to knock safely from its wielder's grip.");
                 return false;
             }
 

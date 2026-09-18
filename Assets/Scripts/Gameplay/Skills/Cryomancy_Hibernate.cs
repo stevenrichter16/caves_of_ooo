@@ -20,7 +20,7 @@ namespace CavesOfOoo.Skills
     /// (<c>Docs/SKILL-ACTIVES-BRAINSTORM.md §Cryomancy_Hibernate</c>):
     /// "the only self-stasis with healing trade-off."</para>
     /// </summary>
-    public class Cryomancy_Hibernate : BaseSkillPart
+    public class Cryomancy_Hibernate : SpellSkillPart
     {
         public override string Name => nameof(Cryomancy_Hibernate);
 
@@ -40,7 +40,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;

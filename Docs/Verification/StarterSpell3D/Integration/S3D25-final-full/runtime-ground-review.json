@@ -1,0 +1,40 @@
+{
+  "scope": "Read-only cold-eye review after S3D25; ground-marker scale proposal remains parent-owned and unimplemented in this receipt. S3D24 native performance belongs to its captured source, not the pending patch.",
+  "additionalCurrentRuntimeBlockers": [],
+  "reviewedFiles": [
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/NativeSpellFxRenderer.cs",
+      "sha256": "2c656f51f00e170bee837e29b133cd63fd2eb5cc82715aa7363c7469b8d51756"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/NativeSpellFxLibrary.cs",
+      "sha256": "479ba2e098b4e7e75e6c4ce884b1442c6de1a8912a47b3a79cbde89191bf4436"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/WorldFxCoordinator.cs",
+      "sha256": "9985f15f1865a4572f9cb6b5f560f5d01d1d773f32bd5f49ff03f59efd7495d1"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/AsciiFxRenderer.cs",
+      "sha256": "85baf8347f4dadccef45196e18e6bb77c3d156701c3a912436f0519af4264d88"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/ZoneRenderer.cs",
+      "sha256": "23bfdd3c372494dc770dc7aa05c8748356574784adf66714991054ccfabfd615"
+    }
+  ],
+  "groundMarkerRequirements": [
+    "Use current-zone visible Village/SpawnRing ClaimsCell only; broader authored-scene predicates also include two-dimensional presenters.",
+    "Use tilemap per-cell SetTransformMatrix after SetTileFlags(None), and explicitly write identity on every fallback paint; do not mutate shared CP437 Tile assets.",
+    "Keep state-indicator visibility independent of SpellFxMode so Off does not hide real ground state.",
+    "Preserve the existing fog/unexplored and empty-state clears, marker priority/colors, permanent authored-river suppression, and every originally affected cell."
+  ],
+  "verifiedRepaintPaths": [
+    "Village3DSettings.Enabled/LowDetail -> ZoneRenderHooks.MarkFullDirty",
+    "SpriteEnvToggleController.Update/TestOnly_Toggle -> ZoneRenderHooks.MarkFullDirty",
+    "ZoneRenderer unpause -> _fullDirty=true",
+    "ZoneRenderer.SetZone -> _fullDirty=true",
+    "RefreshSpawnRingPresentation claim loss -> RenderZone"
+  ],
+  "proposedPatchVerification": "Pair native and fallback repaint of the same marked cells; compare exact state and tile/color/coverage while matrix differs. Include hidden/unexplored and cleared-state controls plus native mode switching."
+}

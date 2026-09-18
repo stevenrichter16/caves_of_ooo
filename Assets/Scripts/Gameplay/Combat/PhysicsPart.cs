@@ -96,10 +96,31 @@ namespace CavesOfOoo.Core
         {
             var targetCell = e.GetParameter<Cell>("TargetCell");
             if (targetCell == null) return true;
-
-            for (int i = 0; i < targetCell.Objects.Count; i++)
+            var zone = targetCell.ParentZone;
+            if (zone == null) return CheckCellBeforeMove(e, targetCell);
+            var cells = zone.GetOccupiedCells(ParentEntity, targetCell.X, targetCell.Y);
+            if (cells.Count == 0) { e.SetParameter("Blocked", true); return false; }
+            foreach (var cell in cells)
             {
-                var other = targetCell.Objects[i];
+                if (cell == null) { e.SetParameter("Blocked", true); return false; }
+                if (!CheckCellBeforeMove(e, cell)) return false;
+            }
+            return true;
+        }
+
+        private bool CheckCellBeforeMove(GameEvent e, Cell targetCell)
+        {
+            var authoredBlocker = MorrowfastSceneRuntime.BlockingOwner(targetCell, ParentEntity);
+            if (authoredBlocker != null)
+            {
+                e.SetParameter("Blocked", true);
+                e.SetParameter("BlockedBy", (object)authoredBlocker);
+                return false;
+            }
+
+            for (int i = 0; i < targetCell.Occupants.Count; i++)
+            {
+                var other = targetCell.Occupants[i];
                 if (other == ParentEntity) continue;
 
                 var otherPhysics = other.GetPart<PhysicsPart>();

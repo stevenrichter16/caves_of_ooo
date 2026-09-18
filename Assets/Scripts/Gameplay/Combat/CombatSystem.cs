@@ -119,6 +119,9 @@ namespace CavesOfOoo.Core
                     return false;
                 }
 
+                FaceToward(attacker, defender, zone);
+                EntityVisualHooks.EmitAttack(attacker, defender, zone);
+
                 var body = attacker.GetPart<Body>();
 
                 if (body != null)
@@ -848,6 +851,7 @@ namespace CavesOfOoo.Core
             using (PerformanceMarkers.Combat.ApplyDamage.Auto())
             {
                 if (target == null || damage == null) return;
+                if (DebugInvincibility.Blocks(target, "damage", source)) return;
 
                 if (damage.Amount <= 0)
                 {
@@ -901,6 +905,7 @@ namespace CavesOfOoo.Core
                 // rather than "10"). This also serves DamageDealt-event
                 // listeners that may need pre-decrement HP.
                 int hpBefore = hpStat.BaseValue;
+                SpellFxCapture.Target(zone, target);
 
                 // Phase F: BeforeTakeDamage event — fires BEFORE resistance.
                 // Listeners can mutate damage (e.g., add/remove attributes,
@@ -971,6 +976,7 @@ namespace CavesOfOoo.Core
                     fullyResistedVeto.SetParameter("Target", (object)target);
                     fullyResistedVeto.SetParameter("Source", (object)source);
                     fullyResistedVeto.SetParameter("Damage", (object)damage);
+                    SpellFxCapture.RecordDamage(zone, target, 0, resisted: true);
                     target.FireEventAndRelease(fullyResistedVeto);
                     return;
                 }
@@ -1001,6 +1007,7 @@ namespace CavesOfOoo.Core
                     fullyResisted.SetParameter("Target", (object)target);
                     fullyResisted.SetParameter("Source", (object)source);
                     fullyResisted.SetParameter("Damage", (object)damage);
+                    SpellFxCapture.RecordDamage(zone, target, 0, resisted: true);
                     target.FireEventAndRelease(fullyResisted);
                     return;
                 }
@@ -1033,10 +1040,19 @@ namespace CavesOfOoo.Core
                 // negative number on an overkill hit instead of a floored
                 // one. Docs/COMBAT-SYSTEM-AUDIT-2026-07.md.
                 hpStat.BaseValue = Math.Max(hpStat.Min, hpStat.BaseValue - amount);
+                SpellFxCapture.RecordDamage(zone, target, Math.Max(0, hpBefore - hpStat.BaseValue),
+                    resisted: damage.Amount < amountBeforeResistance);
 
                 Stat hpAlias = target.GetStat("HP");
                 if (hpAlias != null && !ReferenceEquals(hpAlias, hpStat))
                     hpAlias.BaseValue = Math.Max(hpAlias.Min, hpAlias.BaseValue - amount);
+
+                EntityVisualHooks.EmitDamage(
+                    target,
+                    source,
+                    zone,
+                    Math.Min(amount, hpBefore),
+                    hpStat.BaseValue <= 0);
 
                 // D2.2 diag hook (Docs/D2-HOOKS-PLAN.md §4 D2.2).
                 // Records damage AFTER it lands. Broader than the
@@ -1277,6 +1293,7 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static void HandleDeath(Entity target, Entity killer, Zone zone)
         {
+            if (DebugInvincibility.Blocks(target, "death", killer)) return;
             if (IsDeathHandled(target)) return;
             target.Tags[DEATH_HANDLED_TAG] = "";
             var hp = target.GetStat("Hitpoints");
@@ -1377,6 +1394,9 @@ namespace CavesOfOoo.Core
                     });
             }
 
+            if (deathX.HasValue && deathY.HasValue)
+                EntityVisualHooks.EmitDeath(target, killer, zone, deathX.Value, deathY.Value);
+
             if (zone != null)
                 zone.RemoveEntity(target);
 
@@ -1399,6 +1419,22 @@ namespace CavesOfOoo.Core
                 ZoneRenderHooks.MarkFullDirty("Death.Player");
             else if (deathX.HasValue && deathY.HasValue)
                 ZoneRenderHooks.MarkCellDirty(deathX.Value, deathY.Value, "Death");
+        }
+
+        private static void FaceToward(Entity attacker, Entity defender, Zone zone)
+        {
+            if (attacker == null || defender == null || zone == null) return;
+            Cell source = zone.GetEntityCell(attacker);
+            Cell target = zone.GetEntityCell(defender);
+            RenderPart render = attacker.GetPart<RenderPart>();
+            if (source == null || target == null || render == null) return;
+
+            int dx = target.X - source.X;
+            int dy = target.Y - source.Y;
+            if (Math.Abs(dx) >= Math.Abs(dy) && dx != 0)
+                render.VisualFacing = dx < 0 ? EntityVisualFacing.West : EntityVisualFacing.East;
+            else if (dy != 0)
+                render.VisualFacing = dy < 0 ? EntityVisualFacing.North : EntityVisualFacing.South;
         }
 
         /// <summary>Chebyshev radius for death-witness broadcast (M2.3).</summary>

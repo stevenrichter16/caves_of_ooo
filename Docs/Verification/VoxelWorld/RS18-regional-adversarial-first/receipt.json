@@ -1,0 +1,51 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CavesOfOoo.Tests.RegionalSituation",
+  "results": {
+    "id": "2",
+    "testcasecount": "58",
+    "result": "Failed(Child)",
+    "total": "58",
+    "passed": "51",
+    "failed": "7",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-18 00:45:48Z",
+    "end-time": "2026-09-18 00:45:54Z",
+    "duration": "5.8880384"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationAdversarialTests.ActualMarkedPeatDamageDisturbsHabitatAndHeatReleasesNativeGas(False)",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationAdversarialTests.ActualMarkedPeatDamageDisturbsHabitatAndHeatReleasesNativeGas(True)",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationAdversarialTests.FullWorldReloadRetainsCarriedCargoAndCompletionWithoutRegeneration(\"sumphold-oil\")",
+      "message": "System.InvalidOperationException : Sequence contains no matching element"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationAdversarialTests.FullWorldReloadRetainsCarriedCargoAndCompletionWithoutRegeneration(\"wellmeet-filters\")",
+      "message": "System.InvalidOperationException : Sequence contains no matching element"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationAdversarialTests.InvalidSupplyOwnershipAndQuantityCannotComplete(\"equipped\")",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationAdversarialTests.InvalidSupplyOwnershipAndQuantityCannotComplete(\"foreign-owner\")",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationAdversarialTests.KnownDestroyedRecoveryCannotKeepAdvertisingAvailableWork(True)",
+      "message": "  Expected: None\n  But was:  Available\n"
+    }
+  ]
+}

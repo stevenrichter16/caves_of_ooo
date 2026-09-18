@@ -31,7 +31,7 @@ namespace CavesOfOoo.Rendering
             _lineRenderer.widthMultiplier = 0.08f;
             _lineRenderer.numCapVertices = 0;
             _lineRenderer.numCornerVertices = 0;
-            _lineRenderer.sortingOrder = 4;
+            _lineRenderer.sortingOrder = 7;
             _lineRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             _lineRenderer.receiveShadows = false;
             _lineRenderer.enabled = false;

@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "generatedWith": "Built-in Imagegen study/backing sources; later user-authorized deterministic source extraction, masking, local backing composition, and RGBA export with ArtTools/felling_components.py.",
+  "artEditPrompts": "imagegen-prompts.json",
+  "alphaFollowupPrompt": "reports/alpha-attempt-prompt.json",
+  "assets": [
+    {
+      "path": "reference.png",
+      "originalPath": "/Users/steven/.codex/generated_images/01a07284-2e39-7321-8575-eef09c69395c/exec-3c41243a-cf1b-4066-b595-523cc93174bb.png",
+      "role": "selected-reference",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "alphaExtrema": null,
+      "sha256": "593830c2d22554db3aed9d593858f24df7cab0aec1e3de16563a877ecf0d6516",
+      "byteIdenticalToSource": true
+    },
+    {
+      "path": "player-sheet.png",
+      "originalPath": "/Users/steven/caves-of-ooo/Assets/Resources/Sprites/Actors/player_sheet.png",
+      "role": "existing-player-proxy",
+      "size": [
+        64,
+        384
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "sha256": "25fc4b4991400144ae6bb5847ca43829a638795af3e860af92af858a6e36972d",
+      "byteIdenticalToSource": true
+    },
+    {
+      "path": "generated/clean-plate.png",
+      "originalPath": "/Users/steven/.codex/generated_images/01a07284-2e39-7321-8575-eef09c69395c/exec-956b72c8-7581-423c-b3fa-767d85f51fae.png",
+      "role": "actor-removal-study",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "alphaExtrema": null,
+      "sha256": "afa28a71c96f79fe33a5baa36b19d5de41b70d71811d02b5557e1ebe79f33369",
+      "byteIdenticalToSource": true
+    },
+    {
+      "path": "generated/ground-repair.png",
+      "originalPath": "/Users/steven/.codex/generated_images/01a07284-2e39-7321-8575-eef09c69395c/exec-0bc9ee66-d8d4-409d-8cb8-5d456d983388.png",
+      "role": "ground-repair-study",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "alphaExtrema": null,
+      "sha256": "b8f209b112610a723a2f31036a4cbb2a4778fe25388654ea3d136d842956e6f4",
+      "byteIdenticalToSource": true
+    },
+    {
+      "path": "generated/studies/environment-props-v1.png",
+      "originalPath": "/Users/steven/.codex/generated_images/01a07284-2e39-7321-8575-eef09c69395c/exec-0d564a80-613b-4b6f-833f-a67d0f1f84f8.png",
+      "role": "opaque-prop-study-alpha-rejected",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "alphaExtrema": null,
+      "sha256": "db7b6d23ae66073f5a27bd4b0f63b0f04ed2a3468a7bdab8c573e9c4a2f28c48",
+      "byteIdenticalToSource": true
+    },
+    {
+      "path": "generated/studies/environment-props-alpha-attempt.png",
+      "originalPath": "/Users/steven/.codex/generated_images/01a07284-2e39-7321-8575-eef09c69395c/exec-77e36566-9742-4808-962c-3d21653a2955.png",
+      "role": "opaque-prop-study-alpha-rejected",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "alphaExtrema": null,
+      "sha256": "6bf3b523e7f982503aef18afd91231d20508eccf345758ed19c3459b4c5a4a3b",
+      "byteIdenticalToSource": true
+    },
+    {
+      "path": "Components/sources/empty-environment-v1.png",
+      "role": "generated-local-backing-source",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "alphaExtrema": null,
+      "sha256": "c5f756c7e505d21e7bc30d02200a69fca6236b2c80bd55ebbbc9158c1ff89ff8",
+      "derivation": {
+        "promptRecord": "Components/imagegen-prompts.json",
+        "usage": "Plausible hidden material sampled and adjusted only within authored local removal support. The full generated image does not replace the reference."
+      }
+    },
+    {
+      "path": "Components/build/baseline.png",
+      "role": "actor-free-component-assembly-target",
+      "size": [
+        1536,
+        1024
+      ],
+      "mode": "RGB",
+      "alphaExtrema": null,
+      "derivation": {
+        "sourcePaths": [
+          "reference.png",
+          "generated/clean-plate.png"
+        ],
+        "sourceAndDestinationRect": [
+          736,
+          800,
+          80,
+          96
+        ],
+        "usage": "Original reference plus the existing actor-removal patch. Exact assembly comparison targets this baseline, not every original-reference pixel."
+      },
+      "sha256Record": "Components/build/manifest.json#/baseline/sha256"
+    },
+    {
+      "path": "Components/build/prop-atlas.png",
+      "role": "true-rgba-extracted-prop-atlas",
+      "size": [
+        1024,
+        640
+      ],
+      "mode": "RGBA",
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "derivation": {
+        "producer": "../../ArtTools/felling_components.py",
+        "metadata": "Components/build/prop-atlas.json",
+        "manifest": "Components/build/manifest.json",
+        "sourcePaths": [
+          "Components/build/baseline.png"
+        ],
+        "usage": "Visible-surface candidate prop sprites with explicit atlas rectangles and proposed pivots; no complete unseen geometry or gameplay behavior."
+      },
+      "sha256Record": "Components/build/prop-atlas.json#/sha256"
+    }
+  ],
+  "previewComposition": {
+    "base": "reference.png",
+    "patchSource": "generated/clean-plate.png",
+    "sourceAndDestinationRect": [
+      736,
+      800,
+      80,
+      96
+    ],
+    "unchangedSourceAreaPercent": 99.51171875,
+    "note": "Canvas runtime composition only. Effects, actor and review overlays add their own pixels. This percentage refers to base image source selection, not a rendered screenshot comparison."
+  },
+  "alphaReadiness": "AVAILABLE: Components/build/prop-atlas.png is true RGBA with alpha range 0..255 and slice/pivot metadata. Historical RGB studies remain rejected. Final aggregate verification outcome is recorded separately in reports/report.json.",
+  "rasterProcessingAuthorization": "The user explicitly authorized deterministic image scripts after the initial Imagegen-only study stage. The selected source reference and historical generated outputs remain preserved.",
+  "historicalAlphaReadiness": {
+    "finding": "FAIL: two RGB outputs. Required transparent environment-props.png remains pending.",
+    "scope": "The two earlier RGB prop studies only; superseded by the new RGBA atlas, not reclassified as transparent assets.",
+    "preservedAttempts": [
+      "generated/studies/environment-props-v1.png",
+      "generated/studies/environment-props-alpha-attempt.png"
+    ]
+  },
+  "componentPackage": {
+    "readme": "Components/README.md",
+    "viewer": "Components/index.html",
+    "manifest": "Components/build/manifest.json",
+    "atlas": "Components/build/prop-atlas.png",
+    "atlasMetadata": "Components/build/prop-atlas.json",
+    "componentCount": 55,
+    "removableCandidateProps": 39,
+    "fixedOrEffectPartitions": 16,
+    "hashAuthority": "Components/build/manifest.json and Components/build/prop-atlas.json identify current generated component bytes; rebuilds refresh those records.",
+    "composition": "Draw base, then contributing components in ascending (depth,id), with each contact contribution immediately before its sprite.",
+    "backing": "Local inferred backing only. Some backing is carried by lower fixed structural sprites partitioned from the cleaned baseline.",
+    "inferenceMask": "Components/build/inference-mask.png",
+    "inferenceMaskEncoding": "Grayscale L PNG: 0 outside inferred coverage, 255 inside. Intersect with actual base/sprite alpha for exposed coverage.",
+    "provenanceDistinction": "extraction.inferredPixelCount describes inferred pixels inside a sprite. repair.inferred describes its own removal backing; false does not imply the sprite contains zero inference.",
+    "geometryScope": "Visible-only cutouts at authored placements; no complete unseen surfaces for freely moved or rotated objects. Contact detail belongs to its original ground location.",
+    "fixedLayerScope": "Broad fixed/effect partitions are inspection/depth assets. Hiding fixed structure may expose diagnostic transparent voids, not traversable ground.",
+    "footprintScope": "One provisional anchor cell per component; not a physics footprint or complete visibility-owner mapping.",
+    "verification": {
+      "producerReport": "Components/build/reports/verification.json",
+      "componentEvidence": "Components/reports/",
+      "aggregateReport": "reports/report.json",
+      "outcome": "Consult current reports; this provenance record does not assert final aggregate or Unity acceptance.",
+      "unityExecuted": false
+    }
+  }
+}

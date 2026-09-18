@@ -174,7 +174,10 @@ namespace CavesOfOoo.Core
         public static bool TryApply(Effect effect, Entity target, Entity source, Zone zone)
         {
             if (!Gate(effect, target, source, strict: true))
+            {
+                SpellFxCapture.RecordEffect(zone, target, effect?.GetType().Name, applied: false);
                 return false;
+            }
             // ApplyEffect re-runs the lenient door; a strict pass implies a
             // lenient pass, so this is one table read, not two verdicts.
             return target.ApplyEffect(effect, source, zone);

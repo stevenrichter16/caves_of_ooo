@@ -1,0 +1,75 @@
+{
+  "sourcePixels": 1572864,
+  "intactDifferentPixels": 0,
+  "owners": 71,
+  "outdoorOwners": 35,
+  "indoorOwners": 21,
+  "buildings": 5,
+  "layers": 145,
+  "occlusionRepairs": [
+    {
+      "backOwner": "north-oath-arch",
+      "frontOwner": "north-guard-east",
+      "pixels": 68,
+      "layerId": "north-oath-arch-repair-north-guard-east",
+      "method": "Imagegen stationary-surface completion"
+    },
+    {
+      "backOwner": "provisioners-stall",
+      "frontOwner": "provisioners-rope-basket",
+      "pixels": 4,
+      "layerId": "provisioners-stall-repair-provisioners-rope-basket",
+      "method": "Imagegen stationary-surface completion"
+    },
+    {
+      "backOwner": "provisioners-water-barrel",
+      "frontOwner": "provisioners-rope-basket",
+      "pixels": 110,
+      "layerId": "provisioners-water-barrel-repair-provisioners-rope-basket",
+      "method": "Imagegen stationary-surface completion"
+    },
+    {
+      "backOwner": "southern-food-stall",
+      "frontOwner": "food-stall-barrel",
+      "pixels": 395,
+      "layerId": "southern-food-stall-repair-food-stall-barrel",
+      "method": "Imagegen stationary-surface completion"
+    },
+    {
+      "backOwner": "southern-food-stall",
+      "frontOwner": "food-stall-bucket",
+      "pixels": 298,
+      "layerId": "southern-food-stall-repair-food-stall-bucket",
+      "method": "Imagegen stationary-surface completion"
+    },
+    {
+      "backOwner": "inn-supply-barrel",
+      "frontOwner": "inn-outdoor-stove",
+      "pixels": 9,
+      "layerId": "inn-supply-barrel-repair-inn-outdoor-stove",
+      "method": "Imagegen stationary-surface completion"
+    },
+    {
+      "backOwner": "inn-empty-bucket",
+      "frontOwner": "inn-outdoor-stove",
+      "pixels": 24,
+      "layerId": "inn-empty-bucket-repair-inn-outdoor-stove",
+      "method": "Imagegen stationary-surface completion"
+    },
+    {
+      "backOwner": "inn-outdoor-stove",
+      "frontOwner": "inn-kindling-crate",
+      "pixels": 24,
+      "layerId": "inn-outdoor-stove-repair-inn-kindling-crate",
+      "method": "Imagegen stationary-surface completion"
+    }
+  ],
+  "sourceSha256": "c2fcc1c2c4c0c909a847be8089e40c3a955f58a16e14fff5f084f2cd3a5a2cc0",
+  "inferredSurfaceNote": "Hidden surfaces are inferred, not recovered original pixels. Source contacts are authored-placement collars.",
+  "limits": [
+    "Perimeter fences and indistinct ground growth remain fixed surface texture.",
+    "Residents are single-pose cutouts, not complete directional animation sets.",
+    "Roof-off interiors are inferred and include documented furniture offsets.",
+    "Native Unity dialogue, trade and quest integration is a separate handoff."
+  ]
+}

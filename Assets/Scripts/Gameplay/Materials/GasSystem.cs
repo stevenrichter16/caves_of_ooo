@@ -72,15 +72,17 @@ namespace CavesOfOoo.Core
             // bounded and per-turn cost (not per-frame). Same convention
             // as Zone.GetAllEntities documents.
             var snapshot = zone.GetEntitiesWithTag("Gas");
-            for (int i = 0; i < snapshot.Count; i++)
+            var doses=UnityEngine.Pool.ListPool<SpatialGasExposure.Dose>.Get();
+            try
             {
-                ProcessGasBehavior(snapshot[i], zone);
-                // G.5: after dispersal, dispatch the per-turn apply pass
-                // to any IObjectGasBehaviorPart sibling. Skipped when the
-                // gas dissipated mid-dispersal (the in-zone check inside
-                // DispatchPerTurnApply protects).
-                DispatchPerTurnApply(snapshot[i], zone);
+                for (int i = 0; i < snapshot.Count; i++)
+                {
+                    ProcessGasBehavior(snapshot[i], zone);
+                    DispatchPerTurnApply(snapshot[i], zone, doses);
+                }
+                SpatialGasExposure.Apply(doses,zone);
             }
+            finally {UnityEngine.Pool.ListPool<SpatialGasExposure.Dose>.Release(doses);}
         }
 
         /// <summary>G.5 — per-turn dose for creatures currently in the
@@ -88,7 +90,7 @@ namespace CavesOfOoo.Core
         /// dispersal this tick. Mirror of Qud's
         /// <c>IObjectGasBehavior.TurnTick → ApplyGas(Cell)</c>
         /// (IObjectGasBehavior.cs:43-51).</summary>
-        private static void DispatchPerTurnApply(Entity gas, Zone zone)
+        private static void DispatchPerTurnApply(Entity gas, Zone zone, List<SpatialGasExposure.Dose> bodyDoses)
         {
             if (gas == null || zone == null) return;
             var pos = zone.GetEntityPosition(gas);
@@ -97,7 +99,7 @@ namespace CavesOfOoo.Core
             if (behavior == null) return; // visual-only gas (no behavior Part)
             var cell = zone.GetCell(pos.x, pos.y);
             if (cell == null) return;
-            behavior.ApplyToCell(cell, zone);
+            behavior.ApplyToCell(cell, zone, bodyDoses);
         }
 
         /// <summary>

@@ -32,11 +32,16 @@ namespace CavesOfOoo.Tests
             return seen;
         }
         [TestCase(3)] [TestCase(61)] [TestCase(987)]
-        public void Adversarial_EveryPerimeterCellAndPositionIsReachable(int seed)
+        public void Adversarial_EveryOpenPerimeterCellAndSourcePositionIsReachable(int seed)
         {
             var z=new OverworldZoneManager(_factory,seed).GetZone(FellingSiteBuilder.ZoneID);var seen=Flood(z);
-            for(int x=0;x<Zone.Width;x++){Assert.IsTrue(seen.Contains((x,0)));Assert.IsTrue(seen.Contains((x,Zone.Height-1)));}
-            for(int y=0;y<Zone.Height;y++){Assert.IsTrue(seen.Contains((0,y)));Assert.IsTrue(seen.Contains((Zone.Width-1,y)));}
+            // The source's monumental north cliff is deliberately impassable.
+            // Every physically open edge still connects to the circle.
+            for(int x=0;x<Zone.Width;x++)foreach(int y in new[]{0,Zone.Height-1})
+                if(!z.GetCell(x,y).BlocksMovement())Assert.IsTrue(seen.Contains((x,y)));
+            for(int y=0;y<Zone.Height;y++)foreach(int x in new[]{0,Zone.Width-1})
+                if(!z.GetCell(x,y).BlocksMovement())Assert.IsTrue(seen.Contains((x,y)));
+            Assert.IsTrue(z.GetCell(40,0).BlocksMovement());Assert.IsFalse(seen.Contains((40,0)));
             var positions=z.GetAllEntities().Where(e=>e.BlueprintName=="SeventhPosition"||e.BlueprintName=="FellingBarePosition").ToList();
             Assert.AreEqual(7,positions.Select(z.GetEntityPosition).Distinct().Count());
             Assert.IsTrue(positions.All(e=>seen.Contains(z.GetEntityPosition(e))));
@@ -173,11 +178,11 @@ namespace CavesOfOoo.Tests
         {
             var m=new OverworldZoneManager(_factory,64);var z=m.GetZone(FellingSiteBuilder.ZoneID);
             var tree=_factory.CreateEntity("Tree");tree.Tags.Remove("Vegetation");tree.SetIntProperty("SavedTree",1);
-            Assert.IsTrue(z.AddEntity(tree,40,5));var actor=Place(z,"Player",40,12);
+            Assert.IsTrue(z.AddEntity(tree,36,10));var actor=Place(z,"Player",40,12);
             var loaded=Roundtrip(m,z,actor);var lz=loaded.ZoneManager.GetZone(FellingSiteBuilder.ZoneID);
             Assert.IsFalse(lz.GetAllEntities().Any(e=>e.GetIntProperty("SavedTree")==1));
             Assert.AreEqual(6,lz.GetAllEntities().Count(e=>e.BlueprintName=="FellingBarePosition"));
-            Assert.IsNotNull(lz.GetEntityCell(loaded.Player));Assert.IsFalse(lz.AddEntity(_factory.CreateEntity("Grass"),40,5));
+            Assert.IsNotNull(lz.GetEntityCell(loaded.Player));Assert.IsFalse(lz.AddEntity(_factory.CreateEntity("Grass"),36,10));
         }
         [TestCase(false)] [TestCase(true)]
         public void Adversarial_SaveOnThePointHonorsActualPersistedPresence(bool removed)
@@ -207,13 +212,14 @@ namespace CavesOfOoo.Tests
             lz.MoveEntity(loaded.Player,40,12);loaded.TurnManager.EndTurn(loaded.Player,lz);loaded.TurnManager.EndTurn(loaded.Player,lz);
             Assert.AreEqual(dv,loaded.Player.GetStatValue("DV"));Assert.AreEqual(3,loaded.Player.GetStat("DV").Penalty);
         }
-        [Test] public void Adversarial_OldCachedGroundIsPreservedWhenMapGainsTheSite()
+        [Test] public void Adversarial_OldCachedGroundUpgradesSceneryButPreservesSavedOccupants()
         {
             var m=new OverworldZoneManager(_factory,64);m.WorldMap.SetPOI(3,5,null);var z=m.GetZone(FellingSiteBuilder.ZoneID);
             var actor=Place(z,"Player",40,12);var item=Place(z,"Tepuibone",41,12);item.SetIntProperty("PlayerModification",8);int count=z.EntityCount;
             var loaded=Roundtrip(m,z,actor);var lz=loaded.ZoneManager.GetZone(FellingSiteBuilder.ZoneID);
             Assert.AreEqual(POIType.FellingSite,loaded.ZoneManager.WorldMap.GetPOI(3,5).Type);
-            Assert.IsFalse(lz.GetAllEntities().Any(e=>e.HasPart<SeventhPositionPart>()));Assert.AreEqual(count,lz.EntityCount);
+            Assert.IsTrue(FellingSceneRuntime.IsActive(lz));Assert.AreEqual(1,lz.GetAllEntities().Count(e=>e.HasPart<SeventhPositionPart>()));
+            Assert.IsNotNull(lz.GetEntityCell(loaded.Player));
             Assert.IsTrue(lz.GetAllEntities().Any(e=>e.ID==item.ID&&e.GetIntProperty("PlayerModification")==8));
         }
         [TestCase(false)] [TestCase(true)]

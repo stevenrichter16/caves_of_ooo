@@ -1,0 +1,696 @@
+{
+  "schemaVersion": 1,
+  "id": "catacomb-offline-verification",
+  "startedAt": "2026-09-05T20:18:38+00:00",
+  "unityExecuted": false,
+  "scope": "Source derivation, current provenance, exported RGBA, immutable reassembly and offline browser mechanics. Visual quality is reviewed separately.",
+  "toolchain": {
+    "python": "/Users/steven/.pyenv/versions/3.12.12/bin/python3",
+    "node": "/opt/homebrew/bin/node"
+  },
+  "steps": [
+    {
+      "name": "python-tests",
+      "command": [
+        "/Users/steven/.pyenv/versions/3.12.12/bin/python3",
+        "-m",
+        "unittest",
+        "ArtTools.test_catacomb_extract",
+        "ArtTools.test_catacomb_scene",
+        "ArtTools.test_catacomb_adversarial"
+      ],
+      "log": "python-tests.log",
+      "startedAt": "2026-09-05T20:18:38+00:00",
+      "status": "passed",
+      "exitCode": 0,
+      "tests": {
+        "total": 86
+      },
+      "durationSeconds": 0.177
+    },
+    {
+      "name": "node-tests",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "/Users/steven/caves-of-ooo/ArtTools/test_catacomb_browser.cjs"
+      ],
+      "log": "node-tests.log",
+      "startedAt": "2026-09-05T20:18:39+00:00",
+      "status": "passed",
+      "exitCode": 0,
+      "tests": {
+        "tests": 49,
+        "pass": 49,
+        "fail": 0,
+        "skipped": 0
+      },
+      "durationSeconds": 0.128
+    },
+    {
+      "name": "source-derivation",
+      "log": "source-derivation.log",
+      "startedAt": "2026-09-05T20:18:39+00:00",
+      "status": "passed",
+      "findings": {
+        "ok": true,
+        "sourceAssetCount": 51,
+        "visibleSourcePixels": 628959,
+        "sourceSha256": "54b8d3bab5d6c618d7912474b33c0ce72126a2deae5da5505d37cd6d784f384d",
+        "sourceRgbAndAlphaExact": true,
+        "noSourcePixelOwnershipOverlap": true,
+        "authoringSha256": "79edc782db3bc39841f17adf231c670bb85cd278813c67f39983f0bd51114fe9",
+        "extractorSha256": "a1bf6187b7946b14a0df1241841de2b9af0a5ec6ea7d7418420d113a5e021ef0"
+      },
+      "durationSeconds": 0.107
+    },
+    {
+      "name": "current-provenance",
+      "log": "current-provenance.log",
+      "startedAt": "2026-09-05T20:18:39+00:00",
+      "status": "passed",
+      "findings": {
+        "ok": true,
+        "inputs": [
+          {
+            "field": "sourceSheetSha256",
+            "path": "/Users/steven/caves-of-ooo/Docs/StyleExploration/Felling-2026-09-05/05-catacomb-tileset.png",
+            "sha256": "54b8d3bab5d6c618d7912474b33c0ce72126a2deae5da5505d37cd6d784f384d"
+          },
+          {
+            "field": "catalogSha256",
+            "path": "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/catalog.json",
+            "sha256": "a2484c5ed54ad9af17e143f843abb36750281c6a217292100493f431aa88f162"
+          },
+          {
+            "field": "layoutSha256",
+            "path": "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/scene-layout.json",
+            "sha256": "2fc4b6e5cdfd7c65ca66e938b71b3a9802c526080295e262ac4994f1c213c409"
+          },
+          {
+            "field": "backgroundSha256",
+            "path": "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/generated/empty-cavern-v1.png",
+            "sha256": "9f1d8d7219388d9245a533fc217ad4c05836b6249aec76e97d07d3de4acd05fe"
+          },
+          {
+            "field": "producerSha256",
+            "path": "/Users/steven/caves-of-ooo/ArtTools/catacomb_scene.py",
+            "sha256": "df0beefe6451310546ac0ef3d2f2b60b9ad4afb51313d74d546b78bf661d45d0"
+          }
+        ],
+        "baseMatchesCurrentSubstrate": true,
+        "sceneMatchesCurrentLayout": true
+      },
+      "durationSeconds": 0.059
+    },
+    {
+      "name": "strict-assets",
+      "log": "strict-assets.log",
+      "startedAt": "2026-09-05T20:18:39+00:00",
+      "status": "passed",
+      "findings": {
+        "ok": true,
+        "componentCount": 81,
+        "mutableCount": 46,
+        "reachableCells": 652,
+        "waypointCount": 6,
+        "assetChecks": 167
+      },
+      "durationSeconds": 0.155
+    },
+    {
+      "name": "placed-derivation",
+      "log": "placed-derivation.log",
+      "startedAt": "2026-09-05T20:18:39+00:00",
+      "status": "passed",
+      "findings": {
+        "ok": true,
+        "componentCount": 81,
+        "sourceDerivativeCount": 82,
+        "nearestResizeRGBAExact": true
+      },
+      "durationSeconds": 0.083
+    },
+    {
+      "name": "reassembly",
+      "log": "reassembly.log",
+      "startedAt": "2026-09-05T20:18:39+00:00",
+      "status": "passed",
+      "findings": {
+        "ok": true,
+        "intactChangedPixels": 0,
+        "allMutableRemovedExact": true,
+        "individualRemovals": [
+          {
+            "id": "garden-detail-16",
+            "changedPixels": 442,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "garden-detail-15",
+            "changedPixels": 584,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "hearth-north-growth",
+            "changedPixels": 1938,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "west-lantern",
+            "changedPixels": 982,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "garden-detail-02",
+            "changedPixels": 296,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "hatchery-honey-jar",
+            "changedPixels": 982,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "garden-detail-10",
+            "changedPixels": 1756,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "hatchery-display",
+            "changedPixels": 8364,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "garden-detail-14",
+            "changedPixels": 609,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "hearth-lantern",
+            "changedPixels": 894,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "garden-detail-01",
+            "changedPixels": 296,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "hearth-crown",
+            "changedPixels": 36064,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "hearth-east-bed",
+            "changedPixels": 8903,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "hearth-west-bed",
+            "changedPixels": 11592,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "west-bed-teal",
+            "changedPixels": 3860,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "threshold-west-vertical",
+            "changedPixels": 2946,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "garden-detail-12",
+            "changedPixels": 2419,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "garden-detail-09",
+            "changedPixels": 283,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "garden-detail-11",
+            "changedPixels": 1507,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "west-berry-bowl",
+            "changedPixels": 1023,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "garden-detail-08",
+            "changedPixels": 119,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "threshold-east-corner",
+            "changedPixels": 3677,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "communal-food",
+            "changedPixels": 1335,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "garden-detail-04",
+            "changedPixels": 296,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "garden-detail-03",
+            "changedPixels": 217,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "threshold-east-line",
+            "changedPixels": 4898,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "threshold-west-curve",
+            "changedPixels": 7268,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "west-bed-purple",
+            "changedPixels": 1541,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "larder-jar-large",
+            "changedPixels": 2159,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "larder-jar-east",
+            "changedPixels": 1908,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "garden-detail-05",
+            "changedPixels": 186,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "garden-detail-06",
+            "changedPixels": 283,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "west-bed-simple",
+            "changedPixels": 1982,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "east-food",
+            "changedPixels": 1335,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "threshold-south-left",
+            "changedPixels": 485,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "threshold-south-right",
+            "changedPixels": 1315,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "larder-jar-small",
+            "changedPixels": 1070,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "east-lantern",
+            "changedPixels": 810,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "village-snail",
+            "changedPixels": 1132,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "south-lantern",
+            "changedPixels": 810,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "village-rat",
+            "changedPixels": 396,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "garden-detail-07",
+            "changedPixels": 333,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "garden-detail-17",
+            "changedPixels": 347,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "east-bed-teal",
+            "changedPixels": 2916,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "garden-detail-13",
+            "changedPixels": 813,
+            "outsideAlphaChangedPixels": 0
+          },
+          {
+            "id": "garden-detail-18",
+            "changedPixels": 347,
+            "outsideAlphaChangedPixels": 0
+          }
+        ]
+      },
+      "durationSeconds": 1.708
+    },
+    {
+      "name": "exact-atlas",
+      "log": "exact-atlas.log",
+      "startedAt": "2026-09-05T20:18:41+00:00",
+      "status": "passed",
+      "findings": {
+        "ok": true,
+        "spriteCount": 81,
+        "size": [
+          1024,
+          1056
+        ],
+        "exactRGBA": true,
+        "completeUniqueIds": true
+      },
+      "durationSeconds": 0.064
+    }
+  ],
+  "finishedAt": "2026-09-05T20:18:41+00:00",
+  "durationSeconds": 2.529,
+  "sourceAndOutputSnapshot": {
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/index.html": "a0cc015bb53d2cfa1b98713e2cdd6b57ea67f737222ec602c9adfe5c8672a050",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/imagegen-prompts.json": "b32453bd1128b975bd479b0501d194af86a67e8b1cc20c3c4de663b69427d1b6",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/scene.js": "9e45159651b074749699f03ead1b9e79e02332ea167eb0165914414a61ea23fe",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-authoring.json": "79edc782db3bc39841f17adf231c670bb85cd278813c67f39983f0bd51114fe9",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/scene-layout.json": "2fc4b6e5cdfd7c65ca66e938b71b3a9802c526080295e262ac4994f1c213c409",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/scene.css": "bbf737a67767c4d7466e8ea90495c599667c732ea2ca0ec765120adc13320d31",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/generated/empty-cavern-v1.png": "9f1d8d7219388d9245a533fc217ad4c05836b6249aec76e97d07d3de4acd05fe",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/README.md": "583d3e27f0e8ca169e0f2ef532bddaa38f65888121e6d33d66fed5ce62e11ede",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/contact-sheet.png": "8983433f703fb95a62059d9a279c2d517a7ec2bb7212f8bf0c8041cc345c9a64",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/source.png": "54b8d3bab5d6c618d7912474b33c0ce72126a2deae5da5505d37cd6d784f384d",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/catalog.json": "a2484c5ed54ad9af17e143f843abb36750281c6a217292100493f431aa88f162",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/extraction-report.json": "d25d28ad9f7d6880ebeae60f4515805955e012b4db05ffe7782cc88cd4ab7d34",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/inference-mask.png": "60fdd18ba000881087f0ac42ff974b0460d1d1e7949a9d761757d8c9b12057d9",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/scene-atlas.json": "b2a84a1de2267645ea9ae0c203a6194a49ea309b3da0fc6d4748f76cfa560b1f",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/baseline.png": "7cc06a62d7f5d946a2d302707748b5e19dd3a9b6373675c8f5c7b010e2324e88",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/scene.json": "f85595fa8c335c6427ead19e7ce5cf2e463936f296373ceb526e38ea5cd219c6",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/scene-atlas.png": "7198aa19b6b500925f6c76c96bf8f2981bb67d7b6dc83a7f68bcd8f2c2acfd5e",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/reconstructed.png": "7cc06a62d7f5d946a2d302707748b5e19dd3a9b6373675c8f5c7b010e2324e88",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/base.png": "f4db6faf42f6f467851aa029cd63720d56c1438ab261ccdfeed8e3c794aa3b79",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/source-sheet.png": "54b8d3bab5d6c618d7912474b33c0ce72126a2deae5da5505d37cd6d784f384d",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/underlay.png": "422916fcb718e9849b1584f95f953de39a9ae76a4f43d258cb42e7113fff7b0f",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/player.png": "706edefaf5706406297c94bf536502b369206e1d35daa88a3a8f94e045c7b31b",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/coral-patch-large.png": "c68f862bfb06d3aa531483dea2113e0b4bc0d6bb545da0f6441d9c936dcfdd2c",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/dolmen-gate.png": "265094310ac6c9fb176d2f1eee199fc66babae2218d6e11f5272c923a7ef8966",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/stairs-front.png": "4812345a58e908e0384a141261783822111856b8ab83841c63f1bec3667f4bd0",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/fungus-garden-small.png": "2d95e9dff367a5f5877aea9bfadcf7f6ddc87267aac8efa08835083c8292e1ef",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/wall-niches-straight.png": "fe99cf2e99bbf51b31f54080868cbc4754938a1b30cfca3bed9de676689f786b",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/fungus-garden-large.png": "098d02a10e86cdd7e620f60a1529433041fe510adc6dab630baff7ad3ad9fa8d",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/mushroom-pink-tall.png": "2d46c07a285574fa9fc3b771ca708f8a26b0768f5e08a6dc4509390a441f3ec7",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/wall-niches-outer.png": "dcf0f30679496f9ec0421f79df73f545c803d8dda69016dfab89e4f4d7057d3a",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/bed-simple.png": "0d905a2d1ffc46da4e6ee473bc423ab95054e5c52beacbeb5bd05507fa085896",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/glowing-snail.png": "0eccdbab83b5a737c3971558e4bc6094d1ee25231632da20d139adff33acffd0",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/coral-patch-small.png": "000999fa86e26d180a79ad9f107776bc2b26ab5db44aa68307e273c7f7b53a32",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/niche-empty.png": "267d0c21dd89ac397e1fe34922f557a986254711ba85c8764408d66927a0f12f",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/floor-moss.png": "6da3db83b655cfde1925707461227b0feae83875a61f4b4c2100600468d8fee7",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/bed-purple.png": "a415a9bc30b2273363462518b99fe9fe65b25da713bd5d2527a2507beb135741",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/rat.png": "14551aaf618c1bd27c5a4ba6068151c013f846717ff3d29bd19285845f0d12d8",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/food-tray.png": "c6b580ed8c4b1d003499b283e738ca58ebab016c4da1cef93819a478d9168ff2",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/coral-threshold-curve.png": "75c14d1cfb7876104894cd1e55858ca35c00fd277160700b90de80d39e65bcdd",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/fungus-garden-tiny.png": "c722ba066cd669e35f8043028e5e0973facc12e436b18b3d22af6a433ae01ab9",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/villager-gardener.png": "ac10d84021f252bef256d9f8a9805a1534331feb69fd8980e960b95b72340503",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/stairs-side.png": "51dd4ed94f4190c618132b1e06e1989276b34f095dd5efa89fc3431b4a1b2d5e",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/glow-vein-shard.png": "36fcd8424f2c9eeab6105ee51da946a9dc4d8096b3056df343ffcab21761102c",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/wall-niches-inner.png": "e6588b8435b64f168bcec389728bde1189015ea8c416f2f03fed693d7b6fdb81",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/bed-teal.png": "182140458dd3042c04778da4af78a26f0afcc51ef41cc679bee745f7b7ec436f",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/ladder.png": "c07cd58078619b165424dcf176c4f8f183da9ecfcf127b8707ce1d6b8c4d004b",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/villager-front.png": "01ceffab2d822f3a4095bcd8f8923d5363c989a6a7ccf3f8aaf24a16f21f2968",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/villager-staff.png": "4ddcbecee8cf273a0228f680216cdc5a31ac81f019fbd6bfc2018d6a3f7f8baf",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/lantern-display.png": "18d2cd36de29fc2a174276c6136970bb8b6f5983817082e9de8bd87b1bd77ad1",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/villager-child.png": "0f8f09bd9f50275791cd354336e2fb32cbac0102a54b6372002f5adbd3641ebe",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/floor-stone-a.png": "ed8b2f307056eec1ae8bae16f9127e03ac9aa86e61d00eb071c01599d794a196",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/coral-threshold-left.png": "b4cfdd578ca0275b554ba0b5078e61c2abde2c08d11dd781278bb98446126d20",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/porous-threshold.png": "6afb71d38e4e028d3dade0b7c7f736a87ba14fc3d90ffa1476dffe1303f622b5",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/honey-jar-small.png": "8548a5ceed83c8730cf5dbabd35baddd7e2ed2750e6dcea6149a5c7a678f0597",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/pool-large.png": "bb7537aadf7ea576344c1bec4861fbb0d58b3636a44c285dbf6d97ef41d2462e",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/floor-stone-c.png": "db8b82bc0f3a92f9cc64723ef3bd3aa5fdc313576ad75cd9b32c2327c8d2b084",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/fungus-garden-medium.png": "61e0bd627d9e8472754edad3dad796d277eca57daaa81b7f96c0d490cc0730ce",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/floor-chipped.png": "ff1741022167831102a77753b8194854ab64e2feb260ce02468af33699498a03",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/floor-stone-b.png": "31421c978811ab733d69641e232065998a6be111094dca013c5283b2f0db42c7",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/honey-jar-large.png": "4cdac9033afc7fd3c41f397ff97e4f203b551818ca582a82dc5971a4af280a1c",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/pool-small.png": "01036ab88e09908b0d08f954aee92059f8b6f72776012d7cc4a3e06d70e88bfd",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/bowl-berries.png": "cffe0c2a6016b7678e60df39d37ffe0bd82a44fd3185b5e12290e730a20beac8",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/stone-step.png": "0a974921996126e8eaf8a70047d5d14246ab6fa74007e397a340509b56e8a7d7",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/coral-threshold-horizontal.png": "5b61a1fae6265080ca010901cc8c51f40b10e9ddf3b33650317df630595a6a6a",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/arched-doorway.png": "83135ae66da381a20d0d40b3f98f98eae6567038474153c0d0d65960124dcdc4",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/lantern-hanging.png": "c3ba23bf5f2e8ed1a1ea1c0eb3a6a26da1c8c207352657c68a5d7ad4a5db5a9e",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/mushroom-cyan-cluster.png": "600ebee695bf9c1e875d432ea317dfe35c6ef2f14012abbb94e1f06b289cfc2c",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/villager-side.png": "b85e1d93f6a95eb2c5598f0202a268cfdc67c6d4e5d6cd296592ed995df148a0",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/coral-threshold-vertical.png": "4cba773cc02fbe74a8a06c223a69fe10b7936c981f37b78c42e4723b61939340",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/niche-bed.png": "2cfc72a511bb433166f415cb29319d1b7f24d564a62faae3c83f1013a34e87ed",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/rubble-cluster.png": "be35221ec3d79343cb23e60aed5c528cb7349f36a8ca2ea8d2f70b94a3933300",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/glow-vein-pillar.png": "6521686c45c3e2d7a42410b858cdbd59a8bfbe926933dd41e2b2e2b770d9ec3c",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/sprites/stone-tablet.png": "ca473cf94e0f8d5f11cb1ad180c111a7fafa3b27a5cc41341487cbe23b0146f7",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/reports/extraction-green.log": "a9e358e5c6f83e666036d265d24cb5598e01be26591dd989669eaa5658931026",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/reports/extraction-adversarial-red.log": "70e4b697880502f91dfb7ba5acecb6448aed7e5c6650faaaacadeca24ad95412",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/source-assets/reports/extraction-red.log": "b3306f1b0b7942dcb37afc78fa81af4db7b7d414524d8cf34f973aaf3e075a3a",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/hatchery-honey-jar.png": "6d7c12103621cf38dda6b1cef9791a988796a14707956b15261af7610db073e2",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/hearth-lantern.png": "11a2ab864c00470919ffd3641e10753084dbb971c7c299129be343a2375b0f4a",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/communal-food.png": "d61fc61bd9c5864e969b46158557881515c3e9f2edc23817d59907773944ed2c",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/threshold-west-curve.png": "a6aa46ffc0f723695fdcf5b8c10ab2e953dacf968026d4964a2ac0c22f4b21af",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/threshold-south-left.png": "518c4e3927e26e76fea9db6b3a265abd37a8e91f31ba3de5bba0b05d366212a9",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/garden-detail-08.png": "3ae2f4b71b5006fffa99f17027edcc21a766657fdc75b3158666891021430f38",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/garden-detail-09.png": "5ae44504c8d1074788053472d44a28ce40cd20e7139a66d20d9d77263ae06bb3",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/hearth-north-growth.png": "170c5bc4713877063757ebe64e8faad237031b8efb01310bdb3abf1d507c8458",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/east-lantern.png": "20b822a98591cff6332bf975101bc5a7a91500a4a2ceb2485023a9cd005f5c34",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/hatchery-display.png": "7a49e8761b5e45363e8f9ec20628dd0d8f0d96bbeeb733cc2c203ed57093086d",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/threshold-east-line.png": "59dacec56c8152d28662ec30041eff34c560663f2c3f50ffabe8df6a7d506276",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/hearth-west-bed.png": "b01a56a122d2ccb1a4a73c4ce780619c312aaffa9981831ffbf275f87bd7eb17",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/hearth-east-bed.png": "891da0b0dcb149ba2cb232c3a1371613bb650a6848aebe2a809b5ee1e4cf073a",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/garden-detail-18.png": "38afb4398f5288450873efc8fb552730ae47b6c4bf48767009bb8b4d01e60970",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/hearth-crown.png": "2d09dad1d9bd6c357a9d94b4108af637fdc2cd6c01e44832e8c480eca8fbe064",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/threshold-west-vertical.png": "7a69a96a8549e721c237840c7a33dd5975d77ff8abea917908d7bd4b1e1d8b3b",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/village-snail.png": "6e918cebc613f7a9a5d0a9dd0f867a8cebd064654361687e45b1fa93e7424055",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/south-lantern.png": "51a36203e523dc83e01a2f6e770135f53998c76b70eef5e5774073b75c7075e7",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/garden-detail-01.png": "3f02024b1c060e7a76353862e78f25618e74cc28047d949ecb5fe78958440e57",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/garden-detail-15.png": "35cfa18df2e90527b83781b62e7f817e402db7315a1259141623ebdb2927aa51",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/garden-detail-14.png": "b3c1c7a2628509cddfa7d309c3da12455bdaa86d3d8945fc6ddb6e9820e5a2b1",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/village-rat.png": "e04a10be4f4ee02db86e71fdedfbbbe18505e0dfb3e7bb88d822941bde64ebb6",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/garden-detail-16.png": "1fb37c4513eab40ba602e2adbb36cfd5cd365940dba7d3c72e1ba3c50efc7b03",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/garden-detail-02.png": "b4fb1da0d025736739c8fe2e4ac601b2889e486263a26fb611f079546431e0e6",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/west-bed-simple.png": "07cd3e1bc3f727b4fd685a2e76c5e1f889e83e53d09fc9413ff6e901aed11f45",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/threshold-east-corner.png": "82a678344338539a6dca972c1a3023fc35603ed37be421062afd4dd9439fd6b5",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/garden-detail-03.png": "2e65a3b1058281ad3c340119e49d8e1d60a212cbb32c8290d1561447dde37115",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/garden-detail-17.png": "9bd99ebaee28596520e20b4499d2c4ebd2733ac4ac69dd058ced65ccc7e0a342",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/west-lantern.png": "277db5c5c81614d4a164a8810d1895e4cb271cef93e9d6849e6aeb069231fee2",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/garden-detail-13.png": "f24de4a68695a9f1a66c6513d6fde51a36b8c3f672f79c0ea8c634fd60322b44",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/garden-detail-07.png": "dd2126a563c5b76a9c4ee0b9ed6b81c4c4376dd2ff3f83bb996d1ad06814f7d8",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/garden-detail-06.png": "f62dff7664af843ab063d85d1f57fefbb74179ba1bb6448588086bc35868f6a8",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/garden-detail-12.png": "7adc4aa60e76f5ada736b7179925f67fdf35862a5802544d7d13ee75d89ec443",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/west-bed-teal.png": "d92fbd063f5ee8439e12ffcbe4416439574e74c002e52dc1071073c58e6b28c3",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/larder-jar-east.png": "0ad6ff5cd341c278c88f95538845a746c7012f01f5247ce716d462557e6a6165",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/garden-detail-04.png": "4218a76a728c3bfce521594f674f7116118fb5b2583abe938af1825fd933e148",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/garden-detail-10.png": "2a02178c61d2eb85b83627c278c783720cfd2f3b1d2a5b205540c7718b37da49",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/garden-detail-11.png": "c4e60051f7fc4dea6d6e7359f4d924a31106aab5c3b6397eec1b45f6870a10a2",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/garden-detail-05.png": "15f3f60e8276fcfb820c80e5f02522ea27d7bfcd2fb5cf1885e03cc0b14bb32b",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/east-bed-teal.png": "b7aabdd55e24780e900ecd39a43c3c9fad6d1545894cc28983770bef85bae658",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/larder-jar-large.png": "f7b9053bfa30f729dcb6fbbcc501475bd78ecf935d5131b3961bb1dfabbb91cd",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/west-berry-bowl.png": "f71c3f2eebd31a9717bc09bab93e5a6b922b522c18ec7544797566f30bc76862",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/threshold-south-right.png": "74689f21c0d3ca2e2b5c80df9e42ec4493bb2401c1362b4d7a2d838c5f22255b",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/east-food.png": "f075c1365eef0b33d99b3a03b4006690e3dc1b76aec165b71988f26f2e3660e8",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/west-bed-purple.png": "1246b9bbfe437001c31bb7ad73d6b90abe95f29baa61feea50e11bb84cfb42b8",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/comparisons/larder-jar-small.png": "ac55513cc21e4b55dc1469d7a9ed9192f02747a5f3ba2c4292ba764f4357fce2",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/west-niche-ladder.png": "f4a44b706501def5842c522c7ad3689c2fef8412da3b4a2de0add2391d5d17fc",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/resident-keeper.png": "a34ba00c71611876340f24031759e08c5b7cefc04b2e349d9d29a40994c3a383",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/hatchery-honey-jar.png": "72f4b3f802da68ae1845a997d6baebcf5932cb0f7bd142e16671bc914277b84c",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/floor-paver-06.png": "389ff6a03c949bbeb36821fcae863c0bab070ae97cdf75e8762d8a748b935f93",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/floor-paver-07.png": "dac1a6bdc5c9613a5bf780eb5209bd3a2b424a7aa2f058d707205fe586a1652e",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/west-doorway.png": "c032f9e7c7a66830cc55a44b6c7d3668309df69365def2cb63e6f3b884a1dfbc",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/north-stairs-east.png": "51dd4ed94f4190c618132b1e06e1989276b34f095dd5efa89fc3431b4a1b2d5e",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/southwest-niche-corner.png": "576660022348c09cdab0433f769cec498847d4070227686c7b9f5a67f4543b8d",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/east-glow-vein.png": "c29188eb5c0b9776a303127bd5a92ace8b58ec73493f1aa02d54c5737bfad443",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/hearth-lantern.png": "0833176222d1843885654543cb754600049027cafbcb02c87be73e8e8acd324d",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/floor-paver-05.png": "dac1a6bdc5c9613a5bf780eb5209bd3a2b424a7aa2f058d707205fe586a1652e",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/floor-paver-04.png": "389ff6a03c949bbeb36821fcae863c0bab070ae97cdf75e8762d8a748b935f93",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/west-glow-vein.png": "c29188eb5c0b9776a303127bd5a92ace8b58ec73493f1aa02d54c5737bfad443",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/east-niche-empty.png": "14c83a524b156097f8ec1745c4afd40482f23a4d02b4558173f802808f0dd3e6",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/south-entrance.png": "d1bf4a26b2c157be4b0ddd32bc2992e71e2ee33f8ab4fa86c292dce02372978e",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/floor-paver-01.png": "dac1a6bdc5c9613a5bf780eb5209bd3a2b424a7aa2f058d707205fe586a1652e",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/communal-food.png": "04ee2549114a4fdd1643011bc3bbfc0bf7d7417d0c290440f5398d7944302508",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/threshold-west-curve.png": "e41d3adc164fb16c8d889a94a8b47fe7ab2611f1ad08d8bcf8352b6a20796272",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/north-home-far-east.png": "15ac698a7111d155898c3fdb3e8c2ab33c5c0984bc3452afb06e8f19e53b96fb",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/floor-paver-03.png": "dac1a6bdc5c9613a5bf780eb5209bd3a2b424a7aa2f058d707205fe586a1652e",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/floor-paver-02.png": "389ff6a03c949bbeb36821fcae863c0bab070ae97cdf75e8762d8a748b935f93",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/north-home-center.png": "576660022348c09cdab0433f769cec498847d4070227686c7b9f5a67f4543b8d",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/threshold-south-left.png": "d2e65164989a428cb01f6b0cbeaf1302c01bec02f2b57a6b6b3d7deacbdb0e43",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/east-spore-screen.png": "7b5368b4f1391c7c67b5d8d290565f70cd0fe8e6c3a3db49c54c88bc101462e8",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/garden-detail-08.png": "6bbc7d71527547028cceced7f2aad38da58a0d37faa6a7b5434d254d0183e19f",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/garden-detail-09.png": "6bbc7d71527547028cceced7f2aad38da58a0d37faa6a7b5434d254d0183e19f",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/hearth-north-growth.png": "c90ba4152dac8d1566c61973e117c7eb5c19a55e5213e2ddc20200ece449a8d8",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/resident-tender.png": "ee3ea052988c02516b8362e80606426b16312a15af6ed682f8e24954657ef133",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/east-lantern.png": "29cab5fe85c12b820429467e10a4dec05843707477a160566c3f2aaa01674c29",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/hatchery-display.png": "84ac8844df03579270af92eb715b8e6fcbc8436ebcd3caaff366c2c27155f2cc",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/threshold-east-line.png": "d3d39a12bc72449b22c9adc84d0372c583e84b1a640418f16074ff1fac1fefd2",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/north-stairs-west.png": "2c214cdcabc3128fedc8d53e4425e861cdad08cd15095b37295c2b2b6aaa4492",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/hearth-west-bed.png": "9cff43911787423a3b17f77f09a276d9d0e3640d056d0825efc3c6f89cb75a9c",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/hearth-east-bed.png": "009ebc5318740fae6a6019c50674d31fdf5acd598701a9c1bc25b7f31cedf146",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/east-small-pool.png": "f9c9a30fe6dc6b5f255a0dfe623dec3dee3ff896607f4c4f667f10f362ca6dad",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/garden-detail-18.png": "71be2926621e33a2cceb8df06f479b4c6ce9ec5760c7a222515b127067571d4a",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/hearth-crown.png": "d4eca96355424e52c531257b95fe0d535f6ed45d00d5345da2b640238e549f99",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/threshold-west-vertical.png": "a58e062fde62aaf85f0b0ded9703aa92073fd3f1537e45d2beddf43eff9324e8",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/village-snail.png": "9f55b7597a7bb2a408f72e51eef91eac7f0a51af4774c1fd5dee0a182ba69149",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/resident-trader.png": "23c28f3835775496eacee1a379232a47579fb08f2fafdc670715bab18f472357",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/south-lantern.png": "29cab5fe85c12b820429467e10a4dec05843707477a160566c3f2aaa01674c29",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/garden-detail-01.png": "056c52f1df436b52c59ee5822ea150cbad3003c5e4dfd301492dc1ebd133b3ef",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/garden-detail-15.png": "bcee93d620d34866b09ed11e2a501a58039fa3573cab31917ef5ce06cdf17ec4",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/garden-detail-14.png": "0b0a9277f7f5c9f99e69b7c46574689b31d7a36f4891e43395a3fed4099999ed",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/village-rat.png": "113fb4123b96ec4bdaf2239bc25f2c43cbe349a58ad67714bea43fd819297b42",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/garden-detail-16.png": "7dd8d0e37c666797c3a4f069efc2483e3a595b8f858114b00cd223e8cd74ee51",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/garden-detail-02.png": "056c52f1df436b52c59ee5822ea150cbad3003c5e4dfd301492dc1ebd133b3ef",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/west-bed-simple.png": "f78ff30047c1e878620c74fcd6e3d0c7a140a273af0f43d7ecbae14a6c9571a4",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/resident-child.png": "866e8c617caa7fba383e127a930d911374bfd84bee4443cf575727a9c7d5b189",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/threshold-east-corner.png": "5c6a5c6c9c7311938372a832fd51971e719069a9d2ae66125495523a991f030d",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/garden-detail-03.png": "f40db41ef0cfec7ea5b0a268ea5145a141ae0648b552c362891203da09105b3a",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/garden-detail-17.png": "71be2926621e33a2cceb8df06f479b4c6ce9ec5760c7a222515b127067571d4a",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/west-lantern.png": "083114964e2f83644338f833ba67cb09604f13fe86c92e8c1f4bac08b82d285f",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/north-tablet.png": "e1bbbdc4f8f8f30d3e8ed3cc7fa84de7fe6f219f05b5568a5bb8b03e0734c3d2",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/east-luminous-pool.png": "90f1c93a7653b3f5904754a6dbaec411c1927a1e017d669e21e2b7815d2ac979",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/north-home-east.png": "6e89c3a358d193ccc0b9bdbbac06cb09e590c8de5a33f9638635824eb6894632",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/garden-detail-13.png": "47f9249072530e117eaa1bd33622295c543d69ce2bf6b84799f31e4b77e44dcd",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/garden-detail-07.png": "2ee7f35a14360df2400a66c23932c5a2fd2b2c120221093019bea2863fec83aa",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/garden-detail-06.png": "6bbc7d71527547028cceced7f2aad38da58a0d37faa6a7b5434d254d0183e19f",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/garden-detail-12.png": "f91c9b646cfab1444fe71761ffdfbfa14c6249f474cb8c07502fa74cc584572c",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/west-bed-teal.png": "6f0be456b553230ad09b9b7bb8ab787abb47a17587a4a12254864b14b72fa193",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/larder-jar-east.png": "37701556060f5c009269e81f01e0f864de30759f5a8812fabc112a45a2b202ff",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/east-niche-ladder.png": "f4a44b706501def5842c522c7ad3689c2fef8412da3b4a2de0add2391d5d17fc",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/resident-east.png": "706edefaf5706406297c94bf536502b369206e1d35daa88a3a8f94e045c7b31b",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/garden-detail-04.png": "056c52f1df436b52c59ee5822ea150cbad3003c5e4dfd301492dc1ebd133b3ef",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/garden-detail-10.png": "99a9969f28b0e50d82ba1de72032fd8c1e386961cbbdf58b647456eb2a7655f0",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/garden-detail-11.png": "f2e932fb75886d8116b832537502d6c20dc27daccf216adfbc49955dfcfc04a7",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/garden-detail-05.png": "f40db41ef0cfec7ea5b0a268ea5145a141ae0648b552c362891203da09105b3a",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/east-bed-teal.png": "4984de7f5a0cb4e329e18900f2b54a9fc53546bdc355cdde373a36d9389cae5b",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/larder-jar-large.png": "a7d96a60f22367f5d597946dc97f0bcc0c89c26109d76cd138e1114eb41771d7",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/north-home-west.png": "caae3876f5beecfa677b2ab1f7cfb987626eb92f96b83734ac4ef0faeddb43e8",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/west-berry-bowl.png": "947a08f9c38b397892d8483ed2e76bc3fcd9c2fdb7596424a5319b9ecfa5ab63",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/east-niche-bed.png": "7cd2c5c3aa41c6224602666533c9a6148880d7dc915eb560387e3f8582c73948",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/resident-west.png": "706edefaf5706406297c94bf536502b369206e1d35daa88a3a8f94e045c7b31b",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/threshold-south-right.png": "d2e65164989a428cb01f6b0cbeaf1302c01bec02f2b57a6b6b3d7deacbdb0e43",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/floor-paver-08.png": "389ff6a03c949bbeb36821fcae863c0bab070ae97cdf75e8762d8a748b935f93",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/east-food.png": "04ee2549114a4fdd1643011bc3bbfc0bf7d7417d0c290440f5398d7944302508",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/north-niche-bed.png": "d05225ecff11823d159967d47e5b4c6b6fa0b20207ffec63d79e088153243399",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/west-bed-purple.png": "24517d9b60882eef49751680623767fbd3cbf8cfcdb64a758d68b17d248f4325",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/larder-jar-small.png": "26c52bf2767d13bdfd6e25773a52e74cde1760aa878f74d17c87a77f0fa50a2c",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/sprites/north-home-inner.png": "1583f353efa75e1e9f820dbc1cb6223490097eeec4ca29253a177ab5614951da",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/west-niche-ladder.png": "a8b67b76ddbd1320c58ca15f5885be9d317af80deba3e48eeac67a8c76c43cf7",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/resident-keeper.png": "09162718d122fa459633e9c2ced7b499c59be2f293f735d94482aa82e0b1c56e",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/hatchery-honey-jar.png": "21aa0626a0c522bf8c7dbee4752bb78a8d61c9526baf1bad23a6410742677be5",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/floor-paver-06.png": "e536e9d0b64457242737c8d0c706420aa4e1d407d153c29ea967b6c56341ea90",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/floor-paver-07.png": "07e116ba563aada6612d967b1248811d6d7d7c5ad74d6240da5a8a71379d62ca",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/west-doorway.png": "5ce13a03807118ba97d8ce62d3af5b7e4b5c9775f03458aec04428f3a49f6811",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/north-stairs-east.png": "62a402b115f7c0c23a1e3f72e47b9236cbd7b198164ab105e25ba31073e83e7c",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/southwest-niche-corner.png": "2bd89bb69e4c1aa984edd2368928672e9d5d95eed888d6abe8cc20c039460665",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/east-glow-vein.png": "850b88259208c88743159ebf3fa2a67e8f1b72845cc9ac2ddcdb17f00beafe07",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/hearth-lantern.png": "3dc9976f0f69f778d4e5521073fd68f289c3079e1f6672c8b36169d66f3d3611",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/floor-paver-05.png": "07e116ba563aada6612d967b1248811d6d7d7c5ad74d6240da5a8a71379d62ca",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/floor-paver-04.png": "e536e9d0b64457242737c8d0c706420aa4e1d407d153c29ea967b6c56341ea90",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/west-glow-vein.png": "850b88259208c88743159ebf3fa2a67e8f1b72845cc9ac2ddcdb17f00beafe07",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/east-niche-empty.png": "ff7e1b51232771d04928f9320fe737f4754653d075efaafb06b600ea677f1b14",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/south-entrance.png": "38db2f2ce4a22e82330bdab631cf49d964cbffc6897a2bddf2ddac8b79cc2d3c",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/floor-paver-01.png": "07e116ba563aada6612d967b1248811d6d7d7c5ad74d6240da5a8a71379d62ca",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/communal-food.png": "4b364e341324e79c4e69ee33b4f80ff6835b9f74a9d1b6da0cb8758d1416b8b8",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/threshold-west-curve.png": "3efa1c8ac3f9ddd97f1cb5da01caededaf0741a7044de6a703122b898719a491",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/north-home-far-east.png": "c12de994e00179ca5ba24f5810d945a044c05104324f9fa2364accc443f13e0d",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/floor-paver-03.png": "07e116ba563aada6612d967b1248811d6d7d7c5ad74d6240da5a8a71379d62ca",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/floor-paver-02.png": "e536e9d0b64457242737c8d0c706420aa4e1d407d153c29ea967b6c56341ea90",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/north-home-center.png": "2bd89bb69e4c1aa984edd2368928672e9d5d95eed888d6abe8cc20c039460665",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/threshold-south-left.png": "9fcf8ff55d2851dd5ffbdbb89a2b938deaa96ceb0e94ae3a3c853ca16dc58118",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/east-spore-screen.png": "6876d6ea22341b778730947cd42a9305e1b9300a3e01062350f64a86303df93a",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/garden-detail-08.png": "34bd4d87d2fc1e070766bc9d034831c8002661bf94604d470190dddbd7cc8369",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/garden-detail-09.png": "34bd4d87d2fc1e070766bc9d034831c8002661bf94604d470190dddbd7cc8369",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/hearth-north-growth.png": "dba102e24ef9f3a79e3026b4564645b47bdc432e206c77927b5b4615bec79761",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/resident-tender.png": "455a1893d046b6ea6663de5f5ac1494a80d8c6a90a5e44575aea4019fb3ba71b",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/east-lantern.png": "2041af1af1cba9e70c0ad7374d2a16c621d7f4b4afe8b6508a6a8deddcabae84",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/hatchery-display.png": "70279edc2d66ee3462c90d1858c510d64f7238a5cd09839ed080c17c61724302",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/threshold-east-line.png": "a50dd54dfc5d79b2b3231e91ac8eb6f22d32ee4e039078c773fd6e2349f9bfaa",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/north-stairs-west.png": "86365809a56e02767edb1f62fa5d829e6513f6abe69c31da39da3418e783902d",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/hearth-west-bed.png": "1172c9a6c5a139bd0fc0dd0e089d87ba8169b2e86d3c71ba037a0ca21e3d25d7",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/hearth-east-bed.png": "e4f364f8968c0b94287e646236b476c526e474402c22b6152cd0faf06ce0a366",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/east-small-pool.png": "b2670c9ff43e52232345d4d4fa78a551a1a0a545378d13fb28dd1b8cc3b51706",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/garden-detail-18.png": "a1003e7e5608f0db6bb6e217ce2bf40abab54700f3d8a0dcdc0dab88818874f2",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/hearth-crown.png": "c952c30028d7e8bcb0986c3d0185bbd45933454cbf3ad2a3ace445e4b8a85724",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/threshold-west-vertical.png": "5f9fa8d69cb1737b71384274b87d6b7885a4af6c544c4ebb97a88ff686c52e7f",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/village-snail.png": "6a0adadfa8e79a13bd0235775379729dfdc3144bdb6947195c1e3a3f3e3a2fbd",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/resident-trader.png": "50bc8392079e089f857251f6796c3cb492caf78a6ef93e45fd77f2eda166bd9a",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/south-lantern.png": "2041af1af1cba9e70c0ad7374d2a16c621d7f4b4afe8b6508a6a8deddcabae84",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/garden-detail-01.png": "c17236472d4a199054353720f12234dae1b287c03f2d11bcff330023d60f7ab4",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/garden-detail-15.png": "5c0974ba854ca15ab58a6394df8f807b90acea2439b7916e46081d1b9397edc7",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/garden-detail-14.png": "4114abd2755acab4f1cba0690023127da6d616b56ba3e454ce9dd47f3444530d",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/village-rat.png": "522f6a1c7a63dfb4c206ccb71fe18f80f16fcf1f5b7433d19e383c6f9fdec02a",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/garden-detail-16.png": "0b469dcc6f96afcfded5a91a28f0a86f0a33bcae18b79000c00604973a9bdb09",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/garden-detail-02.png": "c17236472d4a199054353720f12234dae1b287c03f2d11bcff330023d60f7ab4",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/west-bed-simple.png": "e131294f663bf4259a88d21f4a5563e0b7df2e2045d239bc60a86cfcb93efa1a",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/resident-child.png": "8ee1997a0623a11f6271c9e7d31f4e56ddc20f4de0b4a12ea6c7f47b5402fa31",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/threshold-east-corner.png": "3176b9764d1f78cd943b6bf42869cbe73876dc7ed8d8f96856865836acffc622",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/garden-detail-03.png": "d96ef31c06479d4f83736ec291e1794c09a44427d0b7ed9de4cf80fcd977afbc",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/garden-detail-17.png": "a1003e7e5608f0db6bb6e217ce2bf40abab54700f3d8a0dcdc0dab88818874f2",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/west-lantern.png": "c8e3bcc353c61a3b62046eab340c551535c520015e2b65d1b1e06b3ce93fc4bb",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/north-tablet.png": "47bfeed0d6775dabe162145cf649d384afbf06bdcedabd211c4c3e40ab0efdc5",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/east-luminous-pool.png": "bc2d56ed4626adbe2721dd4bad6470bd4c650c82167ad6d0f783b90d1aa8fa4b",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/north-home-east.png": "bcba9450b649179a858d3f43d5cf1d218353bf00f4e289e3c82ab8e4e325f2c1",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/garden-detail-13.png": "de594019cd0d658b1531f5a8d6606ce311fbad2554aa946ba1ad9ca973a5f76a",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/garden-detail-07.png": "a49f1fdc8e03d7ff05f7e026f6f662b550c2e633750a38c893e869b9f3ac4b48",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/garden-detail-06.png": "34bd4d87d2fc1e070766bc9d034831c8002661bf94604d470190dddbd7cc8369",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/garden-detail-12.png": "bed277a2e3c2627e1a21c8e206fd7e670081363dcc349c54b44ec611f31b5f29",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/west-bed-teal.png": "d767d9f8d121d3d9ceb075856d049e94e4e866a7249d38e96fb7f023fa70ab8c",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/larder-jar-east.png": "511523810827351ff74dd924849772b2252ffd7f90d73acceca1302fc67afddf",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/east-niche-ladder.png": "a8b67b76ddbd1320c58ca15f5885be9d317af80deba3e48eeac67a8c76c43cf7",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/resident-east.png": "71e9aeb74b16874789d9eae92167977fb8273342981a173b5711a4ab8707134f",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/garden-detail-04.png": "c17236472d4a199054353720f12234dae1b287c03f2d11bcff330023d60f7ab4",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/garden-detail-10.png": "2c3f33a517df64178cdde857014320762e5eca2089ec8a9a623cf24964e2c8f4",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/garden-detail-11.png": "d5c3450243574eb5a03311930fb88bcc2745be0759f6471625d8ca5e3e29202d",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/garden-detail-05.png": "d96ef31c06479d4f83736ec291e1794c09a44427d0b7ed9de4cf80fcd977afbc",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/east-bed-teal.png": "525731f0aec365907d184c4712e140cfa4c37560045d27b1d25569ce08114018",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/larder-jar-large.png": "f8f9f5a7b214f925e113286ecd95ee8bc23260f86bcfa75c49b6fd2cdbaa8aff",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/north-home-west.png": "2133eca82f7cb5ed8fc4c8bd99ebcab7b2ab8adb62556a30b2563129905ffa3c",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/west-berry-bowl.png": "3effed5b5234da55df25ca1656a226b6fd330325da83a9885b6dcb7f2011f485",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/east-niche-bed.png": "ab451ef7f510aec0a9c55f422669dd8e4a5d1bba6b42d2c82a227d59aa914fb6",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/resident-west.png": "71e9aeb74b16874789d9eae92167977fb8273342981a173b5711a4ab8707134f",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/threshold-south-right.png": "9fcf8ff55d2851dd5ffbdbb89a2b938deaa96ceb0e94ae3a3c853ca16dc58118",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/floor-paver-08.png": "e536e9d0b64457242737c8d0c706420aa4e1d407d153c29ea967b6c56341ea90",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/east-food.png": "4b364e341324e79c4e69ee33b4f80ff6835b9f74a9d1b6da0cb8758d1416b8b8",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/north-niche-bed.png": "6d1455c5ed4dca2b26cd8f38d1646af1820a7cb257357b333a0d27b36ecdc5e5",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/west-bed-purple.png": "dd24fd2df4ee58d2fea6873ed4cd90abc47ae98bf8ad76ebf2a24fd2a206b8c4",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/larder-jar-small.png": "de753ac08c9e16643bd69a0f9327f167fbc1716758b130018bd586f082ab3f7f",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/masks/north-home-inner.png": "9a2bcda52173bb4e22f19f148621750ec71c188f0eed195b52a6c9ae0c9fb7db",
+    "/Users/steven/caves-of-ooo/ArtSource/CatacombVillage/build/reports/composition.json": "6610bd3f2399ba182c48910fccfde10a82103735a776c7e75160cd1a43d16e48",
+    "/Users/steven/caves-of-ooo/ArtTools/test_catacomb_adversarial.py": "72246b6c26631bb5ca680ced162d68648dfdf341eea4c4df7c6be6da38b10a40",
+    "/Users/steven/caves-of-ooo/ArtTools/verify_catacomb_scene.py": "31e231e27c72b39b4d089960f4991200b290a35f18c66ca6e63b32b2b50c20bd",
+    "/Users/steven/caves-of-ooo/ArtTools/test_catacomb_extract.py": "41bedf1de860ee3cb3b7a9fa1722ff6ed3fea7536cf9e416d7b057cbad22cdbb",
+    "/Users/steven/caves-of-ooo/ArtTools/test_catacomb_scene.py": "f69684d301fba6bfd559b407423df7699e9e6ff49ffd5f535e452e27826af936",
+    "/Users/steven/caves-of-ooo/ArtTools/catacomb_extract.py": "a1bf6187b7946b14a0df1241841de2b9af0a5ec6ea7d7418420d113a5e021ef0",
+    "/Users/steven/caves-of-ooo/ArtTools/catacomb_scene.py": "df0beefe6451310546ac0ef3d2f2b60b9ad4afb51313d74d546b78bf661d45d0",
+    "/Users/steven/caves-of-ooo/ArtTools/test_catacomb_browser.cjs": "be6e5182e9d387bef19f8d6a578883ce028785460146b7d50814bffe3a9c5a57",
+    "/Users/steven/caves-of-ooo/Docs/StyleExploration/Felling-2026-09-05/05-catacomb-tileset.png": "54b8d3bab5d6c618d7912474b33c0ce72126a2deae5da5505d37cd6d784f384d"
+  },
+  "changedDuringRun": [],
+  "status": "passed"
+}

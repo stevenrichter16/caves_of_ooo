@@ -1,0 +1,139 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "NativeSpell|StarterSpell3D|WorldFxCoordinatorTests",
+  "results": {
+    "id": "2",
+    "testcasecount": "273",
+    "result": "Failed(Child)",
+    "total": "273",
+    "passed": "244",
+    "failed": "29",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-11 04:30:36Z",
+    "end-time": "2026-09-11 04:30:39Z",
+    "duration": "3.1757401"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellAuraReadabilityTests.ClearedOrReboundTilemap_DoesNotLeakAuraMatrixIntoOrdinaryFeedback(False)",
+      "message": "  Cell (9, 15, 0) matrix[0,0] must preserve the cell centre and only shrink aura art.\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellAuraReadabilityTests.ClearedOrReboundTilemap_DoesNotLeakAuraMatrixIntoOrdinaryFeedback(True)",
+      "message": "  Cell (9, 15, 0) matrix[0,0] must preserve the cell centre and only shrink aura art.\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellAuraReadabilityTests.CompactAuraPresentation_IsExplicitAndDefaultsToFallbackSize",
+      "message": "  The coordinator needs an explicit native aura presentation setting.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellAuraReadabilityTests.CompactPresentation_DoesNotChangeAuraRngCellsColorsLifetimeOrMotion(Fire)",
+      "message": "  Cell (9, 15, 0) matrix[0,0] must preserve the cell centre and only shrink aura art.\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellAuraReadabilityTests.CompactPresentation_DoesNotChangeAuraRngCellsColorsLifetimeOrMotion(Campfire)",
+      "message": "  Cell (9, 14, 0) matrix[0,0] must preserve the cell centre and only shrink aura art.\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellAuraReadabilityTests.Coordinator_HiddenOrAsciiOnlyViewClearsCompactSettingAndCanRestoreIt(True,False)",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellAuraReadabilityTests.Coordinator_HiddenOrAsciiOnlyViewClearsCompactSettingAndCanRestoreIt(False,True)",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellAuraReadabilityTests.Coordinator_HiddenOrAsciiOnlyViewClearsCompactSettingAndCanRestoreIt(False,False)",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellAuraReadabilityTests.Coordinator_OffModeKeepsACompactNativeStateMarkerAndRestoresFallbackSize",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellAuraReadabilityTests.Coordinator_SurfaceVisibilityLossResetsScaleWithoutNeedingANewSurfaceReference",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellAuraReadabilityTests.Coordinator_UnbindingNativeSurfaceReturnsToFullSizeFeedback",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellAuraReadabilityTests.Coordinator_VisibleNativeBindingEnablesCompactAurasBeforeTheFirstCast",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellAuraReadabilityTests.GeneratedAuraParticles_UseCompactScaleOnlyInNativeView(True,Fire)",
+      "message": "  Cell (9, 15, 0) matrix[0,0] must preserve the cell centre and only shrink aura art.\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellAuraReadabilityTests.GeneratedAuraParticles_UseCompactScaleOnlyInNativeView(True,Campfire)",
+      "message": "  Cell (9, 14, 0) matrix[0,0] must preserve the cell centre and only shrink aura art.\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellAuraReadabilityTests.NativeAuraDecoration_RemainsClippedToVisibleExploredCells(False,False)",
+      "message": "  Cell (9, 15, 0) matrix[0,0] must preserve the cell centre and only shrink aura art.\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellAuraReadabilityTests.NativeAuraDecoration_RemainsClippedToVisibleExploredCells(False,True)",
+      "message": "  Cell (9, 15, 0) matrix[0,0] must preserve the cell centre and only shrink aura art.\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellAuraReadabilityTests.NativeAuraDecoration_RemainsClippedToVisibleExploredCells(True,False)",
+      "message": "  Cell (10, 14, 0) matrix[0,0] must preserve the cell centre and only shrink aura art.\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellAuraReadabilityTests.NativeAuraDecoration_RemainsClippedToVisibleExploredCells(True,True)",
+      "message": "  Cell (10, 14, 0) matrix[0,0] must preserve the cell centre and only shrink aura art.\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellAuraReadabilityTests.NativeUnbind_ResizesAlreadyEmittedAuraParticlesWithoutRespawningThem(Fire)",
+      "message": "  Cell (9, 15, 0) matrix[0,0] must preserve the cell centre and only shrink aura art.\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellAuraReadabilityTests.NativeUnbind_ResizesAlreadyEmittedAuraParticlesWithoutRespawningThem(Campfire)",
+      "message": "  Cell (9, 14, 0) matrix[0,0] must preserve the cell centre and only shrink aura art.\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellAuraReadabilityTests.OffMode_RetainsTheStaticAuraStateMarkerAtPresentationScale(True)",
+      "message": "  Cell (10, 14, 0) matrix[0,0] must preserve the cell centre and only shrink aura art.\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellAuraReadabilityTests.SameCellExplicitFeedback_ResetsAuraMatrixAndAuraReturnsCompactAfterItExpires",
+      "message": "  Cell (9, 15, 0) matrix[0,0] must preserve the cell centre and only shrink aura art.\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.ImportedLinearSwatchReachesShaderOnceWithoutASecondGammaConversion(\"Pyromancy_EmberSpit\")",
+      "message": "  Shader-facing MPB must contain the already-linear imported color, not its second .linear conversion.\n  Expected: less than 9.99999975E-06f\n  But was:  0.345254838f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.ImportedLinearSwatchReachesShaderOnceWithoutASecondGammaConversion(\"Pyromancy_FlamingHands\")",
+      "message": "  Shader-facing MPB must contain the already-linear imported color, not its second .linear conversion.\n  Expected: less than 9.99999975E-06f\n  But was:  0.345254838f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.ImportedLinearSwatchReachesShaderOnceWithoutASecondGammaConversion(\"Hydromancy_JetBlast\")",
+      "message": "  Shader-facing MPB must contain the already-linear imported color, not its second .linear conversion.\n  Expected: less than 9.99999975E-06f\n  But was:  0.410668522f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.ImportedLinearSwatchReachesShaderOnceWithoutASecondGammaConversion(\"Galvanism_GroundSurge\")",
+      "message": "  Shader-facing MPB must contain the already-linear imported color, not its second .linear conversion.\n  Expected: less than 9.99999975E-06f\n  But was:  0.345254838f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.ImportedLinearSwatchReachesShaderOnceWithoutASecondGammaConversion(\"Cryomancy_RimeGrip\")",
+      "message": "  Shader-facing MPB must contain the already-linear imported color, not its second .linear conversion.\n  Expected: less than 9.99999975E-06f\n  But was:  0.452170491f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.ImportedLinearSwatchReachesShaderOnceWithoutASecondGammaConversion(\"Spellcraft_Calm\")",
+      "message": "  Shader-facing MPB must contain the already-linear imported color, not its second .linear conversion.\n  Expected: less than 9.99999975E-06f\n  But was:  0.467403293f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxRendererTests.ImportedLinearSwatchReachesShaderOnceWithoutASecondGammaConversion(\"Hydromancy_ConjureRain\")",
+      "message": "  Shader-facing MPB must contain the already-linear imported color, not its second .linear conversion.\n  Expected: less than 9.99999975E-06f\n  But was:  0.410668522f\n"
+    }
+  ]
+}

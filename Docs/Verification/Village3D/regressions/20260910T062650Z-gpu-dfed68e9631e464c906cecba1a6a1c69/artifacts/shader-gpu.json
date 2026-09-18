@@ -1,0 +1,3079 @@
+{
+    "runId": "3537fd7c3ac34d59b55cbdb856cfafce",
+    "scope": "standalone URP shader GPU probe — not native gameplay",
+    "startedUtc": "2026-09-10T06:27:10.7701420Z",
+    "finishedUtc": "2026-09-10T06:27:12.6479100Z",
+    "status": "PASS",
+    "error": "",
+    "unityVersion": "6000.3.4f1",
+    "gpu": "Apple M5",
+    "graphicsApi": "Metal",
+    "colorSpace": "Linear",
+    "reportPath": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/shader-gpu.json",
+    "width": 512,
+    "height": 512,
+    "worldRendererIndex": 1,
+    "compositeRendererIndex": 0,
+    "passed": 12,
+    "failed": 0,
+    "activeScenePreserved": true,
+    "sceneDirtyFlagsPreserved": true,
+    "renderTextureActiveRestored": true,
+    "asyncCompilationRestored": true,
+    "unexpectedLogs": [],
+    "honestyBounds": [
+        "Actual GPU color/shadow/composite pixel evidence in a standalone preview, not native gameplay or art-quality review.",
+        "Color readbacks use512x512 linear RGBA8; no screen-resolution/performance claim.",
+        "DepthOnly pass is not independently forced or inspected; color visibility and real ShadowCaster are exercised through URP.",
+        "A negative observation only passes alongside substantial positive rendered geometry, animation or shadow controls.",
+        "No global RenderSettings, pipeline asset or synthetic shader-time mutation. URP updates its usual per-camera shader state internally."
+    ],
+    "cases": [
+        {
+            "id": "01_palette_visible_unseen",
+            "passed": true,
+            "error": "",
+            "frames": [
+                {
+                    "name": "blank",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/01_palette_visible_unseen-blank.png",
+                    "sha256": "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+                    "realtime": 0.5698691699682534,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.0
+                },
+                {
+                    "name": "visible",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/01_palette_visible_unseen-visible.png",
+                    "sha256": "fdf23a450936cd7c36ce889e71d31d3995f8ff7d6573919b31b6ca4aa027f63c",
+                    "realtime": 0.5866892539682542,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.10808823529396015
+                },
+                {
+                    "name": "unseen",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/01_palette_visible_unseen-unseen.png",
+                    "sha256": "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+                    "realtime": 0.6031271289682536,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.0
+                }
+            ],
+            "metrics": [
+                {
+                    "name": "visible_mean_rgb_delta",
+                    "value": 0.10808823529411765
+                },
+                {
+                    "name": "unseen_max_rgb_delta",
+                    "value": 0.0
+                }
+            ]
+        },
+        {
+            "id": "02_wrong_dimensions_and_default_fail_closed",
+            "passed": true,
+            "error": "",
+            "frames": [
+                {
+                    "name": "blank",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/02_wrong_dimensions_and_default_fail_closed-blank.png",
+                    "sha256": "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+                    "realtime": 0.6175517539682538,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.0
+                },
+                {
+                    "name": "positive_80x25",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/02_wrong_dimensions_and_default_fail_closed-positive_80x25.png",
+                    "sha256": "fdf23a450936cd7c36ce889e71d31d3995f8ff7d6573919b31b6ca4aa027f63c",
+                    "realtime": 0.6303120039682533,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.10808823529396015
+                },
+                {
+                    "name": "wrong_2x2_white",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/02_wrong_dimensions_and_default_fail_closed-wrong_2x2_white.png",
+                    "sha256": "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+                    "realtime": 0.6425562949682533,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.0
+                },
+                {
+                    "name": "unbound_default",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/02_wrong_dimensions_and_default_fail_closed-unbound_default.png",
+                    "sha256": "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+                    "realtime": 0.6567665039682531,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.0
+                }
+            ],
+            "metrics": [
+                {
+                    "name": "positive_mean_rgb_delta",
+                    "value": 0.10808823529411765
+                },
+                {
+                    "name": "wrong_size_max_rgb_delta",
+                    "value": 0.0
+                },
+                {
+                    "name": "default_max_rgb_delta",
+                    "value": 0.0
+                }
+            ]
+        },
+        {
+            "id": "03_transient_memory_vs_visible",
+            "passed": true,
+            "error": "",
+            "frames": [
+                {
+                    "name": "blank",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/03_transient_memory_vs_visible-blank.png",
+                    "sha256": "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+                    "realtime": 0.6734918369682532,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.0
+                },
+                {
+                    "name": "transient_memory",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/03_transient_memory_vs_visible-transient_memory.png",
+                    "sha256": "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+                    "realtime": 0.6861567119682537,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.0
+                },
+                {
+                    "name": "transient_visible",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/03_transient_memory_vs_visible-transient_visible.png",
+                    "sha256": "fdf23a450936cd7c36ce889e71d31d3995f8ff7d6573919b31b6ca4aa027f63c",
+                    "realtime": 0.6987877119682544,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.10808823529396015
+                }
+            ],
+            "metrics": [
+                {
+                    "name": "memory_max_rgb_delta",
+                    "value": 0.0
+                },
+                {
+                    "name": "visible_mean_rgb_delta",
+                    "value": 0.10808823529411765
+                }
+            ]
+        },
+        {
+            "id": "04_one_mesh_crosses_cell_mask",
+            "passed": true,
+            "error": "",
+            "frames": [
+                {
+                    "name": "blank",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/04_one_mesh_crosses_cell_mask-blank.png",
+                    "sha256": "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+                    "realtime": 0.7139624199682544,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.0
+                },
+                {
+                    "name": "all_visible",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/04_one_mesh_crosses_cell_mask-all_visible.png",
+                    "sha256": "fdf23a450936cd7c36ce889e71d31d3995f8ff7d6573919b31b6ca4aa027f63c",
+                    "realtime": 0.7267414199682545,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.10808823529396015
+                },
+                {
+                    "name": "left_unseen_right_visible",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/04_one_mesh_crosses_cell_mask-left_unseen_right_visible.png",
+                    "sha256": "1308809f02a1d3dedffe0d517cb7088b6572ea02c7bea774aa601b7df138640f",
+                    "realtime": 0.739402878968253,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.05404411764712623
+                }
+            ],
+            "metrics": [
+                {
+                    "name": "left_control_signal",
+                    "value": 0.19215686274509806
+                },
+                {
+                    "name": "right_control_signal",
+                    "value": 0.19215686274509806
+                },
+                {
+                    "name": "hidden_left_max_delta",
+                    "value": 0.0
+                },
+                {
+                    "name": "visible_right_mean_delta",
+                    "value": 0.0
+                }
+            ]
+        },
+        {
+            "id": "05_memory_ignores_live_light_and_caster",
+            "passed": true,
+            "error": "",
+            "frames": [
+                {
+                    "name": "memory_neutral_light_no_caster",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/05_memory_ignores_live_light_and_caster-memory_neutral_light_no_caster.png",
+                    "sha256": "d7579cd237078f0ed225850ea1eed726f9171cc2b8c6326e8afe927aee27c5fc",
+                    "realtime": 0.7528613369682535,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 32,
+                            "g": 46,
+                            "b": 20,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 32,
+                            "g": 46,
+                            "b": 20,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 32,
+                            "g": 46,
+                            "b": 20,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 32,
+                            "g": 46,
+                            "b": 20,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 32,
+                            "g": 46,
+                            "b": 20,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.1281045751636333
+                },
+                {
+                    "name": "memory_red_light_visible_shadow_caster",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/05_memory_ignores_live_light_and_caster-memory_red_light_visible_shadow_caster.png",
+                    "sha256": "d7579cd237078f0ed225850ea1eed726f9171cc2b8c6326e8afe927aee27c5fc",
+                    "realtime": 0.7729858369682532,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 32,
+                            "g": 46,
+                            "b": 20,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 32,
+                            "g": 46,
+                            "b": 20,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 32,
+                            "g": 46,
+                            "b": 20,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 32,
+                            "g": 46,
+                            "b": 20,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 32,
+                            "g": 46,
+                            "b": 20,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.1281045751636333
+                },
+                {
+                    "name": "visible_red_light",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/05_memory_ignores_live_light_and_caster-visible_red_light.png",
+                    "sha256": "516477e70c08c7a841b535bc37dcb9fc7090a570290bc97a16b8d098f78c1952",
+                    "realtime": 0.7876056699682543,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 77,
+                            "g": 1,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 77,
+                            "g": 1,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 77,
+                            "g": 1,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 77,
+                            "g": 1,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.0920200572298785
+                },
+                {
+                    "name": "visible_neutral_light",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/05_memory_ignores_live_light_and_caster-visible_neutral_light.png",
+                    "sha256": "cf2c45ad22fe749e553054e538cb87b258b0ff84ad89b6448d1d3c2e617251c7",
+                    "realtime": 0.7999309199682543,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.1921568627444662
+                }
+            ],
+            "metrics": [
+                {
+                    "name": "memory_max_delta",
+                    "value": 0.0
+                },
+                {
+                    "name": "visible_light_change_mean_delta",
+                    "value": 0.17062507080875972
+                },
+                {
+                    "name": "memory_signal",
+                    "value": 0.1281045751636333
+                }
+            ]
+        },
+        {
+            "id": "06_memory_obeys_native_rgb",
+            "passed": true,
+            "error": "",
+            "frames": [
+                {
+                    "name": "memory_rgb40",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/06_memory_obeys_native_rgb-memory_rgb40.png",
+                    "sha256": "39b5da74fd0a098420a846a0dd2b7139f5dc7a8ed452a4f448ab8cdf2fc0fbc2",
+                    "realtime": 0.8153588369682545,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 11,
+                            "g": 15,
+                            "b": 7,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 11,
+                            "g": 15,
+                            "b": 7,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 11,
+                            "g": 15,
+                            "b": 7,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 11,
+                            "g": 15,
+                            "b": 7,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 11,
+                            "g": 15,
+                            "b": 7,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.024264705882332955
+                },
+                {
+                    "name": "memory_rgb190",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/06_memory_obeys_native_rgb-memory_rgb190.png",
+                    "sha256": "adc1bd233339571b1820c3b0faea2660472601235965f6f57c0ffd6e55b2b11e",
+                    "realtime": 0.829781294968253,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 50,
+                            "g": 72,
+                            "b": 32,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 50,
+                            "g": 72,
+                            "b": 32,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 50,
+                            "g": 72,
+                            "b": 32,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 50,
+                            "g": 72,
+                            "b": 32,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 50,
+                            "g": 72,
+                            "b": 32,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.11323529411733757
+                }
+            ],
+            "metrics": [
+                {
+                    "name": "mean_luma_increase",
+                    "value": 0.08897058823500462
+                },
+                {
+                    "name": "low_luma",
+                    "value": 0.024264705882332955
+                },
+                {
+                    "name": "high_luma",
+                    "value": 0.11323529411733757
+                }
+            ]
+        },
+        {
+            "id": "07_water_memory_ignores_real_elapsed_time",
+            "passed": true,
+            "error": "",
+            "frames": [
+                {
+                    "name": "memory_time_a",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/07_water_memory_ignores_real_elapsed_time-memory_time_a.png",
+                    "sha256": "2fcd393eb6b8304d2672c7a32b685c5378e8de7428b6c433efd204d3b89a53c0",
+                    "realtime": 0.8430726289682546,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 3,
+                            "g": 28,
+                            "b": 24,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 3,
+                            "g": 28,
+                            "b": 24,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 3,
+                            "g": 28,
+                            "b": 24,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 3,
+                            "g": 28,
+                            "b": 24,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 3,
+                            "g": 28,
+                            "b": 24,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.04044117647064778
+                },
+                {
+                    "name": "memory_time_b",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/07_water_memory_ignores_real_elapsed_time-memory_time_b.png",
+                    "sha256": "2fcd393eb6b8304d2672c7a32b685c5378e8de7428b6c433efd204d3b89a53c0",
+                    "realtime": 1.1730305039682545,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 3,
+                            "g": 28,
+                            "b": 24,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 3,
+                            "g": 28,
+                            "b": 24,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 3,
+                            "g": 28,
+                            "b": 24,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 3,
+                            "g": 28,
+                            "b": 24,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 3,
+                            "g": 28,
+                            "b": 24,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.04044117647064778
+                },
+                {
+                    "name": "visible_time_a",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/07_water_memory_ignores_real_elapsed_time-visible_time_a.png",
+                    "sha256": "1eb846dd24b7851346abfaae4ae4b3d43fa9061784fc0e2c94f4c01abc878fe3",
+                    "realtime": 1.1970530869682535,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 3,
+                            "g": 25,
+                            "b": 21,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 4,
+                            "g": 38,
+                            "b": 32,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 6,
+                            "g": 52,
+                            "b": 44,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 6,
+                            "g": 52,
+                            "b": 44,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 4,
+                            "g": 34,
+                            "b": 28,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.05813366260403116
+                },
+                {
+                    "name": "visible_time_b",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/07_water_memory_ignores_real_elapsed_time-visible_time_b.png",
+                    "sha256": "be2ab02794f3149f88d3b9cd16c0e3484e7c56327fb3a8826101e50b8c1aff42",
+                    "realtime": 1.5272521699682536,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 4,
+                            "g": 37,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 6,
+                            "g": 48,
+                            "b": 40,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 3,
+                            "g": 24,
+                            "b": 20,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 5,
+                            "g": 43,
+                            "b": 36,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 4,
+                            "g": 36,
+                            "b": 30,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.05701902302261559
+                }
+            ],
+            "metrics": [
+                {
+                    "name": "memory_elapsed_realtime",
+                    "value": 0.32995787499999987
+                },
+                {
+                    "name": "memory_max_rgb_delta",
+                    "value": 0.0
+                },
+                {
+                    "name": "visible_changed_pixels_gt3",
+                    "value": 121765.0
+                },
+                {
+                    "name": "visible_max_rgb_delta",
+                    "value": 0.12941176470588237
+                }
+            ]
+        },
+        {
+            "id": "08_visible_caster_produces_real_shadow",
+            "passed": true,
+            "error": "",
+            "frames": [
+                {
+                    "name": "receiver_without_caster",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/08_visible_caster_produces_real_shadow-receiver_without_caster.png",
+                    "sha256": "cf2c45ad22fe749e553054e538cb87b258b0ff84ad89b6448d1d3c2e617251c7",
+                    "realtime": 1.5537405039682533,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.1921568627444662
+                },
+                {
+                    "name": "visible_caster_shadow",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/08_visible_caster_produces_real_shadow-visible_caster_shadow.png",
+                    "sha256": "447c643b53f377cacc91636f108eded1698f60c3398493e182815464b6623f0c",
+                    "realtime": 1.5689571699682539,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.1773087993940531
+                },
+                {
+                    "name": "same_caster_light_shadows_off",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/08_visible_caster_produces_real_shadow-same_caster_light_shadows_off.png",
+                    "sha256": "cf2c45ad22fe749e553054e538cb87b258b0ff84ad89b6448d1d3c2e617251c7",
+                    "realtime": 1.5824980869682542,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.1921568627444662
+                }
+            ],
+            "metrics": [
+                {
+                    "name": "shadow_darkened_pixels_gt8",
+                    "value": 21253.0
+                },
+                {
+                    "name": "shadow_control_mean_luma",
+                    "value": 0.1921568627444662
+                },
+                {
+                    "name": "disabled_shadow_max_delta",
+                    "value": 0.0
+                }
+            ]
+        },
+        {
+            "id": "09_remembered_unseen_casters_do_not_shadow",
+            "passed": true,
+            "error": "",
+            "frames": [
+                {
+                    "name": "receiver_without_caster",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/09_remembered_unseen_casters_do_not_shadow-receiver_without_caster.png",
+                    "sha256": "cf2c45ad22fe749e553054e538cb87b258b0ff84ad89b6448d1d3c2e617251c7",
+                    "realtime": 1.597905753968254,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.1921568627444662
+                },
+                {
+                    "name": "positive_visible_caster",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/09_remembered_unseen_casters_do_not_shadow-positive_visible_caster.png",
+                    "sha256": "447c643b53f377cacc91636f108eded1698f60c3398493e182815464b6623f0c",
+                    "realtime": 1.6126113789682535,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.1773087993940531
+                },
+                {
+                    "name": "remembered_caster",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/09_remembered_unseen_casters_do_not_shadow-remembered_caster.png",
+                    "sha256": "cf2c45ad22fe749e553054e538cb87b258b0ff84ad89b6448d1d3c2e617251c7",
+                    "realtime": 1.6245886289682546,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.1921568627444662
+                },
+                {
+                    "name": "unseen_caster",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/09_remembered_unseen_casters_do_not_shadow-unseen_caster.png",
+                    "sha256": "cf2c45ad22fe749e553054e538cb87b258b0ff84ad89b6448d1d3c2e617251c7",
+                    "realtime": 1.6392579619682533,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.1921568627444662
+                },
+                {
+                    "name": "transient_remembered_caster",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/09_remembered_unseen_casters_do_not_shadow-transient_remembered_caster.png",
+                    "sha256": "cf2c45ad22fe749e553054e538cb87b258b0ff84ad89b6448d1d3c2e617251c7",
+                    "realtime": 1.6516801289682537,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 47,
+                            "g": 69,
+                            "b": 31,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.1921568627444662
+                }
+            ],
+            "metrics": [
+                {
+                    "name": "positive_darkened_pixels_gt8",
+                    "value": 21253.0
+                },
+                {
+                    "name": "memory_max_rgb_delta",
+                    "value": 0.0
+                },
+                {
+                    "name": "unseen_max_rgb_delta",
+                    "value": 0.0
+                },
+                {
+                    "name": "transient_memory_max_rgb_delta",
+                    "value": 0.0
+                }
+            ]
+        },
+        {
+            "id": "10_water_visibility_symmetry",
+            "passed": true,
+            "error": "",
+            "frames": [
+                {
+                    "name": "blank",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/10_water_visibility_symmetry-blank.png",
+                    "sha256": "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+                    "realtime": 1.6721513789682537,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.0
+                },
+                {
+                    "name": "water_visible",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/10_water_visibility_symmetry-water_visible.png",
+                    "sha256": "7ade1b1d872b06cba2d971b3ba861a7f1ab3b204b5f3ccf45c1a3595e9e2ba0a",
+                    "realtime": 1.6842452119682534,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 5,
+                            "g": 42,
+                            "b": 35,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 5,
+                            "g": 42,
+                            "b": 35,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 5,
+                            "g": 42,
+                            "b": 35,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 5,
+                            "g": 42,
+                            "b": 35,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 5,
+                            "g": 42,
+                            "b": 35,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.06029411764691175
+                },
+                {
+                    "name": "water_unseen",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/10_water_visibility_symmetry-water_unseen.png",
+                    "sha256": "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+                    "realtime": 1.6962198789682539,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.0
+                },
+                {
+                    "name": "water_wrong_size",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/10_water_visibility_symmetry-water_wrong_size.png",
+                    "sha256": "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+                    "realtime": 1.7080167949682537,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.0
+                },
+                {
+                    "name": "water_transient_memory",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/10_water_visibility_symmetry-water_transient_memory.png",
+                    "sha256": "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+                    "realtime": 1.722062878968254,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.0
+                }
+            ],
+            "metrics": [
+                {
+                    "name": "visible_mean_rgb_delta",
+                    "value": 0.060294117647058827
+                },
+                {
+                    "name": "unseen_max_delta",
+                    "value": 0.0
+                },
+                {
+                    "name": "wrong_size_max_delta",
+                    "value": 0.0
+                },
+                {
+                    "name": "transient_memory_max_delta",
+                    "value": 0.0
+                }
+            ]
+        },
+        {
+            "id": "11_renderer2d_composite_actual_rt_orientation",
+            "passed": true,
+            "error": "",
+            "frames": [
+                {
+                    "name": "actual_world_rt_four_markers",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/11_renderer2d_composite_actual_rt_orientation-actual_world_rt_four_markers.png",
+                    "sha256": "050ec0ad9f9b00cc005d162958bf108277268d3d0b4198ca4013191d6ec5e735",
+                    "realtime": 1.7421398369682546,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 255,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 0,
+                            "g": 255,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 255,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 255,
+                            "g": 255,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.10416666666667469
+                },
+                {
+                    "name": "composite_flip0",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/11_renderer2d_composite_actual_rt_orientation-composite_flip0.png",
+                    "sha256": "050ec0ad9f9b00cc005d162958bf108277268d3d0b4198ca4013191d6ec5e735",
+                    "realtime": 1.7638245039682535,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 255,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 0,
+                            "g": 255,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 255,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 255,
+                            "g": 255,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.10416666666667469
+                },
+                {
+                    "name": "composite_flip1_control",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/11_renderer2d_composite_actual_rt_orientation-composite_flip1_control.png",
+                    "sha256": "340e800fd3d133e0706817514fc86619400cadfe91cfb28e0bb4e14e399ed018",
+                    "realtime": 1.776613878968254,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 255,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 255,
+                            "g": 255,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 255,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 0,
+                            "g": 255,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.10416666666651509
+                }
+            ],
+            "metrics": [
+                {
+                    "name": "source_marker_0_expected_color_distance",
+                    "value": 0.0
+                },
+                {
+                    "name": "source_marker_1_expected_color_distance",
+                    "value": 0.0
+                },
+                {
+                    "name": "source_marker_2_expected_color_distance",
+                    "value": 0.0
+                },
+                {
+                    "name": "source_marker_3_expected_color_distance",
+                    "value": 0.0
+                },
+                {
+                    "name": "flip0_marker_0_distance",
+                    "value": 0.0
+                },
+                {
+                    "name": "flip1_marker_0_swapped_distance",
+                    "value": 0.0
+                },
+                {
+                    "name": "flip0_marker_1_distance",
+                    "value": 0.0
+                },
+                {
+                    "name": "flip1_marker_1_swapped_distance",
+                    "value": 0.0
+                },
+                {
+                    "name": "flip0_marker_2_distance",
+                    "value": 0.0
+                },
+                {
+                    "name": "flip1_marker_2_swapped_distance",
+                    "value": 0.0
+                },
+                {
+                    "name": "flip0_marker_3_distance",
+                    "value": 0.0
+                },
+                {
+                    "name": "flip1_marker_3_swapped_distance",
+                    "value": 0.0
+                }
+            ]
+        },
+        {
+            "id": "12_gameplay_exposure_preserves_darkness_and_light_ratios",
+            "passed": true,
+            "error": "",
+            "frames": [
+                {
+                    "name": "stone_native_daylight",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/12_gameplay_exposure_preserves_darkness_and_light_ratios-stone_native_daylight.png",
+                    "sha256": "6419777b13d25d603b07315851cb14566cc086509dc30334c4c8abf8ac3e786b",
+                    "realtime": 1.7897445869682543,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 19,
+                            "g": 27,
+                            "b": 12,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 19,
+                            "g": 27,
+                            "b": 12,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 19,
+                            "g": 27,
+                            "b": 12,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 19,
+                            "g": 27,
+                            "b": 12,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 19,
+                            "g": 27,
+                            "b": 12,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.042647058823454129
+                },
+                {
+                    "name": "stone_graded_daylight",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/12_gameplay_exposure_preserves_darkness_and_light_ratios-stone_graded_daylight.png",
+                    "sha256": "fcae7b902d415aa1045a4ce351b7857e96b47afc3b00e739ad0dbb4887ad11eb",
+                    "realtime": 1.8017954619682542,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 42,
+                            "g": 60,
+                            "b": 27,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 42,
+                            "g": 60,
+                            "b": 27,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 42,
+                            "g": 60,
+                            "b": 27,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 42,
+                            "g": 60,
+                            "b": 27,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 42,
+                            "g": 60,
+                            "b": 27,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.09485294117673579
+                },
+                {
+                    "name": "stone_half_native_light",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/12_gameplay_exposure_preserves_darkness_and_light_ratios-stone_half_native_light.png",
+                    "sha256": "cc061b2c027d48abacb1a96282f196afa2cfdbc54779c0470d84b0f0c0b04dda",
+                    "realtime": 1.8140315869682536,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 21,
+                            "g": 30,
+                            "b": 14,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 21,
+                            "g": 30,
+                            "b": 14,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 21,
+                            "g": 30,
+                            "b": 14,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 21,
+                            "g": 30,
+                            "b": 14,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 21,
+                            "g": 30,
+                            "b": 14,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.04779411764692428
+                },
+                {
+                    "name": "stone_blank",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/12_gameplay_exposure_preserves_darkness_and_light_ratios-stone_blank.png",
+                    "sha256": "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+                    "realtime": 1.8263240869682545,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.0
+                },
+                {
+                    "name": "stone_zero_native_light",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/12_gameplay_exposure_preserves_darkness_and_light_ratios-stone_zero_native_light.png",
+                    "sha256": "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+                    "realtime": 1.8383352949682533,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.0
+                },
+                {
+                    "name": "stone_unseen_high_exposure",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/12_gameplay_exposure_preserves_darkness_and_light_ratios-stone_unseen_high_exposure.png",
+                    "sha256": "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+                    "realtime": 1.8527456699682539,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.0
+                },
+                {
+                    "name": "water_native_daylight",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/12_gameplay_exposure_preserves_darkness_and_light_ratios-water_native_daylight.png",
+                    "sha256": "c966dec2ee4500edcc0bac991b9e62f2cb60201755886fbe270fb244ab986026",
+                    "realtime": 1.865861003968254,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 2,
+                            "g": 17,
+                            "b": 14,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 2,
+                            "g": 17,
+                            "b": 14,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 2,
+                            "g": 17,
+                            "b": 14,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 2,
+                            "g": 17,
+                            "b": 14,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 2,
+                            "g": 17,
+                            "b": 14,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.024264705882332955
+                },
+                {
+                    "name": "water_graded_daylight",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/12_gameplay_exposure_preserves_darkness_and_light_ratios-water_graded_daylight.png",
+                    "sha256": "2779fb55d78e8988c46fcf55d8ada052496e31ce92a5238df989f93fe0cb4c65",
+                    "realtime": 1.8793737539682543,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 4,
+                            "g": 37,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 4,
+                            "g": 37,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 4,
+                            "g": 37,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 4,
+                            "g": 37,
+                            "b": 31,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 4,
+                            "g": 37,
+                            "b": 31,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.05294117647054451
+                },
+                {
+                    "name": "water_half_native_light",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/12_gameplay_exposure_preserves_darkness_and_light_ratios-water_half_native_light.png",
+                    "sha256": "ff48ae9dd2ecc2325717fa56e1b75f2ac82fc302ae58de7c5d3751a682176ed4",
+                    "realtime": 1.891204503968254,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 2,
+                            "g": 18,
+                            "b": 16,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 2,
+                            "g": 18,
+                            "b": 16,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 2,
+                            "g": 18,
+                            "b": 16,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 2,
+                            "g": 18,
+                            "b": 16,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 2,
+                            "g": 18,
+                            "b": 16,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.026470588235272258
+                },
+                {
+                    "name": "water_blank",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/12_gameplay_exposure_preserves_darkness_and_light_ratios-water_blank.png",
+                    "sha256": "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+                    "realtime": 1.9031910449682546,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.0
+                },
+                {
+                    "name": "water_zero_native_light",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/12_gameplay_exposure_preserves_darkness_and_light_ratios-water_zero_native_light.png",
+                    "sha256": "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+                    "realtime": 1.9149602949682532,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.0
+                },
+                {
+                    "name": "water_unseen_high_exposure",
+                    "png": "/Users/steven/caves-of-ooo/Docs/Verification/Village3D/regressions/20260910T062650Z-gpu-dfed68e9631e464c906cecba1a6a1c69/artifacts/12_gameplay_exposure_preserves_darkness_and_light_ratios-water_unseen_high_exposure.png",
+                    "sha256": "52140e3ce635ce4ac6ddf8b0eb6558c86a353a9cabaee54c1ef89f20214595d7",
+                    "realtime": 1.9287596289682548,
+                    "samples": [
+                        {
+                            "name": "SW",
+                            "x": 128,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "SE",
+                            "x": 384,
+                            "y": 128,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NW",
+                            "x": 128,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "NE",
+                            "x": 384,
+                            "y": 384,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        },
+                        {
+                            "name": "center",
+                            "x": 256,
+                            "y": 256,
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 255
+                        }
+                    ],
+                    "meanLuma": 0.0
+                }
+            ],
+            "metrics": [
+                {
+                    "name": "stone_exposure_ratio",
+                    "value": 2.2241379310446276
+                },
+                {
+                    "name": "water_exposure_ratio",
+                    "value": 2.181818181818177
+                }
+            ]
+        }
+    ]
+}

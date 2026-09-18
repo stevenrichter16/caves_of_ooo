@@ -149,20 +149,41 @@ namespace CavesOfOoo.Core
 
         /// <summary>Guard key: one reaction may fire once per tile per
         /// originating action.</summary>
-        private static readonly HashSet<long> _firedThisAction = new HashSet<long>();
-        private static readonly List<int> _dirtyCells = new List<int>(16);
-        private static readonly List<int> _nextGeneration = new List<int>(16);
-        private static int _resolvedThisAction;
+        private sealed class ResolutionFrame
+        {
+            internal readonly HashSet<long> Fired = new HashSet<long>();
+            internal readonly List<int> Dirty = new List<int>(16), Next = new List<int>(16);
+            internal readonly HashSet<(Entity owner,string reaction)> OwnHits = new HashSet<(Entity,string)>();
+            internal HashSet<(Entity owner,string reaction)> Hits;
+            internal int Resolved;
+        }
+        private static readonly Stack<ResolutionFrame> Frames = new Stack<ResolutionFrame>();
+        private static ResolutionFrame CurrentFrame = new ResolutionFrame();
+        private static HashSet<long> _firedThisAction => CurrentFrame.Fired;
+        private static List<int> _dirtyCells => CurrentFrame.Dirty;
+        private static List<int> _nextGeneration => CurrentFrame.Next;
+        private static int _resolvedThisAction {get=>CurrentFrame.Resolved;set=>CurrentFrame.Resolved=value;}
 
         /// <summary>
         /// Resolves every reaction reachable from the cells that changed,
         /// following the fixed order and respecting the loop guards.
         /// Call once per originating action, not per write.
         /// </summary>
-        public static int ResolveZone(Zone zone, Entity cause = null)
+        public static int ResolveZone(Zone zone, Entity cause = null) => ResolveZone(zone,cause,null);
+
+        internal static int ResolveZone(Zone zone,Entity cause,HashSet<(Entity owner,string reaction)> bodyHits)
         {
             if (zone == null || !IsInitialized) return 0;
+            var outer=CurrentFrame;
+            var frame=Frames.Count>0 ? Frames.Pop() : new ResolutionFrame();
+            frame.OwnHits.Clear(); frame.Hits=bodyHits ?? frame.OwnHits;
+            CurrentFrame=frame;
+            try {return ResolveZoneInFrame(zone,cause);}
+            finally {CurrentFrame=outer;frame.Hits=null;Frames.Push(frame);}
+        }
 
+        private static int ResolveZoneInFrame(Zone zone, Entity cause)
+        {
             _firedThisAction.Clear();
             _resolvedThisAction = 0;
 
@@ -300,6 +321,7 @@ namespace CavesOfOoo.Core
 
         private static void Apply(Zone zone, int x, int y, TileReaction r, Entity cause)
         {
+            SpellFxCapture.RecordGround(zone, x, y, "reaction", r.ID, 1);
             var state = zone.TileState;
 
             // Consume inputs first, so an output of the same id is a
@@ -325,6 +347,12 @@ namespace CavesOfOoo.Core
             if (!string.IsNullOrEmpty(r.OutputCloud))
                 state.WriteCloud(x, y, r.OutputCloud, r.OutputCloudTurns);
 
+            if (!string.IsNullOrEmpty(r.OutputCoating))
+                SpellFxCapture.RecordGround(zone, x, y, "coating", r.OutputCoating, r.OutputCoatingTurns);
+            if (!string.IsNullOrEmpty(r.OutputResidue))
+                SpellFxCapture.RecordGround(zone, x, y, "residue", r.OutputResidue, r.OutputResidueTurns);
+            if (!string.IsNullOrEmpty(r.OutputCloud))
+                SpellFxCapture.RecordGround(zone, x, y, "cloud", r.OutputCloud, r.OutputCloudTurns);
             int hit = ApplyToOccupants(zone, x, y, r, cause);
 
             Diag.Record("tile", "ReactionFired", cause, null,
@@ -349,16 +377,22 @@ namespace CavesOfOoo.Core
             int hit = 0;
             // Iterate a snapshot: damage can kill an occupant, and a
             // death removes it from cell.Objects mid-loop.
-            var occupants = new List<Entity>(cell.Objects.Count);
-            for (int i = 0; i < cell.Objects.Count; i++)
+            var occupants = new List<Entity>(cell.Occupants.Count);
+            for (int i = 0; i < cell.Occupants.Count; i++)
             {
-                var e = cell.Objects[i];
+                var e = cell.Occupants[i];
                 if (e != null && e.Tags.ContainsKey("Creature")) occupants.Add(e);
             }
 
             for (int i = 0; i < occupants.Count; i++)
             {
                 var target = occupants[i];
+                if(zone.GetEntityCell(target)==null) continue;
+                var bodyHits=CurrentFrame.Hits;
+                if(target.HasPart<SpatialFootprintPart>() && bodyHits!=null && !bodyHits.Add((target,r.ID))) continue;
+                // A reaction can be the spell's first (or lethal) contact, before its direct
+                // hit loop. Record the reacting body cell after eligibility and deduplication.
+                SpellFxCapture.TargetAt(zone, target, new Point(x, y));
 
                 if (r.OccupantDamage > 0)
                 {

@@ -80,20 +80,7 @@ namespace CavesOfOoo.Skills
             }
 
             // Find adjacent target (mirrors Shank's 8-dir lookup).
-            Entity target = null;
-            for (int dir = 0; dir < 8 && target == null; dir++)
-            {
-                var cell = ctx.Zone.GetCellInDirection(actorPos.x, actorPos.y, dir);
-                if (cell == null) continue;
-                for (int i = 0; i < cell.Objects.Count; i++)
-                {
-                    var e = cell.Objects[i];
-                    if (e == null || e == actor) continue;
-                    if (!e.Tags.ContainsKey("Creature")) continue;
-                    target = e;
-                    break;
-                }
-            }
+            var target = MultiCellAbilityQueries.FirstAdjacentCreature(ctx.Zone, actor, out _);
 
             if (target == null)
             {
@@ -105,12 +92,13 @@ namespace CavesOfOoo.Skills
             // Strike the target FLURRY_STRIKE_COUNT times. Skip strikes
             // after target HP hits 0 — no point swinging at a corpse and
             // the message log would otherwise log "missed" for a dead
-            // defender (PerformSingleAttack short-circuits internally on
-            // HP≤0 but the log would still get a stale entry).
+            // defender. Presence checks also stop a reactive removal from
+            // leaving two phantom strikes in the same flurry.
             for (int strike = 0; strike < FLURRY_STRIKE_COUNT; strike++)
             {
                 int hp = target.GetStatValue("Hitpoints");
-                if (hp <= 0) break;
+                if (hp <= 0 || ctx.Zone.GetEntityCell(target) == null
+                    || ctx.Zone.GetEntityCell(actor) == null || actor.GetStatValue("Hitpoints") <= 0) break;
                 CombatSystem.PerformSingleAttack(
                     attacker: actor, defender: target,
                     weapon: weapon, isPrimary: true,

@@ -1,0 +1,7 @@
+{
+  "status": "EXPECTED_METADATA_FAILURE",
+  "syntheticOnly": true,
+  "error": "First codec smoke omitted sample_aspect_ratio in ffprobe; strict square-pixel check failed with KeyError.",
+  "fix": "setsar=1 adds square-pixel metadata only. The corrected encode decoded to the exact same RGB inputs and met timing bounds.",
+  "scope": "No game capture was encoded or changed during this smoke check."
+}

@@ -1,0 +1,1130 @@
+{
+  "schemaVersion": 1,
+  "id": "catacomb-source-assets",
+  "sourcePath": "../../Docs/StyleExploration/Felling-2026-09-05/05-catacomb-tileset.png",
+  "canvas": [
+    1536,
+    1024
+  ],
+  "defaultAlphaThreshold": 128,
+  "coordinateConvention": "Source top-left pixels; bounds x,y,width,height; foot is absolute source x,y; output pivot is normalized bottom-left.",
+  "scope": "51 distinct source assets. The overlapping lantern rack and shelf form one complete display; no pixel repainting or generated sprite silhouettes.",
+  "assets": [
+    {
+      "id": "floor-stone-a",
+      "name": "Floor stone a",
+      "kind": "floor",
+      "bounds": [
+        19,
+        84,
+        86,
+        78
+      ],
+      "foot": [
+        62.0,
+        159
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "floor-stone-b",
+      "name": "Floor stone b",
+      "kind": "floor",
+      "bounds": [
+        113,
+        84,
+        86,
+        78
+      ],
+      "foot": [
+        156.0,
+        159
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "floor-stone-c",
+      "name": "Floor stone c",
+      "kind": "floor",
+      "bounds": [
+        19,
+        169,
+        86,
+        84
+      ],
+      "foot": [
+        62.0,
+        250
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "floor-moss",
+      "name": "Floor moss",
+      "kind": "floor",
+      "bounds": [
+        113,
+        169,
+        86,
+        84
+      ],
+      "foot": [
+        156.0,
+        250
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "floor-chipped",
+      "name": "Floor chipped",
+      "kind": "floor",
+      "bounds": [
+        207,
+        82,
+        84,
+        85
+      ],
+      "foot": [
+        249.0,
+        164
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "rubble-cluster",
+      "name": "Rubble cluster",
+      "kind": "prop",
+      "bounds": [
+        202,
+        170,
+        83,
+        86
+      ],
+      "foot": [
+        243.5,
+        253
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "wall-niches-straight",
+      "name": "Wall niches straight",
+      "kind": "wall",
+      "bounds": [
+        310,
+        66,
+        167,
+        193
+      ],
+      "foot": [
+        393.5,
+        256
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "wall-niches-inner",
+      "name": "Wall niches inner",
+      "kind": "wall",
+      "bounds": [
+        487,
+        66,
+        159,
+        203
+      ],
+      "foot": [
+        566.5,
+        266
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "wall-niches-outer",
+      "name": "Wall niches outer",
+      "kind": "wall",
+      "bounds": [
+        653,
+        52,
+        193,
+        218
+      ],
+      "foot": [
+        749.5,
+        267
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "stone-tablet",
+      "name": "Stone tablet",
+      "kind": "prop",
+      "bounds": [
+        862,
+        101,
+        66,
+        130
+      ],
+      "foot": [
+        895.0,
+        228
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "stone-step",
+      "name": "Stone step",
+      "kind": "prop",
+      "bounds": [
+        871,
+        232,
+        46,
+        29
+      ],
+      "foot": [
+        894.0,
+        258
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "niche-bed",
+      "name": "Niche bed",
+      "kind": "wall",
+      "bounds": [
+        935,
+        84,
+        102,
+        145
+      ],
+      "foot": [
+        986.0,
+        226
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "niche-empty",
+      "name": "Niche empty",
+      "kind": "wall",
+      "bounds": [
+        1040,
+        85,
+        106,
+        146
+      ],
+      "foot": [
+        1093.0,
+        228
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "ladder",
+      "name": "Ladder",
+      "kind": "structure",
+      "bounds": [
+        1166,
+        59,
+        75,
+        210
+      ],
+      "foot": [
+        1203.5,
+        266
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "stairs-front",
+      "name": "Stairs front",
+      "kind": "structure",
+      "bounds": [
+        1251,
+        53,
+        122,
+        204
+      ],
+      "foot": [
+        1312.0,
+        254
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255.",
+      "excludePolygons": [
+        [
+          [
+            1365,
+            177
+          ],
+          [
+            1372,
+            177
+          ],
+          [
+            1372,
+            256
+          ],
+          [
+            1365,
+            256
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "stairs-side",
+      "name": "Stairs side",
+      "kind": "structure",
+      "bounds": [
+        1373,
+        55,
+        152,
+        212
+      ],
+      "foot": [
+        1449.0,
+        264
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "fungus-garden-large",
+      "name": "Fungus garden large",
+      "kind": "flora",
+      "bounds": [
+        14,
+        303,
+        198,
+        183
+      ],
+      "foot": [
+        113.0,
+        483
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "fungus-garden-medium",
+      "name": "Fungus garden medium",
+      "kind": "flora",
+      "bounds": [
+        215,
+        323,
+        175,
+        139
+      ],
+      "foot": [
+        302.5,
+        459
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "fungus-garden-small",
+      "name": "Fungus garden small",
+      "kind": "flora",
+      "bounds": [
+        397,
+        309,
+        160,
+        130
+      ],
+      "foot": [
+        477.0,
+        436
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255.",
+      "excludePolygons": [
+        [
+          [
+            483,
+            417
+          ],
+          [
+            557,
+            417
+          ],
+          [
+            557,
+            440
+          ],
+          [
+            478,
+            440
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "fungus-garden-tiny",
+      "name": "Fungus garden tiny",
+      "kind": "flora",
+      "bounds": [
+        436,
+        419,
+        120,
+        70
+      ],
+      "foot": [
+        496.0,
+        486
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255.",
+      "excludePolygons": [
+        [
+          [
+            436,
+            419
+          ],
+          [
+            483,
+            419
+          ],
+          [
+            479,
+            435
+          ],
+          [
+            436,
+            435
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "mushroom-pink-tall",
+      "name": "Mushroom pink tall",
+      "kind": "flora",
+      "bounds": [
+        582,
+        303,
+        42,
+        67
+      ],
+      "foot": [
+        603.0,
+        367
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "mushroom-cyan-cluster",
+      "name": "Mushroom cyan cluster",
+      "kind": "flora",
+      "bounds": [
+        598,
+        443,
+        68,
+        40
+      ],
+      "foot": [
+        632.0,
+        480
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "glow-vein-pillar",
+      "name": "Glow vein pillar",
+      "kind": "prop",
+      "bounds": [
+        691,
+        284,
+        88,
+        214
+      ],
+      "foot": [
+        735.0,
+        495
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "glow-vein-shard",
+      "name": "Glow vein shard",
+      "kind": "prop",
+      "bounds": [
+        793,
+        325,
+        43,
+        68
+      ],
+      "foot": [
+        814.5,
+        390
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "lantern-hanging",
+      "name": "Lantern hanging",
+      "kind": "light",
+      "bounds": [
+        860,
+        332,
+        53,
+        125
+      ],
+      "foot": [
+        886.5,
+        454
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "lantern-display",
+      "name": "Lantern display",
+      "kind": "light",
+      "bounds": [
+        927,
+        291,
+        156,
+        203
+      ],
+      "foot": [
+        1004,
+        487
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Two lantern furniture modules overlap in the source sheet. Exported together so no occluded wood has to be invented and no neighboring jar cap is cut off.",
+      "excludePolygons": [
+        [
+          [
+            1042,
+            291
+          ],
+          [
+            1083,
+            291
+          ],
+          [
+            1083,
+            390
+          ],
+          [
+            1042,
+            390
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "pool-large",
+      "name": "Pool large",
+      "kind": "water",
+      "bounds": [
+        1241,
+        283,
+        212,
+        130
+      ],
+      "foot": [
+        1347.0,
+        410
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "pool-small",
+      "name": "Pool small",
+      "kind": "water",
+      "bounds": [
+        1230,
+        415,
+        95,
+        77
+      ],
+      "foot": [
+        1277.5,
+        489
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "coral-threshold-left",
+      "name": "Coral threshold left",
+      "kind": "flora",
+      "bounds": [
+        25,
+        535,
+        133,
+        168
+      ],
+      "foot": [
+        91.5,
+        700
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "coral-threshold-horizontal",
+      "name": "Coral threshold horizontal",
+      "kind": "flora",
+      "bounds": [
+        175,
+        538,
+        229,
+        61
+      ],
+      "foot": [
+        289.5,
+        596
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "coral-threshold-curve",
+      "name": "Coral threshold curve",
+      "kind": "flora",
+      "bounds": [
+        171,
+        605,
+        227,
+        115
+      ],
+      "foot": [
+        284.5,
+        717
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "coral-threshold-vertical",
+      "name": "Coral threshold vertical",
+      "kind": "flora",
+      "bounds": [
+        431,
+        527,
+        77,
+        190
+      ],
+      "foot": [
+        469.5,
+        714
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "coral-patch-large",
+      "name": "Coral patch large",
+      "kind": "flora",
+      "bounds": [
+        541,
+        546,
+        165,
+        154
+      ],
+      "foot": [
+        623.5,
+        697
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "coral-patch-small",
+      "name": "Coral patch small",
+      "kind": "flora",
+      "bounds": [
+        715,
+        550,
+        82,
+        110
+      ],
+      "foot": [
+        756.0,
+        657
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "dolmen-gate",
+      "name": "Dolmen gate",
+      "kind": "structure",
+      "bounds": [
+        786,
+        510,
+        264,
+        208
+      ],
+      "foot": [
+        918.0,
+        715
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255.",
+      "excludePolygons": [
+        [
+          [
+            786,
+            545
+          ],
+          [
+            801,
+            545
+          ],
+          [
+            801,
+            665
+          ],
+          [
+            786,
+            665
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "porous-threshold",
+      "name": "Porous threshold",
+      "kind": "structure",
+      "bounds": [
+        1060,
+        526,
+        237,
+        186
+      ],
+      "foot": [
+        1178.5,
+        709
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "arched-doorway",
+      "name": "Arched doorway",
+      "kind": "structure",
+      "bounds": [
+        1312,
+        510,
+        209,
+        213
+      ],
+      "foot": [
+        1416.5,
+        720
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "villager-front",
+      "name": "Villager front",
+      "kind": "actor",
+      "bounds": [
+        15,
+        766,
+        91,
+        200
+      ],
+      "foot": [
+        60.5,
+        963
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "villager-side",
+      "name": "Villager side",
+      "kind": "actor",
+      "bounds": [
+        313,
+        768,
+        83,
+        198
+      ],
+      "foot": [
+        354.5,
+        963
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "villager-staff",
+      "name": "Villager staff",
+      "kind": "actor",
+      "bounds": [
+        410,
+        761,
+        74,
+        205
+      ],
+      "foot": [
+        447.0,
+        963
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "villager-child",
+      "name": "Villager child",
+      "kind": "actor",
+      "bounds": [
+        487,
+        856,
+        66,
+        111
+      ],
+      "foot": [
+        520.0,
+        964
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "villager-gardener",
+      "name": "Villager gardener",
+      "kind": "actor",
+      "bounds": [
+        564,
+        799,
+        187,
+        182
+      ],
+      "foot": [
+        657.5,
+        978
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255.",
+      "excludePolygons": [
+        [
+          [
+            740,
+            799
+          ],
+          [
+            751,
+            799
+          ],
+          [
+            751,
+            836
+          ],
+          [
+            740,
+            836
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "bowl-berries",
+      "name": "Bowl berries",
+      "kind": "prop",
+      "bounds": [
+        744,
+        756,
+        110,
+        81
+      ],
+      "foot": [
+        799.0,
+        834
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "food-tray",
+      "name": "Food tray",
+      "kind": "prop",
+      "bounds": [
+        785,
+        890,
+        165,
+        94
+      ],
+      "foot": [
+        867.5,
+        981
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255.",
+      "excludePolygons": [
+        [
+          [
+            875,
+            890
+          ],
+          [
+            900,
+            890
+          ],
+          [
+            900,
+            901
+          ],
+          [
+            875,
+            901
+          ]
+        ],
+        [
+          [
+            785,
+            890
+          ],
+          [
+            812,
+            890
+          ],
+          [
+            812,
+            903
+          ],
+          [
+            785,
+            903
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "honey-jar-large",
+      "name": "Honey jar large",
+      "kind": "prop",
+      "bounds": [
+        968,
+        750,
+        105,
+        119
+      ],
+      "foot": [
+        1020.5,
+        866
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255.",
+      "excludePolygons": [
+        [
+          [
+            1064,
+            785
+          ],
+          [
+            1073,
+            785
+          ],
+          [
+            1073,
+            869
+          ],
+          [
+            1064,
+            869
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "honey-jar-small",
+      "name": "Honey jar small",
+      "kind": "prop",
+      "bounds": [
+        1065,
+        786,
+        70,
+        95
+      ],
+      "foot": [
+        1100.0,
+        878
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "bed-teal",
+      "name": "Bed teal",
+      "kind": "prop",
+      "bounds": [
+        1145,
+        752,
+        201,
+        100
+      ],
+      "foot": [
+        1245.5,
+        849
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "bed-purple",
+      "name": "Bed purple",
+      "kind": "prop",
+      "bounds": [
+        1145,
+        854,
+        198,
+        89
+      ],
+      "foot": [
+        1244,
+        933
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255.",
+      "excludePolygons": [
+        [
+          [
+            1145,
+            934
+          ],
+          [
+            1343,
+            934
+          ],
+          [
+            1343,
+            944
+          ],
+          [
+            1145,
+            944
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "bed-simple",
+      "name": "Bed simple",
+      "kind": "prop",
+      "bounds": [
+        1153,
+        934,
+        174,
+        70
+      ],
+      "foot": [
+        1240.0,
+        1001
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "rat",
+      "name": "Rat",
+      "kind": "creature",
+      "bounds": [
+        1366,
+        766,
+        147,
+        66
+      ],
+      "foot": [
+        1439.5,
+        829
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    },
+    {
+      "id": "glowing-snail",
+      "name": "Glowing snail",
+      "kind": "creature",
+      "bounds": [
+        1358,
+        846,
+        165,
+        113
+      ],
+      "foot": [
+        1440.5,
+        956
+      ],
+      "maskMethod": "source-alpha-threshold",
+      "alphaThreshold": 128,
+      "notes": "Native source RGB preserved. Alpha threshold discards illustrated sheet haze and normalizes near-opaque pixels to255."
+    }
+  ]
+}

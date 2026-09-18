@@ -15,7 +15,7 @@ namespace CavesOfOoo.Rendering
         public static SpreadVoxelLibrary Load()=>Resources.Load<SpreadVoxelLibrary>(ResourcePath);
         public void Validate()
         {
-            if(Entries==null||Entries.Length!=16)throw new InvalidOperationException("Spread voxel kit must have four variants of four families.");
+            if(Entries==null||Entries.Length!=20)throw new InvalidOperationException("Spread voxel kit must have four variants of five families.");
             var map=new Dictionary<string,Entry>(StringComparer.Ordinal);
             foreach(var e in Entries)
             {
@@ -25,7 +25,7 @@ namespace CavesOfOoo.Rendering
                     throw new InvalidOperationException("Invalid Spread voxel model.");
                 map.Add(e.Id,e);
             }
-            foreach(string family in new[]{"hedge","barley","flowers","reeds"})for(int i=0;i<4;i++)
+            foreach(string family in new[]{"hedge","barley","flowers","reeds","stubble"})for(int i=0;i<4;i++)
                 if(!map.ContainsKey("spread-"+family+"-"+i))throw new InvalidOperationException("Missing Spread voxel variant.");
             index=map;
         }
@@ -34,12 +34,19 @@ namespace CavesOfOoo.Rendering
         private void OnValidate()=>index=null;
         private static readonly string[] Ids=MakeIds();
         private static string[] MakeIds()
-        {var ids=new string[16];int n=0;foreach(string f in new[]{"hedge","barley","flowers","reeds"})for(int i=0;i<4;i++)ids[n++]="spread-"+f+"-"+i;return ids;}
+        {var ids=new string[20];int n=0;foreach(string f in new[]{"hedge","barley","flowers","reeds","stubble"})for(int i=0;i<4;i++)ids[n++]="spread-"+f+"-"+i;return ids;}
         public static string ModelId(string family,int variant)
-        {int offset=family=="hedge"?0:family=="barley"?4:family=="flowers"?8:12;return Ids[offset+variant];}
+        {
+            if(variant<0||variant>3)throw new ArgumentOutOfRangeException(nameof(variant));
+            int offset;
+            switch(family){case "hedge":offset=0;break;case "barley":offset=4;break;case "flowers":offset=8;break;
+                case "reeds":offset=12;break;case "stubble":offset=16;break;default:throw new ArgumentException("Unknown Spread family.",nameof(family));}
+            return Ids[offset+variant];
+        }
         public static string Family(string blueprint)
         {
-            switch(blueprint){case "Hedge":return "hedge";case "CropRow":return "barley";
+            switch(blueprint){case "Hedge":return "hedge";case "CropRow":return "stubble";
+                case "RipeCropRow":case "Emberwheat":return "barley";
                 case "FlowerField":case "CharmFlowers":return "flowers";case "Reeds":return "reeds";default:return null;}
         }
     }

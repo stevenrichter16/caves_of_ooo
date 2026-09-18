@@ -1,0 +1,3711 @@
+{
+  "schemaVersion": 1,
+  "id": "felling-component-inventory-proposal",
+  "status": "visual proposal; not approved masks or production components",
+  "source": {
+    "path": "../reference.png",
+    "width": 1536,
+    "height": 1024,
+    "inspection": "Direct view_image inspection of the full selected reference; no raster edits, cropping, segmentation, or image generation performed.",
+    "coordinateConvention": "Top-left image pixels; bounds=[left,top,width,height]; footPixel is a proposed visible contact/sort anchor."
+  },
+  "scope": "Readable structural chunks and grouped objects across the central/southern composition, with selected obvious rim clusters. This is not a claim that every speck is an individual object.",
+  "loreSources": [
+    {
+      "path": "../../../Lore/10_Bible.md",
+      "claim": "Current canon authority: petrified god-tree, six strikes, Naming unfilled."
+    },
+    {
+      "path": "../../../Lore/History/02_Geography.md",
+      "line": 89,
+      "claim": "Six barren plant-free positions; seventh is one point of wrong air."
+    },
+    {
+      "path": "../../../Lore/Codex/01_Felling_RecensionAccount.md",
+      "claim": "In-world disputed account, not a mandate to invent visible actors or a seventh strike."
+    }
+  ],
+  "classificationPolicy": {
+    "static": "Preserve major petrified stump/root/rock structure and ambiguous pale spires; static is a presentation decision, not an assertion of canonical invulnerability for every pebble.",
+    "mutable": "Candidate standalone visual object requiring a complete backing surface; does not grant harvesting, movement, destruction, or simulation behavior.",
+    "effect": "Existing visible motion/atmosphere candidate; gameplay liquid/light/visibility rules remain unimplemented."
+  },
+  "geometryPolicy": {
+    "estimateTolerancePixels": "Approximately 6\u201316 pixels for readable small groups; substantially greater at intertwined structural boundaries.",
+    "candidatePolygon": "Rough hand-estimated search contour. It may include backing pixels and exclude fine twigs. NEVER use unchanged as a final alpha or exact collision mask.",
+    "overlap": "Broad parent chunks intentionally overlap attached growth search regions. Resolve explicit front/back and keep each visible pixel owned once in the final reconstruction.",
+    "bounds": "Some source regions touch image edges; clipped objects cannot become full standalone assets without separately marked reconstruction.",
+    "maskAcceptance": "Trace/segment actual edges; retain thin stems and isolated caps; remove all checkerboard or backing contamination; inspect alpha and source-aligned recomposition."
+  },
+  "protectedRegions": [
+    {
+      "id": "strike-1",
+      "center": [
+        670,
+        553
+      ],
+      "radiusPixels": 48,
+      "policy": "Preserve bare center and exact placement; no invented plant beneath/within the mark."
+    },
+    {
+      "id": "strike-2",
+      "center": [
+        862,
+        554
+      ],
+      "radiusPixels": 48,
+      "policy": "Preserve bare center and exact placement; no invented plant beneath/within the mark."
+    },
+    {
+      "id": "strike-3",
+      "center": [
+        570,
+        643
+      ],
+      "radiusPixels": 48,
+      "policy": "Preserve bare center and exact placement; no invented plant beneath/within the mark."
+    },
+    {
+      "id": "strike-4",
+      "center": [
+        962,
+        644
+      ],
+      "radiusPixels": 48,
+      "policy": "Preserve bare center and exact placement; no invented plant beneath/within the mark."
+    },
+    {
+      "id": "strike-5",
+      "center": [
+        655,
+        746
+      ],
+      "radiusPixels": 50,
+      "policy": "Preserve bare center and exact placement; no invented plant beneath/within the mark."
+    },
+    {
+      "id": "strike-6",
+      "center": [
+        877,
+        746
+      ],
+      "radiusPixels": 50,
+      "policy": "Preserve bare center and exact placement; no invented plant beneath/within the mark."
+    },
+    {
+      "id": "seventh-absence",
+      "center": [
+        768,
+        503
+      ],
+      "radiusPixels": 4,
+      "policy": "Wrong air only; no new physical object, seventh dirt circle, portal or character."
+    }
+  ],
+  "backgroundOnly": [
+    {
+      "id": "ground-moss-and-tiny-debris",
+      "bounds": [
+        225,
+        430,
+        1311,
+        594
+      ],
+      "policy": "Retain tiny anonymous pebbles, sub-readable pale flecks, low moss, cobble grain and indistinct leaf speckle in backing ground. Do not multiply each fleck into an invented entity."
+    },
+    {
+      "id": "backwall-vines-and-minute-growth",
+      "bounds": [
+        90,
+        0,
+        1446,
+        460
+      ],
+      "policy": "Dense vines, moss and small distant growth attached to the petrified wall remain structural texture except for separately listed readable groups. Requires close-scale audit before broader mutability."
+    }
+  ],
+  "gaps": [
+    "Full left river-bank instance inventory, far-right cropped ecology and objects continuing below the frame are not complete. Edge ROIs are marked, not silently completed.",
+    "Backwall grain is continuous and roots interlock; chunk boundaries are compositing proposals, not inferred separable geological objects.",
+    "Small cream/ochre shapes may be fungi, mineral spires or weathered wood. Neutral visual labels are intentional; no species or item identification is supported.",
+    "Fine stems, tiny capped growth, vines and moss inside large root ROIs need per-pixel review. This full-frame audit cannot provide final segmentation.",
+    "The hidden floor/rock behind objects does not exist in the flattened source. Reconstructed backing must be labeled inferred, with material continuity checks and original-image recomposition QA.",
+    "Shadows are baked together with objects. A mutable object needs separated/reconstructed contact shadow handling so disappearance leaves neither a dark ghost nor a lighting seam.",
+    "Foot anchors are visual estimates. Existing layout collision/occlusion geometry remains authoritative as a proposal until a reviewed final manifest replaces it.",
+    "More than one visual object may exist within a grouped plant patch. Split only when source-scale inspection establishes independent silhouettes and supports."
+  ],
+  "entries": [
+    {
+      "id": "stump-main",
+      "type": "petrified-trunk",
+      "bounds": [
+        90,
+        0,
+        1446,
+        460
+      ],
+      "footPixel": [
+        770,
+        432
+      ],
+      "candidatePolygon": [
+        [
+          95,
+          0
+        ],
+        [
+          1536,
+          0
+        ],
+        [
+          1536,
+          309
+        ],
+        [
+          1350,
+          376
+        ],
+        [
+          1141,
+          409
+        ],
+        [
+          1017,
+          431
+        ],
+        [
+          920,
+          408
+        ],
+        [
+          778,
+          437
+        ],
+        [
+          648,
+          412
+        ],
+        [
+          520,
+          455
+        ],
+        [
+          379,
+          395
+        ],
+        [
+          272,
+          383
+        ],
+        [
+          170,
+          262
+        ]
+      ],
+      "classification": "static",
+      "confidence": "high",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "none",
+        "reason": "Support layer seams and occlusion without inventing a removable world structure; no destruction behavior is authorized.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Immortal scene structure. Giant continuous petrified woody grain, not castle masonry. Broad backwall chunk; lower boundary interlocks with buttress chunks and dense plants. Top and right silhouette continue outside frame.",
+      "presentationImmutable": true,
+      "simulationStatus": "No health, destruction, collision, or ownership behavior is installed by this inventory."
+    },
+    {
+      "id": "west-root-buttress",
+      "type": "petrified-root-buttress",
+      "bounds": [
+        292,
+        215,
+        329,
+        393
+      ],
+      "footPixel": [
+        419,
+        578
+      ],
+      "candidatePolygon": [
+        [
+          483,
+          217
+        ],
+        [
+          578,
+          255
+        ],
+        [
+          618,
+          365
+        ],
+        [
+          573,
+          456
+        ],
+        [
+          516,
+          493
+        ],
+        [
+          492,
+          545
+        ],
+        [
+          409,
+          606
+        ],
+        [
+          343,
+          577
+        ],
+        [
+          293,
+          500
+        ],
+        [
+          337,
+          413
+        ],
+        [
+          389,
+          328
+        ]
+      ],
+      "classification": "static",
+      "confidence": "high",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "stump-main",
+        "reason": "Support layer seams and occlusion without inventing a removable world structure; no destruction behavior is authorized.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Immortal structural root mass. Contains moss and attached small growths which need separate audits at final-mask scale. Not a single loose boulder.",
+      "presentationImmutable": true,
+      "simulationStatus": "No health, destruction, collision, or ownership behavior is installed by this inventory."
+    },
+    {
+      "id": "east-root-buttress",
+      "type": "petrified-root-buttress",
+      "bounds": [
+        948,
+        245,
+        360,
+        433
+      ],
+      "footPixel": [
+        1170,
+        650
+      ],
+      "candidatePolygon": [
+        [
+          1055,
+          247
+        ],
+        [
+          1165,
+          261
+        ],
+        [
+          1224,
+          335
+        ],
+        [
+          1234,
+          400
+        ],
+        [
+          1289,
+          479
+        ],
+        [
+          1307,
+          567
+        ],
+        [
+          1250,
+          634
+        ],
+        [
+          1180,
+          677
+        ],
+        [
+          1104,
+          646
+        ],
+        [
+          1090,
+          565
+        ],
+        [
+          1034,
+          507
+        ],
+        [
+          949,
+          470
+        ],
+        [
+          996,
+          385
+        ]
+      ],
+      "classification": "static",
+      "confidence": "high",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "stump-main",
+        "reason": "Support layer seams and occlusion without inventing a removable world structure; no destruction behavior is authorized.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Immortal forked root mass; its lower branches overlap foreground stones and growth. Treat this broad envelope as a segmentation search region, not a production alpha mask.",
+      "presentationImmutable": true,
+      "simulationStatus": "No health, destruction, collision, or ownership behavior is installed by this inventory."
+    },
+    {
+      "id": "far-east-root-buttress",
+      "type": "petrified-root-buttress",
+      "bounds": [
+        1239,
+        191,
+        274,
+        310
+      ],
+      "footPixel": [
+        1439,
+        464
+      ],
+      "candidatePolygon": [
+        [
+          1260,
+          193
+        ],
+        [
+          1331,
+          214
+        ],
+        [
+          1406,
+          311
+        ],
+        [
+          1424,
+          367
+        ],
+        [
+          1510,
+          431
+        ],
+        [
+          1475,
+          497
+        ],
+        [
+          1409,
+          474
+        ],
+        [
+          1360,
+          408
+        ],
+        [
+          1300,
+          369
+        ],
+        [
+          1240,
+          272
+        ]
+      ],
+      "classification": "static",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "stump-main",
+        "reason": "Support layer seams and occlusion without inventing a removable world structure; no destruction behavior is authorized.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Immortal far-right branch, partly merged with backwall and edge ecology. Continuation beyond the right crop is not evidenced.",
+      "presentationImmutable": true,
+      "simulationStatus": "No health, destruction, collision, or ownership behavior is installed by this inventory."
+    },
+    {
+      "id": "southwest-root-arch",
+      "type": "foreground-root-structure",
+      "bounds": [
+        248,
+        663,
+        260,
+        252
+      ],
+      "footPixel": [
+        438,
+        897
+      ],
+      "candidatePolygon": [
+        [
+          263,
+          716
+        ],
+        [
+          288,
+          672
+        ],
+        [
+          342,
+          663
+        ],
+        [
+          376,
+          707
+        ],
+        [
+          399,
+          754
+        ],
+        [
+          451,
+          785
+        ],
+        [
+          467,
+          829
+        ],
+        [
+          507,
+          861
+        ],
+        [
+          481,
+          911
+        ],
+        [
+          427,
+          896
+        ],
+        [
+          384,
+          848
+        ],
+        [
+          353,
+          790
+        ],
+        [
+          313,
+          771
+        ],
+        [
+          248,
+          784
+        ]
+      ],
+      "classification": "static",
+      "confidence": "high",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "Support layer seams and occlusion without inventing a removable world structure; no destruction behavior is authorized.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Large broken-looking petrified root/rock formation left of approach. It reads as fixed structure, not a destructible prop. Pink growth at its inner edge is separately listed.",
+      "presentationImmutable": true,
+      "simulationStatus": "No health, destruction, collision, or ownership behavior is installed by this inventory."
+    },
+    {
+      "id": "southwest-foreground-rock",
+      "type": "foreground-rock-structure",
+      "bounds": [
+        517,
+        815,
+        148,
+        123
+      ],
+      "footPixel": [
+        594,
+        925
+      ],
+      "candidatePolygon": [
+        [
+          521,
+          861
+        ],
+        [
+          555,
+          835
+        ],
+        [
+          590,
+          815
+        ],
+        [
+          621,
+          841
+        ],
+        [
+          645,
+          855
+        ],
+        [
+          664,
+          896
+        ],
+        [
+          642,
+          916
+        ],
+        [
+          594,
+          937
+        ],
+        [
+          548,
+          909
+        ]
+      ],
+      "classification": "static",
+      "confidence": "high",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "Support layer seams and occlusion without inventing a removable world structure; no destruction behavior is authorized.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Corresponds approximately to layout occluder southwest-rock and blocker southwest-rock-foot. Keep visible mass, footprint and backing ground distinct.",
+      "presentationImmutable": true,
+      "simulationStatus": "No health, destruction, collision, or ownership behavior is installed by this inventory."
+    },
+    {
+      "id": "southeast-foreground-root",
+      "type": "foreground-root-structure",
+      "bounds": [
+        818,
+        787,
+        251,
+        237
+      ],
+      "footPixel": [
+        1012,
+        988
+      ],
+      "candidatePolygon": [
+        [
+          822,
+          951
+        ],
+        [
+          870,
+          914
+        ],
+        [
+          924,
+          851
+        ],
+        [
+          960,
+          793
+        ],
+        [
+          989,
+          827
+        ],
+        [
+          993,
+          866
+        ],
+        [
+          1028,
+          913
+        ],
+        [
+          1067,
+          960
+        ],
+        [
+          1056,
+          1002
+        ],
+        [
+          1000,
+          1004
+        ],
+        [
+          967,
+          958
+        ],
+        [
+          910,
+          997
+        ],
+        [
+          850,
+          1023
+        ],
+        [
+          818,
+          1000
+        ]
+      ],
+      "classification": "static",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "Support layer seams and occlusion without inventing a removable world structure; no destruction behavior is authorized.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Curving root framing right edge of entrance, including the existing southeast-root occluder. This larger proposal includes the lower-left continuation; split at a visually continuous seam before extraction.",
+      "presentationImmutable": true,
+      "simulationStatus": "No health, destruction, collision, or ownership behavior is installed by this inventory."
+    },
+    {
+      "id": "southeast-middle-ridge",
+      "type": "foreground-root-structure",
+      "bounds": [
+        1008,
+        638,
+        288,
+        224
+      ],
+      "footPixel": [
+        1223,
+        840
+      ],
+      "candidatePolygon": [
+        [
+          1028,
+          639
+        ],
+        [
+          1080,
+          677
+        ],
+        [
+          1121,
+          718
+        ],
+        [
+          1194,
+          704
+        ],
+        [
+          1208,
+          759
+        ],
+        [
+          1238,
+          796
+        ],
+        [
+          1295,
+          826
+        ],
+        [
+          1248,
+          861
+        ],
+        [
+          1180,
+          848
+        ],
+        [
+          1139,
+          810
+        ],
+        [
+          1100,
+          791
+        ],
+        [
+          1061,
+          746
+        ],
+        [
+          1009,
+          712
+        ]
+      ],
+      "classification": "static",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "Support layer seams and occlusion without inventing a removable world structure; no destruction behavior is authorized.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Diagonal root and standing rock ridge on right middle approach. Several attached growths overlap it; preserve those as separately referenced candidate groups where readable.",
+      "presentationImmutable": true,
+      "simulationStatus": "No health, destruction, collision, or ownership behavior is installed by this inventory."
+    },
+    {
+      "id": "boulder-west-approach",
+      "type": "loose-boulder",
+      "bounds": [
+        554,
+        832,
+        58,
+        47
+      ],
+      "footPixel": [
+        583,
+        874
+      ],
+      "candidatePolygon": [
+        [
+          563,
+          842
+        ],
+        [
+          583,
+          832
+        ],
+        [
+          602,
+          844
+        ],
+        [
+          611,
+          862
+        ],
+        [
+          599,
+          878
+        ],
+        [
+          570,
+          875
+        ],
+        [
+          555,
+          859
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "high",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Prominent pale loose rock left of traveler, just above foreground rock. Mutability is a presentation candidate only; no pickup/destruction mechanics inferred."
+    },
+    {
+      "id": "boulder-southwest-path",
+      "type": "loose-boulder",
+      "bounds": [
+        608,
+        906,
+        39,
+        37
+      ],
+      "footPixel": [
+        628,
+        939
+      ],
+      "candidatePolygon": [
+        [
+          611,
+          915
+        ],
+        [
+          627,
+          906
+        ],
+        [
+          641,
+          915
+        ],
+        [
+          646,
+          932
+        ],
+        [
+          633,
+          941
+        ],
+        [
+          614,
+          935
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Small pale loose stone immediately west of lower approach path."
+    },
+    {
+      "id": "boulder-southeast-path",
+      "type": "loose-boulder",
+      "bounds": [
+        869,
+        966,
+        47,
+        34
+      ],
+      "footPixel": [
+        891,
+        997
+      ],
+      "candidatePolygon": [
+        [
+          872,
+          975
+        ],
+        [
+          893,
+          967
+        ],
+        [
+          907,
+          974
+        ],
+        [
+          915,
+          989
+        ],
+        [
+          902,
+          999
+        ],
+        [
+          880,
+          994
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Pale angular stone on the right side of the lower approach; neighboring root may occlude its back edge."
+    },
+    {
+      "id": "boulder-east-clearing",
+      "type": "loose-boulder",
+      "bounds": [
+        1083,
+        859,
+        38,
+        28
+      ],
+      "footPixel": [
+        1102,
+        884
+      ],
+      "candidatePolygon": [
+        [
+          1087,
+          867
+        ],
+        [
+          1101,
+          859
+        ],
+        [
+          1115,
+          865
+        ],
+        [
+          1120,
+          877
+        ],
+        [
+          1110,
+          886
+        ],
+        [
+          1091,
+          883
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "high",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Low flat pale boulder inside the right approach region."
+    },
+    {
+      "id": "boulder-east-stream-bank",
+      "type": "loose-boulder",
+      "bounds": [
+        1193,
+        913,
+        44,
+        46
+      ],
+      "footPixel": [
+        1215,
+        956
+      ],
+      "candidatePolygon": [
+        [
+          1198,
+          925
+        ],
+        [
+          1214,
+          913
+        ],
+        [
+          1231,
+          924
+        ],
+        [
+          1236,
+          944
+        ],
+        [
+          1224,
+          958
+        ],
+        [
+          1203,
+          950
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Angular pale stone near the small dark-water pocket on lower right."
+    },
+    {
+      "id": "boulder-west-bank-mossy",
+      "type": "loose-boulder",
+      "bounds": [
+        423,
+        932,
+        49,
+        53
+      ],
+      "footPixel": [
+        448,
+        981
+      ],
+      "candidatePolygon": [
+        [
+          429,
+          951
+        ],
+        [
+          441,
+          934
+        ],
+        [
+          456,
+          933
+        ],
+        [
+          467,
+          947
+        ],
+        [
+          471,
+          968
+        ],
+        [
+          458,
+          984
+        ],
+        [
+          434,
+          978
+        ],
+        [
+          424,
+          968
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "high",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Moss-capped bank boulder. The moss belongs to the object unless it can be clearly separated at source scale."
+    },
+    {
+      "id": "boulder-southwest-terrace",
+      "type": "loose-boulder",
+      "bounds": [
+        290,
+        871,
+        49,
+        40
+      ],
+      "footPixel": [
+        315,
+        908
+      ],
+      "candidatePolygon": [
+        [
+          296,
+          884
+        ],
+        [
+          313,
+          872
+        ],
+        [
+          330,
+          879
+        ],
+        [
+          338,
+          896
+        ],
+        [
+          326,
+          911
+        ],
+        [
+          303,
+          906
+        ],
+        [
+          291,
+          898
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Pale stone on west terrace, above the lower red plant patch."
+    },
+    {
+      "id": "boulder-west-bank-mid",
+      "type": "loose-boulder",
+      "bounds": [
+        243,
+        559,
+        43,
+        46
+      ],
+      "footPixel": [
+        264,
+        599
+      ],
+      "candidatePolygon": [
+        [
+          247,
+          577
+        ],
+        [
+          260,
+          560
+        ],
+        [
+          274,
+          566
+        ],
+        [
+          285,
+          588
+        ],
+        [
+          275,
+          604
+        ],
+        [
+          252,
+          601
+        ],
+        [
+          244,
+          589
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Loose rock on bank to left of the clearing; partly moss-covered and close to tiny debris."
+    },
+    {
+      "id": "boulder-west-bottom-flat",
+      "type": "loose-boulder",
+      "bounds": [
+        475,
+        939,
+        44,
+        39
+      ],
+      "footPixel": [
+        497,
+        974
+      ],
+      "candidatePolygon": [
+        [
+          478,
+          951
+        ],
+        [
+          491,
+          940
+        ],
+        [
+          507,
+          945
+        ],
+        [
+          518,
+          961
+        ],
+        [
+          507,
+          977
+        ],
+        [
+          485,
+          972
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Low gray stone southeast of the moss-capped bank boulder. Fine ground fragments surrounding it are not a separate object."
+    },
+    {
+      "id": "cyan-northwest",
+      "type": "cyan-stem-cluster",
+      "bounds": [
+        313,
+        323,
+        32,
+        39
+      ],
+      "footPixel": [
+        329,
+        359
+      ],
+      "candidatePolygon": [
+        [
+          316,
+          342
+        ],
+        [
+          317,
+          330
+        ],
+        [
+          326,
+          324
+        ],
+        [
+          332,
+          337
+        ],
+        [
+          341,
+          335
+        ],
+        [
+          344,
+          347
+        ],
+        [
+          338,
+          361
+        ],
+        [
+          321,
+          362
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "west-root-buttress",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Readable turquoise forked stems at the west root/river transition; no species or light-source mechanic inferred."
+    },
+    {
+      "id": "cyan-west-clearing",
+      "type": "cyan-stem-cluster",
+      "bounds": [
+        271,
+        536,
+        34,
+        40
+      ],
+      "footPixel": [
+        287,
+        573
+      ],
+      "candidatePolygon": [
+        [
+          274,
+          555
+        ],
+        [
+          276,
+          543
+        ],
+        [
+          284,
+          537
+        ],
+        [
+          290,
+          548
+        ],
+        [
+          300,
+          543
+        ],
+        [
+          304,
+          558
+        ],
+        [
+          298,
+          574
+        ],
+        [
+          280,
+          576
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Small cyan cluster left of the clearing, below the diagonal west buttress."
+    },
+    {
+      "id": "cyan-west-approach",
+      "type": "cyan-stem-cluster",
+      "bounds": [
+        400,
+        693,
+        32,
+        40
+      ],
+      "footPixel": [
+        417,
+        729
+      ],
+      "candidatePolygon": [
+        [
+          403,
+          713
+        ],
+        [
+          405,
+          700
+        ],
+        [
+          413,
+          694
+        ],
+        [
+          420,
+          705
+        ],
+        [
+          426,
+          699
+        ],
+        [
+          431,
+          715
+        ],
+        [
+          425,
+          731
+        ],
+        [
+          408,
+          733
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Distinct cyan stems between west arch and clearing."
+    },
+    {
+      "id": "cyan-southwest",
+      "type": "cyan-stem-cluster",
+      "bounds": [
+        570,
+        921,
+        34,
+        45
+      ],
+      "footPixel": [
+        586,
+        963
+      ],
+      "candidatePolygon": [
+        [
+          573,
+          945
+        ],
+        [
+          575,
+          930
+        ],
+        [
+          584,
+          922
+        ],
+        [
+          590,
+          937
+        ],
+        [
+          600,
+          933
+        ],
+        [
+          603,
+          949
+        ],
+        [
+          596,
+          964
+        ],
+        [
+          578,
+          965
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Cyan cluster on lower-left inner bank; thin stems need careful alpha edges."
+    },
+    {
+      "id": "cyan-east-upper",
+      "type": "cyan-stem-cluster",
+      "bounds": [
+        1316,
+        416,
+        41,
+        45
+      ],
+      "footPixel": [
+        1337,
+        458
+      ],
+      "candidatePolygon": [
+        [
+          1319,
+          439
+        ],
+        [
+          1322,
+          424
+        ],
+        [
+          1334,
+          417
+        ],
+        [
+          1340,
+          433
+        ],
+        [
+          1351,
+          425
+        ],
+        [
+          1356,
+          444
+        ],
+        [
+          1348,
+          460
+        ],
+        [
+          1326,
+          461
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Readable cyan group in right-side root recess; near the outer edge of this central/south audit."
+    },
+    {
+      "id": "cyan-east-middle",
+      "type": "cyan-stem-cluster",
+      "bounds": [
+        1318,
+        717,
+        39,
+        42
+      ],
+      "footPixel": [
+        1338,
+        756
+      ],
+      "candidatePolygon": [
+        [
+          1321,
+          738
+        ],
+        [
+          1324,
+          724
+        ],
+        [
+          1334,
+          718
+        ],
+        [
+          1341,
+          733
+        ],
+        [
+          1351,
+          728
+        ],
+        [
+          1356,
+          744
+        ],
+        [
+          1348,
+          758
+        ],
+        [
+          1326,
+          759
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Cyan group south of east spires, east of the middle ridge."
+    },
+    {
+      "id": "cyan-southeast-edge",
+      "type": "cyan-stem-cluster",
+      "bounds": [
+        1435,
+        883,
+        31,
+        38
+      ],
+      "footPixel": [
+        1450,
+        918
+      ],
+      "candidatePolygon": [
+        [
+          1438,
+          900
+        ],
+        [
+          1441,
+          889
+        ],
+        [
+          1448,
+          884
+        ],
+        [
+          1454,
+          897
+        ],
+        [
+          1461,
+          892
+        ],
+        [
+          1465,
+          908
+        ],
+        [
+          1457,
+          920
+        ],
+        [
+          1441,
+          921
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Small cyan group near lower-right edge. Readable stems; surrounding tiny plants remain ground texture."
+    },
+    {
+      "id": "red-northwest",
+      "type": "red-branching-plant-cluster",
+      "bounds": [
+        277,
+        367,
+        55,
+        47
+      ],
+      "footPixel": [
+        304,
+        410
+      ],
+      "candidatePolygon": [
+        [
+          280,
+          390
+        ],
+        [
+          286,
+          376
+        ],
+        [
+          296,
+          382
+        ],
+        [
+          301,
+          368
+        ],
+        [
+          309,
+          383
+        ],
+        [
+          324,
+          374
+        ],
+        [
+          331,
+          399
+        ],
+        [
+          321,
+          413
+        ],
+        [
+          291,
+          414
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Red branching growth at the left river/root margin."
+    },
+    {
+      "id": "red-north-clearing-west",
+      "type": "red-branching-plant-cluster",
+      "bounds": [
+        569,
+        410,
+        82,
+        55
+      ],
+      "footPixel": [
+        611,
+        460
+      ],
+      "candidatePolygon": [
+        [
+          572,
+          443
+        ],
+        [
+          580,
+          423
+        ],
+        [
+          591,
+          433
+        ],
+        [
+          601,
+          412
+        ],
+        [
+          614,
+          432
+        ],
+        [
+          629,
+          417
+        ],
+        [
+          641,
+          437
+        ],
+        [
+          650,
+          451
+        ],
+        [
+          634,
+          464
+        ],
+        [
+          587,
+          465
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Two tightly adjacent red tufts at the north-left clearing rim, proposed as one cluster until full-scale mask review."
+    },
+    {
+      "id": "red-north-clearing-east",
+      "type": "red-branching-plant-cluster",
+      "bounds": [
+        883,
+        391,
+        67,
+        48
+      ],
+      "footPixel": [
+        918,
+        435
+      ],
+      "candidatePolygon": [
+        [
+          886,
+          418
+        ],
+        [
+          894,
+          399
+        ],
+        [
+          905,
+          411
+        ],
+        [
+          916,
+          392
+        ],
+        [
+          924,
+          410
+        ],
+        [
+          940,
+          402
+        ],
+        [
+          949,
+          427
+        ],
+        [
+          934,
+          438
+        ],
+        [
+          900,
+          439
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Red branching patch at the eastern foot of the main stump, north of the ring."
+    },
+    {
+      "id": "red-east-root-lip",
+      "type": "red-branching-plant-cluster",
+      "bounds": [
+        988,
+        466,
+        54,
+        53
+      ],
+      "footPixel": [
+        1016,
+        514
+      ],
+      "candidatePolygon": [
+        [
+          991,
+          493
+        ],
+        [
+          998,
+          477
+        ],
+        [
+          1008,
+          487
+        ],
+        [
+          1018,
+          467
+        ],
+        [
+          1026,
+          489
+        ],
+        [
+          1036,
+          479
+        ],
+        [
+          1041,
+          506
+        ],
+        [
+          1028,
+          518
+        ],
+        [
+          1001,
+          519
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Vivid red tuft where right root tips meet the clearing."
+    },
+    {
+      "id": "red-far-east-upper",
+      "type": "red-branching-plant-cluster",
+      "bounds": [
+        1400,
+        391,
+        75,
+        50
+      ],
+      "footPixel": [
+        1439,
+        437
+      ],
+      "candidatePolygon": [
+        [
+          1404,
+          415
+        ],
+        [
+          1414,
+          399
+        ],
+        [
+          1427,
+          409
+        ],
+        [
+          1438,
+          392
+        ],
+        [
+          1449,
+          411
+        ],
+        [
+          1466,
+          403
+        ],
+        [
+          1474,
+          429
+        ],
+        [
+          1457,
+          441
+        ],
+        [
+          1417,
+          438
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Red tufts beneath the far-right buttress; grouped because intertwined with small pale growth."
+    },
+    {
+      "id": "red-west-middle",
+      "type": "red-branching-plant-cluster",
+      "bounds": [
+        349,
+        608,
+        64,
+        53
+      ],
+      "footPixel": [
+        382,
+        656
+      ],
+      "candidatePolygon": [
+        [
+          352,
+          640
+        ],
+        [
+          361,
+          621
+        ],
+        [
+          370,
+          633
+        ],
+        [
+          380,
+          610
+        ],
+        [
+          390,
+          632
+        ],
+        [
+          402,
+          619
+        ],
+        [
+          412,
+          647
+        ],
+        [
+          399,
+          660
+        ],
+        [
+          366,
+          661
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Red branching cluster immediately above the southwest arch."
+    },
+    {
+      "id": "red-west-clearing-rim",
+      "type": "red-branching-plant-cluster",
+      "bounds": [
+        401,
+        579,
+        69,
+        48
+      ],
+      "footPixel": [
+        438,
+        623
+      ],
+      "candidatePolygon": [
+        [
+          405,
+          607
+        ],
+        [
+          416,
+          590
+        ],
+        [
+          425,
+          601
+        ],
+        [
+          438,
+          580
+        ],
+        [
+          448,
+          601
+        ],
+        [
+          461,
+          591
+        ],
+        [
+          469,
+          616
+        ],
+        [
+          455,
+          626
+        ],
+        [
+          419,
+          627
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Longer red tuft northeast of red-west-middle; keep separate despite proximity."
+    },
+    {
+      "id": "red-east-clearing-rim",
+      "type": "red-branching-plant-cluster",
+      "bounds": [
+        1033,
+        571,
+        64,
+        48
+      ],
+      "footPixel": [
+        1067,
+        615
+      ],
+      "candidatePolygon": [
+        [
+          1037,
+          598
+        ],
+        [
+          1046,
+          580
+        ],
+        [
+          1057,
+          592
+        ],
+        [
+          1067,
+          572
+        ],
+        [
+          1077,
+          592
+        ],
+        [
+          1088,
+          582
+        ],
+        [
+          1096,
+          609
+        ],
+        [
+          1080,
+          619
+        ],
+        [
+          1048,
+          617
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Prominent red tuft to the right of the ring of barren marks."
+    },
+    {
+      "id": "red-west-approach",
+      "type": "red-branching-plant-cluster",
+      "bounds": [
+        465,
+        846,
+        82,
+        67
+      ],
+      "footPixel": [
+        509,
+        908
+      ],
+      "candidatePolygon": [
+        [
+          469,
+          883
+        ],
+        [
+          480,
+          862
+        ],
+        [
+          490,
+          877
+        ],
+        [
+          503,
+          848
+        ],
+        [
+          516,
+          876
+        ],
+        [
+          534,
+          862
+        ],
+        [
+          546,
+          897
+        ],
+        [
+          529,
+          912
+        ],
+        [
+          486,
+          913
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Large red patch left of approach, immediately west of the prominent loose boulder."
+    },
+    {
+      "id": "red-southwest",
+      "type": "red-branching-plant-cluster",
+      "bounds": [
+        279,
+        879,
+        81,
+        56
+      ],
+      "footPixel": [
+        320,
+        930
+      ],
+      "candidatePolygon": [
+        [
+          283,
+          912
+        ],
+        [
+          294,
+          891
+        ],
+        [
+          305,
+          905
+        ],
+        [
+          318,
+          880
+        ],
+        [
+          330,
+          904
+        ],
+        [
+          347,
+          891
+        ],
+        [
+          359,
+          922
+        ],
+        [
+          343,
+          935
+        ],
+        [
+          299,
+          932
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Large red patch in lower-left terrace; broad morphology is clear, fine branches require close tracing."
+    },
+    {
+      "id": "red-southwest-edge",
+      "type": "red-branching-plant-cluster",
+      "bounds": [
+        184,
+        963,
+        65,
+        60
+      ],
+      "footPixel": [
+        218,
+        1017
+      ],
+      "candidatePolygon": [
+        [
+          188,
+          995
+        ],
+        [
+          197,
+          978
+        ],
+        [
+          207,
+          990
+        ],
+        [
+          215,
+          964
+        ],
+        [
+          227,
+          986
+        ],
+        [
+          240,
+          976
+        ],
+        [
+          248,
+          1010
+        ],
+        [
+          233,
+          1022
+        ],
+        [
+          202,
+          1020
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Red plant at bottom-left bank, partially cropped at the image edge; a full standalone cutout requires invented off-frame continuation, so preserve clipped boundary until separately reconstructed."
+    },
+    {
+      "id": "red-east-approach",
+      "type": "red-branching-plant-cluster",
+      "bounds": [
+        950,
+        777,
+        65,
+        51
+      ],
+      "footPixel": [
+        984,
+        823
+      ],
+      "candidatePolygon": [
+        [
+          953,
+          803
+        ],
+        [
+          963,
+          786
+        ],
+        [
+          973,
+          800
+        ],
+        [
+          982,
+          778
+        ],
+        [
+          992,
+          799
+        ],
+        [
+          1005,
+          788
+        ],
+        [
+          1014,
+          816
+        ],
+        [
+          999,
+          827
+        ],
+        [
+          967,
+          828
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Red tuft inside right approach, beside the rising foreground root."
+    },
+    {
+      "id": "red-southeast-inner",
+      "type": "red-branching-plant-cluster",
+      "bounds": [
+        990,
+        903,
+        63,
+        53
+      ],
+      "footPixel": [
+        1023,
+        951
+      ],
+      "candidatePolygon": [
+        [
+          994,
+          932
+        ],
+        [
+          1002,
+          915
+        ],
+        [
+          1014,
+          928
+        ],
+        [
+          1023,
+          904
+        ],
+        [
+          1034,
+          927
+        ],
+        [
+          1046,
+          917
+        ],
+        [
+          1052,
+          945
+        ],
+        [
+          1038,
+          955
+        ],
+        [
+          1006,
+          956
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Red patch attached beside the southeast root's inner face; backing may cross soil and petrified rock."
+    },
+    {
+      "id": "red-east-lower",
+      "type": "red-branching-plant-cluster",
+      "bounds": [
+        1186,
+        841,
+        67,
+        55
+      ],
+      "footPixel": [
+        1221,
+        891
+      ],
+      "candidatePolygon": [
+        [
+          1190,
+          871
+        ],
+        [
+          1201,
+          850
+        ],
+        [
+          1210,
+          866
+        ],
+        [
+          1220,
+          842
+        ],
+        [
+          1230,
+          865
+        ],
+        [
+          1244,
+          852
+        ],
+        [
+          1252,
+          884
+        ],
+        [
+          1237,
+          895
+        ],
+        [
+          1203,
+          896
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Distinct red tuft on east bank, above the small water pool."
+    },
+    {
+      "id": "red-east-edge-middle",
+      "type": "red-branching-plant-cluster",
+      "bounds": [
+        1419,
+        710,
+        55,
+        49
+      ],
+      "footPixel": [
+        1447,
+        754
+      ],
+      "candidatePolygon": [
+        [
+          1422,
+          737
+        ],
+        [
+          1430,
+          720
+        ],
+        [
+          1439,
+          733
+        ],
+        [
+          1447,
+          711
+        ],
+        [
+          1457,
+          732
+        ],
+        [
+          1467,
+          722
+        ],
+        [
+          1473,
+          748
+        ],
+        [
+          1459,
+          758
+        ],
+        [
+          1432,
+          759
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Small red cluster near the east image edge; surrounding moss and tiny debris remain background."
+    },
+    {
+      "id": "pink-west-bank",
+      "type": "pink-mushroom-cluster",
+      "bounds": [
+        139,
+        662,
+        52,
+        69
+      ],
+      "footPixel": [
+        167,
+        727
+      ],
+      "candidatePolygon": [
+        [
+          142,
+          698
+        ],
+        [
+          147,
+          676
+        ],
+        [
+          157,
+          668
+        ],
+        [
+          165,
+          691
+        ],
+        [
+          176,
+          663
+        ],
+        [
+          186,
+          685
+        ],
+        [
+          190,
+          715
+        ],
+        [
+          179,
+          730
+        ],
+        [
+          150,
+          728
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Tall pink/purple capped stems beside the river; thin stems and small detached cap pixels are part of the group."
+    },
+    {
+      "id": "pink-west-arch",
+      "type": "pink-mushroom-cluster",
+      "bounds": [
+        318,
+        727,
+        44,
+        50
+      ],
+      "footPixel": [
+        341,
+        773
+      ],
+      "candidatePolygon": [
+        [
+          321,
+          754
+        ],
+        [
+          325,
+          735
+        ],
+        [
+          334,
+          729
+        ],
+        [
+          341,
+          746
+        ],
+        [
+          352,
+          728
+        ],
+        [
+          360,
+          749
+        ],
+        [
+          361,
+          769
+        ],
+        [
+          348,
+          776
+        ],
+        [
+          326,
+          777
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "southwest-root-arch",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Pink growth in the inner arch/root crevice; requires rock-texture backing where attached."
+    },
+    {
+      "id": "pink-southwest",
+      "type": "pink-mushroom-cluster",
+      "bounds": [
+        499,
+        922,
+        39,
+        52
+      ],
+      "footPixel": [
+        520,
+        970
+      ],
+      "candidatePolygon": [
+        [
+          502,
+          950
+        ],
+        [
+          507,
+          931
+        ],
+        [
+          515,
+          924
+        ],
+        [
+          521,
+          943
+        ],
+        [
+          532,
+          923
+        ],
+        [
+          537,
+          949
+        ],
+        [
+          532,
+          970
+        ],
+        [
+          508,
+          974
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Pink cluster near the lower west bank and cyan-southwest group."
+    },
+    {
+      "id": "pink-east-spires",
+      "type": "pink-mushroom-cluster",
+      "bounds": [
+        1307,
+        636,
+        61,
+        63
+      ],
+      "footPixel": [
+        1339,
+        695
+      ],
+      "candidatePolygon": [
+        [
+          1311,
+          672
+        ],
+        [
+          1318,
+          649
+        ],
+        [
+          1329,
+          640
+        ],
+        [
+          1338,
+          659
+        ],
+        [
+          1350,
+          637
+        ],
+        [
+          1361,
+          661
+        ],
+        [
+          1367,
+          685
+        ],
+        [
+          1350,
+          699
+        ],
+        [
+          1320,
+          697
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Pink caps to the west of tall eastern pale spires; do not confuse spires with stems of this plant."
+    },
+    {
+      "id": "pink-east-middle",
+      "type": "pink-mushroom-cluster",
+      "bounds": [
+        1377,
+        814,
+        61,
+        46
+      ],
+      "footPixel": [
+        1408,
+        856
+      ],
+      "candidatePolygon": [
+        [
+          1381,
+          841
+        ],
+        [
+          1389,
+          823
+        ],
+        [
+          1398,
+          831
+        ],
+        [
+          1407,
+          815
+        ],
+        [
+          1418,
+          835
+        ],
+        [
+          1430,
+          825
+        ],
+        [
+          1437,
+          850
+        ],
+        [
+          1422,
+          859
+        ],
+        [
+          1391,
+          860
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Low pink group above the dark-water east pocket."
+    },
+    {
+      "id": "pink-southeast",
+      "type": "pink-mushroom-cluster",
+      "bounds": [
+        1248,
+        945,
+        42,
+        52
+      ],
+      "footPixel": [
+        1270,
+        993
+      ],
+      "candidatePolygon": [
+        [
+          1251,
+          974
+        ],
+        [
+          1257,
+          955
+        ],
+        [
+          1266,
+          947
+        ],
+        [
+          1272,
+          968
+        ],
+        [
+          1283,
+          946
+        ],
+        [
+          1289,
+          973
+        ],
+        [
+          1280,
+          996
+        ],
+        [
+          1259,
+          997
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Pink stems in lower-right vegetation, inside image bounds."
+    },
+    {
+      "id": "pink-southeast-edge",
+      "type": "pink-mushroom-cluster",
+      "bounds": [
+        1101,
+        970,
+        51,
+        54
+      ],
+      "footPixel": [
+        1128,
+        1019
+      ],
+      "candidatePolygon": [
+        [
+          1105,
+          999
+        ],
+        [
+          1113,
+          980
+        ],
+        [
+          1121,
+          991
+        ],
+        [
+          1128,
+          971
+        ],
+        [
+          1138,
+          992
+        ],
+        [
+          1146,
+          983
+        ],
+        [
+          1151,
+          1014
+        ],
+        [
+          1138,
+          1023
+        ],
+        [
+          1113,
+          1024
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Cropped pink/cream mushroom group on bottom edge. Keep crop explicit; off-frame stems and ground are unknown."
+    },
+    {
+      "id": "cream-west-arch-foot",
+      "type": "cream-mushroom-cluster",
+      "bounds": [
+        436,
+        791,
+        48,
+        49
+      ],
+      "footPixel": [
+        461,
+        836
+      ],
+      "candidatePolygon": [
+        [
+          440,
+          819
+        ],
+        [
+          446,
+          801
+        ],
+        [
+          455,
+          793
+        ],
+        [
+          463,
+          810
+        ],
+        [
+          474,
+          792
+        ],
+        [
+          483,
+          816
+        ],
+        [
+          478,
+          836
+        ],
+        [
+          449,
+          840
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "southwest-root-arch",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Pale caps clustered beside the lower part of the southwest arch. Species and harvestability unassigned."
+    },
+    {
+      "id": "cream-east-inner",
+      "type": "cream-mushroom-cluster",
+      "bounds": [
+        1014,
+        726,
+        52,
+        51
+      ],
+      "footPixel": [
+        1040,
+        773
+      ],
+      "candidatePolygon": [
+        [
+          1018,
+          754
+        ],
+        [
+          1025,
+          736
+        ],
+        [
+          1034,
+          728
+        ],
+        [
+          1042,
+          745
+        ],
+        [
+          1053,
+          727
+        ],
+        [
+          1065,
+          753
+        ],
+        [
+          1053,
+          776
+        ],
+        [
+          1026,
+          777
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Light capped growth just inside right approach ridge; small shape is readable but some ground speckle is inseparable at this audit scale."
+    },
+    {
+      "id": "cream-west-boulder-foot",
+      "type": "cream-mushroom-cluster",
+      "bounds": [
+        519,
+        897,
+        55,
+        48
+      ],
+      "footPixel": [
+        549,
+        941
+      ],
+      "candidatePolygon": [
+        [
+          523,
+          925
+        ],
+        [
+          530,
+          907
+        ],
+        [
+          539,
+          900
+        ],
+        [
+          548,
+          917
+        ],
+        [
+          561,
+          898
+        ],
+        [
+          573,
+          925
+        ],
+        [
+          560,
+          944
+        ],
+        [
+          535,
+          945
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Pale growth below west approach boulder and near foreground rock; confirm which stalks overlap the stone before assigning alpha."
+    },
+    {
+      "id": "pale-west-root-tubes",
+      "type": "pale-tubular-cluster",
+      "bounds": [
+        390,
+        382,
+        49,
+        92
+      ],
+      "footPixel": [
+        415,
+        467
+      ],
+      "candidatePolygon": [
+        [
+          393,
+          431
+        ],
+        [
+          398,
+          405
+        ],
+        [
+          407,
+          397
+        ],
+        [
+          409,
+          383
+        ],
+        [
+          420,
+          383
+        ],
+        [
+          423,
+          421
+        ],
+        [
+          431,
+          413
+        ],
+        [
+          438,
+          449
+        ],
+        [
+          431,
+          474
+        ],
+        [
+          403,
+          472
+        ]
+      ],
+      "classification": "static",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "west-root-buttress",
+        "reason": "Support layer seams and occlusion without inventing a removable world structure; no destruction behavior is authorized.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Vertical pale tubes/spires near west root. Could be mineral, petrified wood, or fungus from this image alone; keep neutral morphology and static classification until author decision."
+    },
+    {
+      "id": "pale-north-inner-tubes",
+      "type": "pale-tubular-cluster",
+      "bounds": [
+        831,
+        385,
+        49,
+        74
+      ],
+      "footPixel": [
+        856,
+        455
+      ],
+      "candidatePolygon": [
+        [
+          835,
+          424
+        ],
+        [
+          841,
+          404
+        ],
+        [
+          846,
+          402
+        ],
+        [
+          848,
+          386
+        ],
+        [
+          860,
+          386
+        ],
+        [
+          865,
+          420
+        ],
+        [
+          874,
+          415
+        ],
+        [
+          879,
+          447
+        ],
+        [
+          869,
+          458
+        ],
+        [
+          843,
+          459
+        ]
+      ],
+      "classification": "static",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "Support layer seams and occlusion without inventing a removable world structure; no destruction behavior is authorized.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Small pale standing forms at upper-right clearing rim. No biological species asserted; preserve as a grouped surface detail."
+    },
+    {
+      "id": "pale-east-wall-tubes",
+      "type": "pale-tubular-cluster",
+      "bounds": [
+        1418,
+        224,
+        72,
+        88
+      ],
+      "footPixel": [
+        1456,
+        305
+      ],
+      "candidatePolygon": [
+        [
+          1422,
+          269
+        ],
+        [
+          1433,
+          246
+        ],
+        [
+          1440,
+          252
+        ],
+        [
+          1443,
+          225
+        ],
+        [
+          1455,
+          225
+        ],
+        [
+          1459,
+          263
+        ],
+        [
+          1470,
+          234
+        ],
+        [
+          1480,
+          245
+        ],
+        [
+          1489,
+          295
+        ],
+        [
+          1475,
+          312
+        ],
+        [
+          1434,
+          309
+        ]
+      ],
+      "classification": "static",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "stump-main",
+        "reason": "Support layer seams and occlusion without inventing a removable world structure; no destruction behavior is authorized.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Backwall recess cluster included because it is readily readable. Its support surface is petrified rock, not the walkable ground. Dense smaller recess growth is outside this proposal."
+    },
+    {
+      "id": "pale-east-tall-spires",
+      "type": "pale-spire-cluster",
+      "bounds": [
+        1369,
+        574,
+        78,
+        146
+      ],
+      "footPixel": [
+        1410,
+        711
+      ],
+      "candidatePolygon": [
+        [
+          1373,
+          666
+        ],
+        [
+          1385,
+          637
+        ],
+        [
+          1392,
+          634
+        ],
+        [
+          1396,
+          589
+        ],
+        [
+          1406,
+          576
+        ],
+        [
+          1413,
+          645
+        ],
+        [
+          1422,
+          617
+        ],
+        [
+          1430,
+          653
+        ],
+        [
+          1438,
+          648
+        ],
+        [
+          1446,
+          696
+        ],
+        [
+          1431,
+          719
+        ],
+        [
+          1391,
+          717
+        ]
+      ],
+      "classification": "static",
+      "confidence": "high",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "Support layer seams and occlusion without inventing a removable world structure; no destruction behavior is authorized.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Tall pointed pale cluster on east side; visually spire-like and possibly mineral. Do not silently make it harvestable fungus."
+    },
+    {
+      "id": "pale-east-lower-tubes",
+      "type": "pale-tubular-cluster",
+      "bounds": [
+        1123,
+        827,
+        48,
+        54
+      ],
+      "footPixel": [
+        1148,
+        877
+      ],
+      "candidatePolygon": [
+        [
+          1127,
+          855
+        ],
+        [
+          1131,
+          839
+        ],
+        [
+          1137,
+          839
+        ],
+        [
+          1139,
+          828
+        ],
+        [
+          1149,
+          830
+        ],
+        [
+          1152,
+          855
+        ],
+        [
+          1162,
+          840
+        ],
+        [
+          1170,
+          869
+        ],
+        [
+          1157,
+          881
+        ],
+        [
+          1133,
+          879
+        ]
+      ],
+      "classification": "static",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "Support layer seams and occlusion without inventing a removable world structure; no destruction behavior is authorized.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Short ochre/pale tubes near white curled forms east of approach. Small curled pale neighbors need closer inspection; do not classify them as bones, animals, or items from this view."
+    },
+    {
+      "id": "waterfall-motion",
+      "type": "waterfall",
+      "bounds": [
+        32,
+        0,
+        96,
+        282
+      ],
+      "footPixel": [
+        79,
+        266
+      ],
+      "candidatePolygon": [
+        [
+          33,
+          0
+        ],
+        [
+          98,
+          0
+        ],
+        [
+          105,
+          139
+        ],
+        [
+          100,
+          202
+        ],
+        [
+          126,
+          240
+        ],
+        [
+          112,
+          282
+        ],
+        [
+          45,
+          272
+        ],
+        [
+          37,
+          240
+        ]
+      ],
+      "classification": "effect",
+      "confidence": "high",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "west-rock-and-water",
+        "reason": "Motion must not reveal a static duplicate, source-edge seam, or unfilled holes; retain the underlying rock/water surface.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Only waterfall/water spray motion is inferred; underlying left cliff remains structural. Source is clipped at top."
+    },
+    {
+      "id": "waterfall-mist",
+      "type": "mist",
+      "bounds": [
+        79,
+        130,
+        146,
+        145
+      ],
+      "footPixel": [
+        156,
+        256
+      ],
+      "candidatePolygon": [
+        [
+          83,
+          204
+        ],
+        [
+          100,
+          165
+        ],
+        [
+          139,
+          132
+        ],
+        [
+          181,
+          148
+        ],
+        [
+          214,
+          189
+        ],
+        [
+          224,
+          234
+        ],
+        [
+          193,
+          273
+        ],
+        [
+          129,
+          270
+        ],
+        [
+          91,
+          242
+        ]
+      ],
+      "classification": "effect",
+      "confidence": "medium",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "west-rock-and-water",
+        "reason": "Motion must not reveal a static duplicate, source-edge seam, or unfilled holes; retain the underlying rock/water surface.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Soft mist to the right of waterfall. Extent is approximate because transparency cannot be recovered exactly from a flattened image."
+    },
+    {
+      "id": "blackwater-flow",
+      "type": "river-water",
+      "bounds": [
+        0,
+        253,
+        278,
+        771
+      ],
+      "footPixel": [
+        167,
+        1023
+      ],
+      "candidatePolygon": [
+        [
+          0,
+          272
+        ],
+        [
+          80,
+          253
+        ],
+        [
+          177,
+          280
+        ],
+        [
+          239,
+          336
+        ],
+        [
+          202,
+          458
+        ],
+        [
+          225,
+          543
+        ],
+        [
+          198,
+          689
+        ],
+        [
+          250,
+          800
+        ],
+        [
+          223,
+          904
+        ],
+        [
+          277,
+          1024
+        ],
+        [
+          0,
+          1024
+        ]
+      ],
+      "classification": "effect",
+      "confidence": "high",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "river-bed",
+        "reason": "Motion must not reveal a static duplicate, source-edge seam, or unfilled holes; retain the underlying rock/water surface.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Continuous dark river and visible ripples. Keep bank boulders/stems out of moving water layer; reconstruct only continuation of existing water behind extracted bank props. River bed beneath opaque dark water is unknown."
+    },
+    {
+      "id": "reference-traveler",
+      "type": "traveler",
+      "bounds": [
+        749,
+        811,
+        40,
+        63
+      ],
+      "footPixel": [
+        770,
+        872
+      ],
+      "candidatePolygon": [
+        [
+          756,
+          830
+        ],
+        [
+          761,
+          813
+        ],
+        [
+          774,
+          812
+        ],
+        [
+          780,
+          827
+        ],
+        [
+          783,
+          847
+        ],
+        [
+          788,
+          849
+        ],
+        [
+          786,
+          871
+        ],
+        [
+          754,
+          874
+        ],
+        [
+          750,
+          859
+        ]
+      ],
+      "classification": "mutable",
+      "confidence": "high",
+      "relationBackingGround": {
+        "needed": true,
+        "parentSurfaceId": "base-ground",
+        "reason": "A removable cutout must reveal a reconstructed, uninterrupted supporting surface; remove the subject and its baked contact shadow from the backing.",
+        "hiddenSurface": "Only continue the observed neighboring material, grain, moss and lighting behind this silhouette; unseen geometry is an art reconstruction, not recovered evidence."
+      },
+      "notes": "Reference traveler must be removed from the static plate and replaced by the existing actor pipeline. This ROI is not a new player design; staff and clothing edges need source tracing."
+    }
+  ],
+  "backingSurfaces": [
+    {
+      "id": "base-ground",
+      "description": "Existing mossy stone/soil floor; reconstruct only covered local material. Preserve six bare marks and approach geometry."
+    },
+    {
+      "id": "west-rock-and-water",
+      "description": "Observed waterfall cliff and water surface beneath spray/mist. Reconstruct matching visible material, not a new cave or river source."
+    },
+    {
+      "id": "river-bed",
+      "description": "Backing name for the rendered dark-water surface. Actual submerged river-bed details are unknown and must not be invented as recovered source."
+    }
+  ]
+}

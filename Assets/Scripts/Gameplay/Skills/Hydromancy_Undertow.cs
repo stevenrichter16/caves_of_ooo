@@ -20,7 +20,7 @@ namespace CavesOfOoo.Skills
     /// power is strongest for a character who WANTS that, which makes it
     /// a build decision rather than a strictly better shove.</para>
     /// </summary>
-    public class Hydromancy_Undertow : BaseSkillPart
+    public class Hydromancy_Undertow : SpellSkillPart
     {
         public override string Name => nameof(Hydromancy_Undertow);
 
@@ -47,7 +47,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;

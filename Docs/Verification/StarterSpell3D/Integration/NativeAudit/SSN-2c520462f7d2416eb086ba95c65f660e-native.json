@@ -1,0 +1,2666 @@
+{
+    "runId": "2c520462f7d2416eb086ba95c65f660e",
+    "saveRoot": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/70cf214f9ab64421bda73a59adcbb316",
+    "gameId": "b1d6da066fd1433caad22c506ae6ce88",
+    "markerId": "StarterSpell3D-native-marker-9624cdc71ee741c4a4d02f44676d7a83",
+    "fatal": "System.InvalidOperationException: Actual caster bones must move under the evaluated imported override and restore the borrowed controller/speed/update mode and Idle.\n  at CavesOfOoo.Scenarios.Custom.StarterSpell3DNativeAudit+<CommandCase>d__95.MoveNext () [0x013ac] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/StarterSpell3DNativeAudit.cs:280 \n  at CavesOfOoo.Scenarios.Custom.StarterSpell3DNativeAudit+<RunSafely>d__90.MoveNext () [0x00057] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/StarterSpell3DNativeAudit.cs:88 ",
+    "bounds": "Actual native1920x1080 Main GameView. One real current-hotbar Flaming Hands/direction cast and ordinary N/south seam input. Other casts are explicitly reset deterministic SkillsPart commands using the real player and disposable unfactioned recipient/crop fixtures; their copied queue records are observed without draining. Showcase/control cases restore only their bounded lane's original ground before each command, so prior fixture writing is not mistaken for the next spell; ordinary accumulated writing remains during profile phases. Profile is four20s native render phases, paired Full/Reduced in town and south; startup/bind/screenshots excluded, fixture setup/observer/counter overhead included. After all profile phases,15 additional Full-mode command fixtures capture Ember/Jet/Surge/Rime/Calm facing north,south,northeast in clear native south-chunk corridors. Source/recipient live FOV, actual direction/contact/push and XZ cell projection are asserted; no authored scenery is erased. World simulation does not advance during command-fixture playback. Captures use1x settings with measured wall timestamps; capture overhead may lower sampling rate. This establishes observable presentation and cleanup, not subjective comfort, process-cold/build performance or long-session leak confidence.",
+    "rawFrames": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-frames.csv",
+    "rawSha256": "6c563441f1a70a5206995673477872f58289e30e2cba34e4184dec33a4359fc7",
+    "unityVersion": "6000.3.4f1",
+    "gpu": "Apple M5",
+    "cpu": "Apple M5",
+    "failures": 1,
+    "unexpectedErrors": 0,
+    "worldSeed": 729490642,
+    "screenWidth": 1920,
+    "screenHeight": 1080,
+    "profileFrames": 0,
+    "activeFrames": 0,
+    "nativeKeyboardCasts": 1,
+    "targetFrameRate": -1,
+    "vSyncCount": 0,
+    "wallSeconds": 19.243928099999999,
+    "profileSeconds": 0.0,
+    "workloadComplete": false,
+    "shutdownObserved": true,
+    "shutdownRootHeld": true,
+    "shutdownSavingUnregistered": true,
+    "displayPreferencesRestored": true,
+    "inputSettingsRestored": true,
+    "checks": [
+        {
+            "name": "native_N_real_new_game",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_town_ready",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_spell_prepared_before_cast",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "first_cast_reuses_prepared_assets",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_keyboard_starter_cast",
+            "detail": "{\"slot\":1,\"damage\":2,\"cooldown\":9,\"ticks\":10,\"peakMeshes\":47,\"sawBlocking\":true,\"sourceUnchanged\":true,\"nativeEntry\":\"Pyromancy_FlamingHands\",\"finalState\":\"Normal\"}",
+            "pass": true
+        },
+        {
+            "name": "command_1_showcase_0",
+            "detail": "Real command/copy/native/cleanup; peak=50",
+            "pass": true
+        },
+        {
+            "name": "command_2_showcase_1",
+            "detail": "Real command/copy/native/cleanup; peak=47",
+            "pass": true
+        },
+        {
+            "name": "command_3_showcase_2",
+            "detail": "Real command/copy/native/cleanup; peak=89",
+            "pass": true
+        },
+        {
+            "name": "command_4_showcase_3",
+            "detail": "Real command/copy/native/cleanup; peak=69",
+            "pass": true
+        },
+        {
+            "name": "fatal",
+            "detail": "System.InvalidOperationException: Actual caster bones must move under the evaluated imported override and restore the borrowed controller/speed/update mode and Idle.\n  at CavesOfOoo.Scenarios.Custom.StarterSpell3DNativeAudit+<CommandCase>d__95.MoveNext () [0x013ac] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/StarterSpell3DNativeAudit.cs:280 \n  at CavesOfOoo.Scenarios.Custom.StarterSpell3DNativeAudit+<RunSafely>d__90.MoveNext () [0x00057] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/StarterSpell3DNativeAudit.cs:88 ",
+            "pass": false
+        }
+    ],
+    "firstCast": {
+        "libraryInstancesBefore": 1,
+        "libraryInstancesAfter": 1,
+        "poolBefore": 384,
+        "poolAfter": 384,
+        "peakMeshes": 47,
+        "damage": 2,
+        "cooldown": 9,
+        "ticks": 10,
+        "sawBlocking": true,
+        "sourceUnchanged": true,
+        "nativeEntry": "Pyromancy_FlamingHands",
+        "finalState": "Normal",
+        "allocatedMemoryBefore": 480341558,
+        "allocatedMemoryAfter": 475858905,
+        "maxInputNanoseconds": 8908208,
+        "maxMainNanoseconds": 22234792,
+        "maxGcBytes": 953211,
+        "startSeconds": 13.48346442385261,
+        "wallSeconds": 0.6149451660000018,
+        "maxFrameSeconds": 0.022177664563059808,
+        "samples": [
+            {
+                "frame": 43,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.48446863185261,
+                "delta": 0.0032439555507153274,
+                "input": 11750,
+                "main": 3281125,
+                "gc": 29327,
+                "blocking": false
+            },
+            {
+                "frame": 44,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.50663325685261,
+                "delta": 0.0038972930051386358,
+                "input": 11875,
+                "main": 3660333,
+                "gc": 29855,
+                "blocking": true
+            },
+            {
+                "frame": 45,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.510776048852609,
+                "delta": 0.022177664563059808,
+                "input": 8908208,
+                "main": 22234792,
+                "gc": 698355,
+                "blocking": true
+            },
+            {
+                "frame": 46,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.515017214852613,
+                "delta": 0.004693502094596624,
+                "input": 79583,
+                "main": 4859958,
+                "gc": 39977,
+                "blocking": true
+            },
+            {
+                "frame": 47,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.51878096485261,
+                "delta": 0.0038479166105389597,
+                "input": 6000,
+                "main": 3830375,
+                "gc": 37567,
+                "blocking": true
+            },
+            {
+                "frame": 48,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.52202279885261,
+                "delta": 0.0032345803920179607,
+                "input": 7708,
+                "main": 3154917,
+                "gc": 29533,
+                "blocking": true
+            },
+            {
+                "frame": 49,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.52530325685261,
+                "delta": 0.0032537556253373625,
+                "input": 6958,
+                "main": 3314416,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 50,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.528778089852612,
+                "delta": 0.0035682893358170988,
+                "input": 11042,
+                "main": 3525958,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 51,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.53202533985261,
+                "delta": 0.0030726261902600528,
+                "input": 7125,
+                "main": 3065375,
+                "gc": 29787,
+                "blocking": true
+            },
+            {
+                "frame": 52,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.53530792385261,
+                "delta": 0.0033184594940394165,
+                "input": 8250,
+                "main": 3306875,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 53,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.53845550685261,
+                "delta": 0.0032088719308376314,
+                "input": 8084,
+                "main": 3233000,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 54,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.54169883985261,
+                "delta": 0.0032719175796955826,
+                "input": 9292,
+                "main": 3260834,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 55,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.54556575685261,
+                "delta": 0.0039335815235972408,
+                "input": 10750,
+                "main": 3827833,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 56,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.548497964852612,
+                "delta": 0.002826332114636898,
+                "input": 6542,
+                "main": 2973208,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 57,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.551857923852613,
+                "delta": 0.0033523384481668474,
+                "input": 9458,
+                "main": 3278875,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 58,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.555030048852612,
+                "delta": 0.0030815405771136286,
+                "input": 10500,
+                "main": 3128791,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 59,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.55843325685261,
+                "delta": 0.0035599134862422945,
+                "input": 6625,
+                "main": 3462083,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 60,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.56214917385261,
+                "delta": 0.003706547664478421,
+                "input": 10000,
+                "main": 3793083,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 61,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.565433173852611,
+                "delta": 0.0031878685113042595,
+                "input": 6750,
+                "main": 3186708,
+                "gc": 29403,
+                "blocking": true
+            },
+            {
+                "frame": 62,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.568682089852612,
+                "delta": 0.003296045819297433,
+                "input": 12167,
+                "main": 3199334,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 63,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.57176867385261,
+                "delta": 0.0031082057394087316,
+                "input": 9875,
+                "main": 3160625,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 64,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.575036423852613,
+                "delta": 0.0032408374827355148,
+                "input": 7833,
+                "main": 3238334,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 65,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.57820904885261,
+                "delta": 0.003234204836189747,
+                "input": 7958,
+                "main": 3139625,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 66,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.581636131852612,
+                "delta": 0.00315500283613801,
+                "input": 11084,
+                "main": 3253500,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 67,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.58512975685261,
+                "delta": 0.003718459513038397,
+                "input": 15917,
+                "main": 3684916,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 68,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.58830546485261,
+                "delta": 0.0031406604684889318,
+                "input": 13708,
+                "main": 3188125,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 69,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.591692964852613,
+                "delta": 0.003390419529750943,
+                "input": 8208,
+                "main": 3227250,
+                "gc": 29415,
+                "blocking": true
+            },
+            {
+                "frame": 70,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.59561583985261,
+                "delta": 0.003945039585232735,
+                "input": 13042,
+                "main": 4067375,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 71,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.608702464852609,
+                "delta": 0.013132419437170029,
+                "input": 7000,
+                "main": 13047667,
+                "gc": 953211,
+                "blocking": true
+            },
+            {
+                "frame": 72,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.611709548852609,
+                "delta": 0.0030864584259688856,
+                "input": 8334,
+                "main": 3280708,
+                "gc": 29611,
+                "blocking": true
+            },
+            {
+                "frame": 73,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.615058881852612,
+                "delta": 0.0031211664900183679,
+                "input": 4500,
+                "main": 2969084,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 74,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.618404881852613,
+                "delta": 0.0034895408898591997,
+                "input": 7750,
+                "main": 3492500,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 75,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.621526173852612,
+                "delta": 0.0030624999199062587,
+                "input": 10292,
+                "main": 3085500,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 76,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.62482967385261,
+                "delta": 0.003318955423310399,
+                "input": 5375,
+                "main": 3211500,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 77,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.62803742385261,
+                "delta": 0.003205839078873396,
+                "input": 11625,
+                "main": 3287000,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 78,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.63138975685261,
+                "delta": 0.003342453157529235,
+                "input": 12083,
+                "main": 3372542,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 79,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.63473829885261,
+                "delta": 0.0032925878185778858,
+                "input": 9041,
+                "main": 3208791,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 80,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 13.637855798852609,
+                "delta": 0.0031409580260515215,
+                "input": 7334,
+                "main": 3216250,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 81,
+                "meshes": 8,
+                "pool": 384,
+                "seconds": 13.641617464852612,
+                "delta": 0.0033012046478688719,
+                "input": 11167,
+                "main": 3097208,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 82,
+                "meshes": 8,
+                "pool": 384,
+                "seconds": 13.64554004885261,
+                "delta": 0.004463584162294865,
+                "input": 12792,
+                "main": 4616958,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 83,
+                "meshes": 41,
+                "pool": 384,
+                "seconds": 13.64881267385261,
+                "delta": 0.003031838219612837,
+                "input": 6958,
+                "main": 3069417,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 84,
+                "meshes": 41,
+                "pool": 384,
+                "seconds": 13.65230100685261,
+                "delta": 0.0036034579388797285,
+                "input": 11458,
+                "main": 3569417,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 85,
+                "meshes": 41,
+                "pool": 384,
+                "seconds": 13.655786131852612,
+                "delta": 0.00356853730045259,
+                "input": 8834,
+                "main": 3438917,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 86,
+                "meshes": 41,
+                "pool": 384,
+                "seconds": 13.659195214852609,
+                "delta": 0.0033864157740026714,
+                "input": 6542,
+                "main": 3474625,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 87,
+                "meshes": 41,
+                "pool": 384,
+                "seconds": 13.66248879885261,
+                "delta": 0.003298667725175619,
+                "input": 13666,
+                "main": 3289792,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 88,
+                "meshes": 41,
+                "pool": 384,
+                "seconds": 13.666773381852611,
+                "delta": 0.0043226261623203758,
+                "input": 12083,
+                "main": 4294750,
+                "gc": 39793,
+                "blocking": true
+            },
+            {
+                "frame": 89,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 13.67077438185261,
+                "delta": 0.004000751301646233,
+                "input": 8125,
+                "main": 4092459,
+                "gc": 37567,
+                "blocking": true
+            },
+            {
+                "frame": 90,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 13.674327839852613,
+                "delta": 0.003374539315700531,
+                "input": 6541,
+                "main": 3296959,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 91,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 13.677612631852611,
+                "delta": 0.0033995818812400104,
+                "input": 14125,
+                "main": 3387292,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 92,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.68112679885261,
+                "delta": 0.0035050029400736095,
+                "input": 12625,
+                "main": 3520041,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 93,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.68450979885261,
+                "delta": 0.003398455213755369,
+                "input": 11833,
+                "main": 3459750,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 94,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.68773350685261,
+                "delta": 0.0032786705996841194,
+                "input": 7958,
+                "main": 3192708,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 95,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.69104283985261,
+                "delta": 0.0031695435754954817,
+                "input": 8209,
+                "main": 3100292,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 96,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.69438517385261,
+                "delta": 0.003311578882858157,
+                "input": 13625,
+                "main": 3487625,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 97,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.698070548852609,
+                "delta": 0.0038270833902060987,
+                "input": 8833,
+                "main": 3614916,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 98,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.70136542385261,
+                "delta": 0.0032703373581171037,
+                "input": 7000,
+                "main": 3386959,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 99,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.704708756852611,
+                "delta": 0.0033489158377051355,
+                "input": 11042,
+                "main": 3367791,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 100,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.708203506852609,
+                "delta": 0.003531873691827059,
+                "input": 7625,
+                "main": 3260958,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 101,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.71250317385261,
+                "delta": 0.004184495657682419,
+                "input": 9625,
+                "main": 4109292,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 102,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.71591413185261,
+                "delta": 0.003351502353325486,
+                "input": 7375,
+                "main": 3639417,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 103,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.71929704885261,
+                "delta": 0.003564916318282485,
+                "input": 14375,
+                "main": 3495959,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 104,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.72261525685261,
+                "delta": 0.00329883792437613,
+                "input": 8959,
+                "main": 3345958,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 105,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.725908381852613,
+                "delta": 0.003207872621715069,
+                "input": 12292,
+                "main": 3323459,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 106,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.729125464852612,
+                "delta": 0.003262124489992857,
+                "input": 8916,
+                "main": 3185209,
+                "gc": 29739,
+                "blocking": true
+            },
+            {
+                "frame": 107,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.73310517385261,
+                "delta": 0.0038490432780236007,
+                "input": 12083,
+                "main": 3628916,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 108,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.73688663185261,
+                "delta": 0.003722541034221649,
+                "input": 8125,
+                "main": 3981166,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 109,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.74066017385261,
+                "delta": 0.0038823767099529506,
+                "input": 5334,
+                "main": 3692291,
+                "gc": 29391,
+                "blocking": true
+            },
+            {
+                "frame": 110,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.744079381852611,
+                "delta": 0.0034925383515655996,
+                "input": 13208,
+                "main": 3506166,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 111,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.747402714852612,
+                "delta": 0.00335158733651042,
+                "input": 13333,
+                "main": 3464166,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 112,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.750822214852612,
+                "delta": 0.003454124089330435,
+                "input": 9834,
+                "main": 3429708,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 113,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.75406804885261,
+                "delta": 0.003102997550740838,
+                "input": 12583,
+                "main": 3116250,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 114,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.757074298852612,
+                "delta": 0.003041333518922329,
+                "input": 10041,
+                "main": 3145791,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 115,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.76037442385261,
+                "delta": 0.0033012472558766605,
+                "input": 3417,
+                "main": 3111791,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 116,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.763804589852612,
+                "delta": 0.0034663337282836439,
+                "input": 10292,
+                "main": 3405583,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 117,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.76753958985261,
+                "delta": 0.003695875871926546,
+                "input": 12166,
+                "main": 3692500,
+                "gc": 29275,
+                "blocking": true
+            },
+            {
+                "frame": 118,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.77110533985261,
+                "delta": 0.0036008786410093309,
+                "input": 11917,
+                "main": 3665834,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 119,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.774822381852612,
+                "delta": 0.003527536755427718,
+                "input": 12750,
+                "main": 3443250,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 120,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.779134298852611,
+                "delta": 0.004483333323150873,
+                "input": 10000,
+                "main": 4603834,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 121,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.78237992385261,
+                "delta": 0.003183042863383889,
+                "input": 6041,
+                "main": 3165958,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 122,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.78564525685261,
+                "delta": 0.0033582127653062345,
+                "input": 8125,
+                "main": 3389500,
+                "gc": 29591,
+                "blocking": true
+            },
+            {
+                "frame": 123,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.78888233985261,
+                "delta": 0.0033059949055314066,
+                "input": 8417,
+                "main": 3361292,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 124,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.79241942385261,
+                "delta": 0.003476459765806794,
+                "input": 7459,
+                "main": 3242542,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 125,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.796130714852613,
+                "delta": 0.0037023313343524935,
+                "input": 7583,
+                "main": 3718541,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 126,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.79960204885261,
+                "delta": 0.0033818380907177927,
+                "input": 7958,
+                "main": 3447000,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 127,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.80299133985261,
+                "delta": 0.003489625873044133,
+                "input": 8708,
+                "main": 3501334,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 128,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.80608183985261,
+                "delta": 0.0031794572714716198,
+                "input": 8166,
+                "main": 3247041,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 129,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.809729423852609,
+                "delta": 0.003479747800156474,
+                "input": 7458,
+                "main": 3451167,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 130,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.81357496485261,
+                "delta": 0.0039025440346449615,
+                "input": 12667,
+                "main": 3637125,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 131,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.817915423852611,
+                "delta": 0.004395167343318462,
+                "input": 7458,
+                "main": 4655667,
+                "gc": 39729,
+                "blocking": true
+            },
+            {
+                "frame": 132,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.82169233985261,
+                "delta": 0.0038005386013537647,
+                "input": 6542,
+                "main": 3776792,
+                "gc": 37503,
+                "blocking": true
+            },
+            {
+                "frame": 133,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.82515004885261,
+                "delta": 0.003476750338450074,
+                "input": 6750,
+                "main": 3304875,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 134,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.82878300685261,
+                "delta": 0.003688081167638302,
+                "input": 7792,
+                "main": 3870834,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 135,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.83230363185261,
+                "delta": 0.003187251975759864,
+                "input": 6708,
+                "main": 3210167,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 136,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.83575692385261,
+                "delta": 0.003620500210672617,
+                "input": 9250,
+                "main": 3488750,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 137,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.83915371485261,
+                "delta": 0.0034281250555068256,
+                "input": 9458,
+                "main": 3455791,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 138,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.84247475685261,
+                "delta": 0.0033404550049453975,
+                "input": 11000,
+                "main": 3448250,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 139,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.84578425685261,
+                "delta": 0.0032063350081443788,
+                "input": 7750,
+                "main": 3108042,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 140,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.84906979885261,
+                "delta": 0.003257086267694831,
+                "input": 10459,
+                "main": 3296709,
+                "gc": 29675,
+                "blocking": true
+            },
+            {
+                "frame": 141,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.852736381852612,
+                "delta": 0.0035669996868819,
+                "input": 8000,
+                "main": 3574500,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 142,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.856255923852612,
+                "delta": 0.003792871255427599,
+                "input": 9708,
+                "main": 3620875,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 143,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.85988242385261,
+                "delta": 0.003459545085206628,
+                "input": 7291,
+                "main": 3587458,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 144,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.86352850685261,
+                "delta": 0.0037683744449168445,
+                "input": 11125,
+                "main": 3735375,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 145,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.86738388185261,
+                "delta": 0.003908914513885975,
+                "input": 11917,
+                "main": 3752708,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 146,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.87068975685261,
+                "delta": 0.0032242487650364639,
+                "input": 7792,
+                "main": 3422917,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 147,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.87427063185261,
+                "delta": 0.003240710124373436,
+                "input": 10334,
+                "main": 3260333,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 148,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.877917089852609,
+                "delta": 0.0040212515741586689,
+                "input": 12833,
+                "main": 3795083,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 149,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.881612339852613,
+                "delta": 0.0036273314617574217,
+                "input": 8083,
+                "main": 3739167,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 150,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.88539163185261,
+                "delta": 0.0037513321731239559,
+                "input": 9125,
+                "main": 3753083,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 151,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.88901879885261,
+                "delta": 0.0037695011124014856,
+                "input": 11333,
+                "main": 3658375,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 152,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.892889714852612,
+                "delta": 0.003719083033502102,
+                "input": 6833,
+                "main": 3830750,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 153,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.89652913185261,
+                "delta": 0.0036092970985919239,
+                "input": 9459,
+                "main": 3625708,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 154,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.900360256852612,
+                "delta": 0.003950042650103569,
+                "input": 11417,
+                "main": 3770583,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 155,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.90408996485261,
+                "delta": 0.0036794571205973627,
+                "input": 9250,
+                "main": 3730083,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 156,
+                "meshes": 47,
+                "pool": 384,
+                "seconds": 13.90748908985261,
+                "delta": 0.0033487032633274795,
+                "input": 10208,
+                "main": 3537583,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 157,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.91081867385261,
+                "delta": 0.0035206277389079334,
+                "input": 9541,
+                "main": 3318708,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 158,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.91423804885261,
+                "delta": 0.0032233346719294788,
+                "input": 6000,
+                "main": 3298167,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 159,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.917723964852609,
+                "delta": 0.0035894557368010284,
+                "input": 8417,
+                "main": 3676667,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 160,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.921094131852613,
+                "delta": 0.0033005031291395427,
+                "input": 7667,
+                "main": 3173083,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 161,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.92473004885261,
+                "delta": 0.0036221230402588846,
+                "input": 11042,
+                "main": 3553375,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 162,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.92812250685261,
+                "delta": 0.003438874613493681,
+                "input": 10583,
+                "main": 3566917,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 163,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.931963339852612,
+                "delta": 0.0038026643451303245,
+                "input": 9875,
+                "main": 3667833,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 164,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.93595483985261,
+                "delta": 0.003751672338694334,
+                "input": 7459,
+                "main": 3814791,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 165,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.93970017385261,
+                "delta": 0.004033035598695278,
+                "input": 10208,
+                "main": 4064542,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 166,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.943124548852613,
+                "delta": 0.003510338719934225,
+                "input": 12625,
+                "main": 3427750,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 167,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.946210589852612,
+                "delta": 0.0030131235253065826,
+                "input": 8500,
+                "main": 3172875,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 168,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.94960225685261,
+                "delta": 0.0032138321548700334,
+                "input": 6875,
+                "main": 3023125,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 169,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.953016923852612,
+                "delta": 0.003538874676451087,
+                "input": 10792,
+                "main": 3667291,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 170,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.95711500685261,
+                "delta": 0.004004457034170628,
+                "input": 10208,
+                "main": 3782708,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 171,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.96053738185261,
+                "delta": 0.003583212848752737,
+                "input": 8833,
+                "main": 3728167,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 172,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.96384317385261,
+                "delta": 0.0033469954505562784,
+                "input": 11625,
+                "main": 3271500,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 173,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.968523548852609,
+                "delta": 0.004461670760065317,
+                "input": 7666,
+                "main": 4509791,
+                "gc": 39781,
+                "blocking": true
+            },
+            {
+                "frame": 174,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.97272771485261,
+                "delta": 0.004368161782622337,
+                "input": 9708,
+                "main": 4488292,
+                "gc": 37939,
+                "blocking": true
+            },
+            {
+                "frame": 175,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.977122673852613,
+                "delta": 0.004362790379673243,
+                "input": 6584,
+                "main": 4307791,
+                "gc": 37631,
+                "blocking": true
+            },
+            {
+                "frame": 176,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.98067279885261,
+                "delta": 0.003683921415358782,
+                "input": 7459,
+                "main": 3567917,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 177,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.98398496485261,
+                "delta": 0.0032052933238446714,
+                "input": 8125,
+                "main": 3402708,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 178,
+                "meshes": 45,
+                "pool": 384,
+                "seconds": 13.987679464852612,
+                "delta": 0.0037855796981602909,
+                "input": 7375,
+                "main": 3585292,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 179,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 13.99089967385261,
+                "delta": 0.003000581171363592,
+                "input": 7375,
+                "main": 3114333,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 180,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 13.994232214852613,
+                "delta": 0.003360544331371784,
+                "input": 10292,
+                "main": 3401250,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 181,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 13.997719339852612,
+                "delta": 0.003544997191056609,
+                "input": 8458,
+                "main": 3419375,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 182,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.001624506852611,
+                "delta": 0.0037822916638106109,
+                "input": 8542,
+                "main": 3670458,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 183,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.005290131852611,
+                "delta": 0.003839420387521386,
+                "input": 14500,
+                "main": 3977000,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 184,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.008687006852611,
+                "delta": 0.0034547902178019287,
+                "input": 8541,
+                "main": 3417958,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 185,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.012241464852611,
+                "delta": 0.003588711842894554,
+                "input": 7791,
+                "main": 3518584,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 186,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.015883131852612,
+                "delta": 0.0033316609915345909,
+                "input": 6917,
+                "main": 3452709,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 187,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.019827381852612,
+                "delta": 0.004124085884541273,
+                "input": 22042,
+                "main": 3940167,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 188,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.023636214852612,
+                "delta": 0.0035547902807593347,
+                "input": 8333,
+                "main": 3663833,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 189,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.02723763185261,
+                "delta": 0.0037887967191636564,
+                "input": 13334,
+                "main": 3784208,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 190,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.03080113185261,
+                "delta": 0.003640787908807397,
+                "input": 9667,
+                "main": 3625875,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 191,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.03475650685261,
+                "delta": 0.003830668982118368,
+                "input": 7833,
+                "main": 3877459,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 192,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.038497089852612,
+                "delta": 0.0038274943362921478,
+                "input": 7959,
+                "main": 3811209,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 193,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.04205254885261,
+                "delta": 0.0036354591138660909,
+                "input": 14042,
+                "main": 3578791,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 194,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.045742548852612,
+                "delta": 0.003514172276481986,
+                "input": 8167,
+                "main": 3559417,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 195,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.049281714852612,
+                "delta": 0.003603287972509861,
+                "input": 11625,
+                "main": 3633583,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 196,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.052760256852612,
+                "delta": 0.003503670683130622,
+                "input": 11583,
+                "main": 3482500,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 197,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.05618554885261,
+                "delta": 0.003539285622537136,
+                "input": 8500,
+                "main": 3483459,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 198,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.059514548852612,
+                "delta": 0.0032896683551371099,
+                "input": 11708,
+                "main": 3411166,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 199,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.06280333985261,
+                "delta": 0.0033052084036171438,
+                "input": 8500,
+                "main": 3243250,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 200,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.066220881852612,
+                "delta": 0.0033398312516510488,
+                "input": 11250,
+                "main": 3237958,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 201,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.069476714852609,
+                "delta": 0.0032979592215269806,
+                "input": 7834,
+                "main": 3393791,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 202,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.072880714852613,
+                "delta": 0.003401084104552865,
+                "input": 7500,
+                "main": 3368542,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 203,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.076316089852611,
+                "delta": 0.0034837089478969576,
+                "input": 7250,
+                "main": 3549000,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 204,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.07948713185261,
+                "delta": 0.0030745393596589567,
+                "input": 7000,
+                "main": 3078041,
+                "gc": 29223,
+                "blocking": true
+            },
+            {
+                "frame": 205,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.08304954885261,
+                "delta": 0.0035788335371762516,
+                "input": 8208,
+                "main": 3332542,
+                "gc": 29351,
+                "blocking": true
+            },
+            {
+                "frame": 206,
+                "meshes": 43,
+                "pool": 384,
+                "seconds": 14.08660554885261,
+                "delta": 0.0033590064849704506,
+                "input": 14958,
+                "main": 3529708,
+                "gc": 29287,
+                "blocking": true
+            },
+            {
+                "frame": 207,
+                "meshes": 0,
+                "pool": 384,
+                "seconds": 14.090951256852609,
+                "delta": 0.004340121988207102,
+                "input": 12375,
+                "main": 4202791,
+                "gc": 29611,
+                "blocking": false
+            }
+        ]
+    },
+    "preparation": {
+        "LoadSeconds": 0.626207,
+        "ValidationSeconds": 0.0169688,
+        "PoolSeconds": 0.0030059,
+        "ViewCount": 384,
+        "UsedCachedLibrary": false
+    },
+    "phases": [],
+    "casts": [
+        {
+            "spell": "Pyromancy_EmberSpit",
+            "mode": "showcase",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Pyromancy_EmberSpit",
+            "gestureClip": "ember_spit_Cast",
+            "gestureControllerBefore": "character-teal",
+            "gestureControllerAfter": "character-teal",
+            "gesturePeakDegrees": 70.3409194946289,
+            "sourceX": 40,
+            "sourceY": 8,
+            "directionX": 1,
+            "directionY": 0,
+            "intendedX": 43,
+            "intendedY": 8,
+            "finalX": 43,
+            "finalY": 8,
+            "targets": 1,
+            "damage": 3,
+            "cooldown": 8,
+            "rngCalls": 0,
+            "peakMeshes": 50,
+            "gestureSamples": 73,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8"
+            ],
+            "affected": [
+                "43,8"
+            ],
+            "applied": [
+                "BurningEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-2c520462f7d2416eb086ba95c65f660e"
+            ],
+            "targetCells": [
+                "43,8->43,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": true,
+            "gestureRestored": true,
+            "groundFixtureReset": true,
+            "sourceVisible": true,
+            "targetVisible": true,
+            "seconds": 1.2030097499999997,
+            "frames": [
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-000.png",
+                    "sha256": "",
+                    "wallSeconds": 0.007327665999998345,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-001.png",
+                    "sha256": "",
+                    "wallSeconds": 0.10621437500000042,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-002.png",
+                    "sha256": "",
+                    "wallSeconds": 0.2046093330000005,
+                    "meshes": 3
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-003.png",
+                    "sha256": "",
+                    "wallSeconds": 0.3051710830000012,
+                    "meshes": 50
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-004.png",
+                    "sha256": "",
+                    "wallSeconds": 0.4050123329999984,
+                    "meshes": 50
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-005.png",
+                    "sha256": "",
+                    "wallSeconds": 0.5025697909999991,
+                    "meshes": 4
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-006.png",
+                    "sha256": "",
+                    "wallSeconds": 0.6028244580000006,
+                    "meshes": 1
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-007.png",
+                    "sha256": "",
+                    "wallSeconds": 0.7044929999999994,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-008.png",
+                    "sha256": "",
+                    "wallSeconds": 0.8028454160000003,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-009.png",
+                    "sha256": "",
+                    "wallSeconds": 0.9043203330000011,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-010.png",
+                    "sha256": "",
+                    "wallSeconds": 1.0054543329999995,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-011.png",
+                    "sha256": "",
+                    "wallSeconds": 1.1029725829999997,
+                    "meshes": 0
+                }
+            ]
+        },
+        {
+            "spell": "Pyromancy_FlamingHands",
+            "mode": "showcase",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Pyromancy_FlamingHands",
+            "gestureClip": "flaming_hands_Cast",
+            "gestureControllerBefore": "character-teal",
+            "gestureControllerAfter": "character-teal",
+            "gesturePeakDegrees": 60.57562255859375,
+            "sourceX": 40,
+            "sourceY": 8,
+            "directionX": 1,
+            "directionY": 0,
+            "intendedX": 41,
+            "intendedY": 8,
+            "finalX": 41,
+            "finalY": 8,
+            "targets": 1,
+            "damage": 1,
+            "cooldown": 10,
+            "rngCalls": 1,
+            "peakMeshes": 47,
+            "gestureSamples": 73,
+            "path": [],
+            "affected": [
+                "41,8"
+            ],
+            "applied": [],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-2c520462f7d2416eb086ba95c65f660e"
+            ],
+            "targetCells": [
+                "41,8->41,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": true,
+            "gestureRestored": true,
+            "groundFixtureReset": true,
+            "sourceVisible": true,
+            "targetVisible": true,
+            "seconds": 1.2012547500000004,
+            "frames": [
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-000.png",
+                    "sha256": "",
+                    "wallSeconds": 0.005389874999998767,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-001.png",
+                    "sha256": "",
+                    "wallSeconds": 0.10257070799999824,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-002.png",
+                    "sha256": "",
+                    "wallSeconds": 0.20249074999999906,
+                    "meshes": 45
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-003.png",
+                    "sha256": "",
+                    "wallSeconds": 0.3031579999999998,
+                    "meshes": 47
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-004.png",
+                    "sha256": "",
+                    "wallSeconds": 0.40361899999999908,
+                    "meshes": 47
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-005.png",
+                    "sha256": "",
+                    "wallSeconds": 0.5055629999999987,
+                    "meshes": 43
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-006.png",
+                    "sha256": "",
+                    "wallSeconds": 0.603255665999999,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-007.png",
+                    "sha256": "",
+                    "wallSeconds": 0.702931165999999,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-008.png",
+                    "sha256": "",
+                    "wallSeconds": 0.8032181660000006,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-009.png",
+                    "sha256": "",
+                    "wallSeconds": 0.9033750410000003,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-010.png",
+                    "sha256": "",
+                    "wallSeconds": 1.003600458000001,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-011.png",
+                    "sha256": "",
+                    "wallSeconds": 1.1028991250000005,
+                    "meshes": 0
+                }
+            ]
+        },
+        {
+            "spell": "Hydromancy_JetBlast",
+            "mode": "showcase",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Hydromancy_JetBlast",
+            "gestureClip": "jet_blast_Cast",
+            "gestureControllerBefore": "character-teal",
+            "gestureControllerAfter": "character-teal",
+            "gesturePeakDegrees": 71.29781341552735,
+            "sourceX": 40,
+            "sourceY": 8,
+            "directionX": 1,
+            "directionY": 0,
+            "intendedX": 42,
+            "intendedY": 8,
+            "finalX": 43,
+            "finalY": 8,
+            "targets": 1,
+            "damage": 2,
+            "cooldown": 20,
+            "rngCalls": 0,
+            "peakMeshes": 89,
+            "gestureSamples": 73,
+            "path": [
+                "41,8",
+                "42,8"
+            ],
+            "affected": [
+                "41,8",
+                "42,7",
+                "42,8",
+                "42,9",
+                "43,8"
+            ],
+            "applied": [
+                "WetEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-2c520462f7d2416eb086ba95c65f660e"
+            ],
+            "targetCells": [
+                "42,8->43,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": true,
+            "gestureRestored": true,
+            "groundFixtureReset": true,
+            "sourceVisible": true,
+            "targetVisible": true,
+            "seconds": 1.2013701250000005,
+            "frames": [
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-000.png",
+                    "sha256": "",
+                    "wallSeconds": 0.0070250830000020418,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-001.png",
+                    "sha256": "",
+                    "wallSeconds": 0.10465670800000027,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-002.png",
+                    "sha256": "",
+                    "wallSeconds": 0.2055436670000006,
+                    "meshes": 57
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-003.png",
+                    "sha256": "",
+                    "wallSeconds": 0.3048508329999997,
+                    "meshes": 89
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-004.png",
+                    "sha256": "",
+                    "wallSeconds": 0.40337154200000216,
+                    "meshes": 89
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-005.png",
+                    "sha256": "",
+                    "wallSeconds": 0.5029470830000022,
+                    "meshes": 72
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-006.png",
+                    "sha256": "",
+                    "wallSeconds": 0.6027864170000008,
+                    "meshes": 66
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-007.png",
+                    "sha256": "",
+                    "wallSeconds": 0.7057126670000002,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-008.png",
+                    "sha256": "",
+                    "wallSeconds": 0.8052595420000017,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-009.png",
+                    "sha256": "",
+                    "wallSeconds": 0.9063936669999997,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-010.png",
+                    "sha256": "",
+                    "wallSeconds": 1.0033006670000014,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-011.png",
+                    "sha256": "",
+                    "wallSeconds": 1.1060592920000013,
+                    "meshes": 0
+                }
+            ]
+        },
+        {
+            "spell": "Galvanism_GroundSurge",
+            "mode": "showcase",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "Galvanism_GroundSurge",
+            "gestureClip": "ground_surge_Cast",
+            "gestureControllerBefore": "character-teal",
+            "gestureControllerAfter": "character-teal",
+            "gesturePeakDegrees": 67.43537139892578,
+            "sourceX": 40,
+            "sourceY": 8,
+            "directionX": 1,
+            "directionY": 0,
+            "intendedX": 43,
+            "intendedY": 8,
+            "finalX": 44,
+            "finalY": 8,
+            "targets": 1,
+            "damage": 6,
+            "cooldown": 30,
+            "rngCalls": 1,
+            "peakMeshes": 69,
+            "gestureSamples": 77,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8",
+                "44,8"
+            ],
+            "affected": [
+                "41,8",
+                "42,8",
+                "43,8",
+                "44,8"
+            ],
+            "applied": [
+                "StunnedEffect",
+                "ElectrifiedEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-2c520462f7d2416eb086ba95c65f660e"
+            ],
+            "targetCells": [
+                "43,8->44,8"
+            ],
+            "observedConditionalMeshes": [],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": true,
+            "pass": true,
+            "sawGesture": true,
+            "gestureRestored": true,
+            "groundFixtureReset": true,
+            "sourceVisible": true,
+            "targetVisible": true,
+            "seconds": 1.2022782500000027,
+            "frames": [
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-000.png",
+                    "sha256": "",
+                    "wallSeconds": 0.006480958000000925,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-001.png",
+                    "sha256": "",
+                    "wallSeconds": 0.10641729099999964,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-002.png",
+                    "sha256": "",
+                    "wallSeconds": 0.2035950409999998,
+                    "meshes": 7
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-003.png",
+                    "sha256": "",
+                    "wallSeconds": 0.3060054160000014,
+                    "meshes": 69
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-004.png",
+                    "sha256": "",
+                    "wallSeconds": 0.40348125000000226,
+                    "meshes": 69
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-005.png",
+                    "sha256": "",
+                    "wallSeconds": 0.5046470000000021,
+                    "meshes": 69
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-006.png",
+                    "sha256": "",
+                    "wallSeconds": 0.6054163750000008,
+                    "meshes": 57
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-007.png",
+                    "sha256": "",
+                    "wallSeconds": 0.7032593330000019,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-008.png",
+                    "sha256": "",
+                    "wallSeconds": 0.8047325829999998,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-009.png",
+                    "sha256": "",
+                    "wallSeconds": 0.9051020830000027,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-010.png",
+                    "sha256": "",
+                    "wallSeconds": 1.0043530000000019,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-011.png",
+                    "sha256": "",
+                    "wallSeconds": 1.1031410410000007,
+                    "meshes": 0
+                }
+            ]
+        },
+        {
+            "spell": "Cryomancy_RimeGrip",
+            "mode": "showcase",
+            "zoneId": "Overworld.3.6.0",
+            "fxMode": "Full",
+            "nativeEntry": "",
+            "gestureClip": "rime_grip_Cast",
+            "gestureControllerBefore": "character-teal",
+            "gestureControllerAfter": "Native spell cast (owned)",
+            "gesturePeakDegrees": 55.76356887817383,
+            "sourceX": 40,
+            "sourceY": 8,
+            "directionX": 1,
+            "directionY": 0,
+            "intendedX": 43,
+            "intendedY": 8,
+            "finalX": 43,
+            "finalY": 8,
+            "targets": 1,
+            "damage": 4,
+            "cooldown": 35,
+            "rngCalls": 0,
+            "peakMeshes": 58,
+            "gestureSamples": 70,
+            "path": [
+                "41,8",
+                "42,8",
+                "43,8"
+            ],
+            "affected": [
+                "43,8"
+            ],
+            "applied": [
+                "FrozenEffect"
+            ],
+            "rejected": [],
+            "copiedTargetIds": [
+                "native-spell-target-2c520462f7d2416eb086ba95c65f660e"
+            ],
+            "targetCells": [
+                "43,8->43,8"
+            ],
+            "observedConditionalMeshes": [
+                "RD_Rime_frozen_blunt_petal_0",
+                "RD_Rime_frozen_blunt_petal_1",
+                "RD_Rime_frozen_blunt_petal_10",
+                "RD_Rime_frozen_blunt_petal_11",
+                "RD_Rime_frozen_blunt_petal_2",
+                "RD_Rime_frozen_blunt_petal_3",
+                "RD_Rime_frozen_blunt_petal_4",
+                "RD_Rime_frozen_blunt_petal_5",
+                "RD_Rime_frozen_blunt_petal_6",
+                "RD_Rime_frozen_blunt_petal_7",
+                "RD_Rime_frozen_blunt_petal_8",
+                "RD_Rime_frozen_blunt_petal_9",
+                "RD_Rime_frozen_carved_seam_0",
+                "RD_Rime_frozen_carved_seam_10",
+                "RD_Rime_frozen_carved_seam_2",
+                "RD_Rime_frozen_carved_seam_4",
+                "RD_Rime_frozen_carved_seam_6",
+                "RD_Rime_frozen_carved_seam_8",
+                "Rime__blunt_split_clamp_0",
+                "Rime__blunt_split_clamp_1",
+                "Rime__blunt_split_clamp_2",
+                "Rime__dark_carved_seam_0",
+                "Rime__dark_carved_seam_1",
+                "Rime__dark_carved_seam_2",
+                "Rime__pale_blunt_rim_0",
+                "Rime__pale_blunt_rim_1",
+                "Rime__pale_blunt_rim_2"
+            ],
+            "rejectedFrozen": false,
+            "rejectedPacified": false,
+            "resultStable": false,
+            "pass": false,
+            "sawGesture": true,
+            "gestureRestored": false,
+            "groundFixtureReset": true,
+            "sourceVisible": true,
+            "targetVisible": true,
+            "seconds": 0.0,
+            "frames": [
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-4-000.png",
+                    "sha256": "",
+                    "wallSeconds": 0.006944332999999858,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-4-001.png",
+                    "sha256": "",
+                    "wallSeconds": 0.1050680419999992,
+                    "meshes": 0
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-4-002.png",
+                    "sha256": "",
+                    "wallSeconds": 0.2048058750000017,
+                    "meshes": 3
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-4-003.png",
+                    "sha256": "",
+                    "wallSeconds": 0.3048313329999992,
+                    "meshes": 58
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-4-004.png",
+                    "sha256": "",
+                    "wallSeconds": 0.4054009580000013,
+                    "meshes": 58
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-4-005.png",
+                    "sha256": "",
+                    "wallSeconds": 0.5028916250000002,
+                    "meshes": 55
+                },
+                {
+                    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-4-006.png",
+                    "sha256": "",
+                    "wallSeconds": 0.6045414170000001,
+                    "meshes": 0
+                }
+            ]
+        }
+    ],
+    "spells": [
+        "Pyromancy_EmberSpit",
+        "Pyromancy_FlamingHands",
+        "Hydromancy_JetBlast",
+        "Galvanism_GroundSurge"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-003.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-003.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-003.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-003.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-4-003.png"
+    ],
+    "loopFrames": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-000.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-001.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-002.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-003.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-004.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-005.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-006.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-007.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-008.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-009.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-010.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-0-011.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-000.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-001.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-002.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-003.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-004.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-005.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-006.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-007.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-008.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-009.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-010.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-1-011.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-000.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-001.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-002.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-003.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-004.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-005.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-006.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-007.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-008.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-009.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-010.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-2-011.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-000.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-001.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-002.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-003.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-004.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-005.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-006.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-007.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-008.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-009.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-010.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-3-011.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-4-000.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-4-001.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-4-002.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-4-003.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-4-004.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-4-005.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-2c520462f7d2416eb086ba95c65f660e-showcase-4-006.png"
+    ],
+    "counterNames": [
+        "COO.ZoneRenderer.LateUpdate",
+        "COO.Input.Update",
+        "Main Thread",
+        "GC Allocated In Frame",
+        "Draw Calls Count",
+        "Triangles Count"
+    ],
+    "counterUnits": [
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        "TimeNanoseconds",
+        "Bytes",
+        "Count",
+        "Count"
+    ],
+    "counterAvailable": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+    ]
+}

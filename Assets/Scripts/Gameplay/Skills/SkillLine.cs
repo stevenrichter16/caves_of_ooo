@@ -68,6 +68,7 @@ namespace CavesOfOoo.Skills
                 if (cell == null) break;
                 if (cell.IsSolid()) break;
                 cells.Add(new Point(x, y));
+                SpellFxCapture.PathCell(zone, x, y);
             }
             return cells;
         }
@@ -89,10 +90,11 @@ namespace CavesOfOoo.Skills
         /// </summary>
         public static List<Entity> Collect(
             Zone zone, Entity actor, int startX, int startY,
-            int dx, int dy, int range, out bool blockedByWall)
+            int dx, int dy, int range, out bool blockedByWall, List<Point> visitedCells = null)
         {
             blockedByWall = false;
             var found = new List<Entity>();
+            var seen = new HashSet<Entity>();
             if (zone == null || range <= 0 || (dx == 0 && dy == 0)) return found;
 
             int x = startX, y = startY;
@@ -104,19 +106,22 @@ namespace CavesOfOoo.Skills
                 var cell = zone.GetCell(x, y);
                 if (cell == null) break;
 
+                visitedCells?.Add(new Point(x, y));
+                SpellFxCapture.PathCell(zone, x, y);
+
                 // Creatures first WITHIN the cell, so a monster standing in
                 // a bush is what a single-target power like Ember Spit
                 // picks — you aim at the thing that can hit back.
-                for (int i = 0; i < cell.Objects.Count; i++)
+                for (int i = 0; i < cell.Occupants.Count; i++)
                 {
-                    var e = cell.Objects[i];
-                    if (AbilityTargeting.IsCreatureTarget(e, actor)) found.Add(e);
+                    var e = cell.Occupants[i];
+                    if (AbilityTargeting.IsCreatureTarget(e, actor) && seen.Add(e)) found.Add(e);
                 }
-                for (int i = 0; i < cell.Objects.Count; i++)
+                for (int i = 0; i < cell.Occupants.Count; i++)
                 {
-                    var e = cell.Objects[i];
+                    var e = cell.Occupants[i];
                     if (e != null && !e.Tags.ContainsKey("Creature")
-                        && AbilityTargeting.IsElementalTarget(e, actor))
+                        && AbilityTargeting.IsElementalTarget(e, actor) && seen.Add(e))
                         found.Add(e);
                 }
 

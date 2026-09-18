@@ -1,0 +1,3345 @@
+{
+  "status": "PASS",
+  "stage": "final-post-refinement",
+  "runId": "b89c353ebeba43cdbbdfb69b16949f83",
+  "sourceReport": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-native.json",
+  "sourceReportSha256": "b0fad8239d1e71b0bde409515c2119ddeb70e6e1722d696a4591f69638abb095",
+  "cleanupReport": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-cleanup.json",
+  "cleanupReportSha256": "23b99d489c110922a88d5891dcd740b33ed57ff45adeaf7dbe85b0e2c9645883",
+  "rawCsv": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-frames.csv",
+  "rawSha256": "67e9cb662c4ade5b1bd755d9422b0fd7b372955d97694fe09d0a8e6aa602fd1e",
+  "assertions": 419,
+  "passed": 419,
+  "checks": [
+    {
+      "name": "complete_successful_native_report",
+      "pass": true
+    },
+    {
+      "name": "all_reported_checks_pass",
+      "pass": true
+    },
+    {
+      "name": "all_seven_spell_ids",
+      "pass": true
+    },
+    {
+      "name": "all_commands_succeeded_with_stable_results",
+      "pass": true
+    },
+    {
+      "name": "all_observed_nonprofile_gestures",
+      "pass": true
+    },
+    {
+      "name": "same_run_cleanup",
+      "pass": true
+    },
+    {
+      "name": "private_root_removed",
+      "pass": true
+    },
+    {
+      "name": "run_owned_raw_csv",
+      "pass": true
+    },
+    {
+      "name": "raw_sha256_matches",
+      "pass": true
+    },
+    {
+      "name": "exact_csv_columns",
+      "pass": true
+    },
+    {
+      "name": "raw_count_matches",
+      "pass": true
+    },
+    {
+      "name": "raw_monotonic_order",
+      "pass": true
+    },
+    {
+      "name": "raw_finite_nonnegative",
+      "pass": true
+    },
+    {
+      "name": "counter_names_units",
+      "pass": true
+    },
+    {
+      "name": "required_counters_available",
+      "pass": true
+    },
+    {
+      "name": "availability_values_zone_renderer",
+      "pass": true
+    },
+    {
+      "name": "availability_values_input",
+      "pass": true
+    },
+    {
+      "name": "availability_values_main_thread",
+      "pass": true
+    },
+    {
+      "name": "availability_values_gc_bytes",
+      "pass": true
+    },
+    {
+      "name": "availability_values_draw_calls",
+      "pass": true
+    },
+    {
+      "name": "availability_values_triangles",
+      "pass": true
+    },
+    {
+      "name": "one_cast_record_per_png",
+      "pass": true
+    },
+    {
+      "name": "screenshots_are_captured_frames",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-000.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-001.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-002.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-003.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-004.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-005.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-006.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-007.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-008.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-009.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-010.png",
+      "pass": true
+    },
+    {
+      "name": "png_owned_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_sha_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-011.png",
+      "pass": true
+    },
+    {
+      "name": "png_decodes_1080p_SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-011.png",
+      "pass": true
+    },
+    {
+      "name": "capture_order_0",
+      "pass": true
+    },
+    {
+      "name": "capture_order_1",
+      "pass": true
+    },
+    {
+      "name": "capture_order_2",
+      "pass": true
+    },
+    {
+      "name": "capture_order_3",
+      "pass": true
+    },
+    {
+      "name": "capture_order_4",
+      "pass": true
+    },
+    {
+      "name": "capture_order_5",
+      "pass": true
+    },
+    {
+      "name": "capture_order_6",
+      "pass": true
+    },
+    {
+      "name": "capture_order_7",
+      "pass": true
+    },
+    {
+      "name": "capture_order_8",
+      "pass": true
+    },
+    {
+      "name": "capture_order_9",
+      "pass": true
+    },
+    {
+      "name": "capture_order_10",
+      "pass": true
+    },
+    {
+      "name": "capture_order_11",
+      "pass": true
+    },
+    {
+      "name": "capture_order_12",
+      "pass": true
+    },
+    {
+      "name": "capture_order_13",
+      "pass": true
+    },
+    {
+      "name": "capture_order_14",
+      "pass": true
+    },
+    {
+      "name": "capture_order_15",
+      "pass": true
+    },
+    {
+      "name": "capture_order_16",
+      "pass": true
+    },
+    {
+      "name": "capture_order_17",
+      "pass": true
+    },
+    {
+      "name": "capture_order_18",
+      "pass": true
+    },
+    {
+      "name": "capture_order_19",
+      "pass": true
+    },
+    {
+      "name": "capture_order_20",
+      "pass": true
+    },
+    {
+      "name": "capture_order_21",
+      "pass": true
+    },
+    {
+      "name": "capture_order_22",
+      "pass": true
+    },
+    {
+      "name": "capture_order_23",
+      "pass": true
+    },
+    {
+      "name": "capture_order_24",
+      "pass": true
+    },
+    {
+      "name": "capture_order_25",
+      "pass": true
+    },
+    {
+      "name": "capture_order_26",
+      "pass": true
+    },
+    {
+      "name": "capture_order_27",
+      "pass": true
+    },
+    {
+      "name": "capture_order_28",
+      "pass": true
+    },
+    {
+      "name": "capture_order_29",
+      "pass": true
+    },
+    {
+      "name": "capture_order_30",
+      "pass": true
+    },
+    {
+      "name": "capture_order_31",
+      "pass": true
+    },
+    {
+      "name": "capture_order_32",
+      "pass": true
+    },
+    {
+      "name": "capture_order_33",
+      "pass": true
+    },
+    {
+      "name": "capture_order_34",
+      "pass": true
+    },
+    {
+      "name": "capture_order_35",
+      "pass": true
+    },
+    {
+      "name": "capture_order_36",
+      "pass": true
+    },
+    {
+      "name": "capture_order_37",
+      "pass": true
+    },
+    {
+      "name": "capture_order_38",
+      "pass": true
+    },
+    {
+      "name": "capture_order_39",
+      "pass": true
+    },
+    {
+      "name": "capture_order_40",
+      "pass": true
+    },
+    {
+      "name": "capture_order_41",
+      "pass": true
+    },
+    {
+      "name": "capture_order_42",
+      "pass": true
+    },
+    {
+      "name": "capture_order_43",
+      "pass": true
+    },
+    {
+      "name": "capture_order_44",
+      "pass": true
+    },
+    {
+      "name": "capture_order_45",
+      "pass": true
+    },
+    {
+      "name": "capture_order_46",
+      "pass": true
+    },
+    {
+      "name": "capture_order_47",
+      "pass": true
+    },
+    {
+      "name": "capture_order_48",
+      "pass": true
+    },
+    {
+      "name": "capture_order_49",
+      "pass": true
+    },
+    {
+      "name": "capture_order_50",
+      "pass": true
+    },
+    {
+      "name": "capture_order_51",
+      "pass": true
+    },
+    {
+      "name": "capture_order_52",
+      "pass": true
+    },
+    {
+      "name": "capture_order_53",
+      "pass": true
+    },
+    {
+      "name": "capture_order_54",
+      "pass": true
+    },
+    {
+      "name": "capture_order_55",
+      "pass": true
+    },
+    {
+      "name": "capture_order_56",
+      "pass": true
+    },
+    {
+      "name": "capture_order_57",
+      "pass": true
+    },
+    {
+      "name": "capture_order_58",
+      "pass": true
+    },
+    {
+      "name": "capture_order_59",
+      "pass": true
+    },
+    {
+      "name": "capture_order_60",
+      "pass": true
+    },
+    {
+      "name": "capture_order_61",
+      "pass": true
+    },
+    {
+      "name": "capture_order_62",
+      "pass": true
+    },
+    {
+      "name": "capture_order_63",
+      "pass": true
+    },
+    {
+      "name": "capture_order_64",
+      "pass": true
+    },
+    {
+      "name": "phase_coverage_0",
+      "pass": true
+    },
+    {
+      "name": "phase_coverage_1",
+      "pass": true
+    },
+    {
+      "name": "phase_coverage_2",
+      "pass": true
+    },
+    {
+      "name": "phase_coverage_3",
+      "pass": true
+    },
+    {
+      "name": "phase_duration_and_count_totals",
+      "pass": true
+    },
+    {
+      "name": "profile_cast_total_matches_phase_sum",
+      "pass": true
+    },
+    {
+      "name": "profile_has_four_paired_20second_phases",
+      "pass": true
+    }
+  ],
+  "hardware": {
+    "unityVersion": "6000.3.4f1",
+    "gpu": "Apple M5",
+    "cpu": "Apple M5",
+    "screenWidth": 1920,
+    "screenHeight": 1080,
+    "targetFrameRate": -1,
+    "vSyncCount": 0
+  },
+  "profileSeconds": 81.68857691800002,
+  "profileFrames": 26346,
+  "activeFrames": 8184,
+  "commandCasts": 65,
+  "profileCommandCasts": 52,
+  "realKeyboardCasts": 1,
+  "commandModes": {
+    "showcase": 7,
+    "reduced-success": 2,
+    "deny-frozen": 1,
+    "peaceful": 1,
+    "empty-rain": 1,
+    "profile": 52,
+    "south-showcase": 1
+  },
+  "sevenShowcaseGestures": [
+    {
+      "spell": "Pyromancy_EmberSpit",
+      "peakDegrees": 70.34651947021484,
+      "samples": 71,
+      "restored": true
+    },
+    {
+      "spell": "Pyromancy_FlamingHands",
+      "peakDegrees": 60.57719421386719,
+      "samples": 82,
+      "restored": true
+    },
+    {
+      "spell": "Hydromancy_JetBlast",
+      "peakDegrees": 71.2887954711914,
+      "samples": 76,
+      "restored": true
+    },
+    {
+      "spell": "Galvanism_GroundSurge",
+      "peakDegrees": 67.43553161621094,
+      "samples": 72,
+      "restored": true
+    },
+    {
+      "spell": "Cryomancy_RimeGrip",
+      "peakDegrees": 55.85824203491211,
+      "samples": 71,
+      "restored": true
+    },
+    {
+      "spell": "Spellcraft_Calm",
+      "peakDegrees": 50.779300689697266,
+      "samples": 77,
+      "restored": true
+    },
+    {
+      "spell": "Hydromancy_ConjureRain",
+      "peakDegrees": 61.14954376220703,
+      "samples": 74,
+      "restored": true
+    }
+  ],
+  "phases": [
+    {
+      "index": 0,
+      "zoneId": "Overworld.3.6.0",
+      "mode": "Full",
+      "seconds": 20.423242417000004,
+      "firstFrame": 0,
+      "frames": 5970,
+      "casts": 13,
+      "activeFrames": 1854,
+      "maxMeshes": 35,
+      "castsBySpell": {
+        "Pyromancy_EmberSpit": 2,
+        "Pyromancy_FlamingHands": 2,
+        "Hydromancy_JetBlast": 2,
+        "Galvanism_GroundSurge": 2,
+        "Cryomancy_RimeGrip": 2,
+        "Spellcraft_Calm": 2,
+        "Hydromancy_ConjureRain": 1
+      },
+      "activeFraction": 0.31055276381909547,
+      "renderFramesPerSecond": 292.3140154782994,
+      "metrics": {
+        "zone_renderer": {
+          "unit": "ms",
+          "count": 5970,
+          "mean": 1.0343653030150752,
+          "p95": 1.124875,
+          "p99": 1.1994289800000009,
+          "max": 5.487084,
+          "min": 0.818292,
+          "sum": 6175.160859
+        },
+        "input": {
+          "unit": "ms",
+          "count": 5970,
+          "mean": 0.01491161825795645,
+          "p95": 0.0215,
+          "p99": 0.024775730000000034,
+          "max": 0.033625,
+          "min": 0.005208,
+          "sum": 89.022361
+        },
+        "main_thread": {
+          "unit": "ms",
+          "count": 5970,
+          "mean": 3.415904926968174,
+          "p95": 4.115610450000001,
+          "p99": 4.661503000000003,
+          "max": 21.653334,
+          "min": 2.4045,
+          "sum": 20392.952414
+        },
+        "gc_bytes": {
+          "unit": "bytes",
+          "count": 5970,
+          "mean": 30846.784087102176,
+          "p95": 38035.0,
+          "p99": 40325.0,
+          "max": 412579.0,
+          "min": 29755.0,
+          "sum": 184155301.0
+        },
+        "draw_calls": {
+          "unit": "count",
+          "count": 5970,
+          "mean": 234.2100502512563,
+          "p95": 248.0,
+          "p99": 264.0,
+          "max": 265.0,
+          "min": 228.0,
+          "sum": 1398234.0
+        },
+        "triangles": {
+          "unit": "count",
+          "count": 5970,
+          "mean": 671291.0448911223,
+          "p95": 671693.0,
+          "p99": 671725.0,
+          "max": 671745.0,
+          "min": 671143.0,
+          "sum": 4007607538.0
+        }
+      },
+      "wallFrame": {
+        "unit": "ms",
+        "count": 5970,
+        "mean": 3.420921104108878,
+        "p95": 4.119547750000001,
+        "p99": 4.70818823,
+        "max": 21.6132514,
+        "min": 2.4337088700000002,
+        "sum": 20422.89899153
+      },
+      "framesOver16_667ms": 13,
+      "framesOver50ms": 0,
+      "framesOver100ms": 0,
+      "largestMainFrames": [
+        {
+          "phase": 0,
+          "unity_frame": 7330,
+          "wall_seconds": 43.12088683446712,
+          "unscaled_delta": 0.0216132514,
+          "tick": 20,
+          "native_meshes": 0,
+          "allocated_views": 384,
+          "zone_renderer": 5093583,
+          "input": 13166,
+          "main_thread": 21653334,
+          "gc_bytes": 360637,
+          "draw_calls": 230,
+          "triangles": 671205
+        },
+        {
+          "phase": 0,
+          "unity_frame": 4533,
+          "wall_seconds": 33.52037612646712,
+          "unscaled_delta": 0.0212146267,
+          "tick": 20,
+          "native_meshes": 0,
+          "allocated_views": 384,
+          "zone_renderer": 4739875,
+          "input": 10958,
+          "main_thread": 21339083,
+          "gc_bytes": 412579,
+          "draw_calls": 229,
+          "triangles": 671215
+        },
+        {
+          "phase": 0,
+          "unity_frame": 8238,
+          "wall_seconds": 46.323673293467124,
+          "unscaled_delta": 0.0208257511,
+          "tick": 20,
+          "native_meshes": 0,
+          "allocated_views": 384,
+          "zone_renderer": 4207542,
+          "input": 18250,
+          "main_thread": 20877500,
+          "gc_bytes": 226843,
+          "draw_calls": 229,
+          "triangles": 671173
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "zoneId": "Overworld.3.6.0",
+      "mode": "Reduced",
+      "seconds": 20.423766917000002,
+      "firstFrame": 5970,
+      "frames": 5178,
+      "casts": 13,
+      "activeFrames": 1650,
+      "maxMeshes": 27,
+      "castsBySpell": {
+        "Pyromancy_EmberSpit": 2,
+        "Pyromancy_FlamingHands": 2,
+        "Hydromancy_JetBlast": 2,
+        "Galvanism_GroundSurge": 2,
+        "Cryomancy_RimeGrip": 2,
+        "Spellcraft_Calm": 2,
+        "Hydromancy_ConjureRain": 1
+      },
+      "activeFraction": 0.3186558516801854,
+      "renderFramesPerSecond": 253.5281577116913,
+      "metrics": {
+        "zone_renderer": {
+          "unit": "ms",
+          "count": 5178,
+          "mean": 1.0912131450366938,
+          "p95": 1.2218813,
+          "p99": 1.6392994099999993,
+          "max": 14.5135,
+          "min": 0.902625,
+          "sum": 5650.301665
+        },
+        "input": {
+          "unit": "ms",
+          "count": 5178,
+          "mean": 0.015601994399382,
+          "p95": 0.022423149999999985,
+          "p99": 0.02659342999999998,
+          "max": 0.047584,
+          "min": 0.00625,
+          "sum": 80.787127
+        },
+        "main_thread": {
+          "unit": "ms",
+          "count": 5178,
+          "mean": 3.9389205453843186,
+          "p95": 4.664374999999999,
+          "p99": 7.17392733999999,
+          "max": 716.733792,
+          "min": 2.59875,
+          "sum": 20395.730584
+        },
+        "gc_bytes": {
+          "unit": "bytes",
+          "count": 5178,
+          "mean": 109919.7369640788,
+          "p95": 561673.6999999981,
+          "p99": 1135821.9799999988,
+          "max": 66528120.0,
+          "min": 29755.0,
+          "sum": 569164398.0
+        },
+        "draw_calls": {
+          "unit": "count",
+          "count": 5178,
+          "mean": 232.92757821552723,
+          "p95": 244.0,
+          "p99": 257.0,
+          "max": 259.0,
+          "min": 227.0,
+          "sum": 1206099.0
+        },
+        "triangles": {
+          "unit": "count",
+          "count": 5178,
+          "mean": 671259.3503283121,
+          "p95": 671545.0,
+          "p99": 671593.0,
+          "max": 671595.0,
+          "min": 671143.0,
+          "sum": 3475780916.0
+        }
+      },
+      "wallFrame": {
+        "unit": "ms",
+        "count": 5178,
+        "mean": 3.9442796028910774,
+        "p95": 4.694095391999999,
+        "p99": 7.232430839799995,
+        "max": 705.0645,
+        "min": 2.58037844,
+        "sum": 20423.47978377
+      },
+      "framesOver16_667ms": 20,
+      "framesOver50ms": 2,
+      "framesOver100ms": 2,
+      "largestMainFrames": [
+        {
+          "phase": 1,
+          "unity_frame": 12182,
+          "wall_seconds": 61.15264666846712,
+          "unscaled_delta": 0.0167338718,
+          "tick": 20,
+          "native_meshes": 0,
+          "allocated_views": 384,
+          "zone_renderer": 6564375,
+          "input": 27417,
+          "main_thread": 716733792,
+          "gc_bytes": 40610852,
+          "draw_calls": 229,
+          "triangles": 671205
+        },
+        {
+          "phase": 1,
+          "unity_frame": 13432,
+          "wall_seconds": 66.77370770946712,
+          "unscaled_delta": 0.4637573,
+          "tick": 20,
+          "native_meshes": 0,
+          "allocated_views": 384,
+          "zone_renderer": 1002208,
+          "input": 11375,
+          "main_thread": 462951666,
+          "gc_bytes": 66528120,
+          "draw_calls": 231,
+          "triangles": 671199
+        },
+        {
+          "phase": 1,
+          "unity_frame": 12880,
+          "wall_seconds": 64.05724595946714,
+          "unscaled_delta": 0.0243170429,
+          "tick": 20,
+          "native_meshes": 0,
+          "allocated_views": 384,
+          "zone_renderer": 5888500,
+          "input": 13542,
+          "main_thread": 24271875,
+          "gc_bytes": 416375,
+          "draw_calls": 230,
+          "triangles": 671205
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "zoneId": "Overworld.3.7.0",
+      "mode": "Full",
+      "seconds": 20.422146542000007,
+      "firstFrame": 11148,
+      "frames": 7388,
+      "casts": 13,
+      "activeFrames": 2297,
+      "maxMeshes": 35,
+      "castsBySpell": {
+        "Pyromancy_EmberSpit": 2,
+        "Pyromancy_FlamingHands": 2,
+        "Hydromancy_JetBlast": 2,
+        "Galvanism_GroundSurge": 2,
+        "Cryomancy_RimeGrip": 2,
+        "Spellcraft_Calm": 2,
+        "Hydromancy_ConjureRain": 1
+      },
+      "activeFraction": 0.3109095831077423,
+      "renderFramesPerSecond": 361.7641262541087,
+      "metrics": {
+        "zone_renderer": {
+          "unit": "ms",
+          "count": 7388,
+          "mean": 0.9132981062533839,
+          "p95": 0.9788603,
+          "p99": 1.06104342,
+          "max": 7.088208,
+          "min": 0.724166,
+          "sum": 6747.446409
+        },
+        "input": {
+          "unit": "ms",
+          "count": 7388,
+          "mean": 0.009632133188955063,
+          "p95": 0.01375,
+          "p99": 0.017297330000000003,
+          "max": 0.025375,
+          "min": 0.003709,
+          "sum": 71.1622
+        },
+        "main_thread": {
+          "unit": "ms",
+          "count": 7388,
+          "mean": 2.7601770429074173,
+          "p95": 3.17906865,
+          "p99": 3.5246409600000006,
+          "max": 23.172958,
+          "min": 1.890083,
+          "sum": 20392.187993
+        },
+        "gc_bytes": {
+          "unit": "bytes",
+          "count": 7388,
+          "mean": 30113.49038982133,
+          "p95": 29872.899999999998,
+          "p99": 31246.020000000004,
+          "max": 177889.0,
+          "min": 29817.0,
+          "sum": 222478467.0
+        },
+        "draw_calls": {
+          "unit": "count",
+          "count": 7388,
+          "mean": 126.07877639415268,
+          "p95": 140.0,
+          "p99": 157.0,
+          "max": 157.0,
+          "min": 122.0,
+          "sum": 931470.0
+        },
+        "triangles": {
+          "unit": "count",
+          "count": 7388,
+          "mean": 295418.23308067134,
+          "p95": 295828.0,
+          "p99": 295850.0,
+          "max": 295864.0,
+          "min": 295284.0,
+          "sum": 2182549906.0
+        }
+      },
+      "wallFrame": {
+        "unit": "ms",
+        "count": 7388,
+        "mean": 2.764211976628316,
+        "p95": 3.210760687,
+        "p99": 3.5613308724000006,
+        "max": 23.1012478,
+        "min": 1.88608281,
+        "sum": 20421.99808333
+      },
+      "framesOver16_667ms": 12,
+      "framesOver50ms": 0,
+      "framesOver100ms": 0,
+      "largestMainFrames": [
+        {
+          "phase": 2,
+          "unity_frame": 17380,
+          "wall_seconds": 79.94164341846712,
+          "unscaled_delta": 0.0231012478,
+          "tick": 40,
+          "native_meshes": 0,
+          "allocated_views": 384,
+          "zone_renderer": 5907875,
+          "input": 14292,
+          "main_thread": 23172958,
+          "gc_bytes": 164713,
+          "draw_calls": 122,
+          "triangles": 295314
+        },
+        {
+          "phase": 2,
+          "unity_frame": 16242,
+          "wall_seconds": 76.73231829346713,
+          "unscaled_delta": 0.0196998715,
+          "tick": 40,
+          "native_meshes": 0,
+          "allocated_views": 384,
+          "zone_renderer": 6320000,
+          "input": 9375,
+          "main_thread": 19607125,
+          "gc_bytes": 121755,
+          "draw_calls": 122,
+          "triangles": 295336
+        },
+        {
+          "phase": 2,
+          "unity_frame": 20250,
+          "wall_seconds": 87.93367445946711,
+          "unscaled_delta": 0.01965217,
+          "tick": 40,
+          "native_meshes": 0,
+          "allocated_views": 384,
+          "zone_renderer": 6364833,
+          "input": 12958,
+          "main_thread": 19603000,
+          "gc_bytes": 177889,
+          "draw_calls": 122,
+          "triangles": 295342
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "zoneId": "Overworld.3.7.0",
+      "mode": "Reduced",
+      "seconds": 20.41942104200001,
+      "firstFrame": 18536,
+      "frames": 7810,
+      "casts": 13,
+      "activeFrames": 2383,
+      "maxMeshes": 27,
+      "castsBySpell": {
+        "Pyromancy_EmberSpit": 2,
+        "Pyromancy_FlamingHands": 2,
+        "Hydromancy_JetBlast": 2,
+        "Galvanism_GroundSurge": 2,
+        "Cryomancy_RimeGrip": 2,
+        "Spellcraft_Calm": 2,
+        "Hydromancy_ConjureRain": 1
+      },
+      "activeFraction": 0.3051216389244558,
+      "renderFramesPerSecond": 382.47901269756267,
+      "metrics": {
+        "zone_renderer": {
+          "unit": "ms",
+          "count": 7810,
+          "mean": 0.8727889754161332,
+          "p95": 0.9535231,
+          "p99": 1.0485799999999998,
+          "max": 7.678667,
+          "min": 0.722417,
+          "sum": 6816.481898
+        },
+        "input": {
+          "unit": "ms",
+          "count": 7810,
+          "mean": 0.008943139436619717,
+          "p95": 0.013209,
+          "p99": 0.016579219999999995,
+          "max": 0.03375,
+          "min": 0.003583,
+          "sum": 69.845919
+        },
+        "main_thread": {
+          "unit": "ms",
+          "count": 7810,
+          "mean": 2.6106730075544173,
+          "p95": 3.0926065499999997,
+          "p99": 3.51112569,
+          "max": 19.566875,
+          "min": 1.89275,
+          "sum": 20389.356189
+        },
+        "gc_bytes": {
+          "unit": "bytes",
+          "count": 7810,
+          "mean": 30087.596158770808,
+          "p95": 29844.99999999997,
+          "p99": 30872.64,
+          "max": 176251.0,
+          "min": 29823.0,
+          "sum": 234984126.0
+        },
+        "draw_calls": {
+          "unit": "count",
+          "count": 7810,
+          "mean": 124.68911651728553,
+          "p95": 134.0,
+          "p99": 149.0,
+          "max": 149.0,
+          "min": 122.0,
+          "sum": 973822.0
+        },
+        "triangles": {
+          "unit": "count",
+          "count": 7810,
+          "mean": 295393.70371318824,
+          "p95": 295682.0,
+          "p99": 295725.82,
+          "max": 295726.0,
+          "min": 295284.0,
+          "sum": 2307024826.0
+        }
+      },
+      "wallFrame": {
+        "unit": "ms",
+        "count": 7810,
+        "mean": 2.6144656792394367,
+        "p95": 3.1151038009999996,
+        "p99": 3.5091827186999986,
+        "max": 19.6037479,
+        "min": 1.89208472,
+        "sum": 20418.97695486
+      },
+      "framesOver16_667ms": 12,
+      "framesOver50ms": 0,
+      "framesOver100ms": 0,
+      "largestMainFrames": [
+        {
+          "phase": 3,
+          "unity_frame": 28188,
+          "wall_seconds": 108.86174662646712,
+          "unscaled_delta": 0.0196037479,
+          "tick": 40,
+          "native_meshes": 0,
+          "allocated_views": 384,
+          "zone_renderer": 6427541,
+          "input": 11583,
+          "main_thread": 19566875,
+          "gc_bytes": 176019,
+          "draw_calls": 122,
+          "triangles": 295344
+        },
+        {
+          "phase": 3,
+          "unity_frame": 27589,
+          "wall_seconds": 107.25927083446712,
+          "unscaled_delta": 0.0189166311,
+          "tick": 40,
+          "native_meshes": 0,
+          "allocated_views": 384,
+          "zone_renderer": 5864000,
+          "input": 11375,
+          "main_thread": 18917792,
+          "gc_bytes": 114727,
+          "draw_calls": 122,
+          "triangles": 295356
+        },
+        {
+          "phase": 3,
+          "unity_frame": 27661,
+          "wall_seconds": 107.48779779346714,
+          "unscaled_delta": 0.00348604028,
+          "tick": 40,
+          "native_meshes": 12,
+          "allocated_views": 384,
+          "zone_renderer": 1061209,
+          "input": 12500,
+          "main_thread": 18875833,
+          "gc_bytes": 29823,
+          "draw_calls": 134,
+          "triangles": 295538
+        }
+      ]
+    }
+  ],
+  "preparation": {
+    "LoadSeconds": 0.4878418,
+    "ValidationSeconds": 0.003309,
+    "PoolSeconds": 0.0026063,
+    "ViewCount": 384,
+    "UsedCachedLibrary": false
+  },
+  "firstCast": {
+    "libraryInstancesBefore": 1,
+    "libraryInstancesAfter": 1,
+    "poolBefore": 384,
+    "poolAfter": 384,
+    "peakMeshes": 14,
+    "damage": 3,
+    "cooldown": 9,
+    "ticks": 10,
+    "sawBlocking": true,
+    "sourceUnchanged": true,
+    "nativeEntry": "Pyromancy_FlamingHands",
+    "finalState": "Normal",
+    "allocatedMemoryBefore": 474732867,
+    "allocatedMemoryAfter": 470623049,
+    "maxInputNanoseconds": 8687459,
+    "maxMainNanoseconds": 21527000,
+    "maxGcBytes": 2205177,
+    "startSeconds": 12.859626751467122,
+    "wallSeconds": 0.6126059999999995,
+    "maxFrameSeconds": 0.02186203934252262
+  },
+  "imagesVerified": 108,
+  "screenshots": 9,
+  "imageFiles": [
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-000.png",
+      "sha256": "57998213bdc41a7a8b876a8e4f9d1905d78aae2c9dcfff901179d93a182fa488",
+      "bytes": 1700296,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 0.007212541999997768,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-001.png",
+      "sha256": "604e624a3553fd9d8b29f67a66da0fd8d59730d3c7751722b5cd159795f5f74b",
+      "bytes": 1703302,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 0.10511083299999768,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-002.png",
+      "sha256": "84b973dfd023fcd1c7cd51aca7ec2209d1b0044982d8c91d279df64accbc9ecb",
+      "bytes": 1699101,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 0.2037557079999992,
+      "observedMeshes": 8
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-003.png",
+      "sha256": "b7b77674911240003de631ac00528a8e64754b0f731e3b353adf783923ed7c1c",
+      "bytes": 1701643,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 0.306324416999999,
+      "observedMeshes": 23
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-004.png",
+      "sha256": "cd32637ed1845fe175758ca175c57da384f2f507d79ba1ca32f1406befa44844",
+      "bytes": 1705603,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 0.40328462499999773,
+      "observedMeshes": 23
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-005.png",
+      "sha256": "c1f85a864bb05c92a0bb1636621fb049938d00261a50fc820f6e33c2bca361f4",
+      "bytes": 1704019,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 0.5062355419999989,
+      "observedMeshes": 16
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-006.png",
+      "sha256": "9e69c65dea562e0a62edf51099661f43627acdcf8d8164806dacd5debba10e11",
+      "bytes": 1701214,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 0.603759832999998,
+      "observedMeshes": 11
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-007.png",
+      "sha256": "ad523a7501a2584781ac78a91e133391a69997f4d0b4a60abba5386a7cb6b5df",
+      "bytes": 1700701,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 0.7056343749999989,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-008.png",
+      "sha256": "aa773100213243d67f0d857e6faeb147d5421077f8c52c14944c52e6359cacc1",
+      "bytes": 1700647,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 0.8028502499999988,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-009.png",
+      "sha256": "83a355d3d2ca26171040897a5d032d4bf2b678b878c6b121e979e5d186cf02a8",
+      "bytes": 1705017,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 0.9043800829999995,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-010.png",
+      "sha256": "3185e551f92f2e2b3ce039704629db1631ed631b46fab6222a65b456906b5952",
+      "bytes": 1701865,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 1.0054874999999974,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-0-011.png",
+      "sha256": "ed28a1cdfae1ecf22f479fd2ff5414d004d7a99843e14d1daec9b45acb3ff972",
+      "bytes": 1700768,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "showcase",
+      "captureSeconds": 1.104223832999999,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-000.png",
+      "sha256": "340f1013cf1dc2666bca59622d8c7177183b97afc34ca5d691334dc2479550f9",
+      "bytes": 1710778,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 0.005726917000000498,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-001.png",
+      "sha256": "a56e27bd4ca4375f797206debd72c22594bdef5fcfac6dc22b317870ab982cf8",
+      "bytes": 1700660,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 0.102830333,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-002.png",
+      "sha256": "34a15b23b3a1ad5ddc228a8d34422fb513960b8ee17e64414e1e57dc4ba8acb1",
+      "bytes": 1700096,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 0.20246383299999948,
+      "observedMeshes": 14
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-003.png",
+      "sha256": "dfc07eca037c57c8ae36fa38ee4a105e8b24876f6c2089ea1d364753a3534b83",
+      "bytes": 1699880,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 0.3037632919999993,
+      "observedMeshes": 14
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-004.png",
+      "sha256": "032141f42d8bec939ab893f65a95c298e16f47cad98cf285a64d3fa1cfcf57f7",
+      "bytes": 1697994,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 0.40505379200000036,
+      "observedMeshes": 14
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-005.png",
+      "sha256": "3d9570ce8b12a30f36c7f4fd6d5e76a470c76988d514163235bef83e3b21a145",
+      "bytes": 1705549,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 0.5031785420000006,
+      "observedMeshes": 10
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-006.png",
+      "sha256": "7b854e9ed09893a240ed829291ed3c195db0e676e131edf5258df52c274d8f28",
+      "bytes": 1704167,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 0.6025656250000004,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-007.png",
+      "sha256": "15757cc7ad95aefea4580b6d0291fe5e4a9ad7631314ad3347cc8e8f11f252e5",
+      "bytes": 1702949,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 0.70453075,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-008.png",
+      "sha256": "d8f780a80cb6b0e8f55884989a0bbf687acbe38a44704a3a58df80a9982413cf",
+      "bytes": 1700844,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 0.804356417000001,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-009.png",
+      "sha256": "7301460cf95b29518641a747c5cf82320da767b55235682a8248b1f1673f0c83",
+      "bytes": 1701960,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 0.9027685830000003,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-010.png",
+      "sha256": "f563da3d15e51b2fa350a8a98d36d610f5834c3fc68ae5dacdfb744eacbb049d",
+      "bytes": 1706167,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 1.0045395829999997,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-1-011.png",
+      "sha256": "cb02ec215a7bee304e460fa7d24a045b4146999241010ffbe941a6c1f05e61a7",
+      "bytes": 1698921,
+      "spell": "Pyromancy_FlamingHands",
+      "mode": "showcase",
+      "captureSeconds": 1.1025509169999985,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-000.png",
+      "sha256": "78a174ecf58debd61ea9825bc4ff04c9a954fb7a69081aff26691e06d8ea264d",
+      "bytes": 1705862,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 0.006883542000000631,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-001.png",
+      "sha256": "0ac3acbe3dd9544634d7dbe8246e7e52e353a19d3eeffe948d26f4ffbeee515d",
+      "bytes": 1705905,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 0.1029168750000018,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-002.png",
+      "sha256": "e80125560fccb50d30755dcdc3ebeb370bff3077524506d4758b701944621430",
+      "bytes": 1702074,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 0.20560020899999998,
+      "observedMeshes": 3
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-003.png",
+      "sha256": "769fe2f9dde73b660bb72a2c9a62324f96ae44ac65a7a20e1c3b581d44ddd5c0",
+      "bytes": 1699244,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 0.30462295900000314,
+      "observedMeshes": 35
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-004.png",
+      "sha256": "0fb0698e4923dc35a6519d93006231aa68e6157c33689e15b774afd25db6a71b",
+      "bytes": 1701734,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 0.40468412500000284,
+      "observedMeshes": 35
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-005.png",
+      "sha256": "c5e8f68bbd7ae870354c9e2a6e0d64f40a33a422f8bcfb8524d4cb35e3583459",
+      "bytes": 1701643,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 0.505728750000003,
+      "observedMeshes": 18
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-006.png",
+      "sha256": "5bb256ba19e6cbed9e8a76564712325994d1eb6e6550b417d0328eca8080ea74",
+      "bytes": 1702366,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 0.6025356670000015,
+      "observedMeshes": 12
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-007.png",
+      "sha256": "b86eacc4ac117b8c8cb0578b8a6aef4638e515bca6382a2a9fa3a7916e4f1b84",
+      "bytes": 1703245,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 0.7048987090000018,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-008.png",
+      "sha256": "dd34efb3776e8984b96b611a24d3638842240dbd0a18093c03c5299115a3ab1b",
+      "bytes": 1698075,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 0.8068640000000009,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-009.png",
+      "sha256": "412e5d13a3b59d372eb38365b7285b240165dbe26017ba3a698a9fc34ccf62e9",
+      "bytes": 1698305,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 0.9026474170000007,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-010.png",
+      "sha256": "32a4beae349610271da29d1dda5cca46371cc553e3fc53568d6f1104bfa49b24",
+      "bytes": 1704551,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 1.004253084000002,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-2-011.png",
+      "sha256": "f90e4bad10b4e907a7993e13c6ac34e96bb21b3f96278fc8910cfd44f3a7ea6f",
+      "bytes": 1697701,
+      "spell": "Hydromancy_JetBlast",
+      "mode": "showcase",
+      "captureSeconds": 1.1047264590000019,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-000.png",
+      "sha256": "ee06bad9a47b2af5a71f88292451b2ec26655709f7a8721fe1b183066cbe66d1",
+      "bytes": 1700574,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 0.007219874999996989,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-001.png",
+      "sha256": "669a588a942347b0e919e2443b11a72a18d1dceb44048155066b8738665c39ad",
+      "bytes": 1701022,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 0.10578004099999916,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-002.png",
+      "sha256": "899c4fb5e186daf60f30989cc5e0051ce792215a4f09485b8d6de2fe719aea39",
+      "bytes": 1702840,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 0.20298604099999906,
+      "observedMeshes": 3
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-003.png",
+      "sha256": "a90ecf9645028b227534dff1b41560fb8998d95eec50bf98339922cdc84a2626",
+      "bytes": 1700753,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 0.3039655410000002,
+      "observedMeshes": 17
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-004.png",
+      "sha256": "49e6ccb34ae0edfb05a7f0d9aa9ff11d4cf243dfeb87d6fd7421d16e5385b48b",
+      "bytes": 1699259,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 0.40523229099999725,
+      "observedMeshes": 17
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-005.png",
+      "sha256": "c3bb6e9d7dfd9db01f8f549b71c865b3e308f7381cde9ff85464ec2dc7f64c23",
+      "bytes": 1700129,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 0.5038972079999979,
+      "observedMeshes": 17
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-006.png",
+      "sha256": "fef3830315052bd553f31c78f3e460b150e9fda855231a26c64eef38584a7a57",
+      "bytes": 1705253,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 0.6038197499999995,
+      "observedMeshes": 5
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-007.png",
+      "sha256": "41707570caad8c16665b8c5cf8f9d9851d06473c1e64bd12c53708e56a53d506",
+      "bytes": 1704783,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 0.704589249999998,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-008.png",
+      "sha256": "d9cfe2fe763fea66f879c20b38bad129deb21a73050abf0be9554c9c41e3794a",
+      "bytes": 1704137,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 0.8035060409999986,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-009.png",
+      "sha256": "9c8ad4347e3168dbc0e81db42c100d304ac9d0c297ef14c576a22a4db57f6c3d",
+      "bytes": 1698363,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 0.9047650409999974,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-010.png",
+      "sha256": "c8f4241b1d3f0531ac5275cb054c0905a48114171d76b3d7c28d9ed9c22cd2dc",
+      "bytes": 1697505,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 1.0031096660000003,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-3-011.png",
+      "sha256": "e9def24490eb003f3be27965e160806d4a29dc2f8bf493092b847805b2e04bfb",
+      "bytes": 1703559,
+      "spell": "Galvanism_GroundSurge",
+      "mode": "showcase",
+      "captureSeconds": 1.1045975830000003,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-000.png",
+      "sha256": "650af8c704e7885e5b2e966ee439d33d7852191e65c6b90309432f81e3f2fd8c",
+      "bytes": 1700528,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 0.006309375000000728,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-001.png",
+      "sha256": "e3778a9eea0d6ba9b1f1dd18dd0db9f8361fa8fdaad9d63f664ce34b3ea91a90",
+      "bytes": 1700103,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 0.10333904200000177,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-002.png",
+      "sha256": "45dfcc9c0fd38ef87e9a325cc43d833ced1895b7289176a4bd572df64f3939b8",
+      "bytes": 1710227,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 0.20471554200000242,
+      "observedMeshes": 12
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-003.png",
+      "sha256": "f76d8b01e91557f48c9f7f7515ecc1f9e4fc7daed4b5df35b2689142f0c77b86",
+      "bytes": 1700552,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 0.30518883400000263,
+      "observedMeshes": 15
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-004.png",
+      "sha256": "0180b0187a6d81f69cead8a7dc36f6b16af7dc7bbff920cca949f3cab6ddc807",
+      "bytes": 1702811,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 0.4059151670000034,
+      "observedMeshes": 15
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-005.png",
+      "sha256": "e788a6d16ebfcc08e96ae0ec360b9d0f4f48c678508c5f5c7468347122b55ff3",
+      "bytes": 1700544,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 0.5052090840000005,
+      "observedMeshes": 12
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-006.png",
+      "sha256": "2d610576cef78e751d0e27cca336169f34b713e02d1973d9967d1954b0eb6be4",
+      "bytes": 1710731,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 0.6033078750000023,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-007.png",
+      "sha256": "60a732d08cee33b07436572b103fb2937306b502d082a6e70abf896d185fb2f5",
+      "bytes": 1702562,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 0.7053651670000001,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-008.png",
+      "sha256": "a0b7554c4e895f014180eb327641bd0a37e4e68d70d768fe9def2b539082f8b9",
+      "bytes": 1701557,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 0.8051361250000006,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-009.png",
+      "sha256": "387990951647345f021e48a9f310f514460784b8dd25471450d735606b9f02de",
+      "bytes": 1703173,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 0.9038651250000029,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-010.png",
+      "sha256": "88dabbf258eb2e200ad3353f7d9125fff1640259de5dd7323778a0a77b725101",
+      "bytes": 1703468,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 1.0045241250000032,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-4-011.png",
+      "sha256": "3df6e4e2f6d642083546ba43d59cb2640ca777abc8712fa519e9af02b860b6cc",
+      "bytes": 1708839,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "showcase",
+      "captureSeconds": 1.102845792,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-000.png",
+      "sha256": "31b6b6e058cea97912fa0815d8edb93ee40521d647636cbc9a4da60aaf6a229e",
+      "bytes": 1701575,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 0.004870166999999981,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-001.png",
+      "sha256": "f6347e9ec8818545be451b7e1af0b38949c8fc505df00b5e037c714cc8130fa6",
+      "bytes": 1704888,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 0.10313208299999843,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-002.png",
+      "sha256": "b09a4d7b0e6fb9f62ff03304bdcd80cf64ae68a612169186a5c31b384b08dd1d",
+      "bytes": 1707465,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 0.2037806670000002,
+      "observedMeshes": 3
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-003.png",
+      "sha256": "b1c49e57333bc9792afc00e8a9655f96672986f156be4993507398a12083be3f",
+      "bytes": 1699621,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 0.305595499999999,
+      "observedMeshes": 5
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-004.png",
+      "sha256": "b73ea7f9107f8b9227f73d4ec17e1237e1a454a81a0e315e43bf7e24b9c497fa",
+      "bytes": 1702639,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 0.40310362499999997,
+      "observedMeshes": 7
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-005.png",
+      "sha256": "658317db140883f905cd195d09760b7d792f8a45607e3067b6859503e01de189",
+      "bytes": 1704890,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 0.505397833,
+      "observedMeshes": 6
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-006.png",
+      "sha256": "a32680019923d8694540ebccd1f8efb5218c0120d739e76b7563bd6dcfb9ed4f",
+      "bytes": 1704539,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 0.6036627079999981,
+      "observedMeshes": 4
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-007.png",
+      "sha256": "b8b52fbf7a3df59a42efd686c2ee5be091cedd9d7b7bff3c25fd8fd834ba1fb2",
+      "bytes": 1701230,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 0.704348207999999,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-008.png",
+      "sha256": "31d8124058753937ed2eb66fb7c94fbfb8206615faacdf6e7d4ce14c2cc7cf78",
+      "bytes": 1703583,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 0.8026816669999981,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-009.png",
+      "sha256": "3c748a52ed68c1f309688427b122cdd4b3769f8f99c8c3d3e6c60896777e8b1b",
+      "bytes": 1701169,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 0.9030203329999971,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-010.png",
+      "sha256": "05cd8d376c0b988e732393b01f5ea65a2e10e1282ee066e2271bea6189f0b73b",
+      "bytes": 1699841,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 1.005689125,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-5-011.png",
+      "sha256": "69cb31c414b643d8bd19b32c3f87440327681a925e7726e10556d003638b924e",
+      "bytes": 1703660,
+      "spell": "Spellcraft_Calm",
+      "mode": "showcase",
+      "captureSeconds": 1.1033229999999996,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-000.png",
+      "sha256": "8c5ed1535a48cee27d90b540fb5e63115265d73b563e2b479ceb6fe0e7ab3270",
+      "bytes": 1701636,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 0.005424875000002771,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-001.png",
+      "sha256": "8081699bee620dc103407a6b9f7412274a238a0b94f8bd5ed4cf417ccdd672f9",
+      "bytes": 1700129,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 0.10482279100000014,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-002.png",
+      "sha256": "c921442c817b496aa05e69139fb133fd7af7ec129551d6e4f39ce42f9b614a3e",
+      "bytes": 1699666,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 0.20322887500000064,
+      "observedMeshes": 1
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-003.png",
+      "sha256": "69e4b42d20ecded7a7c29d01e0729557a7feac2df2c253ed57eb5afccbcd0f15",
+      "bytes": 1701385,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 0.3041339160000014,
+      "observedMeshes": 15
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-004.png",
+      "sha256": "f1320cb1ee7d2fef17e449524cf86551df28570d13dc9b8456851faae6d58f00",
+      "bytes": 1702375,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 0.40479712500000176,
+      "observedMeshes": 15
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-005.png",
+      "sha256": "8ea5bce5692e24dcc773c83e38944650eae6eabf70b80cfff868be2fb420eb74",
+      "bytes": 1699333,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 0.5025707080000004,
+      "observedMeshes": 3
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-006.png",
+      "sha256": "0186cde271426518aebfc1529bb2d44d4ad702e53c837ecd574cf79dea4768a9",
+      "bytes": 1699670,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 0.6023631250000001,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-007.png",
+      "sha256": "fe7c2db4a181d5b2df9e72a4743937825d1d253a9c290ca7b287103459184628",
+      "bytes": 1702517,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 0.7031332500000005,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-008.png",
+      "sha256": "347d81576396dd7e94e38154a9d462c7f2facaad2cecaf33d1fd60a3f6b63948",
+      "bytes": 1708024,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 0.804909833,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-009.png",
+      "sha256": "2c9cc61b7d9fd85f32238cf43b823358e4b113aeb6a81353f2e6734a56fc8984",
+      "bytes": 1702135,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 0.9037124580000011,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-010.png",
+      "sha256": "6ddd8439f2ea0ee340b2e7e1b8bdff4e7ed144cb0d3c8f0eee95f5cbcb0baf02",
+      "bytes": 1699772,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 1.0031757080000006,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-showcase-6-011.png",
+      "sha256": "9f2e6d56b69ca63b21df086aab1074a5d15c4e8b8e80c1e0341d40a79350f3f4",
+      "bytes": 1701683,
+      "spell": "Hydromancy_ConjureRain",
+      "mode": "showcase",
+      "captureSeconds": 1.1042687500000028,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-000.png",
+      "sha256": "3b74ec4e51d075010c0e2979df69c995d2b8ca315c6cb1ccf530f2c2d9af619e",
+      "bytes": 1702648,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 0.006534042000005513,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-001.png",
+      "sha256": "8f38eb40b7bd8ad684b22a31ea43e1bd296723804f34b248f325b6edbab1bdda",
+      "bytes": 1699804,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 0.10381220900000443,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-002.png",
+      "sha256": "9d12b18aa65aebca0f34118d7c6fcac91a4cfb3076515a63b58c20b95cf80da2",
+      "bytes": 1703469,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 0.20376062500000103,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-003.png",
+      "sha256": "899e67dc1c3c3ec2d57c45cc23bb01bc216380d4a48ab33debe389311347d609",
+      "bytes": 1703103,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 0.30548308400000224,
+      "observedMeshes": 1
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-004.png",
+      "sha256": "36645a5a792283348926e6a4e6e79451925ca683540a7ce9e476b2e4c9fd0368",
+      "bytes": 1700067,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 0.4028186250000019,
+      "observedMeshes": 1
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-005.png",
+      "sha256": "87c930f76871bfdf2d62634eecccbd75f1f15096dfbf3b36e84668481e30d442",
+      "bytes": 1704422,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 0.5034820420000017,
+      "observedMeshes": 1
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-006.png",
+      "sha256": "5b43d7ab90fd128b1cac25f12415f1a7e4d1752a5a99b217994981055bd43f25",
+      "bytes": 1708646,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 0.6032668750000028,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-007.png",
+      "sha256": "b99ad14c603d78b0ecf2612d25c9f4ce3521fa55d445e00be07c592c9b166f6f",
+      "bytes": 1701533,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 0.7036805840000042,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-008.png",
+      "sha256": "13a8088ee35f827e5a7f93ab15cebd5c9642a0e8ee37a57ef781bd4141dfa842",
+      "bytes": 1713895,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 0.8031119170000025,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-009.png",
+      "sha256": "d0c455d1c71fcdc8fd75710bc96aee36b90a070bcd9c556eaf2762bfd1870ec0",
+      "bytes": 1700395,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 0.9041904590000058,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-010.png",
+      "sha256": "ba64dfd8041f17ddb1a7b1b3971fe00c592424b87c464910762c4f5f42ce1c82",
+      "bytes": 1709848,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 1.003649375000002,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-deny-frozen-4-011.png",
+      "sha256": "b8a0841cb1e8cee8e2c1bae565bd12776f48d7b225e90de40ef2c0ba1fb149d4",
+      "bytes": 1703041,
+      "spell": "Cryomancy_RimeGrip",
+      "mode": "deny-frozen",
+      "captureSeconds": 1.1034130419999997,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-000.png",
+      "sha256": "3dc514c2ee2723fe4152d7837a2e6f1f31f60786d43f689e196665f5c90fe4c2",
+      "bytes": 824099,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 0.007696874999993497,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-001.png",
+      "sha256": "bfd9ff84c3bdac1957d06e22369199a94319dcb5d2c1de8643c860f15b33890f",
+      "bytes": 822468,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 0.1036900830000036,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-002.png",
+      "sha256": "4fd2643a0eac2c68bb5877d1412afc38bb7baf94832108607c49f8dc71c37ca0",
+      "bytes": 824366,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 0.20427399999999807,
+      "observedMeshes": 6
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-003.png",
+      "sha256": "cafe770cce04ad85d4df9a73c4453537a4fba7f660dea76c24007169640248d8",
+      "bytes": 823186,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 0.3052090410000119,
+      "observedMeshes": 12
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-004.png",
+      "sha256": "39c148d1e40118dd1ef54cad64923f8f9ee1cd1c88668a51d04a13b1f8f16507",
+      "bytes": 828718,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 0.40200962500000514,
+      "observedMeshes": 12
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-005.png",
+      "sha256": "c15b17e2630719e8e41860781ae22ba8de47a1b0f15dceeac32c5a91622b0eec",
+      "bytes": 831020,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 0.5027502500000196,
+      "observedMeshes": 7
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-006.png",
+      "sha256": "a58a70e645a6711d3eda88b026bf74a447bc01d1682c61b11cce52e70336a739",
+      "bytes": 831604,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 0.6047567079999965,
+      "observedMeshes": 2
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-007.png",
+      "sha256": "83eec5058a3c91da9d8ffcfaaef0754a6f6d516bd9e7b2a6e0dcf93dbcf04dd9",
+      "bytes": 828265,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 0.7040590409999936,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-008.png",
+      "sha256": "02991f51f974d0acca087e9cd8a504ad0e62e98e4d2d5eb68be4a15c509f78aa",
+      "bytes": 827731,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 0.8034072500000207,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-009.png",
+      "sha256": "99f28d10ea7da2545d9330c260f201497d21387945c903023247ec81038d0da8",
+      "bytes": 823367,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 0.9047934160000182,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-010.png",
+      "sha256": "3dc721a99fe874588a61612628ce25aedb314c21d4c0a03b1bf997a0288b17a2",
+      "bytes": 832724,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 1.0021607909999943,
+      "observedMeshes": 0
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-south-showcase-0-011.png",
+      "sha256": "2587e6080e6b5f0ab51631a5da4418a6d65628c47ea81c2d7667783dfb227af1",
+      "bytes": 832006,
+      "spell": "Pyromancy_EmberSpit",
+      "mode": "south-showcase",
+      "captureSeconds": 1.1030824160000066,
+      "observedMeshes": 0
+    }
+  ],
+  "quantileMethod": "Linear interpolation at index (N-1)*p (R7); all raw phase frames retained including startup-of-cast and worst outliers.",
+  "honestyBounds": "Actual native1920x1080 Main GameView. One real current-hotbar Flaming Hands/direction cast and ordinary N/south seam input. Other casts are explicitly reset deterministic SkillsPart commands using the real player and disposable unfactioned recipient/crop fixtures; their copied queue records are observed without draining. Showcase/control cases restore only their bounded lane's original ground before each command, so prior fixture writing is not mistaken for the next spell; ordinary accumulated writing remains during profile phases. Profile is four20s native render phases, paired Full/Reduced in town and south; startup/bind/screenshots excluded, fixture setup/observer/counter overhead included. World simulation does not advance during command-fixture playback. Captures use1x settings with measured wall timestamps; capture overhead may lower sampling rate. This establishes observable presentation and cleanup, not subjective comfort, process-cold/build performance or long-session leak confidence.",
+  "interpretation": "This is the final post-refinement native capture; prior intermediate receipts are preserved separately. The phases include whole-editor/game frame cost and deterministic fixture/counter overhead, not exclusive spell cost. Fixed sequential Full/Reduced runs are descriptive and do not establish that Reduced is faster. Startup preparation and screenshot/gesture-observation segments are excluded from the four measured phases."
+}

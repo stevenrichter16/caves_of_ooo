@@ -41,10 +41,10 @@ namespace CavesOfOoo.Scenarios.Custom
             Check("repeat_nonstacking",player.GetStatValue("DV")==dv-2&&player.GetPart<StatusEffectsPart>().GetAllEffects().Count(e=>e is ConfusedEffect)==1);
             Require(MovementSystem.TryMove(player,ctx.Zone,1,0),"leave point");Wait(ctx);Wait(ctx);
             Check("movement_recovers",!Confused(player)&&player.GetStatValue("DV")==dv);
-            ctx.Zone.MoveEntity(player,40,5);Wait(ctx);Check("bare_position_control",!Confused(player)&&player.GetStatValue("DV")==dv);
+            ctx.Zone.MoveEntity(player,36,10);Wait(ctx);Check("bare_position_control",!Confused(player)&&player.GetStatValue("DV")==dv);
             var flower=ctx.Factory.CreateEntity("FlowerField");Require(flower!=null,"flower");
-            Check("bare_rejects_flower",!ctx.Zone.AddEntity(flower,40,5)&&ctx.Zone.GetEntityCell(flower)==null);
-            Check("ordinary_accepts_flower",ctx.Zone.AddEntity(flower,41,5));ctx.Zone.RemoveEntity(flower);
+            Check("bare_rejects_flower",!ctx.Zone.AddEntity(flower,36,10)&&ctx.Zone.GetEntityCell(flower)==null);
+            Check("ordinary_accepts_flower",ctx.Zone.AddEntity(flower,37,10));ctx.Zone.RemoveEntity(flower);
             ctx.Zone.MoveEntity(player,FellingSiteBuilder.SeventhX,FellingSiteBuilder.SeventhY);
             ProfileDV=player.GetStatValue("DV");ZoneRenderHooks.MarkFullDirty("FellingSiteBench");
             if(Application.isPlaying)new GameObject("Felling Site Native Audit").AddComponent<FellingSiteBenchPlayer>().Initialize(ctx,this);

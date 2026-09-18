@@ -59,7 +59,7 @@ namespace CavesOfOoo.Core
             "GTTTTGGGSSSSSDDDDDDD", // 4   (5,4) the Deepest Cathedral · (16,4) Spivenor
             "GGTTTTGGSSSSSSDDDDDD", // 5   (3,5) the Felling-Site · (17,5) the Drowned Ledger
             "GGGGGGGSSSSSSSSSDDDD", // 6   (4,6) Olderdeep · (6,6) Cinderhold · (15,6) Sumphold
-            "GGGGGGSSSSSSSSSDDDDD", // 7   (13,7) Tine
+            "GGGTGGSSSSSSSSSDDDDD", // 7   (3,7) exposed southern root spur · (13,7) Tine
             "GGGGGSSSSSSSSSSDDDDD", // 8   (7,8) Gantry
             "OOOGSSSSSSSSSSSSDDDD", // 9   (5,9) Posy · (14,9) Quillhold
             "OOOOSSSSSSSSSSSSSDDD", // 10  (10,10) SILL — the start
@@ -208,14 +208,15 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static readonly Place[] Places =
         {
+            new Place( 3,  6, "Morrowfast",         "Stillcord", profile: "Morrowfast"),
             new Place(10, 10, "Sill",               "Villagers"),
-            new Place( 7,  8, "Gantry",             "Villagers"),
-            new Place(13,  7, "Tine",               "Villagers"),
+            new Place( 7,  8, "Gantry",             "Villagers", profile: "CrossroadsExchange"),
+            new Place(13,  7, "Tine",               "Villagers", profile: "LakesideVillage"),
             new Place( 6,  6, "Cinderhold",         "SaccharineConcord", profile: "PruningPost"),
             new Place( 5,  9, "Posy",               "BowerFolk"),
             new Place(12, 12, "Marrowstye",         "PaleCuration",     profile: "Intake"),
-            new Place(14,  9, "Quillhold",          "Palimpsest"),
-            new Place(10, 14, "Tally",              "SaccharineConcord"),
+            new Place(14,  9, "Quillhold",          "Palimpsest", profile: "PrimaryArchive"),
+            new Place(10, 14, "Tally",              "SaccharineConcord", profile: "CentralExchange"),
             new Place( 8, 16, "Wellmeet",           "TentRight",        profile: "TentCamp"),
             new Place( 5, 17, "the First Tent",     "TentRight",        profile: "TentCampFirst"),
             new Place(15, 15, "the Salt-Vault",     "PaleCuration"),

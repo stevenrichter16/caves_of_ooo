@@ -87,6 +87,8 @@ namespace CavesOfOoo.Rendering
         public KeyCode SelectedActivationKey { get; private set; }
         public Entity SelectedTarget => _target;
         public Cell SelectedCell => _cell;
+        /// <summary>True only for the whole-pile summary menu. An individual
+        /// target may share a pile cell without inheriting summary actions.</summary>
         public bool SelectedCellIsPile => _cellIsPile;
 
         /// <summary>
@@ -101,14 +103,16 @@ namespace CavesOfOoo.Rendering
         /// beforehand and skip opening if they prefer.
         /// </summary>
         public void Open(Entity actor, Entity target, Cell cell, List<InventoryAction> actions,
-            Zone zone)
+            Zone zone, bool isPileSummary = false)
         {
             _isOpen = true;
             _target = target;
             _cell = cell;
             _statusLines.Clear();
             _statusLines.AddRange(BuildStatusLinesFor(target, cell, zone));
-            _cellIsPile = WorldInteractionSystem.IsPileCell(cell);
+            // Physical occupancy cannot distinguish a pile summary from the
+            // selected owner's menu after the player chooses an exact target.
+            _cellIsPile = isPileSummary;
             _actions.Clear();
             if (actions != null)
                 _actions.AddRange(actions);

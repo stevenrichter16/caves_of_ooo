@@ -36,7 +36,9 @@ namespace CavesOfOoo.Skills
             var hp = ParentEntity?.GetStat("Hitpoints");
             if (hp == null) return;
             int heal = 4 * totalMarks;
+            int hpBefore = hp.BaseValue;
             hp.BaseValue = Math.Min(hp.Max, hp.BaseValue + heal);
+            SpellFxCapture.RecordOutcome(zone, ParentEntity, "healing", "Hitpoints", hp.BaseValue - hpBefore);
             MessageLog.Add(ParentEntity.GetDisplayName()
                 + " balances the ledger and closes " + heal + " of their own wounds.");
         }

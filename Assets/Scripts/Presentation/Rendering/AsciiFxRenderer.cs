@@ -16,6 +16,7 @@ namespace CavesOfOoo.Rendering
         private const float DefaultBurstDuration = 0.18f;
         private const float ParticleLifetime = 0.08f;
         private const float OrbitFrameDuration = 0.03f;
+        private static readonly Matrix4x4 CompactAuraTransform = Matrix4x4.Scale(new Vector3(.35f, .35f, 1f));
 
         private readonly Tilemap _tilemap;
         private readonly System.Random _rng = new System.Random(1337);
@@ -42,6 +43,11 @@ namespace CavesOfOoo.Rendering
 
         private Zone _currentZone;
         private bool _hadVisibleFxLastFrame;
+        internal bool CoordinatorOwned { get; set; }
+        public bool ClipToFieldOfView { get; set; } = true;
+        /// <summary>Native presentation shrinks aura decoration and static state markers.
+        /// Explicit particles and floating readouts retain their normal size.</summary>
+        public bool CompactAuras { get; set; }
 
         public AsciiFxRenderer(Tilemap tilemap)
         {
@@ -71,7 +77,8 @@ namespace CavesOfOoo.Rendering
         {
             using (PerformanceMarkers.Fx.Update.Auto())
             {
-                ConsumeRequests();
+                if (!CoordinatorOwned)
+                    WorldFxCoordinator.ConsumeLegacyRequests(this);
                 UpdateAuras(deltaTime);
                 UpdateChargeOrbits(deltaTime);
                 UpdateRingWaves(deltaTime);
@@ -108,162 +115,146 @@ namespace CavesOfOoo.Rendering
             }
         }
 
-        private void ConsumeRequests()
+        /// <summary>Accept a borrowed request. The coordinator retains/recycles its ownership.</summary>
+        public void AcceptRequest(AsciiFxRequest request)
         {
-            using (PerformanceMarkers.Fx.ConsumeRequests.Auto())
+            if (request == null) return;
+            if (request.Type == AsciiFxRequestType.AuraStop)
             {
-                List<AsciiFxRequest> requests = AsciiFxBus.Drain();
-                for (int i = 0; i < requests.Count; i++)
-                {
-                    AsciiFxRequest request = requests[i];
-                    if (request == null)
-                        continue;
+                RemoveAura(request.Anchor, request.Theme);
+                return;
+            }
 
-                    // After this point every code path returns the request
-                    // to AsciiFxBus's pool via the `release:` label so a
-                    // future Rent reuses the same instance instead of
-                    // allocating. Tier-B Fix #1.
-                    if (request.Type == AsciiFxRequestType.AuraStop)
+            if (_currentZone == null || request.Zone != _currentZone)
+                return;
+
+            switch (request.Type)
+            {
+                case AsciiFxRequestType.Projectile:
+                    if (request.Path != null && request.Path.Count > 0)
                     {
-                        RemoveAura(request.Anchor, request.Theme);
-                        goto release;
+                        _projectiles.Add(new ProjectileFxInstance
+                        {
+                            Theme = request.Theme,
+                            Path = request.Path,
+                            Trail = request.Trail,
+                            BlocksTurnAdvance = request.BlocksTurnAdvance,
+                            DelayRemaining = request.Delay,
+                            CurrentIndex = 0
+                        });
                     }
+                    break;
 
-                    if (_currentZone == null || request.Zone != _currentZone)
-                        goto release;
-
-                    switch (request.Type)
+                case AsciiFxRequestType.Burst:
+                    _bursts.Add(new BurstFxInstance
                     {
-                        case AsciiFxRequestType.Projectile:
-                            if (request.Path != null && request.Path.Count > 0)
-                            {
-                                _projectiles.Add(new ProjectileFxInstance
-                                {
-                                    Theme = request.Theme,
-                                    Path = request.Path,
-                                    Trail = request.Trail,
-                                    BlocksTurnAdvance = request.BlocksTurnAdvance,
-                                    DelayRemaining = request.Delay,
-                                    CurrentIndex = 0
-                                });
-                            }
-                            break;
+                        Theme = request.Theme,
+                        X = request.X,
+                        Y = request.Y,
+                        Duration = request.Duration > 0f ? request.Duration : DefaultBurstDuration,
+                        BlocksTurnAdvance = request.BlocksTurnAdvance,
+                        DelayRemaining = request.Delay
+                    });
+                    break;
 
-                        case AsciiFxRequestType.Burst:
-                            _bursts.Add(new BurstFxInstance
-                            {
-                                Theme = request.Theme,
-                                X = request.X,
-                                Y = request.Y,
-                                Duration = request.Duration > 0f ? request.Duration : DefaultBurstDuration,
-                                BlocksTurnAdvance = request.BlocksTurnAdvance,
-                                DelayRemaining = request.Delay
-                            });
-                            break;
-
-                        case AsciiFxRequestType.AuraStart:
-                            if (request.Anchor != null)
-                            {
-                                _auras[new AuraKey(request.Anchor, request.Theme)] = new AuraEmitterInstance
-                                {
-                                    Zone = request.Zone,
-                                    Anchor = request.Anchor,
-                                    Theme = request.Theme
-                                };
-                            }
-                            break;
-
-                        case AsciiFxRequestType.Beam:
-                            if (request.Path != null && request.Path.Count > 0)
-                            {
-                                _beams.Add(new BeamFxInstance
-                                {
-                                    Theme = request.Theme,
-                                    Path = request.Path,
-                                    DX = request.DX,
-                                    DY = request.DY,
-                                    Duration = request.Duration,
-                                    BlocksTurnAdvance = request.BlocksTurnAdvance,
-                                    DelayRemaining = request.Delay
-                                });
-                            }
-                            break;
-
-                        case AsciiFxRequestType.ChargeOrbit:
-                            if (request.Anchor != null)
-                            {
-                                _chargeOrbits.Add(new ChargeOrbitFxInstance
-                                {
-                                    Theme = request.Theme,
-                                    Anchor = request.Anchor,
-                                    Zone = request.Zone,
-                                    Radius = request.Radius,
-                                    Duration = request.Duration,
-                                    BlocksTurnAdvance = request.BlocksTurnAdvance,
-                                    DelayRemaining = request.Delay
-                                });
-                            }
-                            break;
-
-                        case AsciiFxRequestType.RingWave:
-                            _ringWaves.Add(new RingWaveFxInstance
-                            {
-                                Theme = request.Theme,
-                                X = request.X,
-                                Y = request.Y,
-                                MaxRadius = request.MaxRadius,
-                                StepDuration = request.StepDuration,
-                                BlocksTurnAdvance = request.BlocksTurnAdvance,
-                                DelayRemaining = request.Delay
-                            });
-                            break;
-
-                        case AsciiFxRequestType.ChainArc:
-                            if (request.Path != null && request.Path.Count >= 2)
-                            {
-                                _chainArcs.Add(new ChainArcFxInstance
-                                {
-                                    Theme = request.Theme,
-                                    Hops = request.Path,
-                                    HopDuration = request.StepDuration,
-                                    BlocksTurnAdvance = request.BlocksTurnAdvance,
-                                    DelayRemaining = request.Delay
-                                });
-                            }
-                            break;
-
-                        case AsciiFxRequestType.Particle:
-                            _particles.Add(new ParticleFxInstance
-                            {
-                                X = request.X,
-                                Y = request.Y,
-                                Glyph = request.Glyph,
-                                ColorString = request.ColorString,
-                                Remaining = request.Lifetime,
-                                DY = request.DY,
-                                MoveInterval = request.MoveInterval,
-                                DelayRemaining = request.Delay
-                            });
-                            break;
-
-                        case AsciiFxRequestType.ColumnRise:
-                            _columnRises.Add(new ColumnRiseFxInstance
-                            {
-                                Theme = request.Theme,
-                                X = request.X,
-                                Y = request.Y,
-                                Height = request.Height,
-                                StepDuration = request.StepDuration,
-                                LingerDuration = request.LingerDuration,
-                                BlocksTurnAdvance = request.BlocksTurnAdvance,
-                                DelayRemaining = request.Delay
-                            });
-                            break;
+                case AsciiFxRequestType.AuraStart:
+                    if (request.Anchor != null)
+                    {
+                        _auras[new AuraKey(request.Anchor, request.Theme)] = new AuraEmitterInstance
+                        {
+                            Zone = request.Zone,
+                            Anchor = request.Anchor,
+                            Theme = request.Theme
+                        };
                     }
+                    break;
 
-                    release:
-                    AsciiFxBus.Release(request);
-                }
+                case AsciiFxRequestType.Beam:
+                    if (request.Path != null && request.Path.Count > 0)
+                    {
+                        _beams.Add(new BeamFxInstance
+                        {
+                            Theme = request.Theme,
+                            Path = request.Path,
+                            DX = request.DX,
+                            DY = request.DY,
+                            Duration = request.Duration,
+                            BlocksTurnAdvance = request.BlocksTurnAdvance,
+                            DelayRemaining = request.Delay
+                        });
+                    }
+                    break;
+
+                case AsciiFxRequestType.ChargeOrbit:
+                    if (request.Anchor != null)
+                    {
+                        _chargeOrbits.Add(new ChargeOrbitFxInstance
+                        {
+                            Theme = request.Theme,
+                            Anchor = request.Anchor,
+                            Zone = request.Zone,
+                            Radius = request.Radius,
+                            Duration = request.Duration,
+                            BlocksTurnAdvance = request.BlocksTurnAdvance,
+                            DelayRemaining = request.Delay
+                        });
+                    }
+                    break;
+
+                case AsciiFxRequestType.RingWave:
+                    _ringWaves.Add(new RingWaveFxInstance
+                    {
+                        Theme = request.Theme,
+                        X = request.X,
+                        Y = request.Y,
+                        MaxRadius = request.MaxRadius,
+                        StepDuration = request.StepDuration,
+                        BlocksTurnAdvance = request.BlocksTurnAdvance,
+                        DelayRemaining = request.Delay
+                    });
+                    break;
+
+                case AsciiFxRequestType.ChainArc:
+                    if (request.Path != null && request.Path.Count >= 2)
+                    {
+                        _chainArcs.Add(new ChainArcFxInstance
+                        {
+                            Theme = request.Theme,
+                            Hops = request.Path,
+                            HopDuration = request.StepDuration,
+                            BlocksTurnAdvance = request.BlocksTurnAdvance,
+                            DelayRemaining = request.Delay
+                        });
+                    }
+                    break;
+
+                case AsciiFxRequestType.Particle:
+                    _particles.Add(new ParticleFxInstance
+                    {
+                        X = request.X,
+                        Y = request.Y,
+                        Glyph = request.Glyph,
+                        ColorString = request.ColorString,
+                        Remaining = request.Lifetime,
+                        DY = request.DY,
+                        MoveInterval = request.MoveInterval,
+                        DelayRemaining = request.Delay
+                    });
+                    break;
+
+                case AsciiFxRequestType.ColumnRise:
+                    _columnRises.Add(new ColumnRiseFxInstance
+                    {
+                        Theme = request.Theme,
+                        X = request.X,
+                        Y = request.Y,
+                        Height = request.Height,
+                        StepDuration = request.StepDuration,
+                        LingerDuration = request.LingerDuration,
+                        BlocksTurnAdvance = request.BlocksTurnAdvance,
+                        DelayRemaining = request.Delay
+                    });
+                    break;
             }
         }
 
@@ -297,6 +288,7 @@ namespace CavesOfOoo.Rendering
                     if (config.AuraGlyphs.Length == 0 || config.AuraColors.Length == 0)
                         continue;
 
+                    if (SpellFxSettings.Mode == SpellFxMode.Off) continue;
                     aura.SpawnTimer += deltaTime;
                     while (aura.SpawnTimer >= config.AuraInterval)
                     {
@@ -332,7 +324,8 @@ namespace CavesOfOoo.Rendering
                     ColorString = config.AuraColors[_rng.Next(config.AuraColors.Length)],
                     Remaining = config.AuraRiseLifetime,
                     DY = -1, // -1 in game coords = upward on screen
-                    MoveInterval = config.AuraRiseInterval
+                    MoveInterval = config.AuraRiseInterval,
+                    IsAura = true
                 });
             }
             else
@@ -351,7 +344,8 @@ namespace CavesOfOoo.Rendering
                     Y = y,
                     Glyph = config.AuraGlyphs[_rng.Next(config.AuraGlyphs.Length)],
                     ColorString = config.AuraColors[_rng.Next(config.AuraColors.Length)],
-                    Remaining = ParticleLifetime
+                    Remaining = ParticleLifetime,
+                    IsAura = true
                 });
             }
         }
@@ -608,12 +602,21 @@ namespace CavesOfOoo.Rendering
                 bool hasVisibleFx = _projectiles.Count > 0 || _bursts.Count > 0 || _particles.Count > 0 ||
                                     _beams.Count > 0 || _chargeOrbits.Count > 0 || _ringWaves.Count > 0 ||
                                     _chainArcs.Count > 0 || _columnRises.Count > 0 ||
-                                    _dustMotes.Count > 0;
+                                    _dustMotes.Count > 0 || (SpellFxSettings.Mode == SpellFxMode.Off && _auras.Count > 0);
                 if (!hasVisibleFx && !_hadVisibleFxLastFrame)
                     return;
 
                 _tilemap.ClearAllTiles();
                 PerformanceDiagnostics.RecordTilemapClear();
+
+                if (SpellFxSettings.Mode == SpellFxMode.Off)
+                    foreach (var aura in _auras.Values)
+                    {
+                        var at = _currentZone.GetEntityCell(aura.Anchor);
+                        var config = GetThemeConfig(aura.Theme);
+                        if (at != null && config.AuraGlyphs.Length > 0 && config.AuraColors.Length > 0)
+                            RenderGlyphAt(at.X, at.Y, config.AuraGlyphs[0], config.AuraColors[0], isAura: true);
+                    }
 
                 for (int i = 0; i < _particles.Count; i++)
                     RenderParticle(_particles[i]);
@@ -813,12 +816,16 @@ namespace CavesOfOoo.Rendering
         {
             if (particle.DelayRemaining > 0f)
                 return;
-            RenderGlyphAt(particle.X, particle.Y, particle.Glyph, particle.ColorString);
+            RenderGlyphAt(particle.X, particle.Y, particle.Glyph, particle.ColorString, particle.IsAura);
         }
 
-        private void RenderGlyphAt(int x, int y, char glyph, string colorString)
+        private void RenderGlyphAt(int x, int y, char glyph, string colorString, bool isAura = false)
         {
             if (_tilemap == null || _currentZone == null || !_currentZone.InBounds(x, y))
+                return;
+
+            var cell = _currentZone.GetCell(x, y);
+            if (ClipToFieldOfView && (cell == null || !cell.Explored || !cell.IsVisible))
                 return;
 
             Tile tile = CP437TilesetGenerator.GetTile(glyph);
@@ -828,6 +835,9 @@ namespace CavesOfOoo.Rendering
             Vector3Int tilePos = new Vector3Int(x, Zone.Height - 1 - y, 0);
             _tilemap.SetTile(tilePos, tile);
             _tilemap.SetTileFlags(tilePos, TileFlags.None);
+            // Reset every draw: explicit feedback can reuse an aura cell within
+            // this frame, or after the coordinator returns to fallback presentation.
+            _tilemap.SetTransformMatrix(tilePos, isAura && CompactAuras ? CompactAuraTransform : Matrix4x4.identity);
             _tilemap.SetColor(tilePos, QudColorParser.Parse(colorString));
         }
 
@@ -1084,6 +1094,7 @@ namespace CavesOfOoo.Rendering
             public string ColorString;
             public float Remaining;
             public float DelayRemaining;
+            public bool IsAura;
             // Rising particle support
             public int DY;
             public float MoveInterval;

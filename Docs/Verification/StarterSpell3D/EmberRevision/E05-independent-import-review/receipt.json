@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "scope": "Immutable independent comparison after E05. Actual files rehashed after E07 exit. No Unity/source mutations. Native high-frequency acceptance remains pending; E07 original Rime restoration failure retained separately.",
+  "receipts": {
+    "Docs/Verification/StarterSpell3D/EmberRevision/E01-integration-recorder-red/results.xml": "539c703dc7f5c2720eb88b8e1c92dd265602708b84c919c279a1d67ece435325",
+    "Docs/Verification/StarterSpell3D/EmberRevision/E02-helper-green-old-art-red/results.xml": "506324d71e079ab723cc050222a9b3b63d66d95ba423b1bfa567ff46dbfb8b90",
+    "Docs/Verification/StarterSpell3D/EmberRevision/E05-final-art-focused/results.xml": "011498087814bc6c4e06228d307ca2169c44d44eac0c8d9428518bfa514b0a6f",
+    "Docs/Verification/StarterSpell3D/Readability/R22b-hitch-boundary-targeted/results.xml": "aa1734464a661507422a67d92342964d20284d8a0b7e0f70e177b6c1c209a031",
+    "Docs/Verification/StarterSpell3D/EmberRevision/Art/19-ember-import-freeze.json": "a6129da4896091392fcc09630bf5c7800ad9848ab6fc381b3a82740dcb7a1059",
+    "Docs/Verification/StarterSpell3D/EmberRevision/E04-retired-ember-assets/receipt.json": "f48041336ae3c0be2f9a8f98c10ffb79d8e51e36de90ebd5681e0e66ad6bf1ba",
+    "Docs/Verification/StarterSpell3D/EmberRevision/E05-final-art-focused/receipt.json": "1f9375176e941e587df1010093eb9b68e45d7db6bdae9254cc11ad69861607bd"
+  },
+  "tests": {
+    "E01": {
+      "total": 48,
+      "pass": 2
+    },
+    "E02": {
+      "total": 48,
+      "pass": 37
+    },
+    "E05": {
+      "total": 497,
+      "pass": 497
+    },
+    "same48NamesE01E02": true,
+    "all48GreenE05": true,
+    "all449BaselineNamesRetained": true,
+    "exact48AddedNames": true,
+    "originalTestFiles": 780,
+    "originalTestFileDrift": [],
+    "classification": "35 missing-recorder metadata/isolation assertions,11 superseded-art/mapping/readability assertions,2 positive controls. E01 Reduced optional-halo fixture error was corrected and E02 reached genuine solid-width RED; no existing tests changed."
+  },
+  "assets": {
+    "finalExportMeshIds": 373,
+    "currentImportedMeshIds": 373,
+    "setExact": true,
+    "otherSixAssetMetaFiles": 646,
+    "otherSixCurrentByteDrift": [],
+    "retiredEmberOnlyIds": 61,
+    "retiredFiles": 122,
+    "archiveExactAndCurrentAbsentErrors": []
+  },
+  "art19": {
+    "files": 14,
+    "currentDrift": [],
+    "sourceBlendSha256": "7e13f1dce87c67f31e2c39bcbf7758cb16ae20e182618b6fb75bf929f50e6830",
+    "librarySha256": "158f2432230854309c786569666e453c0ebb6cf2e32394e0dd3748eefc3d4164"
+  }
+}

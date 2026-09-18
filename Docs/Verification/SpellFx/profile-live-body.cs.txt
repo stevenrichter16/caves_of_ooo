@@ -1,0 +1,81 @@
+// C# 6 Unity execute_code BODY. Real Update/LateUpdate, no manual clocks.
+// Whole Editor frame counters include the game, UI, MCP and this sampler.
+if (!UnityEngine.Application.isPlaying || UnityEditor.EditorApplication.isPaused)
+    return "Requires running, unpaused Play mode.";
+var show = UnityEngine.Object.FindFirstObjectByType<CavesOfOoo.Scenarios.Custom.SpellFxShowcasePlayer>();
+var view = UnityEngine.Object.FindFirstObjectByType<CavesOfOoo.Rendering.ZoneRenderer>();
+if (show == null || view == null || !show.Paused) return "Requires initialized showcase with autoplay paused.";
+var oldMode = CavesOfOoo.Rendering.SpellFxSettings.Mode;
+var oldSpeed = CavesOfOoo.Rendering.SpellFxSettings.AnimationSpeed;
+var oldShake = CavesOfOoo.Rendering.SpellFxSettings.ShakeIntensity;
+var oldBackground = UnityEngine.Application.runInBackground;
+var gc = Unity.Profiling.ProfilerRecorder.StartNew(Unity.Profiling.ProfilerCategory.Memory, "GC Allocated In Frame", 1);
+var draws = Unity.Profiling.ProfilerRecorder.StartNew(Unity.Profiling.ProfilerCategory.Render, "Draw Calls Count", 1);
+var batches = Unity.Profiling.ProfilerRecorder.StartNew(Unity.Profiling.ProfilerCategory.Render, "Batches Count", 1);
+var triangles = Unity.Profiling.ProfilerRecorder.StartNew(Unity.Profiling.ProfilerCategory.Render, "Triangles Count", 1);
+var data = new System.Text.StringBuilder("mode,elapsed_seconds,phase_seconds,unity_frame,active_sprites,pooled_sprites,allocated_sprites,dropped_sprite_ticks,blocking,cast_count,accepted,gc_bytes_whole_frame,draw_calls_whole_frame,batches_whole_frame,triangles_whole_frame\n", 262144);
+string[] names = { "Baseline", "Full", "Reduced", "Off" };
+var modes = new CavesOfOoo.Rendering.SpellFxMode[] { CavesOfOoo.Rendering.SpellFxMode.Full, CavesOfOoo.Rendering.SpellFxMode.Full, CavesOfOoo.Rendering.SpellFxMode.Reduced, CavesOfOoo.Rendering.SpellFxMode.Off };
+var start = UnityEditor.EditorApplication.timeSinceStartup;
+var phaseStart = start;
+int phase = 0, lastFrame = -1, castCount = 0;
+bool cast = false, accepted = false, finished = false;
+UnityEditor.EditorApplication.CallbackFunction sample = null;
+System.Action<string> finish = null;
+finish = delegate(string failure)
+{
+    if (finished) return;
+    finished = true;
+    UnityEditor.EditorApplication.update -= sample;
+    gc.Dispose(); draws.Dispose(); batches.Dispose(); triangles.Dispose();
+    view.CancelWorldFx();
+    CavesOfOoo.Rendering.SpellFxSettings.Mode = oldMode;
+    CavesOfOoo.Rendering.SpellFxSettings.AnimationSpeed = oldSpeed;
+    CavesOfOoo.Rendering.SpellFxSettings.ShakeIntensity = oldShake;
+    UnityEngine.Application.runInBackground = oldBackground;
+    var directory = System.IO.Path.GetFullPath(System.IO.Path.Combine(UnityEngine.Application.dataPath, "../Docs/Verification/SpellFx"));
+    System.IO.File.WriteAllText(System.IO.Path.Combine(directory, "profiler-frames.csv"), data.ToString());
+    System.IO.File.WriteAllText(System.IO.Path.Combine(directory, "profiler-complete.txt"),
+        "status=" + (failure ?? "complete") + "\nspell=Galvanism_Thunderclap\nactual_cast_count=" + castCount + "\nmanual_ticks=0\nwhole_editor_frame_counters=true\n");
+};
+CavesOfOoo.Rendering.SpellFxSettings.AnimationSpeed = 1f;
+CavesOfOoo.Rendering.SpellFxSettings.ShakeIntensity = 0f;
+CavesOfOoo.Rendering.SpellFxSettings.Mode = modes[0];
+UnityEngine.Application.runInBackground = true;
+view.CancelWorldFx();
+show.PrepareCase(4);
+sample = delegate()
+{
+    try
+    {
+        double now = UnityEditor.EditorApplication.timeSinceStartup;
+        if (!UnityEngine.Application.isPlaying || UnityEditor.EditorApplication.isPaused) { finish("interrupted"); return; }
+        if (now - start > 10.0) { finish("timeout"); return; }
+        double age = now - phaseStart;
+        if (age >= 1.25)
+        {
+            phase++;
+            if (phase == names.Length) { finish(null); return; }
+            CavesOfOoo.Rendering.SpellFxSettings.Mode = modes[phase];
+            show.PrepareCase(4);
+            phaseStart = now; age = 0; cast = false; accepted = false;
+        }
+        if (phase > 0 && !cast && age >= .1)
+        {
+            cast = true; castCount++;
+            accepted = show.ExecutePrepared();
+        }
+        if (UnityEngine.Time.frameCount == lastFrame) return;
+        lastFrame = UnityEngine.Time.frameCount;
+        var fx = view.WorldFx.SpriteRenderer;
+        data.AppendFormat(System.Globalization.CultureInfo.InvariantCulture,
+            "{0},{1:F6},{2:F6},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14}\n",
+            names[phase], now-start, age, lastFrame, fx.ActiveSpriteCount, fx.PoolCount, fx.AllocatedSpriteCount,
+            fx.DroppedSpriteCount, view.HasBlockingFx, castCount, accepted,
+            gc.LastValue, draws.LastValue, batches.LastValue, triangles.LastValue);
+    }
+    catch (System.Exception error) { finish(error.ToString()); }
+};
+start = phaseStart = UnityEditor.EditorApplication.timeSinceStartup;
+UnityEditor.EditorApplication.update += sample;
+return "Scheduled 5-second live baseline / Full / Reduced / Off profiler sample.";

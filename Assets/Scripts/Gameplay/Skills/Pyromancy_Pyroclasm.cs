@@ -26,7 +26,7 @@ namespace CavesOfOoo.Skills
     /// (<c>Docs/SKILL-ACTIVES-BRAINSTORM.md §Pyromancy_Pyroclasm</c>):
     /// "the only ability that consumes a status effect for damage."</para>
     /// </summary>
-    public class Pyromancy_Pyroclasm : BaseSkillPart
+    public class Pyromancy_Pyroclasm : SpellSkillPart
     {
         public override string Name => nameof(Pyromancy_Pyroclasm);
 
@@ -46,7 +46,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;
             var actor = ctx.Attacker;
@@ -55,23 +55,21 @@ namespace CavesOfOoo.Skills
             var actorPos = ctx.Zone.GetEntityPosition(actor);
             if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return false; }
 
-            // Find adjacent creature with BurningEffect.
+            // Find burning matter on the physical perimeter. Remember the
+            // actual contacted cell so a distant anchor cannot relocate the blast.
             Entity target = null;
-            for (int dir = 0; dir < 8 && target == null; dir++)
+            Cell contact = null;
+            foreach (var cell in MultiCellAbilityQueries.AdjacentCells(ctx.Zone, actor))
             {
-                var cell = ctx.Zone.GetCellInDirection(actorPos.x, actorPos.y, dir);
-                if (cell == null) continue;
-                for (int i = 0; i < cell.Objects.Count; i++)
+                foreach (var entity in cell.Occupants)
                 {
-                    var e = cell.Objects[i];
-                    if (!AbilityTargeting.IsElementalTarget(e, actor)) continue;
-                    var sep = e.GetPart<StatusEffectsPart>();
-                    if (sep != null && sep.HasEffect<BurningEffect>())
-                    {
-                        target = e;
-                        break;
-                    }
+                    if (!AbilityTargeting.IsElementalTarget(entity, actor)) continue;
+                    if (!entity.HasEffect<BurningEffect>()) continue;
+                    target = entity;
+                    contact = cell;
+                    break;
                 }
+                if (target != null) break;
             }
 
             if (target == null)
@@ -86,42 +84,16 @@ namespace CavesOfOoo.Skills
             var burning = targetSep.GetEffect<BurningEffect>();
             int consumedDuration = burning?.Duration ?? 1;
             if (consumedDuration < 1) consumedDuration = 1; // floor — DURATION_INDEFINITE could be ≤0
+            // Copy the consumed cost before removing the status or damaging its owner.
+            SpellFxCapture.RecordOutcome(ctx.Zone, target, "consumed-status", "Burning", consumedDuration);
             targetSep.RemoveEffect<BurningEffect>();
 
             int aoeAmount = consumedDuration * DAMAGE_PER_BURN_TURN;
 
-            // 3×3 AOE centered on target. Iterate the 9 cells (target
-            // + 8 neighbors). Damage each creature found.
-            var targetPos = ctx.Zone.GetEntityPosition(target);
-            if (targetPos.x < 0)
-            {
-                EmitSkillRejectedDiag(ctx, "target_not_in_zone");
-                return false;
-            }
-
-            // W3 re-review: SNAPSHOT the targets before damaging any of
-            // them (the FlamingHands pattern). RouteDamage is
-            // side-effectful on the live cell lists — destroying scenery
-            // removes it mid-iteration (shifting indices past whoever
-            // stood on the wreckage), and W3.3's burn-off can append gas
-            // to the very cell being walked. W3.3 made destructible
-            // terrain routine (peat, dead trees, duckboards), turning the
-            // latent loop into a routine miss.
-            var targets = new System.Collections.Generic.List<Entity>();
-            for (int oy = -1; oy <= 1; oy++)
-            {
-                for (int ox = -1; ox <= 1; ox++)
-                {
-                    int cx = targetPos.x + ox;
-                    int cy = targetPos.y + oy;
-                    if (!ctx.Zone.InBounds(cx, cy)) continue;
-                    var cell = ctx.Zone.GetCell(cx, cy);
-                    if (cell == null) continue;
-                    for (int i = 0; i < cell.Objects.Count; i++)
-                        if (AbilityTargeting.IsElementalTarget(cell.Objects[i], actor))
-                            targets.Add(cell.Objects[i]);
-                }
-            }
+            // Capture physical owners once before damage can alter occupancy.
+            var cells = MultiCellAbilityQueries.RadiusCells(ctx.Zone, contact.X, contact.Y, 1);
+            var targets = MultiCellAbilityQueries.SnapshotOccupants(cells, actor);
+            foreach (var cell in cells) SpellFxCapture.AffectCell(ctx.Zone, cell.X, cell.Y);
 
             int hits = 0;
             for (int t = 0; t < targets.Count; t++)
@@ -129,7 +101,7 @@ namespace CavesOfOoo.Skills
                 var e = targets[t];
                 // A target an earlier hit already removed (chain
                 // destruction) gets no phantom damage.
-                if (ctx.Zone.GetEntityCell(e) == null) continue;
+                if (ctx.Zone.GetEntityCell(e) == null || !AbilityTargeting.IsElementalTarget(e, actor)) continue;
                 var fireDmg = new Damage(aoeAmount);
                 fireDmg.AddAttribute("Fire");
                 fireDmg.AddAttribute("Heat");

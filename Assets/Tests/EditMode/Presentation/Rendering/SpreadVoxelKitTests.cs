@@ -10,16 +10,17 @@ namespace CavesOfOoo.Tests
         [Test] public void KitHasFourDistinctCoarseVariantsPerFamilyWithOnlyTwoSwatches()
         {
             var kit=SpreadVoxelLibrary.Load();Assert.NotNull(kit);kit.Validate();
-            Assert.AreEqual(16,kit.Entries.Length);
+            Assert.AreEqual(20,kit.Entries.Length);
             foreach(var e in kit.Entries)
             {
                 Assert.That(e.Mesh.uv.Distinct().Count(),Is.InRange(1,2),e.Id);
                 Assert.LessOrEqual(e.Mesh.vertexCount,216,e.Id);
                 Assert.LessOrEqual(e.Mesh.bounds.size.x,1);Assert.LessOrEqual(e.Mesh.bounds.size.z,1);
-                Assert.Greater(e.Mesh.bounds.size.y,.2f);
+                if(e.Id.StartsWith("spread-stubble-"))Assert.That(e.Mesh.bounds.max.y,Is.InRange(.035f,.18f));
+                else Assert.Greater(e.Mesh.bounds.size.y,.2f);
                 Assert.AreEqual(1,e.Prefab.GetComponentsInChildren<MeshRenderer>().Length);
             }
-            foreach(string family in new[]{"hedge","barley","flowers","reeds"})
+            foreach(string family in new[]{"hedge","barley","flowers","reeds","stubble"})
             {
                 var shapes=Enumerable.Range(0,4).Select(i=>string.Join(";",kit.Find(SpreadVoxelLibrary.ModelId(family,i)).Mesh.vertices.Select(v=>v.ToString("F3")))).ToArray();
                 Assert.AreEqual(4,shapes.Distinct().Count(),family);

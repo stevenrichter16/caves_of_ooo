@@ -1,0 +1,75 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "NativeGroundStateReadabilityTests",
+  "results": {
+    "id": "2",
+    "testcasecount": "16",
+    "result": "Failed(Child)",
+    "total": "16",
+    "passed": "3",
+    "failed": "13",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-11 04:57:09Z",
+    "end-time": "2026-09-11 04:57:09Z",
+    "duration": "0.3473794"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.NativeGroundStateReadabilityTests.HiddenOrUnexploredState_RemainsInvisibleAndReappearsCompactWithoutChangingGameplay(False,False)",
+      "message": "  Marker matrix[0,0]\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeGroundStateReadabilityTests.HiddenOrUnexploredState_RemainsInvisibleAndReappearsCompactWithoutChangingGameplay(True,True)",
+      "message": "  Marker matrix[0,0]\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeGroundStateReadabilityTests.NativeReadinessLoss_RepaintsExistingCellAtIdentity(False,\"hidden\")",
+      "message": "  Marker matrix[0,0]\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeGroundStateReadabilityTests.NativeReadinessLoss_RepaintsExistingCellAtIdentity(False,\"disabled-mode\")",
+      "message": "  Marker matrix[0,0]\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeGroundStateReadabilityTests.NativeReadinessLoss_RepaintsExistingCellAtIdentity(True,\"wrong-zone\")",
+      "message": "  Marker matrix[0,0]\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeGroundStateReadabilityTests.RemovingAndRewritingGroundState_DoesNotLeaveAGhostOrAStaleTransform(False)",
+      "message": "  Marker matrix[0,0]\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeGroundStateReadabilityTests.RemovingAndRewritingGroundState_DoesNotLeaveAGhostOrAStaleTransform(True)",
+      "message": "  Marker matrix[0,0]\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeGroundStateReadabilityTests.RepaintingMixedGroundState_PreservesLayerPriorityIdentityDurationsAndCallbacks(False)",
+      "message": "  Marker matrix[0,0]\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeGroundStateReadabilityTests.SameZoneCameraLossAndRecovery_InvalidatesExistingMarksWithoutAWorldWrite(False)",
+      "message": "  Losing the borrowed source changes the meaning of already drawn markers without a gameplay dirty cell.\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeGroundStateReadabilityTests.SameZoneCameraLossAndRecovery_InvalidatesExistingMarksWithoutAWorldWrite(True)",
+      "message": "  Losing the borrowed source changes the meaning of already drawn markers without a gameplay dirty cell.\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeGroundStateReadabilityTests.TransientEffectModeDoesNotRemoveOrEnlargePersistentNativeGroundState(True)",
+      "message": "  Marker matrix[0,0]\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeGroundStateReadabilityTests.VisibleNativeGroundStates_KeepTheirGlyphAndTintInACompactCellCorner(False)",
+      "message": "  Marker matrix[0,0]\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeGroundStateReadabilityTests.VisibleNativeGroundStates_KeepTheirGlyphAndTintInACompactCellCorner(True)",
+      "message": "  Marker matrix[0,0]\n  Expected: 0.349999994f +/- 9.99999975E-05f\n  But was:  1.0f\n"
+    }
+  ]
+}

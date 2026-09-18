@@ -51,7 +51,7 @@ namespace CavesOfOoo.Core
                 return;
             }
 
-            if (AIHelpers.IsAdjacent(myPos.x, myPos.y, targetPos.x, targetPos.y))
+            if (SpatialQuery.Distance(CurrentZone,ParentEntity,Target) == 1)
             {
                 Think($"attacking {Target.GetDisplayName()}");
                 CombatSystem.PerformMeleeAttack(ParentEntity, Target, CurrentZone, Rng);
@@ -61,7 +61,13 @@ namespace CavesOfOoo.Core
                 if (!AIHelpers.TryUseRangedAbility(ParentEntity, CurrentZone, Rng, myPos, targetPos))
                 {
                     Think($"closing on {Target.GetDisplayName()}");
-                    AIHelpers.TryApproachWithPathfinding(ParentEntity, CurrentZone, myPos.x, myPos.y, targetPos.x, targetPos.y);
+                    if (ParentEntity.HasPart<SpatialFootprintPart>() || Target.HasPart<SpatialFootprintPart>())
+                    {
+                        var path=FindPath.ToContact(CurrentZone,ParentEntity,Target);
+                        if(path.Usable && path.Steps.Count>0)
+                            MovementSystem.TryMove(ParentEntity,CurrentZone,path.Steps[0].dx,path.Steps[0].dy);
+                    }
+                    else AIHelpers.TryApproachWithPathfinding(ParentEntity, CurrentZone, myPos.x, myPos.y, targetPos.x, targetPos.y);
                 }
             }
         }

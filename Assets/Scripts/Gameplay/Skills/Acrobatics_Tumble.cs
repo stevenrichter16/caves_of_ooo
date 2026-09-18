@@ -14,12 +14,8 @@ namespace CavesOfOoo.Skills
     /// <para><b>Mechanic (CoO):</b> no weapon class required — Acrobatics
     /// is martial-arts-y by design (Dodge already shipped with no weapon
     /// gate). Adjacent target lookup mirrors Slam's 8-dir scan. The swap
-    /// uses a three-phase
-    /// <see cref="Zone.RemoveEntity"/>/<see cref="Zone.MoveEntity"/>/<see cref="Zone.AddEntity"/>
-    /// sequence rather than a single MoveEntity, because MoveEntity's
-    /// destination-cell occupancy check would refuse a target-on-target
-    /// move. Phase order (target out → actor moves → target in) keeps
-    /// every intermediate state having a vacant destination.</para>
+    /// validates and exchanges both complete bodies atomically, then runs
+    /// each participant's landing events through <see cref="MovementSystem.TrySwap"/>.</para>
     ///
     /// <para>The "is the target hostile" heuristic uses the absence of
     /// the <c>"Ally"</c> tag — same pattern ChainLightning's friendly-
@@ -85,19 +81,18 @@ namespace CavesOfOoo.Skills
             // Remember which direction we found them in so we know where
             // the actor is moving to (= target's current cell).
             Entity target = null;
-            int targetDir = -1;
-            for (int dir = 0; dir < 8 && target == null; dir++)
+            foreach(var source in ctx.Zone.GetOccupiedCells(actor))
             {
-                var cell = ctx.Zone.GetCellInDirection(actorPos.x, actorPos.y, dir);
-                if (cell == null) continue;
-                for (int i = 0; i < cell.Objects.Count; i++)
+                if(source==null || target!=null) continue;
+                for (int dir = 0; dir < 8 && target == null; dir++)
                 {
-                    var e = cell.Objects[i];
-                    if (e == null || e == actor) continue;
-                    if (!e.Tags.ContainsKey("Creature")) continue;
-                    target = e;
-                    targetDir = dir;
-                    break;
+                    var cell=ctx.Zone.GetCellInDirection(source.X,source.Y,dir);
+                    if(cell==null) continue;
+                    foreach(var candidate in cell.Occupants)
+                    {
+                        if(candidate==null || candidate==actor || !candidate.HasTag("Creature")) continue;
+                        target=candidate;break;
+                    }
                 }
             }
 
@@ -115,32 +110,24 @@ namespace CavesOfOoo.Skills
                 return false;
             }
 
-            if (ctx.Zone.GetCell(actorPos.x, actorPos.y)?.HasClosedArchiveBarrier() == true
-                || ctx.Zone.GetCell(targetPos.x, targetPos.y)?.HasClosedArchiveBarrier() == true)
+            if (TouchesClosedArchive(ctx.Zone, actor, targetPos.x, targetPos.y)
+                || TouchesClosedArchive(ctx.Zone, target, actorPos.x, actorPos.y))
             {
                 EmitSkillRejectedDiag(ctx, "sealed_barrier");
                 return false;
             }
 
-            // Three-phase swap. Pull target OUT first so the actor's
-            // destination is vacant; move actor; then re-add target on
-            // the (now vacant) old actor cell. If any phase fails, undo
-            // the prior phase to keep the zone in a consistent state.
-            if (!ctx.Zone.RemoveEntity(target)) return false;
-            if (!ctx.Zone.MoveEntity(actor, targetPos.x, targetPos.y))
+            if(!MovementSystem.TrySwap(actor,target,ctx.Zone))
             {
-                // Rollback: actor couldn't move (defense-in-depth — this
-                // shouldn't fire because we just vacated the cell, but
-                // future Zone changes might add validation that rejects).
-                ctx.Zone.AddEntity(target, targetPos.x, targetPos.y);
+                EmitSkillRejectedDiag(ctx,"body_swap_blocked");
                 return false;
             }
-            ctx.Zone.AddEntity(target, actorPos.x, actorPos.y);
 
             // Hostile target → Confused 1T (per brainstorm). Allies get
             // a clean swap. The "Ally" tag is the v1 hostility flag —
             // mirrors ChainLightning's friendly-fire check.
-            if (!target.Tags.ContainsKey("Ally"))
+            if (!target.Tags.ContainsKey("Ally") && ctx.Zone.GetEntityCell(target) != null
+                && target.GetStatValue("Hitpoints", 1) > 0)
             {
                 target.ApplyEffect(new ConfusedEffect(CONFUSED_DURATION),
                     actor, ctx.Zone);
@@ -150,6 +137,13 @@ namespace CavesOfOoo.Skills
                 + target.GetDisplayName() + ".");
         
             return true;
+        }
+
+        private static bool TouchesClosedArchive(Zone zone, Entity owner, int x, int y)
+        {
+            foreach (var cell in zone.GetOccupiedCells(owner, x, y))
+                if (cell?.HasClosedArchiveBarrier() == true) return true;
+            return false;
         }
     }
 }

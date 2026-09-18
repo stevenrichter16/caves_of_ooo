@@ -36,6 +36,7 @@ namespace CavesOfOoo.Tests
             MessageLog.Clear();
             Diag.ResetAll();
             AsciiFxBus.Clear();
+            SpellFxBus.Clear();
             CropSystem.Factory = _factory;
         }
 
@@ -290,13 +291,12 @@ namespace CavesOfOoo.Tests
 
             Assert.Greater(crop.GetPart<CropPart>().MoistureTicks, 0,
                 "corner cast still waters the crop");
-            // FX drops above the map top are silently dropped by
-            // EmitParticle's InBounds guard; the splash at (1,0) survives.
-            var requests = AsciiFxBus.Drain();
-            int bursts = 0;
-            foreach (var r in requests)
-                if (r.Type == AsciiFxRequestType.Burst) bursts++;
-            Assert.AreEqual(1, bursts, "splash still lands even when the sky is off-map");
+            // The resolved impact stays on the crop cell at the map edge.
+            var sequences = SpellFxBus.Drain();
+            Assert.AreEqual(1, sequences.Count);
+            Assert.AreEqual(1, sequences[0].AffectedCells.Count);
+            Assert.AreEqual(1, sequences[0].AffectedCells[0].X);
+            Assert.AreEqual(0, sequences[0].AffectedCells[0].Y);
         }
 
         [Test]
@@ -388,6 +388,7 @@ namespace CavesOfOoo.Tests
             for (int i = 0; i < 3; i++) CropSystem.OnTickEnd(zone); // matures fast
             Assert.IsNull(zone.GetEntityCell(crop), "sanity: converted");
             AsciiFxBus.Clear();
+            SpellFxBus.Clear();
             Diag.ResetAll();
 
             rain.Cast(zone, zone.GetCell(10, 10));

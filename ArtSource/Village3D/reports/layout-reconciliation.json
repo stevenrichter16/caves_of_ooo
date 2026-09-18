@@ -1,0 +1,6636 @@
+{
+  "schemaVersion": 1,
+  "id": "morrowfast-village3d-layout-reconciliation",
+  "authoritativeGeometry": "Existing native Morrowfast definition and owner IDs. The screenshot guides appearance, not collision or save identity.",
+  "nativeDefinitionSha256": "54ac630513b605d1ecaa261ce423532ed4ae87b9aa1292e24e6650ee89520d7d",
+  "artDefinitionSha256": "6105a656757d58dc5fb8dfa7db2a2dad8b72375a868a9203ee1c23cfe296711c",
+  "coordinates": "Unity X east, Y height, Z north; one unit per cell",
+  "composition": {
+    "referenceArtX": [
+      21.25,
+      58.75
+    ],
+    "referenceArtZ": [
+      0,
+      25
+    ],
+    "renderCameraXZ": [
+      40,
+      12.5
+    ],
+    "orthographicWidth": 37.5,
+    "groundXZ": [
+      0,
+      80,
+      0,
+      25
+    ],
+    "groundExtensionReason": "The game camera may follow the actor outside the reference crop. Full native 80x25 ground coverage prevents a void.",
+    "uiExcluded": "Reference black sidebar, text log, status and hotbar are supplied by native UI, never model geometry."
+  },
+  "deliberateDifferences": [
+    {
+      "id": "native-west-creek",
+      "description": "The reference shows a western cobbled branch without a large obvious creek; the shipped native map contains water there. All 67 native water cells remain water, rendered as a teal channel with shore detail and the native bridge."
+    },
+    {
+      "id": "native-room-extents",
+      "description": "Five shells/roofs use the shipped native interior rectangles and doors. Their image-space size and spacing differ from the screenshot polygons, especially the larger guesthouse and archive."
+    },
+    {
+      "id": "interiors-authored",
+      "description": "The reference depicts roofs. Beds, work surfaces, shelves, storage and hearths beneath them are authored views of existing room owners, not inferred new gameplay."
+    },
+    {
+      "id": "vegetation-and-gardens",
+      "description": "Additional fences, shrubs, rocks and planters are static scenery only. They have no native loot, collision, watering, destruction or persistence semantics."
+    },
+    {
+      "id": "source-style",
+      "description": "Reusable low-poly rounded geometry, a 64-swatch atlas, studio shadows and compact variation families approximate the reference. No screenshot plane or photoreal texture/AO bake is used."
+    },
+    {
+      "id": "preview-player",
+      "description": "The showcase hooded player exists only in the Blender composition, is omitted from persistent owner placements, and must be replaced by the live player view in Unity."
+    },
+    {
+      "id": "authorized-starting-garden",
+      "description": "User-authorized village new-game start adds six real native Plantable cells at X41/X42,Y21..23, visualized as bare inset earth in an existing terrain-detail mesh. The reference image has no such starting plot; no crops or new art owners are invented. Cosmetic right-verge paving is trimmed around the exact cells while the X40 road stays clear."
+    }
+  ],
+  "water": {
+    "count": 67,
+    "cells": [
+      {
+        "x": 25,
+        "y": 0
+      },
+      {
+        "x": 26,
+        "y": 0
+      },
+      {
+        "x": 27,
+        "y": 0
+      },
+      {
+        "x": 28,
+        "y": 0
+      },
+      {
+        "x": 29,
+        "y": 0
+      },
+      {
+        "x": 26,
+        "y": 1
+      },
+      {
+        "x": 27,
+        "y": 1
+      },
+      {
+        "x": 28,
+        "y": 1
+      },
+      {
+        "x": 26,
+        "y": 2
+      },
+      {
+        "x": 27,
+        "y": 2
+      },
+      {
+        "x": 28,
+        "y": 2
+      },
+      {
+        "x": 26,
+        "y": 3
+      },
+      {
+        "x": 27,
+        "y": 3
+      },
+      {
+        "x": 25,
+        "y": 4
+      },
+      {
+        "x": 26,
+        "y": 4
+      },
+      {
+        "x": 27,
+        "y": 4
+      },
+      {
+        "x": 25,
+        "y": 5
+      },
+      {
+        "x": 26,
+        "y": 5
+      },
+      {
+        "x": 27,
+        "y": 5
+      },
+      {
+        "x": 25,
+        "y": 6
+      },
+      {
+        "x": 26,
+        "y": 6
+      },
+      {
+        "x": 24,
+        "y": 7
+      },
+      {
+        "x": 25,
+        "y": 7
+      },
+      {
+        "x": 26,
+        "y": 7
+      },
+      {
+        "x": 24,
+        "y": 8
+      },
+      {
+        "x": 25,
+        "y": 8
+      },
+      {
+        "x": 24,
+        "y": 9
+      },
+      {
+        "x": 25,
+        "y": 9
+      },
+      {
+        "x": 24,
+        "y": 10
+      },
+      {
+        "x": 25,
+        "y": 10
+      },
+      {
+        "x": 23,
+        "y": 11
+      },
+      {
+        "x": 24,
+        "y": 11
+      },
+      {
+        "x": 25,
+        "y": 11
+      },
+      {
+        "x": 23,
+        "y": 12
+      },
+      {
+        "x": 24,
+        "y": 12
+      },
+      {
+        "x": 25,
+        "y": 12
+      },
+      {
+        "x": 23,
+        "y": 13
+      },
+      {
+        "x": 24,
+        "y": 13
+      },
+      {
+        "x": 25,
+        "y": 13
+      },
+      {
+        "x": 23,
+        "y": 14
+      },
+      {
+        "x": 24,
+        "y": 14
+      },
+      {
+        "x": 25,
+        "y": 14
+      },
+      {
+        "x": 23,
+        "y": 15
+      },
+      {
+        "x": 24,
+        "y": 15
+      },
+      {
+        "x": 25,
+        "y": 15
+      },
+      {
+        "x": 23,
+        "y": 16
+      },
+      {
+        "x": 24,
+        "y": 16
+      },
+      {
+        "x": 23,
+        "y": 17
+      },
+      {
+        "x": 24,
+        "y": 17
+      },
+      {
+        "x": 23,
+        "y": 18
+      },
+      {
+        "x": 24,
+        "y": 18
+      },
+      {
+        "x": 22,
+        "y": 19
+      },
+      {
+        "x": 23,
+        "y": 19
+      },
+      {
+        "x": 22,
+        "y": 20
+      },
+      {
+        "x": 23,
+        "y": 20
+      },
+      {
+        "x": 21,
+        "y": 21
+      },
+      {
+        "x": 22,
+        "y": 21
+      },
+      {
+        "x": 23,
+        "y": 21
+      },
+      {
+        "x": 21,
+        "y": 22
+      },
+      {
+        "x": 22,
+        "y": 22
+      },
+      {
+        "x": 23,
+        "y": 22
+      },
+      {
+        "x": 21,
+        "y": 23
+      },
+      {
+        "x": 22,
+        "y": 23
+      },
+      {
+        "x": 23,
+        "y": 23
+      },
+      {
+        "x": 21,
+        "y": 24
+      },
+      {
+        "x": 22,
+        "y": 24
+      },
+      {
+        "x": 23,
+        "y": 24
+      }
+    ],
+    "nativeBridgeOwners": [
+      "western-footbridge"
+    ],
+    "worldBoundsXZ": {
+      "minX": 21,
+      "maxX": 30,
+      "minZ": 0,
+      "maxZ": 25
+    }
+  },
+  "buildings": [
+    {
+      "id": "keeper-gatehouse",
+      "interiorCells": [
+        {
+          "x": 32,
+          "y": 2
+        },
+        {
+          "x": 32,
+          "y": 3
+        },
+        {
+          "x": 32,
+          "y": 4
+        },
+        {
+          "x": 33,
+          "y": 2
+        },
+        {
+          "x": 33,
+          "y": 3
+        },
+        {
+          "x": 33,
+          "y": 4
+        },
+        {
+          "x": 34,
+          "y": 2
+        },
+        {
+          "x": 34,
+          "y": 3
+        },
+        {
+          "x": 34,
+          "y": 4
+        }
+      ],
+      "nativeInteriorBoundsInclusive": {
+        "minX": 32,
+        "maxX": 34,
+        "minY": 2,
+        "maxY": 4
+      },
+      "doorOwnerId": "keeper-door",
+      "doorCell": {
+        "x": 34,
+        "y": 5
+      },
+      "doorHingeWorld": {
+        "x": 34.05,
+        "y": 0,
+        "z": 19.5
+      },
+      "nativeEntryCell": {
+        "x": 34,
+        "y": 6
+      },
+      "shellExteriorXZ": {
+        "minX": 31.54,
+        "maxX": 35.46,
+        "minZ": 19.54,
+        "maxZ": 23.46
+      },
+      "sourceImageInteriorPolygonPixels": [
+        {
+          "x": 465,
+          "y": 87
+        },
+        {
+          "x": 484,
+          "y": 76
+        },
+        {
+          "x": 518,
+          "y": 74
+        },
+        {
+          "x": 554,
+          "y": 81
+        },
+        {
+          "x": 569,
+          "y": 101
+        },
+        {
+          "x": 575,
+          "y": 172
+        },
+        {
+          "x": 563,
+          "y": 185
+        },
+        {
+          "x": 458,
+          "y": 183
+        },
+        {
+          "x": 451,
+          "y": 171
+        },
+        {
+          "x": 451,
+          "y": 119
+        }
+      ],
+      "reconciliation": "Rectangular physical room follows the shipped interior cell set; screenshot polygon is reference evidence, not a new movement boundary. South-facing doorway follows the native door cell, even when its rendered centre differs from reference pixels."
+    },
+    {
+      "id": "dry-hem-guesthouse",
+      "interiorCells": [
+        {
+          "x": 28,
+          "y": 8
+        },
+        {
+          "x": 28,
+          "y": 9
+        },
+        {
+          "x": 28,
+          "y": 10
+        },
+        {
+          "x": 28,
+          "y": 11
+        },
+        {
+          "x": 28,
+          "y": 12
+        },
+        {
+          "x": 29,
+          "y": 8
+        },
+        {
+          "x": 29,
+          "y": 9
+        },
+        {
+          "x": 29,
+          "y": 10
+        },
+        {
+          "x": 29,
+          "y": 11
+        },
+        {
+          "x": 29,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 8
+        },
+        {
+          "x": 30,
+          "y": 9
+        },
+        {
+          "x": 30,
+          "y": 10
+        },
+        {
+          "x": 30,
+          "y": 11
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 31,
+          "y": 8
+        },
+        {
+          "x": 31,
+          "y": 9
+        },
+        {
+          "x": 31,
+          "y": 10
+        },
+        {
+          "x": 31,
+          "y": 11
+        },
+        {
+          "x": 31,
+          "y": 12
+        },
+        {
+          "x": 32,
+          "y": 8
+        },
+        {
+          "x": 32,
+          "y": 9
+        },
+        {
+          "x": 32,
+          "y": 10
+        },
+        {
+          "x": 32,
+          "y": 11
+        },
+        {
+          "x": 32,
+          "y": 12
+        },
+        {
+          "x": 33,
+          "y": 8
+        },
+        {
+          "x": 33,
+          "y": 9
+        },
+        {
+          "x": 33,
+          "y": 10
+        },
+        {
+          "x": 33,
+          "y": 11
+        },
+        {
+          "x": 33,
+          "y": 12
+        }
+      ],
+      "nativeInteriorBoundsInclusive": {
+        "minX": 28,
+        "maxX": 33,
+        "minY": 8,
+        "maxY": 12
+      },
+      "doorOwnerId": "guesthouse-door",
+      "doorCell": {
+        "x": 32,
+        "y": 13
+      },
+      "doorHingeWorld": {
+        "x": 32.05,
+        "y": 0,
+        "z": 11.5
+      },
+      "nativeEntryCell": {
+        "x": 32,
+        "y": 14
+      },
+      "shellExteriorXZ": {
+        "minX": 27.54,
+        "maxX": 34.46,
+        "minZ": 11.54,
+        "maxZ": 17.46
+      },
+      "sourceImageInteriorPolygonPixels": [
+        {
+          "x": 298,
+          "y": 345
+        },
+        {
+          "x": 331,
+          "y": 341
+        },
+        {
+          "x": 532,
+          "y": 344
+        },
+        {
+          "x": 537,
+          "y": 365
+        },
+        {
+          "x": 535,
+          "y": 490
+        },
+        {
+          "x": 300,
+          "y": 490
+        },
+        {
+          "x": 296,
+          "y": 423
+        }
+      ],
+      "reconciliation": "Rectangular physical room follows the shipped interior cell set; screenshot polygon is reference evidence, not a new movement boundary. South-facing doorway follows the native door cell, even when its rendered centre differs from reference pixels."
+    },
+    {
+      "id": "long-loop-ropeshop",
+      "interiorCells": [
+        {
+          "x": 29,
+          "y": 16
+        },
+        {
+          "x": 29,
+          "y": 17
+        },
+        {
+          "x": 29,
+          "y": 18
+        },
+        {
+          "x": 29,
+          "y": 19
+        },
+        {
+          "x": 30,
+          "y": 16
+        },
+        {
+          "x": 30,
+          "y": 17
+        },
+        {
+          "x": 30,
+          "y": 18
+        },
+        {
+          "x": 30,
+          "y": 19
+        },
+        {
+          "x": 31,
+          "y": 16
+        },
+        {
+          "x": 31,
+          "y": 17
+        },
+        {
+          "x": 31,
+          "y": 18
+        },
+        {
+          "x": 31,
+          "y": 19
+        },
+        {
+          "x": 32,
+          "y": 16
+        },
+        {
+          "x": 32,
+          "y": 17
+        },
+        {
+          "x": 32,
+          "y": 18
+        },
+        {
+          "x": 32,
+          "y": 19
+        },
+        {
+          "x": 33,
+          "y": 16
+        },
+        {
+          "x": 33,
+          "y": 17
+        },
+        {
+          "x": 33,
+          "y": 18
+        },
+        {
+          "x": 33,
+          "y": 19
+        }
+      ],
+      "nativeInteriorBoundsInclusive": {
+        "minX": 29,
+        "maxX": 33,
+        "minY": 16,
+        "maxY": 19
+      },
+      "doorOwnerId": "ropeshop-door",
+      "doorCell": {
+        "x": 31,
+        "y": 20
+      },
+      "doorHingeWorld": {
+        "x": 31.05,
+        "y": 0,
+        "z": 4.5
+      },
+      "nativeEntryCell": {
+        "x": 31,
+        "y": 21
+      },
+      "shellExteriorXZ": {
+        "minX": 28.54,
+        "maxX": 34.46,
+        "minZ": 4.54,
+        "maxZ": 9.46
+      },
+      "sourceImageInteriorPolygonPixels": [
+        {
+          "x": 322,
+          "y": 673
+        },
+        {
+          "x": 533,
+          "y": 677
+        },
+        {
+          "x": 534,
+          "y": 785
+        },
+        {
+          "x": 319,
+          "y": 785
+        },
+        {
+          "x": 319,
+          "y": 719
+        }
+      ],
+      "reconciliation": "Rectangular physical room follows the shipped interior cell set; screenshot polygon is reference evidence, not a new movement boundary. South-facing doorway follows the native door cell, even when its rendered centre differs from reference pixels."
+    },
+    {
+      "id": "return-desk-archive",
+      "interiorCells": [
+        {
+          "x": 47,
+          "y": 2
+        },
+        {
+          "x": 47,
+          "y": 3
+        },
+        {
+          "x": 47,
+          "y": 4
+        },
+        {
+          "x": 47,
+          "y": 5
+        },
+        {
+          "x": 48,
+          "y": 2
+        },
+        {
+          "x": 48,
+          "y": 3
+        },
+        {
+          "x": 48,
+          "y": 4
+        },
+        {
+          "x": 48,
+          "y": 5
+        },
+        {
+          "x": 49,
+          "y": 2
+        },
+        {
+          "x": 49,
+          "y": 3
+        },
+        {
+          "x": 49,
+          "y": 4
+        },
+        {
+          "x": 49,
+          "y": 5
+        },
+        {
+          "x": 50,
+          "y": 2
+        },
+        {
+          "x": 50,
+          "y": 3
+        },
+        {
+          "x": 50,
+          "y": 4
+        },
+        {
+          "x": 50,
+          "y": 5
+        },
+        {
+          "x": 51,
+          "y": 2
+        },
+        {
+          "x": 51,
+          "y": 3
+        },
+        {
+          "x": 51,
+          "y": 4
+        },
+        {
+          "x": 51,
+          "y": 5
+        }
+      ],
+      "nativeInteriorBoundsInclusive": {
+        "minX": 47,
+        "maxX": 51,
+        "minY": 2,
+        "maxY": 5
+      },
+      "doorOwnerId": "archive-door",
+      "doorCell": {
+        "x": 49,
+        "y": 6
+      },
+      "doorHingeWorld": {
+        "x": 49.05,
+        "y": 0,
+        "z": 18.5
+      },
+      "nativeEntryCell": {
+        "x": 49,
+        "y": 7
+      },
+      "shellExteriorXZ": {
+        "minX": 46.54,
+        "maxX": 52.46,
+        "minZ": 18.54,
+        "maxZ": 23.46
+      },
+      "sourceImageInteriorPolygonPixels": [
+        {
+          "x": 1091,
+          "y": 103
+        },
+        {
+          "x": 1108,
+          "y": 91
+        },
+        {
+          "x": 1154,
+          "y": 86
+        },
+        {
+          "x": 1198,
+          "y": 94
+        },
+        {
+          "x": 1212,
+          "y": 115
+        },
+        {
+          "x": 1233,
+          "y": 157
+        },
+        {
+          "x": 1240,
+          "y": 206
+        },
+        {
+          "x": 1227,
+          "y": 220
+        },
+        {
+          "x": 1087,
+          "y": 217
+        },
+        {
+          "x": 1080,
+          "y": 198
+        },
+        {
+          "x": 1082,
+          "y": 156
+        }
+      ],
+      "reconciliation": "Rectangular physical room follows the shipped interior cell set; screenshot polygon is reference evidence, not a new movement boundary. South-facing doorway follows the native door cell, even when its rendered centre differs from reference pixels."
+    },
+    {
+      "id": "second-bowl-kitchen",
+      "interiorCells": [
+        {
+          "x": 50,
+          "y": 16
+        },
+        {
+          "x": 50,
+          "y": 17
+        },
+        {
+          "x": 50,
+          "y": 18
+        },
+        {
+          "x": 50,
+          "y": 19
+        },
+        {
+          "x": 51,
+          "y": 16
+        },
+        {
+          "x": 51,
+          "y": 17
+        },
+        {
+          "x": 51,
+          "y": 18
+        },
+        {
+          "x": 51,
+          "y": 19
+        },
+        {
+          "x": 52,
+          "y": 16
+        },
+        {
+          "x": 52,
+          "y": 17
+        },
+        {
+          "x": 52,
+          "y": 18
+        },
+        {
+          "x": 52,
+          "y": 19
+        },
+        {
+          "x": 53,
+          "y": 16
+        },
+        {
+          "x": 53,
+          "y": 17
+        },
+        {
+          "x": 53,
+          "y": 18
+        },
+        {
+          "x": 53,
+          "y": 19
+        }
+      ],
+      "nativeInteriorBoundsInclusive": {
+        "minX": 50,
+        "maxX": 53,
+        "minY": 16,
+        "maxY": 19
+      },
+      "doorOwnerId": "kitchen-door",
+      "doorCell": {
+        "x": 51,
+        "y": 20
+      },
+      "doorHingeWorld": {
+        "x": 51.05,
+        "y": 0,
+        "z": 4.5
+      },
+      "nativeEntryCell": {
+        "x": 51,
+        "y": 21
+      },
+      "shellExteriorXZ": {
+        "minX": 49.54,
+        "maxX": 54.46,
+        "minZ": 4.54,
+        "maxZ": 9.46
+      },
+      "sourceImageInteriorPolygonPixels": [
+        {
+          "x": 1210,
+          "y": 665
+        },
+        {
+          "x": 1230,
+          "y": 660
+        },
+        {
+          "x": 1351,
+          "y": 663
+        },
+        {
+          "x": 1357,
+          "y": 790
+        },
+        {
+          "x": 1206,
+          "y": 793
+        },
+        {
+          "x": 1203,
+          "y": 757
+        }
+      ],
+      "reconciliation": "Rectangular physical room follows the shipped interior cell set; screenshot polygon is reference evidence, not a new movement boundary. South-facing doorway follows the native door cell, even when its rendered centre differs from reference pixels."
+    }
+  ],
+  "owners": [
+    {
+      "ownerId": "north-oath-arch",
+      "kind": "gate",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 40,
+        "y": 2
+      },
+      "nativeCellCentreUnity": {
+        "x": 40.5,
+        "y": 0,
+        "z": 22.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 38,
+          "y": 1
+        },
+        {
+          "x": 42,
+          "y": 1
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        775,
+        110
+      ],
+      "modelId": "oath-arch",
+      "modelOriginUnity": {
+        "x": 40.5,
+        "y": 0,
+        "z": 23.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 1
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 40.1709,
+        "y": 0,
+        "z": 22.31445
+      },
+      "offsetPurpose": "Visual model centre is offset from the native foot/interaction anchor to fit the native multi-cell fixture. The offset moves with the owner; it does not move any native footprint."
+    },
+    {
+      "ownerId": "north-guard-west",
+      "kind": "npc",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 37,
+        "y": 3
+      },
+      "nativeCellCentreUnity": {
+        "x": 37.5,
+        "y": 0,
+        "z": 21.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 37,
+          "y": 3
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        670,
+        161
+      ],
+      "modelId": "character-gold",
+      "modelOriginUnity": {
+        "x": 37.5,
+        "y": 0,
+        "z": 21.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 37.60742,
+        "y": 0,
+        "z": 21.06934
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "north-guard-east",
+      "kind": "npc",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 42,
+        "y": 3
+      },
+      "nativeCellCentreUnity": {
+        "x": 42.5,
+        "y": 0,
+        "z": 21.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 42,
+          "y": 3
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        852,
+        162
+      ],
+      "modelId": "character-violet",
+      "modelOriginUnity": {
+        "x": 42.5,
+        "y": 0,
+        "z": 21.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 42.05078,
+        "y": 0,
+        "z": 21.04492
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "north-flower-planter",
+      "kind": "planter",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 44,
+        "y": 4
+      },
+      "nativeCellCentreUnity": {
+        "x": 44.5,
+        "y": 0,
+        "z": 20.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 43,
+          "y": 4
+        },
+        {
+          "x": 44,
+          "y": 3
+        },
+        {
+          "x": 44,
+          "y": 4
+        },
+        {
+          "x": 45,
+          "y": 4
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        952,
+        201
+      ],
+      "modelId": "planter-1",
+      "modelOriginUnity": {
+        "x": 44.5,
+        "y": 0,
+        "z": 20.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 44.49219,
+        "y": 0,
+        "z": 20.09277
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "northeast-herb-pot",
+      "kind": "planter",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 52,
+        "y": 6
+      },
+      "nativeCellCentreUnity": {
+        "x": 52.5,
+        "y": 0,
+        "z": 18.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 52,
+          "y": 6
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1263,
+        272
+      ],
+      "modelId": "herb-pot",
+      "modelOriginUnity": {
+        "x": 52.5,
+        "y": 0,
+        "z": 18.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 52.08496,
+        "y": 0,
+        "z": 18.35938
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "northeast-offering-bowl",
+      "kind": "bowl",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 50,
+        "y": 7
+      },
+      "nativeCellCentreUnity": {
+        "x": 50.5,
+        "y": 0,
+        "z": 17.5
+      },
+      "nativeFootprint": [],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": false,
+      "sourceImageFootPixels": [
+        1212,
+        301
+      ],
+      "modelId": "bowl",
+      "modelOriginUnity": {
+        "x": 50.5,
+        "y": 0,
+        "z": 17.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 50.83984,
+        "y": 0,
+        "z": 17.65137
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "east-robed-resident",
+      "kind": "npc",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 48,
+        "y": 9
+      },
+      "nativeCellCentreUnity": {
+        "x": 48.5,
+        "y": 0,
+        "z": 15.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 48,
+          "y": 9
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1132,
+        388
+      ],
+      "modelId": "character-violet",
+      "modelOriginUnity": {
+        "x": 48.5,
+        "y": 0,
+        "z": 15.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 48.88672,
+        "y": 0,
+        "z": 15.52734
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "western-shop-planter",
+      "kind": "planter",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 30,
+        "y": 14
+      },
+      "nativeCellCentreUnity": {
+        "x": 30.5,
+        "y": 0,
+        "z": 10.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 29,
+          "y": 13
+        },
+        {
+          "x": 30,
+          "y": 13
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        373,
+        583
+      ],
+      "modelId": "planter-0",
+      "modelOriginUnity": {
+        "x": 30.5,
+        "y": 0,
+        "z": 10.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 30.35645,
+        "y": 0,
+        "z": 10.7666
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "western-shop-crate",
+      "kind": "container",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 34,
+        "y": 13
+      },
+      "nativeCellCentreUnity": {
+        "x": 34.5,
+        "y": 0,
+        "z": 11.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 33,
+          "y": 13
+        },
+        {
+          "x": 34,
+          "y": 13
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        526,
+        566
+      ],
+      "modelId": "crate-0",
+      "modelOriginUnity": {
+        "x": 34.5,
+        "y": 0,
+        "z": 11.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 34.0918,
+        "y": 0,
+        "z": 11.18164
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "western-shopkeeper",
+      "kind": "npc",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 35,
+        "y": 13
+      },
+      "nativeCellCentreUnity": {
+        "x": 35.5,
+        "y": 0,
+        "z": 11.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 35,
+          "y": 13
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        583,
+        563
+      ],
+      "modelId": "character-gold",
+      "modelOriginUnity": {
+        "x": 35.5,
+        "y": 0,
+        "z": 11.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 35.4834,
+        "y": 0,
+        "z": 11.25488
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "central-cistern",
+      "kind": "cistern",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 40,
+        "y": 14
+      },
+      "nativeCellCentreUnity": {
+        "x": 40.5,
+        "y": 0,
+        "z": 10.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 39,
+          "y": 11
+        },
+        {
+          "x": 39,
+          "y": 12
+        },
+        {
+          "x": 39,
+          "y": 13
+        },
+        {
+          "x": 40,
+          "y": 10
+        },
+        {
+          "x": 40,
+          "y": 11
+        },
+        {
+          "x": 40,
+          "y": 12
+        },
+        {
+          "x": 40,
+          "y": 13
+        },
+        {
+          "x": 40,
+          "y": 14
+        },
+        {
+          "x": 41,
+          "y": 10
+        },
+        {
+          "x": 41,
+          "y": 11
+        },
+        {
+          "x": 41,
+          "y": 12
+        },
+        {
+          "x": 41,
+          "y": 13
+        },
+        {
+          "x": 41,
+          "y": 14
+        },
+        {
+          "x": 42,
+          "y": 11
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 13
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        807,
+        590
+      ],
+      "modelId": "central-well",
+      "modelOriginUnity": {
+        "x": 41.0,
+        "y": 0,
+        "z": 12.5
+      },
+      "modelOffsetUnity": {
+        "x": 0.5,
+        "y": 0,
+        "z": 2
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 40.95215,
+        "y": 0,
+        "z": 10.5957
+      },
+      "offsetPurpose": "Visual model centre is offset from the native foot/interaction anchor to fit the native multi-cell fixture. The offset moves with the owner; it does not move any native footprint."
+    },
+    {
+      "ownerId": "cistern-bucket",
+      "kind": "container",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 42,
+        "y": 14
+      },
+      "nativeCellCentreUnity": {
+        "x": 42.5,
+        "y": 0,
+        "z": 10.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 42,
+          "y": 14
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        888,
+        604
+      ],
+      "modelId": "bucket-1",
+      "modelOriginUnity": {
+        "x": 42.5,
+        "y": 0,
+        "z": 10.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 42.92969,
+        "y": 0,
+        "z": 10.25391
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "provisioners-stall",
+      "kind": "shop-stall",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 47,
+        "y": 14
+      },
+      "nativeCellCentreUnity": {
+        "x": 47.5,
+        "y": 0,
+        "z": 10.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 45,
+          "y": 10
+        },
+        {
+          "x": 45,
+          "y": 11
+        },
+        {
+          "x": 45,
+          "y": 12
+        },
+        {
+          "x": 45,
+          "y": 13
+        },
+        {
+          "x": 46,
+          "y": 10
+        },
+        {
+          "x": 46,
+          "y": 11
+        },
+        {
+          "x": 46,
+          "y": 12
+        },
+        {
+          "x": 46,
+          "y": 13
+        },
+        {
+          "x": 47,
+          "y": 10
+        },
+        {
+          "x": 47,
+          "y": 11
+        },
+        {
+          "x": 47,
+          "y": 12
+        },
+        {
+          "x": 47,
+          "y": 13
+        },
+        {
+          "x": 48,
+          "y": 10
+        },
+        {
+          "x": 48,
+          "y": 11
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 13
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1058,
+        577
+      ],
+      "modelId": "market-stall-0",
+      "modelOriginUnity": {
+        "x": 47.0,
+        "y": 0,
+        "z": 13.0
+      },
+      "modelOffsetUnity": {
+        "x": -0.5,
+        "y": 0,
+        "z": 2.5
+      },
+      "modelScale": {
+        "x": 1.06,
+        "y": 1,
+        "z": 1.1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 47.08008,
+        "y": 0,
+        "z": 10.91309
+      },
+      "offsetPurpose": "Visual model centre is offset from the native foot/interaction anchor to fit the native multi-cell fixture. The offset moves with the owner; it does not move any native footprint."
+    },
+    {
+      "ownerId": "provisioners-water-barrel",
+      "kind": "container",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 49,
+        "y": 12
+      },
+      "nativeCellCentreUnity": {
+        "x": 49.5,
+        "y": 0,
+        "z": 12.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 49,
+          "y": 12
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1151,
+        525
+      ],
+      "modelId": "barrel-1",
+      "modelOriginUnity": {
+        "x": 49.5,
+        "y": 0,
+        "z": 12.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 49.35059,
+        "y": 0,
+        "z": 12.18262
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "provisioners-rope-basket",
+      "kind": "container",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 49,
+        "y": 13
+      },
+      "nativeCellCentreUnity": {
+        "x": 49.5,
+        "y": 0,
+        "z": 11.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 49,
+          "y": 13
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1139,
+        563
+      ],
+      "modelId": "bucket-0",
+      "modelOriginUnity": {
+        "x": 49.5,
+        "y": 0,
+        "z": 11.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 49.05762,
+        "y": 0,
+        "z": 11.25488
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "western-footbridge",
+      "kind": "bridge",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 24,
+        "y": 14
+      },
+      "nativeCellCentreUnity": {
+        "x": 24.5,
+        "y": 0,
+        "z": 10.5
+      },
+      "nativeFootprint": [],
+      "nativeBridgeSupport": [
+        {
+          "x": 23,
+          "y": 13
+        },
+        {
+          "x": 23,
+          "y": 14
+        },
+        {
+          "x": 24,
+          "y": 13
+        },
+        {
+          "x": 24,
+          "y": 14
+        },
+        {
+          "x": 25,
+          "y": 13
+        },
+        {
+          "x": 25,
+          "y": 14
+        }
+      ],
+      "nativeBlocksMovement": false,
+      "sourceImageFootPixels": [
+        139,
+        599
+      ],
+      "modelId": "footbridge",
+      "modelOriginUnity": {
+        "x": 24.5,
+        "y": 0,
+        "z": 10.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 24.64355,
+        "y": 0,
+        "z": 10.37598
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "western-bank-frog",
+      "kind": "creature",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 22,
+        "y": 18
+      },
+      "nativeCellCentreUnity": {
+        "x": 22.5,
+        "y": 0,
+        "z": 6.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 22,
+          "y": 18
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        57,
+        773
+      ],
+      "modelId": "frog",
+      "modelOriginUnity": {
+        "x": 22.5,
+        "y": 0,
+        "z": 6.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 22.6416,
+        "y": 0,
+        "z": 6.12793
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "southwest-handcart",
+      "kind": "cart",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 36,
+        "y": 19
+      },
+      "nativeCellCentreUnity": {
+        "x": 36.5,
+        "y": 0,
+        "z": 5.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 35,
+          "y": 17
+        },
+        {
+          "x": 35,
+          "y": 18
+        },
+        {
+          "x": 36,
+          "y": 16
+        },
+        {
+          "x": 36,
+          "y": 17
+        },
+        {
+          "x": 36,
+          "y": 18
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        614,
+        786
+      ],
+      "modelId": "handcart",
+      "modelOriginUnity": {
+        "x": 36.0,
+        "y": 0,
+        "z": 7.0
+      },
+      "modelOffsetUnity": {
+        "x": -0.5,
+        "y": 0,
+        "z": 1.5
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -17.188733853924695,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 36.24023,
+        "y": 0,
+        "z": 5.81055
+      },
+      "offsetPurpose": "Visual model centre is offset from the native foot/interaction anchor to fit the native multi-cell fixture. The offset moves with the owner; it does not move any native footprint."
+    },
+    {
+      "ownerId": "southwest-sideways-barrel",
+      "kind": "container",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 35,
+        "y": 20
+      },
+      "nativeCellCentreUnity": {
+        "x": 35.5,
+        "y": 0,
+        "z": 4.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 35,
+          "y": 20
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        577,
+        855
+      ],
+      "modelId": "barrel-side",
+      "modelOriginUnity": {
+        "x": 35.5,
+        "y": 0,
+        "z": 4.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -22.918311805232932,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 35.33691,
+        "y": 0,
+        "z": 4.12598
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "southwest-worktable",
+      "kind": "workstation",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 33,
+        "y": 21
+      },
+      "nativeCellCentreUnity": {
+        "x": 33.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 33,
+          "y": 20
+        },
+        {
+          "x": 33,
+          "y": 21
+        },
+        {
+          "x": 34,
+          "y": 20
+        },
+        {
+          "x": 34,
+          "y": 21
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        522,
+        883
+      ],
+      "modelId": "table-2",
+      "modelOriginUnity": {
+        "x": 33.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 33.99414,
+        "y": 0,
+        "z": 3.44238
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "southwest-rope-coils",
+      "kind": "salvage",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 30,
+        "y": 22
+      },
+      "nativeCellCentreUnity": {
+        "x": 30.5,
+        "y": 0,
+        "z": 2.5
+      },
+      "nativeFootprint": [],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": false,
+      "sourceImageFootPixels": [
+        371,
+        929
+      ],
+      "modelId": "rope-coil",
+      "modelOriginUnity": {
+        "x": 30.5,
+        "y": 0,
+        "z": 2.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 30.30762,
+        "y": 0,
+        "z": 2.31934
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "southwest-craftsperson",
+      "kind": "npc",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 32,
+        "y": 21
+      },
+      "nativeCellCentreUnity": {
+        "x": 32.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 32,
+          "y": 21
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        458,
+        895
+      ],
+      "modelId": "character-teal",
+      "modelOriginUnity": {
+        "x": 32.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 32.43164,
+        "y": 0,
+        "z": 3.14941
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "southern-food-stall",
+      "kind": "shop-stall",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 45,
+        "y": 21
+      },
+      "nativeCellCentreUnity": {
+        "x": 45.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 44,
+          "y": 17
+        },
+        {
+          "x": 44,
+          "y": 18
+        },
+        {
+          "x": 44,
+          "y": 19
+        },
+        {
+          "x": 44,
+          "y": 20
+        },
+        {
+          "x": 44,
+          "y": 21
+        },
+        {
+          "x": 45,
+          "y": 17
+        },
+        {
+          "x": 45,
+          "y": 18
+        },
+        {
+          "x": 45,
+          "y": 19
+        },
+        {
+          "x": 45,
+          "y": 20
+        },
+        {
+          "x": 45,
+          "y": 21
+        },
+        {
+          "x": 46,
+          "y": 17
+        },
+        {
+          "x": 46,
+          "y": 18
+        },
+        {
+          "x": 46,
+          "y": 19
+        },
+        {
+          "x": 46,
+          "y": 20
+        },
+        {
+          "x": 46,
+          "y": 21
+        },
+        {
+          "x": 47,
+          "y": 18
+        },
+        {
+          "x": 47,
+          "y": 19
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        999,
+        872
+      ],
+      "modelId": "market-stall-1",
+      "modelOriginUnity": {
+        "x": 46.0,
+        "y": 0,
+        "z": 5.5
+      },
+      "modelOffsetUnity": {
+        "x": 0.5,
+        "y": 0,
+        "z": 2
+      },
+      "modelScale": {
+        "x": 1.06,
+        "y": 1,
+        "z": 1.1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 45.63965,
+        "y": 0,
+        "z": 3.71094
+      },
+      "offsetPurpose": "Visual model centre is offset from the native foot/interaction anchor to fit the native multi-cell fixture. The offset moves with the owner; it does not move any native footprint."
+    },
+    {
+      "ownerId": "southern-food-vendor",
+      "kind": "npc",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 47,
+        "y": 20
+      },
+      "nativeCellCentreUnity": {
+        "x": 47.5,
+        "y": 0,
+        "z": 4.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 47,
+          "y": 20
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1095,
+        849
+      ],
+      "modelId": "character-violet",
+      "modelOriginUnity": {
+        "x": 47.5,
+        "y": 0,
+        "z": 4.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 47.9834,
+        "y": 0,
+        "z": 4.27246
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "food-stall-barrel",
+      "kind": "container",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 43,
+        "y": 20
+      },
+      "nativeCellCentreUnity": {
+        "x": 43.5,
+        "y": 0,
+        "z": 4.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 43,
+          "y": 20
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        927,
+        858
+      ],
+      "modelId": "barrel-0",
+      "modelOriginUnity": {
+        "x": 43.5,
+        "y": 0,
+        "z": 4.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 43.88184,
+        "y": 0,
+        "z": 4.05273
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "food-stall-bucket",
+      "kind": "container",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 47,
+        "y": 21
+      },
+      "nativeCellCentreUnity": {
+        "x": 47.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 47,
+          "y": 21
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1066,
+        872
+      ],
+      "modelId": "bucket-1",
+      "modelOriginUnity": {
+        "x": 47.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 47.27539,
+        "y": 0,
+        "z": 3.71094
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "inn-supply-barrel",
+      "kind": "container",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 49,
+        "y": 20
+      },
+      "nativeCellCentreUnity": {
+        "x": 49.5,
+        "y": 0,
+        "z": 4.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 49,
+          "y": 20
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1151,
+        845
+      ],
+      "modelId": "barrel-2",
+      "modelOriginUnity": {
+        "x": 49.5,
+        "y": 0,
+        "z": 4.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 49.35059,
+        "y": 0,
+        "z": 4.37012
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "inn-empty-bucket",
+      "kind": "container",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 50,
+        "y": 20
+      },
+      "nativeCellCentreUnity": {
+        "x": 50.5,
+        "y": 0,
+        "z": 4.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 50,
+          "y": 20
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1180,
+        841
+      ],
+      "modelId": "bucket-1",
+      "modelOriginUnity": {
+        "x": 50.5,
+        "y": 0,
+        "z": 4.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 50.05859,
+        "y": 0,
+        "z": 4.46777
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "inn-outdoor-stove",
+      "kind": "workstation",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 49,
+        "y": 21
+      },
+      "nativeCellCentreUnity": {
+        "x": 49.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 49,
+          "y": 21
+        },
+        {
+          "x": 50,
+          "y": 21
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1175,
+        897
+      ],
+      "modelId": "hearth-1",
+      "modelOriginUnity": {
+        "x": 49.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 49.93652,
+        "y": 0,
+        "z": 3.10059
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "inn-kindling-crate",
+      "kind": "container",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 49,
+        "y": 21
+      },
+      "nativeCellCentreUnity": {
+        "x": 49.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 49,
+          "y": 21
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1142,
+        890
+      ],
+      "modelId": "crate-1",
+      "modelOriginUnity": {
+        "x": 49.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 49.13086,
+        "y": 0,
+        "z": 3.27148
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "inn-chopping-block",
+      "kind": "workstation",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 53,
+        "y": 21
+      },
+      "nativeCellCentreUnity": {
+        "x": 53.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 53,
+          "y": 21
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1320,
+        875
+      ],
+      "modelId": "chopping-block",
+      "modelOriginUnity": {
+        "x": 53.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 53.47656,
+        "y": 0,
+        "z": 3.6377
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "inn-sideways-cask",
+      "kind": "container",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 54,
+        "y": 21
+      },
+      "nativeCellCentreUnity": {
+        "x": 54.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 54,
+          "y": 21
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1353,
+        892
+      ],
+      "modelId": "barrel-side",
+      "modelOriginUnity": {
+        "x": 54.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -22.918311805232932,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 54.28223,
+        "y": 0,
+        "z": 3.22266
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "inn-northern-barrel",
+      "kind": "container",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 49,
+        "y": 17
+      },
+      "nativeCellCentreUnity": {
+        "x": 49.5,
+        "y": 0,
+        "z": 7.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 49,
+          "y": 16
+        },
+        {
+          "x": 49,
+          "y": 17
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1160,
+        717
+      ],
+      "modelId": "barrel-0",
+      "modelOriginUnity": {
+        "x": 49.5,
+        "y": 0,
+        "z": 7.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 49.57031,
+        "y": 0,
+        "z": 7.49512
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "southern-bread-oven",
+      "kind": "oven",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 34,
+        "y": 24
+      },
+      "nativeCellCentreUnity": {
+        "x": 34.5,
+        "y": 0,
+        "z": 0.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 34,
+          "y": 22
+        },
+        {
+          "x": 34,
+          "y": 23
+        },
+        {
+          "x": 34,
+          "y": 24
+        },
+        {
+          "x": 35,
+          "y": 22
+        },
+        {
+          "x": 35,
+          "y": 23
+        },
+        {
+          "x": 35,
+          "y": 24
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        558,
+        1001
+      ],
+      "modelId": "bread-oven",
+      "modelOriginUnity": {
+        "x": 35.0,
+        "y": 0,
+        "z": 1.5
+      },
+      "modelOffsetUnity": {
+        "x": 0.5,
+        "y": 0,
+        "z": 1
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 34.87305,
+        "y": 0,
+        "z": 0.56152
+      },
+      "offsetPurpose": "Visual model centre is offset from the native foot/interaction anchor to fit the native multi-cell fixture. The offset moves with the owner; it does not move any native footprint."
+    },
+    {
+      "ownerId": "southern-tortoise",
+      "kind": "creature",
+      "roomId": null,
+      "nativeAnchor": {
+        "x": 37,
+        "y": 23
+      },
+      "nativeCellCentreUnity": {
+        "x": 37.5,
+        "y": 0,
+        "z": 1.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 37,
+          "y": 23
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        660,
+        982
+      ],
+      "modelId": "tortoise",
+      "modelOriginUnity": {
+        "x": 37.5,
+        "y": 0,
+        "z": 1.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 37.36328,
+        "y": 0,
+        "z": 1.02539
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "keeper-gatehouse-shell",
+      "kind": "building-shell",
+      "roomId": "keeper-gatehouse",
+      "nativeAnchor": {
+        "x": 34,
+        "y": 6
+      },
+      "nativeCellCentreUnity": {
+        "x": 34.5,
+        "y": 0,
+        "z": 18.5
+      },
+      "nativeFootprint": [],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": false,
+      "sourceImageFootPixels": [
+        552,
+        263
+      ],
+      "modelId": "keeper-gatehouse-shell",
+      "modelOriginUnity": {
+        "x": 34.5,
+        "y": 0,
+        "z": 18.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 34.72656,
+        "y": 0,
+        "z": 18.5791
+      },
+      "offsetPurpose": "Native owner anchor is the model root; asymmetric local shell/roof bounds span native room cells."
+    },
+    {
+      "ownerId": "keeper-gatehouse-roof",
+      "kind": "roof",
+      "roomId": "keeper-gatehouse",
+      "nativeAnchor": {
+        "x": 34,
+        "y": 6
+      },
+      "nativeCellCentreUnity": {
+        "x": 34.5,
+        "y": 0,
+        "z": 18.5
+      },
+      "nativeFootprint": [],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": false,
+      "sourceImageFootPixels": [
+        552,
+        263
+      ],
+      "modelId": "keeper-gatehouse-roof",
+      "modelOriginUnity": {
+        "x": 34.5,
+        "y": 0,
+        "z": 18.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 34.72656,
+        "y": 0,
+        "z": 18.5791
+      },
+      "offsetPurpose": "Native owner anchor is the model root; asymmetric local shell/roof bounds span native room cells."
+    },
+    {
+      "ownerId": "keeper-door",
+      "kind": "door",
+      "roomId": "keeper-gatehouse",
+      "nativeAnchor": {
+        "x": 34,
+        "y": 5
+      },
+      "nativeCellCentreUnity": {
+        "x": 34.5,
+        "y": 0,
+        "z": 19.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 34,
+          "y": 5
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        550,
+        236
+      ],
+      "modelId": "oak-door",
+      "modelOriginUnity": {
+        "x": 34.05,
+        "y": 0,
+        "z": 19.5
+      },
+      "modelOffsetUnity": {
+        "x": -0.45,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 34.67773,
+        "y": 0,
+        "z": 19.23828
+      },
+      "offsetPurpose": "Left hinge is .45 units west of native door centre; visual leaf spans the doorway."
+    },
+    {
+      "ownerId": "keeper-rest-bench",
+      "kind": "bench",
+      "roomId": "keeper-gatehouse",
+      "nativeAnchor": {
+        "x": 32,
+        "y": 4
+      },
+      "nativeCellCentreUnity": {
+        "x": 32.5,
+        "y": 0,
+        "z": 20.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 32,
+          "y": 4
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        465,
+        197
+      ],
+      "modelId": "bench",
+      "modelOriginUnity": {
+        "x": 32.5,
+        "y": 0,
+        "z": 20.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 0.59,
+        "y": 0.88,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "room-open",
+      "sourceImageFootProjectedUnity": {
+        "x": 32.60254,
+        "y": 0,
+        "z": 20.19043
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "keeper-supply-chest",
+      "kind": "container",
+      "roomId": "keeper-gatehouse",
+      "nativeAnchor": {
+        "x": 34,
+        "y": 2
+      },
+      "nativeCellCentreUnity": {
+        "x": 34.5,
+        "y": 0,
+        "z": 22.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 34,
+          "y": 2
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        559,
+        132
+      ],
+      "modelId": "crate-3",
+      "modelOriginUnity": {
+        "x": 34.5,
+        "y": 0,
+        "z": 22.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "room-open",
+      "sourceImageFootProjectedUnity": {
+        "x": 34.89746,
+        "y": 0,
+        "z": 21.77734
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "keeper-duty-desk",
+      "kind": "table",
+      "roomId": "keeper-gatehouse",
+      "nativeAnchor": {
+        "x": 33,
+        "y": 4
+      },
+      "nativeCellCentreUnity": {
+        "x": 33.5,
+        "y": 0,
+        "z": 20.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 33,
+          "y": 4
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        512,
+        214
+      ],
+      "modelId": "table-1",
+      "modelOriginUnity": {
+        "x": 33.5,
+        "y": 0,
+        "z": 20.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 0.66,
+        "y": 0.85,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "room-open",
+      "sourceImageFootProjectedUnity": {
+        "x": 33.75,
+        "y": 0,
+        "z": 19.77539
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "dry-hem-guesthouse-shell",
+      "kind": "building-shell",
+      "roomId": "dry-hem-guesthouse",
+      "nativeAnchor": {
+        "x": 32,
+        "y": 14
+      },
+      "nativeCellCentreUnity": {
+        "x": 32.5,
+        "y": 0,
+        "z": 10.5
+      },
+      "nativeFootprint": [],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": false,
+      "sourceImageFootPixels": [
+        467,
+        577
+      ],
+      "modelId": "dry-hem-guesthouse-shell",
+      "modelOriginUnity": {
+        "x": 32.5,
+        "y": 0,
+        "z": 10.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 32.65137,
+        "y": 0,
+        "z": 10.91309
+      },
+      "offsetPurpose": "Native owner anchor is the model root; asymmetric local shell/roof bounds span native room cells."
+    },
+    {
+      "ownerId": "dry-hem-guesthouse-roof",
+      "kind": "roof",
+      "roomId": "dry-hem-guesthouse",
+      "nativeAnchor": {
+        "x": 32,
+        "y": 14
+      },
+      "nativeCellCentreUnity": {
+        "x": 32.5,
+        "y": 0,
+        "z": 10.5
+      },
+      "nativeFootprint": [],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": false,
+      "sourceImageFootPixels": [
+        467,
+        577
+      ],
+      "modelId": "dry-hem-guesthouse-roof",
+      "modelOriginUnity": {
+        "x": 32.5,
+        "y": 0,
+        "z": 10.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 32.65137,
+        "y": 0,
+        "z": 10.91309
+      },
+      "offsetPurpose": "Native owner anchor is the model root; asymmetric local shell/roof bounds span native room cells."
+    },
+    {
+      "ownerId": "guesthouse-door",
+      "kind": "door",
+      "roomId": "dry-hem-guesthouse",
+      "nativeAnchor": {
+        "x": 32,
+        "y": 13
+      },
+      "nativeCellCentreUnity": {
+        "x": 32.5,
+        "y": 0,
+        "z": 11.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 32,
+          "y": 13
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        467,
+        550
+      ],
+      "modelId": "oak-door",
+      "modelOriginUnity": {
+        "x": 32.05,
+        "y": 0,
+        "z": 11.5
+      },
+      "modelOffsetUnity": {
+        "x": -0.45,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 32.65137,
+        "y": 0,
+        "z": 11.57227
+      },
+      "offsetPurpose": "Left hinge is .45 units west of native door centre; visual leaf spans the doorway."
+    },
+    {
+      "ownerId": "guest-bed-west",
+      "kind": "bed",
+      "roomId": "dry-hem-guesthouse",
+      "nativeAnchor": {
+        "x": 29,
+        "y": 10
+      },
+      "nativeCellCentreUnity": {
+        "x": 29.5,
+        "y": 0,
+        "z": 14.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 29,
+          "y": 10
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        338,
+        430
+      ],
+      "modelId": "bed-0",
+      "modelOriginUnity": {
+        "x": 29.5,
+        "y": 0,
+        "z": 14.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 0.82,
+        "z": 0.53
+      },
+      "rotationY": -0.0,
+      "visibility": "room-open",
+      "sourceImageFootProjectedUnity": {
+        "x": 29.50195,
+        "y": 0,
+        "z": 14.50195
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "guest-bed-east",
+      "kind": "bed",
+      "roomId": "dry-hem-guesthouse",
+      "nativeAnchor": {
+        "x": 31,
+        "y": 10
+      },
+      "nativeCellCentreUnity": {
+        "x": 31.5,
+        "y": 0,
+        "z": 14.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 31,
+          "y": 10
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        416,
+        430
+      ],
+      "modelId": "bed-1",
+      "modelOriginUnity": {
+        "x": 31.5,
+        "y": 0,
+        "z": 14.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 0.82,
+        "z": 0.53
+      },
+      "rotationY": -0.0,
+      "visibility": "room-open",
+      "sourceImageFootProjectedUnity": {
+        "x": 31.40625,
+        "y": 0,
+        "z": 14.50195
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "guest-warming-stove",
+      "kind": "hearth",
+      "roomId": "dry-hem-guesthouse",
+      "nativeAnchor": {
+        "x": 33,
+        "y": 10
+      },
+      "nativeCellCentreUnity": {
+        "x": 33.5,
+        "y": 0,
+        "z": 14.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 33,
+          "y": 10
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        521,
+        417
+      ],
+      "modelId": "hearth-0",
+      "modelOriginUnity": {
+        "x": 33.5,
+        "y": 0,
+        "z": 14.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 0.72,
+        "y": 0.9,
+        "z": 0.9
+      },
+      "rotationY": -0.0,
+      "visibility": "room-open",
+      "sourceImageFootProjectedUnity": {
+        "x": 33.96973,
+        "y": 0,
+        "z": 14.81934
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "guest-supper-table",
+      "kind": "table",
+      "roomId": "dry-hem-guesthouse",
+      "nativeAnchor": {
+        "x": 29,
+        "y": 11
+      },
+      "nativeCellCentreUnity": {
+        "x": 29.5,
+        "y": 0,
+        "z": 13.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 29,
+          "y": 11
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        340,
+        504
+      ],
+      "modelId": "table-0",
+      "modelOriginUnity": {
+        "x": 29.5,
+        "y": 0,
+        "z": 13.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 0.66,
+        "y": 0.85,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "room-open",
+      "sourceImageFootProjectedUnity": {
+        "x": 29.55078,
+        "y": 0,
+        "z": 12.69531
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "guest-stool-west",
+      "kind": "stool",
+      "roomId": "dry-hem-guesthouse",
+      "nativeAnchor": {
+        "x": 28,
+        "y": 11
+      },
+      "nativeCellCentreUnity": {
+        "x": 28.5,
+        "y": 0,
+        "z": 13.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 28,
+          "y": 11
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        305,
+        490
+      ],
+      "modelId": "stool",
+      "modelOriginUnity": {
+        "x": 28.5,
+        "y": 0,
+        "z": 13.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "room-open",
+      "sourceImageFootProjectedUnity": {
+        "x": 28.69629,
+        "y": 0,
+        "z": 13.03711
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "guest-stool-east",
+      "kind": "stool",
+      "roomId": "dry-hem-guesthouse",
+      "nativeAnchor": {
+        "x": 30,
+        "y": 11
+      },
+      "nativeCellCentreUnity": {
+        "x": 30.5,
+        "y": 0,
+        "z": 13.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 30,
+          "y": 11
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        378,
+        488
+      ],
+      "modelId": "stool",
+      "modelOriginUnity": {
+        "x": 30.5,
+        "y": 0,
+        "z": 13.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "room-open",
+      "sourceImageFootProjectedUnity": {
+        "x": 30.47852,
+        "y": 0,
+        "z": 13.08594
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "guest-stool-south",
+      "kind": "stool",
+      "roomId": "dry-hem-guesthouse",
+      "nativeAnchor": {
+        "x": 31,
+        "y": 11
+      },
+      "nativeCellCentreUnity": {
+        "x": 31.5,
+        "y": 0,
+        "z": 13.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 31,
+          "y": 11
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        414,
+        481
+      ],
+      "modelId": "stool",
+      "modelOriginUnity": {
+        "x": 31.5,
+        "y": 0,
+        "z": 13.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "room-open",
+      "sourceImageFootProjectedUnity": {
+        "x": 31.35742,
+        "y": 0,
+        "z": 13.25684
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "long-loop-ropeshop-shell",
+      "kind": "building-shell",
+      "roomId": "long-loop-ropeshop",
+      "nativeAnchor": {
+        "x": 31,
+        "y": 21
+      },
+      "nativeCellCentreUnity": {
+        "x": 31.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "nativeFootprint": [],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": false,
+      "sourceImageFootPixels": [
+        415,
+        873
+      ],
+      "modelId": "long-loop-ropeshop-shell",
+      "modelOriginUnity": {
+        "x": 31.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 31.38184,
+        "y": 0,
+        "z": 3.68652
+      },
+      "offsetPurpose": "Native owner anchor is the model root; asymmetric local shell/roof bounds span native room cells."
+    },
+    {
+      "ownerId": "long-loop-ropeshop-roof",
+      "kind": "roof",
+      "roomId": "long-loop-ropeshop",
+      "nativeAnchor": {
+        "x": 31,
+        "y": 21
+      },
+      "nativeCellCentreUnity": {
+        "x": 31.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "nativeFootprint": [],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": false,
+      "sourceImageFootPixels": [
+        415,
+        873
+      ],
+      "modelId": "long-loop-ropeshop-roof",
+      "modelOriginUnity": {
+        "x": 31.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 31.38184,
+        "y": 0,
+        "z": 3.68652
+      },
+      "offsetPurpose": "Native owner anchor is the model root; asymmetric local shell/roof bounds span native room cells."
+    },
+    {
+      "ownerId": "ropeshop-door",
+      "kind": "door",
+      "roomId": "long-loop-ropeshop",
+      "nativeAnchor": {
+        "x": 31,
+        "y": 20
+      },
+      "nativeCellCentreUnity": {
+        "x": 31.5,
+        "y": 0,
+        "z": 4.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 31,
+          "y": 20
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        416,
+        847
+      ],
+      "modelId": "oak-door",
+      "modelOriginUnity": {
+        "x": 31.05,
+        "y": 0,
+        "z": 4.5
+      },
+      "modelOffsetUnity": {
+        "x": -0.45,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 31.40625,
+        "y": 0,
+        "z": 4.32129
+      },
+      "offsetPurpose": "Left hinge is .45 units west of native door centre; visual leaf spans the doorway."
+    },
+    {
+      "ownerId": "rope-workbench",
+      "kind": "workbench",
+      "roomId": "long-loop-ropeshop",
+      "nativeAnchor": {
+        "x": 31,
+        "y": 18
+      },
+      "nativeCellCentreUnity": {
+        "x": 31.5,
+        "y": 0,
+        "z": 6.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 31,
+          "y": 18
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        428,
+        744
+      ],
+      "modelId": "table-2",
+      "modelOriginUnity": {
+        "x": 31.5,
+        "y": 0,
+        "z": 6.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 0.53,
+        "y": 0.85,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "room-open",
+      "sourceImageFootProjectedUnity": {
+        "x": 31.69922,
+        "y": 0,
+        "z": 6.83594
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "rope-storage-barrel",
+      "kind": "container",
+      "roomId": "long-loop-ropeshop",
+      "nativeAnchor": {
+        "x": 33,
+        "y": 19
+      },
+      "nativeCellCentreUnity": {
+        "x": 33.5,
+        "y": 0,
+        "z": 5.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 33,
+          "y": 19
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        513,
+        807
+      ],
+      "modelId": "barrel-3",
+      "modelOriginUnity": {
+        "x": 33.5,
+        "y": 0,
+        "z": 5.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "room-open",
+      "sourceImageFootProjectedUnity": {
+        "x": 33.77441,
+        "y": 0,
+        "z": 5.29785
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "rope-reserve-coil",
+      "kind": "rope",
+      "roomId": "long-loop-ropeshop",
+      "nativeAnchor": {
+        "x": 29,
+        "y": 18
+      },
+      "nativeCellCentreUnity": {
+        "x": 29.5,
+        "y": 0,
+        "z": 6.5
+      },
+      "nativeFootprint": [],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": false,
+      "sourceImageFootPixels": [
+        341,
+        776
+      ],
+      "modelId": "rope-coil",
+      "modelOriginUnity": {
+        "x": 29.5,
+        "y": 0,
+        "z": 6.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "room-open",
+      "sourceImageFootProjectedUnity": {
+        "x": 29.5752,
+        "y": 0,
+        "z": 6.05469
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "return-desk-archive-shell",
+      "kind": "building-shell",
+      "roomId": "return-desk-archive",
+      "nativeAnchor": {
+        "x": 49,
+        "y": 7
+      },
+      "nativeCellCentreUnity": {
+        "x": 49.5,
+        "y": 0,
+        "z": 17.5
+      },
+      "nativeFootprint": [],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": false,
+      "sourceImageFootPixels": [
+        1149,
+        295
+      ],
+      "modelId": "return-desk-archive-shell",
+      "modelOriginUnity": {
+        "x": 49.5,
+        "y": 0,
+        "z": 17.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 49.30176,
+        "y": 0,
+        "z": 17.79785
+      },
+      "offsetPurpose": "Native owner anchor is the model root; asymmetric local shell/roof bounds span native room cells."
+    },
+    {
+      "ownerId": "return-desk-archive-roof",
+      "kind": "roof",
+      "roomId": "return-desk-archive",
+      "nativeAnchor": {
+        "x": 49,
+        "y": 7
+      },
+      "nativeCellCentreUnity": {
+        "x": 49.5,
+        "y": 0,
+        "z": 17.5
+      },
+      "nativeFootprint": [],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": false,
+      "sourceImageFootPixels": [
+        1149,
+        295
+      ],
+      "modelId": "return-desk-archive-roof",
+      "modelOriginUnity": {
+        "x": 49.5,
+        "y": 0,
+        "z": 17.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 49.30176,
+        "y": 0,
+        "z": 17.79785
+      },
+      "offsetPurpose": "Native owner anchor is the model root; asymmetric local shell/roof bounds span native room cells."
+    },
+    {
+      "ownerId": "archive-door",
+      "kind": "door",
+      "roomId": "return-desk-archive",
+      "nativeAnchor": {
+        "x": 49,
+        "y": 6
+      },
+      "nativeCellCentreUnity": {
+        "x": 49.5,
+        "y": 0,
+        "z": 18.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 49,
+          "y": 6
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1149,
+        266
+      ],
+      "modelId": "oak-door",
+      "modelOriginUnity": {
+        "x": 49.05,
+        "y": 0,
+        "z": 18.5
+      },
+      "modelOffsetUnity": {
+        "x": -0.45,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 49.30176,
+        "y": 0,
+        "z": 18.50586
+      },
+      "offsetPurpose": "Left hinge is .45 units west of native door centre; visual leaf spans the doorway."
+    },
+    {
+      "ownerId": "archive-shelf-north",
+      "kind": "bookshelf",
+      "roomId": "return-desk-archive",
+      "nativeAnchor": {
+        "x": 49,
+        "y": 3
+      },
+      "nativeCellCentreUnity": {
+        "x": 49.5,
+        "y": 0,
+        "z": 21.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 49,
+          "y": 3
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1161,
+        139
+      ],
+      "modelId": "bookshelf",
+      "modelOriginUnity": {
+        "x": 49.5,
+        "y": 0,
+        "z": 21.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 0.65,
+        "y": 0.9,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "room-open",
+      "sourceImageFootProjectedUnity": {
+        "x": 49.59473,
+        "y": 0,
+        "z": 21.60645
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "archive-shelf-west",
+      "kind": "bookshelf",
+      "roomId": "return-desk-archive",
+      "nativeAnchor": {
+        "x": 47,
+        "y": 4
+      },
+      "nativeCellCentreUnity": {
+        "x": 47.5,
+        "y": 0,
+        "z": 20.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 47,
+          "y": 4
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1085,
+        195
+      ],
+      "modelId": "bookshelf",
+      "modelOriginUnity": {
+        "x": 47.5,
+        "y": 0,
+        "z": 20.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 0.65,
+        "y": 0.9,
+        "z": 1
+      },
+      "rotationY": -90.0,
+      "visibility": "room-open",
+      "sourceImageFootProjectedUnity": {
+        "x": 47.73926,
+        "y": 0,
+        "z": 20.23926
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "archive-writing-desk",
+      "kind": "table",
+      "roomId": "return-desk-archive",
+      "nativeAnchor": {
+        "x": 51,
+        "y": 5
+      },
+      "nativeCellCentreUnity": {
+        "x": 51.5,
+        "y": 0,
+        "z": 19.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 51,
+          "y": 5
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1220,
+        230
+      ],
+      "modelId": "table-1",
+      "modelOriginUnity": {
+        "x": 51.5,
+        "y": 0,
+        "z": 19.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 0.66,
+        "y": 0.85,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "room-open",
+      "sourceImageFootProjectedUnity": {
+        "x": 51.03516,
+        "y": 0,
+        "z": 19.38477
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "archive-storage-barrel",
+      "kind": "container",
+      "roomId": "return-desk-archive",
+      "nativeAnchor": {
+        "x": 47,
+        "y": 5
+      },
+      "nativeCellCentreUnity": {
+        "x": 47.5,
+        "y": 0,
+        "z": 19.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 47,
+          "y": 5
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1084,
+        232
+      ],
+      "modelId": "barrel-3",
+      "modelOriginUnity": {
+        "x": 47.5,
+        "y": 0,
+        "z": 19.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "room-open",
+      "sourceImageFootProjectedUnity": {
+        "x": 47.71484,
+        "y": 0,
+        "z": 19.33594
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "second-bowl-kitchen-shell",
+      "kind": "building-shell",
+      "roomId": "second-bowl-kitchen",
+      "nativeAnchor": {
+        "x": 51,
+        "y": 21
+      },
+      "nativeCellCentreUnity": {
+        "x": 51.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "nativeFootprint": [],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": false,
+      "sourceImageFootPixels": [
+        1258,
+        881
+      ],
+      "modelId": "second-bowl-kitchen-shell",
+      "modelOriginUnity": {
+        "x": 51.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 51.96289,
+        "y": 0,
+        "z": 3.49121
+      },
+      "offsetPurpose": "Native owner anchor is the model root; asymmetric local shell/roof bounds span native room cells."
+    },
+    {
+      "ownerId": "second-bowl-kitchen-roof",
+      "kind": "roof",
+      "roomId": "second-bowl-kitchen",
+      "nativeAnchor": {
+        "x": 51,
+        "y": 21
+      },
+      "nativeCellCentreUnity": {
+        "x": 51.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "nativeFootprint": [],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": false,
+      "sourceImageFootPixels": [
+        1258,
+        881
+      ],
+      "modelId": "second-bowl-kitchen-roof",
+      "modelOriginUnity": {
+        "x": 51.5,
+        "y": 0,
+        "z": 3.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 51.96289,
+        "y": 0,
+        "z": 3.49121
+      },
+      "offsetPurpose": "Native owner anchor is the model root; asymmetric local shell/roof bounds span native room cells."
+    },
+    {
+      "ownerId": "kitchen-door",
+      "kind": "door",
+      "roomId": "second-bowl-kitchen",
+      "nativeAnchor": {
+        "x": 51,
+        "y": 20
+      },
+      "nativeCellCentreUnity": {
+        "x": 51.5,
+        "y": 0,
+        "z": 4.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 51,
+          "y": 20
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1258,
+        854
+      ],
+      "modelId": "oak-door",
+      "modelOriginUnity": {
+        "x": 51.05,
+        "y": 0,
+        "z": 4.5
+      },
+      "modelOffsetUnity": {
+        "x": -0.45,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "owner-visible",
+      "sourceImageFootProjectedUnity": {
+        "x": 51.96289,
+        "y": 0,
+        "z": 4.15039
+      },
+      "offsetPurpose": "Left hinge is .45 units west of native door centre; visual leaf spans the doorway."
+    },
+    {
+      "ownerId": "kitchen-masonry-hearth",
+      "kind": "hearth",
+      "roomId": "second-bowl-kitchen",
+      "nativeAnchor": {
+        "x": 52,
+        "y": 17
+      },
+      "nativeCellCentreUnity": {
+        "x": 52.5,
+        "y": 0,
+        "z": 7.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 52,
+          "y": 17
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1274,
+        712
+      ],
+      "modelId": "hearth-0",
+      "modelOriginUnity": {
+        "x": 52.5,
+        "y": 0,
+        "z": 7.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 0.72,
+        "y": 0.9,
+        "z": 0.9
+      },
+      "rotationY": -0.0,
+      "visibility": "room-open",
+      "sourceImageFootProjectedUnity": {
+        "x": 52.35352,
+        "y": 0,
+        "z": 7.61719
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "kitchen-prep-table",
+      "kind": "table",
+      "roomId": "second-bowl-kitchen",
+      "nativeAnchor": {
+        "x": 50,
+        "y": 18
+      },
+      "nativeCellCentreUnity": {
+        "x": 50.5,
+        "y": 0,
+        "z": 6.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 50,
+          "y": 18
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1224,
+        812
+      ],
+      "modelId": "table-0",
+      "modelOriginUnity": {
+        "x": 50.5,
+        "y": 0,
+        "z": 6.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 0.66,
+        "y": 0.85,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "room-open",
+      "sourceImageFootProjectedUnity": {
+        "x": 51.13281,
+        "y": 0,
+        "z": 5.17578
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "kitchen-produce-barrel-north",
+      "kind": "container",
+      "roomId": "second-bowl-kitchen",
+      "nativeAnchor": {
+        "x": 53,
+        "y": 18
+      },
+      "nativeCellCentreUnity": {
+        "x": 53.5,
+        "y": 0,
+        "z": 6.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 53,
+          "y": 18
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1332,
+        764
+      ],
+      "modelId": "barrel-1",
+      "modelOriginUnity": {
+        "x": 53.5,
+        "y": 0,
+        "z": 6.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "room-open",
+      "sourceImageFootProjectedUnity": {
+        "x": 53.76953,
+        "y": 0,
+        "z": 6.34766
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    },
+    {
+      "ownerId": "kitchen-produce-barrel-south",
+      "kind": "container",
+      "roomId": "second-bowl-kitchen",
+      "nativeAnchor": {
+        "x": 53,
+        "y": 19
+      },
+      "nativeCellCentreUnity": {
+        "x": 53.5,
+        "y": 0,
+        "z": 5.5
+      },
+      "nativeFootprint": [
+        {
+          "x": 53,
+          "y": 19
+        }
+      ],
+      "nativeBridgeSupport": [],
+      "nativeBlocksMovement": true,
+      "sourceImageFootPixels": [
+        1332,
+        816
+      ],
+      "modelId": "barrel-2",
+      "modelOriginUnity": {
+        "x": 53.5,
+        "y": 0,
+        "z": 5.5
+      },
+      "modelOffsetUnity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "modelScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotationY": -0.0,
+      "visibility": "room-open",
+      "sourceImageFootProjectedUnity": {
+        "x": 53.76953,
+        "y": 0,
+        "z": 5.07812
+      },
+      "offsetPurpose": "Owner cell centre is model origin."
+    }
+  ],
+  "staticPlacements": [
+    {
+      "id": "ground-00-00",
+      "modelId": "ground-patch-0",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-00-00",
+      "modelId": "detail-patch-00-00",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-01-00",
+      "modelId": "ground-patch-1",
+      "position": {
+        "x": 15,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-01-00",
+      "modelId": "detail-patch-01-00",
+      "position": {
+        "x": 15,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-02-00",
+      "modelId": "ground-patch-2",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-02-00",
+      "modelId": "detail-patch-02-00",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-03-00",
+      "modelId": "ground-patch-3",
+      "position": {
+        "x": 35,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-03-00",
+      "modelId": "detail-patch-03-00",
+      "position": {
+        "x": 35,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-04-00",
+      "modelId": "ground-patch-0",
+      "position": {
+        "x": 45,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-04-00",
+      "modelId": "detail-patch-04-00",
+      "position": {
+        "x": 45,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-05-00",
+      "modelId": "ground-patch-1",
+      "position": {
+        "x": 55,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-05-00",
+      "modelId": "detail-patch-05-00",
+      "position": {
+        "x": 55,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-06-00",
+      "modelId": "ground-patch-2",
+      "position": {
+        "x": 65,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-06-00",
+      "modelId": "detail-patch-06-00",
+      "position": {
+        "x": 65,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-07-00",
+      "modelId": "ground-patch-3",
+      "position": {
+        "x": 75,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-07-00",
+      "modelId": "detail-patch-07-00",
+      "position": {
+        "x": 75,
+        "y": 0,
+        "z": 2.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-00-01",
+      "modelId": "ground-patch-2",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-00-01",
+      "modelId": "detail-patch-00-01",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-01-01",
+      "modelId": "ground-patch-3",
+      "position": {
+        "x": 15,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-01-01",
+      "modelId": "detail-patch-01-01",
+      "position": {
+        "x": 15,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-02-01",
+      "modelId": "ground-patch-0",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-02-01",
+      "modelId": "detail-patch-02-01",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-03-01",
+      "modelId": "ground-patch-1",
+      "position": {
+        "x": 35,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-03-01",
+      "modelId": "detail-patch-03-01",
+      "position": {
+        "x": 35,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-04-01",
+      "modelId": "ground-patch-2",
+      "position": {
+        "x": 45,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-04-01",
+      "modelId": "detail-patch-04-01",
+      "position": {
+        "x": 45,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-05-01",
+      "modelId": "ground-patch-3",
+      "position": {
+        "x": 55,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-05-01",
+      "modelId": "detail-patch-05-01",
+      "position": {
+        "x": 55,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-06-01",
+      "modelId": "ground-patch-0",
+      "position": {
+        "x": 65,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-06-01",
+      "modelId": "detail-patch-06-01",
+      "position": {
+        "x": 65,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-07-01",
+      "modelId": "ground-patch-1",
+      "position": {
+        "x": 75,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-07-01",
+      "modelId": "detail-patch-07-01",
+      "position": {
+        "x": 75,
+        "y": 0,
+        "z": 7.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-00-02",
+      "modelId": "ground-patch-0",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-00-02",
+      "modelId": "detail-patch-00-02",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-01-02",
+      "modelId": "ground-patch-1",
+      "position": {
+        "x": 15,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-01-02",
+      "modelId": "detail-patch-01-02",
+      "position": {
+        "x": 15,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-02-02",
+      "modelId": "ground-patch-2",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-02-02",
+      "modelId": "detail-patch-02-02",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-03-02",
+      "modelId": "ground-patch-3",
+      "position": {
+        "x": 35,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-03-02",
+      "modelId": "detail-patch-03-02",
+      "position": {
+        "x": 35,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-04-02",
+      "modelId": "ground-patch-0",
+      "position": {
+        "x": 45,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-04-02",
+      "modelId": "detail-patch-04-02",
+      "position": {
+        "x": 45,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-05-02",
+      "modelId": "ground-patch-1",
+      "position": {
+        "x": 55,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-05-02",
+      "modelId": "detail-patch-05-02",
+      "position": {
+        "x": 55,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-06-02",
+      "modelId": "ground-patch-2",
+      "position": {
+        "x": 65,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-06-02",
+      "modelId": "detail-patch-06-02",
+      "position": {
+        "x": 65,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-07-02",
+      "modelId": "ground-patch-3",
+      "position": {
+        "x": 75,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-07-02",
+      "modelId": "detail-patch-07-02",
+      "position": {
+        "x": 75,
+        "y": 0,
+        "z": 12.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-00-03",
+      "modelId": "ground-patch-2",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-00-03",
+      "modelId": "detail-patch-00-03",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-01-03",
+      "modelId": "ground-patch-3",
+      "position": {
+        "x": 15,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-01-03",
+      "modelId": "detail-patch-01-03",
+      "position": {
+        "x": 15,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-02-03",
+      "modelId": "ground-patch-0",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-02-03",
+      "modelId": "detail-patch-02-03",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-03-03",
+      "modelId": "ground-patch-1",
+      "position": {
+        "x": 35,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-03-03",
+      "modelId": "detail-patch-03-03",
+      "position": {
+        "x": 35,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-04-03",
+      "modelId": "ground-patch-2",
+      "position": {
+        "x": 45,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-04-03",
+      "modelId": "detail-patch-04-03",
+      "position": {
+        "x": 45,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-05-03",
+      "modelId": "ground-patch-3",
+      "position": {
+        "x": 55,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-05-03",
+      "modelId": "detail-patch-05-03",
+      "position": {
+        "x": 55,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-06-03",
+      "modelId": "ground-patch-0",
+      "position": {
+        "x": 65,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-06-03",
+      "modelId": "detail-patch-06-03",
+      "position": {
+        "x": 65,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-07-03",
+      "modelId": "ground-patch-1",
+      "position": {
+        "x": 75,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-07-03",
+      "modelId": "detail-patch-07-03",
+      "position": {
+        "x": 75,
+        "y": 0,
+        "z": 17.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-00-04",
+      "modelId": "ground-patch-0",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-00-04",
+      "modelId": "detail-patch-00-04",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-01-04",
+      "modelId": "ground-patch-1",
+      "position": {
+        "x": 15,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-01-04",
+      "modelId": "detail-patch-01-04",
+      "position": {
+        "x": 15,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-02-04",
+      "modelId": "ground-patch-2",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-02-04",
+      "modelId": "detail-patch-02-04",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-03-04",
+      "modelId": "ground-patch-3",
+      "position": {
+        "x": 35,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-03-04",
+      "modelId": "detail-patch-03-04",
+      "position": {
+        "x": 35,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-04-04",
+      "modelId": "ground-patch-0",
+      "position": {
+        "x": 45,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-04-04",
+      "modelId": "detail-patch-04-04",
+      "position": {
+        "x": 45,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-05-04",
+      "modelId": "ground-patch-1",
+      "position": {
+        "x": 55,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-05-04",
+      "modelId": "detail-patch-05-04",
+      "position": {
+        "x": 55,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-06-04",
+      "modelId": "ground-patch-2",
+      "position": {
+        "x": 65,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-06-04",
+      "modelId": "detail-patch-06-04",
+      "position": {
+        "x": 65,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "ground-07-04",
+      "modelId": "ground-patch-3",
+      "position": {
+        "x": 75,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain"
+    },
+    {
+      "id": "detail-patch-07-04",
+      "modelId": "detail-patch-07-04",
+      "position": {
+        "x": 75,
+        "y": 0,
+        "z": 22.5
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "terrain-detail"
+    },
+    {
+      "id": "accent-00",
+      "modelId": "tree-0",
+      "position": {
+        "x": 22.6,
+        "y": 0,
+        "z": 21.3
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.15,
+        "y": 1.15,
+        "z": 1.15
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-01",
+      "modelId": "tree-1",
+      "position": {
+        "x": 23.1,
+        "y": 0,
+        "z": 3.7
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.05,
+        "y": 1.05,
+        "z": 1.05
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-02",
+      "modelId": "tree-2",
+      "position": {
+        "x": 56.7,
+        "y": 0,
+        "z": 3.9
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 0.95,
+        "y": 0.95,
+        "z": 0.95
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-03",
+      "modelId": "tree-3",
+      "position": {
+        "x": 56.3,
+        "y": 0,
+        "z": 15.6
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.1,
+        "y": 1.1,
+        "z": 1.1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-04",
+      "modelId": "tree-1",
+      "position": {
+        "x": 54.8,
+        "y": 0,
+        "z": 20.6
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 0.8,
+        "y": 0.8,
+        "z": 0.8
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-05",
+      "modelId": "shrub-0",
+      "position": {
+        "x": 24.1,
+        "y": 0,
+        "z": 23.9
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 0.9,
+        "y": 0.9,
+        "z": 0.9
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-06",
+      "modelId": "shrub-2",
+      "position": {
+        "x": 57.1,
+        "y": 0,
+        "z": 23.1
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-07",
+      "modelId": "shrub-3",
+      "position": {
+        "x": 57.2,
+        "y": 0,
+        "z": 7.2
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 0.9,
+        "y": 0.9,
+        "z": 0.9
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-08",
+      "modelId": "rocks-0",
+      "position": {
+        "x": 24.0,
+        "y": 0,
+        "z": 24.1
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.3,
+        "y": 1.3,
+        "z": 1.3
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-09",
+      "modelId": "rocks-1",
+      "position": {
+        "x": 56.5,
+        "y": 0,
+        "z": 24.3
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.2,
+        "y": 1.2,
+        "z": 1.2
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-10",
+      "modelId": "rocks-2",
+      "position": {
+        "x": 23.1,
+        "y": 0,
+        "z": 18.8
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.2,
+        "y": 1.2,
+        "z": 1.2
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-11",
+      "modelId": "rocks-3",
+      "position": {
+        "x": 58.0,
+        "y": 0,
+        "z": 19.1
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.2,
+        "y": 1.2,
+        "z": 1.2
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-12",
+      "modelId": "rocks-2",
+      "position": {
+        "x": 25.2,
+        "y": 0,
+        "z": 1.9
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.15,
+        "y": 1.15,
+        "z": 1.15
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-13",
+      "modelId": "rocks-1",
+      "position": {
+        "x": 56.1,
+        "y": 0,
+        "z": 1.2
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.1,
+        "y": 1.1,
+        "z": 1.1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-14",
+      "modelId": "planter-0",
+      "position": {
+        "x": 25.9,
+        "y": 0,
+        "z": 17.2
+      },
+      "rotationY": -90,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-15",
+      "modelId": "planter-2",
+      "position": {
+        "x": 26.0,
+        "y": 0,
+        "z": 6.6
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-16",
+      "modelId": "planter-0",
+      "position": {
+        "x": 31.0,
+        "y": 0,
+        "z": 1.3
+      },
+      "rotationY": -90,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "accent-17",
+      "modelId": "planter-1",
+      "position": {
+        "x": 55.0,
+        "y": 0,
+        "z": 15.7
+      },
+      "rotationY": 0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-00",
+      "modelId": "fence-0",
+      "position": {
+        "x": 30.0,
+        "y": 0,
+        "z": 24.0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-01",
+      "modelId": "fence-1",
+      "position": {
+        "x": 32.4,
+        "y": 0,
+        "z": 24.0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-02",
+      "modelId": "fence-2",
+      "position": {
+        "x": 34.8,
+        "y": 0,
+        "z": 24.0
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-03",
+      "modelId": "fence-3",
+      "position": {
+        "x": 44.2,
+        "y": 0,
+        "z": 23.2
+      },
+      "rotationY": 25.783100780887047,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-04",
+      "modelId": "fence-0",
+      "position": {
+        "x": 46.4,
+        "y": 0,
+        "z": 22.1
+      },
+      "rotationY": 25.783100780887047,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-05",
+      "modelId": "fence-1",
+      "position": {
+        "x": 54.9,
+        "y": 0,
+        "z": 22.3
+      },
+      "rotationY": -5.729577951308233,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-06",
+      "modelId": "fence-2",
+      "position": {
+        "x": 56.1,
+        "y": 0,
+        "z": 10.1
+      },
+      "rotationY": 42.97183463481174,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-07",
+      "modelId": "fence-3",
+      "position": {
+        "x": 57.0,
+        "y": 0,
+        "z": 8.0
+      },
+      "rotationY": -90.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-08",
+      "modelId": "fence-0",
+      "position": {
+        "x": 57.0,
+        "y": 0,
+        "z": 5.6
+      },
+      "rotationY": -90.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-09",
+      "modelId": "fence-1",
+      "position": {
+        "x": 47.0,
+        "y": 0,
+        "z": 0.7
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-10",
+      "modelId": "fence-2",
+      "position": {
+        "x": 49.4,
+        "y": 0,
+        "z": 0.7
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-11",
+      "modelId": "fence-3",
+      "position": {
+        "x": 51.8,
+        "y": 0,
+        "z": 0.7
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    },
+    {
+      "id": "fence-placement-12",
+      "modelId": "fence-0",
+      "position": {
+        "x": 27.0,
+        "y": 0,
+        "z": 4.5
+      },
+      "rotationY": -0.0,
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "role": "decoration"
+    }
+  ],
+  "acceptanceStatus": "This ledger proves correspondence to source definitions only. Actual Unity materials, axis conversion, visibility, interaction and performance require integration tests and live review.",
+  "starterGarden": {
+    "cells": [
+      {
+        "x": 41,
+        "y": 21
+      },
+      {
+        "x": 41,
+        "y": 22
+      },
+      {
+        "x": 41,
+        "y": 23
+      },
+      {
+        "x": 42,
+        "y": 21
+      },
+      {
+        "x": 42,
+        "y": 22
+      },
+      {
+        "x": 42,
+        "y": 23
+      }
+    ],
+    "nativeStartCell": {
+      "x": 40,
+      "y": 23
+    },
+    "artModel": "detail-patch-04-00",
+    "representation": "Bare inset soil and shallow furrows only; no preplanted crops. Native Plantable/growth/inventory state remains gameplay-owned.",
+    "roadAdjustment": "Cosmetic paving/scatter is excluded from X41/X42,Y21..23 to create the right-hand verge garden. X40 main road remains clear; existing 71 owners, room footprints and creek geometry remain unchanged."
+  }
+}

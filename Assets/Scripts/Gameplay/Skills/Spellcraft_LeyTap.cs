@@ -25,7 +25,7 @@ namespace CavesOfOoo.Skills
     /// also trades HP but for fire-specific bonus; LeyTap is
     /// universal."</para>
     /// </summary>
-    public class Spellcraft_LeyTap : BaseSkillPart
+    public class Spellcraft_LeyTap : SpellSkillPart
     {
         public override string Name => nameof(Spellcraft_LeyTap);
 
@@ -55,7 +55,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
@@ -70,7 +70,9 @@ namespace CavesOfOoo.Skills
                 EmitSkillRejectedDiag(ctx, "insufficient_hp");
                 return false;
             }
+            SpellFxCapture.Target(ctx.Zone, actor);
             hp.BaseValue -= drain;
+            SpellFxCapture.RecordDamage(ctx.Zone, actor, drain, resisted: false);
 
             _pendingBonus = drain * DAMAGE_BONUS_MULTIPLIER;
             _expiresAtTurn = (TurnManager.Active?.TickCount ?? 0) + BUFF_DURATION;

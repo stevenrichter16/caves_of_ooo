@@ -1,0 +1,52 @@
+// C# 6 Unity execute_code BODY. Requires paused Play mode / initialized showcase.
+// Each real gameplay case resolves once, followed by presentation-only fixed ticks.
+if (!UnityEngine.Application.isPlaying || !UnityEditor.EditorApplication.isPaused) return "Requires paused Play mode.";
+var show = UnityEngine.Object.FindFirstObjectByType<CavesOfOoo.Scenarios.Custom.SpellFxShowcasePlayer>();
+var view = UnityEngine.Object.FindFirstObjectByType<CavesOfOoo.Rendering.ZoneRenderer>();
+if (show == null || view == null || view.WorldFx == null) return "Requires showcase.";
+var cases = CavesOfOoo.Scenarios.Custom.SpellFxShowcase.CreateCases();
+var oldMode = CavesOfOoo.Rendering.SpellFxSettings.Mode;
+var oldSpeed = CavesOfOoo.Rendering.SpellFxSettings.AnimationSpeed;
+bool oldPaused = show.Paused;
+var csv = new System.Text.StringBuilder("case_index,spell_id,label,expected_accepted,accepted,peak_sprites,end_sprites,end_atoms,end_blocking,initial_update_ms,mean_tick_ms,max_tick_ms\n");
+int failures = 0, peak = 0;
+try
+{
+    show.Paused = true;
+    CavesOfOoo.Rendering.SpellFxSettings.Mode = CavesOfOoo.Rendering.SpellFxMode.Full;
+    CavesOfOoo.Rendering.SpellFxSettings.AnimationSpeed = 1f;
+    view.WorldFx.Update(0f, true, true);
+    for (int i = 0; i < cases.Count; i++)
+    {
+        show.PrepareCase(i);
+        bool accepted = show.ExecutePrepared();
+        var timer = System.Diagnostics.Stopwatch.StartNew();
+        view.WorldFx.Update(0f, true, true);
+        timer.Stop(); double initial = timer.Elapsed.TotalMilliseconds;
+        double sum = 0, max = 0;
+        int livePeak = view.WorldFx.SpriteRenderer.ActiveSpriteCount;
+        for (int j = 0; j < 240; j++)
+        {
+            timer.Restart(); view.WorldFx.Update(1f/60f, true, true); timer.Stop();
+            sum += timer.Elapsed.TotalMilliseconds; max = System.Math.Max(max,timer.Elapsed.TotalMilliseconds);
+            livePeak = System.Math.Max(livePeak,view.WorldFx.SpriteRenderer.ActiveSpriteCount);
+        }
+        peak = System.Math.Max(peak,livePeak);
+        bool blocking = view.HasBlockingFx;
+        var fx = view.WorldFx.SpriteRenderer;
+        if (accepted != cases[i].ExpectAccepted || blocking || fx.ActiveCount != 0 || fx.ActiveSpriteCount != 0 || livePeak > 192) failures++;
+        csv.AppendFormat(System.Globalization.CultureInfo.InvariantCulture,
+            "{0},{1},\"{2}\",{3},{4},{5},{6},{7},{8},{9:F6},{10:F6},{11:F6}\n",
+            i,cases[i].SkillID,cases[i].Label.Replace("\"","\"\""),cases[i].ExpectAccepted,accepted,livePeak,
+            fx.ActiveSpriteCount,fx.ActiveCount,blocking,initial,sum/240,max);
+    }
+}
+finally
+{
+    view.CancelWorldFx(); show.Paused = oldPaused;
+    CavesOfOoo.Rendering.SpellFxSettings.Mode = oldMode;
+    CavesOfOoo.Rendering.SpellFxSettings.AnimationSpeed = oldSpeed;
+    System.IO.File.WriteAllText(System.IO.Path.GetFullPath(System.IO.Path.Combine(UnityEngine.Application.dataPath,
+        "../Docs/Verification/SpellFx/runtime-sweep.csv")), csv.ToString());
+}
+return new { cases=cases.Count, failures=failures, peak_sprites=peak, actual_gameplay_resolutions=cases.Count, presentation_ticks_per_case=240 };

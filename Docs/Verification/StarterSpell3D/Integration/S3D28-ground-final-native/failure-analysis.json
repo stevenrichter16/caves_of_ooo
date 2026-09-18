@@ -1,0 +1,231 @@
+{
+  "status": "FAILED_RUN_RETAINED; unchanged retry justified; no new acceptance",
+  "scope": "Read-only diagnosis. No Unity invocation, production changes, timing changes, or weakened gates.",
+  "failedReport": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-c385422c1cc8483388af2303715cd74f-native.json",
+    "sha256": "3f886e0f610c404c9254371fb3221b01e48a0414a91553fae9f29677258acd3e"
+  },
+  "previousPassingReport": {
+    "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-b89c353ebeba43cdbbdfb69b16949f83-native.json",
+    "sha256": "b0fad8239d1e71b0bde409515c2119ddeb70e6e1722d696a4591f69638abb095"
+  },
+  "failedRain": {
+    "peakMeshes": 0,
+    "gestureSamples": 11,
+    "gesturePeakDegrees": 7.940693378448486,
+    "gestureRestored": true,
+    "resultStable": true,
+    "nativeEntry": "Hydromancy_ConjureRain",
+    "cooldown": 5,
+    "targets": 1,
+    "targetCells": [
+      "39,9->39,9"
+    ],
+    "affected": [
+      "39,9"
+    ],
+    "seconds": 1.2410597500000016,
+    "captureTimes": [
+      0.005608875000000069,
+      0.10398779199999808,
+      0.7618690840000006,
+      0.8221722920000012,
+      0.8807391250000016,
+      0.9412724590000003,
+      1.0006766250000005,
+      1.0615232920000004,
+      1.1211424590000014,
+      1.181729917000002,
+      1.2410384589999985
+    ],
+    "captureMeshCounts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "maximumCaptureGapSeconds": 0.6578812920000026
+  },
+  "previousRain": {
+    "peakMeshes": 15,
+    "gestureSamples": 74,
+    "gesturePeakDegrees": 61.14954376220703,
+    "gestureRestored": true,
+    "resultStable": true,
+    "nativeEntry": "Hydromancy_ConjureRain",
+    "cooldown": 5,
+    "targets": 1,
+    "targetCells": [
+      "39,9->39,9"
+    ],
+    "affected": [
+      "39,9"
+    ],
+    "seconds": 1.2023292080000019,
+    "captureTimes": [
+      0.005424875000002771,
+      0.10482279100000014,
+      0.20322887500000064,
+      0.3041339160000014,
+      0.40479712500000176,
+      0.5025707080000004,
+      0.6023631250000001,
+      0.7031332500000005,
+      0.804909833,
+      0.9037124580000011,
+      1.0031757080000006,
+      1.1042687500000028
+    ],
+    "captureMeshCounts": [
+      0,
+      0,
+      1,
+      15,
+      15,
+      3,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "maximumCaptureGapSeconds": 0.10177658299999948
+  },
+  "profileFrames": 0,
+  "rawFrameCsvBytes": 143,
+  "unexpectedErrorsDuringObservedRun": 0,
+  "earlierShowcases": [
+    {
+      "spell": "Pyromancy_EmberSpit",
+      "peakMeshes": 23,
+      "maximumCaptureGapSeconds": 0.10264254200000167
+    },
+    {
+      "spell": "Pyromancy_FlamingHands",
+      "peakMeshes": 14,
+      "maximumCaptureGapSeconds": 0.10229104200000094
+    },
+    {
+      "spell": "Hydromancy_JetBlast",
+      "peakMeshes": 35,
+      "maximumCaptureGapSeconds": 0.10257170799999926
+    },
+    {
+      "spell": "Galvanism_GroundSurge",
+      "peakMeshes": 17,
+      "maximumCaptureGapSeconds": 0.10291400000000195
+    },
+    {
+      "spell": "Cryomancy_RimeGrip",
+      "peakMeshes": 15,
+      "maximumCaptureGapSeconds": 0.10217120899999799
+    },
+    {
+      "spell": "Spellcraft_Calm",
+      "peakMeshes": 7,
+      "maximumCaptureGapSeconds": 0.10190037500000315
+    }
+  ],
+  "actualAuthoredRain": {
+    "jsonSha256": "f4f11c82ded4d4fa15ba93d58159fc3506369abfd0f12b23f36c8fbd55fc2d30",
+    "pieces": 15,
+    "fps": 100,
+    "contactFrame": 22,
+    "clearFrame": 60,
+    "positiveScaleSampleRange": [
+      15,
+      59
+    ],
+    "nativeDurationSeconds": 0.6
+  },
+  "sourceComparisonToPreGroundReview": [
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/NativeSpellFxRenderer.cs",
+      "sha256": "2c656f51f00e170bee837e29b133cd63fd2eb5cc82715aa7363c7469b8d51756",
+      "currentSha256": "2c656f51f00e170bee837e29b133cd63fd2eb5cc82715aa7363c7469b8d51756",
+      "unchanged": true
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/NativeSpellFxLibrary.cs",
+      "sha256": "479ba2e098b4e7e75e6c4ce884b1442c6de1a8912a47b3a79cbde89191bf4436",
+      "currentSha256": "479ba2e098b4e7e75e6c4ce884b1442c6de1a8912a47b3a79cbde89191bf4436",
+      "unchanged": true
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/WorldFxCoordinator.cs",
+      "sha256": "9985f15f1865a4572f9cb6b5f560f5d01d1d773f32bd5f49ff03f59efd7495d1",
+      "currentSha256": "9985f15f1865a4572f9cb6b5f560f5d01d1d773f32bd5f49ff03f59efd7495d1",
+      "unchanged": true
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/AsciiFxRenderer.cs",
+      "sha256": "85baf8347f4dadccef45196e18e6bb77c3d156701c3a912436f0519af4264d88",
+      "currentSha256": "85baf8347f4dadccef45196e18e6bb77c3d156701c3a912436f0519af4264d88",
+      "unchanged": true
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/ZoneRenderer.cs",
+      "sha256": "23bfdd3c372494dc770dc7aa05c8748356574784adf66714991054ccfabfd615",
+      "currentSha256": "035bcd4b1a2a63c3c36a39fa92eb6f0767bd847ddf6889e5998f31acfbec9283",
+      "unchanged": false
+    }
+  ],
+  "firstCast": {
+    "libraryInstancesBefore": 1,
+    "libraryInstancesAfter": 1,
+    "poolBefore": 384,
+    "poolAfter": 384,
+    "peakMeshes": 14,
+    "damage": 1,
+    "cooldown": 9,
+    "ticks": 10,
+    "sawBlocking": true,
+    "sourceUnchanged": true,
+    "nativeEntry": "Pyromancy_FlamingHands",
+    "finalState": "Normal",
+    "allocatedMemoryBefore": 473965003,
+    "allocatedMemoryAfter": 470128505,
+    "maxInputNanoseconds": 8569417,
+    "maxMainNanoseconds": 21814458,
+    "maxGcBytes": 2205461,
+    "startSeconds": 12.854701670968257,
+    "wallSeconds": 0.6129426249999987,
+    "maxFrameSeconds": 0.02192815952003002
+  },
+  "preparation": {
+    "LoadSeconds": 0.5043487,
+    "ValidationSeconds": 0.003483,
+    "PoolSeconds": 0.0027146,
+    "ViewCount": 384,
+    "UsedCachedLibrary": false
+  },
+  "cleanupPreserved": {
+    "errors": [],
+    "privateRootRemoved": true,
+    "scenesRestored": true,
+    "gameViewRestored": true,
+    "seedSettingRestored": true,
+    "inheritedSaveRootRestored": true,
+    "lastGamePreferenceRestored": true,
+    "totalUnexpectedErrors": 0
+  },
+  "findings": [
+    "The 0.103987792 to 0.761869084 second capture interval spans all positively scaled Rain mesh samples (frames 15..59 at 100 fps). The existing unscaled wall-time clock can advance beyond the 0.60-second effect during this gap.",
+    "Rain has only 11 gesture observations and 7.94 degrees of motion versus prior 74 and 61.15 degrees. This is consistent with a whole presentation sampling stall, not a Rain-only shader-color failure.",
+    "ActiveMeshCount is the CPU count of enabled fragment views before GPU visibility/color evaluation. A purely GPU color or winding defect would not alone explain zero active fragment views.",
+    "Renderer, library, coordinator and ASCII runtime files exactly match the pre-ground review hashes. The canonical runtime art JSON also retains its f4f11c82 hash. ZoneRenderer changed for ground glyph/claim transitions; these paths do not change Rain poses, cast clock, copied crop outcome or library allocation.",
+    "The preceding six showcases pass and have maximum capture gaps 102..103 ms. Real keyboard first cast also passes with library 1 to 1, pool 384 to 384 and Main maximum 21.81 ms. No recurrence of the cold initial library load is evidenced.",
+    "The Unity log records MCP resource-discovery reflection from TransportCommandDispatcher.ProcessQueue on EditorApplication.Internal_CallUpdateFunctions between the Rain command and audit exit. It has no timing attribution; this is a candidate external Editor operation, not a proven cause.",
+    "No steady-profile rows were reached, so CPU, GPU, garbage collection and screenshot encoding costs cannot be isolated for the Rain interval. Blank PNG hashes reflect abort before WaitForFiles, not validated image artifacts."
+  ],
+  "decision": "Preserve S3D28 as failed. One unchanged complete native rerun with a new run id is justified by the bounded presentation gap and identical spell implementation/art. The rerun must meet every existing command, native mesh, gesture, capture, profile and cleanup gate. Do not clamp clocks, extend art duration, lower mesh checks, or classify S3D28 as accepted.",
+  "limitations": "A screenshot timestamp gap does not by itself prove a single engine frame hitch or identify the responsible work. The reduced gesture sampling supports temporal starvation, but source-specific success still requires the unchanged rerun."
+}

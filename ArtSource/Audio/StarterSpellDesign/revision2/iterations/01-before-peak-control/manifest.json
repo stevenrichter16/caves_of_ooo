@@ -1,0 +1,3402 @@
+{
+  "revision": 2,
+  "status": "recorded-material audition studies; not imported into game",
+  "sampleRate": 48000,
+  "spells": [
+    {
+      "id": "flaming_hands",
+      "title": "Flaming Hands",
+      "duration": 1.55,
+      "referenceContactSeconds": 0.22,
+      "dominantSource": "sources/fire_surge/ignition.flac",
+      "sharedMixGain": 0.266149257388922,
+      "variants": [
+        {
+          "variant": 1,
+          "layers": [
+            {
+              "name": "palms_catch",
+              "role": "Two small match flares prepare the hands.",
+              "events": [
+                {
+                  "source": "sources/fire_surge/ignition.flac",
+                  "sourceSha256": "bd8281bcee65bc705755fd36bdf40d04fadddd474f52fd481233523e178b4ea1",
+                  "sourceStartSeconds": 0.32,
+                  "sourceLengthSeconds": 0.28,
+                  "placementSeconds": 0.025,
+                  "rate": 1.15,
+                  "pitchSemitones": 2.4196063340358047,
+                  "reverse": false,
+                  "bandHz": [
+                    350,
+                    6800
+                  ],
+                  "referenceRms": 0.06,
+                  "sourceNormalizationGain": 0.55881942324298,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.03,
+                  "curve": null
+                },
+                {
+                  "source": "sources/fire_surge/ignition.flac",
+                  "sourceSha256": "bd8281bcee65bc705755fd36bdf40d04fadddd474f52fd481233523e178b4ea1",
+                  "sourceStartSeconds": 0.36,
+                  "sourceLengthSeconds": 0.45,
+                  "placementSeconds": 0.205,
+                  "rate": 0.73,
+                  "pitchSemitones": -5.44837957073649,
+                  "reverse": false,
+                  "bandHz": [
+                    90,
+                    6000
+                  ],
+                  "referenceRms": 0.21,
+                  "sourceNormalizationGain": 1.9190666838806052,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.1,
+                  "curve": null
+                }
+              ],
+              "file": "layers/flaming_hands_01_palms_catch.wav",
+              "postLayerMixGain": 0.266149257388922
+            },
+            {
+              "name": "combustion_body",
+              "role": "Slowed real fire gives the expanding flame physical weight.",
+              "events": [
+                {
+                  "source": "sources/fire_surge/fireplace_pagdev.wav",
+                  "sourceSha256": "85ca0cc60d0c037fff8b185e31ad1fcdbda6ce45eee17c3ee1318d1b8f59e330",
+                  "sourceStartSeconds": 23.8,
+                  "sourceLengthSeconds": 1.0,
+                  "placementSeconds": 0.16,
+                  "rate": 0.78,
+                  "pitchSemitones": -4.301447650949716,
+                  "reverse": false,
+                  "bandHz": [
+                    55,
+                    1700
+                  ],
+                  "referenceRms": 0.17,
+                  "sourceNormalizationGain": 21.162598819346858,
+                  "attackSeconds": 0.035,
+                  "releaseSeconds": 0.14,
+                  "curve": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.08,
+                      0.75
+                    ],
+                    [
+                      0.2,
+                      1
+                    ],
+                    [
+                      0.48,
+                      0.9
+                    ],
+                    [
+                      0.82,
+                      0.2
+                    ],
+                    [
+                      1.3,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/flaming_hands_01_combustion_body.wav",
+              "postLayerMixGain": 0.266149257388922
+            },
+            {
+              "name": "dry_afterburn",
+              "role": "Natural fireplace snaps continue as the sheet loses pressure.",
+              "events": [
+                {
+                  "source": "sources/fire_surge/fire-1.wav",
+                  "sourceSha256": "26702de8a195bcbafeae72034861d875a1b7917168a25106f4e1957ecdddf7e5",
+                  "sourceStartSeconds": 0.48,
+                  "sourceLengthSeconds": 1.17,
+                  "placementSeconds": 0.29,
+                  "rate": 1.06,
+                  "pitchSemitones": 1.0087711774616945,
+                  "reverse": false,
+                  "bandHz": [
+                    1200,
+                    7200
+                  ],
+                  "referenceRms": 0.083,
+                  "sourceNormalizationGain": 9.041883580558594,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.1,
+                  "curve": [
+                    [
+                      0,
+                      0.6
+                    ],
+                    [
+                      0.13,
+                      1
+                    ],
+                    [
+                      0.35,
+                      0.85
+                    ],
+                    [
+                      0.75,
+                      0.3
+                    ],
+                    [
+                      1.15,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/flaming_hands_01_dry_afterburn.wav",
+              "postLayerMixGain": 0.266149257388922
+            }
+          ],
+          "mix": "mix/flaming_hands_01.wav"
+        },
+        {
+          "variant": 2,
+          "layers": [
+            {
+              "name": "palms_catch",
+              "role": "Two small match flares prepare the hands.",
+              "events": [
+                {
+                  "source": "sources/fire_surge/ignition.flac",
+                  "sourceSha256": "bd8281bcee65bc705755fd36bdf40d04fadddd474f52fd481233523e178b4ea1",
+                  "sourceStartSeconds": 0.32,
+                  "sourceLengthSeconds": 0.28,
+                  "placementSeconds": 0.025,
+                  "rate": 1.1097499999999998,
+                  "pitchSemitones": 1.8028165039560717,
+                  "reverse": false,
+                  "bandHz": [
+                    350,
+                    6800
+                  ],
+                  "referenceRms": 0.06,
+                  "sourceNormalizationGain": 0.5587491895291347,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.03,
+                  "curve": null
+                },
+                {
+                  "source": "sources/fire_surge/ignition.flac",
+                  "sourceSha256": "bd8281bcee65bc705755fd36bdf40d04fadddd474f52fd481233523e178b4ea1",
+                  "sourceStartSeconds": 0.36,
+                  "sourceLengthSeconds": 0.45,
+                  "placementSeconds": 0.205,
+                  "rate": 0.7044499999999999,
+                  "pitchSemitones": -6.065169400816224,
+                  "reverse": false,
+                  "bandHz": [
+                    90,
+                    6000
+                  ],
+                  "referenceRms": 0.21,
+                  "sourceNormalizationGain": 1.9156965544135685,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.1,
+                  "curve": null
+                }
+              ],
+              "file": "layers/flaming_hands_02_palms_catch.wav",
+              "postLayerMixGain": 0.266149257388922
+            },
+            {
+              "name": "combustion_body",
+              "role": "Slowed real fire gives the expanding flame physical weight.",
+              "events": [
+                {
+                  "source": "sources/fire_surge/fireplace_pagdev.wav",
+                  "sourceSha256": "85ca0cc60d0c037fff8b185e31ad1fcdbda6ce45eee17c3ee1318d1b8f59e330",
+                  "sourceStartSeconds": 24.7,
+                  "sourceLengthSeconds": 1.0,
+                  "placementSeconds": 0.16,
+                  "rate": 0.7527,
+                  "pitchSemitones": -4.918237481029447,
+                  "reverse": false,
+                  "bandHz": [
+                    55,
+                    1700
+                  ],
+                  "referenceRms": 0.17,
+                  "sourceNormalizationGain": 25.119694466359597,
+                  "attackSeconds": 0.035,
+                  "releaseSeconds": 0.14,
+                  "curve": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.08,
+                      0.75
+                    ],
+                    [
+                      0.2,
+                      1
+                    ],
+                    [
+                      0.48,
+                      0.9
+                    ],
+                    [
+                      0.82,
+                      0.2
+                    ],
+                    [
+                      1.3,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/flaming_hands_02_combustion_body.wav",
+              "postLayerMixGain": 0.266149257388922
+            },
+            {
+              "name": "dry_afterburn",
+              "role": "Natural fireplace snaps continue as the sheet loses pressure.",
+              "events": [
+                {
+                  "source": "sources/fire_surge/fire-1.wav",
+                  "sourceSha256": "26702de8a195bcbafeae72034861d875a1b7917168a25106f4e1957ecdddf7e5",
+                  "sourceStartSeconds": 0.63,
+                  "sourceLengthSeconds": 1.17,
+                  "placementSeconds": 0.29,
+                  "rate": 1.0229,
+                  "pitchSemitones": 0.39198134738196116,
+                  "reverse": false,
+                  "bandHz": [
+                    1200,
+                    7200
+                  ],
+                  "referenceRms": 0.083,
+                  "sourceNormalizationGain": 10.362696090110916,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.1,
+                  "curve": [
+                    [
+                      0,
+                      0.6
+                    ],
+                    [
+                      0.13,
+                      1
+                    ],
+                    [
+                      0.35,
+                      0.85
+                    ],
+                    [
+                      0.75,
+                      0.3
+                    ],
+                    [
+                      1.15,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/flaming_hands_02_dry_afterburn.wav",
+              "postLayerMixGain": 0.266149257388922
+            }
+          ],
+          "mix": "mix/flaming_hands_02.wav"
+        },
+        {
+          "variant": 3,
+          "layers": [
+            {
+              "name": "palms_catch",
+              "role": "Two small match flares prepare the hands.",
+              "events": [
+                {
+                  "source": "sources/fire_surge/ignition.flac",
+                  "sourceSha256": "bd8281bcee65bc705755fd36bdf40d04fadddd474f52fd481233523e178b4ea1",
+                  "sourceStartSeconds": 0.32,
+                  "sourceLengthSeconds": 0.28,
+                  "placementSeconds": 0.025,
+                  "rate": 1.2017499999999999,
+                  "pitchSemitones": 3.1816416417097013,
+                  "reverse": false,
+                  "bandHz": [
+                    350,
+                    6800
+                  ],
+                  "referenceRms": 0.06,
+                  "sourceNormalizationGain": 0.5588059470465919,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.03,
+                  "curve": null
+                },
+                {
+                  "source": "sources/fire_surge/ignition.flac",
+                  "sourceSha256": "bd8281bcee65bc705755fd36bdf40d04fadddd474f52fd481233523e178b4ea1",
+                  "sourceStartSeconds": 0.36,
+                  "sourceLengthSeconds": 0.45,
+                  "placementSeconds": 0.205,
+                  "rate": 0.7628499999999999,
+                  "pitchSemitones": -4.686344263062595,
+                  "reverse": false,
+                  "bandHz": [
+                    90,
+                    6000
+                  ],
+                  "referenceRms": 0.21,
+                  "sourceNormalizationGain": 1.923556422994135,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.1,
+                  "curve": null
+                }
+              ],
+              "file": "layers/flaming_hands_03_palms_catch.wav",
+              "postLayerMixGain": 0.266149257388922
+            },
+            {
+              "name": "combustion_body",
+              "role": "Slowed real fire gives the expanding flame physical weight.",
+              "events": [
+                {
+                  "source": "sources/fire_surge/fireplace_pagdev.wav",
+                  "sourceSha256": "85ca0cc60d0c037fff8b185e31ad1fcdbda6ce45eee17c3ee1318d1b8f59e330",
+                  "sourceStartSeconds": 25.6,
+                  "sourceLengthSeconds": 1.0,
+                  "placementSeconds": 0.16,
+                  "rate": 0.8150999999999999,
+                  "pitchSemitones": -3.5394123432758207,
+                  "reverse": false,
+                  "bandHz": [
+                    55,
+                    1700
+                  ],
+                  "referenceRms": 0.17,
+                  "sourceNormalizationGain": 19.98388918928536,
+                  "attackSeconds": 0.035,
+                  "releaseSeconds": 0.14,
+                  "curve": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.08,
+                      0.75
+                    ],
+                    [
+                      0.2,
+                      1
+                    ],
+                    [
+                      0.48,
+                      0.9
+                    ],
+                    [
+                      0.82,
+                      0.2
+                    ],
+                    [
+                      1.3,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/flaming_hands_03_combustion_body.wav",
+              "postLayerMixGain": 0.266149257388922
+            },
+            {
+              "name": "dry_afterburn",
+              "role": "Natural fireplace snaps continue as the sheet loses pressure.",
+              "events": [
+                {
+                  "source": "sources/fire_surge/fire-1.wav",
+                  "sourceSha256": "26702de8a195bcbafeae72034861d875a1b7917168a25106f4e1957ecdddf7e5",
+                  "sourceStartSeconds": 0.78,
+                  "sourceLengthSeconds": 1.17,
+                  "placementSeconds": 0.29,
+                  "rate": 1.1077,
+                  "pitchSemitones": 1.770806485135589,
+                  "reverse": false,
+                  "bandHz": [
+                    1200,
+                    7200
+                  ],
+                  "referenceRms": 0.083,
+                  "sourceNormalizationGain": 10.209285969146746,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.1,
+                  "curve": [
+                    [
+                      0,
+                      0.6
+                    ],
+                    [
+                      0.13,
+                      1
+                    ],
+                    [
+                      0.35,
+                      0.85
+                    ],
+                    [
+                      0.75,
+                      0.3
+                    ],
+                    [
+                      1.15,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/flaming_hands_03_dry_afterburn.wav",
+              "postLayerMixGain": 0.266149257388922
+            }
+          ],
+          "mix": "mix/flaming_hands_03.wav"
+        }
+      ],
+      "preview": "preview/flaming_hands.wav",
+      "breakdown": "preview/flaming_hands_layers_then_mix.wav"
+    },
+    {
+      "id": "jet_blast",
+      "title": "Jet Blast",
+      "duration": 1.7,
+      "referenceContactSeconds": 0.27,
+      "dominantSource": "sources/water_rain/thimras_ocean_splash.ogg",
+      "sharedMixGain": 0.3530405345874362,
+      "variants": [
+        {
+          "variant": 1,
+          "layers": [
+            {
+              "name": "liquid_gather",
+              "role": "Hollow moving liquid rather than air.",
+              "events": [
+                {
+                  "source": "sources/water_rain/bmaczero_bubbles_loop1.wav",
+                  "sourceSha256": "94eaef4afc1146dcdfd3077cc7a6cbe6dc97daac62b8f6560dfc913dd57488a9",
+                  "sourceStartSeconds": 0.3,
+                  "sourceLengthSeconds": 0.44,
+                  "placementSeconds": 0.018,
+                  "rate": 0.77,
+                  "pitchSemitones": -4.52483578895788,
+                  "reverse": false,
+                  "bandHz": [
+                    90,
+                    2400
+                  ],
+                  "referenceRms": 0.083,
+                  "sourceNormalizationGain": 1.6874982299952839,
+                  "attackSeconds": 0.015,
+                  "releaseSeconds": 0.03,
+                  "curve": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.08,
+                      0.9
+                    ],
+                    [
+                      0.25,
+                      1
+                    ],
+                    [
+                      0.55,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/jet_blast_01_liquid_gather.wav",
+              "postLayerMixGain": 0.3530405345874362
+            },
+            {
+              "name": "pressurized_water",
+              "role": "The actual water mass accelerates through release.",
+              "events": [
+                {
+                  "source": "sources/water_rain/transitking_wave_01.flac",
+                  "sourceSha256": "0bd84b2061a82c234470bd4e16efc6ab24851928d3f93e1757bfea048b2d7a33",
+                  "sourceStartSeconds": 0.25,
+                  "sourceLengthSeconds": 1.06,
+                  "placementSeconds": 0.17,
+                  "rate": 1.38,
+                  "pitchSemitones": 5.576019204041331,
+                  "reverse": false,
+                  "bandHz": [
+                    100,
+                    6800
+                  ],
+                  "referenceRms": 0.16,
+                  "sourceNormalizationGain": 8.001029279301322,
+                  "attackSeconds": 0.02,
+                  "releaseSeconds": 0.09,
+                  "curve": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.055,
+                      1
+                    ],
+                    [
+                      0.34,
+                      1
+                    ],
+                    [
+                      0.73,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/jet_blast_01_pressurized_water.wav",
+              "postLayerMixGain": 0.3530405345874362
+            },
+            {
+              "name": "wet_slap",
+              "role": "One broad water splash at physical contact.",
+              "events": [
+                {
+                  "source": "sources/water_rain/thimras_ocean_splash.ogg",
+                  "sourceSha256": "d91a1effc2964673033fa9f8d22093029fa0b500aea0bafb86724738c0e89fe3",
+                  "sourceStartSeconds": 0.008,
+                  "sourceLengthSeconds": 1.2,
+                  "placementSeconds": 0.27,
+                  "rate": 0.95,
+                  "pitchSemitones": -0.8880069773253232,
+                  "reverse": false,
+                  "bandHz": [
+                    70,
+                    7300
+                  ],
+                  "referenceRms": 0.18,
+                  "sourceNormalizationGain": 1.1699868612943558,
+                  "attackSeconds": 0.003,
+                  "releaseSeconds": 0.16,
+                  "curve": null
+                }
+              ],
+              "file": "layers/jet_blast_01_wet_slap.wav",
+              "postLayerMixGain": 0.3530405345874362
+            },
+            {
+              "name": "bubbles_and_runoff",
+              "role": "Liquid cavities and small drops remain after the large slap.",
+              "events": [
+                {
+                  "source": "sources/water_rain/bmaczero_bubbles_single1.wav",
+                  "sourceSha256": "014228835d2b255cf300f94c60db8ec661ec15b5b5c097d5f47b148d6a81fdc5",
+                  "sourceStartSeconds": 0,
+                  "sourceLengthSeconds": 0.31,
+                  "placementSeconds": 0.53,
+                  "rate": 0.8,
+                  "pitchSemitones": -3.8631371386483475,
+                  "reverse": false,
+                  "bandHz": [
+                    150,
+                    4600
+                  ],
+                  "referenceRms": 0.055,
+                  "sourceNormalizationGain": 3.10676074045912,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.03,
+                  "curve": null
+                },
+                {
+                  "source": "sources/water_rain/bmaczero_bubbles_single1.wav",
+                  "sourceSha256": "014228835d2b255cf300f94c60db8ec661ec15b5b5c097d5f47b148d6a81fdc5",
+                  "sourceStartSeconds": 0,
+                  "sourceLengthSeconds": 0.31,
+                  "placementSeconds": 0.83,
+                  "rate": 1.05,
+                  "pitchSemitones": 0.8446719346967759,
+                  "reverse": false,
+                  "bandHz": [
+                    150,
+                    4600
+                  ],
+                  "referenceRms": 0.045,
+                  "sourceNormalizationGain": 2.528624501986651,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.03,
+                  "curve": null
+                },
+                {
+                  "source": "sources/water_rain/bmaczero_bubbles_single1.wav",
+                  "sourceSha256": "014228835d2b255cf300f94c60db8ec661ec15b5b5c097d5f47b148d6a81fdc5",
+                  "sourceStartSeconds": 0,
+                  "sourceLengthSeconds": 0.31,
+                  "placementSeconds": 1.1,
+                  "rate": 1.3,
+                  "pitchSemitones": 4.542139479044758,
+                  "reverse": false,
+                  "bandHz": [
+                    150,
+                    4600
+                  ],
+                  "referenceRms": 0.035,
+                  "sourceNormalizationGain": 1.9668024900562795,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.03,
+                  "curve": null
+                }
+              ],
+              "file": "layers/jet_blast_01_bubbles_and_runoff.wav",
+              "postLayerMixGain": 0.3530405345874362
+            }
+          ],
+          "mix": "mix/jet_blast_01.wav"
+        },
+        {
+          "variant": 2,
+          "layers": [
+            {
+              "name": "liquid_gather",
+              "role": "Hollow moving liquid rather than air.",
+              "events": [
+                {
+                  "source": "sources/water_rain/bmaczero_bubbles_loop1.wav",
+                  "sourceSha256": "94eaef4afc1146dcdfd3077cc7a6cbe6dc97daac62b8f6560dfc913dd57488a9",
+                  "sourceStartSeconds": 0.8500000000000001,
+                  "sourceLengthSeconds": 0.44,
+                  "placementSeconds": 0.018,
+                  "rate": 0.74305,
+                  "pitchSemitones": -5.141625619037612,
+                  "reverse": false,
+                  "bandHz": [
+                    90,
+                    2400
+                  ],
+                  "referenceRms": 0.083,
+                  "sourceNormalizationGain": 10.462998143194056,
+                  "attackSeconds": 0.015,
+                  "releaseSeconds": 0.03,
+                  "curve": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.08,
+                      0.9
+                    ],
+                    [
+                      0.25,
+                      1
+                    ],
+                    [
+                      0.55,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/jet_blast_02_liquid_gather.wav",
+              "postLayerMixGain": 0.3530405345874362
+            },
+            {
+              "name": "pressurized_water",
+              "role": "The actual water mass accelerates through release.",
+              "events": [
+                {
+                  "source": "sources/water_rain/transitking_wave_01.flac",
+                  "sourceSha256": "0bd84b2061a82c234470bd4e16efc6ab24851928d3f93e1757bfea048b2d7a33",
+                  "sourceStartSeconds": 0.295,
+                  "sourceLengthSeconds": 1.06,
+                  "placementSeconds": 0.17,
+                  "rate": 1.3316999999999999,
+                  "pitchSemitones": 4.9592293739616,
+                  "reverse": false,
+                  "bandHz": [
+                    100,
+                    6800
+                  ],
+                  "referenceRms": 0.16,
+                  "sourceNormalizationGain": 8.281244737401563,
+                  "attackSeconds": 0.02,
+                  "releaseSeconds": 0.09,
+                  "curve": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.055,
+                      1
+                    ],
+                    [
+                      0.34,
+                      1
+                    ],
+                    [
+                      0.73,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/jet_blast_02_pressurized_water.wav",
+              "postLayerMixGain": 0.3530405345874362
+            },
+            {
+              "name": "wet_slap",
+              "role": "One broad water splash at physical contact.",
+              "events": [
+                {
+                  "source": "sources/water_rain/thimras_ocean_splash.ogg",
+                  "sourceSha256": "d91a1effc2964673033fa9f8d22093029fa0b500aea0bafb86724738c0e89fe3",
+                  "sourceStartSeconds": 0.008,
+                  "sourceLengthSeconds": 1.2,
+                  "placementSeconds": 0.27,
+                  "rate": 0.91675,
+                  "pitchSemitones": -1.5047968074050544,
+                  "reverse": false,
+                  "bandHz": [
+                    70,
+                    7300
+                  ],
+                  "referenceRms": 0.18,
+                  "sourceNormalizationGain": 1.171632376473243,
+                  "attackSeconds": 0.003,
+                  "releaseSeconds": 0.16,
+                  "curve": null
+                }
+              ],
+              "file": "layers/jet_blast_02_wet_slap.wav",
+              "postLayerMixGain": 0.3530405345874362
+            },
+            {
+              "name": "bubbles_and_runoff",
+              "role": "Liquid cavities and small drops remain after the large slap.",
+              "events": [
+                {
+                  "source": "sources/water_rain/bmaczero_bubbles_single1.wav",
+                  "sourceSha256": "014228835d2b255cf300f94c60db8ec661ec15b5b5c097d5f47b148d6a81fdc5",
+                  "sourceStartSeconds": 0,
+                  "sourceLengthSeconds": 0.31,
+                  "placementSeconds": 0.538,
+                  "rate": 0.772,
+                  "pitchSemitones": -4.479926968728079,
+                  "reverse": false,
+                  "bandHz": [
+                    150,
+                    4600
+                  ],
+                  "referenceRms": 0.055,
+                  "sourceNormalizationGain": 3.11112667870976,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.03,
+                  "curve": null
+                },
+                {
+                  "source": "sources/water_rain/bmaczero_bubbles_single1.wav",
+                  "sourceSha256": "014228835d2b255cf300f94c60db8ec661ec15b5b5c097d5f47b148d6a81fdc5",
+                  "sourceStartSeconds": 0,
+                  "sourceLengthSeconds": 0.31,
+                  "placementSeconds": 0.838,
+                  "rate": 1.01325,
+                  "pitchSemitones": 0.22788210461704372,
+                  "reverse": false,
+                  "bandHz": [
+                    150,
+                    4600
+                  ],
+                  "referenceRms": 0.045,
+                  "sourceNormalizationGain": 2.5295042656294697,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.03,
+                  "curve": null
+                },
+                {
+                  "source": "sources/water_rain/bmaczero_bubbles_single1.wav",
+                  "sourceSha256": "014228835d2b255cf300f94c60db8ec661ec15b5b5c097d5f47b148d6a81fdc5",
+                  "sourceStartSeconds": 0,
+                  "sourceLengthSeconds": 0.31,
+                  "placementSeconds": 1.108,
+                  "rate": 1.2545,
+                  "pitchSemitones": 3.925349648965026,
+                  "reverse": false,
+                  "bandHz": [
+                    150,
+                    4600
+                  ],
+                  "referenceRms": 0.035,
+                  "sourceNormalizationGain": 1.9663816561179426,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.03,
+                  "curve": null
+                }
+              ],
+              "file": "layers/jet_blast_02_bubbles_and_runoff.wav",
+              "postLayerMixGain": 0.3530405345874362
+            }
+          ],
+          "mix": "mix/jet_blast_02.wav"
+        },
+        {
+          "variant": 3,
+          "layers": [
+            {
+              "name": "liquid_gather",
+              "role": "Hollow moving liquid rather than air.",
+              "events": [
+                {
+                  "source": "sources/water_rain/bmaczero_bubbles_loop1.wav",
+                  "sourceSha256": "94eaef4afc1146dcdfd3077cc7a6cbe6dc97daac62b8f6560dfc913dd57488a9",
+                  "sourceStartSeconds": 1.4000000000000001,
+                  "sourceLengthSeconds": 0.44,
+                  "placementSeconds": 0.018,
+                  "rate": 0.80465,
+                  "pitchSemitones": -3.7628004812839837,
+                  "reverse": false,
+                  "bandHz": [
+                    90,
+                    2400
+                  ],
+                  "referenceRms": 0.083,
+                  "sourceNormalizationGain": 1004.09037888752,
+                  "attackSeconds": 0.015,
+                  "releaseSeconds": 0.03,
+                  "curve": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.08,
+                      0.9
+                    ],
+                    [
+                      0.25,
+                      1
+                    ],
+                    [
+                      0.55,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/jet_blast_03_liquid_gather.wav",
+              "postLayerMixGain": 0.3530405345874362
+            },
+            {
+              "name": "pressurized_water",
+              "role": "The actual water mass accelerates through release.",
+              "events": [
+                {
+                  "source": "sources/water_rain/transitking_wave_01.flac",
+                  "sourceSha256": "0bd84b2061a82c234470bd4e16efc6ab24851928d3f93e1757bfea048b2d7a33",
+                  "sourceStartSeconds": 0.33999999999999997,
+                  "sourceLengthSeconds": 1.06,
+                  "placementSeconds": 0.17,
+                  "rate": 1.4420999999999997,
+                  "pitchSemitones": 6.338054511715226,
+                  "reverse": false,
+                  "bandHz": [
+                    100,
+                    6800
+                  ],
+                  "referenceRms": 0.16,
+                  "sourceNormalizationGain": 9.61636056282804,
+                  "attackSeconds": 0.02,
+                  "releaseSeconds": 0.09,
+                  "curve": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.055,
+                      1
+                    ],
+                    [
+                      0.34,
+                      1
+                    ],
+                    [
+                      0.73,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/jet_blast_03_pressurized_water.wav",
+              "postLayerMixGain": 0.3530405345874362
+            },
+            {
+              "name": "wet_slap",
+              "role": "One broad water splash at physical contact.",
+              "events": [
+                {
+                  "source": "sources/water_rain/thimras_ocean_splash.ogg",
+                  "sourceSha256": "d91a1effc2964673033fa9f8d22093029fa0b500aea0bafb86724738c0e89fe3",
+                  "sourceStartSeconds": 0.008,
+                  "sourceLengthSeconds": 1.2,
+                  "placementSeconds": 0.27,
+                  "rate": 0.9927499999999999,
+                  "pitchSemitones": -0.12597166965142714,
+                  "reverse": false,
+                  "bandHz": [
+                    70,
+                    7300
+                  ],
+                  "referenceRms": 0.18,
+                  "sourceNormalizationGain": 1.1682611216461478,
+                  "attackSeconds": 0.003,
+                  "releaseSeconds": 0.16,
+                  "curve": null
+                }
+              ],
+              "file": "layers/jet_blast_03_wet_slap.wav",
+              "postLayerMixGain": 0.3530405345874362
+            },
+            {
+              "name": "bubbles_and_runoff",
+              "role": "Liquid cavities and small drops remain after the large slap.",
+              "events": [
+                {
+                  "source": "sources/water_rain/bmaczero_bubbles_single1.wav",
+                  "sourceSha256": "014228835d2b255cf300f94c60db8ec661ec15b5b5c097d5f47b148d6a81fdc5",
+                  "sourceStartSeconds": 0,
+                  "sourceLengthSeconds": 0.31,
+                  "placementSeconds": 0.546,
+                  "rate": 0.836,
+                  "pitchSemitones": -3.1011018309744522,
+                  "reverse": false,
+                  "bandHz": [
+                    150,
+                    4600
+                  ],
+                  "referenceRms": 0.055,
+                  "sourceNormalizationGain": 3.1023208075659374,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.03,
+                  "curve": null
+                },
+                {
+                  "source": "sources/water_rain/bmaczero_bubbles_single1.wav",
+                  "sourceSha256": "014228835d2b255cf300f94c60db8ec661ec15b5b5c097d5f47b148d6a81fdc5",
+                  "sourceStartSeconds": 0,
+                  "sourceLengthSeconds": 0.31,
+                  "placementSeconds": 0.846,
+                  "rate": 1.09725,
+                  "pitchSemitones": 1.6067072423706728,
+                  "reverse": false,
+                  "bandHz": [
+                    150,
+                    4600
+                  ],
+                  "referenceRms": 0.045,
+                  "sourceNormalizationGain": 2.528039496481316,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.03,
+                  "curve": null
+                },
+                {
+                  "source": "sources/water_rain/bmaczero_bubbles_single1.wav",
+                  "sourceSha256": "014228835d2b255cf300f94c60db8ec661ec15b5b5c097d5f47b148d6a81fdc5",
+                  "sourceStartSeconds": 0,
+                  "sourceLengthSeconds": 0.31,
+                  "placementSeconds": 1.116,
+                  "rate": 1.3585,
+                  "pitchSemitones": 5.304174786718654,
+                  "reverse": false,
+                  "bandHz": [
+                    150,
+                    4600
+                  ],
+                  "referenceRms": 0.035,
+                  "sourceNormalizationGain": 1.9675473762010216,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.03,
+                  "curve": null
+                }
+              ],
+              "file": "layers/jet_blast_03_bubbles_and_runoff.wav",
+              "postLayerMixGain": 0.3530405345874362
+            }
+          ],
+          "mix": "mix/jet_blast_03.wav"
+        }
+      ],
+      "preview": "preview/jet_blast.wav",
+      "breakdown": "preview/jet_blast_layers_then_mix.wav"
+    },
+    {
+      "id": "ground_surge",
+      "title": "Ground Surge",
+      "duration": 1.25,
+      "referenceContactSeconds": 0.32,
+      "dominantSource": "sources/fire_surge/spark.wav",
+      "sharedMixGain": 0.22600274566176376,
+      "variants": [
+        {
+          "variant": 1,
+          "layers": [
+            {
+              "name": "charging_current",
+              "role": "Rough Tesla current establishes in a short held electrical note.",
+              "events": [
+                {
+                  "source": "sources/fire_surge/continuousspark.wav",
+                  "sourceSha256": "4ec24045b4fb6a88b958d00f16cc39b8aa992cd6e6a5edb4ecb0f34b36ddb18b",
+                  "sourceStartSeconds": 0.006,
+                  "sourceLengthSeconds": 0.18,
+                  "placementSeconds": 0.045,
+                  "rate": 0.72,
+                  "pitchSemitones": -5.687174259988948,
+                  "reverse": false,
+                  "bandHz": [
+                    130,
+                    4700
+                  ],
+                  "referenceRms": 0.1,
+                  "sourceNormalizationGain": 1.9620609790001802,
+                  "attackSeconds": 0.025,
+                  "releaseSeconds": 0.035,
+                  "curve": null
+                }
+              ],
+              "file": "layers/ground_surge_01_charging_current.wav",
+              "postLayerMixGain": 0.22600274566176376
+            },
+            {
+              "name": "advancing_arcs",
+              "role": "Connected electrical snaps advance over the four-cell study path.",
+              "events": [
+                {
+                  "source": "sources/fire_surge/spark.wav",
+                  "sourceSha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97",
+                  "sourceStartSeconds": 0.095,
+                  "sourceLengthSeconds": 0.085,
+                  "placementSeconds": 0.22,
+                  "rate": 1.14,
+                  "pitchSemitones": 2.268405892680202,
+                  "reverse": false,
+                  "bandHz": [
+                    300,
+                    6200
+                  ],
+                  "referenceRms": 0.16,
+                  "sourceNormalizationGain": 4.686800282590158,
+                  "attackSeconds": 0.002,
+                  "releaseSeconds": 0.014,
+                  "curve": null
+                },
+                {
+                  "source": "sources/fire_surge/spark.wav",
+                  "sourceSha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97",
+                  "sourceStartSeconds": 0.095,
+                  "sourceLengthSeconds": 0.085,
+                  "placementSeconds": 0.248,
+                  "rate": 1.0499999999999998,
+                  "pitchSemitones": 0.8446719346967724,
+                  "reverse": false,
+                  "bandHz": [
+                    300,
+                    6200
+                  ],
+                  "referenceRms": 0.176,
+                  "sourceNormalizationGain": 4.785611066147898,
+                  "attackSeconds": 0.002,
+                  "releaseSeconds": 0.014,
+                  "curve": null
+                },
+                {
+                  "source": "sources/fire_surge/spark.wav",
+                  "sourceSha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97",
+                  "sourceStartSeconds": 0.095,
+                  "sourceLengthSeconds": 0.085,
+                  "placementSeconds": 0.279,
+                  "rate": 0.96,
+                  "pitchSemitones": -0.7067242686428228,
+                  "reverse": false,
+                  "bandHz": [
+                    300,
+                    6200
+                  ],
+                  "referenceRms": 0.192,
+                  "sourceNormalizationGain": 4.851359903193737,
+                  "attackSeconds": 0.002,
+                  "releaseSeconds": 0.014,
+                  "curve": null
+                },
+                {
+                  "source": "sources/fire_surge/spark.wav",
+                  "sourceSha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97",
+                  "sourceStartSeconds": 0.095,
+                  "sourceLengthSeconds": 0.085,
+                  "placementSeconds": 0.32,
+                  "rate": 0.8699999999999999,
+                  "pitchSemitones": -2.410952327111959,
+                  "reverse": false,
+                  "bandHz": [
+                    300,
+                    6200
+                  ],
+                  "referenceRms": 0.20800000000000002,
+                  "sourceNormalizationGain": 4.897927167648012,
+                  "attackSeconds": 0.002,
+                  "releaseSeconds": 0.014,
+                  "curve": null
+                },
+                {
+                  "source": "sources/fire_surge/continuousspark.wav",
+                  "sourceSha256": "4ec24045b4fb6a88b958d00f16cc39b8aa992cd6e6a5edb4ecb0f34b36ddb18b",
+                  "sourceStartSeconds": 0.008,
+                  "sourceLengthSeconds": 0.18,
+                  "placementSeconds": 0.325,
+                  "rate": 0.86,
+                  "pitchSemitones": -2.611097220871521,
+                  "reverse": false,
+                  "bandHz": [
+                    160,
+                    4200
+                  ],
+                  "referenceRms": 0.085,
+                  "sourceNormalizationGain": 2.1384852862324393,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.03,
+                  "curve": [
+                    [
+                      0,
+                      1
+                    ],
+                    [
+                      0.09,
+                      0.7
+                    ],
+                    [
+                      0.21,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/ground_surge_01_advancing_arcs.wav",
+              "postLayerMixGain": 0.22600274566176376
+            },
+            {
+              "name": "ground_fracture",
+              "role": "A single stony contact gives grounded weight without a thunderclap.",
+              "events": [
+                {
+                  "source": "sources/fire_surge/rock_break.ogg",
+                  "sourceSha256": "b645f35d21194e7855dd4a5405b1e8e6bec070731b92df6abcb202676b8e9f2e",
+                  "sourceStartSeconds": 0,
+                  "sourceLengthSeconds": 0.4,
+                  "placementSeconds": 0.32,
+                  "rate": 0.67,
+                  "pitchSemitones": -6.933203991803426,
+                  "reverse": false,
+                  "bandHz": [
+                    55,
+                    2200
+                  ],
+                  "referenceRms": 0.16,
+                  "sourceNormalizationGain": 0.9149807139498974,
+                  "attackSeconds": 0.003,
+                  "releaseSeconds": 0.05,
+                  "curve": null
+                }
+              ],
+              "file": "layers/ground_surge_01_ground_fracture.wav",
+              "postLayerMixGain": 0.22600274566176376
+            },
+            {
+              "name": "grit_displacement",
+              "role": "Short irregular stone/gravel movement trails the charge.",
+              "events": [
+                {
+                  "source": "sources/fire_surge/gravel.ogg",
+                  "sourceSha256": "34e6057ec1581b5cb8802e4942952b00b1dac235bfcb0ed8cff0ceb15a3ebbbf",
+                  "sourceStartSeconds": 0.06,
+                  "sourceLengthSeconds": 0.52,
+                  "placementSeconds": 0.37,
+                  "rate": 0.88,
+                  "pitchSemitones": -2.213094853649129,
+                  "reverse": false,
+                  "bandHz": [
+                    220,
+                    5800
+                  ],
+                  "referenceRms": 0.095,
+                  "sourceNormalizationGain": 11.679003651474947,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.09,
+                  "curve": null
+                },
+                {
+                  "source": "sources/fire_surge/stone01.ogg",
+                  "sourceSha256": "99b04d784eb6b531777a64fb0e319f104eb7cdd6b625c1fac68f511605930a2c",
+                  "sourceStartSeconds": 0.01,
+                  "sourceLengthSeconds": 0.23,
+                  "placementSeconds": 0.51,
+                  "rate": 0.71,
+                  "pitchSemitones": -5.929308843240513,
+                  "reverse": false,
+                  "bandHz": [
+                    95,
+                    1600
+                  ],
+                  "referenceRms": 0.035,
+                  "sourceNormalizationGain": 2.2245579170076297,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.03,
+                  "curve": null
+                }
+              ],
+              "file": "layers/ground_surge_01_grit_displacement.wav",
+              "postLayerMixGain": 0.22600274566176376
+            }
+          ],
+          "mix": "mix/ground_surge_01.wav"
+        },
+        {
+          "variant": 2,
+          "layers": [
+            {
+              "name": "charging_current",
+              "role": "Rough Tesla current establishes in a short held electrical note.",
+              "events": [
+                {
+                  "source": "sources/fire_surge/continuousspark.wav",
+                  "sourceSha256": "4ec24045b4fb6a88b958d00f16cc39b8aa992cd6e6a5edb4ecb0f34b36ddb18b",
+                  "sourceStartSeconds": 0.006,
+                  "sourceLengthSeconds": 0.18,
+                  "placementSeconds": 0.045,
+                  "rate": 0.6948,
+                  "pitchSemitones": -6.30396409006868,
+                  "reverse": false,
+                  "bandHz": [
+                    130,
+                    4700
+                  ],
+                  "referenceRms": 0.1,
+                  "sourceNormalizationGain": 1.9120906281948427,
+                  "attackSeconds": 0.025,
+                  "releaseSeconds": 0.035,
+                  "curve": null
+                }
+              ],
+              "file": "layers/ground_surge_02_charging_current.wav",
+              "postLayerMixGain": 0.22600274566176376
+            },
+            {
+              "name": "advancing_arcs",
+              "role": "Connected electrical snaps advance over the four-cell study path.",
+              "events": [
+                {
+                  "source": "sources/fire_surge/spark.wav",
+                  "sourceSha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97",
+                  "sourceStartSeconds": 0.095,
+                  "sourceLengthSeconds": 0.085,
+                  "placementSeconds": 0.22,
+                  "rate": 1.1000999999999999,
+                  "pitchSemitones": 1.6516160626004703,
+                  "reverse": false,
+                  "bandHz": [
+                    300,
+                    6200
+                  ],
+                  "referenceRms": 0.16,
+                  "sourceNormalizationGain": 4.534203678992482,
+                  "attackSeconds": 0.002,
+                  "releaseSeconds": 0.014,
+                  "curve": null
+                },
+                {
+                  "source": "sources/fire_surge/spark.wav",
+                  "sourceSha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97",
+                  "sourceStartSeconds": 0.095,
+                  "sourceLengthSeconds": 0.085,
+                  "placementSeconds": 0.248,
+                  "rate": 1.0132499999999998,
+                  "pitchSemitones": 0.2278821046170399,
+                  "reverse": false,
+                  "bandHz": [
+                    300,
+                    6200
+                  ],
+                  "referenceRms": 0.176,
+                  "sourceNormalizationGain": 4.64249666236291,
+                  "attackSeconds": 0.002,
+                  "releaseSeconds": 0.014,
+                  "curve": null
+                },
+                {
+                  "source": "sources/fire_surge/spark.wav",
+                  "sourceSha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97",
+                  "sourceStartSeconds": 0.095,
+                  "sourceLengthSeconds": 0.085,
+                  "placementSeconds": 0.279,
+                  "rate": 0.9263999999999999,
+                  "pitchSemitones": -1.3235140987225555,
+                  "reverse": false,
+                  "bandHz": [
+                    300,
+                    6200
+                  ],
+                  "referenceRms": 0.192,
+                  "sourceNormalizationGain": 4.722235519706853,
+                  "attackSeconds": 0.002,
+                  "releaseSeconds": 0.014,
+                  "curve": null
+                },
+                {
+                  "source": "sources/fire_surge/spark.wav",
+                  "sourceSha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97",
+                  "sourceStartSeconds": 0.095,
+                  "sourceLengthSeconds": 0.085,
+                  "placementSeconds": 0.32,
+                  "rate": 0.8395499999999999,
+                  "pitchSemitones": -3.02774215719169,
+                  "reverse": false,
+                  "bandHz": [
+                    300,
+                    6200
+                  ],
+                  "referenceRms": 0.20800000000000002,
+                  "sourceNormalizationGain": 4.788902505233481,
+                  "attackSeconds": 0.002,
+                  "releaseSeconds": 0.014,
+                  "curve": null
+                },
+                {
+                  "source": "sources/fire_surge/continuousspark.wav",
+                  "sourceSha256": "4ec24045b4fb6a88b958d00f16cc39b8aa992cd6e6a5edb4ecb0f34b36ddb18b",
+                  "sourceStartSeconds": 0.008,
+                  "sourceLengthSeconds": 0.18,
+                  "placementSeconds": 0.325,
+                  "rate": 0.8299,
+                  "pitchSemitones": -3.227887050951253,
+                  "reverse": false,
+                  "bandHz": [
+                    160,
+                    4200
+                  ],
+                  "referenceRms": 0.085,
+                  "sourceNormalizationGain": 2.064252433110107,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.03,
+                  "curve": [
+                    [
+                      0,
+                      1
+                    ],
+                    [
+                      0.09,
+                      0.7
+                    ],
+                    [
+                      0.21,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/ground_surge_02_advancing_arcs.wav",
+              "postLayerMixGain": 0.22600274566176376
+            },
+            {
+              "name": "ground_fracture",
+              "role": "A single stony contact gives grounded weight without a thunderclap.",
+              "events": [
+                {
+                  "source": "sources/fire_surge/rock_break.ogg",
+                  "sourceSha256": "b645f35d21194e7855dd4a5405b1e8e6bec070731b92df6abcb202676b8e9f2e",
+                  "sourceStartSeconds": 0,
+                  "sourceLengthSeconds": 0.4,
+                  "placementSeconds": 0.32,
+                  "rate": 0.6465500000000001,
+                  "pitchSemitones": -7.549993821883156,
+                  "reverse": false,
+                  "bandHz": [
+                    55,
+                    2200
+                  ],
+                  "referenceRms": 0.16,
+                  "sourceNormalizationGain": 0.9164703421178848,
+                  "attackSeconds": 0.003,
+                  "releaseSeconds": 0.05,
+                  "curve": null
+                }
+              ],
+              "file": "layers/ground_surge_02_ground_fracture.wav",
+              "postLayerMixGain": 0.22600274566176376
+            },
+            {
+              "name": "grit_displacement",
+              "role": "Short irregular stone/gravel movement trails the charge.",
+              "events": [
+                {
+                  "source": "sources/fire_surge/gravel.ogg",
+                  "sourceSha256": "34e6057ec1581b5cb8802e4942952b00b1dac235bfcb0ed8cff0ceb15a3ebbbf",
+                  "sourceStartSeconds": 0.06,
+                  "sourceLengthSeconds": 0.52,
+                  "placementSeconds": 0.37,
+                  "rate": 0.8492,
+                  "pitchSemitones": -2.8298846837288614,
+                  "reverse": false,
+                  "bandHz": [
+                    220,
+                    5800
+                  ],
+                  "referenceRms": 0.095,
+                  "sourceNormalizationGain": 11.659294516217734,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.09,
+                  "curve": null
+                },
+                {
+                  "source": "sources/fire_surge/stone01.ogg",
+                  "sourceSha256": "99b04d784eb6b531777a64fb0e319f104eb7cdd6b625c1fac68f511605930a2c",
+                  "sourceStartSeconds": 0.01,
+                  "sourceLengthSeconds": 0.23,
+                  "placementSeconds": 0.522,
+                  "rate": 0.6851499999999999,
+                  "pitchSemitones": -6.546098673320245,
+                  "reverse": false,
+                  "bandHz": [
+                    95,
+                    1600
+                  ],
+                  "referenceRms": 0.035,
+                  "sourceNormalizationGain": 2.1852097355802185,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.03,
+                  "curve": null
+                }
+              ],
+              "file": "layers/ground_surge_02_grit_displacement.wav",
+              "postLayerMixGain": 0.22600274566176376
+            }
+          ],
+          "mix": "mix/ground_surge_02.wav"
+        },
+        {
+          "variant": 3,
+          "layers": [
+            {
+              "name": "charging_current",
+              "role": "Rough Tesla current establishes in a short held electrical note.",
+              "events": [
+                {
+                  "source": "sources/fire_surge/continuousspark.wav",
+                  "sourceSha256": "4ec24045b4fb6a88b958d00f16cc39b8aa992cd6e6a5edb4ecb0f34b36ddb18b",
+                  "sourceStartSeconds": 0.006,
+                  "sourceLengthSeconds": 0.18,
+                  "placementSeconds": 0.045,
+                  "rate": 0.7524,
+                  "pitchSemitones": -4.925138952315052,
+                  "reverse": false,
+                  "bandHz": [
+                    130,
+                    4700
+                  ],
+                  "referenceRms": 0.1,
+                  "sourceNormalizationGain": 2.027774844595635,
+                  "attackSeconds": 0.025,
+                  "releaseSeconds": 0.035,
+                  "curve": null
+                }
+              ],
+              "file": "layers/ground_surge_03_charging_current.wav",
+              "postLayerMixGain": 0.22600274566176376
+            },
+            {
+              "name": "advancing_arcs",
+              "role": "Connected electrical snaps advance over the four-cell study path.",
+              "events": [
+                {
+                  "source": "sources/fire_surge/spark.wav",
+                  "sourceSha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97",
+                  "sourceStartSeconds": 0.095,
+                  "sourceLengthSeconds": 0.085,
+                  "placementSeconds": 0.22,
+                  "rate": 1.1912999999999998,
+                  "pitchSemitones": 3.0304412003540975,
+                  "reverse": false,
+                  "bandHz": [
+                    300,
+                    6200
+                  ],
+                  "referenceRms": 0.16,
+                  "sourceNormalizationGain": 4.889291831859424,
+                  "attackSeconds": 0.002,
+                  "releaseSeconds": 0.014,
+                  "curve": null
+                },
+                {
+                  "source": "sources/fire_surge/spark.wav",
+                  "sourceSha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97",
+                  "sourceStartSeconds": 0.095,
+                  "sourceLengthSeconds": 0.085,
+                  "placementSeconds": 0.248,
+                  "rate": 1.0972499999999998,
+                  "pitchSemitones": 1.6067072423706694,
+                  "reverse": false,
+                  "bandHz": [
+                    300,
+                    6200
+                  ],
+                  "referenceRms": 0.176,
+                  "sourceNormalizationGain": 4.975082833132898,
+                  "attackSeconds": 0.002,
+                  "releaseSeconds": 0.014,
+                  "curve": null
+                },
+                {
+                  "source": "sources/fire_surge/spark.wav",
+                  "sourceSha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97",
+                  "sourceStartSeconds": 0.095,
+                  "sourceLengthSeconds": 0.085,
+                  "placementSeconds": 0.279,
+                  "rate": 1.0031999999999999,
+                  "pitchSemitones": 0.055311039031072234,
+                  "reverse": false,
+                  "bandHz": [
+                    300,
+                    6200
+                  ],
+                  "referenceRms": 0.192,
+                  "sourceNormalizationGain": 5.023417263732166,
+                  "attackSeconds": 0.002,
+                  "releaseSeconds": 0.014,
+                  "curve": null
+                },
+                {
+                  "source": "sources/fire_surge/spark.wav",
+                  "sourceSha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97",
+                  "sourceStartSeconds": 0.095,
+                  "sourceLengthSeconds": 0.085,
+                  "placementSeconds": 0.32,
+                  "rate": 0.9091499999999998,
+                  "pitchSemitones": -1.648917019438064,
+                  "reverse": false,
+                  "bandHz": [
+                    300,
+                    6200
+                  ],
+                  "referenceRms": 0.20800000000000002,
+                  "sourceNormalizationGain": 5.047697426936631,
+                  "attackSeconds": 0.002,
+                  "releaseSeconds": 0.014,
+                  "curve": null
+                },
+                {
+                  "source": "sources/fire_surge/continuousspark.wav",
+                  "sourceSha256": "4ec24045b4fb6a88b958d00f16cc39b8aa992cd6e6a5edb4ecb0f34b36ddb18b",
+                  "sourceStartSeconds": 0.008,
+                  "sourceLengthSeconds": 0.18,
+                  "placementSeconds": 0.325,
+                  "rate": 0.8986999999999999,
+                  "pitchSemitones": -1.8490619131976256,
+                  "reverse": false,
+                  "bandHz": [
+                    160,
+                    4200
+                  ],
+                  "referenceRms": 0.085,
+                  "sourceNormalizationGain": 2.2386280853670613,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.03,
+                  "curve": [
+                    [
+                      0,
+                      1
+                    ],
+                    [
+                      0.09,
+                      0.7
+                    ],
+                    [
+                      0.21,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/ground_surge_03_advancing_arcs.wav",
+              "postLayerMixGain": 0.22600274566176376
+            },
+            {
+              "name": "ground_fracture",
+              "role": "A single stony contact gives grounded weight without a thunderclap.",
+              "events": [
+                {
+                  "source": "sources/fire_surge/rock_break.ogg",
+                  "sourceSha256": "b645f35d21194e7855dd4a5405b1e8e6bec070731b92df6abcb202676b8e9f2e",
+                  "sourceStartSeconds": 0,
+                  "sourceLengthSeconds": 0.4,
+                  "placementSeconds": 0.32,
+                  "rate": 0.7001499999999999,
+                  "pitchSemitones": -6.171168684129532,
+                  "reverse": false,
+                  "bandHz": [
+                    55,
+                    2200
+                  ],
+                  "referenceRms": 0.16,
+                  "sourceNormalizationGain": 0.9132223364112003,
+                  "attackSeconds": 0.003,
+                  "releaseSeconds": 0.05,
+                  "curve": null
+                }
+              ],
+              "file": "layers/ground_surge_03_ground_fracture.wav",
+              "postLayerMixGain": 0.22600274566176376
+            },
+            {
+              "name": "grit_displacement",
+              "role": "Short irregular stone/gravel movement trails the charge.",
+              "events": [
+                {
+                  "source": "sources/fire_surge/gravel.ogg",
+                  "sourceSha256": "34e6057ec1581b5cb8802e4942952b00b1dac235bfcb0ed8cff0ceb15a3ebbbf",
+                  "sourceStartSeconds": 0.06,
+                  "sourceLengthSeconds": 0.52,
+                  "placementSeconds": 0.37,
+                  "rate": 0.9196,
+                  "pitchSemitones": -1.4510595459752331,
+                  "reverse": false,
+                  "bandHz": [
+                    220,
+                    5800
+                  ],
+                  "referenceRms": 0.095,
+                  "sourceNormalizationGain": 11.70996213558079,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.09,
+                  "curve": null
+                },
+                {
+                  "source": "sources/fire_surge/stone01.ogg",
+                  "sourceSha256": "99b04d784eb6b531777a64fb0e319f104eb7cdd6b625c1fac68f511605930a2c",
+                  "sourceStartSeconds": 0.01,
+                  "sourceLengthSeconds": 0.23,
+                  "placementSeconds": 0.534,
+                  "rate": 0.7419499999999999,
+                  "pitchSemitones": -5.1672735355666175,
+                  "reverse": false,
+                  "bandHz": [
+                    95,
+                    1600
+                  ],
+                  "referenceRms": 0.035,
+                  "sourceNormalizationGain": 2.2778189526378836,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.03,
+                  "curve": null
+                }
+              ],
+              "file": "layers/ground_surge_03_grit_displacement.wav",
+              "postLayerMixGain": 0.22600274566176376
+            }
+          ],
+          "mix": "mix/ground_surge_03.wav"
+        }
+      ],
+      "preview": "preview/ground_surge.wav",
+      "breakdown": "preview/ground_surge_layers_then_mix.wav"
+    },
+    {
+      "id": "rime_grip",
+      "title": "Rime Grip",
+      "duration": 1.65,
+      "referenceContactSeconds": 0.22,
+      "dominantSource": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta33.ogg",
+      "sharedMixGain": 0.2925678429583877,
+      "variants": [
+        {
+          "variant": 1,
+          "layers": [
+            {
+              "name": "inward_ice_stress",
+              "role": "An actual ice fracture is drawn backward into the closing hand.",
+              "events": [
+                {
+                  "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta4.ogg",
+                  "sourceSha256": "81558c035953d4e595640be7ba1a645c47c6f4b72f38de43a44d36fa70d52b8c",
+                  "sourceStartSeconds": 0.12,
+                  "sourceLengthSeconds": 0.32,
+                  "placementSeconds": 0.025,
+                  "rate": 0.77,
+                  "pitchSemitones": -4.52483578895788,
+                  "reverse": true,
+                  "bandHz": [
+                    170,
+                    5900
+                  ],
+                  "referenceRms": 0.12,
+                  "sourceNormalizationGain": 1.3742793001313025,
+                  "attackSeconds": 0.03,
+                  "releaseSeconds": 0.018,
+                  "curve": null
+                }
+              ],
+              "file": "layers/rime_grip_01_inward_ice_stress.wav",
+              "postLayerMixGain": 0.2925678429583877
+            },
+            {
+              "name": "brittle_lock",
+              "role": "Hard ice fractures close in a tight uneven pair.",
+              "events": [
+                {
+                  "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta33.ogg",
+                  "sourceSha256": "fedcd280ffaea38c365647f131eaae71cf2b9e1721c2fce1b539884c9199074a",
+                  "sourceStartSeconds": 0.015,
+                  "sourceLengthSeconds": 0.62,
+                  "placementSeconds": 0.22,
+                  "rate": 0.83,
+                  "pitchSemitones": -3.2258011011336,
+                  "reverse": false,
+                  "bandHz": [
+                    120,
+                    6800
+                  ],
+                  "referenceRms": 0.19,
+                  "sourceNormalizationGain": 1.5535691611864761,
+                  "attackSeconds": 0.003,
+                  "releaseSeconds": 0.08,
+                  "curve": null
+                },
+                {
+                  "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta2.ogg",
+                  "sourceSha256": "92a20369f866c852f841ffaef31676cb70f542592504b040327c60f5101f9c47",
+                  "sourceStartSeconds": 0.022,
+                  "sourceLengthSeconds": 0.3,
+                  "placementSeconds": 0.305,
+                  "rate": 0.64,
+                  "pitchSemitones": -7.726274277296696,
+                  "reverse": false,
+                  "bandHz": [
+                    65,
+                    1900
+                  ],
+                  "referenceRms": 0.11,
+                  "sourceNormalizationGain": 4.277885351585251,
+                  "attackSeconds": 0.003,
+                  "releaseSeconds": 0.07,
+                  "curve": null
+                }
+              ],
+              "file": "layers/rime_grip_01_brittle_lock.wav",
+              "postLayerMixGain": 0.2925678429583877
+            },
+            {
+              "name": "settling_fragments",
+              "role": "A few higher brittle pieces settle after the restrained closure.",
+              "events": [
+                {
+                  "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta.ogg",
+                  "sourceSha256": "4c7304ac47f84e41b62edb71082d00fe01823a2a54ec4e4268a040c973e3510f",
+                  "sourceStartSeconds": 0.05,
+                  "sourceLengthSeconds": 0.32,
+                  "placementSeconds": 0.56,
+                  "rate": 1.45,
+                  "pitchSemitones": 6.432634802882516,
+                  "reverse": false,
+                  "bandHz": [
+                    1050,
+                    7200
+                  ],
+                  "referenceRms": 0.05,
+                  "sourceNormalizationGain": 1.343310637145278,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.05,
+                  "curve": null
+                },
+                {
+                  "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta.ogg",
+                  "sourceSha256": "4c7304ac47f84e41b62edb71082d00fe01823a2a54ec4e4268a040c973e3510f",
+                  "sourceStartSeconds": 0.05,
+                  "sourceLengthSeconds": 0.32,
+                  "placementSeconds": 0.87,
+                  "rate": 1.12,
+                  "pitchSemitones": 1.9619847873945546,
+                  "reverse": false,
+                  "bandHz": [
+                    1050,
+                    7200
+                  ],
+                  "referenceRms": 0.034,
+                  "sourceNormalizationGain": 0.8364718659098093,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.05,
+                  "curve": null
+                },
+                {
+                  "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta.ogg",
+                  "sourceSha256": "4c7304ac47f84e41b62edb71082d00fe01823a2a54ec4e4268a040c973e3510f",
+                  "sourceStartSeconds": 0.05,
+                  "sourceLengthSeconds": 0.32,
+                  "placementSeconds": 1.1,
+                  "rate": 1.6,
+                  "pitchSemitones": 8.136862861351652,
+                  "reverse": false,
+                  "bandHz": [
+                    1050,
+                    7200
+                  ],
+                  "referenceRms": 0.023,
+                  "sourceNormalizationGain": 0.6490249385092642,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.05,
+                  "curve": null
+                }
+              ],
+              "file": "layers/rime_grip_01_settling_fragments.wav",
+              "postLayerMixGain": 0.2925678429583877
+            }
+          ],
+          "mix": "mix/rime_grip_01.wav"
+        },
+        {
+          "variant": 2,
+          "layers": [
+            {
+              "name": "inward_ice_stress",
+              "role": "An actual ice fracture is drawn backward into the closing hand.",
+              "events": [
+                {
+                  "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta4.ogg",
+                  "sourceSha256": "81558c035953d4e595640be7ba1a645c47c6f4b72f38de43a44d36fa70d52b8c",
+                  "sourceStartSeconds": 0.12,
+                  "sourceLengthSeconds": 0.32,
+                  "placementSeconds": 0.025,
+                  "rate": 0.74305,
+                  "pitchSemitones": -5.141625619037612,
+                  "reverse": true,
+                  "bandHz": [
+                    170,
+                    5900
+                  ],
+                  "referenceRms": 0.12,
+                  "sourceNormalizationGain": 1.357926511371568,
+                  "attackSeconds": 0.03,
+                  "releaseSeconds": 0.018,
+                  "curve": null
+                }
+              ],
+              "file": "layers/rime_grip_02_inward_ice_stress.wav",
+              "postLayerMixGain": 0.2925678429583877
+            },
+            {
+              "name": "brittle_lock",
+              "role": "Hard ice fractures close in a tight uneven pair.",
+              "events": [
+                {
+                  "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta33.ogg",
+                  "sourceSha256": "fedcd280ffaea38c365647f131eaae71cf2b9e1721c2fce1b539884c9199074a",
+                  "sourceStartSeconds": 0.015,
+                  "sourceLengthSeconds": 0.62,
+                  "placementSeconds": 0.22,
+                  "rate": 0.8009499999999999,
+                  "pitchSemitones": -3.842590931213332,
+                  "reverse": false,
+                  "bandHz": [
+                    120,
+                    6800
+                  ],
+                  "referenceRms": 0.19,
+                  "sourceNormalizationGain": 1.5394850642788789,
+                  "attackSeconds": 0.003,
+                  "releaseSeconds": 0.08,
+                  "curve": null
+                },
+                {
+                  "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta2.ogg",
+                  "sourceSha256": "92a20369f866c852f841ffaef31676cb70f542592504b040327c60f5101f9c47",
+                  "sourceStartSeconds": 0.022,
+                  "sourceLengthSeconds": 0.3,
+                  "placementSeconds": 0.305,
+                  "rate": 0.6176,
+                  "pitchSemitones": -8.343064107376426,
+                  "reverse": false,
+                  "bandHz": [
+                    65,
+                    1900
+                  ],
+                  "referenceRms": 0.11,
+                  "sourceNormalizationGain": 4.199653912953549,
+                  "attackSeconds": 0.003,
+                  "releaseSeconds": 0.07,
+                  "curve": null
+                }
+              ],
+              "file": "layers/rime_grip_02_brittle_lock.wav",
+              "postLayerMixGain": 0.2925678429583877
+            },
+            {
+              "name": "settling_fragments",
+              "role": "A few higher brittle pieces settle after the restrained closure.",
+              "events": [
+                {
+                  "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta.ogg",
+                  "sourceSha256": "4c7304ac47f84e41b62edb71082d00fe01823a2a54ec4e4268a040c973e3510f",
+                  "sourceStartSeconds": 0.05,
+                  "sourceLengthSeconds": 0.32,
+                  "placementSeconds": 0.5700000000000001,
+                  "rate": 1.3992499999999999,
+                  "pitchSemitones": 5.815844972802784,
+                  "reverse": false,
+                  "bandHz": [
+                    1050,
+                    7200
+                  ],
+                  "referenceRms": 0.05,
+                  "sourceNormalizationGain": 1.323750217552272,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.05,
+                  "curve": null
+                },
+                {
+                  "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta.ogg",
+                  "sourceSha256": "4c7304ac47f84e41b62edb71082d00fe01823a2a54ec4e4268a040c973e3510f",
+                  "sourceStartSeconds": 0.05,
+                  "sourceLengthSeconds": 0.32,
+                  "placementSeconds": 0.88,
+                  "rate": 1.0808,
+                  "pitchSemitones": 1.3451949573148214,
+                  "reverse": false,
+                  "bandHz": [
+                    1050,
+                    7200
+                  ],
+                  "referenceRms": 0.034,
+                  "sourceNormalizationGain": 0.8275129838904673,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.05,
+                  "curve": null
+                },
+                {
+                  "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta.ogg",
+                  "sourceSha256": "4c7304ac47f84e41b62edb71082d00fe01823a2a54ec4e4268a040c973e3510f",
+                  "sourceStartSeconds": 0.05,
+                  "sourceLengthSeconds": 0.32,
+                  "placementSeconds": 1.11,
+                  "rate": 1.544,
+                  "pitchSemitones": 7.520073031271921,
+                  "reverse": false,
+                  "bandHz": [
+                    1050,
+                    7200
+                  ],
+                  "referenceRms": 0.023,
+                  "sourceNormalizationGain": 0.6364883469964221,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.05,
+                  "curve": null
+                }
+              ],
+              "file": "layers/rime_grip_02_settling_fragments.wav",
+              "postLayerMixGain": 0.2925678429583877
+            }
+          ],
+          "mix": "mix/rime_grip_02.wav"
+        },
+        {
+          "variant": 3,
+          "layers": [
+            {
+              "name": "inward_ice_stress",
+              "role": "An actual ice fracture is drawn backward into the closing hand.",
+              "events": [
+                {
+                  "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta4.ogg",
+                  "sourceSha256": "81558c035953d4e595640be7ba1a645c47c6f4b72f38de43a44d36fa70d52b8c",
+                  "sourceStartSeconds": 0.12,
+                  "sourceLengthSeconds": 0.32,
+                  "placementSeconds": 0.025,
+                  "rate": 0.80465,
+                  "pitchSemitones": -3.7628004812839837,
+                  "reverse": true,
+                  "bandHz": [
+                    170,
+                    5900
+                  ],
+                  "referenceRms": 0.12,
+                  "sourceNormalizationGain": 1.3951917464480013,
+                  "attackSeconds": 0.03,
+                  "releaseSeconds": 0.018,
+                  "curve": null
+                }
+              ],
+              "file": "layers/rime_grip_03_inward_ice_stress.wav",
+              "postLayerMixGain": 0.2925678429583877
+            },
+            {
+              "name": "brittle_lock",
+              "role": "Hard ice fractures close in a tight uneven pair.",
+              "events": [
+                {
+                  "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta33.ogg",
+                  "sourceSha256": "fedcd280ffaea38c365647f131eaae71cf2b9e1721c2fce1b539884c9199074a",
+                  "sourceStartSeconds": 0.015,
+                  "sourceLengthSeconds": 0.62,
+                  "placementSeconds": 0.22,
+                  "rate": 0.86735,
+                  "pitchSemitones": -2.4637657934597037,
+                  "reverse": false,
+                  "bandHz": [
+                    120,
+                    6800
+                  ],
+                  "referenceRms": 0.19,
+                  "sourceNormalizationGain": 1.5711262610947774,
+                  "attackSeconds": 0.003,
+                  "releaseSeconds": 0.08,
+                  "curve": null
+                },
+                {
+                  "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta2.ogg",
+                  "sourceSha256": "92a20369f866c852f841ffaef31676cb70f542592504b040327c60f5101f9c47",
+                  "sourceStartSeconds": 0.022,
+                  "sourceLengthSeconds": 0.3,
+                  "placementSeconds": 0.305,
+                  "rate": 0.6688,
+                  "pitchSemitones": -6.9642389696228015,
+                  "reverse": false,
+                  "bandHz": [
+                    65,
+                    1900
+                  ],
+                  "referenceRms": 0.11,
+                  "sourceNormalizationGain": 4.380920416260101,
+                  "attackSeconds": 0.003,
+                  "releaseSeconds": 0.07,
+                  "curve": null
+                }
+              ],
+              "file": "layers/rime_grip_03_brittle_lock.wav",
+              "postLayerMixGain": 0.2925678429583877
+            },
+            {
+              "name": "settling_fragments",
+              "role": "A few higher brittle pieces settle after the restrained closure.",
+              "events": [
+                {
+                  "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta.ogg",
+                  "sourceSha256": "4c7304ac47f84e41b62edb71082d00fe01823a2a54ec4e4268a040c973e3510f",
+                  "sourceStartSeconds": 0.05,
+                  "sourceLengthSeconds": 0.32,
+                  "placementSeconds": 0.5800000000000001,
+                  "rate": 1.5152499999999998,
+                  "pitchSemitones": 7.1946701105564115,
+                  "reverse": false,
+                  "bandHz": [
+                    1050,
+                    7200
+                  ],
+                  "referenceRms": 0.05,
+                  "sourceNormalizationGain": 1.3705096321727865,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.05,
+                  "curve": null
+                },
+                {
+                  "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta.ogg",
+                  "sourceSha256": "4c7304ac47f84e41b62edb71082d00fe01823a2a54ec4e4268a040c973e3510f",
+                  "sourceStartSeconds": 0.05,
+                  "sourceLengthSeconds": 0.32,
+                  "placementSeconds": 0.89,
+                  "rate": 1.1704,
+                  "pitchSemitones": 2.724020095068451,
+                  "reverse": false,
+                  "bandHz": [
+                    1050,
+                    7200
+                  ],
+                  "referenceRms": 0.034,
+                  "sourceNormalizationGain": 0.8477029874108687,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.05,
+                  "curve": null
+                },
+                {
+                  "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta.ogg",
+                  "sourceSha256": "4c7304ac47f84e41b62edb71082d00fe01823a2a54ec4e4268a040c973e3510f",
+                  "sourceStartSeconds": 0.05,
+                  "sourceLengthSeconds": 0.32,
+                  "placementSeconds": 1.12,
+                  "rate": 1.672,
+                  "pitchSemitones": 8.898898169025548,
+                  "reverse": false,
+                  "bandHz": [
+                    1050,
+                    7200
+                  ],
+                  "referenceRms": 0.023,
+                  "sourceNormalizationGain": 0.6670936405201484,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.05,
+                  "curve": null
+                }
+              ],
+              "file": "layers/rime_grip_03_settling_fragments.wav",
+              "postLayerMixGain": 0.2925678429583877
+            }
+          ],
+          "mix": "mix/rime_grip_03.wav"
+        }
+      ],
+      "preview": "preview/rime_grip.wav",
+      "breakdown": "preview/rime_grip_layers_then_mix.wav"
+    },
+    {
+      "id": "calm",
+      "title": "Calm",
+      "duration": 2.35,
+      "referenceContactSeconds": 0.32,
+      "dominantSource": "sources/ice_calm/rubbed-singing-bowl_ryancacophony_public-hq-preview.mp3",
+      "sharedMixGain": 0.9489231039424709,
+      "variants": [
+        {
+          "variant": 1,
+          "layers": [
+            {
+              "name": "warm_bowl_body",
+              "role": "A real rubbed bowl sings softly, with its hard strike excluded.",
+              "events": [
+                {
+                  "source": "sources/ice_calm/rubbed-singing-bowl_ryancacophony_public-hq-preview.mp3",
+                  "sourceSha256": "db7b0ec10e8445c12c32e3863fdd99a30968804b4ede2f88762d35152a6ab446",
+                  "sourceStartSeconds": 7.2,
+                  "sourceLengthSeconds": 2.8,
+                  "placementSeconds": 0.018,
+                  "rate": 0.62,
+                  "pitchSemitones": -8.275918552654193,
+                  "reverse": false,
+                  "bandHz": [
+                    85,
+                    1900
+                  ],
+                  "referenceRms": 0.105,
+                  "sourceNormalizationGain": 0.4159485405497326,
+                  "attackSeconds": 0.08,
+                  "releaseSeconds": 0.12,
+                  "curve": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.16,
+                      0.55
+                    ],
+                    [
+                      0.34,
+                      0.9
+                    ],
+                    [
+                      0.7,
+                      1
+                    ],
+                    [
+                      1.45,
+                      0.6
+                    ],
+                    [
+                      2.32,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/calm_01_warm_bowl_body.wav",
+              "postLayerMixGain": 0.9489231039424709
+            },
+            {
+              "name": "resolved_overtone",
+              "role": "The same material opens into a quieter related resonance at actual pacification.",
+              "events": [
+                {
+                  "source": "sources/ice_calm/rubbed-singing-bowl_ryancacophony_public-hq-preview.mp3",
+                  "sourceSha256": "db7b0ec10e8445c12c32e3863fdd99a30968804b4ede2f88762d35152a6ab446",
+                  "sourceStartSeconds": 27.0,
+                  "sourceLengthSeconds": 2.4,
+                  "placementSeconds": 0.32,
+                  "rate": 0.93,
+                  "pitchSemitones": -1.2563685440003187,
+                  "reverse": false,
+                  "bandHz": [
+                    220,
+                    2500
+                  ],
+                  "referenceRms": 0.057,
+                  "sourceNormalizationGain": 0.8560363277931553,
+                  "attackSeconds": 0.1,
+                  "releaseSeconds": 0.16,
+                  "curve": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.18,
+                      0.65
+                    ],
+                    [
+                      0.54,
+                      1
+                    ],
+                    [
+                      1.18,
+                      0.6
+                    ],
+                    [
+                      2.03,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/calm_01_resolved_overtone.wav",
+              "postLayerMixGain": 0.9489231039424709
+            },
+            {
+              "name": "human_exhale",
+              "role": "A real gentle exhalation releases the tension without an impact.",
+              "events": [
+                {
+                  "source": "sources/ice_calm/exhale_otherthings_public-hq-preview.mp3",
+                  "sourceSha256": "95bc583a39573d45851cdf7c940d6269e852f063a574cb0ca8ceaa6bd1329a30",
+                  "sourceStartSeconds": 0.14,
+                  "sourceLengthSeconds": 0.57,
+                  "placementSeconds": 0.1,
+                  "rate": 0.84,
+                  "pitchSemitones": -3.0184652039515734,
+                  "reverse": false,
+                  "bandHz": [
+                    200,
+                    3000
+                  ],
+                  "referenceRms": 0.025,
+                  "sourceNormalizationGain": 0.18451966008265103,
+                  "attackSeconds": 0.065,
+                  "releaseSeconds": 0.13,
+                  "curve": null
+                }
+              ],
+              "file": "layers/calm_01_human_exhale.wav",
+              "postLayerMixGain": 0.9489231039424709
+            }
+          ],
+          "mix": "mix/calm_01.wav"
+        },
+        {
+          "variant": 2,
+          "layers": [
+            {
+              "name": "warm_bowl_body",
+              "role": "A real rubbed bowl sings softly, with its hard strike excluded.",
+              "events": [
+                {
+                  "source": "sources/ice_calm/rubbed-singing-bowl_ryancacophony_public-hq-preview.mp3",
+                  "sourceSha256": "db7b0ec10e8445c12c32e3863fdd99a30968804b4ede2f88762d35152a6ab446",
+                  "sourceStartSeconds": 8.5,
+                  "sourceLengthSeconds": 2.8,
+                  "placementSeconds": 0.018,
+                  "rate": 0.5982999999999999,
+                  "pitchSemitones": -8.892708382733925,
+                  "reverse": false,
+                  "bandHz": [
+                    85,
+                    1900
+                  ],
+                  "referenceRms": 0.105,
+                  "sourceNormalizationGain": 0.4361702102657618,
+                  "attackSeconds": 0.08,
+                  "releaseSeconds": 0.12,
+                  "curve": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.16,
+                      0.55
+                    ],
+                    [
+                      0.34,
+                      0.9
+                    ],
+                    [
+                      0.7,
+                      1
+                    ],
+                    [
+                      1.45,
+                      0.6
+                    ],
+                    [
+                      2.32,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/calm_02_warm_bowl_body.wav",
+              "postLayerMixGain": 0.9489231039424709
+            },
+            {
+              "name": "resolved_overtone",
+              "role": "The same material opens into a quieter related resonance at actual pacification.",
+              "events": [
+                {
+                  "source": "sources/ice_calm/rubbed-singing-bowl_ryancacophony_public-hq-preview.mp3",
+                  "sourceSha256": "db7b0ec10e8445c12c32e3863fdd99a30968804b4ede2f88762d35152a6ab446",
+                  "sourceStartSeconds": 27.7,
+                  "sourceLengthSeconds": 2.4,
+                  "placementSeconds": 0.32,
+                  "rate": 0.89745,
+                  "pitchSemitones": -1.8731583740800515,
+                  "reverse": false,
+                  "bandHz": [
+                    220,
+                    2500
+                  ],
+                  "referenceRms": 0.057,
+                  "sourceNormalizationGain": 1.1019937863224716,
+                  "attackSeconds": 0.1,
+                  "releaseSeconds": 0.16,
+                  "curve": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.18,
+                      0.65
+                    ],
+                    [
+                      0.54,
+                      1
+                    ],
+                    [
+                      1.18,
+                      0.6
+                    ],
+                    [
+                      2.03,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/calm_02_resolved_overtone.wav",
+              "postLayerMixGain": 0.9489231039424709
+            },
+            {
+              "name": "human_exhale",
+              "role": "A real gentle exhalation releases the tension without an impact.",
+              "events": [
+                {
+                  "source": "sources/ice_calm/exhale_otherthings_public-hq-preview.mp3",
+                  "sourceSha256": "95bc583a39573d45851cdf7c940d6269e852f063a574cb0ca8ceaa6bd1329a30",
+                  "sourceStartSeconds": 0.14,
+                  "sourceLengthSeconds": 0.57,
+                  "placementSeconds": 0.1,
+                  "rate": 0.8106,
+                  "pitchSemitones": -3.635255034031305,
+                  "reverse": false,
+                  "bandHz": [
+                    200,
+                    3000
+                  ],
+                  "referenceRms": 0.025,
+                  "sourceNormalizationGain": 0.1841001206200662,
+                  "attackSeconds": 0.065,
+                  "releaseSeconds": 0.13,
+                  "curve": null
+                }
+              ],
+              "file": "layers/calm_02_human_exhale.wav",
+              "postLayerMixGain": 0.9489231039424709
+            }
+          ],
+          "mix": "mix/calm_02.wav"
+        },
+        {
+          "variant": 3,
+          "layers": [
+            {
+              "name": "warm_bowl_body",
+              "role": "A real rubbed bowl sings softly, with its hard strike excluded.",
+              "events": [
+                {
+                  "source": "sources/ice_calm/rubbed-singing-bowl_ryancacophony_public-hq-preview.mp3",
+                  "sourceSha256": "db7b0ec10e8445c12c32e3863fdd99a30968804b4ede2f88762d35152a6ab446",
+                  "sourceStartSeconds": 9.8,
+                  "sourceLengthSeconds": 2.8,
+                  "placementSeconds": 0.018,
+                  "rate": 0.6478999999999999,
+                  "pitchSemitones": -7.513883244980299,
+                  "reverse": false,
+                  "bandHz": [
+                    85,
+                    1900
+                  ],
+                  "referenceRms": 0.105,
+                  "sourceNormalizationGain": 0.46773699701473637,
+                  "attackSeconds": 0.08,
+                  "releaseSeconds": 0.12,
+                  "curve": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.16,
+                      0.55
+                    ],
+                    [
+                      0.34,
+                      0.9
+                    ],
+                    [
+                      0.7,
+                      1
+                    ],
+                    [
+                      1.45,
+                      0.6
+                    ],
+                    [
+                      2.32,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/calm_03_warm_bowl_body.wav",
+              "postLayerMixGain": 0.9489231039424709
+            },
+            {
+              "name": "resolved_overtone",
+              "role": "The same material opens into a quieter related resonance at actual pacification.",
+              "events": [
+                {
+                  "source": "sources/ice_calm/rubbed-singing-bowl_ryancacophony_public-hq-preview.mp3",
+                  "sourceSha256": "db7b0ec10e8445c12c32e3863fdd99a30968804b4ede2f88762d35152a6ab446",
+                  "sourceStartSeconds": 28.4,
+                  "sourceLengthSeconds": 2.4,
+                  "placementSeconds": 0.32,
+                  "rate": 0.97185,
+                  "pitchSemitones": -0.4943332363264231,
+                  "reverse": false,
+                  "bandHz": [
+                    220,
+                    2500
+                  ],
+                  "referenceRms": 0.057,
+                  "sourceNormalizationGain": 1.290080218539642,
+                  "attackSeconds": 0.1,
+                  "releaseSeconds": 0.16,
+                  "curve": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.18,
+                      0.65
+                    ],
+                    [
+                      0.54,
+                      1
+                    ],
+                    [
+                      1.18,
+                      0.6
+                    ],
+                    [
+                      2.03,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/calm_03_resolved_overtone.wav",
+              "postLayerMixGain": 0.9489231039424709
+            },
+            {
+              "name": "human_exhale",
+              "role": "A real gentle exhalation releases the tension without an impact.",
+              "events": [
+                {
+                  "source": "sources/ice_calm/exhale_otherthings_public-hq-preview.mp3",
+                  "sourceSha256": "95bc583a39573d45851cdf7c940d6269e852f063a574cb0ca8ceaa6bd1329a30",
+                  "sourceStartSeconds": 0.14,
+                  "sourceLengthSeconds": 0.57,
+                  "placementSeconds": 0.1,
+                  "rate": 0.8777999999999999,
+                  "pitchSemitones": -2.256429896277678,
+                  "reverse": false,
+                  "bandHz": [
+                    200,
+                    3000
+                  ],
+                  "referenceRms": 0.025,
+                  "sourceNormalizationGain": 0.1851268157884079,
+                  "attackSeconds": 0.065,
+                  "releaseSeconds": 0.13,
+                  "curve": null
+                }
+              ],
+              "file": "layers/calm_03_human_exhale.wav",
+              "postLayerMixGain": 0.9489231039424709
+            }
+          ],
+          "mix": "mix/calm_03.wav"
+        }
+      ],
+      "preview": "preview/calm.wav",
+      "breakdown": "preview/calm_layers_then_mix.wav"
+    },
+    {
+      "id": "conjure_rain",
+      "title": "Conjure Rain",
+      "duration": 2.25,
+      "referenceContactSeconds": 0.22,
+      "dominantSource": "sources/water_rain/samsterbirdies_rain_on_leaves_hq.mp3",
+      "sharedMixGain": 0.350532858862319,
+      "variants": [
+        {
+          "variant": 1,
+          "layers": [
+            {
+              "name": "leaf_rain",
+              "role": "Real fine rain on foliage is the defining body; no bass wind.",
+              "events": [
+                {
+                  "source": "sources/water_rain/samsterbirdies_rain_on_leaves_hq.mp3",
+                  "sourceSha256": "98937a7ce64e973dbaa3d7879f41500d4e15e3b8b4ea30f6b927af5bf0d53977",
+                  "sourceStartSeconds": 8.0,
+                  "sourceLengthSeconds": 2.02,
+                  "placementSeconds": 0.22,
+                  "rate": 1,
+                  "pitchSemitones": 0.0,
+                  "reverse": false,
+                  "bandHz": [
+                    240,
+                    7600
+                  ],
+                  "referenceRms": 0.1,
+                  "sourceNormalizationGain": 6.191788309878614,
+                  "attackSeconds": 0.025,
+                  "releaseSeconds": 0.12,
+                  "curve": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.11,
+                      0.7
+                    ],
+                    [
+                      0.35,
+                      1
+                    ],
+                    [
+                      1.15,
+                      0.9
+                    ],
+                    [
+                      1.68,
+                      0.42
+                    ],
+                    [
+                      2.02,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/conjure_rain_01_leaf_rain.wav",
+              "postLayerMixGain": 0.350532858862319
+            },
+            {
+              "name": "close_leaf_patter",
+              "role": "A quieter low-mid foliage layer gives raindrops body without a water slam.",
+              "events": [
+                {
+                  "source": "sources/water_rain/samsterbirdies_rain_on_leaves_hq.mp3",
+                  "sourceSha256": "98937a7ce64e973dbaa3d7879f41500d4e15e3b8b4ea30f6b927af5bf0d53977",
+                  "sourceStartSeconds": 29.0,
+                  "sourceLengthSeconds": 1.85,
+                  "placementSeconds": 0.27,
+                  "rate": 0.95,
+                  "pitchSemitones": -0.8880069773253232,
+                  "reverse": false,
+                  "bandHz": [
+                    150,
+                    1550
+                  ],
+                  "referenceRms": 0.039,
+                  "sourceNormalizationGain": 3.3125852128187847,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.09,
+                  "curve": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.15,
+                      1
+                    ],
+                    [
+                      0.75,
+                      0.8
+                    ],
+                    [
+                      1.3,
+                      0.65
+                    ],
+                    [
+                      1.95,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/conjure_rain_01_close_leaf_patter.wav",
+              "postLayerMixGain": 0.350532858862319
+            },
+            {
+              "name": "individual_drips",
+              "role": "Small selected recorded water contacts remain as the rainfall thins.",
+              "events": [
+                {
+                  "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+                  "sourceSha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37",
+                  "sourceStartSeconds": 0.45,
+                  "sourceLengthSeconds": 0.19,
+                  "placementSeconds": 0.25,
+                  "rate": 1.25,
+                  "pitchSemitones": 3.863137138648348,
+                  "reverse": false,
+                  "bandHz": [
+                    420,
+                    5500
+                  ],
+                  "referenceRms": 0.02,
+                  "sourceNormalizationGain": 13.359651487178924,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.045,
+                  "curve": null
+                },
+                {
+                  "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+                  "sourceSha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37",
+                  "sourceStartSeconds": 1.58,
+                  "sourceLengthSeconds": 0.19,
+                  "placementSeconds": 0.43,
+                  "rate": 1.25,
+                  "pitchSemitones": 3.863137138648348,
+                  "reverse": false,
+                  "bandHz": [
+                    420,
+                    5500
+                  ],
+                  "referenceRms": 0.028,
+                  "sourceNormalizationGain": 266.1154354709122,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.045,
+                  "curve": null
+                },
+                {
+                  "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+                  "sourceSha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37",
+                  "sourceStartSeconds": 3.1,
+                  "sourceLengthSeconds": 0.19,
+                  "placementSeconds": 1.12,
+                  "rate": 1.25,
+                  "pitchSemitones": 3.863137138648348,
+                  "reverse": false,
+                  "bandHz": [
+                    420,
+                    5500
+                  ],
+                  "referenceRms": 0.026,
+                  "sourceNormalizationGain": 282.9820018636165,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.045,
+                  "curve": null
+                },
+                {
+                  "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+                  "sourceSha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37",
+                  "sourceStartSeconds": 5.12,
+                  "sourceLengthSeconds": 0.19,
+                  "placementSeconds": 1.54,
+                  "rate": 1.25,
+                  "pitchSemitones": 3.863137138648348,
+                  "reverse": false,
+                  "bandHz": [
+                    420,
+                    5500
+                  ],
+                  "referenceRms": 0.018,
+                  "sourceNormalizationGain": 3.938610635127434,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.045,
+                  "curve": null
+                },
+                {
+                  "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+                  "sourceSha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37",
+                  "sourceStartSeconds": 0.45,
+                  "sourceLengthSeconds": 0.19,
+                  "placementSeconds": 1.82,
+                  "rate": 1.25,
+                  "pitchSemitones": 3.863137138648348,
+                  "reverse": false,
+                  "bandHz": [
+                    420,
+                    5500
+                  ],
+                  "referenceRms": 0.013,
+                  "sourceNormalizationGain": 8.6837734666663,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.045,
+                  "curve": null
+                }
+              ],
+              "file": "layers/conjure_rain_01_individual_drips.wav",
+              "postLayerMixGain": 0.350532858862319
+            }
+          ],
+          "mix": "mix/conjure_rain_01.wav"
+        },
+        {
+          "variant": 2,
+          "layers": [
+            {
+              "name": "leaf_rain",
+              "role": "Real fine rain on foliage is the defining body; no bass wind.",
+              "events": [
+                {
+                  "source": "sources/water_rain/samsterbirdies_rain_on_leaves_hq.mp3",
+                  "sourceSha256": "98937a7ce64e973dbaa3d7879f41500d4e15e3b8b4ea30f6b927af5bf0d53977",
+                  "sourceStartSeconds": 13.2,
+                  "sourceLengthSeconds": 2.02,
+                  "placementSeconds": 0.22,
+                  "rate": 1,
+                  "pitchSemitones": 0.0,
+                  "reverse": false,
+                  "bandHz": [
+                    240,
+                    7600
+                  ],
+                  "referenceRms": 0.1,
+                  "sourceNormalizationGain": 6.268597260526348,
+                  "attackSeconds": 0.025,
+                  "releaseSeconds": 0.12,
+                  "curve": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.11,
+                      0.7
+                    ],
+                    [
+                      0.35,
+                      1
+                    ],
+                    [
+                      1.15,
+                      0.9
+                    ],
+                    [
+                      1.68,
+                      0.42
+                    ],
+                    [
+                      2.02,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/conjure_rain_02_leaf_rain.wav",
+              "postLayerMixGain": 0.350532858862319
+            },
+            {
+              "name": "close_leaf_patter",
+              "role": "A quieter low-mid foliage layer gives raindrops body without a water slam.",
+              "events": [
+                {
+                  "source": "sources/water_rain/samsterbirdies_rain_on_leaves_hq.mp3",
+                  "sourceSha256": "98937a7ce64e973dbaa3d7879f41500d4e15e3b8b4ea30f6b927af5bf0d53977",
+                  "sourceStartSeconds": 32.1,
+                  "sourceLengthSeconds": 1.85,
+                  "placementSeconds": 0.27,
+                  "rate": 0.91675,
+                  "pitchSemitones": -1.5047968074050544,
+                  "reverse": false,
+                  "bandHz": [
+                    150,
+                    1550
+                  ],
+                  "referenceRms": 0.039,
+                  "sourceNormalizationGain": 3.785236557917193,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.09,
+                  "curve": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.15,
+                      1
+                    ],
+                    [
+                      0.75,
+                      0.8
+                    ],
+                    [
+                      1.3,
+                      0.65
+                    ],
+                    [
+                      1.95,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/conjure_rain_02_close_leaf_patter.wav",
+              "postLayerMixGain": 0.350532858862319
+            },
+            {
+              "name": "individual_drips",
+              "role": "Small selected recorded water contacts remain as the rainfall thins.",
+              "events": [
+                {
+                  "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+                  "sourceSha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37",
+                  "sourceStartSeconds": 0.45,
+                  "sourceLengthSeconds": 0.19,
+                  "placementSeconds": 0.257,
+                  "rate": 1.20625,
+                  "pitchSemitones": 3.2463473085686174,
+                  "reverse": false,
+                  "bandHz": [
+                    420,
+                    5500
+                  ],
+                  "referenceRms": 0.02,
+                  "sourceNormalizationGain": 13.994015158481092,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.045,
+                  "curve": null
+                },
+                {
+                  "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+                  "sourceSha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37",
+                  "sourceStartSeconds": 1.58,
+                  "sourceLengthSeconds": 0.19,
+                  "placementSeconds": 0.437,
+                  "rate": 1.20625,
+                  "pitchSemitones": 3.2463473085686174,
+                  "reverse": false,
+                  "bandHz": [
+                    420,
+                    5500
+                  ],
+                  "referenceRms": 0.028,
+                  "sourceNormalizationGain": 273.446763426003,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.045,
+                  "curve": null
+                },
+                {
+                  "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+                  "sourceSha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37",
+                  "sourceStartSeconds": 3.1,
+                  "sourceLengthSeconds": 0.19,
+                  "placementSeconds": 1.127,
+                  "rate": 1.20625,
+                  "pitchSemitones": 3.2463473085686174,
+                  "reverse": false,
+                  "bandHz": [
+                    420,
+                    5500
+                  ],
+                  "referenceRms": 0.026,
+                  "sourceNormalizationGain": 289.51822218870666,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.045,
+                  "curve": null
+                },
+                {
+                  "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+                  "sourceSha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37",
+                  "sourceStartSeconds": 5.12,
+                  "sourceLengthSeconds": 0.19,
+                  "placementSeconds": 1.547,
+                  "rate": 1.20625,
+                  "pitchSemitones": 3.2463473085686174,
+                  "reverse": false,
+                  "bandHz": [
+                    420,
+                    5500
+                  ],
+                  "referenceRms": 0.018,
+                  "sourceNormalizationGain": 4.104820362152511,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.045,
+                  "curve": null
+                },
+                {
+                  "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+                  "sourceSha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37",
+                  "sourceStartSeconds": 0.45,
+                  "sourceLengthSeconds": 0.19,
+                  "placementSeconds": 1.827,
+                  "rate": 1.20625,
+                  "pitchSemitones": 3.2463473085686174,
+                  "reverse": false,
+                  "bandHz": [
+                    420,
+                    5500
+                  ],
+                  "referenceRms": 0.013,
+                  "sourceNormalizationGain": 9.09610985301271,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.045,
+                  "curve": null
+                }
+              ],
+              "file": "layers/conjure_rain_02_individual_drips.wav",
+              "postLayerMixGain": 0.350532858862319
+            }
+          ],
+          "mix": "mix/conjure_rain_02.wav"
+        },
+        {
+          "variant": 3,
+          "layers": [
+            {
+              "name": "leaf_rain",
+              "role": "Real fine rain on foliage is the defining body; no bass wind.",
+              "events": [
+                {
+                  "source": "sources/water_rain/samsterbirdies_rain_on_leaves_hq.mp3",
+                  "sourceSha256": "98937a7ce64e973dbaa3d7879f41500d4e15e3b8b4ea30f6b927af5bf0d53977",
+                  "sourceStartSeconds": 18.4,
+                  "sourceLengthSeconds": 2.02,
+                  "placementSeconds": 0.22,
+                  "rate": 1,
+                  "pitchSemitones": 0.0,
+                  "reverse": false,
+                  "bandHz": [
+                    240,
+                    7600
+                  ],
+                  "referenceRms": 0.1,
+                  "sourceNormalizationGain": 6.344929170939402,
+                  "attackSeconds": 0.025,
+                  "releaseSeconds": 0.12,
+                  "curve": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.11,
+                      0.7
+                    ],
+                    [
+                      0.35,
+                      1
+                    ],
+                    [
+                      1.15,
+                      0.9
+                    ],
+                    [
+                      1.68,
+                      0.42
+                    ],
+                    [
+                      2.02,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/conjure_rain_03_leaf_rain.wav",
+              "postLayerMixGain": 0.350532858862319
+            },
+            {
+              "name": "close_leaf_patter",
+              "role": "A quieter low-mid foliage layer gives raindrops body without a water slam.",
+              "events": [
+                {
+                  "source": "sources/water_rain/samsterbirdies_rain_on_leaves_hq.mp3",
+                  "sourceSha256": "98937a7ce64e973dbaa3d7879f41500d4e15e3b8b4ea30f6b927af5bf0d53977",
+                  "sourceStartSeconds": 35.2,
+                  "sourceLengthSeconds": 1.85,
+                  "placementSeconds": 0.27,
+                  "rate": 0.9927499999999999,
+                  "pitchSemitones": -0.12597166965142714,
+                  "reverse": false,
+                  "bandHz": [
+                    150,
+                    1550
+                  ],
+                  "referenceRms": 0.039,
+                  "sourceNormalizationGain": 3.5796577075865943,
+                  "attackSeconds": 0.006,
+                  "releaseSeconds": 0.09,
+                  "curve": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      0.15,
+                      1
+                    ],
+                    [
+                      0.75,
+                      0.8
+                    ],
+                    [
+                      1.3,
+                      0.65
+                    ],
+                    [
+                      1.95,
+                      0
+                    ]
+                  ]
+                }
+              ],
+              "file": "layers/conjure_rain_03_close_leaf_patter.wav",
+              "postLayerMixGain": 0.350532858862319
+            },
+            {
+              "name": "individual_drips",
+              "role": "Small selected recorded water contacts remain as the rainfall thins.",
+              "events": [
+                {
+                  "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+                  "sourceSha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37",
+                  "sourceStartSeconds": 0.45,
+                  "sourceLengthSeconds": 0.19,
+                  "placementSeconds": 0.264,
+                  "rate": 1.30625,
+                  "pitchSemitones": 4.625172446322243,
+                  "reverse": false,
+                  "bandHz": [
+                    420,
+                    5500
+                  ],
+                  "referenceRms": 0.02,
+                  "sourceNormalizationGain": 12.62622208560931,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.045,
+                  "curve": null
+                },
+                {
+                  "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+                  "sourceSha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37",
+                  "sourceStartSeconds": 1.58,
+                  "sourceLengthSeconds": 0.19,
+                  "placementSeconds": 0.444,
+                  "rate": 1.30625,
+                  "pitchSemitones": 4.625172446322243,
+                  "reverse": false,
+                  "bandHz": [
+                    420,
+                    5500
+                  ],
+                  "referenceRms": 0.028,
+                  "sourceNormalizationGain": 257.29070691607734,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.045,
+                  "curve": null
+                },
+                {
+                  "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+                  "sourceSha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37",
+                  "sourceStartSeconds": 3.1,
+                  "sourceLengthSeconds": 0.19,
+                  "placementSeconds": 1.1340000000000001,
+                  "rate": 1.30625,
+                  "pitchSemitones": 4.625172446322243,
+                  "reverse": false,
+                  "bandHz": [
+                    420,
+                    5500
+                  ],
+                  "referenceRms": 0.026,
+                  "sourceNormalizationGain": 275.02390544497996,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.045,
+                  "curve": null
+                },
+                {
+                  "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+                  "sourceSha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37",
+                  "sourceStartSeconds": 5.12,
+                  "sourceLengthSeconds": 0.19,
+                  "placementSeconds": 1.554,
+                  "rate": 1.30625,
+                  "pitchSemitones": 4.625172446322243,
+                  "reverse": false,
+                  "bandHz": [
+                    420,
+                    5500
+                  ],
+                  "referenceRms": 0.018,
+                  "sourceNormalizationGain": 3.739736392973119,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.045,
+                  "curve": null
+                },
+                {
+                  "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+                  "sourceSha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37",
+                  "sourceStartSeconds": 0.45,
+                  "sourceLengthSeconds": 0.19,
+                  "placementSeconds": 1.834,
+                  "rate": 1.30625,
+                  "pitchSemitones": 4.625172446322243,
+                  "reverse": false,
+                  "bandHz": [
+                    420,
+                    5500
+                  ],
+                  "referenceRms": 0.013,
+                  "sourceNormalizationGain": 8.207044355646051,
+                  "attackSeconds": 0.004,
+                  "releaseSeconds": 0.045,
+                  "curve": null
+                }
+              ],
+              "file": "layers/conjure_rain_03_individual_drips.wav",
+              "postLayerMixGain": 0.350532858862319
+            }
+          ],
+          "mix": "mix/conjure_rain_03.wav"
+        }
+      ],
+      "preview": "preview/conjure_rain.wav",
+      "breakdown": "preview/conjure_rain_layers_then_mix.wav"
+    }
+  ],
+  "audioHashes": {
+    "layers/conjure_rain_02_close_leaf_patter.wav": "2853f11ac74ebe8cb92c45802c225c943a97586ff739eb90b98a723823b54beb",
+    "layers/jet_blast_02_wet_slap.wav": "7ff4763b0adc4de94eecce6eb101004337986000a2f03f547f60100b7b03bc61",
+    "layers/ground_surge_03_charging_current.wav": "6805f0f33b617110d48d60a7ba97c7da8139f1d330df39494ea573951b1c53f4",
+    "layers/ground_surge_01_grit_displacement.wav": "db930f1c607c14f8a3b2c986ad6a3b4cc77c4515c58df562dc1debf2b566cdd8",
+    "layers/jet_blast_02_liquid_gather.wav": "f6e3fc77e360749aba155faf9748d92336ff14d717a2929e9d4510a9be844a2c",
+    "layers/rime_grip_01_settling_fragments.wav": "43483b8d3e00d766bea92ad328cbc391de4631f6e34c7b0923384d6484d45b0b",
+    "layers/calm_01_resolved_overtone.wav": "cdd99cd7e96069043dbb6c66211c77a23ce11fac2033672f150d48c6874e751b",
+    "layers/rime_grip_02_settling_fragments.wav": "0490a0cc896a02e19f4c2853ed397253de2cdfc68e3771967c771982a44b9060",
+    "layers/jet_blast_03_liquid_gather.wav": "16182cf8da73e828b3f91009e4e848262d23116072ae2bc9de5448e81c61aada",
+    "layers/jet_blast_03_wet_slap.wav": "8794f109267af043b4327acb51ec9aa9fc2b1a7b567cdb3d47da5599c563b033",
+    "layers/ground_surge_03_grit_displacement.wav": "bc173eb67f3d0b2a0bfbf6efb2c7b9d124235a6f1d4a2bf99a99469ddbc9314d",
+    "layers/flaming_hands_01_combustion_body.wav": "d44b2c7d2b20948a87447bab9bbc791022751610c8e2f8078dd90920acd873d4",
+    "layers/flaming_hands_02_combustion_body.wav": "39c045298a55b3df7145f5118dd24fb4bee77c6e3116fe54fc18f6814e011077",
+    "layers/calm_03_resolved_overtone.wav": "ff104dbf82108e1a073fb0ba894783bc326f45880df6ba086f5bcfbee9678000",
+    "layers/flaming_hands_03_combustion_body.wav": "f4337f3ca9e270764060a5a8c388e64d5ee3cdee896f40b05de681d694aacf4d",
+    "layers/ground_surge_02_advancing_arcs.wav": "213d57aee564703e77dfc8f0fb13d6213d09d2d1e6973fc525e5356c4a3649f2",
+    "layers/flaming_hands_01_palms_catch.wav": "2f139a8ec3ce113dd10d25129d496c2907683dfcaffcc40ffeec770f0b436636",
+    "layers/calm_01_human_exhale.wav": "414c20ea9ad17bb912acf0cbe76f800cd0c5ed41bcfe9da110488240978a152e",
+    "layers/rime_grip_01_brittle_lock.wav": "c74fcfd08d47507d5997ac1937a80c1d805151e88e1ad1fa5b55aadf0626cddf",
+    "layers/jet_blast_03_pressurized_water.wav": "76b25b8a4f59e3174df4480e76912da496b8c835b4bbd52b696c3f74b50a3ab0",
+    "layers/ground_surge_02_charging_current.wav": "04c94a972b676c8120e3eba7dbb1bb72cec1650bce3d5387d51f5c3b20084336",
+    "layers/rime_grip_02_inward_ice_stress.wav": "a8a5bd95d22b2816889fa426290b0c57ce8524c00962a3f5fad4475e2b843a94",
+    "layers/calm_02_warm_bowl_body.wav": "3b8b1fd551945a37477635778c4c433a7496082a145fe80c78222ab4590c54f2",
+    "layers/rime_grip_03_settling_fragments.wav": "deac6f96bd8448136c6ae330d8caf8e40fd12791751a847bf1b75fdada413574",
+    "layers/calm_01_warm_bowl_body.wav": "9b7d1fe5ad98a0ef2d314b9a8ac4140131c52bc20fb6f3930362b73be2af65db",
+    "layers/jet_blast_01_liquid_gather.wav": "9ae4a645fd20f107d5eb02b74e8eece30fb734f46a6baa441e7b8084e5ca1d4d",
+    "layers/conjure_rain_03_leaf_rain.wav": "ec9d37e9b2efa7d8729babdfad944421e5cc3d1dc2bbbd4976421c76f0541da4",
+    "layers/conjure_rain_01_individual_drips.wav": "af08588ea3d8694980c51b6f46cdf42b58d2b0a6d48658f08745246132fe0c44",
+    "layers/jet_blast_01_pressurized_water.wav": "34a169c7462ce35e3c3616653e1ab3ae61a50eb5d2cff6391b651629ccaa8dcc",
+    "layers/ground_surge_01_advancing_arcs.wav": "ea510ce9bfa5a490ae8359476346ae583dd34b35764f50a70df92820b8236386",
+    "layers/flaming_hands_02_dry_afterburn.wav": "c03400c6f913538890ea7672278c0001edb117a58fcbf82836c8d0b189df2221",
+    "layers/conjure_rain_02_individual_drips.wav": "3d1020586eaae63dd441c218010c15267b0aef37bd73fe1691f0ff5c5c00d976",
+    "layers/flaming_hands_03_palms_catch.wav": "e9f11a59c3a74fb32405c87db3d3d4ff0ce67725ff23b1ac018c4bcbf422218d",
+    "layers/jet_blast_02_bubbles_and_runoff.wav": "3c5240e5693faf7959f0812a2e15867b26e7cae9c4d8c0c96cfe64b23953078b",
+    "layers/conjure_rain_03_close_leaf_patter.wav": "99e662736623e1cfdfea09db74ab8a9594d6732a12c414b7c1def06082925933",
+    "layers/calm_02_human_exhale.wav": "6716214fd088d98af882700513b399a12ab153703241df02abae1bc90c4803ed",
+    "layers/conjure_rain_02_leaf_rain.wav": "0b52010f92251d142738a30fbe76af77e1bafdda8fc11285a9643e9d95bf7e18",
+    "layers/rime_grip_02_brittle_lock.wav": "fc3272d41d73a877aa05e55938bdf5c8b7af9d1f12a9a1e6f7cb5296df6f1a9d",
+    "layers/calm_02_resolved_overtone.wav": "069007384bff8bbbc8a9bc2809e11a6abeb9654aaaa028e88bf6faf181401346",
+    "layers/flaming_hands_03_dry_afterburn.wav": "7dfcaf7b7c7e3dffde2a52853036fe63a3d83815c59f4b1f8c3674f6e138a834",
+    "layers/jet_blast_01_bubbles_and_runoff.wav": "0e1fb83e2ec27e67466f767016f8c61d07f050d899966e76bed59e328688a7bf",
+    "layers/ground_surge_03_advancing_arcs.wav": "c594af9880e7d0b76029dc8d25a0150273e88d3ed9c0c66266e97c50b4f5c932",
+    "layers/ground_surge_01_charging_current.wav": "293938eecb126877f1f8ab7a9504c84eb322dd95fe1558370e7c0e10da9eabe6",
+    "layers/conjure_rain_01_leaf_rain.wav": "62c44c6c2b53f0e54babf3ef10c98348ede5a1de2eb73b4a631e22b8c80ae8dd",
+    "layers/calm_03_warm_bowl_body.wav": "365c5b71ed58c8768f066b4ca5e602acad527f566cc25584dd7e8dca60f8407d",
+    "layers/conjure_rain_01_close_leaf_patter.wav": "e2be6ef25fe1e991484e8a4600bdd4a61c17182e3921b84f4ae32e09fa39c0aa",
+    "layers/ground_surge_02_grit_displacement.wav": "db54cbb5a656fe356b62c8ecc4efed9d7c2073a6b5e77f43b454e4f43b1c38df",
+    "layers/rime_grip_03_inward_ice_stress.wav": "87efbbd967736ad68fcd1cb492177ab67b62e3963420462576fd12358affe229",
+    "layers/jet_blast_02_pressurized_water.wav": "a15b7811c2d32fc1044ec00fcee932846f317ec90da0fcedd731ebbf5aa3ebe4",
+    "layers/jet_blast_01_wet_slap.wav": "647b1bf3608eb854ad72056f3d1ce0a6f2ee0fd3c697e56fae60572422834d78",
+    "layers/rime_grip_03_brittle_lock.wav": "fe0b2bdcd2a33a8bc02d2d9b9186854aa744c98c08d999767f5fb160c0a11ceb",
+    "layers/calm_03_human_exhale.wav": "817e25e12adda57b49e69b196d601c4f5bec3569590afc57907aecf1b618deeb",
+    "layers/conjure_rain_03_individual_drips.wav": "f77b787a98bb3c69511fce5bf01c52a37e1be32a27a1ff338be50defa4596dd2",
+    "layers/flaming_hands_01_dry_afterburn.wav": "0644efad9a7a55b29410cb007b9151466add7239d75ea270ef055a5cb6160a0a",
+    "layers/ground_surge_03_ground_fracture.wav": "4e58952704e260cf7c8db4ab1a1270eeb9130f265b833101761a60e25c4afed9",
+    "layers/rime_grip_01_inward_ice_stress.wav": "2740c70a513ced51b1d747d8ee8a04ed592fb0f5e05efa8748fc528958793f3d",
+    "layers/flaming_hands_02_palms_catch.wav": "7929e031de43071a7cb62b1cae5fe8373d7aabd191baf65ab24b7f2721c5e8fd",
+    "layers/jet_blast_03_bubbles_and_runoff.wav": "b42823bf4bcc7fb70557bd7f652f54098b6e18bf823506985a09dde58b7cfca4",
+    "layers/ground_surge_02_ground_fracture.wav": "e64ef9460d47dba72ef3db8ba97f41de9aa27c5b39950be35d9642c8b7a2d8de",
+    "layers/ground_surge_01_ground_fracture.wav": "5a46a840168137150d560f501f6270f6fd52ac823444cf7f9c376a6c2a2557b2",
+    "mix/ground_surge_03.wav": "5add32858e00f045fbea7f406c046d6fe64e3bb4c55012cd057233f9525c8db2",
+    "mix/ground_surge_02.wav": "6d6c6b325ab40118dba45198f3113106ff049b00f27cd9193a5a1f6375ea5954",
+    "mix/ground_surge_01.wav": "be0755e87df27925168418b69ef4423fbd9910ce25a56c426a6a414b4e1ca276",
+    "mix/rime_grip_01.wav": "da9feb7dee0e01bcedc97c36f56fd8c0024441ac5967c107011ac56d8c94d893",
+    "mix/rime_grip_02.wav": "99a4366b330b444528331663344ac452b2f06fcf24aa835893a432164cbd9061",
+    "mix/rime_grip_03.wav": "0959aa14455209616815325f9c6a562146d33fd93acecb1a98754698cfbbe2ab",
+    "mix/jet_blast_02.wav": "e223fe0cab1ff794129fc22d6edd1a408e7d44a7f8979ae2b4f940b7cf42a924",
+    "mix/jet_blast_03.wav": "2c10832848546343367839f189b1b7c7e71f8895860c029217fed5e260ab42ae",
+    "mix/jet_blast_01.wav": "ce312eed248582df66098d5a66ae55c282481549e4a256a1589a465f9d48c58f",
+    "mix/conjure_rain_01.wav": "c4cae6d62b7e0212872ab1cb5b75823a1e151264f5d9526534f8f11657e51d31",
+    "mix/conjure_rain_02.wav": "503fe21fb32f0ebb255331df74c4cdcc2a30101c597c206dcee7c5780591b9b4",
+    "mix/conjure_rain_03.wav": "35fd2afc2e048a42feb7ebeb8c3e9f14c37bb37bdc45220d416e0d5c034a0872",
+    "mix/calm_02.wav": "c996666c4ff69e0ef5e3d4e9002b3902ae5a6133e0e7196222b3ca99e16b2d5e",
+    "mix/flaming_hands_03.wav": "759e74dae16fedfb8bedd4e934368b23826dbfe477d528aff12ffb8de612a0b2",
+    "mix/flaming_hands_02.wav": "af4f555e5c584efc86babc8f88fe8facd35e43b2c275e79f9c5b21399d28f472",
+    "mix/calm_03.wav": "762bad38e5eabd0d4208c3e028499c60d0827fc4c942a60ef8c58ec7e3200250",
+    "mix/calm_01.wav": "8de4bf225288d1648096b0e7baeadafb98039872ce26336544e0f5400599b714",
+    "mix/flaming_hands_01.wav": "50314b6297011e397e048177f5e8ccac45b6aedaa98c40cb6159587a0ae56137",
+    "preview/conjure_rain_layers_then_mix.wav": "773081e25717130cf628147f8b031ba72be85c1386ae98b6d4aa228f6b3bf2ea",
+    "preview/rime_grip_layers_then_mix.wav": "bf532370b5922e597633dc541afc5ff3bebd10428cce81a0402fedefa664d126",
+    "preview/jet_blast.wav": "ce312eed248582df66098d5a66ae55c282481549e4a256a1589a465f9d48c58f",
+    "preview/ground_surge.wav": "be0755e87df27925168418b69ef4423fbd9910ce25a56c426a6a414b4e1ca276",
+    "preview/jet_blast_layers_then_mix.wav": "a0c54aaef5f4b661d3f4c3f8e96743005f65b1199e79ef29dcbed59038457d5a",
+    "preview/recorded_material_reel.wav": "a04ade710f08eca691f9cace2ff020bc364183897be0f7ed8b0ffb1eb3589a98",
+    "preview/calm_layers_then_mix.wav": "415b61e82bb342461e1837706bc2e77a6c4525767a14542ab857f6b8bbb5439b",
+    "preview/rime_grip.wav": "da9feb7dee0e01bcedc97c36f56fd8c0024441ac5967c107011ac56d8c94d893",
+    "preview/conjure_rain.wav": "c4cae6d62b7e0212872ab1cb5b75823a1e151264f5d9526534f8f11657e51d31",
+    "preview/flaming_hands_layers_then_mix.wav": "274e7b4dbcee0b9db621b720c96e35ce3bf6f7ac0c8b35f4a53a80f0660f40a7",
+    "preview/flaming_hands.wav": "50314b6297011e397e048177f5e8ccac45b6aedaa98c40cb6159587a0ae56137",
+    "preview/ground_surge_layers_then_mix.wav": "006ab721560f43401833762146e8ba86e150075ab96e438bfb52f311b756e60e",
+    "preview/calm.wav": "8de4bf225288d1648096b0e7baeadafb98039872ce26336544e0f5400599b714",
+    "float-masters/layers/conjure_rain_02_close_leaf_patter.wav": "fb623556721e9205e5990565eae212fb72428733c3445f76adf54dd13c78ded2",
+    "float-masters/layers/jet_blast_02_wet_slap.wav": "03ba61e49814a513f937f6c3272cd9f74cd654b17839dd8d7b94676117ce8f86",
+    "float-masters/layers/ground_surge_03_charging_current.wav": "923a91aa1d3202a48cc9abd0a66fb6f0a64587cd66be426f11577c1627bae389",
+    "float-masters/layers/ground_surge_01_grit_displacement.wav": "6236a67e5c796d6c433f6a16b7abb1fcae5aa10414e74ae032c9d9a2a5165c4b",
+    "float-masters/layers/jet_blast_02_liquid_gather.wav": "fd58a325479b619d1f62dbdfdaf78347f12b306728faee2cf54969cb76859137",
+    "float-masters/layers/rime_grip_01_settling_fragments.wav": "144c57163016f29b6c79ae8803f259de4398ffaa310d01cd1c2a131e93e9fca1",
+    "float-masters/layers/calm_01_resolved_overtone.wav": "068b8e347f06520688024933f0b45b4dfd2265c5cd4c51700838824f63e5b73e",
+    "float-masters/layers/rime_grip_02_settling_fragments.wav": "2fa2fca85016171a48d62a1282323e00361c88a22184fe9bb0d7ec9a520e7bd2",
+    "float-masters/layers/jet_blast_03_liquid_gather.wav": "498bd4527679a44cde5ed9c4b2752ca9805b2f4484e5913e8d938c956c21d950",
+    "float-masters/layers/jet_blast_03_wet_slap.wav": "0062a8520413ff21245ca68366c950f8c99c12f7c44b97798bc061506298700d",
+    "float-masters/layers/ground_surge_03_grit_displacement.wav": "9ee638a738b458584c81616a63c79d0b06bcd33adf8d7821a21077fe2559f7ef",
+    "float-masters/layers/flaming_hands_01_combustion_body.wav": "92ffaa3d8654cb2542a7566df3b831123704fb51800755284830372c3e631517",
+    "float-masters/layers/flaming_hands_02_combustion_body.wav": "bd5dcf086d19c5c62e8232ad296b9908da03e8b8ebb345557694acd20dca57f4",
+    "float-masters/layers/calm_03_resolved_overtone.wav": "7dc3a93983b699ae5f286b050287b7af0342b7dce6d9289922c94354c35c2dad",
+    "float-masters/layers/flaming_hands_03_combustion_body.wav": "a9dd44f39e23e8f4a4b9611a836f95f9e8bf66b619cf27e629e3abbcd32910be",
+    "float-masters/layers/ground_surge_02_advancing_arcs.wav": "1282f877064d4d48070003a4c21ccb433afd668abce7f20a6f3d00db4c18f5bd",
+    "float-masters/layers/flaming_hands_01_palms_catch.wav": "8d0a18971b4c6e439bb768680bc8d35c9b318661fb4f776baaff0e6c81bcd0a4",
+    "float-masters/layers/calm_01_human_exhale.wav": "8ed48713f2e51cef765145b65a00443619abc8b31ba89f14da1a939bafa5bcbd",
+    "float-masters/layers/rime_grip_01_brittle_lock.wav": "38bbbf1dd4cb99c74f07b81f89746a3cfaee571868f070110328660e38175659",
+    "float-masters/layers/jet_blast_03_pressurized_water.wav": "8470ee61df367f0b79b614667687bed162866c0c28a6b2d1803c315fc0c88938",
+    "float-masters/layers/ground_surge_02_charging_current.wav": "0bb63c6725c19f68f76814a9bd9050282f6f5a88ca25590db0b0912043cdf76a",
+    "float-masters/layers/rime_grip_02_inward_ice_stress.wav": "e567520100ee22d85bf6619502e03959a25eebe030f93aa544b7599e48d2293d",
+    "float-masters/layers/calm_02_warm_bowl_body.wav": "84f6b0fa96d9b776a9d8c303db23141ba311cd07bbbb1d484191c9b5d0fd3976",
+    "float-masters/layers/rime_grip_03_settling_fragments.wav": "bb2b4bfa2c479ef15a656e985b93644ff7895d1e3ab43ae8b4cd8ce29df1a53a",
+    "float-masters/layers/calm_01_warm_bowl_body.wav": "3286bc45ddbe44b419cb6b087003e8f2d5a6b9127e02ccb8e3f7e308d0345402",
+    "float-masters/layers/jet_blast_01_liquid_gather.wav": "9f4a753417ce5996ac22080aff70b0d747dc9d3482ee3a2effff459f401d27f7",
+    "float-masters/layers/conjure_rain_03_leaf_rain.wav": "8eaae4bf3f0e19822765f403195b944dd7c3ae2d572a16e6c738154bbe32eeac",
+    "float-masters/layers/conjure_rain_01_individual_drips.wav": "1ded9c0cbff11e8e77e29d2512970724614efebaffb57bd453f528cf8d0163a4",
+    "float-masters/layers/jet_blast_01_pressurized_water.wav": "58cc687f331c38e9af33736a62ff44990e881c6dfa47934008cecf79dd8271ae",
+    "float-masters/layers/ground_surge_01_advancing_arcs.wav": "e8f0166ec65ec3b35fe71ab12870569c470bb330f0d249018ebbbecfa059839c",
+    "float-masters/layers/flaming_hands_02_dry_afterburn.wav": "a443b99668a063f86e1ab7fc884f9dd5ab43d0410e9d049c6d8441d2b4a390b3",
+    "float-masters/layers/conjure_rain_02_individual_drips.wav": "4bb62fa543d5dec612bd48f47ac527ff8da0c428cc32c8eeeacc44bfa05ee49a",
+    "float-masters/layers/flaming_hands_03_palms_catch.wav": "58eb4bfa63c78554d8b408da45a65ad427ecdb4d64b9acbd3069d2373c6ec799",
+    "float-masters/layers/jet_blast_02_bubbles_and_runoff.wav": "b43a45c7364b3591dec46395c81093ed50c016d2df8e6690d423909a8082b322",
+    "float-masters/layers/conjure_rain_03_close_leaf_patter.wav": "678ca62189274e69da6979111fba66dec29048603b78e3b604784cc5905ec63c",
+    "float-masters/layers/calm_02_human_exhale.wav": "758c38c227b6365b32bb0ee72e2205a3575aafe2db39bb7ac19bd6a8d00cf57e",
+    "float-masters/layers/conjure_rain_02_leaf_rain.wav": "d608ec2c3fe022129bda5cf3fa95dda61acc73d1d7b073265fa8c58628210d42",
+    "float-masters/layers/rime_grip_02_brittle_lock.wav": "9b84784d132a1b70be2af9327d081837d243c2780328b1838ffe347f35d1a03b",
+    "float-masters/layers/calm_02_resolved_overtone.wav": "979585223442b1ea7b7dda2bc00f0871881a21137796d3a918aa523dc273a17d",
+    "float-masters/layers/flaming_hands_03_dry_afterburn.wav": "a49d47dec0abb07b7fc75708a0be53e7139c936c88e8268a120afa42261b8856",
+    "float-masters/layers/jet_blast_01_bubbles_and_runoff.wav": "b241c8f08cd8d52ef11df579d3617490f7d8fcb85cff23518c8d8d6b9b8679ac",
+    "float-masters/layers/ground_surge_03_advancing_arcs.wav": "982bb0bb140bd223988b88fde6879d620870f25bcdc3eafeacf7953aee0fa6bd",
+    "float-masters/layers/ground_surge_01_charging_current.wav": "c6e3fcd95ae056bcdc8ae327829a924527dd106203a68f0215aa962cbd9fa205",
+    "float-masters/layers/conjure_rain_01_leaf_rain.wav": "b4059301a601746bd0516eb023d53b01e0f4bbf861a4c6977b6e543d186f44e4",
+    "float-masters/layers/calm_03_warm_bowl_body.wav": "099377ff911b6be8e0ba932bb3670c514dcf63550b5c819b0fff500e619b9901",
+    "float-masters/layers/conjure_rain_01_close_leaf_patter.wav": "712519ce810e22b911876f7d76e14b6b106ce55d2ca8a42e73085c60201905c8",
+    "float-masters/layers/ground_surge_02_grit_displacement.wav": "85d21c374c5efeb844e27af5400a7f84cf8976c5450ac9fdb253933fb2b9c4a3",
+    "float-masters/layers/rime_grip_03_inward_ice_stress.wav": "cec9b66d48cd98b04a998ed8074a7e004242fe8d254be4144f588f19785f107e",
+    "float-masters/layers/jet_blast_02_pressurized_water.wav": "24207abf732af999c1430b2ea44d74e2ea46a8b0ba3ef00ab15d18c2a916839b",
+    "float-masters/layers/jet_blast_01_wet_slap.wav": "f843527f5ec77a508ef3a723a7938fff3857dca5283604208cb4b1801db643af",
+    "float-masters/layers/rime_grip_03_brittle_lock.wav": "c639483465a869783b4db54f7a1eac6062ac57082ef1a796ee351721f712df72",
+    "float-masters/layers/calm_03_human_exhale.wav": "233664785bac778ffbab19d72414dc45f3616630a7cbbe0be96f8bd58594a21e",
+    "float-masters/layers/conjure_rain_03_individual_drips.wav": "d1fa1bd73028884375779be12a531e728893b8245f90de1852f266bdf5d406bc",
+    "float-masters/layers/flaming_hands_01_dry_afterburn.wav": "3b03db732d12edaaa4811fcd2be81db9973c42bc6a5bff5f38aa089cf10d24e3",
+    "float-masters/layers/ground_surge_03_ground_fracture.wav": "e74c272ac6c79657aa6429ad20db7e624957808a87989b999ec7d295f4ac0df0",
+    "float-masters/layers/rime_grip_01_inward_ice_stress.wav": "d4780b469f435499ed02a2fe931bdc5428ed3b4c38c00304815593d5cc4fa548",
+    "float-masters/layers/flaming_hands_02_palms_catch.wav": "5b0e20249a91b1c0b0ebab84438689a885021225ef6bae84d0ad1b468e1d998a",
+    "float-masters/layers/jet_blast_03_bubbles_and_runoff.wav": "415feedda7658048f705533eed4a6ae8e4b9da320c5761310a7488033d51459a",
+    "float-masters/layers/ground_surge_02_ground_fracture.wav": "37dc6e34a52ca5aebd80f1e699d033bcf79574bbe6bd34ccd3f4aa4c0751d806",
+    "float-masters/layers/ground_surge_01_ground_fracture.wav": "f7855448d5f7fefb3335c42f44ac627c73f01409b7c3bef09db7bebcd878a5e3",
+    "float-masters/mix/ground_surge_03.wav": "0cb1b423fc24d3e597b2cbd6b976e1b513028fefaf9e04b27309e9c333ea636c",
+    "float-masters/mix/ground_surge_02.wav": "ace5bc0894c69734a3014fd2915a1fdcf27b78cbf4c5d9f614c08e3f8a264735",
+    "float-masters/mix/ground_surge_01.wav": "883a83ec57c4cf43408f66fd42a0f14955771098490248ac175b9f6cc354d26e",
+    "float-masters/mix/rime_grip_01.wav": "20afcb69532b8265c8085d12bf88fe89ddc23db4cdf6ec4769787cd0002d4a46",
+    "float-masters/mix/rime_grip_02.wav": "3e65a94d465b0641f6afb04bc762be5a134f79b62e2eef15af6d6f6ee22a1fbf",
+    "float-masters/mix/rime_grip_03.wav": "d37eaa14bfbe7d11f78b15b69b1e2302b047be5b3f478586b30a63ef3ada93cd",
+    "float-masters/mix/jet_blast_02.wav": "80eeb1067c6bb3d19d229355e47d86a60226154e687b3478cc60dc2e35ce34d5",
+    "float-masters/mix/jet_blast_03.wav": "0b0226b2a9d79c40616d919eb622bcb14b2edd6ad83b3dc4f2a1d483e2284fda",
+    "float-masters/mix/jet_blast_01.wav": "4f1289fbc75bea4ab5ebf750b67c7f917e821719ced767da1553ded918c5192e",
+    "float-masters/mix/conjure_rain_01.wav": "598d4125dfc87c204dcdda74f146b82d47369812dfad3434c959b7ca4dea4c73",
+    "float-masters/mix/conjure_rain_02.wav": "6b8d127e505c4d4eb695525d95435105871b91c7f24e9108e1180bc2d4c4e42a",
+    "float-masters/mix/conjure_rain_03.wav": "19204d5ddf5850b820c4dc640f8ed9a5fd7c437ea23f20f56c2eef3b792401a8",
+    "float-masters/mix/calm_02.wav": "c6d790bf6ad3741c881a6943681ef98308c8f07b7048330fd8d4bb89eefcb289",
+    "float-masters/mix/flaming_hands_03.wav": "c7886be384b138ad8d90b4d0dbe5ab5396e78298fecb5a51534ce80ccceb801c",
+    "float-masters/mix/flaming_hands_02.wav": "a99171577f272cec6c581c6a9a462d641b4ff8ea0fb08e61bea4d4b5b242930a",
+    "float-masters/mix/calm_03.wav": "f528cca0007d3054f765a60c923dae1db88dfb331ca86bd602ef197b2661af04",
+    "float-masters/mix/calm_01.wav": "dc4f193df6eda4fef9054a8c259ee97bb7e436b12d7d0d97625ecadee990bc8d",
+    "float-masters/mix/flaming_hands_01.wav": "141c52b5658ffa6af04565600fdeab73bc40f4af0f25770e8d0bfb9602e07ff6",
+    "float-masters/preview/conjure_rain_layers_then_mix.wav": "456fad5896b67c0d5b609d7875446ac52b52f3d6c6ee1dda218b06115e732003",
+    "float-masters/preview/rime_grip_layers_then_mix.wav": "51734402f57cdd37181f2d44af50ffa271e2b67c264df9e9f0a7da2e951a73f8",
+    "float-masters/preview/jet_blast.wav": "4f1289fbc75bea4ab5ebf750b67c7f917e821719ced767da1553ded918c5192e",
+    "float-masters/preview/ground_surge.wav": "883a83ec57c4cf43408f66fd42a0f14955771098490248ac175b9f6cc354d26e",
+    "float-masters/preview/jet_blast_layers_then_mix.wav": "8c7cc39c853bff3374e36ff1c21dc228fa7886e9bac77746179018543a90bbfa",
+    "float-masters/preview/recorded_material_reel.wav": "565955768e2c7bedf90cc15cc51300dec8960d135a0846140c92502051102c08",
+    "float-masters/preview/calm_layers_then_mix.wav": "1b42d073cc21e63273e3a278eea06e70c9d3796575381e14254080f14a5966ea",
+    "float-masters/preview/rime_grip.wav": "20afcb69532b8265c8085d12bf88fe89ddc23db4cdf6ec4769787cd0002d4a46",
+    "float-masters/preview/conjure_rain.wav": "598d4125dfc87c204dcdda74f146b82d47369812dfad3434c959b7ca4dea4c73",
+    "float-masters/preview/flaming_hands_layers_then_mix.wav": "f9b7d40fb1d1024edd3cab7a35ea27b2919b5ae8b1a191b294efa464d5a42ff7",
+    "float-masters/preview/flaming_hands.wav": "141c52b5658ffa6af04565600fdeab73bc40f4af0f25770e8d0bfb9602e07ff6",
+    "float-masters/preview/ground_surge_layers_then_mix.wav": "1b0f987f693dd3119c06a7d44422a47c05e60595c579ad8a00fc15ff102822b6",
+    "float-masters/preview/calm.wav": "dc4f193df6eda4fef9054a8c259ee97bb7e436b12d7d0d97625ecadee990bc8d"
+  },
+  "reel": "preview/recorded_material_reel.wav"
+}

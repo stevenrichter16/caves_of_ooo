@@ -1,0 +1,31 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CanonicalVillageQuest|QuestVillagePoolTests|RegionalGuidance|MorrowfastExpedition|MorrowfastMerchantRestock|NativeQuestCue|BiomeAffordance|SpreadVoxelKitTests|MorrowfastContent|QuestBeacon",
+  "results": {
+    "id": "2",
+    "testcasecount": "225",
+    "result": "Failed(Child)",
+    "total": "225",
+    "passed": "223",
+    "failed": "2",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-17 01:42:57Z",
+    "end-time": "2026-09-17 01:43:07Z",
+    "duration": "9.6289817"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.MorrowfastExpeditionAdversarialTests.RejectedContainerCapacityCannotInstallAnEmptyOneShotCache",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalGuidanceAdversarialTests.ActualMorrowfastClerkOffersNearbyDirectionsButAnImpostorCannot",
+      "message": "  Expected: True\n  But was:  False\n"
+    }
+  ]
+}

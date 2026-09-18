@@ -74,18 +74,16 @@ namespace CavesOfOoo.Skills
 
                 // Creature in destination? Disengage stops there (no
                 // attack, no swap — it's a pure walk).
-                bool creatureBlocks = false;
-                for (int i = 0; i < cell.Objects.Count; i++)
-                {
-                    var e = cell.Objects[i];
-                    if (e == null || e == actor) continue;
-                    if (e.Tags.ContainsKey("Creature")) { creatureBlocks = true; break; }
-                }
-                if (creatureBlocks) break;
+                if (MultiCellAbilityQueries.CreatureAtPlacement(ctx.Zone, actor, nx, ny) != null) break;
+                if (!ctx.Zone.CanPlaceFootprint(actor, nx, ny)) break;
+                if (!MovementSystem.ForceMoveTo(actor, ctx.Zone, nx, ny)) break;
 
-                ctx.Zone.MoveEntity(actor, nx, ny);
                 x = nx; y = ny;
                 cellsMoved++;
+                // Entry reactions and slips may remove or redirect the mover.
+                // End this trajectory instead of pulling it back to cached cells.
+                if (ctx.Zone.GetEntityPosition(actor) != (nx, ny)
+                    || actor.GetStatValue("Hitpoints", 1) <= 0) break;
             }
 
             MessageLog.Add(actor.GetDisplayName() + " disengages " + cellsMoved + " cell"

@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections.Generic;
+using CavesOfOoo.Core;
 using UnityEngine.Tilemaps;
 using CavesOfOoo.Storylets;
 
@@ -34,6 +36,12 @@ namespace CavesOfOoo.Rendering
         public bool IsOpen => _isOpen;
 
         private QuestLogSnapshot _snapshot;
+        public bool NotesVisible { get; private set; }
+        public int NotesPage { get; private set; }
+        private const int NotesLinesPerPage=34;
+        private readonly List<string> _noteLines=new List<string>();
+        private sealed class JournalKeys:IInputProbe {public bool GetKeyDown(KeyCode key)=>InputHelper.GetKeyDown(key);}
+        private static readonly IInputProbe LiveKeys=new JournalKeys();
 
         // Status markers — plain ASCII, color-coded. CRITICAL (PlayMode
         // verification, 2026-05-23): all glyphs here render via
@@ -59,6 +67,7 @@ namespace CavesOfOoo.Rendering
         public void Open()
         {
             _isOpen = true;
+            NotesVisible=false;NotesPage=0;
             Rebuild();
             Render();
         }
@@ -76,19 +85,40 @@ namespace CavesOfOoo.Rendering
         public void Rebuild()
         {
             _snapshot = QuestLogStateBuilder.Build(StoryletPart.Current);
+            _noteLines.Clear();
+            AppendNotes(RegionalTravelNotes.Read(StoryletPart.LocalPlayer));
+            AppendNotes(RegionalSituationNotes.Read(StoryletPart.LocalPlayer));
+            NotesPage=Mathf.Clamp(NotesPage,0,Mathf.Max(0,(_noteLines.Count-1)/NotesLinesPerPage));
+        }
+
+        private void AppendNotes(IReadOnlyList<string> notes)
+        {
+            foreach (string note in notes)
+            {
+                foreach (string line in WrapJournalText(note, 74)) _noteLines.Add(line);
+                _noteLines.Add("");
+            }
         }
 
         /// <summary>Process input while open. Returns true (consumes the
         /// frame's input). Closes on 'q' or Escape. Uses GetKeyDown so the
         /// 'q' that OPENED the log doesn't immediately close it (that press
         /// is consumed by InputHandler the prior frame).</summary>
-        public bool HandleInput()
+        public bool HandleInput()=>HandleInput(LiveKeys);
+        public bool HandleInput(IInputProbe input)
         {
-            if (!_isOpen) return false;
-            if (InputHelper.GetKeyDown(KeyCode.Q) || InputHelper.GetKeyDown(KeyCode.Escape))
+            if (!_isOpen || input==null) return false;
+            if (input.GetKeyDown(KeyCode.Q) || input.GetKeyDown(KeyCode.Escape))
             {
                 Close();
                 return true;
+            }
+            if(input.GetKeyDown(KeyCode.Tab)){NotesVisible=!NotesVisible;Rebuild();Render();return true;}
+            if(NotesVisible)
+            {
+                int delta=input.GetKeyDown(KeyCode.PageDown)||input.GetKeyDown(KeyCode.RightArrow)?1:
+                    input.GetKeyDown(KeyCode.PageUp)||input.GetKeyDown(KeyCode.LeftArrow)?-1:0;
+                if(delta!=0){NotesPage+=delta;Rebuild();Render();}
             }
             return true;
         }
@@ -97,6 +127,15 @@ namespace CavesOfOoo.Rendering
         {
             if (Tilemap == null) return;
             Tilemap.ClearAllTiles();
+            if(NotesVisible)
+            {
+                DrawText(2,1,"===== FIELD NOTES =====",ColTitle);
+                if(_noteLines.Count==0)DrawText(2,3,"Ask a scribe or innkeeper for nearby destinations.",ColDim);
+                for(int i=0;i<NotesLinesPerPage&&NotesPage*NotesLinesPerPage+i<_noteLines.Count;i++)
+                    DrawText(2,3+i,_noteLines[NotesPage*NotesLinesPerPage+i],ColQuest);
+                DrawText(2,H-4,"Requests and directions: page "+(NotesPage+1)+" / "+Mathf.Max(1,(_noteLines.Count+NotesLinesPerPage-1)/NotesLinesPerPage),ColDim);
+                DrawFooter();return;
+            }
 
             int y = 1;
             DrawText(2, y, "===== QUEST LOG =====", ColTitle);
@@ -164,8 +203,13 @@ namespace CavesOfOoo.Rendering
                                     // Live counter for collect/kill-N objectives ("(1/3)").
                                     if (o.HasProgress) olabel += " (" + o.Current + "/" + o.Target + ")";
                                     if (o.Optional) olabel += " (optional)";
-                                    DrawText(12, y, olabel, oc);
-                                    y++;
+                                    // Objectives contain actionable directions; never silently
+                                    // discard their return/contact clause at the right edge.
+                                    foreach(string line in WrapJournalText(olabel,W-14))
+                                    {
+                                        if(y>=H-4)break;
+                                        DrawText(12,y,line,oc);y++;
+                                    }
                                 }
                             }
                         }
@@ -190,9 +234,21 @@ namespace CavesOfOoo.Rendering
             DrawFooter();
         }
 
+        private static IEnumerable<string> WrapJournalText(string text,int width)
+        {
+            if(string.IsNullOrEmpty(text)){yield return "";yield break;}
+            string remaining=text;
+            while(remaining.Length>width)
+            {
+                int cut=remaining.LastIndexOf(' ',width-1,width);if(cut<1)cut=width;
+                yield return remaining.Substring(0,cut);remaining=remaining.Substring(cut).TrimStart();
+            }
+            yield return remaining;
+        }
+
         private void DrawFooter()
         {
-            DrawText(2, H - 2, "[q] or [Esc] to close", ColDim);
+            DrawText(2, H - 2, "[Tab] quests / field notes  [PgUp/PgDn] pages  [Q/Esc] close", ColDim);
         }
 
         private void DrawChar(int x, int y, char c, Color color)

@@ -1,0 +1,554 @@
+{
+  "revision": 1,
+  "status": "audition drafts; not integrated",
+  "sampleRate": 48000,
+  "bits": 24,
+  "channels": 1,
+  "provenance": "Original deterministic procedural synthesis; no recordings or external samples.",
+  "spells": [
+    {
+      "id": "flaming_hands",
+      "label": "Flaming Hands",
+      "durationSeconds": 1.25,
+      "releaseSeconds": 0.22,
+      "contactSeconds": 0.22,
+      "sharedGain": 0.4821130049607516,
+      "layerNames": [
+        "furnace_draft",
+        "flame_sheets",
+        "embers",
+        "heat_bloom"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "seed": 8100,
+          "layers": [
+            "layers/flaming_hands_01_furnace_draft.wav",
+            "layers/flaming_hands_01_flame_sheets.wav",
+            "layers/flaming_hands_01_embers.wav",
+            "layers/flaming_hands_01_heat_bloom.wav"
+          ],
+          "contact": "contact/flaming_hands_01_contact.wav",
+          "mix": "mix/flaming_hands_01.wav"
+        },
+        {
+          "variant": 2,
+          "seed": 8101,
+          "layers": [
+            "layers/flaming_hands_02_furnace_draft.wav",
+            "layers/flaming_hands_02_flame_sheets.wav",
+            "layers/flaming_hands_02_embers.wav",
+            "layers/flaming_hands_02_heat_bloom.wav"
+          ],
+          "contact": "contact/flaming_hands_02_contact.wav",
+          "mix": "mix/flaming_hands_02.wav"
+        },
+        {
+          "variant": 3,
+          "seed": 8102,
+          "layers": [
+            "layers/flaming_hands_03_furnace_draft.wav",
+            "layers/flaming_hands_03_flame_sheets.wav",
+            "layers/flaming_hands_03_embers.wav",
+            "layers/flaming_hands_03_heat_bloom.wav"
+          ],
+          "contact": "contact/flaming_hands_03_contact.wav",
+          "mix": "mix/flaming_hands_03.wav"
+        }
+      ]
+    },
+    {
+      "id": "jet_blast",
+      "label": "Jet Blast",
+      "durationSeconds": 1.45,
+      "releaseSeconds": 0.22,
+      "contactSeconds": 0.27,
+      "sharedGain": 0.3576694938898403,
+      "layerNames": [
+        "deep_current",
+        "water_sheet",
+        "cavitation",
+        "heavy_splash"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "seed": 8200,
+          "layers": [
+            "layers/jet_blast_01_deep_current.wav",
+            "layers/jet_blast_01_water_sheet.wav",
+            "layers/jet_blast_01_cavitation.wav",
+            "layers/jet_blast_01_heavy_splash.wav"
+          ],
+          "contact": "contact/jet_blast_01_contact.wav",
+          "mix": "mix/jet_blast_01.wav"
+        },
+        {
+          "variant": 2,
+          "seed": 8201,
+          "layers": [
+            "layers/jet_blast_02_deep_current.wav",
+            "layers/jet_blast_02_water_sheet.wav",
+            "layers/jet_blast_02_cavitation.wav",
+            "layers/jet_blast_02_heavy_splash.wav"
+          ],
+          "contact": "contact/jet_blast_02_contact.wav",
+          "mix": "mix/jet_blast_02.wav"
+        },
+        {
+          "variant": 3,
+          "seed": 8202,
+          "layers": [
+            "layers/jet_blast_03_deep_current.wav",
+            "layers/jet_blast_03_water_sheet.wav",
+            "layers/jet_blast_03_cavitation.wav",
+            "layers/jet_blast_03_heavy_splash.wav"
+          ],
+          "contact": "contact/jet_blast_03_contact.wav",
+          "mix": "mix/jet_blast_03.wav"
+        }
+      ]
+    },
+    {
+      "id": "ground_surge",
+      "label": "Ground Surge",
+      "durationSeconds": 1.55,
+      "releaseSeconds": 0.22,
+      "contactSeconds": 0.32,
+      "sharedGain": 0.5047175627807501,
+      "layerNames": [
+        "earth_current",
+        "braided_arcs",
+        "charged_grit",
+        "discharge"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "seed": 8300,
+          "layers": [
+            "layers/ground_surge_01_earth_current.wav",
+            "layers/ground_surge_01_braided_arcs.wav",
+            "layers/ground_surge_01_charged_grit.wav",
+            "layers/ground_surge_01_discharge.wav"
+          ],
+          "contact": "contact/ground_surge_01_contact.wav",
+          "mix": "mix/ground_surge_01.wav"
+        },
+        {
+          "variant": 2,
+          "seed": 8301,
+          "layers": [
+            "layers/ground_surge_02_earth_current.wav",
+            "layers/ground_surge_02_braided_arcs.wav",
+            "layers/ground_surge_02_charged_grit.wav",
+            "layers/ground_surge_02_discharge.wav"
+          ],
+          "contact": "contact/ground_surge_02_contact.wav",
+          "mix": "mix/ground_surge_02.wav"
+        },
+        {
+          "variant": 3,
+          "seed": 8302,
+          "layers": [
+            "layers/ground_surge_03_earth_current.wav",
+            "layers/ground_surge_03_braided_arcs.wav",
+            "layers/ground_surge_03_charged_grit.wav",
+            "layers/ground_surge_03_discharge.wav"
+          ],
+          "contact": "contact/ground_surge_03_contact.wav",
+          "mix": "mix/ground_surge_03.wav"
+        }
+      ]
+    },
+    {
+      "id": "rime_grip",
+      "label": "Rime Grip",
+      "durationSeconds": 1.65,
+      "releaseSeconds": 0.22,
+      "contactSeconds": 0.22,
+      "sharedGain": 0.5635808487700547,
+      "layerNames": [
+        "cold_pressure",
+        "stressed_ice",
+        "frost_grains",
+        "grip_lock"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "seed": 8400,
+          "layers": [
+            "layers/rime_grip_01_cold_pressure.wav",
+            "layers/rime_grip_01_stressed_ice.wav",
+            "layers/rime_grip_01_frost_grains.wav",
+            "layers/rime_grip_01_grip_lock.wav"
+          ],
+          "contact": "contact/rime_grip_01_contact.wav",
+          "mix": "mix/rime_grip_01.wav"
+        },
+        {
+          "variant": 2,
+          "seed": 8401,
+          "layers": [
+            "layers/rime_grip_02_cold_pressure.wav",
+            "layers/rime_grip_02_stressed_ice.wav",
+            "layers/rime_grip_02_frost_grains.wav",
+            "layers/rime_grip_02_grip_lock.wav"
+          ],
+          "contact": "contact/rime_grip_02_contact.wav",
+          "mix": "mix/rime_grip_02.wav"
+        },
+        {
+          "variant": 3,
+          "seed": 8402,
+          "layers": [
+            "layers/rime_grip_03_cold_pressure.wav",
+            "layers/rime_grip_03_stressed_ice.wav",
+            "layers/rime_grip_03_frost_grains.wav",
+            "layers/rime_grip_03_grip_lock.wav"
+          ],
+          "contact": "contact/rime_grip_03_contact.wav",
+          "mix": "mix/rime_grip_03.wav"
+        }
+      ]
+    },
+    {
+      "id": "calm",
+      "label": "Calm",
+      "durationSeconds": 1.8,
+      "releaseSeconds": 0.22,
+      "contactSeconds": 0.32,
+      "sharedGain": 0.6766525657223633,
+      "layerNames": [
+        "warm_breath",
+        "hollow_resonance",
+        "soft_fibers",
+        "release"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "seed": 8500,
+          "layers": [
+            "layers/calm_01_warm_breath.wav",
+            "layers/calm_01_hollow_resonance.wav",
+            "layers/calm_01_soft_fibers.wav",
+            "layers/calm_01_release.wav"
+          ],
+          "contact": "contact/calm_01_contact.wav",
+          "mix": "mix/calm_01.wav"
+        },
+        {
+          "variant": 2,
+          "seed": 8501,
+          "layers": [
+            "layers/calm_02_warm_breath.wav",
+            "layers/calm_02_hollow_resonance.wav",
+            "layers/calm_02_soft_fibers.wav",
+            "layers/calm_02_release.wav"
+          ],
+          "contact": "contact/calm_02_contact.wav",
+          "mix": "mix/calm_02.wav"
+        },
+        {
+          "variant": 3,
+          "seed": 8502,
+          "layers": [
+            "layers/calm_03_warm_breath.wav",
+            "layers/calm_03_hollow_resonance.wav",
+            "layers/calm_03_soft_fibers.wav",
+            "layers/calm_03_release.wav"
+          ],
+          "contact": "contact/calm_03_contact.wav",
+          "mix": "mix/calm_03.wav"
+        }
+      ]
+    },
+    {
+      "id": "conjure_rain",
+      "label": "Conjure Rain (starter-book utility)",
+      "durationSeconds": 2.0,
+      "releaseSeconds": 0.22,
+      "contactSeconds": 0.22,
+      "sharedGain": 0.5857170254060322,
+      "layerNames": [
+        "cloud_air",
+        "dense_rain",
+        "leaf_drops",
+        "settling"
+      ],
+      "variants": [
+        {
+          "variant": 1,
+          "seed": 8600,
+          "layers": [
+            "layers/conjure_rain_01_cloud_air.wav",
+            "layers/conjure_rain_01_dense_rain.wav",
+            "layers/conjure_rain_01_leaf_drops.wav",
+            "layers/conjure_rain_01_settling.wav"
+          ],
+          "contact": "contact/conjure_rain_01_contact.wav",
+          "mix": "mix/conjure_rain_01.wav"
+        },
+        {
+          "variant": 2,
+          "seed": 8601,
+          "layers": [
+            "layers/conjure_rain_02_cloud_air.wav",
+            "layers/conjure_rain_02_dense_rain.wav",
+            "layers/conjure_rain_02_leaf_drops.wav",
+            "layers/conjure_rain_02_settling.wav"
+          ],
+          "contact": "contact/conjure_rain_02_contact.wav",
+          "mix": "mix/conjure_rain_02.wav"
+        },
+        {
+          "variant": 3,
+          "seed": 8602,
+          "layers": [
+            "layers/conjure_rain_03_cloud_air.wav",
+            "layers/conjure_rain_03_dense_rain.wav",
+            "layers/conjure_rain_03_leaf_drops.wav",
+            "layers/conjure_rain_03_settling.wav"
+          ],
+          "contact": "contact/conjure_rain_03_contact.wav",
+          "mix": "mix/conjure_rain_03.wav"
+        }
+      ]
+    }
+  ],
+  "files": {
+    "contact/ground_surge_02_contact.wav": "7ccb13aa16f277e15e50e269ee3015556847d006c8ccec803f82baf9756373fc",
+    "contact/conjure_rain_02_contact.wav": "176d3217998c1e9dae95bbd6ac494180ace5716c8a504f57cbcd3468d47b77d8",
+    "contact/jet_blast_02_contact.wav": "fde1e489aa9211bc271bb59e05ec5bb2ea7f7a4e9b6976c0fd2718dbed2bf808",
+    "contact/rime_grip_03_contact.wav": "6fb2d9ad36c67b9b0572a2b02d93d10747d5814ccd9ad75f35d8ffe39d7bdb8e",
+    "contact/jet_blast_01_contact.wav": "b43e05c07098f412b54d51607b432aaf3d1505cbb0a2a92eef2e879caaa8bcee",
+    "contact/conjure_rain_01_contact.wav": "0c05e977e8ea74f1cda25aefb3679ded85dcba38e04e5508b1797e53b03ec515",
+    "contact/ground_surge_01_contact.wav": "68bdea6f3c3589a56896745efb5c7f6bf2a5a1bce20e284309f13da2966b016b",
+    "contact/calm_03_contact.wav": "fae0bac47949d6d7f5c6371d832ca2f40782e3419fb409b49d7055c36a35d26d",
+    "contact/flaming_hands_03_contact.wav": "465010c739833a6425a63f019a014b61fff4c441da66bb5d9b4b11f2b5024f5e",
+    "contact/rime_grip_01_contact.wav": "b0013c35de8b4f3fe0134b3c8c50c5ce3f6f99ab95b460767612513636dbe9bb",
+    "contact/jet_blast_03_contact.wav": "d5e03b6cea590e15f3ab8a3f79241b488ebc8f8fe6c08d5f592cb5dc57ce9a08",
+    "contact/calm_01_contact.wav": "2d0e2676a2c8751cf8fbb10a05e1bfcbb28167aafda56b2c1ac7b3434b751a44",
+    "contact/conjure_rain_03_contact.wav": "91bcc5318558ed080b2fd03c978d3e68e6f56388da30148c3c2ab233f19c032b",
+    "contact/ground_surge_03_contact.wav": "5648d658787a649a76246a295fd761cd6be6dacb5447dc5fa7087e3bfd1e31ba",
+    "contact/flaming_hands_01_contact.wav": "95a2d413eea5a5ae0889caa802566d6b0b1f2a72149e98bd079be3a2e9421fdb",
+    "contact/flaming_hands_02_contact.wav": "8e4837604a2960b6426097133410e148f566f0556a63fe2f240718b5b3c522ac",
+    "contact/calm_02_contact.wav": "57d26ee8ae3781c58f6dad3521cb60da717075bb702a17639c2bd0e4bb3b3825",
+    "contact/rime_grip_02_contact.wav": "24b55709dcab4dc47bc7da148795c6960190e8e54b93fd8e5261980d073de922",
+    "layers/rime_grip_02_frost_grains.wav": "5aac11c08383a3a69337315b7f05dff3fbb41f4ff6c5a9e752c27f2bc13145d2",
+    "layers/calm_01_release.wav": "0abdd59f45b9a51cd4af5266707bbf7a92c52e5664952fe3f36876a555fc99d7",
+    "layers/jet_blast_02_water_sheet.wav": "8453448bff6e85f68a6c209ed6b5ded90eda60a837d83263cca73a6555e61671",
+    "layers/ground_surge_02_discharge.wav": "d1eeae8845a8399b9c599484106cfbc31801db338476ba71b2677792d902e759",
+    "layers/jet_blast_03_heavy_splash.wav": "4ef6a2477f6ec75ce79749e0cc78ed604e1dbff3360d479585f10f7f0f86c686",
+    "layers/ground_surge_01_charged_grit.wav": "d0de2a4e762c447c286e73d590da61c3bb93d20ac33e5c907b971f68d2225fec",
+    "layers/jet_blast_03_deep_current.wav": "5473c8006c153625a96e98e9996ae1fbff8a6080cbc0e08fb4006562aa1ce92e",
+    "layers/ground_surge_01_discharge.wav": "b6ecdb5a7567d2fe2f0038af83be547f76ac7912076b34d8826ba6916e76f011",
+    "layers/calm_01_warm_breath.wav": "0b0c1f10e913968cf12c328ffe16d2f2ac1194ecb604e354bceccf84f5f91c19",
+    "layers/ground_surge_02_braided_arcs.wav": "6ccec440a6eb7bf6b55a9ee7eaba865c681ee1880e54a644e65e3edccffabe38",
+    "layers/calm_01_hollow_resonance.wav": "f3580859a5e4bfb5a331094c9ba9d02bbc6479acc884edc44bbe4ed8ca367b2b",
+    "layers/flaming_hands_01_flame_sheets.wav": "4d313fcef7a9d1a5f78098330c1615d07863f77a6037722604909188ed95cb57",
+    "layers/rime_grip_01_cold_pressure.wav": "9049fc570ea211d6aa669cdcb7ef6dff1644f768ee92e627922bf52d9cc5762c",
+    "layers/flaming_hands_01_heat_bloom.wav": "45c36d1bd0e198a0ed30aa157260bf4ef28dfc3076193b9812a6d06183718463",
+    "layers/calm_01_soft_fibers.wav": "951f1fab43dd8e222ea2f753e9b9a0994fd7f4c76f5b4f3258aa58d39a434003",
+    "layers/rime_grip_01_stressed_ice.wav": "7632e202d4fbc933e29cefbdffdd8aafbe66006c2cd4a05434df260d18fa7898",
+    "layers/flaming_hands_03_heat_bloom.wav": "aa31e4521d92f1b090f4d4916589a32dbc5137c9d5d8df3eeadfa88cb43dfd44",
+    "layers/rime_grip_03_frost_grains.wav": "9251de9c619145ee10749be6cdddc59b1a6f0edd1decfebe2b8e9e1c7f7b55f1",
+    "layers/jet_blast_02_deep_current.wav": "2fcd154e64f0609cc8ecb60436a3ed0f383847483f7c0012bf7010624c73d87f",
+    "layers/jet_blast_02_heavy_splash.wav": "f24301685ac2bed948622ef9cf21f4b00cdd8e4b4efcee262d9acb7ad60734f0",
+    "layers/rime_grip_02_cold_pressure.wav": "d5c89b0c90683e298c4e188db8d758ec4c43c39b80827dd3ca66945b89232ac6",
+    "layers/ground_surge_03_braided_arcs.wav": "ec3836e8d2ab67a13a6e3b1f4219882079b998847a18b7063ca5ff9a7f8bf8e2",
+    "layers/flaming_hands_02_embers.wav": "fb9f63977b7240fb1c4f0b66173357078654ae5f9f5f0c9af756e568be586028",
+    "layers/jet_blast_03_water_sheet.wav": "67bff9db7b2a6418a0f316fcd2f8fc91e411e8a9d9653c484ab3abf8a9bb60d4",
+    "layers/conjure_rain_03_cloud_air.wav": "8e7fb59a2e932aeca231d55e01e61350917eca413667144c7fc38910cac5ebf2",
+    "layers/flaming_hands_02_heat_bloom.wav": "1ef330eb9b32285d33d326c7791932d593f9d8bce75ab38f75f44db23c6ea018",
+    "layers/rime_grip_03_cold_pressure.wav": "38b3271c05621a3739f1d0c39d3ffc9b47695bcefb72284d52828f3935688411",
+    "layers/rime_grip_03_grip_lock.wav": "4865daad630bf8d9b42899035759b88915fd1efd123894ba6f02fe24e2662b4f",
+    "layers/calm_02_release.wav": "4b87d7b0e0a7516c471efdc8bd5e061653d6e647242a200d94769b3d8cd5509d",
+    "layers/conjure_rain_01_settling.wav": "b984c163ab8dc1d213e07507d01502c00cb45c7eae466a4bbbd229c35778ad33",
+    "layers/jet_blast_01_deep_current.wav": "2a4c0f0f4af32741ba6b1a53b1ed8e92067ae59ae76af4bd98970dcc53a039ec",
+    "layers/ground_surge_03_charged_grit.wav": "431c1634c2d7d79f9e95ad5f1901af86adc92bb4c2a1be80b3c56f4e6de727ee",
+    "layers/calm_03_hollow_resonance.wav": "89f28e6e7d2d441921d760774c2b6e7259c4607d807bf163628398dbabf90508",
+    "layers/calm_02_warm_breath.wav": "183d1dd9660acd6ad11abd0062742b3d0a428b629cde505330805024106e086d",
+    "layers/jet_blast_01_cavitation.wav": "119e2327afa0039382f307a54b25c611c477c9295cb976c52c6169b94c9fe4f7",
+    "layers/ground_surge_03_earth_current.wav": "7d15cab866616f1092519ed358fbc0b739b871b9ac921015ebd5759c08b455bf",
+    "layers/jet_blast_01_heavy_splash.wav": "82f0f8d5ff2b5d18dcd85574c5dfd601165a7808730fa21e2738898cb9691692",
+    "layers/conjure_rain_01_leaf_drops.wav": "f0c6e0bb49c5940d3f4c22dc536ee4720e8fa283f11ab997a703ea0d57bbfb34",
+    "layers/flaming_hands_01_embers.wav": "70e4daa905638e6ff1420e0fde7ac9d53bdf2292a2f857d98b13ef6363309f24",
+    "layers/calm_02_soft_fibers.wav": "6a00ce7a2fb2090ded7df2c0f957f76b76f9437616c9623014c366eddcd8092d",
+    "layers/rime_grip_02_grip_lock.wav": "f10ed91dab6fdfe1ccf777fb32d0169b10ecb0ef4d49fae2dd0d5791f78ef36c",
+    "layers/conjure_rain_03_settling.wav": "8e274c2e2ca905079cfc18611ef86e2ffa6675b74db4e534ecc2ec3bf754aebb",
+    "layers/conjure_rain_02_cloud_air.wav": "ac90395f94f9f2b921dd7487e86e2057ac7331294c7bcee53c2a8133243689cc",
+    "layers/flaming_hands_03_furnace_draft.wav": "757c37734fbeff489fd04a9fd05b63946d53aef5ca68faa57e120f05d6e6d4e2",
+    "layers/rime_grip_03_stressed_ice.wav": "8ff61e2185d539b4e119ec47180d9227bc2e88362b66d36745097410548b21dd",
+    "layers/ground_surge_02_earth_current.wav": "30e7f52e2f91c2757d7df1f0f678a7d730a385dccf4f306686d7324b82627462",
+    "layers/rime_grip_01_grip_lock.wav": "776d055cdf2e5ff45c0fda822c2cca7fa585a63070847accd6a0d80e778c5819",
+    "layers/conjure_rain_01_cloud_air.wav": "3f7d559211fd2dfa3c73f1da932a143a8068baa4f5a1ee0b82e55870b3d89ab3",
+    "layers/flaming_hands_03_flame_sheets.wav": "ccb97faeae3817167ecc416e0197f4a6cb48dd0042a1a6de97a3117c713d200c",
+    "layers/conjure_rain_02_settling.wav": "e19ba4fcb873462a2f69e7e90d4735893fe5b1666a967d1261ac69159b104543",
+    "layers/jet_blast_01_water_sheet.wav": "265e4a107d99545de2e06d77635e826bc911823005f619ade8c6e9dd72dd7a6d",
+    "layers/conjure_rain_01_dense_rain.wav": "a1daf881ba2d26f59cd6a8334598be9f97efd8cbb3cbac3956c4add44aa61e32",
+    "layers/flaming_hands_02_furnace_draft.wav": "8f5a9667ab2b7b11564345e9465e056246272da99b284c59305ec2fe858e7c27",
+    "layers/conjure_rain_02_leaf_drops.wav": "5b7084bdcd7db1f8f8ac27a5f8009907f300079be0b9a14632c4333b66b65fc9",
+    "layers/calm_03_release.wav": "238d0ae1f1c1cbe0fd8ab06186c752ec40202fa5d99148ce2091ff8841a1494c",
+    "layers/ground_surge_01_earth_current.wav": "c3db8968aae48261f8de794d991ed4f18f7ee0b4c48528ef4ee982b0860fafb0",
+    "layers/flaming_hands_03_embers.wav": "d2541b8eecb25aeb9d42650ce60d0cd30c3a8d68c941bc837dd370bdda26a806",
+    "layers/jet_blast_02_cavitation.wav": "a14591c462d4d6d86a4ea81a3f0e4ceaa2dcfa7f28d020f8a2ddf4686ffc8167",
+    "layers/conjure_rain_03_dense_rain.wav": "a5a239011d4ac46046c47a72fb9027d25315d9c723bd364e0061d0db8127d240",
+    "layers/ground_surge_02_charged_grit.wav": "ee60650290254dbd1ca440e22f4d16accb3eeadaf4112a113e9f53095ecc7903",
+    "layers/rime_grip_01_frost_grains.wav": "71bc44b2f4ce206ac341ce7596cb8c4d29a828ebaf8eb53cc5a3350f7e55308c",
+    "layers/calm_02_hollow_resonance.wav": "7bf2bbbd1825bce7b7f01e776f2296c500a95801f5802f7e24cbb6e3205d8310",
+    "layers/flaming_hands_01_furnace_draft.wav": "97b758bcd4f20ed3c1d7f3578c80244a2515d4557816fa4fc9a500bd03205e21",
+    "layers/flaming_hands_02_flame_sheets.wav": "1355569d29cf32c79804de5dbfcd49b0d41edd863f281917398d7d4a70d47140",
+    "layers/calm_03_warm_breath.wav": "3fb09909089b46ae1b17cb57e3ade3336de66066918ec41454c1ea71ef71a9b2",
+    "layers/rime_grip_02_stressed_ice.wav": "2dc3c54333e1cddc4c85bc2b3add2c8f0f9a9ade3b2b7047decf9b8c818200e1",
+    "layers/conjure_rain_02_dense_rain.wav": "89630052103802aff5f280c1b40a49f6976d19a115008259859b53815cd2d479",
+    "layers/jet_blast_03_cavitation.wav": "48151f4ecdb3551deae59839b48410916fb04510a22cb27a3891e75c565610b4",
+    "layers/calm_03_soft_fibers.wav": "193cec27c56e950c3e161b980e437fd62530f6219534a152ec43922419b17217",
+    "layers/ground_surge_03_discharge.wav": "9a8122752bd1a04eaf8a327e9cc074671b9649c1846b3016cf8622332c8272eb",
+    "layers/conjure_rain_03_leaf_drops.wav": "11b50887ff3c290890ec0a72c73a1f9422dfa03b4c92b551d0727e3130ce553a",
+    "layers/ground_surge_01_braided_arcs.wav": "73dbfa95b7e13c3fd36966ab783eddb9fc8135ef218a46377aff0d63b0eb8534",
+    "mix/ground_surge_03.wav": "cb752a58f9337a8361c582083043ded16d3d8423e9bb81e96e8842b655743316",
+    "mix/ground_surge_02.wav": "cf5accfa47eded691aa61d6f88db5ce36419523ed92a2044426d4250456aa504",
+    "mix/ground_surge_01.wav": "82642b453b97521ebf50d2b04785e66de7018044cb6d90dfe4bc013733e9a17c",
+    "mix/rime_grip_01.wav": "8c09c67563b22508c71198b33af9bd6826b80901f603674b07435414b504f1ff",
+    "mix/rime_grip_02.wav": "f507cf8e7a4fbcaa903eb8f73c639fe6bec922143c5a0142f56d110302d6d99d",
+    "mix/rime_grip_03.wav": "e806097c220b7903e65768ef665a7e622dc1bb541177a39bfabc82c073b754c5",
+    "mix/jet_blast_02.wav": "e165a8a927abe902d81f346af01709b2da3cd706e1937c6704b1cc16135275c7",
+    "mix/jet_blast_03.wav": "fa074c176658db453ed3cafc18ff36375516c6f0cf579e866e5c3e2ef45ee57e",
+    "mix/jet_blast_01.wav": "df1bbeb18aaac5311d0fb45419801021e35ab472bf71c93d922cd3889b06a37b",
+    "mix/conjure_rain_01.wav": "1d8b8bd614b7f1eb499b5fa06020aa45a29fe05df09718dc053ae0c11e7a41e3",
+    "mix/conjure_rain_02.wav": "b96551c56c27201c5af4c6e452c860f5dbf9a858c622efe2ba6b78451749a7c9",
+    "mix/conjure_rain_03.wav": "ddee6cbb1179ffdb27d441a9c3f9a7faad468246f5411a6f79e0b43ee387f0ea",
+    "mix/calm_02.wav": "2d77619cbfc49cccdcaf49d58d415dd40c76b8d96c8dae85e4426b2bf2042d90",
+    "mix/flaming_hands_03.wav": "3d16cb7c164a1711ab028d97a9be18208caa25aef47049b84905d9bd9e0d25af",
+    "mix/flaming_hands_02.wav": "5337e2e5888602ad937c1fb829f7f2a5359e1ffc9b26b17be0af0ff9fd11238e",
+    "mix/calm_03.wav": "0912bd15f6572526df04b6ef1de03a3f2acd09712b6cb379649e441de2735dea",
+    "mix/calm_01.wav": "95c84793d1691db5359b99d9155607e76ea37e161b4882da0a0cc3465bfcd015",
+    "mix/flaming_hands_01.wav": "ccd42ae25ac77d025e311226e489d30310165c0ed940a9e2505897933743345c",
+    "preview/calm_design.wav": "95c84793d1691db5359b99d9155607e76ea37e161b4882da0a0cc3465bfcd015",
+    "preview/rime_grip_design.wav": "8c09c67563b22508c71198b33af9bd6826b80901f603674b07435414b504f1ff",
+    "preview/jet_blast_design.wav": "df1bbeb18aaac5311d0fb45419801021e35ab472bf71c93d922cd3889b06a37b",
+    "preview/starter_spells_design_reel.wav": "5bc83911a11e1ddaf110460b730a78e984fde01a6922bca76e84cbfa5be5a96f",
+    "preview/flaming_hands_design.wav": "ccd42ae25ac77d025e311226e489d30310165c0ed940a9e2505897933743345c",
+    "preview/ground_surge_design.wav": "82642b453b97521ebf50d2b04785e66de7018044cb6d90dfe4bc013733e9a17c",
+    "preview/conjure_rain_design.wav": "1d8b8bd614b7f1eb499b5fa06020aa45a29fe05df09718dc053ae0c11e7a41e3",
+    "float-masters/contact/ground_surge_02_contact.wav": "e0d192ae761af1c8f948354df1b9cd73a004fc76fbf0a758b8983db2c9b087fd",
+    "float-masters/contact/conjure_rain_02_contact.wav": "268341d4418cf4100be2c778dde935ae2a07873ab7180f57c363e41a31794ae8",
+    "float-masters/contact/jet_blast_02_contact.wav": "076a02614d2262f983cea15310696296eea6abb61622b96184d43a6b74e0112c",
+    "float-masters/contact/rime_grip_03_contact.wav": "3d11ebda9d94f54eb11b0167f01e8e126ce87c6b6ae58ef47c9818b73e476d3b",
+    "float-masters/contact/jet_blast_01_contact.wav": "c817a443a001a8cee348615c8acd54b231c739931008af4f8893ba24feb61034",
+    "float-masters/contact/conjure_rain_01_contact.wav": "32a9b60d8b689abf28db49fcc65f9e07ce907f503db56e347c808a7975df26b0",
+    "float-masters/contact/ground_surge_01_contact.wav": "f3d500d21ba0d5bff040986debbabb412b5edb8e609164e36d0ef6ea8251994e",
+    "float-masters/contact/calm_03_contact.wav": "44e96b4912f42b4e2e5b1a2c54bbd838f079a9a3313e55741ecf092be0dd8a6b",
+    "float-masters/contact/flaming_hands_03_contact.wav": "f10b69f26742e7a657e7212b20453887fe576915c2c9738484bee09b2f4cc756",
+    "float-masters/contact/rime_grip_01_contact.wav": "c416f560571d78b7a0afe7588664312502d839c6bedd469f86295d4596135df8",
+    "float-masters/contact/jet_blast_03_contact.wav": "933bd70f0d645ad8b90b1dadcafc679831401e1ac4cb6c4bef7b8f49ea9c2df0",
+    "float-masters/contact/calm_01_contact.wav": "720f415ffdee945f042709f811aa72f750857e1161d6dea2487e151baf802c54",
+    "float-masters/contact/conjure_rain_03_contact.wav": "6c4a720483766d59987637a8600dd2ca6f5a9409a78e220c66e3a370054178f9",
+    "float-masters/contact/ground_surge_03_contact.wav": "2bb309e750c23cff365f6a1200fe10455cb69ad64238d3c9e23a3558b16db9c2",
+    "float-masters/contact/flaming_hands_01_contact.wav": "c476c113985435cda75d06ac9372e7f65d1fcd66d83db7e90fbf3a67366ddc1b",
+    "float-masters/contact/flaming_hands_02_contact.wav": "0fdd017f89d6c447d9804254069b9d83aba3029acd975923cf6235cc9c1b747f",
+    "float-masters/contact/calm_02_contact.wav": "bd7a196bbdfaf7ff06b2421894f510b58e4137d78675d6231d71e0b46fd37b7b",
+    "float-masters/contact/rime_grip_02_contact.wav": "aa68f853ed13fafaa484d1146807d7912a6662d9d2ae7ac6f91a53805ed855b4",
+    "float-masters/layers/rime_grip_02_frost_grains.wav": "3addf95ba9663597be306881c10a27e6083014574ba06a1f4408373160772181",
+    "float-masters/layers/calm_01_release.wav": "6a71fe553b3ea423050d2ed78b5a5032b31c1fb8041a95d23d3f9e2beb47722e",
+    "float-masters/layers/jet_blast_02_water_sheet.wav": "c3694ce20b65065d5c4ae7ca4aad6f4ae081e9da25f1ea6495f83249aeb00bc4",
+    "float-masters/layers/ground_surge_02_discharge.wav": "e1b5c869259325ab0c7972b3d6658ea80c58edfebcbb90637593915335ad0c6d",
+    "float-masters/layers/jet_blast_03_heavy_splash.wav": "31f53ef33b77ca2eea574a1e5e7b627ba0d4b88ef5f9755d35060c04b9fef043",
+    "float-masters/layers/ground_surge_01_charged_grit.wav": "0745c8a36f9f2fe9024040fb5e8bc6b2c128b23e679b267faba8f16279541470",
+    "float-masters/layers/jet_blast_03_deep_current.wav": "bd52688971b6903cbd9db16906c9ce940e37a4a1daf254b9e640d0e95ec8cb41",
+    "float-masters/layers/ground_surge_01_discharge.wav": "77d2cebdf456c4072b6fa6c7b7230c470b0228968d7e55d9e15b8151abc46690",
+    "float-masters/layers/calm_01_warm_breath.wav": "31ab621f81fbcc1316b9ee58e26149868d507d52cdd2382ae465e59bb3875b47",
+    "float-masters/layers/ground_surge_02_braided_arcs.wav": "6fe39010189fea2a33570ea7e4ef3bc157d2a095383acbd6ac51aef3cd0dd136",
+    "float-masters/layers/calm_01_hollow_resonance.wav": "340b614acd5a97de391a2632714b766a9492ac3ab5d4e5606a25aa6f6abe0335",
+    "float-masters/layers/flaming_hands_01_flame_sheets.wav": "57a35834c4b358e7412c2569ed0182aa03e76d548420a59118af7f50c589cc56",
+    "float-masters/layers/rime_grip_01_cold_pressure.wav": "74165a25fc95ce6ba387863316076c706f04ff6c9a7b5760d4ee104b2605e63b",
+    "float-masters/layers/flaming_hands_01_heat_bloom.wav": "e1d8bedb188fba79564dc25ef6c6db4e3f34a459e216fc99ceac9fcd0399b7a0",
+    "float-masters/layers/calm_01_soft_fibers.wav": "5f72c6328f0b4d16f3dfa57409ddf0bee35765e6bd4391bd5a6c552af51afd66",
+    "float-masters/layers/rime_grip_01_stressed_ice.wav": "7e70da71b9d8e548d767c7d922bf4bf3f38189f98047ba538f95969101abc380",
+    "float-masters/layers/flaming_hands_03_heat_bloom.wav": "38ca881abee749ad02c2a7596bbfd1715b9665308325738081f428e473ab3d16",
+    "float-masters/layers/rime_grip_03_frost_grains.wav": "9eeb45632ddc7d3dc69f0c8ff14a95c91f120e9017255375e14f5f84393517bb",
+    "float-masters/layers/jet_blast_02_deep_current.wav": "88ad932a85d602c155bb94bfd013cce3b74717ebe5a8948d6e458bd344757e95",
+    "float-masters/layers/jet_blast_02_heavy_splash.wav": "309e99fc3f125bbae48ca5580fb99d33093ec0c398c65b5dd41b4d87b5e5bc21",
+    "float-masters/layers/rime_grip_02_cold_pressure.wav": "4bcdf199f2cef4838cf1cdd208721aab85d417aea24f5d4bd3acc532832aae08",
+    "float-masters/layers/ground_surge_03_braided_arcs.wav": "d1cbaee52118f6f8d2c0f3508c29e9b284c4e5f1fb4b140df11b2772ae8da085",
+    "float-masters/layers/flaming_hands_02_embers.wav": "3c622168d4d8672fe16d051f07e7819add6f3d4948eca4022c97b4fdb26072d8",
+    "float-masters/layers/jet_blast_03_water_sheet.wav": "c1c0dcad101e836f0717307cfae9c023a443f2020bbfe9fe781e98e63ff14163",
+    "float-masters/layers/conjure_rain_03_cloud_air.wav": "aa6aeb90602f4b868ff077374ad74b6889fa92d5b7f2b6b9fa36711bc35eb5c8",
+    "float-masters/layers/flaming_hands_02_heat_bloom.wav": "ac6ecf6cf9ef72007ae6e6f514c3945f28783e579a4727c4ebdaab82122c567a",
+    "float-masters/layers/rime_grip_03_cold_pressure.wav": "dca54fa20ac01c7eada505cbd5e9e85166c3975603539dcc60da6d344bf541d0",
+    "float-masters/layers/rime_grip_03_grip_lock.wav": "2c568cf26e51eabf2dc3473cc0f6418ca101a5648860f522352cd71dd6e4618f",
+    "float-masters/layers/calm_02_release.wav": "da224fe4eb0a89e2c31ceaa3bfc2d23713ac9211df8f95fd097e406cf770df65",
+    "float-masters/layers/conjure_rain_01_settling.wav": "567c2a1bb83d5e8763d5cd3ba5f36083b8c119119fb22d4b7529892f1339c3fc",
+    "float-masters/layers/jet_blast_01_deep_current.wav": "24d487f9ec7b0e057a0b07f2e63b6449248c09d91240c3dc37d0c3847a8c7908",
+    "float-masters/layers/ground_surge_03_charged_grit.wav": "47d20aee6f564dd8d391d417777d609eb34cb5f3fe0346f69effb916827ea201",
+    "float-masters/layers/calm_03_hollow_resonance.wav": "63b53fc389b572e00bb5b94edde614f08efcfe560884a2003a1f07bd16e240a7",
+    "float-masters/layers/calm_02_warm_breath.wav": "43a4173e48c382a61ff57f6367ab7c8c0d7dbeaaec128914bff6b9d80d32c41b",
+    "float-masters/layers/jet_blast_01_cavitation.wav": "91edc3a9b0d912c50d95aa6ea5c4b168fc99dda7e122550faece8153a9c3a5e9",
+    "float-masters/layers/ground_surge_03_earth_current.wav": "95fde86dff59d5a0d9a44c7e7e0e84f3ed65ffc5c717216815f6abd665d43132",
+    "float-masters/layers/jet_blast_01_heavy_splash.wav": "d30bb8a7eb7a8ddb68e6fe850998ac740f228d901b5096bc58a5065e7c1d0397",
+    "float-masters/layers/conjure_rain_01_leaf_drops.wav": "1592000da1cd3d62762d43ffc6680e52458e36c96c59f9c4cfcda2dff93d453f",
+    "float-masters/layers/flaming_hands_01_embers.wav": "2b880c0bab0af6075544bce8c4318615ec1268e46c792ad0b0238105c834de4d",
+    "float-masters/layers/calm_02_soft_fibers.wav": "33a78217e8c34bb4e0add5fc8d12725765632a366077020e2db250701c67f8c6",
+    "float-masters/layers/rime_grip_02_grip_lock.wav": "de15db5016d361dfac791bef8fefe20b1aa1ac214aee969b9f186d86250429b4",
+    "float-masters/layers/conjure_rain_03_settling.wav": "aa03e156eee5c941c44857af48525b29ee1ac6645d358f5f77a0a581f78968ce",
+    "float-masters/layers/conjure_rain_02_cloud_air.wav": "0508df98be46702dde7366832e732985e5b5e1a7d0007bb96e478e46d3236905",
+    "float-masters/layers/flaming_hands_03_furnace_draft.wav": "50fbdbec80eef2a0fb3c4d87d688d71f6fbdbd589e7a392ba6b718fe0e9beb73",
+    "float-masters/layers/rime_grip_03_stressed_ice.wav": "eb6ee1611f2fb599c716d49e2470835a4045662ab2ca352bd09d82522b8a5e15",
+    "float-masters/layers/ground_surge_02_earth_current.wav": "555daee66d28154e7b6d1e4209012cd55346481623e56684d6a19f81ebd60068",
+    "float-masters/layers/rime_grip_01_grip_lock.wav": "a9e3da31a7b0b0322d4da2a63d7ec7e976562fd72b3fe2f673e1bc20f70648d6",
+    "float-masters/layers/conjure_rain_01_cloud_air.wav": "c40e033508db52db31315fafaed890827a487fe6ff70065b6ccbd68e613fc8bd",
+    "float-masters/layers/flaming_hands_03_flame_sheets.wav": "4b79b93a6e0c9a630315e254008b22eb7fe8c7316a8ff7fb698086b1eeb715e0",
+    "float-masters/layers/conjure_rain_02_settling.wav": "0045253207d6e271c9ec9423699f3f672b2e8b7bfcd8c78af02e380689f82e9b",
+    "float-masters/layers/jet_blast_01_water_sheet.wav": "f956556842171d89dd81e09c69e629768225ac1f6a791cad25c7649d33f810a4",
+    "float-masters/layers/conjure_rain_01_dense_rain.wav": "32c71db24223c7dec0ce46ea1190cfce5eb565a7442313ee1c7ff4914e566e4a",
+    "float-masters/layers/flaming_hands_02_furnace_draft.wav": "b05b88f03bfc26a21387c046feb15d0e09e5501c2aea8b409a6960bfc7e933c8",
+    "float-masters/layers/conjure_rain_02_leaf_drops.wav": "ea653a6aec36f10460cb32b1b1982a874cf84a7fbd0fee6f700eeb79cc04daef",
+    "float-masters/layers/calm_03_release.wav": "7112d27be70788b42ed4c8b76ad4be60d86ddd610e2d6bd89e66402278cf6837",
+    "float-masters/layers/ground_surge_01_earth_current.wav": "9d6bbeeea5fd6453345b56cde5efc447da6c70e0e64a98d7ce855d201d390178",
+    "float-masters/layers/flaming_hands_03_embers.wav": "a7c8c80398d18dbc7dc2a9e7c4c844264cfcf096240714c73f9f7ca96c147b63",
+    "float-masters/layers/jet_blast_02_cavitation.wav": "94223967731a33bd5c8a199b0f60efc177aa9f5e939e28fd04cbfcccf2a64461",
+    "float-masters/layers/conjure_rain_03_dense_rain.wav": "a8f3cfd30bf04736652229a0d367a8a99fa0ebb58abc7477b3bb22b9ed6b57c2",
+    "float-masters/layers/ground_surge_02_charged_grit.wav": "e8d00526a6f0c992e7b629019d897059d6b169524faf5eb90c5d1a17c444b92a",
+    "float-masters/layers/rime_grip_01_frost_grains.wav": "dd6c598ed414b7911c82a35d6ff458a1ab363a39e60e8cc0fa33ba8c30990856",
+    "float-masters/layers/calm_02_hollow_resonance.wav": "c2622b6bb4807112b0ca836686662209e1cd982dd178830c5666703b64468aa7",
+    "float-masters/layers/flaming_hands_01_furnace_draft.wav": "83f7eb833c5735208a70eb0e76d8ddbdb379e871bb01b1e4d7bd77ed6173d496",
+    "float-masters/layers/flaming_hands_02_flame_sheets.wav": "45f7856be4cc46dc3391aa8b4198171af76d71cc8e5e32da3cc1709ca14eb3d5",
+    "float-masters/layers/calm_03_warm_breath.wav": "5747748971fdba18da39421f8a02bf9f16cb4fb8271164aaac7950a1b1412109",
+    "float-masters/layers/rime_grip_02_stressed_ice.wav": "6a450283ef89898d3b685fd1b4dcb26e46b5fc65e444c23a0a8b6084ed9e47fb",
+    "float-masters/layers/conjure_rain_02_dense_rain.wav": "8be27083af7759c95f6435899fe9b9a99f84d8f3f1c94771727ac60e2bb70d8c",
+    "float-masters/layers/jet_blast_03_cavitation.wav": "e2f4660687474bc785aad14b836b282b695f92acdf1c9e77c4b3786654e2e8e7",
+    "float-masters/layers/calm_03_soft_fibers.wav": "b8b3c3646f3771287bf5cbea1912c4d3814623e13320a0acf0c881de367eea5e",
+    "float-masters/layers/ground_surge_03_discharge.wav": "b2099ee25941d266ed167aa94d41fda5218120a083b594b50e39e9affb283ad8",
+    "float-masters/layers/conjure_rain_03_leaf_drops.wav": "527f53c9bb3be505d4ed4015d83431fc90e40fe94f362bb59c0658ba1b254d3c",
+    "float-masters/layers/ground_surge_01_braided_arcs.wav": "554f1de3af7e31135774d53ae5a539632ddc2bd15a432f9e9337a82416c40d88",
+    "float-masters/mix/ground_surge_03.wav": "eed093d4095c746a58d01640a9b8898a2803c8368e65f663f396af2bffb5f8ca",
+    "float-masters/mix/ground_surge_02.wav": "3751cf4cfe7a319b33b47084cbd284c01abd5efd8aec438376486601a0c5d342",
+    "float-masters/mix/ground_surge_01.wav": "36592efc8e149a0352310961cca0ededad476700273f72c103d3f72426887211",
+    "float-masters/mix/rime_grip_01.wav": "f7d1db39a77638b22a89007b0e6f1fd66c3d4780a305206d1a5aeedc31c0ee14",
+    "float-masters/mix/rime_grip_02.wav": "f74e305ec55b41bc8499b5b46c6dc189b5b883f52014b281823d04772c3820c1",
+    "float-masters/mix/rime_grip_03.wav": "d80e286f918a68dbe1f57cddce0a9f9395fcd8f73a9b215a7cdeb0305f56a8a5",
+    "float-masters/mix/jet_blast_02.wav": "60c214d89b86057fe3e0bc000a7bcc856f02375fc1804f051b1b50745ce381f5",
+    "float-masters/mix/jet_blast_03.wav": "96390442e9591bbaecddfd63044fe0acd37d659759e6b7a56f6623a550ac8f28",
+    "float-masters/mix/jet_blast_01.wav": "1a8306c669ebe7354191cd6d7a156bf566dac2d180aa7c1904aeecb445e2ade7",
+    "float-masters/mix/conjure_rain_01.wav": "40f620c200178aa5d96dd9ce03347a70fe4e7e5e2f8c2934d329056092a9d834",
+    "float-masters/mix/conjure_rain_02.wav": "6833bad6eaf35978f8253a929119b506dc2701c2b2297bf3b9cd39ad20fa52f3",
+    "float-masters/mix/conjure_rain_03.wav": "1243222ac87368e937907b00fd13eb77b70efead9b89b447ff222a5147cbaad2",
+    "float-masters/mix/calm_02.wav": "2e58ff07e3e5471048326fac14906661c641d65214278b0cd17e7d6b42aa41bb",
+    "float-masters/mix/flaming_hands_03.wav": "99676801afc50a5c43b47da2ca987165d2d7764e249079bf9f3fe3c86849a58e",
+    "float-masters/mix/flaming_hands_02.wav": "ac37a4a64ad202a98947b2bfcc8a98cb61b731e52aff56424eaffd72d589e52a",
+    "float-masters/mix/calm_03.wav": "203cc4a73e5272104b5f997492cd169aa4e88c0290c06e8b37c6cd783efa1c63",
+    "float-masters/mix/calm_01.wav": "0f66ed32b6ab11fe5c64e515f87ab05a1bfb94a43a02b00bd62cb375f2b124cc",
+    "float-masters/mix/flaming_hands_01.wav": "34e1b2961eb9284725728cf1bc241f14187bc4cb99466b4b0a088ac94357548f",
+    "float-masters/preview/calm_design.wav": "0f66ed32b6ab11fe5c64e515f87ab05a1bfb94a43a02b00bd62cb375f2b124cc",
+    "float-masters/preview/rime_grip_design.wav": "f7d1db39a77638b22a89007b0e6f1fd66c3d4780a305206d1a5aeedc31c0ee14",
+    "float-masters/preview/jet_blast_design.wav": "1a8306c669ebe7354191cd6d7a156bf566dac2d180aa7c1904aeecb445e2ade7",
+    "float-masters/preview/starter_spells_design_reel.wav": "623af1a80108db7e9446b46ef146f4572b43df8e2d5b233fe709a0cfe788e49b",
+    "float-masters/preview/flaming_hands_design.wav": "34e1b2961eb9284725728cf1bc241f14187bc4cb99466b4b0a088ac94357548f",
+    "float-masters/preview/ground_surge_design.wav": "36592efc8e149a0352310961cca0ededad476700273f72c103d3f72426887211",
+    "float-masters/preview/conjure_rain_design.wav": "40f620c200178aa5d96dd9ce03347a70fe4e7e5e2f8c2934d329056092a9d834"
+  }
+}

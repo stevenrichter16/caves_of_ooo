@@ -92,6 +92,9 @@ namespace CavesOfOoo.Tests
                 DetailColor = "&W",
                 TileColor = "&y",
                 Tile = "tile_path",
+                VisualID = "actor.test",
+                VisualVariant = "winter",
+                VisualFacing = EntityVisualFacing.West,
                 RenderLayer = 5,
                 Visible = false,  // counter-check: non-default value
             });
@@ -107,6 +110,9 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual("&W", part.DetailColor);
             Assert.AreEqual("&y", part.TileColor);
             Assert.AreEqual("tile_path", part.Tile);
+            Assert.AreEqual("actor.test", part.VisualID);
+            Assert.AreEqual("winter", part.VisualVariant);
+            Assert.AreEqual(EntityVisualFacing.West, part.VisualFacing);
             Assert.AreEqual(5, part.RenderLayer);
             Assert.IsFalse(part.Visible,
                 "Counter-check: a buggy impl that always returned default "

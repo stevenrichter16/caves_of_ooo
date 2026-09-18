@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using CavesOfOoo.Core;
 
 namespace CavesOfOoo.Skills
@@ -24,7 +25,7 @@ namespace CavesOfOoo.Skills
     /// from a target; Overload travels through multiple targets in
     /// sequence."</para>
     /// </summary>
-    public class Galvanism_Overload : BaseSkillPart
+    public class Galvanism_Overload : SpellSkillPart
     {
         public override string Name => nameof(Galvanism_Overload);
 
@@ -45,7 +46,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;
             var actor = ctx.Attacker;
@@ -58,7 +59,8 @@ namespace CavesOfOoo.Skills
             if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return false; }
 
             int x = actorPos.x, y = actorPos.y;
-            int hits = 0;
+            var targets = new List<Entity>();
+            var seen = new HashSet<Entity>();
             for (int step = 0; step < OVERLOAD_RANGE; step++)
             {
                 int nx = x + dx, ny = y + dy;
@@ -66,6 +68,7 @@ namespace CavesOfOoo.Skills
                 var cell = ctx.Zone.GetCell(nx, ny);
                 if (cell == null) break;
                 if (cell.IsSolid()) break;
+                SpellFxCapture.PathCell(ctx.Zone, nx, ny);
 
                 // Find something the charge can pass through in this cell.
                 // Creatures first, then scenery — a brine pool is 95%
@@ -74,16 +77,16 @@ namespace CavesOfOoo.Skills
                 // creature-only scan skipped straight over it and the chain
                 // reported "finds no conductors".
                 Entity creature = null;
-                for (int i = 0; i < cell.Objects.Count; i++)
+                for (int i = 0; i < cell.Occupants.Count; i++)
                 {
-                    var e = cell.Objects[i];
+                    var e = cell.Occupants[i];
                     if (AbilityTargeting.IsCreatureTarget(e, actor)) { creature = e; break; }
                 }
                 if (creature == null)
                 {
-                    for (int i = 0; i < cell.Objects.Count; i++)
+                    for (int i = 0; i < cell.Occupants.Count; i++)
                     {
-                        var e = cell.Objects[i];
+                        var e = cell.Occupants[i];
                         if (e != null && !e.Tags.ContainsKey("Creature")
                             && AbilityTargeting.IsElementalTarget(e, actor))
                         { creature = e; break; }
@@ -96,6 +99,8 @@ namespace CavesOfOoo.Skills
                     x = nx; y = ny;
                     continue;
                 }
+
+                if (seen.Contains(creature)) { x = nx; y = ny; continue; }
 
                 // Conductivity check. Two ways to qualify: soaked or
                 // already charged (the creature route), or MADE of
@@ -116,13 +121,20 @@ namespace CavesOfOoo.Skills
                     break;
                 }
 
-                // Damage + chain continues.
+                targets.Add(creature);
+                seen.Add(creature);
+                x = nx; y = ny;
+            }
+
+            int hits = 0;
+            foreach (var target in targets)
+            {
+                if (ctx.Zone.GetEntityCell(target) == null) continue;
                 var elecDmg = new Damage(OVERLOAD_DAMAGE);
                 elecDmg.AddAttribute("Electric");
                 elecDmg.AddAttribute("Lightning");
-                DestructionSystem.RouteDamage(creature, elecDmg, actor, ctx.Zone);
+                DestructionSystem.RouteDamage(target, elecDmg, actor, ctx.Zone);
                 hits++;
-                x = nx; y = ny;
             }
 
             if (hits == 0)

@@ -38,6 +38,14 @@ namespace CavesOfOoo.EditorTools
             importer.wrapMode = TextureWrapMode.Clamp;
             importer.alphaIsTransparency = true;
             importer.maxTextureSize = 2048;
+            // Runtime spell slicing requires a Texture2D. Explicit shape and mode
+            // prevent newly generated metadata from importing sheets as cubemaps.
+            if (assetPath.StartsWith(SpriteRoot + "SpellFx/"))
+            {
+                importer.textureShape = TextureImporterShape.Texture2D;
+                importer.spriteImportMode = SpriteImportMode.Single;
+                importer.npotScale = TextureImporterNPOTScale.None;
+            }
 
             // Kill the stale per-platform compression overrides.
             importer.ClearPlatformTextureSettings("Standalone");

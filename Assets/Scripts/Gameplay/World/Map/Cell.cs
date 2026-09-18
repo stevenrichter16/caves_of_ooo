@@ -54,6 +54,11 @@ namespace CavesOfOoo.Core
         /// </summary>
         public List<Entity> Objects = new List<Entity>(4);
 
+        // Runtime-only derived bodies. Objects remains one canonical anchor.
+        internal List<Entity> SpatialOwners;
+        internal List<Entity> SpatialAnchors;
+        public CellOccupants Occupants => new CellOccupants(this);
+
         public Cell(int x, int y, Zone zone = null)
         {
             X = x;
@@ -93,9 +98,10 @@ namespace CavesOfOoo.Core
         /// </summary>
         public bool IsSolid()
         {
-            for (int i = 0; i < Objects.Count; i++)
+            if (MorrowfastSceneRuntime.BlockingOwner(this) != null) return true;
+            for (int i = 0; i < Occupants.Count; i++)
             {
-                if (Objects[i].HasTag("Solid") || Objects[i].GetPart<SealedLibraryBarrierPart>()?.IsClosed == true)
+                if (Occupants[i].HasTag("Solid") || Occupants[i].GetPart<SealedLibraryBarrierPart>()?.IsClosed == true)
                     return true;
             }
             return false;
@@ -121,9 +127,10 @@ namespace CavesOfOoo.Core
         /// </summary>
         public bool BlocksMovement(Entity ignoring = null)
         {
-            for (int i = 0; i < Objects.Count; i++)
+            if (MorrowfastSceneRuntime.BlockingOwner(this, ignoring) != null) return true;
+            for (int i = 0; i < Occupants.Count; i++)
             {
-                var o = Objects[i];
+                var o = Occupants[i];
                 if (o == null || o == ignoring) continue;
                 if (o.HasTag("Solid")) return true;
                 var physics = o.GetPart<PhysicsPart>();
@@ -138,9 +145,10 @@ namespace CavesOfOoo.Core
         /// </summary>
         public bool IsWall()
         {
-            for (int i = 0; i < Objects.Count; i++)
+            if (MorrowfastSceneRuntime.BlockingOwner(this, opaqueOnly: true) != null) return true;
+            for (int i = 0; i < Occupants.Count; i++)
             {
-                if (Objects[i].HasTag("Wall") || Objects[i].GetPart<SealedLibraryBarrierPart>()?.IsClosed == true)
+                if (Occupants[i].HasTag("Wall") || Occupants[i].GetPart<SealedLibraryBarrierPart>()?.IsClosed == true)
                     return true;
             }
             return false;
@@ -152,8 +160,8 @@ namespace CavesOfOoo.Core
         {
             using (ArchiveBarrierMarker.Auto())
             {
-                for (int i = 0; i < Objects.Count; i++)
-                    if (Objects[i]?.GetPart<SealedLibraryBarrierPart>()?.IsClosed == true) return true;
+                for (int i = 0; i < Occupants.Count; i++)
+                    if (Occupants[i]?.GetPart<SealedLibraryBarrierPart>()?.IsClosed == true) return true;
                 return false;
             }
         }
@@ -163,13 +171,15 @@ namespace CavesOfOoo.Core
         /// </summary>
         public Entity GetTopVisibleObject()
         {
-            for (int i = Objects.Count - 1; i >= 0; i--)
+            Entity best = null;
+            int layer = int.MinValue;
+            foreach (var entity in Occupants)
             {
-                var render = Objects[i].GetPart<RenderPart>();
-                if (render != null && render.Visible)
-                    return Objects[i];
+                var render = entity.GetPart<RenderPart>();
+                if (render != null && render.Visible && render.RenderLayer >= layer)
+                { best = entity; layer = render.RenderLayer; }
             }
-            return null;
+            return best;
         }
 
         /// <summary>
@@ -178,10 +188,10 @@ namespace CavesOfOoo.Core
         public List<Entity> GetObjectsWithTag(string tag)
         {
             var result = new List<Entity>();
-            for (int i = 0; i < Objects.Count; i++)
+            for (int i = 0; i < Occupants.Count; i++)
             {
-                if (Objects[i].HasTag(tag))
-                    result.Add(Objects[i]);
+                if (Occupants[i].HasTag(tag))
+                    result.Add(Occupants[i]);
             }
             return result;
         }
@@ -191,9 +201,9 @@ namespace CavesOfOoo.Core
         /// </summary>
         public bool HasObjectWithTag(string tag)
         {
-            for (int i = 0; i < Objects.Count; i++)
+            for (int i = 0; i < Occupants.Count; i++)
             {
-                if (Objects[i].HasTag(tag))
+                if (Occupants[i].HasTag(tag))
                     return true;
             }
             return false;
@@ -204,9 +214,9 @@ namespace CavesOfOoo.Core
         /// </summary>
         public bool HasObjectWithPart<T>() where T : Part
         {
-            for (int i = 0; i < Objects.Count; i++)
+            for (int i = 0; i < Occupants.Count; i++)
             {
-                if (Objects[i].HasPart<T>())
+                if (Occupants[i].HasPart<T>())
                     return true;
             }
             return false;
@@ -217,7 +227,7 @@ namespace CavesOfOoo.Core
         /// </summary>
         public bool IsEmpty()
         {
-            return Objects.Count == 0;
+            return Occupants.Count == 0;
         }
 
         /// <summary>
@@ -236,7 +246,7 @@ namespace CavesOfOoo.Core
 
         public override string ToString()
         {
-            return $"Cell({X},{Y}) [{Objects.Count} objects]";
+            return $"Cell({X},{Y}) [{Occupants.Count} objects]";
         }
     }
 }

@@ -1,0 +1,83 @@
+{
+  "status": "GREEN",
+  "assertions": 9,
+  "passed": 9,
+  "sourceSha256": "7e13f1dce87c67f31e2c39bcbf7758cb16ae20e182618b6fb75bf929f50e6830",
+  "checks": [
+    {
+      "name": "ember_spit has bounded non-popping effect envelopes",
+      "passed": true,
+      "actual": {
+        "meshes": 50,
+        "worstStepPer10ms": 0.29600000381469727,
+        "failures": []
+      }
+    },
+    {
+      "name": "flaming_hands has bounded non-popping effect envelopes",
+      "passed": true,
+      "actual": {
+        "meshes": 47,
+        "worstStepPer10ms": 0.20803043246269226,
+        "failures": []
+      }
+    },
+    {
+      "name": "jet_blast has bounded non-popping effect envelopes",
+      "passed": true,
+      "actual": {
+        "meshes": 80,
+        "worstStepPer10ms": 0.21282804012298584,
+        "failures": []
+      }
+    },
+    {
+      "name": "ground_surge has bounded non-popping effect envelopes",
+      "passed": true,
+      "actual": {
+        "meshes": 69,
+        "worstStepPer10ms": 0.20230478048324585,
+        "failures": []
+      }
+    },
+    {
+      "name": "rime_grip has bounded non-popping effect envelopes",
+      "passed": true,
+      "actual": {
+        "meshes": 56,
+        "worstStepPer10ms": 0.17397350072860718,
+        "failures": []
+      }
+    },
+    {
+      "name": "calm has bounded non-popping effect envelopes",
+      "passed": true,
+      "actual": {
+        "meshes": 42,
+        "worstStepPer10ms": 0.16598081588745117,
+        "failures": []
+      }
+    },
+    {
+      "name": "conjure_rain has bounded non-popping effect envelopes",
+      "passed": true,
+      "actual": {
+        "meshes": 45,
+        "worstStepPer10ms": 0.22469886759774088,
+        "failures": []
+      }
+    },
+    {
+      "name": "Unmodified reveal control passes before mutation",
+      "passed": true,
+      "actual": 1.0
+    },
+    {
+      "name": "Actual one-frame pop is rejected",
+      "passed": true,
+      "actual": {
+        "maxJump": 1.0
+      }
+    }
+  ]
+}

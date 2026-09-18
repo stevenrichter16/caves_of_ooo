@@ -17,7 +17,7 @@ namespace CavesOfOoo.Skills
     /// spares its caster, because a slow that also slowed you would be
     /// strictly bad to cast.</para>
     /// </summary>
-    public class Cryomancy_ColdSnap : BaseSkillPart
+    public class Cryomancy_ColdSnap : SpellSkillPart
     {
         public override string Name => nameof(Cryomancy_ColdSnap);
 
@@ -41,7 +41,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;

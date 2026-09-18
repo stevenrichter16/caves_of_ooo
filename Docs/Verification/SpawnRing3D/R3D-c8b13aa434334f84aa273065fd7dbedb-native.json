@@ -1,0 +1,916 @@
+{
+    "runId": "c8b13aa434334f84aa273065fd7dbedb",
+    "saveRoot": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/08afad002e5942d3bd7925e1ed879054",
+    "gameId": "c2f2696adda84c20a5ad734438a53c72",
+    "markerId": "SpawnRing3D-native-marker-e32a1d78a56046e3b5a09ee6fe2c662c",
+    "fatal": "",
+    "bounds": "Native acceptance; optional separate profile receipt is attached when explicitly requested. Actual keyboard N, two initial road moves, L/I/Escape/F11/Shift-F11/F5/F6; actual GameView captures. All 24 border directions use explicitly labelled fixture positioning of the same native player plus real TransitionPlayer and the ordinary binding/autosave handler. API checks consume no turns; NPC AI parts and registration are retained, with no health or enemy suppression. Eight zone screenshots preserve ordinary FOV, never FullReveal. Water erasure and post-save mutations are explicit scenario stimuli on real generated cells, not Scrape gameplay claims. Entity picking is the public presenter API, not mouse-input routing. A real factory Dagger is temporary fallback-eligibility setup; its visible pixels require manual screenshot inspection. No visual-quality, complete model-coverage, GPU masking, roof-interior, equipment-art, hostile-combat or stable-60fps claim. Separate EditMode/GPU/visual gates remain required; performance is measured only when the explicit optional profile is present.",
+    "unityVersion": "6000.3.4f1",
+    "gpu": "Apple M5",
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "worldSeed": 729490642,
+    "nativeSteps": 2,
+    "screenWidth": 1920,
+    "screenHeight": 1080,
+    "wallSeconds": 77.6070805,
+    "profile": {
+        "runId": "",
+        "saveRoot": "",
+        "mode": "",
+        "failure": "",
+        "unityVersion": "",
+        "cpu": "",
+        "gpu": "",
+        "graphicsApi": "",
+        "os": "",
+        "rawFrames": "",
+        "rawSha256": "",
+        "bounds": "",
+        "valid": false,
+        "complete": false,
+        "overflow": false,
+        "frames": 0,
+        "badResolutionFrames": 0,
+        "worldSeed": 0,
+        "screenWidth": 0,
+        "screenHeight": 0,
+        "targetFrameRate": 0,
+        "vSyncCount": 0,
+        "steadySeconds": 0.0,
+        "bindingSeconds": 0.0,
+        "elapsedWithGaps": 0.0,
+        "phases": [],
+        "steps": [],
+        "metrics": [],
+        "availableRecorderDescriptions": []
+    },
+    "workloadComplete": true,
+    "shutdownObserved": true,
+    "shutdownRootHeld": true,
+    "shutdownSavingUnregistered": true,
+    "displayPreferencesRestored": true,
+    "inputSettingsRestored": true,
+    "checks": [
+        {
+            "name": "native_N_real_new_game",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "two_ordinary_road_steps_with_live_turns",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.2.5.0>Overworld.3.5.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.3.5.0>Overworld.2.5.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.2.5.0>Overworld.2.6.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.2.6.0>Overworld.2.5.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.3.5.0>Overworld.4.5.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.4.5.0>Overworld.3.5.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.3.5.0>Overworld.3.6.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.3.6.0>Overworld.3.5.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.4.5.0>Overworld.4.6.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.4.6.0>Overworld.4.5.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.2.6.0>Overworld.3.6.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.3.6.0>Overworld.2.6.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.2.6.0>Overworld.2.7.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.2.7.0>Overworld.2.6.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.3.6.0>Overworld.4.6.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.4.6.0>Overworld.3.6.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.3.6.0>Overworld.3.7.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.3.7.0>Overworld.3.6.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.4.6.0>Overworld.4.7.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.4.7.0>Overworld.4.6.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.2.7.0>Overworld.3.7.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.3.7.0>Overworld.2.7.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.3.7.0>Overworld.4.7.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "transition_API:Overworld.4.7.0>Overworld.3.7.0",
+            "detail": "Fixture-positioned source; real transition, ordinary binding/autosave, no player turn.",
+            "pass": true
+        },
+        {
+            "name": "all_24_distinct_directed_borders",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "current_zone_binding:Overworld.2.5.0",
+            "detail": "player=2053;model=ring-player;FOV remains native",
+            "pass": true
+        },
+        {
+            "name": "exact_player_API_pick:Overworld.2.5.0",
+            "detail": "Selection API over actual posed renderer bounds; not mouse dispatch. point=(39.96, 12.12)",
+            "pass": true
+        },
+        {
+            "name": "current_zone_binding:Overworld.3.5.0",
+            "detail": "player=2053;model=ring-player;FOV remains native",
+            "pass": true
+        },
+        {
+            "name": "exact_player_API_pick:Overworld.3.5.0",
+            "detail": "Selection API over actual posed renderer bounds; not mouse dispatch. point=(39.96, 12.12)",
+            "pass": true
+        },
+        {
+            "name": "current_zone_binding:Overworld.4.5.0",
+            "detail": "player=2053;model=ring-player;FOV remains native",
+            "pass": true
+        },
+        {
+            "name": "exact_player_API_pick:Overworld.4.5.0",
+            "detail": "Selection API over actual posed renderer bounds; not mouse dispatch. point=(39.96, 12.12)",
+            "pass": true
+        },
+        {
+            "name": "current_zone_binding:Overworld.2.6.0",
+            "detail": "player=2053;model=ring-player;FOV remains native",
+            "pass": true
+        },
+        {
+            "name": "exact_player_API_pick:Overworld.2.6.0",
+            "detail": "Selection API over actual posed renderer bounds; not mouse dispatch. point=(39.96, 14.12)",
+            "pass": true
+        },
+        {
+            "name": "current_zone_binding:Overworld.4.6.0",
+            "detail": "player=2053;model=ring-player;FOV remains native",
+            "pass": true
+        },
+        {
+            "name": "exact_player_API_pick:Overworld.4.6.0",
+            "detail": "Selection API over actual posed renderer bounds; not mouse dispatch. point=(39.96, 12.12)",
+            "pass": true
+        },
+        {
+            "name": "current_zone_binding:Overworld.2.7.0",
+            "detail": "player=2053;model=ring-player;FOV remains native",
+            "pass": true
+        },
+        {
+            "name": "exact_player_API_pick:Overworld.2.7.0",
+            "detail": "Selection API over actual posed renderer bounds; not mouse dispatch. point=(39.96, 12.12)",
+            "pass": true
+        },
+        {
+            "name": "current_zone_binding:Overworld.3.7.0",
+            "detail": "player=2053;model=ring-player;FOV remains native",
+            "pass": true
+        },
+        {
+            "name": "exact_player_API_pick:Overworld.3.7.0",
+            "detail": "Selection API over actual posed renderer bounds; not mouse dispatch. point=(39.96, 12.12)",
+            "pass": true
+        },
+        {
+            "name": "current_zone_binding:Overworld.4.7.0",
+            "detail": "player=2053;model=ring-player;FOV remains native",
+            "pass": true
+        },
+        {
+            "name": "exact_player_API_pick:Overworld.4.7.0",
+            "detail": "Selection API over actual posed renderer bounds; not mouse dispatch. point=(39.96, 12.12)",
+            "pass": true
+        },
+        {
+            "name": "all_eight_actual_current_zone_captures",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "real_fen_water_visible_before_erasure",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_erasure_removes_represented_water",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_F5_preserves_player_turn_boundary",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "preload_mutation_countercheck",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_F6_rebuilds_player_zone_turn_aliases",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_F6_exact_fen_water_and_saved_erasure",
+            "detail": "erased=(15, 5);retained=(16, 5);expectedWaterSha256=a0fc532e6f756869537e052fffcb353d1189d372e9e2102171891e50163f78b1;loadedWaterSha256=a0fc532e6f756869537e052fffcb353d1189d372e9e2102171891e50163f78b1",
+            "pass": true
+        },
+        {
+            "name": "native_F6_all_cached_tile_snapshots",
+            "detail": "Compare this run's saved-tiles.json and loaded-tiles.json; includes empty cached zones and exact ordered layers.",
+            "pass": true
+        },
+        {
+            "name": "native_F6_cached_owner_reference_replacement",
+            "detail": "Immutable component/position snapshots and runtime owner lookup; saved/loaded owner ledgers accompany tile ledgers.",
+            "pass": true
+        },
+        {
+            "name": "presenter_rejects_old_player_reference",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_L_look_menu",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_I_inventory",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_F11_original_fallback_mode",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_low_detail_target",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_UI_display_controls_no_turn",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "unmapped_factory_item_keeps_native_fallback_eligibility",
+            "detail": "cell=(15, 4);no player/creature/prop overlap. Not an automatic proof of sprite pixels; inspect the screenshot.",
+            "pass": true
+        },
+        {
+            "name": "fallback_fixture_removed",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "actions:modeled_vein_is_current",
+            "detail": "The vein's view may be a shared ground-patch root, not an individual GameObject.",
+            "pass": true
+        },
+        {
+            "name": "actions:native_harvest_consumes_and_yields",
+            "detail": "Actual carried plus ground GlowQuartz increase=2; inventory overflow is a supported native result.",
+            "pass": true
+        },
+        {
+            "name": "actions:harvest_view_removed_and_patch_changed",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "actions:harvest_current_clock_contract",
+            "detail": "Current generic world InventoryAction dispatch consumes no turn; no Interact/Cast pose is emitted by HarvestablePart.",
+            "pass": true
+        },
+        {
+            "name": "actions:no_stale_combat_pose",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "actions:one_native_bump_attack",
+            "detail": "Actual ordinary input/turn; player HP=40 -> 40",
+            "pass": true
+        },
+        {
+            "name": "actions:actual_attack_reaches_ring_consumer",
+            "detail": "Additive callback reads the exact ring view after its listener. Retaliation can supersede Attack with Hit before rendering.",
+            "pass": true
+        },
+        {
+            "name": "actions:fixture_hp_loss_has_damage_callbacks",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "actions:actual_damage_reaches_hit_consumer",
+            "detail": "HP=15 -> 13; player-attributed damage=2; exact source IDs retained, including any native third-party damage.",
+            "pass": true
+        },
+        {
+            "name": "actions:player_hp_loss_has_damage_callbacks",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "actions:visible_player_damage_reaches_hit_consumer",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "actions:native_combat_log_observed",
+            "detail": "Only messages added after this attack preflight are included.",
+            "pass": true
+        },
+        {
+            "name": "actions:additive_visual_hooks_restored",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "actions:only_declared_fixtures_removed",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "actions:optional_action_workload_complete",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "private_boot_marker_unchanged",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "owned_save_only",
+            "detail": "",
+            "pass": true
+        }
+    ],
+    "borders": [
+        {
+            "from": "Overworld.2.5.0",
+            "to": "Overworld.3.5.0",
+            "direction": "East",
+            "error": "",
+            "sourceX": 79,
+            "sourceY": 12,
+            "arrivalX": 0,
+            "arrivalY": 12,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.3.5.0",
+            "to": "Overworld.2.5.0",
+            "direction": "West",
+            "error": "",
+            "sourceX": 0,
+            "sourceY": 12,
+            "arrivalX": 79,
+            "arrivalY": 12,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.2.5.0",
+            "to": "Overworld.2.6.0",
+            "direction": "South",
+            "error": "",
+            "sourceX": 40,
+            "sourceY": 24,
+            "arrivalX": 41,
+            "arrivalY": 2,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.2.6.0",
+            "to": "Overworld.2.5.0",
+            "direction": "North",
+            "error": "",
+            "sourceX": 37,
+            "sourceY": 0,
+            "arrivalX": 37,
+            "arrivalY": 24,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.3.5.0",
+            "to": "Overworld.4.5.0",
+            "direction": "East",
+            "error": "",
+            "sourceX": 79,
+            "sourceY": 12,
+            "arrivalX": 0,
+            "arrivalY": 12,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.4.5.0",
+            "to": "Overworld.3.5.0",
+            "direction": "West",
+            "error": "",
+            "sourceX": 0,
+            "sourceY": 12,
+            "arrivalX": 79,
+            "arrivalY": 12,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.3.5.0",
+            "to": "Overworld.3.6.0",
+            "direction": "South",
+            "error": "",
+            "sourceX": 40,
+            "sourceY": 24,
+            "arrivalX": 40,
+            "arrivalY": 0,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.3.6.0",
+            "to": "Overworld.3.5.0",
+            "direction": "North",
+            "error": "",
+            "sourceX": 40,
+            "sourceY": 0,
+            "arrivalX": 40,
+            "arrivalY": 24,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.4.5.0",
+            "to": "Overworld.4.6.0",
+            "direction": "South",
+            "error": "",
+            "sourceX": 40,
+            "sourceY": 24,
+            "arrivalX": 40,
+            "arrivalY": 0,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.4.6.0",
+            "to": "Overworld.4.5.0",
+            "direction": "North",
+            "error": "",
+            "sourceX": 40,
+            "sourceY": 0,
+            "arrivalX": 40,
+            "arrivalY": 24,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.2.6.0",
+            "to": "Overworld.3.6.0",
+            "direction": "East",
+            "error": "",
+            "sourceX": 79,
+            "sourceY": 12,
+            "arrivalX": 0,
+            "arrivalY": 12,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.3.6.0",
+            "to": "Overworld.2.6.0",
+            "direction": "West",
+            "error": "",
+            "sourceX": 0,
+            "sourceY": 12,
+            "arrivalX": 79,
+            "arrivalY": 12,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.2.6.0",
+            "to": "Overworld.2.7.0",
+            "direction": "South",
+            "error": "",
+            "sourceX": 40,
+            "sourceY": 24,
+            "arrivalX": 40,
+            "arrivalY": 0,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.2.7.0",
+            "to": "Overworld.2.6.0",
+            "direction": "North",
+            "error": "",
+            "sourceX": 40,
+            "sourceY": 0,
+            "arrivalX": 40,
+            "arrivalY": 24,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.3.6.0",
+            "to": "Overworld.4.6.0",
+            "direction": "East",
+            "error": "",
+            "sourceX": 79,
+            "sourceY": 12,
+            "arrivalX": 0,
+            "arrivalY": 12,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.4.6.0",
+            "to": "Overworld.3.6.0",
+            "direction": "West",
+            "error": "",
+            "sourceX": 0,
+            "sourceY": 12,
+            "arrivalX": 79,
+            "arrivalY": 12,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.3.6.0",
+            "to": "Overworld.3.7.0",
+            "direction": "South",
+            "error": "",
+            "sourceX": 40,
+            "sourceY": 24,
+            "arrivalX": 38,
+            "arrivalY": 2,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.3.7.0",
+            "to": "Overworld.3.6.0",
+            "direction": "North",
+            "error": "",
+            "sourceX": 25,
+            "sourceY": 0,
+            "arrivalX": 25,
+            "arrivalY": 24,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.4.6.0",
+            "to": "Overworld.4.7.0",
+            "direction": "South",
+            "error": "",
+            "sourceX": 38,
+            "sourceY": 24,
+            "arrivalX": 37,
+            "arrivalY": 0,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.4.7.0",
+            "to": "Overworld.4.6.0",
+            "direction": "North",
+            "error": "",
+            "sourceX": 37,
+            "sourceY": 0,
+            "arrivalX": 37,
+            "arrivalY": 24,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.2.7.0",
+            "to": "Overworld.3.7.0",
+            "direction": "East",
+            "error": "",
+            "sourceX": 79,
+            "sourceY": 16,
+            "arrivalX": 0,
+            "arrivalY": 15,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.3.7.0",
+            "to": "Overworld.2.7.0",
+            "direction": "West",
+            "error": "",
+            "sourceX": 0,
+            "sourceY": 12,
+            "arrivalX": 77,
+            "arrivalY": 10,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.3.7.0",
+            "to": "Overworld.4.7.0",
+            "direction": "East",
+            "error": "",
+            "sourceX": 79,
+            "sourceY": 22,
+            "arrivalX": 0,
+            "arrivalY": 22,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        },
+        {
+            "from": "Overworld.4.7.0",
+            "to": "Overworld.3.7.0",
+            "direction": "West",
+            "error": "",
+            "sourceX": 0,
+            "sourceY": 12,
+            "arrivalX": 77,
+            "arrivalY": 12,
+            "tickBefore": 30,
+            "tickAfter": 30,
+            "pass": true
+        }
+    ],
+    "zones": [
+        {
+            "zoneId": "Overworld.2.5.0",
+            "playerId": "2053",
+            "modelId": "ring-player",
+            "tileHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "pickWorldX": 39.95857620239258,
+            "pickWorldY": 12.122221946716309,
+            "x": 40,
+            "y": 12,
+            "entityCount": 2174,
+            "creatureCount": 6,
+            "groundPatches": 40,
+            "playerVisible": true,
+            "presentationReady": true,
+            "presentationVisible": true,
+            "fullReveal": false
+        },
+        {
+            "zoneId": "Overworld.3.5.0",
+            "playerId": "2053",
+            "modelId": "ring-player",
+            "tileHash": "2af0cd36bc09ae1422846543137f2a1739d3c2deddaa999b68c20570e345c4b6",
+            "pickWorldX": 39.95857620239258,
+            "pickWorldY": 12.122221946716309,
+            "x": 40,
+            "y": 12,
+            "entityCount": 2069,
+            "creatureCount": 4,
+            "groundPatches": 40,
+            "playerVisible": true,
+            "presentationReady": true,
+            "presentationVisible": true,
+            "fullReveal": false
+        },
+        {
+            "zoneId": "Overworld.4.5.0",
+            "playerId": "2053",
+            "modelId": "ring-player",
+            "tileHash": "dea41042d53ae823084bd5ece8237a907747e7369dd0ada36c0daa101d1ee567",
+            "pickWorldX": 39.95857620239258,
+            "pickWorldY": 12.122221946716309,
+            "x": 40,
+            "y": 12,
+            "entityCount": 2210,
+            "creatureCount": 4,
+            "groundPatches": 40,
+            "playerVisible": true,
+            "presentationReady": true,
+            "presentationVisible": true,
+            "fullReveal": false
+        },
+        {
+            "zoneId": "Overworld.2.6.0",
+            "playerId": "2053",
+            "modelId": "ring-player",
+            "tileHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "pickWorldX": 39.95857620239258,
+            "pickWorldY": 14.122221946716309,
+            "x": 40,
+            "y": 10,
+            "entityCount": 2512,
+            "creatureCount": 3,
+            "groundPatches": 40,
+            "playerVisible": true,
+            "presentationReady": true,
+            "presentationVisible": true,
+            "fullReveal": false
+        },
+        {
+            "zoneId": "Overworld.4.6.0",
+            "playerId": "2053",
+            "modelId": "ring-player",
+            "tileHash": "e369120364671c2623baf929d41eb8f21381a0b3ea85968e73d0a90377901c81",
+            "pickWorldX": 39.95857620239258,
+            "pickWorldY": 12.122221946716309,
+            "x": 40,
+            "y": 12,
+            "entityCount": 2384,
+            "creatureCount": 6,
+            "groundPatches": 40,
+            "playerVisible": true,
+            "presentationReady": true,
+            "presentationVisible": true,
+            "fullReveal": false
+        },
+        {
+            "zoneId": "Overworld.2.7.0",
+            "playerId": "2053",
+            "modelId": "ring-player",
+            "tileHash": "c33ca7bd598d719321d2e5bf07a59325cd6e52af0faecbf46ab2d0b007da7417",
+            "pickWorldX": 39.95857620239258,
+            "pickWorldY": 12.122221946716309,
+            "x": 40,
+            "y": 12,
+            "entityCount": 2417,
+            "creatureCount": 10,
+            "groundPatches": 40,
+            "playerVisible": true,
+            "presentationReady": true,
+            "presentationVisible": true,
+            "fullReveal": false
+        },
+        {
+            "zoneId": "Overworld.3.7.0",
+            "playerId": "2053",
+            "modelId": "ring-player",
+            "tileHash": "f32ab38fc570a78d466d884446cfed8d91b55c54473273cc6b4a86c4e3f3af65",
+            "pickWorldX": 39.95857620239258,
+            "pickWorldY": 12.122221946716309,
+            "x": 40,
+            "y": 12,
+            "entityCount": 2433,
+            "creatureCount": 8,
+            "groundPatches": 40,
+            "playerVisible": true,
+            "presentationReady": true,
+            "presentationVisible": true,
+            "fullReveal": false
+        },
+        {
+            "zoneId": "Overworld.4.7.0",
+            "playerId": "2053",
+            "modelId": "ring-player",
+            "tileHash": "c03dc09506ca92b3c9af499c9dca7f42a4737d3c4933c1615ba3d795eb54a3c1",
+            "pickWorldX": 39.95857620239258,
+            "pickWorldY": 12.122221946716309,
+            "x": 40,
+            "y": 12,
+            "entityCount": 2359,
+            "creatureCount": 8,
+            "groundPatches": 40,
+            "playerVisible": true,
+            "presentationReady": true,
+            "presentationVisible": true,
+            "fullReveal": false
+        }
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpawnRing3D/R3D-c8b13aa434334f84aa273065fd7dbedb-center-new-game.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpawnRing3D/R3D-c8b13aa434334f84aa273065fd7dbedb-zone-Overworld.2.5.0.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpawnRing3D/R3D-c8b13aa434334f84aa273065fd7dbedb-zone-Overworld.3.5.0.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpawnRing3D/R3D-c8b13aa434334f84aa273065fd7dbedb-zone-Overworld.4.5.0.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpawnRing3D/R3D-c8b13aa434334f84aa273065fd7dbedb-zone-Overworld.2.6.0.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpawnRing3D/R3D-c8b13aa434334f84aa273065fd7dbedb-zone-Overworld.4.6.0.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpawnRing3D/R3D-c8b13aa434334f84aa273065fd7dbedb-zone-Overworld.2.7.0.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpawnRing3D/R3D-c8b13aa434334f84aa273065fd7dbedb-zone-Overworld.3.7.0.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpawnRing3D/R3D-c8b13aa434334f84aa273065fd7dbedb-zone-Overworld.4.7.0.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpawnRing3D/R3D-c8b13aa434334f84aa273065fd7dbedb-fen-F6-saved-erasure.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpawnRing3D/R3D-c8b13aa434334f84aa273065fd7dbedb-look-ui.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpawnRing3D/R3D-c8b13aa434334f84aa273065fd7dbedb-inventory-ui.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpawnRing3D/R3D-c8b13aa434334f84aa273065fd7dbedb-original-view.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpawnRing3D/R3D-c8b13aa434334f84aa273065fd7dbedb-low-detail.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpawnRing3D/R3D-c8b13aa434334f84aa273065fd7dbedb-unmapped-dagger-fallback-fixture.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpawnRing3D/R3D-c8b13aa434334f84aa273065fd7dbedb-actions-harvest-before.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpawnRing3D/R3D-c8b13aa434334f84aa273065fd7dbedb-actions-harvest-menu.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpawnRing3D/R3D-c8b13aa434334f84aa273065fd7dbedb-actions-harvest-after.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpawnRing3D/R3D-c8b13aa434334f84aa273065fd7dbedb-actions-combat-before.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpawnRing3D/R3D-c8b13aa434334f84aa273065fd7dbedb-actions-combat-action-frame.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpawnRing3D/R3D-c8b13aa434334f84aa273065fd7dbedb-actions-combat-after.png"
+    ]
+}

@@ -1,0 +1,115 @@
+{
+    "runId": "71dc8d9639eb4a13a289c8f82a89aaab",
+    "startedUtc": "2026-09-10T05:08:08.2462510Z",
+    "finishedUtc": "2026-09-10T05:08:14.9979000Z",
+    "status": "FAIL",
+    "error": "System.InvalidOperationException: Imported triangle count disagrees with completed export: ring-glow-quartz-vein-0 actual=210 expected=260\n  at CavesOfOoo.Editor.SpawnRing3DAssetBuilder.ValidateImportedModel (CavesOfOoo.Rendering.SpawnRing3DCatalog+Model model, UnityEngine.GameObject wrapper, System.String asset, System.String prefab, System.Collections.Generic.Dictionary`2[TKey,TValue] clips) [0x00434] in /Users/steven/caves-of-ooo/Assets/Editor/Art/SpawnRing3DAssetBuilder.cs:308 \n  at CavesOfOoo.Editor.SpawnRing3DAssetBuilder.Build (System.String sourceDirectory, System.String reportPath) [0x0092d] in /Users/steven/caves-of-ooo/Assets/Editor/Art/SpawnRing3DAssetBuilder.cs:160 \n  at CavesOfOoo.Editor.SpawnRing3DAssetBuilder.BuildFromCommandLine () [0x00024] in /Users/steven/caves-of-ooo/Assets/Editor/Art/SpawnRing3DAssetBuilder.cs:59 \n  at CavesOfOoo.Editor.SpawnRing3DImportAudit.RunFromCommandLine () [0x0020a] in /Users/steven/caves-of-ooo/Assets/Editor/Art/SpawnRing3DImportAudit.cs:84 ",
+    "importerReport": "/tmp/codex-ring-import-LmTBcuuq/import.json",
+    "cleanControlVerified": true,
+    "dirtyControlVerified": true,
+    "importScenesPreserved": true,
+    "originalScenesPreserved": true,
+    "ownedScenesClosed": true,
+    "originalBefore": [
+        {
+            "handle": -1336,
+            "path": "Assets/Scenes/Main/SampleScene.unity",
+            "name": "SampleScene",
+            "loaded": true,
+            "dirty": false,
+            "active": true,
+            "rootInstanceIds": [
+                53456,
+                53466,
+                53472,
+                53478,
+                53484,
+                53490
+            ]
+        }
+    ],
+    "originalAfter": [
+        {
+            "handle": -1336,
+            "path": "Assets/Scenes/Main/SampleScene.unity",
+            "name": "SampleScene",
+            "loaded": true,
+            "dirty": false,
+            "active": true,
+            "rootInstanceIds": [
+                53456,
+                53466,
+                53472,
+                53478,
+                53484,
+                53490
+            ]
+        }
+    ],
+    "importBefore": [
+        {
+            "handle": -1338,
+            "path": "",
+            "name": "",
+            "loaded": true,
+            "dirty": true,
+            "active": false,
+            "rootInstanceIds": [
+                -1348
+            ]
+        },
+        {
+            "handle": -1336,
+            "path": "Assets/Scenes/Main/SampleScene.unity",
+            "name": "SampleScene",
+            "loaded": true,
+            "dirty": false,
+            "active": true,
+            "rootInstanceIds": [
+                53456,
+                53466,
+                53472,
+                53478,
+                53484,
+                53490
+            ]
+        }
+    ],
+    "importAfter": [
+        {
+            "handle": -1338,
+            "path": "",
+            "name": "",
+            "loaded": true,
+            "dirty": true,
+            "active": false,
+            "rootInstanceIds": [
+                -1348
+            ]
+        },
+        {
+            "handle": -1336,
+            "path": "Assets/Scenes/Main/SampleScene.unity",
+            "name": "SampleScene",
+            "loaded": true,
+            "dirty": false,
+            "active": true,
+            "rootInstanceIds": [
+                53456,
+                53466,
+                53472,
+                53478,
+                53484,
+                53490
+            ]
+        }
+    ],
+    "unexpectedLogs": [
+        "Error: [SpawnRing3D] Explicit import failed: Imported triangle count disagrees with completed export: ring-glow-quartz-vein-0 actual=210 expected=260\nUnityEngine.Debug:LogError (object)\nCavesOfOoo.Editor.SpawnRing3DAssetBuilder:Build (string,string) (at Assets/Editor/Art/SpawnRing3DAssetBuilder.cs:160)\nCavesOfOoo.Editor.SpawnRing3DAssetBuilder:BuildFromCommandLine () (at Assets/Editor/Art/SpawnRing3DAssetBuilder.cs:59)\nCavesOfOoo.Editor.SpawnRing3DImportAudit:RunFromCommandLine () (at Assets/Editor/Art/SpawnRing3DImportAudit.cs:84)\n"
+    ],
+    "honestyBounds": [
+        "This explicit CLI import preserves scene handles, dirty flags, active scene and root identities; it does not render native gameplay.",
+        "The clean active saved scene and owned dirty inactive scene are explicit controls. A proven empty clean untitled batch placeholder is replaced before the receipt; no user scene is saved. Original saved scene identities are compared before fixture setup and after teardown.",
+        "Asset/source hashes and existing GUID preservation are checked by the external runner; no claim of transactional rollback on failed imports."
+    ]
+}

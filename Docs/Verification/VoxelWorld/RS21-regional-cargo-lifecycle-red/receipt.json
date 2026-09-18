@@ -1,0 +1,27 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CavesOfOoo.Tests.Regional",
+  "results": {
+    "id": "2",
+    "testcasecount": "91",
+    "result": "Failed(Child)",
+    "total": "91",
+    "passed": "90",
+    "failed": "1",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-18 01:04:13Z",
+    "end-time": "2026-09-18 01:04:22Z",
+    "duration": "9.2453362"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationCargoLifecycleTests.RestoredDroppedAwayCargoCanBeRecoveredWithoutStaleCueOrReplacement(True)",
+      "message": "  Cue and native action must agree after pickup.\n  Expected: Available\n  But was:  None\n"
+    }
+  ]
+}

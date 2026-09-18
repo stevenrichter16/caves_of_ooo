@@ -22,7 +22,7 @@ namespace CavesOfOoo.Skills
     /// <para>Damage is deliberately minimal. Water is not a way to kill
     /// things; it is a way to make other things lethal.</para>
     /// </summary>
-    public class Hydromancy_JetBlast : BaseSkillPart
+    public class Hydromancy_JetBlast : SpellSkillPart
     {
         public override string Name => nameof(Hydromancy_JetBlast);
 
@@ -61,7 +61,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
@@ -93,6 +93,7 @@ namespace CavesOfOoo.Skills
             for (int i = 0; i < targets.Count; i++)
             {
                 var target = targets[i];
+                SpellFxCapture.TargetInAffectedCells(ctx.Zone, target);
 
                 var dmg = new Damage(BLAST_DAMAGE);
                 // NOTE: "Water" is a descriptive tag only — it maps to

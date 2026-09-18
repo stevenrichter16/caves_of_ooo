@@ -1,0 +1,18 @@
+{
+  "red": {
+    "tests": 25,
+    "errors": 4,
+    "reason": "New all_offset_bound and runtime_safe_gain missing; AttributeError before implementation"
+  },
+  "green": {
+    "tests": 25,
+    "errors": 0
+  },
+  "targetedCounterchecks": [
+    "Any optional subset with negative and unrelated delays",
+    "Absent prefix",
+    "Cancelled full-success suffix must not hide missing-gate peak",
+    "Any-offset gain drives when grid alone is insufficient",
+    "Existing safe grid gain unchanged"
+  ]
+}

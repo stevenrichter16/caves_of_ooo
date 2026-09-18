@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Catacomb village · Caves of Ooo</title>
+    <link rel="stylesheet" href="scene.css" />
+    <script src="scene.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <header class="masthead">
+        <div>
+          <p class="eyebrow">Caves of Ooo / Scene studies</p>
+          <h1 id="scene-title">The catacomb village</h1>
+          <p class="intro">
+            A settlement assembled from the catacomb tileset. Walk its paths,
+            lift its objects, and inspect the ground beneath.
+          </p>
+        </div>
+        <a
+          class="source-link"
+          href="../../Docs/StyleExploration/Felling-2026-09-05/05-catacomb-tileset.png"
+          target="_blank"
+          rel="noopener"
+          >View source tileset <span aria-hidden="true">↗</span></a
+        >
+      </header>
+      <div id="error" class="error" role="alert" hidden></div>
+      <section class="workbench" aria-label="Catacomb scene workbench">
+        <div class="scene-column">
+          <div class="topbar">
+            <div class="segmented" aria-label="Interaction mode">
+              <button id="mode-walk" aria-pressed="true">Walk</button
+              ><button id="mode-inspect" aria-pressed="false">Inspect</button>
+            </div>
+            <p id="mode-help">
+              WASD or arrows to move · click the ground to walk
+            </p>
+            <button
+              id="reset"
+              class="quiet"
+              title="Restore every object and return the traveler to the entrance"
+            >
+              Reset scene
+            </button>
+          </div>
+          <div id="scene-frame" class="scene-frame">
+            <canvas
+              id="scene"
+              width="1536"
+              height="1024"
+              tabindex="0"
+              aria-label="Interactive catacomb village. Use arrow keys or WASD in Walk mode. Select visible objects in Inspect mode."
+            ></canvas>
+            <div id="loading" class="loading" role="status">
+              Reading scene build…
+            </div>
+          </div>
+          <div class="scene-caption">
+            <p id="view-status" role="status">Loading layered scene</p>
+            <p id="player-status">Traveler —</p>
+          </div>
+          <div class="tools">
+            <div
+              class="segmented comparison-controls"
+              aria-label="Comparison view"
+            >
+              <button id="view-reconstructed" aria-pressed="true">Scene</button
+              ><button id="view-baseline" aria-pressed="false">Baseline</button
+              ><button id="view-underlay" aria-pressed="false">Underlay</button>
+            </div>
+            <div class="options">
+              <label><input id="grid" type="checkbox" />Navigation</label
+              ><label><input id="masks" type="checkbox" />Masks</label
+              ><label><input id="inferred" type="checkbox" />Backing</label
+              ><label><input id="exploded" type="checkbox" />Exploded</label
+              ><label
+                ><input id="actualSize" type="checkbox" />Actual size</label
+              >
+            </div>
+          </div>
+          <div class="proof">
+            <span id="proof-dot" class="proof-dot"></span>
+            <p id="assembly-status">
+              Independent reconstruction check pending.
+            </p>
+          </div>
+          <p class="honesty">
+            Backing surfaces are composed for this new layout. The baseline is
+            the intact scene export; it is not a photograph of an original
+            location.
+          </p>
+        </div>
+        <aside class="inspector" aria-label="Scene components">
+          <div class="inventory-heading">
+            <div>
+              <p class="eyebrow">Scene inventory</p>
+              <h2>Components <span id="component-count">0</span></h2>
+            </div>
+            <span id="hidden-count" class="count-tag">0 removed</span>
+          </div>
+          <div class="bulk-actions">
+            <button id="remove-all">Remove all props</button
+            ><button id="restore-all">Restore all</button>
+          </div>
+          <label class="search-label" for="component-search"
+            >Find a component</label
+          ><input
+            id="component-search"
+            class="search"
+            type="search"
+            placeholder="Search stone, lamp, villager…"
+            autocomplete="off"
+          />
+          <div
+            id="component-list"
+            class="component-list"
+            role="group"
+            aria-label="Selectable components"
+          ></div>
+          <section class="selection" aria-label="Selected component">
+            <p class="eyebrow">Selected object</p>
+            <h3 id="selected-name">Choose a component</h3>
+            <p id="selected-status" class="subtle">
+              Enter Inspect, then select the artwork or an inventory item.
+            </p>
+            <div id="selected-preview" class="selected-preview checker" hidden>
+              <canvas id="sprite-preview" width="1" height="1"></canvas>
+            </div>
+            <div class="selected-actions">
+              <button id="toggle-prop" disabled>Remove</button
+              ><button id="solo-prop" disabled>Isolate</button
+              ><button id="locate-prop" disabled>Locate</button>
+            </div>
+            <dl id="selected-details"></dl>
+            <p id="selected-notes" class="subtle"></p>
+          </section>
+        </aside>
+      </section>
+      <details class="evidence">
+        <summary>Build evidence and mechanics</summary>
+        <p id="build-status">Waiting for image verification.</p>
+        <p>
+          Removal updates the rendered layer and its collision footprint
+          together. Restoration is refused if it would place a blocking object
+          on the traveler. Comparison and isolation views pause movement.
+        </p>
+        <p>
+          These are browser mechanics. Unity scene integration, gameplay
+          systems, and full character animation remain separate work.
+        </p>
+        <ul id="asset-errors"></ul>
+        <pre id="build-evidence"></pre>
+      </details>
+      <footer>
+        <p>
+          32 pixels per cell · source-derived sprites · complete ground beneath
+          removable props
+        </p>
+        <button id="refresh" class="quiet">Reload exported build</button>
+      </footer>
+      <p id="announcement" class="sr-only" aria-live="polite" role="status"></p>
+    </main>
+  </body>
+</html>

@@ -30,12 +30,19 @@ namespace CavesOfOoo.Tests
                 UnityEngine.Object.DestroyImmediate(go.gameObject);
         }
 
+        private static Zone CreateVisibleZone(string id)
+        {
+            var zone = new Zone(id);
+            foreach (var cell in zone.Cells) { cell.Explored = true; cell.IsVisible = true; }
+            return zone;
+        }
+
         [Test]
         public void Renderer_ConsumesProjectileRequest_AndClearsOnZoneChange()
         {
             Tilemap tilemap = CreateFxTilemap();
             var renderer = new AsciiFxRenderer(tilemap);
-            var zone = new Zone("FxZone");
+            var zone = CreateVisibleZone("FxZone");
             var otherZone = new Zone("OtherZone");
 
             renderer.SetZone(zone);
@@ -63,7 +70,7 @@ namespace CavesOfOoo.Tests
         {
             Tilemap tilemap = CreateFxTilemap();
             var renderer = new AsciiFxRenderer(tilemap);
-            var zone = new Zone("FxZone");
+            var zone = CreateVisibleZone("FxZone");
 
             renderer.SetZone(zone);
             AsciiFxBus.EmitProjectile(
@@ -82,7 +89,7 @@ namespace CavesOfOoo.Tests
         {
             Tilemap tilemap = CreateFxTilemap();
             var renderer = new AsciiFxRenderer(tilemap);
-            var zone = new Zone("FxZone");
+            var zone = CreateVisibleZone("FxZone");
 
             renderer.SetZone(zone);
             AsciiFxBus.EmitProjectile(
@@ -101,7 +108,7 @@ namespace CavesOfOoo.Tests
         {
             Tilemap tilemap = CreateFxTilemap();
             var renderer = new AsciiFxRenderer(tilemap);
-            var zone = new Zone("FxZone");
+            var zone = CreateVisibleZone("FxZone");
             var anchor = CreatePlayer();
             zone.AddEntity(anchor, 10, 10);
 
@@ -133,7 +140,7 @@ namespace CavesOfOoo.Tests
         {
             Tilemap tilemap = CreateFxTilemap();
             var renderer = new AsciiFxRenderer(tilemap);
-            var zone = new Zone("FxZone");
+            var zone = CreateVisibleZone("FxZone");
             var anchor = CreatePlayer();
             zone.AddEntity(anchor, 10, 10);
 
@@ -155,7 +162,7 @@ namespace CavesOfOoo.Tests
         {
             Tilemap tilemap = CreateFxTilemap();
             var renderer = new AsciiFxRenderer(tilemap);
-            var zone = new Zone("FxZone");
+            var zone = CreateVisibleZone("FxZone");
 
             renderer.SetZone(zone);
             AsciiFxBus.EmitRingWave(zone, 10, 10, 2, 0.08f, AsciiFxTheme.Ice, blocksTurnAdvance: true);
@@ -177,7 +184,7 @@ namespace CavesOfOoo.Tests
         public void InputHandler_WaitsForBlockingFx_UntilRendererFinishes()
         {
             Tilemap zoneTilemap = CreateZoneTilemap(out ZoneRenderer zoneRenderer);
-            var zone = new Zone("FxZone");
+            var zone = CreateVisibleZone("FxZone");
             var player = CreatePlayer();
             zone.AddEntity(player, 10, 10);
 
@@ -203,6 +210,8 @@ namespace CavesOfOoo.Tests
 
             InvokeNonPublic(zoneRenderer, "LateUpdate");
             SetPrivateInputState(inputHandler, "WaitingForFxResolution");
+            typeof(InputHandler).GetField("_fxWaitStartedAt", BindingFlags.Instance | BindingFlags.NonPublic)
+                .SetValue(inputHandler, Time.realtimeSinceStartup);
             InvokeNonPublic(inputHandler, "HandleWaitingForFxResolution");
 
             Assert.AreEqual("WaitingForFxResolution", GetPrivateInputState(inputHandler));
@@ -222,7 +231,7 @@ namespace CavesOfOoo.Tests
         public void InputHandler_SelfCenteredAbility_ResolvesImmediatelyWithoutAwaitingDirection()
         {
             CreateZoneTilemap(out ZoneRenderer zoneRenderer);
-            var zone = new Zone("FxZone");
+            var zone = CreateVisibleZone("FxZone");
             var player = CreatePlayer();
             var abilityPart = new TestAbilityPart();
             player.AddPart(new ActivatedAbilitiesPart());

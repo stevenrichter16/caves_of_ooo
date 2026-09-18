@@ -28,7 +28,7 @@ namespace CavesOfOoo.Skills
     /// creature it meets, or at maximum range. Same radius, same reach,
     /// aimed the way every other ranged power in the game is aimed.</para>
     /// </summary>
-    public class Hydromancy_DrenchLob : BaseSkillPart
+    public class Hydromancy_DrenchLob : SpellSkillPart
     {
         public override string Name => nameof(Hydromancy_DrenchLob);
 
@@ -53,7 +53,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
@@ -79,11 +79,12 @@ namespace CavesOfOoo.Skills
                 if (cell.IsSolid()) break;   // splashes against the wall, short
 
                 impactX = nx; impactY = ny;
+                SpellFxCapture.PathCell(ctx.Zone, nx, ny);
 
                 bool creatureHere = false;
-                for (int i = 0; i < cell.Objects.Count; i++)
+                for (int i = 0; i < cell.Occupants.Count; i++)
                 {
-                    var e = cell.Objects[i];
+                    var e = cell.Occupants[i];
                     if (e == null || e == actor) continue;
                     if (e.Tags.ContainsKey("Creature")) { creatureHere = true; break; }
                 }
@@ -113,7 +114,8 @@ namespace CavesOfOoo.Skills
 
             float moisture = HydromancySkill.ApplyMoistureBonus(actor, LOB_MOISTURE);
             for (int i = 0; i < caught.Count; i++)
-                caught[i].ApplyEffect(new WetEffect(moisture), actor, ctx.Zone);
+                if (ctx.Zone.GetEntityCell(caught[i]) != null)
+                    caught[i].ApplyEffect(new WetEffect(moisture), actor, ctx.Zone);
 
             MessageLog.Add(actor.GetDisplayName() + "'s drench lob bursts, soaking "
                 + caught.Count + " target" + (caught.Count == 1 ? "" : "s") + "!");

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using CavesOfOoo.Core;
 
 namespace CavesOfOoo.Skills
@@ -19,7 +18,7 @@ namespace CavesOfOoo.Skills
     /// collapse into a single power. You buy distance here and prime
     /// somewhere else — that tension is the design.</para>
     /// </summary>
-    public class Galvanism_BacklashCoil : BaseSkillPart
+    public class Galvanism_BacklashCoil : SpellSkillPart
     {
         public override string Name => nameof(Galvanism_BacklashCoil);
 
@@ -45,7 +44,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
@@ -60,27 +59,12 @@ namespace CavesOfOoo.Skills
             // Snapshot the ring before shoving anyone: each push moves a
             // creature out of the ring, and reading the ring lazily
             // would make the result depend on iteration order.
-            var ring = new List<Entity>(8);
-            for (int ox = -1; ox <= 1; ox++)
-            {
-                for (int oy = -1; oy <= 1; oy++)
-                {
-                    if (ox == 0 && oy == 0) continue;
-                    int cx = actorPos.x + ox, cy = actorPos.y + oy;
-                    if (!ctx.Zone.InBounds(cx, cy)) continue;
-
-                    var cell = ctx.Zone.GetCell(cx, cy);
-                    if (cell == null) continue;
-
-                    for (int i = 0; i < cell.Objects.Count; i++)
-                    {
-                        var e = cell.Objects[i];
-                        if (e == null || e == actor) continue;
-                        if (!e.Tags.ContainsKey("Creature")) continue;
-                        ring.Add(e);
-                    }
-                }
-            }
+            var cells = MultiCellAbilityQueries.AdjacentCells(ctx.Zone, actor);
+            // Preserve the old x-then-y order for ordinary casters.
+            cells.Sort((a, b) => a.X != b.X ? a.X.CompareTo(b.X) : a.Y.CompareTo(b.Y));
+            foreach (var cell in cells) SpellFxCapture.AffectCell(ctx.Zone, cell.X, cell.Y);
+            var ring = MultiCellAbilityQueries.SnapshotOccupants(cells, actor);
+            ring.RemoveAll(entity => !entity.HasTag("Creature"));
 
             if (ring.Count == 0)
             {
@@ -94,6 +78,7 @@ namespace CavesOfOoo.Skills
             for (int i = 0; i < ring.Count; i++)
             {
                 var target = ring[i];
+                if (ctx.Zone.GetEntityCell(target) == null || target.GetStatValue("Hitpoints") <= 0) continue;
 
                 var dmg = new Damage(COIL_DAMAGE);
                 dmg.AddAttribute("Electric");

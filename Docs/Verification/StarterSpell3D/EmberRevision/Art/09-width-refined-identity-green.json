@@ -1,0 +1,436 @@
+{
+  "status": "GREEN",
+  "sourceBlendSha256": "7e13f1dce87c67f31e2c39bcbf7758cb16ae20e182618b6fb75bf929f50e6830",
+  "librarySha256": "158f2432230854309c786569666e453c0ebb6cf2e32394e0dd3748eefc3d4164",
+  "assertions": 40,
+  "passed": 40,
+  "checks": [
+    {
+      "name": "Ember timing and carrier metadata unchanged",
+      "passed": true,
+      "actual": {
+        "id": "ember_spit",
+        "contactFrame": 29.5,
+        "clearFrame": 67.5,
+        "authoredDistanceCells": 3,
+        "authoredMuzzleForward": 0.36
+      }
+    },
+    {
+      "name": "Shared palette unchanged",
+      "passed": true,
+      "actual": 33
+    },
+    {
+      "name": "flaming_hands complete normalized export unchanged",
+      "passed": true,
+      "actual": "flaming_hands"
+    },
+    {
+      "name": "flaming_hands FBX bytes unchanged",
+      "passed": true,
+      "actual": "afe591ff90b6308e62e36f188232121101563b9275167e0fef03d3758cbe4453"
+    },
+    {
+      "name": "jet_blast complete normalized export unchanged",
+      "passed": true,
+      "actual": "jet_blast"
+    },
+    {
+      "name": "jet_blast FBX bytes unchanged",
+      "passed": true,
+      "actual": "926895d7f8c9842ab74d5471a1803e48433472fc7ec26ab042da8347d6ea479b"
+    },
+    {
+      "name": "ground_surge complete normalized export unchanged",
+      "passed": true,
+      "actual": "ground_surge"
+    },
+    {
+      "name": "ground_surge FBX bytes unchanged",
+      "passed": true,
+      "actual": "9b180df2909e36eb06e55d6f98529037d5194db02d1b6f222e13e5cfd5636c8d"
+    },
+    {
+      "name": "rime_grip complete normalized export unchanged",
+      "passed": true,
+      "actual": "rime_grip"
+    },
+    {
+      "name": "rime_grip FBX bytes unchanged",
+      "passed": true,
+      "actual": "b82cbbdf77d01f6c331103a007d8bd525ca4b2dc229f3616f53946cba091c690"
+    },
+    {
+      "name": "calm complete normalized export unchanged",
+      "passed": true,
+      "actual": "calm"
+    },
+    {
+      "name": "calm FBX bytes unchanged",
+      "passed": true,
+      "actual": "895425149122f01c84739fdaacf587d003dda6ca287f7f0c8ac8d435f4830333"
+    },
+    {
+      "name": "conjure_rain complete normalized export unchanged",
+      "passed": true,
+      "actual": "conjure_rain"
+    },
+    {
+      "name": "conjure_rain FBX bytes unchanged",
+      "passed": true,
+      "actual": "5415553c7d9e846915078f97b095320e88243124a970bfd1d2adcd240785a994"
+    },
+    {
+      "name": "Compact warm impact replaces radial fire crown",
+      "passed": true,
+      "actual": {
+        "span": 0.5755594760798819,
+        "radius": 0.313602626661412
+      }
+    },
+    {
+      "name": "Impact glow stays local",
+      "passed": true,
+      "actual": 0.5618331754999999
+    },
+    {
+      "name": "Impact has only a few fading embers",
+      "passed": true,
+      "actual": 16
+    },
+    {
+      "name": "Actual fractional contact has visible non-gather geometry",
+      "passed": true,
+      "actual": 29.5
+    },
+    {
+      "name": "Long broad projectile tail on four-cell route",
+      "passed": true,
+      "actual": {
+        "length": 3.842048956060606,
+        "width": 0.9823259676997854
+      }
+    },
+    {
+      "name": "Conical tail narrows toward trailing end",
+      "passed": true,
+      "actual": [
+        0.3087194704434495,
+        0.5411164679382882,
+        0.7096689671482797,
+        0.8371195397575213,
+        0.963979485815041
+      ]
+    },
+    {
+      "name": "Defining tail sections form a connected longitudinal fill",
+      "passed": true,
+      "actual": {
+        "sections": 16,
+        "largestGap": -0.1442698378787879
+      }
+    },
+    {
+      "name": "Dense travel embers replace impact-dominated particles",
+      "passed": true,
+      "actual": [
+        256,
+        256,
+        256,
+        256
+      ]
+    },
+    {
+      "name": "Carrier head stays compact rather than hiding a long rigid tail",
+      "passed": true,
+      "actual": 0.44127292033324705
+    },
+    {
+      "name": "No tail or head cap behind launch or far past contact on real routes",
+      "passed": true,
+      "actual": {
+        "failures": [],
+        "failureCount": 0,
+        "projectedRoutes": [
+          {
+            "cells": 1,
+            "degrees": 0,
+            "width": 1.070950887878788,
+            "height": 1.4389453917396602
+          },
+          {
+            "cells": 1,
+            "degrees": 45,
+            "width": 1.5028812510281198,
+            "height": 1.6412462945179371
+          },
+          {
+            "cells": 1,
+            "degrees": 90,
+            "width": 1.381107939812745,
+            "height": 1.497364723383062
+          },
+          {
+            "cells": 1,
+            "degrees": 135,
+            "width": 1.4924831043894153,
+            "height": 1.5586994819482038
+          },
+          {
+            "cells": 1,
+            "degrees": 180,
+            "width": 1.070950887878788,
+            "height": 1.4802442786448482
+          },
+          {
+            "cells": 1,
+            "degrees": 225,
+            "width": 1.50288125102812,
+            "height": 1.5484973406387172
+          },
+          {
+            "cells": 1,
+            "degrees": 270,
+            "width": 1.381107939812745,
+            "height": 1.4977517563700264
+          },
+          {
+            "cells": 1,
+            "degrees": 315,
+            "width": 1.4924831043894151,
+            "height": 1.535215233443557
+          },
+          {
+            "cells": 2,
+            "degrees": 0,
+            "width": 2.01274828122885,
+            "height": 1.4389453917396602
+          },
+          {
+            "cells": 2,
+            "degrees": 45,
+            "width": 2.370098784582105,
+            "height": 2.561993653838818
+          },
+          {
+            "cells": 2,
+            "degrees": 90,
+            "width": 1.381107939812745,
+            "height": 2.365418751510939
+          },
+          {
+            "cells": 2,
+            "degrees": 135,
+            "width": 2.354602536207597,
+            "height": 2.4318759073885046
+          },
+          {
+            "cells": 2,
+            "degrees": 180,
+            "width": 2.01274828122885,
+            "height": 1.4802442786448484
+          },
+          {
+            "cells": 2,
+            "degrees": 225,
+            "width": 2.3700987845821055,
+            "height": 2.4254133357983423
+          },
+          {
+            "cells": 2,
+            "degrees": 270,
+            "width": 1.381107939812745,
+            "height": 2.359871188188208
+          },
+          {
+            "cells": 2,
+            "degrees": 315,
+            "width": 2.3546025362075964,
+            "height": 2.4160118738319323
+          },
+          {
+            "cells": 4,
+            "degrees": 0,
+            "width": 3.9217269933500623,
+            "height": 1.4389453917396602
+          },
+          {
+            "cells": 4,
+            "degrees": 45,
+            "width": 4.155917572460893,
+            "height": 4.40939236596003
+          },
+          {
+            "cells": 4,
+            "degrees": 90,
+            "width": 1.381107939812745,
+            "height": 4.151237539389727
+          },
+          {
+            "cells": 4,
+            "degrees": 135,
+            "width": 4.123457758540606,
+            "height": 4.259727662850139
+          },
+          {
+            "cells": 4,
+            "degrees": 180,
+            "width": 3.9217269933500623,
+            "height": 1.480244278644848
+          },
+          {
+            "cells": 4,
+            "degrees": 225,
+            "width": 4.155917572460894,
+            "height": 4.21123212367713
+          },
+          {
+            "cells": 4,
+            "degrees": 270,
+            "width": 1.381107939812745,
+            "height": 4.161492823392417
+          },
+          {
+            "cells": 4,
+            "degrees": 315,
+            "width": 4.123457758540606,
+            "height": 4.263410585953144
+          }
+        ]
+      }
+    },
+    {
+      "name": "Pre-release source gather remains compact",
+      "passed": true,
+      "actual": {
+        "length": 0.4412240611384452,
+        "width": 0.41
+      }
+    },
+    {
+      "name": "Ember uses projectile and target roles only",
+      "passed": true,
+      "actual": [
+        "ProjectileHead",
+        "ProjectileTrail",
+        "TargetImpact"
+      ]
+    },
+    {
+      "name": "Tail contracts into contact instead of holding a static plume",
+      "passed": true,
+      "actual": [
+        2.93571185011583,
+        1.7071715637984102,
+        0.11242515071519987
+      ]
+    },
+    {
+      "name": "Tail material flows toward contact while settling",
+      "passed": true,
+      "actual": [
+        1.09212395,
+        1.02676985,
+        0.9614157999999999,
+        0.8960617000000002,
+        0.8307076,
+        0.7653536000000001,
+        0.6999994999999999,
+        0.6346454499999998,
+        0.5692911999999999,
+        0.5039371999999998,
+        0.43858315000000037,
+        0.3732291999999999,
+        0.30787489999999984,
+        0.24252075000000017,
+        0.17716679999999974,
+        0.11181269999999977
+      ]
+    },
+    {
+      "name": "Every transient clears by original clear frame",
+      "passed": true,
+      "actual": 67.5
+    },
+    {
+      "name": "All sampled poses finite with nonnegative scale",
+      "passed": true,
+      "actual": 5550
+    },
+    {
+      "name": "Ember fits retained view and geometry budget",
+      "passed": true,
+      "actual": {
+        "pieces": 50,
+        "triangles": 6404,
+        "essential": 24
+      }
+    }
+  ],
+  "controls": [
+    {
+      "name": "Reinserted actual previous fire crown is rejected",
+      "passed": true,
+      "rejectedBy": [
+        "Compact warm impact replaces radial fire crown",
+        "Impact glow stays local",
+        "Impact has only a few fading embers"
+      ]
+    },
+    {
+      "name": "Deleted actual travel embers are rejected",
+      "passed": true,
+      "rejectedBy": [
+        "Dense travel embers replace impact-dominated particles"
+      ]
+    },
+    {
+      "name": "Missing actual central tail span is rejected",
+      "passed": true,
+      "rejectedBy": [
+        "Defining tail sections form a connected longitudinal fill"
+      ]
+    },
+    {
+      "name": "Frozen actual contraction is rejected",
+      "passed": true,
+      "rejectedBy": [
+        "Tail contracts into contact instead of holding a static plume",
+        "Tail material flows toward contact while settling"
+      ]
+    },
+    {
+      "name": "Actual backward cap is rejected",
+      "passed": true,
+      "rejectedBy": [
+        "No tail or head cap behind launch or far past contact on real routes"
+      ]
+    },
+    {
+      "name": "Actual full tail before release is rejected",
+      "passed": true,
+      "rejectedBy": [
+        "No tail or head cap behind launch or far past contact on real routes"
+      ]
+    },
+    {
+      "name": "Actual late fragment is rejected",
+      "passed": true,
+      "rejectedBy": [
+        "Every transient clears by original clear frame"
+      ]
+    },
+    {
+      "name": "Changed Hands pose is rejected",
+      "passed": true,
+      "rejectedBy": [
+        "flaming_hands complete normalized export unchanged"
+      ]
+    },
+    {
+      "name": "Unchanged complete new art accepted",
+      "passed": true
+    }
+  ]
+}

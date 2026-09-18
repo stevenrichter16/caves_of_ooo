@@ -1,0 +1,63 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "NativeSpell|StarterSpell3DOutcomeCapture|WorldFxCoordinatorTests",
+  "results": {
+    "id": "2",
+    "testcasecount": "213",
+    "result": "Failed(Child)",
+    "total": "213",
+    "passed": "203",
+    "failed": "10",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-11 03:48:58Z",
+    "end-time": "2026-09-11 03:49:00Z",
+    "duration": "2.8675412"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.DefinedButIncompatibleAnchorRejectsInsteadOfSilentlyReinterpretingAuthoredCoordinates(ProjectileHead,Target,ProjectileCarrier)",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.DefinedButIncompatibleAnchorRejectsInsteadOfSilentlyReinterpretingAuthoredCoordinates(ProjectileTrail,ProjectileCarrier,Source)",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.DefinedButIncompatibleAnchorRejectsInsteadOfSilentlyReinterpretingAuthoredCoordinates(TargetImpact,Source,Target)",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.DefinedButIncompatibleAnchorRejectsInsteadOfSilentlyReinterpretingAuthoredCoordinates(GroundCell,Source,Cell)",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.DefinedButIncompatibleAnchorRejectsInsteadOfSilentlyReinterpretingAuthoredCoordinates(ConeCell,Target,Cell)",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.DefinedButIncompatibleAnchorRejectsInsteadOfSilentlyReinterpretingAuthoredCoordinates(CropCell,Source,Cell)",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.DefinedButIncompatibleAnchorRejectsInsteadOfSilentlyReinterpretingAuthoredCoordinates(ReactionCell,Target,Cell)",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.FlamingHandsSelectedCellRemainsItsFacingWhenPendingRemoteReactionProducesFirstTarget(True)",
+      "message": "  The chosen fan cannot turn toward an unrelated material-reaction target.\n  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.SingleBodySpellDirectImpactDoesNotReplayOnUnrelatedAmbientOilVictim(\"Cryomancy_RimeGrip\",True)",
+      "message": "  A remote pending reaction is not a second projectile contact for this single-body spell.\n  Expected: 1\n  But was:  2\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxAdversarialTests.SingleBodySpellDirectImpactDoesNotReplayOnUnrelatedAmbientOilVictim(\"Pyromancy_EmberSpit\",True)",
+      "message": "  A remote pending reaction is not a second projectile contact for this single-body spell.\n  Expected: 1\n  But was:  2\n"
+    }
+  ]
+}

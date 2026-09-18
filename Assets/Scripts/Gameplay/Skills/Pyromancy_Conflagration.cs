@@ -1,4 +1,3 @@
-using System;
 using CavesOfOoo.Core;
 
 namespace CavesOfOoo.Skills
@@ -15,14 +14,12 @@ namespace CavesOfOoo.Skills
     /// 100J radiant pulse for chain propagation. Casting into empty
     /// space still consumes the cast — the wave went out.</para>
     /// </summary>
-    public class Pyromancy_Conflagration : BaseSkillPart
+    public class Pyromancy_Conflagration : SpellSkillPart
     {
         public override string Name => nameof(Pyromancy_Conflagration);
 
         public const int RADIUS = 2;
         public const int COOLDOWN = 15;
-        private const float ChargeDuration = 0.12f;
-        private const float RingStepDuration = 0.08f;
 
         public override ActivatedAbilitySpec DeclareActivatedAbility(Entity actor)
         {
@@ -37,7 +34,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;
             var actor = ctx.Attacker;
@@ -47,11 +44,6 @@ namespace CavesOfOoo.Skills
             var sourceCell = ctx.SourceCell;
             var rng = ctx.Rng;
 
-            AsciiFxBus.EmitChargeOrbit(zone, actor, radius: 1, duration: ChargeDuration,
-                AsciiFxTheme.Fire, blocksTurnAdvance: true);
-            AsciiFxBus.EmitRingWave(zone, sourceCell.X, sourceCell.Y,
-                maxRadius: RADIUS, stepDuration: RingStepDuration,
-                theme: AsciiFxTheme.Fire, blocksTurnAdvance: true, delay: ChargeDuration);
             ctx.BlocksTurnAdvance = true;
 
             var creatures = SpellTargeting.GetCreaturesInRadius(
@@ -63,7 +55,7 @@ namespace CavesOfOoo.Skills
             for (int i = 0; i < creatures.Count; i++)
             {
                 Entity target = creatures[i];
-                Cell targetCell = zone.GetEntityCell(target);
+                if (zone.GetEntityCell(target) == null || target.GetStatValue("Hitpoints", 0) <= 0) continue;
 
                 int damage = DiceRoller.Roll("2d6", rng);
                 if (damage > 0)
@@ -86,59 +78,31 @@ namespace CavesOfOoo.Skills
                         heatEvent.SetParameter("Radiant", (object)false);
                         heatEvent.SetParameter("Source", (object)actor);
                         heatEvent.SetParameter("Zone", (object)zone);
+                        SpellFxCapture.Target(zone, target);
                         target.FireEvent(heatEvent);
                         heatEvent.Release();
                     }
                 }
 
-                if (targetCell != null)
-                {
-                    int radius = Math.Max(Math.Abs(targetCell.X - sourceCell.X),
-                        Math.Abs(targetCell.Y - sourceCell.Y));
-                    AsciiFxBus.EmitBurst(zone, targetCell.X, targetCell.Y,
-                        AsciiFxTheme.Fire, blocksTurnAdvance: true,
-                        delay: ChargeDuration + ((Math.Max(1, radius) - 1) * RingStepDuration));
-                }
             }
 
             // Heat EVERY ThermalPart entity in radius — the pass that
             // ignites barrels and scenery, not just bodies.
-            int minX = Math.Max(0, sourceCell.X - RADIUS);
-            int maxX = Math.Min(Zone.Width - 1, sourceCell.X + RADIUS);
-            int minY = Math.Max(0, sourceCell.Y - RADIUS);
-            int maxY = Math.Min(Zone.Height - 1, sourceCell.Y + RADIUS);
-
-            for (int y = minY; y <= maxY; y++)
+            var cells = MultiCellAbilityQueries.RadiusCells(zone, sourceCell.X, sourceCell.Y, RADIUS);
+            var pulseTargets = MultiCellAbilityQueries.SnapshotOccupants(cells, actor, reverse: true);
+            foreach (var cell in cells) SpellFxCapture.AffectCell(zone, cell.X, cell.Y);
+            foreach (var entity in pulseTargets)
             {
-                for (int x = minX; x <= maxX; x++)
-                {
-                    int chebyshev = Math.Max(Math.Abs(x - sourceCell.X), Math.Abs(y - sourceCell.Y));
-                    if (chebyshev > RADIUS)
-                        continue;
-
-                    Cell cell = zone.GetCell(x, y);
-                    if (cell == null)
-                        continue;
-
-                    for (int i = cell.Objects.Count - 1; i >= 0; i--)
-                    {
-                        if (i >= cell.Objects.Count) continue;
-                        Entity entity = cell.Objects[i];
-                        if (entity == actor)
-                            continue;
-
-                        if (entity.HasPart<ThermalPart>())
-                        {
-                            var heatEvent = GameEvent.New("ApplyHeat");
-                            heatEvent.SetParameter("Joules", (object)250f);
-                            heatEvent.SetParameter("Radiant", (object)false);
-                            heatEvent.SetParameter("Source", (object)actor);
-                            heatEvent.SetParameter("Zone", (object)zone);
-                            entity.FireEvent(heatEvent);
-                            heatEvent.Release();
-                        }
-                    }
-                }
+                if (zone.GetEntityCell(entity) == null) continue;
+                if (!entity.HasPart<ThermalPart>()) continue;
+                var heatEvent = GameEvent.New("ApplyHeat");
+                heatEvent.SetParameter("Joules", (object)250f);
+                heatEvent.SetParameter("Radiant", (object)false);
+                heatEvent.SetParameter("Source", (object)actor);
+                heatEvent.SetParameter("Zone", (object)zone);
+                SpellFxCapture.Target(zone, entity);
+                try { entity.FireEvent(heatEvent); }
+                finally { heatEvent.Release(); }
             }
 
             MaterialSimSystem.EmitHeatToAdjacent(actor, zone, 100f);

@@ -39,7 +39,11 @@ namespace CavesOfOoo.Skills
 
             var dmg = new Damage(bonus);
             dmg.AddAttribute("Heat");
-            CombatSystem.ApplyDamage(ctx.Defender, dmg, ctx.Attacker, ctx.Zone);
+            using (var capture = new SpellFxCapture(Name, ctx.Zone, ctx.Attacker, blocking: false))
+            {
+                CombatSystem.ApplyDamage(ctx.Defender, dmg, ctx.Attacker, ctx.Zone);
+                capture.Commit();
+            }
         }
     }
 }

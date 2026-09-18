@@ -1,0 +1,830 @@
+{
+  "status": "GREEN",
+  "librarySha256": "bbf06a52ed9ee416066ea5422cbcc87fa35d8fe9ee89426812aeaacc64cbdc0f",
+  "sourceBlendSha256": "2e8dda06d7ce02ebbdad1f77d24d0200e450aa928f986c26d2335eddc1254e4d",
+  "assertions": 76,
+  "passed": 76,
+  "checks": [
+    {
+      "name": "All seven study entries remain",
+      "passed": true,
+      "actual": 7
+    },
+    {
+      "name": "Explicit finite material emission and glow roles",
+      "passed": true,
+      "actual": 33
+    },
+    {
+      "name": "Actual soft halos have finite white-RGB alpha gradients",
+      "passed": true,
+      "actual": {
+        "glowMeshes": 27,
+        "solidMeshes": 353
+      }
+    },
+    {
+      "name": "Local glow has enough static strength for actual game scale",
+      "passed": true,
+      "actual": [
+        0.68,
+        0.62,
+        0.68,
+        0.64,
+        0.6
+      ]
+    },
+    {
+      "name": "ember_spit has explicit bounded surface/decorative ownership",
+      "passed": true,
+      "actual": {
+        "maxAirborneCellRadius": 0
+      }
+    },
+    {
+      "name": "ember_spit retains finite draw count",
+      "passed": true,
+      "actual": 61
+    },
+    {
+      "name": "ember_spit has dense actual multi-island mote cohorts",
+      "passed": true,
+      "actual": {
+        "posedMotes": 352,
+        "visibilityBoundary": "Geometry is active; occlusion and actual visible pixels require native/GPU review",
+        "cohortIslandCounts": [
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "name": "ember_spit has bright connected defining surfaces",
+      "passed": true,
+      "actual": 13
+    },
+    {
+      "name": "ember_spit defining envelope reads at retained gameplay scale",
+      "passed": true,
+      "actual": {
+        "projectedSpanPixels": 133.61,
+        "requiredPixels": 120,
+        "pixelsPerCell": 33.38
+      }
+    },
+    {
+      "name": "ember_spit broad silhouette survives all eight cast directions",
+      "passed": true,
+      "actual": {
+        "projectedSpanPixels": {
+          "0": 133.6099667607066,
+          "45": 124.3443053930108,
+          "90": 120.61018473600632,
+          "135": 125.83822923006724,
+          "180": 127.72620197015699,
+          "225": 139.4838734810329,
+          "270": 130.27034611395675,
+          "315": 139.67906223603313
+        },
+        "requiredMinimum": 75
+      }
+    },
+    {
+      "name": "ember_spit does not collapse to an edge-on sliver",
+      "passed": true,
+      "actual": {
+        "projectedMinorAxisPixels": {
+          "0": 116.74490501343016,
+          "45": 122.10286013644836,
+          "90": 112.00525254817379,
+          "135": 118.66853618078146,
+          "180": 116.74490501343016,
+          "225": 124.3443053930108,
+          "270": 120.61018473600632,
+          "315": 125.8382292300672
+        },
+        "requiredMinimum": 40
+      }
+    },
+    {
+      "name": "ember_spit primary forms readable at exact contact and held",
+      "passed": true,
+      "actual": {
+        "minContactScaleFraction": 0.8113854,
+        "longestStrongHoldFrames": 22
+      }
+    },
+    {
+      "name": "ember_spit clears new forms by original clear frame",
+      "passed": true,
+      "actual": 67.5
+    },
+    {
+      "name": "ember_spit coherent primary moves during its strong hold",
+      "passed": true,
+      "actual": {
+        "maxTranslationPlusQuaternionDelta": 0.14642753217134527,
+        "threshold": 0.035
+      }
+    },
+    {
+      "name": "flaming_hands has explicit bounded surface/decorative ownership",
+      "passed": true,
+      "actual": {
+        "maxAirborneCellRadius": 2.4880513467370426
+      }
+    },
+    {
+      "name": "flaming_hands retains finite draw count",
+      "passed": true,
+      "actual": 47
+    },
+    {
+      "name": "flaming_hands has dense actual multi-island mote cohorts",
+      "passed": true,
+      "actual": {
+        "posedMotes": 320,
+        "visibilityBoundary": "Geometry is active; occlusion and actual visible pixels require native/GPU review",
+        "cohortIslandCounts": [
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "name": "flaming_hands has bright connected defining surfaces",
+      "passed": true,
+      "actual": 11
+    },
+    {
+      "name": "flaming_hands defining envelope reads at retained gameplay scale",
+      "passed": true,
+      "actual": {
+        "projectedSpanPixels": 133.01,
+        "requiredPixels": 118,
+        "pixelsPerCell": 33.38
+      }
+    },
+    {
+      "name": "flaming_hands broad silhouette survives all eight cast directions",
+      "passed": true,
+      "actual": {
+        "projectedSpanPixels": {
+          "0": 133.01179001018733,
+          "45": 123.72874872024282,
+          "90": 120.08698255551545,
+          "135": 125.38423337714823,
+          "180": 127.68703692613772,
+          "225": 139.7929939119849,
+          "270": 130.19048277327013,
+          "315": 139.27433582093158
+        },
+        "requiredMinimum": 75
+      }
+    },
+    {
+      "name": "flaming_hands does not collapse to an edge-on sliver",
+      "passed": true,
+      "actual": {
+        "projectedMinorAxisPixels": {
+          "0": 116.05383482511392,
+          "45": 121.16834638890685,
+          "90": 112.31246175079306,
+          "135": 117.94338125293692,
+          "180": 116.05383482511392,
+          "225": 123.72874872024282,
+          "270": 120.08698255551545,
+          "315": 125.38423337714825
+        },
+        "requiredMinimum": 40
+      }
+    },
+    {
+      "name": "flaming_hands primary forms readable at exact contact and held",
+      "passed": true,
+      "actual": {
+        "minContactScaleFraction": 0.7407408,
+        "longestStrongHoldFrames": 22
+      }
+    },
+    {
+      "name": "flaming_hands clears new forms by original clear frame",
+      "passed": true,
+      "actual": 60
+    },
+    {
+      "name": "flaming_hands coherent primary moves during its strong hold",
+      "passed": true,
+      "actual": {
+        "maxTranslationPlusQuaternionDelta": 0.1596213127335491,
+        "threshold": 0.035
+      }
+    },
+    {
+      "name": "jet_blast has explicit bounded surface/decorative ownership",
+      "passed": true,
+      "actual": {
+        "maxAirborneCellRadius": 1.5557949045020445
+      }
+    },
+    {
+      "name": "jet_blast retains finite draw count",
+      "passed": true,
+      "actual": 89
+    },
+    {
+      "name": "jet_blast has dense actual multi-island mote cohorts",
+      "passed": true,
+      "actual": {
+        "posedMotes": 384,
+        "visibilityBoundary": "Geometry is active; occlusion and actual visible pixels require native/GPU review",
+        "cohortIslandCounts": [
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "name": "jet_blast has bright connected defining surfaces",
+      "passed": true,
+      "actual": 22
+    },
+    {
+      "name": "jet_blast defining envelope reads at retained gameplay scale",
+      "passed": true,
+      "actual": {
+        "projectedSpanPixels": 161.82,
+        "requiredPixels": 140,
+        "pixelsPerCell": 33.38
+      }
+    },
+    {
+      "name": "jet_blast broad silhouette survives all eight cast directions",
+      "passed": true,
+      "actual": {
+        "projectedSpanPixels": {
+          "0": 161.8191012707831,
+          "45": 119.19556910376028,
+          "90": 152.48473796795105,
+          "135": 113.19615278230106,
+          "180": 155.50040404512367,
+          "225": 119.55157238244348,
+          "270": 152.48473796795105,
+          "315": 123.71753752743858
+        },
+        "requiredMinimum": 75
+      }
+    },
+    {
+      "name": "jet_blast does not collapse to an edge-on sliver",
+      "passed": true,
+      "actual": {
+        "projectedMinorAxisPixels": {
+          "0": 97.1651741430356,
+          "45": 112.81324131039224,
+          "90": 83.20270347867539,
+          "135": 112.9387004387641,
+          "180": 97.1651741430356,
+          "225": 112.81324131039226,
+          "270": 119.37838199743672,
+          "315": 112.93870043876412
+        },
+        "requiredMinimum": 40
+      }
+    },
+    {
+      "name": "jet_blast primary forms readable at exact contact and held",
+      "passed": true,
+      "actual": {
+        "minContactScaleFraction": 0.7407408,
+        "longestStrongHoldFrames": 22
+      }
+    },
+    {
+      "name": "jet_blast clears new forms by original clear frame",
+      "passed": true,
+      "actual": 65.0
+    },
+    {
+      "name": "jet_blast coherent primary moves during its strong hold",
+      "passed": true,
+      "actual": {
+        "maxTranslationPlusQuaternionDelta": 0.16888577563101392,
+        "threshold": 0.035
+      }
+    },
+    {
+      "name": "ground_surge has explicit bounded surface/decorative ownership",
+      "passed": true,
+      "actual": {
+        "maxAirborneCellRadius": 0.8300002
+      }
+    },
+    {
+      "name": "ground_surge retains finite draw count",
+      "passed": true,
+      "actual": 65
+    },
+    {
+      "name": "ground_surge has dense actual multi-island mote cohorts",
+      "passed": true,
+      "actual": {
+        "posedMotes": 320,
+        "visibilityBoundary": "Geometry is active; occlusion and actual visible pixels require native/GPU review",
+        "cohortIslandCounts": [
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "name": "ground_surge has bright connected defining surfaces",
+      "passed": true,
+      "actual": 20
+    },
+    {
+      "name": "ground_surge defining envelope reads at retained gameplay scale",
+      "passed": true,
+      "actual": {
+        "projectedSpanPixels": 132.96,
+        "requiredPixels": 130,
+        "pixelsPerCell": 33.38
+      }
+    },
+    {
+      "name": "ground_surge broad silhouette survives all eight cast directions",
+      "passed": true,
+      "actual": {
+        "projectedSpanPixels": {
+          "0": 132.96156929,
+          "45": 107.18692317593546,
+          "90": 142.00515374031394,
+          "135": 114.61939421736727,
+          "180": 132.96156929,
+          "225": 119.17791078974416,
+          "270": 148.9911563933008,
+          "315": 117.30708944908208
+        },
+        "requiredMinimum": 75
+      }
+    },
+    {
+      "name": "ground_surge does not collapse to an edge-on sliver",
+      "passed": true,
+      "actual": {
+        "projectedMinorAxisPixels": {
+          "0": 39.698855274979486,
+          "45": 101.43116040500576,
+          "90": 33.174699648000015,
+          "135": 101.6351418302128,
+          "180": 41.015643282838276,
+          "225": 101.43116040500577,
+          "270": 33.17469964800003,
+          "315": 101.63514183021279
+        },
+        "requiredMinimum": 18
+      }
+    },
+    {
+      "name": "ground_surge primary forms readable at exact contact and held",
+      "passed": true,
+      "actual": {
+        "minContactScaleFraction": 0.7407408,
+        "longestStrongHoldFrames": 22
+      }
+    },
+    {
+      "name": "ground_surge clears new forms by original clear frame",
+      "passed": true,
+      "actual": 70.0
+    },
+    {
+      "name": "rime_grip has explicit bounded surface/decorative ownership",
+      "passed": true,
+      "actual": {
+        "maxAirborneCellRadius": 0
+      }
+    },
+    {
+      "name": "rime_grip retains finite draw count",
+      "passed": true,
+      "actual": 61
+    },
+    {
+      "name": "rime_grip has dense actual multi-island mote cohorts",
+      "passed": true,
+      "actual": {
+        "posedMotes": 352,
+        "visibilityBoundary": "Geometry is active; occlusion and actual visible pixels require native/GPU review",
+        "cohortIslandCounts": [
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "name": "rime_grip has bright connected defining surfaces",
+      "passed": true,
+      "actual": 13
+    },
+    {
+      "name": "rime_grip defining envelope reads at retained gameplay scale",
+      "passed": true,
+      "actual": {
+        "projectedSpanPixels": 138.43,
+        "requiredPixels": 118,
+        "pixelsPerCell": 33.38
+      }
+    },
+    {
+      "name": "rime_grip broad silhouette survives all eight cast directions",
+      "passed": true,
+      "actual": {
+        "projectedSpanPixels": {
+          "0": 138.43157610927054,
+          "45": 136.8641064827206,
+          "90": 142.90132187043469,
+          "135": 146.86786208523782,
+          "180": 144.98548425831592,
+          "225": 145.6632630051199,
+          "270": 142.21933272808218,
+          "315": 136.5719278633273
+        },
+        "requiredMinimum": 75
+      }
+    },
+    {
+      "name": "rime_grip does not collapse to an edge-on sliver",
+      "passed": true,
+      "actual": {
+        "projectedMinorAxisPixels": {
+          "0": 136.38296270567946,
+          "45": 136.8490749216872,
+          "90": 135.94281329597607,
+          "135": 135.74280041752868,
+          "180": 136.38296270567946,
+          "225": 136.86410648272062,
+          "270": 135.94281329597607,
+          "315": 135.74280041752866
+        },
+        "requiredMinimum": 40
+      }
+    },
+    {
+      "name": "rime_grip primary forms readable at exact contact and held",
+      "passed": true,
+      "actual": {
+        "minContactScaleFraction": 0.7407408,
+        "longestStrongHoldFrames": 22
+      }
+    },
+    {
+      "name": "rime_grip clears new forms by original clear frame",
+      "passed": true,
+      "actual": 60
+    },
+    {
+      "name": "rime_grip coherent primary moves during its strong hold",
+      "passed": true,
+      "actual": {
+        "maxTranslationPlusQuaternionDelta": 0.09232506116540236,
+        "threshold": 0.035
+      }
+    },
+    {
+      "name": "calm has explicit bounded surface/decorative ownership",
+      "passed": true,
+      "actual": {
+        "maxAirborneCellRadius": 0
+      }
+    },
+    {
+      "name": "calm retains finite draw count",
+      "passed": true,
+      "actual": 42
+    },
+    {
+      "name": "calm has dense actual multi-island mote cohorts",
+      "passed": true,
+      "actual": {
+        "posedMotes": 352,
+        "visibilityBoundary": "Geometry is active; occlusion and actual visible pixels require native/GPU review",
+        "cohortIslandCounts": [
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16
+        ]
+      }
+    },
+    {
+      "name": "calm has bright connected defining surfaces",
+      "passed": true,
+      "actual": 9
+    },
+    {
+      "name": "calm defining envelope reads at retained gameplay scale",
+      "passed": true,
+      "actual": {
+        "projectedSpanPixels": 148.44,
+        "requiredPixels": 125,
+        "pixelsPerCell": 33.38
+      }
+    },
+    {
+      "name": "calm broad silhouette survives all eight cast directions",
+      "passed": true,
+      "actual": {
+        "projectedSpanPixels": {
+          "0": 148.4378706293599,
+          "45": 138.98828669125942,
+          "90": 143.6531886150074,
+          "135": 138.74413682839847,
+          "180": 147.89433531798255,
+          "225": 151.48619806936486,
+          "270": 163.931179189003,
+          "315": 151.7453363334319
+        },
+        "requiredMinimum": 75
+      }
+    },
+    {
+      "name": "calm does not collapse to an edge-on sliver",
+      "passed": true,
+      "actual": {
+        "projectedMinorAxisPixels": {
+          "0": 143.45409034503191,
+          "45": 133.3694084994832,
+          "90": 135.6087884724784,
+          "135": 131.79050595380582,
+          "180": 143.45409034503191,
+          "225": 138.98828669125947,
+          "270": 135.6087884724784,
+          "315": 138.74413682839847
+        },
+        "requiredMinimum": 40
+      }
+    },
+    {
+      "name": "calm primary forms readable at exact contact and held",
+      "passed": true,
+      "actual": {
+        "minContactScaleFraction": 0.7407408,
+        "longestStrongHoldFrames": 22
+      }
+    },
+    {
+      "name": "calm clears new forms by original clear frame",
+      "passed": true,
+      "actual": 70.0
+    },
+    {
+      "name": "calm coherent primary moves during its strong hold",
+      "passed": true,
+      "actual": {
+        "maxTranslationPlusQuaternionDelta": 0.12195355166211734,
+        "threshold": 0.035
+      }
+    },
+    {
+      "name": "conjure_rain has explicit bounded surface/decorative ownership",
+      "passed": true,
+      "actual": {
+        "maxAirborneCellRadius": 0
+      }
+    },
+    {
+      "name": "conjure_rain retains finite draw count",
+      "passed": true,
+      "actual": 15
+    }
+  ],
+  "controls": [
+    {
+      "name": "Deleted actual particle cohorts rejected",
+      "passed": true,
+      "rejectedBy": [
+        "ember_spit has dense actual multi-island mote cohorts"
+      ]
+    },
+    {
+      "name": "Removed material self-light rejected",
+      "passed": true,
+      "rejectedBy": [
+        "Local glow has enough static strength for actual game scale",
+        "ember_spit has bright connected defining surfaces",
+        "ember_spit defining envelope reads at retained gameplay scale",
+        "ember_spit broad silhouette survives all eight cast directions",
+        "ember_spit does not collapse to an edge-on sliver",
+        "ember_spit primary forms readable at exact contact and held",
+        "ember_spit coherent primary moves during its strong hold",
+        "flaming_hands has bright connected defining surfaces",
+        "flaming_hands defining envelope reads at retained gameplay scale",
+        "flaming_hands broad silhouette survives all eight cast directions",
+        "flaming_hands does not collapse to an edge-on sliver",
+        "flaming_hands primary forms readable at exact contact and held",
+        "flaming_hands coherent primary moves during its strong hold",
+        "jet_blast has bright connected defining surfaces",
+        "jet_blast defining envelope reads at retained gameplay scale",
+        "jet_blast broad silhouette survives all eight cast directions",
+        "jet_blast does not collapse to an edge-on sliver",
+        "jet_blast primary forms readable at exact contact and held",
+        "jet_blast coherent primary moves during its strong hold",
+        "ground_surge has bright connected defining surfaces",
+        "ground_surge defining envelope reads at retained gameplay scale",
+        "ground_surge broad silhouette survives all eight cast directions",
+        "ground_surge does not collapse to an edge-on sliver",
+        "ground_surge primary forms readable at exact contact and held",
+        "rime_grip has bright connected defining surfaces",
+        "rime_grip defining envelope reads at retained gameplay scale",
+        "rime_grip broad silhouette survives all eight cast directions",
+        "rime_grip does not collapse to an edge-on sliver",
+        "rime_grip primary forms readable at exact contact and held",
+        "rime_grip coherent primary moves during its strong hold",
+        "calm has bright connected defining surfaces",
+        "calm defining envelope reads at retained gameplay scale",
+        "calm broad silhouette survives all eight cast directions",
+        "calm does not collapse to an edge-on sliver",
+        "calm primary forms readable at exact contact and held",
+        "calm coherent primary moves during its strong hold"
+      ]
+    },
+    {
+      "name": "Flattened actual glow alpha rejected",
+      "passed": true,
+      "rejectedBy": [
+        "Actual soft halos have finite white-RGB alpha gradients"
+      ]
+    },
+    {
+      "name": "Malformed actual RGBA length rejected",
+      "passed": true,
+      "rejectedBy": [
+        "Actual soft halos have finite white-RGB alpha gradients"
+      ]
+    },
+    {
+      "name": "Airborne radius spill rejected",
+      "passed": true,
+      "rejectedBy": [
+        "flaming_hands has explicit bounded surface/decorative ownership"
+      ]
+    },
+    {
+      "name": "Wrong ground-surface classification rejected",
+      "passed": true,
+      "rejectedBy": [
+        "flaming_hands has explicit bounded surface/decorative ownership"
+      ]
+    },
+    {
+      "name": "Invisible exact contact rejected",
+      "passed": true,
+      "rejectedBy": [
+        "ember_spit primary forms readable at exact contact and held"
+      ]
+    },
+    {
+      "name": "Actual flattened crown geometry rejected",
+      "passed": true,
+      "rejectedBy": [
+        "ember_spit defining envelope reads at retained gameplay scale",
+        "ember_spit does not collapse to an edge-on sliver"
+      ]
+    },
+    {
+      "name": "Actual frozen primary follow-through rejected",
+      "passed": true,
+      "rejectedBy": [
+        "ember_spit coherent primary moves during its strong hold"
+      ]
+    },
+    {
+      "name": "Lingering new forms rejected",
+      "passed": true,
+      "rejectedBy": [
+        "ember_spit clears new forms by original clear frame"
+      ]
+    },
+    {
+      "name": "Unchanged exported art accepted",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"success\":true,\"message\":\"Test job status retrieved.\",\"error\":null,\"data\":{\"job_id\":\"089d7298b6c14f109591b157fe612f7a\",\"status\":\"failed\",\"mode\":\"EditMode\",\"started_unix_ms\":1788710643919,\"finished_unix_ms\":1788710665949,\"last_update_unix_ms\":1788710665949,\"progress\":{\"completed\":279,\"total\":279,\"current_test_full_name\":null,\"current_test_started_unix_ms\":1788710665627,\"last_finished_test_full_name\":\"CavesOfOoo.Tests.WorldMapZoneBuilderTests.ZoneCellToWorldCell_OutsideEmbeddedRegion_ReturnsMinusOne\",\"last_finished_unix_ms\":1788710665627,\"stuck_suspected\":false,\"editor_is_focused\":true,\"blocked_reason\":null,\"failures_so_far\":[{\"full_name\":\"CavesOfOoo.Tests.WorldMapObservabilityTests.Ascend_EmitsAscendedDiagWithFromAndToCoords\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapObservabilityTests.AscendThenStepEastThenWest_AndDescend_EmitsFourRecords\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapObservabilityTests.Descend_EmitsDescendedDiagWithCoordsAndSavedFlag\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapObservabilityTests.WorldMapMove_EmitsSteppedDiagWithWorldCoords\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapTests.OverworldZoneManager_CachesZones\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'AlchemyShelf''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapTests.OverworldZoneManager_RoutesBeatingBiome\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'StrongBox''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapTests.OverworldZoneManager_RoutesStumpBiome\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Sack''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapTests.TransitionPlayer_BringsPartyMembersAlong\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'AlchemyShelf''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapTests.TransitionPlayer_FailsAtWorldEdge\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'WovenBasket''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapTests.TransitionPlayer_FindsPassableCell\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'AlchemyShelf''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapTests.TransitionPlayer_FollowerInOtherZone_NotDragged\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'AlchemyShelf''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapTests.TransitionPlayer_LeavesNonPartyMembersBehind\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'AlchemyShelf''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapTests.TransitionPlayer_PlayerInNewZone\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'AlchemyShelf''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapTests.TransitionPlayer_PlayerRemovedFromOldZone\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'AlchemyShelf''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapTests.TransitionPlayer_RoundTrip_ReturnsCachedZone\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'AlchemyShelf''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapTests.TransitionPlayer_Success\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'AlchemyShelf''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapTravelCostTests.GroundZoneMove_DoesNotAdvanceClockExtra\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapTraversalTests.Ascend_FromCenter10_10_PlacesAtEmbedded40_13\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapTraversalTests.Ascend_FromGroundZone_TransitionsToWorldMap\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapTraversalTests.Ascend_SavesLastZoneIDAndCell_OnWorldMapPart\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapTraversalTests.Ascend_Then_Descend_RoundTripsExactCell\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapTraversalTests.Descend_FirstVisit_PlacesAtZoneCenter\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapTraversalTests.Descend_FromGroundZone_Refuses\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapTraversalTests.Descend_FromWorldMapCell_TransitionsToGroundZone\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect\"},{\"full_name\":\"CavesOfOoo.Tests.WorldMapVerticalResolverTests.Ascend_AutoAttachesWorldMapTravelCostPart\",\"message\":\"Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect\"}],\"failures_capped\":true},\"error\":null,\"result\":null},\"hint\":null}"
+    }
+  ],
+  "structuredContent": {
+    "result": {
+      "success": true,
+      "message": "Test job status retrieved.",
+      "error": null,
+      "data": {
+        "job_id": "089d7298b6c14f109591b157fe612f7a",
+        "status": "failed",
+        "mode": "EditMode",
+        "started_unix_ms": 1788710643919,
+        "finished_unix_ms": 1788710665949,
+        "last_update_unix_ms": 1788710665949,
+        "progress": {
+          "completed": 279,
+          "total": 279,
+          "current_test_full_name": null,
+          "current_test_started_unix_ms": 1788710665627,
+          "last_finished_test_full_name": "CavesOfOoo.Tests.WorldMapZoneBuilderTests.ZoneCellToWorldCell_OutsideEmbeddedRegion_ReturnsMinusOne",
+          "last_finished_unix_ms": 1788710665627,
+          "stuck_suspected": false,
+          "editor_is_focused": true,
+          "blocked_reason": null,
+          "failures_so_far": [
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapObservabilityTests.Ascend_EmitsAscendedDiagWithFromAndToCoords",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapObservabilityTests.AscendThenStepEastThenWest_AndDescend_EmitsFourRecords",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapObservabilityTests.Descend_EmitsDescendedDiagWithCoordsAndSavedFlag",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapObservabilityTests.WorldMapMove_EmitsSteppedDiagWithWorldCoords",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapTests.OverworldZoneManager_CachesZones",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'AlchemyShelf''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapTests.OverworldZoneManager_RoutesBeatingBiome",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'StrongBox''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapTests.OverworldZoneManager_RoutesStumpBiome",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Sack''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapTests.TransitionPlayer_BringsPartyMembersAlong",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'AlchemyShelf''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapTests.TransitionPlayer_FailsAtWorldEdge",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'WovenBasket''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapTests.TransitionPlayer_FindsPassableCell",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'AlchemyShelf''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapTests.TransitionPlayer_FollowerInOtherZone_NotDragged",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'AlchemyShelf''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapTests.TransitionPlayer_LeavesNonPartyMembersBehind",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'AlchemyShelf''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapTests.TransitionPlayer_PlayerInNewZone",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'AlchemyShelf''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapTests.TransitionPlayer_PlayerRemovedFromOldZone",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'AlchemyShelf''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapTests.TransitionPlayer_RoundTrip_ReturnsCachedZone",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'AlchemyShelf''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapTests.TransitionPlayer_Success",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'AlchemyShelf''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapTravelCostTests.GroundZoneMove_DoesNotAdvanceClockExtra",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapTraversalTests.Ascend_FromCenter10_10_PlacesAtEmbedded40_13",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapTraversalTests.Ascend_FromGroundZone_TransitionsToWorldMap",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapTraversalTests.Ascend_SavesLastZoneIDAndCell_OnWorldMapPart",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapTraversalTests.Ascend_Then_Descend_RoundTripsExactCell",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapTraversalTests.Descend_FirstVisit_PlacesAtZoneCenter",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapTraversalTests.Descend_FromGroundZone_Refuses",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapTraversalTests.Descend_FromWorldMapCell_TransitionsToGroundZone",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.WorldMapVerticalResolverTests.Ascend_AutoAttachesWorldMapTravelCostPart",
+              "message": "Unhandled log message: '[Error] EntityFactory: unknown blueprint 'Crate''. Use UnityEngine.TestTools.LogAssert.Expect"
+            }
+          ],
+          "failures_capped": true
+        },
+        "error": null,
+        "result": null
+      },
+      "hint": null
+    }
+  },
+  "isError": false
+}

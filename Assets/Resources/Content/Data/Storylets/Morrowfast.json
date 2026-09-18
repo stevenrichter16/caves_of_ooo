@@ -1,0 +1,242 @@
+{
+  "Storylets": [
+    {
+      "ID": "MorrowfastReturnNotch",
+      "OneShot": false,
+      "Tracked": true,
+      "Triggers": [
+        {
+          "Key": "IfFact",
+          "Value": "MorrowfastManualAdvance:>=:1"
+        }
+      ],
+      "Effects": [],
+      "Quest": {
+        "Name": "The Unfinished Return",
+        "Accomplishment": "You carried only the assurance Edden permitted and helped Hesta close a return notch.",
+        "Stages": [
+          {
+            "ID": "help",
+            "Triggers": [
+              {
+                "Key": "IfFact",
+                "Value": "MorrowfastManualAdvance:>=:1"
+              }
+            ],
+            "OnEnter": [],
+            "Objectives": [
+              {
+                "ID": "account",
+                "Text": "Speak to Edden in Morrowfast's southern square; carry only what he permits.",
+                "Triggers": [
+                  {
+                    "Key": "IfFact",
+                    "Value": "MorrowfastManualAdvance:>=:1"
+                  }
+                ],
+                "OnEnter": []
+              }
+            ]
+          },
+          {
+            "ID": "report",
+            "Triggers": [
+              {
+                "Key": "IfFact",
+                "Value": "MorrowfastManualAdvance:>=:1"
+              }
+            ],
+            "OnEnter": [],
+            "Objectives": [
+              {
+                "ID": "report",
+                "Text": "Return to Hesta at the east side of the northern arch.",
+                "Triggers": [
+                  {
+                    "Key": "IfFact",
+                    "Value": "MorrowfastManualAdvance:>=:1"
+                  }
+                ],
+                "OnEnter": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "ID": "MorrowfastBell",
+      "OneShot": false,
+      "Tracked": true,
+      "Triggers": [
+        {
+          "Key": "IfFact",
+          "Value": "MorrowfastManualAdvance:>=:1"
+        }
+      ],
+      "Effects": [],
+      "Quest": {
+        "Name": "A Bell That Carries",
+        "Accomplishment": "You attended Morrowfast's watch bell and left its setting in the hands of those who use it.",
+        "Stages": [
+          {
+            "ID": "help",
+            "Triggers": [
+              {
+                "Key": "IfFact",
+                "Value": "MorrowfastManualAdvance:>=:1"
+              }
+            ],
+            "OnEnter": [],
+            "Objectives": [
+              {
+                "ID": "cord",
+                "Text": "Inspect the reserve coil inside the southwest rope shop.",
+                "Triggers": [
+                  {
+                    "Key": "IfFact",
+                    "Value": "MorrowfastManualAdvance:>=:1"
+                  }
+                ],
+                "OnEnter": []
+              },
+              {
+                "ID": "bell",
+                "Text": "At the northern arch, sleeve the clapper with one fire clay or set bare metal for free.",
+                "Triggers": [
+                  {
+                    "Key": "IfFact",
+                    "Value": "MorrowfastManualAdvance:>=:1"
+                  }
+                ],
+                "OnEnter": []
+              }
+            ]
+          },
+          {
+            "ID": "report",
+            "Triggers": [
+              {
+                "Key": "IfFact",
+                "Value": "MorrowfastManualAdvance:>=:1"
+              }
+            ],
+            "OnEnter": [],
+            "Objectives": [
+              {
+                "ID": "report",
+                "Text": "Tell Nemm at the west side of the northern arch what you changed.",
+                "Triggers": [
+                  {
+                    "Key": "IfFact",
+                    "Value": "MorrowfastManualAdvance:>=:1"
+                  }
+                ],
+                "OnEnter": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "ID": "MorrowfastSupper",
+      "OneShot": false,
+      "Tracked": true,
+      "Triggers": [
+        {
+          "Key": "IfFact",
+          "Value": "MorrowfastManualAdvance:>=:1"
+        }
+      ],
+      "Effects": [],
+      "Quest": {
+        "Name": "Room for Supper",
+        "Accomplishment": "You made room for another person at Morrowfast's common supper table without reserving it for anyone.",
+        "Stages": [
+          {
+            "ID": "help",
+            "Triggers": [
+              {
+                "Key": "IfFact",
+                "Value": "MorrowfastManualAdvance:>=:1"
+              }
+            ],
+            "OnEnter": [],
+            "Objectives": [
+              {
+                "ID": "stool",
+                "Text": "Move the spare supper stool inside the western guesthouse onto clear floor.",
+                "Triggers": [
+                  {
+                    "Key": "IfFact",
+                    "Value": "MorrowfastManualAdvance:>=:1"
+                  }
+                ],
+                "OnEnter": []
+              }
+            ]
+          },
+          {
+            "ID": "report",
+            "Triggers": [
+              {
+                "Key": "IfFact",
+                "Value": "MorrowfastManualAdvance:>=:1"
+              }
+            ],
+            "OnEnter": [],
+            "Objectives": [
+              {
+                "ID": "report",
+                "Text": "Return to Farra in the square.",
+                "Triggers": [
+                  {
+                    "Key": "IfFact",
+                    "Value": "MorrowfastManualAdvance:>=:1"
+                  }
+                ],
+                "OnEnter": []
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "ID": "MorrowfastDryGoods",
+      "OneShot": false,
+      "Tracked": true,
+      "Triggers": [{"Key": "IfFact", "Value": "MorrowfastManualAdvance:>=:1"}],
+      "Effects": [],
+      "Quest": {
+        "Name": "A Dry Place at Supper",
+        "Accomplishment": "You recovered the western field's supper cloth and brought it back to Morrowfast without making hospitality a debt.",
+        "Stages": [
+          {
+            "ID": "recover",
+            "Triggers": [{"Key": "IfFact", "Value": "MorrowfastManualAdvance:>=:1"}],
+            "OnEnter": [],
+            "Objectives": [{
+              "ID": "recover",
+              "Text": "One chunk west of Morrowfast, find the tagged supply basket near the compost field's east edge. Open it and take the wrapped supper cloth before crossing back into town. No trees need burning and no ore needs digging.",
+              "Triggers": [{"Key": "IfFact", "Value": "MorrowfastManualAdvance:>=:1"}],
+              "OnEnter": []
+            }]
+          },
+          {
+            "ID": "return",
+            "Triggers": [{"Key": "IfFact", "Value": "MorrowfastManualAdvance:>=:1"}],
+            "OnEnter": [],
+            "Objectives": [{
+              "ID": "return",
+              "Text": "Return the cloth to Farra in Morrowfast's square, one chunk east. You can release the errand if it is lost; the guest beds remain open either way.",
+              "Triggers": [{"Key": "IfFact", "Value": "MorrowfastManualAdvance:>=:1"}],
+              "OnEnter": []
+            }]
+          }
+        ]
+      }
+    }
+  ]
+}

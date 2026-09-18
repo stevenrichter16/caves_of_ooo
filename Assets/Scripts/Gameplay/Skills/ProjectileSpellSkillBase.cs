@@ -26,7 +26,7 @@ namespace CavesOfOoo.Skills
     /// <c>powerClass</c> replaces <c>mutationClass</c>.</item>
     /// </list>
     /// </summary>
-    public abstract class ProjectileSpellSkillBase : BaseSkillPart
+    public abstract class ProjectileSpellSkillBase : SpellSkillPart
     {
         protected abstract string CommandName { get; }
         protected abstract AsciiFxTheme FxTheme { get; }
@@ -57,7 +57,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
@@ -72,23 +72,29 @@ namespace CavesOfOoo.Skills
             // Nearest occupied cell wins; creature-first within it. Solid
             // cells stop the walk AFTER being collected, so a tree is hit
             // and THEN stops the bolt.
+            var path = new System.Collections.Generic.List<Point>();
             var targets = SkillLine.Collect(
                 ctx.Zone, actor, actorPos.x, actorPos.y, dx, dy, AbilityRange,
-                out bool blockedByWall);
+                out bool blockedByWall, visitedCells: path);
             Entity target = targets.Count > 0 ? targets[0] : null;
 
             // FX path: source-exclusive cells along the line, ending at
             // the impact cell (the target's cell, or the blocking solid,
             // or max range).
-            var path = BuildFxPath(ctx.Zone, actorPos.x, actorPos.y, dx, dy, target);
+            if (target != null)
+            {
+                int last = path.FindIndex(p => ctx.Zone.GetOccupants(p.X,p.Y).Contains(target));
+                if (last >= 0 && last + 1 < path.Count)
+                    path.RemoveRange(last + 1, path.Count - last - 1);
+            }
             if (path.Count == 0) { EmitSkillRejectedDiag(ctx, "no_path"); return false; }
 
-            AsciiFxBus.EmitProjectile(ctx.Zone, path, FxTheme, trail: true,
-                blocksTurnAdvance: true);
+            SpellFxCapture.SetPath(ctx.Zone, path);
             ctx.BlocksTurnAdvance = true;
 
             if (target != null)
             {
+                SpellFxCapture.TargetOnPath(ctx.Zone, target);
                 int damage = DiceRoller.Roll(DamageDice, ctx.Rng);
                 if (damage > 0)
                 {
@@ -146,24 +152,5 @@ namespace CavesOfOoo.Skills
         /// Only called while the target is still standing.</summary>
         protected virtual void ApplyOnHitEffect(Entity target, Zone zone, System.Random rng) { }
 
-        private System.Collections.Generic.List<Point> BuildFxPath(
-            Zone zone, int startX, int startY, int dx, int dy, Entity target)
-        {
-            var path = new System.Collections.Generic.List<Point>();
-            int x = startX, y = startY;
-            for (int step = 0; step < AbilityRange; step++)
-            {
-                x += dx; y += dy;
-                if (!zone.InBounds(x, y)) break;
-                var cell = zone.GetCell(x, y);
-                if (cell == null) break;
-                path.Add(new Point(x, y));
-                // Stop at the impact: the target's cell, or a solid cell
-                // (which SkillLine already collected before stopping).
-                if (target != null && cell.Objects.Contains(target)) break;
-                if (cell.IsSolid()) break;
-            }
-            return path;
-        }
     }
 }

@@ -1,0 +1,4 @@
+Use case: precise-object-edit
+Edit target: Morrowfast reference.png. Preserve the exact scene, camera, layout, dimensions, colors and pixel-art style. Change ONLY the small cluster immediately outside the southeast kitchen at approximately x1130–1198,y800–905.
+
+Remove the outdoor square grey stone stove and its cooking pot, and remove the narrow kindling crate immediately to its left. Remove their contact shadows. Keep the wooden supply barrel and the small empty wooden bucket that stand behind and to the left of that stove. Reconstruct their concealed right/lower wooden edges, hoop details and silhouettes so those two remaining containers are complete. Restore the small ground patches under the removed stove/crate with adjacent moss and trampled earth. Keep the southeast house, door, nearby cook, purple food stall and every other object in the entire village unchanged. No new objects, no text, no labels, no crop, no checkerboard.

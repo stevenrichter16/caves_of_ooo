@@ -1,0 +1,31 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "NativeQuestCue",
+  "results": {
+    "id": "2",
+    "testcasecount": "42",
+    "result": "Failed(Child)",
+    "total": "42",
+    "passed": "40",
+    "failed": "2",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-17 02:22:11Z",
+    "end-time": "2026-09-17 02:22:14Z",
+    "duration": "2.9611822"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueAdversarialTests.AvailableCueHasAPaleFaceDarkSilhouetteAndReadableCellBoundedSizeInBothNativePalettes(False)",
+      "message": "  The available sign needs a light face and a dark silhouette, not one hue that can disappear against terrain.\n  Expected: 2\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeQuestCueAdversarialTests.AvailableCueHasAPaleFaceDarkSilhouetteAndReadableCellBoundedSizeInBothNativePalettes(True)",
+      "message": "  The available sign needs a light face and a dark silhouette, not one hue that can disappear against terrain.\n  Expected: 2\n  But was:  1\n"
+    }
+  ]
+}

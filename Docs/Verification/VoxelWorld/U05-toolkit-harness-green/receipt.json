@@ -1,0 +1,39 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CavesOfOoo.Tests.VoxelWorld",
+  "results": {
+    "id": "2",
+    "testcasecount": "105",
+    "result": "Failed(Child)",
+    "total": "105",
+    "passed": "101",
+    "failed": "4",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-12 08:19:41Z",
+    "end-time": "2026-09-12 08:19:42Z",
+    "duration": "0.3446476"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldMeshAdversarialTests.DuplicateSourceKeys_AreRejectedEvenWhenMeshReferencesDiffer",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldMeshAdversarialTests.InvalidSkinOverride_IsRejectedBeforeAnEarlierStaticSwapCanPublish",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldMeshAdversarialTests.ReversedWindingStillProducesOutwardSolidVoxels",
+      "message": "  Expected: 1 +/- 9.99999975E-05f\n  But was:  2.49999976f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldMeshAdversarialTests.SameBoneCountWithChangedBindpose_IsNotACompatibleSkinOverride",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "status": "GREEN",
+  "assertions": 9,
+  "passed": 9,
+  "sourceSha256": "39ea9e4134d839be88f9f44fcb87c4bd7ee2936ec6300d6fadfd3930165d3e39",
+  "checks": [
+    {
+      "name": "ember_spit has bounded non-popping effect envelopes",
+      "passed": true,
+      "actual": {
+        "meshes": 23,
+        "worstStepPer10ms": 0.17144945833346525,
+        "failures": []
+      }
+    },
+    {
+      "name": "flaming_hands has bounded non-popping effect envelopes",
+      "passed": true,
+      "actual": {
+        "meshes": 14,
+        "worstStepPer10ms": 0.20803043246269226,
+        "failures": []
+      }
+    },
+    {
+      "name": "jet_blast has bounded non-popping effect envelopes",
+      "passed": true,
+      "actual": {
+        "meshes": 26,
+        "worstStepPer10ms": 0.21282804012298584,
+        "failures": []
+      }
+    },
+    {
+      "name": "ground_surge has bounded non-popping effect envelopes",
+      "passed": true,
+      "actual": {
+        "meshes": 17,
+        "worstStepPer10ms": 0.20230478048324585,
+        "failures": []
+      }
+    },
+    {
+      "name": "rime_grip has bounded non-popping effect envelopes",
+      "passed": true,
+      "actual": {
+        "meshes": 13,
+        "worstStepPer10ms": 0.17397350072860718,
+        "failures": []
+      }
+    },
+    {
+      "name": "calm has bounded non-popping effect envelopes",
+      "passed": true,
+      "actual": {
+        "meshes": 7,
+        "worstStepPer10ms": 0.16598081588745117,
+        "failures": []
+      }
+    },
+    {
+      "name": "conjure_rain has bounded non-popping effect envelopes",
+      "passed": true,
+      "actual": {
+        "meshes": 45,
+        "worstStepPer10ms": 0.22469886759774088,
+        "failures": []
+      }
+    },
+    {
+      "name": "Unmodified reveal control passes before mutation",
+      "passed": true,
+      "actual": 1.0
+    },
+    {
+      "name": "Actual one-frame pop is rejected",
+      "passed": true,
+      "actual": {
+        "maxJump": 1.0
+      }
+    }
+  ]
+}

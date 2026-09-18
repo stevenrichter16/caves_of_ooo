@@ -121,6 +121,33 @@ namespace CavesOfOoo.Tests
                 "pre-fix this resolved the MIRRORED row and painted a generic floor");
         }
 
+        [Test]
+        public void AnimatedActorPredicate_RemovesGlyphAndLeavesGroundVisible()
+        {
+            var zone = ZoneWithGrassAt(5, 3);
+            var player = new Entity { ID = "p", BlueprintName = "Player" };
+            player.Tags["Player"] = "";
+            player.AddPart(new RenderPart
+            {
+                DisplayName = "you",
+                RenderString = "@",
+                RenderLayer = 20,
+            });
+            zone.AddEntity(player, 5, 3);
+            Reveal(zone);
+            var tilePos = PaintFloorGlyph(5, 3, Color.white);
+            _renderer.SetEntityVisualPredicate(entity => ReferenceEquals(entity, player));
+
+            _renderer.PostRender(zone, Zone.Width, Zone.Height);
+
+            Assert.IsNull(_mainTilemap.GetTile(tilePos),
+                "the CP437 actor glyph must not remain beneath its animated sprite");
+            Assert.IsNull(FindOverlay().GetTile(tilePos),
+                "the environment overlay must not replace an animated actor with static art");
+            StringAssert.StartsWith("grass_m", _bgTilemap.GetTile(tilePos)?.name,
+                "the ground remains visible beneath the bottom-pivot actor sprite");
+        }
+
         // ── R3: dirty-path release restores, never blanks ────────
 
         [Test]
@@ -216,7 +243,7 @@ namespace CavesOfOoo.Tests
             string NameAt(int x, int zy) =>
                 FindOverlay().GetTile(new Vector3Int(x, Zone.Height - 1 - zy, 0))?.name;
 
-            Assert.AreEqual($"grass_m{EnvironmentSpriteRenderer.MacroIndex(5, 3):D2}".Replace("_m", "_m"),
+            Assert.AreEqual($"grass_m{EnvironmentSpriteRenderer.MacroIndex(5, 3, 64):D2}",
                 NameAt(5, 3));
             var names = new[] { NameAt(5, 3), NameAt(6, 3), NameAt(5, 4), NameAt(6, 4) };
             foreach (var n in names)
@@ -838,9 +865,9 @@ namespace CavesOfOoo.Tests
 
             Assert.AreEqual("JungleApe", FindOverlay().GetTile(tilePos)?.name,
                 "the bestiary resolves by blueprint through the actor tier");
-            Assert.AreEqual(55, EnvironmentSpriteRenderer.CreatureSprites.Length,
+            Assert.AreEqual(56, EnvironmentSpriteRenderer.CreatureSprites.Length,
                 "roster pin: the 44-creature bestiary + the gin frog (W5.6) "
-                + "+ the tepui's lowland band (W6.3a) + summit/sima wave (W6.3b)");
+                + "+ the tepui's lowland band (W6.3a) + summit/sima wave (W6.3b) + the native MawToad pilot icon");
             Object.DestroyImmediate(aGlyph);
         }
 
@@ -992,4 +1019,3 @@ namespace CavesOfOoo.Tests
         }
     }
 }
-

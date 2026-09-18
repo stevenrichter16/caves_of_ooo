@@ -1,4 +1,5 @@
 using System;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
@@ -107,6 +108,7 @@ namespace CavesOfOoo.Core
             string adjacentID = WorldMap.GetAdjacentZoneID(currentZone.ZoneID, worldDX, worldDY);
             if (adjacentID == null)
             {
+                RecordFootprintArrival(player, currentZone, null, -1, -1, false, "world-edge");
                 return new ZoneTransitionResult
                 {
                     Success = false,
@@ -118,6 +120,7 @@ namespace CavesOfOoo.Core
             Zone newZone = zoneManager.GetZone(adjacentID);
             if (newZone == null)
             {
+                RecordFootprintArrival(player, currentZone, null, -1, -1, false, "generation-failed");
                 return new ZoneTransitionResult
                 {
                     Success = false,
@@ -129,9 +132,10 @@ namespace CavesOfOoo.Core
             var (idealX, idealY) = GetArrivalPosition(direction, currentX, currentY);
 
             // Find passable cell near ideal position
-            var (arriveX, arriveY) = FindPassableCell(newZone, idealX, idealY, direction);
+            var (arriveX, arriveY) = FindPassableCell(newZone, player, idealX, idealY, direction);
             if (arriveX < 0)
             {
+                RecordFootprintArrival(player, currentZone, newZone, arriveX, arriveY, false, "no-eligible-arrival");
                 return new ZoneTransitionResult
                 {
                     Success = false,
@@ -141,12 +145,19 @@ namespace CavesOfOoo.Core
 
             // Validate even exhausted vertical fallbacks before changing
             // source membership. Arrival exclusions do not block walking.
-            if (!CanArrive(newZone.GetCell(arriveX, arriveY)))
+            if (!CanArrive(newZone, player, arriveX, arriveY))
+            {
+                RecordFootprintArrival(player, currentZone, newZone, arriveX, arriveY, false, "no-eligible-arrival");
                 return new ZoneTransitionResult { Success = false, ErrorReason = "No eligible arrival cell" };
+            }
 
             // Execute the transfer
-            currentZone.RemoveEntity(player);
-            newZone.AddEntity(player, arriveX, arriveY);
+            if (!currentZone.TryTransferEntityTo(player, newZone, arriveX, arriveY))
+            {
+                RecordFootprintArrival(player, currentZone, newZone, arriveX, arriveY, false, "placement-changed");
+                return new ZoneTransitionResult { Success = false, ErrorReason = "Arrival placement changed" };
+            }
+            RecordFootprintArrival(player, currentZone, newZone, arriveX, arriveY, true, "");
 
             // F.2.7 — bring followers along. Any PartyMember currently
             // in the same zone as the leader gets teleported to a cell
@@ -210,12 +221,20 @@ namespace CavesOfOoo.Core
                 if (memberBrain.CurrentZone != oldZone) continue;
                 if (oldZone.GetEntityCell(member) == null) continue;
 
-                var (mx, my) = FindAdjacentPassableCell(newZone, leaderX, leaderY);
-                if (mx < 0) continue;
+                var (mx, my) = FindAdjacentPassableCell(newZone, member, leaderX, leaderY);
+                if (mx < 0)
+                {
+                    RecordFootprintArrival(member, oldZone, newZone, mx, my, false, "no-eligible-arrival");
+                    continue;
+                }
 
-                oldZone.RemoveEntity(member);
-                newZone.AddEntity(member, mx, my);
+                if (!oldZone.TryTransferEntityTo(member, newZone, mx, my))
+                {
+                    RecordFootprintArrival(member, oldZone, newZone, mx, my, false, "placement-changed");
+                    continue;
+                }
                 memberBrain.CurrentZone = newZone;
+                RecordFootprintArrival(member, oldZone, newZone, mx, my, true, "");
                 // InputHandler.HandleZoneTransition is responsible for
                 // re-registering the follower with TurnManager + setting
                 // brain.Rng — that loop iterates the NEW zone's creatures
@@ -224,11 +243,38 @@ namespace CavesOfOoo.Core
             }
         }
 
+        // Emit only the completed actor-level outcome. Candidate search probes
+        // deliberately stay quiet even when a large shape rejects many anchors.
+        private static void RecordFootprintArrival(Entity actor, Zone source, Zone destination,
+            int x, int y, bool succeeded, string reason)
+        {
+            if (actor?.GetPart<SpatialFootprintPart>() == null || !Diag.IsChannelEnabled("worldmap")) return;
+            Diag.Record("worldmap", succeeded ? "FootprintArrivalSucceeded" : "FootprintArrivalRejected", actor,
+                payload: new { fromZone = source?.ZoneID, toZone = destination?.ZoneID, x, y,
+                    cells = (succeeded ? destination : source)?.GetOccupiedCells(actor).Count ?? 0, reason });
+        }
+
         // Automatic arrivals must not place actors in a sealed interior.
         // Tags survive save/load and are checked beneath any dropped objects.
         // Ordinary walking and restoration deliberately do not use this rule.
-        private static bool CanArrive(Cell cell)
-            => cell != null && cell.IsPassable() && !cell.HasObjectWithTag("ExcludeZoneArrival");
+        private static bool CanArrive(Zone zone, Entity actor, int x, int y)
+        {
+            if (zone == null) return false;
+            // Keep the ordinary one-cell arrival contract. Opted-in shapes
+            // must fit every physical cell, including non-anchor exclusions.
+            if (actor?.GetPart<SpatialFootprintPart>() == null)
+            {
+                var cell = zone.GetCell(x, y);
+                return cell != null && cell.IsPassable()
+                    && !cell.HasObjectWithTag("ExcludeZoneArrival");
+            }
+            if (!zone.CanPlaceFootprint(actor, x, y)) return false;
+            var body = zone.GetOccupiedCells(actor, x, y);
+            if (body.Count == 0) return false;
+            foreach (var cell in body)
+                if (cell == null || cell.HasObjectWithTag("ExcludeZoneArrival")) return false;
+            return true;
+        }
 
         /// <summary>
         /// F.2.7 — search for a passable cell adjacent to
@@ -238,7 +284,7 @@ namespace CavesOfOoo.Core
         /// if nothing's passable within radius 4 — defensively rare;
         /// the caller leaves the follower behind in that case.
         /// </summary>
-        private static (int x, int y) FindAdjacentPassableCell(Zone zone, int cx, int cy)
+        private static (int x, int y) FindAdjacentPassableCell(Zone zone, Entity actor, int cx, int cy)
         {
             // 8-direction order matches SkillCombatHelpers.FindAdjacentCleaveTarget.
             int[] dx = { 0, 1, 1, 1, 0, -1, -1, -1 };
@@ -248,8 +294,7 @@ namespace CavesOfOoo.Core
                 int x = cx + dx[i];
                 int y = cy + dy[i];
                 if (!zone.InBounds(x, y)) continue;
-                var cell = zone.GetCell(x, y);
-                if (CanArrive(cell))
+                if (CanArrive(zone, actor, x, y))
                     return (x, y);
             }
             // Wider spiral if none of the 8 immediate cells work.
@@ -264,8 +309,7 @@ namespace CavesOfOoo.Core
                         int x = cx + ox;
                         int y = cy + oy;
                         if (!zone.InBounds(x, y)) continue;
-                        var cell = zone.GetCell(x, y);
-                        if (CanArrive(cell))
+                        if (CanArrive(zone, actor, x, y))
                             return (x, y);
                     }
                 }
@@ -278,11 +322,10 @@ namespace CavesOfOoo.Core
         /// First tries the exact position, then searches along the edge
         /// and inward in a spiral pattern.
         /// </summary>
-        private static (int x, int y) FindPassableCell(Zone zone, int targetX, int targetY, TransitionDirection direction)
+        private static (int x, int y) FindPassableCell(Zone zone, Entity actor, int targetX, int targetY, TransitionDirection direction)
         {
             // Try exact position first
-            var cell = zone.GetCell(targetX, targetY);
-            if (CanArrive(cell))
+            if (CanArrive(zone, actor, targetX, targetY))
                 return (targetX, targetY);
 
             // Search in expanding radius along the arrival edge
@@ -311,8 +354,7 @@ namespace CavesOfOoo.Core
                         }
 
                         if (!zone.InBounds(x, y)) continue;
-                        cell = zone.GetCell(x, y);
-                        if (CanArrive(cell))
+                        if (CanArrive(zone, actor, x, y))
                             return (x, y);
                     }
                 }
@@ -339,6 +381,7 @@ namespace CavesOfOoo.Core
 
             if (targetZoneID == null)
             {
+                RecordFootprintArrival(player, currentZone, null, -1, -1, false, "vertical-limit");
                 return new ZoneTransitionResult
                 {
                     Success = false,
@@ -349,6 +392,7 @@ namespace CavesOfOoo.Core
             Zone newZone = zoneManager.GetZone(targetZoneID);
             if (newZone == null)
             {
+                RecordFootprintArrival(player, currentZone, null, -1, -1, false, "generation-failed");
                 return new ZoneTransitionResult
                 {
                     Success = false,
@@ -369,14 +413,17 @@ namespace CavesOfOoo.Core
                 foreach (var e in newZone.GetAllEntities())
                     if (goingDown ? e.HasPart<StairsUpPart>() : e.HasPart<StairsDownPart>()) { returnStair = true; break; }
                 if (!returnStair)
+                {
+                    RecordFootprintArrival(player, currentZone, newZone, -1, -1, false, "return-stairs-missing");
                     return new ZoneTransitionResult { Success = false, ErrorReason = "The return stairs are missing" };
+                }
             }
 
             // Find matching stairs in the target zone
             // Going down: look for StairsUp (the matching pair)
             // Going up: look for StairsDown (the matching pair)
             string searchTag = goingDown ? "StairsUp" : "StairsDown";
-            var (arriveX, arriveY) = FindStairsInZone(newZone, searchTag, currentX, currentY);
+            var (arriveX, arriveY) = FindStairsInZone(newZone, player, searchTag, currentX, currentY);
 
             if (arriveX < 0)
             {
@@ -385,8 +432,7 @@ namespace CavesOfOoo.Core
                 arriveY = currentY;
 
                 // Ensure it's passable
-                var cell = newZone.GetCell(arriveX, arriveY);
-                if (!CanArrive(cell))
+                if (!CanArrive(newZone, player, arriveX, arriveY))
                 {
                     // Search for any passable cell nearby
                     for (int radius = 1; radius <= 20; radius++)
@@ -399,8 +445,7 @@ namespace CavesOfOoo.Core
                                 int nx = arriveX + dx;
                                 int ny = arriveY + dy;
                                 if (!newZone.InBounds(nx, ny)) continue;
-                                var c = newZone.GetCell(nx, ny);
-                                if (CanArrive(c))
+                                if (CanArrive(newZone, player, nx, ny))
                                 {
                                     arriveX = nx;
                                     arriveY = ny;
@@ -415,12 +460,19 @@ namespace CavesOfOoo.Core
 
             // Validate even exhausted vertical fallbacks before changing
             // source membership. Arrival exclusions do not block walking.
-            if (!CanArrive(newZone.GetCell(arriveX, arriveY)))
+            if (!CanArrive(newZone, player, arriveX, arriveY))
+            {
+                RecordFootprintArrival(player, currentZone, newZone, arriveX, arriveY, false, "no-eligible-arrival");
                 return new ZoneTransitionResult { Success = false, ErrorReason = "No eligible arrival cell" };
+            }
 
             // Execute the transfer
-            currentZone.RemoveEntity(player);
-            newZone.AddEntity(player, arriveX, arriveY);
+            if (!currentZone.TryTransferEntityTo(player, newZone, arriveX, arriveY))
+            {
+                RecordFootprintArrival(player, currentZone, newZone, arriveX, arriveY, false, "placement-changed");
+                return new ZoneTransitionResult { Success = false, ErrorReason = "Arrival placement changed" };
+            }
+            RecordFootprintArrival(player, currentZone, newZone, arriveX, arriveY, true, "");
 
             // F.2.7 — bring followers along through stair transitions
             // too. Symmetric with the horizontal path above.
@@ -438,7 +490,7 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Find stairs with the given tag in a zone, preferring position closest to (nearX, nearY).
         /// </summary>
-        private static (int x, int y) FindStairsInZone(Zone zone, string stairsTag, int nearX, int nearY)
+        private static (int x, int y) FindStairsInZone(Zone zone, Entity actor, string stairsTag, int nearX, int nearY)
         {
             int bestX = -1, bestY = -1;
             int bestDist = int.MaxValue;
@@ -448,7 +500,7 @@ namespace CavesOfOoo.Core
                 for (int y = 0; y < Zone.Height; y++)
                 {
                     var cell = zone.GetCell(x, y);
-                    if (!CanArrive(cell)) continue;
+                    if (!CanArrive(zone, actor, x, y)) continue;
                     for (int i = 0; i < cell.Objects.Count; i++)
                     {
                         if (cell.Objects[i].HasTag(stairsTag))

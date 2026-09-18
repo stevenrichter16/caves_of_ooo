@@ -1,0 +1,20 @@
+{
+  "mode": "built-in imagegen",
+  "jobs": [
+    {
+      "id": "clean-plate",
+      "prompt": "Use case: precise-object-edit. Input image is an EDIT TARGET: the selected Felling-Site scene for Caves of Ooo. Create the exact same 1536x1024 image with ONLY the small moss-cloaked traveler near bottom-center removed (roughly x744..796, y808..875). Reconstruct the small patch of dark moss and weathered ground hidden behind the traveler and their tiny contact shadow, matching adjacent texture. Preserve EVERYTHING ELSE as precisely as possible: full camera and crop, pink-grey petrified wood-grain cliff, every root silhouette, the six circular bare earth positions, tiny seventh absence above them, left waterfall and river, all rocks, plants, color palette, lighting, source pixel structure. This will be a game environment plate behind a separately animated player. No new people, no text, no rescaling, no new shapes or redesign. Keep six and only six earth patches. Opaque full-canvas PNG.",
+      "reference": "/Users/steven/caves-of-ooo/ArtSource/FellingSite/reference.png"
+    },
+    {
+      "id": "ground-repair",
+      "prompt": "Use case: precise-object-edit. Input image is a supporting style/composition reference for a GROUND REPAIR UNDERLAY of the same Caves of Ooo Felling-Site. Make a 1536x1024 full-canvas ground-only repair plate at the IDENTICAL camera, projection, scale and muted palette. Keep the six circular earth patches in exactly their current positions and sizes, keep the south approach path and dark moss ground around them, and keep the left river/waterfall geography. In the LOWER portion of the scene below y440, remove the person, protruding rocks, stone root fingers and colorful plants and replace those removed areas with contiguous matching low-detail dark moss, mineral soil, and subtle pebbles. Leave the giant upper cliff above y440 intact. The goal is plausible hidden ground to reveal in limited masks when a small scene object is removed later; this is a repair study, not a replacement main composition. Do not move six circles, camera, river or south path. No new structures, people, words, symbols or portals.",
+      "reference": "/Users/steven/caves-of-ooo/ArtSource/FellingSite/reference.png"
+    },
+    {
+      "id": "environment-props",
+      "prompt": "Use case: background-extraction. Input image is the style and source reference. Create a small game PROP SHEET on a genuinely transparent RGBA background for Caves of Ooo, preserving the reference's precise muted pixel-art-like cluster texture and colors. 1536x1024 canvas, twelve clearly separated individual props laid in an orderly 4-column by3-row grid with generous fully transparent margins; no overlaps and no ground squares beneath props. Row1: four small pink-grey petrified root/rock fragments with cream fiber seams and dark moss intrusion, different readable profiles. Row2: four wine-red DRO SERA SUNDEW rosettes at different angles, rounded/spoon leaves with hairlike tentacles and sticky dew beads; absolutely no flytrap jaws or teeth. Row3: two tiny teal living plant sprigs and two sparse pale-magenta fungal clusters, based on the scene's peripheral accents. Isolated cutout silhouettes, restrained saturation, grounded perspective matching the source, no cast shadows outside silhouettes, no checkerboard baked into pixels, no colored background, no border, no words or labels, no people. These are prop studies for eventual precise slicing. Keep real transparent background alpha.",
+      "reference": "/Users/steven/caves-of-ooo/ArtSource/FellingSite/reference.png"
+    }
+  ]
+}

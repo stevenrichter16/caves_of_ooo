@@ -1,0 +1,494 @@
+--- /tmp/codex-village3d-before/files/Assets/Scripts/Gameplay/Save/SaveSystem.cs
++++ Assets/Scripts/Gameplay/Save/SaveSystem.cs
+@@ -64,5 +64,5 @@
+         }
+ 
+-        public void WriteCheck(string name)
++        internal static int CheckValue(string name)
+         {
+             unchecked
+@@ -71,7 +71,12 @@
+                 for (int i = 0; i < name.Length; i++)
+                     hash = hash * 31 + name[i];
+-                Write(hash);
+-            }
+-        }
++                return hash;
++            }
++        }
++
++        public void WriteCheck(string name) => Write(CheckValue(name));
++
++        // Extension-only byte payloads; the legacy string encoding stays unchanged.
++        internal void WriteBytes(byte[] bytes) => _writer.Write(bytes);
+ 
+         public void Write(int value) => _writer.Write(value);
+@@ -162,14 +167,13 @@
+         public void ExpectCheck(string name)
+         {
+-            unchecked
+-            {
+-                int hash = 17;
+-                for (int i = 0; i < name.Length; i++)
+-                    hash = hash * 31 + name[i];
+-
+-                int actual = ReadInt();
+-                if (actual != hash)
+-                    throw new InvalidDataException($"Save section check failed: {name}.");
+-            }
++            if (ReadInt() != SaveWriter.CheckValue(name))
++                throw new InvalidDataException($"Save section check failed: {name}.");
++        }
++
++        internal byte[] ReadBytesExactly(int count)
++        {
++            byte[] bytes = _reader.ReadBytes(count);
++            if (bytes.Length != count) throw new EndOfStreamException("Truncated save byte payload.");
++            return bytes;
+         }
+ 
+@@ -367,4 +371,5 @@
+ 
+             writer.WriteQueuedEntityBodies();
++            SessionTileStateSerializer.Write(ZoneManager, writer);
+             writer.WriteCheck("GameSession.End");
+         }
+@@ -402,5 +407,6 @@
+ 
+             reader.ReadEntityBodies(runLoadHooks: false);
+-            reader.ExpectCheck("GameSession.End");
++            var tileSnapshot = SessionTileStateSerializer.ReadOptionalAndEnd(state.ZoneManager, reader);
++            tileSnapshot?.Apply();
+ 
+             // Parser failures leave the live session untouched. Load-hook or
+@@ -414,5 +420,12 @@
+             SpellFxBus.Clear();
+             reader.RunLoadHooks();
++            // Hooks may deliberately change restored tiles. Preserve their
++            // completed result across reconstruction-only pool projections.
++            if (tileSnapshot != null)
++                tileSnapshot = SessionTileStateSerializer.Capture(state.ZoneManager);
+             SaveGraphSerializer.RebuildLoadedWorld(state, reader.LoadedEntities);
++            // Scene migrations may AddEntity and project a liquid pool. The
++            // post-hook snapshot, including deliberately erased coatings, wins.
++            tileSnapshot?.Apply();
+             return state;
+         }
+--- /tmp/codex-village3d-before/files/Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs
++++ Assets/Scripts/Presentation/Bootstrap/GameBootstrap.cs
+@@ -269,18 +269,5 @@
+ 
+                 Debug.Log("[Bootstrap] Step 5/9: Generating starting zone...");
+-                bool zoneGenerated = PerformanceDiagnostics.MeasureStartupPhase("GenerateZone", PerformanceMarkers.Bootstrap.GenerateZone, () =>
+-                {
+-                    _zoneManager = new OverworldZoneManager(_factory);
+-                    _zone = _zoneManager.GetZone(WorldMap.StartingZoneID);
+-                    _zoneManager.SetActiveZone(_zone);
+-                    if (_zone == null)
+-                    {
+-                        Debug.LogError("[Bootstrap] FAILED: Zone generation returned null");
+-                        return false;
+-                    }
+-
+-                    Debug.Log($"[Bootstrap] Zone generated: {_zone.EntityCount} entities");
+-                    return true;
+-                });
++                bool zoneGenerated = PerformanceDiagnostics.MeasureStartupPhase("GenerateZone", PerformanceMarkers.Bootstrap.GenerateZone, GenerateStartingZone);
+                 if (!zoneGenerated)
+                     return;
+@@ -1318,11 +1305,40 @@
+ 
+         /// <summary>
+-        /// Find an open cell near the center of the zone to place the player.
+-        /// Searches outward from center in a spiral.
++        /// Create the fresh world at the authored Morrowfast entrance. Loading a
++        /// saved graph uses ApplyLoadedGame and never calls this start selection.
++        /// </summary>
++        private bool GenerateStartingZone()
++        {
++            _zoneManager = new OverworldZoneManager(_factory, NativeAuditBootstrapSettings.ResolveSeed());
++            _zone = _zoneManager.GetZone(MorrowfastSceneRuntime.ZoneID);
++            _zoneManager.SetActiveZone(_zone);
++            if (_zone == null)
++            {
++                Debug.LogError("[Bootstrap] FAILED: Zone generation returned null");
++                return false;
++            }
++
++            if (MorrowfastStartingGarden.Ensure(_zone) != FarmPlotSeeder.MIN_PLANTABLE_CELLS)
++            {
++                Debug.LogError("[Bootstrap] FAILED: Morrowfast's starter garden could not be prepared");
++                return false;
++            }
++
++            Debug.Log($"[Bootstrap] Zone generated: {_zone.EntityCount} entities");
++            return true;
++        }
++
++        private const int MorrowfastStartX = 40;
++        private const int MorrowfastStartY = 23;
++
++        /// <summary>
++        /// Place a fresh character just inside Morrowfast's southern road,
++        /// searching outward if occupied. Other zones retain the center search.
+         /// </summary>
+         private void PlacePlayerInOpenCell()
+         {
+-            int cx = Zone.Width / 2;
+-            int cy = Zone.Height / 2;
++            bool morrowfast = MorrowfastSceneRuntime.IsActive(_zone);
++            int cx = morrowfast ? MorrowfastStartX : Zone.Width / 2;
++            int cy = morrowfast ? MorrowfastStartY : Zone.Height / 2;
+ 
+             for (int radius = 0; radius < Math.Max(Zone.Width, Zone.Height); radius++)
+@@ -1346,5 +1362,5 @@
+             }
+ 
+-            // Fallback: place at center regardless
++            // Fallback: retain the preferred starting cell if no open cell exists
+             _zone.AddEntity(_player, cx, cy);
+         }
+--- /tmp/codex-village3d-before/files/Assets/Scripts/Presentation/Cameras/CameraFollow.cs
++++ Assets/Scripts/Presentation/Cameras/CameraFollow.cs
+@@ -40,4 +40,6 @@
+         private FellingScenePresenter _scenePresenter;
+         private MorrowfastScenePresenter _morrowfastScenePresenter;
++        private Village3DPresenter _village3DPresenter;
++        private SpawnRing3DPresenter _spawnRing3DPresenter;
+         private bool _paused;
+         private bool _centeredPopupOverlayActive;
+@@ -62,4 +64,8 @@
+             if (_morrowfastScenePresenter == null)
+                 _morrowfastScenePresenter = FindFirstObjectByType<MorrowfastScenePresenter>();
++            if (_village3DPresenter == null)
++                _village3DPresenter = FindFirstObjectByType<Village3DPresenter>();
++            if (_spawnRing3DPresenter == null)
++                _spawnRing3DPresenter = FindFirstObjectByType<SpawnRing3DPresenter>();
+             if (_camera == null)
+                 _camera = GetComponent<Camera>();
+@@ -280,7 +286,9 @@
+             bool felling = _scenePresenter != null && _scenePresenter.PresentationVisible
+                 && ReferenceEquals(_scenePresenter.CurrentZone, CurrentZone);
+-            bool morrowfast = _morrowfastScenePresenter != null && _morrowfastScenePresenter.PresentationVisible
+-                && ReferenceEquals(_morrowfastScenePresenter.CurrentZone, CurrentZone);
+-            if (felling || morrowfast)
++            bool morrowfast = HasMorrowfastPresentation;
++            bool ring = HasSpawnRingPresentation;
++            if (ring)
++                _camera.orthographicSize = Mathf.Min(GetGameplayZoomSize(), Zone.Height * 0.5f);
++            if (!ring && (felling || morrowfast))
+             {
+                 _camera.orthographicSize = morrowfast
+@@ -340,8 +348,10 @@
+             }
+ 
+-            float minX = halfW - 0.5f;
+-            float maxX = (Zone.Width - 1) + 0.5f - halfW;
+-            float minY = halfH - 0.5f;
+-            float maxY = (Zone.Height - 1) + 0.5f - halfH;
++            // The ring occupies the complete native cell rectangle. Preserve
++            // ordinary framing elsewhere, but never expose its half-cell margins.
++            float minX = ring ? halfW : halfW - 0.5f;
++            float maxX = ring ? Zone.Width - halfW : (Zone.Width - 1) + 0.5f - halfW;
++            float minY = ring ? halfH : halfH - 0.5f;
++            float maxY = ring ? Zone.Height - halfH : (Zone.Height - 1) + 0.5f - halfH;
+ 
+             // If zone fits entirely within camera view on an axis, center it
+@@ -383,6 +393,5 @@
+                 // Morrowfast's native player needs a half-cell strip above its
+                 // top-down source. Fit the same width rather than exposing side floor.
+-                bool morrowfast = _morrowfastScenePresenter != null && _morrowfastScenePresenter.PresentationVisible
+-                    && ReferenceEquals(_morrowfastScenePresenter.CurrentZone, CurrentZone);
++                bool morrowfast = HasMorrowfastPresentation;
+                 float sourceAspect = morrowfast ? MorrowfastScenePresenter.CameraAspect : 1.5f;
+                 float width = Mathf.Min(mapRect.width, mapRect.height * sourceAspect / layout.DisplayAspect);
+@@ -454,9 +463,18 @@
+         }
+ 
++        private bool HasSpawnRingPresentation
++            => _spawnRing3DPresenter != null && _spawnRing3DPresenter.IsReady
++                && _spawnRing3DPresenter.PresentationVisible
++                && ReferenceEquals(_spawnRing3DPresenter.CurrentZone, CurrentZone);
++
++        private bool HasMorrowfastPresentation
++            => (_village3DPresenter != null && _village3DPresenter.PresentationVisible && ReferenceEquals(_village3DPresenter.CurrentZone, CurrentZone))
++                || (_morrowfastScenePresenter != null && _morrowfastScenePresenter.PresentationVisible && ReferenceEquals(_morrowfastScenePresenter.CurrentZone, CurrentZone));
++
+         private bool TracksInsideSceneArt()
+         {
+-            if (CurrentZone == null) return false;
++            if (CurrentZone == null || HasSpawnRingPresentation) return false;
+             bool felling = _scenePresenter != null && _scenePresenter.PresentationVisible && ReferenceEquals(_scenePresenter.CurrentZone, CurrentZone);
+-            bool morrowfast = _morrowfastScenePresenter != null && _morrowfastScenePresenter.PresentationVisible && ReferenceEquals(_morrowfastScenePresenter.CurrentZone, CurrentZone);
++            bool morrowfast = HasMorrowfastPresentation;
+             if (!felling && !morrowfast) return false;
+             int x, y;
+--- /tmp/codex-village3d-before/files/Assets/Scripts/Presentation/Rendering/ZoneRenderer.cs
++++ Assets/Scripts/Presentation/Rendering/ZoneRenderer.cs
+@@ -81,4 +81,8 @@
+         public FellingDressingPresenter FellingDressingPresenter => _fellingDressingPresenter;
+         private MorrowfastScenePresenter _morrowfastScenePresenter;
++        private Village3DPresenter _village3DPresenter;
++        public Village3DPresenter Village3D => _village3DPresenter;
++        private SpawnRing3DPresenter _spawnRing3DPresenter;
++        public SpawnRing3DPresenter SpawnRing3D => _spawnRing3DPresenter;
+         public MorrowfastScenePresenter MorrowfastPresenter => _morrowfastScenePresenter;
+         private CavesOfOoo.Presentation.Effects.LightSourceSpriteHook _lightSourceHook; // Pass 8
+@@ -272,4 +276,6 @@
+         private void Awake()
+         {
++            if (Application.isPlaying && GetComponent<Village3DControls>() == null)
++                gameObject.AddComponent<Village3DControls>();
+             _lastFlashStamp = MessageLog.FlashStamp;
+             _mainCamera = Camera.main;
+@@ -406,4 +412,10 @@
+                 _entityVisualRenderer.SetSourceEntityPredicate(IsSourceSceneBody);
+                 _envSpriteRenderer.SetEntityVisualPredicate(_entityVisualRenderer.CanRender);
++                var village3DObject = new GameObject("Village3DPresenter");
++                village3DObject.transform.SetParent(gridParent, false);
++                _village3DPresenter = village3DObject.AddComponent<Village3DPresenter>();
++                var ringObject = new GameObject("SpawnRing3DPresenter");
++                ringObject.transform.SetParent(gridParent, false);
++                _spawnRing3DPresenter = ringObject.AddComponent<SpawnRing3DPresenter>();
+ 
+                 // Pass 8 §8E.1: Light2D point lights on campfire `*` and
+@@ -539,4 +551,6 @@
+             _fellingDressingPresenter?.SetPresentationVisible(false);
+             _morrowfastScenePresenter?.SetPresentationVisible(false);
++            _village3DPresenter?.SetPresentationVisible(false);
++            _spawnRing3DPresenter?.SetPresentationVisible(false);
+         }
+ 
+@@ -548,4 +562,6 @@
+             _fellingDressingPresenter?.Unbind();
+             _morrowfastScenePresenter?.Unbind();
++            _village3DPresenter?.Bind(null, _mainCamera);
++            _spawnRing3DPresenter?.Bind(null, _mainCamera);
+             _worldFxCoordinator?.Dispose();
+             DestroyOwnedMaterial(ref _sidebarUiMaterial);
+@@ -575,5 +591,5 @@
+             _fellingScenePresenter?.Bind(zone);
+             _fellingDressingPresenter?.Bind(zone);
+-            _morrowfastScenePresenter?.Bind(zone);
++            SyncVillagePresentation(!Paused);
+             _entityVisualRenderer?.SetZone(zone);
+             if (_worldFxCoordinator != null) _worldFxCoordinator.SetZone(zone);
+@@ -792,4 +808,6 @@
+                     _fellingDressingPresenter?.SetPresentationVisible(false);
+                     _morrowfastScenePresenter?.SetPresentationVisible(false);
++                    _village3DPresenter?.SetPresentationVisible(false);
++                    _spawnRing3DPresenter?.SetPresentationVisible(false);
+                     _worldFxCoordinator?.Update(Time.unscaledDeltaTime,
+                         _envSpriteRenderer == null || _envSpriteRenderer.RenderingEnabled, false);
+@@ -856,5 +874,5 @@
+                 // FX ticks only while the world is actually on screen.
+                 _fellingScenePresenter?.SetPresentationVisible(_envSpriteRenderer != null && _envSpriteRenderer.RenderingEnabled);
+-                _morrowfastScenePresenter?.SetPresentationVisible(_envSpriteRenderer != null && _envSpriteRenderer.RenderingEnabled);
++                SyncVillagePresentation(_envSpriteRenderer != null && _envSpriteRenderer.RenderingEnabled);
+                 _fellingDressingPresenter?.SetPresentationVisible(_fellingScenePresenter != null && _fellingScenePresenter.PresentationVisible);
+                 _entityVisualRenderer?.SetPresentationVisible(
+@@ -908,15 +926,26 @@
+                         _fellingScenePresenter?.Refresh();
+                         _fellingDressingPresenter?.Refresh();
+-                        _morrowfastScenePresenter?.Refresh();
+-                        RenderDirtyCells();
+-                        // Pass 13 + ROUND 4: the sprite pass runs on the
+-                        // incremental path too, but now receives the
+-                        // DIRTY SET and re-resolves only those cells
+-                        // (plus neighbors) — the audit measured the old
+-                        // full release/rescan at ~13-15k tilemap writes
+-                        // per NPC step. Clear AFTER the sprite pass.
+-                        if (_envSpriteRenderer != null)
+-                            _envSpriteRenderer.PostRender(CurrentZone, Zone.Width, Zone.Height, _dirtyCells);
+-                        _entityVisualRenderer?.SyncZone(CurrentZone);
++                        RefreshVillagePresentation();
++                        bool ringClaimsChanged = RefreshSpawnRingPresentation(_dirtyCells);
++                        if (ringClaimsChanged)
++                        {
++                            // A model failure releases the entire 3D surface. Every
++                            // native body it suppressed must return in this frame,
++                            // including cells outside the original dirty set.
++                            RenderZone();
++                        }
++                        else
++                        {
++                            RenderDirtyCells();
++                            // Pass 13 + ROUND 4: the sprite pass runs on the
++                            // incremental path too, but now receives the
++                            // DIRTY SET and re-resolves only those cells
++                            // (plus neighbors) — the audit measured the old
++                            // full release/rescan at ~13-15k tilemap writes
++                            // per NPC step. Clear AFTER the sprite pass.
++                            if (_envSpriteRenderer != null)
++                                _envSpriteRenderer.PostRender(CurrentZone, Zone.Width, Zone.Height, _dirtyCells);
++                            _entityVisualRenderer?.SyncZone(CurrentZone);
++                        }
+                         _dirtyCells.Clear();
+                     }
+@@ -980,4 +1009,8 @@
+                     _lightMap.Compute(CurrentZone);
+ 
++                SyncVillagePresentation(!Paused && _envSpriteRenderer != null && _envSpriteRenderer.RenderingEnabled);
++                _village3DPresenter?.Refresh(_lightMap);
++                RefreshSpawnRingPresentation();
++
+                 int cellsRendered = Zone.Width * Zone.Height;
+                 PerformanceDiagnostics.RecordZoneRedraw(cellsRendered);
+@@ -1005,10 +1038,9 @@
+                 // Skips no-op-ly if RenderingEnabled is false
+                 // (toggled via SpriteEnvToggleController).
+-                _fellingScenePresenter?.SetPresentationVisible(!Paused && _envSpriteRenderer != null && _envSpriteRenderer.RenderingEnabled);
+                 _fellingScenePresenter?.Refresh();
+                 _fellingDressingPresenter?.SetPresentationVisible(_fellingScenePresenter != null && _fellingScenePresenter.PresentationVisible);
+                 _fellingDressingPresenter?.Refresh();
+-                _morrowfastScenePresenter?.SetPresentationVisible(!Paused && _envSpriteRenderer != null && _envSpriteRenderer.RenderingEnabled);
+-                _morrowfastScenePresenter?.Refresh();
++                if (_village3DPresenter == null || !_village3DPresenter.PresentationVisible)
++                    _morrowfastScenePresenter?.Refresh();
+                 if (_envSpriteRenderer != null)
+                     _envSpriteRenderer.PostRender(CurrentZone, Zone.Width, Zone.Height);
+@@ -1248,4 +1280,6 @@
+                 || state.Coatings.Count != 1 || state.Coatings[0].Id != "water"
+                 || state.Coatings[0].Turns != ZoneTileState.Permanent) return false;
++            if (_spawnRing3DPresenter != null && ReferenceEquals(_spawnRing3DPresenter.CurrentZone, CurrentZone)
++                && _spawnRing3DPresenter.HasRepresentedWater(x, y)) return true;
+             foreach (Entity entity in cell.Objects)
+             {
+@@ -1434,5 +1468,7 @@
+             // second CPU attenuation on visible actors standing in that artwork;
+             // the actor renderer still owns actual FOV and its normal material.
+-            if (ClaimsAuthoredSceneCell(x, y) && CurrentZone.GetCell(x, y)?.IsVisible == true)
++            if ((_village3DPresenter == null || !_village3DPresenter.PresentationVisible)
++                && (_spawnRing3DPresenter == null || !_spawnRing3DPresenter.PresentationVisible)
++                && ClaimsAuthoredSceneCell(x, y) && CurrentZone.GetCell(x, y)?.IsVisible == true)
+                 return Color.white;
+             Color tint = Color.white;
+@@ -1713,4 +1749,8 @@
+             }
+             Vector3 world = camera.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, -camera.transform.position.z));
++            if (_village3DPresenter != null && ReferenceEquals(_village3DPresenter.CurrentZone, CurrentZone)
++                && _village3DPresenter.TryPickWorld(world, out owner, out x, out y)) return true;
++            if (_spawnRing3DPresenter != null && ReferenceEquals(_spawnRing3DPresenter.CurrentZone, CurrentZone)
++                && _spawnRing3DPresenter.TryPickWorld(world, out owner, out x, out y)) return true;
+             int sourceOrder = 0; float sourceDepth = 0;
+             bool sourceHit = _fellingScenePresenter != null && _fellingScenePresenter.TryPickImage(
+@@ -1734,19 +1774,61 @@
+         }
+ 
++        private void SyncVillagePresentation(bool worldVisible)
++        {
++            _village3DPresenter?.Bind(CurrentZone, _mainCamera);
++            _village3DPresenter?.SetPresentationVisible(worldVisible && Village3DSettings.Enabled);
++            bool threeD = _village3DPresenter != null && _village3DPresenter.PresentationVisible;
++            if (!threeD) _morrowfastScenePresenter?.Bind(CurrentZone);
++            _morrowfastScenePresenter?.SetPresentationVisible(worldVisible && !threeD);
++            _spawnRing3DPresenter?.Bind(CurrentZone, _mainCamera);
++            _spawnRing3DPresenter?.SetPresentationVisible(worldVisible && Village3DSettings.Enabled);
++            bool ring = _spawnRing3DPresenter != null && _spawnRing3DPresenter.PresentationVisible;
++            _fellingScenePresenter?.SetPresentationVisible(worldVisible && !ring);
++            _fellingDressingPresenter?.SetPresentationVisible(worldVisible && !ring
++                && _fellingScenePresenter != null && _fellingScenePresenter.PresentationVisible);
++        }
++        private void RefreshVillagePresentation()
++        {
++            if (_village3DPresenter != null && _village3DPresenter.PresentationVisible)
++            { _lightMap.Compute(CurrentZone); _village3DPresenter.Refresh(_lightMap); }
++            else _morrowfastScenePresenter?.Refresh();
++        }
++
++        private bool RefreshSpawnRingPresentation(HashSet<int> dirtyCells = null)
++        {
++            bool wasVisible = _spawnRing3DPresenter != null && _spawnRing3DPresenter.PresentationVisible;
++            // NPC movement/equipment can change light without a full redraw.
++            // Compute's native version cache makes an unchanged pass a no-op.
++            if (wasVisible) _lightMap.Compute(CurrentZone);
++            _spawnRing3DPresenter?.Refresh(_lightMap, dirtyCells);
++            bool isVisible = _spawnRing3DPresenter != null && _spawnRing3DPresenter.PresentationVisible;
++            if (wasVisible == isVisible) return false;
++            SyncVillagePresentation(!Paused && _envSpriteRenderer != null && _envSpriteRenderer.RenderingEnabled);
++            return true;
++        }
++
+         private bool HasVisibleAuthoredScene
+-            => (_fellingScenePresenter != null && _fellingScenePresenter.PresentationVisible && ReferenceEquals(_fellingScenePresenter.CurrentZone, CurrentZone))
++            => (_spawnRing3DPresenter != null && _spawnRing3DPresenter.PresentationVisible && ReferenceEquals(_spawnRing3DPresenter.CurrentZone, CurrentZone))
++                || (_village3DPresenter != null && _village3DPresenter.PresentationVisible && ReferenceEquals(_village3DPresenter.CurrentZone, CurrentZone))
++                || (_fellingScenePresenter != null && _fellingScenePresenter.PresentationVisible && ReferenceEquals(_fellingScenePresenter.CurrentZone, CurrentZone))
+                 || (_morrowfastScenePresenter != null && _morrowfastScenePresenter.PresentationVisible && ReferenceEquals(_morrowfastScenePresenter.CurrentZone, CurrentZone));
+ 
+         private bool ClaimsAuthoredSceneCell(int x, int y)
+-            => (_fellingScenePresenter != null && ReferenceEquals(_fellingScenePresenter.CurrentZone, CurrentZone) && _fellingScenePresenter.ClaimsCell(x, y))
++            => (_spawnRing3DPresenter != null && ReferenceEquals(_spawnRing3DPresenter.CurrentZone, CurrentZone) && _spawnRing3DPresenter.ClaimsCell(x, y))
++                || (_village3DPresenter != null && ReferenceEquals(_village3DPresenter.CurrentZone, CurrentZone) && _village3DPresenter.ClaimsCell(x, y))
++                || (_fellingScenePresenter != null && ReferenceEquals(_fellingScenePresenter.CurrentZone, CurrentZone) && _fellingScenePresenter.ClaimsCell(x, y))
+                 || (_morrowfastScenePresenter != null && ReferenceEquals(_morrowfastScenePresenter.CurrentZone, CurrentZone) && _morrowfastScenePresenter.ClaimsCell(x, y));
+ 
+         private bool IsAuthoredSceneEntity(Entity entity)
+-            => (_fellingScenePresenter != null && _fellingScenePresenter.IsAuthoredEntity(entity))
++            => (_spawnRing3DPresenter != null && ReferenceEquals(_spawnRing3DPresenter.CurrentZone, CurrentZone) && _spawnRing3DPresenter.IsAuthoredEntity(entity))
++                || (_village3DPresenter != null && _village3DPresenter.IsAuthoredEntity(entity))
++                || (_fellingScenePresenter != null && _fellingScenePresenter.IsAuthoredEntity(entity))
+                 || (_morrowfastScenePresenter != null && _morrowfastScenePresenter.IsAuthoredEntity(entity))
+                 || (_fellingDressingPresenter != null && _fellingDressingPresenter.IsRenderedEntity(entity));
+ 
+         private bool IsSourceSceneBody(Entity entity)
+-            => (_morrowfastScenePresenter != null && ReferenceEquals(_morrowfastScenePresenter.CurrentZone, CurrentZone)
++            => (_spawnRing3DPresenter != null && ReferenceEquals(_spawnRing3DPresenter.CurrentZone, CurrentZone) && _spawnRing3DPresenter.IsRenderedEntity(entity))
++                || (_village3DPresenter != null && ReferenceEquals(_village3DPresenter.CurrentZone, CurrentZone) && _village3DPresenter.IsRenderedEntity(entity))
++                || (_morrowfastScenePresenter != null && ReferenceEquals(_morrowfastScenePresenter.CurrentZone, CurrentZone)
+                     && _morrowfastScenePresenter.IsRenderedEntity(entity))
+                 || (_fellingDressingPresenter != null && ReferenceEquals(_fellingDressingPresenter.CurrentZone, CurrentZone)
+--- /tmp/codex-village3d-before/owned-overlay-base/MorrowfastDoorPart.cs
++++ Assets/Scripts/Gameplay/World/MorrowfastDoorPart.cs
+@@ -22,5 +22,7 @@
+             IsOpen=open;MorrowfastSceneRuntime.GetState(zone).SetDoor(ComponentId,open);
+             ParentEntity.GetPart<RenderPart>().RenderString=open?"/":"+";
+-            MorrowfastSceneRuntime.MarkOwnerDirty(zone,ComponentId);MessageLog.Add(open?"You open the door.":"You close the door.");return true;
++            MorrowfastSceneRuntime.MarkOwnerDirty(zone,ComponentId);
++            // A stationary door action changes line of sight beyond its footprint.
++            ZoneRenderHooks.MarkFullDirty("MorrowfastDoor");MessageLog.Add(open?"You open the door.":"You close the door.");return true;
+         }
+     }
+--- /tmp/codex-village3d-before/owned-overlay-base/AnimatedEntityRenderer.cs
++++ Assets/Scripts/Presentation/Rendering/AnimatedEntityRenderer.cs
+@@ -10,4 +10,5 @@
+     /// discrete and authoritative; this component only interpolates their presentation.
+     /// </summary>
++    [ExecuteAlways]
+     public sealed class AnimatedEntityRenderer : MonoBehaviour
+     {
+@@ -80,9 +81,9 @@
+             }
+ 
+-            EntityVisualHooks.MovedCallback = OnMoved;
+-            EntityVisualHooks.AttackCallback = OnAttack;
+-            EntityVisualHooks.CastCallback = OnCast;
+-            EntityVisualHooks.DamageCallback = OnDamage;
+-            EntityVisualHooks.DeathCallback = OnDeath;
++            EntityVisualHooks.MovedCallback += OnMoved;
++            EntityVisualHooks.AttackCallback += OnAttack;
++            EntityVisualHooks.CastCallback += OnCast;
++            EntityVisualHooks.DamageCallback += OnDamage;
++            EntityVisualHooks.DeathCallback += OnDeath;
+         }
+ 
+@@ -546,14 +547,9 @@
+         private void OnDestroy()
+         {
+-            if (EntityVisualHooks.MovedCallback == (EntityMovedVisualHandler)OnMoved)
+-                EntityVisualHooks.MovedCallback = null;
+-            if (EntityVisualHooks.AttackCallback == (EntityAttackVisualHandler)OnAttack)
+-                EntityVisualHooks.AttackCallback = null;
+-            if (EntityVisualHooks.CastCallback == (EntityCastVisualHandler)OnCast)
+-                EntityVisualHooks.CastCallback = null;
+-            if (EntityVisualHooks.DamageCallback == (EntityDamageVisualHandler)OnDamage)
+-                EntityVisualHooks.DamageCallback = null;
+-            if (EntityVisualHooks.DeathCallback == (EntityDeathVisualHandler)OnDeath)
+-                EntityVisualHooks.DeathCallback = null;
++            EntityVisualHooks.MovedCallback -= OnMoved;
++            EntityVisualHooks.AttackCallback -= OnAttack;
++            EntityVisualHooks.CastCallback -= OnCast;
++            EntityVisualHooks.DamageCallback -= OnDamage;
++            EntityVisualHooks.DeathCallback -= OnDeath;
+ 
+             if (_sharedMaterial != null)

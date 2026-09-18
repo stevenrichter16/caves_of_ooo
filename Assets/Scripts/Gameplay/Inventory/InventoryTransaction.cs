@@ -17,6 +17,16 @@ namespace CavesOfOoo.Core.Inventory
             = new ConditionalWeakTable<Entity, InventoryTransaction>();
         private readonly List<Entity> _claimedItems = new List<Entity>();
         private readonly Dictionary<Entity, long> _currencyDeltas = new Dictionary<Entity, long>();
+        private List<Action> _committedObservers;
+
+        /// <summary>Publish an informational receipt only after the complete
+        /// command and wallet changes commit. Rollback discards it. Observer
+        /// failures are diagnosed but cannot undo payment or suppress later receipts.</summary>
+        internal void AfterCommit(Action observer)
+        {
+            if (_completed) throw new InvalidOperationException("Transaction is already complete.");
+            if (observer != null) (_committedObservers ??= new List<Action>()).Add(observer);
+        }
 
         /// <summary>Queue a positive pickup credit. It is unavailable to independent
         /// spending until commit; rollback discards it without rewinding other payments.</summary>
@@ -121,6 +131,20 @@ namespace CavesOfOoo.Core.Inventory
             _completed = true;
             IsCommitted = true;
             IsRolledBack = false;
+            var observers = _committedObservers;
+            _committedObservers = null;
+            if (observers != null)
+            {
+                foreach (var observer in observers)
+                {
+                    try { observer(); }
+                    catch (Exception error)
+                    {
+                        Diag.Record("event", "InventoryCommitObserverFailed",
+                            payload: new { error = error.GetType().Name, message = error.Message });
+                    }
+                }
+            }
             if (changes == null) return;
             foreach (var change in changes)
             {
@@ -167,6 +191,7 @@ namespace CavesOfOoo.Core.Inventory
 
             _undoActions.Clear();
             _currencyDeltas.Clear();
+            _committedObservers = null;
             ReleaseClaims();
             _completed = true;
             IsCommitted = false;

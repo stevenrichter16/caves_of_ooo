@@ -1,0 +1,391 @@
+{
+  "createdUtc": "2026-09-11T17:02:14.143674+00:00",
+  "reviewer": "starter_spell_audit",
+  "status": "SOURCE_REVIEW_PASS_FINAL_NATIVE_AND_FULL_SUITE_PENDING",
+  "scope": "Read-only final source review after R22b; only this new immutable documentation receipt is written. No production, test, art, settings, or prior receipt edits.",
+  "inputHashes": {
+    "Assets/Scripts/Presentation/Rendering/NativeSpellFxRenderer.cs": {
+      "sha256": "f01e01e57cbc15262a14dbce10f0984f1b27853082dbfb625c1d5636268594cc",
+      "bytes": 32859
+    },
+    "Assets/Scripts/Presentation/Rendering/WorldFxCoordinator.cs": {
+      "sha256": "550d6006facb18dac5d4d13258d4eeb98ec33a47abe4d4409f7a0119b6c5b5dc",
+      "bytes": 16925
+    },
+    "Assets/Scripts/Presentation/Rendering/WorldFxPlayback.cs": {
+      "sha256": "e96df7327dbe46b8b12e69060ba9bedafc49ef3c822dcefc1462044950985cf5",
+      "bytes": 1794
+    },
+    "Assets/Scripts/Presentation/Rendering/NativeSpellCastPlayer.cs": {
+      "sha256": "f48a1229aea18381cd17837f9870ddfdf77deef9d7ec9c55edcb2e2e43c55c57",
+      "bytes": 6538
+    },
+    "Assets/Scripts/Presentation/Rendering/NativeSpellFxLibrary.cs": {
+      "sha256": "e13add2cd464a6c2a965c036d7ca83a36777fc39e5ca025e12b7e3b5c141df59",
+      "bytes": 11994
+    },
+    "Assets/Editor/Art/NativeSpellFxAssetBuilder.cs": {
+      "sha256": "a4072bec91402b0e18ab32047cf857e1d45dd69c7142f7940253bcb5ebf2eece",
+      "bytes": 28039
+    },
+    "Assets/Art3D/SpellFx/Shaders/Spell3DLuminous.shader": {
+      "sha256": "204d46d7a89ebabbc42701c66b510d4ac152634bae7eb43cb6a765998a847109",
+      "bytes": 2672
+    },
+    "Assets/Art3D/SpellFx/Shaders/Spell3DSoftGlow.shader": {
+      "sha256": "d3dcc71e3549cdfd083202efacc30d965f617653f8de828919c09479f92bacc1",
+      "bytes": 2762
+    },
+    "Assets/Art3D/Village/Shaders/Village3DCommon.hlsl": {
+      "sha256": "3ab8f498df50770e93d0328bca20cd8033e2cef3f8774938d4c6a6d80983431e",
+      "bytes": 5560
+    },
+    "Assets/Scripts/Scenarios/Custom/StarterSpell3DNativeAudit.cs": {
+      "sha256": "44e21346052fc4a2d6aaf15a4acd169febe8367677b9b520c13861f264d58209",
+      "bytes": 59045
+    },
+    "Assets/Editor/Scenarios/StarterSpell3DNativeAuditBatch.cs": {
+      "sha256": "305a7f3846fbeb4df24e396cd08ad837a428a713f7d900f9260e4ceba0ce675e",
+      "bytes": 33113
+    },
+    "Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityAdversarialTests.cs": {
+      "sha256": "453e297b5515aa3f662f6bf1fc0982b3aad46b5e49644517b71c94bac64c6ce2",
+      "bytes": 22954
+    },
+    "Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityGpuReportTests.cs": {
+      "sha256": "1e8727a689a2785a2a9e161991f504f30bf0b1ea2730a287f0749b20a6018072",
+      "bytes": 6635
+    },
+    "Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityImportGuardTests.cs": {
+      "sha256": "b7d051cd0163f5bc20ea7e0c7bb39f38127e2ce7b16aea9633e87c9263503a46",
+      "bytes": 3029
+    },
+    "Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityLifecycleTests.cs": {
+      "sha256": "cfdbfdfd3e04f1d5afa8752c075bf5496472262de89c1ca4c2d5c880ee27af68",
+      "bytes": 14038
+    },
+    "Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityTests.cs": {
+      "sha256": "eabff144437bbf582f7ecc02af9e814c695f0416e5d03ffda0fba153227132a6",
+      "bytes": 9630
+    },
+    "Assets/Tests/EditMode/Presentation/Rendering/NativeSpellHitchRecoveryTests.cs": {
+      "sha256": "d50cecf6e3b31827b20528a438cc4113ecddc71f8f6b19e916a5126aba6965b7",
+      "bytes": 25020
+    },
+    "Assets/Tests/EditMode/Presentation/Rendering/StarterSpell3DNativeDirectionTests.cs": {
+      "sha256": "a7694108814044a22eb46be4c63689a59d52f1bc616ff47d9ec52ac70dcadc30",
+      "bytes": 10451
+    },
+    "Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityAdversarialTests.cs.meta": {
+      "sha256": "5a302ce4137418444283a4bd21c90c548f2cd016d805f7dde2fc8d460fc248f4",
+      "bytes": 59
+    },
+    "Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityGpuReportTests.cs.meta": {
+      "sha256": "6355da8d115903f0859f8754d86d144f9e0c2b9617e87d70926b33d78cde549d",
+      "bytes": 59
+    },
+    "Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityImportGuardTests.cs.meta": {
+      "sha256": "7ebae7c65dda49be6fed4f15fe7bf8f85dd3a515f14c85a324a088e8ab74b08d",
+      "bytes": 59
+    },
+    "Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityLifecycleTests.cs.meta": {
+      "sha256": "f74d653ebe665ddf167f5c5a14515e8c3df355b792b00a305eafcc1266726dde",
+      "bytes": 59
+    },
+    "Assets/Tests/EditMode/Presentation/Rendering/NativeSpellReadabilityTests.cs.meta": {
+      "sha256": "eccbbf5114e1e7d36c0bb3c1779225fd487ea5b0f47175180191dfe4419d4151",
+      "bytes": 59
+    },
+    "Assets/Tests/EditMode/Presentation/Rendering/NativeSpellHitchRecoveryTests.cs.meta": {
+      "sha256": "de018fa5ac28f617bd1eb1c8dbf16aed38441f9b9824a9f532bfb99f03dbb296",
+      "bytes": 59
+    },
+    "Assets/Tests/EditMode/Presentation/Rendering/StarterSpell3DNativeDirectionTests.cs.meta": {
+      "sha256": "bb191cf81b0e7a2778d3a6aa5ef0e51aefd6258d247621cffab5f73f2244ac93",
+      "bytes": 59
+    }
+  },
+  "R22bFrozenManifest": {
+    "path": "Docs/Verification/StarterSpell3D/Readability/R22b-hitch-boundary-inputs.json",
+    "sha256": "e9e2e424cd256944188e0ec4eb3f4b5a1d8c8878e65daf9dd426de9089c20b9d",
+    "matchedReviewedInputs": 11,
+    "matchedReviewedInputsChanged": []
+  },
+  "originalTests": {
+    "sourceManifest": "Docs/Verification/StarterSpell3D/Readability/R00-prechange/source-hashes-before.json",
+    "sourceManifestSha256": "bbbd1f6b2c255ade9de63702fc6779e4f4a09483a4c6faacad3c6b54c2c730c9",
+    "files": 773,
+    "unchanged": 773,
+    "missingOrChanged": [],
+    "expectedCanonicalMapSha256": "68b25f1ba9519916a70d39d9f02ca29d8c6a44fed5154b5f1d499a5a80bc44dd",
+    "actualCanonicalMapSha256": "68b25f1ba9519916a70d39d9f02ca29d8c6a44fed5154b5f1d499a5a80bc44dd"
+  },
+  "focusedResult": {
+    "cases": 449,
+    "passed": 449,
+    "failed": 0,
+    "compileErrors": 0,
+    "skipped": 0,
+    "baselineFocused": 319,
+    "newReadabilityCases": 130
+  },
+  "hitchCaseClassificationCounts": {
+    "post-implementation adversarial boundary pin": 8,
+    "pre-existing-behavior positive or counter-control": 12,
+    "confirmed presentation-defect regression": 6,
+    "new observability contract": 1
+  },
+  "hitchCases": [
+    {
+      "name": "AccumulatedRawTimeoutSuppressesAnOtherwiseEligibleRecoveryAndItsDiagnostic",
+      "classification": "post-implementation adversarial boundary pin",
+      "note": "Raw accumulated5.3 seconds overrides otherwise eligible contact recovery.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "AnUnrenderableContactCannotManufactureAnExtraWait(False)",
+      "classification": "pre-existing-behavior positive or counter-control",
+      "note": "Preserves normal timing, cancellation, empty/filtered/hidden semantics or absence of a diagnostic.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "AnUnrenderableContactCannotManufactureAnExtraWait(True)",
+      "classification": "pre-existing-behavior positive or counter-control",
+      "note": "Preserves normal timing, cancellation, empty/filtered/hidden semantics or absence of a diagnostic.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "ARequestQueuedDuringRecoveryStartsAtZeroRatherThanInheritingEitherDelta",
+      "classification": "post-implementation adversarial boundary pin",
+      "note": "Fresh work starts at age0 after older native work advances.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "ASecondLongFrameDoesNotReplayTheContactOrEmitAnotherRecovery",
+      "classification": "post-implementation adversarial boundary pin",
+      "note": "Repeated hitch exposes the stated bounded policy; no replay.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "CancellationWinsOverLongFrameRecovery(\"mode\")",
+      "classification": "pre-existing-behavior positive or counter-control",
+      "note": "Preserves normal timing, cancellation, empty/filtered/hidden semantics or absence of a diagnostic.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "CancellationWinsOverLongFrameRecovery(\"hidden\")",
+      "classification": "pre-existing-behavior positive or counter-control",
+      "note": "Preserves normal timing, cancellation, empty/filtered/hidden semantics or absence of a diagnostic.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "CancellationWinsOverLongFrameRecovery(\"zone\")",
+      "classification": "pre-existing-behavior positive or counter-control",
+      "note": "Preserves normal timing, cancellation, empty/filtered/hidden semantics or absence of a diagnostic.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "CancellationWinsOverLongFrameRecovery(\"clear\")",
+      "classification": "pre-existing-behavior positive or counter-control",
+      "note": "Preserves normal timing, cancellation, empty/filtered/hidden semantics or absence of a diagnostic.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "ConcurrentNativeHandlesAndTheirViewsAdvanceOnTheSameRecoveredClock",
+      "classification": "confirmed presentation-defect regression",
+      "note": "Native handles and their geometry must share the recovered clock.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "ContactAlreadyDrawnIsNotReplayedByALaterLongFrame",
+      "classification": "pre-existing-behavior positive or counter-control",
+      "note": "Preserves normal timing, cancellation, empty/filtered/hidden semantics or absence of a diagnostic.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "EmptyActualRainKeepsItsGestureWithoutAcquiringAnImaginaryContact",
+      "classification": "pre-existing-behavior positive or counter-control",
+      "note": "Preserves normal timing, cancellation, empty/filtered/hidden semantics or absence of a diagnostic.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "FractionalContactUsesTheInterpolatedVisiblePoseInsteadOfTheEmptyFloorSample",
+      "classification": "post-implementation adversarial boundary pin",
+      "note": "Fractional contact eligibility matches actual interpolated draw.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "HardFiveSecondRawDeadlineWinsBeforeAnUnseenContactCanRecover",
+      "classification": "pre-existing-behavior positive or counter-control",
+      "note": "Preserves normal timing, cancellation, empty/filtered/hidden semantics or absence of a diagnostic.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "LongFramePreservesActualDirectionalSpellAndConditionalFeedback(\"Hydromancy_JetBlast\",Full)",
+      "classification": "confirmed presentation-defect regression",
+      "note": "Actual OnCommand and imported art; correct copied outcomes remain unchanged after recovery.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "LongFramePreservesActualDirectionalSpellAndConditionalFeedback(\"Hydromancy_JetBlast\",Reduced)",
+      "classification": "confirmed presentation-defect regression",
+      "note": "Actual OnCommand and imported art; correct copied outcomes remain unchanged after recovery.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "LongFramePreservesActualDirectionalSpellAndConditionalFeedback(\"Cryomancy_RimeGrip\",Full)",
+      "classification": "confirmed presentation-defect regression",
+      "note": "Actual OnCommand and imported art; correct copied outcomes remain unchanged after recovery.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "LongFramePreservesActualDirectionalSpellAndConditionalFeedback(\"Cryomancy_RimeGrip\",Reduced)",
+      "classification": "confirmed presentation-defect regression",
+      "note": "Actual OnCommand and imported art; correct copied outcomes remain unchanged after recovery.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "LongWallFrameAtSlowSpeedDoesNotJumpOrDelayACastThatHasNotCrossedClear",
+      "classification": "post-implementation adversarial boundary pin",
+      "note": "Long raw wall step retains all scaled time if clear was not crossed.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "NativeRecoveryDoesNotSlowLegacyParticlesOrTheSpriteFallback",
+      "classification": "confirmed presentation-defect regression",
+      "note": "Initial new fixture timing assumption corrected; R21c proves strict fallback controls then actual native RED.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "OrdinaryShortWallFrameAtDoubleSpeedKeepsExistingCompletionContract",
+      "classification": "pre-existing-behavior positive or counter-control",
+      "note": "Preserves normal timing, cancellation, empty/filtered/hidden semantics or absence of a diagnostic.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "RecoveryDiagnosticsRetainRawWallTimeAndDistinguishAnOrdinaryFrame(False)",
+      "classification": "pre-existing-behavior positive or counter-control",
+      "note": "Preserves normal timing, cancellation, empty/filtered/hidden semantics or absence of a diagnostic.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "RecoveryDiagnosticsRetainRawWallTimeAndDistinguishAnOrdinaryFrame(True)",
+      "classification": "new observability contract",
+      "note": "Absent recovery diagnostic RED; raw requested/applied time must remain explicit.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "RecoveryThresholdMeasuresRawWallSecondsRatherThanSpeedScaledSeconds(0.3999f,False)",
+      "classification": "post-implementation adversarial boundary pin",
+      "note": "Raw .3999/.4 wall boundary at2x; two paired cases.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "RecoveryThresholdMeasuresRawWallSecondsRatherThanSpeedScaledSeconds(0.4f,True)",
+      "classification": "post-implementation adversarial boundary pin",
+      "note": "Raw .3999/.4 wall boundary at2x; two paired cases.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "UnmatchedConditionalGeometryDoesNotCreateAContactCheckpoint",
+      "classification": "pre-existing-behavior positive or counter-control",
+      "note": "Preserves normal timing, cancellation, empty/filtered/hidden semantics or absence of a diagnostic.",
+      "R22b": "Passed"
+    },
+    {
+      "name": "VisibleOwnerDoesNotRecoverAContactWhoseSampledPoseLiesInFog",
+      "classification": "post-implementation adversarial boundary pin",
+      "note": "Visible owner alone cannot qualify a hidden sampled pose.",
+      "R22b": "Passed"
+    }
+  ],
+  "Q1": "PASS. The recovered delta is chosen before native handle Tick and used by the native renderer. Raw wall time remains separate. Cancellation/readiness happen first; newly queued casts are accepted after advancement. Direct native Update semantics remain unchanged.",
+  "Q2": "PASS. Ordinary wall steps, fallback sprite/ASCII clocks, caster helper lifetime, conditions, copied geometry, materials and game outcomes retain their contracts. Contact eligibility uses the same floor/next interpolation and physical visibility predicate as drawing. Diagnostic fields explicitly identify raw and applied units.",
+  "Q3": "PASS_WITH_STATED_LIMITS.27 cases cover real Jet/Rime Full/Reduced successes and counter-invariants, fractional sampling, threshold, queue, simultaneous handles, fallback, hidden/empty content, timeout and repeats. Existing outcome/33-readability-adversarial tests remain passing. No proof of arbitrary-framerate minimum pixel duration is claimed.",
+  "Q4": "SOURCE_AND_FOLLOWUP_DOC_AGREE. Main follow-up explicitly records scope change, raw watchdog, preserved failed runs and limits. Earlier plan/preflight timing language needs an explicit cross-reference to this later correction; final native/media/full status remains pending.",
+  "hypotheses": [
+    {
+      "id": "H1",
+      "result": "CONFIRMED",
+      "finding": "One pre-existing native presentation policy defect can erase a whole unseen contact interval after a long wall frame. Four actual imported command cases and two native-clock integration cases pin six reproduced paths, not six independent gameplay bugs."
+    },
+    {
+      "id": "H2",
+      "result": "FALSIFIED_BY_SOURCE",
+      "finding": "Scenario double advancement is not the cause: mutually exclusive ZoneRenderer paths call coordinator once; zero-delta draw accepts new work without aging it."
+    },
+    {
+      "id": "H3",
+      "result": "NEW_TEST_FIXTURE_CORRECTED",
+      "finding": "R21 fallback fixture inherited an affected cell four cells away, extending actual sprite duration to .74s. Corrected only this new fixture; R21c then passes strict fallback/legacy completion and reaches genuine native recovery RED."
+    },
+    {
+      "id": "H4",
+      "result": "IMPLEMENTATION_COMPILE_DEFECT_FIXED",
+      "finding": "R22 CS0266 came from float StudyContactFrame assigned to int. Actual Ember contact29.5 makes rounding insufficient; floor/next interpolation now matches drawing and R22b passes."
+    },
+    {
+      "id": "H5",
+      "result": "NOT_ESTABLISHED_AS_CAUSE_NO_FIX_CLAIMED",
+      "finding": "Caster helper same-acceptance-frame delta charging is source-supported but not established as the cause of R19/R20. Existing independent gesture lifetime/controller restoration is unchanged; actual native gesture evidence remains required."
+    },
+    {
+      "id": "H6",
+      "result": "EIGHT_BOUNDARY_PINS_GREEN_NO_NEW_BEHAVIORAL_BUG_FOUND",
+      "finding": "Eight additional adversarial cases were added after implementation review and pass; they are prevention-focused contracts, not eight bug fixes."
+    }
+  ],
+  "adversarialTaxonomy": {
+    "1_state_atomicity": "shared native handle/geometry clock, concurrent and pending work",
+    "2_rollback": "mode/hidden/zone/clear cancellation and raw timeout",
+    "3_save_load_reflection": "no persistent/save data added; no migration work",
+    "4_mid_execution_changes": "mode, visibility, speed, repeated hitches and timeout",
+    "5_cross_actor_and_7_multi_instance": "distinct copied contacts and staggered native handles; no blueprint/target relookup",
+    "6_stacking_16_refire_17_idempotency": "queued age0 and no replay after contact; existing caster recast/disposal contracts unchanged",
+    "8_boundary_inputs": "raw threshold, fractional samples, slow/fast speeds, empty and hidden content, hard deadline",
+    "9_parser_10_probability_11_names_12_dialogue": "no new parser, RNG, status-name or dialogue changes; existing import/finite-data gates retained",
+    "13_anti_exploit_14_self_reference_15_aggregation": "no gameplay dispatch or occupancy changes; actual HP/status/strength/duration/push/copied records unchanged; fallback clocks remain independent",
+    "18_observability": "actual recovery diagnostic with raw/requested/applied time; absence on ordinary/repeated/timeout controls"
+  },
+  "limitations": [
+    "Final native R23 and final full-suite comparison are pending at this receipt.",
+    "One unseen contact interval can be recovered; repeated hitches, no eligible visible pose, occlusion and the underlying Editor stall are not solved.",
+    "The 5s raw watchdog and unchanged cancellation can intentionally end presentation before later art is shown.",
+    "Seven imported entries include six starting actives plus separately learnable Rain; no ability grant or equipment prerequisite changes.",
+    "CoO-original implementation; no Qud parity or shipped-build performance claim."
+  ],
+  "evidence": {
+    "R19-continuity-native-directions/failure-analysis.json": {
+      "sha256": "7b239b1aa12f3fc03ba297acb6eb4a8e0c8b63da15e95d18f81c850d7d21261c",
+      "bytes": 6114
+    },
+    "R20-continuity-native-retry/failure-analysis.json": {
+      "sha256": "a0bf7fc997b9a804f4e5801b22b98bfc25bafe034a8139fdef7e7cabf12b4d5d",
+      "bytes": 16406
+    },
+    "R21-hitch-recovery-red/receipt.json": {
+      "sha256": "e9e9d7bfcec1bce0322413946b6f9beaf94a58259ace20939acb38fb57269ea6",
+      "bytes": 2326
+    },
+    "R21c-corrected-fallback-red/receipt.json": {
+      "sha256": "bd5a6bee0b73982b88ecc99226fc9a895e8dd21a7797f9a40c236f15f5e34afb",
+      "bytes": 764
+    },
+    "R22-hitch-recovery-targeted/receipt.json": {
+      "sha256": "8e4bee1b829525008c03c42359a822dc1b52a527d42b7df8eaad087a50f110e7",
+      "bytes": 857
+    },
+    "R22b-hitch-boundary-targeted/receipt.json": {
+      "sha256": "72c98f742cf9f7eebf7d0fd451f8040698c22db05e140c5545e015ecb437656b",
+      "bytes": 605
+    },
+    "R22b-hitch-boundary-targeted/results.xml": {
+      "sha256": "aa1734464a661507422a67d92342964d20284d8a0b7e0f70e177b6c1c209a031",
+      "bytes": 411058
+    },
+    "R22b-hitch-boundary-targeted/frozen-input-preservation.json": {
+      "sha256": "60d6d15d73c15cf06760042b6dcee513b8080e33dfff3fd62cc2e01586b174c1",
+      "bytes": 184
+    }
+  }
+}

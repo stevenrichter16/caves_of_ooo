@@ -14,8 +14,9 @@ namespace CavesOfOoo.Storylets
     /// <para>Uses the existing render-event color-mutation hook
     /// (ZoneRenderer.cs ~902-916), so it needs NO overlay tilemap / renderer
     /// wiring. The renderer locks the GLYPH before firing "Render", so this
-    /// signals via COLOR only; a floating "!" marker would need a dedicated
-    /// overlay layer and is deferred (Docs/QUEST-GIVER-DISCOVERABILITY.md).</para>
+    /// signals via COLOR only. Native 3D presenters separately consume the
+    /// same Quest identity through QuestCueStateQuery for owner-bound available
+    /// and ongoing markers, without replacing the NPC's themed material.</para>
     ///
     /// <para>Placed on quest-giver (offerer) NPCs by VillagePopulationBuilder.
     /// The handler is allocation-free and only does dict/set lookups, so it is

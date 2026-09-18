@@ -33,6 +33,21 @@ namespace CavesOfOoo.Core
         public string TileColor = "";
         // Deprecated for world-space rendering. Retained only for blueprint compatibility.
         public string Tile;
+        /// <summary>
+        /// Optional stable key into the data-driven animated visual catalog. Empty
+        /// values fall back to a blueprint mapping, then the static sprite/CP437 chain.
+        /// </summary>
+        public string VisualID = "";
+        /// <summary>
+        /// Stable palette/costume variant for authored overrides. The first animated
+        /// slice does not consume this yet, but saves preserve it for later art passes.
+        /// </summary>
+        public string VisualVariant = "";
+        /// <summary>
+        /// Last meaningful facing. This is game-state metadata, unlike the transient
+        /// animation frame, so save/load can restore an actor looking the same way.
+        /// </summary>
+        public EntityVisualFacing VisualFacing = EntityVisualFacing.South;
         public int RenderLayer;
         public bool Visible = true;
 

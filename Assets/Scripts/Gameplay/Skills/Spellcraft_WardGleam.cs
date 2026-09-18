@@ -12,7 +12,7 @@ namespace CavesOfOoo.Skills
     /// every equipped item. "Nothing to cleanse." is a free refusal — no
     /// cooldown, no turn — exactly the mutation's contract.</para>
     /// </summary>
-    public class Spellcraft_WardGleam : BaseSkillPart
+    public class Spellcraft_WardGleam : SpellSkillPart
     {
         public override string Name => nameof(Spellcraft_WardGleam);
 
@@ -31,7 +31,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;
@@ -47,12 +47,14 @@ namespace CavesOfOoo.Skills
                 bool removedFromItem = false;
                 if (item.HasEffect<AcidicEffect>())
                 {
-                    item.RemoveEffect<AcidicEffect>();
+                    if (item.RemoveEffect<AcidicEffect>())
+                        SpellFxCapture.RecordOutcome(ctx.Zone, actor, "cleansing", "Acidic", 1);
                     removedFromItem = true;
                 }
                 if (item.HasEffect<CharredEffect>())
                 {
-                    item.RemoveEffect<CharredEffect>();
+                    if (item.RemoveEffect<CharredEffect>())
+                        SpellFxCapture.RecordOutcome(ctx.Zone, actor, "cleansing", "Charred", 1);
                     removedFromItem = true;
                 }
                 removedAny |= removedFromItem;

@@ -1,0 +1,49 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"success\":true,\"message\":\"Test job status retrieved.\",\"error\":null,\"data\":{\"job_id\":\"f81e9916fdea4a4fb1f164dfe48d393c\",\"status\":\"failed\",\"mode\":\"EditMode\",\"started_unix_ms\":1788712814529,\"finished_unix_ms\":1788712815122,\"last_update_unix_ms\":1788712815122,\"progress\":{\"completed\":2,\"total\":2,\"current_test_full_name\":null,\"current_test_started_unix_ms\":1788712815051,\"last_finished_test_full_name\":\"CavesOfOoo.Tests.FellingSceneArtRuntimeTests.SourceCameraLetterboxesOnlyTheMapAndRestoresApproachAndUiRects(1.0f)\",\"last_finished_unix_ms\":1788712815084,\"stuck_suspected\":false,\"editor_is_focused\":true,\"blocked_reason\":null,\"failures_so_far\":[{\"full_name\":\"CavesOfOoo.Tests.FellingSceneArtRuntimeTests.SourceCameraLetterboxesOnlyTheMapAndRestoresApproachAndUiRects(1.777778f)\",\"message\":\"  Fit the 3:2 source instead of exposing unrelated exterior floor strips.\\n  Expected: 1.5d +/- 9.9999997473787516E-05d\\n  But was:  1.5915032625198364d\\n\"},{\"full_name\":\"CavesOfOoo.Tests.FellingSceneArtRuntimeTests.SourceCameraLetterboxesOnlyTheMapAndRestoresApproachAndUiRects(1.0f)\",\"message\":\"  Fit the 3:2 source instead of exposing unrelated exterior floor strips.\\n  Expected: 1.5d +/- 9.9999997473787516E-05d\\n  But was:  0.67647057771682739d\\n\"}],\"failures_capped\":false},\"error\":null,\"result\":null},\"hint\":null}"
+    }
+  ],
+  "structuredContent": {
+    "result": {
+      "success": true,
+      "message": "Test job status retrieved.",
+      "error": null,
+      "data": {
+        "job_id": "f81e9916fdea4a4fb1f164dfe48d393c",
+        "status": "failed",
+        "mode": "EditMode",
+        "started_unix_ms": 1788712814529,
+        "finished_unix_ms": 1788712815122,
+        "last_update_unix_ms": 1788712815122,
+        "progress": {
+          "completed": 2,
+          "total": 2,
+          "current_test_full_name": null,
+          "current_test_started_unix_ms": 1788712815051,
+          "last_finished_test_full_name": "CavesOfOoo.Tests.FellingSceneArtRuntimeTests.SourceCameraLetterboxesOnlyTheMapAndRestoresApproachAndUiRects(1.0f)",
+          "last_finished_unix_ms": 1788712815084,
+          "stuck_suspected": false,
+          "editor_is_focused": true,
+          "blocked_reason": null,
+          "failures_so_far": [
+            {
+              "full_name": "CavesOfOoo.Tests.FellingSceneArtRuntimeTests.SourceCameraLetterboxesOnlyTheMapAndRestoresApproachAndUiRects(1.777778f)",
+              "message": "  Fit the 3:2 source instead of exposing unrelated exterior floor strips.\n  Expected: 1.5d +/- 9.9999997473787516E-05d\n  But was:  1.5915032625198364d\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.FellingSceneArtRuntimeTests.SourceCameraLetterboxesOnlyTheMapAndRestoresApproachAndUiRects(1.0f)",
+              "message": "  Fit the 3:2 source instead of exposing unrelated exterior floor strips.\n  Expected: 1.5d +/- 9.9999997473787516E-05d\n  But was:  0.67647057771682739d\n"
+            }
+          ],
+          "failures_capped": false
+        },
+        "error": null,
+        "result": null
+      },
+      "hint": null
+    }
+  },
+  "isError": false
+}

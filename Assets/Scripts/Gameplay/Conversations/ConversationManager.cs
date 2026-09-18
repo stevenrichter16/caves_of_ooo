@@ -198,6 +198,8 @@ namespace CavesOfOoo.Core
                     _visibleChoices.Add(choice);
             }
 
+            RegionalGuidance.AppendChoices(_visibleChoices);
+
             // Auto-inject "[Let's trade.]" only when the speaker can
             // ACTUALLY trade. This used to fire for any speaker with an
             // InventoryPart — which every creature inherits from the

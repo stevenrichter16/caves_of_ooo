@@ -1,0 +1,72 @@
+{
+  "status": "Candidate2 frozen for native import; actual-game visual acceptance pending",
+  "sourceBlendSha256": "2e8dda06d7ce02ebbdad1f77d24d0200e450aa928f986c26d2335eddc1254e4d",
+  "files": {
+    "ArtSource/StarterSpell3D/starter_spells.blend": "2e8dda06d7ce02ebbdad1f77d24d0200e450aa928f986c26d2335eddc1254e4d",
+    "ArtSource/StarterSpell3D/manifest.json": "78f40dd6da501ce0aa565c302c82753d68b597094077fe32df9ab19d0cf333ab",
+    "ArtSource/StarterSpell3D/build_studies.py": "daf6c63754e9287bc8d79349158dd574896ba8dbba0fef7792e5c898623f7b12",
+    "ArtSource/StarterSpell3D/readability_art.py": "5ead90248bcc2b7bfd5773f0fab561bf201cd0e6228929c6f36d931f84c62325",
+    "ArtSource/StarterSpell3D/export_runtime.py": "7c7425d0381d57d294272b9efe04e80543adfb02903fc14ac8b74d8cf801d7dd",
+    "ArtSource/StarterSpell3D/runtime/starter_spell_library.json": "bbf06a52ed9ee416066ea5422cbcc87fa35d8fe9ee89426812aeaacc64cbdc0f",
+    "ArtSource/StarterSpell3D/exports/calm.fbx": "4226d3bd5536a0632761421d45569d68eaf7f2990613aad3f9fe54d86c485dde",
+    "ArtSource/StarterSpell3D/exports/conjure_rain.fbx": "5a07c73b58c19027df4efa2994cd9e736a6c46ec1186afb65e7b440d4ef129bd",
+    "ArtSource/StarterSpell3D/exports/ember_spit.fbx": "0c0b50f399597f815c8f5d1c4e1f344285bcc16399b7170e1a0af37bb073e554",
+    "ArtSource/StarterSpell3D/exports/flaming_hands.fbx": "1b81019ee2fa0e1f3cf9b1c3563ac9825881c2e3aa134ef520c07a2207075f9a",
+    "ArtSource/StarterSpell3D/exports/ground_surge.fbx": "ab6d770d157389d3bcc0b1f12e8df0f07d66b6513fd2fb983fc38ae09cff0878",
+    "ArtSource/StarterSpell3D/exports/jet_blast.fbx": "4f0601ff02220a1f55e794eded1c5f27b4de2086f14148714fafc854dca01463",
+    "ArtSource/StarterSpell3D/exports/rime_grip.fbx": "1c86a5c2b2ad3e6c4d4a3942d4d7dbe135cfcd3f34a905c947638ba15dd2562c"
+  },
+  "sourceActorSha256": "3a9e413922fc019217e879fff3ccae69ed02d07d5cebfc75cfbcac7909737763",
+  "pieceCounts": {
+    "ember_spit": 61,
+    "flaming_hands": 47,
+    "jet_blast": 89,
+    "ground_surge": 65,
+    "rime_grip": 61,
+    "calm": 42,
+    "conjure_rain": 15
+  },
+  "materials": 33,
+  "meshes": 380,
+  "triangles": 47352,
+  "projection": "Game camera unchanged; Blender detail9m; proof33.38px/m at56degrees",
+  "proofReceipt": "38-fire-mantle-stills/render-receipt.json",
+  "gates": {
+    "40-candidate2-readability-controls.json": {
+      "status": "GREEN",
+      "sha256": "bb6afa1f043496c4b49c163e0b90c3beba0685ef89c071a69a0991dec6fbc9de",
+      "assertions": 76,
+      "passed": 76
+    },
+    "41-candidate2-saved-geometry.json": {
+      "status": "GREEN",
+      "sha256": "af54fbbf361e53ed55e9a527410aa187cb0ccb9f5d2b59c7a2215a27b5ddcd7d",
+      "assertions": 41,
+      "passed": 41
+    },
+    "42-candidate2-runtime-controls.json": {
+      "status": "GREEN",
+      "sha256": "babcccb09e6c3ce3e7b35bea52ec34b98f3a7592707aab992f93f78022f17611",
+      "assertions": 60,
+      "passed": 60
+    },
+    "43-candidate2-reveal-motion.json": {
+      "status": "GREEN",
+      "sha256": "8787f850d493fe2ae77b29116484c9a95c8992311857081690cd6d230c2c28b1",
+      "assertions": 9,
+      "passed": 9
+    },
+    "44-candidate2-asset-adversarial.json": {
+      "status": "GREEN",
+      "sha256": "454624a05f2b04b6a5009a8a58746abeb84cb423bc18761b0bb5663ac2be170a",
+      "assertions": 15,
+      "passed": 15
+    },
+    "45-candidate2-fbx-contract.json": {
+      "status": "GREEN",
+      "sha256": "5a75b4d16ef5219dc2aeff62dc6d6767dc9c392dbab4c1560d0f37a8084a0cfc",
+      "assertions": null,
+      "passed": null
+    }
+  }
+}

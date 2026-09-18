@@ -1,0 +1,27 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "StarterSpellAudio|EmberSpitAudio",
+  "results": {
+    "id": "2",
+    "testcasecount": "151",
+    "result": "Failed(Child)",
+    "total": "151",
+    "passed": "150",
+    "failed": "1",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-12 02:51:27Z",
+    "end-time": "2026-09-12 02:51:28Z",
+    "duration": "0.6960864"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.StarterSpellAudioTests.DamagedOldFamilySourceCannotCancelAnUnrelatedCastBeforeTheNextUpdate(True)",
+      "message": "  Warning: [SpellFX] Cancelled presentation: The object of type 'UnityEngine.AudioSource' has been destroyed but you are still trying to access it.\nYour script should either check if it is null or you should not destroy the object.\n  Expected: Playing\n  But was:  Cancelled\n"
+    }
+  ]
+}

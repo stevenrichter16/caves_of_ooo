@@ -71,6 +71,9 @@ namespace CavesOfOoo.Core.Inventory.Commands
             actionEvent.SetParameter("Actor", (object)actor);
             actionEvent.SetParameter("Item", (object)_item);
             actionEvent.SetParameter("Command", _actionCommand);
+            // Native Parts may join this command's receipt rather than commit
+            // a nested transaction before AfterInventoryAction has succeeded.
+            actionEvent.SetParameter("InventoryTransaction", (object)transaction);
             if (zone != null)
                 actionEvent.SetParameter("Zone", (object)zone);
 

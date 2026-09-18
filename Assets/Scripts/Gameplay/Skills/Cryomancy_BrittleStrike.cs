@@ -59,7 +59,11 @@ namespace CavesOfOoo.Skills
             // applies an additional damage call on top of the swing).
             var dmg = new Damage(bonus);
             dmg.AddAttribute("Cold");
-            CombatSystem.ApplyDamage(ctx.Defender, dmg, ctx.Attacker, ctx.Zone);
+            using (var capture = new SpellFxCapture(Name, ctx.Zone, ctx.Attacker, blocking: false))
+            {
+                CombatSystem.ApplyDamage(ctx.Defender, dmg, ctx.Attacker, ctx.Zone);
+                capture.Commit();
+            }
         }
     }
 }

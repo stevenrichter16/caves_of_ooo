@@ -1,0 +1,104 @@
+{
+  "status": "PASS",
+  "assertions": 7,
+  "passed": 7,
+  "checks": [
+    {
+      "name": "same_run_id",
+      "pass": true
+    },
+    {
+      "name": "same_private_root",
+      "pass": true
+    },
+    {
+      "name": "actual_play_domain",
+      "pass": true
+    },
+    {
+      "name": "present_plugin_succeeded",
+      "pass": true
+    },
+    {
+      "name": "both_discovery_methods_recorded",
+      "pass": true
+    },
+    {
+      "name": "counts_and_timing_finite",
+      "pass": true
+    },
+    {
+      "name": "heap_metric_honestly_labeled",
+      "pass": true
+    }
+  ],
+  "warmupPath": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/NativeAudit/SSN-0d7a74963b314b6f9c9270a00d13846d-editor-warmup.json",
+  "warmupSha256": "96af5839539bd11fcad4210ff34c3905a56282ca3ade2067d4d34186af5100e0",
+  "warmup": {
+    "runId": "0d7a74963b314b6f9c9270a00d13846d",
+    "privateRoot": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/f7216ec824664c559d87bb4574e4925e",
+    "utc": "2026-09-11T05:09:15.3755420Z",
+    "scope": "Editor discovery cache preparation before driver.Initialize; heap deltas are net used memory, not total allocations.",
+    "reason": "",
+    "error": "",
+    "inPlayDomain": true,
+    "pluginPresent": true,
+    "skipped": false,
+    "pass": true,
+    "seconds": 0.0028098,
+    "steps": [
+      {
+        "service": "ResourceDiscovery",
+        "method": "DiscoverAllResources",
+        "count": 18,
+        "pass": true,
+        "seconds": 0.000963,
+        "managedHeapUsedDeltaBytes": 20480
+      },
+      {
+        "service": "ToolDiscovery",
+        "method": "DiscoverAllTools",
+        "count": 34,
+        "pass": true,
+        "seconds": 0.0015627999999999998,
+        "managedHeapUsedDeltaBytes": 57344
+      }
+    ]
+  },
+  "finalGroundSources": [
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Scripts/Presentation/Rendering/ZoneRenderer.cs",
+      "sha256": "035bcd4b1a2a63c3c36a39fa92eb6f0767bd847ddf6889e5998f31acfbec9283",
+      "matchesReviewedHash": true
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/NativeGroundStateReadabilityTests.cs",
+      "sha256": "417d0e552f2fe8fae72675e341482d487ec9038245bc507a57e0a43177acc358",
+      "matchesReviewedHash": true
+    }
+  ],
+  "groundReview": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Integration/S3D27-ground-green/independent-ground-review.json",
+  "persistentOutliersMs": [
+    {
+      "zone": "Overworld.3.6.0",
+      "mode": "Full",
+      "mainMaxMs": 603.199708
+    },
+    {
+      "zone": "Overworld.3.6.0",
+      "mode": "Reduced",
+      "mainMaxMs": 482.730709
+    },
+    {
+      "zone": "Overworld.3.7.0",
+      "mode": "Full",
+      "mainMaxMs": 19.256666
+    },
+    {
+      "zone": "Overworld.3.7.0",
+      "mode": "Reduced",
+      "mainMaxMs": 570.393167
+    }
+  ],
+  "causalityBound": "2.8098 ms of Editor discovery does not explain the prior 480.188 ms frame delta or 657.88 ms capture gap. The successful run still contains 482\u2013603 ms Main Thread outliers. Discovery was moved into explicit setup, not proved to fix or eliminate stalls; S3D28 and S3D28b remain failed and retained. All native timing/visual acceptance gates are unchanged."
+}

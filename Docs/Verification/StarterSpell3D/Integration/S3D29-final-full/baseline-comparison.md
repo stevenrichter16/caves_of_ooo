@@ -1,0 +1,43 @@
+# Final full-suite baseline comparison
+
+**PASS: all 31 failing test names and failure messages exactly match the pre-integration S3D00b baseline.**
+
+Baseline: **10,902/10,933 passing**. S3D29: **11,177/11,208 passing**. Both have 31 failures and zero skipped cases. Both receipts record zero compiler errors.
+
+There are **275 added test cases; all pass**. New failures: **0**. Removed baseline cases: **0**. No duplicate full names or ignored failures.
+
+The exact fullnames and unnormalized old/new failure messages are preserved in `baseline-comparison.json`. This closes the final tested starter-spell integration, including ground-marker refinement. S3D28c is its passing native capture; S3D24 and S3D25 remain historical source-specific receipts, and S3D28/S3D28b remain failed timing-stall receipts.
+
+Persistent baseline failures:
+
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AllTenExactBlueprintsReachTheirRealResourcesSpriteAtUnflippedRow`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport("item_boots")`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport("item_dagger")`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport("item_gloves")`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport("item_helmet")`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport("item_mace")`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport("item_spear")`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport("item_sword")`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_BrightAndDimForegroundCarryHueAndAlphaWithoutAuthoredColorOverride`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_DirtyNeighborhoodPreservesDistantEquipmentClaimAndTint`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_DisablingSpriteModeRestoresEquipmentGlyphThenReclaimsOnEnable`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_HigherLayerActorHidesGroundEquipmentUntilItLeaves`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_IncrementalReplacementUsesNewGlyphColorAndBody`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_InvisibleHigherItemDoesNotHideVisibleLowerItem`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_ItemRemovalExposesFreshUnmappedGlyphWithoutRestoringOldOne`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily("Dagger","item_dagger")`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily("LeatherBoots","item_boots")`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily("LeatherCap","item_helmet")`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily("LeatherGloves","item_gloves")`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily("Mace","item_mace")`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily("ShortSword","item_sword")`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily("Spear","item_spear")`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_NullNewTileRetainsMaceGlyphAndDoesNotBorrowVial`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_ReleaseClaimsRestoresOriginalGlyphAndTint`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_RememberedFogDoesNotRevealGroundEquipment`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_SevenFamiliesHaveDifferentSilhouettesAndDistinctGuids`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_StationaryFullRepaintReplacesOldFamilyWithoutStaleClaim`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_TwoSameBlueprintInstancesShareBodyWithoutSharingCellTint`
+- `CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_UnexploredCellCannotClaimNewItemArt`
+- `CavesOfOoo.Tests.PlaceProfileTests.TheProfileTable_IsData_AndComplete`
+- `CavesOfOoo.Tests.WorldMapAuthoringTests.Sill_IsAtTheCentre_OnSpread_AtTierOne`

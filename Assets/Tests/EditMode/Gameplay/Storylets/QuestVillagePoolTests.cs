@@ -9,8 +9,8 @@ using CavesOfOoo.Storylets;
 namespace CavesOfOoo.Tests
 {
     /// <summary>
-    /// The village-quest POOL (Docs/QUEST-DESIGN-CATALOG.md): non-starting
-    /// villages each host ONE quest, picked deterministically by zone ID
+    /// The village-quest POOL (Docs/QUEST-DESIGN-CATALOG.md): six canonical
+    /// villages each host ONE global quest, assigned explicitly by zone ID
     /// (VillagePopulationBuilder.PickVillageQuest). Tests the distribution
     /// (deterministic + both quests reachable) and the content integrity of
     /// the two pool quests (Crunchy's Locket = fetch, Hidden Shrine = reach).
@@ -23,9 +23,9 @@ namespace CavesOfOoo.Tests
         public void PickVillageQuest_IsDeterministicPerZone()
         {
             Assert.AreEqual(
-                VillagePopulationBuilder.PickVillageQuest("Overworld.11.10.0"),
-                VillagePopulationBuilder.PickVillageQuest("Overworld.11.10.0"),
-                "the same village always hosts the same quest (stable per zone)");
+                VillagePopulationBuilder.PickVillageQuest("Overworld.13.7.0"),
+                VillagePopulationBuilder.PickVillageQuest("Overworld.13.7.0"),
+                "the assigned village always hosts the same global story");
         }
 
         [Test]
@@ -37,12 +37,10 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void PickVillageQuest_EveryPickIsInThePool_AndAllAreReachable()
+        public void PickVillageQuest_AssignedHostsAreInThePool_AndAllAreReachable()
         {
-            // Pool-agnostic: derive expectations from the actual pool so this
-            // test survives future pool growth untouched. Across many distinct
-            // zone IDs every pool quest must appear at least once (the pick
-            // distributes) and no pick may fall outside the pool.
+            // Every global story must occur once across the world; other
+            // addresses intentionally have no pool assignment.
             var pool = VillagePopulationBuilder.VillageQuestPoolIds;
             var poolSet = pool.ToList();
             var seen = new HashSet<string>();
@@ -50,8 +48,9 @@ namespace CavesOfOoo.Tests
                 for (int y = 0; y < 20; y++)
                 {
                     string q = VillagePopulationBuilder.PickVillageQuest($"Overworld.{x}.{y}.0");
-                    Assert.Contains(q, poolSet, "every pick must be a pool quest");
-                    seen.Add(q);
+                    if (q == null) continue; // Unassigned towns do not duplicate global stories.
+                    Assert.Contains(q, poolSet, "every assigned host must use a pool quest");
+                    Assert.IsTrue(seen.Add(q), "each global story must have exactly one host");
                 }
             Assert.AreEqual(pool.Count, seen.Count,
                 "across many villages EVERY pool quest appears (all reachable; the pick distributes)");

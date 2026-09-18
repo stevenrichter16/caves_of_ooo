@@ -190,11 +190,8 @@ namespace CavesOfOoo.Core
             }
             else
             {
-                // Non-starting villages each get ONE quest from a pool, picked
-                // deterministically by zone ID (mirrors the per-village House
-                // Drama assignment, OverworldZoneManager.cs:194-200) — so the
-                // player finds varied quests while exploring, one per village,
-                // with no hub crowding. Docs/QUEST-IN-WORLD.md.
+                // These are six global stories, each with one canonical host.
+                // Other villages keep their services and bespoke local work.
                 PlaceDistributedVillageQuest(zone, factory, rng, interiorCells, openCells, settlementId);
             }
 
@@ -978,17 +975,26 @@ namespace CavesOfOoo.Core
             zone.AddEntity(stump, mx, my);
         }
 
-        /// <summary>The distributable village-quest pool. Each non-starting
-        /// village hosts ONE, picked by a stable zone-ID hash. Quests + dialogue
-        /// auto-load from Resources. Expand the pool to reduce cross-village
-        /// repetition. Docs/QUEST-DESIGN-CATALOG.md.</summary>
+        /// <summary>Six global stories, each hosted once in the authored world.
+        /// Quest IDs and objective facts are intentionally not repeatable templates.</summary>
         private static readonly string[] VillageQuestPool = { "CrunchyLocket", "HiddenShrine", "ClearTheWarren", "TheCandyTax", "MessageForHermit", "StrongestInOoo" };
 
-        /// <summary>Deterministically pick the pool quest for a village by its
-        /// zone ID (stable per zone, like the per-village House Drama pick).
-        /// Public + static so the assignment is unit-testable.</summary>
+        /// <summary>Return a global story only at its canonical surface host.
+        /// Exact matching excludes underground copies, malformed addresses and
+        /// unrelated villages. Existing cached graphs are not rewritten.</summary>
         public static string PickVillageQuest(string zoneId)
-            => VillageQuestPool[((zoneId ?? "").GetHashCode() & int.MaxValue) % VillageQuestPool.Length];
+        {
+            switch (zoneId)
+            {
+                case "Overworld.13.7.0": return "CrunchyLocket";     // Tine
+                case "Overworld.14.9.0": return "HiddenShrine";      // Quillhold
+                case "Overworld.8.16.0": return "ClearTheWarren";    // Wellmeet
+                case "Overworld.7.8.0": return "TheCandyTax";         // Gantry
+                case "Overworld.5.9.0": return "MessageForHermit";   // Posy
+                case "Overworld.15.6.0": return "StrongestInOoo";    // Sumphold
+                default: return null;
+            }
+        }
 
         /// <summary>Read-only view of the distributable pool, for tests/tools.
         /// Lets the pool-distribution test assert its invariants
@@ -1007,7 +1013,7 @@ namespace CavesOfOoo.Core
                 case "TheCandyTax":    PlaceCandyTaxQuest(zone, factory, rng, interiorCells, openCells, settlementId); break;
                 case "MessageForHermit": PlaceMessageForHermitQuest(zone, factory, rng, interiorCells, openCells, settlementId); break;
                 case "StrongestInOoo": PlaceStrongmanQuest(zone, factory, rng, interiorCells, openCells, settlementId); break;
-                default:               PlacePilgrimShrineQuest(zone, factory, rng, interiorCells, openCells, settlementId); break;
+                case "HiddenShrine":   PlacePilgrimShrineQuest(zone, factory, rng, interiorCells, openCells, settlementId); break;
             }
         }
 

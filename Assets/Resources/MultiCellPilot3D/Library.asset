@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1e9aef2feaaa4cfda190ab438b850b2, type: 3}
+  m_Name: Library
+  m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.Rendering.MultiCellPilot3DLibrary
+  Catalog: {fileID: 4900000, guid: d6f06a9cf4be8474faeb95c96a1152c6, type: 3}
+  WorldMaterial: {fileID: 2100000, guid: a4c581fa033d64ebcac03e774e94fb80, type: 2}
+  TarMaterial: {fileID: 2100000, guid: 6716f32ab634849ab9d54274c63e8e82, type: 2}
+  GroundMaterial: {fileID: 2100000, guid: 349c0b7e67f4345be925e6ab9749e187, type: 2}
+  Models:
+  - Id: PilotRidgeN_0
+    Prefab: {fileID: 761064506587667383, guid: 9e393fdb3385c4685898e296a0494bf3, type: 3}
+  - Id: PilotRidgeN_1
+    Prefab: {fileID: 3286158580562546665, guid: ef7d97580dd1c43ebb434ab2430e3647, type: 3}
+  - Id: PilotRidgeN_2
+    Prefab: {fileID: 5120403155000168574, guid: e96309ae6526f4f7ba3b3ff22ca9c1f9, type: 3}
+  - Id: PilotRidgeN_3
+    Prefab: {fileID: 4565490167944900508, guid: bb3e080ea38774e03943c64c5bc38994, type: 3}
+  - Id: PilotRidgeNE_0
+    Prefab: {fileID: 8465398219071824770, guid: 9883dd9ac808a462196d4f7007345534, type: 3}
+  - Id: PilotRidgeNE_1
+    Prefab: {fileID: 5928026050388090714, guid: 1b75e6535f3a1418290569f1796ee598, type: 3}
+  - Id: PilotRidgeNE_2
+    Prefab: {fileID: 1860484065568256498, guid: 94126311f780d4fec961fb2bcb72085d, type: 3}
+  - Id: PilotRidgeNE_3
+    Prefab: {fileID: 6953643789298531390, guid: e6027f187941d4674851d3b1c702b05a, type: 3}
+  - Id: PilotRidgeSE_0
+    Prefab: {fileID: 8275522390228812348, guid: 63b68fa41c1944c00987550022a77ee5, type: 3}
+  - Id: PilotRidgeSE_1
+    Prefab: {fileID: 814599502323967510, guid: b15f8bac4ba3d47c199482c5f43e0898, type: 3}
+  - Id: PilotRidgeSE_2
+    Prefab: {fileID: 841492081128382746, guid: d0da770051cd14c80b7fb94ad5c34722, type: 3}
+  - Id: PilotRidgeSE_3
+    Prefab: {fileID: 6223624133128347804, guid: 66c2c5074afb046d1882d76e783c4a69, type: 3}
+  - Id: PilotRidgeE_0
+    Prefab: {fileID: 1067199290842539900, guid: 2d9600fa9f4db4f0fae345f99cf31a80, type: 3}
+  - Id: PilotRidgeE_1
+    Prefab: {fileID: 2216090380910381037, guid: f78acdc2726d34dd0b6bc6488e7a6c95, type: 3}
+  - Id: PilotRidgeE_2
+    Prefab: {fileID: 7362885841762634411, guid: b706ad5d2dd164a5d9420463fb221aed, type: 3}
+  - Id: PilotRidgeE_3
+    Prefab: {fileID: 3395171840274184967, guid: f8d8d7cab02914dbeba27da7727e94b5, type: 3}
+  - Id: PilotBoulder_0
+    Prefab: {fileID: 9199745170085720422, guid: 859309112140e4233a17510a4607ae23, type: 3}
+  - Id: PilotBoulder_1
+    Prefab: {fileID: 1683399874479377846, guid: 95188aa4922d14b81aade09c5b0f06aa, type: 3}
+  - Id: PilotBoulder_2
+    Prefab: {fileID: 4336006764021748308, guid: 562aa9f6dc4494e9ea2754986f01cf0b, type: 3}
+  - Id: PilotBoulder_3
+    Prefab: {fileID: 64953084891003503, guid: 221a052a6e8e445039d2e0beddddd172, type: 3}
+  - Id: PilotRock_0
+    Prefab: {fileID: 6582075688984528587, guid: 07515f4da716c40659606a4bc77a064b, type: 3}
+  - Id: PilotRock_1
+    Prefab: {fileID: 4182076489563408086, guid: ed7eeb4eb678a45d0a20a768c9e34e23, type: 3}
+  - Id: PilotRock_2
+    Prefab: {fileID: 5407390970488088087, guid: b4c9c92448b6b47eeacbd29edcf1fc57, type: 3}
+  - Id: PilotRock_3
+    Prefab: {fileID: 9155901306158014123, guid: c21c7cc0fa12e4330a5cb63e3c185b20, type: 3}
+  - Id: PilotTar_0
+    Prefab: {fileID: 1748083893180580760, guid: 6cb0e1b86938e43b18e7466d8100bae4, type: 3}
+  - Id: PilotTar_1
+    Prefab: {fileID: 1779058024963481330, guid: 5fbcb4c29b4254cc79a44c9e7c8d14a7, type: 3}
+  - Id: PilotTar_2
+    Prefab: {fileID: 8229326989999060769, guid: dbd82e18a20394ba1b7ee1238dc8c7c9, type: 3}
+  - Id: PilotTar_3
+    Prefab: {fileID: 9195843555422362398, guid: 6ada34e82180f472ea0e40554d3e1475, type: 3}
+  - Id: PilotPipe_0
+    Prefab: {fileID: 6447803975552603777, guid: b353204603dfa465788f45fca031f84f, type: 3}
+  - Id: PilotPipe_1
+    Prefab: {fileID: 1725894149340903650, guid: 6a88054e993ed4f82a65f8abf4b9a728, type: 3}
+  - Id: PilotPipe_2
+    Prefab: {fileID: 6794863530556098378, guid: 4f1d9635118614496bc1e2015f2c2329, type: 3}
+  - Id: PilotPipe_3
+    Prefab: {fileID: 5842830171517363270, guid: 2a53ab6ee51e84c2291e17c606e26500, type: 3}
+  - Id: PilotRuinWall_0
+    Prefab: {fileID: 8579389844410613563, guid: 1f10ed160f45d463a913c360fff45a69, type: 3}
+  - Id: PilotRuinWall_1
+    Prefab: {fileID: 5379532901049067309, guid: feab4a8c2afa74590b0417bb865196bd, type: 3}
+  - Id: PilotRuinWall_2
+    Prefab: {fileID: 5660144305915091520, guid: bf793a1eb8b2a47c0b74936b15abbd2c, type: 3}
+  - Id: PilotRuinWall_3
+    Prefab: {fileID: 4217538458789497100, guid: 98f3b065522204d60a3f0ec80a8e2cd7, type: 3}
+  - Id: PilotTepuibone_0
+    Prefab: {fileID: 7013908989242509695, guid: f886a4741a9444c8d8e6c85f33464eb8, type: 3}
+  - Id: PilotTepuibone_1
+    Prefab: {fileID: 1241990185351335009, guid: 6db775fdf99194056b0e05a71311632f, type: 3}
+  - Id: PilotTepuibone_2
+    Prefab: {fileID: 2752517341324823691, guid: 97831dbe18181415d9cb825fb1839c4f, type: 3}
+  - Id: PilotTepuibone_3
+    Prefab: {fileID: 5489081509645682390, guid: 9a154903b325c40c989b1df9c04e0bed, type: 3}
+  - Id: PilotSteamVent_0
+    Prefab: {fileID: 8956657787222928524, guid: 6f172e75f4eed4ba08d96e4eefdcd4bf, type: 3}
+  - Id: PilotSteamVent_1
+    Prefab: {fileID: 8894002400707076868, guid: f10411032ce054f53ac2dd52d606aea2, type: 3}
+  - Id: PilotSteamVent_2
+    Prefab: {fileID: 6108673478196611303, guid: 7336e9b8878ec499899b7dd6c764ac48, type: 3}
+  - Id: PilotSteamVent_3
+    Prefab: {fileID: 9204926854426633909, guid: d38f1fc32f02c433bbe436faabeb1fd4, type: 3}
+  - Id: PilotGround_0
+    Prefab: {fileID: 7207566617102685906, guid: f0b5713e938984beb89a231216c5d4da, type: 3}
+  - Id: PilotGround_1
+    Prefab: {fileID: 7438381550054982643, guid: b2fadf4bad05941f8a8e780d3893c327, type: 3}
+  - Id: PilotGround_2
+    Prefab: {fileID: 1299664786498499969, guid: 18158aef44c9b4f03bfcb11f88efebd9, type: 3}
+  - Id: PilotGround_3
+    Prefab: {fileID: 3339898387344370233, guid: 76dcd2dc84d1541eda894c3cdbd68c22, type: 3}
+  - Id: PilotMawToad
+    Prefab: {fileID: 5839381434717057598, guid: 0875d97d370bd4d6e8a3c7c2925e4e31, type: 3}
+  - Id: PilotWardline
+    Prefab: {fileID: 5472951052384893112, guid: 8988e07a86708465cabee8a6b4813bb0, type: 3}
+  - Id: PilotHermit
+    Prefab: {fileID: 8127543776987564257, guid: 47b5814abc4c44cbcae7bbb5392330c0, type: 3}

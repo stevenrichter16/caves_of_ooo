@@ -1,0 +1,79 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "NativeSpellPresenterTests|NativeSpellFxGpuReportTests",
+  "results": {
+    "id": "2",
+    "testcasecount": "26",
+    "result": "Failed(Child)",
+    "total": "26",
+    "passed": "12",
+    "failed": "14",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-11 03:35:39Z",
+    "end-time": "2026-09-11 03:35:41Z",
+    "duration": "2.2160587"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxGpuReportTests.AcceptanceRequiresFreshCompleteGpuEvidenceAndPositiveControls(\"valid\",True)",
+      "message": "  An isolated actual-GPU acceptance probe must validate fresh, complete evidence.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxGpuReportTests.AcceptanceRequiresFreshCompleteGpuEvidenceAndPositiveControls(\"stale-run\",False)",
+      "message": "  An isolated actual-GPU acceptance probe must validate fresh, complete evidence.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxGpuReportTests.AcceptanceRequiresFreshCompleteGpuEvidenceAndPositiveControls(\"stale-source\",False)",
+      "message": "  An isolated actual-GPU acceptance probe must validate fresh, complete evidence.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxGpuReportTests.AcceptanceRequiresFreshCompleteGpuEvidenceAndPositiveControls(\"failed\",False)",
+      "message": "  An isolated actual-GPU acceptance probe must validate fresh, complete evidence.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxGpuReportTests.AcceptanceRequiresFreshCompleteGpuEvidenceAndPositiveControls(\"missing-case\",False)",
+      "message": "  An isolated actual-GPU acceptance probe must validate fresh, complete evidence.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxGpuReportTests.AcceptanceRequiresFreshCompleteGpuEvidenceAndPositiveControls(\"duplicate-case\",False)",
+      "message": "  An isolated actual-GPU acceptance probe must validate fresh, complete evidence.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxGpuReportTests.AcceptanceRequiresFreshCompleteGpuEvidenceAndPositiveControls(\"blank-positive\",False)",
+      "message": "  An isolated actual-GPU acceptance probe must validate fresh, complete evidence.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxGpuReportTests.AcceptanceRequiresFreshCompleteGpuEvidenceAndPositiveControls(\"visible-backface\",False)",
+      "message": "  An isolated actual-GPU acceptance probe must validate fresh, complete evidence.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxGpuReportTests.AcceptanceRequiresFreshCompleteGpuEvidenceAndPositiveControls(\"memory-leak\",False)",
+      "message": "  An isolated actual-GPU acceptance probe must validate fresh, complete evidence.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxGpuReportTests.AcceptanceRequiresFreshCompleteGpuEvidenceAndPositiveControls(\"null-gpu\",False)",
+      "message": "  An isolated actual-GPU acceptance probe must validate fresh, complete evidence.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxGpuReportTests.AcceptanceRequiresFreshCompleteGpuEvidenceAndPositiveControls(\"dirty-scene\",False)",
+      "message": "  An isolated actual-GPU acceptance probe must validate fresh, complete evidence.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxGpuReportTests.AcceptanceRequiresFreshCompleteGpuEvidenceAndPositiveControls(\"unexpected-error\",False)",
+      "message": "  An isolated actual-GPU acceptance probe must validate fresh, complete evidence.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellPresenterTests.CastingDuringMovement_SnapsToTheResolvedCellBeforeStartingTheGesture(True)",
+      "message": "  A cast interrupts tweening at the already resolved gameplay cell, where its effect originates.\n  Expected: less than 0.00100000005f\n  But was:  0.349998474f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellPresenterTests.CastingDuringMovement_SnapsToTheResolvedCellBeforeStartingTheGesture(False)",
+      "message": "  A cast interrupts tweening at the already resolved gameplay cell, where its effect originates.\n  Expected: less than 0.00100000005f\n  But was:  0.349999905f\n"
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 using CavesOfOoo.Core;
+using System.Collections.Generic;
 
 namespace CavesOfOoo.Skills
 {
@@ -11,17 +12,15 @@ namespace CavesOfOoo.Skills
     /// beam passes through (<c>SpellTargeting.TraceBeam</c> pierces
     /// creatures and stops only on solids), plus
     /// <see cref="FireDose.Attack"/> to every ThermalPart entity along
-    /// the path. Damage routes through <c>RouteDamage</c> so the beam's
-    /// heat pass and its damage pass agree about scenery.</para>
+    /// the path, once per owner. Direct damage remains creature-only;
+    /// scenery responds through its thermal reactions.</para>
     /// </summary>
-    public class Pyromancy_EmberVein : BaseSkillPart
+    public class Pyromancy_EmberVein : SpellSkillPart
     {
         public override string Name => nameof(Pyromancy_EmberVein);
 
         public const int RANGE = 7;
         public const int COOLDOWN = 12;
-        private const float ChargeDuration = 0.08f;
-        private const float BeamDuration = 0.12f;
 
         public override ActivatedAbilitySpec DeclareActivatedAbility(Entity actor)
         {
@@ -36,7 +35,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;
             var actor = ctx.Attacker;
@@ -55,18 +54,8 @@ namespace CavesOfOoo.Skills
                 return false;
             }
 
-            AsciiFxBus.EmitChargeOrbit(zone, actor, radius: 1, duration: ChargeDuration,
-                AsciiFxTheme.Fire, blocksTurnAdvance: true);
-            AsciiFxBus.EmitBeam(zone, trace.Path, dx, dy, AsciiFxTheme.Fire,
-                duration: BeamDuration, blocksTurnAdvance: true, delay: ChargeDuration);
             ctx.BlocksTurnAdvance = true;
 
-            Point impact = trace.GetImpactPoint();
-            if (impact.X >= 0)
-            {
-                AsciiFxBus.EmitBurst(zone, impact.X, impact.Y, AsciiFxTheme.Fire,
-                    blocksTurnAdvance: true, delay: ChargeDuration + BeamDuration);
-            }
 
             // 1. Damage the creatures the beam passed through.
             for (int i = 0; i < trace.HitEntities.Count; i++)
@@ -82,9 +71,11 @@ namespace CavesOfOoo.Skills
                 CombatSystem.ApplyDamage(target, damage, "Heat", actor, zone);
             }
 
-            // 2. Per-cell heat pass: FireDose.Attack to every ThermalPart
-            // entity along the path. Reverse-iterate + re-check Count —
-            // shatters and reactions mutate the collection mid-loop.
+            // 2. One heat dose per owner in this cast, including scenery
+            // touched away from its anchor. Collect before firing events:
+            // shattering, movement and nested casts may mutate occupancy.
+            var heatTargets = new List<Entity>();
+            var heated = new HashSet<Entity>();
             for (int p = 0; p < trace.Path.Count; p++)
             {
                 Point point = trace.Path[p];
@@ -92,24 +83,25 @@ namespace CavesOfOoo.Skills
                 if (cell == null)
                     continue;
 
-                for (int i = cell.Objects.Count - 1; i >= 0; i--)
+                for (int i = cell.Occupants.Count - 1; i >= 0; i--)
                 {
-                    if (i >= cell.Objects.Count) continue;
-                    Entity entity = cell.Objects[i];
-                    if (entity == actor)
-                        continue;
-
-                    if (entity.HasPart<ThermalPart>())
-                    {
-                        var heatEvent = GameEvent.New("ApplyHeat");
-                        heatEvent.SetParameter("Joules", (object)FireDose.Attack);
-                        heatEvent.SetParameter("Radiant", (object)false);
-                        heatEvent.SetParameter("Source", (object)actor);
-                        heatEvent.SetParameter("Zone", (object)zone);
-                        entity.FireEvent(heatEvent);
-                        heatEvent.Release();
-                    }
+                    Entity entity = cell.Occupants[i];
+                    if (entity != actor && entity.HasPart<ThermalPart>() && heated.Add(entity))
+                        heatTargets.Add(entity);
                 }
+            }
+
+            foreach (var entity in heatTargets)
+            {
+                // A prior heat reaction can remove another snapshotted owner.
+                if (zone.GetEntityCell(entity) == null) continue;
+                var heatEvent = GameEvent.New("ApplyHeat");
+                heatEvent.SetParameter("Joules", (object)FireDose.Attack);
+                heatEvent.SetParameter("Radiant", (object)false);
+                heatEvent.SetParameter("Source", (object)actor);
+                heatEvent.SetParameter("Zone", (object)zone);
+                SpellFxCapture.Target(zone, entity);
+                entity.FireEventAndRelease(heatEvent);
             }
 
             return true;

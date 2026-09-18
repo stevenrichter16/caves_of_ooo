@@ -1,0 +1,87 @@
+{
+  "path": "/Users/steven/caves-of-ooo/Docs/Verification/StarterSpell3D/Readability/Compatibility-codec-green/synthetic-standard-h264.mp4",
+  "sha256": "1a6714eaac59f9c3c3722ea4e0e1841da921e0c9aca7c4f8cfd8c8b4aa2998e5",
+  "width": 96,
+  "height": 64,
+  "pixelAspect": "1:1",
+  "codec": "standard H264 High / yuv420p / CRF18",
+  "chromaCompressed": true,
+  "exactRgbPreservationClaimed": false,
+  "decodedFrameCount": 4,
+  "decodedRgbMatchesEveryInput": false,
+  "decodedRgbFramesDifferingFromInputs": 4,
+  "maximumPtsErrorSeconds": 0.0004559999999999981,
+  "expectedSeconds": 0.780146,
+  "encodedSeconds": 0.781,
+  "ffprobe": {
+    "frames": [
+      {
+        "best_effort_timestamp_time": "0.000000",
+        "side_data_list": [
+          {
+            "side_data_type": "H.26[45] User Data Unregistered SEI message"
+          }
+        ]
+      },
+      {
+        "best_effort_timestamp_time": "0.123000"
+      },
+      {
+        "best_effort_timestamp_time": "0.691000"
+      },
+      {
+        "best_effort_timestamp_time": "0.780000"
+      }
+    ],
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "profile": "High",
+        "width": 96,
+        "height": 64,
+        "sample_aspect_ratio": "1:1",
+        "pix_fmt": "yuv420p",
+        "time_base": "1/1000000",
+        "disposition": {
+          "default": 1,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        },
+        "tags": {
+          "language": "und",
+          "handler_name": "VideoHandler",
+          "vendor_id": "[0][0][0][0]",
+          "encoder": "Lavc62.11.100 libx264"
+        }
+      }
+    ],
+    "format": {
+      "duration": "0.781000",
+      "tags": {
+        "major_brand": "isom",
+        "minor_version": "512",
+        "compatible_brands": "isomiso2avc1mp41",
+        "encoder": "Lavf62.3.100"
+      }
+    }
+  },
+  "scope": "Playback companion only. Same full-frame geometry, sample order and recorded walltime holds; no motion interpolation. RGB-to-YUV conversion, chroma subsampling and lossy encoding alter colors. The lossless RGB master and original PNGs remain authoritative. Compatibility is codec-level and ffmpeg-verified, not a claim about every app."
+}

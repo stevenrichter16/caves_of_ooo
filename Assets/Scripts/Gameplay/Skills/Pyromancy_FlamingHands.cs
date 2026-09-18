@@ -20,7 +20,7 @@ namespace CavesOfOoo.Skills
     /// "blasts the empty space" when the cell is empty — which still
     /// consumes the cast, exactly as the mutation did.</para>
     /// </summary>
-    public class Pyromancy_FlamingHands : BaseSkillPart
+    public class Pyromancy_FlamingHands : SpellSkillPart
     {
         public override string Name => nameof(Pyromancy_FlamingHands);
 
@@ -40,7 +40,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;
             var actor = ctx.Attacker;
@@ -48,11 +48,8 @@ namespace CavesOfOoo.Skills
             if (ctx.TargetCell == null) { EmitSkillRejectedDiag(ctx, "no_target_cell"); return false; }
             var zone = ctx.Zone;
             var targetCell = ctx.TargetCell;
+            SpellFxCapture.AffectCell(zone, targetCell.X, targetCell.Y);
 
-            AsciiFxBus.EmitChargeOrbit(zone, actor, radius: 1, duration: 0.15f,
-                AsciiFxTheme.Fire, blocksTurnAdvance: true);
-            AsciiFxBus.EmitBurst(zone, targetCell.X, targetCell.Y, AsciiFxTheme.Fire,
-                blocksTurnAdvance: true, delay: 0.15f);
             ctx.BlocksTurnAdvance = true;
 
             // Heat the GROUND too — an oil slick lights on the cast.
@@ -62,9 +59,9 @@ namespace CavesOfOoo.Skills
 
             // Everything fire can mean anything to — creatures and scenery.
             var targets = new System.Collections.Generic.List<Entity>();
-            for (int i = 0; i < targetCell.Objects.Count; i++)
+            for (int i = 0; i < targetCell.Occupants.Count; i++)
             {
-                var candidate = targetCell.Objects[i];
+                var candidate = targetCell.Occupants[i];
                 if (AbilityTargeting.IsElementalTarget(candidate, actor))
                     targets.Add(candidate);
             }
@@ -79,7 +76,8 @@ namespace CavesOfOoo.Skills
                 for (int i = targets.Count - 1; i >= 0; i--)
                 {
                     var target = targets[i];
-                    if (target == actor) continue;
+                    if (target == actor || zone.GetEntityCell(target) == null) continue;
+                    SpellFxCapture.TargetAt(zone, target, new Point(targetCell.X, targetCell.Y));
 
                     int totalDamage = DiceRoller.Roll(DAMAGE_DICE, ctx.Rng);
                     if (totalDamage > 0)
@@ -96,6 +94,7 @@ namespace CavesOfOoo.Skills
                         heatEvent.SetParameter("Radiant", (object)false);
                         heatEvent.SetParameter("Source", (object)actor);
                         heatEvent.SetParameter("Zone", (object)zone);
+                        SpellFxCapture.Target(zone, target);
                         target.FireEvent(heatEvent);
                         heatEvent.Release();
                     }

@@ -1,0 +1,207 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "NativeEmberProjectileRevisionTests|StarterSpell3DEmberMotionCaptureTests",
+  "results": {
+    "id": "2",
+    "testcasecount": "48",
+    "result": "Failed(Child)",
+    "total": "48",
+    "passed": "2",
+    "failed": "46",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-11 17:51:10Z",
+    "end-time": "2026-09-11 17:51:11Z",
+    "duration": "1.2749787"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.NativeEmberProjectileRevisionTests.EmberImpactIsCompactAndClearlySmallerThanTheUnchangedHandsCrown(Full)",
+      "message": "  Ember's small hit must not retain its former radial fire crown.\n  Expected: less than or equal to 1.14999998f\n  But was:  4.01281738f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeEmberProjectileRevisionTests.EmberImpactIsCompactAndClearlySmallerThanTheUnchangedHandsCrown(Reduced)",
+      "message": "  Pyromancy_EmberSpit must have a real halo to compare.\n  Expected: greater than 0\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeEmberProjectileRevisionTests.FourCellShotRetainsLongContinuousTailBeforeItsSmallImpact(1,0,Full)",
+      "message": "  A long filled wake must follow the recorded route; separated soot specks do not satisfy this longitudinal coverage gate.\n  Expected: greater than or equal to 2.25f\n  But was:  0.139181137f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeEmberProjectileRevisionTests.FourCellShotRetainsLongContinuousTailBeforeItsSmallImpact(1,-1,Reduced)",
+      "message": "  A long filled wake must follow the recorded route; separated soot specks do not satisfy this longitudinal coverage gate.\n  Expected: greater than or equal to 3.18198037f\n  But was:  0.139181852f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeEmberProjectileRevisionTests.PartialFogKeepsTheVisibleProjectileWhileFullFogHidesAndRestoresIt(\"rear-hidden\",Reduced)",
+      "message": "  A hidden source/rear segment must not suppress the still-visible travelling wake.\n  Expected: not <empty>\n  But was:  <empty>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeEmberProjectileRevisionTests.ShortAndDiagonalShotsKeepEveryDrawnProjectileVertexBetweenCasterAndContactCell(1,1,0,Full)",
+      "message": "  RD_Ember_fine_ivory_ridge extends behind the caster at study frame 14\n  Expected: greater than or equal to -0.0250000004f\n  But was:  -0.293324471f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeEmberProjectileRevisionTests.ShortAndDiagonalShotsKeepEveryDrawnProjectileVertexBetweenCasterAndContactCell(1,1,-1,Reduced)",
+      "message": "  RD_Ember_fine_ivory_ridge extends behind the caster at study frame 14\n  Expected: greater than or equal to -0.0250000004f\n  But was:  -0.29332453f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeEmberProjectileRevisionTests.ShortAndDiagonalShotsKeepEveryDrawnProjectileVertexBetweenCasterAndContactCell(2,0,-1,Reduced)",
+      "message": "  RD_Ember_fine_ivory_ridge extends behind the caster at study frame 14\n  Expected: greater than or equal to -0.0250000004f\n  But was:  -0.293324471f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeEmberProjectileRevisionTests.ShortAndDiagonalShotsKeepEveryDrawnProjectileVertexBetweenCasterAndContactCell(2,-1,1,Full)",
+      "message": "  RD_Ember_fine_ivory_ridge extends behind the caster at study frame 14\n  Expected: greater than or equal to -0.0250000004f\n  But was:  -0.29332453f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeEmberProjectileRevisionTests.ShortAndDiagonalShotsKeepEveryDrawnProjectileVertexBetweenCasterAndContactCell(4,1,0,Full)",
+      "message": "  RD_Ember_fine_ivory_ridge extends behind the caster at study frame 14\n  Expected: greater than or equal to -0.0250000004f\n  But was:  -0.293324471f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeEmberProjectileRevisionTests.ShortAndDiagonalShotsKeepEveryDrawnProjectileVertexBetweenCasterAndContactCell(4,1,-1,Reduced)",
+      "message": "  RD_Ember_fine_ivory_ridge extends behind the caster at study frame 14\n  Expected: greater than or equal to -0.0250000004f\n  But was:  -0.29332453f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"contact-only\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"two-flight-samples\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"no-tail\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"stationary-head\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"duplicate-unity-frame\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"duplicate-wall-time\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"same-image-flight\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"missing-impact\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"missing-clear\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"relabeled-east\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"missing-northeast\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"foreign-spell\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"early-encoding\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"pending-at-encode\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"active-at-encode\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"unsettled-gesture\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"readback-error\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"overflow\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"larger-memory-cap\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"larger-ring\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"wrong-color\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"vacuous-flip-counter\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"vacuous-gamma-counter\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"upscaled-view\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"stale-run\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.IncompleteOrMisleadingMotionEvidenceIsRejectedAgainstTheSameValidFixture(\"completion-before-request\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.OnlyTheExactExplicitOptionRequestsMotionCapture",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.RealWalltimeGapsAreRetainedButDoNotBecomeSyntheticFlightFrames",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.RecorderCannotChangeOriginalCastsOrEnterAProfile(\"disabled\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.RecorderCannotChangeOriginalCastsOrEnterAProfile(\"other-spell\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.RecorderCannotChangeOriginalCastsOrEnterAProfile(\"profile\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.RecorderCannotChangeOriginalCastsOrEnterAProfile(\"original-unfinished\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.RecorderCannotChangeOriginalCastsOrEnterAProfile(\"ordinary-showcase\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.RecorderCannotChangeOriginalCastsOrEnterAProfile(\"direction-matrix\")",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StarterSpell3DEmberMotionCaptureTests.TwoActualDirectionsWithMovingPrecontactHeadTailThenImpactAndClearAreRequired",
+      "message": "  The optional Ember recorder must exist; ordinary native gates alone cannot prove its short flight was sampled.\n  Expected: not null\n  But was:  null\n"
+    }
+  ]
+}

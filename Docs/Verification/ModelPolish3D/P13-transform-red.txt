@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/ModelPolish3D/test_fbx_normals.py", line 27, in <module>
+    assert all(abs((imported_ob.matrix_world@v.co).z-3)<.0001 for v in imported.vertices),(filename,'dirty source translation lost')
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('ArtSource/Village3D/build_scene.py', 'dirty source translation lost')
+
+FBX export starting... '/tmp/coo-model-transform-red2/models/normal-probe.fbx'
+export finished in 0.0042 sec.
+FBX version: 7400
+
+Error: script failed, file: 'ArtSource/ModelPolish3D/test_fbx_normals.py', exiting.
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 01:35:57)
+
+Blender quit

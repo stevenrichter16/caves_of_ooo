@@ -1,0 +1,205 @@
+// Paste this method BODY into Unity MCP execute_code. C# 6 compatible.
+// Requires Play mode paused in the Unity Editor and SpellFxShowcasePlayer present.
+// Executes each selected gameplay case ONCE. Only presentation clocks then advance.
+// Timing excludes actor reflection, Camera.Render, GPU readback, PNG encoding and IO.
+// This is a Stopwatch sample, not a Unity profiler or a supported GC measurement.
+if (!UnityEngine.Application.isPlaying || !UnityEditor.EditorApplication.isPaused)
+    return "Capture requires paused Play mode; no files or scene state changed.";
+
+var showcase = UnityEngine.Object.FindFirstObjectByType<CavesOfOoo.Scenarios.Custom.SpellFxShowcasePlayer>();
+var renderer = UnityEngine.Object.FindFirstObjectByType<CavesOfOoo.Rendering.ZoneRenderer>();
+var camera = UnityEngine.Camera.main;
+if (showcase == null || renderer == null || renderer.WorldFx == null || camera == null)
+    return "Capture requires SpellFxShowcasePlayer, initialized ZoneRenderer.WorldFx and Camera.main.";
+
+var cases = CavesOfOoo.Scenarios.Custom.SpellFxShowcase.CreateCases();
+var indices = new System.Collections.Generic.List<int>();
+for (int i = 0; i < 8 && i < cases.Count; i++) indices.Add(i);
+for (int i = 0; i < cases.Count; i++)
+{
+    if ((cases[i].SkillID == "Corrosion_AcidSpray" || cases[i].SkillID == "Galvanism_Overload" || cases[i].SkillID == "Galvanism_GroundSurge")
+        && cases[i].Outcome == CavesOfOoo.Scenarios.Custom.SpellFxShowcase.Variant.Normal)
+        indices.Add(i);
+    if (cases[i].SkillID == "Rites_BloodletterLedger"
+        && cases[i].Outcome == CavesOfOoo.Scenarios.Custom.SpellFxShowcase.Variant.ZeroMarks)
+        indices.Add(i);
+}
+if (indices.Count != 12)
+    return "Expected eight representatives, Acid Spray, Overload, Ground Surge, and zero-mark Bloodletter Ledger; found " + indices.Count + ".";
+
+var outputDirectory = System.IO.Path.GetFullPath(System.IO.Path.Combine(
+    UnityEngine.Application.dataPath, "../Docs/Verification/SpellFx"));
+var frameDirectory = System.IO.Path.Combine(outputDirectory, "frames");
+System.IO.Directory.CreateDirectory(frameDirectory);
+var invariant = System.Globalization.CultureInfo.InvariantCulture;
+System.Func<string, string> csv = value => "\"" + (value ?? "").Replace("\"", "\"\"") + "\"";
+var summary = new System.Text.StringBuilder();
+summary.AppendLine("case_index,spell_id,label,accepted,peak_live_sprites,end_live_sprites,end_scheduled_atoms,end_blocking,initial_update_ms,mean_tick_update_ms,max_tick_update_ms,presentation_steps,actor_tick_manual");
+var manifest = new System.Text.StringBuilder();
+manifest.AppendLine("case_index,spell_id,label,presentation_tick,presentation_seconds,file");
+var selectedTicks = new int[] { 0, 6, 12, 18, 27, 39 };
+const float tickDelta = 1f / 60f;
+const int endTick = 60;
+
+var actorRenderer = UnityEngine.Object.FindFirstObjectByType<CavesOfOoo.Rendering.AnimatedEntityRenderer>();
+var reflectionFlags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+System.Reflection.FieldInfo actorViews = actorRenderer == null ? null : actorRenderer.GetType().GetField("_views", reflectionFlags);
+System.Reflection.MethodInfo actorTick = actorRenderer == null ? null : actorRenderer.GetType().GetMethod("TickView", reflectionFlags);
+bool tickActors = actorViews != null && actorTick != null;
+var actorSnapshot = new System.Collections.Generic.List<object>();
+
+var oldTarget = camera.targetTexture;
+var oldActive = UnityEngine.RenderTexture.active;
+var oldRect = camera.rect;
+float oldAspect = camera.aspect;
+bool oldOrthographic = camera.orthographic;
+float oldOrthographicSize = camera.orthographicSize;
+var oldPosition = camera.transform.position;
+var oldRotation = camera.transform.rotation;
+bool oldShowcasePaused = showcase.Paused;
+var oldMode = CavesOfOoo.Rendering.SpellFxSettings.Mode;
+float oldSpeed = CavesOfOoo.Rendering.SpellFxSettings.AnimationSpeed;
+float oldFlash = CavesOfOoo.Rendering.SpellFxSettings.FlashIntensity;
+float oldShake = CavesOfOoo.Rendering.SpellFxSettings.ShakeIntensity;
+var oldAccent = renderer.WorldFx.CameraAccent;
+UnityEngine.RenderTexture renderTarget = null;
+UnityEngine.Texture2D readback = null;
+int captured = 0;
+string failure = null;
+try
+{
+    showcase.Paused = true;
+    CavesOfOoo.Rendering.SpellFxSettings.Mode = CavesOfOoo.Rendering.SpellFxMode.Full;
+    CavesOfOoo.Rendering.SpellFxSettings.AnimationSpeed = 1f;
+    CavesOfOoo.Rendering.SpellFxSettings.FlashIntensity = 0f;
+    CavesOfOoo.Rendering.SpellFxSettings.ShakeIntensity = 0f;
+    renderer.WorldFx.CameraAccent = null;
+    // Synchronize mode/visibility before commands are queued. A mode transition
+    // correctly cancels pending playback, so it must precede preparation.
+    renderer.WorldFx.CancelAll();
+    renderer.WorldFx.Update(0f, true, true);
+
+    renderTarget = new UnityEngine.RenderTexture(512, 256, 24, UnityEngine.RenderTextureFormat.ARGB32);
+    renderTarget.name = "SpellFX verification capture (transient)";
+    renderTarget.filterMode = UnityEngine.FilterMode.Point;
+    renderTarget.useMipMap = false;
+    renderTarget.autoGenerateMips = false;
+    renderTarget.Create();
+    readback = new UnityEngine.Texture2D(512, 256, UnityEngine.TextureFormat.RGBA32, false);
+    readback.name = "SpellFX verification readback (transient)";
+    readback.filterMode = UnityEngine.FilterMode.Point;
+    camera.targetTexture = renderTarget;
+    camera.rect = new UnityEngine.Rect(0f, 0f, 1f, 1f);
+    camera.aspect = 2f;
+    camera.orthographic = true;
+    camera.orthographicSize = 8f;
+    camera.transform.position = new UnityEngine.Vector3(40.5f, CavesOfOoo.Core.Zone.Height - 12.5f, -10f);
+    camera.transform.rotation = UnityEngine.Quaternion.identity;
+
+    foreach (int index in indices)
+    {
+        showcase.PrepareCase(index);
+        bool accepted = showcase.ExecutePrepared();
+        var stopwatch = new System.Diagnostics.Stopwatch();
+        stopwatch.Start();
+        renderer.WorldFx.Update(0f, true, true);
+        stopwatch.Stop();
+        double initialMs = stopwatch.Elapsed.TotalMilliseconds;
+        double tickTotalMs = 0.0;
+        double tickMaxMs = 0.0;
+        int peakLive = renderer.WorldFx.SpriteRenderer.ActiveSpriteCount;
+        int captureIndex = 0;
+
+        for (int tick = 0; tick <= endTick; tick++)
+        {
+            if (tick > 0)
+            {
+                stopwatch.Reset();
+                stopwatch.Start();
+                renderer.WorldFx.Update(tickDelta, true, true);
+                stopwatch.Stop();
+                double elapsedMs = stopwatch.Elapsed.TotalMilliseconds;
+                tickTotalMs += elapsedMs;
+                tickMaxMs = System.Math.Max(tickMaxMs, elapsedMs);
+                if (tickActors)
+                {
+                    actorSnapshot.Clear();
+                    var views = actorViews.GetValue(actorRenderer) as System.Collections.IDictionary;
+                    if (views != null)
+                    {
+                        foreach (object view in views.Values) actorSnapshot.Add(view);
+                        foreach (object view in actorSnapshot)
+                            actorTick.Invoke(actorRenderer, new object[] { view, tickDelta });
+                    }
+                }
+            }
+            peakLive = System.Math.Max(peakLive, renderer.WorldFx.SpriteRenderer.ActiveSpriteCount);
+            if (captureIndex >= selectedTicks.Length || tick != selectedTicks[captureIndex]) continue;
+
+            // Reassert the capture frame after RenderZone so viewport/layout hooks
+            // cannot change registration. Actor and FX clocks remain untouched.
+            camera.rect = new UnityEngine.Rect(0f, 0f, 1f, 1f);
+            camera.aspect = 2f;
+            camera.orthographicSize = 8f;
+            camera.transform.position = new UnityEngine.Vector3(40.5f, CavesOfOoo.Core.Zone.Height - 12.5f, -10f);
+            camera.transform.rotation = UnityEngine.Quaternion.identity;
+            UnityEngine.RenderTexture.active = renderTarget;
+            camera.Render();
+            readback.ReadPixels(new UnityEngine.Rect(0, 0, 512, 256), 0, 0, false);
+            readback.Apply(false, false);
+            string filename = index.ToString("D2", invariant) + "-" + tick.ToString("D2", invariant) + ".png";
+            System.IO.File.WriteAllBytes(System.IO.Path.Combine(frameDirectory, filename),
+                UnityEngine.ImageConversion.EncodeToPNG(readback));
+            manifest.Append(index).Append(',').Append(csv(cases[index].SkillID)).Append(',')
+                .Append(csv(cases[index].Label)).Append(',').Append(tick).Append(',')
+                .Append((tick / 60.0).ToString("F4", invariant)).Append(',')
+                .Append(csv("frames/" + filename)).AppendLine();
+            captured++;
+            captureIndex++;
+        }
+        summary.Append(index).Append(',').Append(csv(cases[index].SkillID)).Append(',')
+            .Append(csv(cases[index].Label)).Append(',').Append(accepted).Append(',')
+            .Append(peakLive).Append(',').Append(renderer.WorldFx.SpriteRenderer.ActiveSpriteCount).Append(',')
+            .Append(renderer.WorldFx.SpriteRenderer.ActiveCount).Append(',').Append(renderer.WorldFx.HasBlockingFx).Append(',')
+            .Append(initialMs.ToString("F6", invariant)).Append(',')
+            .Append((tickTotalMs / endTick).ToString("F6", invariant)).Append(',')
+            .Append(tickMaxMs.ToString("F6", invariant)).Append(',').Append(endTick).Append(',')
+            .Append(tickActors).AppendLine();
+    }
+}
+catch (System.Exception exception)
+{
+    failure = exception.ToString();
+}
+finally
+{
+    // Release pending animation, then restore presentation preferences and the
+    // complete touched camera state. No PlayerPrefs or game-save API is called.
+    renderer.WorldFx.CancelAll();
+    renderer.WorldFx.CameraAccent = oldAccent;
+    CavesOfOoo.Rendering.SpellFxSettings.Mode = oldMode;
+    CavesOfOoo.Rendering.SpellFxSettings.AnimationSpeed = oldSpeed;
+    CavesOfOoo.Rendering.SpellFxSettings.FlashIntensity = oldFlash;
+    CavesOfOoo.Rendering.SpellFxSettings.ShakeIntensity = oldShake;
+    showcase.Paused = oldShowcasePaused;
+    camera.targetTexture = oldTarget;
+    camera.rect = oldRect;
+    camera.aspect = oldAspect;
+    camera.orthographic = oldOrthographic;
+    camera.orthographicSize = oldOrthographicSize;
+    camera.transform.position = oldPosition;
+    camera.transform.rotation = oldRotation;
+    UnityEngine.RenderTexture.active = oldActive;
+    if (readback != null) UnityEngine.Object.DestroyImmediate(readback);
+    if (renderTarget != null)
+    {
+        renderTarget.Release();
+        UnityEngine.Object.DestroyImmediate(renderTarget);
+    }
+    System.IO.File.WriteAllText(System.IO.Path.Combine(outputDirectory, "capture-summary.csv"), summary.ToString());
+    System.IO.File.WriteAllText(System.IO.Path.Combine(outputDirectory, "capture-frames.csv"), manifest.ToString());
+}
+return (failure == null ? "Capture completed" : "Capture interrupted: " + failure)
+    + "; PNGs=" + captured + "; directory=" + outputDirectory
+    + "; actor frames advanced manually=" + tickActors
+    + "; CSV timings cover coordinator.Update only; no GC measurement claimed.";

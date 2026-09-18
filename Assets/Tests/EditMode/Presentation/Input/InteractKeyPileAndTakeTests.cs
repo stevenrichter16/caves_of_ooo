@@ -109,6 +109,107 @@ namespace CavesOfOoo.Tests
             return method.Invoke(instance, args);
         }
 
+        private static void ExecuteVisibleCommand(InputHandler input, string command)
+        {
+            var menu = input.WorldActionMenuUI;
+            var action = GetMenuActions(menu).Find(a => a.Command == command);
+            Assert.IsNotNull(action, "The current menu must offer " + command);
+            // Use the context exposed by the real menu, as HandleWorldActionMenuInput does.
+            InvokeNonPublic(input, "ExecuteWorldActionSelection", action,
+                menu.SelectedTarget, menu.SelectedCell, menu.SelectedCellIsPile);
+        }
+
+        [Test]
+        public void PileSummary_ExamineDescribesTheWholeCell()
+        {
+            var zone = new Zone("PileExamineZone");
+            var player = CreatePlayer();
+            zone.AddEntity(player, 10, 10);
+            zone.AddEntity(CreateLooseItem("sword"), 11, 10);
+            zone.AddEntity(CreateLooseItem("shield"), 11, 10);
+            var input = BuildInputHandler(player, zone);
+            InvokeNonPublic(input, "InteractInDirection", 1, 0);
+
+            Assert.IsTrue(input.WorldActionMenuUI.SelectedCellIsPile);
+            ExecuteVisibleCommand(input, "Examine");
+
+            Assert.AreEqual(WorldInteractionSystem.DescribeCell(zone.GetCell(11, 10), zone), MessageLog.GetLast());
+            StringAssert.Contains("pile", MessageLog.GetLast());
+        }
+
+        [Test]
+        public void PickedCreatureSharingCellWithScenery_ExamineDescribesTheSelectedOwner()
+        {
+            var zone = new Zone("CreatureAndSceneryZone");
+            var player = CreatePlayer();
+            zone.AddEntity(player, 10, 10);
+            var frog = new Entity { ID = "frog-owner", BlueprintName = "GlasspaneFrog" };
+            frog.SetTag("Creature");
+            frog.AddPart(new ExaminablePart { Text = "A translucent frog rests on the damp bank." });
+            var mushroom = new Entity { ID = "mushroom-owner", BlueprintName = "MushroomRing" };
+            mushroom.AddPart(new ExaminablePart { Text = "A ring of old mushrooms." });
+            zone.AddEntity(frog, 11, 10);
+            zone.AddEntity(mushroom, 11, 10);
+            var input = BuildInputHandler(player, zone);
+            InvokeNonPublic(input, "InteractInDirection", 1, 0);
+            ExecuteVisibleCommand(input, WorldInteractionSystem.PickCellCommand);
+            ExecuteVisibleCommand(input, WorldInteractionSystem.PickTargetCommandPrefix + frog.ID);
+
+            Assert.AreSame(frog, input.WorldActionMenuUI.SelectedTarget);
+            ExecuteVisibleCommand(input, "Examine");
+
+            StringAssert.Contains(frog.GetPart<ExaminablePart>().Text, MessageLog.GetLast(),
+                "Picking the frog must dispatch its own Examine, even while the cell remains a pile.");
+            StringAssert.DoesNotContain(mushroom.GetPart<ExaminablePart>().Text, MessageLog.GetLast());
+            Assert.IsFalse(input.WorldActionMenuUI.SelectedCellIsPile,
+                "A selected owner's menu is not the pile summary.");
+        }
+
+        [Test]
+        public void PickedOwner_BackToPickerThenAnotherOwner_KeepsIndividualExamineContext()
+        {
+            var zone = new Zone("BackToPickerZone");
+            var player = CreatePlayer();
+            zone.AddEntity(player, 10, 10);
+            var first = CreateLooseItem("first-bone");
+            var second = CreateLooseItem("second-bone");
+            first.GetPart<ExaminablePart>().Text = "The first bone has a deep crack.";
+            second.GetPart<ExaminablePart>().Text = "The second bone is polished smooth.";
+            zone.AddEntity(first, 11, 10);
+            zone.AddEntity(second, 11, 10);
+            var input = BuildInputHandler(player, zone);
+            InvokeNonPublic(input, "InteractInDirection", 1, 0);
+            ExecuteVisibleCommand(input, WorldInteractionSystem.PickCellCommand);
+            ExecuteVisibleCommand(input, WorldInteractionSystem.PickTargetCommandPrefix + first.ID);
+            ExecuteVisibleCommand(input, WorldInteractionSystem.PickCellCommand);
+            ExecuteVisibleCommand(input, WorldInteractionSystem.PickTargetCommandPrefix + second.ID);
+
+            Assert.AreSame(second, input.WorldActionMenuUI.SelectedTarget);
+            ExecuteVisibleCommand(input, "Examine");
+
+            StringAssert.Contains(second.GetPart<ExaminablePart>().Text, MessageLog.GetLast());
+            StringAssert.DoesNotContain(first.GetPart<ExaminablePart>().Text, MessageLog.GetLast());
+            Assert.IsFalse(input.WorldActionMenuUI.SelectedCellIsPile);
+        }
+
+        [Test]
+        public void SingleOwner_ExaminePreservesAuthoredDescriptionWithoutPicker()
+        {
+            var zone = new Zone("SingleExamineZone");
+            var player = CreatePlayer();
+            zone.AddEntity(player, 10, 10);
+            var bone = CreateLooseItem("only-bone");
+            bone.GetPart<ExaminablePart>().Text = "One weathered bone.";
+            zone.AddEntity(bone, 11, 10);
+            var input = BuildInputHandler(player, zone);
+            InvokeNonPublic(input, "InteractInDirection", 1, 0);
+
+            Assert.AreSame(bone, input.WorldActionMenuUI.SelectedTarget);
+            Assert.IsFalse(input.WorldActionMenuUI.SelectedCellIsPile);
+            ExecuteVisibleCommand(input, "Examine");
+            StringAssert.Contains(bone.GetPart<ExaminablePart>().Text, MessageLog.GetLast());
+        }
+
         // ════════════════════════════════════════════════════════
         // The pile bug
         // ════════════════════════════════════════════════════════

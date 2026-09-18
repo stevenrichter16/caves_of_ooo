@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/Audio/StarterSpellDesign/revision2/verify.py", line 56, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/Audio/StarterSpellDesign/revision2/verify.py", line 29, in main
+    m=json.loads((ROOT/'manifest.json').read_text());assert [s['id'] for s in m['spells']]==IDS
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/steven/caves-of-ooo/ArtSource/Audio/StarterSpellDesign/revision2/manifest.json'

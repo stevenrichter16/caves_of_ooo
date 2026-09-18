@@ -60,7 +60,7 @@ namespace CavesOfOoo.Core
         /// to the pre-G.11 pathfinder (the implicit gate for existing
         /// callers).</param>
         public static FindPath Search(Zone zone, int startX, int startY, int goalX, int goalY,
-            int maxNodes = 2000, bool ignoreCreatures = false, Entity actor = null)
+            int maxNodes = 2000, bool ignoreCreatures = false, Entity actor = null, Entity contactTarget = null)
         {
             var result = new FindPath { Usable = false, Steps = new List<(int, int)>() };
 
@@ -68,7 +68,7 @@ namespace CavesOfOoo.Core
             if (!zone.InBounds(startX, startY) || !zone.InBounds(goalX, goalY)) return result;
 
             // Same cell
-            if (startX == goalX && startY == goalY)
+            if (contactTarget == null && startX == goalX && startY == goalY)
             {
                 result.Usable = true;
                 return result;
@@ -89,7 +89,7 @@ namespace CavesOfOoo.Core
             Pool[startIdx].X = startX;
             Pool[startIdx].Y = startY;
             Pool[startIdx].G = 0;
-            Pool[startIdx].H = Heuristic(startX, startY, goalX, goalY);
+            Pool[startIdx].H = GoalHeuristic(zone,actor,contactTarget,startX,startY,goalX,goalY);
             Pool[startIdx].F = Pool[startIdx].H;
             Pool[startIdx].ParentIndex = -1;
             Pool[startIdx].InOpen = true;
@@ -114,10 +114,10 @@ namespace CavesOfOoo.Core
                 int cy = Pool[currentIdx].Y;
 
                 // Goal reached
-                if (currentIdx == goalIdx)
+                if (contactTarget == null ? currentIdx == goalIdx : SpatialQuery.DistanceAt(zone,actor,cx,cy,contactTarget) == 1)
                 {
                     result.Usable = true;
-                    ReconstructPath(result, startIdx, goalIdx);
+                    ReconstructPath(result, startIdx, currentIdx);
                     return result;
                 }
 
@@ -138,7 +138,12 @@ namespace CavesOfOoo.Core
                     var neighborCell = zone.GetCell(nx, ny);
 
                     // Goal cell is always considered passable (we want to path TO it)
-                    if (neighborIdx != goalIdx)
+                    bool wideActor = actor?.HasPart<SpatialFootprintPart>() == true;
+                    if (wideActor || contactTarget != null)
+                    {
+                        if (!zone.CanPlaceFootprint(actor, nx, ny, ignoreCreatures)) continue;
+                    }
+                    else if (neighborIdx != goalIdx)
                     {
                         if (neighborCell == null) continue;
                         if (!neighborCell.IsPassable()) continue;
@@ -156,7 +161,12 @@ namespace CavesOfOoo.Core
                     {
                         var adjX = zone.GetCell(cx + DX[dir], cy);
                         var adjY = zone.GetCell(cx, cy + DY[dir]);
-                        if ((adjX == null || adjX.IsSolid()) && (adjY == null || adjY.IsSolid()))
+                        if (wideActor)
+                        {
+                            if (!zone.CanPlaceFootprint(actor,cx+DX[dir],cy,ignoreCreatures)
+                                && !zone.CanPlaceFootprint(actor,cx,cy+DY[dir],ignoreCreatures)) continue;
+                        }
+                        else if ((adjX == null || adjX.IsSolid()) && (adjY == null || adjY.IsSolid()))
                             continue; // Can't squeeze diagonally between two walls
                     }
 
@@ -174,7 +184,7 @@ namespace CavesOfOoo.Core
                         Pool[neighborIdx].X = nx;
                         Pool[neighborIdx].Y = ny;
                         Pool[neighborIdx].G = tentativeG;
-                        Pool[neighborIdx].H = Heuristic(nx, ny, goalX, goalY);
+                        Pool[neighborIdx].H = GoalHeuristic(zone,actor,contactTarget,nx,ny,goalX,goalY);
                         Pool[neighborIdx].F = tentativeG + Pool[neighborIdx].H;
                         Pool[neighborIdx].ParentIndex = currentIdx;
                         Pool[neighborIdx].InOpen = true;
@@ -193,6 +203,22 @@ namespace CavesOfOoo.Core
 
             // No path found
             return result;
+        }
+
+        /// <summary>Finds any reachable, non-overlapping body contact. One A*
+        /// search considers all edges, including when the nearest edge is enclosed.</summary>
+        public static FindPath ToContact(Zone zone,Entity actor,Entity target,int maxNodes=2000)
+        {
+            var from=actor==null ? null : zone?.GetEntityCell(actor);
+            var to=target==null ? null : zone?.GetEntityCell(target);
+            if(from==null || to==null) return new FindPath {Usable=false,Steps=new List<(int,int)>()};
+            return Search(zone,from.X,from.Y,to.X,to.Y,maxNodes,false,actor,target);
+        }
+        private static int GoalHeuristic(Zone zone,Entity actor,Entity target,int x,int y,int goalX,int goalY)
+        {
+            if(target==null) return Heuristic(x,y,goalX,goalY);
+            int distance=SpatialQuery.DistanceAt(zone,actor,x,y,target);
+            return distance==int.MaxValue ? 0 : Math.Max(0,distance-1)*10;
         }
 
         /// <summary>Chebyshev distance scaled by 10 (matching cardinal cost).</summary>
@@ -217,9 +243,9 @@ namespace CavesOfOoo.Core
         /// </summary>
         private static bool IsCellBlockedByCreature(Cell cell)
         {
-            for (int i = 0; i < cell.Objects.Count; i++)
+            for (int i = 0; i < cell.Occupants.Count; i++)
             {
-                var physics = cell.Objects[i].GetPart<PhysicsPart>();
+                var physics = cell.Occupants[i].GetPart<PhysicsPart>();
                 if (physics != null && physics.Solid)
                     return true;
             }

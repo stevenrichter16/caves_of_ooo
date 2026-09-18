@@ -1,0 +1,183 @@
+// C# 6 execute_code body. Schedules capture and returns immediately; normal
+// Update/LateUpdate advance the game. No manual coordinator/simulation ticks.
+if (!UnityEditor.EditorApplication.isPlaying || UnityEditor.EditorApplication.isPaused)
+    return "Capture not scheduled: Play mode must be running and unpaused.";
+var camera = UnityEngine.Camera.main;
+var showcase = UnityEngine.Object.FindFirstObjectByType<CavesOfOoo.Scenarios.Custom.SpellFxShowcasePlayer>();
+var zoneView = UnityEngine.Object.FindFirstObjectByType<CavesOfOoo.Rendering.ZoneRenderer>();
+if (camera == null || showcase == null || zoneView == null || showcase.CaseCount <= 1)
+    return "Capture not scheduled: camera, initialized showcase, and zone renderer are required.";
+if (!showcase.Paused)
+    return "Capture not scheduled: pause showcase autoplay (leave Unity Play mode unpaused).";
+
+var directory = System.IO.Path.GetFullPath(System.IO.Path.Combine(UnityEngine.Application.dataPath,
+    "../Docs/Verification/SpellFx/live"));
+System.IO.Directory.CreateDirectory(directory);
+var completePath = System.IO.Path.Combine(directory, "complete.txt");
+var failedPath = System.IO.Path.Combine(directory, "failed.txt");
+// Frames from a previous capture are retained if their names differ. Consumers
+// must use frames.csv as the authoritative manifest for this run.
+if (System.IO.File.Exists(completePath)) System.IO.File.Delete(completePath);
+if (System.IO.File.Exists(failedPath)) System.IO.File.Delete(failedPath);
+
+var oldRect = camera.rect;
+var oldAspect = camera.aspect;
+var oldSize = camera.orthographicSize;
+var oldOrthographic = camera.orthographic;
+var oldPosition = camera.transform.position;
+var oldRotation = camera.transform.rotation;
+var oldTarget = camera.targetTexture;
+var follow = camera.GetComponent<CavesOfOoo.Rendering.CameraFollow>();
+var oldFollowEnabled = follow != null && follow.enabled;
+var oldMode = CavesOfOoo.Rendering.SpellFxSettings.Mode;
+var oldSpeed = CavesOfOoo.Rendering.SpellFxSettings.AnimationSpeed;
+var oldFlash = CavesOfOoo.Rendering.SpellFxSettings.FlashIntensity;
+var oldShake = CavesOfOoo.Rendering.SpellFxSettings.ShakeIntensity;
+var oldBackground = UnityEngine.Application.runInBackground;
+UnityEngine.RenderTexture target = null;
+UnityEngine.Texture2D pixels = null;
+var csv = new System.Text.StringBuilder("frame,file,elapsed_seconds,unity_frame,unscaled_delta,seconds_since_cast,active_sprites,pooled_sprites,allocated_sprites,blocking,cast_count,accepted\n");
+var started = UnityEditor.EditorApplication.timeSinceStartup;
+var nextFrameAt = 0.0;
+var castAt = -1.0;
+var frameIndex = 0;
+var castCount = 0;
+var lastCapturedUnityFrame = -1;
+var accepted = false;
+var finished = false;
+UnityEditor.EditorApplication.CallbackFunction capture = null;
+System.Action<string> finish = null;
+finish = delegate(string error)
+{
+    if (finished) return;
+    finished = true;
+    if (capture != null) UnityEditor.EditorApplication.update -= capture;
+    // Restore presentation state before writing evidence, even when a write fails.
+    try
+    {
+        if (camera != null)
+        {
+            camera.targetTexture = oldTarget;
+            camera.rect = oldRect;
+            camera.aspect = oldAspect;
+            camera.orthographic = oldOrthographic;
+            camera.orthographicSize = oldSize;
+            camera.transform.position = oldPosition;
+            camera.transform.rotation = oldRotation;
+        }
+    }
+    finally
+    {
+        if (follow != null) follow.enabled = oldFollowEnabled;
+        CavesOfOoo.Rendering.SpellFxSettings.Mode = oldMode;
+        CavesOfOoo.Rendering.SpellFxSettings.AnimationSpeed = oldSpeed;
+        CavesOfOoo.Rendering.SpellFxSettings.FlashIntensity = oldFlash;
+        CavesOfOoo.Rendering.SpellFxSettings.ShakeIntensity = oldShake;
+        UnityEngine.Application.runInBackground = oldBackground;
+        if (UnityEngine.RenderTexture.active == target) UnityEngine.RenderTexture.active = null;
+        if (target != null) { target.Release(); UnityEngine.Object.DestroyImmediate(target); }
+        if (pixels != null) UnityEngine.Object.DestroyImmediate(pixels);
+    }
+    try
+    {
+        System.IO.File.WriteAllText(System.IO.Path.Combine(directory, "frames.csv"), csv.ToString());
+        var summary = "status=" + (error == null ? "complete" : "failed")
+            + "\ncase=1 Pyromancy_EmberVein\nframes=" + frameIndex
+            + "\ncast_count=" + castCount + "\naccepted=" + accepted
+            + "\nwall_seconds=" + (UnityEditor.EditorApplication.timeSinceStartup - started).ToString("F6", System.Globalization.CultureInfo.InvariantCulture)
+            + "\nwidth=512\nheight=256\nrequested_fps=30\nmanual_ticks=0\n"
+            + (error == null ? "" : "error=" + error + "\n");
+        System.IO.File.WriteAllText(error == null ? completePath : failedPath, summary);
+        UnityEngine.Debug.Log("[SpellFx live capture] " + summary);
+    }
+    catch (System.Exception writeError)
+    {
+        UnityEngine.Debug.LogError("[SpellFx live capture] State restored, evidence write failed: " + writeError);
+    }
+};
+
+try
+{
+    target = new UnityEngine.RenderTexture(512, 256, 24, UnityEngine.RenderTextureFormat.ARGB32);
+    target.filterMode = UnityEngine.FilterMode.Point;
+    target.antiAliasing = 1;
+    target.Create();
+    pixels = new UnityEngine.Texture2D(512, 256, UnityEngine.TextureFormat.RGBA32, false);
+    if (follow != null) follow.enabled = false;
+    camera.rect = new UnityEngine.Rect(0f, 0f, 1f, 1f);
+    camera.aspect = 2f;
+    camera.orthographic = true;
+    camera.orthographicSize = 8f;
+    camera.transform.position = new UnityEngine.Vector3(40.5f, CavesOfOoo.Core.Zone.Height - 12.5f, oldPosition.z);
+    camera.transform.rotation = UnityEngine.Quaternion.identity;
+    CavesOfOoo.Rendering.SpellFxSettings.Mode = CavesOfOoo.Rendering.SpellFxMode.Full;
+    CavesOfOoo.Rendering.SpellFxSettings.AnimationSpeed = 1f;
+    CavesOfOoo.Rendering.SpellFxSettings.ShakeIntensity = 0f;
+    UnityEngine.Application.runInBackground = true;
+    zoneView.CancelWorldFx();
+
+    capture = delegate()
+    {
+        try
+        {
+            var elapsed = UnityEditor.EditorApplication.timeSinceStartup - started;
+            if (elapsed >= 5.0) { finish("5-second safety timeout"); return; }
+            if (!UnityEditor.EditorApplication.isPlaying || camera == null || showcase == null)
+            { finish("Play mode or capture objects were interrupted"); return; }
+            if (UnityEditor.EditorApplication.isPaused) return;
+            if (elapsed >= 1.2)
+            {
+                finish(castCount == 1 && accepted && frameIndex > 1 ? null : "Expected one accepted cast and multiple frames");
+                return;
+            }
+            if (castCount == 0 && elapsed >= 0.15)
+            {
+                castCount = 1;
+                castAt = elapsed;
+                showcase.PlayCase(1); // The only actual cast in this capture.
+                accepted = showcase.LastCastAccepted;
+                // Allow the normal game loop to consume the newly queued sequence.
+                lastCapturedUnityFrame = UnityEngine.Time.frameCount;
+                return;
+            }
+            if (elapsed < nextFrameAt || UnityEngine.Time.frameCount == lastCapturedUnityFrame) return;
+            lastCapturedUnityFrame = UnityEngine.Time.frameCount;
+            nextFrameAt = elapsed + 1.0 / 30.0;
+            var previousActive = UnityEngine.RenderTexture.active;
+            var previousTarget = camera.targetTexture;
+            try
+            {
+                camera.targetTexture = target;
+                camera.Render(); // Editor update callback, outside camera rendering callbacks.
+                UnityEngine.RenderTexture.active = target;
+                pixels.ReadPixels(new UnityEngine.Rect(0, 0, 512, 256), 0, 0, false);
+                pixels.Apply(false, false);
+            }
+            finally
+            {
+                camera.targetTexture = previousTarget;
+                UnityEngine.RenderTexture.active = previousActive;
+            }
+            var file = "frame-" + frameIndex.ToString("D3") + ".png";
+            System.IO.File.WriteAllBytes(System.IO.Path.Combine(directory, file), UnityEngine.ImageConversion.EncodeToPNG(pixels));
+            var fx = zoneView.WorldFx == null ? null : zoneView.WorldFx.SpriteRenderer;
+            csv.AppendFormat(System.Globalization.CultureInfo.InvariantCulture,
+                "{0},{1},{2:F6},{3},{4:F6},{5:F6},{6},{7},{8},{9},{10},{11}\n",
+                frameIndex, file, elapsed, UnityEngine.Time.frameCount, UnityEngine.Time.unscaledDeltaTime,
+                castAt < 0 ? -1.0 : elapsed - castAt, fx == null ? 0 : fx.ActiveSpriteCount,
+                fx == null ? 0 : fx.PoolCount, fx == null ? 0 : fx.AllocatedSpriteCount,
+                zoneView.HasBlockingFx, castCount, accepted);
+            frameIndex++;
+        }
+        catch (System.Exception error) { finish(error.ToString()); }
+    };
+    // Start elapsed capture time after allocating targets and applying camera setup.
+    started = UnityEditor.EditorApplication.timeSinceStartup;
+    UnityEditor.EditorApplication.update += capture;
+}
+catch (System.Exception error)
+{
+    finish(error.ToString());
+    return "Capture setup failed; state restored: " + error.Message;
+}
+return "Scheduled nonblocking 1.2-second live Ember Vein capture; inspect " + completePath + " or " + failedPath + " and frames.csv.";

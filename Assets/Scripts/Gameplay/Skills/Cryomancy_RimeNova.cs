@@ -1,4 +1,3 @@
-using System;
 using CavesOfOoo.Core;
 
 namespace CavesOfOoo.Skills
@@ -14,15 +13,13 @@ namespace CavesOfOoo.Skills
     /// Casting into empty space still consumes the cast — the wave went
     /// out.</para>
     /// </summary>
-    public class Cryomancy_RimeNova : BaseSkillPart
+    public class Cryomancy_RimeNova : SpellSkillPart
     {
         public override string Name => nameof(Cryomancy_RimeNova);
 
         public const int RADIUS = 2;
         public const int COOLDOWN = 15;
         public const float CHILL_JOULES = -200f;
-        private const float ChargeDuration = 0.12f;
-        private const float RingStepDuration = 0.08f;
 
         public override ActivatedAbilitySpec DeclareActivatedAbility(Entity actor)
         {
@@ -37,7 +34,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;
             var actor = ctx.Attacker;
@@ -47,11 +44,6 @@ namespace CavesOfOoo.Skills
             var sourceCell = ctx.SourceCell;
             var rng = ctx.Rng;
 
-            AsciiFxBus.EmitChargeOrbit(zone, actor, radius: 1, duration: ChargeDuration,
-                AsciiFxTheme.Ice, blocksTurnAdvance: true);
-            AsciiFxBus.EmitRingWave(zone, sourceCell.X, sourceCell.Y,
-                maxRadius: RADIUS, stepDuration: RingStepDuration,
-                theme: AsciiFxTheme.Ice, blocksTurnAdvance: true, delay: ChargeDuration);
             ctx.BlocksTurnAdvance = true;
 
             var creatures = SpellTargeting.GetCreaturesInRadius(
@@ -63,7 +55,7 @@ namespace CavesOfOoo.Skills
             for (int i = 0; i < creatures.Count; i++)
             {
                 Entity target = creatures[i];
-                Cell targetCell = zone.GetEntityCell(target);
+                if (zone.GetEntityCell(target) == null || target.GetStatValue("Hitpoints", 0) <= 0) continue;
 
                 int damage = DiceRoller.Roll("1d6", rng);
                 if (damage > 0)
@@ -79,14 +71,6 @@ namespace CavesOfOoo.Skills
                     target.ApplyEffect(new FrozenEffect(cold: 0.6f), actor, zone);
                 }
 
-                if (targetCell != null)
-                {
-                    int radius = Math.Max(Math.Abs(targetCell.X - sourceCell.X),
-                        Math.Abs(targetCell.Y - sourceCell.Y));
-                    AsciiFxBus.EmitBurst(zone, targetCell.X, targetCell.Y,
-                        AsciiFxTheme.Ice, blocksTurnAdvance: true,
-                        delay: ChargeDuration + ((Math.Max(1, radius) - 1) * RingStepDuration));
-                }
             }
 
             // Chill EVERY ThermalPart entity in radius — puddles skin
@@ -96,43 +80,21 @@ namespace CavesOfOoo.Skills
             // already Frozen(0.6)s every creature in radius directly, so
             // the ground pass adds board state, not new lockdown.
             var groundCells = new System.Collections.Generic.List<Point>();
-            int minX = Math.Max(0, sourceCell.X - RADIUS);
-            int maxX = Math.Min(Zone.Width - 1, sourceCell.X + RADIUS);
-            int minY = Math.Max(0, sourceCell.Y - RADIUS);
-            int maxY = Math.Min(Zone.Height - 1, sourceCell.Y + RADIUS);
-
-            for (int y = minY; y <= maxY; y++)
+            var cells = MultiCellAbilityQueries.RadiusCells(zone, sourceCell.X, sourceCell.Y, RADIUS);
+            var pulseTargets = MultiCellAbilityQueries.SnapshotOccupants(cells, actor, reverse: true);
+            foreach (var cell in cells) groundCells.Add(new Point(cell.X, cell.Y));
+            foreach (var entity in pulseTargets)
             {
-                for (int x = minX; x <= maxX; x++)
-                {
-                    int chebyshev = Math.Max(Math.Abs(x - sourceCell.X), Math.Abs(y - sourceCell.Y));
-                    if (chebyshev > RADIUS)
-                        continue;
-
-                    Cell cell = zone.GetCell(x, y);
-                    if (cell == null)
-                        continue;
-                    groundCells.Add(new Point(x, y));
-
-                    for (int i = cell.Objects.Count - 1; i >= 0; i--)
-                    {
-                        if (i >= cell.Objects.Count) continue;
-                        Entity entity = cell.Objects[i];
-                        if (entity == actor)
-                            continue;
-
-                        if (entity.HasPart<ThermalPart>())
-                        {
-                            var heatEvent = GameEvent.New("ApplyHeat");
-                            heatEvent.SetParameter("Joules", (object)CHILL_JOULES);
-                            heatEvent.SetParameter("Radiant", (object)false);
-                            heatEvent.SetParameter("Source", (object)actor);
-                            heatEvent.SetParameter("Zone", (object)zone);
-                            entity.FireEvent(heatEvent);
-                            heatEvent.Release();
-                        }
-                    }
-                }
+                if (zone.GetEntityCell(entity) == null) continue;
+                if (!entity.HasPart<ThermalPart>()) continue;
+                var heatEvent = GameEvent.New("ApplyHeat");
+                heatEvent.SetParameter("Joules", (object)CHILL_JOULES);
+                heatEvent.SetParameter("Radiant", (object)false);
+                heatEvent.SetParameter("Source", (object)actor);
+                heatEvent.SetParameter("Zone", (object)zone);
+                SpellFxCapture.Target(zone, entity);
+                try { entity.FireEvent(heatEvent); }
+                finally { heatEvent.Release(); }
             }
 
             ZoneTileStateSystem.ApplyColdToTiles(zone, groundCells, actor, Name);

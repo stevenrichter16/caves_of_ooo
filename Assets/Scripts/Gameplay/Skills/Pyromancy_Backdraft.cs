@@ -25,7 +25,7 @@ namespace CavesOfOoo.Skills
     /// falling back — is preserved by aiming at the pursuer, which is
     /// what a player does naturally.</para>
     /// </summary>
-    public class Pyromancy_Backdraft : BaseSkillPart
+    public class Pyromancy_Backdraft : SpellSkillPart
     {
         public override string Name => nameof(Pyromancy_Backdraft);
 
@@ -50,7 +50,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null) return false;
             var actor = ctx.Attacker;

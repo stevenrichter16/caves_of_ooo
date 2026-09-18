@@ -1,0 +1,59 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "NativeSpellFxReadinessTests",
+  "results": {
+    "id": "2",
+    "testcasecount": "9",
+    "result": "Failed(Child)",
+    "total": "9",
+    "passed": "0",
+    "failed": "9",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-11 04:10:33Z",
+    "end-time": "2026-09-11 04:10:34Z",
+    "duration": "0.896525"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxReadinessTests.DisabledNativePresentationSkipsColdWorkUntilItActuallyBecomesVisible(\"off\")",
+      "message": "  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxReadinessTests.DisabledNativePresentationSkipsColdWorkUntilItActuallyBecomesVisible(\"hidden\")",
+      "message": "  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxReadinessTests.DisabledNativePresentationSkipsColdWorkUntilItActuallyBecomesVisible(\"ascii\")",
+      "message": "  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxReadinessTests.DisabledNativePresentationSkipsColdWorkUntilItActuallyBecomesVisible(\"surface-hidden\")",
+      "message": "  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxReadinessTests.InvalidLibraryFailsReadinessWithoutCreatingPartialViewsOrAPlayback",
+      "message": "System.ArgumentException : The actual value must be a string or a non-null IEnumerable or DirectoryInfo\nParameter name: actual"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxReadinessTests.PreparedActualRainAtMaximumCropCoverageCreatesNoViewsInsideItsFirstCast",
+      "message": "  The worst allowed live budget must be allocated before a first command.\n  Expected: 384\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxReadinessTests.ReducedToFullExpandsOnceBeforeCastingAndRetainsItsBorrowedAssets",
+      "message": "  Expected: 96\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxReadinessTests.VisibleBindingValidatesAndWarmsBoundedPoolBeforeAnyCast(Full,384)",
+      "message": "  The complete authored library must be validated before the first command.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeSpellFxReadinessTests.VisibleBindingValidatesAndWarmsBoundedPoolBeforeAnyCast(Reduced,96)",
+      "message": "  The complete authored library must be validated before the first command.\n  Expected: not null\n  But was:  null\n"
+    }
+  ]
+}

@@ -39,7 +39,7 @@ namespace CavesOfOoo.Core
             _actions[name] = func;
         }
 
-        private static void RegisterRequired(string name, Func<Entity, Entity, string, string> func)
+        public static void RegisterRequired(string name, Func<Entity, Entity, string, string> func)
         {
             _requiredActions[name] = func;
             _actions[name] = (speaker, listener, argument) => InvokeRequired(name, func, speaker, listener, argument);
@@ -122,6 +122,8 @@ namespace CavesOfOoo.Core
 
         private static void RegisterDefaults()
         {
+            RegisterRequired(RegionalGuidance.ActionName, (speaker, listener, id) => RegionalGuidance.TryRemember(SettlementRuntime.ActiveZone, speaker, listener, id));
+
             // Add a message to the game log
             Register("AddMessage", (speaker, listener, arg) =>
             {

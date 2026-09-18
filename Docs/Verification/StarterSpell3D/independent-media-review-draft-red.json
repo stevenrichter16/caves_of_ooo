@@ -1,0 +1,2544 @@
+{
+  "method": "Independent ffprobe frame/timing/aspect metadata, selected ffmpeg-decoded frames compared to original Blender PNGs, Pillow GIF decoding and frame differences. No renders or Unity operations.",
+  "manifestSha256": "b7a37199cae6a3e0907d1ff2392ab2cb383c4937de08cb90a932945f69cf93b7",
+  "blenderFileSha256": "d43a03b36b1bbc4e74bd98ca57a9e1cee89179e19831b5b87389743aec4b6020",
+  "samplingHonesty": "37 source samples, native frames 0..108 by3. Native MP4 samples at100/3fps and lasts1.11s including final frame hold; slow MP4 uses8fps and lasts4.625s. GIF hundredths require alternating120/130ms, summing4.620s (5ms shorter). Sampled contact can lag exact Blender subframe by0..20ms. This verifies encoded Blender previews, not gameplay integration or native render performance.",
+  "passed": 109,
+  "failed": 7,
+  "checks": [
+    {
+      "name": "Manifest identifies six initial actives and separate learnable Rain",
+      "passed": true
+    },
+    {
+      "name": "Native timing convention is 100 fps",
+      "passed": true,
+      "nativeFps": 100
+    },
+    {
+      "name": "ember_spit source sequence is contiguous 37 frames",
+      "passed": true,
+      "count": 37
+    },
+    {
+      "name": "ember_spit source frame raster is square pixel",
+      "passed": false,
+      "sizes": [
+        [
+          840,
+          474
+        ]
+      ],
+      "recordedDensities": [
+        [
+          59.69,
+          71.9836
+        ]
+      ]
+    },
+    {
+      "name": "ember_spit hero phase matches manifest",
+      "passed": true,
+      "actualPhase": "travel",
+      "declaredPhase": "travel",
+      "heroNativeFrame": 25,
+      "contactNativeFrame": 29.5
+    },
+    {
+      "name": "ember_spit sampled loop spans all declared phases and clears",
+      "passed": true,
+      "contact": 29.5,
+      "impactEnd": 49.5,
+      "clear": 67.5,
+      "firstFrame": 0,
+      "lastFrame": 108,
+      "samplingStep": 3
+    },
+    {
+      "name": "ember_spit_motion.mp4 frame count",
+      "passed": true,
+      "actual": 37,
+      "expected": 37
+    },
+    {
+      "name": "ember_spit_motion.mp4 dimensions and square pixels",
+      "passed": true,
+      "actual": [
+        840,
+        474
+      ],
+      "expected": [
+        840,
+        474
+      ],
+      "sampleAspectRatio": "1:1"
+    },
+    {
+      "name": "ember_spit_motion.mp4 playback rate and duration",
+      "passed": true,
+      "actualRate": 8.0,
+      "actualDuration": 4.625,
+      "expectedDuration": 4.625
+    },
+    {
+      "name": "ember_spit_motion.mp4 encoded frames match rendered sources",
+      "passed": true,
+      "quality": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/ember_spit/0000.png",
+          "rgbMSE": 4.666616435603777,
+          "psnrDB": 41.440782545930865,
+          "fractionPixelsChangedAtLeast16": 0.0027350813743218807
+        },
+        {
+          "frame": 10,
+          "source": "ArtSource/StarterSpell3D/frames/ember_spit/0010.png",
+          "rgbMSE": 4.712166800616168,
+          "psnrDB": 41.398597057219206,
+          "fractionPixelsChangedAtLeast16": 0.0030766526019690575
+        },
+        {
+          "frame": 26,
+          "source": "ArtSource/StarterSpell3D/frames/ember_spit/0026.png",
+          "rgbMSE": 4.603166231330788,
+          "psnrDB": 41.50023702279361,
+          "fractionPixelsChangedAtLeast16": 0.002755173799477597
+        }
+      ]
+    },
+    {
+      "name": "ember_spit_motion.mp4 contains substantial visible motion",
+      "passed": true,
+      "motion": {
+        "rgbMSE": 58.58844852990423,
+        "psnrDB": 30.452683631816548,
+        "fractionPixelsChangedAtLeast16": 0.02736337150894113
+      }
+    },
+    {
+      "name": "ember_spit_native_timing.mp4 frame count",
+      "passed": true,
+      "actual": 37,
+      "expected": 37
+    },
+    {
+      "name": "ember_spit_native_timing.mp4 dimensions and square pixels",
+      "passed": true,
+      "actual": [
+        840,
+        474
+      ],
+      "expected": [
+        840,
+        474
+      ],
+      "sampleAspectRatio": "1:1"
+    },
+    {
+      "name": "ember_spit_native_timing.mp4 playback rate and duration",
+      "passed": true,
+      "actualRate": 33.333333333333336,
+      "actualDuration": 1.11,
+      "expectedDuration": 1.1099999999999999
+    },
+    {
+      "name": "ember_spit_native_timing.mp4 encoded frames match rendered sources",
+      "passed": true,
+      "quality": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/ember_spit/0000.png",
+          "rgbMSE": 5.3917662916080635,
+          "psnrDB": 40.81349301610807,
+          "fractionPixelsChangedAtLeast16": 0.0030339561985131607
+        },
+        {
+          "frame": 10,
+          "source": "ArtSource/StarterSpell3D/frames/ember_spit/0010.png",
+          "rgbMSE": 5.4642187395351955,
+          "psnrDB": 40.755522844931804,
+          "fractionPixelsChangedAtLeast16": 0.003458408679927667
+        },
+        {
+          "frame": 26,
+          "source": "ArtSource/StarterSpell3D/frames/ember_spit/0026.png",
+          "rgbMSE": 5.291050498961892,
+          "psnrDB": 40.89538454313016,
+          "fractionPixelsChangedAtLeast16": 0.002913401647578863
+        }
+      ]
+    },
+    {
+      "name": "ember_spit_native_timing.mp4 contains substantial visible motion",
+      "passed": true,
+      "motion": {
+        "rgbMSE": 58.47679324894515,
+        "psnrDB": 30.46096812110873,
+        "fractionPixelsChangedAtLeast16": 0.02757936507936508
+      }
+    },
+    {
+      "name": "flaming_hands source sequence is contiguous 37 frames",
+      "passed": true,
+      "count": 37
+    },
+    {
+      "name": "flaming_hands source frame raster is square pixel",
+      "passed": false,
+      "sizes": [
+        [
+          840,
+          474
+        ]
+      ],
+      "recordedDensities": [
+        [
+          59.69,
+          71.9836
+        ]
+      ]
+    },
+    {
+      "name": "flaming_hands hero phase matches manifest",
+      "passed": true,
+      "actualPhase": "impact",
+      "declaredPhase": "impact",
+      "heroNativeFrame": 29,
+      "contactNativeFrame": 22
+    },
+    {
+      "name": "flaming_hands sampled loop spans all declared phases and clears",
+      "passed": true,
+      "contact": 22,
+      "impactEnd": 42,
+      "clear": 60,
+      "firstFrame": 0,
+      "lastFrame": 108,
+      "samplingStep": 3
+    },
+    {
+      "name": "flaming_hands_motion.mp4 frame count",
+      "passed": true,
+      "actual": 37,
+      "expected": 37
+    },
+    {
+      "name": "flaming_hands_motion.mp4 dimensions and square pixels",
+      "passed": true,
+      "actual": [
+        840,
+        474
+      ],
+      "expected": [
+        840,
+        474
+      ],
+      "sampleAspectRatio": "1:1"
+    },
+    {
+      "name": "flaming_hands_motion.mp4 playback rate and duration",
+      "passed": true,
+      "actualRate": 8.0,
+      "actualDuration": 4.625,
+      "expectedDuration": 4.625
+    },
+    {
+      "name": "flaming_hands_motion.mp4 encoded frames match rendered sources",
+      "passed": true,
+      "quality": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/flaming_hands/0000.png",
+          "rgbMSE": 4.586134552273792,
+          "psnrDB": 41.51633568552313,
+          "fractionPixelsChangedAtLeast16": 0.002554249547920434
+        },
+        {
+          "frame": 8,
+          "source": "ArtSource/StarterSpell3D/frames/flaming_hands/0008.png",
+          "rgbMSE": 5.655363840332194,
+          "psnrDB": 40.606198101801745,
+          "fractionPixelsChangedAtLeast16": 0.004967852119750854
+        },
+        {
+          "frame": 23,
+          "source": "ArtSource/StarterSpell3D/frames/flaming_hands/0023.png",
+          "rgbMSE": 4.473101265822785,
+          "psnrDB": 41.62471630660776,
+          "fractionPixelsChangedAtLeast16": 0.002504018485031143
+        }
+      ]
+    },
+    {
+      "name": "flaming_hands_motion.mp4 contains substantial visible motion",
+      "passed": true,
+      "motion": {
+        "rgbMSE": 177.61614426361263,
+        "psnrDB": 25.63597922815273,
+        "fractionPixelsChangedAtLeast16": 0.049228953184649385
+      }
+    },
+    {
+      "name": "flaming_hands_native_timing.mp4 frame count",
+      "passed": true,
+      "actual": 37,
+      "expected": 37
+    },
+    {
+      "name": "flaming_hands_native_timing.mp4 dimensions and square pixels",
+      "passed": true,
+      "actual": [
+        840,
+        474
+      ],
+      "expected": [
+        840,
+        474
+      ],
+      "sampleAspectRatio": "1:1"
+    },
+    {
+      "name": "flaming_hands_native_timing.mp4 playback rate and duration",
+      "passed": true,
+      "actualRate": 33.333333333333336,
+      "actualDuration": 1.11,
+      "expectedDuration": 1.1099999999999999
+    },
+    {
+      "name": "flaming_hands_native_timing.mp4 encoded frames match rendered sources",
+      "passed": true,
+      "quality": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/flaming_hands/0000.png",
+          "rgbMSE": 5.2925105485232065,
+          "psnrDB": 40.8941862858159,
+          "fractionPixelsChangedAtLeast16": 0.002998794454490657
+        },
+        {
+          "frame": 8,
+          "source": "ArtSource/StarterSpell3D/frames/flaming_hands/0008.png",
+          "rgbMSE": 6.455822617373251,
+          "psnrDB": 40.03128771829595,
+          "fractionPixelsChangedAtLeast16": 0.005610809724733775
+        },
+        {
+          "frame": 23,
+          "source": "ArtSource/StarterSpell3D/frames/flaming_hands/0023.png",
+          "rgbMSE": 5.109236655280959,
+          "psnrDB": 41.04724341587036,
+          "fractionPixelsChangedAtLeast16": 0.00268485031143259
+        }
+      ]
+    },
+    {
+      "name": "flaming_hands_native_timing.mp4 contains substantial visible motion",
+      "passed": true,
+      "motion": {
+        "rgbMSE": 176.80565099457505,
+        "psnrDB": 25.65584219214947,
+        "fractionPixelsChangedAtLeast16": 0.04911844484629295
+      }
+    },
+    {
+      "name": "jet_blast source sequence is contiguous 37 frames",
+      "passed": true,
+      "count": 37
+    },
+    {
+      "name": "jet_blast source frame raster is square pixel",
+      "passed": false,
+      "sizes": [
+        [
+          840,
+          474
+        ]
+      ],
+      "recordedDensities": [
+        [
+          59.69,
+          71.9836
+        ]
+      ]
+    },
+    {
+      "name": "jet_blast hero phase matches manifest",
+      "passed": true,
+      "actualPhase": "impact",
+      "declaredPhase": "impact",
+      "heroNativeFrame": 34,
+      "contactNativeFrame": 27.0
+    },
+    {
+      "name": "jet_blast sampled loop spans all declared phases and clears",
+      "passed": true,
+      "contact": 27.0,
+      "impactEnd": 47.0,
+      "clear": 65.0,
+      "firstFrame": 0,
+      "lastFrame": 108,
+      "samplingStep": 3
+    },
+    {
+      "name": "jet_blast_motion.mp4 frame count",
+      "passed": true,
+      "actual": 37,
+      "expected": 37
+    },
+    {
+      "name": "jet_blast_motion.mp4 dimensions and square pixels",
+      "passed": true,
+      "actual": [
+        840,
+        474
+      ],
+      "expected": [
+        840,
+        474
+      ],
+      "sampleAspectRatio": "1:1"
+    },
+    {
+      "name": "jet_blast_motion.mp4 playback rate and duration",
+      "passed": true,
+      "actualRate": 8.0,
+      "actualDuration": 4.625,
+      "expectedDuration": 4.625
+    },
+    {
+      "name": "jet_blast_motion.mp4 encoded frames match rendered sources",
+      "passed": true,
+      "quality": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/jet_blast/0000.png",
+          "rgbMSE": 4.690220849239837,
+          "psnrDB": 41.41887067972015,
+          "fractionPixelsChangedAtLeast16": 0.0024588105284307814
+        },
+        {
+          "frame": 9,
+          "source": "ArtSource/StarterSpell3D/frames/jet_blast/0009.png",
+          "rgbMSE": 6.572895318464939,
+          "psnrDB": 39.9532364521238,
+          "fractionPixelsChangedAtLeast16": 0.006567711472774764
+        },
+        {
+          "frame": 25,
+          "source": "ArtSource/StarterSpell3D/frames/jet_blast/0025.png",
+          "rgbMSE": 4.551962360190208,
+          "psnrDB": 41.548816986121075,
+          "fractionPixelsChangedAtLeast16": 0.0023508137432188066
+        }
+      ]
+    },
+    {
+      "name": "jet_blast_motion.mp4 contains substantial visible motion",
+      "passed": true,
+      "motion": {
+        "rgbMSE": 457.4226525349943,
+        "psnrDB": 21.527626928854424,
+        "fractionPixelsChangedAtLeast16": 0.14846544102873216
+      }
+    },
+    {
+      "name": "jet_blast_native_timing.mp4 frame count",
+      "passed": true,
+      "actual": 37,
+      "expected": 37
+    },
+    {
+      "name": "jet_blast_native_timing.mp4 dimensions and square pixels",
+      "passed": true,
+      "actual": [
+        840,
+        474
+      ],
+      "expected": [
+        840,
+        474
+      ],
+      "sampleAspectRatio": "1:1"
+    },
+    {
+      "name": "jet_blast_native_timing.mp4 playback rate and duration",
+      "passed": true,
+      "actualRate": 33.333333333333336,
+      "actualDuration": 1.11,
+      "expectedDuration": 1.1099999999999999
+    },
+    {
+      "name": "jet_blast_native_timing.mp4 encoded frames match rendered sources",
+      "passed": true,
+      "quality": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/jet_blast/0000.png",
+          "rgbMSE": 5.466658294822852,
+          "psnrDB": 40.753584326340864,
+          "fractionPixelsChangedAtLeast16": 0.0030992565802692384
+        },
+        {
+          "frame": 9,
+          "source": "ArtSource/StarterSpell3D/frames/jet_blast/0009.png",
+          "rgbMSE": 8.174635824794052,
+          "psnrDB": 39.00611946667732,
+          "fractionPixelsChangedAtLeast16": 0.009388185654008438
+        },
+        {
+          "frame": 25,
+          "source": "ArtSource/StarterSpell3D/frames/jet_blast/0025.png",
+          "rgbMSE": 5.249530339561985,
+          "psnrDB": 40.92959910806844,
+          "fractionPixelsChangedAtLeast16": 0.0027325698211774162
+        }
+      ]
+    },
+    {
+      "name": "jet_blast_native_timing.mp4 contains substantial visible motion",
+      "passed": true,
+      "motion": {
+        "rgbMSE": 455.67561281896724,
+        "psnrDB": 21.544245745535346,
+        "fractionPixelsChangedAtLeast16": 0.14833232871207555
+      }
+    },
+    {
+      "name": "ground_surge source sequence is contiguous 37 frames",
+      "passed": true,
+      "count": 37
+    },
+    {
+      "name": "ground_surge source frame raster is square pixel",
+      "passed": false,
+      "sizes": [
+        [
+          840,
+          474
+        ]
+      ],
+      "recordedDensities": [
+        [
+          59.69,
+          71.9836
+        ]
+      ]
+    },
+    {
+      "name": "ground_surge hero phase matches manifest",
+      "passed": true,
+      "actualPhase": "impact",
+      "declaredPhase": "impact",
+      "heroNativeFrame": 39,
+      "contactNativeFrame": 32.0
+    },
+    {
+      "name": "ground_surge sampled loop spans all declared phases and clears",
+      "passed": true,
+      "contact": 32.0,
+      "impactEnd": 52.0,
+      "clear": 70.0,
+      "firstFrame": 0,
+      "lastFrame": 108,
+      "samplingStep": 3
+    },
+    {
+      "name": "ground_surge_motion.mp4 frame count",
+      "passed": true,
+      "actual": 37,
+      "expected": 37
+    },
+    {
+      "name": "ground_surge_motion.mp4 dimensions and square pixels",
+      "passed": true,
+      "actual": [
+        840,
+        474
+      ],
+      "expected": [
+        840,
+        474
+      ],
+      "sampleAspectRatio": "1:1"
+    },
+    {
+      "name": "ground_surge_motion.mp4 playback rate and duration",
+      "passed": true,
+      "actualRate": 8.0,
+      "actualDuration": 4.625,
+      "expectedDuration": 4.625
+    },
+    {
+      "name": "ground_surge_motion.mp4 encoded frames match rendered sources",
+      "passed": true,
+      "quality": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/ground_surge/0000.png",
+          "rgbMSE": 4.627246165695532,
+          "psnrDB": 41.47757756643692,
+          "fractionPixelsChangedAtLeast16": 0.00260196905766526
+        },
+        {
+          "frame": 11,
+          "source": "ArtSource/StarterSpell3D/frames/ground_surge/0011.png",
+          "rgbMSE": 5.546298807849441,
+          "psnrDB": 40.6907709730216,
+          "fractionPixelsChangedAtLeast16": 0.004545911191480812
+        },
+        {
+          "frame": 27,
+          "source": "ArtSource/StarterSpell3D/frames/ground_surge/0027.png",
+          "rgbMSE": 4.511463565735718,
+          "psnrDB": 41.58762906481936,
+          "fractionPixelsChangedAtLeast16": 0.002624573035965441
+        }
+      ]
+    },
+    {
+      "name": "ground_surge_motion.mp4 contains substantial visible motion",
+      "passed": true,
+      "motion": {
+        "rgbMSE": 322.2816614761235,
+        "psnrDB": 23.04844766948238,
+        "fractionPixelsChangedAtLeast16": 0.10501306007635122
+      }
+    },
+    {
+      "name": "ground_surge_native_timing.mp4 frame count",
+      "passed": true,
+      "actual": 37,
+      "expected": 37
+    },
+    {
+      "name": "ground_surge_native_timing.mp4 dimensions and square pixels",
+      "passed": true,
+      "actual": [
+        840,
+        474
+      ],
+      "expected": [
+        840,
+        474
+      ],
+      "sampleAspectRatio": "1:1"
+    },
+    {
+      "name": "ground_surge_native_timing.mp4 playback rate and duration",
+      "passed": true,
+      "actualRate": 33.333333333333336,
+      "actualDuration": 1.11,
+      "expectedDuration": 1.1099999999999999
+    },
+    {
+      "name": "ground_surge_native_timing.mp4 encoded frames match rendered sources",
+      "passed": true,
+      "quality": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/ground_surge/0000.png",
+          "rgbMSE": 5.433276404795392,
+          "psnrDB": 40.78018561590869,
+          "fractionPixelsChangedAtLeast16": 0.0031595338557363875
+        },
+        {
+          "frame": 11,
+          "source": "ArtSource/StarterSpell3D/frames/ground_surge/0011.png",
+          "rgbMSE": 6.764723561717233,
+          "psnrDB": 39.828303068779164,
+          "fractionPixelsChangedAtLeast16": 0.0061030741410488245
+        },
+        {
+          "frame": 27,
+          "source": "ArtSource/StarterSpell3D/frames/ground_surge/0027.png",
+          "rgbMSE": 5.2194988614292415,
+          "psnrDB": 40.954515536824694,
+          "fractionPixelsChangedAtLeast16": 0.0029510749447458308
+        }
+      ]
+    },
+    {
+      "name": "ground_surge_native_timing.mp4 contains substantial visible motion",
+      "passed": true,
+      "motion": {
+        "rgbMSE": 321.1472372915411,
+        "psnrDB": 23.063761705732155,
+        "fractionPixelsChangedAtLeast16": 0.10534458509142053
+      }
+    },
+    {
+      "name": "rime_grip source sequence is contiguous 37 frames",
+      "passed": true,
+      "count": 37
+    },
+    {
+      "name": "rime_grip source frame raster is square pixel",
+      "passed": false,
+      "sizes": [
+        [
+          840,
+          474
+        ]
+      ],
+      "recordedDensities": [
+        [
+          59.69,
+          71.9836
+        ]
+      ]
+    },
+    {
+      "name": "rime_grip hero phase matches manifest",
+      "passed": true,
+      "actualPhase": "impact",
+      "declaredPhase": "impact",
+      "heroNativeFrame": 29,
+      "contactNativeFrame": 22
+    },
+    {
+      "name": "rime_grip sampled loop spans all declared phases and clears",
+      "passed": true,
+      "contact": 22,
+      "impactEnd": 42,
+      "clear": 60,
+      "firstFrame": 0,
+      "lastFrame": 108,
+      "samplingStep": 3
+    },
+    {
+      "name": "rime_grip_motion.mp4 frame count",
+      "passed": true,
+      "actual": 37,
+      "expected": 37
+    },
+    {
+      "name": "rime_grip_motion.mp4 dimensions and square pixels",
+      "passed": true,
+      "actual": [
+        840,
+        474
+      ],
+      "expected": [
+        840,
+        474
+      ],
+      "sampleAspectRatio": "1:1"
+    },
+    {
+      "name": "rime_grip_motion.mp4 playback rate and duration",
+      "passed": true,
+      "actualRate": 8.0,
+      "actualDuration": 4.625,
+      "expectedDuration": 4.625
+    },
+    {
+      "name": "rime_grip_motion.mp4 encoded frames match rendered sources",
+      "passed": true,
+      "quality": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/rime_grip/0000.png",
+          "rgbMSE": 4.622537840734044,
+          "psnrDB": 41.48199885827458,
+          "fractionPixelsChangedAtLeast16": 0.0024537874221418525
+        },
+        {
+          "frame": 8,
+          "source": "ArtSource/StarterSpell3D/frames/rime_grip/0008.png",
+          "rgbMSE": 5.1992833701694465,
+          "psnrDB": 40.97136872969394,
+          "fractionPixelsChangedAtLeast16": 0.0037447257383966246
+        },
+        {
+          "frame": 23,
+          "source": "ArtSource/StarterSpell3D/frames/rime_grip/0023.png",
+          "rgbMSE": 4.541957169647043,
+          "psnrDB": 41.55837326332862,
+          "fractionPixelsChangedAtLeast16": 0.002375929274663452
+        }
+      ]
+    },
+    {
+      "name": "rime_grip_motion.mp4 contains substantial visible motion",
+      "passed": true,
+      "motion": {
+        "rgbMSE": 166.5902543366151,
+        "psnrDB": 25.91430769629255,
+        "fractionPixelsChangedAtLeast16": 0.05550783604581073
+      }
+    },
+    {
+      "name": "rime_grip_native_timing.mp4 frame count",
+      "passed": true,
+      "actual": 37,
+      "expected": 37
+    },
+    {
+      "name": "rime_grip_native_timing.mp4 dimensions and square pixels",
+      "passed": true,
+      "actual": [
+        840,
+        474
+      ],
+      "expected": [
+        840,
+        474
+      ],
+      "sampleAspectRatio": "1:1"
+    },
+    {
+      "name": "rime_grip_native_timing.mp4 playback rate and duration",
+      "passed": true,
+      "actualRate": 33.333333333333336,
+      "actualDuration": 1.11,
+      "expectedDuration": 1.1099999999999999
+    },
+    {
+      "name": "rime_grip_native_timing.mp4 encoded frames match rendered sources",
+      "passed": true,
+      "quality": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/rime_grip/0000.png",
+          "rgbMSE": 5.307524613220815,
+          "psnrDB": 40.88188344019286,
+          "fractionPixelsChangedAtLeast16": 0.0027953586497890294
+        },
+        {
+          "frame": 8,
+          "source": "ArtSource/StarterSpell3D/frames/rime_grip/0008.png",
+          "rgbMSE": 6.043586330453419,
+          "psnrDB": 40.3178563063933,
+          "fractionPixelsChangedAtLeast16": 0.004671488848704038
+        },
+        {
+          "frame": 23,
+          "source": "ArtSource/StarterSpell3D/frames/rime_grip/0023.png",
+          "rgbMSE": 5.236404125644632,
+          "psnrDB": 40.94047204508538,
+          "fractionPixelsChangedAtLeast16": 0.0027727546714888486
+        }
+      ]
+    },
+    {
+      "name": "rime_grip_native_timing.mp4 contains substantial visible motion",
+      "passed": true,
+      "motion": {
+        "rgbMSE": 166.07335493269036,
+        "psnrDB": 25.927804017094243,
+        "fractionPixelsChangedAtLeast16": 0.055095941330118546
+      }
+    },
+    {
+      "name": "calm source sequence is contiguous 37 frames",
+      "passed": true,
+      "count": 37
+    },
+    {
+      "name": "calm source frame raster is square pixel",
+      "passed": false,
+      "sizes": [
+        [
+          840,
+          474
+        ]
+      ],
+      "recordedDensities": [
+        [
+          59.69,
+          71.9836
+        ]
+      ]
+    },
+    {
+      "name": "calm hero phase matches manifest",
+      "passed": true,
+      "actualPhase": "travel",
+      "declaredPhase": "travel",
+      "heroNativeFrame": 25,
+      "contactNativeFrame": 32.0
+    },
+    {
+      "name": "calm sampled loop spans all declared phases and clears",
+      "passed": true,
+      "contact": 32.0,
+      "impactEnd": 52.0,
+      "clear": 70.0,
+      "firstFrame": 0,
+      "lastFrame": 108,
+      "samplingStep": 3
+    },
+    {
+      "name": "calm_motion.mp4 frame count",
+      "passed": true,
+      "actual": 37,
+      "expected": 37
+    },
+    {
+      "name": "calm_motion.mp4 dimensions and square pixels",
+      "passed": true,
+      "actual": [
+        840,
+        474
+      ],
+      "expected": [
+        840,
+        474
+      ],
+      "sampleAspectRatio": "1:1"
+    },
+    {
+      "name": "calm_motion.mp4 playback rate and duration",
+      "passed": true,
+      "actualRate": 8.0,
+      "actualDuration": 4.625,
+      "expectedDuration": 4.625
+    },
+    {
+      "name": "calm_motion.mp4 encoded frames match rendered sources",
+      "passed": true,
+      "quality": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/calm/0000.png",
+          "rgbMSE": 4.560389458174268,
+          "psnrDB": 41.540784277838405,
+          "fractionPixelsChangedAtLeast16": 0.0025944343982318664
+        },
+        {
+          "frame": 11,
+          "source": "ArtSource/StarterSpell3D/frames/calm/0011.png",
+          "rgbMSE": 4.822299243185319,
+          "psnrDB": 41.2982620425995,
+          "fractionPixelsChangedAtLeast16": 0.003129395218002813
+        },
+        {
+          "frame": 27,
+          "source": "ArtSource/StarterSpell3D/frames/calm/0027.png",
+          "rgbMSE": 4.558136595003684,
+          "psnrDB": 41.54293025199622,
+          "fractionPixelsChangedAtLeast16": 0.002526622463331324
+        }
+      ]
+    },
+    {
+      "name": "calm_motion.mp4 contains substantial visible motion",
+      "passed": true,
+      "motion": {
+        "rgbMSE": 52.77404812135825,
+        "psnrDB": 30.906599521306553,
+        "fractionPixelsChangedAtLeast16": 0.02354581072935503
+      }
+    },
+    {
+      "name": "calm_native_timing.mp4 frame count",
+      "passed": true,
+      "actual": 37,
+      "expected": 37
+    },
+    {
+      "name": "calm_native_timing.mp4 dimensions and square pixels",
+      "passed": true,
+      "actual": [
+        840,
+        474
+      ],
+      "expected": [
+        840,
+        474
+      ],
+      "sampleAspectRatio": "1:1"
+    },
+    {
+      "name": "calm_native_timing.mp4 playback rate and duration",
+      "passed": true,
+      "actualRate": 33.333333333333336,
+      "actualDuration": 1.11,
+      "expectedDuration": 1.1099999999999999
+    },
+    {
+      "name": "calm_native_timing.mp4 encoded frames match rendered sources",
+      "passed": true,
+      "quality": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/calm/0000.png",
+          "rgbMSE": 5.268145971468757,
+          "psnrDB": 40.914225608414306,
+          "fractionPixelsChangedAtLeast16": 0.002978702029334941
+        },
+        {
+          "frame": 11,
+          "source": "ArtSource/StarterSpell3D/frames/calm/0011.png",
+          "rgbMSE": 5.703601567209162,
+          "psnrDB": 40.56931181192088,
+          "fractionPixelsChangedAtLeast16": 0.003998392605987543
+        },
+        {
+          "frame": 27,
+          "source": "ArtSource/StarterSpell3D/frames/calm/0027.png",
+          "rgbMSE": 5.357221552474717,
+          "psnrDB": 40.841407535042755,
+          "fractionPixelsChangedAtLeast16": 0.0029586096041792245
+        }
+      ]
+    },
+    {
+      "name": "calm_native_timing.mp4 contains substantial visible motion",
+      "passed": true,
+      "motion": {
+        "rgbMSE": 52.297861831089676,
+        "psnrDB": 30.945964275253285,
+        "fractionPixelsChangedAtLeast16": 0.023324794052642154
+      }
+    },
+    {
+      "name": "conjure_rain source sequence is contiguous 37 frames",
+      "passed": true,
+      "count": 37
+    },
+    {
+      "name": "conjure_rain source frame raster is square pixel",
+      "passed": false,
+      "sizes": [
+        [
+          840,
+          474
+        ]
+      ],
+      "recordedDensities": [
+        [
+          59.69,
+          71.9836
+        ]
+      ]
+    },
+    {
+      "name": "conjure_rain hero phase matches manifest",
+      "passed": true,
+      "actualPhase": "impact",
+      "declaredPhase": "impact",
+      "heroNativeFrame": 29,
+      "contactNativeFrame": 22
+    },
+    {
+      "name": "conjure_rain sampled loop spans all declared phases and clears",
+      "passed": true,
+      "contact": 22,
+      "impactEnd": 42,
+      "clear": 60,
+      "firstFrame": 0,
+      "lastFrame": 108,
+      "samplingStep": 3
+    },
+    {
+      "name": "conjure_rain_motion.mp4 frame count",
+      "passed": true,
+      "actual": 37,
+      "expected": 37
+    },
+    {
+      "name": "conjure_rain_motion.mp4 dimensions and square pixels",
+      "passed": true,
+      "actual": [
+        840,
+        474
+      ],
+      "expected": [
+        840,
+        474
+      ],
+      "sampleAspectRatio": "1:1"
+    },
+    {
+      "name": "conjure_rain_motion.mp4 playback rate and duration",
+      "passed": true,
+      "actualRate": 8.0,
+      "actualDuration": 4.625,
+      "expectedDuration": 4.625
+    },
+    {
+      "name": "conjure_rain_motion.mp4 encoded frames match rendered sources",
+      "passed": true,
+      "quality": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/conjure_rain/0000.png",
+          "rgbMSE": 5.163505458442168,
+          "psnrDB": 41.00135720409579,
+          "fractionPixelsChangedAtLeast16": 0.0037497488446855535
+        },
+        {
+          "frame": 8,
+          "source": "ArtSource/StarterSpell3D/frames/conjure_rain/0008.png",
+          "rgbMSE": 5.408486538075145,
+          "psnrDB": 40.800046077980774,
+          "fractionPixelsChangedAtLeast16": 0.004282198111312035
+        },
+        {
+          "frame": 23,
+          "source": "ArtSource/StarterSpell3D/frames/conjure_rain/0023.png",
+          "rgbMSE": 5.119230962427165,
+          "psnrDB": 41.03875636974066,
+          "fractionPixelsChangedAtLeast16": 0.00365933293148483
+        }
+      ]
+    },
+    {
+      "name": "conjure_rain_motion.mp4 contains substantial visible motion",
+      "passed": true,
+      "motion": {
+        "rgbMSE": 38.682765722322685,
+        "psnrDB": 32.255628433627635,
+        "fractionPixelsChangedAtLeast16": 0.011882157926461724
+      }
+    },
+    {
+      "name": "conjure_rain_native_timing.mp4 frame count",
+      "passed": true,
+      "actual": 37,
+      "expected": 37
+    },
+    {
+      "name": "conjure_rain_native_timing.mp4 dimensions and square pixels",
+      "passed": true,
+      "actual": [
+        840,
+        474
+      ],
+      "expected": [
+        840,
+        474
+      ],
+      "sampleAspectRatio": "1:1"
+    },
+    {
+      "name": "conjure_rain_native_timing.mp4 playback rate and duration",
+      "passed": true,
+      "actualRate": 33.333333333333336,
+      "actualDuration": 1.11,
+      "expectedDuration": 1.1099999999999999
+    },
+    {
+      "name": "conjure_rain_native_timing.mp4 encoded frames match rendered sources",
+      "passed": true,
+      "quality": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/conjure_rain/0000.png",
+          "rgbMSE": 5.926630835175139,
+          "psnrDB": 40.40272484622572,
+          "fractionPixelsChangedAtLeast16": 0.004156620454088809
+        },
+        {
+          "frame": 8,
+          "source": "ArtSource/StarterSpell3D/frames/conjure_rain/0008.png",
+          "rgbMSE": 6.226986638537271,
+          "psnrDB": 40.1880242702635,
+          "fractionPixelsChangedAtLeast16": 0.005055756479807113
+        },
+        {
+          "frame": 23,
+          "source": "ArtSource/StarterSpell3D/frames/conjure_rain/0023.png",
+          "rgbMSE": 5.86324258254638,
+          "psnrDB": 40.44942498052399,
+          "fractionPixelsChangedAtLeast16": 0.0042018284106891705
+        }
+      ]
+    },
+    {
+      "name": "conjure_rain_native_timing.mp4 contains substantial visible motion",
+      "passed": true,
+      "motion": {
+        "rgbMSE": 38.631139910253836,
+        "psnrDB": 32.26142837568312,
+        "fractionPixelsChangedAtLeast16": 0.012148382559774965
+      }
+    },
+    {
+      "name": "starter_magic_loop.mp4 frame count",
+      "passed": true,
+      "actual": 37,
+      "expected": 37
+    },
+    {
+      "name": "starter_magic_loop.mp4 dimensions and square pixels",
+      "passed": true,
+      "actual": [
+        2220,
+        1290
+      ],
+      "expected": [
+        2220,
+        1290
+      ],
+      "sampleAspectRatio": "1:1"
+    },
+    {
+      "name": "starter_magic_loop.mp4 playback rate and duration",
+      "passed": true,
+      "actualRate": 8.0,
+      "actualDuration": 4.625,
+      "expectedDuration": 4.625
+    },
+    {
+      "name": "starter_magic_loop.mp4 encoded frames match rendered sources",
+      "passed": true,
+      "quality": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/starter_magic_composite/0000.png",
+          "rgbMSE": 4.969244244244244,
+          "psnrDB": 41.167900175092484,
+          "fractionPixelsChangedAtLeast16": 0.0033916474614149035
+        },
+        {
+          "frame": 10,
+          "source": "ArtSource/StarterSpell3D/frames/starter_magic_composite/0010.png",
+          "rgbMSE": 5.4306639197336875,
+          "psnrDB": 40.78227433847957,
+          "fractionPixelsChangedAtLeast16": 0.004480759829597039
+        },
+        {
+          "frame": 26,
+          "source": "ArtSource/StarterSpell3D/frames/starter_magic_composite/0026.png",
+          "rgbMSE": 5.2471377191144635,
+          "psnrDB": 40.93157897800399,
+          "fractionPixelsChangedAtLeast16": 0.004091416998393742
+        }
+      ]
+    },
+    {
+      "name": "starter_magic_loop.mp4 contains substantial visible motion",
+      "passed": true,
+      "motion": {
+        "rgbMSE": 119.7003839886398,
+        "psnrDB": 27.349848172795458,
+        "fractionPixelsChangedAtLeast16": 0.038654934003771214
+      }
+    },
+    {
+      "name": "starter_magic GIF dimensions frame count and infinite loop",
+      "passed": true,
+      "size": [
+        1440,
+        838
+      ],
+      "count": 37,
+      "loop": 0
+    },
+    {
+      "name": "starter_magic GIF timing preserves requested slow cadence",
+      "passed": true,
+      "durationsMilliseconds": [
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120
+      ],
+      "totalMilliseconds": 4620,
+      "mp4TotalMilliseconds": 4625
+    },
+    {
+      "name": "starter_magic GIF is genuinely animated",
+      "passed": true,
+      "distinctDecodedFrames": 37,
+      "motion": {
+        "rgbMSE": 120.06613519844427,
+        "psnrDB": 27.3365982948796,
+        "fractionPixelsChangedAtLeast16": 0.053186323256430655
+      }
+    },
+    {
+      "name": "conjure_rain_loop.mp4 frame count",
+      "passed": true,
+      "actual": 37,
+      "expected": 37
+    },
+    {
+      "name": "conjure_rain_loop.mp4 dimensions and square pixels",
+      "passed": true,
+      "actual": [
+        1160,
+        810
+      ],
+      "expected": [
+        1160,
+        810
+      ],
+      "sampleAspectRatio": "1:1"
+    },
+    {
+      "name": "conjure_rain_loop.mp4 playback rate and duration",
+      "passed": true,
+      "actualRate": 8.0,
+      "actualDuration": 4.625,
+      "expectedDuration": 4.625
+    },
+    {
+      "name": "conjure_rain_loop.mp4 encoded frames match rendered sources",
+      "passed": true,
+      "quality": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/conjure_rain_composite/0000.png",
+          "rgbMSE": 4.220356889456506,
+          "psnrDB": 41.87731182757436,
+          "fractionPixelsChangedAtLeast16": 0.002286079182630907
+        },
+        {
+          "frame": 10,
+          "source": "ArtSource/StarterSpell3D/frames/conjure_rain_composite/0010.png",
+          "rgbMSE": 4.518776784447282,
+          "psnrDB": 41.58059471999002,
+          "fractionPixelsChangedAtLeast16": 0.003033205619412516
+        },
+        {
+          "frame": 26,
+          "source": "ArtSource/StarterSpell3D/frames/conjure_rain_composite/0026.png",
+          "rgbMSE": 4.112064353625656,
+          "psnrDB": 41.99020458138031,
+          "fractionPixelsChangedAtLeast16": 0.002219029374201788
+        }
+      ]
+    },
+    {
+      "name": "conjure_rain_loop.mp4 contains substantial visible motion",
+      "passed": true,
+      "motion": {
+        "rgbMSE": 67.99344685681851,
+        "psnrDB": 29.80613303030285,
+        "fractionPixelsChangedAtLeast16": 0.015301191996594295
+      }
+    },
+    {
+      "name": "conjure_rain GIF dimensions frame count and infinite loop",
+      "passed": true,
+      "size": [
+        928,
+        648
+      ],
+      "count": 37,
+      "loop": 0
+    },
+    {
+      "name": "conjure_rain GIF timing preserves requested slow cadence",
+      "passed": true,
+      "durationsMilliseconds": [
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120,
+        130,
+        120
+      ],
+      "totalMilliseconds": 4620,
+      "mp4TotalMilliseconds": 4625
+    },
+    {
+      "name": "conjure_rain GIF is genuinely animated",
+      "passed": true,
+      "distinctDecodedFrames": 37,
+      "motion": {
+        "rgbMSE": 79.3980417198808,
+        "psnrDB": 29.13270569785118,
+        "fractionPixelsChangedAtLeast16": 0.038330805661983824
+      }
+    }
+  ],
+  "videos": [
+    {
+      "path": "ArtSource/StarterSpell3D/renders/ember_spit_motion.mp4",
+      "sha256": "3816bbc78a735dbff0a0e9b58777be41a4c5a210e6716f08b94be16b7c8375d8",
+      "stream": {
+        "codec_name": "h264",
+        "width": 840,
+        "height": 474,
+        "sample_aspect_ratio": "1:1",
+        "avg_frame_rate": "8/1",
+        "duration": "4.625000",
+        "nb_frames": "37",
+        "nb_read_frames": "37"
+      },
+      "sampledFrames": [
+        0,
+        10,
+        26
+      ],
+      "sourceFrameComparisons": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/ember_spit/0000.png",
+          "rgbMSE": 4.666616435603777,
+          "psnrDB": 41.440782545930865,
+          "fractionPixelsChangedAtLeast16": 0.0027350813743218807
+        },
+        {
+          "frame": 10,
+          "source": "ArtSource/StarterSpell3D/frames/ember_spit/0010.png",
+          "rgbMSE": 4.712166800616168,
+          "psnrDB": 41.398597057219206,
+          "fractionPixelsChangedAtLeast16": 0.0030766526019690575
+        },
+        {
+          "frame": 26,
+          "source": "ArtSource/StarterSpell3D/frames/ember_spit/0026.png",
+          "rgbMSE": 4.603166231330788,
+          "psnrDB": 41.50023702279361,
+          "fractionPixelsChangedAtLeast16": 0.002755173799477597
+        }
+      ],
+      "motion": {
+        "rgbMSE": 58.58844852990423,
+        "psnrDB": 30.452683631816548,
+        "fractionPixelsChangedAtLeast16": 0.02736337150894113
+      }
+    },
+    {
+      "path": "ArtSource/StarterSpell3D/renders/ember_spit_native_timing.mp4",
+      "sha256": "a6b76b0076008a5cb746ec035fc50b2864754f860ab1ecd5ef599cacdeca93d7",
+      "stream": {
+        "codec_name": "h264",
+        "width": 840,
+        "height": 474,
+        "sample_aspect_ratio": "1:1",
+        "avg_frame_rate": "100/3",
+        "duration": "1.110000",
+        "nb_frames": "37",
+        "nb_read_frames": "37"
+      },
+      "sampledFrames": [
+        0,
+        10,
+        26
+      ],
+      "sourceFrameComparisons": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/ember_spit/0000.png",
+          "rgbMSE": 5.3917662916080635,
+          "psnrDB": 40.81349301610807,
+          "fractionPixelsChangedAtLeast16": 0.0030339561985131607
+        },
+        {
+          "frame": 10,
+          "source": "ArtSource/StarterSpell3D/frames/ember_spit/0010.png",
+          "rgbMSE": 5.4642187395351955,
+          "psnrDB": 40.755522844931804,
+          "fractionPixelsChangedAtLeast16": 0.003458408679927667
+        },
+        {
+          "frame": 26,
+          "source": "ArtSource/StarterSpell3D/frames/ember_spit/0026.png",
+          "rgbMSE": 5.291050498961892,
+          "psnrDB": 40.89538454313016,
+          "fractionPixelsChangedAtLeast16": 0.002913401647578863
+        }
+      ],
+      "motion": {
+        "rgbMSE": 58.47679324894515,
+        "psnrDB": 30.46096812110873,
+        "fractionPixelsChangedAtLeast16": 0.02757936507936508
+      }
+    },
+    {
+      "path": "ArtSource/StarterSpell3D/renders/flaming_hands_motion.mp4",
+      "sha256": "6944d54926b1acfd39c9f056673683532188a37775c33a568072d9ea5d3694a6",
+      "stream": {
+        "codec_name": "h264",
+        "width": 840,
+        "height": 474,
+        "sample_aspect_ratio": "1:1",
+        "avg_frame_rate": "8/1",
+        "duration": "4.625000",
+        "nb_frames": "37",
+        "nb_read_frames": "37"
+      },
+      "sampledFrames": [
+        0,
+        8,
+        23
+      ],
+      "sourceFrameComparisons": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/flaming_hands/0000.png",
+          "rgbMSE": 4.586134552273792,
+          "psnrDB": 41.51633568552313,
+          "fractionPixelsChangedAtLeast16": 0.002554249547920434
+        },
+        {
+          "frame": 8,
+          "source": "ArtSource/StarterSpell3D/frames/flaming_hands/0008.png",
+          "rgbMSE": 5.655363840332194,
+          "psnrDB": 40.606198101801745,
+          "fractionPixelsChangedAtLeast16": 0.004967852119750854
+        },
+        {
+          "frame": 23,
+          "source": "ArtSource/StarterSpell3D/frames/flaming_hands/0023.png",
+          "rgbMSE": 4.473101265822785,
+          "psnrDB": 41.62471630660776,
+          "fractionPixelsChangedAtLeast16": 0.002504018485031143
+        }
+      ],
+      "motion": {
+        "rgbMSE": 177.61614426361263,
+        "psnrDB": 25.63597922815273,
+        "fractionPixelsChangedAtLeast16": 0.049228953184649385
+      }
+    },
+    {
+      "path": "ArtSource/StarterSpell3D/renders/flaming_hands_native_timing.mp4",
+      "sha256": "d2294420eabb394e93505ea86591a705e6babda77c2eae52d82a7b89d1177d37",
+      "stream": {
+        "codec_name": "h264",
+        "width": 840,
+        "height": 474,
+        "sample_aspect_ratio": "1:1",
+        "avg_frame_rate": "100/3",
+        "duration": "1.110000",
+        "nb_frames": "37",
+        "nb_read_frames": "37"
+      },
+      "sampledFrames": [
+        0,
+        8,
+        23
+      ],
+      "sourceFrameComparisons": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/flaming_hands/0000.png",
+          "rgbMSE": 5.2925105485232065,
+          "psnrDB": 40.8941862858159,
+          "fractionPixelsChangedAtLeast16": 0.002998794454490657
+        },
+        {
+          "frame": 8,
+          "source": "ArtSource/StarterSpell3D/frames/flaming_hands/0008.png",
+          "rgbMSE": 6.455822617373251,
+          "psnrDB": 40.03128771829595,
+          "fractionPixelsChangedAtLeast16": 0.005610809724733775
+        },
+        {
+          "frame": 23,
+          "source": "ArtSource/StarterSpell3D/frames/flaming_hands/0023.png",
+          "rgbMSE": 5.109236655280959,
+          "psnrDB": 41.04724341587036,
+          "fractionPixelsChangedAtLeast16": 0.00268485031143259
+        }
+      ],
+      "motion": {
+        "rgbMSE": 176.80565099457505,
+        "psnrDB": 25.65584219214947,
+        "fractionPixelsChangedAtLeast16": 0.04911844484629295
+      }
+    },
+    {
+      "path": "ArtSource/StarterSpell3D/renders/jet_blast_motion.mp4",
+      "sha256": "73274da858c7f2cd3d587315513591089bdd39809ca97114beb547e2679f16d2",
+      "stream": {
+        "codec_name": "h264",
+        "width": 840,
+        "height": 474,
+        "sample_aspect_ratio": "1:1",
+        "avg_frame_rate": "8/1",
+        "duration": "4.625000",
+        "nb_frames": "37",
+        "nb_read_frames": "37"
+      },
+      "sampledFrames": [
+        0,
+        9,
+        25
+      ],
+      "sourceFrameComparisons": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/jet_blast/0000.png",
+          "rgbMSE": 4.690220849239837,
+          "psnrDB": 41.41887067972015,
+          "fractionPixelsChangedAtLeast16": 0.0024588105284307814
+        },
+        {
+          "frame": 9,
+          "source": "ArtSource/StarterSpell3D/frames/jet_blast/0009.png",
+          "rgbMSE": 6.572895318464939,
+          "psnrDB": 39.9532364521238,
+          "fractionPixelsChangedAtLeast16": 0.006567711472774764
+        },
+        {
+          "frame": 25,
+          "source": "ArtSource/StarterSpell3D/frames/jet_blast/0025.png",
+          "rgbMSE": 4.551962360190208,
+          "psnrDB": 41.548816986121075,
+          "fractionPixelsChangedAtLeast16": 0.0023508137432188066
+        }
+      ],
+      "motion": {
+        "rgbMSE": 457.4226525349943,
+        "psnrDB": 21.527626928854424,
+        "fractionPixelsChangedAtLeast16": 0.14846544102873216
+      }
+    },
+    {
+      "path": "ArtSource/StarterSpell3D/renders/jet_blast_native_timing.mp4",
+      "sha256": "ae4e4e376f23b62350eb331e0caa729aef9c5dcb4ed337f4a6a0972635be1afc",
+      "stream": {
+        "codec_name": "h264",
+        "width": 840,
+        "height": 474,
+        "sample_aspect_ratio": "1:1",
+        "avg_frame_rate": "100/3",
+        "duration": "1.110000",
+        "nb_frames": "37",
+        "nb_read_frames": "37"
+      },
+      "sampledFrames": [
+        0,
+        9,
+        25
+      ],
+      "sourceFrameComparisons": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/jet_blast/0000.png",
+          "rgbMSE": 5.466658294822852,
+          "psnrDB": 40.753584326340864,
+          "fractionPixelsChangedAtLeast16": 0.0030992565802692384
+        },
+        {
+          "frame": 9,
+          "source": "ArtSource/StarterSpell3D/frames/jet_blast/0009.png",
+          "rgbMSE": 8.174635824794052,
+          "psnrDB": 39.00611946667732,
+          "fractionPixelsChangedAtLeast16": 0.009388185654008438
+        },
+        {
+          "frame": 25,
+          "source": "ArtSource/StarterSpell3D/frames/jet_blast/0025.png",
+          "rgbMSE": 5.249530339561985,
+          "psnrDB": 40.92959910806844,
+          "fractionPixelsChangedAtLeast16": 0.0027325698211774162
+        }
+      ],
+      "motion": {
+        "rgbMSE": 455.67561281896724,
+        "psnrDB": 21.544245745535346,
+        "fractionPixelsChangedAtLeast16": 0.14833232871207555
+      }
+    },
+    {
+      "path": "ArtSource/StarterSpell3D/renders/ground_surge_motion.mp4",
+      "sha256": "f4ae80dbfe481b88006230da847c79065407aff220703555ed33635a2bfea8c2",
+      "stream": {
+        "codec_name": "h264",
+        "width": 840,
+        "height": 474,
+        "sample_aspect_ratio": "1:1",
+        "avg_frame_rate": "8/1",
+        "duration": "4.625000",
+        "nb_frames": "37",
+        "nb_read_frames": "37"
+      },
+      "sampledFrames": [
+        0,
+        11,
+        27
+      ],
+      "sourceFrameComparisons": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/ground_surge/0000.png",
+          "rgbMSE": 4.627246165695532,
+          "psnrDB": 41.47757756643692,
+          "fractionPixelsChangedAtLeast16": 0.00260196905766526
+        },
+        {
+          "frame": 11,
+          "source": "ArtSource/StarterSpell3D/frames/ground_surge/0011.png",
+          "rgbMSE": 5.546298807849441,
+          "psnrDB": 40.6907709730216,
+          "fractionPixelsChangedAtLeast16": 0.004545911191480812
+        },
+        {
+          "frame": 27,
+          "source": "ArtSource/StarterSpell3D/frames/ground_surge/0027.png",
+          "rgbMSE": 4.511463565735718,
+          "psnrDB": 41.58762906481936,
+          "fractionPixelsChangedAtLeast16": 0.002624573035965441
+        }
+      ],
+      "motion": {
+        "rgbMSE": 322.2816614761235,
+        "psnrDB": 23.04844766948238,
+        "fractionPixelsChangedAtLeast16": 0.10501306007635122
+      }
+    },
+    {
+      "path": "ArtSource/StarterSpell3D/renders/ground_surge_native_timing.mp4",
+      "sha256": "13b58667e317ed6c6308474cdcf04387e4754beafcd5bdb355b85c43e95d247f",
+      "stream": {
+        "codec_name": "h264",
+        "width": 840,
+        "height": 474,
+        "sample_aspect_ratio": "1:1",
+        "avg_frame_rate": "100/3",
+        "duration": "1.110000",
+        "nb_frames": "37",
+        "nb_read_frames": "37"
+      },
+      "sampledFrames": [
+        0,
+        11,
+        27
+      ],
+      "sourceFrameComparisons": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/ground_surge/0000.png",
+          "rgbMSE": 5.433276404795392,
+          "psnrDB": 40.78018561590869,
+          "fractionPixelsChangedAtLeast16": 0.0031595338557363875
+        },
+        {
+          "frame": 11,
+          "source": "ArtSource/StarterSpell3D/frames/ground_surge/0011.png",
+          "rgbMSE": 6.764723561717233,
+          "psnrDB": 39.828303068779164,
+          "fractionPixelsChangedAtLeast16": 0.0061030741410488245
+        },
+        {
+          "frame": 27,
+          "source": "ArtSource/StarterSpell3D/frames/ground_surge/0027.png",
+          "rgbMSE": 5.2194988614292415,
+          "psnrDB": 40.954515536824694,
+          "fractionPixelsChangedAtLeast16": 0.0029510749447458308
+        }
+      ],
+      "motion": {
+        "rgbMSE": 321.1472372915411,
+        "psnrDB": 23.063761705732155,
+        "fractionPixelsChangedAtLeast16": 0.10534458509142053
+      }
+    },
+    {
+      "path": "ArtSource/StarterSpell3D/renders/rime_grip_motion.mp4",
+      "sha256": "64f4ccbaca3fc520f47621f7d141339d208b435ca1f805caf8c276969bf26a33",
+      "stream": {
+        "codec_name": "h264",
+        "width": 840,
+        "height": 474,
+        "sample_aspect_ratio": "1:1",
+        "avg_frame_rate": "8/1",
+        "duration": "4.625000",
+        "nb_frames": "37",
+        "nb_read_frames": "37"
+      },
+      "sampledFrames": [
+        0,
+        8,
+        23
+      ],
+      "sourceFrameComparisons": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/rime_grip/0000.png",
+          "rgbMSE": 4.622537840734044,
+          "psnrDB": 41.48199885827458,
+          "fractionPixelsChangedAtLeast16": 0.0024537874221418525
+        },
+        {
+          "frame": 8,
+          "source": "ArtSource/StarterSpell3D/frames/rime_grip/0008.png",
+          "rgbMSE": 5.1992833701694465,
+          "psnrDB": 40.97136872969394,
+          "fractionPixelsChangedAtLeast16": 0.0037447257383966246
+        },
+        {
+          "frame": 23,
+          "source": "ArtSource/StarterSpell3D/frames/rime_grip/0023.png",
+          "rgbMSE": 4.541957169647043,
+          "psnrDB": 41.55837326332862,
+          "fractionPixelsChangedAtLeast16": 0.002375929274663452
+        }
+      ],
+      "motion": {
+        "rgbMSE": 166.5902543366151,
+        "psnrDB": 25.91430769629255,
+        "fractionPixelsChangedAtLeast16": 0.05550783604581073
+      }
+    },
+    {
+      "path": "ArtSource/StarterSpell3D/renders/rime_grip_native_timing.mp4",
+      "sha256": "8021f64b714414f0d00845fdb50840d154d02bbe0724cd53d4e318e844e94b59",
+      "stream": {
+        "codec_name": "h264",
+        "width": 840,
+        "height": 474,
+        "sample_aspect_ratio": "1:1",
+        "avg_frame_rate": "100/3",
+        "duration": "1.110000",
+        "nb_frames": "37",
+        "nb_read_frames": "37"
+      },
+      "sampledFrames": [
+        0,
+        8,
+        23
+      ],
+      "sourceFrameComparisons": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/rime_grip/0000.png",
+          "rgbMSE": 5.307524613220815,
+          "psnrDB": 40.88188344019286,
+          "fractionPixelsChangedAtLeast16": 0.0027953586497890294
+        },
+        {
+          "frame": 8,
+          "source": "ArtSource/StarterSpell3D/frames/rime_grip/0008.png",
+          "rgbMSE": 6.043586330453419,
+          "psnrDB": 40.3178563063933,
+          "fractionPixelsChangedAtLeast16": 0.004671488848704038
+        },
+        {
+          "frame": 23,
+          "source": "ArtSource/StarterSpell3D/frames/rime_grip/0023.png",
+          "rgbMSE": 5.236404125644632,
+          "psnrDB": 40.94047204508538,
+          "fractionPixelsChangedAtLeast16": 0.0027727546714888486
+        }
+      ],
+      "motion": {
+        "rgbMSE": 166.07335493269036,
+        "psnrDB": 25.927804017094243,
+        "fractionPixelsChangedAtLeast16": 0.055095941330118546
+      }
+    },
+    {
+      "path": "ArtSource/StarterSpell3D/renders/calm_motion.mp4",
+      "sha256": "84654c9261f4600167393f56d0b1910c42a09123364d7ea2e01c400b9328ff3b",
+      "stream": {
+        "codec_name": "h264",
+        "width": 840,
+        "height": 474,
+        "sample_aspect_ratio": "1:1",
+        "avg_frame_rate": "8/1",
+        "duration": "4.625000",
+        "nb_frames": "37",
+        "nb_read_frames": "37"
+      },
+      "sampledFrames": [
+        0,
+        11,
+        27
+      ],
+      "sourceFrameComparisons": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/calm/0000.png",
+          "rgbMSE": 4.560389458174268,
+          "psnrDB": 41.540784277838405,
+          "fractionPixelsChangedAtLeast16": 0.0025944343982318664
+        },
+        {
+          "frame": 11,
+          "source": "ArtSource/StarterSpell3D/frames/calm/0011.png",
+          "rgbMSE": 4.822299243185319,
+          "psnrDB": 41.2982620425995,
+          "fractionPixelsChangedAtLeast16": 0.003129395218002813
+        },
+        {
+          "frame": 27,
+          "source": "ArtSource/StarterSpell3D/frames/calm/0027.png",
+          "rgbMSE": 4.558136595003684,
+          "psnrDB": 41.54293025199622,
+          "fractionPixelsChangedAtLeast16": 0.002526622463331324
+        }
+      ],
+      "motion": {
+        "rgbMSE": 52.77404812135825,
+        "psnrDB": 30.906599521306553,
+        "fractionPixelsChangedAtLeast16": 0.02354581072935503
+      }
+    },
+    {
+      "path": "ArtSource/StarterSpell3D/renders/calm_native_timing.mp4",
+      "sha256": "b85e6ffecfeaf85b1aee5f75e2bbcf83adb6b305d4590017828dcab3adc19668",
+      "stream": {
+        "codec_name": "h264",
+        "width": 840,
+        "height": 474,
+        "sample_aspect_ratio": "1:1",
+        "avg_frame_rate": "100/3",
+        "duration": "1.110000",
+        "nb_frames": "37",
+        "nb_read_frames": "37"
+      },
+      "sampledFrames": [
+        0,
+        11,
+        27
+      ],
+      "sourceFrameComparisons": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/calm/0000.png",
+          "rgbMSE": 5.268145971468757,
+          "psnrDB": 40.914225608414306,
+          "fractionPixelsChangedAtLeast16": 0.002978702029334941
+        },
+        {
+          "frame": 11,
+          "source": "ArtSource/StarterSpell3D/frames/calm/0011.png",
+          "rgbMSE": 5.703601567209162,
+          "psnrDB": 40.56931181192088,
+          "fractionPixelsChangedAtLeast16": 0.003998392605987543
+        },
+        {
+          "frame": 27,
+          "source": "ArtSource/StarterSpell3D/frames/calm/0027.png",
+          "rgbMSE": 5.357221552474717,
+          "psnrDB": 40.841407535042755,
+          "fractionPixelsChangedAtLeast16": 0.0029586096041792245
+        }
+      ],
+      "motion": {
+        "rgbMSE": 52.297861831089676,
+        "psnrDB": 30.945964275253285,
+        "fractionPixelsChangedAtLeast16": 0.023324794052642154
+      }
+    },
+    {
+      "path": "ArtSource/StarterSpell3D/renders/conjure_rain_motion.mp4",
+      "sha256": "9a976d743903992fff4affdbfa5385a638fafe653d2770f1ccccb1bbc0be4099",
+      "stream": {
+        "codec_name": "h264",
+        "width": 840,
+        "height": 474,
+        "sample_aspect_ratio": "1:1",
+        "avg_frame_rate": "8/1",
+        "duration": "4.625000",
+        "nb_frames": "37",
+        "nb_read_frames": "37"
+      },
+      "sampledFrames": [
+        0,
+        8,
+        23
+      ],
+      "sourceFrameComparisons": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/conjure_rain/0000.png",
+          "rgbMSE": 5.163505458442168,
+          "psnrDB": 41.00135720409579,
+          "fractionPixelsChangedAtLeast16": 0.0037497488446855535
+        },
+        {
+          "frame": 8,
+          "source": "ArtSource/StarterSpell3D/frames/conjure_rain/0008.png",
+          "rgbMSE": 5.408486538075145,
+          "psnrDB": 40.800046077980774,
+          "fractionPixelsChangedAtLeast16": 0.004282198111312035
+        },
+        {
+          "frame": 23,
+          "source": "ArtSource/StarterSpell3D/frames/conjure_rain/0023.png",
+          "rgbMSE": 5.119230962427165,
+          "psnrDB": 41.03875636974066,
+          "fractionPixelsChangedAtLeast16": 0.00365933293148483
+        }
+      ],
+      "motion": {
+        "rgbMSE": 38.682765722322685,
+        "psnrDB": 32.255628433627635,
+        "fractionPixelsChangedAtLeast16": 0.011882157926461724
+      }
+    },
+    {
+      "path": "ArtSource/StarterSpell3D/renders/conjure_rain_native_timing.mp4",
+      "sha256": "0794c18d43a544913926598f16f30f6d1103352ea2dbe5c2c128f268c9f54a13",
+      "stream": {
+        "codec_name": "h264",
+        "width": 840,
+        "height": 474,
+        "sample_aspect_ratio": "1:1",
+        "avg_frame_rate": "100/3",
+        "duration": "1.110000",
+        "nb_frames": "37",
+        "nb_read_frames": "37"
+      },
+      "sampledFrames": [
+        0,
+        8,
+        23
+      ],
+      "sourceFrameComparisons": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/conjure_rain/0000.png",
+          "rgbMSE": 5.926630835175139,
+          "psnrDB": 40.40272484622572,
+          "fractionPixelsChangedAtLeast16": 0.004156620454088809
+        },
+        {
+          "frame": 8,
+          "source": "ArtSource/StarterSpell3D/frames/conjure_rain/0008.png",
+          "rgbMSE": 6.226986638537271,
+          "psnrDB": 40.1880242702635,
+          "fractionPixelsChangedAtLeast16": 0.005055756479807113
+        },
+        {
+          "frame": 23,
+          "source": "ArtSource/StarterSpell3D/frames/conjure_rain/0023.png",
+          "rgbMSE": 5.86324258254638,
+          "psnrDB": 40.44942498052399,
+          "fractionPixelsChangedAtLeast16": 0.0042018284106891705
+        }
+      ],
+      "motion": {
+        "rgbMSE": 38.631139910253836,
+        "psnrDB": 32.26142837568312,
+        "fractionPixelsChangedAtLeast16": 0.012148382559774965
+      }
+    },
+    {
+      "path": "ArtSource/StarterSpell3D/renders/starter_magic_loop.mp4",
+      "sha256": "5c0517492202a88df1bb2ddddb8ae7b5d297dc3b2dffdf4362670792ea173ce4",
+      "stream": {
+        "codec_name": "h264",
+        "width": 2220,
+        "height": 1290,
+        "sample_aspect_ratio": "1:1",
+        "avg_frame_rate": "8/1",
+        "duration": "4.625000",
+        "nb_frames": "37",
+        "nb_read_frames": "37"
+      },
+      "sampledFrames": [
+        0,
+        10,
+        26
+      ],
+      "sourceFrameComparisons": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/starter_magic_composite/0000.png",
+          "rgbMSE": 4.969244244244244,
+          "psnrDB": 41.167900175092484,
+          "fractionPixelsChangedAtLeast16": 0.0033916474614149035
+        },
+        {
+          "frame": 10,
+          "source": "ArtSource/StarterSpell3D/frames/starter_magic_composite/0010.png",
+          "rgbMSE": 5.4306639197336875,
+          "psnrDB": 40.78227433847957,
+          "fractionPixelsChangedAtLeast16": 0.004480759829597039
+        },
+        {
+          "frame": 26,
+          "source": "ArtSource/StarterSpell3D/frames/starter_magic_composite/0026.png",
+          "rgbMSE": 5.2471377191144635,
+          "psnrDB": 40.93157897800399,
+          "fractionPixelsChangedAtLeast16": 0.004091416998393742
+        }
+      ],
+      "motion": {
+        "rgbMSE": 119.7003839886398,
+        "psnrDB": 27.349848172795458,
+        "fractionPixelsChangedAtLeast16": 0.038654934003771214
+      }
+    },
+    {
+      "path": "ArtSource/StarterSpell3D/renders/conjure_rain_loop.mp4",
+      "sha256": "6022902597b89585290769d6606a5f0c2dc89f796a19285f12e6fdd0e471cf4d",
+      "stream": {
+        "codec_name": "h264",
+        "width": 1160,
+        "height": 810,
+        "sample_aspect_ratio": "1:1",
+        "avg_frame_rate": "8/1",
+        "duration": "4.625000",
+        "nb_frames": "37",
+        "nb_read_frames": "37"
+      },
+      "sampledFrames": [
+        0,
+        10,
+        26
+      ],
+      "sourceFrameComparisons": [
+        {
+          "frame": 0,
+          "source": "ArtSource/StarterSpell3D/frames/conjure_rain_composite/0000.png",
+          "rgbMSE": 4.220356889456506,
+          "psnrDB": 41.87731182757436,
+          "fractionPixelsChangedAtLeast16": 0.002286079182630907
+        },
+        {
+          "frame": 10,
+          "source": "ArtSource/StarterSpell3D/frames/conjure_rain_composite/0010.png",
+          "rgbMSE": 4.518776784447282,
+          "psnrDB": 41.58059471999002,
+          "fractionPixelsChangedAtLeast16": 0.003033205619412516
+        },
+        {
+          "frame": 26,
+          "source": "ArtSource/StarterSpell3D/frames/conjure_rain_composite/0026.png",
+          "rgbMSE": 4.112064353625656,
+          "psnrDB": 41.99020458138031,
+          "fractionPixelsChangedAtLeast16": 0.002219029374201788
+        }
+      ],
+      "motion": {
+        "rgbMSE": 67.99344685681851,
+        "psnrDB": 29.80613303030285,
+        "fractionPixelsChangedAtLeast16": 0.015301191996594295
+      }
+    }
+  ],
+  "gifs": [
+    {
+      "path": "ArtSource/StarterSpell3D/renders/starter_magic_loop.gif",
+      "sha256": "44220d56fe1484b1b8cd674a2fdd35e1aa6a3ffe545713bd6e5dc68c93b4e93b",
+      "dimensions": [
+        1440,
+        838
+      ],
+      "frameCount": 37,
+      "loop": 0,
+      "totalDurationMilliseconds": 4620,
+      "distinctDecodedFrames": 37,
+      "motion": {
+        "rgbMSE": 120.06613519844427,
+        "psnrDB": 27.3365982948796,
+        "fractionPixelsChangedAtLeast16": 0.053186323256430655
+      }
+    },
+    {
+      "path": "ArtSource/StarterSpell3D/renders/conjure_rain_loop.gif",
+      "sha256": "fb7869862ac35d08012ef588c90ed7ee9cc611c166bc044c76bc0795bcc4940f",
+      "dimensions": [
+        928,
+        648
+      ],
+      "frameCount": 37,
+      "loop": 0,
+      "totalDurationMilliseconds": 4620,
+      "distinctDecodedFrames": 37,
+      "motion": {
+        "rgbMSE": 79.3980417198808,
+        "psnrDB": 29.13270569785118,
+        "fractionPixelsChangedAtLeast16": 0.038330805661983824
+      }
+    }
+  ],
+  "studies": [
+    {
+      "id": "ember_spit",
+      "sourceNativeFrames": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33,
+        36,
+        39,
+        42,
+        45,
+        48,
+        51,
+        54,
+        57,
+        60,
+        63,
+        66,
+        69,
+        72,
+        75,
+        78,
+        81,
+        84,
+        87,
+        90,
+        93,
+        96,
+        99,
+        102,
+        105,
+        108
+      ],
+      "contactNativeFrame": 29.5,
+      "firstSampleAtOrAfterContact": 30,
+      "contactSamplingDelaySeconds": 0.005,
+      "heroNativeFrame": 25,
+      "heroPhase": "travel",
+      "clearNativeFrame": 67.5
+    },
+    {
+      "id": "flaming_hands",
+      "sourceNativeFrames": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33,
+        36,
+        39,
+        42,
+        45,
+        48,
+        51,
+        54,
+        57,
+        60,
+        63,
+        66,
+        69,
+        72,
+        75,
+        78,
+        81,
+        84,
+        87,
+        90,
+        93,
+        96,
+        99,
+        102,
+        105,
+        108
+      ],
+      "contactNativeFrame": 22,
+      "firstSampleAtOrAfterContact": 24,
+      "contactSamplingDelaySeconds": 0.02,
+      "heroNativeFrame": 29,
+      "heroPhase": "impact",
+      "clearNativeFrame": 60
+    },
+    {
+      "id": "jet_blast",
+      "sourceNativeFrames": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33,
+        36,
+        39,
+        42,
+        45,
+        48,
+        51,
+        54,
+        57,
+        60,
+        63,
+        66,
+        69,
+        72,
+        75,
+        78,
+        81,
+        84,
+        87,
+        90,
+        93,
+        96,
+        99,
+        102,
+        105,
+        108
+      ],
+      "contactNativeFrame": 27.0,
+      "firstSampleAtOrAfterContact": 27,
+      "contactSamplingDelaySeconds": 0.0,
+      "heroNativeFrame": 34,
+      "heroPhase": "impact",
+      "clearNativeFrame": 65.0
+    },
+    {
+      "id": "ground_surge",
+      "sourceNativeFrames": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33,
+        36,
+        39,
+        42,
+        45,
+        48,
+        51,
+        54,
+        57,
+        60,
+        63,
+        66,
+        69,
+        72,
+        75,
+        78,
+        81,
+        84,
+        87,
+        90,
+        93,
+        96,
+        99,
+        102,
+        105,
+        108
+      ],
+      "contactNativeFrame": 32.0,
+      "firstSampleAtOrAfterContact": 33,
+      "contactSamplingDelaySeconds": 0.01,
+      "heroNativeFrame": 39,
+      "heroPhase": "impact",
+      "clearNativeFrame": 70.0
+    },
+    {
+      "id": "rime_grip",
+      "sourceNativeFrames": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33,
+        36,
+        39,
+        42,
+        45,
+        48,
+        51,
+        54,
+        57,
+        60,
+        63,
+        66,
+        69,
+        72,
+        75,
+        78,
+        81,
+        84,
+        87,
+        90,
+        93,
+        96,
+        99,
+        102,
+        105,
+        108
+      ],
+      "contactNativeFrame": 22,
+      "firstSampleAtOrAfterContact": 24,
+      "contactSamplingDelaySeconds": 0.02,
+      "heroNativeFrame": 29,
+      "heroPhase": "impact",
+      "clearNativeFrame": 60
+    },
+    {
+      "id": "calm",
+      "sourceNativeFrames": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33,
+        36,
+        39,
+        42,
+        45,
+        48,
+        51,
+        54,
+        57,
+        60,
+        63,
+        66,
+        69,
+        72,
+        75,
+        78,
+        81,
+        84,
+        87,
+        90,
+        93,
+        96,
+        99,
+        102,
+        105,
+        108
+      ],
+      "contactNativeFrame": 32.0,
+      "firstSampleAtOrAfterContact": 33,
+      "contactSamplingDelaySeconds": 0.01,
+      "heroNativeFrame": 25,
+      "heroPhase": "travel",
+      "clearNativeFrame": 70.0
+    },
+    {
+      "id": "conjure_rain",
+      "sourceNativeFrames": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33,
+        36,
+        39,
+        42,
+        45,
+        48,
+        51,
+        54,
+        57,
+        60,
+        63,
+        66,
+        69,
+        72,
+        75,
+        78,
+        81,
+        84,
+        87,
+        90,
+        93,
+        96,
+        99,
+        102,
+        105,
+        108
+      ],
+      "contactNativeFrame": 22,
+      "firstSampleAtOrAfterContact": 24,
+      "contactSamplingDelaySeconds": 0.02,
+      "heroNativeFrame": 29,
+      "heroPhase": "impact",
+      "clearNativeFrame": 60
+    }
+  ],
+  "status": "DRAFT \u2014 observations of existing encoded previews before the pending Calm crossing/pulse recenter correction. Not final source/media acceptance.",
+  "metadataFinding": "Actual rendered Blender PNGs carry anisotropic pHYs density despite intended square-pixel presentation. Earlier unrendered image.save_render metadata probe was insufficient to establish real render-output metadata. Composed delivery boards/GIF/MP4 discard or explicitly normalize this metadata; geometry compensation itself remains numerically correct."
+}

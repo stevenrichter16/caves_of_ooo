@@ -88,22 +88,8 @@ namespace CavesOfOoo.Skills
 
             // Find adjacent target + remember the direction we found
             // them in (so we can compute the opposite cell for flanking).
-            Entity target = null;
-            int targetDir = -1;
-            for (int dir = 0; dir < 8 && target == null; dir++)
-            {
-                var cell = ctx.Zone.GetCellInDirection(actorPos.x, actorPos.y, dir);
-                if (cell == null) continue;
-                for (int i = 0; i < cell.Objects.Count; i++)
-                {
-                    var e = cell.Objects[i];
-                    if (e == null || e == actor) continue;
-                    if (!e.Tags.ContainsKey("Creature")) continue;
-                    target = e;
-                    targetDir = dir;
-                    break;
-                }
-            }
+            var target = MultiCellAbilityQueries.FirstAdjacentCreature(ctx.Zone, actor, out var contact);
+            int targetDir = MultiCellAbilityQueries.ContactDirection(ctx.Zone, actor, contact);
 
             if (target == null)
             {
@@ -112,22 +98,22 @@ namespace CavesOfOoo.Skills
                 return false;
             }
 
-            // Flanking check: the "opposite" cell from actor through
-            // target is the cell at target + (target - actor) =
-            // actor + 2*(target - actor). targetDir already encodes
-            // (target - actor) direction; advancing the same dir from
-            // target gives the flanker cell.
+            // Flanking is the first cell beyond the target's physical
+            // body in the contact direction. The target never flanks itself.
             var targetPos = ctx.Zone.GetEntityPosition(target);
             bool isFlanked = false;
             if (targetPos.x >= 0)
             {
-                var flankerCell = ctx.Zone.GetCellInDirection(
-                    targetPos.x, targetPos.y, targetDir);
+                // Follow the attack direction through this body. Its next
+                // occupied cell cannot count as its own flanker.
+                var flankerCell = ctx.Zone.GetCellInDirection(contact.X, contact.Y, targetDir);
+                while (flankerCell != null && flankerCell.Occupants.Contains(target))
+                    flankerCell = ctx.Zone.GetCellInDirection(flankerCell.X, flankerCell.Y, targetDir);
                 if (flankerCell != null)
                 {
-                    for (int i = 0; i < flankerCell.Objects.Count; i++)
+                    for (int i = 0; i < flankerCell.Occupants.Count; i++)
                     {
-                        var e = flankerCell.Objects[i];
+                        var e = flankerCell.Occupants[i];
                         if (e == null || e == actor || e == target) continue;
                         if (e.Tags.ContainsKey("Creature"))
                         {

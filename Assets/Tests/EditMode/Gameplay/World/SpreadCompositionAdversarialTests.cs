@@ -34,14 +34,35 @@ namespace CavesOfOoo.Tests
             var builder=new SpreadCompositionBuilder(17){FormationOverride=form};
             Assert.IsTrue(builder.BuildZone(a,f,random));Assert.IsTrue(new SpreadCompositionBuilder(17){FormationOverride=form}.BuildZone(b,f,new System.Random(1)));
             CollectionAssert.AreEqual(Snapshot(a),Snapshot(b));
-            int wet=0;
+            int wet=0,ripe=0,cut=0;
             for(int x=0;x<Zone.Width;x++)for(int y=0;y<Zone.Height;y++)
             {
                 Assert.AreEqual(builder.Plan.IsWater(x,y),SpawnRing3DRecipes.HasPermanentWater(a,x,y));
                 if(builder.Plan.IsWater(x,y))wet++;
                 var bp=builder.Plan.ObjectAt(x,y);
-                if(bp!=null)Assert.AreEqual(1,a.GetCell(x,y).Objects.Count(e=>e.BlueprintName==bp));
+                if(bp=="CropRow")
+                {
+                    var rows=a.GetCell(x,y).Objects.Where(e=>e.BlueprintName=="CropRow"||e.BlueprintName=="RipeCropRow").ToArray();
+                    Assert.AreEqual(1,rows.Length,"Sparse gleanings must replace one planned row, never add a second owner.");
+                    if(rows[0].BlueprintName=="RipeCropRow")
+                    {
+                        ripe++;Assert.NotNull(rows[0].GetPart<FieldHarvestPart>());Assert.IsFalse(rows[0].GetPart<FieldHarvestPart>().Harvested);
+                        Assert.IsFalse(builder.Plan.IsApproach(x,y));
+                    }
+                    else{cut++;Assert.IsNull(rows[0].GetPart<FieldHarvestPart>());}
+                }
+                else
+                {
+                    if(bp!=null)Assert.AreEqual(1,a.GetCell(x,y).Objects.Count(e=>e.BlueprintName==bp));
+                    Assert.IsFalse(a.GetCell(x,y).Objects.Any(e=>e.BlueprintName=="RipeCropRow"),"No grain outside the planned rows.");
+                }
             }
+            if(form==Formation.FieldStrips)
+            {
+                Assert.AreEqual(builder.Plan.Condition=="tended"?3:builder.Plan.Condition=="returning scrub"?2:1,ripe);
+                Assert.Greater(cut,ripe*5,"Most of the established field remains visibly cut.");
+            }
+            else Assert.AreEqual(0,ripe);
             if(form==Formation.RiverMeadow)Assert.Greater(wet,20);else Assert.AreEqual(0,wet);
         }
         [TestCase("Hedge")] [TestCase("CropRow")] [TestCase("FlowerField")]

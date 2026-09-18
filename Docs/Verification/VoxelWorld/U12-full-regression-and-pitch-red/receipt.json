@@ -1,0 +1,247 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": null,
+  "results": {
+    "id": "2",
+    "testcasecount": "11709",
+    "result": "Failed(Child)",
+    "total": "11709",
+    "passed": "11653",
+    "failed": "56",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-12 08:41:09Z",
+    "end-time": "2026-09-12 08:44:26Z",
+    "duration": "196.8221997"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.AlphaHostileBestiaryTests.GlowmawDrop_SetsPersonalHostility_NotJustTarget",
+      "message": "  the drop must commit personal hostility, not just a Target ref\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BuildingBlockImportedArtTests.Variants_DifferInGeometryOrPaint_NotJustFilename",
+      "message": "  Expected: <empty>\n  But was:  < \"plank-floor:3\", \"roof-ridge:3\", \"roof-slope:3\", \"stone-stair:2\", \"timber-brace:3\", \"wooden-stair:1\" >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AllTenExactBlueprintsReachTheirRealResourcesSpriteAtUnflippedRow",
+      "message": "  Dagger\n  Expected: \"item_dagger\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_dagger\")",
+      "message": "  item_dagger production PNG is missing\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_sword\")",
+      "message": "  item_sword production PNG is missing\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_spear\")",
+      "message": "  item_spear production PNG is missing\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_boots\")",
+      "message": "  item_boots production PNG is missing\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_gloves\")",
+      "message": "  item_gloves production PNG is missing\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_helmet\")",
+      "message": "  item_helmet production PNG is missing\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_AssetHasFullPixelFrameBinaryAlphaSharedInkAndSafeImport(\"item_mace\")",
+      "message": "  item_mace production PNG is missing\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_BrightAndDimForegroundCarryHueAndAlphaWithoutAuthoredColorOverride",
+      "message": "  Expected string length 11 but was 10. Strings differ at index 5.\n  Expected: \"item_helmet\"\n  But was:  \"item_armor\"\n  ----------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_DirtyNeighborhoodPreservesDistantEquipmentClaimAndTint",
+      "message": "  Expected string length 10 but was 12. Strings differ at index 0.\n  Expected: \"item_sword\"\n  But was:  \"WeaponGround\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_DisablingSpriteModeRestoresEquipmentGlyphThenReclaimsOnEnable",
+      "message": "  String lengths are both 10. Strings differ at index 5.\n  Expected: \"item_boots\"\n  But was:  \"item_armor\"\n  ----------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_HigherLayerActorHidesGroundEquipmentUntilItLeaves",
+      "message": "  Expected string length 11 but was 12. Strings differ at index 0.\n  Expected: \"item_dagger\"\n  But was:  \"WeaponGround\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_IncrementalReplacementUsesNewGlyphColorAndBody",
+      "message": "  String lengths are both 9. Strings differ at index 5.\n  Expected: \"item_mace\"\n  But was:  \"item_vial\"\n  ----------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_InvisibleHigherItemDoesNotHideVisibleLowerItem",
+      "message": "  Expected string length 10 but was 12. Strings differ at index 0.\n  Expected: \"item_sword\"\n  But was:  \"WeaponGround\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_ItemRemovalExposesFreshUnmappedGlyphWithoutRestoringOldOne",
+      "message": "  String lengths are both 9. Strings differ at index 5.\n  Expected: \"item_mace\"\n  But was:  \"item_vial\"\n  ----------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"Dagger\",\"item_dagger\")",
+      "message": "  new body must be registered first\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"ShortSword\",\"item_sword\")",
+      "message": "  new body must be registered first\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"Spear\",\"item_spear\")",
+      "message": "  new body must be registered first\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"LeatherBoots\",\"item_boots\")",
+      "message": "  new body must be registered first\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"LeatherGloves\",\"item_gloves\")",
+      "message": "  new body must be registered first\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"LeatherCap\",\"item_helmet\")",
+      "message": "  new body must be registered first\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"Mace\",\"item_mace\")",
+      "message": "  new body must be registered first\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_NullNewTileRetainsMaceGlyphAndDoesNotBorrowVial",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_ReleaseClaimsRestoresOriginalGlyphAndTint",
+      "message": "  Expected string length 10 but was 12. Strings differ at index 0.\n  Expected: \"item_spear\"\n  But was:  \"WeaponGround\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_RememberedFogDoesNotRevealGroundEquipment",
+      "message": "  String lengths are both 9. Strings differ at index 5.\n  Expected: \"item_mace\"\n  But was:  \"item_vial\"\n  ----------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_SevenFamiliesHaveDifferentSilhouettesAndDistinctGuids",
+      "message": "  item_dagger\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_StationaryFullRepaintReplacesOldFamilyWithoutStaleClaim",
+      "message": "  Expected string length 11 but was 12. Strings differ at index 0.\n  Expected: \"item_dagger\"\n  But was:  \"WeaponGround\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_TwoSameBlueprintInstancesShareBodyWithoutSharingCellTint",
+      "message": "  Expected string length 11 but was 12. Strings differ at index 0.\n  Expected: \"item_dagger\"\n  But was:  \"WeaponGround\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_UnexploredCellCannotClaimNewItemArt",
+      "message": "  String lengths are both 10. Strings differ at index 5.\n  Expected: \"item_boots\"\n  But was:  \"item_armor\"\n  ----------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.PlaceProfileTests.TheProfileTable_IsData_AndComplete",
+      "message": "  Morrowfast is a plain village\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpawnRing3DIntegrationTests.TwoHandedItemMakesOneRealSharedBladeAttachment",
+      "message": "  Expected: equivalent to < <equipment-blade__Geometry (UnityEngine.Mesh)> >\n  But was:  < <VX_equipment-blade__Geometry (UnityEngine.Mesh)> >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.Village3DEquipmentIntegrationTests.ActualWeaponFamiliesUseVerifiedModelsAndOccupiedHandSockets",
+      "message": "  Wrong imported equipment geometry.\n  Expected: equivalent to < <equipment-blade__Geometry (UnityEngine.Mesh)> >\n  But was:  < <VX_equipment-blade__Geometry (UnityEngine.Mesh)> >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.Village3DEquipmentIntegrationTests.EqualBlueprintItemsStayWithTheirActualActorAndRejectForeignCacheReferences",
+      "message": "  Wrong imported equipment geometry.\n  Expected: equivalent to < <equipment-blade__Geometry (UnityEngine.Mesh)> >\n  But was:  < <VX_equipment-blade__Geometry (UnityEngine.Mesh)> >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.Village3DEquipmentIntegrationTests.HeadAndShieldSlotsAreSpecificAndBodyArmorNeverBecomesAHelmet",
+      "message": "  Wrong imported equipment geometry.\n  Expected: equivalent to < <equipment-helmet__Geometry (UnityEngine.Mesh)> >\n  But was:  < <VX_equipment-helmet__Geometry (UnityEngine.Mesh)> >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.Village3DEquipmentIntegrationTests.HiddenActorsSuppressEquipmentRenderersAndRestoreTheSameOwnedView",
+      "message": "  Wrong imported equipment geometry.\n  Expected: equivalent to < <equipment-club__Geometry (UnityEngine.Mesh)> >\n  But was:  < <VX_equipment-club__Geometry (UnityEngine.Mesh)> >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.Village3DEquipmentIntegrationTests.RealEquipAndUnequipRefreshFromBusWithoutAnUnrelatedWorldRefresh",
+      "message": "  Wrong imported equipment geometry.\n  Expected: equivalent to < <equipment-blade__Geometry (UnityEngine.Mesh)> >\n  But was:  < <VX_equipment-blade__Geometry (UnityEngine.Mesh)> >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.Village3DEquipmentIntegrationTests.RemovingAnActorAndChangingZonesDisposeViewsWithoutUnequippingNativeGear",
+      "message": "  Wrong imported equipment geometry.\n  Expected: equivalent to < <equipment-staff__Geometry (UnityEngine.Mesh)> >\n  But was:  < <VX_equipment-staff__Geometry (UnityEngine.Mesh)> >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.Village3DEquipmentIntegrationTests.RepeatedPresentationDoesNotChangeEquipmentOwnershipStatsOrNativeVersions",
+      "message": "  Wrong imported equipment geometry.\n  Expected: equivalent to < <equipment-staff__Geometry (UnityEngine.Mesh)> >\n  But was:  < <VX_equipment-staff__Geometry (UnityEngine.Mesh)> >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.Village3DEquipmentIntegrationTests.SaveLoadGraphRebuildUsesLoadedItemsAndReleasesOldReferences",
+      "message": "  Wrong imported equipment geometry.\n  Expected: equivalent to < <equipment-blade__Geometry (UnityEngine.Mesh)> >\n  But was:  < <VX_equipment-blade__Geometry (UnityEngine.Mesh)> >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.Village3DEquipmentIntegrationTests.TwoHandedNativeItemCreatesOneStableAttachmentAndClearsOnce",
+      "message": "  Wrong imported equipment geometry.\n  Expected: equivalent to < <equipment-blade__Geometry (UnityEngine.Mesh)> >\n  But was:  < <VX_equipment-blade__Geometry (UnityEngine.Mesh)> >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitPitchTests.InvalidOldOrNewPitchRejectsBeforePublication(0.0f,0.1f,0.25f)",
+      "message": "  Validate all three pitch inputs and planned local pitch during preparation, before asset publication.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitPitchTests.InvalidOldOrNewPitchRejectsBeforePublication(0.05f,0.0f,0.25f)",
+      "message": "  Validate all three pitch inputs and planned local pitch during preparation, before asset publication.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitPitchTests.InvalidOldOrNewPitchRejectsBeforePublication(0.05f,0.1f,0.0f)",
+      "message": "  Validate all three pitch inputs and planned local pitch during preparation, before asset publication.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitPitchTests.InvalidOldOrNewPitchRejectsBeforePublication(-0.05f,0.1f,0.25f)",
+      "message": "  Validate all three pitch inputs and planned local pitch during preparation, before asset publication.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitPitchTests.InvalidOldOrNewPitchRejectsBeforePublication(0.05f,-0.1f,0.25f)",
+      "message": "  Validate all three pitch inputs and planned local pitch during preparation, before asset publication.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitPitchTests.InvalidOldOrNewPitchRejectsBeforePublication(0.05f,0.1f,-0.25f)",
+      "message": "  Validate all three pitch inputs and planned local pitch during preparation, before asset publication.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitPitchTests.InvalidOldOrNewPitchRejectsBeforePublication(float.NaN,0.1f,0.25f)",
+      "message": "  Validate all three pitch inputs and planned local pitch during preparation, before asset publication.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitPitchTests.InvalidOldOrNewPitchRejectsBeforePublication(0.05f,float.NaN,0.25f)",
+      "message": "  Validate all three pitch inputs and planned local pitch during preparation, before asset publication.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitPitchTests.InvalidOldOrNewPitchRejectsBeforePublication(0.05f,0.1f,float.NaN)",
+      "message": "  Validate all three pitch inputs and planned local pitch during preparation, before asset publication.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitPitchTests.InvalidOldOrNewPitchRejectsBeforePublication(0.05f,float.PositiveInfinity,0.25f)",
+      "message": "  Validate all three pitch inputs and planned local pitch during preparation, before asset publication.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitPitchTests.InvalidOldOrNewPitchRejectsBeforePublication(0.05f,0.1f,float.PositiveInfinity)",
+      "message": "  Validate all three pitch inputs and planned local pitch during preparation, before asset publication.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitPitchTests.OverflowingConvertedPitchRejectsBeforeAValidCatalogCanBecomeInvalid",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException:   Validate all three pitch inputs and planned local pitch during preparation, before asset publication.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.VoxelWorldToolkitPitchTests.Convert (System.Single local, System.Single world, System.Single next) [0x00065] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldToolkitPitchTests.cs:16 \n  at CavesOfOoo.Tests.VoxelWorldToolkitPitchTests+<>c.<OverflowingConvertedPitchRejectsBeforeAValidCatalogCanBecomeInvalid>b__3_0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldToolkitPitchTests.cs:32 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldToolkitPitchTests.PositivePitchConversionPreservesSourceScaleAndRepeatedImportIsIdempotent",
+      "message": "  Validate all three pitch inputs and planned local pitch during preparation, before asset publication.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WorldMapAuthoringTests.Sill_IsAtTheCentre_OnSpread_AtTierOne",
+      "message": "  Sill must be first \u2014 the start reads Places[0]\n  Expected string length 4 but was 10. Strings differ at index 0.\n  Expected: \"Sill\"\n  But was:  \"Morrowfast\"\n  -----------^\n"
+    }
+  ]
+}

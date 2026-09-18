@@ -14,7 +14,7 @@ namespace CavesOfOoo.Tests
     ///
     /// Honesty bounds: these tests verify the script-observable half —
     /// moisture/bg state, diag records, and the FX REQUESTS enqueued on
-    /// AsciiFxBus (via Drain()). How the rain looks in motion is the
+    /// SpellFxBus (via Drain()). How the rain looks in motion is the
     /// showcase scenario's job (SM4).
     /// </summary>
     [TestFixture]
@@ -37,6 +37,7 @@ namespace CavesOfOoo.Tests
             MessageLog.Clear();
             Diag.ResetAll();
             AsciiFxBus.Clear();
+            SpellFxBus.Clear();
         }
 
         // ── Helpers ──────────────────────────────────────────────
@@ -170,7 +171,7 @@ namespace CavesOfOoo.Tests
         // ── Rain FX (script-observable half) ─────────────────────
 
         [Test]
-        public void Cast_EmitsFallingRainParticles_AndWaterBurst_PerWateredCell()
+        public void Cast_EmitsOneResolvedRainSequence_PerWateredCell()
         {
             var zone = new Zone("z");
             var caster = CreateCaster(zone, 10, 10);
@@ -179,19 +180,13 @@ namespace CavesOfOoo.Tests
 
             rain.Cast(zone, zone.GetCell(10, 10));
 
-            var requests = AsciiFxBus.Drain();
-            int fallingParticles = 0;
-            int waterBursts = 0;
-            foreach (var req in requests)
-            {
-                if (req.Type == AsciiFxRequestType.Particle && req.DY > 0)
-                    fallingParticles++;
-                if (req.Type == AsciiFxRequestType.Burst && req.Theme == AsciiFxTheme.Water)
-                    waterBursts++;
-            }
-            Assert.AreEqual(3, fallingParticles,
-                "3 FALLING (dy=+1) rain drops per watered crop tile");
-            Assert.AreEqual(1, waterBursts, "1 Water-theme splash per watered crop tile");
+            var sequences = SpellFxBus.Drain();
+            Assert.AreEqual(1, sequences.Count);
+            Assert.AreEqual("Hydromancy_ConjureRain", sequences[0].SpellId);
+            Assert.AreEqual(1, sequences[0].AffectedCells.Count);
+            Assert.AreEqual(12, sequences[0].AffectedCells[0].X);
+            Assert.AreEqual(10, sequences[0].AffectedCells[0].Y);
+            Assert.AreEqual(0, AsciiFxBus.Drain().Count, "the coordinator owns fallback emission");
         }
 
         [Test]
@@ -205,12 +200,11 @@ namespace CavesOfOoo.Tests
 
             rain.Cast(zone, zone.GetCell(10, 10));
 
-            var requests = AsciiFxBus.Drain();
-            int fallingParticles = 0;
-            foreach (var req in requests)
-                if (req.Type == AsciiFxRequestType.Particle && req.DY > 0)
-                    fallingParticles++;
-            Assert.AreEqual(6, fallingParticles, "3 drops × 2 watered cells");
+            var sequences = SpellFxBus.Drain();
+            Assert.AreEqual(1, sequences.Count, "one cast owns both watered cells");
+            Assert.AreEqual(2, sequences[0].AffectedCells.Count);
+            Assert.AreEqual(9, sequences[0].AffectedCells[0].X);
+            Assert.AreEqual(11, sequences[0].AffectedCells[1].X);
         }
 
         // ── The grimoire itself ──────────────────────────────────

@@ -1,0 +1,1302 @@
+{
+  "runId": "f8a9acbea29d442e9e75c6f04cc71aa6",
+  "nativeReport": "/Users/steven/caves-of-ooo/Docs/Verification/MultiCellPilot/MCN-f8a9acbea29d442e9e75c6f04cc71aa6-native.json",
+  "passed": true,
+  "checks": 315,
+  "failures": [],
+  "profilePhases": [
+    {
+      "phase": "pristine_idle",
+      "seconds": 20.003088375,
+      "frames": 6701,
+      "verifiedAvailableMetrics": 13,
+      "successfulSteps": 0
+    },
+    {
+      "phase": "pristine_walk",
+      "seconds": 20.00034562500001,
+      "frames": 6062,
+      "verifiedAvailableMetrics": 13,
+      "successfulSteps": 25
+    },
+    {
+      "phase": "restored_idle",
+      "seconds": 20.000051583,
+      "frames": 6015,
+      "verifiedAvailableMetrics": 13,
+      "successfulSteps": 0
+    },
+    {
+      "phase": "restored_walk",
+      "seconds": 20.001255,
+      "frames": 6393,
+      "verifiedAvailableMetrics": 13,
+      "successfulSteps": 25
+    }
+  ],
+  "ownerCount": 148,
+  "rawSha256": "13ea6636327f1764505d0319e8e476b2032878c60b23777afd9eec4c1451efc1",
+  "bounds": "Independent parsing of retained native PNG headers, gzip CSV rows, recorded phase/metric summaries and exact save/load ledgers. Does not assess image quality, prove absence of unobserved defects or establish a frame-rate budget.",
+  "details": [
+    {
+      "name": "native_path_owned_by_run",
+      "pass": true
+    },
+    {
+      "name": "native_complete_and_clean",
+      "pass": true
+    },
+    {
+      "name": "shutdownObserved",
+      "pass": true
+    },
+    {
+      "name": "shutdownRootHeld",
+      "pass": true
+    },
+    {
+      "name": "shutdownSavingUnregistered",
+      "pass": true
+    },
+    {
+      "name": "displayPreferencesRestored",
+      "pass": true
+    },
+    {
+      "name": "inputSettingsRestored",
+      "pass": true
+    },
+    {
+      "name": "native_checks_all_pass",
+      "pass": true
+    },
+    {
+      "name": "cleanup_same_run_clean",
+      "pass": true
+    },
+    {
+      "name": "privateRootRemoved",
+      "pass": true
+    },
+    {
+      "name": "seedSettingRestored",
+      "pass": true
+    },
+    {
+      "name": "scenesRestored",
+      "pass": true
+    },
+    {
+      "name": "gameViewRestored",
+      "pass": true
+    },
+    {
+      "name": "finalNativeVerified",
+      "pass": true
+    },
+    {
+      "name": "inheritedSaveRootRestored",
+      "pass": true
+    },
+    {
+      "name": "lastGamePreferenceRestored",
+      "pass": true
+    },
+    {
+      "name": "private_root_absent",
+      "pass": true
+    },
+    {
+      "name": "profile_embedded_matches_standalone",
+      "pass": true
+    },
+    {
+      "name": "raw_file_owned_by_run",
+      "pass": true
+    },
+    {
+      "name": "raw_file_sha256",
+      "pass": true
+    },
+    {
+      "name": "raw_exact_frame_count",
+      "pass": true
+    },
+    {
+      "name": "raw_sample_sequence",
+      "pass": true
+    },
+    {
+      "name": "raw_unity_frames_strictly_advance",
+      "pass": true
+    },
+    {
+      "name": "raw_time_strictly_advances",
+      "pass": true
+    },
+    {
+      "name": "phase_0_exact_frame_count",
+      "pass": true
+    },
+    {
+      "name": "phase_0_first_frame",
+      "pass": true
+    },
+    {
+      "name": "phase_0_identity",
+      "pass": true
+    },
+    {
+      "name": "phase_0_raw_time_in_phase",
+      "pass": true
+    },
+    {
+      "name": "phase_0_raw_idle_control",
+      "pass": true
+    },
+    {
+      "name": "phase_0_COO.ZoneRenderer.LateUpdate_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_0_COO.ZoneRenderer.LateUpdate_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_0_COO.Input.Update_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_0_COO.Input.Update_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_0_Main Thread_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_0_Main Thread_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_0_Render Thread_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_0_GC Allocated In Frame_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_0_GC Allocated In Frame_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_0_Draw Calls Count_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_0_Draw Calls Count_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_0_Triangles Count_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_0_Triangles Count_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_0_SetPass Calls Count_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_0_SetPass Calls Count_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_0_Batches Count_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_0_Batches Count_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_0_Render Textures Count_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_0_Render Textures Count_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_0_Render Textures Bytes_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_0_Render Textures Bytes_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_0_Texture Memory_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_0_Texture Memory_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_0_GPU Frame Time_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_0_GPU Frame Time_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_0_Engine frame duration_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_0_Engine frame duration_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_1_exact_frame_count",
+      "pass": true
+    },
+    {
+      "name": "phase_1_first_frame",
+      "pass": true
+    },
+    {
+      "name": "phase_1_identity",
+      "pass": true
+    },
+    {
+      "name": "phase_1_raw_time_in_phase",
+      "pass": true
+    },
+    {
+      "name": "phase_1_real_input_count",
+      "pass": true
+    },
+    {
+      "name": "phase_1_real_movement_count",
+      "pass": true
+    },
+    {
+      "name": "phase_1_actual_cardinal_movement",
+      "pass": true
+    },
+    {
+      "name": "phase_1_raw_position_and_tick_advance",
+      "pass": true
+    },
+    {
+      "name": "phase_1_COO.ZoneRenderer.LateUpdate_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_1_COO.ZoneRenderer.LateUpdate_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_1_COO.Input.Update_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_1_COO.Input.Update_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_1_Main Thread_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_1_Main Thread_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_1_Render Thread_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_1_GC Allocated In Frame_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_1_GC Allocated In Frame_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_1_Draw Calls Count_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_1_Draw Calls Count_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_1_Triangles Count_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_1_Triangles Count_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_1_SetPass Calls Count_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_1_SetPass Calls Count_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_1_Batches Count_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_1_Batches Count_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_1_Render Textures Count_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_1_Render Textures Count_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_1_Render Textures Bytes_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_1_Render Textures Bytes_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_1_Texture Memory_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_1_Texture Memory_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_1_GPU Frame Time_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_1_GPU Frame Time_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_1_Engine frame duration_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_1_Engine frame duration_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_2_exact_frame_count",
+      "pass": true
+    },
+    {
+      "name": "phase_2_first_frame",
+      "pass": true
+    },
+    {
+      "name": "phase_2_identity",
+      "pass": true
+    },
+    {
+      "name": "phase_2_raw_time_in_phase",
+      "pass": true
+    },
+    {
+      "name": "phase_2_raw_idle_control",
+      "pass": true
+    },
+    {
+      "name": "phase_2_COO.ZoneRenderer.LateUpdate_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_2_COO.ZoneRenderer.LateUpdate_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_2_COO.Input.Update_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_2_COO.Input.Update_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_2_Main Thread_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_2_Main Thread_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_2_Render Thread_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_2_GC Allocated In Frame_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_2_GC Allocated In Frame_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_2_Draw Calls Count_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_2_Draw Calls Count_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_2_Triangles Count_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_2_Triangles Count_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_2_SetPass Calls Count_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_2_SetPass Calls Count_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_2_Batches Count_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_2_Batches Count_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_2_Render Textures Count_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_2_Render Textures Count_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_2_Render Textures Bytes_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_2_Render Textures Bytes_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_2_Texture Memory_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_2_Texture Memory_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_2_GPU Frame Time_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_2_GPU Frame Time_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_2_Engine frame duration_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_2_Engine frame duration_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_3_exact_frame_count",
+      "pass": true
+    },
+    {
+      "name": "phase_3_first_frame",
+      "pass": true
+    },
+    {
+      "name": "phase_3_identity",
+      "pass": true
+    },
+    {
+      "name": "phase_3_raw_time_in_phase",
+      "pass": true
+    },
+    {
+      "name": "phase_3_real_input_count",
+      "pass": true
+    },
+    {
+      "name": "phase_3_real_movement_count",
+      "pass": true
+    },
+    {
+      "name": "phase_3_actual_cardinal_movement",
+      "pass": true
+    },
+    {
+      "name": "phase_3_raw_position_and_tick_advance",
+      "pass": true
+    },
+    {
+      "name": "phase_3_COO.ZoneRenderer.LateUpdate_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_3_COO.ZoneRenderer.LateUpdate_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_3_COO.Input.Update_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_3_COO.Input.Update_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_3_Main Thread_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_3_Main Thread_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_3_Render Thread_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_3_GC Allocated In Frame_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_3_GC Allocated In Frame_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_3_Draw Calls Count_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_3_Draw Calls Count_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_3_Triangles Count_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_3_Triangles Count_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_3_SetPass Calls Count_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_3_SetPass Calls Count_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_3_Batches Count_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_3_Batches Count_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_3_Render Textures Count_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_3_Render Textures Count_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_3_Render Textures Bytes_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_3_Render Textures Bytes_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_3_Texture Memory_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_3_Texture Memory_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_3_GPU Frame Time_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_3_GPU Frame Time_summaries",
+      "pass": true
+    },
+    {
+      "name": "phase_3_Engine frame duration_counts",
+      "pass": true
+    },
+    {
+      "name": "phase_3_Engine frame duration_summaries",
+      "pass": true
+    },
+    {
+      "name": "all_raw_phase_ids_known",
+      "pass": true
+    },
+    {
+      "name": "south-entry_actual_1080_png",
+      "pass": true
+    },
+    {
+      "name": "destructible-ridge_actual_1080_png",
+      "pass": true
+    },
+    {
+      "name": "restored-save_actual_1080_png",
+      "pass": true
+    },
+    {
+      "name": "owners_ledger_byte_identity",
+      "pass": true
+    },
+    {
+      "name": "tiles_ledger_byte_identity",
+      "pass": true
+    },
+    {
+      "name": "loaded_owners_unique_identity",
+      "pass": true
+    },
+    {
+      "name": "named_destroyed_ridge_remains_absent",
+      "pass": true
+    },
+    {
+      "name": "named_surviving_ridge_and_pipe_present",
+      "pass": true
+    },
+    {
+      "name": "body_PilotBoulder-23-6",
+      "pass": true
+    },
+    {
+      "name": "body_PilotBoulder-26-10",
+      "pass": true
+    },
+    {
+      "name": "body_PilotBoulder-31-14",
+      "pass": true
+    },
+    {
+      "name": "body_PilotBoulder-31-8",
+      "pass": true
+    },
+    {
+      "name": "body_PilotBoulder-42-16",
+      "pass": true
+    },
+    {
+      "name": "body_PilotBoulder-44-21",
+      "pass": true
+    },
+    {
+      "name": "body_PilotBoulder-62-9",
+      "pass": true
+    },
+    {
+      "name": "body_PilotBoulder-71-20",
+      "pass": true
+    },
+    {
+      "name": "body_PilotBoulder-75-2",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeE-42-6",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeE-50-20",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeE-60-23",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeE-67-15",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeN-35-1",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeN-36-21",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeN-36-5",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeN-37-11",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeN-37-15",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeN-47-8",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeN-48-12",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeNE-0-14",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeNE-0-20",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeNE-12-11",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeNE-15-5",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeNE-18-1",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeNE-5-21",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeNE-6-2",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeNE-9-15",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeSE-47-0",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeSE-49-4",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeSE-51-8",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeSE-54-14",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeSE-57-18",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeSE-60-1",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeSE-64-5",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeSE-68-9",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeSE-72-13",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRidgeSE-76-17",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-1-19",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-1-6",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-1-7",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-11-19",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-12-20",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-12-22",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-14-16",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-15-17",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-15-6",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-16-15",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-16-16",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-16-17",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-17-17",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-17-19",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-17-8",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-2-2",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-2-6",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-20-4",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-20-5",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-21-3",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-21-7",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-22-0",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-22-1",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-24-4",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-25-2",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-3-3",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-3-5",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-30-1",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-30-12",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-30-13",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-30-14",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-31-2",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-32-2",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-33-1",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-33-4",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-33-7",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-34-14",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-34-19",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-34-2",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-36-11",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-36-12",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-36-15",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-38-21",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-4-17",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-4-2",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-46-1",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-47-2",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-48-3",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-49-6",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-50-10",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-50-12",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-50-13",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-50-8",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-51-13",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-51-3",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-53-14",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-54-17",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-55-10",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-57-15",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-58-15",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-59-17",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-59-22",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-6-16",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-6-3",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-60-15",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-60-22",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-61-19",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-61-4",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-63-6",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-65-3",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-69-7",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-7-20",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-71-13",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-72-15",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-75-17",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-76-13",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-76-23",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-78-22",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-8-1",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRock-8-20",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRuinWall-10-10",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRuinWall-10-11",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRuinWall-10-13",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRuinWall-10-14",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRuinWall-6-10",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRuinWall-6-11",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRuinWall-6-12",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRuinWall-6-13",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRuinWall-6-14",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRuinWall-7-10",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRuinWall-7-14",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRuinWall-8-10",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRuinWall-8-14",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRuinWall-9-10",
+      "pass": true
+    },
+    {
+      "name": "body_PilotRuinWall-9-14",
+      "pass": true
+    },
+    {
+      "name": "body_PilotSteamVent-67-4",
+      "pass": true
+    },
+    {
+      "name": "body_PilotSteamVent-71-5",
+      "pass": true
+    },
+    {
+      "name": "body_PilotTar-12-1",
+      "pass": true
+    },
+    {
+      "name": "body_PilotTar-25-19",
+      "pass": true
+    },
+    {
+      "name": "body_PilotTepuibone-17-12",
+      "pass": true
+    },
+    {
+      "name": "body_PilotTepuibone-18-12",
+      "pass": true
+    },
+    {
+      "name": "body_PilotTepuibone-19-12",
+      "pass": true
+    },
+    {
+      "name": "body_PilotTepuibone-20-12",
+      "pass": true
+    },
+    {
+      "name": "body_PilotTepuibone-21-12",
+      "pass": true
+    },
+    {
+      "name": "body_PilotTepuibone-22-12",
+      "pass": true
+    },
+    {
+      "name": "body_buried-copper-pipe",
+      "pass": true
+    },
+    {
+      "name": "body_large-maw-toad",
+      "pass": true
+    },
+    {
+      "name": "body_movable-copper-pipe",
+      "pass": true
+    },
+    {
+      "name": "body_ridge-hermit",
+      "pass": true
+    },
+    {
+      "name": "body_ridge-wardline",
+      "pass": true
+    }
+  ]
+}

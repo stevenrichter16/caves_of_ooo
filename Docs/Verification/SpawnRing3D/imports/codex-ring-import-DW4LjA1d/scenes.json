@@ -1,0 +1,43 @@
+{
+    "runId": "84385ee6298741d2870350b608e7042d",
+    "startedUtc": "2026-09-10T05:04:03.5716430Z",
+    "finishedUtc": "2026-09-10T05:04:03.5763460Z",
+    "status": "FAIL",
+    "error": "System.InvalidOperationException: Cannot create a new scene additively with an untitled scene unsaved.\n  at (wrapper managed-to-native) UnityEditor.SceneManagement.EditorSceneManager.NewScene_Injected(UnityEditor.SceneManagement.NewSceneSetup,UnityEditor.SceneManagement.NewSceneMode,UnityEngine.SceneManagement.Scene&)\n  at UnityEditor.SceneManagement.EditorSceneManager.NewScene (UnityEditor.SceneManagement.NewSceneSetup setup, UnityEditor.SceneManagement.NewSceneMode mode) [0x00000] in <fce952308170492b9648579f1245b434>:0 \n  at CavesOfOoo.Editor.SpawnRing3DImportAudit.RunFromCommandLine () [0x000dc] in /Users/steven/caves-of-ooo/Assets/Editor/Art/SpawnRing3DImportAudit.cs:65 ",
+    "importerReport": "/tmp/codex-ring-import-DW4LjA1d/import.json",
+    "cleanControlVerified": false,
+    "dirtyControlVerified": false,
+    "importScenesPreserved": false,
+    "originalScenesPreserved": true,
+    "ownedScenesClosed": true,
+    "originalBefore": [
+        {
+            "handle": -1324,
+            "path": "",
+            "name": "",
+            "loaded": true,
+            "dirty": false,
+            "active": true,
+            "rootInstanceIds": []
+        }
+    ],
+    "originalAfter": [
+        {
+            "handle": -1324,
+            "path": "",
+            "name": "",
+            "loaded": true,
+            "dirty": false,
+            "active": true,
+            "rootInstanceIds": []
+        }
+    ],
+    "importBefore": [],
+    "importAfter": [],
+    "unexpectedLogs": [],
+    "honestyBounds": [
+        "This explicit CLI import preserves scene handles, dirty flags, active scene and root identities; it does not render native gameplay.",
+        "The clean-active and dirty-inactive scenes are declared audit fixtures. Original open scenes are compared separately before setup and after teardown.",
+        "Asset/source hashes and existing GUID preservation are checked by the external runner; no claim of transactional rollback on failed imports."
+    ]
+}

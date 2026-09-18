@@ -31,7 +31,11 @@ namespace CavesOfOoo.Skills
 
             var dmg = new Damage(RETORT_DAMAGE);
             dmg.AddAttribute("Cold");
-            CombatSystem.ApplyDamage(ctx.Attacker, dmg, ctx.Defender, ctx.Zone);
+            using (var capture = new SpellFxCapture(Name, ctx.Zone, ctx.Defender, blocking: false))
+            {
+                CombatSystem.ApplyDamage(ctx.Attacker, dmg, ctx.Defender, ctx.Zone);
+                capture.Commit();
+            }
             MessageLog.Add(ctx.Defender.GetDisplayName() + "'s chill bites at " +
                            ctx.Attacker.GetDisplayName() + "!");
         }

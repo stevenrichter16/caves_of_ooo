@@ -1,0 +1,31 @@
+{
+    "runId": "e29cae1c81ba4cac8fa92f275c1b719b",
+    "privateRoot": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/13d9f613246a4e11b776174d5a8f5a79",
+    "utc": "2026-09-11T16:58:54.5337520Z",
+    "scope": "Editor discovery cache preparation before driver.Initialize; heap deltas are net used memory, not total allocations.",
+    "reason": "",
+    "error": "",
+    "inPlayDomain": true,
+    "pluginPresent": true,
+    "skipped": false,
+    "pass": true,
+    "seconds": 0.0057994,
+    "steps": [
+        {
+            "service": "ResourceDiscovery",
+            "method": "DiscoverAllResources",
+            "count": 18,
+            "pass": true,
+            "seconds": 0.0018854,
+            "managedHeapUsedDeltaBytes": 466944
+        },
+        {
+            "service": "ToolDiscovery",
+            "method": "DiscoverAllTools",
+            "count": 34,
+            "pass": true,
+            "seconds": 0.003414,
+            "managedHeapUsedDeltaBytes": 913408
+        }
+    ]
+}

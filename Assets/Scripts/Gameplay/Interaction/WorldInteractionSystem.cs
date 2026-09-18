@@ -38,28 +38,29 @@ namespace CavesOfOoo.Core
         ///   - Otherwise, the highest render-layer terrain entity
         ///   - Otherwise (empty cell or null), null
         ///
-        /// Cell.Objects is stored ascending by render layer, so this method
-        /// iterates top-down (<c>i = Count - 1</c> down to <c>0</c>) to find
-        /// the visual-top entity first.
+        /// Physical occupants can merge anchored entities with multi-cell
+        /// owners, so render priority is selected explicitly. Equal layers
+        /// retain the last-occupant preference of canonical cell stacks.
         /// </summary>
         public static Entity ResolveTarget(Cell cell)
         {
             if (cell == null) return null;
-            if (cell.Objects.Count == 0) return null;
+            if (cell.Occupants.Count == 0) return null;
 
             Entity topTerrain = null;
-            for (int i = cell.Objects.Count - 1; i >= 0; i--)
+            Entity topObject = null;
+            for (int i = 0; i < cell.Occupants.Count; i++)
             {
-                var e = cell.Objects[i];
+                var e = cell.Occupants[i];
                 if (e == null) continue;
                 if (IsTerrain(e))
                 {
-                    if (topTerrain == null) topTerrain = e;
+                    if (topTerrain == null || RenderLayer(e) >= RenderLayer(topTerrain)) topTerrain = e;
                     continue;
                 }
-                return e; // highest-layer non-terrain wins immediately
+                if (topObject == null || RenderLayer(e) >= RenderLayer(topObject)) topObject = e;
             }
-            return topTerrain; // only terrain in the cell
+            return topObject ?? topTerrain;
         }
 
         // =========================================================
@@ -147,16 +148,20 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static string DescribeCell(Cell cell)
         {
-            if (cell == null || cell.Objects.Count == 0)
+            if (cell == null || cell.Occupants.Count == 0)
                 return "You see nothing here.";
 
             var nonTerrain = new List<Entity>();
             Entity topTerrain = null;
-            foreach (var e in cell.Objects)
+            foreach (var e in cell.Occupants)
             {
                 if (e == null) continue;
-                if (IsTerrain(e)) { topTerrain = e; continue; }
-                nonTerrain.Add(e);
+                if (IsTerrain(e))
+                {
+                    if (topTerrain == null || RenderLayer(e) >= RenderLayer(topTerrain)) topTerrain = e;
+                    continue;
+                }
+                InsertByRenderLayer(nonTerrain, e);
             }
 
             if (nonTerrain.Count >= 2)
@@ -196,7 +201,7 @@ namespace CavesOfOoo.Core
         {
             if (cell == null) return false;
             int count = 0;
-            foreach (var e in cell.Objects)
+            foreach (var e in cell.Occupants)
             {
                 if (e == null) continue;
                 if (!IsTerrain(e)) count++;
@@ -270,8 +275,8 @@ namespace CavesOfOoo.Core
         /// qualifies. Picker execution re-resolves the entity by its ID.</summary>
         public static void AppendUnderfootActions(List<InventoryAction> rows, Cell cell, Entity actor, Entity target = null)
         {
-            if (rows == null || cell == null || actor == null || !cell.Objects.Contains(actor)) return;
-            foreach (var e in cell.Objects)
+            if (rows == null || cell == null || actor == null || !cell.Occupants.Contains(actor)) return;
+            foreach (var e in cell.Occupants)
                 if (e != target && e.HasTag("UnderfootInteractable") && !string.IsNullOrEmpty(e.ID))
                     rows.Add(new InventoryAction("Underfoot", e.GetDisplayName() + " underfoot",
                         PickTargetCommandPrefix + e.ID, '\0', 0));
@@ -282,12 +287,16 @@ namespace CavesOfOoo.Core
             var rows = new List<InventoryAction>();
             if (cell == null) return rows;
 
+            var ordered = new List<Entity>();
+            foreach (var entity in cell.Occupants)
+                if (entity != null) InsertByRenderLayer(ordered, entity);
+
             for (int pass = 0; pass < 2; pass++)
             {
                 bool terrainPass = pass == 1;
-                for (int i = cell.Objects.Count - 1; i >= 0; i--)
+                for (int i = ordered.Count - 1; i >= 0; i--)
                 {
-                    Entity e = cell.Objects[i];
+                    Entity e = ordered[i];
                     if (e == null || string.IsNullOrEmpty(e.ID)) continue;
                     if (IsTerrain(e) != terrainPass) continue;
 
@@ -304,9 +313,9 @@ namespace CavesOfOoo.Core
         public static Entity FindInCell(Cell cell, string id)
         {
             if (cell == null || string.IsNullOrEmpty(id)) return null;
-            for (int i = 0; i < cell.Objects.Count; i++)
+            for (int i = 0; i < cell.Occupants.Count; i++)
             {
-                Entity e = cell.Objects[i];
+                Entity e = cell.Occupants[i];
                 if (e != null && e.ID == id)
                     return e;
             }
@@ -329,6 +338,16 @@ namespace CavesOfOoo.Core
         // =========================================================
         // Private helpers
         // =========================================================
+
+        private static int RenderLayer(Entity entity) => entity.GetPart<RenderPart>()?.RenderLayer ?? 0;
+
+        private static void InsertByRenderLayer(List<Entity> ordered, Entity entity)
+        {
+            int layer = RenderLayer(entity);
+            int index = ordered.Count;
+            while (index > 0 && RenderLayer(ordered[index - 1]) > layer) index--;
+            ordered.Insert(index, entity);
+        }
 
         /// <summary>
         /// Article selection — "a ", "an ", or "" for proper nouns / names

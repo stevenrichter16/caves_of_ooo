@@ -1,0 +1,2862 @@
+{
+  "status": "PASS",
+  "audit": "Independent source-operation and delivered-PCM verification; no importing mix.py",
+  "manifest_sha256": "0f32e12303f04e5691b3f801b57760064d68d987d7f6cc51fa5ea6fea7289ab7",
+  "mixer_sha256": "4abd03e84896bad40e0cebd90e21af53799c3603c9e650bb51453ed3dfb53cca",
+  "verifier_sha256": "84739f36c98b22e521475d99cb33a4532cbd0c00dada76c217b4f90446c1417f",
+  "source_ledger_sha256": {
+    "sources/fire_surge/source-ledger.json": "cbdb96e81ae482fa33c4158e8b39707d6536cbca78dcb6c16465455fffcf73d3",
+    "sources/ice_calm/source-ledger.json": "e77e8def563e401337db3dc78a3c30860da60c096ebcad18f0495b38cdc8963f",
+    "sources/water_rain/source-ledger.json": "b0c837cbca38916fc83ebb044d2fbd545389257ae6f5b2e04feef6d528325b9f"
+  },
+  "used_source_sha256": {
+    "sources/fire_surge/ignition.flac": "bd8281bcee65bc705755fd36bdf40d04fadddd474f52fd481233523e178b4ea1",
+    "sources/fire_surge/fireplace_pagdev.wav": "85ca0cc60d0c037fff8b185e31ad1fcdbda6ce45eee17c3ee1318d1b8f59e330",
+    "sources/fire_surge/fire-1.wav": "26702de8a195bcbafeae72034861d875a1b7917168a25106f4e1957ecdddf7e5",
+    "sources/water_rain/bmaczero_bubbles_loop1.wav": "94eaef4afc1146dcdfd3077cc7a6cbe6dc97daac62b8f6560dfc913dd57488a9",
+    "sources/water_rain/transitking_wave_01.flac": "0bd84b2061a82c234470bd4e16efc6ab24851928d3f93e1757bfea048b2d7a33",
+    "sources/water_rain/thimras_ocean_splash.ogg": "d91a1effc2964673033fa9f8d22093029fa0b500aea0bafb86724738c0e89fe3",
+    "sources/water_rain/bmaczero_bubbles_single1.wav": "014228835d2b255cf300f94c60db8ec661ec15b5b5c097d5f47b148d6a81fdc5",
+    "sources/fire_surge/continuousspark.wav": "4ec24045b4fb6a88b958d00f16cc39b8aa992cd6e6a5edb4ecb0f34b36ddb18b",
+    "sources/fire_surge/spark.wav": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97",
+    "sources/fire_surge/rock_break.ogg": "b645f35d21194e7855dd4a5405b1e8e6bec070731b92df6abcb202676b8e9f2e",
+    "sources/fire_surge/gravel.ogg": "34e6057ec1581b5cb8802e4942952b00b1dac235bfcb0ed8cff0ceb15a3ebbbf",
+    "sources/fire_surge/stone01.ogg": "99b04d784eb6b531777a64fb0e319f104eb7cdd6b625c1fac68f511605930a2c",
+    "sources/ice_calm/wood-creak-ice-pressure-PROXY_SilentStrikeZ_public-hq-preview.mp3": "2f58585670e4a1f13587d2e2847739a9ab3192ee86acb3af80da265fd357d6a8",
+    "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta4.ogg": "81558c035953d4e595640be7ba1a645c47c6f4b72f38de43a44d36fa70d52b8c",
+    "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta33.ogg": "fedcd280ffaea38c365647f131eaae71cf2b9e1721c2fce1b539884c9199074a",
+    "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta2.ogg": "92a20369f866c852f841ffaef31676cb70f542592504b040327c60f5101f9c47",
+    "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta.ogg": "4c7304ac47f84e41b62edb71082d00fe01823a2a54ec4e4268a040c973e3510f",
+    "sources/ice_calm/rubbed-singing-bowl_ryancacophony_public-hq-preview.mp3": "db7b0ec10e8445c12c32e3863fdd99a30968804b4ede2f88762d35152a6ab446",
+    "sources/ice_calm/exhale_otherthings_public-hq-preview.mp3": "95bc583a39573d45851cdf7c940d6269e852f063a574cb0ca8ceaa6bd1329a30",
+    "sources/water_rain/samsterbirdies_rain_on_leaves_hq.mp3": "98937a7ce64e973dbaa3d7879f41500d4e15e3b8b4ea30f6b927af5bf0d53977",
+    "sources/water_rain/angeloyazar_water_drops.ogg": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37"
+  },
+  "counts": {
+    "final_mixes": 18,
+    "layers": 60,
+    "source_operations": 108,
+    "unique_used_sources": 21,
+    "all_manifest_audio_hashes_verified": 182,
+    "pcm24_outputs": 91
+  },
+  "format": "All non-float-master output WAVs: mono, 48000Hz, PCM24",
+  "reconstruction_tolerance": "Source operations to each PCM layer <= 0.5 PCM24 LSB; sum of N independently quantized layers <= (N+1)*0.5 LSB",
+  "review_reel": {
+    "file": "preview/recorded_material_reel.wav",
+    "frames": 672000,
+    "exact_pcm_sequence": true
+  },
+  "mix_metrics": [
+    {
+      "spell": "flaming_hands",
+      "variant": 1,
+      "file": "mix/flaming_hands_01.wav",
+      "frames": 74400,
+      "layer_sum_max_error": 1.1920928955078125e-07,
+      "rms_dbfs": -20.455515359115747,
+      "sample_peak_dbfs": -3.2116725679050124,
+      "oversampled4_peak_dbfs": -3.199999718557187,
+      "dc": 6.40910158875168e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1017.0509883750344,
+      "strongest_spectral_bin_hz": 117.1875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.351432933510439,
+        "200-800Hz": 0.3222224786896616,
+        "800-2500Hz": 0.2089554323777312,
+        "2500-8000Hz": 0.11259735445262918,
+        "8000-24001Hz": 0.0047918009695389
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 21
+    },
+    {
+      "spell": "flaming_hands",
+      "variant": 2,
+      "file": "mix/flaming_hands_02.wav",
+      "frames": 74400,
+      "layer_sum_max_error": 1.1920928955078125e-07,
+      "rms_dbfs": -20.27037324493502,
+      "sample_peak_dbfs": -4.132671686213198,
+      "oversampled4_peak_dbfs": -4.127144311182128,
+      "dc": -1.4740933654128866e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1001.3082675907107,
+      "strongest_spectral_bin_hz": 105.46875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.35075961809443135,
+        "200-800Hz": 0.328626457767188,
+        "800-2500Hz": 0.20281155517862545,
+        "2500-8000Hz": 0.11320686319642376,
+        "8000-24001Hz": 0.004595505763331346
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 21
+    },
+    {
+      "spell": "flaming_hands",
+      "variant": 3,
+      "file": "mix/flaming_hands_03.wav",
+      "frames": 74400,
+      "layer_sum_max_error": 1.1920928955078125e-07,
+      "rms_dbfs": -20.884425546966252,
+      "sample_peak_dbfs": -3.799605867899547,
+      "oversampled4_peak_dbfs": -3.7424848881167394,
+      "dc": -7.21023928734564e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1090.5774567987517,
+      "strongest_spectral_bin_hz": 117.1875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.3223989452782069,
+        "200-800Hz": 0.330882448641772,
+        "800-2500Hz": 0.21341142945048397,
+        "2500-8000Hz": 0.12829756486992844,
+        "8000-24001Hz": 0.005009611759608657
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 17
+    },
+    {
+      "spell": "jet_blast",
+      "variant": 1,
+      "file": "mix/jet_blast_01.wav",
+      "frames": 81600,
+      "layer_sum_max_error": 2.384185791015625e-07,
+      "rms_dbfs": -21.537399895442427,
+      "sample_peak_dbfs": -3.249371051198562,
+      "oversampled4_peak_dbfs": -3.1999998176046396,
+      "dc": 1.8261226953244677e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1497.6865445473288,
+      "strongest_spectral_bin_hz": 105.46875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.13820901610637445,
+        "200-800Hz": 0.270466017376609,
+        "800-2500Hz": 0.40742951757812734,
+        "2500-8000Hz": 0.17874800077944997,
+        "8000-24001Hz": 0.005147448159439011
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 32
+    },
+    {
+      "spell": "jet_blast",
+      "variant": 2,
+      "file": "mix/jet_blast_02.wav",
+      "frames": 81600,
+      "layer_sum_max_error": 2.384185791015625e-07,
+      "rms_dbfs": -21.5180518334757,
+      "sample_peak_dbfs": -6.1043928868536845,
+      "oversampled4_peak_dbfs": -6.091987862174889,
+      "dc": 1.4462891746969785e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1404.0249591108632,
+      "strongest_spectral_bin_hz": 93.75,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.155332846837671,
+        "200-800Hz": 0.2891826863024798,
+        "800-2500Hz": 0.3859279531663667,
+        "2500-8000Hz": 0.16555555063869049,
+        "8000-24001Hz": 0.00400096305479218
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 34
+    },
+    {
+      "spell": "jet_blast",
+      "variant": 3,
+      "file": "mix/jet_blast_03.wav",
+      "frames": 81600,
+      "layer_sum_max_error": 2.384185791015625e-07,
+      "rms_dbfs": -21.71761091128117,
+      "sample_peak_dbfs": -5.055893375466537,
+      "oversampled4_peak_dbfs": -5.050366000435469,
+      "dc": 1.460898156259574e-12,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1478.3444137220738,
+      "strongest_spectral_bin_hz": 105.46875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.1401570103286361,
+        "200-800Hz": 0.28109907021293545,
+        "800-2500Hz": 0.39284281844833685,
+        "2500-8000Hz": 0.18107168012085,
+        "8000-24001Hz": 0.004829420889241503
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 33
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 1,
+      "file": "mix/ground_surge_01.wav",
+      "frames": 60000,
+      "layer_sum_max_error": 1.1920928955078125e-07,
+      "rms_dbfs": -26.19677896878168,
+      "sample_peak_dbfs": -4.453624918300686,
+      "oversampled4_peak_dbfs": -3.8526422361324024,
+      "dc": -5.960464477539063e-12,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 2676.758921251527,
+      "strongest_spectral_bin_hz": 70.3125,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.13391462391321818,
+        "200-800Hz": 0.2733962116746867,
+        "800-2500Hz": 0.16185468106950587,
+        "2500-8000Hz": 0.397489971312821,
+        "8000-24001Hz": 0.033344512029768125
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 14
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 2,
+      "file": "mix/ground_surge_02.wav",
+      "frames": 60000,
+      "layer_sum_max_error": 1.1920928955078125e-07,
+      "rms_dbfs": -25.96403695442413,
+      "sample_peak_dbfs": -3.624459756866476,
+      "oversampled4_peak_dbfs": -3.1999993250672913,
+      "dc": -2.185503641764323e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 2692.316689693419,
+      "strongest_spectral_bin_hz": 222.65625,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.12591022779171002,
+        "200-800Hz": 0.26535402691127186,
+        "800-2500Hz": 0.1656279204703548,
+        "2500-8000Hz": 0.41651745180734134,
+        "8000-24001Hz": 0.026590373019321982
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 11
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 3,
+      "file": "mix/ground_surge_03.wav",
+      "frames": 60000,
+      "layer_sum_max_error": 1.1920928955078125e-07,
+      "rms_dbfs": -26.325341551719283,
+      "sample_peak_dbfs": -4.039008193890097,
+      "oversampled4_peak_dbfs": -3.4682312269790683,
+      "dc": -7.351239522298177e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 2687.3991987676236,
+      "strongest_spectral_bin_hz": 70.3125,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.13760839048316553,
+        "200-800Hz": 0.26758702890018193,
+        "800-2500Hz": 0.16535333247685732,
+        "2500-8000Hz": 0.3919320423932383,
+        "8000-24001Hz": 0.03751920574655691
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 14
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 1,
+      "file": "mix/rime_grip_01.wav",
+      "frames": 79200,
+      "layer_sum_max_error": 1.1920928955078125e-07,
+      "rms_dbfs": -22.603607320681533,
+      "sample_peak_dbfs": -3.997522070216215,
+      "oversampled4_peak_dbfs": -3.9764574098484893,
+      "dc": 7.676355766527581e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 2915.546392337785,
+      "strongest_spectral_bin_hz": 1195.3125,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.013525740141687826,
+        "200-800Hz": 0.06851015407201448,
+        "800-2500Hz": 0.43321895502161506,
+        "2500-8000Hz": 0.4446016039413809,
+        "8000-24001Hz": 0.04014354682330185
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 12
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 2,
+      "file": "mix/rime_grip_02.wav",
+      "frames": 79200,
+      "layer_sum_max_error": 1.1920928955078125e-07,
+      "rms_dbfs": -22.47346444115201,
+      "sample_peak_dbfs": -3.809531604257834,
+      "oversampled4_peak_dbfs": -3.798672519150563,
+      "dc": 7.676355766527581e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 2896.5735805923505,
+      "strongest_spectral_bin_hz": 1148.4375,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.013175082946052076,
+        "200-800Hz": 0.07809683434252995,
+        "800-2500Hz": 0.4399436133479798,
+        "2500-8000Hz": 0.4282017009186081,
+        "8000-24001Hz": 0.04058276844482987
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 13
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 3,
+      "file": "mix/rime_grip_03.wav",
+      "frames": 79200,
+      "layer_sum_max_error": 1.1920928955078125e-07,
+      "rms_dbfs": -22.797135251868394,
+      "sample_peak_dbfs": -3.205527169447122,
+      "oversampled4_peak_dbfs": -3.1999997944160534,
+      "dc": -5.7196376299617266e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 2906.565179913736,
+      "strongest_spectral_bin_hz": 1242.1875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.01810542318625613,
+        "200-800Hz": 0.06744259565341437,
+        "800-2500Hz": 0.4289728915732124,
+        "2500-8000Hz": 0.4394832857046675,
+        "8000-24001Hz": 0.04599580388244949
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 12
+    },
+    {
+      "spell": "calm",
+      "variant": 1,
+      "file": "mix/calm_01.wav",
+      "frames": 112800,
+      "layer_sum_max_error": 1.1920928955078125e-07,
+      "rms_dbfs": -22.802500868545245,
+      "sample_peak_dbfs": -11.457154447321294,
+      "oversampled4_peak_dbfs": -11.451627072290226,
+      "dc": -2.8428456462021413e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -122.87223996269076,
+      "spectral_centroid_hz": 232.70874304506597,
+      "strongest_spectral_bin_hz": 199.21875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.7536638506443296,
+        "200-800Hz": 0.22952668705855567,
+        "800-2500Hz": 0.016307338518267104,
+        "2500-8000Hz": 0.0005021006632196994,
+        "8000-24001Hz": 2.3115628131876952e-08
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 52
+    },
+    {
+      "spell": "calm",
+      "variant": 2,
+      "file": "mix/calm_02.wav",
+      "frames": 112800,
+      "layer_sum_max_error": 1.1920928955078125e-07,
+      "rms_dbfs": -22.66224507052893,
+      "sample_peak_dbfs": -12.358617447898467,
+      "oversampled4_peak_dbfs": -12.3530900728674,
+      "dc": 1.1783542362510736e-09,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -137.66693199498195,
+      "spectral_centroid_hz": 225.3498267512963,
+      "strongest_spectral_bin_hz": 187.5,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.8014157385762954,
+        "200-800Hz": 0.18194802706430602,
+        "800-2500Hz": 0.016141883083334776,
+        "2500-8000Hz": 0.0004943317551599424,
+        "8000-24001Hz": 1.9520903848777778e-08
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 44
+    },
+    {
+      "spell": "calm",
+      "variant": 3,
+      "file": "mix/calm_03.wav",
+      "frames": 112800,
+      "layer_sum_max_error": 1.1920928955078125e-07,
+      "rms_dbfs": -22.736449379256058,
+      "sample_peak_dbfs": -11.252869935913512,
+      "oversampled4_peak_dbfs": -11.247342560882442,
+      "dc": 8.623650733460772e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -127.79039303053162,
+      "spectral_centroid_hz": 240.33992022579304,
+      "strongest_spectral_bin_hz": 210.9375,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.401832313860115,
+        "200-800Hz": 0.5825707348488749,
+        "800-2500Hz": 0.015156207346156839,
+        "2500-8000Hz": 0.0004407062164604189,
+        "8000-24001Hz": 3.772839264977345e-08
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 47
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 1,
+      "file": "mix/conjure_rain_01.wav",
+      "frames": 108000,
+      "layer_sum_max_error": 1.1920928955078125e-07,
+      "rms_dbfs": -23.509554593189847,
+      "sample_peak_dbfs": -6.642464991739507,
+      "oversampled4_peak_dbfs": -6.616242175516711,
+      "dc": 1.0254206480803313e-09,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 2531.25110941334,
+      "strongest_spectral_bin_hz": 785.15625,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.005186780500622526,
+        "200-800Hz": 0.24630761035034196,
+        "800-2500Hz": 0.3964519769569932,
+        "2500-8000Hz": 0.31260473994126586,
+        "8000-24001Hz": 0.03944889225077649
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 50
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 2,
+      "file": "mix/conjure_rain_02.wav",
+      "frames": 108000,
+      "layer_sum_max_error": 1.1920928955078125e-07,
+      "rms_dbfs": -23.26253761152399,
+      "sample_peak_dbfs": -6.372349482169013,
+      "oversampled4_peak_dbfs": -6.334027999429956,
+      "dc": 1.63029741357874e-09,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 2640.4352818677785,
+      "strongest_spectral_bin_hz": 750.0,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.005356890544750732,
+        "200-800Hz": 0.23811486018383912,
+        "800-2500Hz": 0.3876161818206466,
+        "2500-8000Hz": 0.3219601261789129,
+        "8000-24001Hz": 0.046951941271850726
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 47
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 3,
+      "file": "mix/conjure_rain_03.wav",
+      "frames": 108000,
+      "layer_sum_max_error": 1.1920928955078125e-07,
+      "rms_dbfs": -23.279557808724633,
+      "sample_peak_dbfs": -6.573205991593523,
+      "oversampled4_peak_dbfs": -6.301273006998215,
+      "dc": 2.672274907430013e-09,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 2678.434505323651,
+      "strongest_spectral_bin_hz": 667.96875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.007035699333657178,
+        "200-800Hz": 0.22797298643378539,
+        "800-2500Hz": 0.3979190161610548,
+        "2500-8000Hz": 0.3135185169127945,
+        "8000-24001Hz": 0.053553781158708215
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 42
+    }
+  ],
+  "layer_metrics": [
+    {
+      "file": "layers/flaming_hands_01_palms_catch.wav",
+      "source_operation_reconstruction_max_error": 5.960286330458642e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -22.236035652527228,
+      "sample_peak_dbfs": -5.035175389878161,
+      "oversampled4_peak_dbfs": -5.004736091445041,
+      "dc": -7.530694366783224e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1376.5233419174956,
+      "strongest_spectral_bin_hz": 281.25,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.09321081342096238,
+        "200-800Hz": 0.45395297511462024,
+        "800-2500Hz": 0.2906184858830287,
+        "2500-8000Hz": 0.15548627194865436,
+        "8000-24001Hz": 0.006731453632734375
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 15
+    },
+    {
+      "file": "layers/flaming_hands_01_combustion_body.wav",
+      "source_operation_reconstruction_max_error": 5.960444624669714e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -25.436177256714394,
+      "sample_peak_dbfs": -11.448322083679013,
+      "oversampled4_peak_dbfs": -11.442794708647943,
+      "dc": 2.0669352623724167e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 124.27326075407018,
+      "strongest_spectral_bin_hz": 117.1875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.9510384753246616,
+        "200-800Hz": 0.04345249327107054,
+        "800-2500Hz": 0.004320608962259855,
+        "2500-8000Hz": 0.0011850345541151194,
+        "8000-24001Hz": 3.3878878930372722e-06
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 20
+    },
+    {
+      "file": "layers/flaming_hands_01_dry_afterburn.wav",
+      "source_operation_reconstruction_max_error": 5.9602146477814866e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -36.93522679625787,
+      "sample_peak_dbfs": -13.191052229674662,
+      "oversampled4_peak_dbfs": -12.525691417755137,
+      "dc": 1.1055700240596648e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 2568.4965256265637,
+      "strongest_spectral_bin_hz": 2085.9375,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.002564702279351439,
+        "200-800Hz": 0.024847723952799352,
+        "800-2500Hz": 0.5876333043579893,
+        "2500-8000Hz": 0.37351430691370996,
+        "8000-24001Hz": 0.011439962496149765
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 4
+    },
+    {
+      "file": "layers/flaming_hands_02_palms_catch.wav",
+      "source_operation_reconstruction_max_error": 5.960434408536219e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -22.055869880076123,
+      "sample_peak_dbfs": -5.003274335474602,
+      "oversampled4_peak_dbfs": -4.97664705992996,
+      "dc": -2.371367587838122e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1357.8766784141278,
+      "strongest_spectral_bin_hz": 281.25,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.09614459215226565,
+        "200-800Hz": 0.4605448281746206,
+        "800-2500Hz": 0.2805313883317467,
+        "2500-8000Hz": 0.1562923007632855,
+        "8000-24001Hz": 0.006486890578081799
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 16
+    },
+    {
+      "file": "layers/flaming_hands_02_combustion_body.wav",
+      "source_operation_reconstruction_max_error": 5.960366910792714e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -25.22062922506774,
+      "sample_peak_dbfs": -11.550229223858645,
+      "oversampled4_peak_dbfs": -11.544701848827577,
+      "dc": -2.0028442464849e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 126.36822784346637,
+      "strongest_spectral_bin_hz": 105.46875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.9274314895431847,
+        "200-800Hz": 0.06325362714568387,
+        "800-2500Hz": 0.008438266339952356,
+        "2500-8000Hz": 0.0008714709779950984,
+        "8000-24001Hz": 5.145993183897189e-06
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 20
+    },
+    {
+      "file": "layers/flaming_hands_02_dry_afterburn.wav",
+      "source_operation_reconstruction_max_error": 5.960313023342656e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -35.64397393291043,
+      "sample_peak_dbfs": -12.29541453243211,
+      "oversampled4_peak_dbfs": -11.425204904753528,
+      "dc": -8.0113769859396e-12,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 2559.5382307011832,
+      "strongest_spectral_bin_hz": 1605.46875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.002415363780306819,
+        "200-800Hz": 0.022709542414987,
+        "800-2500Hz": 0.5814294988955906,
+        "2500-8000Hz": 0.3814168833746669,
+        "8000-24001Hz": 0.012028711534448646
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 3
+    },
+    {
+      "file": "layers/flaming_hands_03_palms_catch.wav",
+      "source_operation_reconstruction_max_error": 5.9604355784337315e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -22.429156108614933,
+      "sample_peak_dbfs": -5.0555894582342304,
+      "oversampled4_peak_dbfs": -5.040263113701226,
+      "dc": -8.972742224252352e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1389.6483636052194,
+      "strongest_spectral_bin_hz": 398.4375,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.09060168100138975,
+        "200-800Hz": 0.4593622965944433,
+        "800-2500Hz": 0.27690284353423883,
+        "2500-8000Hz": 0.16654811037933692,
+        "8000-24001Hz": 0.00658506849059134
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 16
+    },
+    {
+      "file": "layers/flaming_hands_03_combustion_body.wav",
+      "source_operation_reconstruction_max_error": 5.960387043993376e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -26.313941853085602,
+      "sample_peak_dbfs": -10.239464927239563,
+      "oversampled4_peak_dbfs": -10.233937552208495,
+      "dc": -5.447736350438928e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 124.59033486322042,
+      "strongest_spectral_bin_hz": 117.1875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.9498121226726973,
+        "200-800Hz": 0.046208639654393216,
+        "800-2500Hz": 0.0035115211084316925,
+        "2500-8000Hz": 0.0004647019703425338,
+        "8000-24001Hz": 3.014594134961763e-06
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 18
+    },
+    {
+      "file": "layers/flaming_hands_03_dry_afterburn.wav",
+      "source_operation_reconstruction_max_error": 5.960424989573214e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -36.5839823125241,
+      "sample_peak_dbfs": -13.415781505327232,
+      "oversampled4_peak_dbfs": -12.167083295886856,
+      "dc": -2.1310262782599337e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 2758.482367211707,
+      "strongest_spectral_bin_hz": 1734.375,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.0031105994349083154,
+        "200-800Hz": 0.024137096425985546,
+        "800-2500Hz": 0.5466930842901706,
+        "2500-8000Hz": 0.41083085794346597,
+        "8000-24001Hz": 0.015228361905469527
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 4
+    },
+    {
+      "file": "layers/jet_blast_01_liquid_gather.wav",
+      "source_operation_reconstruction_max_error": 5.959862613892793e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -40.47548236968207,
+      "sample_peak_dbfs": -17.1840991134393,
+      "oversampled4_peak_dbfs": -17.172709389391652,
+      "dc": 1.8553406584496592e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1165.4004722926418,
+      "strongest_spectral_bin_hz": 1160.15625,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.020333502188995996,
+        "200-800Hz": 0.02023398269497512,
+        "800-2500Hz": 0.934000832884835,
+        "2500-8000Hz": 0.02528767960352016,
+        "8000-24001Hz": 0.00014400262767367037
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 1
+    },
+    {
+      "file": "layers/jet_blast_01_pressurized_water.wav",
+      "source_operation_reconstruction_max_error": 5.9604586495620726e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -27.672153292995993,
+      "sample_peak_dbfs": -9.202704512007895,
+      "oversampled4_peak_dbfs": -9.162756826108991,
+      "dc": 3.8129441878374886e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1984.2086266085435,
+      "strongest_spectral_bin_hz": 832.03125,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.02764723848151372,
+        "200-800Hz": 0.19254539583105199,
+        "800-2500Hz": 0.5252678158920716,
+        "2500-8000Hz": 0.24443295901482945,
+        "8000-24001Hz": 0.010106590780533291
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 12
+    },
+    {
+      "file": "layers/jet_blast_01_wet_slap.wav",
+      "source_operation_reconstruction_max_error": 5.960461196830025e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -22.992050489708188,
+      "sample_peak_dbfs": -7.6708889024230125,
+      "oversampled4_peak_dbfs": -7.647799245881362,
+      "dc": 1.5339430640725528e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1370.3920755203767,
+      "strongest_spectral_bin_hz": 93.75,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.18019760010554875,
+        "200-800Hz": 0.29031123229887484,
+        "800-2500Hz": 0.358459230390957,
+        "2500-8000Hz": 0.167235587693565,
+        "8000-24001Hz": 0.0037963495110543517
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 33
+    },
+    {
+      "file": "layers/jet_blast_01_bubbles_and_runoff.wav",
+      "source_operation_reconstruction_max_error": 5.960309310860945e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -37.0880460990969,
+      "sample_peak_dbfs": -17.572770765397113,
+      "oversampled4_peak_dbfs": -17.567243390366045,
+      "dc": 6.574041703168084e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 684.9352340791913,
+      "strongest_spectral_bin_hz": 339.84375,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.0024621308731154284,
+        "200-800Hz": 0.6888103004111719,
+        "800-2500Hz": 0.3059875259574243,
+        "2500-8000Hz": 0.0027372512772251747,
+        "8000-24001Hz": 2.7914810634572223e-06
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 7
+    },
+    {
+      "file": "layers/jet_blast_02_liquid_gather.wav",
+      "source_operation_reconstruction_max_error": 5.9602434085426204e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -40.89526214342425,
+      "sample_peak_dbfs": -15.385842025281951,
+      "oversampled4_peak_dbfs": -15.313030814582419,
+      "dc": 3.213975943771063e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1078.5709457206183,
+      "strongest_spectral_bin_hz": 23.4375,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.8426466961758595,
+        "200-800Hz": 0.0005063066832413334,
+        "800-2500Hz": 5.0066638522046134e-05,
+        "2500-8000Hz": 0.15545149717257983,
+        "8000-24001Hz": 0.0013454333297972926
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 3
+    },
+    {
+      "file": "layers/jet_blast_02_pressurized_water.wav",
+      "source_operation_reconstruction_max_error": 5.960291845838461e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -28.124643433975415,
+      "sample_peak_dbfs": -9.300439831102754,
+      "oversampled4_peak_dbfs": -9.291719562358967,
+      "dc": 8.765388937557445e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1748.680426319826,
+      "strongest_spectral_bin_hz": 808.59375,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.031135621143001727,
+        "200-800Hz": 0.24722032721893533,
+        "800-2500Hz": 0.5123370732113028,
+        "2500-8000Hz": 0.20318662205718807,
+        "8000-24001Hz": 0.006120356369572055
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 13
+    },
+    {
+      "file": "layers/jet_blast_02_wet_slap.wav",
+      "source_operation_reconstruction_max_error": 5.9604340168356584e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -22.838607518204533,
+      "sample_peak_dbfs": -7.54838005231491,
+      "oversampled4_peak_dbfs": -7.540899751081371,
+      "dc": 1.300199359071021e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1346.0579127480826,
+      "strongest_spectral_bin_hz": 93.75,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.18428386162283933,
+        "200-800Hz": 0.2883643551575258,
+        "800-2500Hz": 0.36224132155555394,
+        "2500-8000Hz": 0.16149711196686115,
+        "8000-24001Hz": 0.003613349697219718
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 31
+    },
+    {
+      "file": "layers/jet_blast_02_bubbles_and_runoff.wav",
+      "source_operation_reconstruction_max_error": 5.960309075122867e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -36.93451105146842,
+      "sample_peak_dbfs": -17.5165145439884,
+      "oversampled4_peak_dbfs": -17.51098716895733,
+      "dc": -3.94442502190085e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 677.7836463526204,
+      "strongest_spectral_bin_hz": 328.125,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.0025423473958168666,
+        "200-800Hz": 0.6999647777623547,
+        "800-2500Hz": 0.29449768814923905,
+        "2500-8000Hz": 0.0029918523103085104,
+        "8000-24001Hz": 3.334382281121063e-06
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 7
+    },
+    {
+      "file": "layers/jet_blast_03_liquid_gather.wav",
+      "source_operation_reconstruction_max_error": 5.960455181242691e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -40.494305064426584,
+      "sample_peak_dbfs": -23.4811274948295,
+      "oversampled4_peak_dbfs": -23.456797051435977,
+      "dc": -4.52878428440468e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 2397.197667258667,
+      "strongest_spectral_bin_hz": 2625.0,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.0235585794010505,
+        "200-800Hz": 0.1474061682419033,
+        "800-2500Hz": 0.4034747098562769,
+        "2500-8000Hz": 0.40563626768675404,
+        "8000-24001Hz": 0.019924274814015274
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 14
+    },
+    {
+      "file": "layers/jet_blast_03_pressurized_water.wav",
+      "source_operation_reconstruction_max_error": 5.9603857877066346e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -27.952193309324578,
+      "sample_peak_dbfs": -8.96787522977144,
+      "oversampled4_peak_dbfs": -8.962019367034404,
+      "dc": -5.843592625038296e-12,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1738.167358912672,
+      "strongest_spectral_bin_hz": 597.65625,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.044007779613130855,
+        "200-800Hz": 0.24709757554085718,
+        "800-2500Hz": 0.4869451041335966,
+        "2500-8000Hz": 0.21557809223754332,
+        "8000-24001Hz": 0.006371448474871695
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 12
+    },
+    {
+      "file": "layers/jet_blast_03_wet_slap.wav",
+      "source_operation_reconstruction_max_error": 5.960280134720275e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -23.184318457563897,
+      "sample_peak_dbfs": -7.703967168812689,
+      "oversampled4_peak_dbfs": -7.680134331593381,
+      "dc": 8.181029675053615e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1402.6968206641798,
+      "strongest_spectral_bin_hz": 105.46875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.18468879152637832,
+        "200-800Hz": 0.27988115700725114,
+        "800-2500Hz": 0.3584204363327124,
+        "2500-8000Hz": 0.17275717576348246,
+        "8000-24001Hz": 0.004252439370175464
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 33
+    },
+    {
+      "file": "layers/jet_blast_03_bubbles_and_runoff.wav",
+      "source_operation_reconstruction_max_error": 5.960338757271533e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -37.276317676795955,
+      "sample_peak_dbfs": -17.643891516399353,
+      "oversampled4_peak_dbfs": -17.63692250466155,
+      "dc": -1.460898156259574e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 732.9818993711149,
+      "strongest_spectral_bin_hz": 351.5625,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.0019311435056594548,
+        "200-800Hz": 0.657504427941211,
+        "800-2500Hz": 0.33663506613368127,
+        "2500-8000Hz": 0.0039214811363765655,
+        "8000-24001Hz": 7.881283071681407e-06
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 8
+    },
+    {
+      "file": "layers/ground_surge_01_charging_current.wav",
+      "source_operation_reconstruction_max_error": 5.960088938009034e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -38.19298915319952,
+      "sample_peak_dbfs": -14.360331349301912,
+      "oversampled4_peak_dbfs": -13.9289550343946,
+      "dc": 9.5367431640625e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 4035.712612137119,
+      "strongest_spectral_bin_hz": 4605.46875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.00024201288819486835,
+        "200-800Hz": 0.025192279764176945,
+        "800-2500Hz": 0.12682426476099365,
+        "2500-8000Hz": 0.8229947833197069,
+        "8000-24001Hz": 0.024746659266927654
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 6
+    },
+    {
+      "file": "layers/ground_surge_01_advancing_arcs.wav",
+      "source_operation_reconstruction_max_error": 5.95894044559675e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -30.736872810823858,
+      "sample_peak_dbfs": -7.94666864797415,
+      "oversampled4_peak_dbfs": -7.59014794898199,
+      "dc": 2.781550089518229e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 5135.418927384372,
+      "strongest_spectral_bin_hz": 5449.21875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.00023657979606559265,
+        "200-800Hz": 0.02008211790803274,
+        "800-2500Hz": 0.11182467692371528,
+        "2500-8000Hz": 0.7889827736361127,
+        "8000-24001Hz": 0.07887385173607372
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 4
+    },
+    {
+      "file": "layers/ground_surge_01_ground_fracture.wav",
+      "source_operation_reconstruction_max_error": 5.960343951727509e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -29.780870922894277,
+      "sample_peak_dbfs": -8.457088380141228,
+      "oversampled4_peak_dbfs": -8.44926479573022,
+      "dc": -5.960464477539063e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 454.1753064283791,
+      "strongest_spectral_bin_hz": 70.3125,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.32219005355087105,
+        "200-800Hz": 0.5328495872907157,
+        "800-2500Hz": 0.12742063740229082,
+        "2500-8000Hz": 0.01753163013668543,
+        "8000-24001Hz": 8.09161943677324e-06
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 2
+    },
+    {
+      "file": "layers/ground_surge_01_grit_displacement.wav",
+      "source_operation_reconstruction_max_error": 5.960459980615396e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -34.276348276903434,
+      "sample_peak_dbfs": -14.323555759301094,
+      "oversampled4_peak_dbfs": -13.628649484853918,
+      "dc": -6.357828776041667e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1960.9897312521773,
+      "strongest_spectral_bin_hz": 304.6875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.013081898301719325,
+        "200-800Hz": 0.28783925665141474,
+        "800-2500Hz": 0.4078148085058779,
+        "2500-8000Hz": 0.28069781739926275,
+        "8000-24001Hz": 0.010566219141725312
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 9
+    },
+    {
+      "file": "layers/ground_surge_02_charging_current.wav",
+      "source_operation_reconstruction_max_error": 5.9602023176983786e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -38.01170475916723,
+      "sample_peak_dbfs": -14.331428921973918,
+      "oversampled4_peak_dbfs": -14.104093476506858,
+      "dc": -2.3444493611653644e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 3966.024415413998,
+      "strongest_spectral_bin_hz": 4441.40625,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.0002849931036481346,
+        "200-800Hz": 0.027082391302800875,
+        "800-2500Hz": 0.12592031124560107,
+        "2500-8000Hz": 0.8220176952966373,
+        "8000-24001Hz": 0.024694609051312655
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 8
+    },
+    {
+      "file": "layers/ground_surge_02_advancing_arcs.wav",
+      "source_operation_reconstruction_max_error": 5.959691486145946e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -30.51764270459111,
+      "sample_peak_dbfs": -7.37543249363242,
+      "oversampled4_peak_dbfs": -6.990318276838233,
+      "dc": -2.404054005940755e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 5042.905329176506,
+      "strongest_spectral_bin_hz": 5648.4375,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.0002020305229473183,
+        "200-800Hz": 0.01915872563821673,
+        "800-2500Hz": 0.10419793478286633,
+        "2500-8000Hz": 0.8158969606163559,
+        "8000-24001Hz": 0.06054434843961385
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 5
+    },
+    {
+      "file": "layers/ground_surge_02_ground_fracture.wav",
+      "source_operation_reconstruction_max_error": 5.959901804367118e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -29.65478161385322,
+      "sample_peak_dbfs": -8.436472559584825,
+      "oversampled4_peak_dbfs": -8.430945184553755,
+      "dc": 6.556510925292969e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 451.264148255057,
+      "strongest_spectral_bin_hz": 58.59375,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.3181602341997262,
+        "200-800Hz": 0.5340711959549405,
+        "800-2500Hz": 0.13147679802250362,
+        "2500-8000Hz": 0.016282933662235346,
+        "8000-24001Hz": 8.838160594443587e-06
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 4
+    },
+    {
+      "file": "layers/ground_surge_02_grit_displacement.wav",
+      "source_operation_reconstruction_max_error": 5.960384181352696e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -34.15474495927054,
+      "sample_peak_dbfs": -14.382754765613806,
+      "oversampled4_peak_dbfs": -13.982110801379697,
+      "dc": -1.9272168477376302e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1922.7444691804096,
+      "strongest_spectral_bin_hz": 292.96875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.013671799351005483,
+        "200-800Hz": 0.28848043016703634,
+        "800-2500Hz": 0.42732591565349554,
+        "2500-8000Hz": 0.26065437589027096,
+        "8000-24001Hz": 0.009867478938191818
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 10
+    },
+    {
+      "file": "layers/ground_surge_03_charging_current.wav",
+      "source_operation_reconstruction_max_error": 5.9601790976379285e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -38.417081678908005,
+      "sample_peak_dbfs": -14.38169729010183,
+      "oversampled4_peak_dbfs": -13.853291910598903,
+      "dc": -1.1523564656575521e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 4131.117757144174,
+      "strongest_spectral_bin_hz": 3855.46875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.0001723689970683471,
+        "200-800Hz": 0.022013850308227976,
+        "800-2500Hz": 0.12804574826500553,
+        "2500-8000Hz": 0.8251051475333844,
+        "8000-24001Hz": 0.02466288489631392
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 6
+    },
+    {
+      "file": "layers/ground_surge_03_advancing_arcs.wav",
+      "source_operation_reconstruction_max_error": 5.9602182689300065e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -30.873906751923066,
+      "sample_peak_dbfs": -7.621055827416958,
+      "oversampled4_peak_dbfs": -7.190355047391522,
+      "dc": 1.7881393432617188e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 5230.810567474278,
+      "strongest_spectral_bin_hz": 5695.3125,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.0003052054633458413,
+        "200-800Hz": 0.02086395072003739,
+        "800-2500Hz": 0.11138304933564881,
+        "2500-8000Hz": 0.7738642607487238,
+        "8000-24001Hz": 0.09358353373224437
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 4
+    },
+    {
+      "file": "layers/ground_surge_03_ground_fracture.wav",
+      "source_operation_reconstruction_max_error": 5.9603757571018157e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -29.939464786937165,
+      "sample_peak_dbfs": -8.486867550976122,
+      "oversampled4_peak_dbfs": -8.47899110754155,
+      "dc": -1.053015391031901e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 446.5634848975835,
+      "strongest_spectral_bin_hz": 70.3125,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.33642871610629715,
+        "200-800Hz": 0.5213599537552249,
+        "800-2500Hz": 0.1253963867087672,
+        "2500-8000Hz": 0.016807160373480172,
+        "8000-24001Hz": 7.783056230678815e-06
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 2
+    },
+    {
+      "file": "layers/ground_surge_03_grit_displacement.wav",
+      "source_operation_reconstruction_max_error": 5.960174472019464e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -34.45513613245473,
+      "sample_peak_dbfs": -14.212569170589965,
+      "oversampled4_peak_dbfs": -14.017606136769373,
+      "dc": -1.9868214925130208e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1976.110432632714,
+      "strongest_spectral_bin_hz": 328.125,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.013484027090573105,
+        "200-800Hz": 0.27850395772612946,
+        "800-2500Hz": 0.4062583108583284,
+        "2500-8000Hz": 0.2914856539985838,
+        "8000-24001Hz": 0.01026805032638535
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 8
+    },
+    {
+      "file": "layers/rime_grip_01_inward_ice_stress.wav",
+      "source_operation_reconstruction_max_error": 5.959852458190017e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -34.862783461843826,
+      "sample_peak_dbfs": -11.46268989482839,
+      "oversampled4_peak_dbfs": -11.457162519797318,
+      "dc": 3.4167309000034523e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 2153.5508359175874,
+      "strongest_spectral_bin_hz": 304.6875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.13751326030665453,
+        "200-800Hz": 0.28715260930060954,
+        "800-2500Hz": 0.16552616047287935,
+        "2500-8000Hz": 0.3817620572562054,
+        "8000-24001Hz": 0.028045912663651185
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 7
+    },
+    {
+      "file": "layers/rime_grip_01_brittle_lock.wav",
+      "source_operation_reconstruction_max_error": 5.9599563638490505e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -22.96712707111184,
+      "sample_peak_dbfs": -4.801337158252666,
+      "oversampled4_peak_dbfs": -4.684599988736577,
+      "dc": 7.074288647584241e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 2903.748135905808,
+      "strongest_spectral_bin_hz": 1195.3125,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.005784605881948821,
+        "200-800Hz": 0.05632649591302118,
+        "800-2500Hz": 0.4631126593077742,
+        "2500-8000Hz": 0.43415125975425256,
+        "8000-24001Hz": 0.040624979143003274
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 11
+    },
+    {
+      "file": "layers/rime_grip_01_settling_fragments.wav",
+      "source_operation_reconstruction_max_error": 5.9604437396137966e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -38.48108894445136,
+      "sample_peak_dbfs": -17.432306735218223,
+      "oversampled4_peak_dbfs": -17.198636421037207,
+      "dc": -5.569120850225892e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 4941.391929025796,
+      "strongest_spectral_bin_hz": 5109.375,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 1.906751023952384e-05,
+        "200-800Hz": 0.0022608058226808517,
+        "800-2500Hz": 0.025440525818205825,
+        "2500-8000Hz": 0.9245921294614815,
+        "8000-24001Hz": 0.04768747138739239
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 12
+    },
+    {
+      "file": "layers/rime_grip_02_inward_ice_stress.wav",
+      "source_operation_reconstruction_max_error": 5.960134697585717e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -34.26252765116653,
+      "sample_peak_dbfs": -12.595993228492919,
+      "oversampled4_peak_dbfs": -12.494439552492194,
+      "dc": -7.525838986791746e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 2062.6419880622725,
+      "strongest_spectral_bin_hz": 292.96875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.0887931897476773,
+        "200-800Hz": 0.3318600218993574,
+        "800-2500Hz": 0.21206115901965936,
+        "2500-8000Hz": 0.3417851434221815,
+        "8000-24001Hz": 0.02550048591112427
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 8
+    },
+    {
+      "file": "layers/rime_grip_02_brittle_lock.wav",
+      "source_operation_reconstruction_max_error": 5.960281589433603e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -22.899205242976333,
+      "sample_peak_dbfs": -3.806494594470509,
+      "oversampled4_peak_dbfs": -3.7956936198178854,
+      "dc": 9.332040343621765e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 2908.713589640039,
+      "strongest_spectral_bin_hz": 1148.4375,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.006428652941598496,
+        "200-800Hz": 0.05934973071055967,
+        "800-2500Hz": 0.47147100820383003,
+        "2500-8000Hz": 0.4214557274438964,
+        "8000-24001Hz": 0.04129488070011544
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 11
+    },
+    {
+      "file": "layers/rime_grip_02_settling_fragments.wav",
+      "source_operation_reconstruction_max_error": 5.960187292625027e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -38.29278901236672,
+      "sample_peak_dbfs": -17.389383800713478,
+      "oversampled4_peak_dbfs": -17.252192371618168,
+      "dc": -1.3546510176225142e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 4778.667039099517,
+      "strongest_spectral_bin_hz": 4921.875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 2.1861219420673477e-05,
+        "200-800Hz": 0.00268697497806766,
+        "800-2500Hz": 0.035508609976390465,
+        "2500-8000Hz": 0.9060461520070222,
+        "8000-24001Hz": 0.055736401819099037
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 12
+    },
+    {
+      "file": "layers/rime_grip_03_inward_ice_stress.wav",
+      "source_operation_reconstruction_max_error": 5.9597738064076644e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -34.59018946915456,
+      "sample_peak_dbfs": -12.853726414699278,
+      "oversampled4_peak_dbfs": -12.734011270950463,
+      "dc": -4.5155033920750473e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1960.75788338594,
+      "strongest_spectral_bin_hz": 93.75,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.20391642363112236,
+        "200-800Hz": 0.28178449684861595,
+        "800-2500Hz": 0.14854213997460486,
+        "2500-8000Hz": 0.34167212387917595,
+        "8000-24001Hz": 0.024084815666480904
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 7
+    },
+    {
+      "file": "layers/rime_grip_03_brittle_lock.wav",
+      "source_operation_reconstruction_max_error": 5.960234597405037e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -23.215036604970987,
+      "sample_peak_dbfs": -3.205521178981134,
+      "oversampled4_peak_dbfs": -3.199993803950064,
+      "dc": -1.5503228312790995e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 2918.1582230712743,
+      "strongest_spectral_bin_hz": 1242.1875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.00546582612957983,
+        "200-800Hz": 0.05402198527496476,
+        "800-2500Hz": 0.45927925008465237,
+        "2500-8000Hz": 0.43369706736329733,
+        "8000-24001Hz": 0.04753587114750554
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 10
+    },
+    {
+      "file": "layers/rime_grip_03_settling_fragments.wav",
+      "source_operation_reconstruction_max_error": 5.960150388853447e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -38.69668963271423,
+      "sample_peak_dbfs": -17.461169152834092,
+      "oversampled4_peak_dbfs": -17.28520983146417,
+      "dc": -1.008462424230094e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 4993.254000460601,
+      "strongest_spectral_bin_hz": 5332.03125,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 1.9610287150060677e-05,
+        "200-800Hz": 0.0032586038958002193,
+        "800-2500Hz": 0.02900397494465496,
+        "2500-8000Hz": 0.9200249393081986,
+        "8000-24001Hz": 0.047692871564195896
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 13
+    },
+    {
+      "file": "layers/calm_01_warm_bowl_body.wav",
+      "source_operation_reconstruction_max_error": 5.9604593551879515e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -23.675531503999533,
+      "sample_peak_dbfs": -14.957661048882844,
+      "oversampled4_peak_dbfs": -14.952133673851776,
+      "dc": -2.5892088599238837e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 197.42913328193285,
+      "strongest_spectral_bin_hz": 199.21875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.9220827071030223,
+        "200-800Hz": 0.07790510416265756,
+        "800-2500Hz": 1.1715975453644894e-05,
+        "2500-8000Hz": 4.6968113570298493e-07,
+        "8000-24001Hz": 3.0777306733758616e-09
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 21
+    },
+    {
+      "file": "layers/calm_01_resolved_overtone.wav",
+      "source_operation_reconstruction_max_error": 5.9604475204165074e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -30.651241712056184,
+      "sample_peak_dbfs": -19.316329359022987,
+      "oversampled4_peak_dbfs": -19.31080198399192,
+      "dc": -2.367276671930408e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -122.92587890801086,
+      "spectral_centroid_hz": 295.7218876315244,
+      "strongest_spectral_bin_hz": 292.96875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 7.879725840324068e-05,
+        "200-800Hz": 0.9998810534878884,
+        "800-2500Hz": 3.744189815502008e-05,
+        "2500-8000Hz": 2.689948483208117e-06,
+        "8000-24001Hz": 1.74070705161276e-08
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 22
+    },
+    {
+      "file": "layers/calm_01_human_exhale.wav",
+      "source_operation_reconstruction_max_error": 5.9604100030585805e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -40.20767989299401,
+      "sample_peak_dbfs": -22.36329151015212,
+      "oversampled4_peak_dbfs": -22.35555973185486,
+      "dc": -5.389781708412982e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1239.8579190823325,
+      "strongest_spectral_bin_hz": 1066.40625,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.0004865299458758204,
+        "200-800Hz": 0.08509875501812383,
+        "800-2500Hz": 0.8871294078629425,
+        "2500-8000Hz": 0.027284363213662077,
+        "8000-24001Hz": 9.439593958335101e-07
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 13
+    },
+    {
+      "file": "layers/calm_02_warm_bowl_body.wav",
+      "source_operation_reconstruction_max_error": 5.9604154657028063e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -23.60390887225322,
+      "sample_peak_dbfs": -15.333879288630353,
+      "oversampled4_peak_dbfs": -15.328351913599283,
+      "dc": 1.0821836214539007e-09,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 190.24068149702188,
+      "strongest_spectral_bin_hz": 187.5,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.9943703629099854,
+        "200-800Hz": 0.005615341131785561,
+        "800-2500Hz": 1.3704166286574187e-05,
+        "2500-8000Hz": 5.880177054197901e-07,
+        "8000-24001Hz": 3.774237096419836e-09
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 30
+    },
+    {
+      "file": "layers/calm_02_resolved_overtone.wav",
+      "source_operation_reconstruction_max_error": 5.9604036449500963e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -30.20958779633185,
+      "sample_peak_dbfs": -20.68351731336998,
+      "oversampled4_peak_dbfs": -20.67798993833891,
+      "dc": -3.5931878056086546e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -137.41869615773163,
+      "spectral_centroid_hz": 284.96627921903166,
+      "strongest_spectral_bin_hz": 281.25,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.00014164033576729207,
+        "200-800Hz": 0.999800925103918,
+        "800-2500Hz": 5.34498374093814e-05,
+        "2500-8000Hz": 3.9581811384195215e-06,
+        "8000-24001Hz": 2.6541767146027083e-08
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 32
+    },
+    {
+      "file": "layers/calm_02_human_exhale.wav",
+      "source_operation_reconstruction_max_error": 5.960406578410862e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -40.051347319217825,
+      "sample_peak_dbfs": -22.374035971733907,
+      "oversampled4_peak_dbfs": -22.36850859670284,
+      "dc": -1.69091190852172e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1203.404038508617,
+      "strongest_spectral_bin_hz": 1019.53125,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.0004764519753817935,
+        "200-800Hz": 0.08888823952596053,
+        "800-2500Hz": 0.8835104107592339,
+        "2500-8000Hz": 0.02712426122644183,
+        "8000-24001Hz": 6.365129817372914e-07
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 13
+    },
+    {
+      "file": "layers/calm_03_warm_bowl_body.wav",
+      "source_operation_reconstruction_max_error": 5.960450669834083e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -23.561603994662494,
+      "sample_peak_dbfs": -14.753135716564893,
+      "oversampled4_peak_dbfs": -14.747608341533825,
+      "dc": 9.373992892867284e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 205.8938586572378,
+      "strongest_spectral_bin_hz": 210.9375,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.4859924357790634,
+        "200-800Hz": 0.5139900988868197,
+        "800-2500Hz": 1.6653638952791563e-05,
+        "2500-8000Hz": 8.0663370083434e-07,
+        "8000-24001Hz": 5.061463360583104e-09
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 22
+    },
+    {
+      "file": "layers/calm_03_resolved_overtone.wav",
+      "source_operation_reconstruction_max_error": 5.9604578869776326e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -30.79609007436487,
+      "sample_peak_dbfs": -19.700251936354928,
+      "oversampled4_peak_dbfs": -19.69472456132386,
+      "dc": 1.2364793331065075e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -127.751911963433,
+      "spectral_centroid_hz": 308.5338921440518,
+      "strongest_spectral_bin_hz": 304.6875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.0001829611453700154,
+        "200-800Hz": 0.9997191549063141,
+        "800-2500Hz": 9.148184709024382e-05,
+        "2500-8000Hz": 6.362059473979241e-06,
+        "8000-24001Hz": 4.004175157497996e-08
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 20
+    },
+    {
+      "file": "layers/calm_03_human_exhale.wav",
+      "source_operation_reconstruction_max_error": 5.9603231735566586e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -40.4048258670492,
+      "sample_peak_dbfs": -22.345395471269885,
+      "oversampled4_peak_dbfs": -22.33884505417535,
+      "dc": -4.332961765586907e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 1292.293593402342,
+      "strongest_spectral_bin_hz": 1113.28125,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.0004987981573235792,
+        "200-800Hz": 0.07825712590170317,
+        "800-2500Hz": 0.8952389109651897,
+        "2500-8000Hz": 0.026003574432278454,
+        "8000-24001Hz": 1.590543504952585e-06
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 11
+    },
+    {
+      "file": "layers/conjure_rain_01_leaf_rain.wav",
+      "source_operation_reconstruction_max_error": 5.9603326052481975e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -24.065267115224458,
+      "sample_peak_dbfs": -7.828550666069284,
+      "oversampled4_peak_dbfs": -7.809660676000699,
+      "dc": 9.889955873842593e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 2762.83349167258,
+      "strongest_spectral_bin_hz": 785.15625,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.0037714447979590726,
+        "200-800Hz": 0.2046336172066953,
+        "800-2500Hz": 0.3937885706806133,
+        "2500-8000Hz": 0.3529944630170061,
+        "8000-24001Hz": 0.044811904297726274
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 44
+    },
+    {
+      "file": "layers/conjure_rain_01_close_leaf_patter.wav",
+      "source_operation_reconstruction_max_error": 5.960432089210932e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -33.75942158214757,
+      "sample_peak_dbfs": -16.31811775719725,
+      "oversampled4_peak_dbfs": -16.312590382166178,
+      "dc": -4.1944009286385994e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 927.5198822653256,
+      "strongest_spectral_bin_hz": 703.125,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.019846029346212997,
+        "200-800Hz": 0.4497527831673898,
+        "800-2500Hz": 0.5150633688773569,
+        "2500-8000Hz": 0.015181112803776379,
+        "8000-24001Hz": 0.0001567058052638185
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 35
+    },
+    {
+      "file": "layers/conjure_rain_01_individual_drips.wav",
+      "source_operation_reconstruction_max_error": 5.9603186650103446e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -40.65773235406229,
+      "sample_peak_dbfs": -18.360734551195208,
+      "oversampled4_peak_dbfs": -18.355207176164136,
+      "dc": 5.419607515688296e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 654.7585108977887,
+      "strongest_spectral_bin_hz": 269.53125,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.0029611806440057406,
+        "200-800Hz": 0.8075354866596027,
+        "800-2500Hz": 0.14683144284655614,
+        "2500-8000Hz": 0.04142964430322848,
+        "8000-24001Hz": 0.0012422455466068526
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 6
+    },
+    {
+      "file": "layers/conjure_rain_02_leaf_rain.wav",
+      "source_operation_reconstruction_max_error": 5.960331793397611e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -23.84981021355709,
+      "sample_peak_dbfs": -7.19534775817035,
+      "oversampled4_peak_dbfs": -6.931748507855472,
+      "dc": 7.781717512342665e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 2891.9531811119846,
+      "strongest_spectral_bin_hz": 750.0,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.002460403905561704,
+        "200-800Hz": 0.21004767821414103,
+        "800-2500Hz": 0.367928469258931,
+        "2500-8000Hz": 0.3658198985202494,
+        "8000-24001Hz": 0.05374355010111704
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 45
+    },
+    {
+      "file": "layers/conjure_rain_02_close_leaf_patter.wav",
+      "source_operation_reconstruction_max_error": 5.960455451772817e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -33.237886094992014,
+      "sample_peak_dbfs": -17.911242290829687,
+      "oversampled4_peak_dbfs": -17.903352032823605,
+      "dc": 8.852393538863571e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 947.4416730911303,
+      "strongest_spectral_bin_hz": 621.09375,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.033378884326003694,
+        "200-800Hz": 0.40881032471397355,
+        "800-2500Hz": 0.5406001848486739,
+        "2500-8000Hz": 0.017028533729131164,
+        "8000-24001Hz": 0.00018207238221787023
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 42
+    },
+    {
+      "file": "layers/conjure_rain_02_individual_drips.wav",
+      "source_operation_reconstruction_max_error": 5.960043292056738e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -40.53742885384927,
+      "sample_peak_dbfs": -18.3575629135429,
+      "oversampled4_peak_dbfs": -18.3450905976662,
+      "dc": 3.046459621853299e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 609.2917811851719,
+      "strongest_spectral_bin_hz": 269.53125,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.003918726908025175,
+        "200-800Hz": 0.8294945607773783,
+        "800-2500Hz": 0.12375012121379142,
+        "2500-8000Hz": 0.04175761154056726,
+        "8000-24001Hz": 0.0010789795602379642
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 6
+    },
+    {
+      "file": "layers/conjure_rain_03_leaf_rain.wav",
+      "source_operation_reconstruction_max_error": 5.960432383766978e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -23.91593027824733,
+      "sample_peak_dbfs": -7.6328010262457,
+      "oversampled4_peak_dbfs": -6.33895474657089,
+      "dc": 2.5663110944959852e-09,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 2971.857955296231,
+      "strongest_spectral_bin_hz": 750.0,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.0038492818005001267,
+        "200-800Hz": 0.18311824535322332,
+        "800-2500Hz": 0.3895335282224984,
+        "2500-8000Hz": 0.3612118283698458,
+        "8000-24001Hz": 0.06228711625393225
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 44
+    },
+    {
+      "file": "layers/conjure_rain_03_close_leaf_patter.wav",
+      "source_operation_reconstruction_max_error": 5.960424994972541e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -33.06396351394882,
+      "sample_peak_dbfs": -15.688107717781815,
+      "oversampled4_peak_dbfs": -15.682580342750745,
+      "dc": -6.843496251989294e-11,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 927.2640225150226,
+      "strongest_spectral_bin_hz": 667.96875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.033119498106323225,
+        "200-800Hz": 0.43982908188277126,
+        "800-2500Hz": 0.512041989591855,
+        "2500-8000Hz": 0.01489265183881666,
+        "8000-24001Hz": 0.00011677858023358591
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 33
+    },
+    {
+      "file": "layers/conjure_rain_03_individual_drips.wav",
+      "source_operation_reconstruction_max_error": 5.960442491523624e-08,
+      "source_gain_recalculation_max_error": 0.0,
+      "rms_dbfs": -40.81096282598124,
+      "sample_peak_dbfs": -18.412208092700567,
+      "oversampled4_peak_dbfs": -18.401806459823998,
+      "dc": 4.536575741238064e-10,
+      "first_sample": 0.0,
+      "last_sample": 0.0,
+      "first5ms_rms_dbfs": -240.0,
+      "last5ms_rms_dbfs": -240.0,
+      "spectral_centroid_hz": 598.6838650470116,
+      "strongest_spectral_bin_hz": 292.96875,
+      "spectral_band_energy_fractions": {
+        "0-200Hz": 0.002146738905341446,
+        "200-800Hz": 0.8564153489248644,
+        "800-2500Hz": 0.1056280742047501,
+        "2500-8000Hz": 0.03487380248259162,
+        "8000-24001Hz": 0.0009360354824523838
+      },
+      "energy_attack_count_25percent_peak_with25ms_separation": 6
+    }
+  ],
+  "previews": [
+    {
+      "spell": "flaming_hands",
+      "preview_exact": true,
+      "breakdown_exact": true,
+      "breakdown_frames": 360000,
+      "isolated_layer_gain": "Identical PCM samples to delivered layer; no solo normalization"
+    },
+    {
+      "spell": "jet_blast",
+      "preview_exact": true,
+      "breakdown_exact": true,
+      "breakdown_frames": 487200,
+      "isolated_layer_gain": "Identical PCM samples to delivered layer; no solo normalization"
+    },
+    {
+      "spell": "ground_surge",
+      "preview_exact": true,
+      "breakdown_exact": true,
+      "breakdown_frames": 379200,
+      "isolated_layer_gain": "Identical PCM samples to delivered layer; no solo normalization"
+    },
+    {
+      "spell": "rime_grip",
+      "preview_exact": true,
+      "breakdown_exact": true,
+      "breakdown_frames": 379200,
+      "isolated_layer_gain": "Identical PCM samples to delivered layer; no solo normalization"
+    },
+    {
+      "spell": "calm",
+      "preview_exact": true,
+      "breakdown_exact": true,
+      "breakdown_frames": 513600,
+      "isolated_layer_gain": "Identical PCM samples to delivered layer; no solo normalization"
+    },
+    {
+      "spell": "conjure_rain",
+      "preview_exact": true,
+      "breakdown_exact": true,
+      "breakdown_frames": 494400,
+      "isolated_layer_gain": "Identical PCM samples to delivered layer; no solo normalization"
+    }
+  ],
+  "source_operations": [
+    {
+      "spell": "flaming_hands",
+      "variant": 1,
+      "layer": "palms_catch",
+      "source": "sources/fire_surge/ignition.flac",
+      "source_sha256": "bd8281bcee65bc705755fd36bdf40d04fadddd474f52fd481233523e178b4ea1"
+    },
+    {
+      "spell": "flaming_hands",
+      "variant": 1,
+      "layer": "palms_catch",
+      "source": "sources/fire_surge/ignition.flac",
+      "source_sha256": "bd8281bcee65bc705755fd36bdf40d04fadddd474f52fd481233523e178b4ea1"
+    },
+    {
+      "spell": "flaming_hands",
+      "variant": 1,
+      "layer": "combustion_body",
+      "source": "sources/fire_surge/fireplace_pagdev.wav",
+      "source_sha256": "85ca0cc60d0c037fff8b185e31ad1fcdbda6ce45eee17c3ee1318d1b8f59e330"
+    },
+    {
+      "spell": "flaming_hands",
+      "variant": 1,
+      "layer": "dry_afterburn",
+      "source": "sources/fire_surge/fire-1.wav",
+      "source_sha256": "26702de8a195bcbafeae72034861d875a1b7917168a25106f4e1957ecdddf7e5"
+    },
+    {
+      "spell": "flaming_hands",
+      "variant": 2,
+      "layer": "palms_catch",
+      "source": "sources/fire_surge/ignition.flac",
+      "source_sha256": "bd8281bcee65bc705755fd36bdf40d04fadddd474f52fd481233523e178b4ea1"
+    },
+    {
+      "spell": "flaming_hands",
+      "variant": 2,
+      "layer": "palms_catch",
+      "source": "sources/fire_surge/ignition.flac",
+      "source_sha256": "bd8281bcee65bc705755fd36bdf40d04fadddd474f52fd481233523e178b4ea1"
+    },
+    {
+      "spell": "flaming_hands",
+      "variant": 2,
+      "layer": "combustion_body",
+      "source": "sources/fire_surge/fireplace_pagdev.wav",
+      "source_sha256": "85ca0cc60d0c037fff8b185e31ad1fcdbda6ce45eee17c3ee1318d1b8f59e330"
+    },
+    {
+      "spell": "flaming_hands",
+      "variant": 2,
+      "layer": "dry_afterburn",
+      "source": "sources/fire_surge/fire-1.wav",
+      "source_sha256": "26702de8a195bcbafeae72034861d875a1b7917168a25106f4e1957ecdddf7e5"
+    },
+    {
+      "spell": "flaming_hands",
+      "variant": 3,
+      "layer": "palms_catch",
+      "source": "sources/fire_surge/ignition.flac",
+      "source_sha256": "bd8281bcee65bc705755fd36bdf40d04fadddd474f52fd481233523e178b4ea1"
+    },
+    {
+      "spell": "flaming_hands",
+      "variant": 3,
+      "layer": "palms_catch",
+      "source": "sources/fire_surge/ignition.flac",
+      "source_sha256": "bd8281bcee65bc705755fd36bdf40d04fadddd474f52fd481233523e178b4ea1"
+    },
+    {
+      "spell": "flaming_hands",
+      "variant": 3,
+      "layer": "combustion_body",
+      "source": "sources/fire_surge/fireplace_pagdev.wav",
+      "source_sha256": "85ca0cc60d0c037fff8b185e31ad1fcdbda6ce45eee17c3ee1318d1b8f59e330"
+    },
+    {
+      "spell": "flaming_hands",
+      "variant": 3,
+      "layer": "dry_afterburn",
+      "source": "sources/fire_surge/fire-1.wav",
+      "source_sha256": "26702de8a195bcbafeae72034861d875a1b7917168a25106f4e1957ecdddf7e5"
+    },
+    {
+      "spell": "jet_blast",
+      "variant": 1,
+      "layer": "liquid_gather",
+      "source": "sources/water_rain/bmaczero_bubbles_loop1.wav",
+      "source_sha256": "94eaef4afc1146dcdfd3077cc7a6cbe6dc97daac62b8f6560dfc913dd57488a9"
+    },
+    {
+      "spell": "jet_blast",
+      "variant": 1,
+      "layer": "pressurized_water",
+      "source": "sources/water_rain/transitking_wave_01.flac",
+      "source_sha256": "0bd84b2061a82c234470bd4e16efc6ab24851928d3f93e1757bfea048b2d7a33"
+    },
+    {
+      "spell": "jet_blast",
+      "variant": 1,
+      "layer": "wet_slap",
+      "source": "sources/water_rain/thimras_ocean_splash.ogg",
+      "source_sha256": "d91a1effc2964673033fa9f8d22093029fa0b500aea0bafb86724738c0e89fe3"
+    },
+    {
+      "spell": "jet_blast",
+      "variant": 1,
+      "layer": "bubbles_and_runoff",
+      "source": "sources/water_rain/bmaczero_bubbles_single1.wav",
+      "source_sha256": "014228835d2b255cf300f94c60db8ec661ec15b5b5c097d5f47b148d6a81fdc5"
+    },
+    {
+      "spell": "jet_blast",
+      "variant": 1,
+      "layer": "bubbles_and_runoff",
+      "source": "sources/water_rain/bmaczero_bubbles_single1.wav",
+      "source_sha256": "014228835d2b255cf300f94c60db8ec661ec15b5b5c097d5f47b148d6a81fdc5"
+    },
+    {
+      "spell": "jet_blast",
+      "variant": 1,
+      "layer": "bubbles_and_runoff",
+      "source": "sources/water_rain/bmaczero_bubbles_single1.wav",
+      "source_sha256": "014228835d2b255cf300f94c60db8ec661ec15b5b5c097d5f47b148d6a81fdc5"
+    },
+    {
+      "spell": "jet_blast",
+      "variant": 2,
+      "layer": "liquid_gather",
+      "source": "sources/water_rain/bmaczero_bubbles_loop1.wav",
+      "source_sha256": "94eaef4afc1146dcdfd3077cc7a6cbe6dc97daac62b8f6560dfc913dd57488a9"
+    },
+    {
+      "spell": "jet_blast",
+      "variant": 2,
+      "layer": "pressurized_water",
+      "source": "sources/water_rain/transitking_wave_01.flac",
+      "source_sha256": "0bd84b2061a82c234470bd4e16efc6ab24851928d3f93e1757bfea048b2d7a33"
+    },
+    {
+      "spell": "jet_blast",
+      "variant": 2,
+      "layer": "wet_slap",
+      "source": "sources/water_rain/thimras_ocean_splash.ogg",
+      "source_sha256": "d91a1effc2964673033fa9f8d22093029fa0b500aea0bafb86724738c0e89fe3"
+    },
+    {
+      "spell": "jet_blast",
+      "variant": 2,
+      "layer": "bubbles_and_runoff",
+      "source": "sources/water_rain/bmaczero_bubbles_single1.wav",
+      "source_sha256": "014228835d2b255cf300f94c60db8ec661ec15b5b5c097d5f47b148d6a81fdc5"
+    },
+    {
+      "spell": "jet_blast",
+      "variant": 2,
+      "layer": "bubbles_and_runoff",
+      "source": "sources/water_rain/bmaczero_bubbles_single1.wav",
+      "source_sha256": "014228835d2b255cf300f94c60db8ec661ec15b5b5c097d5f47b148d6a81fdc5"
+    },
+    {
+      "spell": "jet_blast",
+      "variant": 2,
+      "layer": "bubbles_and_runoff",
+      "source": "sources/water_rain/bmaczero_bubbles_single1.wav",
+      "source_sha256": "014228835d2b255cf300f94c60db8ec661ec15b5b5c097d5f47b148d6a81fdc5"
+    },
+    {
+      "spell": "jet_blast",
+      "variant": 3,
+      "layer": "liquid_gather",
+      "source": "sources/water_rain/bmaczero_bubbles_loop1.wav",
+      "source_sha256": "94eaef4afc1146dcdfd3077cc7a6cbe6dc97daac62b8f6560dfc913dd57488a9"
+    },
+    {
+      "spell": "jet_blast",
+      "variant": 3,
+      "layer": "pressurized_water",
+      "source": "sources/water_rain/transitking_wave_01.flac",
+      "source_sha256": "0bd84b2061a82c234470bd4e16efc6ab24851928d3f93e1757bfea048b2d7a33"
+    },
+    {
+      "spell": "jet_blast",
+      "variant": 3,
+      "layer": "wet_slap",
+      "source": "sources/water_rain/thimras_ocean_splash.ogg",
+      "source_sha256": "d91a1effc2964673033fa9f8d22093029fa0b500aea0bafb86724738c0e89fe3"
+    },
+    {
+      "spell": "jet_blast",
+      "variant": 3,
+      "layer": "bubbles_and_runoff",
+      "source": "sources/water_rain/bmaczero_bubbles_single1.wav",
+      "source_sha256": "014228835d2b255cf300f94c60db8ec661ec15b5b5c097d5f47b148d6a81fdc5"
+    },
+    {
+      "spell": "jet_blast",
+      "variant": 3,
+      "layer": "bubbles_and_runoff",
+      "source": "sources/water_rain/bmaczero_bubbles_single1.wav",
+      "source_sha256": "014228835d2b255cf300f94c60db8ec661ec15b5b5c097d5f47b148d6a81fdc5"
+    },
+    {
+      "spell": "jet_blast",
+      "variant": 3,
+      "layer": "bubbles_and_runoff",
+      "source": "sources/water_rain/bmaczero_bubbles_single1.wav",
+      "source_sha256": "014228835d2b255cf300f94c60db8ec661ec15b5b5c097d5f47b148d6a81fdc5"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 1,
+      "layer": "charging_current",
+      "source": "sources/fire_surge/continuousspark.wav",
+      "source_sha256": "4ec24045b4fb6a88b958d00f16cc39b8aa992cd6e6a5edb4ecb0f34b36ddb18b"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 1,
+      "layer": "advancing_arcs",
+      "source": "sources/fire_surge/spark.wav",
+      "source_sha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 1,
+      "layer": "advancing_arcs",
+      "source": "sources/fire_surge/spark.wav",
+      "source_sha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 1,
+      "layer": "advancing_arcs",
+      "source": "sources/fire_surge/spark.wav",
+      "source_sha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 1,
+      "layer": "advancing_arcs",
+      "source": "sources/fire_surge/spark.wav",
+      "source_sha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 1,
+      "layer": "advancing_arcs",
+      "source": "sources/fire_surge/continuousspark.wav",
+      "source_sha256": "4ec24045b4fb6a88b958d00f16cc39b8aa992cd6e6a5edb4ecb0f34b36ddb18b"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 1,
+      "layer": "ground_fracture",
+      "source": "sources/fire_surge/rock_break.ogg",
+      "source_sha256": "b645f35d21194e7855dd4a5405b1e8e6bec070731b92df6abcb202676b8e9f2e"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 1,
+      "layer": "grit_displacement",
+      "source": "sources/fire_surge/gravel.ogg",
+      "source_sha256": "34e6057ec1581b5cb8802e4942952b00b1dac235bfcb0ed8cff0ceb15a3ebbbf"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 1,
+      "layer": "grit_displacement",
+      "source": "sources/fire_surge/stone01.ogg",
+      "source_sha256": "99b04d784eb6b531777a64fb0e319f104eb7cdd6b625c1fac68f511605930a2c"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 2,
+      "layer": "charging_current",
+      "source": "sources/fire_surge/continuousspark.wav",
+      "source_sha256": "4ec24045b4fb6a88b958d00f16cc39b8aa992cd6e6a5edb4ecb0f34b36ddb18b"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 2,
+      "layer": "advancing_arcs",
+      "source": "sources/fire_surge/spark.wav",
+      "source_sha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 2,
+      "layer": "advancing_arcs",
+      "source": "sources/fire_surge/spark.wav",
+      "source_sha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 2,
+      "layer": "advancing_arcs",
+      "source": "sources/fire_surge/spark.wav",
+      "source_sha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 2,
+      "layer": "advancing_arcs",
+      "source": "sources/fire_surge/spark.wav",
+      "source_sha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 2,
+      "layer": "advancing_arcs",
+      "source": "sources/fire_surge/continuousspark.wav",
+      "source_sha256": "4ec24045b4fb6a88b958d00f16cc39b8aa992cd6e6a5edb4ecb0f34b36ddb18b"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 2,
+      "layer": "ground_fracture",
+      "source": "sources/fire_surge/rock_break.ogg",
+      "source_sha256": "b645f35d21194e7855dd4a5405b1e8e6bec070731b92df6abcb202676b8e9f2e"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 2,
+      "layer": "grit_displacement",
+      "source": "sources/fire_surge/gravel.ogg",
+      "source_sha256": "34e6057ec1581b5cb8802e4942952b00b1dac235bfcb0ed8cff0ceb15a3ebbbf"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 2,
+      "layer": "grit_displacement",
+      "source": "sources/fire_surge/stone01.ogg",
+      "source_sha256": "99b04d784eb6b531777a64fb0e319f104eb7cdd6b625c1fac68f511605930a2c"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 3,
+      "layer": "charging_current",
+      "source": "sources/fire_surge/continuousspark.wav",
+      "source_sha256": "4ec24045b4fb6a88b958d00f16cc39b8aa992cd6e6a5edb4ecb0f34b36ddb18b"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 3,
+      "layer": "advancing_arcs",
+      "source": "sources/fire_surge/spark.wav",
+      "source_sha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 3,
+      "layer": "advancing_arcs",
+      "source": "sources/fire_surge/spark.wav",
+      "source_sha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 3,
+      "layer": "advancing_arcs",
+      "source": "sources/fire_surge/spark.wav",
+      "source_sha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 3,
+      "layer": "advancing_arcs",
+      "source": "sources/fire_surge/spark.wav",
+      "source_sha256": "9a3d987bdf7f405570aa015f6da42596ce84c5073c18c0561be7cd3ae401bc97"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 3,
+      "layer": "advancing_arcs",
+      "source": "sources/fire_surge/continuousspark.wav",
+      "source_sha256": "4ec24045b4fb6a88b958d00f16cc39b8aa992cd6e6a5edb4ecb0f34b36ddb18b"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 3,
+      "layer": "ground_fracture",
+      "source": "sources/fire_surge/rock_break.ogg",
+      "source_sha256": "b645f35d21194e7855dd4a5405b1e8e6bec070731b92df6abcb202676b8e9f2e"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 3,
+      "layer": "grit_displacement",
+      "source": "sources/fire_surge/gravel.ogg",
+      "source_sha256": "34e6057ec1581b5cb8802e4942952b00b1dac235bfcb0ed8cff0ceb15a3ebbbf"
+    },
+    {
+      "spell": "ground_surge",
+      "variant": 3,
+      "layer": "grit_displacement",
+      "source": "sources/fire_surge/stone01.ogg",
+      "source_sha256": "99b04d784eb6b531777a64fb0e319f104eb7cdd6b625c1fac68f511605930a2c"
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 1,
+      "layer": "inward_ice_stress",
+      "source": "sources/ice_calm/wood-creak-ice-pressure-PROXY_SilentStrikeZ_public-hq-preview.mp3",
+      "source_sha256": "2f58585670e4a1f13587d2e2847739a9ab3192ee86acb3af80da265fd357d6a8"
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 1,
+      "layer": "inward_ice_stress",
+      "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta4.ogg",
+      "source_sha256": "81558c035953d4e595640be7ba1a645c47c6f4b72f38de43a44d36fa70d52b8c"
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 1,
+      "layer": "brittle_lock",
+      "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta33.ogg",
+      "source_sha256": "fedcd280ffaea38c365647f131eaae71cf2b9e1721c2fce1b539884c9199074a"
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 1,
+      "layer": "brittle_lock",
+      "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta2.ogg",
+      "source_sha256": "92a20369f866c852f841ffaef31676cb70f542592504b040327c60f5101f9c47"
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 1,
+      "layer": "settling_fragments",
+      "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta.ogg",
+      "source_sha256": "4c7304ac47f84e41b62edb71082d00fe01823a2a54ec4e4268a040c973e3510f"
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 1,
+      "layer": "settling_fragments",
+      "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta.ogg",
+      "source_sha256": "4c7304ac47f84e41b62edb71082d00fe01823a2a54ec4e4268a040c973e3510f"
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 1,
+      "layer": "settling_fragments",
+      "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta.ogg",
+      "source_sha256": "4c7304ac47f84e41b62edb71082d00fe01823a2a54ec4e4268a040c973e3510f"
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 2,
+      "layer": "inward_ice_stress",
+      "source": "sources/ice_calm/wood-creak-ice-pressure-PROXY_SilentStrikeZ_public-hq-preview.mp3",
+      "source_sha256": "2f58585670e4a1f13587d2e2847739a9ab3192ee86acb3af80da265fd357d6a8"
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 2,
+      "layer": "inward_ice_stress",
+      "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta4.ogg",
+      "source_sha256": "81558c035953d4e595640be7ba1a645c47c6f4b72f38de43a44d36fa70d52b8c"
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 2,
+      "layer": "brittle_lock",
+      "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta33.ogg",
+      "source_sha256": "fedcd280ffaea38c365647f131eaae71cf2b9e1721c2fce1b539884c9199074a"
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 2,
+      "layer": "brittle_lock",
+      "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta2.ogg",
+      "source_sha256": "92a20369f866c852f841ffaef31676cb70f542592504b040327c60f5101f9c47"
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 2,
+      "layer": "settling_fragments",
+      "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta.ogg",
+      "source_sha256": "4c7304ac47f84e41b62edb71082d00fe01823a2a54ec4e4268a040c973e3510f"
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 2,
+      "layer": "settling_fragments",
+      "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta.ogg",
+      "source_sha256": "4c7304ac47f84e41b62edb71082d00fe01823a2a54ec4e4268a040c973e3510f"
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 2,
+      "layer": "settling_fragments",
+      "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta.ogg",
+      "source_sha256": "4c7304ac47f84e41b62edb71082d00fe01823a2a54ec4e4268a040c973e3510f"
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 3,
+      "layer": "inward_ice_stress",
+      "source": "sources/ice_calm/wood-creak-ice-pressure-PROXY_SilentStrikeZ_public-hq-preview.mp3",
+      "source_sha256": "2f58585670e4a1f13587d2e2847739a9ab3192ee86acb3af80da265fd357d6a8"
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 3,
+      "layer": "inward_ice_stress",
+      "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta4.ogg",
+      "source_sha256": "81558c035953d4e595640be7ba1a645c47c6f4b72f38de43a44d36fa70d52b8c"
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 3,
+      "layer": "brittle_lock",
+      "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta33.ogg",
+      "source_sha256": "fedcd280ffaea38c365647f131eaae71cf2b9e1721c2fce1b539884c9199074a"
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 3,
+      "layer": "brittle_lock",
+      "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta2.ogg",
+      "source_sha256": "92a20369f866c852f841ffaef31676cb70f542592504b040327c60f5101f9c47"
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 3,
+      "layer": "settling_fragments",
+      "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta.ogg",
+      "source_sha256": "4c7304ac47f84e41b62edb71082d00fe01823a2a54ec4e4268a040c973e3510f"
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 3,
+      "layer": "settling_fragments",
+      "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta.ogg",
+      "source_sha256": "4c7304ac47f84e41b62edb71082d00fe01823a2a54ec4e4268a040c973e3510f"
+    },
+    {
+      "spell": "rime_grip",
+      "variant": 3,
+      "layer": "settling_fragments",
+      "source": "sources/ice_calm/ice-shatters/IceShatters/LedasLuzta.ogg",
+      "source_sha256": "4c7304ac47f84e41b62edb71082d00fe01823a2a54ec4e4268a040c973e3510f"
+    },
+    {
+      "spell": "calm",
+      "variant": 1,
+      "layer": "warm_bowl_body",
+      "source": "sources/ice_calm/rubbed-singing-bowl_ryancacophony_public-hq-preview.mp3",
+      "source_sha256": "db7b0ec10e8445c12c32e3863fdd99a30968804b4ede2f88762d35152a6ab446"
+    },
+    {
+      "spell": "calm",
+      "variant": 1,
+      "layer": "resolved_overtone",
+      "source": "sources/ice_calm/rubbed-singing-bowl_ryancacophony_public-hq-preview.mp3",
+      "source_sha256": "db7b0ec10e8445c12c32e3863fdd99a30968804b4ede2f88762d35152a6ab446"
+    },
+    {
+      "spell": "calm",
+      "variant": 1,
+      "layer": "human_exhale",
+      "source": "sources/ice_calm/exhale_otherthings_public-hq-preview.mp3",
+      "source_sha256": "95bc583a39573d45851cdf7c940d6269e852f063a574cb0ca8ceaa6bd1329a30"
+    },
+    {
+      "spell": "calm",
+      "variant": 2,
+      "layer": "warm_bowl_body",
+      "source": "sources/ice_calm/rubbed-singing-bowl_ryancacophony_public-hq-preview.mp3",
+      "source_sha256": "db7b0ec10e8445c12c32e3863fdd99a30968804b4ede2f88762d35152a6ab446"
+    },
+    {
+      "spell": "calm",
+      "variant": 2,
+      "layer": "resolved_overtone",
+      "source": "sources/ice_calm/rubbed-singing-bowl_ryancacophony_public-hq-preview.mp3",
+      "source_sha256": "db7b0ec10e8445c12c32e3863fdd99a30968804b4ede2f88762d35152a6ab446"
+    },
+    {
+      "spell": "calm",
+      "variant": 2,
+      "layer": "human_exhale",
+      "source": "sources/ice_calm/exhale_otherthings_public-hq-preview.mp3",
+      "source_sha256": "95bc583a39573d45851cdf7c940d6269e852f063a574cb0ca8ceaa6bd1329a30"
+    },
+    {
+      "spell": "calm",
+      "variant": 3,
+      "layer": "warm_bowl_body",
+      "source": "sources/ice_calm/rubbed-singing-bowl_ryancacophony_public-hq-preview.mp3",
+      "source_sha256": "db7b0ec10e8445c12c32e3863fdd99a30968804b4ede2f88762d35152a6ab446"
+    },
+    {
+      "spell": "calm",
+      "variant": 3,
+      "layer": "resolved_overtone",
+      "source": "sources/ice_calm/rubbed-singing-bowl_ryancacophony_public-hq-preview.mp3",
+      "source_sha256": "db7b0ec10e8445c12c32e3863fdd99a30968804b4ede2f88762d35152a6ab446"
+    },
+    {
+      "spell": "calm",
+      "variant": 3,
+      "layer": "human_exhale",
+      "source": "sources/ice_calm/exhale_otherthings_public-hq-preview.mp3",
+      "source_sha256": "95bc583a39573d45851cdf7c940d6269e852f063a574cb0ca8ceaa6bd1329a30"
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 1,
+      "layer": "leaf_rain",
+      "source": "sources/water_rain/samsterbirdies_rain_on_leaves_hq.mp3",
+      "source_sha256": "98937a7ce64e973dbaa3d7879f41500d4e15e3b8b4ea30f6b927af5bf0d53977"
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 1,
+      "layer": "close_leaf_patter",
+      "source": "sources/water_rain/samsterbirdies_rain_on_leaves_hq.mp3",
+      "source_sha256": "98937a7ce64e973dbaa3d7879f41500d4e15e3b8b4ea30f6b927af5bf0d53977"
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 1,
+      "layer": "individual_drips",
+      "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+      "source_sha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37"
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 1,
+      "layer": "individual_drips",
+      "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+      "source_sha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37"
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 1,
+      "layer": "individual_drips",
+      "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+      "source_sha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37"
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 1,
+      "layer": "individual_drips",
+      "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+      "source_sha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37"
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 1,
+      "layer": "individual_drips",
+      "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+      "source_sha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37"
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 2,
+      "layer": "leaf_rain",
+      "source": "sources/water_rain/samsterbirdies_rain_on_leaves_hq.mp3",
+      "source_sha256": "98937a7ce64e973dbaa3d7879f41500d4e15e3b8b4ea30f6b927af5bf0d53977"
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 2,
+      "layer": "close_leaf_patter",
+      "source": "sources/water_rain/samsterbirdies_rain_on_leaves_hq.mp3",
+      "source_sha256": "98937a7ce64e973dbaa3d7879f41500d4e15e3b8b4ea30f6b927af5bf0d53977"
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 2,
+      "layer": "individual_drips",
+      "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+      "source_sha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37"
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 2,
+      "layer": "individual_drips",
+      "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+      "source_sha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37"
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 2,
+      "layer": "individual_drips",
+      "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+      "source_sha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37"
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 2,
+      "layer": "individual_drips",
+      "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+      "source_sha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37"
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 2,
+      "layer": "individual_drips",
+      "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+      "source_sha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37"
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 3,
+      "layer": "leaf_rain",
+      "source": "sources/water_rain/samsterbirdies_rain_on_leaves_hq.mp3",
+      "source_sha256": "98937a7ce64e973dbaa3d7879f41500d4e15e3b8b4ea30f6b927af5bf0d53977"
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 3,
+      "layer": "close_leaf_patter",
+      "source": "sources/water_rain/samsterbirdies_rain_on_leaves_hq.mp3",
+      "source_sha256": "98937a7ce64e973dbaa3d7879f41500d4e15e3b8b4ea30f6b927af5bf0d53977"
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 3,
+      "layer": "individual_drips",
+      "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+      "source_sha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37"
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 3,
+      "layer": "individual_drips",
+      "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+      "source_sha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37"
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 3,
+      "layer": "individual_drips",
+      "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+      "source_sha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37"
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 3,
+      "layer": "individual_drips",
+      "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+      "source_sha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37"
+    },
+    {
+      "spell": "conjure_rain",
+      "variant": 3,
+      "layer": "individual_drips",
+      "source": "sources/water_rain/angeloyazar_water_drops.ogg",
+      "source_sha256": "48857b0463638599d22f1d4bf70ba0d91456f0a6ef75c29fa85d70a8d8d3eb37"
+    }
+  ],
+  "identity_comparisons": [
+    {
+      "first": "flaming_hands",
+      "second": "jet_blast",
+      "common_recorded_sources": [],
+      "aligned_normalized_waveform_correlation": 0.016153256126611417
+    },
+    {
+      "first": "flaming_hands",
+      "second": "ground_surge",
+      "common_recorded_sources": [],
+      "aligned_normalized_waveform_correlation": -0.007306545018240676
+    },
+    {
+      "first": "flaming_hands",
+      "second": "rime_grip",
+      "common_recorded_sources": [],
+      "aligned_normalized_waveform_correlation": 0.000803182869123378
+    },
+    {
+      "first": "flaming_hands",
+      "second": "calm",
+      "common_recorded_sources": [],
+      "aligned_normalized_waveform_correlation": 0.0035756574631741595
+    },
+    {
+      "first": "flaming_hands",
+      "second": "conjure_rain",
+      "common_recorded_sources": [],
+      "aligned_normalized_waveform_correlation": -0.0019044530573486783
+    },
+    {
+      "first": "jet_blast",
+      "second": "ground_surge",
+      "common_recorded_sources": [],
+      "aligned_normalized_waveform_correlation": -0.015253725709295509
+    },
+    {
+      "first": "jet_blast",
+      "second": "rime_grip",
+      "common_recorded_sources": [],
+      "aligned_normalized_waveform_correlation": 0.011198138672158579
+    },
+    {
+      "first": "jet_blast",
+      "second": "calm",
+      "common_recorded_sources": [],
+      "aligned_normalized_waveform_correlation": -0.006656171699756109
+    },
+    {
+      "first": "jet_blast",
+      "second": "conjure_rain",
+      "common_recorded_sources": [],
+      "aligned_normalized_waveform_correlation": 0.0014992118091934645
+    },
+    {
+      "first": "ground_surge",
+      "second": "rime_grip",
+      "common_recorded_sources": [],
+      "aligned_normalized_waveform_correlation": 0.014513994918408848
+    },
+    {
+      "first": "ground_surge",
+      "second": "calm",
+      "common_recorded_sources": [],
+      "aligned_normalized_waveform_correlation": 0.004183694475640692
+    },
+    {
+      "first": "ground_surge",
+      "second": "conjure_rain",
+      "common_recorded_sources": [],
+      "aligned_normalized_waveform_correlation": -0.002509494942842158
+    },
+    {
+      "first": "rime_grip",
+      "second": "calm",
+      "common_recorded_sources": [],
+      "aligned_normalized_waveform_correlation": -0.0017641964354329063
+    },
+    {
+      "first": "rime_grip",
+      "second": "conjure_rain",
+      "common_recorded_sources": [],
+      "aligned_normalized_waveform_correlation": -0.013014961659829898
+    },
+    {
+      "first": "calm",
+      "second": "conjure_rain",
+      "common_recorded_sources": [],
+      "aligned_normalized_waveform_correlation": 0.00794790579185122
+    }
+  ],
+  "mixer_calls": [
+    "(ROOT / 'manifest.json').write_text",
+    "(ROOT / folder).rglob",
+    "(ROOT / source).read_bytes",
+    "Path",
+    "Path(__file__).resolve",
+    "Study",
+    "butter",
+    "data[a:b].copy",
+    "decode",
+    "enumerate",
+    "export",
+    "fade",
+    "float",
+    "hashlib.sha256",
+    "hashlib.sha256((ROOT / source).read_bytes()).hexdigest",
+    "hashlib.sha256(p.read_bytes()).hexdigest",
+    "heroes.append",
+    "json.dumps",
+    "l.pop",
+    "l['events'].append",
+    "len",
+    "lru_cache",
+    "main",
+    "make",
+    "manifest['spells'].append",
+    "master.parent.mkdir",
+    "math.log2",
+    "max",
+    "min",
+    "np.abs",
+    "np.arange",
+    "np.concatenate",
+    "np.frombuffer",
+    "np.frombuffer(raw, np.float32).astype",
+    "np.interp",
+    "np.linspace",
+    "np.max",
+    "np.mean",
+    "np.rint",
+    "np.rint(x * 8388608).astype",
+    "np.sin",
+    "np.sqrt",
+    "np.stack",
+    "np.stack([val & 255, val >> 8 & 255, val >> 16 & 255], axis=1).astype",
+    "np.tanh",
+    "np.zeros",
+    "p.read_bytes",
+    "p.relative_to",
+    "path.parent.mkdir",
+    "print",
+    "raw.tobytes",
+    "resample_poly",
+    "round",
+    "row['layers'].append",
+    "s.event",
+    "s.finalize",
+    "s.layer",
+    "self.layers.append",
+    "sosfilt",
+    "spell['variants'].append",
+    "str",
+    "subprocess.check_output",
+    "sum",
+    "w.setframerate",
+    "w.setnchannels",
+    "w.setsampwidth",
+    "w.writeframes",
+    "wave.open",
+    "wavfile.write",
+    "x.astype",
+    "x.copy",
+    "zip"
+  ],
+  "synthesized_source_call_findings": [],
+  "semantic_review": {
+    "flaming_hands": "Match flare and burning-fire recordings match catching flame, combustion body and dry afterburn.",
+    "jet_blast": "Distinct liquid bubbles, wave and splash recordings match gathered water, coherent mass and contact/runoff; ocean recording remains an explicitly documented pressure-water proxy.",
+    "ground_surge": "Real Tesla recordings retain electrical identity, with stone/gravel physical-ground Foley; no collapse result is asserted.",
+    "rime_grip": "Wooden strain is an explicitly named pressure proxy; distinct ice-labelled fractures close and settle. Recorded provenance does not claim raw ice formation.",
+    "calm": "Bowl body, related bowl resonance and real exhale fit nonviolent release. No bamboo or generic wind is present in final mix operations.",
+    "conjure_rain": "Actual foliage rain dominates; isolated water-drop records provide small wet contacts. Source windows need to select actual drops rather than near-background sections."
+  },
+  "honesty_bounds": "Signal identity metrics and disjoint source sets demonstrate technical differences, not perceptual recognizability, enjoyment or user approval. Runtime synchronization and conditional status cues are not implemented or assessed by this asset audit."
+}

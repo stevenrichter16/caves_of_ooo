@@ -33,6 +33,10 @@ namespace CavesOfOoo.Core
         /// keeps a fraction of a debuff forever.</summary>
         public int AppliedPenalty;
 
+        // Grip points are body offsets, not anchors. Primitive fields preserve
+        // the hand/load contact through save/load; old single-cell saves use zero.
+        public int LoadGripX, LoadGripY, HaulerGripX, HaulerGripY;
+
         /// <summary>
         /// The follow rule (D3). When the hauler finishes a move, the load
         /// is pulled into the cell the hauler just left.
@@ -160,6 +164,14 @@ namespace CavesOfOoo.Core
             }
 
             var dragPart = new DragPart { Dragged = target, SpeedPenalty = PenaltyFor(target) };
+            var actorAnchor=zone.GetEntityCell(actor);
+            var loadAnchor=zone.GetEntityCell(target);
+            var loadContact=SpatialQuery.ClosestCell(zone,target,actorAnchor.X,actorAnchor.Y);
+            var handContact=SpatialQuery.ClosestCell(zone,actor,loadContact.X,loadContact.Y);
+            dragPart.LoadGripX=loadContact.X-loadAnchor.X;
+            dragPart.LoadGripY=loadContact.Y-loadAnchor.Y;
+            dragPart.HaulerGripX=handContact.X-actorAnchor.X;
+            dragPart.HaulerGripY=handContact.Y-actorAnchor.Y;
             var draggedPart = new DraggedPart { Dragger = actor };
             actor.AddPart(dragPart);
             target.AddPart(draggedPart);
@@ -210,17 +222,7 @@ namespace CavesOfOoo.Core
         /// sit within <see cref="GrabReach"/> cells of each other.</summary>
         private static bool WithinReach(Entity actor, Entity target, Zone zone)
         {
-            if (zone == null) return false;
-
-            (int ax, int ay) = zone.GetEntityPosition(actor);
-            if (ax < 0 || ay < 0) return false;
-
-            (int tx, int ty) = zone.GetEntityPosition(target);
-            if (tx < 0 || ty < 0) return false;
-
-            int dx = ax - tx; if (dx < 0) dx = -dx;
-            int dy = ay - ty; if (dy < 0) dy = -dy;
-            return dx <= GrabReach && dy <= GrabReach;
+            return SpatialQuery.Distance(zone,actor,target) <= GrabReach;
         }
 
         // ════════════════════════════════════════════════════════
@@ -376,8 +378,12 @@ namespace CavesOfOoo.Core
             if (!ReferenceEquals(hauler.GetPart<DragPart>(), grip)
                 || !ReferenceEquals(grip.Dragged, load)) return;
 
+            x += grip.HaulerGripX - grip.LoadGripX;
+            y += grip.HaulerGripY - grip.LoadGripY;
             var destination = zone.GetCell(x, y);
             if (destination == null) { Slip(hauler, load, "off the map"); return; }
+            if(load.HasPart<SpatialFootprintPart>() && !zone.CanPlaceFootprint(load,x,y))
+            {Slip(hauler,load,"body blocked");return;}
 
             // BlocksMovement, not IsSolid: the latter tests the Solid tag
             // alone, and the haulable furniture sets only PhysicsPart.Solid.

@@ -1,0 +1,5918 @@
+{
+  "schemaVersion": 1,
+  "id": "spawn-ring-3d",
+  "zoneWidth": 80,
+  "zoneHeight": 25,
+  "coordinates": "Unity X east,Y height,Z north; 1 unit per native cell; source Blender X east,Y north,Z up",
+  "paletteTexture": "textures/SpawnRingPalette.png",
+  "models": [
+    {
+      "id": "ring-ash-bed-0",
+      "path": "models/ring-ash-bed-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 520,
+      "boundsCenter": {
+        "x": 0.040904,
+        "y": 0.048074,
+        "z": 0.069273
+      },
+      "boundsSize": {
+        "x": 0.795009,
+        "y": 0.087147,
+        "z": 0.662522
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-ash-bed-1",
+      "path": "models/ring-ash-bed-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 520,
+      "boundsCenter": {
+        "x": 0.023055,
+        "y": 0.048074,
+        "z": 0.050659
+      },
+      "boundsSize": {
+        "x": 0.668295,
+        "y": 0.087147,
+        "z": 0.652975
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-ash-bed-2",
+      "path": "models/ring-ash-bed-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 520,
+      "boundsCenter": {
+        "x": 0.030308,
+        "y": 0.048074,
+        "z": 0.041362
+      },
+      "boundsSize": {
+        "x": 0.611681,
+        "y": 0.087147,
+        "z": 0.682958
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-ash-bed-3",
+      "path": "models/ring-ash-bed-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 520,
+      "boundsCenter": {
+        "x": 0.025481,
+        "y": 0.048074,
+        "z": 0.031388
+      },
+      "boundsSize": {
+        "x": 0.778642,
+        "y": 0.087147,
+        "z": 0.567544
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-brine-pool-0",
+      "path": "models/ring-brine-pool-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 132,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.0355,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.037,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-brine-pool-1",
+      "path": "models/ring-brine-pool-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 132,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.0355,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.037,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-brine-pool-2",
+      "path": "models/ring-brine-pool-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 132,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.0355,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.037,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-brine-pool-3",
+      "path": "models/ring-brine-pool-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 132,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.0355,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.037,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-bush-0",
+      "path": "models/ring-bush-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 1220,
+      "boundsCenter": {
+        "x": -0.076795,
+        "y": 0.4492,
+        "z": -0.004151
+      },
+      "boundsSize": {
+        "x": 0.805111,
+        "y": 0.5016,
+        "z": 0.976847
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-bush-1",
+      "path": "models/ring-bush-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 1200,
+      "boundsCenter": {
+        "x": -0.03676,
+        "y": 0.489908,
+        "z": 0.021191
+      },
+      "boundsSize": {
+        "x": 0.892531,
+        "y": 0.528967,
+        "z": 0.845878
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-bush-2",
+      "path": "models/ring-bush-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 1380,
+      "boundsCenter": {
+        "x": -0.022992,
+        "y": 0.436219,
+        "z": -0.016685
+      },
+      "boundsSize": {
+        "x": 0.985119,
+        "y": 0.527562,
+        "z": 0.893669
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-bush-3",
+      "path": "models/ring-bush-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 1200,
+      "boundsCenter": {
+        "x": -0.024899,
+        "y": 0.397976,
+        "z": -0.055333
+      },
+      "boundsSize": {
+        "x": 0.949043,
+        "y": 0.468779,
+        "z": 0.914169
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-campfire",
+      "path": "models/ring-campfire.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 520,
+      "boundsCenter": {
+        "x": 0.012525,
+        "y": 0.1725,
+        "z": 0.001849
+      },
+      "boundsSize": {
+        "x": 0.738223,
+        "y": 0.315,
+        "z": 0.740546
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-cascade-father",
+      "path": "models/ring-cascade-father.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "frog",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "triangles": 892,
+      "boundsCenter": {
+        "x": -0.000126,
+        "y": 0.177,
+        "z": -0.01165
+      },
+      "boundsSize": {
+        "x": 0.818944,
+        "y": 0.364,
+        "z": 0.5097
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-cave-hermit",
+      "path": "models/ring-cave-hermit.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "triangles": 1140,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.8625,
+        "z": -0.0075
+      },
+      "boundsSize": {
+        "x": 1.125718,
+        "y": 1.765,
+        "z": 0.865
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-chest",
+      "path": "models/ring-chest.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 300,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.31125,
+        "z": -0.02
+      },
+      "boundsSize": {
+        "x": 0.75,
+        "y": 0.5825,
+        "z": 0.56
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-choir-iron-vein-0",
+      "path": "models/ring-choir-iron-vein-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 402,
+      "boundsCenter": {
+        "x": -0.003002,
+        "y": 0.206422,
+        "z": -0.051927
+      },
+      "boundsSize": {
+        "x": 0.97146,
+        "y": 0.412844,
+        "z": 0.707298
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-choir-iron-vein-1",
+      "path": "models/ring-choir-iron-vein-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 402,
+      "boundsCenter": {
+        "x": -0.003002,
+        "y": 0.206422,
+        "z": -0.020356
+      },
+      "boundsSize": {
+        "x": 0.97146,
+        "y": 0.412844,
+        "z": 0.638166
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-choir-iron-vein-2",
+      "path": "models/ring-choir-iron-vein-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 402,
+      "boundsCenter": {
+        "x": -0.003002,
+        "y": 0.206422,
+        "z": -0.00246
+      },
+      "boundsSize": {
+        "x": 0.97146,
+        "y": 0.412844,
+        "z": 0.601527
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-choir-iron-vein-3",
+      "path": "models/ring-choir-iron-vein-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 402,
+      "boundsCenter": {
+        "x": -0.003002,
+        "y": 0.206422,
+        "z": 0.001384
+      },
+      "boundsSize": {
+        "x": 0.97146,
+        "y": 0.412844,
+        "z": 0.586224
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-choir-tendril",
+      "path": "models/ring-choir-tendril.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "rooted",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "triangles": 828,
+      "boundsCenter": {
+        "x": 0.00105,
+        "y": 0.525,
+        "z": 0.003227
+      },
+      "boundsSize": {
+        "x": 0.868963,
+        "y": 1.09,
+        "z": 0.86469
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-compost-cache-0",
+      "path": "models/ring-compost-cache-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 526,
+      "boundsCenter": {
+        "x": -0.041663,
+        "y": 0.147,
+        "z": -0.012041
+      },
+      "boundsSize": {
+        "x": 0.877186,
+        "y": 0.284,
+        "z": 0.531342
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-compost-cache-1",
+      "path": "models/ring-compost-cache-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 526,
+      "boundsCenter": {
+        "x": 0.097063,
+        "y": 0.147,
+        "z": -0.039504
+      },
+      "boundsSize": {
+        "x": 0.837836,
+        "y": 0.284,
+        "z": 0.497302
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-compost-cache-2",
+      "path": "models/ring-compost-cache-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 524,
+      "boundsCenter": {
+        "x": 0.078665,
+        "y": 0.147,
+        "z": -0.028756
+      },
+      "boundsSize": {
+        "x": 0.842284,
+        "y": 0.284,
+        "z": 0.560087
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-compost-cache-3",
+      "path": "models/ring-compost-cache-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 524,
+      "boundsCenter": {
+        "x": 0.064238,
+        "y": 0.147,
+        "z": -0.002292
+      },
+      "boundsSize": {
+        "x": 0.781094,
+        "y": 0.284,
+        "z": 0.428727
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-compost-row-0",
+      "path": "models/ring-compost-row-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 490,
+      "boundsCenter": {
+        "x": -0.041663,
+        "y": 0.11,
+        "z": -0.012041
+      },
+      "boundsSize": {
+        "x": 0.877186,
+        "y": 0.21,
+        "z": 0.531342
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-compost-row-1",
+      "path": "models/ring-compost-row-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 450,
+      "boundsCenter": {
+        "x": 0.097063,
+        "y": 0.11,
+        "z": -0.039504
+      },
+      "boundsSize": {
+        "x": 0.837836,
+        "y": 0.21,
+        "z": 0.497302
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-compost-row-2",
+      "path": "models/ring-compost-row-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 488,
+      "boundsCenter": {
+        "x": 0.042039,
+        "y": 0.11,
+        "z": -0.028756
+      },
+      "boundsSize": {
+        "x": 0.915536,
+        "y": 0.21,
+        "z": 0.560087
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-compost-row-3",
+      "path": "models/ring-compost-row-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 448,
+      "boundsCenter": {
+        "x": 0.064238,
+        "y": 0.11,
+        "z": -0.002292
+      },
+      "boundsSize": {
+        "x": 0.781094,
+        "y": 0.21,
+        "z": 0.428727
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-copper-pipe",
+      "path": "models/ring-copper-pipe.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 276,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.1,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.94,
+        "y": 0.18,
+        "z": 0.17119
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-crate",
+      "path": "models/ring-crate.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 1276,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.386521,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.845,
+        "y": 0.823042,
+        "z": 0.845
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-descent-ledge-0",
+      "path": "models/ring-descent-ledge-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 114,
+      "boundsCenter": {
+        "x": 0.005,
+        "y": 0.103185,
+        "z": -0.001083
+      },
+      "boundsSize": {
+        "x": 0.95,
+        "y": 0.20231,
+        "z": 0.737833
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-descent-ledge-1",
+      "path": "models/ring-descent-ledge-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 94,
+      "boundsCenter": {
+        "x": -0.044907,
+        "y": 0.12212,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.769814,
+        "y": 0.2414,
+        "z": 0.92
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-descent-ledge-2",
+      "path": "models/ring-descent-ledge-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 114,
+      "boundsCenter": {
+        "x": 0.005,
+        "y": 0.092786,
+        "z": -0.013006
+      },
+      "boundsSize": {
+        "x": 0.95,
+        "y": 0.182832,
+        "z": 0.806012
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-descent-ledge-3",
+      "path": "models/ring-descent-ledge-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 88,
+      "boundsCenter": {
+        "x": 0.005,
+        "y": 0.117985,
+        "z": -0.005
+      },
+      "boundsSize": {
+        "x": 0.85,
+        "y": 0.23237,
+        "z": 0.87
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-dry-brush-0",
+      "path": "models/ring-dry-brush-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 156,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.19349,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.667386,
+        "y": 0.404099,
+        "z": 0.581193
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-dry-brush-1",
+      "path": "models/ring-dry-brush-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 156,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.19349,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.667386,
+        "y": 0.404099,
+        "z": 0.581193
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-dry-brush-2",
+      "path": "models/ring-dry-brush-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 156,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.19349,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.667386,
+        "y": 0.404099,
+        "z": 0.581193
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-dry-brush-3",
+      "path": "models/ring-dry-brush-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 156,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.19349,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.667386,
+        "y": 0.404099,
+        "z": 0.581193
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-fallen-beam-0",
+      "path": "models/ring-fallen-beam-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 96,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.13425,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.89,
+        "y": 0.2585,
+        "z": 0.24
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-fallen-beam-1",
+      "path": "models/ring-fallen-beam-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 96,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.13425,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.905479,
+        "y": 0.2585,
+        "z": 0.330763
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-fallen-beam-2",
+      "path": "models/ring-fallen-beam-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 96,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.13425,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.910012,
+        "y": 0.2585,
+        "z": 0.417528
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-fallen-beam-3",
+      "path": "models/ring-fallen-beam-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 96,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.13425,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.903546,
+        "y": 0.2585,
+        "z": 0.499246
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-bare-position",
+      "path": "models/ring-felling-bare-position.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 192,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.016,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.804,
+        "y": 0.044,
+        "z": 0.804
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-floor-0",
+      "path": "models/ring-floor-0.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 12,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": -0.04,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.08,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-floor-1",
+      "path": "models/ring-floor-1.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 12,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": -0.04,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.08,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-floor-2",
+      "path": "models/ring-floor-2.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 12,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": -0.04,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.08,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-floor-3",
+      "path": "models/ring-floor-3.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 12,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": -0.04,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.08,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-fruiting-body-0",
+      "path": "models/ring-fruiting-body-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 740,
+      "boundsCenter": {
+        "x": 0.009851,
+        "y": 0.391145,
+        "z": -0.006392
+      },
+      "boundsSize": {
+        "x": 0.853704,
+        "y": 0.81971,
+        "z": 0.680418
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-fruiting-body-1",
+      "path": "models/ring-fruiting-body-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 740,
+      "boundsCenter": {
+        "x": -0.01309,
+        "y": 0.391145,
+        "z": 0.027866
+      },
+      "boundsSize": {
+        "x": 0.85446,
+        "y": 0.81971,
+        "z": 0.628998
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-fruiting-body-2",
+      "path": "models/ring-fruiting-body-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 740,
+      "boundsCenter": {
+        "x": -0.011629,
+        "y": 0.391145,
+        "z": -0.033512
+      },
+      "boundsSize": {
+        "x": 0.792937,
+        "y": 0.81971,
+        "z": 0.70223
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-fruiting-body-3",
+      "path": "models/ring-fruiting-body-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 740,
+      "boundsCenter": {
+        "x": -0.041298,
+        "y": 0.391145,
+        "z": -0.031951
+      },
+      "boundsSize": {
+        "x": 0.704601,
+        "y": 0.81971,
+        "z": 0.640927
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-glasspane-frog",
+      "path": "models/ring-glasspane-frog.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "frog",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "triangles": 772,
+      "boundsCenter": {
+        "x": -0.000126,
+        "y": 0.173,
+        "z": -0.0149
+      },
+      "boundsSize": {
+        "x": 0.866944,
+        "y": 0.372,
+        "z": 0.5682
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-glow-quartz-vein-0",
+      "path": "models/ring-glow-quartz-vein-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 210,
+      "boundsCenter": {
+        "x": -0.003639,
+        "y": 0.35943,
+        "z": -0.009785
+      },
+      "boundsSize": {
+        "x": 0.813325,
+        "y": 0.738861,
+        "z": 0.73486
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-glow-quartz-vein-1",
+      "path": "models/ring-glow-quartz-vein-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 210,
+      "boundsCenter": {
+        "x": 0.002119,
+        "y": 0.359716,
+        "z": -0.008516
+      },
+      "boundsSize": {
+        "x": 0.762282,
+        "y": 0.739432,
+        "z": 0.690948
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-glow-quartz-vein-2",
+      "path": "models/ring-glow-quartz-vein-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 210,
+      "boundsCenter": {
+        "x": -0.001081,
+        "y": 0.365132,
+        "z": 0.003242
+      },
+      "boundsSize": {
+        "x": 0.845111,
+        "y": 0.750264,
+        "z": 0.777713
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-glow-quartz-vein-3",
+      "path": "models/ring-glow-quartz-vein-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 210,
+      "boundsCenter": {
+        "x": -0.009627,
+        "y": 0.342701,
+        "z": -0.001474
+      },
+      "boundsSize": {
+        "x": 0.820046,
+        "y": 0.705402,
+        "z": 0.76258
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-grain-ridge-0",
+      "path": "models/ring-grain-ridge-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 382,
+      "boundsCenter": {
+        "x": -0.02025,
+        "y": 0.312553,
+        "z": -0.023569
+      },
+      "boundsSize": {
+        "x": 0.951367,
+        "y": 0.560834,
+        "z": 0.867956
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-grain-ridge-1",
+      "path": "models/ring-grain-ridge-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 362,
+      "boundsCenter": {
+        "x": -0.025442,
+        "y": 0.311848,
+        "z": -0.005756
+      },
+      "boundsSize": {
+        "x": 1.056017,
+        "y": 0.562244,
+        "z": 0.94589
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-grain-ridge-2",
+      "path": "models/ring-grain-ridge-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 382,
+      "boundsCenter": {
+        "x": 0.011374,
+        "y": 0.313652,
+        "z": -0.015332
+      },
+      "boundsSize": {
+        "x": 0.971796,
+        "y": 0.558635,
+        "z": 0.889631
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-grain-ridge-3",
+      "path": "models/ring-grain-ridge-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 362,
+      "boundsCenter": {
+        "x": 0.009701,
+        "y": 0.315277,
+        "z": -0.007806
+      },
+      "boundsSize": {
+        "x": 1.030819,
+        "y": 0.555386,
+        "z": 0.90855
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-grass-0",
+      "path": "models/ring-grass-0.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 12,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": -0.04,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.08,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-grass-1",
+      "path": "models/ring-grass-1.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 12,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": -0.04,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.08,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-grass-2",
+      "path": "models/ring-grass-2.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 12,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": -0.04,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.08,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-grass-3",
+      "path": "models/ring-grass-3.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 12,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": -0.04,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.08,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-grib",
+      "path": "models/ring-grib.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "triangles": 1120,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.875,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.125718,
+        "y": 1.79,
+        "z": 0.85
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-grove-red-growth-0",
+      "path": "models/ring-grove-red-growth-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 250,
+      "boundsCenter": {
+        "x": 0.031359,
+        "y": 0.207888,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.594081,
+        "y": 0.404225,
+        "z": 0.624654
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-grove-red-growth-1",
+      "path": "models/ring-grove-red-growth-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 250,
+      "boundsCenter": {
+        "x": -0.008701,
+        "y": 0.207882,
+        "z": 0.022969
+      },
+      "boundsSize": {
+        "x": 0.622354,
+        "y": 0.404237,
+        "z": 0.608443
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-grove-red-growth-2",
+      "path": "models/ring-grove-red-growth-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 250,
+      "boundsCenter": {
+        "x": -0.01441,
+        "y": 0.207878,
+        "z": -0.017337
+      },
+      "boundsSize": {
+        "x": 0.618324,
+        "y": 0.404244,
+        "z": 0.615471
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-grove-red-growth-3",
+      "path": "models/ring-grove-red-growth-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 250,
+      "boundsCenter": {
+        "x": 0.025846,
+        "y": 0.207877,
+        "z": -0.005745
+      },
+      "boundsSize": {
+        "x": 0.604055,
+        "y": 0.404245,
+        "z": 0.623652
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-grove-seep",
+      "path": "models/ring-grove-seep.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 432,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.073,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.174,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-grove-sign",
+      "path": "models/ring-grove-sign.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 156,
+      "boundsCenter": {
+        "x": 0.024369,
+        "y": 0.437332,
+        "z": -0.005
+      },
+      "boundsSize": {
+        "x": 0.708737,
+        "y": 0.885335,
+        "z": 0.14
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-haul-barrel",
+      "path": "models/ring-haul-barrel.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 368,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.4615,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.9224,
+        "y": 0.923,
+        "z": 0.9224
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-helmwood-frog",
+      "path": "models/ring-helmwood-frog.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "frog",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "triangles": 864,
+      "boundsCenter": {
+        "x": -0.000126,
+        "y": 0.178679,
+        "z": -0.02725
+      },
+      "boundsSize": {
+        "x": 1.049344,
+        "y": 0.367357,
+        "z": 0.7905
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-hollow-log-0",
+      "path": "models/ring-hollow-log-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 468,
+      "boundsCenter": {
+        "x": 0.002983,
+        "y": 0.2283,
+        "z": -0.045614
+      },
+      "boundsSize": {
+        "x": 0.801995,
+        "y": 0.538599,
+        "z": 0.613229
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-hollow-log-1",
+      "path": "models/ring-hollow-log-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 632,
+      "boundsCenter": {
+        "x": 0.002983,
+        "y": 0.228519,
+        "z": -0.063082
+      },
+      "boundsSize": {
+        "x": 0.801995,
+        "y": 0.539039,
+        "z": 0.648164
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-hollow-log-2",
+      "path": "models/ring-hollow-log-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 468,
+      "boundsCenter": {
+        "x": 0.002983,
+        "y": 0.225833,
+        "z": 0.023843
+      },
+      "boundsSize": {
+        "x": 0.801995,
+        "y": 0.533665,
+        "z": 0.569685
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-hollow-log-3",
+      "path": "models/ring-hollow-log-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 632,
+      "boundsCenter": {
+        "x": 0.002983,
+        "y": 0.227785,
+        "z": -0.013549
+      },
+      "boundsSize": {
+        "x": 0.801995,
+        "y": 0.53757,
+        "z": 0.549099
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-maw-toad",
+      "path": "models/ring-maw-toad.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "frog",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "triangles": 932,
+      "boundsCenter": {
+        "x": -0.000126,
+        "y": 0.2045,
+        "z": -0.0448
+      },
+      "boundsSize": {
+        "x": 1.308544,
+        "y": 0.449,
+        "z": 1.1064
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-mill-stone",
+      "path": "models/ring-mill-stone.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 224,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.211,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.84,
+        "y": 0.402,
+        "z": 0.84
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-mogu",
+      "path": "models/ring-mogu.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "triangles": 1120,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.875,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.125718,
+        "y": 1.79,
+        "z": 0.85
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-mosshulk",
+      "path": "models/ring-mosshulk.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "fungal",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "triangles": 1590,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.743117,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.130612,
+        "y": 1.506235,
+        "z": 0.539
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-mushroom-ring",
+      "path": "models/ring-mushroom-ring.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 216,
+      "boundsCenter": {
+        "x": 0.031513,
+        "y": 0.235,
+        "z": 0.007054
+      },
+      "boundsSize": {
+        "x": 0.685302,
+        "y": 0.47,
+        "z": 0.710524
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-mycelial-column-0",
+      "path": "models/ring-mycelial-column-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 362,
+      "boundsCenter": {
+        "x": 0.0626,
+        "y": 0.688529,
+        "z": -0.064863
+      },
+      "boundsSize": {
+        "x": 0.626781,
+        "y": 1.442941,
+        "z": 0.776462
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-mycelial-column-1",
+      "path": "models/ring-mycelial-column-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 362,
+      "boundsCenter": {
+        "x": 0.04246,
+        "y": 0.688529,
+        "z": -0.02026
+      },
+      "boundsSize": {
+        "x": 0.601156,
+        "y": 1.442941,
+        "z": 0.687256
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-mycelial-column-2",
+      "path": "models/ring-mycelial-column-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 362,
+      "boundsCenter": {
+        "x": 0.011206,
+        "y": 0.688529,
+        "z": -0.025126
+      },
+      "boundsSize": {
+        "x": 0.663665,
+        "y": 1.442941,
+        "z": 0.696987
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-mycelial-column-3",
+      "path": "models/ring-mycelial-column-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 362,
+      "boundsCenter": {
+        "x": -0.020136,
+        "y": 0.688529,
+        "z": 0.027886
+      },
+      "boundsSize": {
+        "x": 0.726349,
+        "y": 1.442941,
+        "z": 0.612027
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-nam",
+      "path": "models/ring-nam.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "triangles": 1120,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.875,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.125718,
+        "y": 1.79,
+        "z": 0.85
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-ore-cache",
+      "path": "models/ring-ore-cache.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 402,
+      "boundsCenter": {
+        "x": -0.003002,
+        "y": 0.206422,
+        "z": -0.051927
+      },
+      "boundsSize": {
+        "x": 0.97146,
+        "y": 0.412844,
+        "z": 0.707298
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-peat-bog-0",
+      "path": "models/ring-peat-bog-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 42,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.0405,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.109,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-peat-bog-1",
+      "path": "models/ring-peat-bog-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 42,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.0405,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.109,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-peat-bog-2",
+      "path": "models/ring-peat-bog-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 42,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.0405,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.109,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-peat-bog-3",
+      "path": "models/ring-peat-bog-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 42,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.0405,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.109,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-player",
+      "path": "models/ring-player.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "triangles": 1040,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.845,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.125718,
+        "y": 1.73,
+        "z": 0.85
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-rock-0",
+      "path": "models/ring-rock-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 310,
+      "boundsCenter": {
+        "x": -0.032426,
+        "y": 0.186338,
+        "z": -0.02055
+      },
+      "boundsSize": {
+        "x": 0.896176,
+        "y": 0.365548,
+        "z": 0.776766
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-rock-1",
+      "path": "models/ring-rock-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 290,
+      "boundsCenter": {
+        "x": 0.009352,
+        "y": 0.186338,
+        "z": -0.025659
+      },
+      "boundsSize": {
+        "x": 0.898872,
+        "y": 0.365548,
+        "z": 0.685088
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-rock-2",
+      "path": "models/ring-rock-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 310,
+      "boundsCenter": {
+        "x": 0.028531,
+        "y": 0.186338,
+        "z": 0.003782
+      },
+      "boundsSize": {
+        "x": 0.974617,
+        "y": 0.365548,
+        "z": 0.728103
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-rock-3",
+      "path": "models/ring-rock-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 290,
+      "boundsCenter": {
+        "x": 0.005368,
+        "y": 0.186338,
+        "z": -0.037963
+      },
+      "boundsSize": {
+        "x": 0.945225,
+        "y": 0.365548,
+        "z": 0.728343
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-rotling",
+      "path": "models/ring-rotling.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "fungal",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "triangles": 1008,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.300734,
+        "z": -0.013274
+      },
+      "boundsSize": {
+        "x": 0.678367,
+        "y": 0.621467,
+        "z": 0.349949
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-sack",
+      "path": "models/ring-sack.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 160,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.23,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.513571,
+        "y": 0.58,
+        "z": 0.48
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-sari-snake",
+      "path": "models/ring-sari-snake.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "serpent",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "triangles": 416,
+      "boundsCenter": {
+        "x": 0.039125,
+        "y": 0.130827,
+        "z": 0.042375
+      },
+      "boundsSize": {
+        "x": 0.788047,
+        "y": 0.226345,
+        "z": 0.694051
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-seventh-position",
+      "path": "models/ring-seventh-position.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 384,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.016,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.804,
+        "y": 0.044,
+        "z": 0.804
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-shambler",
+      "path": "models/ring-shambler.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "fungal",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "triangles": 1008,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.571878,
+        "z": -0.010253
+      },
+      "boundsSize": {
+        "x": 0.742974,
+        "y": 1.163757,
+        "z": 0.374706
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-sien",
+      "path": "models/ring-sien.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "triangles": 1120,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.875,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.125718,
+        "y": 1.79,
+        "z": 0.85
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-sinkhole-lip-0",
+      "path": "models/ring-sinkhole-lip-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 310,
+      "boundsCenter": {
+        "x": 0.003288,
+        "y": 0.2208,
+        "z": -0.00605
+      },
+      "boundsSize": {
+        "x": 0.992528,
+        "y": 0.3772,
+        "z": 0.747766
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-sinkhole-lip-1",
+      "path": "models/ring-sinkhole-lip-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 290,
+      "boundsCenter": {
+        "x": -0.006447,
+        "y": 0.219407,
+        "z": -0.062294
+      },
+      "boundsSize": {
+        "x": 1.009453,
+        "y": 0.379987,
+        "z": 0.694679
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-sinkhole-lip-2",
+      "path": "models/ring-sinkhole-lip-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 310,
+      "boundsCenter": {
+        "x": 0.014317,
+        "y": 0.2208,
+        "z": -0.042167
+      },
+      "boundsSize": {
+        "x": 1.040816,
+        "y": 0.3772,
+        "z": 0.82
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-sinkhole-lip-3",
+      "path": "models/ring-sinkhole-lip-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 290,
+      "boundsCenter": {
+        "x": 0.005171,
+        "y": 0.2208,
+        "z": -0.007811
+      },
+      "boundsSize": {
+        "x": 1.005238,
+        "y": 0.3772,
+        "z": 0.698741
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-sky-sari",
+      "path": "models/ring-sky-sari.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "avian",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "triangles": 680,
+      "boundsCenter": {
+        "x": 0.014788,
+        "y": 0.454238,
+        "z": -0.002912
+      },
+      "boundsSize": {
+        "x": 1.999726,
+        "y": 0.431524,
+        "z": 1.189824
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-snapjaw",
+      "path": "models/ring-snapjaw.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "triangles": 840,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.885,
+        "z": -0.0475
+      },
+      "boundsSize": {
+        "x": 1.125718,
+        "y": 1.81,
+        "z": 0.945
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-snapjaw-warlord",
+      "path": "models/ring-snapjaw-warlord.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "triangles": 840,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.885,
+        "z": -0.0475
+      },
+      "boundsSize": {
+        "x": 1.125718,
+        "y": 1.81,
+        "z": 0.945
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-sopp",
+      "path": "models/ring-sopp.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "triangles": 1120,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.875,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.125718,
+        "y": 1.79,
+        "z": 0.85
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-spray-pool-0",
+      "path": "models/ring-spray-pool-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 632,
+      "boundsCenter": {
+        "x": 0.00622,
+        "y": 0.08,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.982439,
+        "y": 0.16,
+        "z": 0.97
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-spray-pool-1",
+      "path": "models/ring-spray-pool-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 632,
+      "boundsCenter": {
+        "x": -0.000796,
+        "y": 0.08,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.971593,
+        "y": 0.16,
+        "z": 0.97
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-spray-pool-2",
+      "path": "models/ring-spray-pool-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 632,
+      "boundsCenter": {
+        "x": -0.001865,
+        "y": 0.08,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.973729,
+        "y": 0.16,
+        "z": 0.97
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-spray-pool-3",
+      "path": "models/ring-spray-pool-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 632,
+      "boundsCenter": {
+        "x": 0.004826,
+        "y": 0.08,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.979653,
+        "y": 0.16,
+        "z": 0.97
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-stairs-down",
+      "path": "models/ring-stairs-down.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 360,
+      "boundsCenter": {
+        "x": 0.027878,
+        "y": 0.195,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.072936,
+        "y": 0.4,
+        "z": 0.9
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-stairs-up",
+      "path": "models/ring-stairs-up.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 360,
+      "boundsCenter": {
+        "x": 0.028186,
+        "y": 0.195,
+        "z": -0.005725
+      },
+      "boundsSize": {
+        "x": 1.034975,
+        "y": 0.4,
+        "z": 0.911449
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-steam-vent",
+      "path": "models/ring-steam-vent.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 236,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.408046,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.58,
+        "y": 0.766092,
+        "z": 0.58
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-stone-coffer",
+      "path": "models/ring-stone-coffer.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 180,
+      "boundsCenter": {
+        "x": 0.000302,
+        "y": 0.34,
+        "z": -0.010554
+      },
+      "boundsSize": {
+        "x": 0.748086,
+        "y": 0.66,
+        "z": 0.538892
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-strong-box",
+      "path": "models/ring-strong-box.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 300,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.31125,
+        "z": -0.02
+      },
+      "boundsSize": {
+        "x": 0.75,
+        "y": 0.5825,
+        "z": 0.56
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-tar-seep-0",
+      "path": "models/ring-tar-seep-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 132,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.0355,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.037,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-tar-seep-1",
+      "path": "models/ring-tar-seep-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 132,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.0355,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.037,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-tar-seep-2",
+      "path": "models/ring-tar-seep-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 132,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.0355,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.037,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-tar-seep-3",
+      "path": "models/ring-tar-seep-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 132,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.0355,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.037,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-tepui-stone-0",
+      "path": "models/ring-tepui-stone-0.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 12,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": -0.04,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.08,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-tepui-stone-1",
+      "path": "models/ring-tepui-stone-1.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 12,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": -0.04,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.08,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-tepui-stone-2",
+      "path": "models/ring-tepui-stone-2.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 12,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": -0.04,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.08,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-tepui-stone-3",
+      "path": "models/ring-tepui-stone-3.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 12,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": -0.04,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.08,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-tepui-wall-0",
+      "path": "models/ring-tepui-wall-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 262,
+      "boundsCenter": {
+        "x": 0.015394,
+        "y": 0.390341,
+        "z": 0.012817
+      },
+      "boundsSize": {
+        "x": 0.987953,
+        "y": 0.760683,
+        "z": 0.947448
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-tepui-wall-1",
+      "path": "models/ring-tepui-wall-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 242,
+      "boundsCenter": {
+        "x": -0.011565,
+        "y": 0.446141,
+        "z": -0.026936
+      },
+      "boundsSize": {
+        "x": 0.973089,
+        "y": 0.872283,
+        "z": 0.993754
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-tepui-wall-2",
+      "path": "models/ring-tepui-wall-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 262,
+      "boundsCenter": {
+        "x": -0.001268,
+        "y": 0.501941,
+        "z": 0.002024
+      },
+      "boundsSize": {
+        "x": 1.013714,
+        "y": 0.983882,
+        "z": 1.058114
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-tepui-wall-3",
+      "path": "models/ring-tepui-wall-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 242,
+      "boundsCenter": {
+        "x": 0.010873,
+        "y": 0.390341,
+        "z": 0.005383
+      },
+      "boundsSize": {
+        "x": 0.945431,
+        "y": 0.760683,
+        "z": 0.932672
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-tepuibone",
+      "path": "models/ring-tepuibone.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 60,
+      "boundsCenter": {
+        "x": 8.8e-05,
+        "y": 0.065,
+        "z": 0.001296
+      },
+      "boundsSize": {
+        "x": 0.26375,
+        "y": 0.12,
+        "z": 0.132872
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-tepuibone-vein-0",
+      "path": "models/ring-tepuibone-vein-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 402,
+      "boundsCenter": {
+        "x": 0.001103,
+        "y": 0.204267,
+        "z": -0.051927
+      },
+      "boundsSize": {
+        "x": 0.963251,
+        "y": 0.408534,
+        "z": 0.707298
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-tepuibone-vein-1",
+      "path": "models/ring-tepuibone-vein-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 402,
+      "boundsCenter": {
+        "x": 0.001103,
+        "y": 0.204267,
+        "z": -0.020356
+      },
+      "boundsSize": {
+        "x": 0.963251,
+        "y": 0.408534,
+        "z": 0.638166
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-tepuibone-vein-2",
+      "path": "models/ring-tepuibone-vein-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 402,
+      "boundsCenter": {
+        "x": 0.001103,
+        "y": 0.204267,
+        "z": -0.00246
+      },
+      "boundsSize": {
+        "x": 0.963251,
+        "y": 0.408534,
+        "z": 0.601527
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-tepuibone-vein-3",
+      "path": "models/ring-tepuibone-vein-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 402,
+      "boundsCenter": {
+        "x": 0.001103,
+        "y": 0.204267,
+        "z": 0.001384
+      },
+      "boundsSize": {
+        "x": 0.963251,
+        "y": 0.408534,
+        "z": 0.586224
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-tree-0",
+      "path": "models/ring-tree-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 1904,
+      "boundsCenter": {
+        "x": 0.04434,
+        "y": 1.012262,
+        "z": -0.040495
+      },
+      "boundsSize": {
+        "x": 1.360214,
+        "y": 2.035855,
+        "z": 1.533311
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-tree-1",
+      "path": "models/ring-tree-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 1984,
+      "boundsCenter": {
+        "x": -0.051111,
+        "y": 0.993985,
+        "z": 0.001856
+      },
+      "boundsSize": {
+        "x": 1.513452,
+        "y": 1.999301,
+        "z": 1.350746
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-tree-2",
+      "path": "models/ring-tree-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 2064,
+      "boundsCenter": {
+        "x": 0.057708,
+        "y": 1.019859,
+        "z": -0.073781
+      },
+      "boundsSize": {
+        "x": 1.439544,
+        "y": 2.05105,
+        "z": 1.58519
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-tree-3",
+      "path": "models/ring-tree-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 1904,
+      "boundsCenter": {
+        "x": -0.049074,
+        "y": 1.017539,
+        "z": -0.025458
+      },
+      "boundsSize": {
+        "x": 1.508348,
+        "y": 2.046409,
+        "z": 1.335612
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-vine-wall-0",
+      "path": "models/ring-vine-wall-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 1514,
+      "boundsCenter": {
+        "x": -0.035586,
+        "y": 0.609975,
+        "z": -0.05456
+      },
+      "boundsSize": {
+        "x": 1.012426,
+        "y": 1.239561,
+        "z": 1.231189
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-vine-wall-1",
+      "path": "models/ring-vine-wall-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 1594,
+      "boundsCenter": {
+        "x": -0.052901,
+        "y": 0.650346,
+        "z": 0.004342
+      },
+      "boundsSize": {
+        "x": 1.293222,
+        "y": 1.320302,
+        "z": 1.047902
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-vine-wall-2",
+      "path": "models/ring-vine-wall-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 1674,
+      "boundsCenter": {
+        "x": 0.014301,
+        "y": 0.63294,
+        "z": -0.058128
+      },
+      "boundsSize": {
+        "x": 1.258568,
+        "y": 1.28549,
+        "z": 1.35691
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-vine-wall-3",
+      "path": "models/ring-vine-wall-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 1514,
+      "boundsCenter": {
+        "x": 0.027414,
+        "y": 0.610423,
+        "z": -0.053773
+      },
+      "boundsSize": {
+        "x": 1.216198,
+        "y": 1.240456,
+        "z": 0.983657
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-wall-0",
+      "path": "models/ring-wall-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 290,
+      "boundsCenter": {
+        "x": 0.053583,
+        "y": 0.35809,
+        "z": 0.000874
+      },
+      "boundsSize": {
+        "x": 1.051456,
+        "y": 0.716179,
+        "z": 0.533
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-wall-1",
+      "path": "models/ring-wall-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 290,
+      "boundsCenter": {
+        "x": 0.04199,
+        "y": 0.358207,
+        "z": -0.00221
+      },
+      "boundsSize": {
+        "x": 1.064601,
+        "y": 0.716414,
+        "z": 0.544858
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-wall-2",
+      "path": "models/ring-wall-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 290,
+      "boundsCenter": {
+        "x": 0.047302,
+        "y": 0.364167,
+        "z": 1.4e-05
+      },
+      "boundsSize": {
+        "x": 1.086661,
+        "y": 0.728335,
+        "z": 0.540469
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-wall-3",
+      "path": "models/ring-wall-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 290,
+      "boundsCenter": {
+        "x": 0.047427,
+        "y": 0.359932,
+        "z": 0.005613
+      },
+      "boundsSize": {
+        "x": 1.080631,
+        "y": 0.719864,
+        "z": 0.542207
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-wardline",
+      "path": "models/ring-wardline.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "serpent",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "triangles": 316,
+      "boundsCenter": {
+        "x": 0.003375,
+        "y": 0.109264,
+        "z": -0.096108
+      },
+      "boundsSize": {
+        "x": 0.490602,
+        "y": 0.131471,
+        "z": 1.147785
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-water-puddle-0",
+      "path": "models/ring-water-puddle-0.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 12,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": -0.006,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.016,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-water-puddle-1",
+      "path": "models/ring-water-puddle-1.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 12,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": -0.006,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.016,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-water-puddle-2",
+      "path": "models/ring-water-puddle-2.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 12,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": -0.006,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.016,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-water-puddle-3",
+      "path": "models/ring-water-puddle-3.fbx",
+      "kind": "ground",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 12,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": -0.006,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.016,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-wine-leaf-sundew-0",
+      "path": "models/ring-wine-leaf-sundew-0.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 490,
+      "boundsCenter": {
+        "x": 0.023228,
+        "y": 0.1432,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.891744,
+        "y": 0.1536,
+        "z": 0.914677
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-wine-leaf-sundew-1",
+      "path": "models/ring-wine-leaf-sundew-1.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 490,
+      "boundsCenter": {
+        "x": -0.018236,
+        "y": 0.1432,
+        "z": -0.005092
+      },
+      "boundsSize": {
+        "x": 0.900611,
+        "y": 0.1536,
+        "z": 0.913589
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-wine-leaf-sundew-2",
+      "path": "models/ring-wine-leaf-sundew-2.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 490,
+      "boundsCenter": {
+        "x": 0.013201,
+        "y": 0.1432,
+        "z": 0.010172
+      },
+      "boundsSize": {
+        "x": 0.907334,
+        "y": 0.1536,
+        "z": 0.910325
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-wine-leaf-sundew-3",
+      "path": "models/ring-wine-leaf-sundew-3.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 490,
+      "boundsCenter": {
+        "x": -0.008134,
+        "y": 0.1432,
+        "z": -0.015227
+      },
+      "boundsSize": {
+        "x": 0.911896,
+        "y": 0.1536,
+        "z": 0.904893
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-wooden-barrel",
+      "path": "models/ring-wooden-barrel.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 368,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.4615,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.9224,
+        "y": 0.923,
+        "z": 0.9224
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-woven-basket",
+      "path": "models/ring-woven-basket.fbx",
+      "kind": "entity",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 628,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.275,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.692,
+        "y": 0.53,
+        "z": 0.692
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-yellowfoot-wayfarer",
+      "path": "models/ring-yellowfoot-wayfarer.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "tortoise",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "triangles": 860,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.27625,
+        "z": -0.075
+      },
+      "boundsSize": {
+        "x": 0.836774,
+        "y": 0.5725,
+        "z": 1.05
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-felling-stump-main",
+      "path": "models/ring-felling-stump-main.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 21776,
+      "boundsCenter": {
+        "x": 1.5,
+        "y": 1.715247,
+        "z": 2.674027
+      },
+      "boundsSize": {
+        "x": 44.0,
+        "y": 3.380493,
+        "z": 7.651946
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-west-root-buttress",
+      "path": "models/ring-felling-west-root-buttress.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 3774,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.954384,
+        "z": 0.503685
+      },
+      "boundsSize": {
+        "x": 7.0,
+        "y": 1.858769,
+        "z": 13.015366
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-east-root-buttress",
+      "path": "models/ring-felling-east-root-buttress.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 4678,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.871627,
+        "z": 3.567156
+      },
+      "boundsSize": {
+        "x": 9.0,
+        "y": 1.693254,
+        "z": 10.134313
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-far-east-root-buttress",
+      "path": "models/ring-felling-far-east-root-buttress.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 1248,
+      "boundsCenter": {
+        "x": -4.0,
+        "y": 0.783496,
+        "z": -0.490894
+      },
+      "boundsSize": {
+        "x": 5.0,
+        "y": 1.516992,
+        "z": 6.018212
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-southwest-root-arch",
+      "path": "models/ring-felling-southwest-root-arch.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 656,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 1.063567,
+        "z": 3.943021
+      },
+      "boundsSize": {
+        "x": 3.0,
+        "y": 2.077134,
+        "z": 2.886042
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-southwest-foreground-rock",
+      "path": "models/ring-felling-southwest-foreground-rock.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 336,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.386767,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 3.0,
+        "y": 0.723534,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-southeast-foreground-root",
+      "path": "models/ring-felling-southeast-foreground-root.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 732,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.450992,
+        "z": 1.0
+      },
+      "boundsSize": {
+        "x": 3.0,
+        "y": 0.851985,
+        "z": 3.0
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-southeast-middle-ridge",
+      "path": "models/ring-felling-southeast-middle-ridge.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 262,
+      "boundsCenter": {
+        "x": 0.015394,
+        "y": 0.390341,
+        "z": 0.012817
+      },
+      "boundsSize": {
+        "x": 0.987953,
+        "y": 0.760683,
+        "z": 0.947448
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-boulder-west-approach",
+      "path": "models/ring-felling-boulder-west-approach.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 290,
+      "boundsCenter": {
+        "x": 0.005368,
+        "y": 0.186338,
+        "z": -0.037963
+      },
+      "boundsSize": {
+        "x": 0.945225,
+        "y": 0.365548,
+        "z": 0.728343
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-boulder-southwest-path",
+      "path": "models/ring-felling-boulder-southwest-path.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 290,
+      "boundsCenter": {
+        "x": 0.005368,
+        "y": 0.186338,
+        "z": -0.037963
+      },
+      "boundsSize": {
+        "x": 0.945225,
+        "y": 0.365548,
+        "z": 0.728343
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-boulder-east-clearing",
+      "path": "models/ring-felling-boulder-east-clearing.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 310,
+      "boundsCenter": {
+        "x": -0.032426,
+        "y": 0.186338,
+        "z": -0.02055
+      },
+      "boundsSize": {
+        "x": 0.896176,
+        "y": 0.365548,
+        "z": 0.776766
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-boulder-east-stream-bank",
+      "path": "models/ring-felling-boulder-east-stream-bank.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 290,
+      "boundsCenter": {
+        "x": 0.005368,
+        "y": 0.186338,
+        "z": -0.037963
+      },
+      "boundsSize": {
+        "x": 0.945225,
+        "y": 0.365548,
+        "z": 0.728343
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-boulder-west-bank-mossy",
+      "path": "models/ring-felling-boulder-west-bank-mossy.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 290,
+      "boundsCenter": {
+        "x": 0.009352,
+        "y": 0.186338,
+        "z": -0.025659
+      },
+      "boundsSize": {
+        "x": 0.898872,
+        "y": 0.365548,
+        "z": 0.685088
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-boulder-west-bank-mid",
+      "path": "models/ring-felling-boulder-west-bank-mid.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 310,
+      "boundsCenter": {
+        "x": 0.028531,
+        "y": 0.186338,
+        "z": 0.003782
+      },
+      "boundsSize": {
+        "x": 0.974617,
+        "y": 0.365548,
+        "z": 0.728103
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-boulder-west-bottom-flat",
+      "path": "models/ring-felling-boulder-west-bottom-flat.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 310,
+      "boundsCenter": {
+        "x": 0.028531,
+        "y": 0.186338,
+        "z": 0.003782
+      },
+      "boundsSize": {
+        "x": 0.974617,
+        "y": 0.365548,
+        "z": 0.728103
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-cyan-northwest",
+      "path": "models/ring-felling-cyan-northwest.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 654,
+      "boundsCenter": {
+        "x": 0.001516,
+        "y": 0.343931,
+        "z": -0.0816
+      },
+      "boundsSize": {
+        "x": 0.516606,
+        "y": 0.660744,
+        "z": 0.601493
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-cyan-west-clearing",
+      "path": "models/ring-felling-cyan-west-clearing.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 654,
+      "boundsCenter": {
+        "x": 0.047535,
+        "y": 0.313128,
+        "z": -0.020047
+      },
+      "boundsSize": {
+        "x": 0.608644,
+        "y": 0.600181,
+        "z": 0.478387
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-cyan-west-approach",
+      "path": "models/ring-felling-cyan-west-approach.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 654,
+      "boundsCenter": {
+        "x": 0.042959,
+        "y": 0.336317,
+        "z": -0.062661
+      },
+      "boundsSize": {
+        "x": 0.599491,
+        "y": 0.645955,
+        "z": 0.563615
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-cyan-southwest",
+      "path": "models/ring-felling-cyan-southwest.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 654,
+      "boundsCenter": {
+        "x": 0.047237,
+        "y": 0.337898,
+        "z": -0.022863
+      },
+      "boundsSize": {
+        "x": 0.608048,
+        "y": 0.649255,
+        "z": 0.484019
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-cyan-east-upper",
+      "path": "models/ring-felling-cyan-east-upper.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 654,
+      "boundsCenter": {
+        "x": 0.057109,
+        "y": 0.317494,
+        "z": -0.091324
+      },
+      "boundsSize": {
+        "x": 0.627791,
+        "y": 0.60792,
+        "z": 0.620939
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-cyan-east-middle",
+      "path": "models/ring-felling-cyan-east-middle.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 654,
+      "boundsCenter": {
+        "x": 0.04525,
+        "y": 0.344484,
+        "z": -0.020047
+      },
+      "boundsSize": {
+        "x": 0.604074,
+        "y": 0.66223,
+        "z": 0.478387
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-cyan-southeast-edge",
+      "path": "models/ring-felling-cyan-southeast-edge.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 654,
+      "boundsCenter": {
+        "x": 0.023646,
+        "y": 0.327657,
+        "z": -0.096531
+      },
+      "boundsSize": {
+        "x": 0.560867,
+        "y": 0.628226,
+        "z": 0.631355
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-red-northwest",
+      "path": "models/ring-felling-red-northwest.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 438,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.296265,
+        "z": -0.061311
+      },
+      "boundsSize": {
+        "x": 0.622547,
+        "y": 0.616843,
+        "z": 0.746429
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-red-north-clearing-west",
+      "path": "models/ring-felling-red-north-clearing-west.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 438,
+      "boundsCenter": {
+        "x": 0.032891,
+        "y": 0.296265,
+        "z": -0.025351
+      },
+      "boundsSize": {
+        "x": 0.688329,
+        "y": 0.616843,
+        "z": 0.674508
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-red-north-clearing-east",
+      "path": "models/ring-felling-red-north-clearing-east.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 438,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.296265,
+        "z": -0.030295
+      },
+      "boundsSize": {
+        "x": 0.622547,
+        "y": 0.616843,
+        "z": 0.684397
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-red-east-root-lip",
+      "path": "models/ring-felling-red-east-root-lip.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 438,
+      "boundsCenter": {
+        "x": 0.0243,
+        "y": 0.296265,
+        "z": -0.042708
+      },
+      "boundsSize": {
+        "x": 0.671147,
+        "y": 0.616843,
+        "z": 0.709223
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-red-far-east-upper",
+      "path": "models/ring-felling-red-far-east-upper.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 438,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.296265,
+        "z": -0.062454
+      },
+      "boundsSize": {
+        "x": 0.622547,
+        "y": 0.616843,
+        "z": 0.748715
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-red-west-middle",
+      "path": "models/ring-felling-red-west-middle.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 438,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.296265,
+        "z": -0.06802
+      },
+      "boundsSize": {
+        "x": 0.622547,
+        "y": 0.616843,
+        "z": 0.759846
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-red-west-clearing-rim",
+      "path": "models/ring-felling-red-west-clearing-rim.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 438,
+      "boundsCenter": {
+        "x": 0.037987,
+        "y": 0.296265,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.69852,
+        "y": 0.616843,
+        "z": 0.623807
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-red-east-clearing-rim",
+      "path": "models/ring-felling-red-east-clearing-rim.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 438,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.296265,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.622547,
+        "y": 0.616843,
+        "z": 0.623807
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-red-west-approach",
+      "path": "models/ring-felling-red-west-approach.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 438,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.296265,
+        "z": -0.05135
+      },
+      "boundsSize": {
+        "x": 0.622547,
+        "y": 0.616843,
+        "z": 0.726506
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-red-east-approach",
+      "path": "models/ring-felling-red-east-approach.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 438,
+      "boundsCenter": {
+        "x": 0.03047,
+        "y": 0.296265,
+        "z": -0.060189
+      },
+      "boundsSize": {
+        "x": 0.683487,
+        "y": 0.616843,
+        "z": 0.744184
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-red-southeast-inner",
+      "path": "models/ring-felling-red-southeast-inner.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 438,
+      "boundsCenter": {
+        "x": 0.016148,
+        "y": 0.296265,
+        "z": -0.076498
+      },
+      "boundsSize": {
+        "x": 0.654842,
+        "y": 0.616843,
+        "z": 0.776803
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-red-east-lower",
+      "path": "models/ring-felling-red-east-lower.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 438,
+      "boundsCenter": {
+        "x": 0.035306,
+        "y": 0.296265,
+        "z": -0.014948
+      },
+      "boundsSize": {
+        "x": 0.693159,
+        "y": 0.616843,
+        "z": 0.653704
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-pink-west-bank",
+      "path": "models/ring-felling-pink-west-bank.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 550,
+      "boundsCenter": {
+        "x": 0.001684,
+        "y": 0.26,
+        "z": -0.025122
+      },
+      "boundsSize": {
+        "x": 0.683906,
+        "y": 0.52,
+        "z": 0.659457
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-pink-west-arch",
+      "path": "models/ring-felling-pink-west-arch.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 550,
+      "boundsCenter": {
+        "x": 0.001684,
+        "y": 0.26,
+        "z": -0.022275
+      },
+      "boundsSize": {
+        "x": 0.683906,
+        "y": 0.52,
+        "z": 0.653763
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-pink-east-spires",
+      "path": "models/ring-felling-pink-east-spires.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 550,
+      "boundsCenter": {
+        "x": 0.003471,
+        "y": 0.26,
+        "z": -0.022275
+      },
+      "boundsSize": {
+        "x": 0.68748,
+        "y": 0.52,
+        "z": 0.653763
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-pink-east-middle",
+      "path": "models/ring-felling-pink-east-middle.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 550,
+      "boundsCenter": {
+        "x": 0.001684,
+        "y": 0.26,
+        "z": -0.022275
+      },
+      "boundsSize": {
+        "x": 0.683906,
+        "y": 0.52,
+        "z": 0.653763
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-cream-east-inner",
+      "path": "models/ring-felling-cream-east-inner.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 550,
+      "boundsCenter": {
+        "x": 0.001684,
+        "y": 0.26,
+        "z": -0.056531
+      },
+      "boundsSize": {
+        "x": 0.683906,
+        "y": 0.52,
+        "z": 0.722275
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-cream-west-boulder-foot",
+      "path": "models/ring-felling-cream-west-boulder-foot.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 550,
+      "boundsCenter": {
+        "x": 0.001684,
+        "y": 0.26,
+        "z": -0.057786
+      },
+      "boundsSize": {
+        "x": 0.683906,
+        "y": 0.52,
+        "z": 0.724786
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-pale-west-root-tubes",
+      "path": "models/ring-felling-pale-west-root-tubes.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 606,
+      "boundsCenter": {
+        "x": 0.026265,
+        "y": 0.234993,
+        "z": -0.089583
+      },
+      "boundsSize": {
+        "x": 0.531158,
+        "y": 0.484927,
+        "z": 0.680474
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-pale-north-inner-tubes",
+      "path": "models/ring-felling-pale-north-inner-tubes.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 606,
+      "boundsCenter": {
+        "x": 0.049188,
+        "y": 0.237395,
+        "z": -0.089108
+      },
+      "boundsSize": {
+        "x": 0.577103,
+        "y": 0.490523,
+        "z": 0.67925
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-pale-east-wall-tubes",
+      "path": "models/ring-felling-pale-east-wall-tubes.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 606,
+      "boundsCenter": {
+        "x": 0.033523,
+        "y": 0.271767,
+        "z": -0.068982
+      },
+      "boundsSize": {
+        "x": 0.545857,
+        "y": 0.55539,
+        "z": 0.639239
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-pale-east-tall-spires",
+      "path": "models/ring-felling-pale-east-tall-spires.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 462,
+      "boundsCenter": {
+        "x": 0.087557,
+        "y": 0.364949,
+        "z": -0.099773
+      },
+      "boundsSize": {
+        "x": 0.654015,
+        "y": 0.738801,
+        "z": 0.653685
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-pale-east-lower-tubes",
+      "path": "models/ring-felling-pale-east-lower-tubes.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 606,
+      "boundsCenter": {
+        "x": 0.089505,
+        "y": 0.289424,
+        "z": -0.020258
+      },
+      "boundsSize": {
+        "x": 0.657878,
+        "y": 0.590141,
+        "z": 0.541761
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-waterfall-motion",
+      "path": "models/ring-felling-waterfall-motion.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 238,
+      "boundsCenter": {
+        "x": 0.070902,
+        "y": 0.569146,
+        "z": 0.014257
+      },
+      "boundsSize": {
+        "x": 0.661804,
+        "y": 1.109965,
+        "z": 0.719743
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-waterfall-mist",
+      "path": "models/ring-felling-waterfall-mist.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 288,
+      "boundsCenter": {
+        "x": 0.054704,
+        "y": 0.196952,
+        "z": -0.030991
+      },
+      "boundsSize": {
+        "x": 0.63061,
+        "y": 0.347019,
+        "z": 0.773446
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-blackwater-flow",
+      "path": "models/ring-felling-blackwater-flow.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 108,
+      "boundsCenter": {
+        "x": 0.002397,
+        "y": 0.054223,
+        "z": -0.05058
+      },
+      "boundsSize": {
+        "x": 0.657352,
+        "y": 0.068799,
+        "z": 0.54272
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-red-north-clearing-west-right",
+      "path": "models/ring-felling-red-north-clearing-west-right.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 438,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.296265,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.622547,
+        "y": 0.616843,
+        "z": 0.623807
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-cyan-east-approach",
+      "path": "models/ring-felling-cyan-east-approach.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 654,
+      "boundsCenter": {
+        "x": 0.001516,
+        "y": 0.332322,
+        "z": -0.068562
+      },
+      "boundsSize": {
+        "x": 0.516606,
+        "y": 0.638231,
+        "z": 0.575416
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-cyan-east-root-tip",
+      "path": "models/ring-felling-cyan-east-root-tip.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 654,
+      "boundsCenter": {
+        "x": 0.083508,
+        "y": 0.314433,
+        "z": -0.073119
+      },
+      "boundsSize": {
+        "x": 0.680591,
+        "y": 0.601943,
+        "z": 0.58453
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-pink-southwest-streamside",
+      "path": "models/ring-felling-pink-southwest-streamside.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 550,
+      "boundsCenter": {
+        "x": 0.002436,
+        "y": 0.26,
+        "z": -0.035609
+      },
+      "boundsSize": {
+        "x": 0.68541,
+        "y": 0.52,
+        "z": 0.680431
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-pink-southwest-bottom-caps",
+      "path": "models/ring-felling-pink-southwest-bottom-caps.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 550,
+      "boundsCenter": {
+        "x": 0.027361,
+        "y": 0.26,
+        "z": -0.022275
+      },
+      "boundsSize": {
+        "x": 0.735259,
+        "y": 0.52,
+        "z": 0.653763
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-blue-west-middle-rosette",
+      "path": "models/ring-felling-blue-west-middle-rosette.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 120,
+      "boundsCenter": {
+        "x": 0.012797,
+        "y": 0.065159,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 0.823206,
+        "y": 0.089682,
+        "z": 0.835905
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-felling-blue-west-lower-rosette",
+      "path": "models/ring-felling-blue-west-lower-rosette.fbx",
+      "kind": "felling-component",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-palette",
+      "clips": [],
+      "sockets": [],
+      "triangles": 120,
+      "boundsCenter": {
+        "x": 0.012797,
+        "y": 0.0656,
+        "z": -0.002648
+      },
+      "boundsSize": {
+        "x": 0.823206,
+        "y": 0.0888,
+        "z": 0.841201
+      },
+      "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-water-surface",
+      "path": "models/ring-water-surface.fbx",
+      "kind": "tile-overlay",
+      "rigged": false,
+      "rigFamily": "none",
+      "materialFamily": "ring-water",
+      "clips": [],
+      "sockets": [],
+      "triangles": 12,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.004,
+        "z": 0.0
+      },
+      "boundsSize": {
+        "x": 1.0,
+        "y": 0.008,
+        "z": 1.0
+      },
+      "pivot": "ground-centre"
+    }
+  ],
+  "blueprints": [
+    {
+      "blueprint": "AshBed",
+      "models": [
+        "ring-ash-bed-0",
+        "ring-ash-bed-1",
+        "ring-ash-bed-2",
+        "ring-ash-bed-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "BrinePool",
+      "models": [
+        "ring-brine-pool-0",
+        "ring-brine-pool-1",
+        "ring-brine-pool-2",
+        "ring-brine-pool-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Bush",
+      "models": [
+        "ring-bush-0",
+        "ring-bush-1",
+        "ring-bush-2",
+        "ring-bush-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Campfire",
+      "models": [
+        "ring-campfire"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "CascadeFather",
+      "models": [
+        "ring-cascade-father"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "CaveHermit",
+      "models": [
+        "ring-cave-hermit"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "Chest",
+      "models": [
+        "ring-chest"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "ChoirIronVein",
+      "models": [
+        "ring-choir-iron-vein-0",
+        "ring-choir-iron-vein-1",
+        "ring-choir-iron-vein-2",
+        "ring-choir-iron-vein-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "ChoirTendril",
+      "models": [
+        "ring-choir-tendril"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "CompostCache",
+      "models": [
+        "ring-compost-cache-0",
+        "ring-compost-cache-1",
+        "ring-compost-cache-2",
+        "ring-compost-cache-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "CompostRow",
+      "models": [
+        "ring-compost-row-0",
+        "ring-compost-row-1",
+        "ring-compost-row-2",
+        "ring-compost-row-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "CopperPipe",
+      "models": [
+        "ring-copper-pipe"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Crate",
+      "models": [
+        "ring-crate"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "DescentLedge",
+      "models": [
+        "ring-descent-ledge-0",
+        "ring-descent-ledge-1",
+        "ring-descent-ledge-2",
+        "ring-descent-ledge-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "DryBrush",
+      "models": [
+        "ring-dry-brush-0",
+        "ring-dry-brush-1",
+        "ring-dry-brush-2",
+        "ring-dry-brush-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "FallenBeam",
+      "models": [
+        "ring-fallen-beam-0",
+        "ring-fallen-beam-1",
+        "ring-fallen-beam-2",
+        "ring-fallen-beam-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "FellingBarePosition",
+      "models": [
+        "ring-felling-bare-position"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "FellingSceneProp",
+      "models": [],
+      "role": "felling-component",
+      "resolver": "FellingSceneProp.ComponentId"
+    },
+    {
+      "blueprint": "Floor",
+      "models": [
+        "ring-floor-0",
+        "ring-floor-1",
+        "ring-floor-2",
+        "ring-floor-3"
+      ],
+      "role": "ground"
+    },
+    {
+      "blueprint": "FruitingBody",
+      "models": [
+        "ring-fruiting-body-0",
+        "ring-fruiting-body-1",
+        "ring-fruiting-body-2",
+        "ring-fruiting-body-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "GlasspaneFrog",
+      "models": [
+        "ring-glasspane-frog"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "GlowQuartzVein",
+      "models": [
+        "ring-glow-quartz-vein-0",
+        "ring-glow-quartz-vein-1",
+        "ring-glow-quartz-vein-2",
+        "ring-glow-quartz-vein-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "GrainRidge",
+      "models": [
+        "ring-grain-ridge-0",
+        "ring-grain-ridge-1",
+        "ring-grain-ridge-2",
+        "ring-grain-ridge-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Grass",
+      "models": [
+        "ring-grass-0",
+        "ring-grass-1",
+        "ring-grass-2",
+        "ring-grass-3"
+      ],
+      "role": "ground"
+    },
+    {
+      "blueprint": "Grib",
+      "models": [
+        "ring-grib"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "GroveRedGrowth",
+      "models": [
+        "ring-grove-red-growth-0",
+        "ring-grove-red-growth-1",
+        "ring-grove-red-growth-2",
+        "ring-grove-red-growth-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "GroveSeep",
+      "models": [
+        "ring-grove-seep"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "GroveSign",
+      "models": [
+        "ring-grove-sign"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "HaulBarrel",
+      "models": [
+        "ring-haul-barrel"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "HelmwoodFrog",
+      "models": [
+        "ring-helmwood-frog"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "HollowLog",
+      "models": [
+        "ring-hollow-log-0",
+        "ring-hollow-log-1",
+        "ring-hollow-log-2",
+        "ring-hollow-log-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "MawToad",
+      "models": [
+        "ring-maw-toad"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "MillStone",
+      "models": [
+        "ring-mill-stone"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Mogu",
+      "models": [
+        "ring-mogu"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "Mosshulk",
+      "models": [
+        "ring-mosshulk"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "MushroomRing",
+      "models": [
+        "ring-mushroom-ring"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "MycelialColumn",
+      "models": [
+        "ring-mycelial-column-0",
+        "ring-mycelial-column-1",
+        "ring-mycelial-column-2",
+        "ring-mycelial-column-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Nam",
+      "models": [
+        "ring-nam"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "OreCache",
+      "models": [
+        "ring-ore-cache"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "PeatBog",
+      "models": [
+        "ring-peat-bog-0",
+        "ring-peat-bog-1",
+        "ring-peat-bog-2",
+        "ring-peat-bog-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Player",
+      "models": [
+        "ring-player"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "Rock",
+      "models": [
+        "ring-rock-0",
+        "ring-rock-1",
+        "ring-rock-2",
+        "ring-rock-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Rotling",
+      "models": [
+        "ring-rotling"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "Sack",
+      "models": [
+        "ring-sack"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "SariSnake",
+      "models": [
+        "ring-sari-snake"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "SeventhPosition",
+      "models": [
+        "ring-seventh-position"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Shambler",
+      "models": [
+        "ring-shambler"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "Sien",
+      "models": [
+        "ring-sien"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "SinkholeLip",
+      "models": [
+        "ring-sinkhole-lip-0",
+        "ring-sinkhole-lip-1",
+        "ring-sinkhole-lip-2",
+        "ring-sinkhole-lip-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "SkySari",
+      "models": [
+        "ring-sky-sari"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "Snapjaw",
+      "models": [
+        "ring-snapjaw"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "SnapjawWarlord",
+      "models": [
+        "ring-snapjaw-warlord"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "Sopp",
+      "models": [
+        "ring-sopp"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "SprayPool",
+      "models": [
+        "ring-spray-pool-0",
+        "ring-spray-pool-1",
+        "ring-spray-pool-2",
+        "ring-spray-pool-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "StairsDown",
+      "models": [
+        "ring-stairs-down"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "StairsUp",
+      "models": [
+        "ring-stairs-up"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "SteamVent",
+      "models": [
+        "ring-steam-vent"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "StoneCoffer",
+      "models": [
+        "ring-stone-coffer"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "StrongBox",
+      "models": [
+        "ring-strong-box"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "TarSeep",
+      "models": [
+        "ring-tar-seep-0",
+        "ring-tar-seep-1",
+        "ring-tar-seep-2",
+        "ring-tar-seep-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "TepuiStone",
+      "models": [
+        "ring-tepui-stone-0",
+        "ring-tepui-stone-1",
+        "ring-tepui-stone-2",
+        "ring-tepui-stone-3"
+      ],
+      "role": "ground"
+    },
+    {
+      "blueprint": "TepuiWall",
+      "models": [
+        "ring-tepui-wall-0",
+        "ring-tepui-wall-1",
+        "ring-tepui-wall-2",
+        "ring-tepui-wall-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Tepuibone",
+      "models": [
+        "ring-tepuibone"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "TepuiboneVein",
+      "models": [
+        "ring-tepuibone-vein-0",
+        "ring-tepuibone-vein-1",
+        "ring-tepuibone-vein-2",
+        "ring-tepuibone-vein-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Tree",
+      "models": [
+        "ring-tree-0",
+        "ring-tree-1",
+        "ring-tree-2",
+        "ring-tree-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "VineWall",
+      "models": [
+        "ring-vine-wall-0",
+        "ring-vine-wall-1",
+        "ring-vine-wall-2",
+        "ring-vine-wall-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Wall",
+      "models": [
+        "ring-wall-0",
+        "ring-wall-1",
+        "ring-wall-2",
+        "ring-wall-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "Wardline",
+      "models": [
+        "ring-wardline"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "WaterPuddle",
+      "models": [
+        "ring-water-puddle-0",
+        "ring-water-puddle-1",
+        "ring-water-puddle-2",
+        "ring-water-puddle-3"
+      ],
+      "role": "ground"
+    },
+    {
+      "blueprint": "WineLeafSundew",
+      "models": [
+        "ring-wine-leaf-sundew-0",
+        "ring-wine-leaf-sundew-1",
+        "ring-wine-leaf-sundew-2",
+        "ring-wine-leaf-sundew-3"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "WoodenBarrel",
+      "models": [
+        "ring-wooden-barrel"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "WovenBasket",
+      "models": [
+        "ring-woven-basket"
+      ],
+      "role": "entity"
+    },
+    {
+      "blueprint": "YellowfootWayfarer",
+      "models": [
+        "ring-yellowfoot-wayfarer"
+      ],
+      "role": "actor"
+    }
+  ],
+  "fellingOwners": [
+    {
+      "componentId": "stump-main",
+      "modelId": "ring-felling-stump-main",
+      "mutable": false
+    },
+    {
+      "componentId": "west-root-buttress",
+      "modelId": "ring-felling-west-root-buttress",
+      "mutable": false
+    },
+    {
+      "componentId": "east-root-buttress",
+      "modelId": "ring-felling-east-root-buttress",
+      "mutable": false
+    },
+    {
+      "componentId": "far-east-root-buttress",
+      "modelId": "ring-felling-far-east-root-buttress",
+      "mutable": false
+    },
+    {
+      "componentId": "southwest-root-arch",
+      "modelId": "ring-felling-southwest-root-arch",
+      "mutable": false
+    },
+    {
+      "componentId": "southwest-foreground-rock",
+      "modelId": "ring-felling-southwest-foreground-rock",
+      "mutable": false
+    },
+    {
+      "componentId": "southeast-foreground-root",
+      "modelId": "ring-felling-southeast-foreground-root",
+      "mutable": false
+    },
+    {
+      "componentId": "southeast-middle-ridge",
+      "modelId": "ring-felling-southeast-middle-ridge",
+      "mutable": false
+    },
+    {
+      "componentId": "boulder-west-approach",
+      "modelId": "ring-felling-boulder-west-approach",
+      "mutable": true
+    },
+    {
+      "componentId": "boulder-southwest-path",
+      "modelId": "ring-felling-boulder-southwest-path",
+      "mutable": true
+    },
+    {
+      "componentId": "boulder-east-clearing",
+      "modelId": "ring-felling-boulder-east-clearing",
+      "mutable": true
+    },
+    {
+      "componentId": "boulder-east-stream-bank",
+      "modelId": "ring-felling-boulder-east-stream-bank",
+      "mutable": true
+    },
+    {
+      "componentId": "boulder-west-bank-mossy",
+      "modelId": "ring-felling-boulder-west-bank-mossy",
+      "mutable": true
+    },
+    {
+      "componentId": "boulder-west-bank-mid",
+      "modelId": "ring-felling-boulder-west-bank-mid",
+      "mutable": true
+    },
+    {
+      "componentId": "boulder-west-bottom-flat",
+      "modelId": "ring-felling-boulder-west-bottom-flat",
+      "mutable": true
+    },
+    {
+      "componentId": "cyan-northwest",
+      "modelId": "ring-felling-cyan-northwest",
+      "mutable": true
+    },
+    {
+      "componentId": "cyan-west-clearing",
+      "modelId": "ring-felling-cyan-west-clearing",
+      "mutable": true
+    },
+    {
+      "componentId": "cyan-west-approach",
+      "modelId": "ring-felling-cyan-west-approach",
+      "mutable": true
+    },
+    {
+      "componentId": "cyan-southwest",
+      "modelId": "ring-felling-cyan-southwest",
+      "mutable": true
+    },
+    {
+      "componentId": "cyan-east-upper",
+      "modelId": "ring-felling-cyan-east-upper",
+      "mutable": true
+    },
+    {
+      "componentId": "cyan-east-middle",
+      "modelId": "ring-felling-cyan-east-middle",
+      "mutable": true
+    },
+    {
+      "componentId": "cyan-southeast-edge",
+      "modelId": "ring-felling-cyan-southeast-edge",
+      "mutable": true
+    },
+    {
+      "componentId": "red-northwest",
+      "modelId": "ring-felling-red-northwest",
+      "mutable": true
+    },
+    {
+      "componentId": "red-north-clearing-west",
+      "modelId": "ring-felling-red-north-clearing-west",
+      "mutable": true
+    },
+    {
+      "componentId": "red-north-clearing-east",
+      "modelId": "ring-felling-red-north-clearing-east",
+      "mutable": true
+    },
+    {
+      "componentId": "red-east-root-lip",
+      "modelId": "ring-felling-red-east-root-lip",
+      "mutable": true
+    },
+    {
+      "componentId": "red-far-east-upper",
+      "modelId": "ring-felling-red-far-east-upper",
+      "mutable": true
+    },
+    {
+      "componentId": "red-west-middle",
+      "modelId": "ring-felling-red-west-middle",
+      "mutable": true
+    },
+    {
+      "componentId": "red-west-clearing-rim",
+      "modelId": "ring-felling-red-west-clearing-rim",
+      "mutable": true
+    },
+    {
+      "componentId": "red-east-clearing-rim",
+      "modelId": "ring-felling-red-east-clearing-rim",
+      "mutable": true
+    },
+    {
+      "componentId": "red-west-approach",
+      "modelId": "ring-felling-red-west-approach",
+      "mutable": true
+    },
+    {
+      "componentId": "red-east-approach",
+      "modelId": "ring-felling-red-east-approach",
+      "mutable": true
+    },
+    {
+      "componentId": "red-southeast-inner",
+      "modelId": "ring-felling-red-southeast-inner",
+      "mutable": true
+    },
+    {
+      "componentId": "red-east-lower",
+      "modelId": "ring-felling-red-east-lower",
+      "mutable": true
+    },
+    {
+      "componentId": "pink-west-bank",
+      "modelId": "ring-felling-pink-west-bank",
+      "mutable": true
+    },
+    {
+      "componentId": "pink-west-arch",
+      "modelId": "ring-felling-pink-west-arch",
+      "mutable": true
+    },
+    {
+      "componentId": "pink-east-spires",
+      "modelId": "ring-felling-pink-east-spires",
+      "mutable": true
+    },
+    {
+      "componentId": "pink-east-middle",
+      "modelId": "ring-felling-pink-east-middle",
+      "mutable": true
+    },
+    {
+      "componentId": "cream-east-inner",
+      "modelId": "ring-felling-cream-east-inner",
+      "mutable": true
+    },
+    {
+      "componentId": "cream-west-boulder-foot",
+      "modelId": "ring-felling-cream-west-boulder-foot",
+      "mutable": true
+    },
+    {
+      "componentId": "pale-west-root-tubes",
+      "modelId": "ring-felling-pale-west-root-tubes",
+      "mutable": false
+    },
+    {
+      "componentId": "pale-north-inner-tubes",
+      "modelId": "ring-felling-pale-north-inner-tubes",
+      "mutable": false
+    },
+    {
+      "componentId": "pale-east-wall-tubes",
+      "modelId": "ring-felling-pale-east-wall-tubes",
+      "mutable": false
+    },
+    {
+      "componentId": "pale-east-tall-spires",
+      "modelId": "ring-felling-pale-east-tall-spires",
+      "mutable": false
+    },
+    {
+      "componentId": "pale-east-lower-tubes",
+      "modelId": "ring-felling-pale-east-lower-tubes",
+      "mutable": false
+    },
+    {
+      "componentId": "waterfall-motion",
+      "modelId": "ring-felling-waterfall-motion",
+      "mutable": false
+    },
+    {
+      "componentId": "waterfall-mist",
+      "modelId": "ring-felling-waterfall-mist",
+      "mutable": false
+    },
+    {
+      "componentId": "blackwater-flow",
+      "modelId": "ring-felling-blackwater-flow",
+      "mutable": false
+    },
+    {
+      "componentId": "red-north-clearing-west-right",
+      "modelId": "ring-felling-red-north-clearing-west-right",
+      "mutable": true
+    },
+    {
+      "componentId": "cyan-east-approach",
+      "modelId": "ring-felling-cyan-east-approach",
+      "mutable": true
+    },
+    {
+      "componentId": "cyan-east-root-tip",
+      "modelId": "ring-felling-cyan-east-root-tip",
+      "mutable": true
+    },
+    {
+      "componentId": "pink-southwest-streamside",
+      "modelId": "ring-felling-pink-southwest-streamside",
+      "mutable": true
+    },
+    {
+      "componentId": "pink-southwest-bottom-caps",
+      "modelId": "ring-felling-pink-southwest-bottom-caps",
+      "mutable": true
+    },
+    {
+      "componentId": "blue-west-middle-rosette",
+      "modelId": "ring-felling-blue-west-middle-rosette",
+      "mutable": true
+    },
+    {
+      "componentId": "blue-west-lower-rosette",
+      "modelId": "ring-felling-blue-west-lower-rosette",
+      "mutable": true
+    }
+  ],
+  "tileState": {
+    "waterModel": "ring-water-surface",
+    "height": 0.035,
+    "rule": "Current native coatings/pool state only; no seed restoration"
+  },
+  "zones": [
+    "Overworld.2.5.0",
+    "Overworld.2.6.0",
+    "Overworld.2.7.0",
+    "Overworld.3.5.0",
+    "Overworld.3.7.0",
+    "Overworld.4.5.0",
+    "Overworld.4.6.0",
+    "Overworld.4.7.0"
+  ],
+  "externalEquipment": {
+    "library": "Village3D/Library",
+    "models": [
+      "equipment-blade",
+      "equipment-club",
+      "equipment-staff",
+      "equipment-shield",
+      "equipment-pack",
+      "equipment-helmet"
+    ]
+  },
+  "materialSlots": [
+    "SpawnRingPalette",
+    "SpawnRingWater"
+  ],
+  "artSeed": 9092026,
+  "surfacePolicies": [
+    {
+      "blueprint": "WaterPuddle",
+      "policy": "dry-native-bed-and-rim; current TileState water uses shared overlay"
+    },
+    {
+      "blueprint": "GroveSeep",
+      "policy": "dry-native-bed-and-rim; current TileState water uses shared overlay"
+    },
+    {
+      "blueprint": "PeatBog",
+      "policy": "dry-native-bed-and-rim; current TileState water uses shared overlay"
+    },
+    {
+      "blueprint": "BrinePool",
+      "policy": "native-specific hazard surface; never substituted generic water"
+    },
+    {
+      "blueprint": "TarSeep",
+      "policy": "native-specific hazard surface; never substituted generic water"
+    },
+    {
+      "blueprint": "SprayPool",
+      "policy": "visual basin water; no claim of native LiquidPool or TileState source"
+    },
+    {
+      "componentId": "blackwater-flow",
+      "policy": "owner-ripple-detail only; no river plane; native TileState survives owner removal"
+    }
+  ],
+  "sourceSnapshotIndexSha256": "893802beda528fe59d704100bf2d67b30daaf7933e7bc1ead52b52d6244d613c"
+}

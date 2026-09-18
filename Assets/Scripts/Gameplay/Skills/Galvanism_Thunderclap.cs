@@ -1,4 +1,3 @@
-using System;
 using CavesOfOoo.Core;
 
 namespace CavesOfOoo.Skills
@@ -22,14 +21,12 @@ namespace CavesOfOoo.Skills
     /// whose tag-based Conductive gate ("Conductor", "Metal", "Water") is
     /// the single authority on what a charge means for a material.</para>
     /// </summary>
-    public class Galvanism_Thunderclap : BaseSkillPart
+    public class Galvanism_Thunderclap : SpellSkillPart
     {
         public override string Name => nameof(Galvanism_Thunderclap);
 
         public const int RADIUS = 2;
         public const int COOLDOWN = 18;
-        private const float ChargeDuration = 0.12f;
-        private const float RingStepDuration = 0.08f;
 
         public override ActivatedAbilitySpec DeclareActivatedAbility(Entity actor)
         {
@@ -44,7 +41,7 @@ namespace CavesOfOoo.Skills
             };
         }
 
-        public override bool OnCommand(SkillEventContext ctx)
+        protected override bool ResolveSpell(SkillEventContext ctx)
         {
             if (ctx == null || ctx.Attacker == null || ctx.Rng == null) return false;
             var actor = ctx.Attacker;
@@ -54,11 +51,6 @@ namespace CavesOfOoo.Skills
             var sourceCell = ctx.SourceCell;
             var rng = ctx.Rng;
 
-            AsciiFxBus.EmitChargeOrbit(zone, actor, radius: 1, duration: ChargeDuration,
-                AsciiFxTheme.Lightning, blocksTurnAdvance: true);
-            AsciiFxBus.EmitRingWave(zone, sourceCell.X, sourceCell.Y,
-                maxRadius: RADIUS, stepDuration: RingStepDuration,
-                theme: AsciiFxTheme.Lightning, blocksTurnAdvance: true, delay: ChargeDuration);
             ctx.BlocksTurnAdvance = true;
 
             var creatures = SpellTargeting.GetCreaturesInRadius(
@@ -70,7 +62,7 @@ namespace CavesOfOoo.Skills
             for (int i = 0; i < creatures.Count; i++)
             {
                 Entity target = creatures[i];
-                Cell targetCell = zone.GetEntityCell(target);
+                if (zone.GetEntityCell(target) == null || target.GetStatValue("Hitpoints", 0) <= 0) continue;
 
                 int damage = DiceRoller.Roll("2d6", rng);
                 var wet = target.GetEffect<WetEffect>();
@@ -90,48 +82,18 @@ namespace CavesOfOoo.Skills
                     target.ApplyEffect(new ElectrifiedEffect(charge: 1.0f), actor, zone);
                 }
 
-                if (targetCell != null)
-                {
-                    int radius = Math.Max(Math.Abs(targetCell.X - sourceCell.X),
-                        Math.Abs(targetCell.Y - sourceCell.Y));
-                    AsciiFxBus.EmitBurst(zone, targetCell.X, targetCell.Y,
-                        AsciiFxTheme.Lightning, blocksTurnAdvance: true,
-                        delay: ChargeDuration + ((Math.Max(1, radius) - 1) * RingStepDuration));
-                }
             }
 
             // Charge the scenery: every conductor in the blast picks up
             // Electrified(0.8). The matrix refuses wood and stone.
-            int minX = Math.Max(0, sourceCell.X - RADIUS);
-            int maxX = Math.Min(Zone.Width - 1, sourceCell.X + RADIUS);
-            int minY = Math.Max(0, sourceCell.Y - RADIUS);
-            int maxY = Math.Min(Zone.Height - 1, sourceCell.Y + RADIUS);
-
-            for (int y = minY; y <= maxY; y++)
+            var cells = MultiCellAbilityQueries.RadiusCells(zone, sourceCell.X, sourceCell.Y, RADIUS);
+            var pulseTargets = MultiCellAbilityQueries.SnapshotOccupants(cells, actor, reverse: true);
+            foreach (var cell in cells) SpellFxCapture.AffectCell(zone, cell.X, cell.Y);
+            foreach (var entity in pulseTargets)
             {
-                for (int x = minX; x <= maxX; x++)
-                {
-                    int chebyshev = Math.Max(Math.Abs(x - sourceCell.X), Math.Abs(y - sourceCell.Y));
-                    if (chebyshev > RADIUS)
-                        continue;
-
-                    Cell cell = zone.GetCell(x, y);
-                    if (cell == null)
-                        continue;
-
-                    for (int i = cell.Objects.Count - 1; i >= 0; i--)
-                    {
-                        if (i >= cell.Objects.Count) continue;
-                        Entity entity = cell.Objects[i];
-                        if (entity == actor)
-                            continue;
-                        if (entity.HasTag("Creature"))
-                            continue;
-
-                        ObjectStatusMatrix.TryApply(new ElectrifiedEffect(charge: 0.8f),
-                            entity, actor, zone);
-                    }
-                }
+                if (zone.GetEntityCell(entity) == null) continue;
+                if (entity.HasTag("Creature")) continue;
+                ObjectStatusMatrix.TryApply(new ElectrifiedEffect(charge: 0.8f), entity, actor, zone);
             }
 
             return true;
