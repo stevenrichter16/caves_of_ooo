@@ -1,0 +1,322 @@
+{
+  "unityExit": 0,
+  "mode": "after",
+  "timeout": false,
+  "compileErrors": [],
+  "unhandledLogExceptions": [],
+  "runId": "c24fc9e53abb46a0892ad828c102c229",
+  "validated": true,
+  "checks": 67,
+  "artifacts": [
+    {
+      "name": "EGSN-after-c24fc9e53abb46a0892ad828c102c229-cleanup.json",
+      "sha256": "4a241e4d37c23d37bc9f6e4bd05ffa04b29a19c6bc17968fba3e39f632fac6e3",
+      "bytes": 626
+    },
+    {
+      "name": "EGSN-after-c24fc9e53abb46a0892ad828c102c229-dim-world-nearest2x.png",
+      "sha256": "cb38f79bcc4b49872d8dff2d0884d06c331b50645f7dc92acc2a0c6ab82bd950",
+      "bytes": 111200
+    },
+    {
+      "name": "EGSN-after-c24fc9e53abb46a0892ad828c102c229-dim.png",
+      "sha256": "cd038f4c4863f03b28b77cecd7a9ce83cf5ac444797d50eeaa4d319524973f0d",
+      "bytes": 131776
+    },
+    {
+      "name": "EGSN-after-c24fc9e53abb46a0892ad828c102c229-frames.csv",
+      "sha256": "f3cb687cf33bd427ee68bca91c55436db9e2cf773ea42baa7644f3ed2b4904d7",
+      "bytes": 228417
+    },
+    {
+      "name": "EGSN-after-c24fc9e53abb46a0892ad828c102c229-native.json",
+      "sha256": "600aed373a2ececdfd4f452ce43fceaa1a7489c676f9c15a00e6c6b1b7bd2985",
+      "bytes": 32660
+    },
+    {
+      "name": "EGSN-after-c24fc9e53abb46a0892ad828c102c229-normal-world-nearest2x.png",
+      "sha256": "e16f6ea7afc2b2be2aee0a68bd0f036bd856898666e5a4cc9e71bcd5b93c97c0",
+      "bytes": 110747
+    },
+    {
+      "name": "EGSN-after-c24fc9e53abb46a0892ad828c102c229-normal.png",
+      "sha256": "d0b1c261b5284a3512944e749d8a0c59e8c0c34dfe13729824bb7626fca63a8a",
+      "bytes": 131798
+    },
+    {
+      "name": "EGSN-after-c24fc9e53abb46a0892ad828c102c229-provenance.json",
+      "sha256": "8abb2013d14a6f14271fe07d527644e5883341139cde5296dcbf4d9311f88b6b",
+      "bytes": 2831
+    }
+  ],
+  "phases": [
+    {
+      "name": "idle",
+      "seconds": 25.015768249999997,
+      "frames": 1501,
+      "rawStart": 0,
+      "operations": 0,
+      "moves": 0,
+      "pickups": 0,
+      "drops": 0,
+      "overlayChecks": 0,
+      "counters": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "metrics": [
+        {
+          "name": "COO.EnvSprites.PostRender",
+          "units": "TimeNanoseconds",
+          "available": true,
+          "count": 1500,
+          "observedFrames": 1501,
+          "zeroEmissionFrames": 1,
+          "sum": 0,
+          "max": 0,
+          "p99": 0,
+          "invocations": 0,
+          "average": 0.0
+        },
+        {
+          "name": "COO.ZoneRenderer.LateUpdate",
+          "units": "TimeNanoseconds",
+          "available": true,
+          "count": 1500,
+          "observedFrames": 1501,
+          "zeroEmissionFrames": 1,
+          "sum": 118177204,
+          "max": 488791,
+          "p99": 126333,
+          "invocations": 1500,
+          "average": 78732.31445702865
+        },
+        {
+          "name": "COO.Input.Update",
+          "units": "TimeNanoseconds",
+          "available": true,
+          "count": 1500,
+          "observedFrames": 1501,
+          "zeroEmissionFrames": 1,
+          "sum": 64210,
+          "max": 458,
+          "p99": 208,
+          "invocations": 1500,
+          "average": 42.778147901399066
+        },
+        {
+          "name": "Main Thread",
+          "units": "TimeNanoseconds",
+          "available": true,
+          "count": 1500,
+          "observedFrames": 1501,
+          "zeroEmissionFrames": 1,
+          "sum": 24991098991,
+          "max": 25991291,
+          "p99": 21740709,
+          "invocations": 1500,
+          "average": 16649632.905396402
+        },
+        {
+          "name": "GC Allocated In Frame",
+          "units": "Bytes",
+          "available": true,
+          "count": 1500,
+          "observedFrames": 1501,
+          "zeroEmissionFrames": 1,
+          "sum": 532625578,
+          "max": 597533,
+          "p99": 556447,
+          "invocations": 1500,
+          "average": 354847.15389740176
+        }
+      ]
+    },
+    {
+      "name": "walk_full_redraw",
+      "seconds": 25.00329070800001,
+      "frames": 1489,
+      "rawStart": 1501,
+      "operations": 100,
+      "moves": 100,
+      "pickups": 0,
+      "drops": 0,
+      "overlayChecks": 0,
+      "counters": [
+        100,
+        100,
+        0,
+        200000,
+        200000,
+        817100,
+        3796816,
+        50281
+      ],
+      "metrics": [
+        {
+          "name": "COO.EnvSprites.PostRender",
+          "units": "TimeNanoseconds",
+          "available": true,
+          "count": 1488,
+          "observedFrames": 1489,
+          "zeroEmissionFrames": 1,
+          "sum": 379732496,
+          "max": 5029041,
+          "p99": 4102000,
+          "invocations": 100,
+          "average": 255025.18200134317
+        },
+        {
+          "name": "COO.ZoneRenderer.LateUpdate",
+          "units": "TimeNanoseconds",
+          "available": true,
+          "count": 1488,
+          "observedFrames": 1489,
+          "zeroEmissionFrames": 1,
+          "sum": 1778987910,
+          "max": 20858375,
+          "p99": 17617667,
+          "invocations": 1488,
+          "average": 1194753.4654130288
+        },
+        {
+          "name": "COO.Input.Update",
+          "units": "TimeNanoseconds",
+          "available": true,
+          "count": 1488,
+          "observedFrames": 1489,
+          "zeroEmissionFrames": 1,
+          "sum": 66601,
+          "max": 416,
+          "p99": 208,
+          "invocations": 1488,
+          "average": 44.72867696440564
+        },
+        {
+          "name": "Main Thread",
+          "units": "TimeNanoseconds",
+          "available": true,
+          "count": 1488,
+          "observedFrames": 1489,
+          "zeroEmissionFrames": 1,
+          "sum": 24978045964,
+          "max": 32154875,
+          "p99": 19550292,
+          "invocations": 1488,
+          "average": 16775047.65883143
+        },
+        {
+          "name": "GC Allocated In Frame",
+          "units": "Bytes",
+          "available": true,
+          "count": 1488,
+          "observedFrames": 1489,
+          "zeroEmissionFrames": 1,
+          "sum": 662110415,
+          "max": 569563,
+          "p99": 555801,
+          "invocations": 1488,
+          "average": 444667.84083277365
+        }
+      ]
+    },
+    {
+      "name": "pickup_drop_incremental",
+      "seconds": 25.01679675000001,
+      "frames": 1501,
+      "rawStart": 2990,
+      "operations": 100,
+      "moves": 0,
+      "pickups": 50,
+      "drops": 50,
+      "overlayChecks": 100,
+      "counters": [
+        100,
+        0,
+        100,
+        900,
+        900,
+        7050,
+        62789,
+        945
+      ],
+      "metrics": [
+        {
+          "name": "COO.EnvSprites.PostRender",
+          "units": "TimeNanoseconds",
+          "available": true,
+          "count": 1500,
+          "observedFrames": 1501,
+          "zeroEmissionFrames": 1,
+          "sum": 6289746,
+          "max": 94542,
+          "p99": 67292,
+          "invocations": 100,
+          "average": 4190.370419720187
+        },
+        {
+          "name": "COO.ZoneRenderer.LateUpdate",
+          "units": "TimeNanoseconds",
+          "available": true,
+          "count": 1500,
+          "observedFrames": 1501,
+          "zeroEmissionFrames": 1,
+          "sum": 376379277,
+          "max": 2885250,
+          "p99": 2577875,
+          "invocations": 1500,
+          "average": 250752.34976682212
+        },
+        {
+          "name": "COO.Input.Update",
+          "units": "TimeNanoseconds",
+          "available": true,
+          "count": 1500,
+          "observedFrames": 1501,
+          "zeroEmissionFrames": 1,
+          "sum": 65759,
+          "max": 791,
+          "p99": 208,
+          "invocations": 1500,
+          "average": 43.81012658227848
+        },
+        {
+          "name": "Main Thread",
+          "units": "TimeNanoseconds",
+          "available": true,
+          "count": 1500,
+          "observedFrames": 1501,
+          "zeroEmissionFrames": 1,
+          "sum": 24990957733,
+          "max": 24329917,
+          "p99": 17145625,
+          "invocations": 1500,
+          "average": 16649538.79613591
+        },
+        {
+          "name": "GC Allocated In Frame",
+          "units": "Bytes",
+          "available": true,
+          "count": 1500,
+          "observedFrames": 1501,
+          "zeroEmissionFrames": 1,
+          "sum": 654689355,
+          "max": 723068,
+          "p99": 483893,
+          "invocations": 1500,
+          "average": 436168.7908061292
+        }
+      ]
+    }
+  ],
+  "bounds": "Synthetic owned 80x25 scene: real EntityFactory items, ZoneRenderer, LightMap and EnvironmentSpriteRenderer. Direct native MovementSystem/InventorySystem stimuli, no simulated keyboard play. Invisible minimal carrier and occupied legacy hand slot isolate item claims. Native Input.Update is only its null-context idle guard. Fixed100 actions per active25s phase, target60Hz, screenshots outside timing. Bounded non-wrapping recorders consume each GetSample once; zero-emission observations are counted separately from actual sample counts (sparse idle is valid only with a discovered valid handle). Completed-frame profiler flush has normal one-frame latency; aggregate includes renderer/harness/editor overhead, not isolated sprite cost or FPS. Normal/dim screens are real captures; enlarged images are nearest-neighbour copies. No native save roundtrip or ordinary-world gameplay/subjective readability claim.",
+  "changedSources": [],
+  "sourceFrozen": true,
+  "pass": true
+}

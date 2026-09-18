@@ -1,0 +1,23 @@
+Durable replay against the preserved pre-R1 contract source. The original authoring RED was observed before implementation; Unity later removed its Temp log. No production source was changed for this replay.
+
+test_contract (unittest.loader._FailedTest.test_contract) ... ERROR
+
+======================================================================
+ERROR: test_contract (unittest.loader._FailedTest.test_contract)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_contract
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/unittest/loader.py", line 426, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.3_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/unittest/loader.py", line 367, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/tmp/coo-r1-block-review/contract-before/test_contract.py", line 2, in <module>
+    from contract import validate, validate_variant_fingerprints
+ImportError: cannot import name 'validate_variant_fingerprints' from 'contract' (/tmp/coo-r1-block-review/contract-before/contract.py)
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

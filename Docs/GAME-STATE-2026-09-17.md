@@ -384,3 +384,7 @@ Current-world analysis: [chunk gameplay implementation](CHUNK-GAMEPLAY-IMPLEMENT
 Design authority: [Bible](../Lore/10_Bible.md), [Second Spine](../Lore/11_SecondSpine.md), [Mystery Ledger](../Lore/MYSTERY-LEDGER.md), [v1 dramatic scope](../Lore/Design/V1-DramaticCore.md), [release vision](RELEASE-VISION.md), [release-vision evidence](RELEASE-VISION-EVIDENCE.md), [deferred Vein Pressure](VEIN-PRESSURE-DESIGN.md).
 
 Read older audits as dated snapshots. Later implementation can resolve a listed gap—drinkable bromeliads, actual spray water, sparse ripe rows, guidance, stock renewal and cues are examples. When updating this document, trace the current native action and content placement, then cite the newer executable evidence. Never infer completion solely from a class name, an asset, a test fixture or a lore paragraph.
+
+## Subsequent checkpoint — 18 September 2026
+
+This document remains the detailed dated inventory. Its32inherited failures have since been repaired in R1 and promoted to local main; see [R1 acceptance](RELEASE-R1-ACCEPTANCE.md) for exact full-suite, timing-flake retry, native vulnerable opening, equipment art and block import evidence. This is stabilization of the existing game, not implementation of the potential campaign/ending systems described above. R2 regional receipts are the next release slice.

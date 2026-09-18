@@ -1,0 +1,32 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "ArtSource/BuildingBlocks3D",
+    "-p",
+    "test_contract.py",
+    "-v"
+  ],
+  "exit": 0,
+  "tests": 15,
+  "scope": "7 existing acceptance cases plus8 visual-fingerprint positive/negative controls; initial missing-helper RED retained",
+  "redReplay": {
+    "exit": 1,
+    "beforeSourceSha256": "cbc4d7c52da0a91eef527a01b755f814d5c89e6f8f76f020770c03bbc81a5934",
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "/tmp/coo-r1-block-review/contract-before",
+      "-p",
+      "test_contract.py",
+      "-v"
+    ],
+    "note": "replays original missing-helper RED from preserved before snapshot; original transient Temp log was cleared by Unity"
+  }
+}

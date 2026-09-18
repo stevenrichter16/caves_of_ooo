@@ -1,0 +1,27 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": null,
+  "results": {
+    "id": "2",
+    "testcasecount": "14918",
+    "result": "Failed(Child)",
+    "total": "14918",
+    "passed": "14917",
+    "failed": "1",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-18 04:22:00Z",
+    "end-time": "2026-09-18 04:27:41Z",
+    "duration": "340.926713"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.DiagPerfTests.Diag_DisabledChannelOverhead_BoundedPerCall",
+      "message": "  Disabled-channel Diag.Record overhead 252 ns/call exceeded ceiling 200 ns/call. The IsChannelEnabled short-circuit may have regressed (extra allocation? lock contention? full-method dispatch?).\n  Expected: less than 200.0d\n  But was:  251.74500000000003d\n"
+    }
+  ]
+}

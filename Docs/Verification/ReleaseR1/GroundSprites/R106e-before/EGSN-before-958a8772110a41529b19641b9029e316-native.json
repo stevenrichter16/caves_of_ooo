@@ -1,0 +1,1050 @@
+{
+    "runId": "958a8772110a41529b19641b9029e316",
+    "mode": "before",
+    "workloadVersion": "ground-equipment-75s-v1",
+    "privateRoot": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/40033d1124824c13a039aa0e9f9ca2b6",
+    "fatal": "",
+    "bounds": "Synthetic owned 80x25 scene: real EntityFactory items, ZoneRenderer, LightMap and EnvironmentSpriteRenderer. Direct native MovementSystem/InventorySystem stimuli, no simulated keyboard play. Invisible minimal carrier and occupied legacy hand slot isolate item claims. Native Input.Update is only its null-context idle guard. Fixed100 actions per active25s phase, target60Hz, screenshots outside timing. Bounded non-wrapping recorders consume each GetSample once; zero-emission observations are counted separately from actual sample counts (sparse idle is valid only with a discovered valid handle). Completed-frame profiler flush has normal one-frame latency; aggregate includes renderer/harness/editor overhead, not isolated sprite cost or FPS. Normal/dim screens are real captures; enlarged images are nearest-neighbour copies. No native save roundtrip or ordinary-world gameplay/subjective readability claim.",
+    "rawFramesPath": "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ReleaseR1/GroundSprites/R106e-before/EGSN-before-958a8772110a41529b19641b9029e316-frames.csv",
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "width": 1920,
+    "height": 1080,
+    "targetFrameRate": 60,
+    "rawFrameCount": 4486,
+    "seconds": 75.945866833,
+    "cleanupObserved": true,
+    "settingsRestored": true,
+    "inputUntouched": true,
+    "checks": [
+        {
+            "name": "real_production_renderer",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "expected_logical_mode",
+            "detail": "Before runs restored original renderer; mode never rewrites mappings or hides candidate resources.",
+            "pass": true
+        },
+        {
+            "name": "actual_14_blueprints_four_copies",
+            "detail": "2000 floor owners + 56 factory display items + synthetic carrier + native work dagger; equipped blocker is inventory-owned.",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_Dagger",
+            "detail": "WeaponGround",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_ShortSword",
+            "detail": "WeaponGround",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_LongSword",
+            "detail": "WeaponGround",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_Spear",
+            "detail": "WeaponGround",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_LeatherBoots",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_IronshodBoots",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_LeatherGloves",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_LeatherCap",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_IronHelmet",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_Mace",
+            "detail": "item_vial",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_FireTonic",
+            "detail": "item_vial",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_LeatherArmor",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_Chest",
+            "detail": "Chest",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_WatchLantern",
+            "detail": "Lantern",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_Dagger",
+            "detail": "WeaponGround",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_ShortSword",
+            "detail": "WeaponGround",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_LongSword",
+            "detail": "WeaponGround",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_Spear",
+            "detail": "WeaponGround",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_LeatherBoots",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_IronshodBoots",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_LeatherGloves",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_LeatherCap",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_IronHelmet",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_Mace",
+            "detail": "item_vial",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_FireTonic",
+            "detail": "item_vial",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_LeatherArmor",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_Chest",
+            "detail": "Chest",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_WatchLantern",
+            "detail": "Lantern",
+            "pass": true
+        },
+        {
+            "name": "dim_uses_native_lightmap",
+            "detail": "The first dagger is outside the watch lantern's native light radius.",
+            "pass": true
+        },
+        {
+            "name": "release_restores_item_glyph",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "release_reclaims_item",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "idle_marker_0",
+            "detail": "COO.EnvSprites.PostRender",
+            "pass": true
+        },
+        {
+            "name": "idle_marker_1",
+            "detail": "COO.ZoneRenderer.LateUpdate",
+            "pass": true
+        },
+        {
+            "name": "idle_marker_2",
+            "detail": "COO.Input.Update",
+            "pass": true
+        },
+        {
+            "name": "idle_marker_3",
+            "detail": "Main Thread",
+            "pass": true
+        },
+        {
+            "name": "idle_marker_4",
+            "detail": "GC Allocated In Frame",
+            "pass": true
+        },
+        {
+            "name": "idle_duration",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "idle_work_count",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "idle_claim_lifecycle",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "idle_sparse_marker",
+            "detail": "Valid EnvSprites handle with zero emitted work is legitimate idle; missing handles are rejected at discovery.",
+            "pass": true
+        },
+        {
+            "name": "idle_renderer_path",
+            "detail": "Counters: Frames,FullPasses,IncrementalPasses,CellsResolved,ClaimsMade,TilemapWrites,TotalTicks,MaxTicks.",
+            "pass": true
+        },
+        {
+            "name": "walk_full_redraw_marker_0",
+            "detail": "COO.EnvSprites.PostRender",
+            "pass": true
+        },
+        {
+            "name": "walk_full_redraw_marker_1",
+            "detail": "COO.ZoneRenderer.LateUpdate",
+            "pass": true
+        },
+        {
+            "name": "walk_full_redraw_marker_2",
+            "detail": "COO.Input.Update",
+            "pass": true
+        },
+        {
+            "name": "walk_full_redraw_marker_3",
+            "detail": "Main Thread",
+            "pass": true
+        },
+        {
+            "name": "walk_full_redraw_marker_4",
+            "detail": "GC Allocated In Frame",
+            "pass": true
+        },
+        {
+            "name": "walk_full_redraw_duration",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "walk_full_redraw_work_count",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "walk_full_redraw_claim_lifecycle",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "walk_full_redraw_sparse_marker",
+            "detail": "Valid EnvSprites handle with zero emitted work is legitimate idle; missing handles are rejected at discovery.",
+            "pass": true
+        },
+        {
+            "name": "walk_full_redraw_renderer_path",
+            "detail": "Counters: Frames,FullPasses,IncrementalPasses,CellsResolved,ClaimsMade,TilemapWrites,TotalTicks,MaxTicks.",
+            "pass": true
+        },
+        {
+            "name": "pickup_drop_incremental_marker_0",
+            "detail": "COO.EnvSprites.PostRender",
+            "pass": true
+        },
+        {
+            "name": "pickup_drop_incremental_marker_1",
+            "detail": "COO.ZoneRenderer.LateUpdate",
+            "pass": true
+        },
+        {
+            "name": "pickup_drop_incremental_marker_2",
+            "detail": "COO.Input.Update",
+            "pass": true
+        },
+        {
+            "name": "pickup_drop_incremental_marker_3",
+            "detail": "Main Thread",
+            "pass": true
+        },
+        {
+            "name": "pickup_drop_incremental_marker_4",
+            "detail": "GC Allocated In Frame",
+            "pass": true
+        },
+        {
+            "name": "pickup_drop_incremental_duration",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "pickup_drop_incremental_work_count",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "pickup_drop_incremental_claim_lifecycle",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "pickup_drop_incremental_sparse_marker",
+            "detail": "Valid EnvSprites handle with zero emitted work is legitimate idle; missing handles are rejected at discovery.",
+            "pass": true
+        },
+        {
+            "name": "pickup_drop_incremental_renderer_path",
+            "detail": "Counters: Frames,FullPasses,IncrementalPasses,CellsResolved,ClaimsMade,TilemapWrites,TotalTicks,MaxTicks.",
+            "pass": true
+        },
+        {
+            "name": "workload_complete",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_inventory_roundtrip",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "owned_save_only",
+            "detail": "Only NativeSaveIsolation's original disposable boot marker exists; this fixture has no game save runtime.",
+            "pass": true
+        }
+    ],
+    "claims": [
+        {
+            "light": "normal",
+            "blueprint": "Dagger",
+            "expected": "WeaponGround",
+            "tile": "WeaponGround",
+            "sprite": "weapon_ground",
+            "x": 5,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.0,
+                "g": 0.6700000166893005,
+                "b": 0.6700000166893005,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "ShortSword",
+            "expected": "WeaponGround",
+            "tile": "WeaponGround",
+            "sprite": "weapon_ground",
+            "x": 10,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.6700000166893005,
+                "g": 0.6700000166893005,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "LongSword",
+            "expected": "WeaponGround",
+            "tile": "WeaponGround",
+            "sprite": "weapon_ground",
+            "x": 15,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.6700000166893005,
+                "g": 0.6700000166893005,
+                "b": 0.6700000166893005,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "Spear",
+            "expected": "WeaponGround",
+            "tile": "WeaponGround",
+            "sprite": "weapon_ground",
+            "x": 20,
+            "zoneY": 5,
+            "tint": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 0.33000001311302187,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "LeatherBoots",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 25,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.6700000166893005,
+                "g": 0.6700000166893005,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "IronshodBoots",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 30,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.6700000166893005,
+                "g": 0.6700000166893005,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "LeatherGloves",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 35,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.6700000166893005,
+                "g": 0.6700000166893005,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "LeatherCap",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 40,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.6700000166893005,
+                "g": 0.6700000166893005,
+                "b": 0.6700000166893005,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "IronHelmet",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 45,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.6700000166893005,
+                "g": 0.6700000166893005,
+                "b": 0.6700000166893005,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "Mace",
+            "expected": "item_vial",
+            "tile": "item_vial",
+            "sprite": "item_vial_0",
+            "x": 50,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.6700000166893005,
+                "g": 0.6700000166893005,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "FireTonic",
+            "expected": "item_vial",
+            "tile": "item_vial",
+            "sprite": "item_vial_0",
+            "x": 55,
+            "zoneY": 5,
+            "tint": {
+                "r": 1.0,
+                "g": 0.33000001311302187,
+                "b": 0.33000001311302187,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "LeatherArmor",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 60,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.6700000166893005,
+                "g": 0.6700000166893005,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "Chest",
+            "expected": "Chest",
+            "tile": "Chest",
+            "sprite": "chest",
+            "x": 65,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.6700000166893005,
+                "g": 0.6700000166893005,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "WatchLantern",
+            "expected": "Lantern",
+            "tile": "Lantern",
+            "sprite": "lantern",
+            "x": 70,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.33000001311302187,
+                "g": 0.33000001311302187,
+                "b": 0.33000001311302187,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "Dagger",
+            "expected": "WeaponGround",
+            "tile": "WeaponGround",
+            "sprite": "weapon_ground",
+            "x": 5,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.0,
+                "g": 0.1876000016927719,
+                "b": 0.1876000016927719,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "ShortSword",
+            "expected": "WeaponGround",
+            "tile": "WeaponGround",
+            "sprite": "weapon_ground",
+            "x": 10,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.1876000016927719,
+                "g": 0.1876000016927719,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "LongSword",
+            "expected": "WeaponGround",
+            "tile": "WeaponGround",
+            "sprite": "weapon_ground",
+            "x": 15,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.1876000016927719,
+                "g": 0.1876000016927719,
+                "b": 0.1876000016927719,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "Spear",
+            "expected": "WeaponGround",
+            "tile": "WeaponGround",
+            "sprite": "weapon_ground",
+            "x": 20,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.2800000011920929,
+                "g": 0.2800000011920929,
+                "b": 0.09240000694990158,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "LeatherBoots",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 25,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.1876000016927719,
+                "g": 0.1876000016927719,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "IronshodBoots",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 30,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.1876000016927719,
+                "g": 0.1876000016927719,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "LeatherGloves",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 35,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.1876000016927719,
+                "g": 0.1876000016927719,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "LeatherCap",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 40,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.1876000016927719,
+                "g": 0.1876000016927719,
+                "b": 0.1876000016927719,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "IronHelmet",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 45,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.1876000016927719,
+                "g": 0.1876000016927719,
+                "b": 0.1876000016927719,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "Mace",
+            "expected": "item_vial",
+            "tile": "item_vial",
+            "sprite": "item_vial_0",
+            "x": 50,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.1876000016927719,
+                "g": 0.1876000016927719,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "FireTonic",
+            "expected": "item_vial",
+            "tile": "item_vial",
+            "sprite": "item_vial_0",
+            "x": 55,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.2800000011920929,
+                "g": 0.09240000694990158,
+                "b": 0.09240000694990158,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "LeatherArmor",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 60,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.22266824543476106,
+                "g": 0.22266824543476106,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "Chest",
+            "expected": "Chest",
+            "tile": "Chest",
+            "sprite": "chest",
+            "x": 65,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.6216664910316467,
+                "g": 0.6216664910316467,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "WatchLantern",
+            "expected": "Lantern",
+            "tile": "Lantern",
+            "sprite": "lantern",
+            "x": 70,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.33000001311302187,
+                "g": 0.33000001311302187,
+                "b": 0.33000001311302187,
+                "a": 1.0
+            }
+        }
+    ],
+    "screenshots": [
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ReleaseR1/GroundSprites/R106e-before/EGSN-before-958a8772110a41529b19641b9029e316-normal.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ReleaseR1/GroundSprites/R106e-before/EGSN-before-958a8772110a41529b19641b9029e316-normal-world-nearest2x.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ReleaseR1/GroundSprites/R106e-before/EGSN-before-958a8772110a41529b19641b9029e316-dim.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ReleaseR1/GroundSprites/R106e-before/EGSN-before-958a8772110a41529b19641b9029e316-dim-world-nearest2x.png"
+    ],
+    "phases": [
+        {
+            "name": "idle",
+            "seconds": 25.015513125000007,
+            "frames": 1501,
+            "rawStart": 0,
+            "operations": 0,
+            "moves": 0,
+            "pickups": 0,
+            "drops": 0,
+            "overlayChecks": 0,
+            "counters": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "metrics": [
+                {
+                    "name": "COO.EnvSprites.PostRender",
+                    "units": "TimeNanoseconds",
+                    "available": true,
+                    "count": 1500,
+                    "observedFrames": 1501,
+                    "zeroEmissionFrames": 1,
+                    "sum": 0,
+                    "max": 0,
+                    "p99": 0,
+                    "invocations": 0,
+                    "average": 0.0
+                },
+                {
+                    "name": "COO.ZoneRenderer.LateUpdate",
+                    "units": "TimeNanoseconds",
+                    "available": true,
+                    "count": 1500,
+                    "observedFrames": 1501,
+                    "zeroEmissionFrames": 1,
+                    "sum": 115354836,
+                    "max": 158625,
+                    "p99": 107375,
+                    "invocations": 1500,
+                    "average": 76851.9893404397
+                },
+                {
+                    "name": "COO.Input.Update",
+                    "units": "TimeNanoseconds",
+                    "available": true,
+                    "count": 1500,
+                    "observedFrames": 1501,
+                    "zeroEmissionFrames": 1,
+                    "sum": 61977,
+                    "max": 667,
+                    "p99": 167,
+                    "invocations": 1500,
+                    "average": 41.290473017988009
+                },
+                {
+                    "name": "Main Thread",
+                    "units": "TimeNanoseconds",
+                    "available": true,
+                    "count": 1500,
+                    "observedFrames": 1501,
+                    "zeroEmissionFrames": 1,
+                    "sum": 24991328245,
+                    "max": 25055416,
+                    "p99": 17193541,
+                    "invocations": 1500,
+                    "average": 16649785.639573617
+                },
+                {
+                    "name": "GC Allocated In Frame",
+                    "units": "Bytes",
+                    "available": true,
+                    "count": 1500,
+                    "observedFrames": 1501,
+                    "zeroEmissionFrames": 1,
+                    "sum": 738091532,
+                    "max": 559397,
+                    "p99": 556299,
+                    "invocations": 1500,
+                    "average": 491733.199200533
+                }
+            ]
+        },
+        {
+            "name": "walk_full_redraw",
+            "seconds": 25.006140999999997,
+            "frames": 1485,
+            "rawStart": 1501,
+            "operations": 100,
+            "moves": 100,
+            "pickups": 0,
+            "drops": 0,
+            "overlayChecks": 0,
+            "counters": [
+                100,
+                100,
+                0,
+                200000,
+                200000,
+                817100,
+                3839795,
+                44719
+            ],
+            "metrics": [
+                {
+                    "name": "COO.EnvSprites.PostRender",
+                    "units": "TimeNanoseconds",
+                    "available": true,
+                    "count": 1484,
+                    "observedFrames": 1485,
+                    "zeroEmissionFrames": 1,
+                    "sum": 384025499,
+                    "max": 4472792,
+                    "p99": 4006084,
+                    "invocations": 100,
+                    "average": 258603.02962962964
+                },
+                {
+                    "name": "COO.ZoneRenderer.LateUpdate",
+                    "units": "TimeNanoseconds",
+                    "available": true,
+                    "count": 1484,
+                    "observedFrames": 1485,
+                    "zeroEmissionFrames": 1,
+                    "sum": 1864865044,
+                    "max": 18681584,
+                    "p99": 18139750,
+                    "invocations": 1484,
+                    "average": 1255801.3764309765
+                },
+                {
+                    "name": "COO.Input.Update",
+                    "units": "TimeNanoseconds",
+                    "available": true,
+                    "count": 1484,
+                    "observedFrames": 1485,
+                    "zeroEmissionFrames": 1,
+                    "sum": 66939,
+                    "max": 625,
+                    "p99": 167,
+                    "invocations": 1484,
+                    "average": 45.07676767676767
+                },
+                {
+                    "name": "Main Thread",
+                    "units": "TimeNanoseconds",
+                    "available": true,
+                    "count": 1484,
+                    "observedFrames": 1485,
+                    "zeroEmissionFrames": 1,
+                    "sum": 24981429101,
+                    "max": 27606875,
+                    "p99": 19940666,
+                    "invocations": 1484,
+                    "average": 16822511.17912458
+                },
+                {
+                    "name": "GC Allocated In Frame",
+                    "units": "Bytes",
+                    "available": true,
+                    "count": 1484,
+                    "observedFrames": 1485,
+                    "zeroEmissionFrames": 1,
+                    "sum": 630284787,
+                    "max": 556001,
+                    "p99": 542039,
+                    "invocations": 1484,
+                    "average": 424434.2
+                }
+            ]
+        },
+        {
+            "name": "pickup_drop_incremental",
+            "seconds": 25.000368709,
+            "frames": 1500,
+            "rawStart": 2986,
+            "operations": 100,
+            "moves": 0,
+            "pickups": 50,
+            "drops": 50,
+            "overlayChecks": 100,
+            "counters": [
+                100,
+                0,
+                100,
+                900,
+                900,
+                7050,
+                56752,
+                701
+            ],
+            "metrics": [
+                {
+                    "name": "COO.EnvSprites.PostRender",
+                    "units": "TimeNanoseconds",
+                    "available": true,
+                    "count": 1499,
+                    "observedFrames": 1500,
+                    "zeroEmissionFrames": 1,
+                    "sum": 5683538,
+                    "max": 70166,
+                    "p99": 60959,
+                    "invocations": 100,
+                    "average": 3789.0253333333335
+                },
+                {
+                    "name": "COO.ZoneRenderer.LateUpdate",
+                    "units": "TimeNanoseconds",
+                    "available": true,
+                    "count": 1499,
+                    "observedFrames": 1500,
+                    "zeroEmissionFrames": 1,
+                    "sum": 367048484,
+                    "max": 2801458,
+                    "p99": 2613000,
+                    "invocations": 1499,
+                    "average": 244698.98933333334
+                },
+                {
+                    "name": "COO.Input.Update",
+                    "units": "TimeNanoseconds",
+                    "available": true,
+                    "count": 1499,
+                    "observedFrames": 1500,
+                    "zeroEmissionFrames": 1,
+                    "sum": 65120,
+                    "max": 292,
+                    "p99": 167,
+                    "invocations": 1499,
+                    "average": 43.413333333333337
+                },
+                {
+                    "name": "Main Thread",
+                    "units": "TimeNanoseconds",
+                    "available": true,
+                    "count": 1499,
+                    "observedFrames": 1500,
+                    "zeroEmissionFrames": 1,
+                    "sum": 24975274790,
+                    "max": 26028791,
+                    "p99": 17201250,
+                    "invocations": 1499,
+                    "average": 16650183.193333334
+                },
+                {
+                    "name": "GC Allocated In Frame",
+                    "units": "Bytes",
+                    "available": true,
+                    "count": 1499,
+                    "observedFrames": 1500,
+                    "zeroEmissionFrames": 1,
+                    "sum": 674887736,
+                    "max": 875994,
+                    "p99": 556119,
+                    "invocations": 1499,
+                    "average": 449925.15733333336
+                }
+            ]
+        }
+    ]
+}

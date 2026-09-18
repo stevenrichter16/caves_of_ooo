@@ -1,0 +1,625 @@
+{
+    "runId": "c582c47408914b5d9485721a4db6d48f",
+    "mode": "before",
+    "workloadVersion": "ground-equipment-75s-v1",
+    "privateRoot": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/868621c772ae4b3b8f09a5266c9b1238",
+    "fatal": "System.NotSupportedException: ProfilerRecorder can collect samples from ProfilerMarkers only with SumAllSamplesInFrame or CollectOnlyOnCurrentThread flags\n  at (wrapper managed-to-native) Unity.Profiling.ProfilerRecorder.Create_Injected(Unity.Profiling.LowLevel.Unsafe.ProfilerRecorderHandle&,int,Unity.Profiling.ProfilerRecorderOptions,Unity.Profiling.ProfilerRecorder&)\n  at Unity.Profiling.ProfilerRecorder.Create (Unity.Profiling.LowLevel.Unsafe.ProfilerRecorderHandle statHandle, System.Int32 maxSampleCount, Unity.Profiling.ProfilerRecorderOptions options) [0x00000] in <24fced3a8ae74facb149ed282bb550ef>:0 \n  at Unity.Profiling.ProfilerRecorder..ctor (Unity.Profiling.ProfilerCategory category, System.Char* statName, System.Int32 statNameLen, System.Int32 capacity, Unity.Profiling.ProfilerRecorderOptions options) [0x0000a] in /Users/bokken/build/output/unity/unity/Runtime/Profiler/ScriptBindings/ProfilerRecorder.bindings.cs:174 \n  at Unity.Profiling.ProfilerRecorder.StartNew (Unity.Profiling.ProfilerCategory category, System.String statName, System.Int32 capacity, Unity.Profiling.ProfilerRecorderOptions options) [0x00012] in /Users/bokken/build/output/unity/unity/Runtime/Profiler/ScriptBindings/ProfilerRecorder.bindings.cs:191 \n  at CavesOfOoo.Scenarios.Custom.EquipmentGroundSpriteNativeAudit.StartRecorders () [0x000a8] in /private/tmp/coo-regional-verification-20260917/Assets/Scripts/Scenarios/Custom/EquipmentGroundSpriteNativeAudit.Profile.cs:42 \n  at CavesOfOoo.Scenarios.Custom.EquipmentGroundSpriteNativeAudit+<Audit>d__58.MoveNext () [0x002a6] in /private/tmp/coo-regional-verification-20260917/Assets/Scripts/Scenarios/Custom/EquipmentGroundSpriteNativeAudit.cs:131 \n  at CavesOfOoo.Scenarios.Custom.EquipmentGroundSpriteNativeAudit+<RunSafely>d__57.MoveNext () [0x00049] in /private/tmp/coo-regional-verification-20260917/Assets/Scripts/Scenarios/Custom/EquipmentGroundSpriteNativeAudit.cs:96 ",
+    "bounds": "Synthetic owned 80x25 scene: real EntityFactory items, ZoneRenderer, LightMap and EnvironmentSpriteRenderer. Direct native MovementSystem/InventorySystem stimuli, no simulated keyboard play. Invisible minimal carrier and occupied legacy hand slot isolate item claims. Native Input.Update is only its null-context idle guard. Fixed100 actions per active25s phase, target60Hz, screenshots outside timing. Bounded non-wrapping recorders consume each GetSample once; zero-emission observations are counted separately from actual sample counts (sparse idle is valid only with a discovered valid handle). Completed-frame profiler flush has normal one-frame latency; aggregate includes renderer/harness/editor overhead, not isolated sprite cost or FPS. Normal/dim screens are real captures; enlarged images are nearest-neighbour copies. No native save roundtrip or ordinary-world gameplay/subjective readability claim.",
+    "rawFramesPath": "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ReleaseR1/GroundSprites/R106-before/EGSN-before-c582c47408914b5d9485721a4db6d48f-frames.csv",
+    "failures": 1,
+    "unexpectedErrors": 1,
+    "width": 2077,
+    "height": 1251,
+    "targetFrameRate": 60,
+    "rawFrameCount": 0,
+    "seconds": -3.6230211243832217,
+    "cleanupObserved": true,
+    "settingsRestored": true,
+    "inputUntouched": true,
+    "checks": [
+        {
+            "name": "real_production_renderer",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "expected_logical_mode",
+            "detail": "Before runs restored original renderer; mode never rewrites mappings or hides candidate resources.",
+            "pass": true
+        },
+        {
+            "name": "actual_14_blueprints_four_copies",
+            "detail": "2000 floor owners + 56 factory display items + synthetic carrier + native work dagger; equipped blocker is inventory-owned.",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_Dagger",
+            "detail": "WeaponGround",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_ShortSword",
+            "detail": "WeaponGround",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_LongSword",
+            "detail": "WeaponGround",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_Spear",
+            "detail": "WeaponGround",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_LeatherBoots",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_IronshodBoots",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_LeatherGloves",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_LeatherCap",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_IronHelmet",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_Mace",
+            "detail": "item_vial",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_FireTonic",
+            "detail": "item_vial",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_LeatherArmor",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_Chest",
+            "detail": "Chest",
+            "pass": true
+        },
+        {
+            "name": "normal_claim_WatchLantern",
+            "detail": "Lantern",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_Dagger",
+            "detail": "WeaponGround",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_ShortSword",
+            "detail": "WeaponGround",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_LongSword",
+            "detail": "WeaponGround",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_Spear",
+            "detail": "WeaponGround",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_LeatherBoots",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_IronshodBoots",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_LeatherGloves",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_LeatherCap",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_IronHelmet",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_Mace",
+            "detail": "item_vial",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_FireTonic",
+            "detail": "item_vial",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_LeatherArmor",
+            "detail": "item_armor",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_Chest",
+            "detail": "Chest",
+            "pass": true
+        },
+        {
+            "name": "dim_claim_WatchLantern",
+            "detail": "Lantern",
+            "pass": true
+        },
+        {
+            "name": "dim_uses_native_lightmap",
+            "detail": "The first dagger is outside the watch lantern's native light radius.",
+            "pass": true
+        },
+        {
+            "name": "release_restores_item_glyph",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "release_reclaims_item",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "fatal",
+            "detail": "System.NotSupportedException: ProfilerRecorder can collect samples from ProfilerMarkers only with SumAllSamplesInFrame or CollectOnlyOnCurrentThread flags\n  at (wrapper managed-to-native) Unity.Profiling.ProfilerRecorder.Create_Injected(Unity.Profiling.LowLevel.Unsafe.ProfilerRecorderHandle&,int,Unity.Profiling.ProfilerRecorderOptions,Unity.Profiling.ProfilerRecorder&)\n  at Unity.Profiling.ProfilerRecorder.Create (Unity.Profiling.LowLevel.Unsafe.ProfilerRecorderHandle statHandle, System.Int32 maxSampleCount, Unity.Profiling.ProfilerRecorderOptions options) [0x00000] in <24fced3a8ae74facb149ed282bb550ef>:0 \n  at Unity.Profiling.ProfilerRecorder..ctor (Unity.Profiling.ProfilerCategory category, System.Char* statName, System.Int32 statNameLen, System.Int32 capacity, Unity.Profiling.ProfilerRecorderOptions options) [0x0000a] in /Users/bokken/build/output/unity/unity/Runtime/Profiler/ScriptBindings/ProfilerRecorder.bindings.cs:174 \n  at Unity.Profiling.ProfilerRecorder.StartNew (Unity.Profiling.ProfilerCategory category, System.String statName, System.Int32 capacity, Unity.Profiling.ProfilerRecorderOptions options) [0x00012] in /Users/bokken/build/output/unity/unity/Runtime/Profiler/ScriptBindings/ProfilerRecorder.bindings.cs:191 \n  at CavesOfOoo.Scenarios.Custom.EquipmentGroundSpriteNativeAudit.StartRecorders () [0x000a8] in /private/tmp/coo-regional-verification-20260917/Assets/Scripts/Scenarios/Custom/EquipmentGroundSpriteNativeAudit.Profile.cs:42 \n  at CavesOfOoo.Scenarios.Custom.EquipmentGroundSpriteNativeAudit+<Audit>d__58.MoveNext () [0x002a6] in /private/tmp/coo-regional-verification-20260917/Assets/Scripts/Scenarios/Custom/EquipmentGroundSpriteNativeAudit.cs:131 \n  at CavesOfOoo.Scenarios.Custom.EquipmentGroundSpriteNativeAudit+<RunSafely>d__57.MoveNext () [0x00049] in /private/tmp/coo-regional-verification-20260917/Assets/Scripts/Scenarios/Custom/EquipmentGroundSpriteNativeAudit.cs:96 ",
+            "pass": false
+        }
+    ],
+    "claims": [
+        {
+            "light": "normal",
+            "blueprint": "Dagger",
+            "expected": "WeaponGround",
+            "tile": "WeaponGround",
+            "sprite": "weapon_ground",
+            "x": 5,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.0,
+                "g": 0.6700000166893005,
+                "b": 0.6700000166893005,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "ShortSword",
+            "expected": "WeaponGround",
+            "tile": "WeaponGround",
+            "sprite": "weapon_ground",
+            "x": 10,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.6700000166893005,
+                "g": 0.6700000166893005,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "LongSword",
+            "expected": "WeaponGround",
+            "tile": "WeaponGround",
+            "sprite": "weapon_ground",
+            "x": 15,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.6700000166893005,
+                "g": 0.6700000166893005,
+                "b": 0.6700000166893005,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "Spear",
+            "expected": "WeaponGround",
+            "tile": "WeaponGround",
+            "sprite": "weapon_ground",
+            "x": 20,
+            "zoneY": 5,
+            "tint": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 0.33000001311302187,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "LeatherBoots",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 25,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.6700000166893005,
+                "g": 0.6700000166893005,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "IronshodBoots",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 30,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.6700000166893005,
+                "g": 0.6700000166893005,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "LeatherGloves",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 35,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.6700000166893005,
+                "g": 0.6700000166893005,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "LeatherCap",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 40,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.6700000166893005,
+                "g": 0.6700000166893005,
+                "b": 0.6700000166893005,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "IronHelmet",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 45,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.6700000166893005,
+                "g": 0.6700000166893005,
+                "b": 0.6700000166893005,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "Mace",
+            "expected": "item_vial",
+            "tile": "item_vial",
+            "sprite": "item_vial_0",
+            "x": 50,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.6700000166893005,
+                "g": 0.6700000166893005,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "FireTonic",
+            "expected": "item_vial",
+            "tile": "item_vial",
+            "sprite": "item_vial_0",
+            "x": 55,
+            "zoneY": 5,
+            "tint": {
+                "r": 1.0,
+                "g": 0.33000001311302187,
+                "b": 0.33000001311302187,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "LeatherArmor",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 60,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.6700000166893005,
+                "g": 0.6700000166893005,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "Chest",
+            "expected": "Chest",
+            "tile": "Chest",
+            "sprite": "chest",
+            "x": 65,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.6700000166893005,
+                "g": 0.6700000166893005,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "normal",
+            "blueprint": "WatchLantern",
+            "expected": "Lantern",
+            "tile": "Lantern",
+            "sprite": "lantern",
+            "x": 70,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.33000001311302187,
+                "g": 0.33000001311302187,
+                "b": 0.33000001311302187,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "Dagger",
+            "expected": "WeaponGround",
+            "tile": "WeaponGround",
+            "sprite": "weapon_ground",
+            "x": 5,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.0,
+                "g": 0.1876000016927719,
+                "b": 0.1876000016927719,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "ShortSword",
+            "expected": "WeaponGround",
+            "tile": "WeaponGround",
+            "sprite": "weapon_ground",
+            "x": 10,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.1876000016927719,
+                "g": 0.1876000016927719,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "LongSword",
+            "expected": "WeaponGround",
+            "tile": "WeaponGround",
+            "sprite": "weapon_ground",
+            "x": 15,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.1876000016927719,
+                "g": 0.1876000016927719,
+                "b": 0.1876000016927719,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "Spear",
+            "expected": "WeaponGround",
+            "tile": "WeaponGround",
+            "sprite": "weapon_ground",
+            "x": 20,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.2800000011920929,
+                "g": 0.2800000011920929,
+                "b": 0.09240000694990158,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "LeatherBoots",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 25,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.1876000016927719,
+                "g": 0.1876000016927719,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "IronshodBoots",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 30,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.1876000016927719,
+                "g": 0.1876000016927719,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "LeatherGloves",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 35,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.1876000016927719,
+                "g": 0.1876000016927719,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "LeatherCap",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 40,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.1876000016927719,
+                "g": 0.1876000016927719,
+                "b": 0.1876000016927719,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "IronHelmet",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 45,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.1876000016927719,
+                "g": 0.1876000016927719,
+                "b": 0.1876000016927719,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "Mace",
+            "expected": "item_vial",
+            "tile": "item_vial",
+            "sprite": "item_vial_0",
+            "x": 50,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.1876000016927719,
+                "g": 0.1876000016927719,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "FireTonic",
+            "expected": "item_vial",
+            "tile": "item_vial",
+            "sprite": "item_vial_0",
+            "x": 55,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.2800000011920929,
+                "g": 0.09240000694990158,
+                "b": 0.09240000694990158,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "LeatherArmor",
+            "expected": "item_armor",
+            "tile": "item_armor",
+            "sprite": "item_armor_0",
+            "x": 60,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.22266824543476106,
+                "g": 0.22266824543476106,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "Chest",
+            "expected": "Chest",
+            "tile": "Chest",
+            "sprite": "chest",
+            "x": 65,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.6216664910316467,
+                "g": 0.6216664910316467,
+                "b": 0.0,
+                "a": 1.0
+            }
+        },
+        {
+            "light": "dim",
+            "blueprint": "WatchLantern",
+            "expected": "Lantern",
+            "tile": "Lantern",
+            "sprite": "lantern",
+            "x": 70,
+            "zoneY": 5,
+            "tint": {
+                "r": 0.33000001311302187,
+                "g": 0.33000001311302187,
+                "b": 0.33000001311302187,
+                "a": 1.0
+            }
+        }
+    ],
+    "screenshots": [
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ReleaseR1/GroundSprites/R106-before/EGSN-before-c582c47408914b5d9485721a4db6d48f-normal.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ReleaseR1/GroundSprites/R106-before/EGSN-before-c582c47408914b5d9485721a4db6d48f-normal-world-nearest2x.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ReleaseR1/GroundSprites/R106-before/EGSN-before-c582c47408914b5d9485721a4db6d48f-dim.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ReleaseR1/GroundSprites/R106-before/EGSN-before-c582c47408914b5d9485721a4db6d48f-dim-world-nearest2x.png"
+    ],
+    "phases": []
+}

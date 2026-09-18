@@ -71,3 +71,7 @@ eight new offline tests (15/15 pass, re-run independently 2026-09-18). These
 files are committed on branch `release-candidate`, not `main`. Visual inspection
 of the imported variants in useful Editor views remains outstanding; milestone 4
 (native placement/destruction) is unchanged and still not started.
+
+## R1 imported-art acceptance — 18 September 2026
+
+All72 installed FBXs match fresh source geometry/topology/UV fingerprints; all18families have four distinct variants. Independent and root review inspected all three labelled installed-FBX contact sheets.154kit GUIDs were preserved and the global metadata audit found no collision.15offline tests pass; the old installed kit reproduces its six duplication failures. See `Verification/BuildingBlocks3D/R1-art-review` and [R1 acceptance](RELEASE-R1-ACCEPTANCE.md). Main promotion closes the variant-publication repair. Native player construction remains unimplemented.

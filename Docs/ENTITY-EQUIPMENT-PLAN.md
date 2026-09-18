@@ -394,3 +394,7 @@ Source-backed producer/reference checks continue before their respective tests.
 ## Equipment phase close-out — GA03i
 
 Status: CONTENT/NATURAL ACTIVATION COMPLETE; SEVEN GROUND-SPRITE FAMILIES NEXT. Exactly24 kits, per-command quiet spawn grants, completed natural creation/legacy repair and two-hand selection guard ship together after actual RED discovery. Final9599/9599GREEN (+115),0CS; focused121/121; final native23PASS/0unexpected; independent source and paired-profile reviews clear. See Verification/GameSystemAudit/GA03i-REPORT.md for complete receipts, failed hypotheses/fixture errors, gameplay/balance divergences and measured bounds. Ground art has not shipped in this phase.
+
+## Ground-art close-out — R1, 18 September 2026
+
+The seven pending equipment-ground families now ship: dagger, sword, spear, boots, gloves, helmet and mace. Exact routes preserve tint and meaningful glyph fallback. Native art, lifecycle and profile acceptance is in [RELEASE-R1-ACCEPTANCE](RELEASE-R1-ACCEPTANCE.md). This closes ground art; it adds no equipment rules or worn-gear representations.

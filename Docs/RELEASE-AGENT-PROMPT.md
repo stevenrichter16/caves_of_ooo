@@ -118,3 +118,7 @@ For each milestone, report what changed, why it improves a player's decision, wh
 - Keep Unity open. Complete those gates in isolation, rerun relevant checks after any changes, then publish the exact accepted files and commit them into main. Do not spend the next turn repeating the existing inventory or expanding to unrelated mechanics before closing R1.
 
 No dedicated ground-sprite native benchmark should be assumed to exist merely because it was requested of an agent. No further process from R103 is running. This is a recoverable development checkpoint, not R1 release acceptance.
+
+## Continuation override — R1 accepted 18 September 2026
+
+Read [RELEASE-R1-ACCEPTANCE](RELEASE-R1-ACCEPTANCE.md) before acting on earlier pending checkpoints. R1 runtime/art/native acceptance is complete and promoted to local main. Full R108 had one known timing flake; isolated fixture retry passed, reported separately. The next bounded implementation is [RELEASE-REGIONAL-OUTCOMES](RELEASE-REGIONAL-OUTCOMES.md). Keep the live Unity Editor open; never republish stale draft files over subsequent changes.
