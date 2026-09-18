@@ -133,7 +133,7 @@ The full release proposal and its evidence are separate in `Docs/RELEASE-VISION.
 - `ChunkGameplayNativeAudit.cs`, `ChunkGameplayNativeAuditBatch.cs`, `Tools/ChunkGameplay/run_native.py`: ordinary-input regional acceptance, 17 frames, complete exception accounting and settled CLI startup.
 - This living document, raw receipts, final visual/metadata reviews and the two release-vision documents. Clone-only runner adaptations and private ProjectSettings are excluded from publication.
 
-No broad git staging or reset is permitted in this pre-existing dirty workspace. A conflict-checked publication manifest records the exact before/after hashes and backup paths; this task does not claim a clean branch or a new commit.
+No broad git staging or reset is permitted in this pre-existing dirty workspace. A conflict-checked publication manifest records the exact before/after hashes and backup paths. Subsequent user-authorized main integration preserved the accumulated playable state in `26fbe544` and fast-forwarded local `main`; see [MAIN-INTEGRATION-2026-09-17](MAIN-INTEGRATION-2026-09-17.md). Unrelated logs/cache/media remain outside that commit, so this is not a claim of a completely clean working directory.
 
 ## Final acceptance — 2026-09-17
 

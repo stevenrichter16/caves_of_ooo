@@ -1,0 +1,5 @@
+{
+  "replace": "                if (itemBody != null && _itemBodyTiles.TryGetValue(itemBody, out var bodyTile))\n                    return bodyTile;",
+  "with": "                if (itemBody != null)\n                {\n                    if (_itemBodyTiles.TryGetValue(itemBody, out var bodyTile)) return bodyTile;\n                    // Reviewed equipment identities must not become a generic\n                    // sword or cuirass when their resource is unavailable.\n                    switch (itemBody)\n                    {\n                        case \"item_dagger\": case \"item_sword\": case \"item_spear\":\n                        case \"item_boots\": case \"item_gloves\": case \"item_helmet\":\n                        case \"item_mace\": return null;\n                    }\n                }",
+  "status": "Guard drafted but never executed; removed before reachable missing-resource RED. Assets, preload and aliases retained."
+}

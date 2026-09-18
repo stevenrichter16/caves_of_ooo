@@ -1,0 +1,51 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests;CavesOfOoo.Tests.PlaceProfileTests;CavesOfOoo.Tests.WorldMapAuthoringTests;CavesOfOoo.Tests.WesternVoxelSpawnTests;CavesOfOoo.Tests.VoxelWorldAccessibilityTests",
+  "results": {
+    "id": "2",
+    "testcasecount": "79",
+    "result": "Failed(Child)",
+    "total": "79",
+    "passed": "72",
+    "failed": "7",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-18 02:49:47Z",
+    "end-time": "2026-09-18 02:49:52Z",
+    "duration": "5.2120266"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"Dagger\",\"item_dagger\")",
+      "message": "  missing art must not claim a different family\n  Expected: null\n  But was:  <WeaponGround (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"ShortSword\",\"item_sword\")",
+      "message": "  missing art must not claim a different family\n  Expected: null\n  But was:  <WeaponGround (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"Spear\",\"item_spear\")",
+      "message": "  missing art must not claim a different family\n  Expected: null\n  But was:  <WeaponGround (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"LeatherBoots\",\"item_boots\")",
+      "message": "  missing art must not claim a different family\n  Expected: null\n  But was:  <item_armor (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"LeatherGloves\",\"item_gloves\")",
+      "message": "  missing art must not claim a different family\n  Expected: null\n  But was:  <item_armor (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"LeatherCap\",\"item_helmet\")",
+      "message": "  missing art must not claim a different family\n  Expected: null\n  But was:  <item_armor (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditEquipmentGroundSpriteAdversarialTests.Adversarial_MissingNewBodyRetainsOwnGlyphInsteadOfWrongGenericFamily(\"Mace\",\"item_mace\")",
+      "message": "  missing art must not claim a different family\n  Expected: null\n  But was:  <item_vial (UnityEngine.Tilemaps.Tile)>\n"
+    }
+  ]
+}

@@ -34,3 +34,13 @@ Art is produced offline; no extra per-frame scans or runtime cube generation. Ex
 
 - Main integration preserves all accumulated runtime dependencies; 12,979 Assets/Packages files match the validated clone. Main remains local; no remote push requested.
 - R1 opened against exact RS28 red cases; source audits run before edits. The original full-suite failures remain visible until genuinely resolved.
+
+### Handoff checkpoint — 17 September, 22:05 CDT
+
+- Candidate work remains in `/tmp/coo-regional-verification-20260917`, independent of the user's open Editor. The reviewable 99-file draft is preserved in [ReleaseHandoff](ReleaseHandoff/README.md); it has not been installed into main Assets.
+- R101: 79 cases, 72 passed/seven reachable missing-resource failures, zero C# errors. New sprites/preload/aliases were present, while the drafted guard was deliberately excluded so the fallback tests reached the real branch. Restoring the guard followed this run. Both corrected world fixtures passed.
+- R102: regenerated 72-piece source kit imported through the existing asset builder; Unity exit 0, zero C# errors, no metadata changes. Fifteen offline contract tests passed.
+- **R103: 14,901/14,901 full-suite cases passed, zero failed/skipped/inconclusive, zero C# errors, Unity exit 0.** All 32 inherited failures are resolved in the isolated candidate. [Receipt](Verification/VoxelWorld/R103-release-full-candidate/receipt.json); compressed XML/log are adjacent. This does not change the accepted main runtime's RS28 result.
+- The candidate native journey adds observations requiring a vulnerable start and completion of the cloth expedition plus five interiors alive without F12 or synthetic healing. These compiled but have not run natively yet. Later regional F12 use remains explicitly separate.
+- Seven ground sprites passed static/reproduction checks and contact-sheet inspection. Dedicated ground-sprite native idle/walk/pickup-drop A/B, the updated native opening, imported-block visual review and final cold-eye/adversarial acceptance remain outstanding. The existing combat-equipment bench is not the missing sprite bench.
+- Current request is a comprehensive game-state document and next-agent prompt. Those are provided in [GAME-STATE-2026-09-17](GAME-STATE-2026-09-17.md) and [RELEASE-AGENT-PROMPT](RELEASE-AGENT-PROMPT.md), with exact candidate status preserved rather than declaring R1 complete.
