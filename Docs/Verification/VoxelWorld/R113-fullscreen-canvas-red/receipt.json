@@ -1,0 +1,43 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "FullscreenUiCanvasOwnershipTests",
+  "results": {
+    "id": "2",
+    "testcasecount": "9",
+    "result": "Failed(Child)",
+    "total": "9",
+    "passed": "4",
+    "failed": "5",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-18 04:51:06Z",
+    "end-time": "2026-09-18 04:51:06Z",
+    "duration": "0.4547959"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.FullscreenUiCanvasOwnershipTests.FirstPausedFrameDoesNotRestoreDisplacedWorldGlyphIntoBlankUiRow(\"Trade\")",
+      "message": "  releasing a sprite claim must not resurrect stale world paint after UI.Render\n  Expected: null\n  But was:  <CP437_2E (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FullscreenUiCanvasOwnershipTests.FirstPausedFrameDoesNotRestoreDisplacedWorldGlyphIntoBlankUiRow(\"Faction\")",
+      "message": "  releasing a sprite claim must not resurrect stale world paint after UI.Render\n  Expected: null\n  But was:  <CP437_2E (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FullscreenUiCanvasOwnershipTests.FirstPausedFrameDoesNotRestoreDisplacedWorldGlyphIntoBlankUiRow(\"QuestLog\")",
+      "message": "  releasing a sprite claim must not resurrect stale world paint after UI.Render\n  Expected: null\n  But was:  <CP437_2E (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FullscreenUiCanvasOwnershipTests.FullscreenEntryTakesMainCanvasEvenWhenLegacyPopupWasAssigned(\"Trade\")",
+      "message": "  an unused fullscreen row must not retain its old world glyph\n  Expected: null\n  But was:  <CP437_2E (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FullscreenUiCanvasOwnershipTests.FullscreenEntryTakesMainCanvasEvenWhenLegacyPopupWasAssigned(\"Faction\")",
+      "message": "  an unused fullscreen row must not retain its old world glyph\n  Expected: null\n  But was:  <CP437_2E (UnityEngine.Tilemaps.Tile)>\n"
+    }
+  ]
+}

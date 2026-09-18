@@ -126,3 +126,5 @@ Read [RELEASE-R1-ACCEPTANCE](RELEASE-R1-ACCEPTANCE.md) before acting on earlier 
 ### Latest continuation checkpoint — R2 accepted
 
 R1 and R2 are now on local main. Latest full suite:14,931/14,931, zero compiler errors; latest native journey:62/62 with rendered post-reload outcomes and visible delivered trade stock. Read [RELEASE-REGIONAL-OUTCOMES](RELEASE-REGIONAL-OUTCOMES.md). Next bounded repair is the observed full-screen trade/faction terrain leak, followed by explicit regional opt-in (plan and tests prepared, not implemented). Keep the user Editor open; preserve unrelated logs/cache.
+
+Latest checkpoint, 18 September: fullscreen canvas repair accepted (Docs/RELEASE-FULLSCREEN-UI.md), full R11714941/14941, native R11665/65. Continue with Docs/RELEASE-REGIONAL-OPT-IN.md; then bounded Docs/RELEASE-MATERIAL-GUIDANCE-PLAN.md. Main Unity remains open; use the independent verification copy.

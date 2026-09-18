@@ -392,3 +392,7 @@ This document remains the detailed dated inventory. Its32inherited failures have
 ### R2 accepted — 18 September 2026
 
 Completed regional work now retains a truthful payment/stock/habitat receipt; released notes no longer advertise active delivery. All five finite bindings are covered, including rollback and full saves. Full suite14,931/14,931, native62/62, zero compiler errors; actual post-reload receipt and trader stock were inspected. See [RELEASE-REGIONAL-OUTCOMES](RELEASE-REGIONAL-OUTCOMES.md). No new economic simulation or ending spine is implied.
+
+## 18 September checkpoint: fullscreen UI ownership repair
+
+Trade and Faction now paint the main fullscreen canvas; pausing for Inventory/Journal/Trade/Faction discards stale terrain snapshots rather than restoring them over empty menu rows. Ten paired regression cases, 107 focused checks, 65 native checks with 21 captures, and full R117 **14,941/14,941** passed with no compiler errors. Root inspected clean trade/faction pages and restored voxel world. No gameplay ownership, inventory, camera preference or save-format changes. See [repair and evidence](RELEASE-FULLSCREEN-UI.md). Next: explicit opt-in regional requests.

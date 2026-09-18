@@ -20,7 +20,7 @@ The current foundation includes turn-based combat, six starter spell/skill optio
 
 Recent verified work gives the opening a concrete purpose: travel from the western field to Morrowfast, recover Farra's cloth, return it once, receive useful supplies, and learn directions from Vennit. Travel notes persist. Six previously repeated global stories now have canonical homes. Morrowfast's local choices, Cinderhold's faction tradeoff, guest-right and Olderdeep's pilgrimage demonstrate that useful actions can already change relationships and places.
 
-These foundations are not a finished campaign. Boat frames do not imply boating; archival scenery does not imply usable knowledge; generated walls do not imply player house construction. Farming is not an offscreen agricultural economy. The lore's ending designs are not proof of a playable ending chain. The first Supply/Recovery wave now adds five verified finite requests, native merchant stock, persistent notes and a local habitat-preservation outcome. It is not a dynamic world simulation. The whole regression suite still has 32 inherited failures, so this feature acceptance is not release certification.
+These foundations are not a finished campaign. Boat frames do not imply boating; archival scenery does not imply usable knowledge; generated walls do not imply player house construction. Farming is not an offscreen agricultural economy. The lore's ending designs are not proof of a playable ending chain. The first Supply/Recovery wave now adds five verified finite requests, native merchant stock, persistent notes and a local habitat-preservation outcome. It is not a dynamic world simulation. The 32 inherited regression failures were repaired in R1; the latest R2 full run passed 14,931/14,931 tests. R2 also records actual delivery outcomes in persistent receipts. These bounded acceptances are not release certification; campaign, balance and distribution gates remain open.
 
 ## The player's three loops
 
@@ -94,7 +94,7 @@ Advertise only endings that can actually be reached. Consume, Preserve and Renew
 
 ## A dependency-led roadmap
 
-**1. Stabilize the verified slice.** The coarse Morrowfast restyle and first regional templates now have focused, full-regression and native acceptance evidence. Address the 32 inherited failures, then run an ordinary new-player pass without debug protection. Keep the implementation record explicit about its limits. Establish production visibility/debug defaults explicitly; preserve full-reveal as a chosen mode rather than silently overriding user preference.
+**1. Stabilize the verified slice.** The coarse Morrowfast restyle and first regional templates now have focused, full-regression and native acceptance evidence. The 32 inherited failures are repaired, and the native opening has passed without debug protection. Continue targeted readability, input and transaction repairs while preserving that opening. Keep the implementation record explicit about its limits. Establish production visibility/debug defaults explicitly; preserve full-reveal as a chosen mode rather than silently overriding user preference.
 
 **2. Make the regional loop repeatable before multiplying it.** Verify instance identity, quantities, inventory transactions, refusal/release, cargo loss, habitat outcomes and save/load. Playtest whether each binding creates a meaningful choice. Then expand a small number of situations into better variants; do not add dozens of nearly identical errands.
 

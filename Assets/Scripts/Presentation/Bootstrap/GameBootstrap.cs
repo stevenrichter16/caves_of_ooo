@@ -578,14 +578,14 @@ namespace CavesOfOoo
                     if (tradeUI == null)
                         tradeUI = gameObject.AddComponent<TradeUI>();
                     if (ZoneRenderer != null)
-                        tradeUI.Tilemap = ZoneRenderer.PopupFgTilemap;
+                        tradeUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
                     inputHandler.TradeUI = tradeUI;
 
                     var factionUI = GetComponent<FactionUI>();
                     if (factionUI == null)
                         factionUI = gameObject.AddComponent<FactionUI>();
                     if (ZoneRenderer != null)
-                        factionUI.Tilemap = ZoneRenderer.PopupFgTilemap;
+                        factionUI.Tilemap = ZoneRenderer.GetComponent<Tilemap>();
                     inputHandler.FactionUI = factionUI;
 
                     var announcementUI = GetComponent<AnnouncementUI>();

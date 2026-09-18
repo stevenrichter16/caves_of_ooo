@@ -819,13 +819,12 @@ namespace CavesOfOoo.Rendering
                     // Only clear auxiliary layers on the transition into paused state
                     if (!_wasPaused)
                     {
-                        // Round 3 audit fix — the sprite overlay (order 3)
-                        // and ghost overlay sort ABOVE the main tilemap
-                        // the fullscreen UIs paint on (order 0); without
-                        // this, last frame's terrain sprites covered the
-                        // lower UI rows. Release BEFORE the bg clear so
-                        // the restore guard sees pre-clear state.
-                        _envSpriteRenderer?.ReleaseAllClaims();
+                        // The fullscreen UI has already cleared and painted main.
+                        // Discard displaced world snapshots instead of restoring them
+                        // into its empty rows (FullscreenUiCanvasOwnershipTests).
+                        // The background is cleared below; normal gameplay claim
+                        // restoration remains unchanged.
+                        _envSpriteRenderer?.NotifyMainTilemapCleared();
 
                         // The animated water/grass/fire overlays sort at
                         // order 2, above the order-0 main tilemap the

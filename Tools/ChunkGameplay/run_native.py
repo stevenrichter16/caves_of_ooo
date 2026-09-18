@@ -34,7 +34,7 @@ def main(argv=None):
                '-logFile', str(LIVE / args.name / 'unity.log')]
     if not args.execute:
         print(json.dumps({'launch': False, 'command': command,
-                          'scope': 'Native rendered Editor, private save root, seed64 ordinary N, nine walked borders, real menus/journal/field notes/F5/F6, a regional harvest-and-delivery journey and nineteen GameView captures, including a delivered-stock trade view and restored outcome receipt, including five entered interiors.'}, indent=2))
+                          'scope': 'Native rendered Editor, private save root, seed64 ordinary N, nine walked borders, real menus/journal/field notes/F5/F6, a regional harvest-and-delivery journey and twenty-one GameView captures, including a delivered-stock trade view, faction standings, restored world, and restored outcome receipt, including five entered interiors.'}, indent=2))
         return 0
 
     sys.path.insert(0, str(ROOT / 'Tools/Village3D'))

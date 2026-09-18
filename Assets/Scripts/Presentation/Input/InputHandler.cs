@@ -3522,6 +3522,8 @@ namespace CavesOfOoo.Rendering
         private void OpenFaction()
         {
             if (FactionUI == null) return;
+            // Fullscreen pages own the main canvas, including reused UI components.
+            if (ZoneRenderer != null) FactionUI.Tilemap = ZoneRenderer.GetComponent<UnityEngine.Tilemaps.Tilemap>();
             FactionUI.PlayerEntity = PlayerEntity;
             FactionUI.Open();
             _inputState = InputState.FactionOpen;
@@ -3786,6 +3788,8 @@ namespace CavesOfOoo.Rendering
         private void OpenTrade(Entity trader)
         {
             if (TradeUI == null) return;
+            // Fullscreen pages own the main canvas, including reused UI components.
+            if (ZoneRenderer != null) TradeUI.Tilemap = ZoneRenderer.GetComponent<UnityEngine.Tilemaps.Tilemap>();
             if (ZoneRenderer != null) ZoneRenderer.Paused = true;
             if (CameraFollow != null) CameraFollow.SetUIView(FullscreenUiGridWidth, FullscreenUiGridHeight);
             TradeUI.PlayerEntity = PlayerEntity;

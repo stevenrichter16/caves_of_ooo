@@ -267,6 +267,12 @@ namespace CavesOfOoo.Scenarios.Custom
             var lines=(List<string>)typeof(QuestLogUI).GetField("_noteLines",Private).GetValue(input.QuestLogUI);
             Check("regional_native_note_visible",input.QuestLogUI.NotesVisible&&string.Join(" ",lines).Replace(" ","").Contains(definition.Title.Replace(" ","")));
             yield return InspectRegionalReceipt("regional_native_receipt_visible",definition,"regional-notes");yield return Tap(Key.Escape);
+            var pageCamera=input.CameraFollow.GetComponent<Camera>();
+            var pagePosition=pageCamera.transform.position;var pageRotation=pageCamera.transform.rotation;
+            var pageRect=pageCamera.rect;float pageZoom=pageCamera.orthographicSize;
+            var playerCell=Position();var ownerIds=input.CurrentZone.GetReadOnlyEntities().Select(e=>e.ID).OrderBy(id=>id).ToArray();
+            string playerGoods=InventoryFingerprint(input.PlayerEntity),traderGoods=InventoryFingerprint(giver);
+            int playerMoney=TradeSystem.GetDrams(input.PlayerEntity),traderMoney=TradeSystem.GetDrams(giver);
             yield return OpenMenu(giver);yield return SelectCommand("Chat");
             yield return SelectDialogue(choice=>choice.Actions?.Any(a=>a.Key=="StartTrade")==true,"inspect delivered trade stock");
             var tradeRows=(IList)typeof(TradeUI).GetField("_leftRows",Private).GetValue(input.TradeUI);
@@ -277,9 +283,32 @@ namespace CavesOfOoo.Scenarios.Custom
                 if(item?.BlueprintName=="ChoirIron")shownIron=true;
             }
             Check("regional_native_delivered_stock_in_trade",State()=="TradeOpen"&&input.TradeUI.IsOpen&&shownIron);
+            Require(tradeRows.Count<31,"Sparse native trader stock leaves the inspected lower row empty.");
+            var mainCanvas=input.ZoneRenderer.GetComponent<UnityEngine.Tilemaps.Tilemap>();
+            bool cleanTrade=input.TradeUI.Tilemap==mainCanvas&&mainCanvas.GetUsedTilesCount()>0;
+            for(int x=1;x<39;x++)cleanTrade&=mainCanvas.GetTile(new Vector3Int(x,9,0))==null;
+            Check("fullscreen_native_trade_clean",cleanTrade&&PopupCanvasesEmpty());
             yield return Capture("regional-trade-stock");yield return Tap(Key.Escape);
+            yield return Tap(Key.F);
+            bool cleanFaction=State()=="FactionOpen"&&input.FactionUI.Tilemap==mainCanvas&&mainCanvas.GetUsedTilesCount()>0;
+            // UI row 35 is a deliberately empty spacer between faction rows.
+            for(int x=0;x<80;x++)cleanFaction&=mainCanvas.GetTile(new Vector3Int(x,9,0))==null;
+            Check("fullscreen_native_faction_clean",cleanFaction&&PopupCanvasesEmpty());
+            yield return Capture("faction-standings");yield return Tap(Key.Escape);yield return WaitForVoxel();
+            Check("fullscreen_native_world_restored",State()=="Normal"&&!input.ZoneRenderer.Paused
+                &&Position()==playerCell&&pageCamera.transform.position==pagePosition&&pageCamera.transform.rotation==pageRotation
+                &&pageCamera.rect==pageRect&&Mathf.Approximately(pageCamera.orthographicSize,pageZoom)
+                &&ownerIds.SequenceEqual(input.CurrentZone.GetReadOnlyEntities().Select(e=>e.ID).OrderBy(id=>id))
+                &&InventoryFingerprint(input.PlayerEntity)==playerGoods&&InventoryFingerprint(giver)==traderGoods
+                &&TradeSystem.GetDrams(input.PlayerEntity)==playerMoney&&TradeSystem.GetDrams(giver)==traderMoney);
+            yield return Capture("fullscreen-world-restored");
             yield return Tap(Key.F12);Check("regional_native_debug_restored",!DebugInvincibility.IsEnabled(input.PlayerEntity));
         }
+        private bool PopupCanvasesEmpty()=>input.ZoneRenderer.PopupFgTilemap.GetUsedTilesCount()==0
+            &&input.ZoneRenderer.CenteredPopupFgTilemap.GetUsedTilesCount()==0
+            &&input.ZoneRenderer.CenteredPopupBgTilemap.GetUsedTilesCount()==0;
+        private static string InventoryFingerprint(Entity owner)=>string.Join("|",owner.GetPart<InventoryPart>().Objects
+            .Select(e=>e.ID+":"+e.BlueprintName+":"+(e.GetPart<StackerPart>()?.StackCount??1)).OrderBy(value=>value));
         private IEnumerator InspectRegionalReceipt(string name,RegionalSituationDefinition definition,string capture)
         {
             // Read actual displayed glyphs, not the unpaginated backing buffer.

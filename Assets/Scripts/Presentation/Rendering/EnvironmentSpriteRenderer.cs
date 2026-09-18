@@ -926,9 +926,10 @@ namespace CavesOfOoo.Rendering
         /// <summary>
         /// PASS 15 R3 — ZoneRenderer calls this right after
         /// <c>ClearAllTiles</c> on the full-repaint path. The main
-        /// tilemap is already blank, so restoring remembered glyphs
-        /// would resurrect STALE tiles over the fresh repaint; instead
-        /// we just drop the overlay claims and forget them.
+        /// tilemap has been cleared for a world repaint or replaced by a
+        /// fullscreen UI. Restoring remembered glyphs would resurrect stale
+        /// terrain over that new owner; drop the overlay claims instead.
+        /// The caller must also clear the background canvas.
         /// </summary>
         public void NotifyMainTilemapCleared()
         {
@@ -1292,11 +1293,9 @@ namespace CavesOfOoo.Rendering
         }
 
         /// <summary>
-        /// ROUND 3 audit 🟡 fix — fullscreen UIs (inventory, quest log)
-        /// paint the MAIN tilemap (order 0) while this overlay (order 3)
-        /// kept the last gameplay frame's sprites on top of their lower
-        /// rows. ZoneRenderer calls this on its Paused transition so the
-        /// UI opens over a clean slate.
+        /// Remove overlays and restore their displaced gameplay glyphs.
+        /// If another canvas owner has cleared/replaced main (fullscreen UI
+        /// or a full repaint), use NotifyMainTilemapCleared instead.
         /// </summary>
         public void ReleaseAllClaims()
         {
