@@ -93,6 +93,8 @@ namespace CavesOfOoo.Scenarios.Custom
             yield return Tap(Key.N);
             Check("native_N_real_new_game",!boot.IsActive&&State()=="Normal"&&input.WorldMap.Seed==Seed&&input.CurrentZone.ZoneID==MorrowfastExpedition.FieldZoneId);
             Require(checks.Last().pass,"Native N must start the western spawn at seed64.");
+            Check("native_opening_starts_vulnerable",!DebugInvincibility.IsEnabled(input.PlayerEntity));
+            Require(checks.Last().pass,"Ordinary opening starts without debug invincibility.");
             originalReveal=input.ZoneRenderer.RevealEntire3DZone;
             yield return WaitForVoxel();
             cameraSize=Camera.main.orthographicSize;cameraRotation=Camera.main.transform.rotation;
@@ -145,6 +147,10 @@ namespace CavesOfOoo.Scenarios.Custom
             Check("native_no_repeat_delivery_choice",!ConversationManager.VisibleChoices.Any(c=>c.Actions?.Any(a=>a.Key=="MorrowfastExpedition"&&a.Value=="deliver")==true));
             yield return Tap(Key.Escape);
             yield return InspectCoarseInteriors();
+            Check("native_opening_completed_without_debug",!DebugInvincibility.IsEnabled(input.PlayerEntity)
+                &&input.PlayerEntity.GetStatValue("Hitpoints")>0&&StoryletPart.Current.IsQuestCompleted(MorrowfastExpedition.QuestId),
+                "hp="+input.PlayerEntity.GetStatValue("Hitpoints")+"; no F12 or synthetic healing used in the opening.");
+            Require(checks.Last().pass,"Ordinary expedition and five interiors completed while vulnerable.");
             yield return InspectRegionalIron();
 
             var clerk=MorrowfastSceneRuntime.FindOwner(input.CurrentZone,"east-robed-resident");

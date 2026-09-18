@@ -79,13 +79,17 @@ namespace CavesOfOoo.Tests
         public void Sill_IsAtTheCentre_OnSpread_AtTierOne()
         {
             var (sx, sy) = (10, 10);
-            Assert.AreEqual("Sill", WorldMapAuthoring.Places[0].Name,
-                "Sill must be first — the start reads Places[0]");
-            Assert.AreEqual(sx, WorldMapAuthoring.Places[0].X);
-            Assert.AreEqual(sy, WorldMapAuthoring.Places[0].Y);
+            // Settlement identity is coordinate-based. Fresh-game
+            // placement reads GameBootstrap.FreshGameZoneID, not this
+            // table's order (see WesternVoxelSpawnTests).
+            var sill = WorldMapAuthoring.PlaceAt(sx, sy);
+            Assert.IsNotNull(sill, "Sill remains an authored settlement.");
+            Assert.AreEqual("Sill", sill.Value.Name);
+            Assert.AreEqual(sx, sill.Value.X);
+            Assert.AreEqual(sy, sill.Value.Y);
             Assert.AreEqual(BiomeType.Spread, WorldMapAuthoring.BiomeAt(sx, sy));
             Assert.AreEqual(1, WorldMapAuthoring.TierAt(sx, sy),
-                "the player starts in the recovered world, where the "
+                "Sill is in the recovered world, where the "
                 + "Felling is a children's story");
         }
 

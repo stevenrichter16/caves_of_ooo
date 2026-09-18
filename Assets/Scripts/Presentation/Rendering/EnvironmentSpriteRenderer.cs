@@ -906,7 +906,9 @@ namespace CavesOfOoo.Rendering
             _itemBodyTiles.Clear();
             foreach (var body in new[] { "item_vial", "item_book", "item_gem",
                 "item_key", "item_torch", "item_meat", "item_fruit", "item_seed",
-                "item_armor", "item_bone", "item_vein", "item_scroll" })
+                "item_armor", "item_bone", "item_vein", "item_scroll",
+                "item_dagger", "item_sword", "item_spear", "item_boots",
+                "item_gloves", "item_helmet", "item_mace" })
             {
                 var s = LoadSingle(SpriteRoot + body);
                 if (s != null) _itemBodyTiles[body] = MakeTile(s, body);
@@ -1677,8 +1679,18 @@ namespace CavesOfOoo.Rendering
                 // forced honest ASCII — a tinted rock-face beats a
                 // letter for a mineable node.
                 string itemBody = ResolveItemBody(bpName);
-                if (itemBody != null && _itemBodyTiles.TryGetValue(itemBody, out var bodyTile))
-                    return bodyTile;
+                if (itemBody != null)
+                {
+                    if (_itemBodyTiles.TryGetValue(itemBody, out var bodyTile)) return bodyTile;
+                    // Reviewed equipment identities must not become a generic
+                    // sword or cuirass when their resource is unavailable.
+                    switch (itemBody)
+                    {
+                        case "item_dagger": case "item_sword": case "item_spear":
+                        case "item_boots": case "item_gloves": case "item_helmet":
+                        case "item_mace": return null;
+                    }
+                }
             }
 
             // Walls — Pass 15 G: the top-face set (lighter top band +
@@ -1881,6 +1893,16 @@ namespace CavesOfOoo.Rendering
             if (bp.EndsWith("Seed", System.StringComparison.Ordinal)) return "item_seed";
             switch (bp)
             {
+                case "Dagger":          return "item_dagger";
+                case "ShortSword":
+                case "LongSword":       return "item_sword";
+                case "Spear":           return "item_spear";
+                case "LeatherBoots":
+                case "IronshodBoots":    return "item_boots";
+                case "LeatherGloves":   return "item_gloves";
+                case "LeatherCap":
+                case "IronHelmet":      return "item_helmet";
+                case "Mace":            return "item_mace";
                 case "PaleSalt":
                 case "ChoirIron":
                 case "GlowQuartz":

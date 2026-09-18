@@ -197,6 +197,7 @@ namespace CavesOfOoo.Editor
             if(SessionState.GetBool(Prefix+"exit",false))EditorApplication.Exit(code);
         }
         private static readonly string[] RequiredChecks={"native_N_real_new_game","native_cache_and_parcel_generated",
+            "native_opening_starts_vulnerable","native_opening_completed_without_debug",
             "native_border_east_initial","quest_cue_available","native_conversation_accept","quest_cue_active","native_Q_journal",
             "native_border_west_recovery","field_camera_restored","native_container_command_mode","native_TakeFromContainer_parcel","native_border_east_delivery",
             "native_carried_parcel_crosses_border","native_conversation_delivery","native_one_reward","native_parcel_laid_at_supper",

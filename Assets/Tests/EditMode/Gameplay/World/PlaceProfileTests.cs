@@ -210,6 +210,11 @@ namespace CavesOfOoo.Tests
             // silently-plain village three zones later.
             var expected = new System.Collections.Generic.Dictionary<string, string>
             {
+                { "Morrowfast", "Morrowfast" },
+                { "Gantry", "CrossroadsExchange" },
+                { "Tine", "LakesideVillage" },
+                { "Quillhold", "PrimaryArchive" },
+                { "Tally", "CentralExchange" },
                 { "Wellmeet", "TentCamp" },
                 { "the First Tent", "TentCampFirst" },
                 { "the Last Counter", "ConcordPost" },
@@ -218,14 +223,35 @@ namespace CavesOfOoo.Tests
                 { "Sumphold", "Boatyard" },
                 { "Cinderhold", "PruningPost" },
             };
+            // R1: authored towns have gained profiles since W4. Keep
+            // explicit ordinary-village controls, and catch a removed
+            // place as well as a missing or misspelled profile.
+            var plain = new System.Collections.Generic.HashSet<string>
+            {
+                "Sill", "Posy", "the Salt-Vault", "Slip", "the Quiet's Door",
+            };
+            var seenProfiled = new System.Collections.Generic.HashSet<string>();
+            var seenPlain = new System.Collections.Generic.HashSet<string>();
             foreach (var place in WorldMapAuthoring.Places)
             {
                 if (expected.TryGetValue(place.Name, out var profile))
+                {
+                    Assert.IsTrue(seenProfiled.Add(place.Name), place.Name + " is listed once");
                     Assert.AreEqual(profile, place.Profile, place.Name);
+                }
                 else
+                {
+                    Assert.IsTrue(plain.Contains(place.Name),
+                        place.Name + " needs an explicit authored or ordinary-village contract");
+                    Assert.IsTrue(seenPlain.Add(place.Name), place.Name + " is listed once");
                     Assert.IsTrue(string.IsNullOrEmpty(place.Profile),
                         place.Name + " is a plain village");
+                }
             }
+            CollectionAssert.AreEquivalent(expected.Keys, seenProfiled,
+                "Every authored town remains present, not only correctly profiled when found.");
+            CollectionAssert.AreEquivalent(plain, seenPlain,
+                "Ordinary villages retain their separate generation contract.");
         }
     }
 }

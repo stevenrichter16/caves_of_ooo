@@ -23,3 +23,21 @@ def validate(rows):
  for family,variants in families.items():
   if variants!=set(range(4)):errors.append('incomplete-variants:'+family)
  return errors
+
+def validate_variant_fingerprints(rows):
+ """Reject repeated exported shapes/UVs, independently of filenames or FBX timestamps."""
+ if not rows:return ['empty-visual-kit']
+ errors=[];families={}
+ for row in rows:
+  family=row.get('family','');mid=row.get('id','');variant=row.get('variant')
+  variants,fingerprints=families.setdefault(family,([],set()))
+  variants.append(variant)
+  fingerprint=row.get('visualFingerprint')
+  if not isinstance(fingerprint,str) or not re.fullmatch(r'[0-9a-f]{64}',fingerprint):
+   errors.append('invalid-visual-fingerprint:'+mid)
+  else:fingerprints.add(fingerprint)
+ for family,(variants,fingerprints) in families.items():
+  if len(variants)!=4 or any(type(v) is not int for v in variants) or set(variants)!=set(range(4)):
+   errors.append('incomplete-visual-variants:'+family)
+  if len(fingerprints)!=4:errors.append('duplicate-visual-variants:'+family+':'+str(len(fingerprints)))
+ return errors
