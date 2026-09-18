@@ -1,0 +1,27 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "RegionalSituation",
+  "results": {
+    "id": "2",
+    "testcasecount": "110",
+    "result": "Failed(Child)",
+    "total": "110",
+    "passed": "109",
+    "failed": "1",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-18 05:12:13Z",
+    "end-time": "2026-09-18 05:12:27Z",
+    "duration": "14.3151966"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationOptInTests.KnownLostRecoveryCanBeReadButCannotBeAcceptedOrRecreated(True)",
+      "message": "  Do not advertise an action absent from this known-lost offer.\n  Expected: not String containing \"choose accept\"\n  But was:  \"the stranded lamp-oil consignment [not accepted]. source (16,6); return to merchant in sumphold (15,6). recover the marked sealed consignment containing 2 x ward oil intact; ordinary loose goods do not replace it. the marked consignment is unavailable. it cannot be accepted unless the original cargo becomes available again. follow the dry approach; heat makes peat release marsh gas. leaving the marked bank intact earns three extra drams. payment: 12 drams and one silver sand. reading does not accept this work. choose accept this request through the recipient's [c] actions if you wish to undertake it.\"\n"
+    }
+  ]
+}

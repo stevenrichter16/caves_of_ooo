@@ -1,0 +1,107 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "RegionalSituationOptInTests",
+  "results": {
+    "id": "2",
+    "testcasecount": "21",
+    "result": "Failed(Child)",
+    "total": "21",
+    "passed": "0",
+    "failed": "21",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-18 05:07:50Z",
+    "end-time": "2026-09-18 05:07:52Z",
+    "duration": "1.935482"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationOptInTests.FullSessionKeepsPreviewActiveReleasedAndCompletedInstancesDistinct",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationOptInTests.GatheredActionsEnableWorkOnlyAfterExplicitAcceptance(\"morrowfast-iron\")",
+      "message": "  Expected: collection containing \"RegionalRequest:accept\"\n  But was:  < \"Chat\", \"RegionalRequest:read\", \"Examine\" >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationOptInTests.GatheredActionsEnableWorkOnlyAfterExplicitAcceptance(\"sumphold-oil\")",
+      "message": "  Expected: collection containing \"RegionalRequest:accept\"\n  But was:  < \"Chat\", \"RegionalRequest:read\", \"Examine\" >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationOptInTests.HavingGoodsAndReadingTermsDoesNotAuthorizePayment",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationOptInTests.KnownLostRecoveryCanBeReadButCannotBeAcceptedOrRecreated(False)",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationOptInTests.KnownLostRecoveryCanBeReadButCannotBeAcceptedOrRecreated(True)",
+      "message": "  A local recipient can explain known unavailable work without undertaking it.\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationOptInTests.NativeCallbacksCannotPublishARolledBackAcceptance(\"before\")",
+      "message": "  Rollback releases the claim and permits an honest retry.\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationOptInTests.NativeCallbacksCannotPublishARolledBackAcceptance(\"after\")",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationOptInTests.NativeCallbacksCannotPublishARolledBackAcceptance(\"none\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationOptInTests.PreviewDistinguishesUnknownLiveAndSpentSupplyWithoutCreatingWork(\"morrowfast-iron\",False)",
+      "message": "  Cold source availability must be explicitly unknown.\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationOptInTests.PreviewDistinguishesUnknownLiveAndSpentSupplyWithoutCreatingWork(\"gantry-grain\",False)",
+      "message": "  Cold source availability must be explicitly unknown.\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationOptInTests.PreviewDistinguishesUnknownLiveAndSpentSupplyWithoutCreatingWork(\"gantry-grain\",True)",
+      "message": "  Cold source availability must be explicitly unknown.\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationOptInTests.PreviouslyGatheredCommandCannotActAtADistance(\"read\")",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationOptInTests.PreviouslyGatheredCommandCannotActAtADistance(\"accept\")",
+      "message": "System.InvalidOperationException : Sequence contains no matching element"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationOptInTests.ReadingUnvisitedOfferDoesNotCommitOrGenerateItsSource(\"morrowfast-iron\")",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationOptInTests.ReadingUnvisitedOfferDoesNotCommitOrGenerateItsSource(\"cinderhold-iron\")",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationOptInTests.ReadingUnvisitedOfferDoesNotCommitOrGenerateItsSource(\"gantry-grain\")",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationOptInTests.ReadingUnvisitedOfferDoesNotCommitOrGenerateItsSource(\"sumphold-oil\")",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationOptInTests.ReadingUnvisitedOfferDoesNotCommitOrGenerateItsSource(\"wellmeet-filters\")",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationOptInTests.ReleasedReceiptSurvivesInspectionUntilExplicitReacceptance(\"gantry-grain\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.RegionalSituationOptInTests.ReleasedReceiptSurvivesInspectionUntilExplicitReacceptance(\"sumphold-oil\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    }
+  ]
+}

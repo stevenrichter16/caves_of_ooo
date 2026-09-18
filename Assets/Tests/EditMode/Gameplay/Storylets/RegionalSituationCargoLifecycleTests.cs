@@ -71,16 +71,16 @@ namespace CavesOfOoo.Tests
             {
                 Assert.IsTrue(away.RemoveEntity(cargo));
                 Assert.AreEqual(QuestCueState.None,b.request.GetCueState(player,b.zone));
-                Assert.IsFalse(b.request.CanAct(player,b.zone,"read"));
+                Assert.IsFalse(b.request.CanAct(player,b.zone,"accept"));
                 Assert.IsFalse(manager.GetZone(d.SourceZoneId).GetAllEntities().Any(e=>e.ID==cargoId));
                 Assert.IsFalse(b.request.Completed); return;
             }
             at=away.GetEntityCell(cargo); MovePlayer(away,at.X,at.Y);
             Assert.IsTrue(InventorySystem.ExecuteCommand(new PickupCommand(cargo),player,away).Success);
             StandBy(b.zone,b.recipient);
-            Assert.IsTrue(b.request.CanAct(player,b.zone,"read"),"The native action sees the actual carried consignment.");
+            Assert.IsTrue(b.request.CanAct(player,b.zone,"accept"),"The native action sees the actual carried consignment.");
             Assert.AreEqual(QuestCueState.Available,b.request.GetCueState(player,b.zone),"Cue and native action must agree after pickup.");
-            Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));
+            Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));
             Assert.AreEqual(QuestCueState.Active,b.request.GetCueState(player,b.zone));
             Assert.IsTrue(b.request.TryAct(player,b.zone,"release"));
             Assert.AreEqual(QuestCueState.Available,b.request.GetCueState(player,b.zone));

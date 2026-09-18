@@ -47,7 +47,7 @@ namespace CavesOfOoo.Tests
  public void CompletedSupplyReplacesInstructionsWithActualOutcome(string id)
  {
   var d=RegionalSituations.Find(id);var b=Bind(id);StandBy(b.zone,b.recipient);
-  Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));
+  Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));
   StringAssert.Contains("Bring ",Note());StringAssert.Contains("deliver",Note().ToLowerInvariant());
   Carry(d.ItemBlueprint,d.ItemCount);int money=TradeSystem.GetDrams(player);
   Assert.IsTrue(b.request.TryAct(player,b.zone,"deliver"));
@@ -59,7 +59,7 @@ namespace CavesOfOoo.Tests
  public void RecoveryReceiptRecordsActualBankOutcomeAndPaidAmount(bool removeBank)
  {
   var d=RegionalSituations.Find("sumphold-oil");var b=Bind(d.Id);StandBy(b.zone,b.recipient);
-  Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));
+  Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));
   var source=manager.GetZone(d.SourceZoneId);
   var banks=source.GetAllEntities().Where(e=>e.GetPart<RegionalHabitatPart>()?.InstanceId==b.request.InstanceId).ToArray();
   Assert.Greater(banks.Length,0);
@@ -80,7 +80,7 @@ namespace CavesOfOoo.Tests
  public void BeatingRecoveryRecordsRealFilterStockWithoutInventingBankOutcome()
  {
   var d=RegionalSituations.Find("wellmeet-filters");var b=Bind(d.Id);StandBy(b.zone,b.recipient);
-  Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));
+  Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));
   var source=manager.GetZone(d.SourceZoneId);var cargo=Source(source,d.Id);
   Assert.IsFalse(source.GetAllEntities().Any(e=>e.GetPart<RegionalHabitatPart>()?.InstanceId==b.request.InstanceId),
    "This real Beating binding has no marked wetland habitat contract.");
@@ -99,19 +99,20 @@ namespace CavesOfOoo.Tests
  [Test]
  public void ReleaseReplacesActiveInstructionsWithoutPretendingPermanentRefusal()
  {
-  var b=Bind("gantry-grain");StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));
+  var b=Bind("gantry-grain");StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));
   string active=Note();int money=TradeSystem.GetDrams(player);
   Assert.IsTrue(b.request.TryAct(player,b.zone,"release"));
   StringAssert.Contains("[released]",Note());StringAssert.DoesNotContain("Bring ",Note());
   StringAssert.DoesNotContain("Read, deliver, or release",Note());StringAssert.DoesNotContain("Payment:",Note());
   StringAssert.Contains("no",Note().ToLowerInvariant());Assert.AreEqual(money,TradeSystem.GetDrams(player));
   Assert.IsFalse(b.request.CanAct(player,b.zone,"deliver"));
-  Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));Assert.AreEqual(active,Note());
+  string released=Note();Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));Assert.AreEqual(released,Note());
+  Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));Assert.AreEqual(active,Note());
  }
  [TestCase(false)][TestCase(true)]
  public void NativePostActionRollbackRestoresPreviousNoteWhileSuccessReplacesIt(bool fail)
  {
-  var b=Bind("gantry-grain");StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));Carry("Emberwheat",2);
+  var b=Bind("gantry-grain");StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));Carry("Emberwheat",2);
   string previous=Note();int money=TradeSystem.GetDrams(player);
   var probe=new OutcomeProbe{Fail=fail};player.AddPart(probe);
   var result=InventorySystem.ExecuteCommand(new PerformInventoryActionCommand(b.recipient,"RegionalRequest:deliver"),player,b.zone);
@@ -123,7 +124,7 @@ namespace CavesOfOoo.Tests
  public void FullSessionReloadKeepsReceiptAfterStockLeavesAndForbidsSecondPayment()
  {
   var d=RegionalSituations.Find("gantry-grain");var b=Bind(d.Id);StandBy(b.zone,b.recipient);
-  Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));Carry(d.ItemBlueprint,d.ItemCount);
+  Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));Carry(d.ItemBlueprint,d.ItemCount);
   Assert.IsTrue(b.request.TryAct(player,b.zone,"deliver"));AssertCompleted(Note());
   string receipt=Note(),id=player.ID;int money=TradeSystem.GetDrams(player);
   // Stock can be sold/removed; a historical receipt is not a live shelf promise.
@@ -137,7 +138,7 @@ namespace CavesOfOoo.Tests
  [TestCase(false)][TestCase(true)]
  public void CurrencyCommitFailureCannotPublishAnUnpaidReceipt(bool overflow)
  {
-  var b=Bind("gantry-grain");StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));Carry("Emberwheat",2);
+  var b=Bind("gantry-grain");StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));Carry("Emberwheat",2);
   string active=Note();TradeSystem.SetDrams(player,overflow?int.MaxValue:0);
   Assert.AreEqual(!overflow,b.request.TryAct(player,b.zone,"deliver"));
   if(overflow){Assert.AreEqual(active,Note());Assert.IsFalse(b.request.Completed);Assert.AreEqual(2,Units(player,"Emberwheat"));}
@@ -147,10 +148,10 @@ namespace CavesOfOoo.Tests
  public void ReloadedJournalRendersDistinctOutcomesWithoutRecipientsOrGeneratingMissingSources()
  {
   var first=Bind("gantry-grain");StandBy(first.zone,first.recipient);
-  Assert.IsTrue(first.request.TryAct(player,first.zone,"read"));Carry("Emberwheat",2);
+  Assert.IsTrue(first.request.TryAct(player,first.zone,"accept"));Carry("Emberwheat",2);
   Assert.IsTrue(first.request.TryAct(player,first.zone,"deliver"));
   var second=Bind("cinderhold-iron");StandBy(second.zone,second.recipient);
-  Assert.IsTrue(second.request.TryAct(player,second.zone,"read"));Assert.IsTrue(second.request.TryAct(player,second.zone,"release"));
+  Assert.IsTrue(second.request.TryAct(player,second.zone,"accept"));Assert.IsTrue(second.request.TryAct(player,second.zone,"release"));
   var before=RegionalSituationNotes.Read(player).ToArray();Assert.AreEqual(2,before.Length);
   RoundTripWorld(player.ID);CollectionAssert.AreEqual(before,RegionalSituationNotes.Read(player));
   // Historical notes remain readable after both actual recipients disappear.

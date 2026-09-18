@@ -68,7 +68,9 @@ namespace CavesOfOoo.Core
             if(!Context(actor,zone,true,out var manager)||Finished(actor))return false;
             if(action=="release")return Accepted;
             if(action=="deliver")return Accepted;
-            if(action!="read")return false;
+            // Local terms remain readable even when a known consignment is lost.
+            if(action=="read")return true;
+            if(action!="accept"||Accepted)return false;
             if(definition.Kind==RegionalSituationKind.Supply)return true;
             if(!RegionalSituations.SourceAllowed(definition,manager))return false;
             if(!manager.CachedZones.TryGetValue(definition.SourceZoneId,out var source))return true;
@@ -89,6 +91,7 @@ namespace CavesOfOoo.Core
             {
                 var actions=e.GetParameter<InventoryActionList>("Actions");
                 if(CanAct(actor,zone,"read"))actions?.AddAction("RegionalRequestRead","read the regional request","RegionalRequest:read",'q',9);
+                if(CanAct(actor,zone,"accept"))actions?.AddAction("RegionalRequestAccept","accept this request","RegionalRequest:accept",'a',9);
                 if(CanAct(actor,zone,"deliver"))actions?.AddAction("RegionalRequestDeliver","deliver the requested goods","RegionalRequest:deliver",'g',9);
                 if(CanAct(actor,zone,"release"))actions?.AddAction("RegionalRequestRelease","release this request","RegionalRequest:release",'u',8);
                 return true;
@@ -111,6 +114,14 @@ namespace CavesOfOoo.Core
                 if(hadCompletion)actor.IntProperties[completionKey]=oldCompletion;else actor.IntProperties.Remove(completionKey);
             });
             if(action=="read")
+            {
+                // Preview is ephemeral: never generate a remote zone or replace
+                // an accepted/released receipt just to explain the terms.
+                string preview=RegionalSituationNotes.Preview(definition,ParentEntity,manager.Factory,
+                    ObservedAvailability(actor,manager),Accepted);
+                transaction.AfterCommit(()=>MessageLog.Add(preview));
+            }
+            else if(action=="accept")
             {
                 Zone source=null;
                 if(RegionalSituations.SourceAllowed(definition,manager))source=manager.GetZone(definition.SourceZoneId);
@@ -233,30 +244,32 @@ namespace CavesOfOoo.Core
         // Native mineral harvesting removes the owner; crop harvesting retains a
         // spent row. Neither case may continue promising an available local source.
         private string RecordNote(Entity actor,OverworldZoneManager manager,string state)
+            =>RegionalSituationNotes.Record(actor,definition,expectedInstance,state,ParentEntity,manager.Factory,
+                state!="accepted"||ObservedAvailability(actor,manager)==true);
+
+        // null means unvisited/unknown, never depleted. This is only queried by
+        // explicit interactions, not the per-frame cue or action-eligibility path.
+        private bool? ObservedAvailability(Entity actor,OverworldZoneManager manager)
         {
-            bool available=true;
-            if(state=="accepted"&&definition.Kind==RegionalSituationKind.Supply)
+            if(!RegionalSituations.SourceAllowed(definition,manager))return false;
+            if(definition.Kind==RegionalSituationKind.Recovery
+                &&RegionalSituations.CarriedCargo(actor,definition,expectedInstance)!=null)return true;
+            if(!manager.CachedZones.TryGetValue(definition.SourceZoneId,out var source))return null;
+            if(definition.Kind==RegionalSituationKind.Recovery)
+                return RegionalSituations.IsCargo(RegionalSituations.FindOwner(source,expectedSourceId),definition,expectedInstance);
+            int units=0;
+            for(int i=0;i<definition.ItemCount;i++)
             {
-                available=false;
-                if(RegionalSituations.SourceAllowed(definition,manager)
-                    &&manager.CachedZones.TryGetValue(definition.SourceZoneId,out var source))
-                {
-                    int units=0;
-                    for(int i=0;i<definition.ItemCount;i++)
-                    {
-                        string id=i==0?expectedSourceId:expectedSourceId+":"+i;
-                        var owner=RegionalSituations.FindOwner(source,id);
-                        var damage=owner?.GetPart<DestructiblePart>();
-                        if(owner==null||damage!=null&&(damage.Gone||damage.HP<=0))continue;
-                        var row=owner.GetPart<FieldHarvestPart>();
-                        var vein=owner.GetPart<HarvestablePart>();
-                        if(row!=null&&!row.Harvested&&row.YieldBlueprint==definition.ItemBlueprint)units+=Math.Max(0,row.YieldCount);
-                        else if(vein!=null&&vein.YieldBlueprint==definition.ItemBlueprint&&vein.YieldChance>0)units+=Math.Max(0,vein.YieldMin);
-                    }
-                    available=units>=definition.ItemCount;
-                }
+                string id=i==0?expectedSourceId:expectedSourceId+":"+i;
+                var owner=RegionalSituations.FindOwner(source,id);
+                var damage=owner?.GetPart<DestructiblePart>();
+                if(owner==null||damage!=null&&(damage.Gone||damage.HP<=0))continue;
+                var row=owner.GetPart<FieldHarvestPart>();
+                var vein=owner.GetPart<HarvestablePart>();
+                if(row!=null&&!row.Harvested&&row.YieldBlueprint==definition.ItemBlueprint)units+=Math.Max(0,row.YieldCount);
+                else if(vein!=null&&vein.YieldBlueprint==definition.ItemBlueprint&&vein.YieldChance>0)units+=Math.Max(0,vein.YieldMin);
             }
-            return RegionalSituationNotes.Record(actor,definition,expectedInstance,state,ParentEntity,manager.Factory,available);
+            return units>=definition.ItemCount;
         }
         private bool Reject(Entity actor,string action,string reason)
         {

@@ -159,7 +159,7 @@ namespace CavesOfOoo.Tests
         {
             var d = RegionalSituations.Find(id); var b = Bind(id);
             StandBy(b.zone, b.recipient);
-            Assert.IsTrue(b.request.TryAct(player, b.zone, "read"));
+            Assert.IsTrue(b.request.TryAct(player, b.zone, "accept"));
             Carry(d.ItemBlueprint, d.ItemCount);
             int stockBefore = Units(b.recipient, d.ItemBlueprint);
             int payBefore = TradeSystem.GetDrams(player);
@@ -183,7 +183,7 @@ namespace CavesOfOoo.Tests
         public void IncompleteSupplyPreservesEveryUnitAndDoesNotReward()
         {
             var d = RegionalSituations.Find("gantry-grain"); var b = Bind(d.Id);
-            StandBy(b.zone, b.recipient); Assert.IsTrue(b.request.TryAct(player, b.zone, "read"));
+            StandBy(b.zone, b.recipient); Assert.IsTrue(b.request.TryAct(player, b.zone, "accept"));
             Carry(d.ItemBlueprint, d.ItemCount - 1);
             int stock = Units(b.recipient, d.ItemBlueprint), money = TradeSystem.GetDrams(player);
             var before = player.GetPart<InventoryPart>().Objects.ToArray();
@@ -202,7 +202,7 @@ namespace CavesOfOoo.Tests
         public void FullRecipientInventoryLeavesPaymentRequestAndRewardUnchanged()
         {
             var d = RegionalSituations.Find("gantry-grain"); var b = Bind(d.Id);
-            StandBy(b.zone, b.recipient); Assert.IsTrue(b.request.TryAct(player, b.zone, "read"));
+            StandBy(b.zone, b.recipient); Assert.IsTrue(b.request.TryAct(player, b.zone, "accept"));
             Carry(d.ItemBlueprint, d.ItemCount);
             var inv = b.recipient.GetPart<InventoryPart>(); inv.MaxWeight = 0;
             int stock = Units(b.recipient, d.ItemBlueprint), money = TradeSystem.GetDrams(player);
@@ -224,7 +224,7 @@ namespace CavesOfOoo.Tests
         public void ExactRecoveredCargoDeliversRealStockWhereOrdinaryGoodsDoNot(string id)
         {
             var d = RegionalSituations.Find(id); var b = Bind(id);
-            StandBy(b.zone, b.recipient); Assert.IsTrue(b.request.TryAct(player, b.zone, "read"));
+            StandBy(b.zone, b.recipient); Assert.IsTrue(b.request.TryAct(player, b.zone, "accept"));
             Carry("Sack", 1); Carry(d.ItemBlueprint, d.ItemCount);
             int originalLoose = Units(player, d.ItemBlueprint);
             int stock = Units(b.recipient, d.ItemBlueprint), money = TradeSystem.GetDrams(player);
@@ -252,9 +252,9 @@ namespace CavesOfOoo.Tests
         public void SeparateIronBindingsRemainIndependentlyPlayable()
         {
             var first = Bind("morrowfast-iron"); var second = Bind("cinderhold-iron");
-            StandBy(first.zone, first.recipient); Assert.IsTrue(first.request.TryAct(player, first.zone, "read"));
+            StandBy(first.zone, first.recipient); Assert.IsTrue(first.request.TryAct(player, first.zone, "accept"));
             Carry("ChoirIron", 1); Assert.IsTrue(first.request.TryAct(player, first.zone, "deliver"));
-            StandBy(second.zone, second.recipient); Assert.IsTrue(second.request.TryAct(player, second.zone, "read"));
+            StandBy(second.zone, second.recipient); Assert.IsTrue(second.request.TryAct(player, second.zone, "accept"));
             Assert.IsFalse(second.request.Completed);
             Assert.IsFalse(second.request.TryAct(player, second.zone, "deliver"));
             Carry("ChoirIron", 1); Assert.IsTrue(second.request.TryAct(player, second.zone, "deliver"));
@@ -289,10 +289,10 @@ namespace CavesOfOoo.Tests
             }
         }
 
-        // H10: the request has a real action surface; reading records actionable
-        // locations, repeated reads do not spam notes, and release is unpaid.
+        // H10: the request has a real action surface; acceptance records actionable
+        // locations, neutral rereads preserve notes, and release is unpaid.
         [Test]
-        public void NativeReadActionRecordsUsefulNotesAndReleaseDoesNotPayOrDeleteSource()
+        public void NativeAcceptanceRecordsUsefulNotesAndReleaseDoesNotPayOrDeleteSource()
         {
             var d = RegionalSituations.Find("sumphold-oil"); var b = Bind(d.Id);
             StandBy(b.zone, b.recipient); Assert.IsEmpty(RegionalSituationNotes.Read(player));
@@ -301,11 +301,14 @@ namespace CavesOfOoo.Tests
             b.recipient.FireEventAndRelease(gather);
             Assert.IsTrue(actions.Actions.Any(a => a.Command == "RegionalRequest:read"));
             Assert.IsTrue(InventorySystem.ExecuteCommand(new PerformInventoryActionCommand(b.recipient, "RegionalRequest:read"), player, b.zone).Success);
+            Assert.IsFalse(b.request.Accepted);Assert.IsEmpty(RegionalSituationNotes.Read(player));
+            Assert.IsTrue(actions.Actions.Any(a=>a.Command=="RegionalRequest:accept"));
+            Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));
             Assert.IsTrue(b.request.Accepted);
             var notes = RegionalSituationNotes.Read(player); Assert.AreEqual(1, notes.Count);
             string text = string.Join(" ", notes).Replace(" ", "");
             StringAssert.Contains("16,6", text); StringAssert.Contains("15,6", text);
-            Assert.IsTrue(b.request.TryAct(player, b.zone, "read")); Assert.AreEqual(1, RegionalSituationNotes.Read(player).Count);
+            Assert.IsTrue(b.request.TryAct(player, b.zone, "read")); CollectionAssert.AreEqual(notes,RegionalSituationNotes.Read(player));
             int money = TradeSystem.GetDrams(player);
             Assert.IsTrue(b.request.TryAct(player, b.zone, "release"));
             Assert.IsFalse(b.request.Accepted); Assert.IsFalse(b.request.Completed);
@@ -322,7 +325,7 @@ namespace CavesOfOoo.Tests
             var d = RegionalSituations.Find("sumphold-oil"); var p = WorldMap.FromZoneID(d.SourceZoneId);
             manager.WorldMap.SetPOI(p.x, p.y, new PointOfInterest(POIType.Village, "Counterfixture village"));
             var b = Bind(d.Id); StandBy(b.zone, b.recipient);
-            Assert.IsFalse(b.request.TryAct(player, b.zone, "read"));
+            Assert.IsFalse(b.request.TryAct(player, b.zone, "accept"));
             Assert.IsFalse(b.request.Accepted); Assert.IsFalse(b.request.Completed);
             Assert.IsFalse(manager.GetZone(d.SourceZoneId).GetAllEntities().Any(e => e.ID == RegionalSituations.SourceId(d, Seed)));
             Assert.IsEmpty(RegionalSituationNotes.Read(player));

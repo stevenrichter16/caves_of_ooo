@@ -71,7 +71,7 @@ namespace CavesOfOoo.Tests
             Assert.AreSame(basket,cargo.GetPart<PhysicsPart>().InInventory,"Native saved graph restores nested ownership.");
             int cached=manager.CachedZoneCount,money=TradeSystem.GetDrams(player);
             Assert.AreEqual(QuestCueState.None,b.request.GetCueState(player,b.zone));
-            Assert.IsFalse(b.request.CanAct(player,b.zone,"read"));
+            Assert.IsFalse(b.request.CanAct(player,b.zone,"accept"));
             Assert.AreEqual(cached,manager.CachedZoneCount,"A cue cannot generate chunks to search for cargo.");
             at=source.GetEntityCell(basket); MovePlayer(source,at.X,at.Y);
             var probe=new TakenProbe();cargo.AddPart(probe);
@@ -82,7 +82,7 @@ namespace CavesOfOoo.Tests
             Assert.IsFalse(player.GetPart<InventoryPart>().Objects.Contains(cargo));
             StandBy(b.zone,b.recipient);
             Assert.AreEqual(QuestCueState.None,b.request.GetCueState(player,b.zone),"A cached pre-commit reference must not mean acquired cargo after rollback.");
-            Assert.IsFalse(b.request.CanAct(player,b.zone,"read"));
+            Assert.IsFalse(b.request.CanAct(player,b.zone,"accept"));
             at=source.GetEntityCell(basket);MovePlayer(source,at.X,at.Y);
             Assert.IsTrue(InventorySystem.ExecuteCommand(new TakeFromContainerCommand(basket,cargo),player,source).Success);
             Assert.AreEqual(2,probe.Calls);
@@ -90,9 +90,9 @@ namespace CavesOfOoo.Tests
             Assert.AreSame(player,cargo.GetPart<PhysicsPart>().InInventory);
             Assert.AreEqual(1,player.GetPart<InventoryPart>().Objects.Count(e=>e.ID==cargoId));
             StandBy(b.zone,b.recipient);
-            Assert.IsTrue(b.request.CanAct(player,b.zone,"read"),"The native action sees the actual restored consignment.");
+            Assert.IsTrue(b.request.CanAct(player,b.zone,"accept"),"The native action sees the actual restored consignment.");
             Assert.AreEqual(QuestCueState.Available,b.request.GetCueState(player,b.zone),"After native container retrieval the cue must agree with the real available action.");
-            Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));
+            Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));
             Assert.AreEqual(QuestCueState.Active,b.request.GetCueState(player,b.zone));
             Assert.IsTrue(b.request.TryAct(player,b.zone,"release"));
             Assert.AreEqual(QuestCueState.Available,b.request.GetCueState(player,b.zone));

@@ -236,10 +236,37 @@ namespace CavesOfOoo.Scenarios.Custom
             var request=giver.GetPart<RegionalRequestPart>();Require(request!=null,"Native Orrit has the actual regional request.");
             yield return Approach(giver.ID);yield return WaitForVoxel();
             Check("regional_native_available",QuestCueStateQuery.Evaluate(giver,input.CurrentZone,input.PlayerEntity)==QuestCueState.Available);
+            int previewCached=input.ZoneManager.CachedZoneCount;
             yield return OpenMenu(giver);yield return SelectCommand("RegionalRequest:read");
-            Check("regional_native_read",request.Accepted&&RegionalSituationNotes.Read(input.PlayerEntity).Count==1);
-            Require(checks.Last().pass,"The actual world menu must accept the request before the journey.");
+            Check("regional_native_read",!request.Accepted&&RegionalSituationNotes.Read(input.PlayerEntity).Count==0
+                &&input.ZoneManager.CachedZoneCount==previewCached
+                &&QuestCueStateQuery.Evaluate(giver,input.CurrentZone,input.PlayerEntity)==QuestCueState.Available);
+            Require(checks.Last().pass,"Reading terms must remain a neutral preview.");
+            yield return WaitForVoxel();yield return Capture("regional-offer-preview");
+            var giverAt=input.CurrentZone.GetEntityPosition(giver);
+            var away=new HashSet<(int,int)>();
+            for(int x=1;x<Zone.Width-1;x++)for(int y=1;y<Zone.Height-1;y++)
+                if(Math.Max(Math.Abs(x-giverAt.x),Math.Abs(y-giverAt.y))==3&&!input.CurrentZone.GetCell(x,y).BlocksMovement(input.PlayerEntity))away.Add((x,y));
+            yield return Walk(away);
+            Check("regional_native_preview_walkaway",!request.Accepted&&RegionalSituationNotes.Read(input.PlayerEntity).Count==0
+                &&QuestCueStateQuery.Evaluate(giver,input.CurrentZone,input.PlayerEntity)==QuestCueState.Available);
+            yield return Approach(giver.ID);yield return OpenMenu(giver);yield return SelectCommand("RegionalRequest:accept");
+            Check("regional_native_accept",request.Accepted&&RegionalSituationNotes.Read(input.PlayerEntity).Count==1
+                &&QuestCueStateQuery.Evaluate(giver,input.CurrentZone,input.PlayerEntity)==QuestCueState.Active);
+            Require(checks.Last().pass,"Only explicit acceptance records an undertaking.");
+            yield return OpenMenu(giver);yield return SelectCommand("RegionalRequest:release");
+            string released=RegionalSituationNotes.Read(input.PlayerEntity).Single();
+            yield return OpenMenu(giver);yield return SelectCommand("RegionalRequest:read");
+            Check("regional_native_release_preview",!request.Accepted&&released.Contains("[released]")
+                &&RegionalSituationNotes.Read(input.PlayerEntity).Single()==released);
+            yield return OpenMenu(giver);yield return SelectCommand("RegionalRequest:accept");
+            Check("regional_native_reaccept",request.Accepted&&RegionalSituationNotes.Read(input.PlayerEntity).Count==1);
             yield return WaitForVoxel();yield return Capture("regional-request");
+            yield return Tap(Key.Q);yield return Tap(Key.Tab);
+            string activePage=DrawnJournalText();
+            Check("regional_native_active_note",input.QuestLogUI.NotesVisible&&activePage.Contains("[accepted]")
+                &&activePage.Contains(definition.Title)&&activePage.Contains("Payment: "+definition.RewardDrams+" drams"));
+            yield return Capture("regional-accepted-note");yield return Tap(Key.Escape);
             yield return Tap(Key.F12);Require(DebugInvincibility.IsEnabled(input.PlayerEntity),"Explicit native F12 protects only the long verification journey.");
             StopProfile();profileFinished=false;StartProfile();
             yield return Cross("Overworld.2.6.0",Key.A,"regional_west_spawn");
@@ -312,17 +339,10 @@ namespace CavesOfOoo.Scenarios.Custom
         private IEnumerator InspectRegionalReceipt(string name,RegionalSituationDefinition definition,string capture)
         {
             // Read actual displayed glyphs, not the unpaginated backing buffer.
-            var glyphs=Enumerable.Range(32,95).ToDictionary(i=>CP437TilesetGenerator.GetTextTile((char)i),i=>(char)i);
             bool visible=false;
             for(int page=0;page<10;page++)
             {
-                var text=new System.Text.StringBuilder();
-                for(int y=0;y<45;y++)for(int x=0;x<80;x++)
-                {
-                    var tile=input.QuestLogUI.Tilemap.GetTile(new Vector3Int(x,44-y,0)) as UnityEngine.Tilemaps.Tile;
-                    text.Append(tile!=null&&glyphs.TryGetValue(tile,out char c)?c:' ');
-                }
-                string drawn=System.Text.RegularExpressions.Regex.Replace(text.ToString(),@"\s+"," ");
+                string drawn=DrawnJournalText();
                 visible=input.QuestLogUI.NotesVisible&&drawn.Contains("[completed]")
                     &&drawn.Contains("Paid: "+definition.RewardDrams+" drams")&&drawn.Contains("trade stock")
                     &&drawn.Contains("cannot pay again")&&!drawn.Contains("Bring ")&&!drawn.Contains("Read, deliver, or release");
@@ -332,6 +352,17 @@ namespace CavesOfOoo.Scenarios.Custom
             }
             Check(name,visible);Require(visible,"The actual journal page must draw the settled outcome and follow-up.");
             yield return Capture(capture);
+        }
+        private string DrawnJournalText()
+        {
+            var glyphs=Enumerable.Range(32,95).ToDictionary(i=>CP437TilesetGenerator.GetTextTile((char)i),i=>(char)i);
+            var text=new System.Text.StringBuilder();
+            for(int y=0;y<45;y++)for(int x=0;x<80;x++)
+            {
+                var tile=input.QuestLogUI.Tilemap.GetTile(new Vector3Int(x,44-y,0)) as UnityEngine.Tilemaps.Tile;
+                text.Append(tile!=null&&glyphs.TryGetValue(tile,out char c)?c:' ');
+            }
+            return System.Text.RegularExpressions.Regex.Replace(text.ToString(),@"\s+"," ");
         }
         private static int EntityUnits(Entity owner,string blueprint)=>owner.GetPart<InventoryPart>().Objects.Where(e=>e.BlueprintName==blueprint).Sum(e=>e.GetPart<StackerPart>()?.StackCount??1);
 

@@ -38,7 +38,7 @@ namespace CavesOfOoo.Tests
         [Test] public void OneGrainExplainsTwoUnitRequirementAndSecondUnitThenWorks()
         {
             var b=Bind("gantry-grain"); StandBy(b.zone,b.recipient);
-            Assert.IsTrue(b.request.TryAct(player,b.zone,"read")); Carry("Emberwheat",1); MessageLog.Clear();
+            Assert.IsTrue(b.request.TryAct(player,b.zone,"accept")); Carry("Emberwheat",1); MessageLog.Clear();
             Assert.IsFalse(b.request.TryAct(player,b.zone,"deliver"));
             string text=string.Join(" ",MessageLog.GetMessages()).ToLowerInvariant();
             Assert.IsNotEmpty(text,"The refusal must reach the player, not only diagnostics.");
@@ -55,7 +55,7 @@ namespace CavesOfOoo.Tests
             foreach(string id in new[]{"sumphold-oil","wellmeet-filters"})
             {
                 var d=RegionalSituations.Find(id); var b=Bind(id); StandBy(b.zone,b.recipient);
-                Assert.IsTrue(b.request.TryAct(player,b.zone,"read")); Carry(d.ItemBlueprint,d.ItemCount); Carry("Sack",1);
+                Assert.IsTrue(b.request.TryAct(player,b.zone,"accept")); Carry(d.ItemBlueprint,d.ItemCount); Carry("Sack",1);
                 int before=Units(player,d.ItemBlueprint); MessageLog.Clear();
                 Assert.IsFalse(b.request.TryAct(player,b.zone,"deliver"));
                 string text=string.Join(" ",MessageLog.GetMessages()).ToLowerInvariant();
@@ -74,7 +74,7 @@ namespace CavesOfOoo.Tests
             var d=RegionalSituations.Find("morrowfast-iron"); var source=manager.GetZone(d.SourceZoneId);
             Assert.IsTrue(source.RemoveEntity(Source(source,d.Id)));
             var b=Bind(d.Id); StandBy(b.zone,b.recipient); MessageLog.Clear();
-            Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));
+            Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));
             string note=string.Join(" ",RegionalSituationNotes.Read(player)).ToLowerInvariant();
             Assert.IsTrue(note.Contains("exhausted")||note.Contains("unavailable")||note.Contains("gone")||note.Contains("no longer"),
                 "The note must disclose that the recorded local source is gone.");
@@ -91,7 +91,7 @@ namespace CavesOfOoo.Tests
             foreach(var d in RegionalSituations.Definitions)
             {
                 var b=Bind(d.Id); StandBy(b.zone,b.recipient);
-                Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));
+                Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));
                 string note=RegionalSituationNotes.Read(player).Single(n=>n.StartsWith(d.Title,StringComparison.Ordinal));
                 string lower=note.ToLowerInvariant();
                 StringAssert.Contains(b.recipient.GetDisplayName().ToLowerInvariant(),lower,d.Id+" recipient");
@@ -110,7 +110,7 @@ namespace CavesOfOoo.Tests
         public void PostActionFailureCannotPublishSuccessfulDeliveryReceipt(bool throws)
         {
             var b=Bind("gantry-grain"); StandBy(b.zone,b.recipient);
-            Assert.IsTrue(b.request.TryAct(player,b.zone,"read")); Carry("Emberwheat",2);
+            Assert.IsTrue(b.request.TryAct(player,b.zone,"accept")); Carry("Emberwheat",2);
             var hook=new ReceiptProbe{Throw=throws}; player.AddPart(hook);
             MessageLog.Clear(); Diag.ResetAll(); Diag.SetChannel("quest",true);
             var result=InventorySystem.ExecuteCommand(new PerformInventoryActionCommand(b.recipient,"RegionalRequest:deliver"),player,b.zone);

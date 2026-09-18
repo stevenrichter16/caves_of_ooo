@@ -60,17 +60,20 @@ namespace CavesOfOoo.Tests
         // with actions gathered from the actual native actor, not a substitute
         // event/command helper. Both original town and ordinary native merchant.
         [TestCase("morrowfast-iron")][TestCase("gantry-grain")]
-        public void NativeWorldMenuReadsAndReleasesRequestWithoutChargingGenericActionTurn(string id)
+        public void NativeWorldMenuPreviewsAcceptsAndReleasesWithoutChargingGenericActionTurn(string id)
         {
             var b=Bind(id);StandBy(b.zone,b.recipient);BuildInput(b.zone);
             int tick=turns.TickCount;var probe=new ActionProbe();player.AddPart(probe);
             Select(b.zone,b.recipient,"RegionalRequest:read");
-            Assert.IsTrue(b.request.Accepted,"Actual C action must accept the native request.");
+            Assert.IsFalse(b.request.Accepted);Assert.IsEmpty(RegionalSituationNotes.Read(player));
+            Assert.AreEqual(QuestCueState.Available,b.request.GetCueState(player,b.zone));
+            Select(b.zone,b.recipient,"RegionalRequest:accept");
+            Assert.IsTrue(b.request.Accepted,"Explicit C acceptance must undertake the native request.");
             Assert.AreEqual(QuestCueState.Active,b.request.GetCueState(player,b.zone));
             Assert.AreEqual(1,RegionalSituationNotes.Read(player).Count);
             Select(b.zone,b.recipient,"RegionalRequest:release");
             Assert.IsFalse(b.request.Accepted);Assert.IsFalse(b.request.Completed);
-            Assert.AreEqual(2,probe.Before);Assert.AreEqual(2,probe.After);
+            Assert.AreEqual(3,probe.Before);Assert.AreEqual(3,probe.After);
             Assert.AreEqual(tick,turns.TickCount,"These C actions retain the generic zero-turn policy.");
         }
 
@@ -79,8 +82,8 @@ namespace CavesOfOoo.Tests
         {
             var d=RegionalSituations.Find("gantry-grain");var b=Bind(d.Id);StandBy(b.zone,b.recipient);
             // Acceptance is established independently so this test reaches the
-            // delivery seam even while the separate read case is still RED.
-            Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));Carry(d.ItemBlueprint,d.ItemCount);
+            // delivery seam even while the separate preview/accept case is still RED.
+            Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));Carry(d.ItemBlueprint,d.ItemCount);
             BuildInput(b.zone);var probe=new ActionProbe{FailDelivery=failAfter};player.AddPart(probe);
             int money=TradeSystem.GetDrams(player),stock=Units(b.recipient,d.ItemBlueprint),tick=turns.TickCount;
             MessageLog.Clear();Select(b.zone,b.recipient,"RegionalRequest:deliver");
@@ -108,10 +111,10 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(tick,turns.TickCount);Assert.IsFalse(b.request.Accepted);
         }
 
-        [Test] public void StaleRequestMenuCannotBypassTheWorldReachGate()
+        [TestCase("read")][TestCase("accept")] public void StaleRequestMenuCannotBypassTheWorldReachGate(string actionName)
         {
             var b=Bind("gantry-grain");StandBy(b.zone,b.recipient);BuildInput(b.zone);
-            var action=WorldInteractionSystem.GatherActions(b.recipient,player).Single(x=>x.Command=="RegionalRequest:read");
+            var action=WorldInteractionSystem.GatherActions(b.recipient,player).Single(x=>x.Command=="RegionalRequest:"+actionName);
             var owner=b.zone.GetEntityCell(b.recipient);
             var far=Enumerable.Range(0,Zone.Width*Zone.Height).Select(i=>b.zone.GetCell(i%Zone.Width,i/Zone.Width))
                 .First(c=>!c.BlocksMovement()&&Math.Abs(c.X-owner.X)+Math.Abs(c.Y-owner.Y)>12);

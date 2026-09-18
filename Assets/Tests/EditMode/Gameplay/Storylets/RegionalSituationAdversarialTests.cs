@@ -61,7 +61,7 @@ namespace CavesOfOoo.Tests
         public void AuthorityRefusalCannotConsumeSupplyAndRestoredAuthorityWorks(string fault)
         {
             var b=Bind("gantry-grain");StandBy(b.zone,b.recipient);Carry("Emberwheat",2);
-            Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));
+            Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));
             var hp=player.GetStat("Hitpoints");var rhp=b.recipient.GetStat("Hitpoints");
             int pv=hp.BaseValue,rv=rhp.BaseValue;string recipientId=b.request.RecipientId;
             var before=b.zone.GetEntityCell(player);int x=before.X,y=before.Y;
@@ -89,7 +89,7 @@ namespace CavesOfOoo.Tests
         [TestCase("equipped")][TestCase("foreign-owner")][TestCase("zero-stack")]
         public void InvalidSupplyOwnershipAndQuantityCannotComplete(string fault)
         {
-            var b=Bind("gantry-grain");StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));Carry("Emberwheat",2);
+            var b=Bind("gantry-grain");StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));Carry("Emberwheat",2);
             var item=player.GetPart<InventoryPart>().Objects.Single(e=>e.BlueprintName=="Emberwheat");
             var physics=item.GetPart<PhysicsPart>();var stack=item.GetPart<StackerPart>();Assert.NotNull(stack);
             if(fault=="equipped")physics.Equipped=player;
@@ -103,7 +103,7 @@ namespace CavesOfOoo.Tests
         [TestCase(false)][TestCase(true)]
         public void CurrencyOverflowRollsBackExactSplitAndDestinationMerge(bool overflow)
         {
-            var d=RegionalSituations.Find("gantry-grain");var b=Bind(d.Id);StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));Carry(d.ItemBlueprint,5);
+            var d=RegionalSituations.Find("gantry-grain");var b=Bind(d.Id);StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));Carry(d.ItemBlueprint,5);
             var source=player.GetPart<InventoryPart>().Objects.Single(e=>e.BlueprintName==d.ItemBlueprint);
             int money=overflow?int.MaxValue:0;TradeSystem.SetDrams(player,money);int stock=Units(b.recipient,d.ItemBlueprint);
             Assert.AreEqual(!overflow,b.request.TryAct(player,b.zone,"deliver"));
@@ -115,7 +115,7 @@ namespace CavesOfOoo.Tests
         [TestCase(false)][TestCase(true)]
         public void ReceiverCapacityRefusalRestoresSupplyAndAllowsRetry(bool full)
         {
-            var b=Bind("gantry-grain");StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));Carry("Emberwheat",2);
+            var b=Bind("gantry-grain");StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));Carry("Emberwheat",2);
             var inv=b.recipient.GetPart<InventoryPart>();inv.MaxWeight=full?1:-1;
             int money=TradeSystem.GetDrams(player),stock=Units(b.recipient,"Emberwheat");
             Assert.AreEqual(!full,b.request.TryAct(player,b.zone,"deliver"));
@@ -125,7 +125,7 @@ namespace CavesOfOoo.Tests
         [TestCase(false)][TestCase(true)]
         public void SplitCloneFailureRestoresSourceAndReleasesRequestClaim(bool throws)
         {
-            var b=Bind("gantry-grain");StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));Carry("Emberwheat",5);
+            var b=Bind("gantry-grain");StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));Carry("Emberwheat",5);
             var source=player.GetPart<InventoryPart>().Objects.Single(e=>e.BlueprintName=="Emberwheat");source.AddPart(new SeparateOneCloneProbePart());
             int seen=0,stock=Units(b.recipient,"Emberwheat");
             SeparateOneCloneProbePart.Callback=e=>{seen++;if(throws)throw new InvalidOperationException("Regional split probe");};
@@ -140,7 +140,7 @@ namespace CavesOfOoo.Tests
         [TestCase(false)][TestCase(true)]
         public void NativeActionPostCallbackFailureIsAtomic(bool throws)
         {
-            var b=Bind("gantry-grain");StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));Carry("Emberwheat",2);
+            var b=Bind("gantry-grain");StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));Carry("Emberwheat",2);
             var hook=new Probe{Event="AfterInventoryAction",Run=e=>{if(throws)throw new InvalidOperationException("Regional post-action probe");}};player.AddPart(hook);
             int money=TradeSystem.GetDrams(player),stock=Units(b.recipient,"Emberwheat");
             var result=InventorySystem.ExecuteCommand(new PerformInventoryActionCommand(b.recipient,"RegionalRequest:deliver"),player,b.zone);
@@ -151,7 +151,7 @@ namespace CavesOfOoo.Tests
         }
         [Test] public void WalletObserverCannotReenterWithASecondEligibleStack()
         {
-            var d=RegionalSituations.Find("gantry-grain");var b=Bind(d.Id);StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));Carry("Emberwheat",4);
+            var d=RegionalSituations.Find("gantry-grain");var b=Bind(d.Id);StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));Carry("Emberwheat",4);
             int money=TradeSystem.GetDrams(player);bool nested=true;
             var hook=new Probe{Event="IntPropertyChanged",Run=e=>{if(e.GetStringParameter("Name")==TradeSystem.CURRENCY_PROP)nested=b.request.TryAct(player,b.zone,"deliver");}};player.AddPart(hook);
             Assert.IsTrue(b.request.TryAct(player,b.zone,"deliver"));Assert.Greater(hook.Calls,0);Assert.IsFalse(nested);
@@ -171,7 +171,7 @@ namespace CavesOfOoo.Tests
         }
         [Test] public void CompletedNotesSurviveEntitySerializationWithoutDuplicatingEntries()
         {
-            var b=Bind("gantry-grain");StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));Carry("Emberwheat",2);Assert.IsTrue(b.request.TryAct(player,b.zone,"deliver"));
+            var b=Bind("gantry-grain");StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));Carry("Emberwheat",2);Assert.IsTrue(b.request.TryAct(player,b.zone,"deliver"));
             var before=RegionalSituationNotes.Read(player).ToArray();Assert.AreEqual(1,before.Length);
             using(var stream=new MemoryStream())
             {
@@ -184,7 +184,7 @@ namespace CavesOfOoo.Tests
         [TestCase("ordinary-sack")][TestCase("wrong-instance")][TestCase("unexpected-contents")]
         public void RecoveryRequiresExactCargoWithoutErasingUnrelatedContents(string fault)
         {
-            var d=RegionalSituations.Find("sumphold-oil");var b=Bind(d.Id);StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));
+            var d=RegionalSituations.Find("sumphold-oil");var b=Bind(d.Id);StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));
             var sourceZone=manager.GetZone(d.SourceZoneId);var cargo=Source(sourceZone,d.Id);
             var at=sourceZone.GetEntityCell(cargo);MovePlayer(sourceZone,at.X,at.Y);
             Assert.IsTrue(InventorySystem.ExecuteCommand(new PickupCommand(cargo),player,sourceZone).Success);
@@ -227,7 +227,7 @@ namespace CavesOfOoo.Tests
         [TestCase(false)][TestCase(true)]
         public void RemovingEveryHabitatOwnerCannotVacuouslyEarnPreservation(bool remove)
         {
-            var d=RegionalSituations.Find("sumphold-oil");var b=Bind(d.Id);StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));
+            var d=RegionalSituations.Find("sumphold-oil");var b=Bind(d.Id);StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));
             var zone=manager.GetZone(d.SourceZoneId);var cargo=Source(zone,d.Id);
             var habitat=zone.GetAllEntities().Where(e=>e.GetPart<RegionalHabitatPart>()?.InstanceId==b.request.InstanceId).ToArray();
             Assert.Greater(habitat.Length,0,"Expected owners must exist in real generated source.");
@@ -242,7 +242,7 @@ namespace CavesOfOoo.Tests
         [TestCase("sumphold-oil")][TestCase("wellmeet-filters")]
         public void FullWorldReloadRetainsCarriedCargoAndCompletionWithoutRegeneration(string id)
         {
-            var d=RegionalSituations.Find(id);var b=Bind(id);StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));
+            var d=RegionalSituations.Find(id);var b=Bind(id);StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));
             var source=manager.GetZone(d.SourceZoneId);var cargo=Source(source,id);var at=source.GetEntityCell(cargo);
             MovePlayer(source,at.X,at.Y);Assert.IsTrue(InventorySystem.ExecuteCommand(new PickupCommand(cargo),player,source).Success);
             string playerId=player.ID,cargoId=cargo.ID;var notes=RegionalSituationNotes.Read(player).ToArray();
@@ -313,11 +313,11 @@ namespace CavesOfOoo.Tests
             var source=manager.GetZone(d.SourceZoneId);var cargo=Source(source,d.Id);
             if(destroy)Assert.IsTrue(source.RemoveEntity(cargo));
             Assert.AreEqual(destroy?QuestCueState.None:QuestCueState.Available,b.request.GetCueState(player,b.zone));
-            Assert.AreEqual(!destroy,b.request.TryAct(player,b.zone,"read"));
+            Assert.AreEqual(!destroy,b.request.TryAct(player,b.zone,"accept"));
         }
         [Test] public void RecoverySourceReplacedAfterAcceptanceStillAllowsUnpaidRelease()
         {
-            var d=RegionalSituations.Find("sumphold-oil");var b=Bind(d.Id);StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"read"));
+            var d=RegionalSituations.Find("sumphold-oil");var b=Bind(d.Id);StandBy(b.zone,b.recipient);Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));
             var at=WorldMap.FromZoneID(d.SourceZoneId);manager.WorldMap.SetPOI(at.x,at.y,new PointOfInterest(POIType.Village,"Changed source"));
             Assert.AreEqual(QuestCueState.None,b.request.GetCueState(player,b.zone));
             int money=TradeSystem.GetDrams(player);Assert.IsTrue(b.request.TryAct(player,b.zone,"release"));

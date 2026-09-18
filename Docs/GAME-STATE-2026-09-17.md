@@ -396,3 +396,7 @@ Completed regional work now retains a truthful payment/stock/habitat receipt; re
 ## 18 September checkpoint: fullscreen UI ownership repair
 
 Trade and Faction now paint the main fullscreen canvas; pausing for Inventory/Journal/Trade/Faction discards stale terrain snapshots rather than restoring them over empty menu rows. Ten paired regression cases, 107 focused checks, 65 native checks with 21 captures, and full R117 **14,941/14,941** passed with no compiler errors. Root inspected clean trade/faction pages and restored voxel world. No gameplay ownership, inventory, camera preference or save-format changes. See [repair and evidence](RELEASE-FULLSCREEN-UI.md). Next: explicit opt-in regional requests.
+
+## 18 September checkpoint: explicit regional opt-in
+
+Reading any of the five regional offers now previews actual goods, quantity, recipient, reward and known/unknown source status without accepting, generating a distant chunk or altering notes. A separate Accept action records the undertaking. Released notes survive reading until explicit reacceptance, and unavailable recovery previews do not advertise unavailable actions. Existing exact cargo, outside-goods, habitat, transaction and historical receipt behavior stays verified. New21-case matrix plus an extra stale C-accept control; focused110/110, native70/70 with23captures, fullR123 **14963/14963**, zero compiler errors. See [plan and acceptance](RELEASE-REGIONAL-OPT-IN.md). Next: useful material descriptions in Inventory.

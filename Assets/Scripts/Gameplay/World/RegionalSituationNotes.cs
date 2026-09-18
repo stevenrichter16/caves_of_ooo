@@ -52,7 +52,7 @@ namespace CavesOfOoo.Core
         internal static string Describe(RegionalSituationDefinition d,string state,Entity recipient,
             EntityFactory factory,bool localSupplyAvailable)
         {
-            string source=d.SourceX+","+d.SourceY,target=d.RecipientX+","+d.RecipientY;
+            string target=d.RecipientX+","+d.RecipientY;
             string who=recipient?.GetDisplayName()??"the request's recipient";
             if(state=="released")
                 return d.Title+" [released]. You released this request with "+who+" in "+d.RecipientName
@@ -61,19 +61,38 @@ namespace CavesOfOoo.Core
                         ?"if the recipient and marked consignment remain available."
                         :"if the recipient remains available; outside goods are still accepted after reaccepting.")
                     +" This is not an active delivery.";
+            return d.Title+" ["+state+"]. "+Terms(d,recipient,factory,localSupplyAvailable)
+                +" Read, deliver, or release through the recipient's [C] actions.";
+        }
+        // A preview is displayed, never stored as an undertaking or historical receipt.
+        internal static string Preview(RegionalSituationDefinition d,Entity recipient,EntityFactory factory,
+            bool? observedAvailability,bool accepted)
+            =>d.Title+(accepted?" [already accepted]. ":" [not accepted]. ")
+                +Terms(d,recipient,factory,observedAvailability)
+                +(accepted?" This request is active; deliver or release through the recipient's [C] actions."
+                    :d.Kind==RegionalSituationKind.Recovery&&observedAvailability==false
+                        ?" This offer remains unaccepted. You may inquire again if the original consignment becomes available."
+                    :" Reading does not accept this work. Choose accept this request through the recipient's [C] actions if you wish to undertake it.");
+
+        private static string Terms(RegionalSituationDefinition d,Entity recipient,EntityFactory factory,bool? available)
+        {
+            string who=recipient?.GetDisplayName()??"the request's recipient";
+            string goods=d.ItemCount+" x "+ItemName(factory,d.ItemBlueprint);
             string request=d.Kind==RegionalSituationKind.Supply
-                ?"Bring "+d.ItemCount+" x "+ItemName(factory,d.ItemBlueprint)+"; bought or already carried goods are welcome."
-                :"Recover the marked sealed consignment intact; ordinary loose goods do not replace it.";
-            string availability=d.Kind==RegionalSituationKind.Supply&&!localSupplyAvailable
-                ?" At this reading, the marked local supply is unavailable or exhausted. Outside goods still fulfill the request."
-                :string.Empty;
+                ?"Bring "+goods+"; bought or already carried goods are welcome."
+                :"Recover the marked sealed consignment containing "+goods+" intact; ordinary loose goods do not replace it.";
+            string availability=!available.HasValue?" Source availability is unknown; it has not been checked."
+                :available.Value?" The marked source is currently available."
+                :d.Kind==RegionalSituationKind.Supply
+                    ?" At this reading, the marked local supply is unavailable or exhausted. Outside goods still fulfill the request."
+                    :" The marked consignment is unavailable. It cannot be accepted unless the original cargo becomes available again.";
             string warning=d.SourceBiome==BiomeType.Grovelands?" Choir law charges standing for digging local mineral veins."
                 :d.SourceBiome==BiomeType.Sodden?" Follow the dry approach; heat makes peat release marsh gas. Leaving the marked bank intact earns three extra drams."
                 :d.SourceBiome==BiomeType.Beating?" Height exposure parches bare heads; headgear or actual interior shelter protects you."
-                :localSupplyAvailable?" The marked ripe rows can be harvested once, leaving stubble.":string.Empty;
-            return d.Title+" ["+state+"]. Source ("+source+"); return to "+who+" in "+d.RecipientName+" ("+target+"). "
-                +request+availability+warning+" Payment: "+d.RewardDrams+" drams and one "+ItemName(factory,d.RewardBlueprint)
-                +". Read, deliver, or release through the recipient's [C] actions.";
+                :available==true?" The marked ripe rows can be harvested once, leaving stubble.":string.Empty;
+            return "Source ("+d.SourceX+","+d.SourceY+"); return to "+who+" in "+d.RecipientName
+                +" ("+d.RecipientX+","+d.RecipientY+"). "+request+availability+warning
+                +" Payment: "+d.RewardDrams+" drams and one "+ItemName(factory,d.RewardBlueprint)+".";
         }
         public static IReadOnlyList<string> Read(Entity player)
         {

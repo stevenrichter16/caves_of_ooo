@@ -26,7 +26,7 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(zone.AddEntity(player,cell.X,cell.Y));
         }
         [TearDown] public void TearDown(){scope?.Dispose();LootTableRegistry.ResetForTests();}
-        [Test] public void DistantAvailableCueDoesNotGenerateSourceAndBecomesActiveAfterReading()
+        [Test] public void DistantAvailableCueDoesNotGenerateSourceAndBecomesActiveAfterAccepting()
         {
             int count=manager.CachedZoneCount;var old=zone.GetEntityPosition(player);
             var far=Enumerable.Range(0,Zone.Width).SelectMany(x=>Enumerable.Range(0,Zone.Height).Select(y=>zone.GetCell(x,y))).First(c=>!c.BlocksMovement()&&Math.Abs(c.X-old.x)>10);
@@ -34,6 +34,8 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(QuestCueState.Available,QuestCueStateQuery.Evaluate(giver,zone,player));
             Assert.AreEqual(count,manager.CachedZoneCount);
             Assert.IsTrue(zone.MoveEntity(player,old.x,old.y));Assert.IsTrue(request.TryAct(player,zone,"read"));
+            Assert.AreEqual(QuestCueState.Available,QuestCueStateQuery.Evaluate(giver,zone,player));
+            Assert.IsTrue(request.TryAct(player,zone,"accept"));
             Assert.AreEqual(QuestCueState.Active,QuestCueStateQuery.Evaluate(giver,zone,player));
             Assert.IsTrue(request.TryAct(player,zone,"release"));
             Assert.AreEqual(QuestCueState.Available,QuestCueStateQuery.Evaluate(giver,zone,player));
@@ -60,6 +62,8 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(actions.Any(a=>a.Command=="RegionalRequest:read"));
             Assert.IsTrue(actions.Any(a=>a.Command=="Chat"),"The native conversation remains reachable.");
             Assert.IsTrue(request.TryAct(player,zone,"read"));
+            Assert.AreEqual(QuestCueState.Available,QuestCueStateQuery.Evaluate(giver,zone,player));
+            Assert.IsTrue(request.TryAct(player,zone,"accept"));
             actions=WorldInteractionSystem.GatherActions(giver,player);
             Assert.IsTrue(actions.Any(a=>a.Command=="RegionalRequest:deliver"));
             Assert.IsTrue(actions.Any(a=>a.Command=="RegionalRequest:release"));
@@ -67,6 +71,8 @@ namespace CavesOfOoo.Tests
         [Test] public void JournalContainsPersistentRequestAndExistingDirectionsWithoutOverwritingEither()
         {
             Assert.IsTrue(request.TryAct(player,zone,"read"));
+            Assert.AreEqual(QuestCueState.Available,QuestCueStateQuery.Evaluate(giver,zone,player));
+            Assert.IsTrue(request.TryAct(player,zone,"accept"));
             var clerk=MorrowfastSceneRuntime.FindOwner(zone,"east-robed-resident");var at=zone.GetEntityPosition(clerk);
             var cell=CinderholdCompositionTests.Neighbors(at.x,at.y).Select(p=>zone.GetCell(p.x,p.y)).First(c=>c!=null&&!c.BlocksMovement());
             Assert.IsTrue(zone.MoveEntity(player,cell.X,cell.Y));

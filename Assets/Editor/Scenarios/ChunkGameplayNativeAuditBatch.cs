@@ -203,7 +203,8 @@ namespace CavesOfOoo.Editor
             "native_carried_parcel_crosses_border","native_conversation_delivery","native_one_reward","native_parcel_laid_at_supper",
             "quest_cue_completed","native_no_repeat_delivery_choice","native_regional_directions","native_travel_notes","native_notes_restored","native_F5_owned_checkpoint","native_F6_reloads_completion",
             "quest_cue_reloaded","camera_and_reveal_untouched","private_boot_marker_unchanged","owned_save_only","native_profile_evidence",
-            "regional_native_available","regional_native_read","regional_native_harvest","regional_native_grove_law",
+            "regional_native_available","regional_native_read","regional_native_preview_walkaway","regional_native_accept",
+            "regional_native_release_preview","regional_native_reaccept","regional_native_active_note","regional_native_harvest","regional_native_grove_law",
             "regional_native_delivery","regional_native_reward","regional_native_completed_cue","regional_native_no_repeat_command",
             "fullscreen_native_trade_clean","fullscreen_native_faction_clean","fullscreen_native_world_restored",
             "regional_native_note_visible","regional_native_receipt_visible","regional_native_delivered_stock_in_trade",
@@ -226,9 +227,9 @@ namespace CavesOfOoo.Editor
                     ||RequiredChecks.Any(name=>!f.checks.Any(c=>c.name==name)))return false;
                 foreach(string room in new[]{"keeper-gatehouse","dry-hem-guesthouse","long-loop-ropeshop","return-desk-archive","second-bowl-kitchen"})
                     if(!f.checks.Any(c=>c.name=="coarse_interior_"+room)||!f.checks.Any(c=>c.name=="coarse_closed_"+room))return false;
-                if(f.screenshots==null||f.screenshots.Length!=21||f.screenshots.Distinct(StringComparer.Ordinal).Count()!=21)return false;
+                if(f.screenshots==null||f.screenshots.Length!=23||f.screenshots.Distinct(StringComparer.Ordinal).Count()!=23)return false;
                 string dir=Path.GetFullPath(Path.Combine(Application.dataPath,"../Docs/Verification/ChunkGameplayImplementation"));
-                foreach(string label in new[]{"western-spawn","cue-available","cue-active","journal","recovered-parcel","completed-supper","travel-notes","restored-completion","interior-keeper-gatehouse","interior-dry-hem-guesthouse","interior-long-loop-ropeshop","interior-return-desk-archive","interior-second-bowl-kitchen","regional-request","regional-protected-vein","regional-delivered","regional-notes","regional-trade-stock","regional-receipt-restored","faction-standings","fullscreen-world-restored"})
+                foreach(string label in new[]{"western-spawn","cue-available","cue-active","journal","recovered-parcel","completed-supper","travel-notes","restored-completion","interior-keeper-gatehouse","interior-dry-hem-guesthouse","interior-long-loop-ropeshop","interior-return-desk-archive","interior-second-bowl-kitchen","regional-request","regional-offer-preview","regional-accepted-note","regional-protected-vein","regional-delivered","regional-notes","regional-trade-stock","regional-receipt-restored","faction-standings","fullscreen-world-restored"})
                 {
                     string file=Path.Combine(dir,"CGN-"+expectedRunId+"-"+label+".png");
                     if(!f.screenshots.Contains(file)||!Is1080pPng(file))return false;
