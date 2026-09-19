@@ -1,6 +1,6 @@
 # The other advertised routes — Gathered and Kept
 
-**Status:** ER.1–ER.3 shipped 19 September 2026 (the Root as a place; the stones and Kept; the cutting and Gathered). ER.4–ER.6 pending. Release roadmap step 4, second sentence ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap: "Add the other advertised ending routes through the same robust state architecture"). Follows the ending spine ([ENDING-SPINE](ENDING-SPINE.md), ES.1–ES.6 shipped). CoO-original; no Qud parity claim.
+**Status:** ER.1–ER.4 shipped 19 September 2026 (the Root as a place; the stones and Kept; the cutting and Gathered; ledger and journal). ER.5–ER.6 pending. Release roadmap step 4, second sentence ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap: "Add the other advertised ending routes through the same robust state architecture"). Follows the ending spine ([ENDING-SPINE](ENDING-SPINE.md), ES.1–ES.6 shipped). CoO-original; no Qud parity claim.
 
 ## Goal
 
@@ -132,3 +132,17 @@ As for the spine: independent clone, RED before GREEN (compile RED for new APIs,
 **Cold-eye.** Q1: `Gathered` mirrors `Kept` line for line — label, refusal, consumption, state, examine, log, announcement, diag — with the cutting in place of the stones; the tendril's branch mirrors the Searcher's (ask once, cost said, carry or decline, release aloud). Q2: both storylets share the manual-advance guard and the same objective shape; both routes' diag payloads carry `path`, the reading's counts and `consumed`. Q3: with vs without the cutting; two cuttings; Kept first vs Gathered first vs a Renewal first; refused-first vs never-taken-on; both acts open at once; any tendril instance gives, once; release at another tendril; persistence. Q4: this section was read against the shipped files.
 
 **Files.** MOD `EndingRoutes.cs`, `Objects.json`, `Content/Data/Storylets/EndingRoutes.json`, `Conversations/RotChoir.json`; NEW `EndingRoutesGatheredTests.cs`.
+
+### ER.4 — Ledger and journal (19 September 2026)
+
+**Status:** shipped. Hypothesis run `ER4-red-2` (9 tests against the shipped ER.1–ER.3: 9 pinned green, 0 red; `ER4-red` is the same file failing to compile on a helper of mine — the save reader takes the entity factory — published as evidence); full EditMode suite in the clone 15,208 tests, 15,208 passed (`ER4-full`).
+
+**Method.** Cross-system pins written as hypotheses before re-reading the code (the ES.5 pattern), run first against the shipped ER.1–ER.3 so each fails or passes on its own assertion: the two acts through the real givers, the reading at the seventh, the journal snapshot, a giver gone or dead, renouncing, a Root ending over another open act, releasing at either giver, save and load of both entries, and the reading's own record.
+
+**Nothing red.** All nine hypotheses passed against the shipped ER.1–ER.3 on the first hypothesis run whose fixture compiled; they are pinned as regression infrastructure, and the one correction was to the fixture (the save reader takes the entity factory).
+
+**Pinned (the contract, in player terms).** Taking a stone from Hollin records her and Quillhold, and the reading says *Keep the World — end it with Hollin Vesk at Quillhold*; the tendril's thread records the tendril *below the Root*. With both acts open the practice path at the seventh is barred and names both, Gather before Keep. The journal lists both under ACTIVE by their names, and the enacted one under COMPLETED afterwards, the other still ACTIVE with the closure line counting one closed and one open. A tendril gone from its loaded place, or dead where it stands, makes *Gather the World* lost: the journal names it under UNSPOKEN with "[R] renounces it", [R] renounces it once, and the reading records `lost`. A Root ending leaves another open act open and listed; the seventh then refuses as already enacted, not as a ledger gate. Releasing at either preserver ends the one shared act, and the other's release line goes with it. Both entries survive a save and a load with giver, place and title.
+
+**Self-review.** 🔵 `ER4-red` is the fixture failing to compile on my round-trip helper (`SaveReader` takes the factory, as the closure tests already showed); no finding in the shipped code. 🧪 bounded by the hypotheses imagined; the native journal and [R] key are ER.6's. ⚪ Guard unchanged.
+
+**Files.** NEW `EndingRoutesLedgerTests.cs`.
