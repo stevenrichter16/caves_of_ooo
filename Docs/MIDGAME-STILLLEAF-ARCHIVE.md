@@ -1,6 +1,6 @@
 # The Stillleaf Archive — the first middle-game chain
 
-**Status:** SA.1–SA.3 shipped 19 September 2026 (the key opens the vault; the register lies inside; the Searcher at Quillhold offers the errand and the keeper's last words; the Indexer at the Salt-Vault files the key and names Curation's request). SA.4–SA.6 pending. Release roadmap step 3 ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap; [GAME-STATE](GAME-STATE-2026-09-17.md) §15, §20). CoO-original campaign content; no Qud parity claim.
+**Status:** SA.1–SA.4 shipped 19 September 2026 — the whole journey is playable: key, Searcher, Indexer and file, and the three custody outcomes with their aftermath. SA.5 (robustness + adversarial file) and SA.6 (native proof, close-out) pending. Release roadmap step 3 ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap; [GAME-STATE](GAME-STATE-2026-09-17.md) §15, §20). CoO-original campaign content; no Qud parity claim.
 
 ## Goal
 
@@ -144,4 +144,29 @@ All execution in the independent clone; the user's editor stays open. Guard chec
 **Cold-eye Q1–Q4.** Q1: install/latch/diag shapes match the Searcher's; the gate is literally shared code. Q2: verbs on both residents emit the same `quest` kinds with `command`; the file's release is a state change on a native part (`ContainerPart.Locked`), not a parallel flag. Q3: words vs no words; read once vs twice; agree vs bargain vs refuse; refuse then agree; released vs broken; wrong speaker, remote, dead; Indexer refusing the Searcher's verbs and vice versa; other villages hold neither resident. Q4: this section was read against the shipped files.
 
 **Files.** NEW `StillleafSaltVault.cs`, `StillleafIndexerTests.cs`, `stillleaf_indexer.png`; MOD `StillleafArchiveContent.cs`, `Objects.json` (`StillleafIndexer` after `CurationSorter`, `StillleafFileCabinet` after `Chest`), `Content/Conversations/StillleafArchive.json` (`StillleafIndexer_1`), `OverworldZoneManager.cs`, `EnvironmentSpriteRenderer.cs`, `EnvironmentSpriteRendererHarnessTests.cs`, `GameAuditEntityEquipmentContentTests.cs`.
+
+### SA.4 — Custody and aftermath (19 September 2026)
+
+**Status:** shipped. RED gate `SA4-red` (CS0103, `StillleafCustody` did not exist); focused GREEN `SA4-green` 887/888, the one failure a self-contradictory setup of mine (below); full EditMode suite in the clone: 15,083 tests, 15,083 passed (`SA4-full`).
+
+**What the player can now do.** With the register in hand — or deliberately left inside — the player enacts one of the three testimonies, physically and once:
+- **Deliver it to Quillhold.** Through Hollin's conversation the register leaves the pack and lies sealed at her desk (`Takeable` off, "(sealed)" in its name, examine text saying who sealed it and that nobody will say what the entries said). Standing with the Recension rises by 10. If Curation was promised the record, that promise is broken in words and in standing: −10 for *agreed*, −4 for *custody not promised*, nothing if nothing was promised or the request was refused.
+- **File it at the Salt-Vault.** Through the Indexer's conversation it goes into the salt file beside its keeper, unread; the drawer locks again; Curation standing rises by 10. Hollin promised nothing for its absence and loses nothing.
+- **Reseal it in place.** At the opened vault door — a real [C] world action the door advertises only while open — with the keeper's key carried, the register inside and the player outside beside the door, the lock and the door's solidity return; it costs a turn's labour and pays no one. Each refusal names its reason (`no_key`, `carrying_register`, `register_not_inside`, `not_beside_the_door`, `doorway_occupied`, `already_sealed`, `custody_decided`) and changes nothing.
+
+Whoever did not receive the record can be told the truth, once, unpaid and unpunished; the lines are specific to what was done and what was promised. The journal completes if it is open; custody is the player's even after releasing the errand. Custody is one-time and mutually exclusive: after resealing, carrying the register out later reopens nothing.
+
+**Implementation.** `StillleafCustody` (`Assets/Scripts/Gameplay/World/StillleafCustody.cs`) owns `deliver`, `file`, `report` behind the chain's shared action/predicate names and the `StillleafReseal` world action; `SealedLibraryBarrierPart` answers `GetInventoryActions` with reseal while open; `InputHandler` dispatches it beside the Morrowfast world actions (the generic event path has no turn cost). "Inside" is a flood from the register's cell with the door closed that never reaches the player. The register placed in SA.1 now carries `CompleteObjectiveOnTaken("register")`, so the real `PickupCommand` advances the journal to *custody*. Player state: `StillleafOutcome` (1 delivered, 2 filed, 3 resealed), `StillleafToldSearcher`, `StillleafToldIndexer`. Diag: `quest`/`StillleafArchiveApplied|Rejected` with `command`, `outcome`/`reason`.
+
+**Scope divergence from the plan.** None of substance: the plan's "the door's state follows the choice" is realised only by the reseal (the other two leave the door as the player left it, which is the truthful state), and "the Field Note records the outcome" is the completed journal entry plus the outcome-specific log lines rather than a separate note.
+
+**Self-review (Methodology Template §5).**
+- 🟡 *Fixed pre-commit (test-side):* the `no_key` refusal scenario tried to reach the door without the key, so the earlier `already_sealed` gate fired — the code's precedence is right (door state before key). The scenario now opens the door with the key and puts the key down before resealing.
+- 🧪 *Deferred to SA.5:* standing for a broken salt file; a register destroyed or dropped in the wild; save/load at each custody state; the reseal dispatch through native keys (SA.6).
+- 🔵 *Noted:* the delivered register lies on Hollin's own cell (as Morrowfast lays the cloth on the table); a shelf slot would be nicer art, not truer.
+- ⚪ Guard state unchanged (`release-candidate` topology/manifest; `main` only).
+
+**Cold-eye Q1–Q4.** Q1: reseal inverts exactly what the bump-unlock flips (`IsLocked`, `Solid`), nothing more; the dispatch block is the Morrowfast block with the chain's names. Q2: every verb emits the same `quest` kinds; standing deltas are named constants; ids stay at top level. Q3: deliver vs file vs reseal; each terms value against its standing delta; refusal reasons one by one; told vs not told; released errand vs open journal; before vs after the choice. Q4: this section was read against the shipped files.
+
+**Files.** NEW `StillleafCustody.cs`, `StillleafCustodyTests.cs`; MOD `StillleafArchiveContent.cs`, `StillleafArchive.cs`, `SealedLibraryBarrierPart.cs`, `InputHandler.cs`, `Content/Conversations/StillleafArchive.json`.
 

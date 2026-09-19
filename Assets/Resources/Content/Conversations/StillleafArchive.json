@@ -26,6 +26,38 @@
               "Actions": []
             },
             {
+              "Text": "Here is the Stillleaf register.",
+              "Target": "Delivered",
+              "Predicates": [
+                {
+                  "Key": "IfStillleafArchiveCan",
+                  "Value": "deliver"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "StillleafArchive",
+                  "Value": "deliver"
+                }
+              ]
+            },
+            {
+              "Text": "About Stillleaf: I must tell you what I did.",
+              "Target": "Reported",
+              "Predicates": [
+                {
+                  "Key": "IfStillleafArchiveCan",
+                  "Value": "report"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "StillleafArchive",
+                  "Value": "report"
+                }
+              ]
+            },
+            {
               "Text": "I am done searching. Release me from it.",
               "Target": "End",
               "Predicates": [
@@ -126,6 +158,32 @@
               "Actions": []
             }
           ]
+        },
+        {
+          "ID": "Delivered",
+          "Text": "Hollin takes the register in both hands and does not open it. 'Sealed within the hour; the Mainline will see to that, and I will let them. But it is real, and it is here, and no one will have to search for it again.' She enters your name in a table that is not an attribution list.",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Understood.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "Reported",
+          "Text": "Hollin writes it down exactly as you say it, then reads it back to be sure. 'Entered as told, not as confirmed. Thank you for telling me yourself.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Farewell.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
         }
       ]
     },
@@ -169,6 +227,38 @@
                 }
               ],
               "Actions": []
+            },
+            {
+              "Text": "Here is the Stillleaf register, to be filed.",
+              "Target": "Filed",
+              "Predicates": [
+                {
+                  "Key": "IfStillleafArchiveCan",
+                  "Value": "file"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "StillleafArchive",
+                  "Value": "file"
+                }
+              ]
+            },
+            {
+              "Text": "About Stillleaf: I must tell you what I did.",
+              "Target": "Noted",
+              "Predicates": [
+                {
+                  "Key": "IfStillleafArchiveCan",
+                  "Value": "report"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "StillleafArchive",
+                  "Value": "report"
+                }
+              ]
             },
             {
               "Text": "Farewell.",
@@ -297,6 +387,32 @@
           "Choices": [
             {
               "Text": "Understood.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "Filed",
+          "Text": "The Indexer takes the register by its spine, unopened, and slides it into the salt file beside the keeper's line. The drawer locks. 'Entered: filed, unread. Status: continuing.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Understood.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "Noted",
+          "Text": "The gloved hand writes without hurry. 'Entered as stated. The file does not editorialise; that is what margins are for, and Curation does not keep margins.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Farewell.",
               "Target": "End",
               "Predicates": [],
               "Actions": []

@@ -1,6 +1,7 @@
 using System;
 using CavesOfOoo.Data;
 using CavesOfOoo.Diagnostics;
+using CavesOfOoo.Storylets;
 
 namespace CavesOfOoo.Core
 {
@@ -57,6 +58,8 @@ namespace CavesOfOoo.Core
             if (register?.GetPart<PhysicsPart>() == null || register.GetPart<ExaminablePart>() == null)
                 return Refuse(zone, "register_incomplete");
             register.ID = RegisterId;
+            // SA.4: taking the record is the journal's "register" objective.
+            register.AddPart(new CompleteObjectiveOnTaken { Quest = StillleafArchiveContent.QuestId, Objective = "register" });
             if (!zone.AddEntity(register, seat.X, seat.Y)) return Refuse(zone, "placement_failed");
             door.SetIntProperty(Installed, 1);
             Diag.Record("worldgen", "StillleafRegisterPlaced", target: register,

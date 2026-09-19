@@ -114,6 +114,7 @@ namespace CavesOfOoo.Core
 
         public static bool CanConversation(Entity speaker, Entity player, string command)
         {
+            if (StillleafCustody.Owns(command)) return StillleafCustody.CanConversation(speaker, player, command);
             if (StillleafSaltVault.Owns(command)) return StillleafSaltVault.CanConversation(speaker, player, command);
             if (!ValidConversation(speaker, player, QuillholdZoneId, SearcherId, SearcherBlueprint, out _)) return false;
             bool active = StoryletPart.Current.IsQuestActive(QuestId);
@@ -127,6 +128,7 @@ namespace CavesOfOoo.Core
 
         public static bool TryConversation(Entity speaker, Entity player, string command)
         {
+            if (StillleafCustody.Owns(command)) return StillleafCustody.TryConversation(speaker, player, command);
             if (StillleafSaltVault.Owns(command)) return StillleafSaltVault.TryConversation(speaker, player, command);
             if (!CanConversation(speaker, player, command)) return Reject(speaker, player, command, "unavailable");
             if (command == "accept")
