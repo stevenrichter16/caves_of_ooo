@@ -1,0 +1,27 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CavesOfOoo.Tests.(EndingRoutesGatheredTests|EndingRoutesKeptTests|RootSiteTests|EndingSpineTests|Choir[A-Za-z]*Tests|Grovelands[A-Za-z]*Tests|EndingSpineAdversarialTests|Stillleaf[A-Za-z]*Tests|Closure[A-Za-z]*Tests|Conversation[A-Za-z]*Tests|Quest[A-Za-z]*Tests|Storylet[A-Za-z]*Tests|Felling[A-Za-z]*Tests|Material[A-Za-z]*Tests|InputHandler[A-Za-z]*Tests|WorldMap[A-Za-z]*Tests)",
+  "results": {
+    "id": "2",
+    "testcasecount": "1257",
+    "result": "Failed(Child)",
+    "total": "1257",
+    "passed": "1256",
+    "failed": "1",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-19 08:03:40Z",
+    "end-time": "2026-09-19 08:04:22Z",
+    "duration": "42.4251829"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.EndingRoutesGatheredTests.GatheringClosesTheGatherAct_LeavesTheKeepActOpenAndVisible_AndItCanStillBeReleased",
+      "message": "  Expected: String containing \"\"open\":1\"\n  But was:  \"{\"path\":\"gathered\",\"closed\":0,\"refused\":0,\"open\":2,\"consumed\":1}\"\n"
+    }
+  ]
+}

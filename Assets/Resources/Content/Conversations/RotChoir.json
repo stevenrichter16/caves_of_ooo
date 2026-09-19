@@ -40,6 +40,12 @@
             { "Key": "ChangeFactionFeeling", "Value": "RotChoir:Player:-9" }
           ]
         },
+            {
+              "Text": "[Release] I won't be carrying you to the Root. I wanted to tell you myself.",
+              "Target": "GatherReleased",
+              "Predicates": [{ "Key": "IfQuestActive", "Value": "GatherTheWorld" }],
+              "Actions": [{ "Key": "RefuseQuest", "Value": "GatherTheWorld" }]
+            },
         {
               "Text": "Farewell.",
               "Target": "End"
@@ -385,6 +391,11 @@
               "Actions": [{ "Key": "SetProperty", "Value": "KnowsFirstRoot:true" }]
             },
             {
+              "Text": "Give me a thread of you to carry down to it.",
+              "Target": "Thread",
+              "Predicates": [{ "Key": "IfNotHaveProperty", "Value": "GatherCuttingGiven" }]
+            },
+            {
               "Text": "Back to my other questions.",
               "Target": "Start"
             }
@@ -598,6 +609,21 @@
       {
         "ID": "OnlyPaper",
         "Text": "So is a name. Walk carefully at the edges for a season, walker. The tendrils know your tread now, and they are patient the way roots are patient.",
+        "Choices": [{ "Text": "Farewell.", "Target": "End" }]
+      },
+      {
+        "ID": "Thread",
+        "Text": "'A thread. Yes. We have been walking there for a thousand years, a thread a season; you could carry one down in an afternoon.' Something pale and green separates from the tendril and rests in the air between you, warm. 'You should know what it costs before you close your hand, because the rememberers will say we never tell it. Gathered: every self untied, every thread kept. Nothing is forgotten. No one remains -- not you, not us as we are, not the six who struck. That is the whole of what it costs, and the whole of what it keeps. Of the seventh we sing all six accounts and take no side; the Root will sing them too. If you set this down, tell any of us. The soil is patient, and so are we.'",
+        "AllowEscape": true,
+        "Choices": [
+          { "Text": "I'll carry it.", "Target": "End", "Actions": [ { "Key": "GiveItem", "Value": "ChoirCutting" }, { "Key": "StartQuest", "Value": "GatherTheWorld" }, { "Key": "SetProperty", "Value": "GatherCuttingGiven:true" } ] },
+          { "Text": "Not from me.", "Target": "Start" }
+        ]
+      },
+      {
+        "ID": "GatherReleased",
+        "Text": "'Then it is set down, and said. We do not argue. The soil remembers that you said it to our face, which is more than most do.' The thread you did not carry has already grown back.",
+        "AllowEscape": true,
         "Choices": [{ "Text": "Farewell.", "Target": "End" }]
       }
     ]

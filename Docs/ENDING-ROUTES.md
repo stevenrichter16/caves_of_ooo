@@ -1,6 +1,6 @@
 # The other advertised routes — Gathered and Kept
 
-**Status:** ER.1–ER.2 shipped 19 September 2026 (the Root as a place; the stones and Kept). ER.3–ER.6 pending. Release roadmap step 4, second sentence ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap: "Add the other advertised ending routes through the same robust state architecture"). Follows the ending spine ([ENDING-SPINE](ENDING-SPINE.md), ES.1–ES.6 shipped). CoO-original; no Qud parity claim.
+**Status:** ER.1–ER.3 shipped 19 September 2026 (the Root as a place; the stones and Kept; the cutting and Gathered). ER.4–ER.6 pending. Release roadmap step 4, second sentence ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap: "Add the other advertised ending routes through the same robust state architecture"). Follows the ending spine ([ENDING-SPINE](ENDING-SPINE.md), ES.1–ES.6 shipped). CoO-original; no Qud parity claim.
 
 ## Goal
 
@@ -111,3 +111,24 @@ As for the spine: independent clone, RED before GREEN (compile RED for new APIs,
 **Cold-eye.** Q1: `EndingRoutes.TryWorldAction` is `EndingSpine.TryWorldAction` with adjacency for standing-in and the stones for the ledger gate; the guards run in the same order (place, actor, state, position, ledger, requirement); the dispatch block is the spine's with the routes' names. Q2: both routes' enactments write the same state (`EndingEnacted`, the `Ending` fact), announce, retag the face, and emit `Enacted` with the reading's counts; every refusal emits `Rejected` with a reason. Q3: none vs two vs three stones; refused-first vs never-taken-on; a Renewal first; adjacent vs three cells off; the chamber vs the mouth; dead; no ledger; both givers, once each, decline, release, second giver; persistence. Q4: this section was read against the shipped files.
 
 **Files.** NEW `EndingRoutes.cs`, `Content/Data/Storylets/EndingRoutes.json`, `EndingRoutesKeptTests.cs`; MOD `RootFacePart.cs`, `EndingSpine.cs`, `InputHandler.cs`, `ConversationPredicates.cs`, `Objects.json`, `Conversations/StillleafArchive.json`, `RootSiteTests.cs`.
+
+### ER.3 — The Choir's cutting and Gathered (19 September 2026)
+
+**Status:** shipped. RED `ER3-red` (compile errors: `EndingRoutes.GatherCommand`, `CuttingBlueprint`, `GatherQuestId` did not exist — a new API, so the honest RED is the compiler); GREEN `ER3-green-2` 1183/1183 (the first green run, `ER3-green`, failed one pin, a real finding below; both receipts published); full EditMode suite in the clone 15,199 tests, 15,199 passed (`ER3-full`).
+
+**What the player can now do.** Any choir tendril, asked about the First Root and then for a thread to carry down, says the cost first — *every self untied, every thread kept; nothing is forgotten; no one remains* — sings all six accounts of the seventh and takes no side, and gives a cutting of the Choir. Taking it takes on *Gather the World*; any tendril has a `[Release]` line that ends it aloud, and the cutting stays. Beside the Root's face the menu now offers both routes with their costs — *let the Choir in: gathered, no one left* and *seal the Root: kept, nothing heals*; without a cutting the first refuses and spends nothing; with one it spends exactly one cutting, the world is gathered, the epilogue witnesses the cost (nothing is ever lost; no one remains), the face sings, and no ending is offered anywhere again — the seal and the seventh included. Kept first refuses Gathered the same way, with the cutting left in hand. Other open acts stay open and visible; a `[Release]` still works after the ending.
+
+**Implementation.** `EndingRoutes` gains `GatherCommand`, `CuttingBlueprint`, `GatherQuestId`/`GatherTitle`, `GatheredEpilogue`; `TryWorldAction` runs the same gates for both commands and then the command's requirement (`no_cutting` / `missing_stones`), consuming only once everything is present; `AddActions` offers both; the `ChoirCutting` item; the `GatherTheWorld` storylet beside `KeepTheWorld`; `RotChoir.json` `ChoirTendril_1` gains the `Thread` node under `FindFirstRoot` (`IfNotHaveProperty GatherCuttingGiven`; `GiveItem` + `StartQuest` + `SetProperty`), the `[Release]` line on `Start` and `GatherReleased`. The Choir's voice gate (never "dead") holds over the new nodes and is asserted by the apply step.
+
+**Scope divergence from the plan.** Selen's name and the Cathedral name-scene are not built; the Wedded is named in the epilogue as canon names her, not enacted. The tendril is the Choir's giver because it is the Choir's shipped voice, seated in every grove and on the Deepest Cathedral's floor.
+
+**Self-review (Methodology Template §5).**
+- 🔵 The tendril's branch and the cutting landed on the first green run; the one red pin was the reading's timing, above.
+- 🟡 fixed: the `ending/Enacted` record's counts were read before the act was closed, so `open` counted the act being enacted (`"open":2` with Keep and Gather both taken on); the reading now follows the closing and `open` says what remains open after the world is ended (`ER3-green` 1256/1257 → `ER3-green-2`). The seventh's Strike keeps its own semantics (it closes no act).
+- 🔵 The two enactments share one gate order and one success path; only the requirement and the words differ. A third route would slot in the same way.
+- 🧪 The tendril's real seat in a grove and the descent with the cutting are native-proof territory (ER.6).
+- ⚪ Guard unchanged.
+
+**Cold-eye.** Q1: `Gathered` mirrors `Kept` line for line — label, refusal, consumption, state, examine, log, announcement, diag — with the cutting in place of the stones; the tendril's branch mirrors the Searcher's (ask once, cost said, carry or decline, release aloud). Q2: both storylets share the manual-advance guard and the same objective shape; both routes' diag payloads carry `path`, the reading's counts and `consumed`. Q3: with vs without the cutting; two cuttings; Kept first vs Gathered first vs a Renewal first; refused-first vs never-taken-on; both acts open at once; any tendril instance gives, once; release at another tendril; persistence. Q4: this section was read against the shipped files.
+
+**Files.** MOD `EndingRoutes.cs`, `Objects.json`, `Content/Data/Storylets/EndingRoutes.json`, `Conversations/RotChoir.json`; NEW `EndingRoutesGatheredTests.cs`.

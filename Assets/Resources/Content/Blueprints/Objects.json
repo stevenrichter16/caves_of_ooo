@@ -31560,6 +31560,26 @@
       "Tags": [ { "Key": "Mineral", "Value": "" }, { "Key": "Tier", "Value": "3" } ]
     },
     {
+      "Name": "ChoirCutting",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "cutting of the Choir" },
+          { "Key": "RenderString", "Value": "%" },
+          { "Key": "ColorString", "Value": "&G" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ] },
+        { "Name": "Physics", "Params": [
+          { "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "2" }
+        ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "0" } ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A living thread of the Choir, cut and given, warm and faintly moving in the hand. Set against the sleeping Root it would take, the way water takes the way to the sea, and the Choir would reach what it has walked toward for a thousand years: nothing lost, no one left. It hums one syllable, patiently." }
+        ] }
+      ],
+      "Tags": [ { "Key": "Tier", "Value": "3" } ]
+    },
+    {
       "Name": "HelmwoodWaterPassage",
       "Inherits": "SprayPool",
       "Parts": [

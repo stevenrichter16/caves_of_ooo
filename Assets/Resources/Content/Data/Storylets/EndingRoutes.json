@@ -14,6 +14,21 @@
             "Objectives": [ { "ID": "seal", "Text": "Carry tepuibone, memory-marble and mute-stone to the Root -- the stump's crown, two chunks north of the Felling-Site -- go down, and seal the taproot's face. Kept: the Thinning halts; nothing heals; the Six survive as themselves. Tepuibone lies loose at the Root's cleft; the Recension Searcher at Quillhold has memory-marble; the Curation Indexer at the Salt-Vault has mute-stone. Either giver will release you from this if you say so.", "Triggers": [ { "Key": "IfFact", "Value": "EndingRoutesManualAdvance:>=:1" } ], "OnEnter": [] } ] }
         ]
       }
+    },
+    {
+      "ID": "GatherTheWorld",
+      "OneShot": false,
+      "Tracked": true,
+      "Triggers": [ { "Key": "IfFact", "Value": "EndingRoutesManualAdvance:>=:1" } ],
+      "Effects": [],
+      "Quest": {
+        "Name": "Gather the World",
+        "Accomplishment": "You let the Choir into the Root. The world is gathered.",
+        "Stages": [
+          { "ID": "thread", "Triggers": [ { "Key": "IfFact", "Value": "EndingRoutesManualAdvance:>=:1" } ], "OnEnter": [],
+            "Objectives": [ { "ID": "gather", "Text": "Carry the Choir's cutting to the Root -- the stump's crown, two chunks north of the Felling-Site -- go down, and set it against the taproot's face. Gathered: nothing is ever lost, and no one remains. Any choir tendril will release you from this if you say so.", "Triggers": [ { "Key": "IfFact", "Value": "EndingRoutesManualAdvance:>=:1" } ], "OnEnter": [] } ] }
+        ]
+      }
     }
   ]
 }
