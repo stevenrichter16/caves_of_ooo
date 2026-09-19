@@ -62,14 +62,21 @@ namespace CavesOfOoo.Tests
             for(int v=0;v<variants;v++)Assert.IsNotNull(Resources.Load<Sprite>("Sprites/Environment/"+file+(v==0?"":"_v"+v)));
             if(variants>1)Assert.AreEqual(variants,EnvironmentSpriteRenderer.FixtureVariantCounts[bp]);
         }
-        [Test] public void AllShippedKeysLeaveTheVaultLocked()
+        // Stillleaf Archive SA.1 changed this premise on purpose. Before it,
+        // no shipped key opened the vault; now exactly one does, and it must
+        // be earned through the chain: no loot table or content data supplies it.
+        [Test] public void OnlyTheKeepersKeyOpensTheVault_AndNothingElseSuppliesIt()
         {
             var door=_factory.CreateEntity("SealedLibraryDoor");Assert.IsNotNull(door);
             var actor=_factory.CreateEntity("Player");
+            var openers=new System.Collections.Generic.List<string>();
             foreach(var bp in _factory.Blueprints.Values)
-                if(bp.Parts.ContainsKey("Key"))Assert.AreNotEqual("coo.sealed-library.stillleaf",_factory.CreateEntity(bp.Name).GetPart<KeyPart>().KeyId,bp.Name);
+                if(bp.Parts.ContainsKey("Key")&&_factory.CreateEntity(bp.Name).GetPart<KeyPart>()?.KeyId==SealedLibraryBuilder.KeyID)openers.Add(bp.Name);
+            CollectionAssert.AreEqual(new[]{StillleafArchive.KeyBlueprint},openers,"exactly one key opens the vault");
+            foreach(var file in System.IO.Directory.GetFiles(System.IO.Path.Combine(Application.dataPath,"Resources/Content/Data"),"*.json",System.IO.SearchOption.AllDirectories))
+                StringAssert.DoesNotContain(StillleafArchive.KeyBlueprint,System.IO.File.ReadAllText(file),System.IO.Path.GetFileName(file)+" must not supply the keeper's key");
             var e=GameEvent.New("AttemptUnlock");e.SetParameter("Actor",(object)actor);door.FireEventAndRelease(e);
-            Assert.IsTrue(door.GetPart<LockPart>().IsLocked);
+            Assert.IsTrue(door.GetPart<LockPart>().IsLocked,"a keyless attempt still fails");
         }
         private static Entity Marker(Zone z,int x,int y)
         {var p=WorldMap.WorldCellToZoneCell(x,y);return z.GetCell(p.zoneX,p.zoneY).Objects.Single(e=>e.HasPart<WorldMapCellPart>());}

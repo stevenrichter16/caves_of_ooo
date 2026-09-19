@@ -8,14 +8,14 @@ namespace CavesOfOoo.Tests
 {
     public class StillleafVoxelKitTests
     {
-        private static readonly string[] Families = { "ground", "floor", "tepuibone", "marble", "iron", "door", "open-door", "shelf", "bear", "slime", "spring", "boots", "wall" };
+        private static readonly string[] Families = { "ground", "floor", "tepuibone", "marble", "iron", "door", "open-door", "shelf", "bear", "slime", "spring", "boots", "wall", "register" };
 
         [Test]
         public void EveryFamilyHasFourCoarseSingleCellAssetsWithExactReferences()
         {
             var kit = StillleafVoxelLibrary.Load();
             Assert.NotNull(kit); kit.Validate();
-            Assert.AreEqual(52, kit.Entries.Length);
+            Assert.AreEqual(56, kit.Entries.Length); // 14 families x 4 (SA.1 added the register)
             foreach (string family in Families)
             {
                 var shapes = new string[4];
@@ -63,6 +63,8 @@ namespace CavesOfOoo.Tests
         [TestCase("LeatherBoots", null)]
         [TestCase("OpenSealedLibraryDoor", null)]
         [TestCase("TepuiWall", "wall")]
+        [TestCase("StillleafRegister", "register")]
+        [TestCase("StillleafKey", null)]
         [TestCase("TepuiStone", null)]
         [TestCase("SandstoneWall", null)]
         [TestCase("LockedChest", null)]
@@ -226,6 +228,37 @@ namespace CavesOfOoo.Tests
             Assert.IsNotEmpty(snout);
             Assert.Less(snout.Max(v => v.x) - snout.Min(v => v.x), .4f);
             Assert.Less(snout.Max(v => v.y), .8f);
+        }
+
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        public void TheRegisterIsAFlatBoundRecordLowerThanTheBoots(int variant)
+        {
+            // Stillleaf Archive SA.1: the contested record lies flat on the
+            // vault floor - pale covers, a dark spine along one long edge and
+            // the keeper's slate resting on top. Its silhouette must read as
+            // a book, not as a boot pair or a crate, at a glance.
+            var kit = StillleafVoxelLibrary.Load();
+            var mesh = kit.Find(StillleafVoxelLibrary.ModelId("register", variant)).Mesh;
+            Assert.AreEqual("stillleaf-register-" + variant, kit.Entries[52 + variant].Id);
+            Assert.AreEqual("stillleaf-wall-3", kit.Entries[51].Id, "Earlier models keep their identities.");
+            Assert.That(mesh.bounds.max.y, Is.InRange(.10f, .20f), "lies flat");
+            Assert.GreaterOrEqual(mesh.bounds.min.y, -.0001f, "rests on the floor, never below it");
+            Assert.Less(mesh.bounds.size.x, .50f);
+            Assert.Less(mesh.bounds.size.z, .62f);
+            Assert.LessOrEqual(mesh.vertexCount, 144);
+            Assert.AreEqual(2, mesh.uv.Distinct().Count());
+            var dark = new Vector2((12 % 16 + .5f) / 16f, (12 / 16 + .5f) / 8f);
+            var darkVerts = Enumerable.Range(0, mesh.vertexCount).Where(i => mesh.uv[i] == dark)
+                .Select(i => mesh.vertices[i]).ToArray();
+            Assert.IsNotEmpty(darkVerts);
+            Assert.IsTrue(darkVerts.Any(v => v.x < -.15f), "a spine along one long edge");
+            Assert.Greater(darkVerts.Max(v => v.y), mesh.bounds.max.y - .02f, "the slate rests on top");
+            var boots = kit.Find(StillleafVoxelLibrary.ModelId("boots", variant)).Mesh;
+            Assert.Less(mesh.bounds.max.y, boots.bounds.max.y, "lower than any boot pair");
+            Assert.AreNotEqual(mesh.uv[0], boots.uv[0]);
         }
 
         [TestCase(0)]

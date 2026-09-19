@@ -1066,6 +1066,12 @@ namespace CavesOfOoo.Core
                     && SinkholeArchetypes.ForSite(poiAbove) == SinkholeArchetype.DrownedSima)
                     zone.AmbientLevel = ShaftLightAmbient;
 
+                // Stillleaf Archive SA.1: the sealed vault receives its one
+                // contested record on fresh generation. The surface hooks
+                // below never run for underground zones, so it lives here.
+                if (zoneID == SealedLibraryBuilder.ZoneID)
+                    StillleafArchive.TryInstallVault(zone, Factory);
+
                 // Mark all cells as interior. Extracted so a future zone-
                 // hydration path (save/load) can call it too without
                 // re-running the generator pipeline.

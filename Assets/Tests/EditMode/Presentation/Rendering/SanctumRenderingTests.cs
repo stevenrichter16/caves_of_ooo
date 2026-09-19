@@ -92,6 +92,28 @@ namespace CavesOfOoo.Tests
             Assert.IsNull(SpawnRing3DRecipes.Resolve(zone,owner,catalog).ModelId);
         }
 
+        // Stillleaf Archive SA.1: the register is a carryable record, so it is a
+        // transient native model (never baked into the static chunk mesh) and
+        // keeps one shape wherever it lies, as the portable boots already do.
+        [TestCase("StillleafRegister","stillleaf-register-")]
+        [TestCase("IronshodBoots","stillleaf-boots-")]
+        public void PortableArchiveRecordsAreTransientNativeModelsThatKeepTheirShape(string blueprint,string prefix)
+        {
+            var factory=GrovelandsCompositionTests.Factory();var zone=new Zone("Overworld.2.4.2");
+            var owner=factory.CreateEntity(blueprint);Assert.IsTrue(owner.GetPart<PhysicsPart>().Takeable);
+            Assert.IsTrue(zone.AddEntity(owner,20,10));
+            var catalog=Resources.Load<SpawnRing3DLibrary>(SpawnRing3DLibrary.ResourcePath).Definition;
+            var recipe=SpawnRing3DRecipes.Resolve(zone,owner,catalog);
+            Assert.NotNull(recipe.ModelId,recipe.Failure);StringAssert.StartsWith(prefix,recipe.ModelId);
+            Assert.AreSame(owner,recipe.Owner);Assert.IsTrue(recipe.Transient);Assert.IsFalse(recipe.Batched);
+            Assert.IsTrue(zone.MoveEntity(owner,33,4));
+            Assert.AreEqual(recipe.ModelId,SpawnRing3DRecipes.Resolve(zone,owner,catalog).ModelId,"dropped elsewhere, same shape");
+            owner.GetPart<RenderPart>().Visible=false;
+            Assert.IsNull(SpawnRing3DRecipes.Resolve(zone,owner,catalog).ModelId);
+            owner.GetPart<RenderPart>().Visible=true;zone.RemoveEntity(owner);
+            Assert.IsNull(SpawnRing3DRecipes.Resolve(zone,owner,catalog).ModelId);
+        }
+
         [TestCase("Overworld.5.4.2")] [TestCase("Overworld.2.4.2")]
         public void CurrentMapPlaceAuthorityVetoesTheFiniteAddressAndSurvivesRestore(string id)
         {

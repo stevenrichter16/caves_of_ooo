@@ -12,7 +12,7 @@ namespace CavesOfOoo.Editor
     public static class StillleafVoxelKitBuilder
     {
         private const string Folder = "Assets/Resources/StillleafVoxel3D";
-        private static readonly string[] Families = { "ground", "floor", "tepuibone", "marble", "iron", "door", "open-door", "shelf", "bear", "slime", "spring", "boots", "wall" };
+        private static readonly string[] Families = { "ground", "floor", "tepuibone", "marble", "iron", "door", "open-door", "shelf", "bear", "slime", "spring", "boots", "wall", "register" };
         private static readonly List<Vector3> Vertices = new List<Vector3>(288);
         private static readonly List<Vector2> UVs = new List<Vector2>(288);
         private static readonly List<Color> Colors = new List<Color>(288);
@@ -106,6 +106,7 @@ namespace CavesOfOoo.Editor
                 case "spring": Spring(variant); break;
                 case "boots": Boots(variant); break;
                 case "wall": Wall(variant); break;
+                case "register": Register(variant); break;
                 default: throw new ArgumentException("Unknown Stillleaf art family.", nameof(family));
             }
         }
@@ -238,6 +239,22 @@ namespace CavesOfOoo.Editor
             Box(new Vector3(.17f, .08f, .04f), new Vector3(.22f, .16f, .42f), 13);
             Box(new Vector3(-.17f, .155f + height, -.065f), new Vector3(.22f, .06f, .22f), 13);
             Box(new Vector3(.17f, .155f + height, -.065f), new Vector3(.22f, .06f, .22f), 13);
+        }
+
+        private static void Register(int variant)
+        {
+            // Stillleaf Archive SA.1: a bound register lying flat on the vault
+            // floor - pale covers (19) with a dark spine, tie band and the
+            // keeper's slate resting on one corner (12). Two palette slots,
+            // six boxes, single cell. Variants move the slate and band and
+            // thicken the block, so a carried copy keeps its shape (variant 0).
+            float thick = .09f + variant * .012f;
+            Box(new Vector3(0, thick * .5f, 0), new Vector3(.44f, thick, .58f), 19);
+            Box(new Vector3(-.20f, thick * .5f + .005f, 0), new Vector3(.06f, thick + .01f, .58f), 12);
+            Box(new Vector3(.19f, thick * .5f - .01f, 0), new Vector3(.07f, thick - .02f, .54f), 19);
+            Box(new Vector3(0, thick + .006f, .10f + variant * .03f), new Vector3(.44f, .012f, .04f), 12);
+            Box(new Vector3(.10f, thick + .015f, -.16f + variant * .02f), new Vector3(.16f, .03f, .12f), 12);
+            Box(new Vector3(.10f, thick + .033f, -.16f + variant * .02f), new Vector3(.10f, .006f, .07f), 19);
         }
 
         private static void Wall(int variant)

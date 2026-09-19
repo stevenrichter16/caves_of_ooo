@@ -141,11 +141,17 @@ namespace CavesOfOoo.Tests
         [Test] public void Adversarial_NoAmbientCreaturesContainersOrHazardsLandInsideTheArchive()
         {
             var z=new OverworldZoneManager(_factory,66).GetZone(SealedLibraryBuilder.ZoneID);
+            // Stillleaf Archive SA.1: the one AUTHORED record (by id) is the
+            // only permitted non-architecture object; nothing ambient lands.
+            int authored=0;
             foreach(var floor in z.GetAllEntities().Where(e=>e.HasTag("ExcludeZoneArrival")))
             {
                 var c=z.GetEntityCell(floor);Assert.IsTrue(z.GenReservedCells.Contains((c.X,c.Y)));
-                Assert.IsTrue(c.Objects.All(e=>e.BlueprintName=="SealedLibraryFloor"||e.BlueprintName=="SealedArchiveShelf"));
+                authored+=c.Objects.Count(e=>e.ID==StillleafArchive.RegisterId);
+                Assert.IsTrue(c.Objects.All(e=>e.BlueprintName=="SealedLibraryFloor"||e.BlueprintName=="SealedArchiveShelf"
+                    ||e.ID==StillleafArchive.RegisterId));
             }
+            Assert.AreEqual(1,authored,"exactly one authored register");
         }
         [Test] public void Adversarial_ExistingMapsGainOnlyAnEmptyMissingMouth()
         {

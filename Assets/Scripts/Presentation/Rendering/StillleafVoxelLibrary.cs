@@ -10,7 +10,7 @@ namespace CavesOfOoo.Rendering
     {
         public const string ResourcePath = "StillleafVoxel3D/Library";
         public const int VariantCount = 4;
-        private static readonly string[] Families = { "ground", "floor", "tepuibone", "marble", "iron", "door", "open-door", "shelf", "bear", "slime", "spring", "boots", "wall" };
+        private static readonly string[] Families = { "ground", "floor", "tepuibone", "marble", "iron", "door", "open-door", "shelf", "bear", "slime", "spring", "boots", "wall", "register" };
         private static readonly string[] Ids = MakeIds();
 
         [Serializable]
@@ -32,7 +32,7 @@ namespace CavesOfOoo.Rendering
         {
             index = null;
             if (Entries == null || Entries.Length != Ids.Length)
-                throw new InvalidOperationException("Stillleaf voxel kit requires four variants of 13 families.");
+                throw new InvalidOperationException("Stillleaf voxel kit requires four variants of 14 families.");
             var ring = Resources.Load<SpawnRing3DLibrary>(SpawnRing3DLibrary.ResourcePath);
             if (ring == null || ring.WorldMaterial == null)
                 throw new InvalidOperationException("Stillleaf voxel kit requires the native ring palette material.");
@@ -112,6 +112,8 @@ namespace CavesOfOoo.Rendering
                 case "spring": offset = 40; break;
                 case "boots": offset = 44; break;
                 case "wall": offset = 48; break;
+                // Stillleaf Archive SA.1: the one contested record inside the vault.
+                case "register": offset = 52; break;
                 default: throw new ArgumentException("Unknown Stillleaf voxel family.", nameof(family));
             }
             if (variant < 0 || variant >= VariantCount)
@@ -137,6 +139,7 @@ namespace CavesOfOoo.Rendering
                 case "ConvalescencePool": return "spring";
                 case "IronshodBoots": return "boots";
                 case "TepuiWall": return "wall";
+                case "StillleafRegister": return "register";
                 default: return null;
             }
         }

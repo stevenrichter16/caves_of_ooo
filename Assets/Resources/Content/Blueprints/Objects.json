@@ -20554,6 +20554,53 @@
       ]
     },
     {
+      "Name": "StillleafKey",
+      "Inherits": "IronKey",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "Stillleaf keeper's key" },
+            { "Key": "RenderString", "Value": "/" },
+            { "Key": "ColorString", "Value": "&W" },
+            { "Key": "RenderLayer", "Value": "5" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "1" } ] },
+        { "Name": "Key", "Params": [ { "Key": "KeyId", "Value": "coo.sealed-library.stillleaf" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A long iron key, its bow worn smooth by one hand over many years. A Curation file tag still hangs from it: filed with the keeper of Stillleaf." }
+          ]
+        }
+      ],
+      "Tags": [ { "Key": "NoTrade", "Value": "" } ]
+    },
+    {
+      "Name": "StillleafRegister",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "the Stillleaf register" },
+            { "Key": "RenderString", "Value": "?" },
+            { "Key": "ColorString", "Value": "&Y" },
+            { "Key": "RenderLayer", "Value": "5" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "2" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A bound register in pale covers, the name Stillleaf pressed into its spine. It lists what this archive held — shelf, hand and year for every entry — and nothing of what the entries said. A slate is tied to the cover in the keeper's hand: 'Whoever carries this out: I sealed this place so that it would stay sealed. Not because what is here is dangerous. Because it was given to me to keep, and keeping is not the same as showing. If you take it, choose who holds it after you as carefully as I chose no one.'" }
+          ]
+        }
+      ],
+      "Tags": [ { "Key": "NoTrade", "Value": "" } ]
+    },
+    {
       "Name": "Graveyard",
       "Inherits": "PhysicalObject",
       "Parts": [

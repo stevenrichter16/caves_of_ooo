@@ -104,7 +104,7 @@ namespace CavesOfOoo.Tests
             foreach(var p in inside)
             {
                 var c=z.GetCell(p.x,p.y);Assert.IsTrue(z.GenReservedCells.Contains(p));
-                Assert.IsTrue(c.Objects.All(e=>e.BlueprintName=="SealedLibraryFloor"||e.BlueprintName=="SealedArchiveShelf"));
+                Assert.IsTrue(c.Objects.All(e=>e.BlueprintName=="SealedLibraryFloor"||e.BlueprintName=="SealedArchiveShelf"||e.ID==StillleafArchive.RegisterId)); // SA.1: the authored register
             }
             var visitor=new Entity();var inv=new InventoryPart();visitor.AddPart(inv);
             var key=new Entity();key.AddPart(new KeyPart{KeyId=SealedLibraryBuilder.KeyID});inv.Objects.Add(key);
