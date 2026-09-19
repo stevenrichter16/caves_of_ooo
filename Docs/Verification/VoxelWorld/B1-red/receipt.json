@@ -1,0 +1,59 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CavesOfOoo.Tests.BreadthJournalTruthTests",
+  "results": {
+    "id": "2",
+    "testcasecount": "11",
+    "result": "Failed(Child)",
+    "total": "11",
+    "passed": "2",
+    "failed": "9",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-19 15:27:49Z",
+    "end-time": "2026-09-19 15:27:50Z",
+    "duration": "0.364776"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.BreadthJournalTruthTests.AClosedRegionalRequest_IsListedUnderCompleted_ByItsTitle",
+      "message": "  Expected: collection containing \"Oil for Sumphold\"\n  But was:  <empty>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BreadthJournalTruthTests.ACompletedQuest_IsListedOnce_NotTwice",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BreadthJournalTruthTests.EveryShippedQuest_HasAName_TheJournalShows(\"MessageForHermit\",\"A Message for the Hermit\")",
+      "message": "  Expected: \"A Message for the Hermit\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BreadthJournalTruthTests.EveryShippedQuest_HasAName_TheJournalShows(\"ClearTheWarren\",\"The Warren Beneath\")",
+      "message": "  Expected: \"The Warren Beneath\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BreadthJournalTruthTests.EveryShippedQuest_HasAName_TheJournalShows(\"HiddenShrine\",\"The Hidden Shrine\")",
+      "message": "  Expected: \"The Hidden Shrine\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BreadthJournalTruthTests.NoShippedQuest_FallsBackToItsId",
+      "message": "  ClearTheWarren has no name\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BreadthJournalTruthTests.YourOwnCell_IsDescribedByWhatIsUnderfoot_NotByYou",
+      "message": "  Expected string length 18 but was 14. Strings differ at index 8.\n  Expected: \"You see the floor.\"\n  But was:  \"You see a you.\"\n  -------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BreadthJournalTruthTests.YourOwnCell_WithOneItem_NamesTheItem",
+      "message": "  Expected string length 20 but was 43. Strings differ at index 0.\n  Expected: \"You see a tepuibone.\"\n  But was:  \"A pile of items, including: tepuibone, you.\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BreadthJournalTruthTests.YourOwnCell_WithTwoItems_IsAPileWithoutYouInIt",
+      "message": "  Expected: not String containing \"you\"\n  But was:  \"A pile of items, including: tepuibone, memory-marble, you.\"\n"
+    }
+  ]
+}

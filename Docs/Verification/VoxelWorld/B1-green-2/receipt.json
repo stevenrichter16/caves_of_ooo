@@ -1,0 +1,27 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CavesOfOoo.Tests.(BreadthJournalTruthTests|WorldInteractionSystemTests|QuestLog[A-Za-z]*Tests|Closure[A-Za-z]*Tests|Quest[A-Za-z]*Tests|Storylet[A-Za-z]*Tests|MarcelineQuestDialogueTests|InteractKey[A-Za-z]*Tests|CellStatusReadoutTests|HealthOnScreenTests|MultiCellTargetingTests|WorldActionMenu[A-Za-z]*Tests|EndingRoutes[A-Za-z]*Tests|EndingSpine[A-Za-z]*Tests)",
+  "results": {
+    "id": "2",
+    "testcasecount": "518",
+    "result": "Failed(Child)",
+    "total": "518",
+    "passed": "517",
+    "failed": "1",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-19 15:29:15Z",
+    "end-time": "2026-09-19 15:29:23Z",
+    "duration": "8.162934"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.BreadthJournalTruthTests.NoShippedQuest_FallsBackToItsId",
+      "message": "  SillHearsIt has no name\n  Expected: False\n  But was:  True\n"
+    }
+  ]
+}

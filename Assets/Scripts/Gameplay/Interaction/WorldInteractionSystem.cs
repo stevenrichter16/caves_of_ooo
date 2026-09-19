@@ -156,6 +156,9 @@ namespace CavesOfOoo.Core
             foreach (var e in cell.Occupants)
             {
                 if (e == null) continue;
+                // B.1 (Docs/BREADTH-PASS.md): the player is the one looking, never the thing
+                // described — a title on your own cell names what is underfoot, not "you".
+                if (e.HasTag("Player")) continue;
                 if (IsTerrain(e))
                 {
                     if (topTerrain == null || RenderLayer(e) >= RenderLayer(topTerrain)) topTerrain = e;

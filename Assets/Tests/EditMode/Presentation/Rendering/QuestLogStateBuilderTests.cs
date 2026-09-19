@@ -33,6 +33,7 @@ namespace CavesOfOoo.Tests
         [TearDown]
         public void TearDown()
         {
+            StoryletRegistry.Reset(); // B.1: a test-only registry must not outlive this class (Docs/BREADTH-PASS.md)
             NarrativeStatePart.Current = null;
         }
 

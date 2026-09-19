@@ -112,6 +112,12 @@ namespace CavesOfOoo.Rendering
             var completed = new List<string>(completedSet.Count);
             foreach (var id in completedSet)
                 completed.Add(StoryletPart.QuestDisplayName(id));
+            // B.1 (Docs/BREADTH-PASS.md): acts closed outside the quest layer (regional
+            // requests) are listed by title; the closure line below already counts them.
+            var completedIds = new HashSet<string>(completedSet);
+            foreach (var e in part.Ledger.Values)
+                if (e.State == ClosureState.Closed && !completedIds.Contains(e.QuestId))
+                    completed.Add(StoryletPart.ClosureTitle(e));
             completed.Sort(System.StringComparer.Ordinal);
             var refused = new List<string>(); var unspoken = new List<string>(); int closed = 0, refusedCount = 0, open = 0, lost = 0;
             foreach (var e in part.Ledger.Values)

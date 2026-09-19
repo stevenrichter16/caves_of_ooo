@@ -1,6 +1,6 @@
 # Breadth pass — the seams the campaign work left open
 
-**Status:** planned, 19 September 2026. Release roadmap step 5 ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap: "Complete release-scoped depth … defer systems whose principal contribution is scope rather than a stronger decision"). Follows the ending routes ([ENDING-ROUTES](ENDING-ROUTES.md), complete). CoO-original; no Qud parity claim.
+**Status:** B.1 shipped 19 September 2026 (the journal and the titles). B.2–B.6 pending. Release roadmap step 5 ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap: "Complete release-scoped depth … defer systems whose principal contribution is scope rather than a stronger decision"). Follows the ending routes ([ENDING-ROUTES](ENDING-ROUTES.md), complete). CoO-original; no Qud parity claim.
 
 ## Goal
 
@@ -66,3 +66,19 @@ Recorded and **not** in this pass (they add scope, not truth): Selen's name-scen
 As for the ending routes: independent clone, RED before GREEN, explicit-path integration, receipts under `Docs/Verification/VoxelWorld/B*`, native runs under `Docs/Verification/ChunkGameplayImplementation/B6-*`. Every chain checks free disk space first, fills its documents under `set -e` before any copy, treats the guard's STAND DOWN as an abort, and deletes uncompressed logs once their `.gz` twin exists.
 
 ## Implementation log
+
+### B.1 — The journal and the titles tell the truth (19 September 2026)
+
+**Status:** shipped. RED `B1-red` (9 of 11 failing); GREEN `B1-green-3` 518/518 (two earlier green runs are published as evidence: `B1-green` failed to compile on my `Contains` over an `IReadOnlyCollection`, and `B1-green-2` failed the registry-wide name pin on `SillHearsIt`, a quest-less storylet that `JsonUtility` still gives an empty `QuestData`); full EditMode suite in the clone 15,234 tests, 15,234 passed (`B1-full`).
+
+**What the player sees.** The journal names *A Message for the Hermit*, *The Warren Beneath* and *The Hidden Shrine* instead of their ids. A regional request closed at its recipient is listed under COMPLETED by its request title, so the closure line and the lists agree. Opening the underfoot menu on your own cell names what is underfoot — never "You see a you." — and a pile you stand on no longer lists "you" among its items.
+
+**Implementation.** `Name` added to three storylet files (surgical splices, parse-validated); `QuestLogStateBuilder` adds ledger entries closed outside the quest layer to COMPLETED by `ClosureTitle`, never duplicating a quest-layer completion; `WorldInteractionSystem.DescribeCell` leaves out the `Player`-tagged occupant; eight quest test classes reset the static storylet registry on TearDown.
+
+**Self-review (Methodology Template §5).**
+- 🟡 fixed (compile): my first cut called `Contains` on an `IReadOnlyCollection<string>`, which has none without LINQ (`B1-green`); the builder now looks ids up in a `HashSet`.
+- 🟡 fixed (test-side): the registry-wide name pin counted `SillHearsIt`, a one-shot storylet with no quest, because `JsonUtility` fills an absent `Quest` with an empty default (`B1-green-2`); the pin now counts storylets with stages. `SillHearsIt` is canon's scripted Sill hearing of the *sari* (fact `sill_sari_heard`) — B.4 leaves tier 1 to it.
+- 🔵 `IsPileCell` still counts the player (standing on one item is a "pile" for the picker's flow); only the description text changed, so interaction flow is untouched.
+- ⚪ Guard unchanged.
+
+**Files.** MOD `ClearTheWarren.json`, `HiddenShrine.json`, `MessageForHermit.json`, `QuestLogStateBuilder.cs`, `WorldInteractionSystem.cs`, eight quest test classes; NEW `BreadthJournalTruthTests.cs`.
