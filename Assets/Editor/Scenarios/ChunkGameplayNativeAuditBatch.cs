@@ -196,6 +196,19 @@ namespace CavesOfOoo.Editor
             SessionState.SetBool(Prefix+"active",false);SessionState.SetBool(Prefix+"finishing",false);Debug.Log("[ChunkGameplayNativeAudit] Scene/view/private-save cleanup exit="+code);
             if(SessionState.GetBool(Prefix+"exit",false))EditorApplication.Exit(code);
         }
+        // ER.6 (Docs/ENDING-ROUTES.md): the accepted journey has a route variant (COO_ENDING_ROUTE).
+        // The default route reads the Root's offers and enacts the practice-path Renewal at the
+        // seventh; the kept route seals the Root and finds the seventh offering nothing.
+        private static string Route=>(Environment.GetEnvironmentVariable("COO_ENDING_ROUTE")??"").Trim().ToLowerInvariant();
+        private static readonly string[] EndingEnactmentChecks={"ending_native_menu_offers_both","ending_native_practice_refused_names_open","ending_native_enacted","ending_native_epilogue_shown","ending_native_exposure_ended","ending_native_nothing_more_offered"};
+        private static readonly string[] RouteChecks={"stillleaf_native_world_map_root","route_native_root_arrival","route_native_chamber","route_native_face_offers_both","route_native_debug_restored"};
+        private static readonly string[] DefaultRouteChecks={"route_native_seal_refused_names_missing"};
+        private static readonly string[] KeptRouteChecks={"route_native_marble","route_native_mute_stone","route_native_tepuibone_loose","route_native_kept_enacted","route_native_kept_epilogue_shown","route_native_nothing_more_offered","ending_native_nothing_offered_after_root_ending"};
+        private static IEnumerable<string> RequiredChecksFor(string route)=>route=="kept"
+            ?RequiredChecks.Except(EndingEnactmentChecks).Concat(RouteChecks).Concat(KeptRouteChecks)
+            :RequiredChecks.Concat(RouteChecks).Concat(DefaultRouteChecks);
+        private static readonly string[] DefaultRouteCaptures={"route-face-menu","route-face-refused"};
+        private static readonly string[] KeptRouteCaptures={"route-hollin-marble","route-halm-mute-stone","route-face-menu","route-kept-epilogue","route-face-after","ending-seventh-after-root"};
         private static readonly string[] RequiredChecks={"native_N_real_new_game","native_cache_and_parcel_generated",
             // R4: the earned-material inspection and its bell use are part of the accepted journey.
             "material_native_single_examine","material_native_description_visible","material_native_returns_to_row",
@@ -238,12 +251,15 @@ namespace CavesOfOoo.Editor
                     ||!ValidateProfile(f)
                     ||f.checks==null||f.checks.Any(c=>c==null||!c.pass||string.IsNullOrEmpty(c.name))
                     ||f.checks.Select(c=>c.name).Distinct(StringComparer.Ordinal).Count()!=f.checks.Length
-                    ||RequiredChecks.Any(name=>!f.checks.Any(c=>c.name==name)))return false;
+                    ||f.route!=Route||RequiredChecksFor(f.route).Any(name=>!f.checks.Any(c=>c.name==name)))return false;
                 foreach(string room in new[]{"keeper-gatehouse","dry-hem-guesthouse","long-loop-ropeshop","return-desk-archive","second-bowl-kitchen"})
                     if(!f.checks.Any(c=>c.name=="coarse_interior_"+room)||!f.checks.Any(c=>c.name=="coarse_closed_"+room))return false;
-                if(f.screenshots==null||(f.screenshots.Length!=36&&f.screenshots.Length!=37)||f.screenshots.Distinct(StringComparer.Ordinal).Count()!=f.screenshots.Length)return false;
+                // ES.6 pinned 36 or 37 (the practice path's refusal branch adds one). ER.6: the default route adds
+                // two Root captures; the kept route replaces the seventh's two with six of its own and has no refusal branch.
+                int expectedCaptures=f.route=="kept"?40:38;
+                if(f.screenshots==null||!(f.screenshots.Length==expectedCaptures||(f.route!="kept"&&f.screenshots.Length==expectedCaptures+1))||f.screenshots.Distinct(StringComparer.Ordinal).Count()!=f.screenshots.Length)return false;
                 string dir=Path.GetFullPath(Path.Combine(Application.dataPath,"../Docs/Verification/ChunkGameplayImplementation"));
-                foreach(string label in new[]{"western-spawn","cue-available","cue-active","journal","recovered-parcel","completed-supper","travel-notes","restored-completion","interior-keeper-gatehouse","interior-dry-hem-guesthouse","interior-long-loop-ropeshop","interior-return-desk-archive","interior-second-bowl-kitchen","regional-request","regional-offer-preview","regional-accepted-note","regional-protected-vein","regional-delivered","regional-notes","regional-trade-stock","regional-receipt-restored","faction-standings","fullscreen-world-restored","material-fire-clay-examine","material-quiet-bell"})
+                foreach(string label in new[]{"western-spawn","cue-available","cue-active","journal","recovered-parcel","completed-supper","travel-notes","restored-completion","interior-keeper-gatehouse","interior-dry-hem-guesthouse","interior-long-loop-ropeshop","interior-return-desk-archive","interior-second-bowl-kitchen","regional-request","regional-offer-preview","regional-accepted-note","regional-protected-vein","regional-delivered","regional-notes","regional-trade-stock","regional-receipt-restored","faction-standings","fullscreen-world-restored","material-fire-clay-examine","material-quiet-bell"}.Concat(f.route=="kept"?KeptRouteCaptures:DefaultRouteCaptures))
                 {
                     string file=Path.Combine(dir,"CGN-"+expectedRunId+"-"+label+".png");
                     if(!f.screenshots.Contains(file)||!Is1080pPng(file))return false;

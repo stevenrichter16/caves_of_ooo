@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import gzip
 import hashlib
 import json
@@ -45,7 +46,7 @@ def main(argv=None):
     before_outputs = {p.name for p in LIVE.glob('CGN-*')}
     source_before = sources(ROOT)
     write(output / 'sources-before.json', source_before)
-    write(output / 'command.json', command)
+    write(output / 'command.json', {'command': command, 'env': {'COO_ENDING_ROUTE': os.environ.get('COO_ENDING_ROUTE', '')}})
     write(output / 'mcp-start.json', restart_mcp(Path('/Users/steven/unity-mcp/Server'), args.name))
     refuse_unity()
     (ROOT / 'Temp/UnityLockfile').unlink(missing_ok=True)

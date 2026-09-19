@@ -38,6 +38,11 @@ namespace CavesOfOoo.Scenarios.Custom
         private string saveRoot,gameId,markerId,fatal;
         private byte[] markerBytes;
         private int nativeSteps,unexpected,waits,stunnedTurns;
+        /// <summary>ER.6 (Docs/ENDING-ROUTES.md): the route variant of the accepted journey, from
+        /// COO_ENDING_ROUTE ("" = the practice-path Renewal at the seventh; "kept" = the Root sealed).</summary>
+        private static string Route=>(Environment.GetEnvironmentVariable("COO_ENDING_ROUTE")??"").Trim().ToLowerInvariant();
+        private static bool KeptRoute=>Route=="kept";
+        private int Carried(string blueprint)=>input.PlayerEntity.GetPart<InventoryPart>()?.Objects.Where(e=>e.BlueprintName==blueprint).Sum(e=>e.GetPart<StackerPart>()?.StackCount??1)??0;
         private System.Diagnostics.Stopwatch watch;
         private Stack<IEnumerator> activeSteps;
         private Report report;
@@ -203,6 +208,7 @@ namespace CavesOfOoo.Scenarios.Custom
             Check("private_boot_marker_unchanged",File.ReadAllBytes(Path.Combine(saveRoot,markerId,"Quick.sav.gz")).SequenceEqual(markerBytes));
             Check("owned_save_only",OwnedCheckpoint());
             yield return StillleafArchiveJourney();
+            yield return RootRouteJourney();
             yield return EndingSpineJourney();
             double idleStarted=Time.realtimeSinceStartupAsDouble;
             while(!profileFinished){Require(Time.realtimeSinceStartupAsDouble-profileStarted<90,"Bounded sixty-second profiler window.");yield return null;}
@@ -233,6 +239,15 @@ namespace CavesOfOoo.Scenarios.Custom
             yield return SelectDialogue(c=>c.Actions?.Any(a=>a.Key=="StillleafArchive"&&a.Value=="accept")==true,"accept the search");
             Check("stillleaf_native_accept",StoryletPart.Current.IsQuestActive(StillleafArchiveContent.QuestId)&&player.GetIntProperty(StillleafArchiveContent.WordsKnown)==1&&stage()==0);
             yield return SelectDialogue(c=>c.Target=="End","leave Hollin");
+            if(KeptRoute)
+            {
+                // ER.6: the Recension's stone for the sealing, its margin said first.
+                yield return OpenMenu(hollin);yield return SelectCommand("Chat");
+                yield return SelectDialogue(c=>c.Target=="Stone","ask Hollin for memory-marble");
+                yield return Capture("route-hollin-marble");
+                yield return SelectDialogue(c=>c.Actions?.Any(a=>a.Key=="GiveItem"&&a.Value=="MemoryMarble")==true,"carry the memory-marble");
+                Check("route_native_marble",Carried("MemoryMarble")==1&&StoryletPart.Current.IsQuestActive(EndingRoutes.KeepQuestId),"the Searcher's stone taken; the Keep act on the ledger");
+            }
             yield return Tap(Key.Q);
             var journal=(QuestLogSnapshot)typeof(QuestLogUI).GetField("_snapshot",Private).GetValue(input.QuestLogUI);
             Check("stillleaf_native_Q_field_note",State()=="QuestLogOpen"&&input.QuestLogUI.IsOpen&&journal.Active.Any(e=>e.QuestId==StillleafArchiveContent.QuestId));
@@ -250,6 +265,15 @@ namespace CavesOfOoo.Scenarios.Custom
             yield return SelectDialogue(c=>c.Actions?.Any(a=>a.Key=="StillleafArchive"&&a.Value=="agree")==true,"agree to Curation's terms");
             Check("stillleaf_native_agree",player.GetIntProperty(StillleafSaltVault.Terms)==StillleafSaltVault.TermsAgreed&&!file.GetPart<ContainerPart>().Locked);
             yield return SelectDialogue(c=>c.Target=="End","leave the Indexer");
+            if(KeptRoute)
+            {
+                // ER.6: Curation's stone for the sealing, its margin said first.
+                yield return OpenMenu(halm);yield return SelectCommand("Chat");
+                yield return SelectDialogue(c=>c.Target=="MuteStone","ask Halm for mute-stone");
+                yield return Capture("route-halm-mute-stone");
+                yield return SelectDialogue(c=>c.Actions?.Any(a=>a.Key=="GiveItem"&&a.Value=="MuteStone")==true,"carry the mute-stone");
+                Check("route_native_mute_stone",Carried("MuteStone")==1&&StoryletPart.Current.IsQuestActive(EndingRoutes.KeepQuestId),"the Indexer's stone taken; the same act");
+            }
             yield return Approach(file.ID);yield return OpenMenu(file);yield return SelectCommand("OpenContainer");
             Require(State()=="PickupOpen","Opening the released salt file invokes the native loot UI.");
             var pickup=input.PickupUI;var rows=(List<Entity>)typeof(PickupUI).GetField("_items",Private).GetValue(pickup);
@@ -313,6 +337,57 @@ namespace CavesOfOoo.Scenarios.Custom
         // the practice-path Renewal is enacted when the ledger is clean — or, if the
         // journey left an act open, its refusal is captured naming that act and the
         // Strike is enacted instead. Either way one ending is enacted and persists.
+        /// <summary>ER.6: the Root visited with real keys. Both variants read the face's two offers
+        /// with their costs; the default variant has the seal refused for want of stones; the kept
+        /// variant picks up tepuibone at the cleft, seals the Root, reads the epilogue and finds
+        /// nothing more offered. F12 is declared for this tier-5 leg only and restored after.</summary>
+        private IEnumerator RootRouteJourney()
+        {
+            var player=input.PlayerEntity;
+            yield return Tap(Key.F12);Require(DebugInvincibility.IsEnabled(player),"Explicit native F12 protects only the tier-5 Root leg.");
+            yield return WorldMapLeg(RootSiteBuilder.WorldX,RootSiteBuilder.WorldY,"root");
+            Check("route_native_root_arrival",input.CurrentZone.ZoneID==RootSiteBuilder.MouthZoneID&&input.WorldMap.GetPOI(RootSiteBuilder.WorldX,RootSiteBuilder.WorldY)?.Type==POIType.Root);
+            if(KeptRoute)
+            {
+                var stairs=input.CurrentZone.GetReadOnlyEntities().FirstOrDefault(e=>e.HasPart<StairsDownPart>());Require(stairs!=null,"The cleft's way down stands at the crown.");
+                var sp=input.CurrentZone.GetEntityPosition(stairs);
+                var loose=input.CurrentZone.GetReadOnlyEntities().Where(e=>e.BlueprintName=="Tepuibone").Select(e=>input.CurrentZone.GetEntityPosition(e))
+                    .Where(p=>Math.Abs(p.x-sp.x)<=RootSiteBuilder.LooseRadius&&Math.Abs(p.y-sp.y)<=RootSiteBuilder.LooseRadius).ToList();
+                Require(loose.Count>0,"Tepuibone lies loose beside the cleft.");
+                int had=Carried("Tepuibone");yield return WalkOrFight(new HashSet<(int,int)>{(loose[0].x,loose[0].y)});yield return Tap(Key.G);nativeSteps++;
+                Check("route_native_tepuibone_loose",Carried("Tepuibone")==had+1,"picked up at the cleft with G");
+            }
+            yield return UseStairs(true,RootSiteBuilder.ChamberZoneID);
+            var face=EntityById(RootSiteBuilder.FaceId);Require(face!=null,"The taproot's face is in the chamber.");
+            Check("route_native_chamber",input.CurrentZone.ZoneID==RootSiteBuilder.ChamberZoneID&&face.GetPart<RootFacePart>()!=null&&EndingSpine.Enacted(player)==0);
+            yield return Approach(face.ID);yield return OpenMenu(face);
+            Check("route_native_face_offers_both",Actions().Any(a=>a.Command==EndingRoutes.SealCommand)&&Actions().Any(a=>a.Command==EndingRoutes.GatherCommand)
+                &&Actions().Where(a=>EndingRoutes.IsWorldCommand(a.Command)).All(a=>a.Display.Length<=40),string.Join(" | ",Actions().Select(a=>a.Display)));
+            yield return Capture("route-face-menu");
+            yield return SelectCommand(EndingRoutes.SealCommand);
+            if(KeptRoute)
+            {
+                double began=Time.realtimeSinceStartupAsDouble;
+                while(State()!="AnnouncementOpen"){Require(Time.realtimeSinceStartupAsDouble-began<5,"The Kept epilogue is announced natively.");yield return null;}
+                string epilogue=(string)typeof(AnnouncementUI).GetField("_message",Private).GetValue(input.AnnouncementUI)??"";
+                Check("route_native_kept_enacted",EndingSpine.Enacted(player)==EndingSpine.KeptPath&&NarrativeStatePart.Current?.GetFact(EndingSpine.EndingFact)==EndingSpine.KeptPath
+                    &&Carried("MemoryMarble")==0&&Carried("MuteStone")==0&&StoryletPart.Current.IsQuestCompleted(EndingRoutes.KeepQuestId),"one of each stone spent; the Keep act closed");
+                Check("route_native_kept_epilogue_shown",input.AnnouncementUI.IsOpen&&epilogue.Contains("It is everything, kept"),epilogue.Length>72?epilogue.Substring(0,72):epilogue);
+                yield return Capture("route-kept-epilogue");yield return Tap(Key.Enter);
+                double closing=Time.realtimeSinceStartupAsDouble;while(State()!="Normal"){Require(Time.realtimeSinceStartupAsDouble-closing<5,"The epilogue closes natively.");yield return null;}
+                yield return OpenMenu(face);
+                Check("route_native_nothing_more_offered",!Actions().Any(a=>EndingRoutes.IsWorldCommand(a.Command)),string.Join(" | ",Actions().Select(a=>a.Display)));
+                yield return Capture("route-face-after");yield return Tap(Key.Escape);Require(State()=="Normal","Face menu closes natively.");
+            }
+            else
+            {
+                Check("route_native_seal_refused_names_missing",EndingSpine.Enacted(player)==0&&MessageLog.GetRecent(3).Any(m=>m.Contains("you lack")),string.Join(" / ",MessageLog.GetRecent(3)));
+                yield return Capture("route-face-refused");
+                if(State()=="WorldActionMenuOpen")yield return Tap(Key.Escape);Require(State()=="Normal","Face menu closes natively.");
+            }
+            yield return UseStairs(false,RootSiteBuilder.MouthZoneID);
+            yield return Tap(Key.F12);Check("route_native_debug_restored",!DebugInvincibility.IsEnabled(player));
+        }
         private IEnumerator EndingSpineJourney()
         {
             var player=input.PlayerEntity;
@@ -327,10 +402,18 @@ namespace CavesOfOoo.Scenarios.Custom
             Check("ending_native_felling_arrival",input.CurrentZone.ZoneID==FellingSiteBuilder.ZoneID&&FellingSceneRuntime.IsActive(input.CurrentZone));
             var seventh=input.CurrentZone.GetReadOnlyEntities().FirstOrDefault(e=>e.HasPart<SeventhPositionPart>());Require(seventh!=null,"The empty seventh position stands in the circle.");
             var at=input.CurrentZone.GetEntityPosition(seventh);yield return Walk(new HashSet<(int,int)>{(at.x,at.y)});
-            Check("ending_native_in_position",Position()==(at.x,at.y)&&EndingSpine.Enacted(player)==0);
+            Check("ending_native_in_position",Position()==(at.x,at.y)&&EndingSpine.Enacted(player)==(KeptRoute?EndingSpine.KeptPath:0));
             yield return Tap(Key.C);yield return Tap(Key.Period);Require(State()=="WorldActionMenuOpen","Native underfoot menu opens.");
             string pick=WorldInteractionSystem.PickTargetCommandPrefix+seventh.ID;
             if(Actions().Any(a=>a.Command==pick))yield return SelectCommand(pick);
+            if(KeptRoute)
+            {
+                // ER.6: after a Root ending the seventh offers no enactment; the journey ends here.
+                Check("ending_native_nothing_offered_after_root_ending",State()=="WorldActionMenuOpen"&&!Actions().Any(a=>EndingSpine.IsWorldCommand(a.Command)),string.Join(" | ",Actions().Select(a=>a.Display)));
+                yield return Capture("ending-seventh-after-root");yield return Tap(Key.Escape);Require(State()=="Normal","Underfoot menu closes natively.");
+                yield return Tap(Key.F12);Check("ending_native_debug_restored",!DebugInvincibility.IsEnabled(player));
+                yield break;
+            }
             Check("ending_native_menu_offers_both",State()=="WorldActionMenuOpen"&&Actions().Any(a=>a.Command==EndingSpine.NameCommand)&&Actions().Any(a=>a.Command==EndingSpine.StrikeCommand),
                 string.Join(" | ",Actions().Select(a=>a.Display)));
             yield return Capture("ending-seventh-menu");
@@ -874,6 +957,14 @@ namespace CavesOfOoo.Scenarios.Custom
         private IEnumerator Capture(string label)
         {
             string file=Path.Combine(Dir,Stem+"-"+label+".png");Require(!File.Exists(file),"Never reuse an existing capture.");
+            // ER.6: a dialogue capture waits for the natural text reveal, so the speech it shows is the
+            // whole speech (earlier journeys captured the reveal's first characters).
+            if(State()=="DialogueOpen")
+            {
+                double reveal=Time.realtimeSinceStartupAsDouble;
+                while((bool)typeof(DialogueUI).GetField("_revealing",Private).GetValue(input.DialogueUI))
+                {Require(Time.realtimeSinceStartupAsDouble-reveal<30,"Bounded native dialogue reveal before capture.");yield return null;}
+            }
             yield return new WaitForEndOfFrame();ScreenCapture.CaptureScreenshot(file);double start=Time.realtimeSinceStartupAsDouble;
             while(!File.Exists(file)||new FileInfo(file).Length<1000){Require(Time.realtimeSinceStartupAsDouble-start<8,"Native capture must be written.");yield return null;}screenshots.Add(file);
         }
@@ -891,7 +982,7 @@ namespace CavesOfOoo.Scenarios.Custom
         private void Finish()
         {
             if(Finished)return;StopProfile();
-            report=new Report{runId=RunId,saveRoot=saveRoot,gameId=gameId,markerId=markerId,fatal=fatal,worldSeed=input?.WorldMap?.Seed??0,
+            report=new Report{route=Route,runId=RunId,saveRoot=saveRoot,gameId=gameId,markerId=markerId,fatal=fatal,worldSeed=input?.WorldMap?.Seed??0,
                 nativeSteps=nativeSteps,stunnedTurns=stunnedTurns,screenWidth=Screen.width,screenHeight=Screen.height,wallSeconds=watch?.Elapsed.TotalSeconds??0,
                 profileSeconds=profileSeconds,profileIdleSeconds=profileIdleSeconds,profileMetrics=profileMetrics,workloadComplete=complete,screenshots=screenshots.ToArray(),fullReveal=originalReveal,cameraSize=cameraSize,townCameraSize=townCameraSize,
                 bounds="Actual native 1080p GameView and ordinary seed64 N bootstrap. No fixture placement, world replacement, direct quest action, direct inventory transfer, camera or reveal changes. Cardinal movement, nine border crossings, action/loot/dialogue menus, regional request/harvest/delivery, Q/Tab field notes and F5/F6 use queued native keys. F12 invincibility is explicitly enabled only for the long regional journey; combat balance is not tested. Profiling restarts at that journey. Reflection only observes live UI state. Earned fire clay is examined in the real inventory modal, then spent through Nemm/cord/arch actions to create, ring and report a quiet bell, with a native repeat-cost control and checkpoint restoration. Other two material descriptions and guide branches are EditMode-covered, not native-captured. The Stillleaf Archive chain (SA.6) is then played through native keys: world-map travel by < / WASD / > between Morrowfast, Quillhold, the Salt-Vault and Stillleaf; labelled dialogue shortcuts; the released salt file opened in the native loot UI; the sinkhole descended by its real stairs under explicit F12 (its guardians are not the subject: a body blocking a corridor is bumped with a real attack) and F12 restored on the surface; the register taken with G; the delivery outcome enacted and the Indexer told. The filing and resealing outcomes, theft, loss and out-of-order paths are EditMode-covered, not native-captured; the door's reseal action is shown in its native menu but not executed. The ending spine (ES.6) is then played through native keys: the closure-ledger read in the real journal; the Felling-Site reached by the world map under explicit F12 (a tier-5 cell; restored after); the empty seventh picked underfoot with C then .; the practice-path Renewal enacted when the ledger is clean, or its refusal captured naming what is open and the Strike enacted instead; the epilogue read in the native announcement; the exposure's end and the empty menu checked. Faction-level consequences are stated in the epilogue and not enacted in the world; the sari has no ambient hook; Consume and Preserve are not built. Crops and summit water are covered by separate EditMode integration tests, not this journey. ProfilerRecorder covers a sixty-second native editor window including harness planning, screenshots, existing systems and loads; aggregate timing/allocation maxima do not isolate cue cost or establish FPS. No complete-world, subjective readability or enjoyment claim."};
@@ -923,7 +1014,7 @@ namespace CavesOfOoo.Scenarios.Custom
         [Serializable] public sealed class ProfileMetric{public string name,units;public bool available;public int count;public long sum,max;}
         [Serializable] public sealed class Report
         {
-            public string runId,saveRoot,gameId,markerId,fatal,bounds;
+            public string runId,saveRoot,gameId,markerId,fatal,bounds,route;
             public int failures,unexpectedErrors,worldSeed,nativeSteps,stunnedTurns,screenWidth,screenHeight;
             public double wallSeconds,profileSeconds,profileIdleSeconds;public ProfileMetric[] profileMetrics;public float cameraSize,townCameraSize;public bool fullReveal;
             public bool workloadComplete,shutdownObserved,shutdownRootHeld,shutdownSavingUnregistered,displayPreferencesRestored,inputSettingsRestored;
