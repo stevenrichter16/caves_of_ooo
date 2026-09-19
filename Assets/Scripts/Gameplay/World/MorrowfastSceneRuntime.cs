@@ -158,7 +158,7 @@ namespace CavesOfOoo.Core
         {
             if(zone==null||zone.ZoneID!=ZoneID||factory==null)return false;
             var existing=GetState(zone);
-            if(existing!=null){if(existing.Revision!=1)return false;MorrowfastContent.EnsureRegistered();RestoreInteriors(zone);return MorrowfastFaunaPart.EnsureHabitat(zone);}
+            if(existing!=null){if(existing.Revision!=1)return false;MorrowfastContent.EnsureRegistered();RestoreInteriors(zone);NameTerrain(zone,MorrowfastSceneDefinition.Load());return MorrowfastFaunaPart.EnsureHabitat(zone);}
             var d=MorrowfastSceneDefinition.Load();if(d==null)return false;
             foreach(string bp in new[]{"TepuiStone","WaterPuddle","Creature","GlasspaneFrog","YellowfootWayfarer","Tepuibone","Mushroom","FireClay"})if(!factory.Blueprints.ContainsKey(bp))return false;
             var staged=new List<(Entity e,int x,int y)>(2080);var state=new MorrowfastSceneStatePart{Owners=new Dictionary<string,Entity>(StringComparer.Ordinal)};
@@ -168,7 +168,7 @@ namespace CavesOfOoo.Core
                 e.ID="morrowfast-terrain:"+c.x+":"+c.y;e.SetTag(TerrainTag);
                 var p=e.GetPart<PhysicsPart>();p.Solid=c.solid;p.Takeable=false;
                 if(c.solid)e.SetTag("Solid");else e.Tags.Remove("Solid");if(c.opaque)e.SetTag("Wall");else e.Tags.Remove("Wall");
-                e.GetPart<RenderPart>().RenderLayer=0;
+                e.GetPart<RenderPart>().RenderLayer=0;NameTerrain(e,c.solid,c.opaque,c.interior);
                 if(c.x==0&&c.y==0){e.ID=StateId;e.AddPart(state);}staged.Add((e,c.x,c.y));
             }
             foreach(var o in d.owners)
@@ -208,6 +208,32 @@ namespace CavesOfOoo.Core
             if(preserveExisting)foreach(var e in before)
             {var c=zone.GetEntityCell(e);if(c!=null&&(e.HasTag("Player")||e.HasTag("Creature"))&&c.BlocksMovement(e)){var p=FindArrival(zone,c.X,c.Y,e);if(p.x>=0)zone.MoveEntity(e,p.x,p.y);}}
             return true;
+        }
+        // B.2 (Docs/BREADTH-PASS.md): Morrowfast stands on the Grovelands' edge (tier 3), not on the Stump.
+        // Its land cells stay TepuiStone for the voxel mapping, but they read as what they show:
+        // grass outdoors, pale flagstones indoors, pale stone where a wall stands. Applied on fresh
+        // install and on every upgrade of a cached zone, so older saves read the same.
+        public const string GroundName="grove turf",FloorName="flagstone floor",WallName="house wall";
+        public const string GroundText="Short grass over hard-packed ground, worn to bare earth along the lanes between the houses.";
+        public const string FloorText="Pale flagstones, swept, a little warmer than the ground outside.";
+        public const string WallText="Pale stone, laid thick against the weather.";
+        private static void NameTerrain(Entity e,bool solid,bool opaque,bool interior)
+        {
+            if(e==null||e.BlueprintName!="TepuiStone")return;
+            bool wall=solid&&opaque;
+            var r=e.GetPart<RenderPart>();if(r!=null)r.DisplayName=wall?WallName:interior?FloorName:GroundName;
+            var x=e.GetPart<ExaminablePart>();if(x!=null)x.Text=wall?WallText:interior?FloorText:GroundText;
+        }
+        /// <summary>Name every authored land cell of a Morrowfast zone; returns how many were named.</summary>
+        public static int NameTerrain(Zone zone,MorrowfastSceneDefinition d)
+        {
+            if(zone==null||d?.cells==null)return 0;int n=0;
+            foreach(var c in d.cells)
+            {
+                if(c.water)continue;var cell=zone.GetCell(c.x,c.y);if(cell==null)continue;
+                for(int i=0;i<cell.Objects.Count;i++){var o=cell.Objects[i];if(o.HasTag(TerrainTag)&&o.BlueprintName=="TepuiStone"){NameTerrain(o,c.solid,c.opaque,c.interior);n++;}}
+            }
+            return n;
         }
         private static Entity CreateProp(MorrowfastSceneDefinition.OwnerSpec o,EntityFactory factory)
         {

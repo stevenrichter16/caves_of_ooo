@@ -1,6 +1,6 @@
 # Breadth pass — the seams the campaign work left open
 
-**Status:** B.1 shipped 19 September 2026 (the journal and the titles). B.2–B.6 pending. Release roadmap step 5 ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap: "Complete release-scoped depth … defer systems whose principal contribution is scope rather than a stronger decision"). Follows the ending routes ([ENDING-ROUTES](ENDING-ROUTES.md), complete). CoO-original; no Qud parity claim.
+**Status:** B.1–B.2 shipped 19 September 2026 (the journal and the titles; Morrowfast's ground). B.3–B.6 pending. Release roadmap step 5 ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap: "Complete release-scoped depth … defer systems whose principal contribution is scope rather than a stronger decision"). Follows the ending routes ([ENDING-ROUTES](ENDING-ROUTES.md), complete). CoO-original; no Qud parity claim.
 
 ## Goal
 
@@ -82,3 +82,17 @@ As for the ending routes: independent clone, RED before GREEN, explicit-path int
 - ⚪ Guard unchanged.
 
 **Files.** MOD `ClearTheWarren.json`, `HiddenShrine.json`, `MessageForHermit.json`, `QuestLogStateBuilder.cs`, `WorldInteractionSystem.cs`, eight quest test classes; NEW `BreadthJournalTruthTests.cs`.
+
+### B.2 — Morrowfast's ground (19 September 2026)
+
+**Status:** shipped. RED `B2-red` (compile errors (18)); GREEN `B2-green` 706/706; full EditMode suite in the clone 15,240 tests, 15,240 passed (`B2-full`).
+
+**What the player sees.** Morrowfast's olive ground examines as *grove turf* ("Short grass over hard-packed ground, worn to bare earth along the lanes between the houses."), its pale indoor floors as *flagstone floor*, and its house walls as *house wall*. The sidebar's "Contents:" line and the underfoot title read the same. Nowhere else changes: the Felling-Site's stone is still pink stone.
+
+**Implementation.** `MorrowfastSceneRuntime.NameTerrain` names each authored land cell by its definition flags (solid and opaque → wall; interior → floor; otherwise ground) on fresh install and on every upgrade of a cached zone, so older saves read the same. The blueprint stays `TepuiStone`, so the voxel mapping, which keys on the blueprint, is untouched. Names persist through the entity round trip.
+
+**Self-review (Methodology Template §5).**
+- 🔵 No finding beyond the pins surfaced in the RED→GREEN cycle.
+- ⚪ Guard unchanged.
+
+**Files.** MOD `MorrowfastSceneRuntime.cs`; NEW `MorrowfastGroundNamesTests.cs`.
