@@ -231,6 +231,7 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(StillleafArchiveContent.TryConversation(searcher, player, "report"));
             Assert.AreEqual(StillleafCustody.OutcomeLost, player.GetIntProperty(StillleafCustody.Outcome));
             Assert.IsFalse(StoryletPart.Current.IsQuestActive(StillleafArchiveContent.QuestId)); Assert.IsFalse(StoryletPart.Current.IsQuestFailed(StillleafArchiveContent.QuestId));
+            Assert.AreEqual(ClosureState.Refused, StoryletPart.Current.GetClosure(StillleafArchiveContent.QuestId)?.State, "ES.1: a reported loss is a spoken end");
             StringAssert.Contains("Destroyed", string.Join("\n", MessageLog.GetRecent(6)));
             Assert.IsFalse(StillleafCustody.CanConversation(searcher, player, "report"), "told once");
             Go(salt, indexer);

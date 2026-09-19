@@ -177,6 +177,8 @@ namespace CavesOfOoo.Tests
             Assert.IsFalse(StoryletPart.Current.IsQuestActive(StillleafArchiveContent.QuestId));
             Assert.IsFalse(StoryletPart.Current.IsQuestCompleted(StillleafArchiveContent.QuestId), "released is not completed");
             Assert.IsFalse(StoryletPart.Current.IsQuestFailed(StillleafArchiveContent.QuestId), "and not failed: refusal is closure");
+            Assert.AreEqual(ClosureState.Refused, StoryletPart.Current.GetClosure(StillleafArchiveContent.QuestId)?.State, "ES.1: a release is a spoken no on the ledger");
+            Assert.IsTrue(StoryletPart.Current.ReadLedger().Clean);
             Assert.AreEqual(1, player.GetIntProperty(StillleafArchiveContent.WordsKnown), "what was heard is not unheard");
             Assert.IsFalse(StillleafArchiveContent.CanConversation(searcher, player, "release"), "nothing left to release");
             Assert.IsTrue(StillleafArchiveContent.TryConversation(searcher, player, "accept"), "and the work can be taken up again");

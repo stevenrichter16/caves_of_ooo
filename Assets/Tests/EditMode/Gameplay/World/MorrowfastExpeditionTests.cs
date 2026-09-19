@@ -106,6 +106,7 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(MorrowfastExpedition.TryConversation(farra,player,"release"));
             Assert.IsFalse(StoryletPart.Current.IsQuestActive("MorrowfastDryGoods"));
             Assert.IsFalse(StoryletPart.Current.IsQuestCompleted("MorrowfastDryGoods"));
+            Assert.AreEqual(ClosureState.Refused,StoryletPart.Current.GetClosure("MorrowfastDryGoods")?.State,"ES.1: releasing the errand is a spoken no on the ledger");
             Assert.AreEqual(before,TradeSystem.GetDrams(player));
             Assert.NotNull(MorrowfastSceneRuntime.FindOwner(town,"guest-bed-west"));
         }

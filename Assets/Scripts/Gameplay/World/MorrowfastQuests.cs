@@ -97,7 +97,7 @@ namespace CavesOfOoo.Core
             MessageLog.Add(text); return true;
         }
         private static bool Refuse(string quest, Entity actor, string text)
-        { StoryletPart.Current.RemoveActiveQuest(quest); actor.SetIntProperty(quest + "Refused", 1); if (quest == ReturnQuestId) actor.SetIntProperty(EddenConsent, 0); MessageLog.Add(text); return true; }
+        { StoryletPart.Current.RefuseQuest(quest, actor); actor.SetIntProperty(quest + "Refused", 1); if (quest == ReturnQuestId) actor.SetIntProperty(EddenConsent, 0); MessageLog.Add(text); return true; }
 
         public static bool TryWorldAction(Entity target, Entity actor, Zone zone, string command, out int energyCost)
         {

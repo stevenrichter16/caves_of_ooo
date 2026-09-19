@@ -1,6 +1,6 @@
 # The Ending Spine — closure-ledger and the first enacted ending
 
-**Status:** plan and verification sweep, 19 September 2026. No production code yet. Release roadmap step 4 ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap; [GAME-STATE](GAME-STATE-2026-09-17.md) §15, §20). CoO-original; no Qud parity claim. Follows the Stillleaf Archive chain ([MIDGAME-STILLLEAF-ARCHIVE](MIDGAME-STILLLEAF-ARCHIVE.md)), which is the first content the ledger will read.
+**Status:** ES.1 shipped 19 September 2026 (the closure-ledger). ES.2–ES.6 pending. Release roadmap step 4 ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap; [GAME-STATE](GAME-STATE-2026-09-17.md) §15, §20). CoO-original; no Qud parity claim. Follows the Stillleaf Archive chain ([MIDGAME-STILLLEAF-ARCHIVE](MIDGAME-STILLLEAF-ARCHIVE.md)), which is the first content the ledger will read.
 
 ## Goal
 
@@ -60,4 +60,18 @@ As for the Stillleaf chain: independent clone, RED before GREEN (stub phase for 
 
 ## Implementation log
 
-(appended per sub-milestone)
+### ES.1 — The ledger (19 September 2026)
+
+**Status:** shipped. RED `ES1-red` (compile errors: `GetClosure`, `ReadLedger`, `ClosureState` did not exist — a new API, so the honest RED is the compiler); GREEN `ES1-green-2` 919/919; full EditMode suite in the clone 15,121 tests, 15,121 passed (`ES1-full`).
+
+**What exists now.** `ClosureLedger.cs` defines `ClosureState` (Open / Closed / Refused), `ClosureEntry` (turn-stamped, `Spoken`) and `ClosureReading` (counts, open ids in stable order, `Clean`). `StoryletPart` owns the ledger: `StartQuest` undertakes (a re-taken act is a new undertaking that supersedes its old end; re-starting an active act undertakes nothing twice); `MarkQuestCompleted` closes, spoken; the new `RefuseQuest(questId, actor)` ends an act aloud — it leaves the journal, is not a failure, fires `QuestRefused` and `quest/Refused`, and logs "Ended aloud: …"; `RemoveActiveQuest` is now explicitly the silent drop: the act stays open and a `closure/Dropped` record says so; `FailQuest` leaves the act open. `ReadLedger` returns the reading and emits `closure/Read` with counts and open ids. `closure` is a default diag category. The ledger is a further guarded section of the storylet save; an older save without it projects the quest sets (completed → closed and spoken, active and failed → open), pinned with a hand-written pre-ES.1 stream.
+
+**Migration.** The four shipped enacted refusals now go through `RefuseQuest`: Morrowfast's release and its refuse helper, Stillleaf's release, and the reported loss of the register. Each is pinned in its own test file as `Refused` on the ledger.
+
+**Scope divergence from the plan.** The plan said five call sites; the conversation `FailQuest` action is a failure, not a refusal, so four. Regional requests do not use the quest layer at all — ES.2 decides how their accept/deliver/release register on the ledger.
+
+**Self-review.** 🧪 not yet visible to the player (ES.2); no world verb reads the ledger yet (ES.4). 🔵 CandyTax's "isn't my problem" choice is a spoken decline recorded through `FailQuest`; ES.2's audit moves it to a `RefuseQuest` action with an `IfQuestRefused` predicate. 🔵 the journal's COMPLETED section prints quest ids, not display names (seen in the SA.6 journal capture); ES.2 fixes it while adding REFUSED. ⚪ guard unchanged.
+
+**Cold-eye.** Q1: `RefuseQuest` mirrors `FailQuest` line for line (guard, rejection diag, removal, log line, diag, event) with the one intended difference — it clears the failed flag instead of setting it. Q2: every ledger transition emits `closure/<Kind>` with `questId` and `spoken`; the reading emits `Read` with counts. Q3: undertaken vs re-started; closed vs refused vs dropped vs failed; refusing what was never taken; twenty cheap closures against one open act; reading twice; save round-trip; older-save projection. Q4: this section was read against the shipped files.
+
+**Files.** NEW `ClosureLedger.cs`, `ClosureLedgerTests.cs`; MOD `StoryletPart.cs`, `Diag.cs`, the four call sites, three test files with migration pins.

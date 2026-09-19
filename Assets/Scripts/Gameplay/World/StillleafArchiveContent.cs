@@ -146,7 +146,7 @@ namespace CavesOfOoo.Core
             }
             else
             {
-                StoryletPart.Current.RemoveActiveQuest(QuestId);
+                StoryletPart.Current.RefuseQuest(QuestId, player);
                 MessageLog.Add("Hollin: 'Then it stays lost a while longer. That is not a debt; the Searchers have waited longer than you have been alive. What I told you is yours to keep.'");
             }
             Diag.Record("quest", "StillleafArchiveApplied", actor: player, target: speaker, payload: new { command, questId = QuestId });

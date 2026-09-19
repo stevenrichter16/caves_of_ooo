@@ -42,6 +42,12 @@ namespace CavesOfOoo.Storylets
 
         private readonly HashSet<string> _firedStorylets = new HashSet<string>();
         private readonly Dictionary<string, QuestState> _quests = new Dictionary<string, QuestState>();
+        // Ending spine ES.1: the closure-ledger (Docs/ENDING-SPINE.md). One
+        // entry per undertaken act; see ClosureLedger.cs for the contract.
+        private readonly Dictionary<string, ClosureEntry> _ledger = new Dictionary<string, ClosureEntry>();
+        public IReadOnlyDictionary<string, ClosureEntry> Ledger => _ledger;
+        public ClosureEntry GetClosure(string questId) => !string.IsNullOrEmpty(questId) && _ledger.TryGetValue(questId, out var e) ? e : null;
+        private static int Now => TurnManager.Active?.TickCount ?? 0;
         // QS.2 (Docs/QUEST-SYSTEM.md): tracks quests the player has
         // already completed so quest-not-started checks can rule out
         // already-finished quests, and so quest-givers can offer
@@ -91,6 +97,9 @@ namespace CavesOfOoo.Storylets
             _failedQuests.Remove(state.QuestId);
             if (isNew)
             {
+                // ES.1: a (re)taken act is a new undertaking; an earlier end is superseded.
+                _ledger[state.QuestId] = new ClosureEntry { QuestId = state.QuestId, State = ClosureState.Open, UndertakenTurn = Now };
+                EmitClosure("Undertaken", state.QuestId, spoken: false);
                 FireQuestEvent("QuestStarted", state.QuestId);
                 // ALPHA narrative-feedback SM3: quest lifecycle must be
                 // visible on screen, not just in diag records.
@@ -126,6 +135,58 @@ namespace CavesOfOoo.Storylets
             _completedQuests.Add(questId);
             // Q6: completed-wins — a completed quest is not "failed".
             _failedQuests.Remove(questId);
+            End(questId, ClosureState.Closed);
+        }
+
+        /// <summary>End an active act by a spoken no: it leaves the journal, is not
+        /// a failure, and the ledger records it as <see cref="ClosureState.Refused"/>.
+        /// Every enacted refusal (release, refuse, a reported loss) goes through here;
+        /// <see cref="RemoveActiveQuest"/> is the silent drop it is not.</summary>
+        public bool RefuseQuest(string questId, Entity actor = null)
+        {
+            if (string.IsNullOrEmpty(questId)) return false;
+            if (!_quests.ContainsKey(questId))
+            { EmitQuestRejected("RefuseQuest", "quest_not_active", questId, actor: actor); return false; }
+            _quests.Remove(questId);
+            _failedQuests.Remove(questId);
+            End(questId, ClosureState.Refused);
+            MessageLog.Add($"Ended aloud: {DisplayNameFor(questId)}.");
+            if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("quest"))
+                CavesOfOoo.Diagnostics.Diag.Record(category: "quest", kind: "Refused", actor: actor, payload: new { questId });
+            FireQuestEvent("QuestRefused", questId);
+            return true;
+        }
+
+        /// <summary>Read the ledger: counts and every open act by id. Reading has no
+        /// side effects beyond a <c>closure/Read</c> diag record.</summary>
+        public ClosureReading ReadLedger(Entity actor = null)
+        {
+            var reading = new ClosureReading();
+            foreach (var e in _ledger.Values)
+            {
+                if (e.State == ClosureState.Closed) reading.Closed++;
+                else if (e.State == ClosureState.Refused) reading.Refused++;
+                else { reading.Open++; reading.OpenIds.Add(e.QuestId); }
+            }
+            reading.OpenIds.Sort(System.StringComparer.Ordinal);
+            if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("closure"))
+                CavesOfOoo.Diagnostics.Diag.Record(category: "closure", kind: "Read", actor: actor,
+                    payload: new { closed = reading.Closed, refused = reading.Refused, open = reading.Open, openIds = string.Join(",", reading.OpenIds) });
+            return reading;
+        }
+
+        private void End(string questId, ClosureState state)
+        {
+            if (!_ledger.TryGetValue(questId, out var entry))
+                _ledger[questId] = entry = new ClosureEntry { QuestId = questId };
+            entry.State = state; entry.EndedTurn = Now; entry.Spoken = true;
+            EmitClosure(state == ClosureState.Closed ? "Closed" : "Refused", questId, spoken: true);
+        }
+
+        private static void EmitClosure(string kind, string questId, bool spoken)
+        {
+            if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("closure"))
+                CavesOfOoo.Diagnostics.Diag.Record(category: "closure", kind: kind, payload: new { questId, spoken });
         }
 
         public IReadOnlyCollection<string> GetCompletedQuests()
@@ -144,7 +205,8 @@ namespace CavesOfOoo.Storylets
         public void RemoveActiveQuest(string questId)
         {
             if (string.IsNullOrEmpty(questId)) return;
-            _quests.Remove(questId);
+            // A silent drop: the act stays Open on the ledger (never written off).
+            if (_quests.Remove(questId)) EmitClosure("Dropped", questId, spoken: false);
         }
 
         /// <summary>
@@ -663,6 +725,17 @@ namespace CavesOfOoo.Storylets
             writer.Write(_failedQuests.Count);
             foreach (var id in _failedQuests)
                 writer.WriteString(id);
+
+            // ES.1: closure-ledger section, appended so older readers stop before it.
+            writer.Write(_ledger.Count);
+            foreach (var e in _ledger.Values)
+            {
+                writer.WriteString(e.QuestId);
+                writer.Write((int)e.State);
+                writer.Write(e.UndertakenTurn);
+                writer.Write(e.EndedTurn);
+                writer.Write(e.Spoken ? 1 : 0);
+            }
         }
 
         public void Load(SaveReader reader)
@@ -744,6 +817,32 @@ namespace CavesOfOoo.Storylets
             catch (System.IO.EndOfStreamException)
             {
                 // Pre-Q6 save — no failed-quests section. Empty is correct.
+            }
+
+            _ledger.Clear();
+            bool ledgerRead = false;
+            try
+            {
+                int ledgerCount = reader.ReadInt();
+                for (int i = 0; i < ledgerCount; i++)
+                {
+                    var e = new ClosureEntry { QuestId = reader.ReadString(), State = (ClosureState)reader.ReadInt(), UndertakenTurn = reader.ReadInt(), EndedTurn = reader.ReadInt() };
+                    e.Spoken = reader.ReadInt() == 1;
+                    _ledger[e.QuestId] = e;
+                }
+                ledgerRead = true;
+            }
+            catch (System.IO.EndOfStreamException)
+            {
+            }
+            // An older save has no ledger: project it from the quest sets so no
+            // act the player already took on goes missing. Completed acts were
+            // spoken; active and failed acts are open.
+            if (!ledgerRead)
+            {
+                foreach (var id in _completedQuests) _ledger[id] = new ClosureEntry { QuestId = id, State = ClosureState.Closed, Spoken = true };
+                foreach (var id in _quests.Keys) _ledger[id] = new ClosureEntry { QuestId = id, State = ClosureState.Open };
+                foreach (var id in _failedQuests) if (!_ledger.ContainsKey(id)) _ledger[id] = new ClosureEntry { QuestId = id, State = ClosureState.Open };
             }
         }
     }

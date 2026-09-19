@@ -127,7 +127,7 @@ namespace CavesOfOoo.Core
                 {
                     // A lost record closes the chain: no outcome to enact, nothing paid, nothing failed.
                     player.SetIntProperty(Outcome, OutcomeLost);
-                    StoryletPart.Current?.RemoveActiveQuest(StillleafArchiveContent.QuestId);
+                    StoryletPart.Current?.RefuseQuest(StillleafArchiveContent.QuestId, player);
                 }
                 player.SetIntProperty(searcher ? ToldSearcher : ToldIndexer, 1);
                 MessageLog.Add(ReportLine(searcher, player.GetIntProperty(Outcome), terms, player.GetIntProperty(StillleafFilePart.Broken) == 1));

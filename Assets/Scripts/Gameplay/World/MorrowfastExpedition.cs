@@ -156,7 +156,7 @@ namespace CavesOfOoo.Core
             }
             else if (command == "release")
             {
-                StoryletPart.Current.RemoveActiveQuest(QuestId);
+                StoryletPart.Current.RefuseQuest(QuestId, player);
                 MessageLog.Add("Farra releases the errand. Lost cloth is not a debt, and your place at supper stays open.");
             }
             else
