@@ -31520,6 +31520,46 @@
       "Tags": [ { "Key": "Mineral", "Value": "" }, { "Key": "Tier", "Value": "3" } ]
     },
     {
+      "Name": "MemoryMarble",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "memory-marble" },
+          { "Key": "RenderString", "Value": "*" },
+          { "Key": "ColorString", "Value": "&C" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ] },
+        { "Name": "Physics", "Params": [
+          { "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "12" }
+        ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "30" } ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "A chip of memory-marble worked loose from an archive wall: the Palimpsest's writing-surface, which holds what is written on it harder than the hand that wrote it. One of the three stones that hold their names hardest, and so one of the three that could hold the Root still." }
+        ] }
+      ],
+      "Tags": [ { "Key": "Mineral", "Value": "" }, { "Key": "Tier", "Value": "3" } ]
+    },
+    {
+      "Name": "MuteStone",
+      "Inherits": "Item",
+      "Parts": [
+        { "Name": "Render", "Params": [
+          { "Key": "DisplayName", "Value": "mute-stone" },
+          { "Key": "RenderString", "Value": "*" },
+          { "Key": "ColorString", "Value": "&K" },
+          { "Key": "RenderLayer", "Value": "5" }
+        ] },
+        { "Name": "Physics", "Params": [
+          { "Key": "Takeable", "Value": "true" }, { "Key": "Weight", "Value": "12" }
+        ] },
+        { "Name": "Commerce", "Params": [ { "Key": "Value", "Value": "30" } ] },
+        { "Name": "Examinable", "Params": [
+          { "Key": "Description", "Value": "Mute-stone, pale grey and warm nowhere. The death-watch is kept in chambers of it because it does not answer, and what does not answer cannot be unsaid. One of the three stones that hold their names hardest, and so one of the three that could hold the Root still." }
+        ] }
+      ],
+      "Tags": [ { "Key": "Mineral", "Value": "" }, { "Key": "Tier", "Value": "3" } ]
+    },
+    {
       "Name": "HelmwoodWaterPassage",
       "Inherits": "SprayPool",
       "Parts": [

@@ -74,6 +74,18 @@
               ]
             },
             {
+              "Text": "The Three Dispositions name three stones that would hold the world still. Have you memory-marble for the sealing?",
+              "Target": "Stone",
+              "Predicates": [ { "Key": "IfNotHaveProperty", "Value": "KeepMemoryMarbleGiven" } ],
+              "Actions": []
+            },
+            {
+              "Text": "[Release] I won't be sealing the Root. I wanted to tell you myself.",
+              "Target": "KeepReleased",
+              "Predicates": [ { "Key": "IfQuestActive", "Value": "KeepTheWorld" } ],
+              "Actions": [ { "Key": "RefuseQuest", "Value": "KeepTheWorld" } ]
+            },
+            {
               "Text": "Farewell.",
               "Target": "End",
               "Predicates": [],
@@ -184,6 +196,38 @@
               "Actions": []
             }
           ]
+        },
+        {
+          "ID": "Stone",
+          "Text": "Hollin sets the survey map aside. 'Kept. The Reader would have it so, and the Mainline would file the whole world under continuing. I will tell you the margin first, since no one else will: a kept world heals nothing. The estranged stay estranged; the tired stay tired; and the Six stay exactly as they are, forever. That is the whole of what it keeps.' She works a chip loose from the archive wall with the back of a knife and does not look at it. 'Memory-marble. It holds what is written harder than the hand. If you mean to seal the Root you will need tepuibone and mute-stone beside it; tepuibone lies loose where the Root is, and Curation keeps mute-stone. And if you set this down, tell me, not the stone.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "I'll carry it.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": [ { "Key": "GiveItem", "Value": "MemoryMarble" }, { "Key": "StartQuest", "Value": "KeepTheWorld" }, { "Key": "SetProperty", "Value": "KeepMemoryMarbleGiven:true" } ]
+            },
+            {
+              "Text": "Not from me.",
+              "Target": "Start",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "KeepReleased",
+          "Text": "Hollin writes one line and turns the map back toward herself. 'Entered. The world stays unkept a while longer; it has practice at that. Thank you for saying so to my face.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Farewell.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
         }
       ]
     },
@@ -259,6 +303,18 @@
                   "Value": "report"
                 }
               ]
+            },
+            {
+              "Text": "Curation keeps mute-stone. I need it for the sealing of the Root.",
+              "Target": "MuteStone",
+              "Predicates": [ { "Key": "IfNotHaveProperty", "Value": "KeepMuteStoneGiven" } ],
+              "Actions": []
+            },
+            {
+              "Text": "[Release] I won't be sealing the Root. I wanted to tell you myself.",
+              "Target": "KeepReleased",
+              "Predicates": [ { "Key": "IfQuestActive", "Value": "KeepTheWorld" } ],
+              "Actions": [ { "Key": "RefuseQuest", "Value": "KeepTheWorld" } ]
             },
             {
               "Text": "Farewell.",
@@ -409,6 +465,38 @@
         {
           "ID": "Noted",
           "Text": "The gloved hand writes without hurry. 'Entered as stated. The file does not editorialise; that is what margins are for, and Curation does not keep margins.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Farewell.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "MuteStone",
+          "Text": "The gloved hand stops. 'The sealing. Filed under continuing - all of it, forever.' Teodra Halm looks up for the first time. 'You should know what that costs before you ask me for the stone. A kept world does not heal. The estranged stay estranged, the tired stay tired, and the file is never closed. Curation prefers it. I am telling you the margin anyway.' A drawer opens; a pale grey stone comes out wrapped in salt-cloth. 'Mute-stone. It does not answer, so nothing can unsay it. Tepuibone lies loose where the Root is; memory-marble is the archivists' to give. If you change your mind, say so here. The file does not editorialise, but it records.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "I'll carry it.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": [ { "Key": "GiveItem", "Value": "MuteStone" }, { "Key": "StartQuest", "Value": "KeepTheWorld" }, { "Key": "SetProperty", "Value": "KeepMuteStoneGiven:true" } ]
+            },
+            {
+              "Text": "Not from me.",
+              "Target": "Start",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "KeepReleased",
+          "Text": "'Entered: released, at the walker's word.' The gloved hand does not pause. 'The file records a no as exactly as a yes. Curation does not keep margins.'",
           "AllowEscape": true,
           "Choices": [
             {

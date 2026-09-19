@@ -2788,6 +2788,14 @@ namespace CavesOfOoo.Rendering
                 RequestZoneRedraw("Ending.Enact");
                 return;
             }
+            if (EndingRoutes.IsWorldCommand(action.Command))
+            {
+                if (EndingRoutes.TryWorldAction(target, PlayerEntity, CurrentZone, action.Command, out int routeCost) && routeCost > 0)
+                    EndTurnAndProcess();
+                _inputState = _worldActionMenuReturnState;
+                RequestZoneRedraw("Ending.Route");
+                return;
+            }
             if (StillleafCustody.IsWorldCommand(action.Command))
             {
                 if (StillleafCustody.TryWorldAction(target, PlayerEntity, CurrentZone, action.Command, out int sealCost) && sealCost > 0)

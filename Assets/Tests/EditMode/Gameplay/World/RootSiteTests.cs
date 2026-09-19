@@ -121,11 +121,19 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void TheFace_OffersNoEnactmentYet()
+        public void TheFace_OffersOnlyTheRoutesEnactments_AndNothingOnceAnEndingIsEnacted()
         {
-            // ER.1 contract, flipped by ER.2: the face is a place before it is a choice.
-            var face = Face(Chamber());
-            Assert.IsFalse(Offered(face).Actions.Any(a => a.Command.StartsWith("Ending")), "no ending is offered here yet");
+            // ER.1 made the face a place; ER.2 made it a choice. Whatever it offers is a
+            // route's enactment, and once any ending is enacted it offers nothing.
+            var face = Face(Chamber()); var player = factory.CreateEntity("Player"); CavesOfOoo.Storylets.StoryletPart.LocalPlayer = player;
+            try
+            {
+                var offered = Offered(face).Actions.Where(a => a.Command.StartsWith("Ending")).ToList();
+                Assert.IsNotEmpty(offered, "the face is a choice now"); Assert.IsTrue(offered.All(a => EndingRoutes.IsWorldCommand(a.Command)));
+                player.SetIntProperty(EndingSpine.EndingProperty, EndingSpine.VesselPath);
+                Assert.IsFalse(Offered(face).Actions.Any(a => a.Command.StartsWith("Ending")), "nothing once an ending is enacted");
+            }
+            finally { CavesOfOoo.Storylets.StoryletPart.LocalPlayer = null; }
         }
 
         [Test]

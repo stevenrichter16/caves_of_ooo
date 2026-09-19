@@ -13,14 +13,15 @@ namespace CavesOfOoo.Core
     /// needs a clean closure-ledger — every undertaken act closed or refused — and
     /// when the ledger is not clean it names what is still open instead of
     /// enacting anything. No ending is best; the distinction is mechanical.
-    /// Consume and Preserve are advertised routes, not built here.
+    /// Gathered (Consume) and Kept (Preserve) are enacted at the Root (<see cref="EndingRoutes"/>)
+    /// through this same state: paths 3 and 4.
     /// </summary>
     public static class EndingSpine
     {
         public const string StrikeCommand = "EndingStrike", NameCommand = "EndingName";
-        /// <summary>Player int property and narrative fact: 0 none, 1 vessel-path, 2 practice-path.</summary>
+        /// <summary>Player int property and narrative fact: 0 none, 1 vessel-path, 2 practice-path, 3 gathered, 4 kept.</summary>
         public const string EndingProperty = "EndingEnacted", EndingFact = "Ending";
-        public const int VesselPath = 1, PracticePath = 2;
+        public const int VesselPath = 1, PracticePath = 2, GatheredPath = 3, KeptPath = 4;
         public const int EnactCost = 1000;
 
         public const string VesselEpilogue =

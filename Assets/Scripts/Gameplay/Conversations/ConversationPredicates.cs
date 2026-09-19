@@ -103,6 +103,9 @@ namespace CavesOfOoo.Core
             // Property checks (on listener/player)
             Register("IfHaveProperty", (speaker, listener, arg) =>
                 listener != null && listener.Properties.ContainsKey(arg));
+            // ER.2: the mirror, for offers made once ("have you a stone for the sealing?").
+            Register("IfNotHaveProperty", (speaker, listener, arg) =>
+                listener != null && !listener.Properties.ContainsKey(arg));
 
             // IntProperty checks
             Register("IfHaveIntProperty", (speaker, listener, arg) =>
