@@ -1,0 +1,48 @@
+{
+  "Conversations": [
+    {
+      "ID": "StillleafSearcher_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Hollin Vesk does not look up from a survey map until she has finished the line she is tracing. 'You are not Recension. Good. I am a Searcher, which the Mainline tolerates the way it tolerates weather. Ask, or don't.'",
+          "AllowEscape": true,
+          "Choices": [
+            { "Text": "What does a Searcher search for?", "Target": "Library", "Predicates": [], "Actions": [] },
+            { "Text": "You said you had work for an outsider.", "Target": "Contract", "Predicates": [ { "Key": "IfStillleafArchiveCan", "Value": "accept" } ], "Actions": [] },
+            { "Text": "I am done searching. Release me from it.", "Target": "End", "Predicates": [ { "Key": "IfStillleafArchiveCan", "Value": "release" } ], "Actions": [ { "Key": "StillleafArchive", "Value": "release" } ] },
+            { "Text": "Farewell.", "Target": "End", "Predicates": [], "Actions": [] }
+          ]
+        },
+        {
+          "ID": "Library",
+          "Text": "'The Sealed Libraries. The Reader un-remembered them so that no one could make the Recension open them, and the Recension keeps that bargain. I keep catalogue fragments instead: three shelf-marks from a place called Stillleaf, copied by a hand that is dead. The Mainline cannot look for it without breaking faith. An outsider can, at no cost to anyone but the outsider.'",
+          "AllowEscape": true,
+          "Choices": [
+            { "Text": "Then tell me the work.", "Target": "Contract", "Predicates": [ { "Key": "IfStillleafArchiveCan", "Value": "accept" } ], "Actions": [] },
+            { "Text": "Back.", "Target": "Start", "Predicates": [], "Actions": [] },
+            { "Text": "Farewell.", "Target": "End", "Predicates": [], "Actions": [] }
+          ]
+        },
+        {
+          "ID": "Contract",
+          "Text": "'Stillleaf's last keeper was preserved at the Salt-Vault, six chunks south and one east of here. Pale Curation files its dead by their last words, and I have the keeper's. Say them to an Indexer and the file opens; the keeper's key should be filed beside the body. Curation will ask something for it. Hear them out; I make no promises on their behalf. Bring the register to light. That is the whole of what I ask, and I will pay you in standing with people who keep grudges for centuries.'",
+          "AllowEscape": true,
+          "Choices": [
+            { "Text": "I will carry the words.", "Target": "Accepted", "Predicates": [ { "Key": "IfStillleafArchiveCan", "Value": "accept" } ], "Actions": [ { "Key": "StillleafArchive", "Value": "accept" } ] },
+            { "Text": "Not now.", "Target": "Start", "Predicates": [], "Actions": [] },
+            { "Text": "Farewell.", "Target": "End", "Predicates": [], "Actions": [] }
+          ]
+        },
+        {
+          "ID": "Accepted",
+          "Text": "She writes the words on a slip and hands it over. 'Keeping is not the same as showing. Those are the keeper's, not mine. South and east to the Salt-Vault; the Indexers are the ones with the ledgers. When you have the register, I am here.'",
+          "AllowEscape": true,
+          "Choices": [
+            { "Text": "Understood.", "Target": "End", "Predicates": [], "Actions": [] }
+          ]
+        }
+      ]
+    }
+  ]
+}

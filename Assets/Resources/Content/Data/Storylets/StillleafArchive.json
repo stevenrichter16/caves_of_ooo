@@ -1,0 +1,25 @@
+{
+  "Storylets": [
+    {
+      "ID": "StillleafArchive",
+      "OneShot": false,
+      "Tracked": true,
+      "Triggers": [ { "Key": "IfFact", "Value": "StillleafManualAdvance:>=:1" } ],
+      "Effects": [],
+      "Quest": {
+        "Name": "What Stillleaf Kept",
+        "Accomplishment": "You found the Stillleaf register and decided who keeps it.",
+        "Stages": [
+          { "ID": "words", "Triggers": [ { "Key": "IfFact", "Value": "StillleafManualAdvance:>=:1" } ], "OnEnter": [],
+            "Objectives": [ { "ID": "file", "Text": "Carry the keeper's last words -- \"Keeping is not the same as showing.\" -- to the Salt-Vault, six chunks south and one chunk east of Quillhold, and say them to a Pale Curation Indexer. They are the only index that finds the keeper's file; the key should be filed beside it.", "Triggers": [ { "Key": "IfFact", "Value": "StillleafManualAdvance:>=:1" } ], "OnEnter": [] } ] },
+          { "ID": "key", "Triggers": [ { "Key": "IfFact", "Value": "StillleafManualAdvance:>=:1" } ], "OnEnter": [],
+            "Objectives": [ { "ID": "key", "Text": "Bring the keeper's key out of the Salt-Vault. Curation's price is a request, not a toll; you may agree, bargain, or refuse and leave without the key.", "Triggers": [ { "Key": "IfFact", "Value": "StillleafManualAdvance:>=:1" } ], "OnEnter": [] } ] },
+          { "ID": "descend", "Triggers": [ { "Key": "IfFact", "Value": "StillleafManualAdvance:>=:1" } ], "OnEnter": [],
+            "Objectives": [ { "ID": "register", "Text": "Stillleaf is a sinkhole on the tepui, twelve chunks west and five chunks north of Quillhold; its mouth shows itself only when you stand near. Descend to the lowest floor. The keeper's key opens the sealed door, and the register lies inside.", "Triggers": [ { "Key": "IfFact", "Value": "StillleafManualAdvance:>=:1" } ], "OnEnter": [] } ] },
+          { "ID": "custody", "Triggers": [ { "Key": "IfFact", "Value": "StillleafManualAdvance:>=:1" } ], "OnEnter": [],
+            "Objectives": [ { "ID": "choose", "Text": "Decide who holds the register: Hollin at Quillhold, the Indexer at the Salt-Vault, or the vault itself, resealed. Each will be told the truth.", "Triggers": [ { "Key": "IfFact", "Value": "StillleafManualAdvance:>=:1" } ], "OnEnter": [] } ] }
+        ]
+      }
+    }
+  ]
+}

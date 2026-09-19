@@ -130,7 +130,8 @@ namespace CavesOfOoo.Rendering
                     if(family==null&&entity.BlueprintName=="GantryRegistrar"){kit=0;family="registrar";}
                     // A travelling scribe keeps the same body as in Quillhold;
                     // local ground aliases must not recolor an existing person.
-                    if(entity.BlueprintName=="Scribe"){kit=2;family="scribe";}
+                    // The Searcher (Stillleaf Archive SA.2) is a scribe of the same house.
+                    if(entity.BlueprintName=="Scribe"||entity.BlueprintName==StillleafArchiveContent.SearcherBlueprint){kit=2;family="scribe";}
                     if(family!=null)
                     {
                         bool actor=entity.HasTag("Creature");

@@ -865,9 +865,9 @@ namespace CavesOfOoo.Tests
 
             Assert.AreEqual("JungleApe", FindOverlay().GetTile(tilePos)?.name,
                 "the bestiary resolves by blueprint through the actor tier");
-            Assert.AreEqual(56, EnvironmentSpriteRenderer.CreatureSprites.Length,
+            Assert.AreEqual(57, EnvironmentSpriteRenderer.CreatureSprites.Length,
                 "roster pin: the 44-creature bestiary + the gin frog (W5.6) "
-                + "+ the tepui's lowland band (W6.3a) + summit/sima wave (W6.3b) + the native MawToad pilot icon");
+                + "+ the tepui's lowland band (W6.3a) + summit/sima wave (W6.3b) + the native MawToad pilot icon + the Recension Searcher (Stillleaf Archive SA.2)");
             Object.DestroyImmediate(aGlyph);
         }
 

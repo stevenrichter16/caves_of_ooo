@@ -29711,6 +29711,31 @@
       "Tags": [ { "Key": "Faction", "Value": "Palimpsest" }, { "Key": "Tier", "Value": "1" } ]
     },
     {
+      "Name": "StillleafSearcher",
+      "Inherits": "RecensionScribe",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "Hollin Vesk" },
+            { "Key": "RenderString", "Value": "@" },
+            { "Key": "ColorString", "Value": "&C" }
+          ]
+        },
+        { "Name": "Conversation", "Params": [ { "Key": "ConversationID", "Value": "StillleafSearcher_1" } ] },
+        { "Name": "Brain", "Params": [ { "Key": "Wanders", "Value": "false" }, { "Key": "WandersRandomly", "Value": "false" }, { "Key": "Passive", "Value": "true" }, { "Key": "Staying", "Value": "true" } ] },
+        { "Name": "QuestBeacon", "Params": [ { "Key": "Quest", "Value": "StillleafArchive" } ] },
+        { "Name": "StillleafResident", "Params": [ { "Key": "ResidentId", "Value": "searcher" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A Recension Searcher, ink to the wrist like any scribe, but her table holds old survey maps instead of an attribution list. She reads catalogue fragments the way other people read letters from home." }
+          ]
+        }
+      ],
+      "Tags": [ { "Key": "Faction", "Value": "Palimpsest" }, { "Key": "Tier", "Value": "1" } ]
+    },
+    {
       "Name": "CurationSorter",
       "Inherits": "Creature",
       "Parts": [

@@ -1088,6 +1088,11 @@ namespace CavesOfOoo.Core
                 && WorldMap.GetBiome(wx, wy) == BiomeType.Grovelands)
                 MorrowfastExpedition.TryInstall(zone, Factory);
 
+            // Stillleaf Archive SA.2: the Recension Searcher works in
+            // Quillhold's stacks; installed once, on fresh generation.
+            if (zoneID == StillleafArchiveContent.QuillholdZoneId && AreaCompositionScope.IsQuillholdSite(WorldMap.GetPOI(wx, wy)))
+                StillleafArchiveContent.TryInstallSearcher(zone, Factory);
+
             if (zoneID == MultiCellPilotRuntime.ZoneID)
             {
                 zone.AmbientTint = StumpBands.BaseTint;

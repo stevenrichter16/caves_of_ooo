@@ -158,6 +158,8 @@ namespace CavesOfOoo.Rendering
             ("RuneCultist", "rune_cultist", 'c'), ("RuinScavenger", "ruin_scavenger", 'r'),
             ("PaleCurator", "pale_curator", '@'), ("SaccharineEnvoy", "saccharine_envoy", '@'),
             ("GlassblownDrifter", "glassblown_drifter", '@'), ("PalimpsestEcho", "palimpsest_echo", '@'),
+            // Stillleaf Archive SA.2 -- the Recension Searcher at Quillhold.
+            ("StillleafSearcher", "stillleaf_searcher", '@'),
             ("Viper", "viper", '~'), ("SandWurm", "sand_wurm", 'W'),
             ("GiantSpider", "giant_spider", 'S'), ("Scorpion", "scorpion", 'x'),
             ("GlassScorpion", "glass_scorpion", 's'), ("CaveBat", "cave_bat", 'b'),
