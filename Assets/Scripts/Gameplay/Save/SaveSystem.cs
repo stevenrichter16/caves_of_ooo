@@ -1250,6 +1250,7 @@ namespace CavesOfOoo.Core
             // Never overwrites: an existing POI (of any type) wins.
             map.RehydrateAuthoredSinkholes();
             map.RehydrateFellingSite();
+            map.RehydrateRoot();
             map.RehydrateMorrowfast();
             map.RehydrateMultiCellPilot();
             return map;

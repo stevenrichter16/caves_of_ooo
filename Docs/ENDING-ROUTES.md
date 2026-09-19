@@ -1,6 +1,6 @@
 # The other advertised routes — Gathered and Kept
 
-**Status:** planned, 19 September 2026. Release roadmap step 4, second sentence ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap: "Add the other advertised ending routes through the same robust state architecture"). Follows the ending spine ([ENDING-SPINE](ENDING-SPINE.md), ES.1–ES.6 shipped). CoO-original; no Qud parity claim.
+**Status:** ER.1 shipped 19 September 2026 (the Root as a place). ER.2–ER.6 pending. Release roadmap step 4, second sentence ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap: "Add the other advertised ending routes through the same robust state architecture"). Follows the ending spine ([ENDING-SPINE](ENDING-SPINE.md), ES.1–ES.6 shipped). CoO-original; no Qud parity claim.
 
 ## Goal
 
@@ -70,3 +70,22 @@ No per-frame work; builders run once per zone; the Root chamber is an ordinary z
 As for the spine: independent clone, RED before GREEN (compile RED for new APIs, stub phase for adversarial files), explicit-path integration into `main`, receipts under `Docs/Verification/VoxelWorld/ER*`, native runs under `Docs/Verification/ChunkGameplayImplementation/ER6-*`, guard before git writes — and the guard's STAND DOWN aborts a chain, not only a lock file. Every chain's fill step runs under `set -e` before any copy.
 
 ## Implementation log
+
+### ER.1 — The Root as a place (19 September 2026)
+
+**Status:** shipped. RED `ER1-red` (compile errors: `RootSiteBuilder`, `POIType.Root`, `WorldMap.RehydrateRoot`, `RootFacePart` did not exist — a new API, so the honest RED is the compiler); GREEN `ER1-green-2` 980/980 (the first green run, `ER1-green`, failed one pin of mine: the Stump's no-lair-or-camp test met the Root; both receipts published); full EditMode suite in the clone 15,171 tests, 15,171 passed (`ER1-full-2`; the first full run, `ER1-full`, completed while the disk filled and its receipt could not be written, so it is not published).
+
+**What the player sees.** On the world map, two cells north of the Felling-Site at the stump's crown, a tier-5 place named *the Root* (glyph `Y`). Its surface is the stump's own wilderness with a cleft at the crown: a way down, and three pieces of tepuibone lying loose beside it — the first name-holding stone lies where the Root is. Below, one chamber: the ordinary underground base with a hollow carved west of the taproot's face, the face set into the hollow's east rim, solid, examinable ("It dreams. What it dreams, no one who came down here has been able to say."), reachable from the way up by a carved approach; nothing goes further down. The face offers nothing yet.
+
+**Implementation.** `POIType.Root` (appended last; the POI table is saved as ints); `WorldGenerator` stamps it beside the Felling-Site; `WorldMap.RehydrateRoot` grows it on loaded maps where the cell is empty and never displaces a saved POI (`SaveSystem` calls it beside the Felling one); `OverworldZoneManager.CreateRootPipeline` (z=0: the stump wilderness for the band, `CaveEntranceBuilder` removed, `RootMouthBuilder`; z=1: the underground base, `StairsDownBuilder` removed, `RootChamberBuilder`), routed before the depth branch like a sinkhole; the top-down hook admits the Root so a lateral arrival at the chamber finds its way up; `WorldMapZoneBuilder` glyph; `RootSite.cs` (`RootSiteBuilder` constants and helpers, `RootMouthBuilder`, `RootChamberBuilder`); `RootFacePart`; the `TheRoot` blueprint (PhysicalObject, solid, `RootFace`).
+
+**Self-review (Methodology Template §5).**
+- 🟡 fixed (test-side): `WorldMapAuthoringTests.Generate_PutsNoLairOrCampOnTheStump` pinned the Stump as free of any POI and met the Root at (3,3) (`ER1-green` 979/980); it now admits exactly the Root there, as it admits the Felling-Site, and still forbids lairs and camps everywhere on the tepui.
+- 🔵 The chamber keeps the underground base's landmarks, hazards, population and containers outside the hollow; the hollow and the approach are `GenReservedCells`. A quieter chamber is a texture decision for later, not a correctness one.
+- 🔵 The map glyph `Y` and its colour are provisional until the map is reviewed natively (ER.6).
+- 🧪 Travel to the place by the world map and the descent with the real key are native-proof territory (ER.6).
+- ⚪ Guard unchanged.
+
+**Cold-eye.** Q1: `RehydrateRoot` is `RehydrateFellingSite` with the Root's constants; the routing branch sits where the sinkhole's does and for the same reason; the mouth registers its connection exactly as `SinkholeMouthBuilder` does. Q2: both builders refuse loudly with `worldgen/RootRefused` and a reason, and build once (a stair or a face already present returns true). Q3: fresh stamp vs rehydrate vs never-displace; mouth vs chamber vs below; lateral arrival; three seeds; one placed record and none on revisit; the face offers nothing (flipped in ER.2). Q4: this section was read against the shipped files.
+
+**Files.** NEW `RootSite.cs`, `RootFacePart.cs`, `RootSiteTests.cs`; MOD `PointOfInterest.cs`, `WorldGenerator.cs`, `WorldMap.cs`, `SaveSystem.cs`, `OverworldZoneManager.cs`, `WorldMapZoneBuilder.cs`, `Objects.json`.

@@ -211,6 +211,15 @@ namespace CavesOfOoo.Core
                     new PointOfInterest(POIType.FellingSite, FellingSiteBuilder.SiteName, tier: 5));
         }
 
+        /// <summary>ER.1 — the Root twin of <see cref="RehydrateFellingSite"/>: a loaded
+        /// world grows the place where its cell is empty; a saved POI is never displaced.</summary>
+        public void RehydrateRoot()
+        {
+            if (GetPOI(RootSiteBuilder.WorldX, RootSiteBuilder.WorldY) == null)
+                SetPOI(RootSiteBuilder.WorldX, RootSiteBuilder.WorldY,
+                    new PointOfInterest(POIType.Root, RootSiteBuilder.SiteName, tier: 5));
+        }
+
         public void SetPOI(int x, int y, PointOfInterest poi)
         {
             if (InBounds(x, y))

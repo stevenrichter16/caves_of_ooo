@@ -22,7 +22,13 @@ namespace CavesOfOoo.Core
         Sinkhole,
 
         /// <summary>The authored surface circle; append-only save ordinal5.</summary>
-        FellingSite
+        FellingSite,
+
+        /// <summary>ER.1 (Docs/ENDING-ROUTES.md) — the Root: the stump's crown with the
+        /// cleft's way down (z=0) and the chamber where the taproot shows its face
+        /// (z=1). Like a sinkhole, it means something below z=0. Appended last: the
+        /// POI table is saved as ints.</summary>
+        Root
     }
 
     /// <summary>

@@ -81,6 +81,12 @@ namespace CavesOfOoo.Core
                 return CreateSinkholePipeline(biome, poi, wx, wy, wz);
             }
 
+            // ER.1 (Docs/ENDING-ROUTES.md): the Root is the second POI that means
+            // something below z=0 — its chamber lies one level down; deeper is
+            // ordinary underground.
+            if (poi != null && poi.Type == POIType.Root && wz <= 1)
+                return CreateRootPipeline(biome, wx, wy, wz);
+
             // Underground zones use a dedicated pipeline
             if (wz > 0)
                 return CreateUndergroundPipeline(wz);
@@ -276,6 +282,25 @@ namespace CavesOfOoo.Core
             if(depth==0)pipeline.AddBuilder(new TradeStockBuilder());
             if(depth==2)pipeline.AddBuilder(new GinmereNestFinalizer());
             return pipeline;
+        }
+
+        // ER.1 (Docs/ENDING-ROUTES.md): the Root's two levels. The mouth is the
+        // stump's own wilderness with the cleft's way down; the chamber is the
+        // ordinary underground base with the hollow and the face carved into it
+        // and no way further down.
+        private ZoneGenerationPipeline CreateRootPipeline(BiomeType biome, int wx, int wy, int depth)
+        {
+            if (depth == 0)
+            {
+                var mouth = CreateSurfaceWildernessFor(biome, GetTierForCoords(wx, wy), StumpBands.BandAt(wx, wy));
+                mouth.RemoveBuilders<CaveEntranceBuilder>();
+                mouth.AddBuilder(new RootMouthBuilder(this));
+                return mouth;
+            }
+            var chamber = CreateUndergroundPipeline(depth);
+            chamber.RemoveBuilders<StairsDownBuilder>();
+            chamber.AddBuilder(new RootChamberBuilder());
+            return chamber;
         }
 
         // Finite authored stacks share the native travel/population spine.
@@ -1224,7 +1249,7 @@ namespace CavesOfOoo.Core
                 && !CachedZones.ContainsKey(zoneID))
             {
                 var poiHere = WorldMap.GetPOI(wx, wy);
-                if (poiHere != null && poiHere.Type == POIType.Sinkhole)
+                if (poiHere != null && (poiHere.Type == POIType.Sinkhole || poiHere.Type == POIType.Root))
                     GetZone($"Overworld.{wx}.{wy}.{wz - 1}");
             }
 

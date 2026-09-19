@@ -195,6 +195,7 @@ namespace CavesOfOoo.Core
                 // Once discovered it earns a marker: a hole, dark.
                 case POIType.Sinkhole:     return ("o", "&K", name);
                 case POIType.FellingSite:  return ("O", "&y", name);
+                case POIType.Root:         return ("Y", "&r", name);
                 default:                   return ("?", "&w", name);
             }
         }

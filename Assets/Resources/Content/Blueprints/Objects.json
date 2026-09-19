@@ -31625,6 +31625,17 @@
       "Tags": [ { "Key": "UnderfootInteractable", "Value": "" } ]
     },
     {
+      "Name": "TheRoot",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        { "Name": "RootFace", "Params": [] },
+        { "Name": "Render", "Params": [ { "Key": "DisplayName", "Value": "the Root" }, { "Key": "RenderString", "Value": "Y" }, { "Key": "ColorString", "Value": "&r" }, { "Key": "RenderLayer", "Value": "1" } ] },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" }, { "Key": "Takeable", "Value": "false" }, { "Key": "Weight", "Value": "100000" } ] },
+        { "Name": "Examinable", "Params": [ { "Key": "Description", "Value": "The taproot's face, exposed where the stone gave way: sandstone-pale, warm to a hand laid flat, slower than breathing. It is the last living root of the Tree that held everything, and it is asleep. It dreams. What it dreams, no one who came down here has been able to say." } ] }
+      ],
+      "Tags": [ { "Key": "Tier", "Value": "5" } ]
+    },
+    {
       "Name": "LibraryTepuiboneWall",
       "Inherits": "PhysicalObject",
       "Parts": [

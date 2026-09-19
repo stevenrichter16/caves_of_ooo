@@ -259,6 +259,12 @@ namespace CavesOfOoo.Tests
                             Assert.AreEqual((FellingSiteBuilder.WorldX, FellingSiteBuilder.WorldY), (x, y));
                             continue;
                         }
+                        // ER.1: the Root is the second authored landmark on the tepui.
+                        if (poi?.Type == POIType.Root)
+                        {
+                            Assert.AreEqual((RootSiteBuilder.WorldX, RootSiteBuilder.WorldY), (x, y));
+                            continue;
+                        }
                         if (poi?.Type == POIType.Sinkhole)
                         {
                             Assert.IsTrue(SinkholeSites.IsMouth(x, y));

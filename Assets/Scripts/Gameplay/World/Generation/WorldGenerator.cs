@@ -92,6 +92,11 @@ namespace CavesOfOoo.Core
                 new PointOfInterest(POIType.FellingSite, FellingSiteBuilder.SiteName, tier: 5));
             placed.Add((FellingSiteBuilder.WorldX, FellingSiteBuilder.WorldY));
 
+            // ER.1: the Root — the narrative centre, two cells north of the circle.
+            map.SetPOI(RootSiteBuilder.WorldX, RootSiteBuilder.WorldY,
+                new PointOfInterest(POIType.Root, RootSiteBuilder.SiteName, tier: 5));
+            placed.Add((RootSiteBuilder.WorldX, RootSiteBuilder.WorldY));
+
             // 1b. Authored wilderness scenes (the tenth fire, the
             // doll): reserved before any opportunistic roll, so a lair
             // or camp can never take the cell and delete the scene from
