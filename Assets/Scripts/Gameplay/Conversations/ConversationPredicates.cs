@@ -349,6 +349,13 @@ namespace CavesOfOoo.Core
                 CavesOfOoo.Storylets.StoryletPart.Current != null
                 && CavesOfOoo.Storylets.StoryletPart.Current.IsQuestFailed(arg));
 
+            // ES.2: IfQuestRefused(questId) — the act was ended aloud and not
+            // taken up again since.
+            Register("IfQuestRefused", (speaker, listener, arg) =>
+                CavesOfOoo.Storylets.StoryletPart.Current != null
+                && !CavesOfOoo.Storylets.StoryletPart.Current.IsQuestActive(arg)
+                && CavesOfOoo.Storylets.StoryletPart.Current.GetClosure(arg)?.State == CavesOfOoo.Storylets.ClosureState.Refused);
+
             // IfQuestNotStarted(questId) — true iff the player has
             // never started OR completed this quest. NOT the same as
             // !IfQuestActive (which would be true for completed quests

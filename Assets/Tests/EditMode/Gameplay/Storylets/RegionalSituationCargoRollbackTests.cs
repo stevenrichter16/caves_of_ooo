@@ -93,8 +93,11 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(b.request.CanAct(player,b.zone,"accept"),"The native action sees the actual restored consignment.");
             Assert.AreEqual(QuestCueState.Available,b.request.GetCueState(player,b.zone),"After native container retrieval the cue must agree with the real available action.");
             Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));
+            Assert.AreEqual(CavesOfOoo.Storylets.ClosureState.Open,StoryletPart.Current.GetClosure("regional:"+b.request.InstanceId)?.State,"ES.2: an accepted request is an undertaken act");
+            Assert.AreEqual(d.Title,StoryletPart.Current.GetClosure("regional:"+b.request.InstanceId).Title);
             Assert.AreEqual(QuestCueState.Active,b.request.GetCueState(player,b.zone));
             Assert.IsTrue(b.request.TryAct(player,b.zone,"release"));
+            Assert.AreEqual(CavesOfOoo.Storylets.ClosureState.Refused,StoryletPart.Current.GetClosure("regional:"+b.request.InstanceId)?.State,"ES.2: a release ends the act aloud");
             Assert.AreEqual(QuestCueState.Available,b.request.GetCueState(player,b.zone));
             Assert.AreEqual(cached,manager.CachedZoneCount);
             Assert.AreEqual(money,TradeSystem.GetDrams(player)); Assert.IsFalse(b.request.Completed);

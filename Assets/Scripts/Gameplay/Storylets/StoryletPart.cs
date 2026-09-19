@@ -48,6 +48,18 @@ namespace CavesOfOoo.Storylets
         public IReadOnlyDictionary<string, ClosureEntry> Ledger => _ledger;
         public ClosureEntry GetClosure(string questId) => !string.IsNullOrEmpty(questId) && _ledger.TryGetValue(questId, out var e) ? e : null;
         private static int Now => TurnManager.Active?.TickCount ?? 0;
+        /// <summary>ES.2: acts outside the quest layer (regional requests) live on the same ledger.</summary>
+        public void UndertakeAct(string id, string title)
+        {
+            if (string.IsNullOrEmpty(id)) return;
+            _ledger[id] = new ClosureEntry { QuestId = id, Title = title, State = ClosureState.Open, UndertakenTurn = Now };
+            EmitClosure("Undertaken", id, spoken: false);
+        }
+        public bool CloseAct(string id) { if (!IsOpenAct(id)) return false; End(id, ClosureState.Closed); return true; }
+        public bool RefuseAct(string id) { if (!IsOpenAct(id)) return false; End(id, ClosureState.Refused); return true; }
+        private bool IsOpenAct(string id) => !string.IsNullOrEmpty(id) && _ledger.TryGetValue(id, out var e) && e.IsOpen;
+        /// <summary>The name the player reads for a ledger entry.</summary>
+        public static string ClosureTitle(ClosureEntry e) => e == null ? "" : !string.IsNullOrEmpty(e.Title) ? e.Title : QuestDisplayName(e.QuestId);
         // QS.2 (Docs/QUEST-SYSTEM.md): tracks quests the player has
         // already completed so quest-not-started checks can rule out
         // already-finished quests, and so quest-givers can offer
@@ -735,6 +747,7 @@ namespace CavesOfOoo.Storylets
                 writer.Write(e.UndertakenTurn);
                 writer.Write(e.EndedTurn);
                 writer.Write(e.Spoken ? 1 : 0);
+                writer.WriteString(e.Title ?? "");
             }
         }
 
@@ -828,6 +841,7 @@ namespace CavesOfOoo.Storylets
                 {
                     var e = new ClosureEntry { QuestId = reader.ReadString(), State = (ClosureState)reader.ReadInt(), UndertakenTurn = reader.ReadInt(), EndedTurn = reader.ReadInt() };
                     e.Spoken = reader.ReadInt() == 1;
+                    string title = reader.ReadString(); e.Title = string.IsNullOrEmpty(title) ? null : title;
                     _ledger[e.QuestId] = e;
                 }
                 ledgerRead = true;

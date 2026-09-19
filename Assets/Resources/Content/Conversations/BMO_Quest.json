@@ -68,6 +68,22 @@
               ]
             },
             {
+              "Text": "[Release] I won't be finishing this. I wanted to tell you myself.",
+              "Target": "Released",
+              "Predicates": [
+                {
+                  "Key": "IfQuestActive",
+                  "Value": "BmoCartridge"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "RefuseQuest",
+                  "Value": "BmoCartridge"
+                }
+              ]
+            },
+            {
               "Text": "Goodbye, Ellun.",
               "Target": "End"
             }
@@ -109,6 +125,16 @@
           "Choices": [
             {
               "Text": "Bye, Ellun.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Released",
+          "Text": "Oh. Okay. Thank you for not just... not coming back. I'll listen for it on the wind.",
+          "Choices": [
+            {
+              "Text": "Goodbye.",
               "Target": "End"
             }
           ]

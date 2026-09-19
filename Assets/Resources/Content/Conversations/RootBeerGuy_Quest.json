@@ -11,36 +11,76 @@
               "Text": "[Accept] I'll find your notebook.",
               "Target": "Accepted",
               "Predicates": [
-                { "Key": "IfQuestNotStarted", "Value": "RootBeerGuyCase" }
+                {
+                  "Key": "IfQuestNotStarted",
+                  "Value": "RootBeerGuyCase"
+                }
               ],
               "Actions": [
-                { "Key": "StartQuest", "Value": "RootBeerGuyCase" }
+                {
+                  "Key": "StartQuest",
+                  "Value": "RootBeerGuyCase"
+                }
               ]
             },
             {
               "Text": "[Status] Still searching.",
               "Target": "Searching",
               "Predicates": [
-                { "Key": "IfQuestStage", "Value": "RootBeerGuyCase:find" }
+                {
+                  "Key": "IfQuestStage",
+                  "Value": "RootBeerGuyCase:find"
+                }
               ]
             },
             {
               "Text": "[Return it] Found your notebook.",
               "Target": "Solved",
               "Predicates": [
-                { "Key": "IfQuestStage", "Value": "RootBeerGuyCase:report" }
+                {
+                  "Key": "IfQuestStage",
+                  "Value": "RootBeerGuyCase:report"
+                }
               ],
               "Actions": [
-                { "Key": "CompleteQuest", "Value": "RootBeerGuyCase" },
-                { "Key": "AwardXP", "Value": "150" },
-                { "Key": "GiveDrams", "Value": "60" }
+                {
+                  "Key": "CompleteQuest",
+                  "Value": "RootBeerGuyCase"
+                },
+                {
+                  "Key": "AwardXP",
+                  "Value": "150"
+                },
+                {
+                  "Key": "GiveDrams",
+                  "Value": "60"
+                }
               ]
             },
             {
               "Text": "[Done] Any other cases?",
               "Target": "Done",
               "Predicates": [
-                { "Key": "IfQuestCompleted", "Value": "RootBeerGuyCase" }
+                {
+                  "Key": "IfQuestCompleted",
+                  "Value": "RootBeerGuyCase"
+                }
+              ]
+            },
+            {
+              "Text": "[Release] I won't be finishing this. I wanted to tell you myself.",
+              "Target": "Released",
+              "Predicates": [
+                {
+                  "Key": "IfQuestActive",
+                  "Value": "RootBeerGuyCase"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "RefuseQuest",
+                  "Value": "RootBeerGuyCase"
+                }
               ]
             },
             {
@@ -53,28 +93,50 @@
           "ID": "Accepted",
           "Text": "A partner! Outstanding. It's somewhere in the village — check the buildings. Bring it here when you've got it.",
           "Choices": [
-            { "Text": "On the case.", "Target": "End" }
+            {
+              "Text": "On the case.",
+              "Target": "End"
+            }
           ]
         },
         {
           "ID": "Searching",
           "Text": "Keep at it, partner. A good detective never quits mid-case.",
           "Choices": [
-            { "Text": "Right.", "Target": "End" }
+            {
+              "Text": "Right.",
+              "Target": "End"
+            }
           ]
         },
         {
           "ID": "Solved",
           "Text": "That's the one! Case closed. Here — a little something for your trouble, and you've earned the experience besides.",
           "Choices": [
-            { "Text": "Glad to help.", "Target": "End" }
+            {
+              "Text": "Glad to help.",
+              "Target": "End"
+            }
           ]
         },
         {
           "ID": "Done",
           "Text": "Nothing open at the moment, partner. I'll holler if a new case turns up.",
           "Choices": [
-            { "Text": "Goodbye.", "Target": "End" }
+            {
+              "Text": "Goodbye.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Released",
+          "Text": "Case closed, then — the honest way. A detective can respect a clear statement. Thanks for not leaving me guessing.",
+          "Choices": [
+            {
+              "Text": "Goodbye.",
+              "Target": "End"
+            }
           ]
         }
       ]

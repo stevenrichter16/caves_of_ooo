@@ -11,34 +11,68 @@
               "Text": "[Take the quest.] I'll find your key.",
               "Target": "QuestAccepted",
               "Predicates": [
-                { "Key": "IfQuestNotStarted", "Value": "IronKeyShowcaseQuest" }
+                {
+                  "Key": "IfQuestNotStarted",
+                  "Value": "IronKeyShowcaseQuest"
+                }
               ],
               "Actions": [
-                { "Key": "StartQuest", "Value": "IronKeyShowcaseQuest" }
+                {
+                  "Key": "StartQuest",
+                  "Value": "IronKeyShowcaseQuest"
+                }
               ]
             },
             {
               "Text": "[Status] Still looking for the key.",
               "Target": "StillLooking",
               "Predicates": [
-                { "Key": "IfQuestStage", "Value": "IronKeyShowcaseQuest:0" }
+                {
+                  "Key": "IfQuestStage",
+                  "Value": "IronKeyShowcaseQuest:0"
+                }
               ]
             },
             {
               "Text": "[Hand over the key.] Got it. Here you go.",
               "Target": "QuestComplete",
               "Predicates": [
-                { "Key": "IfQuestStage", "Value": "IronKeyShowcaseQuest:1" }
+                {
+                  "Key": "IfQuestStage",
+                  "Value": "IronKeyShowcaseQuest:1"
+                }
               ],
               "Actions": [
-                { "Key": "AdvanceQuestStage", "Value": "IronKeyShowcaseQuest" }
+                {
+                  "Key": "AdvanceQuestStage",
+                  "Value": "IronKeyShowcaseQuest"
+                }
               ]
             },
             {
               "Text": "[Already finished.] Anything else?",
               "Target": "AlreadyFinished",
               "Predicates": [
-                { "Key": "IfQuestCompleted", "Value": "IronKeyShowcaseQuest" }
+                {
+                  "Key": "IfQuestCompleted",
+                  "Value": "IronKeyShowcaseQuest"
+                }
+              ]
+            },
+            {
+              "Text": "[Release] I won't be finishing this. I wanted to tell you myself.",
+              "Target": "Released",
+              "Predicates": [
+                {
+                  "Key": "IfQuestActive",
+                  "Value": "IronKeyShowcaseQuest"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "RefuseQuest",
+                  "Value": "IronKeyShowcaseQuest"
+                }
               ]
             },
             {
@@ -51,28 +85,50 @@
           "ID": "QuestAccepted",
           "Text": "Sweet. The key should be a few cells east. Come back when you've got it.",
           "Choices": [
-            { "Text": "On it.", "Target": "End" }
+            {
+              "Text": "On it.",
+              "Target": "End"
+            }
           ]
         },
         {
           "ID": "StillLooking",
           "Text": "It's east of here. Pick it up and the rest takes care of itself.",
           "Choices": [
-            { "Text": "Got it.", "Target": "End" }
+            {
+              "Text": "Got it.",
+              "Target": "End"
+            }
           ]
         },
         {
           "ID": "QuestComplete",
           "Text": "Thanks. Take this — drams and a bit of seasoned wisdom.",
           "Choices": [
-            { "Text": "Anytime.", "Target": "End" }
+            {
+              "Text": "Anytime.",
+              "Target": "End"
+            }
           ]
         },
         {
           "ID": "AlreadyFinished",
           "Text": "Not at the moment. Hang around if you like.",
           "Choices": [
-            { "Text": "Bye.", "Target": "End" }
+            {
+              "Text": "Bye.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Released",
+          "Text": "Fair enough. Better a straight no than a key that never turns up. I'll ask around.",
+          "Choices": [
+            {
+              "Text": "Goodbye.",
+              "Target": "End"
+            }
           ]
         }
       ]

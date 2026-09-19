@@ -19,15 +19,29 @@ namespace CavesOfOoo.Rendering
         public readonly IReadOnlyList<string> Completed;
         public readonly int ActiveCount;
         public readonly int CompletedCount;
+        /// <summary>ES.2: acts ended by a spoken no, by title.</summary>
+        public readonly IReadOnlyList<string> Refused;
+        public readonly int RefusedCount;
+        /// <summary>ES.2: the closure-ledger's counts (open includes acts dropped in silence).</summary>
+        public readonly int ClosureClosed, ClosureRefused, ClosureOpen;
 
         public QuestLogSnapshot(
             IReadOnlyList<QuestLogActiveEntry> active,
             IReadOnlyList<string> completed)
+            : this(active, completed, null, 0, 0, 0) { }
+
+        public QuestLogSnapshot(
+            IReadOnlyList<QuestLogActiveEntry> active,
+            IReadOnlyList<string> completed,
+            IReadOnlyList<string> refused, int closureClosed, int closureRefused, int closureOpen)
         {
             Active = active ?? System.Array.Empty<QuestLogActiveEntry>();
             Completed = completed ?? System.Array.Empty<string>();
+            Refused = refused ?? System.Array.Empty<string>();
             ActiveCount = Active.Count;
             CompletedCount = Completed.Count;
+            RefusedCount = Refused.Count;
+            ClosureClosed = closureClosed; ClosureRefused = closureRefused; ClosureOpen = closureOpen;
         }
     }
 

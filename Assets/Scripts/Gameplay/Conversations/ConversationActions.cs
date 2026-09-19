@@ -567,6 +567,15 @@ namespace CavesOfOoo.Core
                 sp.FailQuest(arg, actor: listener);
             });
 
+            // ES.2 (Docs/ENDING-SPINE.md): RefuseQuest(questId) — end an active
+            // act by a spoken no, to the giver's face. Not a failure; the
+            // closure-ledger records it as Refused and the act can be re-taken.
+            Register("RefuseQuest", (speaker, listener, arg) =>
+            {
+                if (string.IsNullOrEmpty(arg)) return;
+                CavesOfOoo.Storylets.StoryletPart.Current?.RefuseQuest(arg, actor: listener);
+            });
+
             // Q3.3: FinishObjective(questId:objId[~objId2~...]) — finish one
             // or more objectives in the quest's current stage from dialogue.
             // The ~-delimited list mirrors Qud's FinishQuestStep("a~b~c").

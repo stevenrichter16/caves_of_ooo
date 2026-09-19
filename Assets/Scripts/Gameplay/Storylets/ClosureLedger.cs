@@ -15,6 +15,8 @@ namespace CavesOfOoo.Storylets
     public sealed class ClosureEntry
     {
         public string QuestId;
+        /// <summary>Player-facing title for acts outside the quest layer; null for quests (use the quest display name).</summary>
+        public string Title;
         public ClosureState State;
         /// <summary>Turn the act was undertaken (−1 when projected from an older save).</summary>
         public int UndertakenTurn = -1;

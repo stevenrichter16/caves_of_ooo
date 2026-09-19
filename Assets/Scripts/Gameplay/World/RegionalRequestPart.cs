@@ -146,6 +146,12 @@ namespace CavesOfOoo.Core
             else return true;
             e.Handled=true;
             var recipient=ParentEntity;
+            // ES.2: an accepted request is an undertaken act on the closure-ledger;
+            // release ends it aloud, delivery carries it through. After commit only,
+            // so a rolled-back transaction leaves the ledger untouched.
+            string actId="regional:"+InstanceId,actTitle=definition.Title;
+            transaction.AfterCommit(()=>{var sp=StoryletPart.Current;if(sp==null)return;
+                if(action=="accept")sp.UndertakeAct(actId,actTitle);else if(action=="release")sp.RefuseAct(actId);else if(action=="deliver")sp.CloseAct(actId);});
             var receipt=new{definition=DefinitionId,instance=InstanceId,action};
             transaction.AfterCommit(()=>Diag.Record("quest","RegionalRequestApplied",actor:actor,target:recipient,payload:receipt));
             return false;

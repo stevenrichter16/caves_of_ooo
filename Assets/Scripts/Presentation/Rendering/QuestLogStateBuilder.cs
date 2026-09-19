@@ -107,12 +107,22 @@ namespace CavesOfOoo.Rendering
                     stages, currentObjectives));
             }
 
+            // ES.2: titles, not ids; and the ledger's own account of what ended how.
             var completedSet = part.GetCompletedQuests();
             var completed = new List<string>(completedSet.Count);
             foreach (var id in completedSet)
-                completed.Add(id);
+                completed.Add(StoryletPart.QuestDisplayName(id));
+            completed.Sort(System.StringComparer.Ordinal);
+            var refused = new List<string>(); int closed = 0, refusedCount = 0, open = 0;
+            foreach (var e in part.Ledger.Values)
+            {
+                if (e.State == ClosureState.Closed) closed++;
+                else if (e.State == ClosureState.Refused) { refusedCount++; refused.Add(StoryletPart.ClosureTitle(e)); }
+                else open++;
+            }
+            refused.Sort(System.StringComparer.Ordinal);
 
-            return new QuestLogSnapshot(active, completed);
+            return new QuestLogSnapshot(active, completed, refused, closed, refusedCount, open);
         }
 
         /// <summary>

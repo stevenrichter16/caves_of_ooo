@@ -54,7 +54,8 @@ namespace CavesOfOoo.Rendering
         // conveyed by marker + color (green/yellow/grey).
         private const char GLYPH_DONE = '*';     // done    (green)
         private const char GLYPH_CURRENT = '>';  // current (yellow)
-        private const char GLYPH_PENDING = '-';  // pending (grey)
+        private const char GLYPH_PENDING = '-';
+        private const char GLYPH_REFUSED = '-';  // pending (grey)
 
         private static readonly Color ColTitle = new Color(1f, 0.9f, 0.4f);
         private static readonly Color ColHeader = new Color(0.6f, 0.85f, 1f);
@@ -139,9 +140,12 @@ namespace CavesOfOoo.Rendering
 
             int y = 1;
             DrawText(2, y, "===== QUEST LOG =====", ColTitle);
+            y++;
+            // ES.2: the closure-ledger, always in view: what ended how, and what is still open.
+            DrawText(2, y, "closure  " + _snapshot.ClosureClosed + " closed  " + _snapshot.ClosureRefused + " refused  " + _snapshot.ClosureOpen + " open", ColDim);
             y += 2;
 
-            if (_snapshot.ActiveCount == 0 && _snapshot.CompletedCount == 0)
+            if (_snapshot.ActiveCount == 0 && _snapshot.CompletedCount == 0 && _snapshot.RefusedCount == 0)
             {
                 DrawText(2, y, "You have no quests yet.", ColDim);
                 DrawFooter();
@@ -227,6 +231,19 @@ namespace CavesOfOoo.Rendering
                 {
                     DrawChar(6, y, GLYPH_DONE, ColDone);
                     DrawText(8, y, _snapshot.Completed[i], ColDim);
+                    y++;
+                }
+            }
+
+            // ES.2: acts ended by a spoken no are closure too, and are listed as such.
+            if (_snapshot.RefusedCount > 0 && y < H - 4)
+            {
+                y++;
+                DrawText(2, y, "REFUSED", ColHeader); y++;
+                for (int i = 0; i < _snapshot.Refused.Count && y < H - 4; i++)
+                {
+                    DrawChar(6, y, GLYPH_REFUSED, ColDim);
+                    DrawText(8, y, _snapshot.Refused[i], ColDim);
                     y++;
                 }
             }

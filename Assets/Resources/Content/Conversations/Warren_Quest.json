@@ -72,6 +72,22 @@
               ]
             },
             {
+              "Text": "[Release] I won't be finishing this. I wanted to tell you myself.",
+              "Target": "Released",
+              "Predicates": [
+                {
+                  "Key": "IfQuestActive",
+                  "Value": "ClearTheWarren"
+                }
+              ],
+              "Actions": [
+                {
+                  "Key": "RefuseQuest",
+                  "Value": "ClearTheWarren"
+                }
+              ]
+            },
+            {
               "Text": "Goodbye.",
               "Target": "End"
             }
@@ -113,6 +129,16 @@
           "Choices": [
             {
               "Text": "Bye.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Released",
+          "Text": "Bah. Well — at least you said so to my face, and not to my turnips. Off with you.",
+          "Choices": [
+            {
+              "Text": "Goodbye.",
               "Target": "End"
             }
           ]

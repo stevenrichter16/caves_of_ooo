@@ -1,6 +1,6 @@
 # The Ending Spine — closure-ledger and the first enacted ending
 
-**Status:** ES.1 shipped 19 September 2026 (the closure-ledger). ES.2–ES.6 pending. Release roadmap step 4 ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap; [GAME-STATE](GAME-STATE-2026-09-17.md) §15, §20). CoO-original; no Qud parity claim. Follows the Stillleaf Archive chain ([MIDGAME-STILLLEAF-ARCHIVE](MIDGAME-STILLLEAF-ARCHIVE.md)), which is the first content the ledger will read.
+**Status:** ES.1–ES.2 shipped 19 September 2026 (the closure-ledger; visible, with a spoken no everywhere). ES.3–ES.6 pending. Release roadmap step 4 ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap; [GAME-STATE](GAME-STATE-2026-09-17.md) §15, §20). CoO-original; no Qud parity claim. Follows the Stillleaf Archive chain ([MIDGAME-STILLLEAF-ARCHIVE](MIDGAME-STILLLEAF-ARCHIVE.md)), which is the first content the ledger will read.
 
 ## Goal
 
@@ -75,3 +75,23 @@ As for the Stillleaf chain: independent clone, RED before GREEN (stub phase for 
 **Cold-eye.** Q1: `RefuseQuest` mirrors `FailQuest` line for line (guard, rejection diag, removal, log line, diag, event) with the one intended difference — it clears the failed flag instead of setting it. Q2: every ledger transition emits `closure/<Kind>` with `questId` and `spoken`; the reading emits `Read` with counts. Q3: undertaken vs re-started; closed vs refused vs dropped vs failed; refusing what was never taken; twenty cheap closures against one open act; reading twice; save round-trip; older-save projection. Q4: this section was read against the shipped files.
 
 **Files.** NEW `ClosureLedger.cs`, `ClosureLedgerTests.cs`; MOD `StoryletPart.cs`, `Diag.cs`, the four call sites, three test files with migration pins.
+
+### ES.2 — Visible, and a spoken no everywhere (19 September 2026)
+
+**Status:** shipped. RED `ES2-red` (compile errors: the journal snapshot had no closure fields); GREEN `ES2-green-3` 760/760 after two pins of mine were corrected (below); full EditMode suite in the clone 15,128 tests, 15,128 passed (`ES2-full-2`).
+
+**What the player sees and can do.** The journal opens on one line — *closure N closed · M refused · K open* — and lists REFUSED beside COMPLETED, both by display name (COMPLETED used to print raw ids; the SA.6 journal capture shows "MorrowfastDryGoods"). Every quest giver offers *"[Release] I won't be finishing this. I wanted to tell you myself."* while their errand is undertaken and answers in their own voice; Clerk Padok's "isn't my problem" decline, which was recorded as a failure, is a refusal, and his aftermath reads it as such. Regional requests — undertaken outside the quest layer — are ledger acts too: accept undertakes (with the request's title), release ends aloud, delivery carries through, all after the transaction commits.
+
+**Implementation.** `ClosureEntry.Title` and `StoryletPart.UndertakeAct/CloseAct/RefuseAct` for acts outside the quest layer; `ClosureTitle` resolves a title or the quest display name. `RefuseQuest` conversation action mirrors `FailQuest`'s block; `IfQuestRefused` mirrors `IfQuestFailed` and reads the ledger. `QuestLogSnapshot` gained `Refused` and the three closure counts (the two-argument constructor remains); the builder resolves display names and sorts. `RegionalRequestPart` hooks the ledger beside its existing after-commit diag receipt, so a rolled-back transaction touches nothing. Nine quest-giver conversations gained the release choice (gated `IfQuestActive`, targeting a `Released` reply node); CandyTax's actions and predicates were switched.
+
+**Scope divergence from the plan.** None. The save section's layout changed (a title per entry) rather than being versioned: the section was fifteen minutes old on `main` and unreleased.
+
+**Self-review (Methodology Template §5).**
+- 🟡 *Fixed pre-commit (test-side):* my display-name pin registered a minimal storylet the registry rejects — it requires `Triggers` and `Effects` arrays even when empty — so names fell back to ids; and my roster audit demanded an `End` choice on the reply node while CandyTax's leaves through the existing `"__end__"` convention (also used by `Innkeeper.json` and `Wardens.json`).
+- 🔵 *Content gap, recorded not fixed:* the shipped village quest definitions (e.g. `MessageForHermit.json`) carry no quest `Name`, so the journal shows their ids; naming them is content work for the breadth pass (roadmap step 5).
+- 🧪 the regional *deliver → CloseAct* hook has no dedicated pin (the rollback fixture has no deliver `TryAct`); ES.5's adversarial file covers it.
+- ⚪ Guard unchanged.
+
+**Cold-eye.** Q1: `RefuseQuest`/`IfQuestRefused` are line-for-line siblings of `FailQuest`/`IfQuestFailed`; the regional hooks sit in the same after-commit as the diag receipt. Q2: every giver's release choice has the same text, gate and shape; every reply is leavable; refusal is never recorded as failure (audited over the roster). Q3: release visible only while undertaken, hidden before and after; refused then re-takeable; an unregistered id shown as itself; a refused act alone still makes a journal; generic act refuse vs close vs unknown. Q4: this section was read against the shipped files.
+
+**Files.** MOD `ClosureLedger.cs`, `StoryletPart.cs`, `ConversationActions.cs`, `ConversationPredicates.cs`, `QuestLogSnapshot.cs`, `QuestLogStateBuilder.cs`, `QuestLogUI.cs`, `RegionalRequestPart.cs`, ten `*_Quest.json`; NEW `ClosureVisibilityTests.cs`; MOD `RegionalSituationCargoRollbackTests.cs`.
