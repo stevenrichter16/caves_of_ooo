@@ -107,7 +107,7 @@ namespace CavesOfOoo.Tests
             Assert.IsFalse(Offered(face).Actions.Any(a => EndingRoutes.IsWorldCommand(a.Command)), "nothing more is offered");
             Assert.IsFalse(Gather(out cost)); Assert.AreEqual(0, cost); StringAssert.Contains("already_enacted", LastPayload("ending", "Rejected"));
             Assert.IsFalse(Seal(out _), "the seal is closed by the same state"); StringAssert.Contains("already_enacted", LastPayload("ending", "Rejected")); foreach (var s in EndingRoutes.Stones) Assert.AreEqual(1, Carried(s));
-            Assert.AreEqual(1, Count("ending", "Enacted")); StringAssert.Contains("\"path\":\"gathered\"", LastPayload("ending", "Enacted"));
+            Assert.AreEqual(1, Count("ending", "Enacted")); StringAssert.Contains("\"path\":\"gathered\"", LastPayload("ending", "Enacted")); StringAssert.Contains("\"consumed\":1", LastPayload("ending", "Enacted"), "one cutting, recorded");
             var site = manager.GetZone(FellingSiteBuilder.ZoneID); var seventh = site.GetAllEntities().Single(e => e.HasPart<SeventhPositionPart>());
             var list = new InventoryActionList(); EndingSpine.AddActions(list, player); Assert.IsEmpty(list.Actions, "the seventh offers nothing after a Root ending");
             Assert.IsFalse(EndingSpine.TryWorldAction(seventh, player, site, EndingSpine.NameCommand, out _)); StringAssert.Contains("already_enacted", LastPayload("ending", "Rejected"));
