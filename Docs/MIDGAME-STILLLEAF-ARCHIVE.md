@@ -1,6 +1,6 @@
 # The Stillleaf Archive — the first middle-game chain
 
-**Status:** SA.1–SA.4 shipped 19 September 2026 — the whole journey is playable: key, Searcher, Indexer and file, and the three custody outcomes with their aftermath. SA.5 (robustness + adversarial file) and SA.6 (native proof, close-out) pending. Release roadmap step 3 ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap; [GAME-STATE](GAME-STATE-2026-09-17.md) §15, §20). CoO-original campaign content; no Qud parity claim.
+**Status:** SA.1–SA.5 shipped 19 September 2026 — the whole journey is playable and hardened: key, Searcher, Indexer and file, the three custody outcomes with their aftermath, and robustness to the wrong order, loss and theft. SA.6 (native proof, close-out) pending. Release roadmap step 3 ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap; [GAME-STATE](GAME-STATE-2026-09-17.md) §15, §20). CoO-original campaign content; no Qud parity claim.
 
 ## Goal
 
@@ -169,4 +169,24 @@ Whoever did not receive the record can be told the truth, once, unpaid and unpun
 **Cold-eye Q1–Q4.** Q1: reseal inverts exactly what the bump-unlock flips (`IsLocked`, `Solid`), nothing more; the dispatch block is the Morrowfast block with the chain's names. Q2: every verb emits the same `quest` kinds; standing deltas are named constants; ids stay at top level. Q3: deliver vs file vs reseal; each terms value against its standing delta; refusal reasons one by one; told vs not told; released errand vs open journal; before vs after the choice. Q4: this section was read against the shipped files.
 
 **Files.** NEW `StillleafCustody.cs`, `StillleafCustodyTests.cs`; MOD `StillleafArchiveContent.cs`, `StillleafArchive.cs`, `SealedLibraryBarrierPart.cs`, `InputHandler.cs`, `Content/Conversations/StillleafArchive.json`.
+
+### SA.5 — Robustness and the adversarial sweep (19 September 2026)
+
+**Status:** shipped. Stub-phase RED `SA5-red` (23 tests: 5 red on their own assertions, 18 pinned green); GREEN `SA5-green` 269/270 (the one failure a false premise of mine, below); corrected focused gate `SA5-green-2` 43/43; full EditMode suite in the clone: 15,106 tests, 15,106 passed (`SA5-full`).
+
+**Method.** The taxonomy sweep (boundary inputs, foreign zones, cross-actor, lost participants, anti-exploit, save/load reach, diag contracts) plus hypothesis-driven RED tests written *before* re-reading the code, each hypothesis stated in its docstring. Because the file references two new Part types, a bare RED run would have been one compile error; a stub phase (types and constants only) let each hypothesis fail on its own assertion, which is the record used for the classification below.
+
+**Four gaps found and fixed.**
+1. *Journal stuck:* accepting the errand after the file was read and the key taken opened the journal at *words*, whose objective could never fire again. `accept` now fast-forwards finished work in order (file, key, register), as Morrowfast's already-recovered parcel does. Two pins.
+2. *Dangling loss:* a destroyed register left nothing to do. `StillleafRegisterPart` marks the player on `Destroyed`; either resident's *report* then closes the chain — `StillleafOutcome = 4` (lost), journal removed, nothing failed, nothing paid — with loss-specific lines.
+3. *Free theft:* breaking the salt file spilled the key (native behaviour) at no cost. `StillleafFilePart` charges −8 Curation standing once, by name, when the player is the source, and the Indexer's telling reads the mark. Anyone else breaking it costs the player nothing.
+4. *The slate:* a thief who never met the Searcher holds the keeper's slate once the register is picked up, and the slate carries the last words. `Taken` by the local player now grants the words; the index answers them.
+
+**A false premise, corrected.** The first out-of-order hypothesis assumed the vault door could be broken; `DestructionSystem.IsBreakable` is false for it (its `Destructible` is flagged indestructible). The world offers exactly two ways in — the words, or theft of the key — and the hypothesis was rewritten on the theft path. That rewritten test was first run against the shipped code, so behaviour 4 has no recorded RED of its own; it is stated here rather than implied.
+
+**Pinned as correct (18).** Nulls and nonsense never throw and never act; foreign zones are refused by name; an NPC taking the register or the key advances nothing and teaches the player nothing; a hostile Searcher offers nothing; an impostor register is not the record; filing with the key still inside makes room; a dead Searcher after acceptance still lets custody complete but cannot be told; a dead Indexer after release still leaves the key takeable; a dead player changes nothing; manual placement in the unlocked file is not filing and can be undone; someone else's breakage is free; every rejection names a reason and never claims success; and save/load keeps player chain state, a resealed door with both latches, the salt file with its lock and its key, both residents' identity and voice, and a delivered register's seal.
+
+**Self-review (Methodology Template §5).** 🟡 the four gaps, fixed. 🧪 bounded by the hypotheses imagined; no fuzzing. 🧪 the reseal has not been driven by native keys (SA.6). ⚪ guard state unchanged.
+
+**Files.** NEW `StillleafRegisterPart.cs`, `StillleafFilePart.cs`, `StillleafArchiveAdversarialTests.cs`; MOD `StillleafCustody.cs`, `StillleafArchiveContent.cs`, `Objects.json` (the two parts added to their blueprints).
 

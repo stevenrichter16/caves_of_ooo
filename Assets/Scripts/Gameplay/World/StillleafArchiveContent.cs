@@ -135,6 +135,13 @@ namespace CavesOfOoo.Core
             {
                 StoryletPart.Current.StartQuest(new QuestState { QuestId = QuestId, CurrentStageIndex = 0, EnteredStageAtTurn = TurnManager.Active?.TickCount ?? 0 });
                 player.SetIntProperty(WordsKnown, 1);
+                // SA.5: work done before the errand was taken counts, in order
+                // (mirrors Morrowfast's already-recovered parcel), so the journal
+                // never opens at a stage whose objectives can no longer fire.
+                var journal = StoryletPart.Current;
+                if (player.GetIntProperty(StillleafSaltVault.FileFound) == 1) journal.FinishObjective(QuestId, "file", player);
+                if (StillleafCustody.HasKey(player)) journal.FinishObjective(QuestId, "key", player);
+                if (StillleafCustody.CarriedRegister(player) != null) journal.FinishObjective(QuestId, "register", player);
                 MessageLog.Add("Hollin: 'The keeper of Stillleaf was preserved at the Salt-Vault, six chunks south and one east of here. Pale Curation files its dead by their last words, and the keeper's were these: \"" + LastWords + "\" Say them to an Indexer and the file opens; the key should be filed beside the keeper. Whatever Curation asks for it, hear them out. I want the register found. I have not said what should happen to it after.' [Q] keeps these directions.");
             }
             else

@@ -26,6 +26,8 @@ namespace CavesOfOoo.Core
         /// <summary>Player int property: 0 undecided, then one of the outcomes below.</summary>
         public const string Outcome = "StillleafOutcome";
         public const int OutcomeDelivered = 1, OutcomeFiled = 2, OutcomeResealed = 3;
+        /// <summary>SA.5: the record was destroyed; reported to either resident, the chain closes.</summary>
+        public const int OutcomeLost = 4;
         public const string ToldSearcher = "StillleafToldSearcher", ToldIndexer = "StillleafToldIndexer";
         public const string ResealCommand = "StillleafReseal";
         public const string RecensionFaction = "Palimpsest", CurationFaction = "PaleCuration";
@@ -42,7 +44,7 @@ namespace CavesOfOoo.Core
                 if (e.ID == StillleafArchive.RegisterId && e.GetPart<PhysicsPart>()?.InInventory == player) return e;
             return null;
         }
-        private static bool HasKey(Entity player)
+        public static bool HasKey(Entity player)
         {
             var inventory = player?.GetPart<InventoryPart>();
             if (inventory != null) foreach (var e in inventory.Objects)
@@ -68,6 +70,7 @@ namespace CavesOfOoo.Core
                 case "deliver": return searcher && outcome == 0 && CarriedRegister(player) != null;
                 case "file": return indexer && outcome == 0 && CarriedRegister(player) != null && StillleafSaltVault.FindCabinet(zone) != null;
                 case "report":
+                    if (outcome == 0 && player.GetIntProperty(StillleafRegisterPart.Destroyed) == 1) outcome = OutcomeLost;
                     if (outcome == 0) return false;
                     return searcher ? outcome != OutcomeDelivered && player.GetIntProperty(ToldSearcher) == 0
                                     : outcome != OutcomeFiled && player.GetIntProperty(ToldIndexer) == 0;
@@ -120,15 +123,29 @@ namespace CavesOfOoo.Core
             else
             {
                 bool searcher = speaker.ID == StillleafArchiveContent.SearcherId;
+                if (player.GetIntProperty(Outcome) == 0 && player.GetIntProperty(StillleafRegisterPart.Destroyed) == 1)
+                {
+                    // A lost record closes the chain: no outcome to enact, nothing paid, nothing failed.
+                    player.SetIntProperty(Outcome, OutcomeLost);
+                    StoryletPart.Current?.RemoveActiveQuest(StillleafArchiveContent.QuestId);
+                }
                 player.SetIntProperty(searcher ? ToldSearcher : ToldIndexer, 1);
-                MessageLog.Add(ReportLine(searcher, player.GetIntProperty(Outcome), terms));
+                MessageLog.Add(ReportLine(searcher, player.GetIntProperty(Outcome), terms, player.GetIntProperty(StillleafFilePart.Broken) == 1));
             }
             Diag.Record("quest", "StillleafArchiveApplied", actor: player, target: speaker, payload: new { command, questId = StillleafArchiveContent.QuestId, outcome = player.GetIntProperty(Outcome) });
             return true;
         }
 
-        private static string ReportLine(bool searcher, int outcome, int terms)
+        private static string ReportLine(bool searcher, int outcome, int terms, bool brokeTheFile)
         {
+            if (outcome == OutcomeLost)
+                return searcher
+                    ? "Hollin: 'Destroyed.' She closes the survey map. 'Then the shelf-marks are all that is left of it, and they were all I had before. That is not your debt. It is only a loss, and the Searchers have kept those before.'"
+                    : "Halm: 'Entered: register, destroyed; keeper's file remains open. Status: continuing. The Curation does not grieve on the record. Off it, I would have liked to hold that one.'";
+            if (!searcher && brokeTheFile)
+                return outcome == OutcomeResealed
+                    ? "Halm: 'Entered: register sealed in place; salt file broken by the bearer. Correct by other means, and by force. Both are on the record.'"
+                    : "Halm: 'Entered: register at Quillhold; salt file broken by the bearer. Nothing was promised, because nothing was asked; you saw to that. The breakage is filed by name.'";
             if (searcher)
                 return outcome == OutcomeFiled
                     ? "Hollin: 'Filed beside its keeper, unread. Then the shelf-marks were true and the library is real, and that is more than the Searchers had yesterday. I said I would pay for the record. I will not pay for its absence, and I will not pretend you owed it to me.'"
