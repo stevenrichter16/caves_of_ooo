@@ -138,6 +138,19 @@ namespace CavesOfOoo.Tests
             var ip = salt.GetEntityPosition(indexer); Assert.IsTrue(seen[ip.x, ip.y], "the Indexer's desk is reachable");
         }
 
+        [TestCase(64)] [TestCase(1729)] [TestCase(913)]
+        public void ThePlayerCanStandBesideTheFile_WhileTheIndexerSitsAtTheDesk(int seed)
+        {
+            // Found by the native run (SA.6): opening a container needs a cardinal
+            // cell to stand on, and the Indexer's seat must not be the only one.
+            var m = OverworldZoneManager.CreateDetached(factory, seed); var z = m.GetZone(StillleafSaltVault.ZoneId);
+            var file = StillleafSaltVault.FindCabinet(z); var idx = z.GetAllEntities().Single(e => e.ID == StillleafSaltVault.IndexerId);
+            var fp = z.GetEntityPosition(file); var ip = z.GetEntityPosition(idx);
+            var standing = new[] { (0, -1), (-1, 0), (1, 0), (0, 1) }.Select(d => z.GetCell(fp.x + d.Item1, fp.y + d.Item2))
+                .Where(c => c != null && !c.BlocksMovement() && !(c.X == ip.x && c.Y == ip.y)).ToList();
+            Assert.IsNotEmpty(standing, "a free cardinal cell beside the file that is not the Indexer's seat");
+        }
+
         [Test]
         public void TheIndexerIsRealNamedArt_AndThisPlaceNeedsNoVoxelBody()
         {

@@ -14,7 +14,8 @@ namespace CavesOfOoo.Core
     /// <para>Installed once on fresh generation of the Salt-Vault surface: the
     /// Indexer on bare interior floor, the salt file (a locked container with
     /// the keeper's key inside) on an adjacent interior cell that keeps the
-    /// building connected. The index answers only to the keeper's last words;
+    /// building connected and leaves a second free neighbour for the player to
+        /// stand at. The index answers only to the keeper's last words;
     /// with them the file is read and the journal advances. Curation's price
     /// is a request, not a toll: agree or bargain and the file is unlocked for
     /// the player to take the key through the ordinary container path; refuse
@@ -62,8 +63,12 @@ namespace CavesOfOoo.Core
             {
                 if (!Bare(zone, x, y)) continue;
                 int walls = 0; foreach (var (dx, dy) in Four) { var n = zone.GetCell(x + dx, y + dy); if (n != null && !n.IsPassable()) walls++; }
-                foreach (var (dx, dy) in Four)
-                    if (Bare(zone, x + dx, y + dy)) pairs.Add((walls, x, y, x + dx, y + dy));
+                var open = new List<(int x, int y)>();
+                foreach (var (dx, dy) in Four) if (Bare(zone, x + dx, y + dy)) open.Add((x + dx, y + dy));
+                // The Indexer takes one neighbour; a player must be able to stand at
+                // another to open the file (found by the SA.6 native run).
+                if (open.Count < 2) continue;
+                foreach (var seat in open) pairs.Add((walls, x, y, seat.x, seat.y));
             }
             if (pairs.Count == 0) return Refuse(zone, "no_free_interior");
             pairs.Sort((a, b) => a.walls != b.walls ? b.walls.CompareTo(a.walls) : a.y != b.y ? a.y.CompareTo(b.y) : a.x != b.x ? a.x.CompareTo(b.x) : a.iy != b.iy ? a.iy.CompareTo(b.iy) : a.ix.CompareTo(b.ix));

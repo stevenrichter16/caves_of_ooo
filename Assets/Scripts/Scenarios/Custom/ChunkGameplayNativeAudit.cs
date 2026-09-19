@@ -202,12 +202,135 @@ namespace CavesOfOoo.Scenarios.Custom
                 "fieldSize="+cameraSize+" townSize="+townCameraSize+" loadedTownSize="+Camera.main.orthographicSize+" zoomMultiplier="+input.CameraFollow.GameplayZoomMultiplier);
             Check("private_boot_marker_unchanged",File.ReadAllBytes(Path.Combine(saveRoot,markerId,"Quick.sav.gz")).SequenceEqual(markerBytes));
             Check("owned_save_only",OwnedCheckpoint());
+            yield return StillleafArchiveJourney();
             double idleStarted=Time.realtimeSinceStartupAsDouble;
             while(!profileFinished){Require(Time.realtimeSinceStartupAsDouble-profileStarted<90,"Bounded sixty-second profiler window.");yield return null;}
             profileIdleSeconds=Time.realtimeSinceStartupAsDouble-idleStarted;
             Check("native_profile_evidence",profileSeconds>=60&&profileSeconds<=90&&profileMetrics.All(m=>m.available&&m.count>1
                 &&m.units==(m.name=="GC Allocated In Frame"?"Bytes":"TimeNanoseconds")&&(m.name=="GC Allocated In Frame"||m.max>0)));
             complete=true;
+        }
+        // ── Stillleaf Archive (SA.6): the first middle-game chain through native keys ──
+        // World-map travel is the game's own (< ascends where there are no stairs,
+        // WASD walks world cells, > descends); dialogue uses labelled shortcuts;
+        // the salt file is opened through the native loot UI; the register is
+        // taken with G on its cell; delivery is a dialogue choice. F12 protects
+        // only the sinkhole descent (its guardians are not this journey's subject).
+        private IEnumerator StillleafArchiveJourney()
+        {
+            var player=input.PlayerEntity;
+            Require(input.CurrentZone.ZoneID==MorrowfastSceneRuntime.ZoneID,"The Stillleaf legs start in Morrowfast.");
+            int stage()=>StoryletPart.Current.GetActiveQuests().FirstOrDefault(q=>q.QuestId==StillleafArchiveContent.QuestId)?.CurrentStageIndex??-1;
+            bool has(string key,string value)=>ConversationManager.VisibleChoices.Any(c=>c.Actions?.Any(a=>a.Key==key&&a.Value==value)==true);
+
+            yield return WorldMapLeg(14,9,"quillhold");
+            Check("stillleaf_native_quillhold_arrival",input.CurrentZone.ZoneID==StillleafArchiveContent.QuillholdZoneId&&!StoryletPart.Current.IsQuestActive(StillleafArchiveContent.QuestId));
+            var hollin=EntityById(StillleafArchiveContent.SearcherId);Require(hollin!=null,"Hollin Vesk is installed at Quillhold.");
+            yield return Approach(hollin.ID);yield return OpenMenu(hollin);yield return SelectCommand("Chat");
+            yield return SelectDialogue(c=>c.Target=="Contract","the Searcher's contract");
+            yield return Capture("stillleaf-quillhold-contract");
+            yield return SelectDialogue(c=>c.Actions?.Any(a=>a.Key=="StillleafArchive"&&a.Value=="accept")==true,"accept the search");
+            Check("stillleaf_native_accept",StoryletPart.Current.IsQuestActive(StillleafArchiveContent.QuestId)&&player.GetIntProperty(StillleafArchiveContent.WordsKnown)==1&&stage()==0);
+            yield return SelectDialogue(c=>c.Target=="End","leave Hollin");
+            yield return Tap(Key.Q);
+            var journal=(QuestLogSnapshot)typeof(QuestLogUI).GetField("_snapshot",Private).GetValue(input.QuestLogUI);
+            Check("stillleaf_native_Q_field_note",State()=="QuestLogOpen"&&input.QuestLogUI.IsOpen&&journal.Active.Any(e=>e.QuestId==StillleafArchiveContent.QuestId));
+            yield return Capture("stillleaf-journal");yield return Tap(Key.Escape);Require(State()=="Normal","Journal closes natively.");
+
+            yield return WorldMapLeg(15,15,"salt_vault");
+            Check("stillleaf_native_salt_vault_arrival",input.CurrentZone.ZoneID==StillleafSaltVault.ZoneId);
+            var halm=EntityById(StillleafSaltVault.IndexerId);var file=StillleafSaltVault.FindCabinet(input.CurrentZone);
+            Require(halm!=null&&file!=null,"The Indexer and the salt file are installed at the Salt-Vault.");
+            yield return Approach(halm.ID);yield return OpenMenu(halm);yield return SelectCommand("Chat");
+            yield return SelectDialogue(c=>c.Actions?.Any(a=>a.Key=="StillleafArchive"&&a.Value=="retrieve")==true,"say the keeper's last words");
+            Check("stillleaf_native_retrieve",player.GetIntProperty(StillleafSaltVault.FileFound)==1&&stage()==1&&file.GetPart<ContainerPart>().Locked);
+            yield return Capture("stillleaf-salt-vault-file");
+            yield return SelectDialogue(c=>c.Target=="Request","name Curation's request");
+            yield return SelectDialogue(c=>c.Actions?.Any(a=>a.Key=="StillleafArchive"&&a.Value=="agree")==true,"agree to Curation's terms");
+            Check("stillleaf_native_agree",player.GetIntProperty(StillleafSaltVault.Terms)==StillleafSaltVault.TermsAgreed&&!file.GetPart<ContainerPart>().Locked);
+            yield return SelectDialogue(c=>c.Target=="End","leave the Indexer");
+            yield return Approach(file.ID);yield return OpenMenu(file);yield return SelectCommand("OpenContainer");
+            Require(State()=="PickupOpen","Opening the released salt file invokes the native loot UI.");
+            var pickup=input.PickupUI;var rows=(List<Entity>)typeof(PickupUI).GetField("_items",Private).GetValue(pickup);
+            int keyRow=rows.FindIndex(e=>e.ID==StillleafSaltVault.KeyId);Require(keyRow>=0,"The keeper's key is in the native loot list.");
+            int cursor=(int)typeof(PickupUI).GetField("_cursorIndex",Private).GetValue(pickup);
+            for(;cursor<keyRow;cursor++)yield return Tap(Key.DownArrow);for(;cursor>keyRow;cursor--)yield return Tap(Key.UpArrow);
+            yield return Tap(Key.Enter);if(State()=="PickupOpen")yield return Tap(Key.Escape);
+            Check("stillleaf_native_take_key",StillleafCustody.HasKey(player)&&stage()==2&&!file.GetPart<ContainerPart>().Contents.Any(e=>e.ID==StillleafSaltVault.KeyId));
+            yield return Capture("stillleaf-key-taken");
+
+            yield return WorldMapLeg(2,4,"stillleaf");
+            Check("stillleaf_native_stillleaf_arrival",input.CurrentZone.ZoneID=="Overworld.2.4.0");
+            yield return Tap(Key.F12);Require(DebugInvincibility.IsEnabled(player),"Explicit native F12 protects only the sinkhole descent.");
+            yield return UseStairs(true,"Overworld.2.4.1");yield return UseStairs(true,SealedLibraryBuilder.ZoneID);
+            Check("stillleaf_native_vault_floor",input.CurrentZone.ZoneID==SealedLibraryBuilder.ZoneID);
+            var door=input.CurrentZone.GetReadOnlyEntities().FirstOrDefault(e=>e.BlueprintName=="SealedLibraryDoor");Require(door!=null,"The sealed door stands on the floor.");
+            yield return Approach(door.ID);var dp=input.CurrentZone.GetEntityPosition(door);var pp=Position();
+            Require(Math.Abs(dp.x-pp.x)+Math.Abs(dp.y-pp.y)==1,"Cardinally beside the vault door.");
+            Require(door.GetPart<LockPart>().IsLocked,"The door is sealed before the bump.");
+            yield return Tap(DirectionKey(dp.x-pp.x,dp.y-pp.y));nativeSteps++;
+            Check("stillleaf_native_door_unlock_bump",!door.GetPart<LockPart>().IsLocked&&Position()==pp);
+            yield return OpenMenu(door);
+            Check("stillleaf_native_door_offers_reseal",Actions().Any(a=>a.Command==StillleafCustody.ResealCommand));
+            yield return Capture("stillleaf-vault-door-open");yield return Tap(Key.Escape);Require(State()=="Normal","Door menu closes natively.");
+            var register=EntityById(StillleafArchive.RegisterId);Require(register!=null,"The register lies in the vault.");
+            var rp=input.CurrentZone.GetEntityPosition(register);yield return Walk(new HashSet<(int,int)>{(rp.x,rp.y)});
+            yield return Tap(Key.G);nativeSteps++;
+            Check("stillleaf_native_register_pickup",StillleafCustody.CarriedRegister(player)!=null&&stage()==3&&EntityById(StillleafArchive.RegisterId)==null);
+            yield return Capture("stillleaf-register-taken");
+            yield return UseStairs(false,"Overworld.2.4.1");yield return UseStairs(false,"Overworld.2.4.0");
+            yield return Tap(Key.F12);Check("stillleaf_native_debug_restored",!DebugInvincibility.IsEnabled(player));
+
+            yield return WorldMapLeg(14,9,"quillhold_return");
+            int recension=PlayerReputation.Get(StillleafCustody.RecensionFaction),curation=PlayerReputation.Get(StillleafCustody.CurationFaction);
+            hollin=EntityById(StillleafArchiveContent.SearcherId);Require(hollin!=null,"Hollin is still at her desk.");
+            yield return Approach(hollin.ID);yield return OpenMenu(hollin);yield return SelectCommand("Chat");
+            yield return SelectDialogue(c=>c.Actions?.Any(a=>a.Key=="StillleafArchive"&&a.Value=="deliver")==true,"deliver the register");
+            Check("stillleaf_native_deliver",StoryletPart.Current.IsQuestCompleted(StillleafArchiveContent.QuestId)&&player.GetIntProperty(StillleafCustody.Outcome)==StillleafCustody.OutcomeDelivered
+                &&StillleafCustody.CarriedRegister(player)==null&&EntityById(StillleafArchive.RegisterId)?.GetPart<PhysicsPart>().Takeable==false
+                &&PlayerReputation.Get(StillleafCustody.RecensionFaction)==recension+StillleafCustody.RecensionForTheRecord
+                &&PlayerReputation.Get(StillleafCustody.CurationFaction)==curation+StillleafCustody.CurationBrokenAgreement,
+                "recension "+recension+"->"+PlayerReputation.Get(StillleafCustody.RecensionFaction)+"; curation "+curation+"->"+PlayerReputation.Get(StillleafCustody.CurationFaction));
+            yield return Capture("stillleaf-register-delivered");
+            yield return SelectDialogue(c=>c.Target=="End","leave Hollin again");
+            yield return OpenMenu(hollin);yield return SelectCommand("Chat");
+            Check("stillleaf_native_no_repeat_deliver",State()=="DialogueOpen"&&!has("StillleafArchive","deliver")&&!has("StillleafArchive","report"));
+            yield return SelectDialogue(c=>c.Target=="End","farewell");
+
+            yield return WorldMapLeg(15,15,"salt_vault_return");
+            halm=EntityById(StillleafSaltVault.IndexerId);Require(halm!=null,"The Indexer is still at the desk.");
+            yield return Approach(halm.ID);yield return OpenMenu(halm);yield return SelectCommand("Chat");
+            yield return SelectDialogue(c=>c.Actions?.Any(a=>a.Key=="StillleafArchive"&&a.Value=="report")==true,"tell the Indexer the truth");
+            Check("stillleaf_native_told_curation",player.GetIntProperty(StillleafCustody.ToldIndexer)==1
+                &&PlayerReputation.Get(StillleafCustody.CurationFaction)==curation+StillleafCustody.CurationBrokenAgreement,"telling is not paid and not punished");
+            yield return Capture("stillleaf-told-curation");
+            yield return SelectDialogue(c=>c.Target=="End","leave the Salt-Vault");
+        }
+        /// <summary>One native world-map leg: &lt; ascends (no stairs at a village
+        /// or field cell), the harness's own BFS walks the world cells, &gt; descends.</summary>
+        private IEnumerator WorldMapLeg(int wx,int wy,string label)
+        {
+            var player=input.PlayerEntity;
+            Require(!WorldMap.IsWorldMapZoneID(input.CurrentZone.ZoneID),"World-map leg starts on the ground.");
+            yield return Tap(Key.LeftShift,Key.Comma);nativeSteps++;
+            Require(WorldMap.IsWorldMapZoneID(input.CurrentZone.ZoneID),"Native < ascends to the world map ("+label+").");
+            var cell=WorldMap.WorldCellToZoneCell(wx,wy);int before=nativeSteps;
+            yield return Walk(new HashSet<(int,int)>{cell});
+            Require(WorldMap.ZoneCellToWorldCell(Position().x,Position().y)==(wx,wy),"Walked to world cell ("+wx+","+wy+").");
+            yield return Tap(Key.LeftShift,Key.Period);nativeSteps++;
+            Check("stillleaf_native_world_map_"+label,input.CurrentZone.ZoneID==WorldMap.ToZoneID(wx,wy,0)&&ReferenceEquals(player,input.PlayerEntity),"steps="+(nativeSteps-before));
+            Require(checks.Last().pass,"Native > descends at "+label+"; zone="+input.CurrentZone.ZoneID);
+            // A generic village (the Salt-Vault) keeps the native presentation; only wait where voxels exist.
+            if(VoxelWorldPresentation.IsSupported(input.CurrentZone.ZoneID))yield return WaitForVoxel();
+        }
+        private IEnumerator UseStairs(bool down,string expectedZone)
+        {
+            var stairs=input.CurrentZone.GetReadOnlyEntities().FirstOrDefault(e=>down?e.HasPart<StairsDownPart>():e.HasPart<StairsUpPart>());
+            Require(stairs!=null,(down?"Stairs down":"Stairs up")+" exist in "+input.CurrentZone.ZoneID);
+            var at=input.CurrentZone.GetEntityPosition(stairs);yield return Walk(new HashSet<(int,int)>{(at.x,at.y)});
+            yield return Tap(Key.LeftShift,down?Key.Period:Key.Comma);nativeSteps++;
+            Require(input.CurrentZone.ZoneID==expectedZone,"Native "+(down?">":"<")+" reaches "+expectedZone+"; zone="+input.CurrentZone.ZoneID);
+            if(VoxelWorldPresentation.IsSupported(input.CurrentZone.ZoneID))yield return WaitForVoxel();
         }
         // Actual door actions and walking verify that the coarse art follows
         // native interiors. Neither roof visibility nor player cells are injected.
@@ -683,7 +806,7 @@ namespace CavesOfOoo.Scenarios.Custom
             report=new Report{runId=RunId,saveRoot=saveRoot,gameId=gameId,markerId=markerId,fatal=fatal,worldSeed=input?.WorldMap?.Seed??0,
                 nativeSteps=nativeSteps,stunnedTurns=stunnedTurns,screenWidth=Screen.width,screenHeight=Screen.height,wallSeconds=watch?.Elapsed.TotalSeconds??0,
                 profileSeconds=profileSeconds,profileIdleSeconds=profileIdleSeconds,profileMetrics=profileMetrics,workloadComplete=complete,screenshots=screenshots.ToArray(),fullReveal=originalReveal,cameraSize=cameraSize,townCameraSize=townCameraSize,
-                bounds="Actual native 1080p GameView and ordinary seed64 N bootstrap. No fixture placement, world replacement, direct quest action, direct inventory transfer, camera or reveal changes. Cardinal movement, nine border crossings, action/loot/dialogue menus, regional request/harvest/delivery, Q/Tab field notes and F5/F6 use queued native keys. F12 invincibility is explicitly enabled only for the long regional journey; combat balance is not tested. Profiling restarts at that journey. Reflection only observes live UI state. Earned fire clay is examined in the real inventory modal, then spent through Nemm/cord/arch actions to create, ring and report a quiet bell, with a native repeat-cost control and checkpoint restoration. Other two material descriptions and guide branches are EditMode-covered, not native-captured. Crops and summit water are covered by separate EditMode integration tests, not this journey. ProfilerRecorder covers a sixty-second native editor window including harness planning, screenshots, existing systems and loads; aggregate timing/allocation maxima do not isolate cue cost or establish FPS. No complete-world, subjective readability or enjoyment claim."};
+                bounds="Actual native 1080p GameView and ordinary seed64 N bootstrap. No fixture placement, world replacement, direct quest action, direct inventory transfer, camera or reveal changes. Cardinal movement, nine border crossings, action/loot/dialogue menus, regional request/harvest/delivery, Q/Tab field notes and F5/F6 use queued native keys. F12 invincibility is explicitly enabled only for the long regional journey; combat balance is not tested. Profiling restarts at that journey. Reflection only observes live UI state. Earned fire clay is examined in the real inventory modal, then spent through Nemm/cord/arch actions to create, ring and report a quiet bell, with a native repeat-cost control and checkpoint restoration. Other two material descriptions and guide branches are EditMode-covered, not native-captured. The Stillleaf Archive chain (SA.6) is then played through native keys: world-map travel by < / WASD / > between Morrowfast, Quillhold, the Salt-Vault and Stillleaf; labelled dialogue shortcuts; the released salt file opened in the native loot UI; the sinkhole descended by its real stairs under explicit F12 (its guardians are not the subject) and F12 restored on the surface; the register taken with G; the delivery outcome enacted and the Indexer told. The filing and resealing outcomes, theft, loss and out-of-order paths are EditMode-covered, not native-captured; the door's reseal action is shown in its native menu but not executed. Crops and summit water are covered by separate EditMode integration tests, not this journey. ProfilerRecorder covers a sixty-second native editor window including harness planning, screenshots, existing systems and loads; aggregate timing/allocation maxima do not isolate cue cost or establish FPS. No complete-world, subjective readability or enjoyment claim."};
             WriteReport();Finished=true;
         }
         private void WriteReport(){report.failures=Failures;report.unexpectedErrors=unexpected;report.checks=checks.ToArray();File.WriteAllText(ReportPath,JsonUtility.ToJson(report,true));}

@@ -215,7 +215,13 @@ namespace CavesOfOoo.Editor
             "regional_native_note_visible","regional_native_receipt_visible","regional_native_delivered_stock_in_trade",
             "regional_native_reloaded_receipt_visible","regional_native_reloaded_no_repeat","regional_native_debug_restored","regional_native_reload","regional_native_mined_source_stays_gone",
             "native_border_regional_west_spawn","native_border_regional_north_stump","native_border_regional_west_source",
-            "native_border_regional_east_stump","native_border_regional_south_spawn","native_border_regional_east_recipient"};
+            "native_border_regional_east_stump","native_border_regional_south_spawn","native_border_regional_east_recipient",
+            // SA.6: the Stillleaf Archive chain is part of the accepted journey.
+            "stillleaf_native_world_map_quillhold","stillleaf_native_quillhold_arrival","stillleaf_native_accept","stillleaf_native_Q_field_note",
+            "stillleaf_native_world_map_salt_vault","stillleaf_native_salt_vault_arrival","stillleaf_native_retrieve","stillleaf_native_agree","stillleaf_native_take_key",
+            "stillleaf_native_world_map_stillleaf","stillleaf_native_stillleaf_arrival","stillleaf_native_vault_floor","stillleaf_native_door_unlock_bump","stillleaf_native_door_offers_reseal",
+            "stillleaf_native_register_pickup","stillleaf_native_debug_restored","stillleaf_native_world_map_quillhold_return","stillleaf_native_deliver","stillleaf_native_no_repeat_deliver",
+            "stillleaf_native_world_map_salt_vault_return","stillleaf_native_told_curation"};
         private static bool ValidateFinalReportForRun(string json,string expectedRunId,string privateRoot)
         {
             if(string.IsNullOrWhiteSpace(json)||string.IsNullOrWhiteSpace(privateRoot)
@@ -232,7 +238,7 @@ namespace CavesOfOoo.Editor
                     ||RequiredChecks.Any(name=>!f.checks.Any(c=>c.name==name)))return false;
                 foreach(string room in new[]{"keeper-gatehouse","dry-hem-guesthouse","long-loop-ropeshop","return-desk-archive","second-bowl-kitchen"})
                     if(!f.checks.Any(c=>c.name=="coarse_interior_"+room)||!f.checks.Any(c=>c.name=="coarse_closed_"+room))return false;
-                if(f.screenshots==null||f.screenshots.Length!=25||f.screenshots.Distinct(StringComparer.Ordinal).Count()!=25)return false;
+                if(f.screenshots==null||f.screenshots.Length!=33||f.screenshots.Distinct(StringComparer.Ordinal).Count()!=33)return false;
                 string dir=Path.GetFullPath(Path.Combine(Application.dataPath,"../Docs/Verification/ChunkGameplayImplementation"));
                 foreach(string label in new[]{"western-spawn","cue-available","cue-active","journal","recovered-parcel","completed-supper","travel-notes","restored-completion","interior-keeper-gatehouse","interior-dry-hem-guesthouse","interior-long-loop-ropeshop","interior-return-desk-archive","interior-second-bowl-kitchen","regional-request","regional-offer-preview","regional-accepted-note","regional-protected-vein","regional-delivered","regional-notes","regional-trade-stock","regional-receipt-restored","faction-standings","fullscreen-world-restored","material-fire-clay-examine","material-quiet-bell"})
                 {
