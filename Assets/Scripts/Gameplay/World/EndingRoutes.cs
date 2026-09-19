@@ -99,7 +99,9 @@ namespace CavesOfOoo.Core
         private static string Refusal(Entity face, Entity actor, Zone zone, bool gather, out List<string> missing, out List<Entity> consume)
         {
             missing = null; consume = null;
-            if (face?.GetPart<RootFacePart>() == null || zone == null || zone.ZoneID != RootSiteBuilder.ChamberZoneID) return "not_the_root";
+            // ER.5 (adversarial sweep): the Root is the one authored face, by its fixed id — a second face
+            // standing in the chamber is not it.
+            if (face?.GetPart<RootFacePart>() == null || face.ID != RootSiteBuilder.FaceId || zone == null || zone.ZoneID != RootSiteBuilder.ChamberZoneID) return "not_the_root";
             if (actor == null || !actor.HasTag("Player") || actor.GetStatValue("Hitpoints", 0) <= 0 || CombatSystem.IsDeathHandled(actor)) return "no_actor";
             if (EndingSpine.Enacted(actor) != 0) return "already_enacted";
             var tc = zone.GetEntityCell(face); var ac = zone.GetEntityCell(actor);

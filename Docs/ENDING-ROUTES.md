@@ -1,6 +1,6 @@
 # The other advertised routes — Gathered and Kept
 
-**Status:** ER.1–ER.4 shipped 19 September 2026 (the Root as a place; the stones and Kept; the cutting and Gathered; ledger and journal). ER.5–ER.6 pending. Release roadmap step 4, second sentence ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap: "Add the other advertised ending routes through the same robust state architecture"). Follows the ending spine ([ENDING-SPINE](ENDING-SPINE.md), ES.1–ES.6 shipped). CoO-original; no Qud parity claim.
+**Status:** ER.1–ER.5 shipped 19 September 2026 (the Root as a place; the stones and Kept; the cutting and Gathered; ledger and journal; the adversarial sweep). ER.6 (native proof) pending. Release roadmap step 4, second sentence ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap: "Add the other advertised ending routes through the same robust state architecture"). Follows the ending spine ([ENDING-SPINE](ENDING-SPINE.md), ES.1–ES.6 shipped). CoO-original; no Qud parity claim.
 
 ## Goal
 
@@ -146,3 +146,17 @@ As for the spine: independent clone, RED before GREEN (compile RED for new APIs,
 **Self-review.** 🔵 `ER4-red` is the fixture failing to compile on my round-trip helper (`SaveReader` takes the factory, as the closure tests already showed); no finding in the shipped code. 🧪 bounded by the hypotheses imagined; the native journal and [R] key are ER.6's. ⚪ Guard unchanged.
 
 **Files.** NEW `EndingRoutesLedgerTests.cs`.
+
+### ER.5 — Robustness and the adversarial sweep (19 September 2026)
+
+**Status:** shipped. Hypothesis run `ER5-red` (15 tests against the shipped ER.1–ER.4: 14 pinned green, 1 red); GREEN `ER5-green` 86/86; full EditMode suite in the clone 15,223 tests, 15,223 passed (`ER5-full`).
+
+**Method.** The taxonomy sweep (boundary inputs, cross-actor, requirement reach — carried vs on the floor, stacks — impostor targets, adjacency geometry, state-side exclusivity with the seventh, save/load of the face and of the ledger, anti-exploit, diag contracts) plus hypothesis-driven probes written before re-reading the code, run first against the shipped ER.1–ER.4 so each fails or passes on its own assertion.
+
+**One gap found and fixed.** A second `TheRoot` entity standing in the chamber was accepted as the Root and enacted the seal (`Hypothesis_ASecondFaceInTheChamber_IsNotTheRoot`, red on the hypothesis run); `EndingRoutes` now gates on the authored face's fixed id (`RootSiteBuilder.FaceId`), so an impostor face refuses as `not_the_root`. Not reachable through shipped worldgen (only the chamber builder places a face), but the tightening makes *the Root* mean the one face. The impostor still *offers* the enactments — the offer is cheap and now refused — recorded, not fixed.
+
+**Pinned as correct.** Nulls and nonsense never throw and never act; another creature beside the face cannot enact; stones on the floor underfoot do not count and are not taken; a stack loses exactly one unit; two cuttings lose exactly one and the stones are untouched; a diagonal neighbour is beside the face and two cells is not; a Root ending on the player closes the seventh's exposure and offers by the same state; the ledger entry of a Root ending survives a round trip; carried stones and the open act survive the player's round trip before the enactment; a closed Root act cannot be refused and renounce touches nothing; every rejection emits exactly one record and never an enactment, and the enactment's `consumed` count is recorded; a player whose world ended elsewhere is offered nothing even with everything carried.
+
+**Self-review.** 🟡 fixed: the impostor-face gap, above. 🔵 an impostor face still offers the enactments (refused on selection); recorded. 🧪 bounded by the hypotheses imagined; no fuzzing. ⚪ Guard unchanged.
+
+**Files.** NEW `EndingRoutesAdversarialTests.cs`; MOD `EndingRoutes.cs` (the face-id gate).
