@@ -95,6 +95,7 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(b.request.TryAct(player,b.zone,"accept"));
             Assert.AreEqual(CavesOfOoo.Storylets.ClosureState.Open,StoryletPart.Current.GetClosure("regional:"+b.request.InstanceId)?.State,"ES.2: an accepted request is an undertaken act");
             Assert.AreEqual(d.Title,StoryletPart.Current.GetClosure("regional:"+b.request.InstanceId).Title);
+            Assert.AreEqual(b.recipient.ID,StoryletPart.Current.GetClosure("regional:"+b.request.InstanceId).GiverId,"ES.3: the recipient is the act's giver");
             Assert.AreEqual(QuestCueState.Active,b.request.GetCueState(player,b.zone));
             Assert.IsTrue(b.request.TryAct(player,b.zone,"release"));
             Assert.AreEqual(CavesOfOoo.Storylets.ClosureState.Refused,StoryletPart.Current.GetClosure("regional:"+b.request.InstanceId)?.State,"ES.2: a release ends the act aloud");

@@ -151,7 +151,7 @@ namespace CavesOfOoo.Core
             // so a rolled-back transaction leaves the ledger untouched.
             string actId="regional:"+InstanceId,actTitle=definition.Title;
             transaction.AfterCommit(()=>{var sp=StoryletPart.Current;if(sp==null)return;
-                if(action=="accept")sp.UndertakeAct(actId,actTitle);else if(action=="release")sp.RefuseAct(actId);else if(action=="deliver")sp.CloseAct(actId);});
+                if(action=="accept")sp.UndertakeAct(actId,actTitle,recipient,zone);else if(action=="release")sp.RefuseAct(actId);else if(action=="deliver")sp.CloseAct(actId);});
             var receipt=new{definition=DefinitionId,instance=InstanceId,action};
             transaction.AfterCommit(()=>Diag.Record("quest","RegionalRequestApplied",actor:actor,target:recipient,payload:receipt));
             return false;

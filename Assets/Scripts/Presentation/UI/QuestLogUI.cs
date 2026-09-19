@@ -115,6 +115,8 @@ namespace CavesOfOoo.Rendering
                 return true;
             }
             if(input.GetKeyDown(KeyCode.Tab)){NotesVisible=!NotesVisible;Rebuild();Render();return true;}
+            // ES.3: renounce lost acts aloud from the journal; only acts whose giver is gone are touched.
+            if(!NotesVisible&&input.GetKeyDown(KeyCode.R)){if((StoryletPart.Current?.RenounceLost(StoryletPart.LocalPlayer)??0)>0){Rebuild();Render();}return true;}
             if(NotesVisible)
             {
                 int delta=input.GetKeyDown(KeyCode.PageDown)||input.GetKeyDown(KeyCode.RightArrow)?1:
@@ -145,7 +147,7 @@ namespace CavesOfOoo.Rendering
             DrawText(2, y, "closure  " + _snapshot.ClosureClosed + " closed  " + _snapshot.ClosureRefused + " refused  " + _snapshot.ClosureOpen + " open", ColDim);
             y += 2;
 
-            if (_snapshot.ActiveCount == 0 && _snapshot.CompletedCount == 0 && _snapshot.RefusedCount == 0)
+            if (_snapshot.ActiveCount == 0 && _snapshot.CompletedCount == 0 && _snapshot.RefusedCount == 0 && _snapshot.UnspokenCount == 0)
             {
                 DrawText(2, y, "You have no quests yet.", ColDim);
                 DrawFooter();
@@ -235,6 +237,19 @@ namespace CavesOfOoo.Rendering
                 }
             }
 
+            // ES.3: open acts the player must still end aloud, and where.
+            if (_snapshot.UnspokenCount > 0 && y < H - 4)
+            {
+                y++;
+                DrawText(2, y, "UNSPOKEN", ColHeader); y++;
+                for (int i = 0; i < _snapshot.Unspoken.Count && y < H - 4; i++)
+                {
+                    DrawChar(6, y, GLYPH_PENDING, ColPending);
+                    foreach (string line in WrapJournalText(_snapshot.Unspoken[i], W - 10))
+                    { if (y >= H - 4) break; DrawText(8, y, line, ColPending); y++; }
+                }
+            }
+
             // ES.2: acts ended by a spoken no are closure too, and are listed as such.
             if (_snapshot.RefusedCount > 0 && y < H - 4)
             {
@@ -265,7 +280,7 @@ namespace CavesOfOoo.Rendering
 
         private void DrawFooter()
         {
-            DrawText(2, H - 2, "[Tab] quests / field notes  [PgUp/PgDn] pages  [Q/Esc] close", ColDim);
+            DrawText(2, H - 2, (_snapshot.LostCount > 0 ? "[R] renounce lost  " : "") + "[Tab] quests / field notes  [PgUp/PgDn] pages  [Q/Esc] close", ColDim);
         }
 
         private void DrawChar(int x, int y, char c, Color color)

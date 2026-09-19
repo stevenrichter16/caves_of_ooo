@@ -134,6 +134,7 @@ namespace CavesOfOoo.Core
             if (command == "accept")
             {
                 StoryletPart.Current.StartQuest(new QuestState { QuestId = QuestId, CurrentStageIndex = 0, EnteredStageAtTurn = TurnManager.Active?.TickCount ?? 0 });
+                StoryletPart.Current.SetGiver(QuestId, speaker, SettlementRuntime.ActiveZone);
                 player.SetIntProperty(WordsKnown, 1);
                 // SA.5: work done before the errand was taken counts, in order
                 // (mirrors Morrowfast's already-recovered parcel), so the journal

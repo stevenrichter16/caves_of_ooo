@@ -71,16 +71,16 @@ namespace CavesOfOoo.Core
             switch (command)
             {
                 case "decline-register": MessageLog.Add("The watchkeeper steps aside. The northern arch is open; no name, payment, or favor is owed."); return true;
-                case "accept-return": Start(ReturnQuestId); if (Flag(actor, EddenConsent)) Finish(ReturnQuestId, "account", actor); MessageLog.Add("Ask Edden, here in Morrowfast, whether he wants Hesta told he is safe. Bring back only what he permits."); return true;
+                case "accept-return": Start(ReturnQuestId); StoryletPart.Current.SetGiver(ReturnQuestId, speaker, SettlementRuntime.ActiveZone); if (Flag(actor, EddenConsent)) Finish(ReturnQuestId, "account", actor); MessageLog.Add("Ask Edden, here in Morrowfast, whether he wants Hesta told he is safe. Bring back only what he permits."); return true;
                 case "eddens-account":
                     actor.SetIntProperty(EddenConsent, 1); Finish(ReturnQuestId, "account", actor);
                     MessageLog.Add("Edden: 'Tell her I am safe. That is all I am asking you to carry.'"); return true;
                 case "report-return": return Complete(ReturnQuestId, actor, "Hesta erases the open notch. 'Safe. I can let that be the whole sentence.'");
                 case "refuse-return": return Refuse(ReturnQuestId, actor, "You release the promise. Hesta accepts that Edden's account is his to give.");
-                case "accept-bell": Start(BellQuestId); if (Flag(actor, BellDiagnosed)) Finish(BellQuestId, "cord", actor); if (Flag(actor, BellWorked)) Finish(BellQuestId, "bell", actor); MessageLog.Add("Examine the reserve cord inside the southwest rope shop, then work at the northern arch. Fire clay makes a quiet sleeve; leaving the clapper bare costs no material."); return true;
+                case "accept-bell": Start(BellQuestId); StoryletPart.Current.SetGiver(BellQuestId, speaker, SettlementRuntime.ActiveZone); if (Flag(actor, BellDiagnosed)) Finish(BellQuestId, "cord", actor); if (Flag(actor, BellWorked)) Finish(BellQuestId, "bell", actor); MessageLog.Add("Examine the reserve cord inside the southwest rope shop, then work at the northern arch. Fire clay makes a quiet sleeve; leaving the clapper bare costs no material."); return true;
                 case "report-bell": return Complete(BellQuestId, actor, "Nemm checks the bell's new voice. The setting remains yours to change at the arch.");
                 case "refuse-bell": return Refuse(BellQuestId, actor, "You leave the bell work to the watch. Any work already done remains in place.");
-                case "accept-supper": Start(SupperQuestId); if (Flag(actor, SupperMoved)) Finish(SupperQuestId, "stool", actor); MessageLog.Add("Farra asks you to move the spare supper stool inside the western guesthouse, leaving the doorway clear, then return to her."); return true;
+                case "accept-supper": Start(SupperQuestId); StoryletPart.Current.SetGiver(SupperQuestId, speaker, SettlementRuntime.ActiveZone); if (Flag(actor, SupperMoved)) Finish(SupperQuestId, "stool", actor); MessageLog.Add("Farra asks you to move the spare supper stool inside the western guesthouse, leaving the doorway clear, then return to her."); return true;
                 case "report-supper": return Complete(SupperQuestId, actor, "Farra checks the space you left. 'A place can be offered without deciding who must fill it.'");
                 case "refuse-supper": return Refuse(SupperQuestId, actor, "You release the supper errand. No place at the common table is conditional on helping.");
                 case "consent-record": actor.SetIntProperty("MorrowfastRecordConsent", 1); MessageLog.Add("Vennit records only that you passed Morrowfast, with your permission. You may withdraw it here."); return true;

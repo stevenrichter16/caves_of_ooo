@@ -479,6 +479,8 @@ namespace CavesOfOoo.Core
                     EnteredStageAtTurn = currentTurn,
                 };
                 sp.StartQuest(state);
+                // ES.3: remember who the act was taken on from, and where, for the closure-ledger.
+                sp.SetGiver(arg, speaker, SettlementRuntime.ActiveZone);
 
                 if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("quest"))
                 {

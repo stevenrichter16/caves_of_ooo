@@ -58,6 +58,60 @@ namespace CavesOfOoo.Storylets
         public bool CloseAct(string id) { if (!IsOpenAct(id)) return false; End(id, ClosureState.Closed); return true; }
         public bool RefuseAct(string id) { if (!IsOpenAct(id)) return false; End(id, ClosureState.Refused); return true; }
         private bool IsOpenAct(string id) => !string.IsNullOrEmpty(id) && _ledger.TryGetValue(id, out var e) && e.IsOpen;
+        /// <summary>ES.3: record who an open act was taken on from, and where.</summary>
+        public void SetGiver(string id, Entity giver, Zone zone)
+        {
+            if (string.IsNullOrEmpty(id) || !_ledger.TryGetValue(id, out var e) || !e.IsOpen) return;
+            e.GiverId = giver?.ID; e.GiverName = giver?.GetDisplayName(); e.Where = zone?.ZoneID;
+        }
+        public void UndertakeAct(string id, string title, Entity giver, Zone zone) { UndertakeAct(id, title); SetGiver(id, giver, zone); }
+        private static OverworldZoneManager CurrentManager()
+        { var here = SettlementRuntime.ActiveZone; return here != null ? WorldLocationContext.For(here) : null; }
+        /// <summary>ES.3: an open act is lost when its giver is known, its place is loaded here and now,
+        /// and the giver is not there alive. Anything unknown stays open and is not called lost.</summary>
+        public bool IsLost(ClosureEntry e)
+        {
+            if (e == null || !e.IsOpen || string.IsNullOrEmpty(e.GiverId) || string.IsNullOrEmpty(e.Where)) return false;
+            var manager = CurrentManager();
+            if (manager == null || !manager.CachedZones.TryGetValue(e.Where, out var zone) || zone == null) return false;
+            foreach (var entity in zone.GetReadOnlyEntities())
+                if (entity.ID == e.GiverId) return entity.GetStatValue("Hitpoints", 0) <= 0 || CombatSystem.IsDeathHandled(entity);
+            return true;
+        }
+        public static string PlaceName(string zoneId, OverworldZoneManager manager)
+        {
+            var (x, y, z) = WorldMap.FromZoneID(zoneId ?? "");
+            if (x < 0 || y < 0) return "where you took it on";
+            var poi = manager?.WorldMap?.GetPOI(x, y);
+            string place = !string.IsNullOrEmpty(poi?.Name) ? poi.Name : "the wilds at (" + x + "," + y + ")";
+            return z > 0 ? "below " + place : place;
+        }
+        /// <summary>ES.3: how the player is told to end an open act.</summary>
+        public string Describe(ClosureEntry e)
+        {
+            if (e == null) return "";
+            string title = ClosureTitle(e);
+            if (IsLost(e)) return title + " — " + (string.IsNullOrEmpty(e.GiverName) ? "its giver" : e.GiverName) + " is gone; [R] renounces it.";
+            if (string.IsNullOrEmpty(e.GiverName)) return title + " — end it where you took it on.";
+            return title + " — end it with " + e.GiverName + " at " + PlaceName(e.Where, CurrentManager()) + ".";
+        }
+        /// <summary>ES.3: renounce every lost act aloud — a spoken end for an act whose giver is gone.
+        /// Only lost acts are touched. Returns how many were ended.</summary>
+        public int RenounceLost(Entity actor = null)
+        {
+            int n = 0;
+            foreach (var e in new List<ClosureEntry>(_ledger.Values))
+            {
+                if (!IsLost(e)) continue;
+                _quests.Remove(e.QuestId); _failedQuests.Remove(e.QuestId);
+                End(e.QuestId, ClosureState.Refused); n++;
+                MessageLog.Add("Renounced: " + ClosureTitle(e) + " — " + (string.IsNullOrEmpty(e.GiverName) ? "its giver" : e.GiverName) + " is gone.");
+                if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("closure"))
+                    CavesOfOoo.Diagnostics.Diag.Record(category: "closure", kind: "Renounced", actor: actor, payload: new { questId = e.QuestId, giver = e.GiverId, where = e.Where });
+                FireQuestEvent("QuestRefused", e.QuestId);
+            }
+            return n;
+        }
         /// <summary>The name the player reads for a ledger entry.</summary>
         public static string ClosureTitle(ClosureEntry e) => e == null ? "" : !string.IsNullOrEmpty(e.Title) ? e.Title : QuestDisplayName(e.QuestId);
         // QS.2 (Docs/QUEST-SYSTEM.md): tracks quests the player has
@@ -178,12 +232,13 @@ namespace CavesOfOoo.Storylets
             {
                 if (e.State == ClosureState.Closed) reading.Closed++;
                 else if (e.State == ClosureState.Refused) reading.Refused++;
-                else { reading.Open++; reading.OpenIds.Add(e.QuestId); }
+                else { reading.Open++; reading.OpenIds.Add(e.QuestId); if (IsLost(e)) reading.Lost++; }
             }
             reading.OpenIds.Sort(System.StringComparer.Ordinal);
+            foreach (var id in reading.OpenIds) reading.Descriptions.Add(Describe(_ledger[id]));
             if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("closure"))
                 CavesOfOoo.Diagnostics.Diag.Record(category: "closure", kind: "Read", actor: actor,
-                    payload: new { closed = reading.Closed, refused = reading.Refused, open = reading.Open, openIds = string.Join(",", reading.OpenIds) });
+                    payload: new { closed = reading.Closed, refused = reading.Refused, open = reading.Open, lost = reading.Lost, openIds = string.Join(",", reading.OpenIds) });
             return reading;
         }
 
@@ -739,6 +794,8 @@ namespace CavesOfOoo.Storylets
                 writer.WriteString(id);
 
             // ES.1: closure-ledger section, appended so older readers stop before it.
+            // ES.3: a negative first value is a version marker (-2 = v2); v1 had no giver fields.
+            writer.Write(-2);
             writer.Write(_ledger.Count);
             foreach (var e in _ledger.Values)
             {
@@ -748,6 +805,7 @@ namespace CavesOfOoo.Storylets
                 writer.Write(e.EndedTurn);
                 writer.Write(e.Spoken ? 1 : 0);
                 writer.WriteString(e.Title ?? "");
+                writer.WriteString(e.GiverId ?? ""); writer.WriteString(e.GiverName ?? ""); writer.WriteString(e.Where ?? "");
             }
         }
 
@@ -836,12 +894,13 @@ namespace CavesOfOoo.Storylets
             bool ledgerRead = false;
             try
             {
-                int ledgerCount = reader.ReadInt();
+                int first = reader.ReadInt(); int version = first < 0 ? -first : 1; int ledgerCount = first < 0 ? reader.ReadInt() : first;
                 for (int i = 0; i < ledgerCount; i++)
                 {
                     var e = new ClosureEntry { QuestId = reader.ReadString(), State = (ClosureState)reader.ReadInt(), UndertakenTurn = reader.ReadInt(), EndedTurn = reader.ReadInt() };
                     e.Spoken = reader.ReadInt() == 1;
                     string title = reader.ReadString(); e.Title = string.IsNullOrEmpty(title) ? null : title;
+                    if (version >= 2) { string g = reader.ReadString(), gn = reader.ReadString(), w = reader.ReadString(); e.GiverId = g.Length > 0 ? g : null; e.GiverName = gn.Length > 0 ? gn : null; e.Where = w.Length > 0 ? w : null; }
                     _ledger[e.QuestId] = e;
                 }
                 ledgerRead = true;

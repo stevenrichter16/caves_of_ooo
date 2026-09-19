@@ -24,6 +24,9 @@ namespace CavesOfOoo.Rendering
         public readonly int RefusedCount;
         /// <summary>ES.2: the closure-ledger's counts (open includes acts dropped in silence).</summary>
         public readonly int ClosureClosed, ClosureRefused, ClosureOpen;
+        /// <summary>ES.3: open acts not shown under ACTIVE (dropped, non-quest, or lost), each with where to end it.</summary>
+        public readonly IReadOnlyList<string> Unspoken;
+        public readonly int UnspokenCount, LostCount;
 
         public QuestLogSnapshot(
             IReadOnlyList<QuestLogActiveEntry> active,
@@ -34,7 +37,15 @@ namespace CavesOfOoo.Rendering
             IReadOnlyList<QuestLogActiveEntry> active,
             IReadOnlyList<string> completed,
             IReadOnlyList<string> refused, int closureClosed, int closureRefused, int closureOpen)
+            : this(active, completed, refused, closureClosed, closureRefused, closureOpen, null, 0) { }
+
+        public QuestLogSnapshot(
+            IReadOnlyList<QuestLogActiveEntry> active,
+            IReadOnlyList<string> completed,
+            IReadOnlyList<string> refused, int closureClosed, int closureRefused, int closureOpen,
+            IReadOnlyList<string> unspoken, int lostCount)
         {
+            Unspoken = unspoken ?? System.Array.Empty<string>(); UnspokenCount = Unspoken.Count; LostCount = lostCount;
             Active = active ?? System.Array.Empty<QuestLogActiveEntry>();
             Completed = completed ?? System.Array.Empty<string>();
             Refused = refused ?? System.Array.Empty<string>();

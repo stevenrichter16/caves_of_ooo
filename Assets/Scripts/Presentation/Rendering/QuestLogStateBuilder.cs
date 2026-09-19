@@ -113,16 +113,21 @@ namespace CavesOfOoo.Rendering
             foreach (var id in completedSet)
                 completed.Add(StoryletPart.QuestDisplayName(id));
             completed.Sort(System.StringComparer.Ordinal);
-            var refused = new List<string>(); int closed = 0, refusedCount = 0, open = 0;
+            var refused = new List<string>(); var unspoken = new List<string>(); int closed = 0, refusedCount = 0, open = 0, lost = 0;
             foreach (var e in part.Ledger.Values)
             {
                 if (e.State == ClosureState.Closed) closed++;
                 else if (e.State == ClosureState.Refused) { refusedCount++; refused.Add(StoryletPart.ClosureTitle(e)); }
-                else open++;
+                else
+                {
+                    open++; bool isLost = part.IsLost(e); if (isLost) lost++;
+                    // ES.3: active, healthy acts are read under ACTIVE; everything else open is named here.
+                    if (isLost || !part.IsQuestActive(e.QuestId)) unspoken.Add(part.Describe(e));
+                }
             }
-            refused.Sort(System.StringComparer.Ordinal);
+            refused.Sort(System.StringComparer.Ordinal); unspoken.Sort(System.StringComparer.Ordinal);
 
-            return new QuestLogSnapshot(active, completed, refused, closed, refusedCount, open);
+            return new QuestLogSnapshot(active, completed, refused, closed, refusedCount, open, unspoken, lost);
         }
 
         /// <summary>

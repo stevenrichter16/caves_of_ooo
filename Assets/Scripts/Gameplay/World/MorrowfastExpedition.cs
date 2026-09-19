@@ -150,6 +150,7 @@ namespace CavesOfOoo.Core
                 if (poi != null || manager.WorldMap.GetBiome(2, 6) != BiomeType.Grovelands)
                     return Reject(speaker, player, command, "destination_changed");
                 StoryletPart.Current.StartQuest(new QuestState { QuestId = QuestId, CurrentStageIndex = 0, EnteredStageAtTurn = TurnManager.Active?.TickCount ?? 0 });
+                StoryletPart.Current.SetGiver(QuestId, speaker, SettlementRuntime.ActiveZone);
                 if (CarriedParcel(player) != null)
                     StoryletPart.Current.FinishObjective(QuestId, "recover", player);
                 MessageLog.Add("Farra: 'One chunk west, we left a tagged supply basket near the east edge of the compost field. Open it and take the wrapped supper cloth before crossing back into town. No trees need burning and no ore needs digging. The guest beds remain yours either way.' [Q] keeps these directions.");

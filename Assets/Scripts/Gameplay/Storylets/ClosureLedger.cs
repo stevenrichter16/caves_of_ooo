@@ -17,6 +17,8 @@ namespace CavesOfOoo.Storylets
         public string QuestId;
         /// <summary>Player-facing title for acts outside the quest layer; null for quests (use the quest display name).</summary>
         public string Title;
+        /// <summary>ES.3: who the act was taken on from, and where (zone id), so a reading can say where to end it and a lost giver can be recognised.</summary>
+        public string GiverId, GiverName, Where;
         public ClosureState State;
         /// <summary>Turn the act was undertaken (−1 when projected from an older save).</summary>
         public int UndertakenTurn = -1;
@@ -31,6 +33,10 @@ namespace CavesOfOoo.Storylets
     public sealed class ClosureReading
     {
         public int Closed, Refused, Open;
+        /// <summary>ES.3: open acts whose giver is known, whose place is loaded, and who is not there alive.</summary>
+        public int Lost;
+        /// <summary>ES.3: one line per open act, in <see cref="OpenIds"/> order, saying where to end it.</summary>
+        public readonly List<string> Descriptions = new List<string>();
         public readonly List<string> OpenIds = new List<string>();
         /// <summary>No act left unspoken. The practice-path gate reads exactly this.</summary>
         public bool Clean => Open == 0;
