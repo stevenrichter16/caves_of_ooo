@@ -1,6 +1,6 @@
 # Breadth pass — the seams the campaign work left open
 
-**Status:** B.1–B.2 shipped 19 September 2026 (the journal and the titles; Morrowfast's ground). B.3–B.6 pending. Release roadmap step 5 ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap: "Complete release-scoped depth … defer systems whose principal contribution is scope rather than a stronger decision"). Follows the ending routes ([ENDING-ROUTES](ENDING-ROUTES.md), complete). CoO-original; no Qud parity claim.
+**Status:** B.1–B.3 shipped 19 September 2026 (the journal and the titles; Morrowfast's ground; after the ending). B.4–B.6 pending. Release roadmap step 5 ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap: "Complete release-scoped depth … defer systems whose principal contribution is scope rather than a stronger decision"). Follows the ending routes ([ENDING-ROUTES](ENDING-ROUTES.md), complete). CoO-original; no Qud parity claim.
 
 ## Goal
 
@@ -96,3 +96,18 @@ As for the ending routes: independent clone, RED before GREEN, explicit-path int
 - ⚪ Guard unchanged.
 
 **Files.** MOD `MorrowfastSceneRuntime.cs`; NEW `MorrowfastGroundNamesTests.cs`.
+
+### B.3 — After the ending (19 September 2026)
+
+**Status:** shipped. RED `B3-red` (7 of 12 failing); GREEN `B3-green` 378/378; full EditMode suite in the clone 15,252 tests, 15,252 passed (`B3-full`).
+
+**What the player sees.** Once any ending is enacted, Hollin no longer offers memory-marble, the Indexer no longer offers mute-stone, and no tendril offers a thread to carry down. Hollin, the Indexer, any choir tendril and the Palimpsest's echo each gain a *What has changed?* line that appears only after an ending and answers for the ending actually enacted — four voices, four endings, sixteen short answers, none of which calls an ending right or explains the seventh's refusal. Before any ending nothing changes.
+
+**Implementation.** Content only: `IfFact Ending:=:0` on the three offers (`NarrativeStatePart` sets the `Ending` fact on every enactment; an unset fact reads 0); four `IfFact Ending:=:N` choices and `After1`–`After4` nodes per speaker in `StillleafArchive.json`, `RotChoir.json` and `Palimpsest.json` (surgical splices, parse-validated; the apply step asserts the Choir's voice gate and the guardrails over the new nodes).
+
+**Self-review (Methodology Template §5).**
+- 🔵 No finding beyond the pins surfaced in the RED→GREEN cycle.
+- 🔵 After Gathered the epilogue says no one remains, yet the speakers still speak: consequences are stated, not enacted (the plan's bound). The Gathered lines are written as the gathering under way.
+- ⚪ Guard unchanged.
+
+**Files.** MOD `Conversations/StillleafArchive.json`, `Conversations/RotChoir.json`, `Conversations/Palimpsest.json`; NEW `AfterTheEndingVoicesTests.cs`.

@@ -33,6 +33,26 @@
               "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetChoir" }]
             },
             {
+              "Text": "What has changed?",
+              "Target": "After1",
+              "Predicates": [ { "Key": "IfFact", "Value": "Ending:=:1" } ]
+            },
+            {
+              "Text": "What has changed?",
+              "Target": "After2",
+              "Predicates": [ { "Key": "IfFact", "Value": "Ending:=:2" } ]
+            },
+            {
+              "Text": "What has changed?",
+              "Target": "After3",
+              "Predicates": [ { "Key": "IfFact", "Value": "Ending:=:3" } ]
+            },
+            {
+              "Text": "What has changed?",
+              "Target": "After4",
+              "Predicates": [ { "Key": "IfFact", "Value": "Ending:=:4" } ]
+            },
+            {
               "Text": "Farewell.",
               "Target": "End"
             }
@@ -653,6 +673,30 @@
               "Actions": [{ "Key": "SetProperty", "Value": "MetPalimpsest:true" }]
             }
           ]
+        },
+        {
+          "ID": "After1",
+          "Text": "'The page of the Three Dispositions has a new line under the third, in no hand the archive knows. It says: held. Nothing after it. I have left the space after it blank, which is the most honest thing I have ever entered.'",
+          "AllowEscape": true,
+          "Choices": [ { "Text": "Back.", "Target": "Start" }, { "Text": "Farewell.", "Target": "End" } ]
+        },
+        {
+          "ID": "After2",
+          "Text": "'Every margin in the archive is filling with names, and none of them are ours. I have never been so glad to be crowded out. The third hand's entries were quiet about this. They still are.'",
+          "AllowEscape": true,
+          "Choices": [ { "Text": "Back.", "Target": "Start" }, { "Text": "Farewell.", "Target": "End" } ]
+        },
+        {
+          "ID": "After3",
+          "Text": "'The first disposition is complete: gathered. I remember everything, and I have begun to remember it in a voice that is not quite mine. It is a kind voice. I am recording that it is kind, so that someone will know I noticed.'",
+          "AllowEscape": true,
+          "Choices": [ { "Text": "Back.", "Target": "Start" }, { "Text": "Farewell.", "Target": "End" } ]
+        },
+        {
+          "ID": "After4",
+          "Text": "'The second disposition: kept. I will remember this exactly as it is, forever. That was always the promise.' The echo pauses mid-line. 'And the threat. Enter both.'",
+          "AllowEscape": true,
+          "Choices": [ { "Text": "Back.", "Target": "Start" }, { "Text": "Farewell.", "Target": "End" } ]
         }
       ]
     }

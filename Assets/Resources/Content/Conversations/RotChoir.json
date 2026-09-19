@@ -47,6 +47,26 @@
               "Actions": [{ "Key": "RefuseQuest", "Value": "GatherTheWorld" }]
             },
         {
+          "Text": "What has changed?",
+          "Target": "After1",
+          "Predicates": [ { "Key": "IfFact", "Value": "Ending:=:1" } ]
+        },
+        {
+          "Text": "What has changed?",
+          "Target": "After2",
+          "Predicates": [ { "Key": "IfFact", "Value": "Ending:=:2" } ]
+        },
+        {
+          "Text": "What has changed?",
+          "Target": "After3",
+          "Predicates": [ { "Key": "IfFact", "Value": "Ending:=:3" } ]
+        },
+        {
+          "Text": "What has changed?",
+          "Target": "After4",
+          "Predicates": [ { "Key": "IfFact", "Value": "Ending:=:4" } ]
+        },
+        {
               "Text": "Farewell.",
               "Target": "End"
             }
@@ -393,7 +413,7 @@
             {
               "Text": "Give me a thread of you to carry down to it.",
               "Target": "Thread",
-              "Predicates": [{ "Key": "IfNotHaveProperty", "Value": "GatherCuttingGiven" }]
+              "Predicates": [{ "Key": "IfNotHaveProperty", "Value": "GatherCuttingGiven" }, { "Key": "IfFact", "Value": "Ending:=:0" }]
             },
             {
               "Text": "Back to my other questions.",
@@ -625,6 +645,30 @@
         "Text": "'Then it is set down, and said. We do not argue. The soil remembers that you said it to our face, which is more than most do.' The thread you did not carry has already grown back.",
         "AllowEscape": true,
         "Choices": [{ "Text": "Farewell.", "Target": "End" }]
+      },
+      {
+        "ID": "After1",
+        "Text": "'A bearer. We felt the new binding close over the soil like skin over a cut. We are still here, walker, and still hungry, and still patient. So is a bearer, for a while.'",
+        "AllowEscape": true,
+        "Choices": [ { "Text": "Back.", "Target": "Start" }, { "Text": "Farewell.", "Target": "End" } ]
+      },
+      {
+        "ID": "After2",
+        "Text": "'Everyone names everyone now. It tickles, down in the substrate. We are learning to be named back. We do not know yet whether we like it; we are finding out slowly, which is how we find out everything.'",
+        "AllowEscape": true,
+        "Choices": [ { "Text": "Back.", "Target": "Start" }, { "Text": "Farewell.", "Target": "End" } ]
+      },
+      {
+        "ID": "After3",
+        "Text": "'You carried us down. We are grateful, and soon there will be no one to be grateful to: only us, and us is everyone. Do not be afraid of the green. It remembers you already.'",
+        "AllowEscape": true,
+        "Choices": [ { "Text": "Back.", "Target": "Start" }, { "Text": "Farewell.", "Target": "End" } ]
+      },
+      {
+        "ID": "After4",
+        "Text": "'Sealed. We cannot reach it now. We will wait. The soil is patient, and so are we, longer than a seal, longer than the ones who tend it.'",
+        "AllowEscape": true,
+        "Choices": [ { "Text": "Back.", "Target": "Start" }, { "Text": "Farewell.", "Target": "End" } ]
       }
     ]
     },

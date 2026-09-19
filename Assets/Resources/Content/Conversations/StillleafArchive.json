@@ -76,7 +76,7 @@
             {
               "Text": "The Three Dispositions name three stones that would hold the world still. Have you memory-marble for the sealing?",
               "Target": "Stone",
-              "Predicates": [ { "Key": "IfNotHaveProperty", "Value": "KeepMemoryMarbleGiven" } ],
+              "Predicates": [ { "Key": "IfNotHaveProperty", "Value": "KeepMemoryMarbleGiven" }, { "Key": "IfFact", "Value": "Ending:=:0" } ],
               "Actions": []
             },
             {
@@ -84,6 +84,26 @@
               "Target": "KeepReleased",
               "Predicates": [ { "Key": "IfQuestActive", "Value": "KeepTheWorld" } ],
               "Actions": [ { "Key": "RefuseQuest", "Value": "KeepTheWorld" } ]
+            },
+            {
+              "Text": "What has changed?",
+              "Target": "After1",
+              "Predicates": [ { "Key": "IfFact", "Value": "Ending:=:1" } ]
+            },
+            {
+              "Text": "What has changed?",
+              "Target": "After2",
+              "Predicates": [ { "Key": "IfFact", "Value": "Ending:=:2" } ]
+            },
+            {
+              "Text": "What has changed?",
+              "Target": "After3",
+              "Predicates": [ { "Key": "IfFact", "Value": "Ending:=:3" } ]
+            },
+            {
+              "Text": "What has changed?",
+              "Target": "After4",
+              "Predicates": [ { "Key": "IfFact", "Value": "Ending:=:4" } ]
             },
             {
               "Text": "Farewell.",
@@ -228,6 +248,30 @@
               "Actions": []
             }
           ]
+        },
+        {
+          "ID": "After1",
+          "Text": "Hollin does not look up. 'A bearer. The survey maps agree with each other this morning, which they have not done in my lifetime. I have entered it. I have also entered, in the margin, that nobody asked the bearer what a thousand mornings cost. Someone should read that, later.'",
+          "AllowEscape": true,
+          "Choices": [ { "Text": "Back.", "Target": "Start" }, { "Text": "Farewell.", "Target": "End" } ]
+        },
+        {
+          "ID": "After2",
+          "Text": "'Everyone is naming everything. The Recension has never been busier or less needed.' She turns a page. 'They say the Reader is tired. The Reader has never been tired. I have entered it as rumour, which is all the Mainline will let me call it.'",
+          "AllowEscape": true,
+          "Choices": [ { "Text": "Back.", "Target": "Start" }, { "Text": "Farewell.", "Target": "End" } ]
+        },
+        {
+          "ID": "After3",
+          "Text": "'The green is in the stacks. It is very gentle with the paper; it reads before it takes. I keep writing, because it is what I do, and because whatever this becomes will keep this too.'",
+          "AllowEscape": true,
+          "Choices": [ { "Text": "Back.", "Target": "Start" }, { "Text": "Farewell.", "Target": "End" } ]
+        },
+        {
+          "ID": "After4",
+          "Text": "'Sealed. The Mainline has filed the world under continuing, and so have I. It does not feel like continuing. It feels like being kept.'",
+          "AllowEscape": true,
+          "Choices": [ { "Text": "Back.", "Target": "Start" }, { "Text": "Farewell.", "Target": "End" } ]
         }
       ]
     },
@@ -307,7 +351,7 @@
             {
               "Text": "Curation keeps mute-stone. I need it for the sealing of the Root.",
               "Target": "MuteStone",
-              "Predicates": [ { "Key": "IfNotHaveProperty", "Value": "KeepMuteStoneGiven" } ],
+              "Predicates": [ { "Key": "IfNotHaveProperty", "Value": "KeepMuteStoneGiven" }, { "Key": "IfFact", "Value": "Ending:=:0" } ],
               "Actions": []
             },
             {
@@ -315,6 +359,26 @@
               "Target": "KeepReleased",
               "Predicates": [ { "Key": "IfQuestActive", "Value": "KeepTheWorld" } ],
               "Actions": [ { "Key": "RefuseQuest", "Value": "KeepTheWorld" } ]
+            },
+            {
+              "Text": "What has changed?",
+              "Target": "After1",
+              "Predicates": [ { "Key": "IfFact", "Value": "Ending:=:1" } ]
+            },
+            {
+              "Text": "What has changed?",
+              "Target": "After2",
+              "Predicates": [ { "Key": "IfFact", "Value": "Ending:=:2" } ]
+            },
+            {
+              "Text": "What has changed?",
+              "Target": "After3",
+              "Predicates": [ { "Key": "IfFact", "Value": "Ending:=:3" } ]
+            },
+            {
+              "Text": "What has changed?",
+              "Target": "After4",
+              "Predicates": [ { "Key": "IfFact", "Value": "Ending:=:4" } ]
             },
             {
               "Text": "Farewell.",
@@ -506,6 +570,30 @@
               "Actions": []
             }
           ]
+        },
+        {
+          "ID": "After1",
+          "Text": "'Entered: the seventh interval, occupied. Status: continuing.' The gloved hand stops over the line. 'The file does not editorialise. It would like to, this once.'",
+          "AllowEscape": true,
+          "Choices": [ { "Text": "Back.", "Target": "Start" }, { "Text": "Farewell.", "Target": "End" } ]
+        },
+        {
+          "ID": "After2",
+          "Text": "'Entered: the Six, ageing. Curation has opened a file for each of them, which is presumptuous, and correct.' A pause. 'They are not frightened. The file does not know where to put that.'",
+          "AllowEscape": true,
+          "Choices": [ { "Text": "Back.", "Target": "Start" }, { "Text": "Farewell.", "Target": "End" } ]
+        },
+        {
+          "ID": "After3",
+          "Text": "'Entered: the substrate, at the Root. The files are intact; the Choir prefers them intact. I am told this is kindness. The file has no heading for it.'",
+          "AllowEscape": true,
+          "Choices": [ { "Text": "Back.", "Target": "Start" }, { "Text": "Farewell.", "Target": "End" } ]
+        },
+        {
+          "ID": "After4",
+          "Text": "'Entered: the Root, sealed. Status: continuing, forever.' Teodra Halm looks up. 'Curation's whole discipline, applied to the world. I thought I would be glad. The file says I am.'",
+          "AllowEscape": true,
+          "Choices": [ { "Text": "Back.", "Target": "Start" }, { "Text": "Farewell.", "Target": "End" } ]
         }
       ]
     }

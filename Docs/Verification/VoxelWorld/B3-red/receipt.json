@@ -1,0 +1,51 @@
+{
+  "unityExit": 2,
+  "compileErrors": [],
+  "filter": "CavesOfOoo.Tests.AfterTheEndingVoicesTests",
+  "results": {
+    "id": "2",
+    "testcasecount": "12",
+    "result": "Failed(Child)",
+    "total": "12",
+    "passed": "5",
+    "failed": "7",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-19 15:48:58Z",
+    "end-time": "2026-09-19 15:48:59Z",
+    "duration": "0.6630925"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.AfterTheEndingVoicesTests.APreserversStone_IsOfferedBeforeAnyEnding_AndNeverAfter(\"Hollin\",\"Stone\")",
+      "message": "  closed after ending 1\n  Expected: -1\n  But was:  2\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.AfterTheEndingVoicesTests.APreserversStone_IsOfferedBeforeAnyEnding_AndNeverAfter(\"Halm\",\"MuteStone\")",
+      "message": "  closed after ending 1\n  Expected: -1\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.AfterTheEndingVoicesTests.EachVoice_SpeaksToTheEndingEnacted_ExactlyOneLinePerEnding(\"Hollin\")",
+      "message": "  one 'what has changed' per ending\n  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.AfterTheEndingVoicesTests.EachVoice_SpeaksToTheEndingEnacted_ExactlyOneLinePerEnding(\"Halm\")",
+      "message": "  one 'what has changed' per ending\n  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.AfterTheEndingVoicesTests.EachVoice_SpeaksToTheEndingEnacted_ExactlyOneLinePerEnding(\"Tendril\")",
+      "message": "  one 'what has changed' per ending\n  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.AfterTheEndingVoicesTests.EachVoice_SpeaksToTheEndingEnacted_ExactlyOneLinePerEnding(\"Echo\")",
+      "message": "  one 'what has changed' per ending\n  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.AfterTheEndingVoicesTests.TheChoirsThread_IsOfferedBeforeAnyEnding_AndNeverAfter",
+      "message": "  closed after ending 1\n  Expected: -1\n  But was:  1\n"
+    }
+  ]
+}
