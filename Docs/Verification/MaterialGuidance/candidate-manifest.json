@@ -1,0 +1,77 @@
+{
+  "slice": "R4 material guidance",
+  "source": "/tmp/coo-regional-verification-20260917",
+  "base": "main@d98af95f",
+  "excluded": [
+    "Tools/VoxelWorld/run_editmode.py (clone adaptation)",
+    "Tools/Village3D/run_common.py (clone adaptation)",
+    "clone ProjectSettings"
+  ],
+  "acceptance": {
+    "focused": "R127 64/64",
+    "native": "R129 81/81 checks, 1010 steps, validated",
+    "full": "R130 15010/15010, 0 C# errors"
+  },
+  "files": [
+    {
+      "path": "Assets/Scripts/Gameplay/Items/MaterialUseDescription.cs",
+      "before": "absent",
+      "candidate": "d25811a587ca925efbcfb50d2be7447b342112b19a8d365aab57f7749cfef99b",
+      "published": "match"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/Items/MaterialUseDescription.cs.meta",
+      "before": "absent",
+      "candidate": "66dfaf6a9b847cc667c5403f7fc7fe21a7df458f65aeb62deef4cd3da1cd2f0b",
+      "published": "match"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/UI/InventoryUI.cs",
+      "before": "a87344d0b4a45ed043a683a917795bdf06352c9154488b7eff948e074d5f7080",
+      "candidate": "a2fdcfd42b0e4a4edd5ee699f9590fc2e354f9eb0addb71b7ebb7ea22e77f473",
+      "published": "match"
+    },
+    {
+      "path": "Assets/Scripts/Scenarios/Custom/ChunkGameplayNativeAudit.cs",
+      "before": "b17885d9668144d6a5e8b6c410445548a4416830f521f2726463449908e28a3d",
+      "candidate": "41d6ddd6866473904267b29cc847ae4336b2b12ca9c60da67670c26f3a33e55d",
+      "published": "match"
+    },
+    {
+      "path": "Assets/Editor/Scenarios/ChunkGameplayNativeAuditBatch.cs",
+      "before": "6520ad2411860de278d908d0e94319a71e3b630d0b337e77720f6fe9e4d70959",
+      "candidate": "a9dbaf694758dd0dfbb73871c900a6b6a56eb27008b81cc55fcca3e319de9ba3",
+      "published": "match"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/UI/MaterialGuidanceInventoryTests.cs",
+      "before": "absent",
+      "candidate": "aeb506e07ad4ebeec480cb3f5d3e14aad0e30609bf86821f62f86d5fb6706c5b",
+      "published": "match"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/UI/MaterialGuidanceInventoryTests.cs.meta",
+      "before": "absent",
+      "candidate": "478061dbf6aca7da55d6a8b32f01c990dda06b320d9fd8f7df72c39db10fe64e",
+      "published": "match"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/Items/MaterialGuidanceAdversarialTests.cs",
+      "before": "absent",
+      "candidate": "7b728783dd6394e313f9f4c064205df46596b3088201d9b2a38acfe4cd365503",
+      "published": "match"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/Items/MaterialGuidanceAdversarialTests.cs.meta",
+      "before": "absent",
+      "candidate": "948a87b3d0b01c1b11e92a2c93e4f037d56b3b2c02db1b7303242022590f1ce6",
+      "published": "match"
+    },
+    {
+      "path": "Tools/ChunkGameplay/run_native.py",
+      "before": "2104b8b56951b3b4769d05d24eefa640030e80ce898d40fa6dfc802ebb727445",
+      "candidate": "ed410e489d2d0546022cec49502a40b6b9d365c6ed6e9fc77c04f4239bb5a18d",
+      "published": "match"
+    }
+  ]
+}

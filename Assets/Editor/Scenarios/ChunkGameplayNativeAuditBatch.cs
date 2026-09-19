@@ -197,6 +197,11 @@ namespace CavesOfOoo.Editor
             if(SessionState.GetBool(Prefix+"exit",false))EditorApplication.Exit(code);
         }
         private static readonly string[] RequiredChecks={"native_N_real_new_game","native_cache_and_parcel_generated",
+            // R4: the earned-material inspection and its bell use are part of the accepted journey.
+            "material_native_single_examine","material_native_description_visible","material_native_returns_to_row",
+            "material_native_examine_spends_nothing","material_native_bell_accepted","material_native_bell_diagnosed",
+            "material_native_quiet_bell","material_native_no_repeat_payment","material_native_quiet_reaches_watch",
+            "material_native_bell_reported","material_native_bell_restored",
             "native_opening_starts_vulnerable","native_opening_completed_without_debug",
             "native_border_east_initial","quest_cue_available","native_conversation_accept","quest_cue_active","native_Q_journal",
             "native_border_west_recovery","field_camera_restored","native_container_command_mode","native_TakeFromContainer_parcel","native_border_east_delivery",
@@ -227,9 +232,9 @@ namespace CavesOfOoo.Editor
                     ||RequiredChecks.Any(name=>!f.checks.Any(c=>c.name==name)))return false;
                 foreach(string room in new[]{"keeper-gatehouse","dry-hem-guesthouse","long-loop-ropeshop","return-desk-archive","second-bowl-kitchen"})
                     if(!f.checks.Any(c=>c.name=="coarse_interior_"+room)||!f.checks.Any(c=>c.name=="coarse_closed_"+room))return false;
-                if(f.screenshots==null||f.screenshots.Length!=23||f.screenshots.Distinct(StringComparer.Ordinal).Count()!=23)return false;
+                if(f.screenshots==null||f.screenshots.Length!=25||f.screenshots.Distinct(StringComparer.Ordinal).Count()!=25)return false;
                 string dir=Path.GetFullPath(Path.Combine(Application.dataPath,"../Docs/Verification/ChunkGameplayImplementation"));
-                foreach(string label in new[]{"western-spawn","cue-available","cue-active","journal","recovered-parcel","completed-supper","travel-notes","restored-completion","interior-keeper-gatehouse","interior-dry-hem-guesthouse","interior-long-loop-ropeshop","interior-return-desk-archive","interior-second-bowl-kitchen","regional-request","regional-offer-preview","regional-accepted-note","regional-protected-vein","regional-delivered","regional-notes","regional-trade-stock","regional-receipt-restored","faction-standings","fullscreen-world-restored"})
+                foreach(string label in new[]{"western-spawn","cue-available","cue-active","journal","recovered-parcel","completed-supper","travel-notes","restored-completion","interior-keeper-gatehouse","interior-dry-hem-guesthouse","interior-long-loop-ropeshop","interior-return-desk-archive","interior-second-bowl-kitchen","regional-request","regional-offer-preview","regional-accepted-note","regional-protected-vein","regional-delivered","regional-notes","regional-trade-stock","regional-receipt-restored","faction-standings","fullscreen-world-restored","material-fire-clay-examine","material-quiet-bell"})
                 {
                     string file=Path.Combine(dir,"CGN-"+expectedRunId+"-"+label+".png");
                     if(!f.screenshots.Contains(file)||!Is1080pPng(file))return false;

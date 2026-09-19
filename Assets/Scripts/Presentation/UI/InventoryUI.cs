@@ -1114,6 +1114,10 @@ namespace CavesOfOoo.Rendering
 
             var equippable = item.GetPart<EquippablePart>();
 
+            bool materialGuidance = MaterialUseDescription.TryDescribe(PlayerEntity, item, EntityFactory, out _);
+            if (materialGuidance)
+                actions.Add(new ItemAction { Label = "Examine", Command = "examine_material" });
+
             // Consumable examine (reuses the AnnouncementUI modal): exact
             // effect lines for tonics/brews, built through the real apply
             // path by TonicExamineService.
@@ -1146,6 +1150,7 @@ namespace CavesOfOoo.Rendering
                 {
                     var a = itemDisplay.Actions[i];
                     if (a.Command == "Throw") continue; // handled below via lowercase "throw"
+                    if (materialGuidance && a.Command == "Examine") continue; // one visible description for this material
                     actions.Add(new ItemAction { Label = a.Display, Command = a.Command });
                 }
             }
@@ -1313,6 +1318,23 @@ namespace CavesOfOoo.Rendering
                 case "disassemble": completed = TryDisassembleViaCommand(item); break;
                 case "toggle_craftmark": completed = TryToggleCraftMarkViaCommand(item); break;
                 case "put_container": completed = TryPutInContainerViaCommand(item, action.Container); break;
+                case "examine_material":
+                    // Recheck real carriage after the menu was opened. Inspecting
+                    // a description must not operate on a stale ground item.
+                    if (!MaterialUseDescription.TryDescribe(PlayerEntity, item, EntityFactory, out string materialText))
+                    {
+                        SetActionFailure("That material is no longer available in your carried inventory.");
+                        Diag.Record("event", "MaterialExamineRejected", actor: PlayerEntity, target: item,
+                            payload: new { reason = "unavailable-carried-material" });
+                        Render();
+                        return;
+                    }
+                    MessageLog.AddAnnouncement(materialText);
+                    Diag.Record("event", "MaterialExamined", actor: PlayerEntity, target: item,
+                        payload: new { blueprint = item.BlueprintName });
+                    _itemActionPopup = null;
+                    Render();
+                    return;
                 case "examine_tonic":
                     // AnnouncementUI owns the description over the open inventory.
                     if (TonicExamineService.TryDescribe(item, out string tonicText)) MessageLog.AddAnnouncement(tonicText);

@@ -152,6 +152,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 "hp="+input.PlayerEntity.GetStatValue("Hitpoints")+"; no F12 or synthetic healing used in the opening.");
             Require(checks.Last().pass,"Ordinary expedition and five interiors completed while vulnerable.");
             yield return InspectRegionalIron();
+            yield return InspectMaterialAndBell();
 
             var clerk=MorrowfastSceneRuntime.FindOwner(input.CurrentZone,"east-robed-resident");
             Require(clerk!=null,"The actual starting-town clerk exists.");
@@ -168,12 +169,18 @@ namespace CavesOfOoo.Scenarios.Custom
             yield return Capture("travel-notes");yield return Tap(Key.Escape);
             var expectedRegionalNotes=RegionalSituationNotes.Read(input.PlayerEntity).ToArray();
             int expectedRegionalStock=EntityUnits(MorrowfastSceneRuntime.FindOwner(input.CurrentZone,"southwest-craftsperson"),"ChoirIron");
+            int expectedFireClay=InventoryUnits("FireClay");
             int expectedDrams=TradeSystem.GetDrams(input.PlayerEntity);string oldPlayer=input.PlayerEntity.ID;var oldReference=input.PlayerEntity;
             yield return Tap(Key.F5);Require(SaveGameService.HasQuickSave(),"Native F5 makes a checkpoint.");gameId=SaveGameService.GetSaveInfo("Quick").GameID;
             Check("native_F5_owned_checkpoint",OwnedCheckpoint());yield return Tap(Key.F6);yield return WaitForVoxel();
             Check("native_F6_reloads_completion",input.PlayerEntity.ID==oldPlayer&&!ReferenceEquals(oldReference,input.PlayerEntity)
                 &&StoryletPart.Current.IsQuestCompleted(MorrowfastExpedition.QuestId)&&TradeSystem.GetDrams(input.PlayerEntity)==expectedDrams
                 &&EntityById(MorrowfastExpedition.ParcelId)?.GetIntProperty("MorrowfastDryGoodsReturned")==1);
+            Check("material_native_bell_restored",InventoryUnits("FireClay")==expectedFireClay
+                &&StoryletPart.Current.IsQuestCompleted(MorrowfastQuests.BellQuestId)
+                &&input.PlayerEntity.GetIntProperty(MorrowfastQuests.BellDiagnosed)==1
+                &&input.PlayerEntity.GetIntProperty(MorrowfastQuests.BellWorked)==1
+                &&MorrowfastSceneRuntime.FindOwner(input.CurrentZone,"north-oath-arch")?.GetProperty("MorrowfastBellMode")=="quiet");
             Check("native_notes_restored",RegionalTravelNotes.Read(input.PlayerEntity).SequenceEqual(expectedNotes));
             var restoredOrrit=MorrowfastSceneRuntime.FindOwner(input.CurrentZone,"southwest-craftsperson");
             Check("regional_native_reload",restoredOrrit.GetPart<RegionalRequestPart>().Completed
@@ -330,6 +337,122 @@ namespace CavesOfOoo.Scenarios.Custom
                 &&TradeSystem.GetDrams(input.PlayerEntity)==playerMoney&&TradeSystem.GetDrams(giver)==traderMoney);
             yield return Capture("fullscreen-world-restored");
             yield return Tap(Key.F12);Check("regional_native_debug_restored",!DebugInvincibility.IsEnabled(input.PlayerEntity));
+        }
+        // R4 native proof: examine EARNED fire clay through the real inventory
+        // with native keys only (I -> Tab -> arrows -> Enter -> Examine ->
+        // Enter -> Enter -> I). The inventory opens on the equipment panel, so
+        // Tab is part of the ordinary path. Reflection observes panel, cursor,
+        // popup rows and the modal's text; it never selects or executes.
+        private IEnumerator InspectCarriedFireClay()
+        {
+            var inventory=input.PlayerEntity.GetPart<InventoryPart>();
+            var clay=inventory.Objects.FirstOrDefault(e=>e.BlueprintName=="FireClay");
+            Require(clay!=null,"Earned fire clay is carried.");
+            int units=InventoryUnits("FireClay"),ticks=TurnManager.Active.TickCount;
+            int diagnosed=input.PlayerEntity.GetIntProperty(MorrowfastQuests.BellDiagnosed);
+            int worked=input.PlayerEntity.GetIntProperty(MorrowfastQuests.BellWorked);
+            bool bellActive=StoryletPart.Current.IsQuestActive(MorrowfastQuests.BellQuestId);
+
+            yield return Tap(Key.I);Require(State()=="InventoryOpen","Native I opens the inventory.");
+            yield return Tap(Key.Tab);Require(InvField<int>("_panel")==1,"Native Tab reaches the item list.");
+            int target=RowIndexOf(clay);Require(target>=0,"Fire clay has an inventory row.");
+            for(int guard=0;InvField<int>("_cursorIndex")!=target;guard++)
+            {Require(guard<64,"Bounded native row navigation.");yield return Tap(InvField<int>("_cursorIndex")<target?Key.DownArrow:Key.UpArrow);}
+            yield return Tap(Key.Enter);
+            var popup=InvField<object>("_itemActionPopup");Require(popup!=null,"Native Enter opens the item's actions.");
+            var examine=((IList)Field(popup,"Actions")).Cast<object>()
+                .Select((a,i)=>(label:(string)Field(a,"Label"),command:(string)Field(a,"Command"),index:i))
+                .Where(a=>string.Equals(a.label,"Examine",StringComparison.OrdinalIgnoreCase)).ToList();
+            Check("material_native_single_examine",examine.Count==1&&examine[0].command=="examine_material",
+                "examine rows="+examine.Count+"; command="+(examine.Count>0?examine[0].command:"none"));
+            Require(examine.Count>=1,"An Examine action exists.");
+            for(int guard=0;(int)Field(popup,"CursorIndex")!=examine[0].index;guard++)
+            {Require(guard<32,"Bounded native action navigation.");yield return Tap((int)Field(popup,"CursorIndex")<examine[0].index?Key.DownArrow:Key.UpArrow);}
+            yield return Tap(Key.Enter);
+            // InputHandler pops the queued announcement over the open inventory on its next tick.
+            double began=Time.realtimeSinceStartupAsDouble;
+            while(State()!="AnnouncementOpen"){Require(Time.realtimeSinceStartupAsDouble-began<5,"Native announcement opens over the inventory.");yield return null;}
+            string text=(string)typeof(AnnouncementUI).GetField("_message",Private).GetValue(input.AnnouncementUI)??"";
+            Check("material_native_description_visible",input.AnnouncementUI.IsOpen&&text.Contains("One measure")
+                &&text.Contains("oven builder's guide")&&text.Contains("Morrowfast's bell")&&text.Contains("costs no material"),
+                text.Replace("\n"," / "));
+            yield return Capture("material-fire-clay-examine");
+            yield return Tap(Key.Enter);
+            Check("material_native_returns_to_row",State()=="InventoryOpen"&&InvField<object>("_itemActionPopup")==null
+                &&InvField<int>("_panel")==1&&InvField<int>("_cursorIndex")==target);
+            yield return Tap(Key.I);Require(State()=="Normal","Native I closes the inventory.");
+            Check("material_native_examine_spends_nothing",InventoryUnits("FireClay")==units&&inventory.Objects.Contains(clay)
+                &&input.PlayerEntity.GetIntProperty(MorrowfastQuests.BellDiagnosed)==diagnosed
+                &&input.PlayerEntity.GetIntProperty(MorrowfastQuests.BellWorked)==worked
+                &&StoryletPart.Current.IsQuestActive(MorrowfastQuests.BellQuestId)==bellActive
+                &&TurnManager.Active.TickCount==ticks);
+        }
+        private T InvField<T>(string name)=>(T)typeof(InventoryUI).GetField(name,Private).GetValue(input.InventoryUI);
+        private int RowIndexOf(Entity item)
+        {
+            var rows=(IList)typeof(InventoryUI).GetField("_rows",Private).GetValue(input.InventoryUI);
+            for(int i=0;i<rows.Count;i++)if(ReferenceEquals(((InventoryScreenData.ItemDisplay)Field(rows[i],"Item"))?.Item,item))return i;
+            return -1;
+        }
+        private static object Field(object owner,string name)
+        {
+            var type=owner.GetType();const BindingFlags any=BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic;
+            var field=type.GetField(name,any);if(field!=null)return field.GetValue(owner);
+            var property=type.GetProperty(name,any);Require(property!=null,"Observed member "+type.Name+"."+name);
+            return property.GetValue(owner);
+        }
+        // Uses fire clay earned by the two prior native deliveries, never an
+        // injected material. Help only inspects; all bell work uses real menus.
+        private IEnumerator InspectMaterialAndBell()
+        {
+            Require(!DebugInvincibility.IsEnabled(input.PlayerEntity)&&InventoryUnits("FireClay")>0,
+                "Real delivery clay remains available after restoring vulnerable play.");
+            yield return InspectCarriedFireClay();
+            int clay=InventoryUnits("FireClay");
+            var nemm=MorrowfastSceneRuntime.FindOwner(input.CurrentZone,"north-guard-west");
+            Require(nemm!=null,"Native Nemm exists.");
+            yield return Approach(nemm.ID);yield return OpenMenu(nemm);yield return SelectCommand("Chat");
+            yield return SelectDialogue(c=>c.Target=="Bell","Nemm's bell topic");
+            yield return SelectDialogue(c=>c.Actions?.Any(a=>a.Key=="MorrowfastAction"&&a.Value=="accept-bell")==true,"accept bell work");
+            Check("material_native_bell_accepted",State()=="Normal"&&StoryletPart.Current.IsQuestActive(MorrowfastQuests.BellQuestId)
+                &&InventoryUnits("FireClay")==clay&&input.PlayerEntity.GetIntProperty(MorrowfastQuests.BellDiagnosed)==0);
+            var door=MorrowfastSceneRuntime.FindOwner(input.CurrentZone,"ropeshop-door");
+            Require(door!=null,"Native rope shop door exists.");
+            if(!MorrowfastSceneRuntime.IsDoorOpen(input.CurrentZone,"ropeshop-door"))
+            {yield return Approach(door.ID);yield return OpenMenu(door);yield return SelectCommand(MorrowfastDoorPart.OpenCommand);}
+            var cord=MorrowfastSceneRuntime.FindOwner(input.CurrentZone,"rope-reserve-coil");
+            Require(cord!=null,"Native reserve cord exists.");
+            yield return Approach(cord.ID);yield return OpenMenu(cord);
+            int before=TurnManager.Active.TickCount;
+            yield return SelectCommand(MorrowfastQuests.InspectCordCommand);
+            Check("material_native_bell_diagnosed",input.PlayerEntity.GetIntProperty(MorrowfastQuests.BellDiagnosed)==1
+                &&InventoryUnits("FireClay")==clay&&TurnManager.Active.TickCount>before);
+            var arch=MorrowfastSceneRuntime.FindOwner(input.CurrentZone,"north-oath-arch");
+            Require(arch!=null,"Native bell arch exists.");
+            yield return Approach(arch.ID);yield return OpenMenu(arch);before=TurnManager.Active.TickCount;
+            yield return SelectCommand(MorrowfastQuests.RepairBellCommand);
+            Check("material_native_quiet_bell",InventoryUnits("FireClay")==clay-1&&arch.GetProperty("MorrowfastBellMode")=="quiet"
+                &&input.PlayerEntity.GetIntProperty(MorrowfastQuests.BellWorked)==1&&TurnManager.Active.TickCount>before);
+            yield return Capture("material-quiet-bell");
+            yield return OpenMenu(arch);before=TurnManager.Active.TickCount;
+            yield return SelectCommand(MorrowfastQuests.RepairBellCommand);
+            Check("material_native_no_repeat_payment",InventoryUnits("FireClay")==clay-1&&TurnManager.Active.TickCount==before
+                &&arch.GetProperty("MorrowfastBellMode")=="quiet");
+            if(State()=="WorldActionMenuOpen")yield return Tap(Key.Escape);
+            var residents=input.CurrentZone.GetReadOnlyEntities().Where(e=>e.GetPart<MorrowfastResidentPart>()!=null&&e.GetStatValue("Hitpoints")>0)
+                .Select(e=>e.GetPart<MorrowfastResidentPart>()).ToArray();
+            var oldBell=residents.ToDictionary(r=>r.ResidentId,r=>r.LastBellTurn);
+            Require(residents.Count(r=>r.ResidentId=="north-guard-west"||r.ResidentId=="north-guard-east")==2&&residents.Length>2,
+                "Both watchkeepers and other living townspeople are native controls.");
+            yield return OpenMenu(arch);yield return SelectCommand(MorrowfastQuests.RingBellCommand);
+            Check("material_native_quiet_reaches_watch",residents.All(r=>r.ResidentId=="north-guard-west"||r.ResidentId=="north-guard-east"
+                ?r.LastBellTurn>oldBell[r.ResidentId]:r.LastBellTurn==oldBell[r.ResidentId])&&InventoryUnits("FireClay")==clay-1);
+            nemm=MorrowfastSceneRuntime.FindOwner(input.CurrentZone,"north-guard-west");
+            yield return Approach(nemm.ID);yield return OpenMenu(nemm);yield return SelectCommand("Chat");
+            int drams=TradeSystem.GetDrams(input.PlayerEntity);
+            yield return SelectDialogue(c=>c.Actions?.Any(a=>a.Key=="MorrowfastAction"&&a.Value=="report-bell")==true,"report quiet bell");
+            Check("material_native_bell_reported",State()=="Normal"&&StoryletPart.Current.IsQuestCompleted(MorrowfastQuests.BellQuestId)
+                &&InventoryUnits("FireClay")==clay-1&&TradeSystem.GetDrams(input.PlayerEntity)==drams);
         }
         private bool PopupCanvasesEmpty()=>input.ZoneRenderer.PopupFgTilemap.GetUsedTilesCount()==0
             &&input.ZoneRenderer.CenteredPopupFgTilemap.GetUsedTilesCount()==0
@@ -560,7 +683,7 @@ namespace CavesOfOoo.Scenarios.Custom
             report=new Report{runId=RunId,saveRoot=saveRoot,gameId=gameId,markerId=markerId,fatal=fatal,worldSeed=input?.WorldMap?.Seed??0,
                 nativeSteps=nativeSteps,stunnedTurns=stunnedTurns,screenWidth=Screen.width,screenHeight=Screen.height,wallSeconds=watch?.Elapsed.TotalSeconds??0,
                 profileSeconds=profileSeconds,profileIdleSeconds=profileIdleSeconds,profileMetrics=profileMetrics,workloadComplete=complete,screenshots=screenshots.ToArray(),fullReveal=originalReveal,cameraSize=cameraSize,townCameraSize=townCameraSize,
-                bounds="Actual native 1080p GameView and ordinary seed64 N bootstrap. No fixture placement, world replacement, direct quest action, direct inventory transfer, camera or reveal changes. Cardinal movement, nine border crossings, action/loot/dialogue menus, regional request/harvest/delivery, Q/Tab field notes and F5/F6 use queued native keys. F12 invincibility is explicitly enabled only for the long regional journey; combat balance is not tested. Profiling restarts at that journey. Reflection observes live UI cursors only. Crops and summit water are covered by separate EditMode integration tests, not this journey. ProfilerRecorder covers a sixty-second native editor window including harness planning, screenshots, existing systems and loads; aggregate timing/allocation maxima do not isolate cue cost or establish FPS. No complete-world, subjective readability or enjoyment claim."};
+                bounds="Actual native 1080p GameView and ordinary seed64 N bootstrap. No fixture placement, world replacement, direct quest action, direct inventory transfer, camera or reveal changes. Cardinal movement, nine border crossings, action/loot/dialogue menus, regional request/harvest/delivery, Q/Tab field notes and F5/F6 use queued native keys. F12 invincibility is explicitly enabled only for the long regional journey; combat balance is not tested. Profiling restarts at that journey. Reflection only observes live UI state. Earned fire clay is examined in the real inventory modal, then spent through Nemm/cord/arch actions to create, ring and report a quiet bell, with a native repeat-cost control and checkpoint restoration. Other two material descriptions and guide branches are EditMode-covered, not native-captured. Crops and summit water are covered by separate EditMode integration tests, not this journey. ProfilerRecorder covers a sixty-second native editor window including harness planning, screenshots, existing systems and loads; aggregate timing/allocation maxima do not isolate cue cost or establish FPS. No complete-world, subjective readability or enjoyment claim."};
             WriteReport();Finished=true;
         }
         private void WriteReport(){report.failures=Failures;report.unexpectedErrors=unexpected;report.checks=checks.ToArray();File.WriteAllText(ReportPath,JsonUtility.ToJson(report,true));}

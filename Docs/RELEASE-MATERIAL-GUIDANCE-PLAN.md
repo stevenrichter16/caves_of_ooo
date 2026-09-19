@@ -80,3 +80,20 @@ The next implementation slice will keep the existing inventory Examine action an
 | Dynamic destination guidance needs more map/owner queries | Prune it from this first slice. Explain the conditional repair practice and local roles; do not advertise live distant actors or create zones. Morrowfast bell is described as a conditional use, not an active task. |
 
 This is CoO-original interaction polish, with no parity claim, new artwork, stock grants or save fields. Description building runs on explicit item-menu selection only, not a renderer/frame loop; no new cache or continuous update. Existing repair/bell mechanics remain the authority. Files will be a small read-only description helper plus metadata, narrow InventoryUI routing, tests, native acceptance and this living document. Actual RED and all native/full gates must complete before publication.
+
+## Implementation log
+
+- **R124 RED (previous agent, 18 Sept 05:27 UTC):** 18 cases, 7 intended failures (material guidance hidden in the gameplay log), 11 controls passing, zero compiler errors.
+- **Implementation (previous agent):** `MaterialUseDescription.TryDescribe` plus one narrow `InventoryUI` branch (`examine_material`), as planned. **R125:** focused 44/44.
+- **Handoff gap (found 19 Sept):** after R125 the previous agent extended the native harness with `InspectMaterialAndBell`, which calls `InspectCarriedFireClay()` — a method never written. The clone did not compile; the last green run predates the edit. **R126** reproduced it (CS0103, which also masked whether any test assembly compiled).
+- **Root completion:** implemented `InspectCarriedFireClay` with native keys only (I → Tab → arrows → Enter → Examine → Enter → Enter → I; reflection observes, never selects). Added `MaterialGuidanceAdversarialTests` (20 cases: boundary inputs, cross-actor ownership, empty stack, consumer-parity matrix against the private repair gate, lookalike materials, renamed goods, save round-trip, purity). **R127:** 64/64, zero compiler errors; the sweep found no helper defect.
+- **R128 native:** all 81 checks passed, but validation failed (exit 4) — the batch validator requires exactly 23 captures and R4 adds two. Raised the exact count to 25, pinned both labels and added all 11 material checks to `RequiredChecks`. **R129 native: 81/81, 1,010 steps, validated, frozen sources, clean restoration.**
+- **R130 full: 15,010/15,010**, zero failures, skips, inconclusive or compiler errors; 416 s.
+
+Root inspected both R129 material captures at 1080p. The modal wraps within its box, shows the missing-guide status plainly and returns to the same row; the bell capture shows the promised outcome ("You spend one fire clay to sleeve the clapper…"). Review detail: [coverage review](Verification/MaterialGuidance/coverage-review.md).
+
+## Publication
+
+The exact 10-file candidate ([manifest](Verification/MaterialGuidance/candidate-manifest.json)) and compact R124–R130 receipts are committed with this document to local main. The clone adaptations (`run_editmode.py`, `run_common.py`) and its ProjectSettings were excluded; after publication, live Assets were compared file-by-file against the tested clone with no remaining source difference. No remote push, save migration or release certification. The live editor was idle in edit mode; its next refresh will import the change, and whether its loaded assembly has picked it up should be confirmed in the editor.
+
+Remaining limits: silver sand and ward oil are EditMode-covered, not native-captured. The description gives no destination for a damaged site (deliberately deferred). Destination guidance is the natural follow-up if playtesting shows players stall there; the documented release priority remains one connected middle-game chain (GAME-STATE §20, step 3).
