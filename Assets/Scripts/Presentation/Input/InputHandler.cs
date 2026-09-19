@@ -2780,6 +2780,14 @@ namespace CavesOfOoo.Rendering
             // Clearing is a real turn only on successful simulation mutation. The
             // generic inventory event path deliberately has no turn cost, so this
             // belongs beside Take/Break and cannot be dispatched through that path.
+            if (EndingSpine.IsWorldCommand(action.Command))
+            {
+                if (EndingSpine.TryWorldAction(target, PlayerEntity, CurrentZone, action.Command, out int enactCost) && enactCost > 0)
+                    EndTurnAndProcess();
+                _inputState = _worldActionMenuReturnState;
+                RequestZoneRedraw("Ending.Enact");
+                return;
+            }
             if (StillleafCustody.IsWorldCommand(action.Command))
             {
                 if (StillleafCustody.TryWorldAction(target, PlayerEntity, CurrentZone, action.Command, out int sealCost) && sealCost > 0)

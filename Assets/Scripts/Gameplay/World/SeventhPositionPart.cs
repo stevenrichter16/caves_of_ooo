@@ -32,8 +32,18 @@ namespace CavesOfOoo.Core
 
         /// <summary>Revalidates live membership before applying. Respects
         /// existing confusion and normal immunity/veto hooks; never forces it.</summary>
+        /// <summary>ES.4: the empty seventh offers its two enactments underfoot; once one is
+        /// enacted the exposure ends — the near and far edges of the circle agree.</summary>
+        public override bool HandleEvent(GameEvent e)
+        {
+            if (e.ID == "GetInventoryActions")
+                EndingSpine.AddActions(e.GetParameter<InventoryActionList>("Actions"), CavesOfOoo.Storylets.StoryletPart.LocalPlayer);
+            return true;
+        }
+
         public bool TryAffectStandingPlayer(Entity actor, Zone zone)
         {
+            if (EndingSpine.Enacted(actor) != 0) return false;
             if (actor == null || !actor.HasTag("Player") || zone == null || ParentEntity == null
                 || actor.GetStatValue("Hitpoints", 0) <= 0) return false;
             var cell = zone.GetEntityCell(actor);
