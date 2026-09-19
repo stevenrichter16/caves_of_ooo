@@ -1,0 +1,666 @@
+{
+    "runId": "eddd72e5fc6e43a48da34efe72699b79",
+    "saveRoot": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/6596562186b24cecb99e6b643e9bbc6c",
+    "gameId": "fdfecd8ecfa9474b8ba2a2354d846dbf",
+    "markerId": "ChunkGameplay-native-marker-32c8ff464de44d5a9c5032f950201ade",
+    "fatal": "",
+    "bounds": "Actual native 1080p GameView and ordinary seed64 N bootstrap. No fixture placement, world replacement, direct quest action, direct inventory transfer, camera or reveal changes. Cardinal movement, nine border crossings, action/loot/dialogue menus, regional request/harvest/delivery, Q/Tab field notes and F5/F6 use queued native keys. F12 invincibility is explicitly enabled only for the long regional journey; combat balance is not tested. Profiling restarts at that journey. Reflection only observes live UI state. Earned fire clay is examined in the real inventory modal, then spent through Nemm/cord/arch actions to create, ring and report a quiet bell, with a native repeat-cost control and checkpoint restoration. Other two material descriptions and guide branches are EditMode-covered, not native-captured. The Stillleaf Archive chain (SA.6) is then played through native keys: world-map travel by < / WASD / > between Morrowfast, Quillhold, the Salt-Vault and Stillleaf; labelled dialogue shortcuts; the released salt file opened in the native loot UI; the sinkhole descended by its real stairs under explicit F12 (its guardians are not the subject: a body blocking a corridor is bumped with a real attack) and F12 restored on the surface; the register taken with G; the delivery outcome enacted and the Indexer told. The filing and resealing outcomes, theft, loss and out-of-order paths are EditMode-covered, not native-captured; the door's reseal action is shown in its native menu but not executed. The ending spine (ES.6) is then played through native keys: the closure-ledger read in the real journal; the Felling-Site reached by the world map under explicit F12 (a tier-5 cell; restored after); the empty seventh picked underfoot with C then .; the practice-path Renewal enacted when the ledger is clean, or its refusal captured naming what is open and the Strike enacted instead; the epilogue read in the native announcement; the exposure's end and the empty menu checked. Faction-level consequences are stated in the epilogue and not enacted in the world; the sari has no ambient hook; Consume and Preserve are not built. Crops and summit water are covered by separate EditMode integration tests, not this journey. ProfilerRecorder covers a sixty-second native editor window including harness planning, screenshots, existing systems and loads; aggregate timing/allocation maxima do not isolate cue cost or establish FPS. No complete-world, subjective readability or enjoyment claim.",
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "worldSeed": 64,
+    "nativeSteps": 1460,
+    "stunnedTurns": 0,
+    "screenWidth": 1920,
+    "screenHeight": 1080,
+    "wallSeconds": 361.72837899999998,
+    "profileSeconds": 60.002187250000009,
+    "profileIdleSeconds": 8.33000058264588e-7,
+    "profileMetrics": [
+        {
+            "name": "Main Thread",
+            "units": "TimeNanoseconds",
+            "available": true,
+            "count": 17742,
+            "sum": 59920979091,
+            "max": 461941458
+        },
+        {
+            "name": "COO.Input.Update",
+            "units": "TimeNanoseconds",
+            "available": true,
+            "count": 17742,
+            "sum": 3376568572,
+            "max": 439330666
+        },
+        {
+            "name": "COO.ZoneRenderer.LateUpdate",
+            "units": "TimeNanoseconds",
+            "available": true,
+            "count": 17742,
+            "sum": 21933541129,
+            "max": 28550833
+        },
+        {
+            "name": "GC Allocated In Frame",
+            "units": "Bytes",
+            "available": true,
+            "count": 17742,
+            "sum": 839325505,
+            "max": 43602886
+        }
+    ],
+    "cameraSize": 16.80000114440918,
+    "townCameraSize": 16.5,
+    "fullReveal": true,
+    "workloadComplete": true,
+    "shutdownObserved": true,
+    "shutdownRootHeld": true,
+    "shutdownSavingUnregistered": true,
+    "displayPreferencesRestored": true,
+    "inputSettingsRestored": true,
+    "checks": [
+        {
+            "name": "native_N_real_new_game",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_opening_starts_vulnerable",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_cache_and_parcel_generated",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_border_east_initial",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "quest_cue_available",
+            "detail": "Available",
+            "pass": true
+        },
+        {
+            "name": "native_conversation_accept",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "quest_cue_active",
+            "detail": "Active",
+            "pass": true
+        },
+        {
+            "name": "native_Q_journal",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_border_west_recovery",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "field_camera_restored",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_container_command_mode",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_TakeFromContainer_parcel",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_border_east_delivery",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_carried_parcel_crosses_border",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_conversation_delivery",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_one_reward",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_parcel_laid_at_supper",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "quest_cue_completed",
+            "detail": "None",
+            "pass": true
+        },
+        {
+            "name": "native_no_repeat_delivery_choice",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "coarse_interior_keeper-gatehouse",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "coarse_closed_keeper-gatehouse",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "coarse_interior_dry-hem-guesthouse",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "coarse_closed_dry-hem-guesthouse",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "coarse_interior_long-loop-ropeshop",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "coarse_closed_long-loop-ropeshop",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "coarse_interior_return-desk-archive",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "coarse_closed_return-desk-archive",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "coarse_interior_second-bowl-kitchen",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "coarse_closed_second-bowl-kitchen",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_opening_completed_without_debug",
+            "detail": "hp=33; no F12 or synthetic healing used in the opening.",
+            "pass": true
+        },
+        {
+            "name": "regional_native_available",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "regional_native_read",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "regional_native_preview_walkaway",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "regional_native_accept",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "regional_native_release_preview",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "regional_native_reaccept",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "regional_native_active_note",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_border_regional_west_spawn",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_border_regional_north_stump",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_border_regional_west_source",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "regional_native_harvest",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "regional_native_grove_law",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_border_regional_east_stump",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_border_regional_south_spawn",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_border_regional_east_recipient",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "regional_native_delivery",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "regional_native_reward",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "regional_native_completed_cue",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "regional_native_no_repeat_command",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "regional_native_note_visible",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "regional_native_receipt_visible",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "regional_native_delivered_stock_in_trade",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "fullscreen_native_trade_clean",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "fullscreen_native_faction_clean",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "fullscreen_native_world_restored",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "regional_native_debug_restored",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "material_native_single_examine",
+            "detail": "examine rows=1; command=examine_material",
+            "pass": true
+        },
+        {
+            "name": "material_native_description_visible",
+            "detail": "fire clay (x2) /  / One measure can rebuild a damaged settlement oven. Speak to its farmer where this repair is offered. The material is spent; the guide is kept. /  / Required guide: oven builder's guide (missing). Ask the settlement elder about the damaged site for its guide. /  / Another use: Morrowfast's bell. Ask Nemm about it and inspect the reserve cord first. After diagnosis, one fire clay makes a quiet clapper; the bare, loud setting costs no material.",
+            "pass": true
+        },
+        {
+            "name": "material_native_returns_to_row",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "material_native_examine_spends_nothing",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "material_native_bell_accepted",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "material_native_bell_diagnosed",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "material_native_quiet_bell",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "material_native_no_repeat_payment",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "material_native_quiet_reaches_watch",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "material_native_bell_reported",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_regional_directions",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_travel_notes",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_F5_owned_checkpoint",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_F6_reloads_completion",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "material_native_bell_restored",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_notes_restored",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "regional_native_reload",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "regional_native_reloaded_receipt_visible",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "regional_native_reloaded_no_repeat",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "regional_native_mined_source_stays_gone",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "quest_cue_reloaded",
+            "detail": "None",
+            "pass": true
+        },
+        {
+            "name": "camera_and_reveal_untouched",
+            "detail": "fieldSize=16.8 townSize=16.5 loadedTownSize=16.5 zoomMultiplier=1.2",
+            "pass": true
+        },
+        {
+            "name": "private_boot_marker_unchanged",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "owned_save_only",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "stillleaf_native_world_map_quillhold",
+            "detail": "steps=15",
+            "pass": true
+        },
+        {
+            "name": "stillleaf_native_quillhold_arrival",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "stillleaf_native_accept",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "stillleaf_native_Q_field_note",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "stillleaf_native_world_map_salt_vault",
+            "detail": "steps=8",
+            "pass": true
+        },
+        {
+            "name": "stillleaf_native_salt_vault_arrival",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "stillleaf_native_retrieve",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "stillleaf_native_agree",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "stillleaf_native_take_key",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "stillleaf_native_world_map_stillleaf",
+            "detail": "steps=25",
+            "pass": true
+        },
+        {
+            "name": "stillleaf_native_stillleaf_arrival",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "stillleaf_native_vault_floor",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "stillleaf_native_door_unlock_bump",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "stillleaf_native_door_offers_reseal",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "stillleaf_native_register_pickup",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "stillleaf_native_debug_restored",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "stillleaf_native_world_map_quillhold_return",
+            "detail": "steps=18",
+            "pass": true
+        },
+        {
+            "name": "stillleaf_native_deliver",
+            "detail": "recension 0->10; curation 0->-10",
+            "pass": true
+        },
+        {
+            "name": "stillleaf_native_no_repeat_deliver",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "stillleaf_native_world_map_salt_vault_return",
+            "detail": "steps=8",
+            "pass": true
+        },
+        {
+            "name": "stillleaf_native_told_curation",
+            "detail": "telling is not paid and not punished",
+            "pass": true
+        },
+        {
+            "name": "ending_native_journal_closure_line",
+            "detail": "closed=4 refused=0 open=0 openIds=",
+            "pass": true
+        },
+        {
+            "name": "stillleaf_native_world_map_felling",
+            "detail": "steps=23",
+            "pass": true
+        },
+        {
+            "name": "ending_native_felling_arrival",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "ending_native_in_position",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "ending_native_menu_offers_both",
+            "detail": "be struck as seventh: it cracks one day | name the world: clean ledger, gods end | examine",
+            "pass": true
+        },
+        {
+            "name": "ending_native_practice_refused_names_open",
+            "detail": "ledger clean: the practice path was open; refusal branch not exercised",
+            "pass": true
+        },
+        {
+            "name": "ending_native_enacted",
+            "detail": "path=2 clean=True",
+            "pass": true
+        },
+        {
+            "name": "ending_native_epilogue_shown",
+            "detail": "You stand in the seventh interval and refuse it aloud, the way the first no was refused, and you say the world's name back to it instead. No vessel. The empty seventh is answered by a practice: every guest named under the cloth, every friend named by a child, every grandmother's meadow, all of it doing the work, all the time, everywhere. The pressure drains at its source. The costs are permanent and you will witness them: the Six begin to age; the work never finishes; the Root, told it will never hold alone again, wakes without fear and dissolves into the new binding. The flowers last longer here. So do the funerals.",
+            "pass": true
+        },
+        {
+            "name": "ending_native_exposure_ended",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "ending_native_nothing_more_offered",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "ending_native_debug_restored",
+            "detail": "",
+            "pass": true
+        },
+        {
+            "name": "native_profile_evidence",
+            "detail": "",
+            "pass": true
+        }
+    ],
+    "screenshots": [
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-western-spawn.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-cue-available.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-cue-active.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-journal.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-recovered-parcel.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-completed-supper.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-interior-keeper-gatehouse.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-interior-dry-hem-guesthouse.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-interior-long-loop-ropeshop.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-interior-return-desk-archive.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-interior-second-bowl-kitchen.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-regional-offer-preview.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-regional-request.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-regional-accepted-note.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-regional-protected-vein.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-regional-delivered.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-regional-notes.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-regional-trade-stock.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-faction-standings.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-fullscreen-world-restored.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-material-fire-clay-examine.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-material-quiet-bell.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-travel-notes.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-regional-receipt-restored.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-restored-completion.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-stillleaf-quillhold-contract.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-stillleaf-journal.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-stillleaf-salt-vault-file.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-stillleaf-key-taken.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-stillleaf-vault-door-open.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-stillleaf-register-taken.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-stillleaf-register-delivered.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-stillleaf-told-curation.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-ending-journal-closure.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-ending-seventh-menu.png",
+        "/private/tmp/coo-regional-verification-20260917/Docs/Verification/ChunkGameplayImplementation/CGN-eddd72e5fc6e43a48da34efe72699b79-ending-epilogue.png"
+    ]
+}

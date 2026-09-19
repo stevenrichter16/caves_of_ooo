@@ -41,8 +41,8 @@ namespace CavesOfOoo.Core
         public static void AddActions(InventoryActionList actions, Entity player)
         {
             if (actions == null || Enacted(player) != 0) return;
-            actions.AddAction("EndingStrike", "be struck as the seventh: re-bind the world; it cracks one day", StrikeCommand, 's', 30);
-            actions.AddAction("EndingName", "refuse aloud and name the world: a clean ledger; the gods end", NameCommand, 'n', 29);
+            actions.AddAction("EndingStrike", "be struck as seventh: it cracks one day", StrikeCommand, 's', 30);
+            actions.AddAction("EndingName", "name the world: clean ledger, gods end", NameCommand, 'n', 29);
         }
 
         public static bool TryWorldAction(Entity target, Entity actor, Zone zone, string command, out int energyCost)

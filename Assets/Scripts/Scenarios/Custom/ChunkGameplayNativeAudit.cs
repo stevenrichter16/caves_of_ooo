@@ -203,6 +203,7 @@ namespace CavesOfOoo.Scenarios.Custom
             Check("private_boot_marker_unchanged",File.ReadAllBytes(Path.Combine(saveRoot,markerId,"Quick.sav.gz")).SequenceEqual(markerBytes));
             Check("owned_save_only",OwnedCheckpoint());
             yield return StillleafArchiveJourney();
+            yield return EndingSpineJourney();
             double idleStarted=Time.realtimeSinceStartupAsDouble;
             while(!profileFinished){Require(Time.realtimeSinceStartupAsDouble-profileStarted<90,"Bounded sixty-second profiler window.");yield return null;}
             profileIdleSeconds=Time.realtimeSinceStartupAsDouble-idleStarted;
@@ -274,7 +275,7 @@ namespace CavesOfOoo.Scenarios.Custom
             Check("stillleaf_native_door_offers_reseal",Actions().Any(a=>a.Command==StillleafCustody.ResealCommand));
             yield return Capture("stillleaf-vault-door-open");yield return Tap(Key.Escape);Require(State()=="Normal","Door menu closes natively.");
             var register=EntityById(StillleafArchive.RegisterId);Require(register!=null,"The register lies in the vault.");
-            var rp=input.CurrentZone.GetEntityPosition(register);yield return Walk(new HashSet<(int,int)>{(rp.x,rp.y)});
+            var rp=input.CurrentZone.GetEntityPosition(register);yield return WalkOrFight(new HashSet<(int,int)>{(rp.x,rp.y)});
             yield return Tap(Key.G);nativeSteps++;
             Check("stillleaf_native_register_pickup",StillleafCustody.CarriedRegister(player)!=null&&stage()==3&&EntityById(StillleafArchive.RegisterId)==null);
             yield return Capture("stillleaf-register-taken");
@@ -306,6 +307,93 @@ namespace CavesOfOoo.Scenarios.Custom
             yield return Capture("stillleaf-told-curation");
             yield return SelectDialogue(c=>c.Target=="End","leave the Salt-Vault");
         }
+        // ── Ending spine (ES.6): the circle through native keys ──
+        // The ledger is read in the real journal, the Felling-Site is reached by the
+        // world map, the seventh position is picked underfoot with [C] then ".", and
+        // the practice-path Renewal is enacted when the ledger is clean — or, if the
+        // journey left an act open, its refusal is captured naming that act and the
+        // Strike is enacted instead. Either way one ending is enacted and persists.
+        private IEnumerator EndingSpineJourney()
+        {
+            var player=input.PlayerEntity;
+            yield return Tap(Key.Q);
+            var journal=(QuestLogSnapshot)typeof(QuestLogUI).GetField("_snapshot",Private).GetValue(input.QuestLogUI);
+            var reading=StoryletPart.Current.ReadLedger(player);
+            Check("ending_native_journal_closure_line",State()=="QuestLogOpen"&&journal.ClosureClosed==reading.Closed&&journal.ClosureRefused==reading.Refused&&journal.ClosureOpen==reading.Open,
+                "closed="+reading.Closed+" refused="+reading.Refused+" open="+reading.Open+" openIds="+string.Join(",",reading.OpenIds));
+            yield return Capture("ending-journal-closure");yield return Tap(Key.Escape);Require(State()=="Normal","Journal closes natively.");
+            yield return Tap(Key.F12);Require(DebugInvincibility.IsEnabled(player),"Explicit native F12 protects only the tier-5 Felling-Site leg.");
+            yield return WorldMapLeg(FellingSiteBuilder.WorldX,FellingSiteBuilder.WorldY,"felling");
+            Check("ending_native_felling_arrival",input.CurrentZone.ZoneID==FellingSiteBuilder.ZoneID&&FellingSceneRuntime.IsActive(input.CurrentZone));
+            var seventh=input.CurrentZone.GetReadOnlyEntities().FirstOrDefault(e=>e.HasPart<SeventhPositionPart>());Require(seventh!=null,"The empty seventh position stands in the circle.");
+            var at=input.CurrentZone.GetEntityPosition(seventh);yield return Walk(new HashSet<(int,int)>{(at.x,at.y)});
+            Check("ending_native_in_position",Position()==(at.x,at.y)&&EndingSpine.Enacted(player)==0);
+            yield return Tap(Key.C);yield return Tap(Key.Period);Require(State()=="WorldActionMenuOpen","Native underfoot menu opens.");
+            string pick=WorldInteractionSystem.PickTargetCommandPrefix+seventh.ID;
+            if(Actions().Any(a=>a.Command==pick))yield return SelectCommand(pick);
+            Check("ending_native_menu_offers_both",State()=="WorldActionMenuOpen"&&Actions().Any(a=>a.Command==EndingSpine.NameCommand)&&Actions().Any(a=>a.Command==EndingSpine.StrikeCommand),
+                string.Join(" | ",Actions().Select(a=>a.Display)));
+            yield return Capture("ending-seventh-menu");
+            bool clean=reading.Clean;
+            yield return SelectCommand(EndingSpine.NameCommand);
+            if(!clean)
+            {
+                // The gate names what is open, enacts nothing, and the menu returns to the world.
+                Check("ending_native_practice_refused_names_open",EndingSpine.Enacted(player)==0&&MessageLog.GetRecent(3).Any(m=>m.Contains("leaving your own unspoken")));
+                yield return Capture("ending-practice-refused");
+                if(State()=="WorldActionMenuOpen")yield return Tap(Key.Escape);
+                yield return Tap(Key.C);yield return Tap(Key.Period);if(Actions().Any(a=>a.Command==pick))yield return SelectCommand(pick);
+                yield return SelectCommand(EndingSpine.StrikeCommand);
+            }
+            else Check("ending_native_practice_refused_names_open",true,"ledger clean: the practice path was open; refusal branch not exercised");
+            double began=Time.realtimeSinceStartupAsDouble;
+            while(State()!="AnnouncementOpen"){Require(Time.realtimeSinceStartupAsDouble-began<5,"The epilogue is announced natively.");yield return null;}
+            string epilogue=(string)typeof(AnnouncementUI).GetField("_message",Private).GetValue(input.AnnouncementUI)??"";
+            int path=EndingSpine.Enacted(player);
+            Check("ending_native_enacted",path==(clean?EndingSpine.PracticePath:EndingSpine.VesselPath)&&NarrativeStatePart.Current?.GetFact(EndingSpine.EndingFact)==path,"path="+path+" clean="+clean);
+            Check("ending_native_epilogue_shown",input.AnnouncementUI.IsOpen&&(path==EndingSpine.PracticePath?epilogue.Contains("wakes without fear"):epilogue.Contains("That is the crack")),epilogue.Replace("\n"," / "));
+            yield return Capture("ending-epilogue");yield return Tap(Key.Enter);
+            double closing=Time.realtimeSinceStartupAsDouble;while(State()!="Normal"){Require(Time.realtimeSinceStartupAsDouble-closing<5,"The epilogue closes natively.");yield return null;}
+            yield return Tap(Key.Period);nativeSteps++;
+            Check("ending_native_exposure_ended",!input.PlayerEntity.GetPart<StatusEffectsPart>().HasEffect<ConfusedEffect>()&&Position()==(at.x,at.y));
+            yield return Tap(Key.C);yield return Tap(Key.Period);if(Actions().Any(a=>a.Command==pick))yield return SelectCommand(pick);
+            Check("ending_native_nothing_more_offered",!Actions().Any(a=>EndingSpine.IsWorldCommand(a.Command)));yield return Tap(Key.Escape);
+            yield return Tap(Key.F12);Check("ending_native_debug_restored",!DebugInvincibility.IsEnabled(player));
+        }
+        /// <summary>Walk to a target on a floor with hostile bodies: when the only thing
+        /// in the way is a creature, bump it (a real attack under the declared F12)
+        /// instead of waiting for a corridor it will never leave.</summary>
+        private IEnumerator WalkOrFight(HashSet<(int,int)> targets)
+        {
+            for(int attempt=0;attempt<600;attempt++)
+            {
+                if(targets.Contains(Position()))yield break;
+                var path=FindPath(targets);
+                if(path!=null){Require(path.Count>0,"Native route has a next step.");yield return Step(path[0]);continue;}
+                var through=FindPathThroughCreatures(targets);Require(through!=null,"A route exists once bodies are passed.");
+                var next=through[0];var at=Position();var cell=input.CurrentZone.GetCell(next.x,next.y);
+                bool body=cell.Objects.Any(o=>o.HasTag("Creature"));
+                yield return Tap(DirectionKey(next.x-at.x,next.y-at.y));nativeSteps++;
+                if(!body)Require(Position()==next,"Stepped when the way was clear.");
+            }
+            throw new InvalidOperationException("WalkOrFight exceeded its native budget.");
+        }
+        private List<(int x,int y)> FindPathThroughCreatures(HashSet<(int,int)> targets)
+        {
+            var start=Position();var queue=new Queue<(int,int)>();queue.Enqueue(start);var prior=new Dictionary<(int,int),(int,int)>{{start,start}};
+            while(queue.Count>0)
+            {
+                var c=queue.Dequeue();
+                if(targets.Contains(c)&&c!=start){var path=new List<(int x,int y)>();for(var p=c;p!=start;p=prior[p])path.Add(p);path.Reverse();return path;}
+                foreach(var d in Directions)
+                {
+                    var n=(c.Item1+d.x,c.Item2+d.y);if(prior.ContainsKey(n))continue;var cell=input.CurrentZone.GetCell(n.Item1,n.Item2);if(cell==null)continue;
+                    bool solid=false;foreach(var o in cell.Objects)if(!o.HasTag("Creature")&&(o.GetPart<PhysicsPart>()?.Solid==true||o.GetPart<SealedLibraryBarrierPart>()?.IsClosed==true)){solid=true;break;}
+                    if(solid)continue;prior[n]=c;queue.Enqueue(n);
+                }
+            }
+            return null;
+        }
         /// <summary>One native world-map leg: &lt; ascends (no stairs at a village
         /// or field cell), the harness's own BFS walks the world cells, &gt; descends.</summary>
         private IEnumerator WorldMapLeg(int wx,int wy,string label)
@@ -327,7 +415,7 @@ namespace CavesOfOoo.Scenarios.Custom
         {
             var stairs=input.CurrentZone.GetReadOnlyEntities().FirstOrDefault(e=>down?e.HasPart<StairsDownPart>():e.HasPart<StairsUpPart>());
             Require(stairs!=null,(down?"Stairs down":"Stairs up")+" exist in "+input.CurrentZone.ZoneID);
-            var at=input.CurrentZone.GetEntityPosition(stairs);yield return Walk(new HashSet<(int,int)>{(at.x,at.y)});
+            var at=input.CurrentZone.GetEntityPosition(stairs);yield return WalkOrFight(new HashSet<(int,int)>{(at.x,at.y)});
             yield return Tap(Key.LeftShift,down?Key.Period:Key.Comma);nativeSteps++;
             Require(input.CurrentZone.ZoneID==expectedZone,"Native "+(down?">":"<")+" reaches "+expectedZone+"; zone="+input.CurrentZone.ZoneID);
             if(VoxelWorldPresentation.IsSupported(input.CurrentZone.ZoneID))yield return WaitForVoxel();
@@ -806,7 +894,7 @@ namespace CavesOfOoo.Scenarios.Custom
             report=new Report{runId=RunId,saveRoot=saveRoot,gameId=gameId,markerId=markerId,fatal=fatal,worldSeed=input?.WorldMap?.Seed??0,
                 nativeSteps=nativeSteps,stunnedTurns=stunnedTurns,screenWidth=Screen.width,screenHeight=Screen.height,wallSeconds=watch?.Elapsed.TotalSeconds??0,
                 profileSeconds=profileSeconds,profileIdleSeconds=profileIdleSeconds,profileMetrics=profileMetrics,workloadComplete=complete,screenshots=screenshots.ToArray(),fullReveal=originalReveal,cameraSize=cameraSize,townCameraSize=townCameraSize,
-                bounds="Actual native 1080p GameView and ordinary seed64 N bootstrap. No fixture placement, world replacement, direct quest action, direct inventory transfer, camera or reveal changes. Cardinal movement, nine border crossings, action/loot/dialogue menus, regional request/harvest/delivery, Q/Tab field notes and F5/F6 use queued native keys. F12 invincibility is explicitly enabled only for the long regional journey; combat balance is not tested. Profiling restarts at that journey. Reflection only observes live UI state. Earned fire clay is examined in the real inventory modal, then spent through Nemm/cord/arch actions to create, ring and report a quiet bell, with a native repeat-cost control and checkpoint restoration. Other two material descriptions and guide branches are EditMode-covered, not native-captured. The Stillleaf Archive chain (SA.6) is then played through native keys: world-map travel by < / WASD / > between Morrowfast, Quillhold, the Salt-Vault and Stillleaf; labelled dialogue shortcuts; the released salt file opened in the native loot UI; the sinkhole descended by its real stairs under explicit F12 (its guardians are not the subject) and F12 restored on the surface; the register taken with G; the delivery outcome enacted and the Indexer told. The filing and resealing outcomes, theft, loss and out-of-order paths are EditMode-covered, not native-captured; the door's reseal action is shown in its native menu but not executed. Crops and summit water are covered by separate EditMode integration tests, not this journey. ProfilerRecorder covers a sixty-second native editor window including harness planning, screenshots, existing systems and loads; aggregate timing/allocation maxima do not isolate cue cost or establish FPS. No complete-world, subjective readability or enjoyment claim."};
+                bounds="Actual native 1080p GameView and ordinary seed64 N bootstrap. No fixture placement, world replacement, direct quest action, direct inventory transfer, camera or reveal changes. Cardinal movement, nine border crossings, action/loot/dialogue menus, regional request/harvest/delivery, Q/Tab field notes and F5/F6 use queued native keys. F12 invincibility is explicitly enabled only for the long regional journey; combat balance is not tested. Profiling restarts at that journey. Reflection only observes live UI state. Earned fire clay is examined in the real inventory modal, then spent through Nemm/cord/arch actions to create, ring and report a quiet bell, with a native repeat-cost control and checkpoint restoration. Other two material descriptions and guide branches are EditMode-covered, not native-captured. The Stillleaf Archive chain (SA.6) is then played through native keys: world-map travel by < / WASD / > between Morrowfast, Quillhold, the Salt-Vault and Stillleaf; labelled dialogue shortcuts; the released salt file opened in the native loot UI; the sinkhole descended by its real stairs under explicit F12 (its guardians are not the subject: a body blocking a corridor is bumped with a real attack) and F12 restored on the surface; the register taken with G; the delivery outcome enacted and the Indexer told. The filing and resealing outcomes, theft, loss and out-of-order paths are EditMode-covered, not native-captured; the door's reseal action is shown in its native menu but not executed. The ending spine (ES.6) is then played through native keys: the closure-ledger read in the real journal; the Felling-Site reached by the world map under explicit F12 (a tier-5 cell; restored after); the empty seventh picked underfoot with C then .; the practice-path Renewal enacted when the ledger is clean, or its refusal captured naming what is open and the Strike enacted instead; the epilogue read in the native announcement; the exposure's end and the empty menu checked. Faction-level consequences are stated in the epilogue and not enacted in the world; the sari has no ambient hook; Consume and Preserve are not built. Crops and summit water are covered by separate EditMode integration tests, not this journey. ProfilerRecorder covers a sixty-second native editor window including harness planning, screenshots, existing systems and loads; aggregate timing/allocation maxima do not isolate cue cost or establish FPS. No complete-world, subjective readability or enjoyment claim."};
             WriteReport();Finished=true;
         }
         private void WriteReport(){report.failures=Failures;report.unexpectedErrors=unexpected;report.checks=checks.ToArray();File.WriteAllText(ReportPath,JsonUtility.ToJson(report,true));}
