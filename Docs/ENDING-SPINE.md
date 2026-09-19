@@ -1,6 +1,6 @@
 # The Ending Spine — closure-ledger and the first enacted ending
 
-**Status:** ES.1–ES.2 shipped 19 September 2026 (the closure-ledger; visible, with a spoken no everywhere). ES.3–ES.6 pending. Release roadmap step 4 ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap; [GAME-STATE](GAME-STATE-2026-09-17.md) §15, §20). CoO-original; no Qud parity claim. Follows the Stillleaf Archive chain ([MIDGAME-STILLLEAF-ARCHIVE](MIDGAME-STILLLEAF-ARCHIVE.md)), which is the first content the ledger will read.
+**Status:** ES.1–ES.5 shipped 19 September 2026 — the closure-ledger, visible, with a spoken no everywhere, lost givers renounceable, the circle's two enactments, and the adversarial sweep. ES.6 (native proof) pending. Release roadmap step 4 ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap; [GAME-STATE](GAME-STATE-2026-09-17.md) §15, §20). CoO-original; no Qud parity claim. Follows the Stillleaf Archive chain ([MIDGAME-STILLLEAF-ARCHIVE](MIDGAME-STILLLEAF-ARCHIVE.md)), which is the first content the ledger will read.
 
 ## Goal
 
@@ -95,3 +95,68 @@ As for the Stillleaf chain: independent clone, RED before GREEN (stub phase for 
 **Cold-eye.** Q1: `RefuseQuest`/`IfQuestRefused` are line-for-line siblings of `FailQuest`/`IfQuestFailed`; the regional hooks sit in the same after-commit as the diag receipt. Q2: every giver's release choice has the same text, gate and shape; every reply is leavable; refusal is never recorded as failure (audited over the roster). Q3: release visible only while undertaken, hidden before and after; refused then re-takeable; an unregistered id shown as itself; a refused act alone still makes a journal; generic act refuse vs close vs unknown. Q4: this section was read against the shipped files.
 
 **Files.** MOD `ClosureLedger.cs`, `StoryletPart.cs`, `ConversationActions.cs`, `ConversationPredicates.cs`, `QuestLogSnapshot.cs`, `QuestLogStateBuilder.cs`, `QuestLogUI.cs`, `RegionalRequestPart.cs`, ten `*_Quest.json`; NEW `ClosureVisibilityTests.cs`; MOD `RegionalSituationCargoRollbackTests.cs`.
+
+### Process finding — the living-doc gap (19 September 2026)
+
+ES.3, ES.4 and ES.5 are shipped code (`0109fb0e`, `0b5bf93c`, `d6c5e105`), but their doc sections below were published only afterwards, by a docs-only commit, and their commit messages carry unfilled placeholders (`{{REVIEW}}` and `Tests: {{PREV}} -> {{FULL}}`). Each chain filled its section in a Python step that failed before writing — ES.3's read a log that did not contain its RED line, and ES.4's and ES.5's status-line assertions then depended on the replacement ES.3 never made — and the chain went on to copy, guard and commit with the section unwritten. Rule 3 (doc in the same commit) was broken three times by one silent failure. The remedy in the chain scripts is the one ES.6's already has: the fill step runs under `set -e` before any copy, so a failed fill aborts the commit. The true lines, from the receipts on main:
+
+| Milestone | RED | GREEN | Full suite in the clone |
+|---|---|---|---|
+| ES.3 | `ES3-red` compile errors | `ES3-green-2` 748/748 | `ES3-full` 15,137/15,137 (15,128 → 15,137, +9) |
+| ES.4 | `ES4-red` compile errors | `ES4-green` 618/618 | `ES4-full` 15,146/15,146 (+9) |
+| ES.5 | `ES5-red` hypothesis run 12/13 | `ES5-green` 50/50 | `ES5-full-2` 15,159/15,159 (+13) |
+
+History is not rewritten; the messages stay as they were committed, and this table is their correction. The ES.3 message also lists `ES3-green` among its receipts; the published receipt is `ES3-green-2`.
+
+### ES.3 — Lost and reported (19 September 2026)
+
+**Status:** shipped. RED `ES3-red` (compile errors: `GiverId`, `GiverName`, `Lost`, `IsLost`, `PlaceName`, `RenounceLost`, `Unspoken`, `LostCount` did not exist — a new API, so the honest RED is the compiler); GREEN `ES3-green-2` 748/748 (the first green run, `ES3-green`, failed six pins on a fixture of mine and is not published: the factory Villager already carries a ConversationPart, so the fixture now redirects the existing part's ID instead of adding a second); full EditMode suite in the clone 15,137 tests, 15,137 passed (`ES3-full`).
+
+**What the player sees and can do.** Every act now records who it was taken on from and where — the conversation `StartQuest` action captures its speaker and the active zone, the regional recipient is its request's giver, and the shipped chains (Hollin, Farra, Nemm, Hesta) record theirs — so the reading describes each open act: *"A Message for the Hermit — end it with Orrin the baker at Sill."* An act whose giver is *known*, whose place is *loaded*, and who is *not there alive* is lost: the journal names it under UNSPOKEN ("… is gone; [R] renounces it") and [R] renounces every lost act aloud, once — a spoken end for an act that can no longer be ended to a face. Anything unknown stays open and is never called lost: an act taken on by code without a giver, or a giver whose place is not loaded, cannot be renounced, so renouncing never becomes a way to shed inconvenient obligations.
+
+**Implementation.** `ClosureEntry.GiverId/GiverName/Where`; `StoryletPart.SetGiver`, `UndertakeAct(id, title, giver, zone)`, `IsLost`, `PlaceName(zoneId, manager)` (map POI, "below" prefix for depth, wilds fallback), `Describe`, `RenounceLost` (Refused, spoken; removes from the active set; clears any failed flag; `closure/Renounced`; `QuestRefused`). The reading carries `Lost` and one description per open act. The ledger save section is versioned (a negative first value); v1 layouts load without giver fields. The journal gained UNSPOKEN (open acts not shown under ACTIVE, and lost ones even if active) and offers [R] only while something is lost.
+
+**Scope divergence from the plan.** "Report the loss to the other party" generalised into "renounce a lost act from the journal": village errands have no other party, and the Stillleaf register's own report-the-loss verbs remain as they were.
+
+**Self-review (Methodology Template §5).**
+- 🟡 fixed (test-side): the fixture above; a second ConversationPart on one villager made every conversation pin start on the wrong part.
+- 🔵 The Morrowfast `Start(quest)` helper takes no speaker, so its three accept sites record the giver individually; a giver-aware helper would be tidier, not truer.
+- 🧪 the [R] key is exercised through the `StoryletPart` API and the snapshot; the UI key handler is native-proof territory (ES.6).
+- ⚪ Guard unchanged.
+
+**Cold-eye.** Q1: `RenounceLost` performs exactly `RefuseQuest`'s removals plus its own diag kind; `UndertakeAct(id, title, giver, zone)` is `UndertakeAct` + `SetGiver`. Q2: giver fields are recorded at every undertaking site the same way (speaker, active zone); the reading's `Descriptions` follow `OpenIds` order. Q3: healthy vs gone vs dead-but-standing vs unknown vs unloaded; dropped-with-living-giver is unspoken but not lost; renounce once; save round-trip keeps giver, place and title; place names for a POI, a depth, the wilds, and garbage. Q4: this section was read against the shipped files.
+
+**Files.** MOD `ClosureLedger.cs`, `StoryletPart.cs`, `ConversationActions.cs`, `RegionalRequestPart.cs`, `StillleafArchiveContent.cs`, `MorrowfastExpedition.cs`, `MorrowfastQuests.cs`, `QuestLogSnapshot.cs`, `QuestLogStateBuilder.cs`, `QuestLogUI.cs`; NEW `ClosureLostTests.cs`; MOD `RegionalSituationCargoRollbackTests.cs`.
+
+### ES.4 — The circle (19 September 2026)
+
+**Status:** shipped. RED `ES4-red` (compile errors: `EndingSpine` did not exist — a new API, so the honest RED is the compiler); GREEN `ES4-green` 618/618; full EditMode suite in the clone 15,146 tests, 15,146 passed (`ES4-full`).
+
+**What the player can now do.** At the Felling-Site, standing in the empty seventh position, [C] and "." underfoot offer two enactments with their costs on the menu: *be struck as the seventh: re-bind the world; it cracks one day* and *refuse aloud and name the world: a clean ledger; the gods end*. The Strike asks nothing of the ledger and enacts the vessel-path Renewal. Naming reads the ledger: if any act is still open it enacts nothing and says so — *"You cannot teach the world to finish its names while leaving your own unspoken:"* followed by the reading's own lines about where to end each — and a completionist, a principled refuser, and a player who renounced a lost act all pass. Either enactment is once and for all: it persists on the player and as a narrative fact, the epilogue is announced, the seventh's examine text changes, its exposure ends, and nothing more is offered there.
+
+**Implementation.** `EndingSpine` (`Assets/Scripts/Gameplay/World/EndingSpine.cs`): `AddActions`, `TryWorldAction` (reasons `not_the_circle`, `no_actor`, `already_enacted`, `not_in_the_position`, `no_ledger`, `ledger_open`), the two epilogues, `ending/Enacted|Rejected` diag with the reading's counts. `SeventhPositionPart` answers `GetInventoryActions` and ends its exposure once enacted; the blueprint is tagged `UnderfootInteractable` (the underfoot pick's rule); `InputHandler` dispatches beside the other world actions.
+
+**Scope divergence from the plan.** Per-faction consequence lines ("the Six begin to age") are stated in the epilogue and not yet enacted by faction NPCs; the ambient *sari… sari…* has no hook in code (the word appears only in tables and sprite names), so "it stops" is said, not heard. Both belong to roadmap step 5's breadth pass and are recorded here rather than implied.
+
+**Self-review (Methodology Template §5).**
+- 🔵 The seventh position's entity id is whatever the scene runtime assigned; the underfoot pick requires one, and the test pins that it is non-empty.
+- 🧪 the input dispatch and the announcement modal are native-proof territory (ES.6).
+- ⚪ Guard unchanged.
+
+**Cold-eye.** Q1: the dispatch block is the Stillleaf block with the spine's names; the guards mirror `StillleafCustody.ResealRefusal`'s order (place, actor, state, position). Q2: both enactments write the same state (`EndingEnacted`, the `Ending` fact), announce, retag the seventh, and emit `Enacted` with the reading's counts. Q3: strike vs name; clean vs open vs dropped vs lost-then-renounced; in the position vs beside it; the seventh vs a bare position; alive vs dead; ledger present vs absent; once vs twice; persistence. Q4: this section was read against the shipped files.
+
+**Files.** NEW `EndingSpine.cs`, `EndingSpineTests.cs`; MOD `SeventhPositionPart.cs`, `InputHandler.cs`, `Diag.cs`, `Objects.json`.
+
+### ES.5 — Robustness and the adversarial sweep (19 September 2026)
+
+**Status:** shipped. Hypothesis RED `ES5-red` (13 tests against the shipped ES.1–ES.4: 12 pinned green, 1 red); GREEN `ES5-green` 50/50; full EditMode suite in the clone 15,159 tests, 15,159 passed (`ES5-full`, run before the fix, failed the one red hypothesis and is kept in the clone, not published) (`ES5-full-2`).
+
+**Method.** The taxonomy sweep (boundary inputs, cross-actor, save/load reach across ledger layouts, stacking, anti-exploit, diag contracts) plus hypothesis-driven probes written before re-reading the code, run first against the shipped spine so each hypothesis fails or passes on its own assertion.
+
+**One gap found and fixed.** `PlaceName` accepted an out-of-range world cell (99,99) as "the wilds at (99,99)"; it now bounds-checks against the map's size, and such an id reads "where you took it on" like a malformed one.
+
+**Pinned as correct (12).** Nulls and nonsense never throw and never act; a non-player actor cannot enact; a v1 (ES.2-layout) ledger section loads without giver fields and re-saves in the current layout; the enactment and its narrative fact survive a round-trip; undertaking the same act twice keeps one entry, superseded; refuse-then-retake-then-drop is a ghosting the earlier no does not launder; two acts from one lost giver are renounced together; a giver dying after the reading changes nothing for a closed act; completing a lost act closes it; the world-map zone id and the site name resolve as they should; the regional deliver path closes an act through the same API and a closed act cannot be refused; rejections never claim enactment, every gate reading is recorded, and an already-enacted circle does not re-read; the Strike records the open ledger it was enacted over.
+
+**Self-review.** 🟡 the bounds gap, fixed. 🧪 bounded by the hypotheses imagined; no fuzzing. 🧪 the native [R] and [C] paths are ES.6's. ⚪ Guard unchanged.
+
+**Files.** NEW `EndingSpineAdversarialTests.cs`; MOD `StoryletPart.cs` (bounds check).
