@@ -15,7 +15,8 @@ namespace CavesOfOoo.Core
     /// origin ground outlives her, so she is never re-conjured. Her errand
     /// starts the chain's journal entry and gives the player the keeper's
     /// last words — the only index that can find the keeper's file at the
-    /// Salt-Vault (SA.3). Release is closure, not failure: the journal entry
+    /// Salt-Vault (SA.3, <see cref="StillleafSaltVault"/>, whose verbs share
+    /// this class's action and predicate names). Release is closure, not failure: the journal entry
     /// is removed, nothing is marked failed, and what was heard stays heard.</para>
     /// </summary>
     public static class StillleafArchiveContent
@@ -91,13 +92,17 @@ namespace CavesOfOoo.Core
             return null;
         }
 
-        private static bool ValidConversation(Entity speaker, Entity player, out Zone zone)
+        /// <summary>Shared gate for every resident of the chain: the active zone
+        /// is the manager's current copy of the expected zone, the speaker is
+        /// the expected resident by id and blueprint, both are alive, not
+        /// hostile, and adjacent. Mirrors MorrowfastExpedition's gate.</summary>
+        internal static bool ValidConversation(Entity speaker, Entity player, string zoneId, string speakerId, string speakerBlueprint, out Zone zone)
         {
             zone = SettlementRuntime.ActiveZone;
-            if (zone?.ZoneID != QuillholdZoneId || WorldLocationContext.For(zone) == null
+            if (zone?.ZoneID != zoneId || WorldLocationContext.For(zone) == null
                 || player == null || player != StoryletPart.LocalPlayer || !player.HasTag("Player")
                 || player.GetStatValue("Hitpoints") <= 0 || CombatSystem.IsDeathHandled(player)
-                || speaker == null || speaker.ID != SearcherId || speaker.BlueprintName != SearcherBlueprint
+                || speaker == null || speaker.ID != speakerId || speaker.BlueprintName != speakerBlueprint
                 || speaker.GetStatValue("Hitpoints") <= 0 || CombatSystem.IsDeathHandled(speaker)
                 || FactionManager.IsHostile(speaker, player) || StoryletPart.Current == null) return false;
             var manager = WorldLocationContext.For(zone);
@@ -109,7 +114,8 @@ namespace CavesOfOoo.Core
 
         public static bool CanConversation(Entity speaker, Entity player, string command)
         {
-            if (!ValidConversation(speaker, player, out _)) return false;
+            if (StillleafSaltVault.Owns(command)) return StillleafSaltVault.CanConversation(speaker, player, command);
+            if (!ValidConversation(speaker, player, QuillholdZoneId, SearcherId, SearcherBlueprint, out _)) return false;
             bool active = StoryletPart.Current.IsQuestActive(QuestId);
             switch (command)
             {
@@ -121,6 +127,7 @@ namespace CavesOfOoo.Core
 
         public static bool TryConversation(Entity speaker, Entity player, string command)
         {
+            if (StillleafSaltVault.Owns(command)) return StillleafSaltVault.TryConversation(speaker, player, command);
             if (!CanConversation(speaker, player, command)) return Reject(speaker, player, command, "unavailable");
             if (command == "accept")
             {

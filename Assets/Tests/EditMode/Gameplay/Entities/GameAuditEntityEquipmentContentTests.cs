@@ -100,7 +100,9 @@ namespace CavesOfOoo.Tests
             new EquipmentContentKit("CurationSorter", "LeatherGloves;LeatherCap"),
             new EquipmentContentKit("GantryRegistrar", "LeatherGloves;LeatherBoots"),
             // Stillleaf Archive SA.2: the Searcher wears her house's gloves and boots (inherits RecensionScribe).
-            new EquipmentContentKit("StillleafSearcher", "LeatherGloves;LeatherBoots")
+            new EquipmentContentKit("StillleafSearcher", "LeatherGloves;LeatherBoots"),
+            // Stillleaf Archive SA.3: the Indexer wears Curation's gloves and cap (inherits CurationSorter).
+            new EquipmentContentKit("StillleafIndexer", "LeatherGloves;LeatherCap")
         };
 
         [TestCaseSource(nameof(Kits))]

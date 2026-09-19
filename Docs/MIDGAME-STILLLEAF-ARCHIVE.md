@@ -1,6 +1,6 @@
 # The Stillleaf Archive — the first middle-game chain
 
-**Status:** SA.1 and SA.2 shipped 19 September 2026 (the key opens the vault; the register lies inside; the Searcher at Quillhold offers the errand and the keeper's last words). SA.3–SA.6 pending. Release roadmap step 3 ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap; [GAME-STATE](GAME-STATE-2026-09-17.md) §15, §20). CoO-original campaign content; no Qud parity claim.
+**Status:** SA.1–SA.3 shipped 19 September 2026 (the key opens the vault; the register lies inside; the Searcher at Quillhold offers the errand and the keeper's last words; the Indexer at the Salt-Vault files the key and names Curation's request). SA.4–SA.6 pending. Release roadmap step 3 ([RELEASE-VISION](RELEASE-VISION.md) §A dependency-led roadmap; [GAME-STATE](GAME-STATE-2026-09-17.md) §15, §20). CoO-original campaign content; no Qud parity claim.
 
 ## Goal
 
@@ -120,4 +120,28 @@ All execution in the independent clone; the user's editor stays open. Guard chec
 **Cold-eye Q1–Q4.** Q1: hook position and `ValidConversation` are the Morrowfast shapes; release mirrors Morrowfast's `RemoveActiveQuest`. Q2: diag names follow `<Thing>Placed|Refused` and `<Chain>Applied|Rejected`; payloads carry `command` and `questId`/`reason` only, ids at top level. Q3: accept vs not-now; release vs completed vs failed; adjacent vs remote; Searcher vs Scribe; alive vs dead (an accepted errand survives her); Quillhold vs Tine vs Sill; placed vs refused; applied vs rejected. Q4: this section was read against the shipped files.
 
 **Files.** NEW `StillleafArchiveContent.cs`, `StillleafResidentPart.cs`, `Content/Conversations/StillleafArchive.json`, `Content/Data/Storylets/StillleafArchive.json`, `Sprites/Environment/stillleaf_searcher.png`, `StillleafSearcherTests.cs`; MOD `Objects.json` (`StillleafSearcher` spliced after `RecensionScribe`), `OverworldZoneManager.cs`, `EnvironmentSpriteRenderer.cs`, `SpawnRing3DRecipes.cs`, `EnvironmentSpriteRendererHarnessTests.cs`.
+
+### SA.3 — The Indexer and the file (19 September 2026)
+
+**Status:** shipped. RED gate `SA3-red` (CS0103, `StillleafSaltVault` did not exist); focused GREEN `SA3-green` 817/819 with one pin of mine corrected (below); full EditMode suite in the clone: 15,063 tests, 15,063 passed (`SA3-full`).
+
+**What the player can now do.** At the Salt-Vault (world 15,15, a Pale Curation village) stands *Teodra Halm*, an Indexer (`StillleafIndexer`, id `stillleaf-archive:indexer`, faction `PaleCuration`), with a locked *salt file* beside the desk (`StillleafFileCabinet`, id `stillleaf-archive:file`) holding the keeper's key (`StillleafKey`, id `stillleaf-archive:key`). Without the words the Indexer explains the index and nothing opens. With them — spoken as a real choice — the file is read aloud ("Status: continuing"), the journal advances to *key*, and Curation names its request: *bring what you find here, to be filed, not read.* Agree or bargain ("I do not promise it stays") and the file unlocks; the player takes the key by the ordinary container path and the journal advances to *descend*. Refuse and leave without the key: nothing is failed, nothing is charged, and agree/bargain still stand on return. Once released, terms are one-time. Breaking the file open spills the key where it stood, records no terms, and leaves the Indexer nothing to release — a real out-of-order path whose standing consequences belong to SA.4/SA.5.
+
+**Implementation.** `StillleafSaltVault` (`Assets/Scripts/Gameplay/World/StillleafSaltVault.cs`): `TryInstall` from the surface hook (gated by the Curation POI) chooses a bare interior `StoneFloor` pair using the population builder's own criteria, prefers the most wall around the file, and accepts a seat only if every other passable cell stays reachable from the zone edge with the solid file standing; `CanConversation`/`TryConversation` own `retrieve`, `agree`, `bargain`, `refuse` behind the chain's shared action/predicate names, dispatched from `StillleafArchiveContent`, whose Searcher-only gate became the shared `ValidConversation(zone, id, blueprint)`. The key carries `CompleteObjectiveOnTaken(objective "key")`, so the real `TakeFromContainerCommand` advances the journal. Player state: `StillleafFileFound`, `StillleafCurationTerms` (1 agreed, 2 bargained, 3 refused). Diag: `worldgen`/`StillleafIndexerPlaced|Refused`, `quest`/`StillleafArchiveApplied|Rejected`.
+
+**Art.** `Sprites/Environment/stillleaf_indexer.png`, the named-resident silhouette in salt-white with a dark ledger and pale page at the hip, own slice name, fresh GUID; sprite row with `'@'`. Generic villages keep the native presentation (`VoxelWorldPresentation.IsSupported` is false there), pinned so a later voxel village does not silently lose her.
+
+**Scope divergence from the plan.** The plan's "file cabinet holding the key" is a locked container, not a prop: the ordinary container path is the gate, which is why the smash path exists and is pinned as *not a release* rather than prevented.
+
+**Deliberate premise changes.** Sprite roster 57 → 58; `GameAuditEntityEquipmentContentTests.Kits` gains the Indexer (`LeatherGloves;LeatherCap`, inherited from `CurationSorter`).
+
+**Self-review (Methodology Template §5).**
+- 🟡 *Fixed pre-commit (test-side):* my counter-check "the world holds one keeper's key" counted zone entities; the filed key is container content, not a zone entity. The pin now states the stronger fact: no keeper's key lies loose, and exactly one is filed.
+- 🧪 *Deferred to SA.5:* install refusals other than `already_installed`; save/load of `Locked`, `Terms`, `FileFound`; standing after breaking the file; SA.4's "file it here" when the cabinet is gone.
+- 🔵 *Noted:* the Indexer inherits `AISelfPreservation`, like the Searcher.
+- ⚪ Guard state unchanged (`release-candidate` topology/manifest; `main` only).
+
+**Cold-eye Q1–Q4.** Q1: install/latch/diag shapes match the Searcher's; the gate is literally shared code. Q2: verbs on both residents emit the same `quest` kinds with `command`; the file's release is a state change on a native part (`ContainerPart.Locked`), not a parallel flag. Q3: words vs no words; read once vs twice; agree vs bargain vs refuse; refuse then agree; released vs broken; wrong speaker, remote, dead; Indexer refusing the Searcher's verbs and vice versa; other villages hold neither resident. Q4: this section was read against the shipped files.
+
+**Files.** NEW `StillleafSaltVault.cs`, `StillleafIndexerTests.cs`, `stillleaf_indexer.png`; MOD `StillleafArchiveContent.cs`, `Objects.json` (`StillleafIndexer` after `CurationSorter`, `StillleafFileCabinet` after `Chest`), `Content/Conversations/StillleafArchive.json` (`StillleafIndexer_1`), `OverworldZoneManager.cs`, `EnvironmentSpriteRenderer.cs`, `EnvironmentSpriteRendererHarnessTests.cs`, `GameAuditEntityEquipmentContentTests.cs`.
 

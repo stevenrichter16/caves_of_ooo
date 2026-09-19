@@ -20281,6 +20281,29 @@
       ]
     },
     {
+      "Name": "StillleafFileCabinet",
+      "Inherits": "Chest",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "salt file: Stillleaf" },
+            { "Key": "RenderString", "Value": "=" },
+            { "Key": "ColorString", "Value": "&W" },
+            { "Key": "RenderLayer", "Value": "1" }
+          ]
+        },
+        { "Name": "Physics", "Params": [ { "Key": "Solid", "Value": "true" }, { "Key": "Takeable", "Value": "false" }, { "Key": "Weight", "Value": "60" } ] },
+        { "Name": "Container", "Params": [ { "Key": "MaxItems", "Value": "1" }, { "Key": "Locked", "Value": "true" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A salt-sealed drawer beside the Indexer's desk, its lead-line pressed into the lid: \"Keeping is not the same as showing.\" Curation's files open for the words, or not at all." }
+          ]
+        }
+      ]
+    },
+    {
       "Name": "LockedDoor",
       "Inherits": "PhysicalObject",
       "Parts": [
@@ -29779,6 +29802,31 @@
         { "Name": "Agility", "Value": 12 },
         { "Name": "Speed", "Value": 100 },
         { "Name": "XPValue", "Value": 0 }
+      ],
+      "Tags": [ { "Key": "Faction", "Value": "PaleCuration" }, { "Key": "Tier", "Value": "1" } ]
+    },
+    {
+      "Name": "StillleafIndexer",
+      "Inherits": "CurationSorter",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            { "Key": "DisplayName", "Value": "Teodra Halm" },
+            { "Key": "RenderString", "Value": "@" },
+            { "Key": "ColorString", "Value": "&W" }
+          ]
+        },
+        { "Name": "Conversation", "Params": [ { "Key": "ConversationID", "Value": "StillleafIndexer_1" } ] },
+        { "Name": "Brain", "Params": [ { "Key": "Wanders", "Value": "false" }, { "Key": "WandersRandomly", "Value": "false" }, { "Key": "Passive", "Value": "true" }, { "Key": "Staying", "Value": "true" } ] },
+        { "Name": "QuestBeacon", "Params": [ { "Key": "Quest", "Value": "StillleafArchive" } ] },
+        { "Name": "StillleafResident", "Params": [ { "Key": "ResidentId", "Value": "indexer" } ] },
+        {
+          "Name": "Examinable",
+          "Params": [
+            { "Key": "Description", "Value": "A Pale Curation Indexer. Gloves to the elbow, a ledger open at the day's page, every entry led by a sentence somebody said last. They will argue a transcription for a week and file the argument." }
+          ]
+        }
       ],
       "Tags": [ { "Key": "Faction", "Value": "PaleCuration" }, { "Key": "Tier", "Value": "1" } ]
     },
