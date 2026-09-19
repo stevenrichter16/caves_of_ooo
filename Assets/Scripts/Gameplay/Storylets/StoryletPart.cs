@@ -81,7 +81,8 @@ namespace CavesOfOoo.Storylets
         public static string PlaceName(string zoneId, OverworldZoneManager manager)
         {
             var (x, y, z) = WorldMap.FromZoneID(zoneId ?? "");
-            if (x < 0 || y < 0) return "where you took it on";
+            // ES.5: an out-of-range cell is not a place either (found by the adversarial sweep).
+            if (x < 0 || y < 0 || x >= WorldMap.Width || y >= WorldMap.Height) return "where you took it on";
             var poi = manager?.WorldMap?.GetPOI(x, y);
             string place = !string.IsNullOrEmpty(poi?.Name) ? poi.Name : "the wilds at (" + x + "," + y + ")";
             return z > 0 ? "below " + place : place;
