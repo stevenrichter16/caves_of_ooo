@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feebc409a2654cd787b1c1e319440637, type: 3}
+  m_Name: Library
+  m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.Rendering.DensityPhase1VoxelLibrary
+  Entries:
+  - Id: density-pool-acid
+    Prefab: {fileID: 8045824984498288642, guid: 9d25fec8279746a6ae3d2edf536b7758, type: 3}
+    Mesh: {fileID: 4300000, guid: eeacbb81cc074ad9a8c47a2285d3fa79, type: 2}
+    Spec:
+      id: density-pool-acid
+      path: Assets/Resources/DensityPhase1Voxel3D/density-pool-acid.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: AcidPool
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.041, z: 0}
+      boundsSize: {x: 1, y: 0.013999999, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: density-pool-memory
+    Prefab: {fileID: 8045824984498288642, guid: 38d26072c6a84d75a2fe29f6d3d14898, type: 3}
+    Mesh: {fileID: 4300000, guid: a94e117568c1407492314501d4494cd2, type: 2}
+    Spec:
+      id: density-pool-memory
+      path: Assets/Resources/DensityPhase1Voxel3D/density-pool-memory.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: MemoryBathPool
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.041, z: 0}
+      boundsSize: {x: 1, y: 0.013999999, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []
+  - Id: density-pool-mirror
+    Prefab: {fileID: 8045824984498288642, guid: 877a8ad2694b4dab95ac6e762dedffff, type: 3}
+    Mesh: {fileID: 4300000, guid: 1503fc3dfb4f47768c1b8740c7d95a33, type: 2}
+    Spec:
+      id: density-pool-mirror
+      path: Assets/Resources/DensityPhase1Voxel3D/density-pool-mirror.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: ring-palette
+      sourceBlueprint: MirrorMucilagePool
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.041, z: 0}
+      boundsSize: {x: 1, y: 0.013999999, z: 1}
+      triangles: 12
+      clips: []
+      sockets: []

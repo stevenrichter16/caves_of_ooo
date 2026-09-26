@@ -24,6 +24,20 @@ namespace CavesOfOoo.Rendering
         {
             this.catalog = catalog; ZoneId = zoneId; catalog.Validate();
             foreach (var binding in catalog.Bindings) generated.Add(binding.Voxel);
+            // Pool hazards and market stalls can occur in any supported native
+            // zone. Register their already-voxel meshes once per bind, not frame.
+            var pools = DensityPhase1VoxelLibrary.Load();
+            var springs = StillleafVoxelLibrary.Load();
+            var stalls = CinderholdVoxelKitLibrary.Load();
+            if (pools == null || springs == null || stalls == null)
+                throw new InvalidOperationException("Required shared pool and market voxel art missing.");
+            pools.Validate();
+            foreach (var entry in pools.Entries) generated.Add(entry.Mesh);
+            for (int variant = 0; variant < 4; variant++)
+            {
+                generated.Add(springs.Find(StillleafVoxelLibrary.ModelId("spring", variant)).Mesh);
+                generated.Add(stalls.Find(CinderholdVoxelKitLibrary.ModelId("stall", variant)).Mesh);
+            }
             if (SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId))
             {
                 var kit=SpreadVoxelLibrary.Load();

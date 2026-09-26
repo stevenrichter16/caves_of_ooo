@@ -47,6 +47,21 @@ namespace CavesOfOoo.Rendering
             }
             else
             {
+                // These existing native surfaces now occur across countries and
+                // caves. Their art is shared, but each recipe retains its owner.
+                string poolModel = DensityPhase1VoxelLibrary.ModelId(entity.BlueprintName);
+                if (poolModel != null)
+                    return new SpawnRing3DRecipe(entity, poolModel, null,
+                        Village3DProjection.CellCentre(cell.X, cell.Y), false, true);
+                if (entity.BlueprintName == "ConvalescencePool" || entity.BlueprintName == "MarketStall")
+                {
+                    int variant = Variant(zone.ZoneID, entity.BlueprintName, entity.ID, cell.X, cell.Y, 4);
+                    string sharedModel = entity.BlueprintName == "ConvalescencePool"
+                        ? StillleafVoxelLibrary.ModelId("spring", variant)
+                        : CinderholdVoxelKitLibrary.ModelId("stall", variant);
+                    return new SpawnRing3DRecipe(entity, sharedModel, null,
+                        Village3DProjection.CellCentre(cell.X, cell.Y), false, true);
+                }
                 bool cinderhold=CinderholdCompositionPlan.IsSupportedZone(zone.ZoneID);
                 bool sumphold=SumpholdCompositionPlan.IsSupportedZone(zone.ZoneID);
                 bool drownedLedger=DrownedLedgerCompositionPlan.IsSupportedZone(zone.ZoneID);
@@ -370,6 +385,10 @@ namespace CavesOfOoo.Rendering
                     }
                 }
                 var binding = catalog.FindBlueprint(entity.HasTag("Player") ? "Player" : entity.BlueprintName);
+                // Oil keeps the shipped dark seep body; no liquid/gameplay
+                // alias is introduced and the original native owner stays intact.
+                if (binding == null && (entity.BlueprintName == "OilSlick" || entity.BlueprintName == "OilSeep"))
+                    binding = catalog.FindBlueprint("TarSeep");
                 // Native cave snapjaw roles share the species' body while their
                 // real brains, equipment and glyph-reskin guard remain intact.
                 if(binding==null&&caveArt&&(entity.BlueprintName=="SnapjawScavenger"||entity.BlueprintName=="SnapjawHunter"))

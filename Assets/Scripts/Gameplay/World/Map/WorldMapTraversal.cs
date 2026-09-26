@@ -178,11 +178,12 @@ namespace CavesOfOoo.Core
                 arriveY = Zone.Height / 2;
             }
 
-            // If the chosen arrival is impassable, search outward.
-            var arriveCell = targetZone.GetCell(arriveX, arriveY);
-            if (arriveCell == null || !arriveCell.IsPassable())
+            // Check the complete arriving body with the normal collision rule.
+            // IsPassable checks terrain tags, so it would accept a lair boss
+            // (Physics.Solid) already occupying the default center cell.
+            if (!targetZone.CanPlaceFootprint(player, arriveX, arriveY))
             {
-                (arriveX, arriveY) = FindPassableNear(targetZone, arriveX, arriveY);
+                (arriveX, arriveY) = FindPassableNear(targetZone, player, arriveX, arriveY);
                 if (arriveX < 0)
                     return Fail("No passable cell found on target zone.");
             }
@@ -308,7 +309,7 @@ namespace CavesOfOoo.Core
             };
         }
 
-        private static (int x, int y) FindPassableNear(Zone zone, int cx, int cy)
+        private static (int x, int y) FindPassableNear(Zone zone, Entity player, int cx, int cy)
         {
             for (int radius = 1; radius <= 20; radius++)
             {
@@ -319,8 +320,7 @@ namespace CavesOfOoo.Core
                         int nx = cx + dx;
                         int ny = cy + dy;
                         if (!zone.InBounds(nx, ny)) continue;
-                        var c = zone.GetCell(nx, ny);
-                        if (c != null && c.IsPassable())
+                        if (zone.CanPlaceFootprint(player, nx, ny))
                             return (nx, ny);
                     }
                 }

@@ -48,6 +48,37 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(result.NewZone.GetAllEntities().Any(e=>e.HasPart<MorrowfastPropPart>()),"Destination must have actual authored owners, not just a town name.");
         }
 
+        private sealed class SnareRoll : System.Random
+        {
+            private readonly int roll;
+            public int Calls;
+            public SnareRoll(int roll) { this.roll = roll; }
+            public override int Next(int maxValue) { Calls++; return roll; }
+        }
+
+        [TestCase(0, true)] [TestCase(99, false)]
+        public void ForestPassageWaitsOutActualSundewWithoutRemovingIt(int roll, bool caught)
+        {
+            var oldRng = GreatdewSnarePart.TestRng;
+            var rng = new SnareRoll(roll);
+            GreatdewSnarePart.TestRng = rng;
+            try
+            {
+                var z = Manager().GetZone("Overworld.2.6.0");
+                var player = PlacePlayer(z);
+                var sundews = z.GetAllEntities().Where(e => e.BlueprintName == "WineLeafSundew").ToArray();
+                Assert.Greater(sundews.Length, 0, "The real forest must retain its native sundews.");
+                int waited = WalkTo(z, player, c => c.Objects.Contains(sundews[0]), "real generated sundew");
+                waited += WalkTo(z, player, c => c.X == 79, "forest east edge after snare");
+                Assert.Greater(rng.Calls, 0, "The route must step through the real generated sundew.");
+                Assert.That(waited, caught ? Is.GreaterThan(0) : Is.EqualTo(0));
+                Assert.AreEqual(79, z.GetEntityCell(player).X);
+                Assert.IsTrue(sundews.All(e => z.GetEntityCell(e) != null), "Waiting does not remove the plants.");
+                Assert.IsFalse(player.GetPart<StatusEffectsPart>()?.HasEffect<RootedEffect>() ?? false);
+            }
+            finally { GreatdewSnarePart.TestRng = oldRng; }
+        }
+
         [TestCase(64)][TestCase(1729)]
         public void CurrentSavedAddressHasNativeSumpholdOneWestwardBoundaryAway(int seed)
         {
@@ -124,7 +155,7 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(result.Success,result.ErrorReason);Assert.AreEqual(expected,result.NewZone.ZoneID);Assert.IsNull(old.GetEntityCell(p));
             Assert.NotNull(result.NewZone.GetEntityCell(p));Assert.AreEqual(1,result.NewZone.GetAllEntities().Count(e=>ReferenceEquals(e,p)));
         }
-        private static void WalkTo(Zone z,Entity p,Func<Cell,bool> goal,string purpose)
+        private static int WalkTo(Zone z,Entity p,Func<Cell,bool> goal,string purpose)
         {
             var start=z.GetEntityCell(p);Assert.NotNull(start);var from=(x:start.X,y:start.Y);
             var queue=new Queue<(int x,int y)>();var previous=new Dictionary<(int x,int y),(int x,int y)>();queue.Enqueue(from);previous[from]=from;
@@ -137,7 +168,29 @@ namespace CavesOfOoo.Tests
             }
             Assert.IsTrue(found.HasValue,purpose+" unreachable from "+from+" in "+z.ZoneID);
             var path=new List<(int x,int y)>();for(var c=found.Value;c!=from;c=previous[c])path.Add(c);path.Reverse();
-            foreach(var next in path){var current=z.GetEntityCell(p);Assert.NotNull(current,purpose+" lost actor membership");Assert.IsTrue(MovementSystem.TryMove(p,z,next.x-current.X,next.y-current.Y),purpose+" rejected native move to "+next);}
+            // A traversable route may contain a sundew. Advance the same
+            // turn boundaries as input, including finite waits for a hold to
+            // expire, rather than treating a temporary movement veto as a wall.
+            var turns = TurnManager.Active;
+            Assert.NotNull(turns, "The fixture provides the native turn manager.");
+            turns.AddEntity(p);
+            if (turns.CurrentActor != p) turns.ProcessUntilPlayerTurn();
+            int waited = 0;
+            foreach (var next in path)
+            {
+                int held = 0;
+                while (p.GetPart<StatusEffectsPart>()?.GetAllEffects().Any(e => !e.AllowMovement(p)) == true)
+                {
+                    Assert.Less(held++, 10, purpose + " did not release a temporary hold");
+                    turns.EndTurn(p, z); turns.ProcessUntilPlayerTurn(); waited++;
+                }
+                var current = z.GetEntityCell(p);
+                Assert.NotNull(current, purpose + " lost actor membership");
+                Assert.IsTrue(MovementSystem.TryMove(p, z, next.x - current.X, next.y - current.Y),
+                    purpose + " rejected native move to " + next);
+                turns.EndTurn(p, z); turns.ProcessUntilPlayerTurn();
+            }
+            return waited;
         }
     }
 }

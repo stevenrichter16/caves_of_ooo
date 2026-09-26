@@ -1,0 +1,86 @@
+{
+  "success": true,
+  "message": "Test job status retrieved.",
+  "error": null,
+  "data": {
+    "job_id": "a9cd83a082a94a2f8ec176aef8132787",
+    "status": "failed",
+    "mode": "EditMode",
+    "started_unix_ms": 1790438708506,
+    "finished_unix_ms": 1790439134312,
+    "last_update_unix_ms": 1790439134312,
+    "progress": {
+      "completed": 15487,
+      "total": 15487,
+      "current_test_full_name": null,
+      "current_test_started_unix_ms": 1790439132784,
+      "last_finished_test_full_name": "CavesOfOoo.Tests.ZoneTileWritingTests.WritingATileFromInsideTheTick_DoesNotThrow",
+      "last_finished_unix_ms": 1790439132785,
+      "stuck_suspected": false,
+      "editor_is_focused": true,
+      "blocked_reason": null,
+      "failures_so_far": [
+        {
+          "full_name": "CavesOfOoo.Tests.FoundingCampRenderingTests.EveryVisibleNativeOwnerAcrossFourChunksHasAReadOnlyModel(64)",
+          "message": "  Overworld.4.6.0 MirrorMucilagePool: unmodeled-native-blueprint\nOverworld.8.16.0 MarketStall: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"Overworld.4.6.0 MirrorMucilagePool: unmodeled-native-blueprint\", \"Overworld.8.16.0 MarketStall: unmodeled-native-blueprint\" >\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.FoundingCampRenderingTests.StateReactiveNativePopulationAlsoHasVoxelCoverage(False)",
+          "message": "  Overworld.4.6.0 MirrorMucilagePool: unmodeled-native-blueprint\nOverworld.8.16.0 MarketStall: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"Overworld.4.6.0 MirrorMucilagePool: unmodeled-native-blueprint\", \"Overworld.8.16.0 MarketStall: unmodeled-native-blueprint\" >\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.FoundingCampRenderingTests.StateReactiveNativePopulationAlsoHasVoxelCoverage(True)",
+          "message": "  Overworld.4.6.0 MirrorMucilagePool: unmodeled-native-blueprint\nOverworld.8.16.0 MarketStall: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"Overworld.4.6.0 MirrorMucilagePool: unmodeled-native-blueprint\", \"Overworld.8.16.0 MarketStall: unmodeled-native-blueprint\" >\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.OverwritGinmereRenderingTests.EveryVisibleNativeOwnerAcrossBothAreasHasAnExplicitReadOnlyRecipe(1729)",
+          "message": "  Overworld.2.7.1 OilSlick: unmodeled-native-blueprint\nOverworld.2.7.2 AcidPool: unmodeled-native-blueprint\nOverworld.2.7.2 MemoryBathPool: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"Overworld.2.7.1 OilSlick: unmodeled-native-blueprint\", \"Overworld.2.7.2 AcidPool: unmodeled-native-blueprint\", \"Overworld.2.7.2 MemoryBathPool: unmodeled-native-blueprint\" >\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.OverwritGinmereRenderingTests.EveryVisibleNativeOwnerAcrossBothAreasHasAnExplicitReadOnlyRecipe(729490642)",
+          "message": "  Overworld.2.7.0 MirrorMucilagePool: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"Overworld.2.7.0 MirrorMucilagePool: unmodeled-native-blueprint\" >\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.SanctumRenderingTests.EveryVisibleNativeOwnerAcrossSixChunksHasAReadOnlyModel(64)",
+          "message": "  Overworld.5.4.1 MemoryBathPool: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"Overworld.5.4.1 MemoryBathPool: unmodeled-native-blueprint\" >\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.SanctumRenderingTests.EveryVisibleNativeOwnerAcrossSixChunksHasAReadOnlyModel(1729)",
+          "message": "  Overworld.5.4.1 AcidPool: unmodeled-native-blueprint\nOverworld.5.4.2 AcidPool: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"Overworld.5.4.1 AcidPool: unmodeled-native-blueprint\", \"Overworld.5.4.2 AcidPool: unmodeled-native-blueprint\" >\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.SanctumRenderingTests.EveryVisibleNativeOwnerAcrossSixChunksHasAReadOnlyModel(729490642)",
+          "message": "  Overworld.5.4.2 AcidPool: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"Overworld.5.4.2 AcidPool: unmodeled-native-blueprint\" >\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.SanctumRenderingTests.StateReactiveNativePopulationAlsoHasVoxelCoverage(False)",
+          "message": "  Overworld.5.4.1 MemoryBathPool: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"Overworld.5.4.1 MemoryBathPool: unmodeled-native-blueprint\" >\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.SanctumRenderingTests.StateReactiveNativePopulationAlsoHasVoxelCoverage(True)",
+          "message": "  Overworld.5.4.1 MemoryBathPool: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"Overworld.5.4.1 MemoryBathPool: unmodeled-native-blueprint\" >\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(64,\"Overworld.4.6.0\")",
+          "message": "  Overworld.4.6.0 MirrorMucilagePool: unmodeled-native-blueprint\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(1729,\"Overworld.2.6.0\")",
+          "message": "  Overworld.2.6.0 MirrorMucilagePool: unmodeled-native-blueprint\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(1729,\"Overworld.4.7.0\")",
+          "message": "  Overworld.4.7.0 MirrorMucilagePool: unmodeled-native-blueprint\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.SpawnRing3DRecipeTests.CurrentNativeGroundGraphResolvesWithoutMutation(729490642,\"Overworld.2.7.0\")",
+          "message": "  Overworld.2.7.0 MirrorMucilagePool: unmodeled-native-blueprint\n  Expected: True\n  But was:  False\n"
+        }
+      ],
+      "failures_capped": false
+    },
+    "error": null,
+    "result": null
+  },
+  "hint": null
+}

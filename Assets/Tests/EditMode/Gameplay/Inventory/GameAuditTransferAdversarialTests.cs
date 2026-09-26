@@ -180,7 +180,14 @@ namespace CavesOfOoo.Tests
             var item = Carry("Warhammer"); item.GetPart<EquippablePart>().EquipBonuses = "Strength:2";
             int strength = _actor.GetStatValue("Strength"); Assert.IsTrue(InventorySystem.Equip(_actor, item));
             Assert.AreEqual(strength + 2, _actor.GetStatValue("Strength"));
-            _trader.GetPart<InventoryPart>().AddObject(Item("Torch", full ? 45 : 44));
+            var traderInventory = _trader.GetPart<InventoryPart>();
+            var stock = Item("Torch", 44);
+            // Capacity is relative to the actual merchant loadout. A previous
+            // test may have wired LoadoutPart.Factory, adding eight pounds of
+            // gear; fixed torch counts alone do not establish this boundary.
+            traderInventory.MaxWeight = traderInventory.GetCarriedWeight()
+                + InventoryPart.GetItemWeight(stock) + InventoryPart.GetItemWeight(item) - (full ? 1 : 0);
+            Assert.IsTrue(traderInventory.AddObject(stock), "the capacity-filling stock must actually be carried");
             Assert.AreEqual(!full, TradeSystem.SellToTrader(_actor, _trader, item));
             Assert.AreEqual(strength + (full ? 2 : 0), _actor.GetStatValue("Strength"));
             Assert.AreEqual(full ? 2 : 0, _actor.GetPart<Body>().GetParts().Count(p => p._Equipped == item));
@@ -265,9 +272,12 @@ namespace CavesOfOoo.Tests
         [Test]
         public void Adversarial_RefusedSaleCanRetryAfterCapacityClears()
         {
-            var stock = Item("Torch", 50); _trader.GetPart<InventoryPart>().AddObject(stock); var item = Equip();
+            var stock = Item("Torch", 50); var traderInventory = _trader.GetPart<InventoryPart>();
+            traderInventory.MaxWeight = traderInventory.GetCarriedWeight() + InventoryPart.GetItemWeight(stock);
+            Assert.IsTrue(traderInventory.AddObject(stock), "the refusal requires a genuinely full inventory");
+            var item = Equip();
             Assert.IsFalse(TradeSystem.SellToTrader(_actor, _trader, item)); Assert.IsTrue(InventorySystem.IsEquipped(_actor, item));
-            _trader.GetPart<InventoryPart>().RemoveObject(stock);
+            Assert.IsTrue(traderInventory.RemoveObject(stock));
             Assert.IsTrue(TradeSystem.SellToTrader(_actor, _trader, item));
             Assert.IsFalse(Inv.Contains(item)); Assert.IsTrue(_trader.GetPart<InventoryPart>().Objects.Contains(item));
         }

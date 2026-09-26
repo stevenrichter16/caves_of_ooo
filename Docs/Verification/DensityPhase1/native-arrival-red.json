@@ -1,0 +1,54 @@
+{
+  "success": true,
+  "message": "Test job status retrieved.",
+  "error": null,
+  "data": {
+    "job_id": "9f7a52e219f743cdb61e39580b8a6da6",
+    "status": "failed",
+    "mode": "EditMode",
+    "started_unix_ms": 1790445358654,
+    "finished_unix_ms": 1790445366418,
+    "last_update_unix_ms": 1790445366418,
+    "progress": {
+      "completed": 10,
+      "total": 10,
+      "current_test_full_name": null,
+      "current_test_started_unix_ms": 1790445366382,
+      "last_finished_test_full_name": "CavesOfOoo.Tests.DensityWorldMapArrivalTests.Descend_WholePlayerFootprintMustFitBeforeLeavingMap",
+      "last_finished_unix_ms": 1790445366399,
+      "stuck_suspected": false,
+      "editor_is_focused": false,
+      "blocked_reason": null,
+      "failures_so_far": [
+        {
+          "full_name": "CavesOfOoo.Tests.DensityWorldMapArrivalTests.Descend_FallbackSkipsOccupiedCandidate_KeepingExistingSearchOrder",
+          "message": "  Arrival must satisfy the same complete-body collision rule as movement.\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.DensityWorldMapArrivalTests.Descend_NoCollisionFreeCell_FailsWithoutDetachingPlayer",
+          "message": "  Expected: False\n  But was:  True\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.DensityWorldMapArrivalTests.Descend_PhysicsOnlyFurnitureAlsoBlocksArrival",
+          "message": "  Arrival must satisfy the same complete-body collision rule as movement.\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.DensityWorldMapArrivalTests.Descend_RealDesertProwlerAtCenter_RemainsSeparateFromPlayer",
+          "message": "  Arrival must satisfy the same complete-body collision rule as movement.\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.DensityWorldMapArrivalTests.Descend_SavedLocationUsesSameCollisionRule(True)",
+          "message": "  Arrival must satisfy the same complete-body collision rule as movement.\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.DensityWorldMapArrivalTests.Descend_WholePlayerFootprintMustFitBeforeLeavingMap",
+          "message": "  Arrival must satisfy the same complete-body collision rule as movement.\n  Expected: True\n  But was:  False\n"
+        }
+      ],
+      "failures_capped": false
+    },
+    "error": null,
+    "result": null
+  },
+  "hint": null
+}

@@ -1,6 +1,6 @@
 # Walking-around density: Caves of Ooo (main) vs Caves of Qud
 
-> **Status:** analysis, 2026-09-26. Phase 1 is being implemented; progress,
+> **Status:** historical analysis, 2026-09-26. Phase 1 tranche 2 implementation,
 > the verification sweep's corrections to this document, and test results
 > live in `Docs/DENSITY-PHASE-1.md`.
 > **Question (user):** "I want Caves of Qud–level density of content and
@@ -15,7 +15,9 @@
 > native world census (`Docs/Verification/FactionPOI/FP01-native-census/
 > native-census.json`, seed 141343545: 400 surface zones + 12 underground).
 > Findings marked ✔ were re-verified by hand against source.
-> **Limits:** nothing was run in Unity. The census is one seed and predates
+> **Limits of this historical analysis:** no new Unity run was performed for
+> the analysis itself; Phase 1's later native evidence is in the living doc.
+> The census is one seed and predates
 > some runtime-spawned NPCs (Morrowfast's residents). The Qud decompile is
 > not available here (the repo's `qud_decompiled_project` symlink points to
 > a path on the author's machine), so Qud figures come from the repo's
@@ -227,6 +229,16 @@ Ordered by player-felt density per unit of effort. Phases 1–2 are almost
 entirely data and small code changes on existing systems.
 
 ### Phase 1 — Reconnect and repair (all S)
+
+**Implementation update:** tranches 1 and 2 repair dodge/status effects,
+reconnect actual stranded loot (8 weapons/4 tonics), eight stamps, four traps
+and existing liquid pools, vary encounter groups/depth, and activate Urqu signs
+from the Sill omen. See `DENSITY-PHASE-1.md` for corrections, tests and native
+verification. This analysis retains its original census as a dated baseline;
+its percentages are not measurements of the updated world. BitLocker stays
+dev-only. Combustibility unification and balance play remain deferred; dynamic
+signpost guidance and broad item examine prose are also not claimed as shipped.
+
 1. **Live-biome cases** for lair bosses and ambushers
    (`WorldGenerator.GetBossForBiome`, `LairPopulationBuilder.PlaceAmbushers`);
    fold the 14 legacy-biome hostiles into live tables; decide who sets
@@ -244,7 +256,8 @@ entirely data and small code changes on existing systems.
    behavior, `GameAuditEntityEquipmentAdversarialTests.cs:104-124`); one
    combustibility scale and TarSeep's volatility; natural weapons for
    MawToad, Bandfrog and Shambler; the Cudgel item's `Cudgel` tag; a
-   BitLocker in normal play. *(Correction, Phase 1 sweep: GlassScorpion's
+   BitLocker in normal play **excluded by user direction (26 September)**.
+   *(Correction, Phase 1 sweep: GlassScorpion's
    neutral faction is deliberate — `Docs/BIOME-OVERHAUL-LOG.md:219` — and is
    not a bug.)*
 5. **Give silent objects words:** signpost text using the existing
