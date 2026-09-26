@@ -187,7 +187,7 @@ namespace CavesOfOoo.Scenarios.Custom
             _bench.Check("armor_is_location_specific_and_boots_apply_exact_slowdown", PartAV(warlord, "Body") == 7 && PartAV(warlord, "Head") == 6 && PartAV(warlord, "Feet") == 6
                 && PartAV(warlord, "Hand") == 4 && PartAV(sentry, "Head") == 7 && PartAV(sentry, "Body") == 5
                 && warlord.GetStat("Speed").Penalty == 5 && sentry.GetStat("Speed").Penalty == 0
-                && CombatSystem.GetDV(warlord) == 6 + StatUtils.GetModifier(warlord, "Agility") - 1);
+                && CombatSystem.GetDV(warlord) == 6 + StatUtils.GetModifier(warlord, "Agility") + 3 - 1);
             _bench.Check("warlord_full_melee_keeps_2d5_pen2_cutting_axe", NaturalAttack(input, warlord, "2d5", 2, "Axe"));
             _bench.Check("sentry_full_melee_keeps_1d6_plus1_pen1_cutting", NaturalAttack(input, sentry, "1d6+1", 1, null));
             Record(input, "actual_kits_and_attacks");

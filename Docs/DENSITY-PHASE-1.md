@@ -302,3 +302,46 @@ No user's working files are replaced during the comparison.
 **Files:** `Tools/EditModeRunner/EditModeRunner.csproj`, its `.gitignore`,
 `README.md`, and this living doc. **Review:** 🟡 missing-project defect fixed;
 ⚪ stubbed runner remains a pre-check, not a replacement for Unity.
+
+### T2.1 Effective dodge and combat effects
+
+`GetDV = 6 + agility modifier + natural Armor.DV + worn Armor.DV + DV stat`
+for actors with a Body. Legacy actors without a Body keep their effective-armor
+fallback; the additive stat works in both paths. The stat is an adjustment,
+not a second base defense. `Creature` inherits a zero-valued DV stat with room
+for negative shifts. Player already had it, but combat previously ignored it.
+Inventory presents one computed defense entry instead of the raw modifier.
+Stun, Confuse, Hobble, Paralysis, Berserk and Dodge now affect hit rolls; removal
+restores defense and leaves other actors alone.
+
+**Reference/classification:** CoO repair of the shipped ArmorPart and StatShifter
+contracts, not a decompile-verified Qud port. The former equipment pin asserted
+natural DV exclusion without a corresponding design rule. The change preserves
+negative worn penalties and legacy equipment selection. Parsed before/after
+`Objects.json` confirms **only Creature changed**, solely adding its DV stat;
+no JSON reserialization occurred.
+
+**Evidence:** `DensityPhase1DodgeTests` has 27 cases: 24 failed against old
+production and 3 matched controls passed, then 27 passed. The focused combat,
+equipment and display regression run passed 244/244. Two old skill fixtures
+exposed by the full run were corrected: a passive-dispatch target now survives
+the attacks instead of losing statuses at death; Rejoinder tests its existing
+per-actor recursion guard with forced misses and 2/1/0 counters, including a
+second independent attack. No Rejoinder gameplay logic changed. The three
+affected skill/transfer suites pass 91/91 (overlapping, not additive evidence).
+The separate transfer isolation repair is recorded in T2.5.
+
+**Review:** 🟡 fixed ignored natural/stat DV and duplicate raw display entry.
+🟡 corrected the two invalid fixture assumptions without weakening their
+contracts. ⚪ old saves rebuild stats/parts from their stream: saved natural DV
+is consumed by the code fix, but old NPCs are not retroactively granted a new
+DV stat. New spawns inherit it; existing Player stats already support effects.
+⚪ restoring intended defense changes combat difficulty; the numeric checks
+prove the calculation, not balance or feel.
+
+**Files:** `Objects.json`; `CombatSystem.cs`; `InventoryScreenData.cs`;
+`AcrobaticsDodgePower.cs`; `ShortBlades_Rejoinder.cs` (comment only);
+`GameAuditEquipmentContentBenchPlayer.cs`; `GameAuditMortalDeathBench.cs`;
+`GameAuditEntityEquipmentAdversarialTests.cs`; `SkillActiveAbilityBehaviorTests.cs`;
+`Wsp84SkillSystemAdversarialTests.cs`; new `DensityPhase1DodgeTests.cs` + `.meta`;
+this living doc.

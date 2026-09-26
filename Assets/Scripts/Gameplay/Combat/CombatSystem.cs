@@ -675,8 +675,10 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// Get defender's Dodge Value.
-        /// Body-part-aware: checks all equipped armor across body parts.
+        /// Get defender's Dodge Value: base 6, agility modifier, armor and
+        /// the DV stat's additive adjustment (skills and status effects).
+        /// With a Body, natural armor and all worn armor contribute once;
+        /// legacy entities retain their effective-armor fallback.
         /// </summary>
         private static readonly List<BodyPart> _getDVEquippedScratch = new List<BodyPart>(8);
 
@@ -684,20 +686,23 @@ namespace CavesOfOoo.Core
         {
             int baseDV = 6;
 
-            // Get best DV bonus from equipped armor
+            // Sum worn armor, then the creature's independent natural dodge.
             var body = entity.GetPart<Body>();
             if (body != null)
             {
-                int bestDV = 0;
+                int armorDV = 0;
                 _getDVEquippedScratch.Clear();
                 var equipped = body.GetEquippedParts(_getDVEquippedScratch);
                 for (int i = 0; i < equipped.Count; i++)
                 {
                     var armor = equipped[i]._Equipped.GetPart<ArmorPart>();
                     if (armor != null && armor.DV != 0)
-                        bestDV += armor.DV;
+                        armorDV += armor.DV;
                 }
-                baseDV += bestDV;
+                baseDV += armorDV;
+                var naturalArmor = entity.GetPart<ArmorPart>();
+                if (naturalArmor != null)
+                    baseDV += naturalArmor.DV;
             }
             else
             {
@@ -707,6 +712,7 @@ namespace CavesOfOoo.Core
             }
 
             baseDV += StatUtils.GetModifier(entity, "Agility");
+            baseDV += entity.GetStatValue("DV", 0);
             return baseDV;
         }
 

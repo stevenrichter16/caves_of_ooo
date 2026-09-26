@@ -272,56 +272,63 @@ namespace CavesOfOoo.Tests
         // Rejoinder recursion guard
         // ════════════════════════════════════════════════════════════════
 
-        [Test]
-        public void Rejoinder_OfARejoinder_DoesNotInfiniteRecurse()
+        [TestCase(true, true, 2)]
+        [TestCase(true, false, 1)]
+        [TestCase(false, true, 0)]
+        [TestCase(false, false, 0)]
+        public void Rejoinder_OfARejoinder_IsBoundedPerActor_AndResetsForNextAttack(
+            bool playerHasRejoinder, bool npcHasRejoinder, int expectedCounters)
         {
-            // Acceptance gate (WSP3.4 commit body claim):
-            // Rejoinder fires from defender's OnDefenderAfterAttackMissed.
-            // The counter-attack (defender swings at attacker) ALSO goes
-            // through PerformSingleAttack — if it misses, the original
-            // attacker's defender-side Rejoinder (if any) could fire,
-            // creating a ping-pong loop. The instance _recurring flag
-            // breaks this.
-            //
-            // Test shape: BOTH player and NPC have Rejoinder + Piercing
-            // weapons. NPC swings at player (misses → Rejoinder fires
-            // → player swings at NPC → NPC's Rejoinder could fire if
-            // misses again). Verify ≤ 1 Rejoinder marker per outer
-            // PerformSingleAttack call.
+            // The guard belongs to each skill instance: the opposing actor
+            // may counter the first counter, but neither actor may counter
+            // again inside that chain. Forced misses and successful proc rolls
+            // exercise the maximum chain rather than hoping seeds reach it.
             var player = MakeBodiedCreature("player", agility: 16);
             EquipInPrimary(player, MakeWeaponEntity("dagger", "1d4", "Piercing"));
-            player.GetPart<SkillsPart>().AddSkill(new ShortBlades_Rejoinder(), source: "test");
+            var playerSkill = new ShortBlades_Rejoinder();
+            Assert.IsTrue(player.GetPart<SkillsPart>().AddSkill(playerSkill, source: "test"));
+            if (!playerHasRejoinder) Assert.IsTrue(player.GetPart<SkillsPart>().RemoveSkill(playerSkill));
             player.GetPart<ArmorPart>().DV = 30;
 
             var npc = MakeBodiedCreature("npc", agility: 16);
             EquipInPrimary(npc, MakeWeaponEntity("npc_dagger", "1d4", "Piercing"));
-            npc.GetPart<SkillsPart>().AddSkill(new ShortBlades_Rejoinder(), source: "test");
+            var npcSkill = new ShortBlades_Rejoinder();
+            Assert.IsTrue(npc.GetPart<SkillsPart>().AddSkill(npcSkill, source: "test"));
+            if (!npcHasRejoinder) Assert.IsTrue(npc.GetPart<SkillsPart>().RemoveSkill(npcSkill));
             npc.GetPart<ArmorPart>().DV = 30;
 
             var zone = new Zone();
             zone.AddEntity(player, 5, 5);
             zone.AddEntity(npc, 6, 5);
 
-            int maxRejoindersInOneCall = 0;
-            for (int seed = 0; seed < 200; seed++)
+            for (int attack = 0; attack < 2; attack++)
             {
                 MessageLog.Clear();
                 CombatSystem.PerformSingleAttack(
                     attacker: npc, defender: player,
                     weapon: npc.GetPart<Body>().GetParts().Find(p => p.Type == "Hand")
                         .Equipped.GetPart<MeleeWeaponPart>(),
-                    isPrimary: true,
-                    zone: zone, rng: new Random(seed),
-                    attackSourceDesc: null);
-                int count = 0;
-                foreach (var msg in MessageLog.GetRecent(20))
-                    if (msg.Contains("(Rejoinder)")) count++;
-                if (count > maxRejoindersInOneCall) maxRejoindersInOneCall = count;
+                    isPrimary: true, zone: zone, rng: new RejoinderMissAndProcRng());
+                int playerCounters = 0, npcCounters = 0;
+                foreach (var message in MessageLog.GetRecent(20))
+                {
+                    if (message.StartsWith("player (Rejoinder)")) playerCounters++;
+                    if (message.StartsWith("npc (Rejoinder)")) npcCounters++;
+                }
+                Assert.AreEqual(playerHasRejoinder ? 1 : 0, playerCounters,
+                    "the initial defender gets at most one counter in this chain");
+                Assert.AreEqual(playerHasRejoinder && npcHasRejoinder ? 1 : 0, npcCounters,
+                    "the original attacker can counter that counter once through its own skill");
+                Assert.AreEqual(expectedCounters, playerCounters + npcCounters,
+                    "the per-instance guards must release for the next independent attack");
             }
-            Assert.LessOrEqual(maxRejoindersInOneCall, 1,
-                "Rejoinder recursion guard broken: a Rejoinder-of-a-Rejoinder fired. " +
-                $"Max '(Rejoinder)' markers in one PerformSingleAttack call: {maxRejoindersInOneCall}. " +
-                $"Expected ≤ 1.");
         }
+
+        private sealed class RejoinderMissAndProcRng : Random
+        {
+            public override int Next(int minValue, int maxValue) => minValue; // d20 = 1: miss
+            public override int Next(int maxValue) => 0; // Rejoinder chance succeeds
+        }
+
     }
 }

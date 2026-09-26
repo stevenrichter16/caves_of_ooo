@@ -9,15 +9,9 @@ namespace CavesOfOoo.Skills
     /// <c>AddSkill</c> applies <c>StatShifter.SetStatShift("DV", 2)</c>;
     /// <c>RemoveSkill</c> calls <c>RemoveStatShifts</c>.
     ///
-    /// <para><b>Combat consumption note (out of v1 ST.5 scope):</b>
-    /// CoO's combat hit-roll currently reads <c>ArmorPart.DV</c>, not
-    /// <c>Entity.Statistics["DV"]</c>. ST.5 ships the substrate (the
-    /// stat-shift round-trips correctly on the Entity Stat) but does NOT
-    /// modify the combat code that reads DV. A follow-on milestone will
-    /// bridge the Entity DV stat into combat's hit-roll calculation;
-    /// until then, the +2 from Dodge is visible on
-    /// <c>entity.GetStatValue("DV")</c> but doesn't yet affect combat
-    /// outcomes. Documented as a 🟡 finding in the ST.5 commit body.</para>
+    /// <para>CombatSystem.GetDV consumes the DV stat as an additive
+    /// adjustment to base, agility and armor defense. The +2 therefore
+    /// affects hit rolls as well as the inventory's computed DV display.</para>
     /// </summary>
     public class AcrobaticsDodgePower : BaseSkillPart
     {

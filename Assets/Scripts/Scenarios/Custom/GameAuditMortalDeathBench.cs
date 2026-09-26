@@ -52,7 +52,9 @@ namespace CavesOfOoo.Scenarios.Custom
                 body.DropAllEquipment(ctx.Zone);
                 foreach (var item in inventory.Objects.ToArray()) inventory.RemoveObject(item); // Remove fixture NPC trader stock before exact gear staging.
                 Reset(actor, "Strength", 16, 40); Reset(actor, "Agility", 16, 40); Reset(actor, "Speed", 100, 200); Reset(actor, "Hitpoints", 100, 100);
-                actor.GetPart<ArmorPart>().AV = 6; inventory.MaxWeight = 150; inventory.RefreshHandlingCarryPenalty();
+                actor.GetPart<ArmorPart>().AV = 6;
+                actor.GetPart<ArmorPart>().DV = 0; // Normalize Villager's natural dodge for the fixed DV6 combat path.
+                inventory.MaxWeight = 150; inventory.RefreshHandlingCarryPenalty();
                 actor.GetPart<StatusEffectsPart>()?.RemoveAllEffects();
                 if (actor.GetPart<StatusEffectsPart>() == null) actor.AddPart(new StatusEffectsPart());
                 if (actor.GetPart<SkillsPart>() == null) actor.AddPart(new SkillsPart());

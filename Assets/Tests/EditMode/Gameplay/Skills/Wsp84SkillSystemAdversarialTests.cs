@@ -1107,9 +1107,9 @@ namespace CavesOfOoo.Tests
             // possible status effects show up on the defender after a
             // seeded swing.
             //
-            // NOTE: each on-hit is gated by chance, so we use a high-roll
-            // seed (42 is reliable) and accept "any 2+ of 3" as proof
-            // the dispatcher iterated all three.
+            // Each on-hit is chance-gated. Repeated seeded attacks give
+            // the passives opportunities while the target stays alive;
+            // death cleanup must not erase the effects being observed.
             var atk = MakeBodied("atk");
             var atkWeaponEntity = MakeWeapon("mace", "1d8+5", "Bludgeoning Cudgel");
             Equip(atk, atkWeaponEntity);
@@ -1117,7 +1117,7 @@ namespace CavesOfOoo.Tests
             atk.GetPart<SkillsPart>().AddSkill(new Cudgel_Bludgeon(), "test");
             atk.GetPart<SkillsPart>().AddSkill(new Cudgel_Hammer(), "test");
             atk.GetPart<SkillsPart>().AddSkill(new Cudgel_ShatteringBlows(), "test");
-            var def = MakeBodied("def", hp: 500);
+            var def = MakeBodied("def", hp: 5000);
             var defWeapon = MakeWeapon("dummy", "1d4", "Cutting LongBlades");
             def.GetPart<InventoryPart>().AddObject(defWeapon);
             var defHand = def.GetPart<Body>().GetParts().Find(p => p.Type == "Hand");
@@ -1125,9 +1125,9 @@ namespace CavesOfOoo.Tests
             var zone = new Zone();
             zone.AddEntity(atk, 5, 5); zone.AddEntity(def, 6, 5);
 
-            // Swing many times to give each on-hit chance to land.
-            // 30 swings × 35% Bludgeon × 50% Hammer × ~30% Shattering
-            // — at least one of each should fire.
+            // Swing many times to give the independent on-hit chances
+            // opportunities to land. Effective stun now lowers DV, so
+            // more of these swings connect than before the defense fix.
             for (int i = 0; i < 30; i++)
             {
                 CombatSystem.PerformSingleAttack(
@@ -1137,6 +1137,8 @@ namespace CavesOfOoo.Tests
                 if (def.GetStatValue("Hitpoints") <= 0) break;
             }
 
+            Assert.Greater(def.GetStatValue("Hitpoints"), 0,
+                "The passive-dispatch probe must survive all swings; death removes its status effects.");
             int procsLanded = 0;
             var sep = def.GetPart<StatusEffectsPart>();
             if (sep.HasEffect<StunnedEffect>()) procsLanded++;

@@ -116,12 +116,14 @@ namespace CavesOfOoo.Tests
                 var part = body.GetPartsByType(slot).Single(); var item = part._Equipped;
                 Assert.NotNull(item); Assert.AreEqual(armored, CombatSystem.GetPartAV(actor, part));
                 var bare = body.GetPartsByType("Arm").First(); Assert.AreEqual(natural, CombatSystem.GetPartAV(actor, bare));
-                Assert.AreEqual(6 + StatUtils.GetModifier(actor, "Agility") + dv, CombatSystem.GetDV(actor));
+                // Natural dodge is independent of the equipped kit (Density Phase 1).
+                int naturalDv = actor.GetPart<ArmorPart>().DV;
+                Assert.AreEqual(6 + StatUtils.GetModifier(actor, "Agility") + naturalDv + dv, CombatSystem.GetDV(actor));
                 Assert.AreEqual(speed, actor.GetStat("Speed").Penalty);
                 int armorDv = item.GetPart<ArmorPart>().DV;
                 Assert.IsTrue(InventorySystem.UnequipItem(actor, item));
                 Assert.AreEqual(natural, CombatSystem.GetPartAV(actor, part));
-                Assert.AreEqual(6 + StatUtils.GetModifier(actor, "Agility") + dv - armorDv, CombatSystem.GetDV(actor));
+                Assert.AreEqual(6 + StatUtils.GetModifier(actor, "Agility") + naturalDv + dv - armorDv, CombatSystem.GetDV(actor));
                 Assert.AreEqual(0, actor.GetStat("Speed").Penalty);
             }
         }

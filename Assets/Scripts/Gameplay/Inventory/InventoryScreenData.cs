@@ -174,7 +174,9 @@ namespace CavesOfOoo.Core
             if (actor == null || actor.Statistics == null)
                 return result;
 
-            var added = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            // Defense is computed below; raw modifier stats must not shadow
+            // those values in UI consumers that select the first matching name.
+            var added = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "AV", "DV" };
 
             for (int i = 0; i < StatPriority.Length; i++)
             {

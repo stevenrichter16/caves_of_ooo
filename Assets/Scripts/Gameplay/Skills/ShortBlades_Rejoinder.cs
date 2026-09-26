@@ -12,7 +12,9 @@ namespace CavesOfOoo.Skills
     /// <para><b>Recursion guard (CoO):</b> instance-level
     /// <see cref="_recurring"/> flag — set true during the counter-
     /// attack, reset in <c>finally</c>. A Rejoinder-triggered swing
-    /// that itself misses won't re-trigger via this skill.</para>
+    /// that itself misses won't re-trigger via this skill instance.
+    /// The opposing actor may counter once through its own instance,
+    /// bounding the chain to one Rejoinder per actor.</para>
     ///
     /// <para>Weapon lookup: iterates <see cref="Body.ForeachEquippedObject"/>
     /// and picks the FIRST equipped item whose <see cref="MeleeWeaponPart.Attributes"/>
