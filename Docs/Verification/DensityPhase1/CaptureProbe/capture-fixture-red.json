@@ -1,0 +1,58 @@
+{
+  "success": true,
+  "message": "Test job status retrieved.",
+  "error": null,
+  "data": {
+    "job_id": "3127a15f04a049b4b2754c77e4f074df",
+    "status": "failed",
+    "mode": "EditMode",
+    "started_unix_ms": 1790448171567,
+    "finished_unix_ms": 1790448174092,
+    "last_update_unix_ms": 1790448174092,
+    "progress": {
+      "completed": 7,
+      "total": 7,
+      "current_test_full_name": null,
+      "current_test_started_unix_ms": 1790448174074,
+      "last_finished_test_full_name": "CavesOfOoo.Tests.DensityNativeScreenshotTests.InvalidDimensionsRejectBeforeCaptureAndLeaveBorrowedTargetIntact(-1,16)",
+      "last_finished_unix_ms": 1790448174075,
+      "stuck_suspected": false,
+      "editor_is_focused": true,
+      "blocked_reason": null,
+      "failures_so_far": [
+        {
+          "full_name": "CavesOfOoo.Tests.DensityNativeScreenshotTests.CaptureFailureReleasesOwnedTarget_RestoresBorrowedTarget_AndWritesNoImage",
+          "message": "  Expected: <System.InvalidOperationException>\n  But was:  <NUnit.Framework.AssertionException:   An owned color-only capture path must replace the failing file-oriented screenshot API.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.DensityNativeScreenshotTests.Capture (System.String path, System.Int32 width, System.Int32 height, System.Action`1[T] capture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/DensityNativeScreenshotTests.cs:40 \n  at CavesOfOoo.Tests.DensityNativeScreenshotTests+<>c__DisplayClass8_0.<CaptureFailureReleasesOwnedTarget_RestoresBorrowedTarget_AndWritesNoImage>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/DensityNativeScreenshotTests.cs:90 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.DensityNativeScreenshotTests.CaptureWritesActualPixels_WithoutDepthOrMemorylessStorage_AndRestoresBorrowedTarget(False)",
+          "message": "  An owned color-only capture path must replace the failing file-oriented screenshot API.\n  Expected: not null\n  But was:  null\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.DensityNativeScreenshotTests.CaptureWritesActualPixels_WithoutDepthOrMemorylessStorage_AndRestoresBorrowedTarget(True)",
+          "message": "  An owned color-only capture path must replace the failing file-oriented screenshot API.\n  Expected: not null\n  But was:  null\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.DensityNativeScreenshotTests.FileFailureReleasesReadbackAndTarget_AndPreservesBorrowedTarget",
+          "message": "  Expected: <System.IO.DirectoryNotFoundException>\n  But was:  <NUnit.Framework.AssertionException:   An owned color-only capture path must replace the failing file-oriented screenshot API.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.DensityNativeScreenshotTests.Capture (System.String path, System.Int32 width, System.Int32 height, System.Action`1[T] capture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/DensityNativeScreenshotTests.cs:40 \n  at CavesOfOoo.Tests.DensityNativeScreenshotTests+<>c__DisplayClass9_0.<FileFailureReleasesReadbackAndTarget_AndPreservesBorrowedTarget>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/DensityNativeScreenshotTests.cs:104 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.DensityNativeScreenshotTests.InvalidDimensionsRejectBeforeCaptureAndLeaveBorrowedTargetIntact(0,16)",
+          "message": "  Expected: <System.ArgumentOutOfRangeException>\n  But was:  <NUnit.Framework.AssertionException:   An owned color-only capture path must replace the failing file-oriented screenshot API.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.DensityNativeScreenshotTests.Capture (System.String path, System.Int32 width, System.Int32 height, System.Action`1[T] capture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/DensityNativeScreenshotTests.cs:40 \n  at CavesOfOoo.Tests.DensityNativeScreenshotTests+<>c__DisplayClass10_0.<InvalidDimensionsRejectBeforeCaptureAndLeaveBorrowedTargetIntact>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/DensityNativeScreenshotTests.cs:118 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.DensityNativeScreenshotTests.InvalidDimensionsRejectBeforeCaptureAndLeaveBorrowedTargetIntact(24,0)",
+          "message": "  Expected: <System.ArgumentOutOfRangeException>\n  But was:  <NUnit.Framework.AssertionException:   An owned color-only capture path must replace the failing file-oriented screenshot API.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.DensityNativeScreenshotTests.Capture (System.String path, System.Int32 width, System.Int32 height, System.Action`1[T] capture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/DensityNativeScreenshotTests.cs:40 \n  at CavesOfOoo.Tests.DensityNativeScreenshotTests+<>c__DisplayClass10_0.<InvalidDimensionsRejectBeforeCaptureAndLeaveBorrowedTargetIntact>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/DensityNativeScreenshotTests.cs:118 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.DensityNativeScreenshotTests.InvalidDimensionsRejectBeforeCaptureAndLeaveBorrowedTargetIntact(-1,16)",
+          "message": "  Expected: <System.ArgumentOutOfRangeException>\n  But was:  <NUnit.Framework.AssertionException:   An owned color-only capture path must replace the failing file-oriented screenshot API.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.DensityNativeScreenshotTests.Capture (System.String path, System.Int32 width, System.Int32 height, System.Action`1[T] capture) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/DensityNativeScreenshotTests.cs:40 \n  at CavesOfOoo.Tests.DensityNativeScreenshotTests+<>c__DisplayClass10_0.<InvalidDimensionsRejectBeforeCaptureAndLeaveBorrowedTargetIntact>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/DensityNativeScreenshotTests.cs:118 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+        }
+      ],
+      "failures_capped": false
+    },
+    "error": null,
+    "result": null
+  },
+  "hint": null
+}

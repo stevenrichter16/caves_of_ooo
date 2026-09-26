@@ -22,6 +22,7 @@ namespace CavesOfOoo.Scenarios.Custom
         public bool Finished { get; private set; }
         public int Failures => (_bench?.Failures ?? 0) + _nativeFailures + _unexpectedErrors;
         public string ReportPath { get; private set; }
+        public bool CaptureRequested { get; private set; } = true;
         private readonly List<string> _audit = new List<string>();
         private readonly List<Entity> _paused = new List<Entity>();
         private DensityPhase1Bench _bench;
@@ -40,11 +41,12 @@ namespace CavesOfOoo.Scenarios.Custom
         private string DirectoryPath => Path.GetFullPath(Path.Combine(Application.dataPath,
             "../Docs/Verification/DensityPhase1/Native", RunId));
 
-        public void Initialize(ScenarioContext ctx, int worldSeed, int x, int y)
+        public void Initialize(ScenarioContext ctx, int worldSeed, int x, int y, bool captureRequested = true)
         {
             if (string.IsNullOrWhiteSpace(SaveGameService.SaveRootOverride))
                 throw new InvalidOperationException("Density audit requires the isolated native launcher.");
             _ctx = ctx; _seed = worldSeed; _x = x; _y = y;
+            CaptureRequested = captureRequested;
             _root = SaveGameService.SaveRootOverride;
             _clock = System.Diagnostics.Stopwatch.StartNew();
             _oldScenario = Diag.IsChannelEnabled("scenario"); Diag.SetChannel("scenario", true);
@@ -112,11 +114,17 @@ namespace CavesOfOoo.Scenarios.Custom
             ZoneRenderHooks.MarkFullDirty("DensityPhase1NativeAudit");
             yield return new WaitForSecondsRealtime(1f);
             Directory.CreateDirectory(DirectoryPath);
-            _screenshot = Path.Combine(DirectoryPath, "beating-lair.png");
             yield return new WaitForEndOfFrame();
-            ScreenCapture.CaptureScreenshot(_screenshot);
+            if (CaptureRequested)
+            {
+                _screenshot = Path.Combine(DirectoryPath, "beating-lair.png");
+                DensityNativeScreenshot.CaptureToFile(_screenshot);
+            }
             yield return new WaitForSecondsRealtime(.5f);
-            Check("screenshot_written", File.Exists(_screenshot) && new FileInfo(_screenshot).Length > 0);
+            if (CaptureRequested)
+                Check("screenshot_written", File.Exists(_screenshot) && new FileInfo(_screenshot).Length > 0);
+            else
+                Check("capture_disabled_control", _screenshot == null && !File.Exists(Path.Combine(DirectoryPath, "beating-lair.png")));
         }
 
         private IEnumerator Step(Key key, int dx, int dy)
@@ -183,7 +191,7 @@ namespace CavesOfOoo.Scenarios.Custom
             Diag.Record("scenario", "DensityPhase1NativeSummary", payload: new
                 { runId = RunId, numericCases = _bench?.Cases ?? 0, nativeCases = _audit.Count, failures = Failures,
                     unexpectedErrors = _unexpectedErrors, errorsFinalized = _errorsFinalized,
-                    complete = Complete, seed = _seed, steps = _steps, screenshot = _screenshot });
+                    complete = Complete, seed = _seed, steps = _steps, captureRequested = CaptureRequested, screenshot = _screenshot });
         }
         private bool Complete => Finished && _errorsFinalized && Failures == 0 && _bench?.Cases == 18 && _audit.Count == 8;
         private void WriteReport()
@@ -194,10 +202,12 @@ namespace CavesOfOoo.Scenarios.Custom
             {
                 runId = RunId, seed = _seed, numericCases = _bench?.Cases ?? 0, nativeCases = _audit.Count,
                 complete = Complete, errorsFinalized = _errorsFinalized,
+                captureRequested = CaptureRequested,
                 failures = Failures, unexpectedErrors = _unexpectedErrors, steps = _steps, seconds = _clock?.Elapsed.TotalSeconds ?? 0,
                 zone = _input?.CurrentZone?.ZoneID, screenshot = _screenshot, fatal = _fatal,
                 numericAudit = _bench?.Audit.ToArray() ?? Array.Empty<string>(), nativeAudit = _audit.ToArray(),
-                canVerify = "Native bootstrap; real factory numeric dodge/stun/restore controls; seeded population and lair placement; native N/world-map/cardinal/descent input; real lair boss and traps; arrival free of blocking actors and traps; screenshot file.",
+                canVerify = "Native bootstrap; real factory numeric dodge/stun/restore controls; seeded population and lair placement; native N/world-map/cardinal/descent input; real lair boss and traps; arrival free of blocking actors and traps; "
+                    + (CaptureRequested ? "screenshot file." : "capture-disabled control; no screenshot requested."),
                 cannotVerify = "No balance, combat AI, animation quality or difficulty claim. NPC scheduling is paused after arrival for the still image. Player HP is temporarily guarded during travel and restored. Screenshot appearance still requires visual inspection. Unexpected-error count covers Application.logMessageReceived only; native backend console messages require a separate console review."
             }, true));
             Debug.Log("[DensityPhase1Bench] report=" + ReportPath + " failures=" + Failures);
@@ -223,7 +233,7 @@ namespace CavesOfOoo.Scenarios.Custom
             public string runId, zone, screenshot, fatal, canVerify, cannotVerify;
             public int seed, numericCases, nativeCases, failures, unexpectedErrors, steps;
             public double seconds;
-            public bool complete, errorsFinalized;
+            public bool complete, errorsFinalized, captureRequested;
             public string[] numericAudit, nativeAudit;
         }
     }

@@ -25,10 +25,13 @@ namespace CavesOfOoo.Editor
         public static void Run() => LaunchCore(true);
         [MenuItem("Caves Of Ooo/Scenarios/World/Density Phase 1 Native Audit")]
         public static void Launch() => LaunchCore(false);
+        [MenuItem("Caves Of Ooo/Scenarios/World/Density Phase 1 Native Audit (No Capture Control)")]
+        public static void LaunchWithoutCapture() => LaunchCore(false, false);
         [MenuItem("Caves Of Ooo/Scenarios/World/Density Phase 1 Native Audit", true)]
+        [MenuItem("Caves Of Ooo/Scenarios/World/Density Phase 1 Native Audit (No Capture Control)", true)]
         private static bool CanLaunch() => !EditorApplication.isPlayingOrWillChangePlaymode;
 
-        private static void LaunchCore(bool exitEditor)
+        private static void LaunchCore(bool exitEditor, bool captureRequested = true)
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode)
                 throw new InvalidOperationException("Exit Play before launching the density audit.");
@@ -49,6 +52,7 @@ namespace CavesOfOoo.Editor
             SessionState.SetBool(Prefix + "active", true);
             SessionState.SetBool(Prefix + "restoreScenes", false);
             SessionState.SetBool(Prefix + "exitEditor", exitEditor);
+            SessionState.SetBool(Prefix + "captureRequested", captureRequested);
             SessionState.SetInt(Prefix + "errors", 0);
             SessionState.SetFloat(Prefix + "deadline", (float)EditorApplication.timeSinceStartup + 180);
             try
@@ -83,7 +87,8 @@ namespace CavesOfOoo.Editor
             GameBootstrap.OnAfterBootstrap -= Apply;
             new GameObject("Density Phase 1 Native Audit").AddComponent<DensityPhase1BenchPlayer>()
                 .Initialize(new ScenarioContext(zone, factory, player, turns),
-                    SessionState.GetInt(Prefix + "seed", 0), SessionState.GetInt(Prefix + "x", 0), SessionState.GetInt(Prefix + "y", 0));
+                    SessionState.GetInt(Prefix + "seed", 0), SessionState.GetInt(Prefix + "x", 0), SessionState.GetInt(Prefix + "y", 0),
+                    SessionState.GetBool(Prefix + "captureRequested", true));
         }
         private static void Poll()
         {

@@ -731,4 +731,40 @@ runs remain green within their stated bounds. Historical census and initial
 verification results are explicitly dated rather than represented as current
 density measurements. No remaining confirmed yellow/red finding is left open;
 long-play tuning, the fire scale, and the unisolated native graphics messages
-remain explicitly deferred.
+were deferred at this milestone. The capture messages are subsequently isolated
+and resolved in §11 below.
+
+## 11. Native screenshot repair (2026-09-26)
+
+After tranche 2 shipped at `670e3966`, the user requested continued work.
+This bounded follow-up isolates and repairs the developer screenshot path.
+BitLocker remains dev-only; Urqu and fire behavior are unchanged.
+
+The original file-capture call produced two native memoryless-depth messages
+in each capture-enabled run, while its matched disabled control produced none.
+`DensityNativeScreenshot` now owns a color-only target and CPU readback,
+restores the borrowed active target, and releases its own textures on success
+or failure. Backend-aware row correction fixed the first pass's inverted PNG.
+The final image matched Unity's same-frame reference at **1920×1080, all RGBA
+bytes identical**; the wrong-orientation comparison differs. The temporary
+reference call was removed before final acceptance because that call itself
+reproduced the original messages. No ordinary camera/render pipeline changes
+or log suppression were made.
+
+Final capture ON `1d2b8c0184f8454482ef258c83e4eef5` and OFF
+`748995604b6a4bcd981106560ec27bbe` each passed **18 numeric + 8 native checks**.
+Neither original native error recurred; raw active-log byte ranges were read
+independently of the application callback. The final image was inspected upright.
+Both runs restored scene, input, save-root, preference, seed and background
+settings, with zero owned capture textures left. An earlier OFF run interrupted
+by delayed assembly reload is preserved as rejected; its watchdog restored
+settings and recorded failure, then the control was repeated after a force
+refresh. The active log file descriptor was resolved because the editor restart
+had rotated the open log to `Editor-prev.log`.
+
+**Bounds:** native fidelity/error removal is verified on this Metal editor;
+the row-order unit controls cover both orientation branches but are not a
+cross-platform GPU test. No balance, combat-feel or long-play claim follows
+from these finite captures. See `DENSITY-RENDER-CAPTURE.md` and
+`Verification/DensityPhase1/CaptureProbe/` for raw evidence, rejected attempts,
+the nine-case RED/GREEN sequence and independent ownership/cleanup review.
