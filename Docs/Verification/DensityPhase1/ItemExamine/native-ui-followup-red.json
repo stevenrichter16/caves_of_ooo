@@ -1,0 +1,81 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"success\":true,\"message\":\"Test job status retrieved.\",\"error\":null,\"data\":{\"job_id\":\"6dc63d1e1abe476a9904b674398c09a0\",\"status\":\"failed\",\"mode\":\"EditMode\",\"started_unix_ms\":1790449641931,\"finished_unix_ms\":1790449645125,\"last_update_unix_ms\":1790449645125,\"progress\":{\"completed\":13,\"total\":13,\"current_test_full_name\":null,\"current_test_started_unix_ms\":1790449645092,\"last_finished_test_full_name\":\"CavesOfOoo.Tests.DensityItemExamineInventoryTests.TonicRouteKeepsItsExistingCommandAndDoesNotDrinkTheItem\",\"last_finished_unix_ms\":1790449645116,\"stuck_suspected\":false,\"editor_is_focused\":true,\"blocked_reason\":null,\"failures_so_far\":[{\"full_name\":\"CavesOfOoo.Tests.DensityItemExamineInventoryTests.EquippedItemRemainsInspectableWithoutUnequippingIt\",\"message\":\"  Expected: 1\\n  But was:  0\\n\"},{\"full_name\":\"CavesOfOoo.Tests.DensityItemExamineInventoryTests.OneExamineDisplaysRealDetailsAndPreservesOtherActions(\\\"HealingTonic\\\",\\\"4d6+4\\\",\\\"ApplyTonic\\\")\",\"message\":\"  Expected: 1\\n  But was:  0\\n\"},{\"full_name\":\"CavesOfOoo.Tests.DensityItemExamineInventoryTests.OneExamineDisplaysRealDetailsAndPreservesOtherActions(\\\"Dagger\\\",\\\"Damage: 1d4\\\",\\\"equip_auto\\\")\",\"message\":\"  Expected: 1\\n  But was:  0\\n\"},{\"full_name\":\"CavesOfOoo.Tests.DensityItemExamineInventoryTests.OneExamineDisplaysRealDetailsAndPreservesOtherActions(\\\"LeatherArmor\\\",\\\"DV: -1\\\",\\\"equip_auto\\\")\",\"message\":\"  Expected: 1\\n  But was:  0\\n\"},{\"full_name\":\"CavesOfOoo.Tests.DensityItemExamineInventoryTests.OneExamineDisplaysRealDetailsAndPreservesOtherActions(\\\"FlamingSword\\\",\\\"30%\\\",\\\"equip_auto\\\")\",\"message\":\"  Expected: 1\\n  But was:  0\\n\"},{\"full_name\":\"CavesOfOoo.Tests.DensityItemExamineInventoryTests.OneExamineDisplaysRealDetailsAndPreservesOtherActions(\\\"IronshodBoots\\\",\\\"Speed: -5\\\",\\\"equip_auto\\\")\",\"message\":\"  Expected: 1\\n  But was:  0\\n\"},{\"full_name\":\"CavesOfOoo.Tests.DensityItemExamineInventoryTests.StaleOrUnsupportedSelectionIsRejectedVisiblyWithoutClosingItsMenu(\\\"Dagger\\\",True)\",\"message\":\"  Expected: False\\n  But was:  True\\n\"},{\"full_name\":\"CavesOfOoo.Tests.DensityItemExamineInventoryTests.StaleOrUnsupportedSelectionIsRejectedVisiblyWithoutClosingItsMenu(\\\"HealingTonic\\\",True)\",\"message\":\"  Expected: False\\n  But was:  True\\n\"},{\"full_name\":\"CavesOfOoo.Tests.DensityItemExamineInventoryTests.StaleOrUnsupportedSelectionIsRejectedVisiblyWithoutClosingItsMenu(\\\"Dagger\\\",False)\",\"message\":\"  Expected: same as <CavesOfOoo.Rendering.InventoryUI+ItemActionPopupState>\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.DensityItemExamineInventoryTests.StaleOrUnsupportedSelectionIsRejectedVisiblyWithoutClosingItsMenu(\\\"HealingTonic\\\",False)\",\"message\":\"  Expected: same as <CavesOfOoo.Rendering.InventoryUI+ItemActionPopupState>\\n  But was:  null\\n\"}],\"failures_capped\":false},\"error\":null,\"result\":null},\"hint\":null}"
+    }
+  ],
+  "structuredContent": {
+    "result": {
+      "success": true,
+      "message": "Test job status retrieved.",
+      "error": null,
+      "data": {
+        "job_id": "6dc63d1e1abe476a9904b674398c09a0",
+        "status": "failed",
+        "mode": "EditMode",
+        "started_unix_ms": 1790449641931,
+        "finished_unix_ms": 1790449645125,
+        "last_update_unix_ms": 1790449645125,
+        "progress": {
+          "completed": 13,
+          "total": 13,
+          "current_test_full_name": null,
+          "current_test_started_unix_ms": 1790449645092,
+          "last_finished_test_full_name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.TonicRouteKeepsItsExistingCommandAndDoesNotDrinkTheItem",
+          "last_finished_unix_ms": 1790449645116,
+          "stuck_suspected": false,
+          "editor_is_focused": true,
+          "blocked_reason": null,
+          "failures_so_far": [
+            {
+              "full_name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.EquippedItemRemainsInspectableWithoutUnequippingIt",
+              "message": "  Expected: 1\n  But was:  0\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.OneExamineDisplaysRealDetailsAndPreservesOtherActions(\"HealingTonic\",\"4d6+4\",\"ApplyTonic\")",
+              "message": "  Expected: 1\n  But was:  0\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.OneExamineDisplaysRealDetailsAndPreservesOtherActions(\"Dagger\",\"Damage: 1d4\",\"equip_auto\")",
+              "message": "  Expected: 1\n  But was:  0\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.OneExamineDisplaysRealDetailsAndPreservesOtherActions(\"LeatherArmor\",\"DV: -1\",\"equip_auto\")",
+              "message": "  Expected: 1\n  But was:  0\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.OneExamineDisplaysRealDetailsAndPreservesOtherActions(\"FlamingSword\",\"30%\",\"equip_auto\")",
+              "message": "  Expected: 1\n  But was:  0\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.OneExamineDisplaysRealDetailsAndPreservesOtherActions(\"IronshodBoots\",\"Speed: -5\",\"equip_auto\")",
+              "message": "  Expected: 1\n  But was:  0\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.StaleOrUnsupportedSelectionIsRejectedVisiblyWithoutClosingItsMenu(\"Dagger\",True)",
+              "message": "  Expected: False\n  But was:  True\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.StaleOrUnsupportedSelectionIsRejectedVisiblyWithoutClosingItsMenu(\"HealingTonic\",True)",
+              "message": "  Expected: False\n  But was:  True\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.StaleOrUnsupportedSelectionIsRejectedVisiblyWithoutClosingItsMenu(\"Dagger\",False)",
+              "message": "  Expected: same as <CavesOfOoo.Rendering.InventoryUI+ItemActionPopupState>\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.StaleOrUnsupportedSelectionIsRejectedVisiblyWithoutClosingItsMenu(\"HealingTonic\",False)",
+              "message": "  Expected: same as <CavesOfOoo.Rendering.InventoryUI+ItemActionPopupState>\n  But was:  null\n"
+            }
+          ],
+          "failures_capped": false
+        },
+        "error": null,
+        "result": null
+      },
+      "hint": null
+    }
+  },
+  "isError": false
+}

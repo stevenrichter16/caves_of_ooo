@@ -1,0 +1,62 @@
+{
+  "success": true,
+  "message": "Test job status retrieved.",
+  "error": null,
+  "data": {
+    "job_id": "e2ec002d40ee4bdeaa80ef454dd2a1fa",
+    "status": "failed",
+    "mode": "EditMode",
+    "started_unix_ms": 1790448628590,
+    "finished_unix_ms": 1790448637288,
+    "last_update_unix_ms": 1790448637288,
+    "progress": {
+      "completed": 8,
+      "total": 8,
+      "current_test_full_name": null,
+      "current_test_started_unix_ms": 1790448637247,
+      "last_finished_test_full_name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.TonicRouteKeepsItsExistingCommandAndDoesNotDrinkTheItem",
+      "last_finished_unix_ms": 1790448637270,
+      "stuck_suspected": false,
+      "editor_is_focused": true,
+      "blocked_reason": null,
+      "failures_so_far": [
+        {
+          "full_name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.MaterialGuidanceWinsEvenIfAMaterialAlsoAcquiresAConsumablePayload",
+          "message": "  one discoverable Examine, not two competing entries\n  Expected: 1\n  But was:  2\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.OneExamineDisplaysRealDetailsAndPreservesOtherActions(\"HealingTonic\",\"4d6+4\",\"ApplyTonic\")",
+          "message": "  one discoverable Examine, not two competing entries\n  Expected: 1\n  But was:  2\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.OneExamineDisplaysRealDetailsAndPreservesOtherActions(\"Dagger\",\"Damage: 1d4\",\"equip_auto\")",
+          "message": "  inventory Examine must be visible now, not hidden in the gameplay log\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.OneExamineDisplaysRealDetailsAndPreservesOtherActions(\"LeatherArmor\",\"DV: -1\",\"equip_auto\")",
+          "message": "  inventory Examine must be visible now, not hidden in the gameplay log\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.OneExamineDisplaysRealDetailsAndPreservesOtherActions(\"FlamingSword\",\"30%\",\"equip_auto\")",
+          "message": "  inventory Examine must be visible now, not hidden in the gameplay log\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.OneExamineDisplaysRealDetailsAndPreservesOtherActions(\"IronshodBoots\",\"Speed: -5\",\"equip_auto\")",
+          "message": "  inventory Examine must be visible now, not hidden in the gameplay log\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.PopupRetainsAuthoredFlavorAndEnhancementAlongsideMechanics",
+          "message": "  inventory Examine must be visible now, not hidden in the gameplay log\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.DensityItemExamineInventoryTests.TonicRouteKeepsItsExistingCommandAndDoesNotDrinkTheItem",
+          "message": "  one discoverable Examine, not two competing entries\n  Expected: 1\n  But was:  2\n"
+        }
+      ],
+      "failures_capped": false
+    },
+    "error": null,
+    "result": null
+  },
+  "hint": null
+}

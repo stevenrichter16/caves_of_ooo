@@ -1,0 +1,66 @@
+{
+    "runId": "9c5fa9a75a35496d9b85716e6f5b7b28",
+    "zone": "Overworld.2.6.0",
+    "fatal": "",
+    "canVerify": "Native N bootstrap; actual keyboard look/world-action and inventory/action/announcement paths; one visible Examine per item; expected live description strings; same-row return and no turn/HP/effect/item cost; no destination generation or travel note; screenshot files.",
+    "cannotVerify": "Explicitly staged factory Signpost, WarlordCleaver with Serrated tier 2 and IronshodBoots in an owned disposable game; HealingTonic is the real designed starter stack. No natural acquisition, placement frequency, balance or ordinary progression claim. Reflection observes UI fields only. Screenshots require separate visual inspection for legibility/orientation. Unexpected errors count Application.logMessageReceived only; native backend messages require separate console review.",
+    "audit": [
+        "PASS explicit_factory_staging",
+        "PASS world_sign_single_examine",
+        "PASS world_sign_directions_reached_through_keys",
+        "PASS world_log_scroll_restored",
+        "PASS weapon_single_examine",
+        "PASS weapon_description_visible",
+        "PASS weapon_returns_to_same_row",
+        "PASS armor_single_examine",
+        "PASS armor_description_visible",
+        "PASS armor_returns_to_same_row",
+        "PASS tonic_single_examine",
+        "PASS tonic_description_visible",
+        "PASS tonic_returns_to_same_row",
+        "PASS inspection_spends_no_turn_hp_effect_or_item",
+        "PASS inspection_does_not_generate_or_record_notes",
+        "PASS normal_input_restored_after_descriptions"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityFollowup/NativeExamine/9c5fa9a75a35496d9b85716e6f5b7b28/signpost-log-latest.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityFollowup/NativeExamine/9c5fa9a75a35496d9b85716e6f5b7b28/weapon-actions.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityFollowup/NativeExamine/9c5fa9a75a35496d9b85716e6f5b7b28/weapon-description.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityFollowup/NativeExamine/9c5fa9a75a35496d9b85716e6f5b7b28/armor-actions.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityFollowup/NativeExamine/9c5fa9a75a35496d9b85716e6f5b7b28/armor-description.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityFollowup/NativeExamine/9c5fa9a75a35496d9b85716e6f5b7b28/tonic-actions.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityFollowup/NativeExamine/9c5fa9a75a35496d9b85716e6f5b7b28/tonic-description.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "Signpost",
+            "source": "staged world fixture",
+            "text": "You see a weathered signpost. A weathered post with arms pointing off toward places. Fresh cuts cross the old grain.\nCarved directions:\n  - Morrowfast (3,6): from (2,6), 1 east world-map cells.\n  - Cinderhold (6,6): from (2,6), 4 east world-map cells.\n  - Posy (5,9): from (2,6), 3 east, 3 south world-map cells.\n  - Gantry (7,8): from (2,6), 5 east, 2 south world-map cells.",
+            "units": 0
+        },
+        {
+            "subject": "WarlordCleaver",
+            "source": "staged equipment fixture",
+            "text": "You see a warlord's cleaver. A snapjaw warband banner-blade, notched from a hundred raids. Heavier than it looks; meaner than it needs to be.\nDamage: 1d10 per penetration.\nHit bonus: +0; Penetration bonus: +2.\nPenetration uses Strength modifier (cap 50).\nAttributes: Cutting Axe.\nOn damaging hits, independent attempts (targets may resist):\n  25%: Bleeding - 1d2 damage a turn until staunched (save 15).\nEquip slots: Hand.\n  - Serrated: 20% chance to cause Bleeding on hit",
+            "units": 1
+        },
+        {
+            "subject": "IronshodBoots",
+            "source": "staged equipment fixture",
+            "text": "You see an ironshod boots.\nArmor contribution - AV: +2; DV: +0.\nSpeed: -5 while equipped.\nEquip slots: Feet.",
+            "units": 1
+        },
+        {
+            "subject": "HealingTonic",
+            "source": "designed starter loadout",
+            "text": "You see a healing tonic (x2).\nOn whoever it takes hold of:\n - Heals 4d6+4 HP on the spot.\n\nDrunk when used. Can be thrown - shatters over the target and adjacent tiles.",
+            "units": 2
+        }
+    ],
+    "cases": 16,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": true,
+    "errorsFinalized": true,
+    "seconds": 7.1547395
+}

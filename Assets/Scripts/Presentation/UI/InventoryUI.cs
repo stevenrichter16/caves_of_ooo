@@ -1118,11 +1118,15 @@ namespace CavesOfOoo.Rendering
             if (materialGuidance)
                 actions.Add(new ItemAction { Label = "Examine", Command = "examine_material" });
 
-            // Consumable examine (reuses the AnnouncementUI modal): exact
-            // effect lines for tonics/brews, built through the real apply
-            // path by TonicExamineService.
-            if (TonicExamineService.TryDescribe(item, out _))
+            // One visible description route. Material guidance retains its
+            // contextual priority; ordinary item details reuse world Examine.
+            bool tonicGuidance = !materialGuidance && TonicExamineService.TryDescribe(item, out _);
+            bool equipmentGuidance = !materialGuidance && !tonicGuidance
+                && ItemExamineService.TryDescribeDetails(item, out _);
+            if (tonicGuidance)
                 actions.Add(new ItemAction { Label = "Examine", Command = "examine_tonic" });
+            else if (equipmentGuidance)
+                actions.Add(new ItemAction { Label = "Examine", Command = "examine_item" });
 
             if (itemDisplay.IsEquipped)
             {
@@ -1150,7 +1154,8 @@ namespace CavesOfOoo.Rendering
                 {
                     var a = itemDisplay.Actions[i];
                     if (a.Command == "Throw") continue; // handled below via lowercase "throw"
-                    if (materialGuidance && a.Command == "Examine") continue; // one visible description for this material
+                    if ((materialGuidance || tonicGuidance || equipmentGuidance)
+                        && a.Command == "Examine") continue;
                     actions.Add(new ItemAction { Label = a.Display, Command = a.Command });
                 }
             }
@@ -1280,6 +1285,27 @@ namespace CavesOfOoo.Rendering
             }
         }
 
+        private static string BuildItemExaminePopupText(Entity item)
+        {
+            if (ItemExamineService.TryDescribeDetails(item, out string details))
+            {
+                var examinable = item.GetPart<ExaminablePart>();
+                return examinable != null ? examinable.BuildExamineLine()
+                    : item.GetDisplayName() + "\n\n" + details;
+            }
+            // Preserve the pre-existing tonic route for supported runtime
+            // consumables that do not carry the ordinary Item blueprint tag.
+            return TonicExamineService.TryDescribe(item, out string tonicText) ? tonicText : null;
+        }
+
+        private void RejectItemExamine(Entity item, string reason, string message)
+        {
+            SetActionFailure(message);
+            Diag.Record("event", "ItemExamineRejected", actor: PlayerEntity, target: item,
+                payload: new { reason });
+            Render();
+        }
+
         private void ExecuteItemAction(int index)
         {
             if (_itemActionPopup == null || index < 0 || index >= _itemActionPopup.Actions.Count) return;
@@ -1336,8 +1362,27 @@ namespace CavesOfOoo.Rendering
                     Render();
                     return;
                 case "examine_tonic":
+                case "examine_item":
                     // AnnouncementUI owns the description over the open inventory.
-                    if (TonicExamineService.TryDescribe(item, out string tonicText)) MessageLog.AddAnnouncement(tonicText);
+                    // Revalidate the captured item after the menu was opened.
+                    // Contains includes both carried and actually equipped items.
+                    var examineInventory = PlayerEntity?.GetPart<InventoryPart>();
+                    if (item == null || examineInventory == null || !examineInventory.Contains(item))
+                    {
+                        RejectItemExamine(item, "unavailable-inventory-item",
+                            "That item is no longer in your inventory.");
+                        return;
+                    }
+                    string itemText = BuildItemExaminePopupText(item);
+                    if (string.IsNullOrEmpty(itemText))
+                    {
+                        RejectItemExamine(item, "no-supported-details",
+                            "That item's details are no longer available.");
+                        return;
+                    }
+                    MessageLog.AddAnnouncement(itemText);
+                    Diag.Record("event", "ItemExamined", actor: PlayerEntity, target: item,
+                        payload: new { blueprint = item.BlueprintName });
                     _itemActionPopup = null;
                     Render();
                     return;

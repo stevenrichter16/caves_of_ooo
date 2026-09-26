@@ -27,6 +27,18 @@ namespace CavesOfOoo.Core
         public static bool TryDescribe(Entity item, out string text)
         {
             text = null;
+            if (!TryDescribeDetails(item, out string details)) return false;
+            text = item.GetDisplayName() + "\n\n" + details;
+            return true;
+        }
+
+        /// <summary>
+        /// The existing payload and delivery text without its item-name header,
+        /// shared with world Examine. Constructing a preview never applies it.
+        /// </summary>
+        public static bool TryDescribeDetails(Entity item, out string text)
+        {
+            text = null;
             if (item == null)
                 return false;
 
@@ -78,9 +90,6 @@ namespace CavesOfOoo.Core
                 return false;
 
             var sb = new StringBuilder();
-            sb.Append(item.GetDisplayName());
-            sb.Append('\n');
-            sb.Append('\n');
             sb.Append("On whoever it takes hold of:");
             for (int i = 0; i < lines.Count; i++)
             {

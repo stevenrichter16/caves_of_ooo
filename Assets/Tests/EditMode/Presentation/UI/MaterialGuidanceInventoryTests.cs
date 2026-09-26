@@ -240,7 +240,7 @@ namespace CavesOfOoo.Tests
         [TestCase("PaleSalt", null)]
         [TestCase("Dagger", null)]
         [TestCase("Dagger", "fire clay")]
-        public void UnrelatedItemsKeepTheirOrdinaryExamineAndOtherActions(string blueprint, string renamed)
+        public void UnrelatedItemsKeepTheirOwnExamineAndOtherActions(string blueprint, string renamed)
         {
             var item = Carry(blueprint);
             if (renamed != null) item.GetPart<RenderPart>().DisplayName = renamed;
@@ -251,9 +251,22 @@ namespace CavesOfOoo.Tests
             Assert.That(commands, Does.Contain("drop"));
             if (blueprint == "Dagger") Assert.That(commands, Does.Contain("equip_auto"));
             Call(inventoryUI, "ExecuteItemAction", action);
-            Assert.That(MessageLog.HasPendingAnnouncement, Is.False,
-                "this bounded slice must not route unrelated items to repair guidance");
-            Assert.That(MessageLog.GetLast().ToLowerInvariant(), Does.Contain(item.GetDisplayName().ToLowerInvariant()));
+            if (blueprint == "Dagger")
+            {
+                // Density item inspection now gives weapons their own popup;
+                // a misleading name still must not invoke material guidance.
+                string text = OpenQueuedAnnouncement();
+                StringAssert.Contains("Damage: 1d4", text);
+                StringAssert.Contains(item.GetDisplayName(), text);
+                StringAssert.DoesNotContain("oven", text.ToLowerInvariant());
+                CloseAnnouncement();
+            }
+            else
+            {
+                Assert.That(MessageLog.HasPendingAnnouncement, Is.False,
+                    "unrelated ordinary items must not route to repair guidance");
+                Assert.That(MessageLog.GetLast().ToLowerInvariant(), Does.Contain(item.GetDisplayName().ToLowerInvariant()));
+            }
             before.AssertUnchanged(this);
         }
 
@@ -270,7 +283,9 @@ namespace CavesOfOoo.Tests
                 if ((string)Get(actions[i], "Command") == "examine_tonic") index = i;
             Assert.That(index, Is.GreaterThanOrEqualTo(0), "existing richer tonic action");
             Call(inventoryUI, "ExecuteItemAction", index);
-            Assert.That(OpenQueuedAnnouncement(), Is.EqualTo(expected));
+            string payload = expected.Substring(expected.IndexOf("\n\n", StringComparison.Ordinal) + 2);
+            StringAssert.Contains(payload, OpenQueuedAnnouncement(),
+                "shared composition adds flavor/name context while preserving the existing exact tonic payload");
             CloseAnnouncement();
             before.AssertUnchanged(this);
         }

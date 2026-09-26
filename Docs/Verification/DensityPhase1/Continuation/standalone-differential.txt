@@ -1,0 +1,95 @@
+NEWLY FAILING: 0
+NEWLY PASSING: 93
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.AbsentOrInvalidSpecsDoNotInventEffectAttempts("  ")
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.AbsentOrInvalidSpecsDoNotInventEffectAttempts("")
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.AbsentOrInvalidSpecsDoNotInventEffectAttempts("Burning")
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.AbsentOrInvalidSpecsDoNotInventEffectAttempts("Burning,-1")
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.AbsentOrInvalidSpecsDoNotInventEffectAttempts("Burning,0")
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.AbsentOrInvalidSpecsDoNotInventEffectAttempts("Burning,no")
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.AbsentOrInvalidSpecsDoNotInventEffectAttempts(null)
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.ArmorSpeedChangeUsesSignedArithmeticWithoutOverflow(-5,"+5")
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.ArmorSpeedChangeUsesSignedArithmeticWithoutOverflow(5,"-5")
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.ArmorSpeedChangeUsesSignedArithmeticWithoutOverflow(int.MinValue,"+2147483648")
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.ClassPredicatesUseCombatAliasesOnceAndRequireAnExactAttribute("Bludgeoning Cudgel Cudgel",True)
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.ClassPredicatesUseCombatAliasesOnceAndRequireAnExactAttribute("Cudgel",True)
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.DurationIsNotInventedForPhysicalStateEffects
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.EmptyRuntimeTonicKeepsAnHonestGenericDescription
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.ExaminationDoesNotConsumeOrTickLiveEffectsOrMutateItemState
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.ExplicitEquipmentBonusesFollowTheEquipmentParser
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.MultipleSpecsRemainIndependentWithoutAddingTheirChances
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.NullLegacySlotUsesTheSameHandFallbackAsEquipment
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.OversizedChanceMatchesTheRealHundredOutcomeRoll(101)
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.OversizedChanceMatchesTheRealHundredOutcomeRoll(int.MaxValue)
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.ReexaminingChangedSpecsCannotRetainAStaleCombatCache
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.RenamingOrRemovingItemTagDoesNotTurnNaturalWeaponsIntoEquipment
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.StatAttributeAlsoParticipatesInTheActualClassDispatcher
+  CavesOfOoo.Tests.DensityItemExamineAdversarialTests.UnknownEffectIsNotAdvertisedAsAWorkingPower
+  CavesOfOoo.Tests.DensityItemExamineTests.ArmorAdvertisesItsActualSpeedPenalty("IronshodBoots",True)
+  CavesOfOoo.Tests.DensityItemExamineTests.ArmorAdvertisesItsActualSpeedPenalty("LeatherBoots",False)
+  CavesOfOoo.Tests.DensityItemExamineTests.ArmorReportsContributionsRatherThanActorTotals("Buckler","+1","+1")
+  CavesOfOoo.Tests.DensityItemExamineTests.ArmorReportsContributionsRatherThanActorTotals("LeatherArmor","+3","-1")
+  CavesOfOoo.Tests.DensityItemExamineTests.ArmorReportsContributionsRatherThanActorTotals("WardedCloak","+0","+2")
+  CavesOfOoo.Tests.DensityItemExamineTests.ElementalWeaponDescribesConstructedEffectsAndAttributes("AcidicDagger","30%","5 damage a turn","Acid")
+  CavesOfOoo.Tests.DensityItemExamineTests.ElementalWeaponDescribesConstructedEffectsAndAttributes("CryoLance","30%","Frozen over","Ice")
+  CavesOfOoo.Tests.DensityItemExamineTests.ElementalWeaponDescribesConstructedEffectsAndAttributes("DissolutionMaul","40%","5 damage a turn","Acid")
+  CavesOfOoo.Tests.DensityItemExamineTests.ElementalWeaponDescribesConstructedEffectsAndAttributes("EmberSpear","30%","Set ablaze","Fire")
+  CavesOfOoo.Tests.DensityItemExamineTests.ElementalWeaponDescribesConstructedEffectsAndAttributes("FlamingSword","30%","Set ablaze","Fire")
+  CavesOfOoo.Tests.DensityItemExamineTests.ElementalWeaponDescribesConstructedEffectsAndAttributes("IceSword","30%","Frozen over","Ice")
+  CavesOfOoo.Tests.DensityItemExamineTests.ElementalWeaponDescribesConstructedEffectsAndAttributes("ThunderHammer","30%","Electrified","Lightning")
+  CavesOfOoo.Tests.DensityItemExamineTests.ElementalWeaponDescribesConstructedEffectsAndAttributes("VenomDagger","50%","1d4 damage a turn for 6 turns","Poison")
+  CavesOfOoo.Tests.DensityItemExamineTests.EquipmentShowsItsEffectiveSlots("Dagger","Hand")
+  CavesOfOoo.Tests.DensityItemExamineTests.EquipmentShowsItsEffectiveSlots("DissolutionMaul","Hand,Hand")
+  CavesOfOoo.Tests.DensityItemExamineTests.ExistingFlavorEnhancementAndAfflictionArePreservedOnce
+  CavesOfOoo.Tests.DensityItemExamineTests.PhysicalClassAttemptsAreVisibleWithoutElementalSpecs("LongSword","25%","Bleeding")
+  CavesOfOoo.Tests.DensityItemExamineTests.PhysicalClassAttemptsAreVisibleWithoutElementalSpecs("Mace","15%","Stunned")
+  CavesOfOoo.Tests.DensityItemExamineTests.PhysicalClassAttemptsAreVisibleWithoutElementalSpecs("Spear","10%","Confused")
+  CavesOfOoo.Tests.DensityItemExamineTests.SporebladeNameDoesNotInventSporeEmission
+  CavesOfOoo.Tests.DensityItemExamineTests.StrengthCapMatchesTheActualCombatLimit("Dagger",3)
+  CavesOfOoo.Tests.DensityItemExamineTests.StrengthCapMatchesTheActualCombatLimit("LongSword",50)
+  CavesOfOoo.Tests.DensityItemExamineTests.WeaponReadsChangedLiveFields_InsteadOfGuessingFromItsBlueprintName
+  CavesOfOoo.Tests.DensityItemExamineTests.WeaponReportsItsOwnDiceAndModifiers("Dagger","1d4","+1","+0")
+  CavesOfOoo.Tests.DensityItemExamineTests.WeaponReportsItsOwnDiceAndModifiers("EchoKnife","1d4+3","+1","+3")
+  CavesOfOoo.Tests.DensityItemExamineTests.WeaponReportsItsOwnDiceAndModifiers("LongSword","1d8","+2","+0")
+  CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload("AcidTonic")
+  CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload("Antidote")
+  CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload("BleedTonic")
+  CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload("BurnSalve")
+  CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload("CharredTonic")
+  CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload("FireTonic")
+  CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload("FrostTonic")
+  CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload("HealingTonic")
+  CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload("LightningTonic")
+  CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload("Panacea")
+  CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload("PoisonTonic")
+  CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload("SpeedTonic")
+  CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload("StoneskinTonic")
+  CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload("StrengthTonic")
+  CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload("WaterTonic")
+  CavesOfOoo.Tests.DensitySignpostAdversarialTests.DuplicatePlaceNamesKeepDistinctCoordinatesAndDoNotCollapseDestinations
+  CavesOfOoo.Tests.DensitySignpostAdversarialTests.InvalidOrNonSurfaceOriginNeverFormatsFabricatedBearings("Overworld.-1.7.0")
+  CavesOfOoo.Tests.DensitySignpostAdversarialTests.InvalidOrNonSurfaceOriginNeverFormatsFabricatedBearings("Overworld.13.-1.0")
+  CavesOfOoo.Tests.DensitySignpostAdversarialTests.InvalidOrNonSurfaceOriginNeverFormatsFabricatedBearings("Overworld.13.20.0")
+  CavesOfOoo.Tests.DensitySignpostAdversarialTests.InvalidOrNonSurfaceOriginNeverFormatsFabricatedBearings("Overworld.13.7.-1")
+  CavesOfOoo.Tests.DensitySignpostAdversarialTests.InvalidOrNonSurfaceOriginNeverFormatsFabricatedBearings("Overworld.13.7.0.extra")
+  CavesOfOoo.Tests.DensitySignpostAdversarialTests.InvalidOrNonSurfaceOriginNeverFormatsFabricatedBearings("Overworld.13.7.z")
+  CavesOfOoo.Tests.DensitySignpostAdversarialTests.InvalidOrNonSurfaceOriginNeverFormatsFabricatedBearings("Overworld.13.y.0")
+  CavesOfOoo.Tests.DensitySignpostAdversarialTests.InvalidOrNonSurfaceOriginNeverFormatsFabricatedBearings("Overworld.20.7.0")
+  CavesOfOoo.Tests.DensitySignpostAdversarialTests.InvalidOrNonSurfaceOriginNeverFormatsFabricatedBearings("Overworld.x.7.0")
+  CavesOfOoo.Tests.DensitySignpostAdversarialTests.InvalidOrNonSurfaceOriginNeverFormatsFabricatedBearings("WorldMap")
+  CavesOfOoo.Tests.DensitySignpostAdversarialTests.InvalidOrNonSurfaceOriginNeverFormatsFabricatedBearings("overworld.13.7.0")
+  CavesOfOoo.Tests.DensitySignpostAdversarialTests.MapCornersRemainValidAndUseTheActualOrigin(0,0)
+  CavesOfOoo.Tests.DensitySignpostAdversarialTests.MapCornersRemainValidAndUseTheActualOrigin(0,19)
+  CavesOfOoo.Tests.DensitySignpostAdversarialTests.MapCornersRemainValidAndUseTheActualOrigin(19,0)
+  CavesOfOoo.Tests.DensitySignpostAdversarialTests.MapCornersRemainValidAndUseTheActualOrigin(19,19)
+  CavesOfOoo.Tests.DensitySignpostAdversarialTests.ReattachingOriginalCachedGraphRestoresItsDirections
+  CavesOfOoo.Tests.DensitySignpostAdversarialTests.RemovingBehaviorFromOneSignDoesNotMutateItsBlueprintOrSibling
+  CavesOfOoo.Tests.DensitySignpostAdversarialTests.SameAddressInAnotherWorldDoesNotStealTheSignsMapAuthority
+  CavesOfOoo.Tests.DensitySignpostTests.CardinalDirectionsAndEqualDistanceTies_AgreeWithMapAxes
+  CavesOfOoo.Tests.DensitySignpostTests.DirectionsAreReadOnly_AndDoNotInheritConversationWorkPromises
+  CavesOfOoo.Tests.DensitySignpostTests.KnownEmptyVillageIsOmitted_WhileUngeneratedTownStillHasDirections
+  CavesOfOoo.Tests.DensitySignpostTests.MovedSignUsesActualNewGraph_NotStaleExamineEventContext
+  CavesOfOoo.Tests.DensitySignpostTests.NewSavedSignRecomputesDirectionsAfterNormalContextReattachment
+  CavesOfOoo.Tests.DensitySignpostTests.OldSignWithoutRuntimePartRemainsStatic_WhileNewSignGivesDirections
+  CavesOfOoo.Tests.DensitySignpostTests.RealFactorySignpost_ExamineShowsFourNearestActualDestinations
+  CavesOfOoo.Tests.DensitySignpostTests.RemovingMapDestination_UpdatesNextExamineWithoutChangingStoredFlavor
+  CavesOfOoo.Tests.DensitySignpostTests.SignDoesNotAdvertiseCurrentCellNonVillageOrBlankDestination

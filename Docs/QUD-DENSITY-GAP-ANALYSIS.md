@@ -236,8 +236,10 @@ and existing liquid pools, vary encounter groups/depth, and activate Urqu signs
 from the Sill omen. See `DENSITY-PHASE-1.md` for corrections, tests and native
 verification. This analysis retains its original census as a dated baseline;
 its percentages are not measurements of the updated world. BitLocker stays
-dev-only. Combustibility unification and balance play remain deferred; dynamic
-signpost guidance and broad item examine prose are also not claimed as shipped.
+dev-only. The continued follow-up adds contextual signpost directions and live
+weapon/armor/tonic details to examination, preserving existing flavor prose.
+The native audit screenshot path is also repaired. Combustibility unification,
+broad new authored item prose and sustained balance play remain deferred.
 
 1. **Live-biome cases** for lair bosses and ambushers
    (`WorldGenerator.GetBossForBiome`, `LairPopulationBuilder.PlaceAmbushers`);
@@ -318,6 +320,6 @@ signpost guidance and broad item examine prose are also not claimed as shipped.
 - `Docs/DAY-TO-DAY.md` (planned, empty implementation log): D.3 waterskin
   and D.4 cooking are Phase 3 items; D.2 (showing the day band) is
   independent and still the cheapest visible win.
-- `Docs/LOOT-FINDS.md` (planned, not implemented): its tiered find tables
-  are the natural home for Phase 1 item placement.
+- `Docs/LOOT-FINDS.md`: Phase 1 implemented the stranded weapon/tonic subset
+  within its tier rules; the broader armor/loadout plan is not thereby complete.
 - `Docs/SYSTEMS-AUDIT-2026-08.md`: finding F12 (line of fire) is still open.

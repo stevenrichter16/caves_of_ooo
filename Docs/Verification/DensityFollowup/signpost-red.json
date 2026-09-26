@@ -1,0 +1,54 @@
+{
+  "runner": "Unity-free EditModeRunner, isolated copy, .NET 10.0.5",
+  "baseline": "670e3966 before signpost production changes",
+  "summary": {
+    "total": "42",
+    "passed": "33",
+    "failed": "9",
+    "skipped": "0",
+    "duration": "0.765576"
+  },
+  "signpost_tests": 17,
+  "signpost_failures": 9,
+  "signpost_controls_passed": 8,
+  "existing_examinable_tests_passed": 25,
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.DensitySignpostTests.CardinalDirectionsAndEqualDistanceTies_AgreeWithMapAxes",
+      "message": "  Expected: String containing \"1 north\"\n  But was:  \"You see a weathered signpost. A post with arms pointing off toward places. The weather has taken the lettering down to grey grain; the arrows still point, but not at any names.\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySignpostTests.DirectionsAreReadOnly_AndDoNotInheritConversationWorkPromises",
+      "message": "  Expected: String containing \"Carved directions:\"\n  But was:  \"You see a weathered signpost. A post with arms pointing off toward places. The weather has taken the lettering down to grey grain; the arrows still point, but not at any names.\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySignpostTests.KnownEmptyVillageIsOmitted_WhileUngeneratedTownStillHasDirections",
+      "message": "  Expected: String containing \"Northtown\"\n  But was:  \"You see a weathered signpost. A post with arms pointing off toward places. The weather has taken the lettering down to grey grain; the arrows still point, but not at any names.\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySignpostTests.MovedSignUsesActualNewGraph_NotStaleExamineEventContext",
+      "message": "  Expected: String containing \"from (13,7)\"\n  But was:  \"You see a weathered signpost. A post with arms pointing off toward places. The weather has taken the lettering down to grey grain; the arrows still point, but not at any names.\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySignpostTests.NewSavedSignRecomputesDirectionsAfterNormalContextReattachment",
+      "message": "  Expected: String containing \"Carved directions:\"\n  But was:  \"You see a weathered signpost. A post with arms pointing off toward places. The weather has taken the lettering down to grey grain; the arrows still point, but not at any names.\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySignpostTests.OldSignWithoutRuntimePartRemainsStatic_WhileNewSignGivesDirections",
+      "message": "  Expected: String containing \"Carved directions:\"\n  But was:  \"You see a weathered signpost. A post with arms pointing off toward places. The weather has taken the lettering down to grey grain; the arrows still point, but not at any names.\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySignpostTests.RealFactorySignpost_ExamineShowsFourNearestActualDestinations",
+      "message": "  Expected: String containing \"Carved directions:\"\n  But was:  \"You see a weathered signpost. A post with arms pointing off toward places. The weather has taken the lettering down to grey grain; the arrows still point, but not at any names.\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySignpostTests.RemovingMapDestination_UpdatesNextExamineWithoutChangingStoredFlavor",
+      "message": "  Expected: String containing \"Northtown\"\n  But was:  \"You see a weathered signpost. A post with arms pointing off toward places. The weather has taken the lettering down to grey grain; the arrows still point, but not at any names.\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySignpostTests.SignDoesNotAdvertiseCurrentCellNonVillageOrBlankDestination",
+      "message": "  Expected: String containing \"Easttown\"\n  But was:  \"You see a weathered signpost. A post with arms pointing off toward places. The weather has taken the lettering down to grey grain; the arrows still point, but not at any names.\"\n"
+    }
+  ],
+  "limits": "No Unity engine, UI rendering or native interaction claim. Tests use actual factory entities and InventoryAction/Examine."
+}

@@ -12,8 +12,9 @@ namespace CavesOfOoo.Core
     ///
     /// Optional <see cref="Text"/> field lets individual blueprints supply
     /// flavor prose (e.g., "A sturdy wooden chest with iron bands.") while
-    /// entities without a Text override fall back to a plain
-    /// "You see a {display name}." line.
+    /// entities without a Text override begin with a plain
+    /// "You see a {display name}." line. Supported parts contribute current
+    /// item mechanics, contextual directions, enhancements and afflictions.
     ///
     /// Intended consumers:
     /// - <c>GetInventoryActions</c> event — adds the Examine menu entry
@@ -21,9 +22,9 @@ namespace CavesOfOoo.Core
     /// - <c>InventoryAction</c> event with <c>Command == "Examine"</c> —
     ///   logs the examine text.
     ///
-    /// Non-goals for v1:
-    /// - No description popup. MessageLog only until the world action menu
-    ///   UI lands and can host a richer description panel.
+    /// Presentation belongs to the consumer: world actions log the description,
+    /// while supported inventory inspections show it in an announcement popup.
+    /// Non-goals:
     /// - No Understood/Identified gating. Every entity is considered known.
     /// - No "Recall Story" sub-action (Qud-only flavor today).
     /// </summary>
@@ -33,8 +34,8 @@ namespace CavesOfOoo.Core
 
         /// <summary>
         /// Optional flavor text set by the blueprint. If non-empty, appended
-        /// to the examine message. If empty, the examine line is just
-        /// "You see a {display name}." with no extra detail.
+        /// to the examine message. If empty, the opening line is simply
+        /// "You see a {display name}."; other parts may still contribute detail.
         /// </summary>
         public string Text = "";
 
@@ -79,8 +80,10 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// Compose the examine message: "You see a {name}. {flavor}" when Text
-        /// is set, or plain "You see a {name}." otherwise.
+        /// Compose the current description without displaying it. Preserves
+        /// authored flavor and appends supported mechanics/contextual details.
+        /// Does not apply effects, consume items or turns, record travel notes,
+        /// or generate destination zones. Callers choose log or popup presentation.
         ///
         /// Indefinite-article handling is minimal on purpose — roguelikes
         /// often use natural-language polish that's out of scope here. If the
@@ -88,13 +91,20 @@ namespace CavesOfOoo.Core
         /// proper noun (starts uppercase), we leave it alone. Otherwise we
         /// prepend "a ".
         /// </summary>
-        private string BuildExamineLine()
+        public string BuildExamineLine()
         {
             string name = ParentEntity?.GetDisplayName() ?? "something";
             string article = GetArticle(name);
             string baseLine = $"You see {article}{name}.";
             if (!string.IsNullOrWhiteSpace(Text))
                 baseLine += " " + Text.Trim();
+
+            var directions = ParentEntity?.GetPart<RegionalSignpostPart>()?.GetDirectionsText();
+            if (!string.IsNullOrWhiteSpace(directions))
+                baseLine += "\n" + directions;
+
+            if (ItemExamineService.TryDescribeDetails(ParentEntity, out string itemDetails))
+                baseLine += "\n" + itemDetails;
 
             // Item Enhancements (E.1–E.5): append per-enhancement effect
             // lines so the player sees what each attached IItemEnhancement

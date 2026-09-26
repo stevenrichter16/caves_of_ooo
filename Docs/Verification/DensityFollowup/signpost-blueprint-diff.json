@@ -1,0 +1,101 @@
+{
+  "changed_blueprints": [
+    "Signpost"
+  ],
+  "before_sha256": "48fd92357197fa1d5bf12b8b4e43bc777cc58c6b8363e179dbf67eea74558423",
+  "after_sha256": "b9bd41ee5b2c82d16af8598ea57c0d1cb765f910f9a06c9d9c25a60aeca93bd1",
+  "signpost_before": {
+    "Name": "Signpost",
+    "Inherits": "PhysicalObject",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "weathered signpost"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "I"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&y"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "1"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Solid",
+            "Value": "true"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Description",
+            "Value": "A post with arms pointing off toward places. The weather has taken the lettering down to grey grain; the arrows still point, but not at any names."
+          }
+        ]
+      }
+    ]
+  },
+  "signpost_after": {
+    "Name": "Signpost",
+    "Inherits": "PhysicalObject",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "weathered signpost"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "I"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&y"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "1"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Solid",
+            "Value": "true"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Description",
+            "Value": "A weathered post with arms pointing off toward places. Fresh cuts cross the old grain."
+          }
+        ]
+      },
+      {
+        "Name": "RegionalSignpost",
+        "Params": []
+      }
+    ]
+  }
+}

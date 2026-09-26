@@ -29,6 +29,28 @@ namespace CavesOfOoo.Core
             bool morrowfastClerk=conversation=="Morrowfast_Vennit"&&zone.ZoneID==MorrowfastSceneRuntime.ZoneID
                 &&ReferenceEquals(speaker,MorrowfastSceneRuntime.FindOwner(zone,"east-robed-resident"));
             if(conversation!="Scribe_1"&&conversation!="Innkeeper_1"&&!morrowfastClerk)return result;
+            return BuildDestinations(zone,manager,includeWork:true);
+        }
+
+        /// <summary>Directions from a sign's actual attached surface graph.
+        /// Signs are not living conversation partners and never advertise work.
+        /// A stale or detached sign has no authority to name destinations.</summary>
+        internal static IReadOnlyList<RegionalTravelLead> BuildSignpost(Entity sign)
+        {
+            var zone=sign?.SpatialZone;
+            var manager=WorldLocationContext.For(zone);
+            if(manager==null||zone==null||!manager.CachedZones.TryGetValue(zone.ZoneID,out var live)
+                ||!ReferenceEquals(live,zone)||zone.GetEntityCell(sign)==null)
+                return Array.Empty<RegionalTravelLead>();
+            return BuildDestinations(zone,manager,includeWork:false);
+        }
+
+        // The map query is shared, but the caller retains its own eligibility
+        // contract. Neither path generates destinations or changes discovery.
+        private static IReadOnlyList<RegionalTravelLead> BuildDestinations(
+            Zone zone,OverworldZoneManager manager,bool includeWork)
+        {
+            var result=new List<RegionalTravelLead>();
             var origin=WorldMap.FromZoneID(zone.ZoneID);
             if(!zone.ZoneID.StartsWith("Overworld.",StringComparison.Ordinal)||origin.x<0||origin.x>=20||origin.y<0||origin.y>=20||origin.z!=0)return result;
             for(int y=0;y<WorldMap.Height;y++)for(int x=0;x<WorldMap.Width;x++)
@@ -37,7 +59,7 @@ namespace CavesOfOoo.Core
                 string id=WorldMap.ToZoneID(x,y,0);
                 // A known empty/ruined destination must not be sold as living work.
                 if(manager.CachedZones.TryGetValue(id,out var cached)&&!cached.GetAllEntities().Any(e=>e.HasPart<ConversationPart>()&&e.GetStatValue("Hitpoints",0)>0&&!CombatSystem.IsDeathHandled(e)))continue;
-                string quest=VillagePopulationBuilder.PickVillageQuest(id);
+                string quest=includeWork?VillagePopulationBuilder.PickVillageQuest(id):null;
                 if(!Available(quest))quest=null;
                 if(quest!=null&&cached!=null&&!cached.GetAllEntities().Any(e=>e.GetPart<QuestBeaconPart>()?.Quest==quest&&e.GetStatValue("Hitpoints",0)>0&&!CombatSystem.IsDeathHandled(e)))quest=null;
                 result.Add(new RegionalTravelLead{DestinationZoneID=id,DestinationName=poi.Name,OriginZoneID=zone.ZoneID,QuestID=quest});

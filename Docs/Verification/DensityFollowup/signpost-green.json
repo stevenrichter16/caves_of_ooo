@@ -1,0 +1,61 @@
+{
+  "runner": "Unity-free EditModeRunner, isolated copy, .NET 10.0.5",
+  "summary": {
+    "total": "91",
+    "passed": "91",
+    "failed": "0",
+    "skipped": "0",
+    "duration": "1.087960"
+  },
+  "fixtures": [
+    {
+      "name": "DensityPhase1ContentTests",
+      "total": "14",
+      "passed": "14",
+      "failed": "0"
+    },
+    {
+      "name": "DensitySignpostAdversarialTests",
+      "total": "20",
+      "passed": "20",
+      "failed": "0"
+    },
+    {
+      "name": "DensitySignpostTests",
+      "total": "17",
+      "passed": "17",
+      "failed": "0"
+    },
+    {
+      "name": "SaveGraphRoundTripTests",
+      "total": "1",
+      "passed": "1",
+      "failed": "0"
+    },
+    {
+      "name": "ExaminablePartTests",
+      "total": "25",
+      "passed": "25",
+      "failed": "0"
+    },
+    {
+      "name": "Tier3SimplePartRoundTripTests",
+      "total": "14",
+      "passed": "14",
+      "failed": "0"
+    }
+  ],
+  "failures": [],
+  "source_sha256": {
+    "Assets/Scripts/Gameplay/Conversations/RegionalGuidance.cs": "a66e0bb8e7bb338d4cae879214ce7264611acda332e944850a7cc798c9b523cf",
+    "Assets/Scripts/Gameplay/Entities/RegionalSignpostPart.cs": "cb7d006b4983fb81350e420521f441bee308dfbc686dfbe6091dc15ea8014686",
+    "Assets/Scripts/Gameplay/Entities/ExaminablePart.cs": "82e826b7f1f2b25e63f3a6a58a113b93c1e27bdadb187dcf8cafc7ac7b19b59e",
+    "Assets/Resources/Content/Blueprints/Objects.json": "b9bd41ee5b2c82d16af8598ea57c0d1cb765f910f9a06c9d9c25a60aeca93bd1",
+    "Assets/Tests/EditMode/Gameplay/Storylets/DensitySignpostTests.cs": "88a1f3a3fe37ca3978798120ccd53d88b45354f271f344d6b799a1963a12d0e6",
+    "Assets/Tests/EditMode/Gameplay/Storylets/DensitySignpostAdversarialTests.cs": "0f553f047b473c8890691e5285d630afefd043dcf93c445ce0d5ea64f7cb18d5"
+  },
+  "source_xml_sha256": "7f2f37d655f00dafed11fe5c097a2747f03793430d8db6beea067a3f5c106346",
+  "red_comparison": "All nine intended failures in signpost-red.json pass; original 17 signpost cases plus 20 post-implementation invariant/adversarial controls pass. Existing examine, density content, graph save, and simple part save controls also pass.",
+  "setup_corrections": "Private expanded selection initially had a mistyped content-test path, then omitted the existing PartRoundTripHelper dependency. Corrected private selection before this completed run; these were runner-selection compile errors, not test assertion failures. Shared runner files were not changed.",
+  "limits": "No Unity engine, native UI/rendering, timing, or gameplay-scale readability claim. Existing RegionalGuidanceTests and RegionalGuidanceAdversarialTests require native UI/save fixtures and remain for the root native run."
+}

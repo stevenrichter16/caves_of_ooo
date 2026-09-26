@@ -732,13 +732,100 @@ verification results are explicitly dated rather than represented as current
 density measurements. No remaining confirmed yellow/red finding is left open;
 long-play tuning, the fire scale, and the unisolated native graphics messages
 were deferred at this milestone. The capture messages are subsequently isolated
-and resolved in §11 below.
+and resolved in §11.4 below.
 
-## 11. Native screenshot repair (2026-09-26)
+## 11. Continued Phase 1 follow-ups (2026-09-26)
 
 After tranche 2 shipped at `670e3966`, the user requested continued work.
-This bounded follow-up isolates and repairs the developer screenshot path.
-BitLocker remains dev-only; Urqu and fire behavior are unchanged.
+The next bounded slice addresses the remaining signpost/item examination gaps
+and isolates the native screenshot errors. BitLocker stays dev-only, Urqu keeps
+its shipped omen/ending rule, and the fire scale still requires separate play
+evaluation. No new enemy kit or simulation mechanic is part of this slice.
+
+| Verification sweep | Correction before implementation | Owned follow-up |
+|---|---|---|
+| Memoryless-depth errors might originate in restored liquid models | Identical native capture on/off/on produces 2/0/2 messages, with the same route and successful checks | `DENSITY-RENDER-CAPTURE.md`: repair the developer capture path if an explicit color-only target proves it; do not change ordinary render passes or suppress console logging |
+| A sign can call existing conversational guidance directly | That API requires a living supported speaker/player and conversation eligibility | `DENSITY-SIGNPOSTS.md`: share only read-only destination enumeration, preserve conversation gates, use actual sign ownership |
+| Tonics have no useful descriptions anywhere | Existing inventory tonic descriptions already construct real effects, but world Examine omits them and the inventory menu duplicates Examine | `DENSITY-ITEM-EXAMINE.md`: share truthful mechanics details and offer one visible inventory description |
+| Static prose is sufficient for weapon/armor descriptions | Forging, enhancements and brews change instance fields; raw effect specs can differ from factory-clamped effects | Read current instance fields and effect previews, preserve authored flavor, add no invented lore |
+
+The shared `ExaminablePart` integration appends sign directions and item
+mechanics before its existing enhancement/affliction lines. It remains a
+read-only composition called on explicit examination. New tests failed against
+the shipped behavior before these hooks were added; matched controls and native
+visual inspection preceded the final verification sweep. Each follow-up doc
+holds its invariants, source corrections, RED/GREEN evidence, self-review and
+precise limits; this parent section records the integrated outcome.
+
+### 11.1 Examination display bounds review
+
+The first review hypothesis assumed the 25-row world grid was also the popup
+height. The actual `CenteredPopupLayout.GridHeight` is 45, and the new inventory
+fixture already checks that bound. The native display fixture opened all 61 supported item descriptions; the
+largest was FlamingSword at 17 rows. Both two-enhancement weapon cases with
+live afflictions, plus short/long/short redraw and close cleanup, also passed
+(**4/4 native cases**). The overflow hypothesis was falsified for this bounded
+content sweep, so shared announcement UI remains unchanged. This is not an
+unbounded promise about future arbitrarily long authored or modded text.
+
+### 11.2 Cross-feature review findings
+
+- 🟡 Capture review: a color-only target removed the original native log errors,
+  but its first PNG was vertically inverted. A file-exists assertion and uniform
+  color test cannot establish orientation. Added asymmetric row-order controls,
+  used the graphics backend's orientation signal, and compared an actual frame
+  before accepting the repair. The failed visual run is preserved as evidence.
+- 🟡 Item detail adversarial review: combat includes the weapon's chosen stat
+  as a damage attribute, and equipment falls back to Hand for a null legacy
+  slot. The first detail implementation missed those two fallbacks. Both were
+  reproduced with failing tests and repaired through the existing semantics.
+- 🟡 Inventory symmetry review: material examination rechecks carried ownership
+  and emits success/refusal diagnostics. The new item popup route now has those
+  same observable gates, including an item removed or changed after its menu
+  opened; native failing tests preceded the follow-up repair.
+- ⚪ These descriptions report item contributions and attempted effects, not
+  final character damage, guaranteed afflictions, safe routes or available
+  quests. Existing signposts restored from old saves retain their old parts.
+
+**Final Q1–Q4 review:** inventory description success and refusal both report
+diagnostics and revalidate ownership; carried/equipped paths share that gate.
+World and inventory descriptions share the same live-field composer while
+retaining their log/popup presentation. Conversation eligibility remains with
+conversation callers; signs use only attached map ownership. Counter-checks
+cover detached/stale context, unavailable items, legacy tonic fallback,
+non-Items, RNG/state preservation, target conditions and actual display bounds.
+Docs distinguish contributions from character totals, attempted effects from
+guaranteed outcomes, and staged live inspection from natural acquisition.
+The closed yellow findings above are covered by RED-to-GREEN evidence; no
+confirmed yellow/red finding remains open. Native integration results follow.
+
+### 11.3 Integrated verification completed
+
+The standalone continuation sweep uses `670e3966` as its baseline, preserving
+the earlier tranche-2 receipts. Both isolated runs selected the same 672 files
+and executed exactly **10,060 named cases**: baseline 9,672 passed/388 failed;
+current 9,765 passed/295 failed. **Zero newly failing, 93 newly passing.**
+The remaining 295 failures are common to both environments. The receipts and
+compressed XML in `Verification/DensityPhase1/Continuation/` bound this to
+core rules/content/save behavior under the runner's non-Unity hashing and
+stubs; excluded native UI, input, graphics and live behavior require Unity.
+
+The first combined native follow-up pass completed **83/83**: capture 9,
+item inventory 13, layout 4, material guidance 18 and action feedback 39.
+The final unfiltered Unity 6000.3.4f1 EditMode run passed **15,655/15,655**,
+with **zero failures and zero skips**, in 392.82 seconds (job
+`d6a671a95dda48b78b9aa670b39b003b`). This includes the added non-Item-tag tonic
+compatibility control, all 14 inventory cases, the new 124 examination cases,
+and nine capture cases alongside the existing regression suites. The previous
+tranche ended at 15,522 cases: **133 new cases across these two follow-ups**.
+Receipt: `Verification/DensityPhase1/Continuation/native-editmode-final.json`.
+
+Earlier, the editor had stalled with no active compiler/test; a graceful
+restart from a verified clean scene restored compilation and test dispatch.
+No timed-out initialization is counted as a test result. The final editor
+returned to idle Edit mode in SampleScene with no compilation/import active.
+
+### 11.4 Native screenshot repair completed
 
 The original file-capture call produced two native memoryless-depth messages
 in each capture-enabled run, while its matched disabled control produced none.
@@ -768,3 +855,40 @@ cross-platform GPU test. No balance, combat-feel or long-play claim follows
 from these finite captures. See `DENSITY-RENDER-CAPTURE.md` and
 `Verification/DensityPhase1/CaptureProbe/` for raw evidence, rejected attempts,
 the nine-case RED/GREEN sequence and independent ownership/cleanup review.
+
+### 11.5 Native examination audit
+
+Run `9c5fa9a75a35496d9b85716e6f5b7b28` passed **16/16 checks**, with seven
+1920×1080 screenshots inspected upright and legible. Ordinary keyboard input
+opened the new game, world look/action menu, inventory action menus and popup
+acknowledgements. The sign named four actual regional destinations; weapon,
+armor and tonic menus each offered one Examine. WarlordCleaver showed its
+existing prose, live mechanics and Serrated enhancement together. IronshodBoots
+and HealingTonic details fit with their dismiss footer. The actual starter
+healing-tonic stack retained both units, and examining did not spend a turn,
+change HP, apply an effect, create a zone, or write a travel note.
+
+The audit used an isolated new game with a deliberately staged factory sign,
+weapon and armor; it reused the real starter tonic stack. It does not establish
+natural loot acquisition or random sign frequency. Full observed descriptions,
+assertions, screenshots, log byte ranges and restoration checks are under
+`Verification/DensityFollowup/NativeExamine/`. The preceding clean scene,
+save-root, seed, preferences, InputSettings JSON, keyboards and background state
+were restored, and the owned temporary save directory was removed. Both the
+callback and the actual running editor's raw log range contained zero unexpected
+errors. This audit also exercised the repaired screenshot path.
+
+**Can verify:** the bounded actual keyboard/UI routes, read-only behavior,
+rendered text in the captured configurations, teardown, and these native log
+ranges. **Cannot verify:** sustained balance/feel, every generated placement,
+all display sizes or graphics backends, or arbitrary future description length.
+
+**Follow-up files:** `RegionalGuidance.cs`, new `RegionalSignpostPart.cs`, the
+surgically edited Signpost blueprint, `ExaminablePart.cs`, new
+`ItemExamineService.cs`, `TonicExamineService.cs`, `InventoryUI.cs`; dedicated
+sign/item regular and adversarial tests, inventory and layout tests, the bounded
+`DensityExamineNativePlayer`/`DensityExamineNativeBatch` audit, their metadata,
+three follow-up living docs and verification receipts. Capture files/evidence
+are separately listed in §11.4's manifest. No new natural weapon, neutral
+GlassScorpion change, plain Shambler spore effect, normal-play BitLocker, or
+combustibility unification is included.

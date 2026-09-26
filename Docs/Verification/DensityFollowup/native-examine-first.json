@@ -1,0 +1,124 @@
+{
+  "label": "native-examine-first",
+  "preflight": {
+    "playing": false,
+    "compiling": false,
+    "updating": false,
+    "scenes": [
+      {
+        "path": "Assets/Scenes/Main/SampleScene.unity",
+        "isLoaded": true,
+        "isActive": true
+      }
+    ],
+    "dirty": false,
+    "saveRoot": null,
+    "requestedSeed": 0,
+    "background": true,
+    "preferenceExists": true,
+    "preferenceHash": 1190162397,
+    "inputSettings": "{\"m_SupportedDevices\":[],\"m_UpdateMode\":1,\"m_ScrollDeltaBehavior\":0,\"m_MaxEventBytesPerUpdate\":5242880,\"m_MaxQueuedEventsPerUpdate\":1000,\"m_CompensateForScreenOrientation\":true,\"m_BackgroundBehavior\":0,\"m_EditorInputBehaviorInPlayMode\":0,\"m_InputActionPropertyDrawerMode\":0,\"m_DefaultDeadzoneMin\":0.125,\"m_DefaultDeadzoneMax\":0.925000011920929,\"m_DefaultButtonPressPoint\":0.5,\"m_ButtonReleaseThreshold\":0.75,\"m_DefaultTapTime\":0.20000000298023225,\"m_DefaultSlowTapTime\":0.5,\"m_DefaultHoldTime\":0.4000000059604645,\"m_TapRadius\":5.0,\"m_MultiTapDelayTime\":0.75,\"m_DisableRedundantEventsMerging\":false,\"m_ShortcutKeysConsumeInputs\":false,\"m_iOSSettings\":{\"m_MotionUsage\":{\"m_Enabled\":false,\"m_Description\":\"\"}}}",
+    "inputSettingsPath": "",
+    "inputBackground": "ResetAndDisableNonBackgroundDevices",
+    "inputEditorBehavior": "PointersAndKeyboardsRespectGameViewFocus",
+    "keyboardIds": [
+      1,
+      6
+    ],
+    "isolationActive": false,
+    "exitCode": 0
+  },
+  "log": {
+    "pid": 38289,
+    "logPath": "/Users/steven/Library/Logs/Unity/Editor-prev.log",
+    "fdEvidence": "p38289\nf1\nn/Users/steven/Library/Logs/Unity/Editor-prev.log\nf2\nn/Users/steven/Library/Logs/Unity/Editor-prev.log\nf9\nn/Users/steven/Library/Logs/Unity/Editor-prev.log\n",
+    "startBytes": 1541722,
+    "startedEpoch": 1790450383.951565,
+    "priorRunIds": [],
+    "endBytes": 1605993,
+    "finishedEpoch": 1790450463.2441568,
+    "sha256": "79a13bf6bb4e103b156726dfdd62dc56a176ac4136266f02f7c0e2fb9154e37c",
+    "rawLog": "native-examine-first-editor.log.gz",
+    "postflightFdEvidence": "p38289\nf1\nn/Users/steven/Library/Logs/Unity/Editor-prev.log\nf2\nn/Users/steven/Library/Logs/Unity/Editor-prev.log\nf9\nn/Users/steven/Library/Logs/Unity/Editor-prev.log\n",
+    "nativeBackendMessages": [],
+    "exceptionOrCompilerErrorLines": []
+  },
+  "status": "completed-visually-reviewed",
+  "report": "NativeExamine/9c5fa9a75a35496d9b85716e6f5b7b28/report.json",
+  "runId": "9c5fa9a75a35496d9b85716e6f5b7b28",
+  "postflightReceipt": "native-examine-first-postflight.json",
+  "nativeResult": {
+    "cases": 16,
+    "passed": 16,
+    "failures": 0,
+    "unexpectedCallbackErrors": 0,
+    "complete": true,
+    "errorsFinalized": true,
+    "seconds": 7.1547395,
+    "zone": "Overworld.2.6.0",
+    "firstRun": true
+  },
+  "visualReview": {
+    "method": "All seven original PNG files opened directly with the image-viewing tool at gameplay scale; no transformations or substitutes.",
+    "accepted": true,
+    "screenshots": [
+      {
+        "file": "NativeExamine/9c5fa9a75a35496d9b85716e6f5b7b28/signpost-log-latest.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "12d856a75fe2fb9d0746bb6a284352662578475b9bd5889739031b9781291064",
+        "accepted": true,
+        "observation": "Upright gameplay view. The adjacent sign is focused; all four named destinations, coordinates and directional offsets are readable in the sidebar log. This run required only the latest-log capture; no older scroll capture was needed."
+      },
+      {
+        "file": "NativeExamine/9c5fa9a75a35496d9b85716e6f5b7b28/weapon-actions.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "6f5b3662d5ae73e1756054909f1caee74095313376bb7cb8eaaa9e4453bb9f85",
+        "accepted": true,
+        "observation": "Upright inventory view. Exactly one visible Examine action for the selected warlord's cleaver; equipment, disassembly, throw, crafting-set-aside and drop actions remain visible."
+      },
+      {
+        "file": "NativeExamine/9c5fa9a75a35496d9b85716e6f5b7b28/weapon-description.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "1f761670655000ad6085b5b8e75090578fd82ec0bb31f29903cae58fd492aaa3",
+        "accepted": true,
+        "observation": "The complete banner-blade prose, weapon mechanics, on-hit attempt, equip slot and Serrated enhancement fit inside the centered modal. All wrapped text and the Enter dismiss footer are legible."
+      },
+      {
+        "file": "NativeExamine/9c5fa9a75a35496d9b85716e6f5b7b28/armor-actions.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "2738e84b53ac90c4cb62f82293d841ccb5795d513538a75fbe0be7b60b55d99d",
+        "accepted": true,
+        "observation": "Exactly one visible Examine action for the selected ironshod boots, alongside both equip choices and Drop. The menu is entirely inside the viewport."
+      },
+      {
+        "file": "NativeExamine/9c5fa9a75a35496d9b85716e6f5b7b28/armor-description.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "798cfaf1a25d3583d1ee398d24b5552be0257d21ad9846d0f2bd2ad401c3d055",
+        "accepted": true,
+        "observation": "Armor contribution AV +2 / DV +0, equipped Speed -5 and Feet slot are fully visible with a readable Enter dismiss footer. The existing generic article/plural wording is unchanged."
+      },
+      {
+        "file": "NativeExamine/9c5fa9a75a35496d9b85716e6f5b7b28/tonic-actions.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "882c52668486cfe8249f6c9141122a2f96eee784b889d75db6e3a46b9b8549c3",
+        "accepted": true,
+        "observation": "Exactly one visible Examine action for the selected two-unit healing-tonic stack, alongside drink, Throw, Separate one and Drop."
+      },
+      {
+        "file": "NativeExamine/9c5fa9a75a35496d9b85716e6f5b7b28/tonic-description.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "83b32e817b825ab8fb5fb2222225bf7837bc13fd09e777461010a84951acd767",
+        "accepted": true,
+        "observation": "The two-unit stack name, 4d6+4 healing payload and drink/throw behavior are fully visible with readable Enter dismiss footer; no clipped text."
+      }
+    ],
+    "limits": "One explicitly staged disposable game at 1920x1080. This confirms these keyboard routes and visible descriptions; not natural content acquisition, placement frequency, balance, all possible dynamic payload lengths or every display resolution."
+  }
+}
