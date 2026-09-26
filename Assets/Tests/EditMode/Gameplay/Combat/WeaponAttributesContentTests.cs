@@ -21,7 +21,10 @@ namespace CavesOfOoo.Tests
     /// Blueprint-loaded:
     ///   - Dagger          → "Piercing"
     ///   - ShortSword      → "Cutting LongBlades"
-    ///   - Cudgel          → "Bludgeoning"
+    ///   - Cudgel          → "Bludgeoning Cudgel" (was "Bludgeoning" until
+    ///                         Density Phase 1 §T1.4: without the family tag
+    ///                         the item called "cudgel" failed every Cudgel
+    ///                         skill's weapon gate)
     ///   - Warhammer       → "Bludgeoning Cudgel"
     /// Natural (NaturalWeaponFactory):
     ///   - DefaultFist     → "Bludgeoning Unarmed"
@@ -68,12 +71,13 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void Cudgel_HasBludgeoningAttribute()
+        public void Cudgel_HasBludgeoningCudgelAttribute()
         {
             var cudgel = _harness.Factory.CreateEntity("Cudgel");
             var weapon = cudgel.GetPart<MeleeWeaponPart>();
             Assert.IsNotNull(weapon);
-            Assert.AreEqual("Bludgeoning", weapon.Attributes);
+            Assert.AreEqual("Bludgeoning Cudgel", weapon.Attributes,
+                "same family string as Mace and Warhammer");
         }
 
         [Test]

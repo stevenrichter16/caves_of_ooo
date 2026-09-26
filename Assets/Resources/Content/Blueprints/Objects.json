@@ -1108,6 +1108,15 @@
         {
           "Name": "Sanctuary",
           "Params": []
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A low stone shelf under a lean-to, set with smooth stones, candle stubs and a bowl with a few coins in it. Whose shrine it is depends on who you ask. Everyone agrees it is a good place to stop."
+            }
+          ]
         }
       ],
       "Stats": [],
@@ -6637,7 +6646,7 @@
             },
             {
               "Key": "Attributes",
-              "Value": "Bludgeoning"
+              "Value": "Bludgeoning Cudgel"
             }
           ]
         },
@@ -9703,7 +9712,7 @@
             },
             {
               "Key": "Attributes",
-              "Value": "Slashing"
+              "Value": "Cutting LongBlades"
             }
           ]
         },
@@ -20667,6 +20676,15 @@
               "Value": "-1"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Low mounds in rows, each marked with a stone or a stick. Someone keeps this ground; the newest earth is still dark."
+            }
+          ]
         }
       ],
       "Tags": [
@@ -24782,6 +24800,15 @@
               "Value": "true"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A post with arms pointing off toward places. The weather has taken the lettering down to grey grain; the arrows still point, but not at any names."
+            }
+          ]
         }
       ]
     },
@@ -24884,6 +24911,15 @@
           ]
         },
         {
+          "Name": "Handling",
+          "Params": [
+            {
+              "Key": "GripType",
+              "Value": "OneHand"
+            }
+          ]
+        },
+        {
           "Name": "GasGrenade",
           "Params": [
             {
@@ -24950,6 +24986,15 @@
           ]
         },
         {
+          "Name": "Handling",
+          "Params": [
+            {
+              "Key": "GripType",
+              "Value": "OneHand"
+            }
+          ]
+        },
+        {
           "Name": "GasGrenade",
           "Params": [
             {
@@ -25012,6 +25057,15 @@
             {
               "Key": "Weight",
               "Value": "2"
+            }
+          ]
+        },
+        {
+          "Name": "Handling",
+          "Params": [
+            {
+              "Key": "GripType",
+              "Value": "OneHand"
             }
           ]
         },
@@ -25829,6 +25883,15 @@
             {
               "Key": "MaterialTagsRaw",
               "Value": "Solid,Organic,Combustible"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A shelf lying on its face. Whatever books it held have swollen into one grey block of pulp, but people still tuck things behind the boards."
             }
           ]
         }
@@ -29429,6 +29492,9 @@
         { "Name": "Toughness", "Value": 8 },
         { "Name": "XPValue", "Value": 15 }
       ],
+      "Props": [
+        { "Key": "NaturalWeapon", "Value": "DefaultBite" }
+      ],
       "Tags": [
         { "Key": "Faction", "Value": "Beasts" },
         { "Key": "Tier", "Value": "1" },
@@ -29480,6 +29546,9 @@
         { "Name": "Agility", "Value": 8 },
         { "Name": "Toughness", "Value": 14 },
         { "Name": "XPValue", "Value": 40 }
+      ],
+      "Props": [
+        { "Key": "NaturalWeapon", "Value": "DefaultBite" }
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Beasts" },
@@ -31149,6 +31218,9 @@
         { "Name": "Toughness", "Value": 12 },
         { "Name": "Speed", "Value": 80 },
         { "Name": "XPValue", "Value": 25 }
+      ],
+      "Props": [
+        { "Key": "NaturalWeapon", "Value": "DefaultTendril" }
       ],
       "Tags": [
         { "Key": "Faction", "Value": "Beasts" },

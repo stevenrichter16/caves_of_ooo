@@ -13,7 +13,8 @@ namespace CavesOfOoo.Tests
     // Positive factory cases NEVER call UpdateBodyParts/RegenerateDefaultEquipment.
     public class GameAuditNaturalWeaponActivationAdversarialTests
     {
-        // Literal actor/recipe baseline: 38 direct declarations, 2 inherited actors.
+        // Literal actor/recipe baseline: 41 direct declarations, 2 inherited actors.
+        // Density Phase 1 §T1.3 added MawToad, Bandfrog and Shambler (43 total).
         static readonly string[] Declared = {
             "Snapjaw|SnapjawClaw", "SnapjawScavenger|SnapjawClaw", "SnapjawHunter|SnapjawHunterClaw",
             "ChoirTendril|ChoirLash", "CaveBat|BatBite", "CaveSlime|SlimePseudopod", "CaveBear|CaveBearClaw",
@@ -25,7 +26,8 @@ namespace CavesOfOoo.Tests
             "Rotling|RotlingClaw", "CanopyStrangler|StranglerLash", "AncientGuardian|GuardianFist", "VaultSentinel|SentinelHalberd",
             "BrassHusk|HuskFist", "GlassScorpion|GlassSting", "SporeShambler|SporeTouch", "IceWight|WightTouch",
             "CharredHusk|HuskTouch", "SleepingTroll|TrollFist", "MimicChest|MimicBite", "AmbushBandit|BanditBlade",
-            "RuneCultist|CultistKnife", "SunStriker|DefaultBite"
+            "RuneCultist|CultistKnife", "SunStriker|DefaultBite",
+            "MawToad|DefaultBite", "Bandfrog|DefaultBite", "Shambler|DefaultTendril"
         };
         // Literal recipe dice baseline prevents a nonnull premature DefaultFist from passing.
         static readonly Dictionary<string,string> RecipeDice = new Dictionary<string,string> {
@@ -37,7 +39,8 @@ namespace CavesOfOoo.Tests
             {"ProwlerClaw","2d4"},{"LurkerMaw","2d6"},{"BrittleFangs","1d6"},{"StalkerClaw","2d4"},
             {"RotlingClaw","1d3"},{"StranglerLash","2d4"},{"GuardianFist","2d6+2"},{"SentinelHalberd","2d6"},
             {"HuskFist","1d6"},{"GlassSting","1d4"},{"SporeTouch","1d4"},{"WightTouch","1d6"},
-            {"HuskTouch","1d6"},{"TrollFist","2d6"},{"MimicBite","1d8"},{"CultistKnife","1d4"},{"DefaultBite","1d3+1"}
+            {"HuskTouch","1d6"},{"TrollFist","2d6"},{"MimicBite","1d8"},{"CultistKnife","1d4"},{"DefaultBite","1d3+1"},
+            {"DefaultTendril","1d3"}
         };
         static List<BodyPart> Hands(Entity actor) => actor.GetPart<Body>().GetPartsByType("Hand");
         static Entity[] Items(Entity actor) => actor.GetPart<InventoryPart>().Objects.Concat(actor.GetPart<InventoryPart>().GetAllEquipped()).Distinct().ToArray();
@@ -66,7 +69,7 @@ namespace CavesOfOoo.Tests
             {
                 var resolved = f.Factory.Blueprints.Values.Where(b => b.Props.TryGetValue("NaturalWeapon", out var recipe) && !string.IsNullOrEmpty(recipe))
                     .Select(b => b.Name + "|" + b.Props["NaturalWeapon"]).ToArray();
-                Assert.AreEqual(40, resolved.Length); CollectionAssert.AreEquivalent(Declared, resolved);
+                Assert.AreEqual(43, resolved.Length); CollectionAssert.AreEquivalent(Declared, resolved);
                 foreach (string row in Declared)
                 {
                     var fields = row.Split('|'); var actor = f.Create(fields[0]); var hands = Hands(actor);

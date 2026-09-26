@@ -107,6 +107,23 @@ namespace CavesOfOoo.Core
                     if (rng.Next(100) < 30)
                         PlaceEntity(zone, factory, rng, placementPool, "AmbushBandit");
                     break;
+                // Density Phase 1 (Docs/DENSITY-PHASE-1.md §T1.2): the canon
+                // biomes, which are the only ones lairs generate in. Each
+                // ambusher's tier matches its biome's (Spread 1, Sodden 2,
+                // Grovelands 3; AmbushBandit is the Beating's desert analog).
+                case BiomeType.Spread:
+                case BiomeType.Beating:
+                    if (rng.Next(100) < 30)
+                        PlaceEntity(zone, factory, rng, placementPool, "AmbushBandit");
+                    break;
+                case BiomeType.Sodden:
+                    if (rng.Next(100) < 25)
+                        PlaceEntity(zone, factory, rng, placementPool, "SleepingTroll");
+                    break;
+                case BiomeType.Grovelands:
+                    if (rng.Next(100) < 25)
+                        PlaceEntity(zone, factory, rng, placementPool, "CanopyStrangler");
+                    break;
             }
 
             // Mimic chests: 0-2 per lair regardless of biome.

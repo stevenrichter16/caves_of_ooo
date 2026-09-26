@@ -189,6 +189,14 @@ namespace CavesOfOoo.Core
                 case BiomeType.Desert: return "DesertProwler";
                 case BiomeType.Jungle: return "JungleStalker";
                 case BiomeType.Ruins: return "AncientGuardian";
+                // Density Phase 1 (Docs/DENSITY-PHASE-1.md §T1.2): lairs
+                // only generate in these four since W0.6, and every one of
+                // them used to fall through to the default. The Overwrit
+                // and the Stump never host a lair (PlacePOIs above).
+                case BiomeType.Spread: return "SnapjawChieftain";
+                case BiomeType.Sodden: return "SnapjawChieftain";
+                case BiomeType.Beating: return "DesertProwler";
+                case BiomeType.Grovelands: return "JungleStalker";
                 default: return "SnapjawChieftain";
             }
         }

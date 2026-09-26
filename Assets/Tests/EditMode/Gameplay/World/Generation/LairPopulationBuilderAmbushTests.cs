@@ -250,5 +250,83 @@ namespace CavesOfOoo.Tests
             Assert.Greater(cavesChecked, 0, "No cave lairs checked — test mis-configured.");
             Assert.Greater(desertsChecked, 0, "No desert lairs checked — test mis-configured.");
         }
+
+        // ════════════════════════════════════════════════════════════
+        //   Density Phase 1 §T1.2 — the canon biomes get ambushers.
+        //   Lairs only ever generate in Spread, Sodden, Beating and
+        //   Grovelands (WorldGenerator.PlacePOIs skips the Overwrit and
+        //   the Stump), and the switch above had cases for none of them:
+        //   no lair in any shipped world could hold a sleeping troll, a
+        //   hidden bandit or a canopy strangler.
+        // ════════════════════════════════════════════════════════════
+
+        private int LairsContaining(BiomeType biome, string blueprint, int iterations = 200)
+        {
+            int with = 0;
+            for (int seed = 0; seed < iterations; seed++)
+                if (CountEntitiesByBlueprint(BuildLairZone(biome, seed), blueprint) > 0)
+                    with++;
+            return with;
+        }
+
+        // Rate bounds mirror the Cave (25%) and Desert (30%) tests above.
+        [TestCase(BiomeType.Spread, "AmbushBandit", 30, 90)]
+        [TestCase(BiomeType.Beating, "AmbushBandit", 30, 90)]
+        [TestCase(BiomeType.Sodden, "SleepingTroll", 25, 75)]
+        [TestCase(BiomeType.Grovelands, "CanopyStrangler", 25, 75)]
+        public void CanonBiomeLair_SpawnsItsAmbusher_AtRoughlyTheIntendedRate(
+            BiomeType biome, string ambusher, int min, int max)
+        {
+            int with = LairsContaining(biome, ambusher);
+            Assert.GreaterOrEqual(with, min,
+                $"{ambusher} should wait in at least {min} of 200 {biome} lairs (got {with}).");
+            Assert.LessOrEqual(with, max,
+                $"{ambusher} waited in {with} of 200 {biome} lairs — rate drift.");
+        }
+
+        // Counter-checks: each ambusher belongs to its own country. A
+        // mapping bug that dropped the same creature into every biome
+        // (e.g. a fall-through case) passes every rate test above and
+        // fails here.
+        [TestCase(BiomeType.Spread, "SleepingTroll")]
+        [TestCase(BiomeType.Spread, "CanopyStrangler")]
+        [TestCase(BiomeType.Beating, "SleepingTroll")]
+        [TestCase(BiomeType.Beating, "CanopyStrangler")]
+        [TestCase(BiomeType.Sodden, "AmbushBandit")]
+        [TestCase(BiomeType.Sodden, "CanopyStrangler")]
+        [TestCase(BiomeType.Grovelands, "AmbushBandit")]
+        [TestCase(BiomeType.Grovelands, "SleepingTroll")]
+        [TestCase(BiomeType.Cave, "CanopyStrangler")]
+        [TestCase(BiomeType.Desert, "CanopyStrangler")]
+        public void CanonBiomeLair_NeverHoldsAnotherBiomesAmbusher(BiomeType biome, string foreign)
+        {
+            Assert.AreEqual(0, LairsContaining(biome, foreign, iterations: 50),
+                $"{foreign} is not a {biome} ambusher and must never appear in its lairs.");
+        }
+
+        [Test]
+        public void CanonBiomeLairs_NeverStackTwoThingsOnOneCell()
+        {
+            // Adversarial: the new ambusher cases draw from the same
+            // progressively-shrinking pool as guards and loot (the M1.R-2
+            // contract above). Probe it in every biome a lair can
+            // actually generate in, not just the retired two.
+            foreach (var biome in new[] { BiomeType.Spread, BiomeType.Sodden, BiomeType.Beating, BiomeType.Grovelands })
+            {
+                for (int seed = 0; seed < 50; seed++)
+                {
+                    var zone = BuildLairZone(biome, seed);
+                    var seen = new HashSet<(int, int)>();
+                    foreach (var e in zone.GetReadOnlyEntities())
+                    {
+                        if (string.IsNullOrEmpty(e.BlueprintName)) continue;
+                        var cell = zone.GetEntityCell(e);
+                        if (cell == null) continue;
+                        Assert.IsTrue(seen.Add((cell.X, cell.Y)),
+                            $"{biome} seed {seed}: two lair entities share cell ({cell.X},{cell.Y}).");
+                    }
+                }
+            }
+        }
     }
 }
