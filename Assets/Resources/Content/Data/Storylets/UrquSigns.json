@@ -1,0 +1,24 @@
+{
+  "Storylets": [
+    {
+      "ID": "UrquSignsAwaken",
+      "OneShot": true,
+      "Tracked": false,
+      "Triggers": [
+        { "Key": "IfFact", "Value": "sill_sari_heard:>=:1" },
+        { "Key": "IfFact", "Value": "Ending:=:0" }
+      ],
+      "Effects": [ { "Key": "SetFact", "Value": "UrquActive:1" } ]
+    },
+    {
+      "ID": "UrquSignsQuieten",
+      "OneShot": true,
+      "Tracked": false,
+      "Triggers": [
+        { "Key": "IfFact", "Value": "Ending:>=:1" },
+        { "Key": "IfFact", "Value": "UrquActive:!=:0" }
+      ],
+      "Effects": [ { "Key": "SetFact", "Value": "UrquActive:0" } ]
+    }
+  ]
+}

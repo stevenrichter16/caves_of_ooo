@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using CavesOfOoo.Data;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
@@ -24,11 +25,17 @@ namespace CavesOfOoo.Core
         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
         {
             var openCells = GatherOpenCells(zone);
-            if (openCells.Count == 0) return true;
+            if (openCells.Count == 0)
+            {
+                if (Diag.IsChannelEnabled("worldgen"))
+                    Diag.Record("worldgen", "LairPopulationRejected", payload: new
+                    { zone = zone.ZoneID, biome = _biome.ToString(), reason = "no_open_cells" });
+                return true;
+            }
 
             // Roll lair guards from biome-specific table
             var guardTable = PopulationTable.LairGuards(_biome);
-            var guards = guardTable.Roll(rng);
+            var guards = guardTable.Roll(rng, zone.ZoneID);
             foreach (var blueprint in guards)
             {
                 PlaceEntity(zone, factory, rng, openCells, blueprint);
@@ -99,13 +106,11 @@ namespace CavesOfOoo.Core
             {
                 case BiomeType.Cave:
                     // 25% chance per cave lair to contain a sleeping troll
-                    if (rng.Next(100) < 25)
-                        PlaceEntity(zone, factory, rng, placementPool, "SleepingTroll");
+                    RollAmbusher(zone, factory, rng, placementPool, "SleepingTroll", 25);
                     break;
                 case BiomeType.Desert:
                     // 30% chance per desert lair to contain an ambushing bandit
-                    if (rng.Next(100) < 30)
-                        PlaceEntity(zone, factory, rng, placementPool, "AmbushBandit");
+                    RollAmbusher(zone, factory, rng, placementPool, "AmbushBandit", 30);
                     break;
                 // Density Phase 1 (Docs/DENSITY-PHASE-1.md §T1.2): the canon
                 // biomes, which are the only ones lairs generate in. Each
@@ -113,41 +118,61 @@ namespace CavesOfOoo.Core
                 // Grovelands 3; AmbushBandit is the Beating's desert analog).
                 case BiomeType.Spread:
                 case BiomeType.Beating:
-                    if (rng.Next(100) < 30)
-                        PlaceEntity(zone, factory, rng, placementPool, "AmbushBandit");
+                    RollAmbusher(zone, factory, rng, placementPool, "AmbushBandit", 30);
                     break;
                 case BiomeType.Sodden:
-                    if (rng.Next(100) < 25)
-                        PlaceEntity(zone, factory, rng, placementPool, "SleepingTroll");
+                    RollAmbusher(zone, factory, rng, placementPool, "SleepingTroll", 25);
                     break;
                 case BiomeType.Grovelands:
-                    if (rng.Next(100) < 25)
-                        PlaceEntity(zone, factory, rng, placementPool, "CanopyStrangler");
+                    RollAmbusher(zone, factory, rng, placementPool, "CanopyStrangler", 25);
                     break;
             }
 
             // Mimic chests: 0-2 per lair regardless of biome.
             // Uses (0,3) exclusive upper bound → rolls 0, 1, or 2 mimics.
             int mimicCount = rng.Next(3);
+            int placed = 0;
             for (int i = 0; i < mimicCount; i++)
-            {
-                PlaceEntity(zone, factory, rng, placementPool, "MimicChest");
-            }
+                if (PlaceEntity(zone, factory, rng, placementPool, "MimicChest")) placed++;
+            RecordAmbusher(zone, "MimicChest", mimicCount, null, placed,
+                mimicCount == 0 ? "roll_missed" : placed == mimicCount ? "placed" : "placement_failed",
+                "count", 0, 3);
         }
 
-        private void PlaceEntity(Zone zone, EntityFactory factory, System.Random rng,
+        private void RollAmbusher(Zone zone, EntityFactory factory, System.Random rng,
+            List<(int x, int y)> cells, string blueprint, int threshold)
+        {
+            int roll = rng.Next(100);
+            bool selected = roll < threshold;
+            int placed = selected && PlaceEntity(zone, factory, rng, cells, blueprint) ? 1 : 0;
+            RecordAmbusher(zone, blueprint, roll, threshold, placed,
+                !selected ? "roll_missed" : placed == 1 ? "placed" : "placement_failed",
+                "chance", 0, 100);
+        }
+
+        // Chance draws compare against threshold; count draws directly request
+        // that many entities. Both expose the RNG's half-open integer range.
+        private void RecordAmbusher(Zone zone, string blueprint, int roll, int? threshold,
+            int placed, string reason, string rollKind, int minInclusive, int maxExclusive)
+        {
+            if (Diag.IsChannelEnabled("worldgen"))
+                Diag.Record("worldgen", "AmbusherRolled", payload: new
+                { zone = zone.ZoneID, biome = _biome.ToString(), blueprint, roll, rollKind,
+                    minInclusive, maxExclusive, threshold, placed, reason });
+        }
+
+        private bool PlaceEntity(Zone zone, EntityFactory factory, System.Random rng,
             List<(int x, int y)> openCells, string blueprint)
         {
-            if (openCells.Count == 0) return;
+            if (openCells.Count == 0) return false;
 
             int idx = rng.Next(openCells.Count);
             var (x, y) = openCells[idx];
 
-            Entity entity = factory.CreateEntity(blueprint);
-            if (entity != null)
-                zone.AddEntity(entity, x, y);
-
+            Entity entity = BuilderSpawn.TryPlace(zone, factory, blueprint, x, y);
+            if (entity == null) return false;
             openCells.RemoveAt(idx);
+            return true;
         }
 
         private List<(int x, int y)> GatherOpenCells(Zone zone)

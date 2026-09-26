@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using CavesOfOoo.Core;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Data
 {
@@ -9,6 +10,13 @@ namespace CavesOfOoo.Data
         public int Weight = 1;
         public int MinCount = 0;
         public int MaxCount = 1;
+
+        /// <summary>Optional named pick-one group within this table. Exactly
+        /// one eligible positive-weight row is selected per group, then its
+        /// inclusive MinCount..MaxCount is rolled. Ungrouped rows retain the
+        /// independent optional-roll semantics. Groups do not dilute ambient
+        /// probabilities, and world-state gates filter before selection.</summary>
+        public string EncounterGroup;
 
         /// <summary>§7.6 — spawn only while this world flag is SET.
         /// Canon: "roughly a third of the bestiary exists to indicate a
@@ -62,38 +70,116 @@ namespace CavesOfOoo.Data
         public List<PopulationEntry> Entries = new List<PopulationEntry>();
 
         /// <summary>
-        /// Roll all entries: guaranteed MinCount spawns for each entry,
-        /// plus weight-based chance for additional spawns up to MaxCount.
+        /// Roll independent ambient entries and each named encounter group.
+        /// Invalid rows (blank blueprint, nonpositive weight, negative or
+        /// inverted count range) are excluded. Diagnostics report every row,
+        /// including world-gated and unselected alternatives; zoneID is optional
+        /// for direct table callers and supplied by world-generation builders.
         /// </summary>
-        public List<string> Roll(System.Random rng)
+        public List<string> Roll(System.Random rng, string zoneID = null)
         {
+            if (rng == null) throw new System.ArgumentNullException(nameof(rng));
             var result = new List<string>();
-            int totalWeight = 0;
-            // Only eligible entries share the weight pool. Removing a gated
-            // entry increases the optional-roll chances of the remaining rows;
-            // their guaranteed MinCount values are unchanged.
-            foreach (var e in Entries)
-                if (e.AllowedByWorldState()) totalWeight += e.Weight;
-            if (totalWeight == 0) return result;
-
-            foreach (var entry in Entries)
+            if (Entries == null) return result;
+            var eligible = new bool[Entries.Count];
+            long ambientWeight = 0;
+            for (int i = 0; i < Entries.Count; i++)
             {
-                if (!entry.AllowedByWorldState()) continue;
-                // Always spawn MinCount
-                int count = entry.MinCount;
-
-                // Roll for additional spawns up to MaxCount
-                if (entry.MaxCount > entry.MinCount)
+                var entry = Entries[i];
+                if (!Valid(entry))
+                    RecordRoll(entry, zoneID, 0, -1, null, "invalid_entry", "not_rolled");
+                else if (!entry.AllowedByWorldState())
+                    RecordRoll(entry, zoneID, 0, -1, null, "world_flag", "not_rolled");
+                else
                 {
-                    float chance = (float)entry.Weight / totalWeight;
-                    if (rng.NextDouble() <= chance)
-                        count += rng.Next(1, entry.MaxCount - entry.MinCount + 1);
+                    eligible[i] = true;
+                    if (string.IsNullOrEmpty(entry.EncounterGroup)) ambientWeight += entry.Weight;
+                }
+            }
+
+            var rolledGroups = new HashSet<string>();
+            for (int i = 0; i < Entries.Count; i++)
+            {
+                if (!eligible[i]) continue;
+                var entry = Entries[i];
+                if (!string.IsNullOrEmpty(entry.EncounterGroup))
+                {
+                    if (!rolledGroups.Add(entry.EncounterGroup)) continue;
+                    long total = 0;
+                    for (int j = 0; j < Entries.Count; j++)
+                        if (eligible[j] && Entries[j].EncounterGroup == entry.EncounterGroup)
+                            total += Entries[j].Weight;
+                    double roll = rng.NextDouble();
+                    double choice = roll * total;
+                    long cumulative = 0;
+                    int selected = -1;
+                    for (int j = 0; j < Entries.Count; j++)
+                    {
+                        if (!eligible[j] || Entries[j].EncounterGroup != entry.EncounterGroup) continue;
+                        cumulative += Entries[j].Weight;
+                        if (selected < 0 && choice < cumulative) selected = j;
+                    }
+                    cumulative = 0;
+                    for (int j = 0; j < Entries.Count; j++)
+                    {
+                        var candidate = Entries[j];
+                        if (!eligible[j] || candidate.EncounterGroup != entry.EncounterGroup) continue;
+                        int count = j == selected ? RollCount(rng, candidate.MinCount, candidate.MaxCount) : 0;
+                        for (int n = 0; n < count; n++) result.Add(candidate.BlueprintName);
+                        double selectionStart = (double)cumulative / total;
+                        cumulative += candidate.Weight;
+                        RecordRoll(candidate, zoneID, count, roll, null,
+                            j == selected ? "selected" : "not_selected", "weighted_choice",
+                            selectionStart, (double)cumulative / total);
+                    }
+                    continue;
                 }
 
-                for (int i = 0; i < count; i++)
-                    result.Add(entry.BlueprintName);
+                int ambientCount = entry.MinCount;
+                double optionalRoll = -1;
+                double chance = (double)entry.Weight / ambientWeight;
+                if (entry.MaxCount > entry.MinCount)
+                {
+                    optionalRoll = rng.NextDouble();
+                    if (optionalRoll < chance)
+                        ambientCount += RollCount(rng, 1, entry.MaxCount - entry.MinCount);
+                }
+                for (int n = 0; n < ambientCount; n++) result.Add(entry.BlueprintName);
+                RecordRoll(entry, zoneID, ambientCount, optionalRoll,
+                    optionalRoll < 0 ? (double?)null : chance,
+                    ambientCount > 0 ? "selected" : "roll_missed",
+                    optionalRoll < 0 ? "fixed_count" : "chance");
             }
             return result;
+        }
+
+        private static bool Valid(PopulationEntry entry) => entry != null
+            && !string.IsNullOrWhiteSpace(entry.BlueprintName) && entry.Weight > 0
+            && entry.MinCount >= 0 && entry.MaxCount >= entry.MinCount;
+
+        private static int RollCount(System.Random rng, int min, int max)
+        {
+            if (min == max) return min;
+            // Avoid max + 1 overflow while retaining normal Random.Next semantics.
+            if (max == int.MaxValue)
+                return min + (int)(rng.NextDouble() * ((long)max - min + 1));
+            return rng.Next(min, max + 1);
+        }
+
+        // A weighted choice occupies a half-open interval of the group draw;
+        // its individual probability mass is not a threshold against that draw.
+        // Only an independent chance roll has a scalar threshold. -1 marks no RNG draw.
+        private void RecordRoll(PopulationEntry entry, string zoneID, int count,
+            double roll, double? threshold, string reason, string rollKind,
+            double? selectionStart = null, double? selectionEnd = null)
+        {
+            if (!Diag.IsChannelEnabled("worldgen")) return;
+            Diag.Record("worldgen", "PopulationRolled", payload: new
+            {
+                table = Name, zone = zoneID, blueprint = entry?.BlueprintName,
+                group = entry?.EncounterGroup, count, roll, rollKind, threshold,
+                selectionStart, selectionEnd, reason
+            });
         }
 
         // ── The Stump, by elevation band (W6.3) ────────────────────────
@@ -282,9 +368,9 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "Magpie", Weight = 5, MinCount = 1, MaxCount = 4 },
                     new PopulationEntry { BlueprintName = "PetDog", Weight = 2, MinCount = 0, MaxCount = 2 },
                     // The hedge is where the snake is.
-                    new PopulationEntry { BlueprintName = "Viper", Weight = 2, MinCount = 0, MaxCount = 2 },
-                    // Roadside trouble — present, but thin at tier 1.
-                    new PopulationEntry { BlueprintName = "Snapjaw", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Viper", Weight = 2, MinCount = 1, MaxCount = 2, EncounterGroup = "SpreadTier1Encounter" },
+                    // One small encounter per zone: roadside trouble OR a snake hedge.
+                    new PopulationEntry { BlueprintName = "Snapjaw", Weight = 2, MinCount = 1, MaxCount = 2, EncounterGroup = "SpreadTier1Encounter" },
                     // Worked country feeds you.
                     new PopulationEntry { BlueprintName = "BerryBush", Weight = 4, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "Beehive", Weight = 2, MinCount = 0, MaxCount = 2 },
@@ -482,9 +568,9 @@ namespace CavesOfOoo.Data
                 {
                     new PopulationEntry { BlueprintName = "Reedfrog", Weight = 4, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "GinFrog", Weight = 2, MinCount = 0, MaxCount = 2 },
-                    new PopulationEntry { BlueprintName = "Bandfrog", Weight = 3, MinCount = 1, MaxCount = 2 },
-                    new PopulationEntry { BlueprintName = "Viper", Weight = 2, MinCount = 0, MaxCount = 2 },
-                    new PopulationEntry { BlueprintName = "MawToad", Weight = 2, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Bandfrog", Weight = 3, MinCount = 1, MaxCount = 2, EncounterGroup = "SoddenTier2Encounter" },
+                    new PopulationEntry { BlueprintName = "Viper", Weight = 2, MinCount = 1, MaxCount = 2, EncounterGroup = "SoddenTier2Encounter" },
+                    new PopulationEntry { BlueprintName = "MawToad", Weight = 2, MinCount = 1, MaxCount = 1, EncounterGroup = "SoddenTier2Encounter" },
                     new PopulationEntry { BlueprintName = "Greatdew", Weight = 3, MinCount = 1, MaxCount = 2 },
                 }
             };
@@ -498,9 +584,9 @@ namespace CavesOfOoo.Data
                 Entries = new List<PopulationEntry>
                 {
                     new PopulationEntry { BlueprintName = "Reedfrog", Weight = 2, MinCount = 0, MaxCount = 2 },
-                    new PopulationEntry { BlueprintName = "Bandfrog", Weight = 4, MinCount = 1, MaxCount = 3 },
-                    new PopulationEntry { BlueprintName = "MawToad", Weight = 3, MinCount = 1, MaxCount = 2 },
-                    new PopulationEntry { BlueprintName = "Viper", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Bandfrog", Weight = 4, MinCount = 1, MaxCount = 3, EncounterGroup = "SoddenTier3Encounter" },
+                    new PopulationEntry { BlueprintName = "MawToad", Weight = 3, MinCount = 1, MaxCount = 2, EncounterGroup = "SoddenTier3Encounter" },
+                    new PopulationEntry { BlueprintName = "Viper", Weight = 2, MinCount = 1, MaxCount = 2, EncounterGroup = "SoddenTier3Encounter" },
                     new PopulationEntry { BlueprintName = "Greatdew", Weight = 4, MinCount = 1, MaxCount = 3 },
                 }
             };
@@ -543,10 +629,10 @@ namespace CavesOfOoo.Data
                 {
                     new PopulationEntry { BlueprintName = "HelmwoodFrog", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "GlowMoth", Weight = 3, MinCount = 1, MaxCount = 2 },
-                    new PopulationEntry { BlueprintName = "Rotling", Weight = 3, MinCount = 0, MaxCount = 2 },
-                    new PopulationEntry { BlueprintName = "Shambler", Weight = 3, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Rotling", Weight = 3, MinCount = 1, MaxCount = 2, EncounterGroup = "GrovelandsTier2Encounter" },
+                    new PopulationEntry { BlueprintName = "Shambler", Weight = 3, MinCount = 1, MaxCount = 2, EncounterGroup = "GrovelandsTier2Encounter" },
                     new PopulationEntry { BlueprintName = "WineLeafSundew", Weight = 3, MinCount = 1, MaxCount = 2 },
-                    new PopulationEntry { BlueprintName = "Mosshulk", Weight = 1, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "Mosshulk", Weight = 1, MinCount = 1, MaxCount = 1, EncounterGroup = "GrovelandsTier2Encounter" },
                     new PopulationEntry { BlueprintName = "ChoirTendril", Weight = 1, MinCount = 0, MaxCount = 1 },
                 }
             };
@@ -560,10 +646,10 @@ namespace CavesOfOoo.Data
                 Entries = new List<PopulationEntry>
                 {
                     new PopulationEntry { BlueprintName = "HelmwoodFrog", Weight = 1, MinCount = 0, MaxCount = 1 },
-                    new PopulationEntry { BlueprintName = "Shambler", Weight = 4, MinCount = 1, MaxCount = 3 },
-                    new PopulationEntry { BlueprintName = "Mosshulk", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Shambler", Weight = 4, MinCount = 1, MaxCount = 3, EncounterGroup = "GrovelandsTier3Encounter" },
+                    new PopulationEntry { BlueprintName = "Mosshulk", Weight = 2, MinCount = 1, MaxCount = 2, EncounterGroup = "GrovelandsTier3Encounter" },
                     new PopulationEntry { BlueprintName = "WineLeafSundew", Weight = 4, MinCount = 1, MaxCount = 3 },
-                    new PopulationEntry { BlueprintName = "Rotling", Weight = 3, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "Rotling", Weight = 3, MinCount = 1, MaxCount = 2, EncounterGroup = "GrovelandsTier3Encounter" },
                     new PopulationEntry { BlueprintName = "ChoirTendril", Weight = 1, MinCount = 0, MaxCount = 1 },
                 }
             };
@@ -996,22 +1082,22 @@ namespace CavesOfOoo.Data
         {
             int tier = depth <= 0 ? 1 : System.Math.Min(depth / 3 + 1, 8);
 
-            // Scale enemy counts with tier
-            int snapMin = 1 + tier;
-            int snapMax = 3 + tier;
-            int scavMin = tier;
-            int scavMax = 1 + tier;
-            int huntMin = System.Math.Max(0, tier - 1);
-            int huntMax = tier;
+            // One group per depth roll; cap pack size instead of filling deep caves with snapjaws.
+            int snapMin = 1 + System.Math.Min(tier - 1, 2);
+            int snapMax = 3 + System.Math.Min(tier - 1, 2);
+            int scavMin = 1;
+            int scavMax = 2 + System.Math.Min(tier - 1, 2);
+            int huntMin = 1;
+            int huntMax = System.Math.Min(tier, 3);
 
             var table = new PopulationTable
             {
                 Name = $"Underground_Depth{depth}",
                 Entries = new List<PopulationEntry>
                 {
-                    new PopulationEntry { BlueprintName = "Snapjaw", Weight = 5, MinCount = snapMin, MaxCount = snapMax },
-                    new PopulationEntry { BlueprintName = "SnapjawScavenger", Weight = 3, MinCount = scavMin, MaxCount = scavMax },
-                    new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 2, MinCount = huntMin, MaxCount = huntMax },
+                    new PopulationEntry { BlueprintName = "Snapjaw", Weight = tier == 1 ? 5 : 2, MinCount = snapMin, MaxCount = snapMax, EncounterGroup = "DepthEncounter" },
+                    new PopulationEntry { BlueprintName = "SnapjawScavenger", Weight = tier == 1 ? 3 : 1, MinCount = scavMin, MaxCount = scavMax, EncounterGroup = "DepthEncounter" },
+                    new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = tier == 1 ? 2 : 1, MinCount = huntMin, MaxCount = huntMax, EncounterGroup = "DepthEncounter" },
                     new PopulationEntry { BlueprintName = "Stalagmite", Weight = 3, MinCount = 2, MaxCount = 6 },
                     new PopulationEntry { BlueprintName = "Glowmaw", Weight = 2, MinCount = 0, MaxCount = 1 + tier / 2 },
                 }
@@ -1032,19 +1118,19 @@ namespace CavesOfOoo.Data
             // burned and the pale; quartzite brings golems and the brute.
             if (tier >= 2)
             {
-                table.Entries.Add(new PopulationEntry { BlueprintName = "CaveBear", Weight = 2, MinCount = 0, MaxCount = 1 });
-                table.Entries.Add(new PopulationEntry { BlueprintName = "Rotling", Weight = 2, MinCount = 0, MaxCount = 2 });
+                table.Entries.Add(new PopulationEntry { BlueprintName = "CaveBear", Weight = 3, MinCount = 1, MaxCount = 1, EncounterGroup = "DepthEncounter" });
+                table.Entries.Add(new PopulationEntry { BlueprintName = "Rotling", Weight = 3, MinCount = 1, MaxCount = 2, EncounterGroup = "DepthEncounter" });
             }
             if (tier >= 3)
             {
-                table.Entries.Add(new PopulationEntry { BlueprintName = "SkeletalSentry", Weight = 2, MinCount = 0, MaxCount = 2 });
-                table.Entries.Add(new PopulationEntry { BlueprintName = "CharredHusk", Weight = 2, MinCount = 0, MaxCount = 1 });
-                table.Entries.Add(new PopulationEntry { BlueprintName = "PaleStalker", Weight = 2, MinCount = 0, MaxCount = 1 });
+                table.Entries.Add(new PopulationEntry { BlueprintName = "SkeletalSentry", Weight = 3, MinCount = 1, MaxCount = 2, EncounterGroup = "DepthEncounter" });
+                table.Entries.Add(new PopulationEntry { BlueprintName = "CharredHusk", Weight = 3, MinCount = 1, MaxCount = 1, EncounterGroup = "DepthEncounter" });
+                table.Entries.Add(new PopulationEntry { BlueprintName = "PaleStalker", Weight = 3, MinCount = 1, MaxCount = 1, EncounterGroup = "DepthEncounter" });
             }
             if (tier >= 4)
             {
-                table.Entries.Add(new PopulationEntry { BlueprintName = "StoneGolem", Weight = 1, MinCount = 0, MaxCount = 1 });
-                table.Entries.Add(new PopulationEntry { BlueprintName = "ObsidianBrute", Weight = 1, MinCount = 0, MaxCount = 1 });
+                table.Entries.Add(new PopulationEntry { BlueprintName = "StoneGolem", Weight = 3, MinCount = 1, MaxCount = 1, EncounterGroup = "DepthEncounter" });
+                table.Entries.Add(new PopulationEntry { BlueprintName = "ObsidianBrute", Weight = 3, MinCount = 1, MaxCount = 1, EncounterGroup = "DepthEncounter" });
             }
 
             // BIOME-OVERHAUL A3: harvestable mineral veins by strata band

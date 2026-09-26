@@ -375,3 +375,58 @@ total item frequency is therefore higher than the new pool chance alone.
 **Files:** `Assets/Resources/Content/Data/Loot/LootTables.json`, new
 `Assets/Tests/EditMode/Gameplay/Biomes/DensityPhase1LootTests.cs` + `.meta`,
 `Docs/LOOT-FINDS.md`, this living doc.
+
+### T2.3 Encounter groups, Urqu signs and honest spawn diagnostics
+
+`PopulationEntry.EncounterGroup` optionally names a weighted pick-one set.
+Eligibility is filtered before normalization; one selected row rolls its
+inclusive count. Independent ambient rows retain their own chance semantics,
+without group weights diluting them. Invalid rows are excluded and large
+weights sum in a long. Spread T1 always rolls 1–2 Vipers or Snapjaws; Sodden
+T2/T3 varies Bandfrog/MawToad/Viper; Grovelands T2/T3 varies
+Shambler/Rotling/Mosshulk. Independent flora is retained. This guarantees a
+**table roll**, not placement when a zone has no safe room or rejects habitat.
+
+Underground selects one depth encounter: shallow snapjaw families; then
+CaveBear/Rotling, SkeletalSentry/CharredHusk/PaleStalker, and finally
+StoneGolem/ObsidianBrute. Packs are capped at five; optional ambient rows remain.
+The previous deeper-means-more-total-entities pin is replaced with a 200-seed
+check that deeper tables vary the selected family instead of guaranteeing all
+three snapjaw types. Quantity alone was the wrong density contract.
+
+Urqu uses the exact one-shot omen/ending rule in §10. The storylets are untracked
+and use the existing dispatcher; the activation is visible on the next tick
+because trigger evaluation snapshots state. Tests cover quiet state, actual
+omen dispatch, ending, explicit quieting, save/load and slope/summit spawning.
+Ending prevents future indicator rolls; it does not despawn existing fauna.
+
+**Diagnostics (closes tranche-1 Finding 2):** `PopulationRolled` reports each
+row, including world-gated, invalid and unchosen rows. `rollKind` distinguishes
+not_rolled/fixed_count/chance/weighted_choice. Only chance draws have a scalar
+threshold; grouped rows report half-open selectionStart/selectionEnd intervals.
+`AmbusherRolled` distinguishes count rolls (mimics, [0,3)) from probability
+rolls, and records actual placement. A lair with no open cells emits
+`LairPopulationRejected`. Disabled diagnostics preserve random draws and spawns.
+
+**Full-sweep correction:** changed population draws exposed Stalagmite(74,17)
+closing a 28-cell Cathedral chamber at seed 1729. Population placement now
+rejects static scenery that separates formerly connected neighbors, ignores
+mobile creatures in that topology, and emits `PopulationPlacementRejected`.
+It consumes no replacement RNG and changes no Cathedral geometry. The original
+fixed-seed reachability test remains intact. Cost is a bounded 80×25 scan/BFS
+only for static blocking scenery during generation, not per-frame/per-turn.
+
+**Evidence:** population/Urqu RED 25 failures + 3 controls -> 28/28 GREEN;
+diagnostics RED 12 failures + 1 control -> 13/13 GREEN; reachability RED
+4 failures + 7 controls -> 11/11 GREEN, with 93/93 related Cathedral/Grovelands
+checks passing. Diagnostics compile in both Unity and the standalone runner;
+the test reads scalar payload fields without adding an assembly dependency.
+
+**Review:** 🟡 fixed ambiguous weighted-roll thresholds and missing blocked-lair
+record. 🟡 fixed real late-scenery passage closure found by the full sweep.
+⚪ spawn counts and difficulty remain tuning choices, not a measured density
+parity claim. **Files:** `PopulationTable.cs`, `PopulationBuilder.cs`,
+`LairPopulationBuilder.cs`, `UrquSigns.json` + `.meta`, new
+`DensityPopulationTests`, `DensityUrquTests`, `DensityPopulationDiagnosticsTests`,
+`DensityPopulationReachabilityTests` (each `.cs` + `.meta`), updated
+`UndergroundGenerationTests.cs`, this living doc.

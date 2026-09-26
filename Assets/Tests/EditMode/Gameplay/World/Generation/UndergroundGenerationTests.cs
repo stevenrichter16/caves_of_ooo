@@ -770,16 +770,22 @@ namespace CavesOfOoo.Tests
         // ========================
 
         [Test]
-        public void PopulationTable_UndergroundTier_ScalesWithDepth()
+        public void PopulationTable_UndergroundTier_ChangesEncountersInsteadOfCrowding()
         {
-            var shallow = PopulationTable.UndergroundTier(1);
-            var deep = PopulationTable.UndergroundTier(9);
-
-            var shallowResults = shallow.Roll(new System.Random(42));
-            var deepResults = deep.Roll(new System.Random(42));
-
-            Assert.Greater(deepResults.Count, shallowResults.Count,
-                "Deeper tiers should produce more entities");
+            // Density Phase 1 replaces three compulsory snapjaw packs with
+            // one depth group. Depth means different encounters, not a
+            // guaranteed increase in total entities for one arbitrary seed.
+            int deepWithoutSnapjaws = 0;
+            for (int seed = 0; seed < 200; seed++)
+            {
+                var shallow = PopulationTable.UndergroundTier(1).Roll(new System.Random(seed));
+                var deep = PopulationTable.UndergroundTier(9).Roll(new System.Random(seed));
+                Assert.IsTrue(shallow.Exists(n => n.StartsWith("Snapjaw")), "shallow counter-case");
+                if (!deep.Exists(n => n.StartsWith("Snapjaw"))) deepWithoutSnapjaws++;
+            }
+            Assert.Greater(deepWithoutSnapjaws, 100,
+                "most deep encounters should use depth fauna instead of compulsory snapjaws");
+            Assert.Less(deepWithoutSnapjaws, 200, "snapjaw groups remain possible at depth");
         }
 
         [Test]

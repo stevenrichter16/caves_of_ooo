@@ -41,7 +41,7 @@ namespace CavesOfOoo.Core
             });
 
             // Roll the population table
-            var toSpawn = Table.Roll(rng);
+            var toSpawn = Table.Roll(rng, zone.ZoneID);
 
             // Place each entity in a random open cell
             foreach (var blueprintName in toSpawn)
@@ -81,13 +81,80 @@ namespace CavesOfOoo.Core
                 // (see BuilderSpawn, added when a stray 'Grass' entry did
                 // the same thing). Missing blueprints in SHIPPED content are
                 // caught by the per-biome table tests instead.
-                BuilderSpawn.TryPlace(zone, factory, blueprintName, x, y);
+                var spawned = BuilderSpawn.TryPlace(zone, factory, blueprintName, x, y);
+                if (IsStaticObstacle(spawned) && !PreservesStaticPassages(zone, x, y))
+                {
+                    // Connectivity ran before population. A stalagmite must
+                    // not turn its single-cell doorway into a sealed chamber.
+                    // Skip this scenery roll without consuming another random
+                    // value or removing any of the authored architecture.
+                    zone.RemoveEntity(spawned);
+                    if (Diag.IsChannelEnabled("worldgen"))
+                        Diag.Record("worldgen", "PopulationPlacementRejected", payload: new
+                        { blueprint = blueprintName, zone = zone.ZoneID, table = Table.Name,
+                            x, y, reason = "blocks_static_passage" });
+                }
 
                 // Remove used cell to prevent double-placement of solid entities
                 openCells.RemoveAt(idx);
             }
 
             return true;
+        }
+
+        private static bool IsStaticObstacle(Entity entity)
+        {
+            if (entity == null || entity.HasPart<BrainPart>() || entity.HasTag("Creature")) return false;
+            return entity.HasTag("Solid") || entity.GetPart<PhysicsPart>()?.Solid == true
+                || entity.GetPart<SealedLibraryBarrierPart>()?.IsClosed == true;
+        }
+
+        /// <summary>After inserting scenery, every open neighbor of its cell
+        /// must still reach every other neighbor without walking through it.
+        /// Those neighbors were connected through this cell before insertion,
+        /// so this rejects only a newly split passage, not unrelated existing
+        /// pockets. Uses the same eight-way interior topology as formations;
+        /// creatures are transient occupants, not permanent architecture.</summary>
+        private static bool PreservesStaticPassages(Zone zone, int x, int y)
+        {
+            if (x < 1 || y < 1 || x >= Zone.Width - 1 || y >= Zone.Height - 1) return true;
+            var open = new bool[Zone.Width, Zone.Height];
+            for (int cy = 1; cy < Zone.Height - 1; cy++)
+                for (int cx = 1; cx < Zone.Width - 1; cx++)
+                {
+                    var cell = zone.GetCell(cx, cy);
+                    bool blocked = MorrowfastSceneRuntime.BlockingOwner(cell) != null;
+                    foreach (var entity in cell.Occupants)
+                        if (IsStaticObstacle(entity)) { blocked = true; break; }
+                    open[cx, cy] = !blocked;
+                }
+
+            int neighbors = 0;
+            (int x, int y) start = default;
+            for (int dy = -1; dy <= 1; dy++)
+                for (int dx = -1; dx <= 1; dx++)
+                    if ((dx != 0 || dy != 0) && open[x + dx, y + dy])
+                    { neighbors++; start = (x + dx, y + dy); }
+            if (neighbors < 2) return true;
+
+            var queue = new Queue<(int x, int y)>();
+            queue.Enqueue(start);
+            open[start.x, start.y] = false;
+            while (queue.Count > 0)
+            {
+                var cell = queue.Dequeue();
+                if (System.Math.Abs(cell.x - x) <= 1 && System.Math.Abs(cell.y - y) <= 1
+                    && --neighbors == 0) return true;
+                for (int dy = -1; dy <= 1; dy++)
+                    for (int dx = -1; dx <= 1; dx++)
+                    {
+                        int nx = cell.x + dx, ny = cell.y + dy;
+                        if (nx < 1 || ny < 1 || nx >= Zone.Width - 1 || ny >= Zone.Height - 1 || !open[nx, ny]) continue;
+                        open[nx, ny] = false;
+                        queue.Enqueue((nx, ny));
+                    }
+            }
+            return false;
         }
     }
 }
