@@ -2,6 +2,13 @@
 
 **Status:** planned, 19 September 2026. User direction: "increase the drop rates for weapons, armor, offensive items. Right now in the game there is mainly crafting items, which are nice but the player should be able to find already created items." CoO-original tuning; no Qud parity claim.
 
+**Implementation update (26 September 2026):** Density Phase 1 tranche 2
+ships the weapon/offensive-consumable slice: tiered nested finds in containers,
+consumables in humanoid death loot, and a non-crafted T3 rack. Armor pools,
+hostile-loadout expansion and the full economic balance pass remain planned.
+See [the living implementation record](DENSITY-PHASE-1.md#t22-tiered-finds-for-stranded-weapons-and-tonics).
+The measurements below describe the original baseline, not a fresh census.
+
 ## Goal
 
 A player who opens containers and wins fights finds finished weapons, armor and offensive consumables often enough to change their kit between towns, without making crafting pointless, emptying the shops' purpose, or breaking the two shipped design rules below.

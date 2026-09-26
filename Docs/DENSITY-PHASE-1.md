@@ -345,3 +345,33 @@ prove the calculation, not balance or feel.
 `GameAuditEntityEquipmentAdversarialTests.cs`; `SkillActiveAbilityBehaviorTests.cs`;
 `Wsp84SkillSystemAdversarialTests.cs`; new `DensityPhase1DodgeTests.cs` + `.meta`;
 this living doc.
+
+### T2.2 Tiered finds for stranded weapons and tonics
+
+Six nested pools (`FindWeaponT1..3`, `FindOffenseT1..3`) reconnect the eight
+source-less weapons and four offensive tonics verified in §10. They are
+referenced by 21 container/death tables using the weapon/offense rates and tier
+bands in `LOOT-FINDS.md`. The T3 weapon rack substitutes DissolutionMaul for
+generic crafted ForgedWeapon. Registry validation finds no missing blueprint,
+missing reference or cycle. Tests traverse nested sources and roll real loot.
+
+**Preserved rules:** natural sacks/baskets/logs remain natural, humanoid death
+loot gains consumables only, friendly loadouts stay unchanged, and rentals,
+crafted output and TemporalShard's unique provenance stay outside general pools.
+This implements the weapon/offense slice of the broader loot-finds plan; armor
+pools, richer hostile loadouts and an economic balance pass are not claimed.
+
+**Evidence:** 26 new loot cases, 25 failed against old production; focused
+loot/regression run passes 50/50. Expected Commerce value per generated source
+increased as expected: Crate T1/T2/T3 8.85/19.45/31.55 ->
+15.683/34.558/56.356; StrongBox 22.3/48.45/92.85 ->
+28.561/61.855/114.933; humanoid death 3.725/10.4/20.51 ->
+7.698/15.289/26.260. These are table expectations, not observed game economy.
+
+**Review:** 🟡 corrected stale stranded-item counts and crafted rack output.
+⚪ Existing legacy rows remain alongside the additional scoped find rolls;
+total item frequency is therefore higher than the new pool chance alone.
+⚪ More finished items and sale value need play balance evaluation.
+**Files:** `Assets/Resources/Content/Data/Loot/LootTables.json`, new
+`Assets/Tests/EditMode/Gameplay/Biomes/DensityPhase1LootTests.cs` + `.meta`,
+`Docs/LOOT-FINDS.md`, this living doc.

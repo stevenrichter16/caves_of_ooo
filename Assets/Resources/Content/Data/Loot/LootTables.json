@@ -917,6 +917,230 @@
       "MaxPicks": 1
     },
     {
+      "Name": "FindWeaponT1",
+      "PickOne": true,
+      "Entries": [
+        {
+          "Blueprint": "Dagger",
+          "Weight": 3
+        },
+        {
+          "Blueprint": "ShortSword",
+          "Weight": 3
+        },
+        {
+          "Blueprint": "Hatchet",
+          "Weight": 3
+        },
+        {
+          "Blueprint": "Cudgel",
+          "Weight": 3
+        },
+        {
+          "Blueprint": "OldWorldPipe",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "Spear",
+          "Weight": 2
+        }
+      ]
+    },
+    {
+      "Name": "FindWeaponT2",
+      "PickOne": true,
+      "Entries": [
+        {
+          "Blueprint": "LongSword",
+          "Weight": 3
+        },
+        {
+          "Blueprint": "Mace",
+          "Weight": 3
+        },
+        {
+          "Blueprint": "Battleaxe",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "Warhammer",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "FlamingSword",
+          "Weight": 1
+        },
+        {
+          "Blueprint": "IceSword",
+          "Weight": 1
+        },
+        {
+          "Blueprint": "CryoLance",
+          "Weight": 1
+        },
+        {
+          "Blueprint": "EmberSpear",
+          "Weight": 1
+        },
+        {
+          "Blueprint": "AcidicDagger",
+          "Weight": 1
+        },
+        {
+          "Blueprint": "ThunderHammer",
+          "Weight": 1
+        }
+      ]
+    },
+    {
+      "Name": "FindWeaponT3",
+      "PickOne": true,
+      "Entries": [
+        {
+          "Blueprint": "Greatsword",
+          "Weight": 3
+        },
+        {
+          "Blueprint": "Claymore",
+          "Weight": 3
+        },
+        {
+          "Blueprint": "Warhammer",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "DissolutionMaul",
+          "Weight": 1
+        }
+      ]
+    },
+    {
+      "Name": "FindOffenseT1",
+      "PickOne": true,
+      "Entries": [
+        {
+          "Blueprint": "FireTonic",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "PoisonTonic",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "FrostTonic",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "AcidTonic",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "LightningTonic",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "BleedTonic",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "PoisonGasGrenade",
+          "Weight": 1
+        },
+        {
+          "Blueprint": "SleepGasGrenade",
+          "Weight": 1
+        },
+        {
+          "Blueprint": "StunGasGrenade",
+          "Weight": 1
+        }
+      ]
+    },
+    {
+      "Name": "FindOffenseT2",
+      "PickOne": true,
+      "Entries": [
+        {
+          "Blueprint": "FireTonic",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "PoisonTonic",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "FrostTonic",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "AcidTonic",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "LightningTonic",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "BleedTonic",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "PoisonGasGrenade",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "SleepGasGrenade",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "StunGasGrenade",
+          "Weight": 2
+        }
+      ]
+    },
+    {
+      "Name": "FindOffenseT3",
+      "PickOne": true,
+      "Entries": [
+        {
+          "Blueprint": "FireTonic",
+          "Weight": 1
+        },
+        {
+          "Blueprint": "PoisonTonic",
+          "Weight": 1
+        },
+        {
+          "Blueprint": "FrostTonic",
+          "Weight": 1
+        },
+        {
+          "Blueprint": "AcidTonic",
+          "Weight": 1
+        },
+        {
+          "Blueprint": "LightningTonic",
+          "Weight": 1
+        },
+        {
+          "Blueprint": "BleedTonic",
+          "Weight": 1
+        },
+        {
+          "Blueprint": "PoisonGasGrenade",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "SleepGasGrenade",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "StunGasGrenade",
+          "Weight": 2
+        }
+      ]
+    },
+    {
       "Name": "DeathBeastT1",
       "Entries": [
         {
@@ -985,6 +1209,10 @@
         {
           "Blueprint": "DriedMeat",
           "Chance": 20
+        },
+        {
+          "TableRef": "FindOffenseT1",
+          "Chance": 20
         }
       ]
     },
@@ -1008,6 +1236,10 @@
         {
           "Blueprint": "HealingTonic",
           "Chance": 20
+        },
+        {
+          "TableRef": "FindOffenseT2",
+          "Chance": 25
         }
       ]
     },
@@ -1035,6 +1267,10 @@
         {
           "Blueprint": "PoisonGasGrenade",
           "Chance": 12
+        },
+        {
+          "TableRef": "FindOffenseT3",
+          "Chance": 30
         }
       ]
     },
@@ -1098,6 +1334,14 @@
         {
           "Blueprint": "Dagger",
           "Chance": 20
+        },
+        {
+          "TableRef": "FindWeaponT1",
+          "Chance": 25
+        },
+        {
+          "TableRef": "FindOffenseT1",
+          "Chance": 20
         }
       ]
     },
@@ -1129,6 +1373,14 @@
         {
           "Blueprint": "ShatteredRimeGrimoire",
           "Chance": 8
+        },
+        {
+          "TableRef": "FindWeaponT2",
+          "Chance": 30
+        },
+        {
+          "TableRef": "FindOffenseT2",
+          "Chance": 25
         }
       ]
     },
@@ -1160,6 +1412,14 @@
         {
           "Blueprint": "ShatteredRimeGrimoire",
           "Chance": 8
+        },
+        {
+          "TableRef": "FindWeaponT3",
+          "Chance": 35
+        },
+        {
+          "TableRef": "FindOffenseT3",
+          "Chance": 30
         }
       ]
     },
@@ -1240,6 +1500,10 @@
         {
           "TableRef": "ReagentCommon",
           "Chance": 30
+        },
+        {
+          "TableRef": "FindWeaponT1",
+          "Chance": 15
         }
       ]
     },
@@ -1267,6 +1531,10 @@
         {
           "Blueprint": "BloodletterLedgerGrimoire",
           "Chance": 8
+        },
+        {
+          "TableRef": "FindWeaponT2",
+          "Chance": 20
         }
       ]
     },
@@ -1294,6 +1562,10 @@
         {
           "Blueprint": "StillHeartGrimoire",
           "Chance": 8
+        },
+        {
+          "TableRef": "FindWeaponT3",
+          "Chance": 25
         }
       ]
     },
@@ -1374,6 +1646,10 @@
           "Chance": 30,
           "MinCount": 1,
           "MaxCount": 5
+        },
+        {
+          "TableRef": "FindWeaponT1",
+          "Chance": 25
         }
       ]
     },
@@ -1399,6 +1675,10 @@
         {
           "Blueprint": "Dagger",
           "Chance": 15
+        },
+        {
+          "TableRef": "FindWeaponT2",
+          "Chance": 30
         }
       ]
     },
@@ -1424,6 +1704,10 @@
         {
           "Blueprint": "Dagger",
           "Chance": 25
+        },
+        {
+          "TableRef": "FindWeaponT3",
+          "Chance": 35
         }
       ]
     },
@@ -1563,6 +1847,14 @@
         {
           "Blueprint": "LeatherArmor",
           "Chance": 20
+        },
+        {
+          "TableRef": "FindWeaponT1",
+          "Chance": 20
+        },
+        {
+          "TableRef": "FindOffenseT1",
+          "Chance": 20
         }
       ]
     },
@@ -1594,6 +1886,14 @@
         {
           "Blueprint": "VerdigrisBloomGrimoire",
           "Chance": 10
+        },
+        {
+          "TableRef": "FindWeaponT2",
+          "Chance": 25
+        },
+        {
+          "TableRef": "FindOffenseT2",
+          "Chance": 25
         }
       ]
     },
@@ -1625,6 +1925,14 @@
         {
           "Blueprint": "HollowCoinGrimoire",
           "Chance": 12
+        },
+        {
+          "TableRef": "FindWeaponT3",
+          "Chance": 30
+        },
+        {
+          "TableRef": "FindOffenseT3",
+          "Chance": 30
         }
       ]
     },
@@ -1656,6 +1964,14 @@
         {
           "Blueprint": "StillHeartGrimoire",
           "Chance": 12
+        },
+        {
+          "TableRef": "FindWeaponT2",
+          "Chance": 20
+        },
+        {
+          "TableRef": "FindOffenseT2",
+          "Chance": 15
         }
       ]
     },
@@ -1691,6 +2007,14 @@
         {
           "Blueprint": "SunderingWordGrimoire",
           "Chance": 14
+        },
+        {
+          "TableRef": "FindWeaponT3",
+          "Chance": 25
+        },
+        {
+          "TableRef": "FindOffenseT3",
+          "Chance": 20
         }
       ]
     },
@@ -1857,7 +2181,7 @@
           "Chance": 25
         },
         {
-          "Blueprint": "ForgedWeapon",
+          "Blueprint": "DissolutionMaul",
           "Chance": 20
         }
       ],
@@ -1883,6 +2207,10 @@
         {
           "Blueprint": "VerdigrisBloomGrimoire",
           "Chance": 10
+        },
+        {
+          "TableRef": "FindOffenseT1",
+          "Chance": 30
         }
       ]
     },
@@ -1904,6 +2232,10 @@
         {
           "Blueprint": "BurnSalve",
           "Chance": 30
+        },
+        {
+          "TableRef": "FindOffenseT2",
+          "Chance": 35
         }
       ]
     },
@@ -1925,6 +2257,10 @@
         {
           "Blueprint": "PoisonGasGrenade",
           "Chance": 20
+        },
+        {
+          "TableRef": "FindOffenseT3",
+          "Chance": 40
         }
       ]
     },
@@ -1951,6 +2287,14 @@
         },
         {
           "Blueprint": "BloodletterLedgerGrimoire",
+          "Chance": 10
+        },
+        {
+          "TableRef": "FindWeaponT1",
+          "Chance": 15
+        },
+        {
+          "TableRef": "FindOffenseT1",
           "Chance": 10
         }
       ]
