@@ -430,3 +430,42 @@ parity claim. **Files:** `PopulationTable.cs`, `PopulationBuilder.cs`,
 `DensityPopulationTests`, `DensityUrquTests`, `DensityPopulationDiagnosticsTests`,
 `DensityPopulationReachabilityTests` (each `.cs` + `.meta`), updated
 `UndergroundGenerationTests.cs`, this living doc.
+
+### T2.4 Live landmarks, sparse traps and liquid sources
+
+Seven orphaned stamps join Beating's live ruin catalog: GlassblownObelisk,
+BanditDugout, SealedVault, CollapsedLibrary, ClockworkWorkshop, RuneCultSite,
+and PalimpsestArchive. Ziggurat joins underground tier 2 (depth 3+). Shared
+stamp fields are initialized before the catalogs that reference them; no
+static-init null entries are introduced. Echo and Drifter now have real
+pipeline sources. Authored Overwrit emptiness and composed Stump catalogs
+remain intact, and manufactured Ziggurats stay outside Choir country.
+
+Ruin stamps use the four shipped trap blueprints. `TrapPlacementBuilder` runs
+at priority 4150 after lair guards and containers, placing one or two visible
+traps when safe cells exist. It excludes a three-cell edge margin, reserved
+cells, stairs, liquids, state sources, creatures and other occupied cells.
+Missing blueprints or no safe cells are diagnosed, not forced into unsafe
+placement. Ruins use authored positions; lairs use safe available floor.
+
+Hazard tables separate live countries: Beating adds OilSlick/OilSeep at weights
+10/5 of 100, Sodden AcidPool at 10, Grovelands MirrorMucilagePool at 15.
+Underground adds OilSlick, AcidPool, ConvalescencePool and MemoryBathPool at
+5 each. This reconnects existing pool/terrain blueprints; it does not invent a
+pool for every liquid definition or modify fire's combustibility scale.
+
+**Full-sweep correction:** the expanded Beating stamp lottery exposed active
+ConcordWaystations in the two abandoned counter zones. Those zones now exclude
+only that staffed ambient stamp while keeping other ruins and their guaranteed
+abandoned counter. A 24-seed test checks both abandoned sites against the live
+Last Counter as a matched staffed control; the original failing pin is intact.
+
+**Evidence:** 45 placement cases (36 failed against original production),
+128/128 focused placement/formation tests pass. Abandoned-counter regression
+and its new control failed 2/2 before the filter, then all 11 place-profile
+cases passed. **Review:** 🟡 honored the deliberate Grovelands formation ban
+instead of blindly mapping retired biomes; 🟡 kept abandoned counters unstaffed.
+⚪ sparse placement and restored hazards still need sustained feel/balance play.
+**Files:** `LandmarkBuilder.cs`, `HazardTerrainBuilder.cs`, new
+`TrapPlacementBuilder.cs` + `.meta`, `OverworldZoneManager.cs`, new
+`DensityPhase1PlacementTests.cs` + `.meta`, `PlaceProfileTests.cs`, this doc.

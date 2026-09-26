@@ -164,8 +164,36 @@ namespace CavesOfOoo.Core
             return UndergroundStamps;
         }
 
+        // The Grovelands deliberately has no manufactured ruins (its existing
+        // identity pin forbids this stamp). Reclaim the vine-choked ruin in the
+        // living underground instead, starting at depth 3 / tier 2.
+        private static readonly StructureStamp ZigguratStamp =
+            new StructureStamp
+            {
+                Name = "Ziggurat",
+                Chance = 25,
+                MinTier = 2,
+                Rows = new[]
+                {
+                    "######",
+                    "#T..L#",
+                    "#.tk.#",
+                    "###+##",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { '#', "VineWall" },
+                    { 'T', "spawn:ChoirTendril" },
+                    { 't', "PressurePlate" },
+                    { 'L', "lockedchest:ZigguratVaultT2" },
+                    { 'k', "IronKey" },
+                    { '+', "" },
+                },
+            };
+
         private static readonly StructureStamp[] UndergroundStamps =
         {
+            ZigguratStamp,
             new StructureStamp
             {
                 Name = "MineGallery",
@@ -312,6 +340,167 @@ namespace CavesOfOoo.Core
             };
         }
 
+        // Density Phase 1: shared finished structures must be initialized before
+        // the legacy and live-biome catalogs that reference them. The Beating's
+        // exposed pre-Felling ruins are their surface home. The ziggurat instead
+        // uses the underground catalog above, preserving surface-biome identity.
+        private static readonly StructureStamp GlassblownObeliskStamp =
+            new StructureStamp
+            {
+                Name = "GlassblownObelisk",
+                Chance = 20,
+                MinTier = 1,
+                Rows = new[]
+                {
+                    ".I.",
+                    ".g.",
+                    "...",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { 'I', "Pillar" },
+                    { 'g', "spawn:GlassblownDrifter" },
+                },
+            };
+
+        private static readonly StructureStamp BanditDugoutStamp =
+            new StructureStamp
+            {
+                Name = "BanditDugout",
+                Chance = 25,
+                MinTier = 2,
+                Rows = new[]
+                {
+                    "#######",
+                    "#b.t.c#",
+                    "#..b..+",
+                    "#######",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { '#', "SandstoneWall" },
+                    { 'c', "chest:BanditCacheT2" },
+                    { 'b', "spawn:AmbushBandit" },
+                    { 't', "BearTrap" },
+                    { '+', "" },
+                },
+            };
+
+
+        private static readonly StructureStamp SealedVaultStamp =
+            new StructureStamp
+            {
+                Name = "SealedVault",
+                Chance = 25,
+                MinTier = 2,
+                Rows = new[]
+                {
+                    "#######",
+                    "#L.t.V#",
+                    "###D###",
+                    "#.k...+",
+                    "#######",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { '#', "StoneWall" },
+                    { 'V', "spawn:VaultSentinel" },
+                    { 'L', "lockedchest:SealedVaultT3" },
+                    { 'D', "LockedDoor" },
+                    { 't', "SpikeTrap" },
+                    { 'k', "IronKey" },
+                    { '+', "" },
+                },
+            };
+
+        private static readonly StructureStamp ClockworkWorkshopStamp =
+            new StructureStamp
+            {
+                Name = "ClockworkWorkshop",
+                Chance = 25,
+                MinTier = 2,
+                Rows = new[]
+                {
+                    "######",
+                    "#B.tc#",
+                    "#..B.+",
+                    "######",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { '#', "StoneWall" },
+                    { 'B', "spawn:BrassHusk" },
+                    { 't', "FireTrap" },
+                    { 'c', "chest:WorkshopCacheT2" },
+                    { '+', "" },
+                },
+            };
+
+        private static readonly StructureStamp RuneCultSiteStamp =
+            new StructureStamp
+            {
+                Name = "RuneCultSite",
+                Chance = 20,
+                MinTier = 2,
+                Rows = new[]
+                {
+                    ".u.u.",
+                    "u.c.u",
+                    ".u.u.",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { 'u', "spawn:RuneCultist" },
+                    { 'c', "chest:CultCacheT2" },
+                },
+            };
+
+        private static readonly StructureStamp PalimpsestArchiveStamp =
+            new StructureStamp
+            {
+                Name = "PalimpsestArchive",
+                Chance = 20,
+                MinTier = 1,
+                Rows = new[]
+                {
+                    "######",
+                    "#p.IE#",
+                    "#..f.+",
+                    "######",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { '#', "StoneWall" },
+                    { 'E', "spawn:PalimpsestEcho" },
+                    { 'p', "Pillar" },
+                    { 'I', "Pillar" },
+                    { 'f', "Campfire" },
+                    { '+', "" },
+                },
+            };
+
+        private static readonly StructureStamp CollapsedLibraryStamp =
+            new StructureStamp
+            {
+                Name = "CollapsedLibrary",
+                Chance = 35,
+                MinTier = 1,
+                Rows = new[]
+                {
+                    "#####",
+                    "#c.p#",
+                    "#...+",
+                    "#####",
+                },
+                Legend = new Dictionary<char, string>
+                {
+                    { '#', "StoneWall" },
+                    { 'c', "chest:LibraryShelfT1" },
+                    { 'p', "Pillar" },
+                    { '+', "" },
+                },
+            };
+
         private static readonly StructureStamp[] Cave =
         {
             HermitHut("Wall", "CaveHermit"),
@@ -423,47 +612,12 @@ namespace CavesOfOoo.Core
             SandstoneTombStamp,
             // Phase D: the Glassblown Remnant's obelisk — the Drifter's
             // 25-node conversation tree goes live here.
-            new StructureStamp
-            {
-                Name = "GlassblownObelisk",
-                Chance = 20,
-                MinTier = 1,
-                Rows = new[]
-                {
-                    ".I.",
-                    ".g.",
-                    "...",
-                },
-                Legend = new Dictionary<char, string>
-                {
-                    { 'I', "Pillar" },
-                    { 'g', "spawn:GlassblownDrifter" },
-                },
-            },
+            GlassblownObeliskStamp,
             // Phase D: a Saccharine Concord waystation. Shared with the
             // Beating (W2.4), defined once above.
             ConcordWaystationStamp,
             // A bandit dugout — ambushers sleeping on their haul.
-            new StructureStamp
-            {
-                Name = "BanditDugout",
-                Chance = 25,
-                MinTier = 2,
-                Rows = new[]
-                {
-                    "#######",
-                    "#b...c#",
-                    "#..b..+",
-                    "#######",
-                },
-                Legend = new Dictionary<char, string>
-                {
-                    { '#', "SandstoneWall" },
-                    { 'c', "chest:BanditCacheT2" },
-                    { 'b', "spawn:AmbushBandit" },
-                    { '+', "" },
-                },
-            },
+            BanditDugoutStamp,
         };
 
         // W3 re-review — shared ambient stamps, extracted so the Sodden
@@ -543,7 +697,7 @@ namespace CavesOfOoo.Core
         /// <summary>W4.1 — the Grovelands' own ambient texture: the
         /// Choir's shrine belongs HERE (it was born in the shared
         /// jungle array and could roll anywhere green), plus the herb
-        /// patch and the blind. The Ziggurat stays jungle-only.</summary>
+        /// patch and the blind. Manufactured ruins remain underground.</summary>
         private static readonly StructureStamp[] Grovelands =
         {
             GroveShrineStamp,
@@ -554,8 +708,8 @@ namespace CavesOfOoo.Core
         /// <summary>The Sodden's own ambient texture (W3 re-review) —
         /// the shared stamps that read as bog country: a reed-walled
         /// hermit, the healing-herb patch, the hunter's blind. The
-        /// Ziggurat and the Choir's GroveShrine stay in the jungle and
-        /// the Grovelands where their identities live.</summary>
+        /// Ziggurat remains underground and the Choir's GroveShrine belongs
+        /// in the Grovelands.</summary>
         private static readonly StructureStamp[] Sodden =
         {
             HermitHut("VineWall", "JungleHermit"),
@@ -568,27 +722,7 @@ namespace CavesOfOoo.Core
             HermitHut("VineWall", "JungleHermit"),
             // Phase E: the vine-choked ziggurat — jungle uniques behind
             // an 80-HP tendril and a lock.
-            new StructureStamp
-            {
-                Name = "Ziggurat",
-                Chance = 25,
-                MinTier = 2,
-                Rows = new[]
-                {
-                    "######",
-                    "#T..L#",
-                    "#..k.#",
-                    "###+##",
-                },
-                Legend = new Dictionary<char, string>
-                {
-                    { '#', "VineWall" },
-                    { 'T', "spawn:ChoirTendril" },
-                    { 'L', "lockedchest:ZigguratVaultT2" },
-                    { 'k', "IronKey" },
-                    { '+', "" },
-                },
-            },
+            ZigguratStamp,
             GroveShrineStamp,
             MendleafGardenStamp,
             HuntersBlindStamp,
@@ -710,9 +844,16 @@ namespace CavesOfOoo.Core
         private static readonly StructureStamp[] Beating =
         {
             TentRightCampStamp,
+            GlassblownObeliskStamp,
+            PalimpsestArchiveStamp,
             HermitHut("SandstoneWall", "DesertHermit"),
             ConcordWaystationStamp,
             SandstoneTombStamp,
+            BanditDugoutStamp,
+            CollapsedLibraryStamp,
+            SealedVaultStamp,
+            ClockworkWorkshopStamp,
+            RuneCultSiteStamp,
         };
 
         // ── W2.6 place profiles (Docs/FELLING-W1-W2-PLAN.md §7.6) ────
@@ -997,118 +1138,21 @@ namespace CavesOfOoo.Core
             // First placed LockedDoor; the sentinel carries no key
             // because the key lies in the antechamber — the FIGHT is
             // the lock.
-            new StructureStamp
-            {
-                Name = "SealedVault",
-                Chance = 25,
-                MinTier = 2,
-                Rows = new[]
-                {
-                    "#######",
-                    "#L...V#",
-                    "###D###",
-                    "#.k...+",
-                    "#######",
-                },
-                Legend = new Dictionary<char, string>
-                {
-                    { '#', "StoneWall" },
-                    { 'V', "spawn:VaultSentinel" },
-                    { 'L', "lockedchest:SealedVaultT3" },
-                    { 'D', "LockedDoor" },
-                    { 'k', "IronKey" },
-                    { '+', "" },
-                },
-            },
+            SealedVaultStamp,
             // Phase F: a clockwork workshop — the three dead schematics
             // (and with them four unlearnable tinker mods) circulate.
-            new StructureStamp
-            {
-                Name = "ClockworkWorkshop",
-                Chance = 25,
-                MinTier = 2,
-                Rows = new[]
-                {
-                    "######",
-                    "#B..c#",
-                    "#..B.+",
-                    "######",
-                },
-                Legend = new Dictionary<char, string>
-                {
-                    { '#', "StoneWall" },
-                    { 'B', "spawn:BrassHusk" },
-                    { 'c', "chest:WorkshopCacheT2" },
-                    { '+', "" },
-                },
-            },
+            ClockworkWorkshopStamp,
             // Phase F: a rune-cult dig site — RuneCultists arrive with
             // their complete AILayRune AI, so the world's first live
             // trap-laying happens here.
-            new StructureStamp
-            {
-                Name = "RuneCultSite",
-                Chance = 20,
-                MinTier = 2,
-                Rows = new[]
-                {
-                    ".u.u.",
-                    "u.c.u",
-                    ".u.u.",
-                },
-                Legend = new Dictionary<char, string>
-                {
-                    { 'u', "spawn:RuneCultist" },
-                    { 'c', "chest:CultCacheT2" },
-                },
-            },
+            RuneCultSiteStamp,
             // Phase F: the Palimpsest Archive — the Recension's Echo
             // (the game's largest authored conversation, 42 nodes)
             // finally gets a place to stand, with a scholar's fire.
-            new StructureStamp
-            {
-                Name = "PalimpsestArchive",
-                Chance = 20,
-                MinTier = 1,
-                Rows = new[]
-                {
-                    "######",
-                    "#p.IE#",
-                    "#..f.+",
-                    "######",
-                },
-                Legend = new Dictionary<char, string>
-                {
-                    { '#', "StoneWall" },
-                    { 'E', "spawn:PalimpsestEcho" },
-                    { 'p', "Pillar" },
-                    { 'I', "Pillar" },
-                    { 'f', "Campfire" },
-                    { '+', "" },
-                },
-            },
+            PalimpsestArchiveStamp,
             // A collapsed library — the ONLY circulation source for the
             // six utility grimoires that shipped with no source at all.
-            new StructureStamp
-            {
-                Name = "CollapsedLibrary",
-                Chance = 35,
-                MinTier = 1,
-                Rows = new[]
-                {
-                    "#####",
-                    "#c.p#",
-                    "#...+",
-                    "#####",
-                },
-                Legend = new Dictionary<char, string>
-                {
-                    { '#', "StoneWall" },
-                    { 'c', "chest:LibraryShelfT1" },
-                    { 'p', "Pillar" },
-                    { '+', "" },
-                },
-            },
+            CollapsedLibraryStamp,
         };
     }
 

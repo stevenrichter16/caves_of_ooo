@@ -99,6 +99,36 @@ namespace CavesOfOoo.Core
             new Entry("DryBrush", 10, false),
         };
 
+        // Keep the Spread's low-tier table separate: acidic peat and Choir
+        // mucilage belong to their own countries, not every green biome.
+        private static readonly Entry[] SoddenEntries =
+        {
+            new Entry("PeatBog", 40, true),
+            new Entry("BrinePool", 25, true),
+            new Entry("SteamVent", 20, true),
+            new Entry("DryBrush", 5, false),
+            new Entry("AcidPool", 10, false),
+        };
+
+        private static readonly Entry[] GrovelandsEntries =
+        {
+            new Entry("PeatBog", 30, true),
+            new Entry("BrinePool", 25, true),
+            new Entry("SteamVent", 20, true),
+            new Entry("DryBrush", 10, false),
+            new Entry("MirrorMucilagePool", 15, false),
+        };
+
+        private static readonly Entry[] BeatingEntries =
+        {
+            new Entry("DryBrush", 35, false),
+            new Entry("AshBed", 25, false),
+            new Entry("TarSeep", 15, false),
+            new Entry("BrinePool", 10, true),
+            new Entry("OilSlick", 10, false),
+            new Entry("OilSeep", 5, false),
+        };
+
         private static readonly Entry[] RuinsEntries =
         {
             new Entry("BrinePool", 30, true),   // rain gets in
@@ -110,11 +140,15 @@ namespace CavesOfOoo.Core
 
         private static readonly Entry[] UndergroundEntries =
         {
-            new Entry("BrinePool", 25, true),
-            new Entry("IceSheet", 20, true),
-            new Entry("FrostVent", 20, false),
-            new Entry("TarSeep", 20, false),
+            new Entry("BrinePool", 20, true),
+            new Entry("IceSheet", 15, true),
+            new Entry("FrostVent", 15, false),
+            new Entry("TarSeep", 15, false),
             new Entry("SteamVent", 15, true),
+            new Entry("OilSlick", 5, false),
+            new Entry("AcidPool", 5, false),
+            new Entry("ConvalescencePool", 5, false),
+            new Entry("MemoryBathPool", 5, false),
         };
 
         /// <summary>The conductor laid in a run out of a conductive
@@ -134,9 +168,9 @@ namespace CavesOfOoo.Core
                 case BiomeType.Jungle: return JungleEntries;
                 case BiomeType.Ruins: return RuinsEntries;
                 case BiomeType.Spread: return JungleEntries;
-                case BiomeType.Sodden: return JungleEntries;
-                case BiomeType.Beating: return DesertEntries;
-                case BiomeType.Grovelands: return JungleEntries;
+                case BiomeType.Sodden: return SoddenEntries;
+                case BiomeType.Beating: return BeatingEntries;
+                case BiomeType.Grovelands: return GrovelandsEntries;
                 case BiomeType.Overwrit: return RuinsEntries;
                 case BiomeType.Stump: return CaveEntries;
                 default: return CaveEntries;

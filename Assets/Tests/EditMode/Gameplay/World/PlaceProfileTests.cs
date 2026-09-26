@@ -117,6 +117,26 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
+        public void AbandonedCountersRemainUnstaffedAcrossSeeds_WhileLiveCounterKeepsEnvoy()
+        {
+            // Ambient stamp rolls must not put an active Concord waystation
+            // back into the two locations the Concord explicitly abandoned.
+            for (int seed = 1; seed <= 24; seed++)
+            {
+                var manager = OverworldZoneManager.CreateDetached(_factory, seed);
+                foreach (string id in new[] { OverworldZoneManager.AbandonedCounterZoneA, OverworldZoneManager.AbandonedCounterZoneB })
+                {
+                    var ruin = manager.GetZone(id);
+                    Assert.AreEqual(0, CountOf(ruin, "SaccharineEnvoy"), id + " seed " + seed);
+                    Assert.AreEqual(0, CountOf(ruin, "LastCounterSign"), id + " seed " + seed);
+                    Assert.Greater(CountOf(ruin, "SandstoneWall") + CountOf(ruin, "Bones"), 0);
+                }
+                Assert.Greater(CountOf(manager.GetZone("Overworld.18.18.0"), "SaccharineEnvoy"), 0,
+                    "the staffed Last Counter is the matched control");
+            }
+        }
+
+        [Test]
         public void TheTenthFire_Burns_AndSaysNothing()
         {
             // Mystery Ledger §4: placed, burning, unexamined. The examine

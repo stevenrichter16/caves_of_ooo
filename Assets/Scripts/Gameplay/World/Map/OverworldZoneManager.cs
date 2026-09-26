@@ -641,6 +641,14 @@ namespace CavesOfOoo.Core
             // W2.6: the two ruins the Concord left behind.
             if (zoneID == AbandonedCounterZoneA || zoneID == AbandonedCounterZoneB)
             {
+                // These sites have been abandoned by the Concord. Other
+                // ambient ruins still belong here, but a staffed waystation
+                // would contradict the place regardless of its random roll.
+                pipeline.RemoveBuilders<LandmarkBuilder>();
+                var abandonedAmbient = new List<StructureStamp>();
+                foreach (var stamp in StampCatalog.For(BiomeType.Beating))
+                    if (stamp.Name != "ConcordWaystation") abandonedAmbient.Add(stamp);
+                pipeline.AddBuilder(new LandmarkBuilder(BiomeType.Beating, tier, abandonedAmbient));
                 pipeline.AddBuilder(new LandmarkBuilder(BiomeType.Beating, tier,
                     new List<StructureStamp> { StampCatalog.AbandonedCounter() },
                     priority: 3790, maxStructures: 1));
@@ -1006,6 +1014,7 @@ namespace CavesOfOoo.Core
             pipeline.AddBuilder(new LairPopulationBuilder(biome, poi));
             // Lairs previously got ZERO containers of any kind.
             pipeline.AddBuilder(new ContainerBuilder(biome, 2, ContainerPlacementService.ZoneKind.Lair));
+            pipeline.AddBuilder(new TrapPlacementBuilder());
             return pipeline;
         }
 
