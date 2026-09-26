@@ -19,6 +19,13 @@ python3 select_tests.py --all          # choose every test file that compiles (~
 ./run.sh "class =~ /LairBossBiomeTests/"   # any NUnit --where expression
 ```
 
+Requires a .NET SDK (8 or later). The tracked project targets .NET 8 and
+allows a newer installed runtime when 8 is absent; record the runtime
+version with test evidence. For an isolated runner copy, set `COO_REPO`
+to the absolute checkout path before selection, build and execution.
+The four real rendering helpers compiled here are `QudColorParser`,
+`AsciiWorldRenderPolicy`, `ZoneRenderHooks` and `EntityVisualHooks`.
+
 `select_tests.py a.cs b.cs …` compiles only the named test files, which is
 faster when iterating on one suite.
 

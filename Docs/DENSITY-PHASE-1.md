@@ -1,6 +1,6 @@
 # Density Phase 1 — reconnect and repair
 
-> **Status:** tranche 1 ✅ shipped (2026-09-26). Tranche 2 planned (§8).
+> **Status:** tranche 1 ✅ shipped (2026-09-26). Tranche 2 in progress (§10).
 > **Plan source:** `Docs/QUD-DENSITY-GAP-ANALYSIS.md` §6 Phase 1.
 > **Goal:** content that already exists reaches the player walking around
 > the map, and a handful of blueprints stop quietly breaking their own
@@ -35,8 +35,8 @@
 | Stranded weapons/tonics into loot | 🟡 | Content placement. Must respect `Docs/LOOT-FINDS.md` tiers |
 | Population density (Spread group, monocultures, depth table) | 🟡 | Tunes spawn rates, which changes the feel. Tranche 2 plus a numbers pass |
 | Orphaned stamps, traps, hazard liquids | 🟡 | Placement into live-biome tables |
-| BitLocker in normal play | 🔴 decision | A design call (tinkering availability), not a bug. Needs the user |
-| `UrquActive` world flag | 🔴 decision | Who sets it is a lore/progression decision. Needs the user |
+| BitLocker in normal play | ⚪ excluded | User explicitly keeps tinkering dev-only (2026-09-26) |
+| `UrquActive` world flag | 🟡 | User delegates the progression decision (2026-09-26); preserve state-sensitive fauna |
 | One combustibility scale | ⚪ deferred | Changes fire spread everywhere. Needs a playtest, not just tests |
 
 ## 2. Verification sweep — corrections
@@ -225,3 +225,80 @@ Play-mode look at a Beating lair.
 - MOD `Assets/Tests/EditMode/Gameplay/Anatomy/GameAuditNaturalWeaponActivationAdversarialTests.cs`: 40 → 43 pinned recipes
 - MOD `Assets/Tests/EditMode/Gameplay/Combat/WeaponAttributesContentTests.cs`: Cudgel pin updated
 - NEW `Docs/DENSITY-PHASE-1.md` (this file)
+
+## 10. Tranche 2 — implementation plan and verification sweep
+
+**Authorized scope:** repair dodge, reconnect existing loot and placement,
+vary encounter groups and depth populations, instrument spawn rolls, choose
+an Urqu activation rule, and add a dedicated adversarial suite. BitLocker
+stays dev-only. The fire-scale change remains deferred for a playtest.
+These are CoO content repairs, not claims of a Qud parity port.
+
+| Sweep premise | Verified correction | Implementation consequence |
+|---|---|---|
+| The standalone runner can build from a clean checkout | Its `.csproj` was never tracked; `dotnet build` fails MSB1003 | Restore a portable, tracked project file before test evidence |
+| Only enemies miss DV effects | `CombatSystem.GetDV` ignores the DV stat on Player too; Confused still reduces Agility indirectly | Add natural DV and the additive DV stat once, preserve worn penalties; check displayed DV |
+| The existing natural-DV exclusion pin states a deliberate design | The equipment rollout documents worn penalties and natural AV, not natural DV suppression | Replace the obsolete assertion with explicit additive coverage |
+| 11 weapons and 5 offensive tonics have no sources | Current source-less set is 8 weapons and 4 tonics; TemporalShard is an intentional Palimpsest gift | Preserve special provenance and add tiered sources only for the actual gaps |
+| Loot find pools already exist | `LOOT-FINDS.md` is a plan; WeaponRack PickOne ignores Chance, and T3 contains crafted ForgedWeapon | Introduce scoped weapon/offense pools and remove crafted output from the rack |
+| Add stamps to Overwrit/Stump aliases to reach players | Authored Overwrit omits landmarks; composed Stump replaces the Cave catalog | Preserve Overwrit emptiness; use Beating's pre-Felling ruins; see underground Ziggurat correction below |
+| Five trap blueprints are available | Four are shipped: SpikeTrap, FireTrap, BearTrap, PressurePlate; TripWire is code only | Place the four existing traps, with safe entrance and occupancy checks |
+| All 26 liquids can be placed through hazard tables | Only five unsourced pool blueprints exist; OilSeep is terrain, not a pool | Reconnect OilSlick, AcidPool, ConvalescencePool, MemoryBathPool, MirrorMucilagePool and OilSeep without inventing new pools |
+
+**Milestones:** (1) runnable verification harness; (2) natural DV;
+(3) tiered loot; (4) encounter groups, depth, Urqu and diagnostics;
+(5) stamps/traps/liquids; (6) dedicated adversarial and full baseline diff,
+Unity EditMode and Beating-lair Play-mode check where available.
+Each production change gets a failing test before implementation and
+counter-checks. The final review covers cross-system interactions and
+documents the standalone runner's limits explicitly.
+
+**Urqu decision (delegated by user):** the existing `SillHearsIt` inciting
+omen owns activation indirectly: a one-shot storylet observes
+`sill_sari_heard >= 1`, provided no ending is enacted, then sets
+`UrquActive = 1`. A companion storylet clears it after an ending. This
+keeps the snakes as signs of an active period, preserves the quiet-world
+counter-case, and uses the shipped narrative dispatcher rather than
+inventing the still-unbuilt Thinning clock or treating unfinished quests
+as abandonment. Already-generated zones retain their population; new
+Stump slopes/summit rolls respond to the fact. Explicit later quieting
+does not retrigger the one-shot. This is a bounded progression choice,
+not the full closure-ledger pressure simulation in the design §7.7.
+
+**Population design:** named encounter groups select one eligible weighted
+row and then its count, independently of ambient flora/fauna/loot rolls.
+Spread T1 selects 1–2 vipers or snapjaws. Sodden and Grovelands T2/T3
+replace compulsory species with one local predator/fauna group. Underground
+selects one depth-appropriate group rather than guaranteeing three snapjaw
+families; deeper bands include their own creatures at meaningful weight.
+Optional ambient rows retain the existing independent-roll semantics.
+
+**Placement follow-up sweep correction:** `GrovelandsFormationTests` explicitly
+forbids Ziggurat as manufactured Choir culture. Preserve that authored
+invariant: reconnect the eighth stamp through the live underground catalog
+at tier 2 (depth 3+) instead. Beating receives the other seven. Merely
+routing by retired-biome resemblance would have overridden a deliberate
+worldbuilding choice.
+
+
+### T2.0 Standalone runner repair
+
+The handoff's runner omitted its project file because the repository ignores
+`*.csproj`. A clean `dotnet build` reproduced MSB1003 before the fix. The
+tracked project explicitly includes the core, existing stubs, four rendering
+helpers, selected tests, and the optional new numeric density bench; its local
+ignore exception prevents this omission recurring. It targets .NET 8, permits
+major runtime roll-forward, and uses `COO_REPO` for isolated comparison copies.
+This host executes under **.NET 10.0.5**, recorded with the evidence.
+
+**Verification:** the reconstructed project builds; focused dodge 244/244,
+loot 50/50, placement 128/128 and population/Urqu 28/28 have executed. Full
+before/after and native verification follow below; these focused counts overlap
+and must not be summed. The baseline comparison uses an isolated `git archive`
+of `102ba71a` production scripts/content with the same current tests/assets,
+rather than temporarily stashing a workspace in which agents are collaborating.
+No user's working files are replaced during the comparison.
+
+**Files:** `Tools/EditModeRunner/EditModeRunner.csproj`, its `.gitignore`,
+`README.md`, and this living doc. **Review:** 🟡 missing-project defect fixed;
+⚪ stubbed runner remains a pre-check, not a replacement for Unity.
