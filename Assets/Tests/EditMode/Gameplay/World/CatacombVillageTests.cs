@@ -312,7 +312,7 @@ namespace CavesOfOoo.Tests
             {
                 var patch = _factory.CreateEntity("HearthPatch");
                 zone.AddEntity(patch, 10, 10);
-                var beast = new Entity { ID = "b", BlueprintName = "Snapjaw" };
+                var beast = new Entity { ID = "b", BlueprintName = "MarlbackScrabbler" };
                 beast.Tags["Creature"] = "";
                 zone.AddEntity(beast, 11, 10);
 
@@ -356,7 +356,7 @@ namespace CavesOfOoo.Tests
         {
             // HAZARD the sweep caught: the sinkhole floor pipeline still
             // runs PopulationBuilder(UndergroundTier) AFTER this builder,
-            // which rolls snapjaws. A village square full of snapjaws is
+            // which rolls marlbacks. A village square full of marlbacks is
             // not a village. Claiming the footprint in GenReservedCells
             // is how the surface town keeps its square clear.
             var zone = BuildVillage();
@@ -472,9 +472,9 @@ namespace CavesOfOoo.Tests
             {
                 var mat = _factory.CreateEntity("PebbleSundewThreshold");
                 zone.AddEntity(mat, 10, 10);
-                var stranger = new Entity { ID = "s", BlueprintName = "Snapjaw" };
+                var stranger = new Entity { ID = "s", BlueprintName = "MarlbackScrabbler" };
                 stranger.Tags["Creature"] = "";
-                stranger.AddPart(new RenderPart { DisplayName = "snapjaw" });
+                stranger.AddPart(new RenderPart { DisplayName = "marlback" });
                 stranger.AddPart(new PhysicsPart { Solid = true });
                 stranger.Statistics["Hitpoints"] = new Stat
                 { Owner = stranger, Name = "Hitpoints", BaseValue = 20, Min = 0, Max = 20 };

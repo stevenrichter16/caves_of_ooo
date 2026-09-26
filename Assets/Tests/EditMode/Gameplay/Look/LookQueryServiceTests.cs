@@ -37,16 +37,16 @@ namespace CavesOfOoo.Tests
         {
             var zone = new Zone("LookZone");
             var player = CreateCreature("Player", "@", "&Y", isPlayer: true);
-            var snapjaw = CreateCreature("Snapjaw", "s", "&g");
-            snapjaw.SetTag("Faction", "Snapjaws");
-            snapjaw.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 6, Min = 0, Max = 10 };
+            var marlback = CreateCreature("MarlbackScrabbler", "s", "&g");
+            marlback.SetTag("Faction", "OutlandRaiders");
+            marlback.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 6, Min = 0, Max = 10 };
 
             zone.AddEntity(player, 10, 10);
-            zone.AddEntity(snapjaw, 11, 10);
+            zone.AddEntity(marlback, 11, 10);
 
             LookSnapshot snapshot = LookQueryService.BuildSnapshot(player, zone, 11, 10);
 
-            Assert.AreEqual("[11,10] Snapjaw", snapshot.Header);
+            Assert.AreEqual("[11,10] MarlbackScrabbler", snapshot.Header);
             Assert.IsTrue(snapshot.DetailLines.Any(line => line.Contains("HP 6/10")));
             Assert.IsTrue(snapshot.DetailLines.Any(line => line.Contains("hostile")));
         }
@@ -54,8 +54,8 @@ namespace CavesOfOoo.Tests
         [Test]
         public void PacifiedHostile_ShowsPacifiedNotHostile()
         {
-            // Regression: player casts Calm on a faction-hostile Snapjaw.
-            // The Snapjaw's brain now carries NoFightGoal — it will not
+            // Regression: player casts Calm on a faction-hostile MarlbackScrabbler.
+            // The MarlbackScrabbler's brain now carries NoFightGoal — it will not
             // initiate combat. But the faction relationship is unchanged,
             // so the old GetRelationLabel returned "hostile" and the player
             // saw a misleading readout.
@@ -63,26 +63,26 @@ namespace CavesOfOoo.Tests
             // Fix: NoFightGoal presence overrides faction in the label.
             var zone = new Zone("LookZone");
             var player = CreateCreature("Player", "@", "&Y", isPlayer: true);
-            var snapjaw = CreateCreature("Snapjaw", "s", "&g");
-            snapjaw.SetTag("Faction", "Snapjaws");
-            snapjaw.AddPart(new BrainPart());
+            var marlback = CreateCreature("MarlbackScrabbler", "s", "&g");
+            marlback.SetTag("Faction", "OutlandRaiders");
+            marlback.AddPart(new BrainPart());
 
             zone.AddEntity(player, 10, 10);
-            zone.AddEntity(snapjaw, 11, 10);
+            zone.AddEntity(marlback, 11, 10);
 
-            // Precondition: untouched Snapjaw reads as hostile.
+            // Precondition: untouched MarlbackScrabbler reads as hostile.
             var pre = LookQueryService.BuildSnapshot(player, zone, 11, 10);
             Assert.IsTrue(pre.DetailLines.Any(line => line.Contains("hostile")),
-                "Precondition: a faction-hostile Snapjaw with no NoFightGoal should read as hostile.");
+                "Precondition: a faction-hostile MarlbackScrabbler with no NoFightGoal should read as hostile.");
             Assert.IsFalse(pre.DetailLines.Any(line => line.Contains("pacified")),
                 "Precondition: no pacified label before the goal is pushed.");
 
-            // Act: pacify the snapjaw.
-            snapjaw.GetPart<BrainPart>().PushGoal(new NoFightGoal(duration: 50));
+            // Act: pacify the marlback.
+            marlback.GetPart<BrainPart>().PushGoal(new NoFightGoal(duration: 50));
 
             var post = LookQueryService.BuildSnapshot(player, zone, 11, 10);
             Assert.IsTrue(post.DetailLines.Any(line => line.Contains("pacified")),
-                "A Snapjaw with NoFightGoal on its brain must read as 'pacified' in look mode.");
+                "A MarlbackScrabbler with NoFightGoal on its brain must read as 'pacified' in look mode.");
             Assert.IsFalse(post.DetailLines.Any(line => line.Contains("hostile")),
                 "'pacified' must REPLACE 'hostile' — showing both would be contradictory.");
         }
@@ -96,13 +96,13 @@ namespace CavesOfOoo.Tests
             // sticky on the target.
             var zone = new Zone("LookZone");
             var player = CreateCreature("Player", "@", "&Y", isPlayer: true);
-            var snapjaw = CreateCreature("Snapjaw", "s", "&g");
-            snapjaw.SetTag("Faction", "Snapjaws");
-            snapjaw.AddPart(new BrainPart());
+            var marlback = CreateCreature("MarlbackScrabbler", "s", "&g");
+            marlback.SetTag("Faction", "OutlandRaiders");
+            marlback.AddPart(new BrainPart());
             zone.AddEntity(player, 10, 10);
-            zone.AddEntity(snapjaw, 11, 10);
+            zone.AddEntity(marlback, 11, 10);
 
-            var brain = snapjaw.GetPart<BrainPart>();
+            var brain = marlback.GetPart<BrainPart>();
             var goal = new NoFightGoal(duration: 50);
             brain.PushGoal(goal);
             Assume.That(
@@ -151,14 +151,14 @@ namespace CavesOfOoo.Tests
             // via the same EffectDescriber the tonic Examine popup uses.
             var zone = new Zone("LookZone");
             var player = CreateCreature("Player", "@", "&Y", isPlayer: true);
-            var snapjaw = CreateCreature("Snapjaw", "s", "&g");
-            snapjaw.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 6, Min = 0, Max = 10 };
+            var marlback = CreateCreature("MarlbackScrabbler", "s", "&g");
+            marlback.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 6, Min = 0, Max = 10 };
 
             zone.AddEntity(player, 10, 10);
-            zone.AddEntity(snapjaw, 11, 10);
+            zone.AddEntity(marlback, 11, 10);
 
-            Assert.IsTrue(snapjaw.ApplyEffect(new PoisonedEffect(5, "1d3")));
-            Assert.IsTrue(snapjaw.ApplyEffect(new BurningEffect(2f)));
+            Assert.IsTrue(marlback.ApplyEffect(new PoisonedEffect(5, "1d3")));
+            Assert.IsTrue(marlback.ApplyEffect(new BurningEffect(2f)));
 
             LookSnapshot snapshot = LookQueryService.BuildSnapshot(player, zone, 11, 10);
 
@@ -193,10 +193,10 @@ namespace CavesOfOoo.Tests
             // Counter-check: a clean target adds zero affliction noise.
             var zone = new Zone("LookZone");
             var player = CreateCreature("Player", "@", "&Y", isPlayer: true);
-            var snapjaw = CreateCreature("Snapjaw", "s", "&g");
+            var marlback = CreateCreature("MarlbackScrabbler", "s", "&g");
 
             zone.AddEntity(player, 10, 10);
-            zone.AddEntity(snapjaw, 11, 10);
+            zone.AddEntity(marlback, 11, 10);
 
             LookSnapshot snapshot = LookQueryService.BuildSnapshot(player, zone, 11, 10);
 

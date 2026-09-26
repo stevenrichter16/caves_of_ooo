@@ -1,0 +1,193 @@
+{
+  "runtime": "10.0.5",
+  "total": 68,
+  "passed": 68,
+  "failed": 0,
+  "duration": "3.414518",
+  "schemaVersion": 2,
+  "selectionSha256": "bbf0eea8e4885570a50db424c705920aba4c00aea017fe70c1ab1376a36f2682",
+  "blueprintSha256": "52dc5f48660cff8028bd44ae35a06a2dfc50a2c15d030009a49208c5ed7a38ca",
+  "lootSha256": "9f6b4fc8df9b08b4be24b9383649d77a51a5bb60b0dc1736b413b7476e5cb575",
+  "exactRecordedZoneKeysAndOrderMatch": true,
+  "recordedZoneRows": 150,
+  "totalSourceRows": 161,
+  "sourceClassificationsChanged": 0,
+  "access": {
+    "containers": 445,
+    "locked": 39,
+    "noApproach": 0,
+    "openingAttempts": 406,
+    "opened": 406,
+    "refused": 0
+  },
+  "historicalAccess": {
+    "containers": 447,
+    "handledAttemptsFormerlyCalledOpened": 447,
+    "successfulOpens": "not measured; do not compare to corrected opened"
+  },
+  "before": {
+    "Wilderness": {
+      "rows": 120,
+      "containers": 330,
+      "creatures": 371,
+      "noCreatureRows": 20,
+      "units": 2206,
+      "categories": {
+        "other": 2057,
+        "armor": 13,
+        "weapon": 48,
+        "offense": 29,
+        "tonic": 59
+      },
+      "generatedCommerce": 9172.0,
+      "neutralSellQuote": 2984.0
+    },
+    "Lair": {
+      "rows": 15,
+      "containers": 66,
+      "creatures": 91,
+      "noCreatureRows": 0,
+      "units": 280,
+      "categories": {
+        "other": 257,
+        "armor": 2,
+        "weapon": 8,
+        "offense": 5,
+        "tonic": 8
+      },
+      "generatedCommerce": 1061.0,
+      "neutralSellQuote": 346.0
+    },
+    "Underground": {
+      "rows": 15,
+      "containers": 51,
+      "creatures": 34,
+      "noCreatureRows": 0,
+      "units": 360,
+      "categories": {
+        "other": 341,
+        "weapon": 10,
+        "offense": 1,
+        "armor": 4,
+        "tonic": 4
+      },
+      "generatedCommerce": 1473.0,
+      "neutralSellQuote": 479.0
+    },
+    "Shop": {
+      "rows": 10,
+      "containers": 0,
+      "creatures": 0,
+      "noCreatureRows": 10,
+      "units": 170,
+      "categories": {
+        "other": 115,
+        "weapon": 15,
+        "armor": 5,
+        "tonic": 35
+      },
+      "generatedCommerce": 1710.0,
+      "neutralSellQuote": 575.0
+    },
+    "DesignedStarterGrant": {
+      "rows": 1,
+      "containers": 0,
+      "creatures": 0,
+      "noCreatureRows": 1,
+      "units": 5,
+      "categories": {
+        "weapon": 1,
+        "tonic": 2,
+        "other": 2
+      },
+      "generatedCommerce": 54.0,
+      "neutralSellQuote": 17.0
+    }
+  },
+  "after": {
+    "Wilderness": {
+      "rows": 120,
+      "containers": 331,
+      "creatures": 374,
+      "noCreatureRows": 20,
+      "units": 2253,
+      "categories": {
+        "other": 2073,
+        "armor": 36,
+        "weapon": 51,
+        "offense": 28,
+        "tonic": 65
+      },
+      "generatedCommerce": 10823.0,
+      "neutralSellQuote": 3565.0
+    },
+    "Lair": {
+      "rows": 15,
+      "containers": 66,
+      "creatures": 91,
+      "noCreatureRows": 0,
+      "units": 306,
+      "categories": {
+        "other": 277,
+        "armor": 9,
+        "weapon": 9,
+        "offense": 4,
+        "tonic": 7
+      },
+      "generatedCommerce": 1357.0,
+      "neutralSellQuote": 448.0
+    },
+    "Underground": {
+      "rows": 15,
+      "containers": 48,
+      "creatures": 38,
+      "noCreatureRows": 0,
+      "units": 304,
+      "categories": {
+        "other": 275,
+        "tonic": 3,
+        "weapon": 11,
+        "armor": 13,
+        "offense": 2
+      },
+      "generatedCommerce": 1658.0,
+      "neutralSellQuote": 542.0
+    },
+    "Shop": {
+      "rows": 10,
+      "containers": 0,
+      "creatures": 0,
+      "noCreatureRows": 10,
+      "units": 175,
+      "categories": {
+        "other": 120,
+        "weapon": 15,
+        "armor": 5,
+        "tonic": 35
+      },
+      "generatedCommerce": 1750.0,
+      "neutralSellQuote": 585.0
+    },
+    "DesignedStarterGrant": {
+      "rows": 1,
+      "containers": 0,
+      "creatures": 0,
+      "noCreatureRows": 1,
+      "units": 5,
+      "categories": {
+        "weapon": 1,
+        "tonic": 2,
+        "other": 2
+      },
+      "generatedCommerce": 54.0,
+      "neutralSellQuote": 17.0
+    }
+  },
+  "noCreatureRowsDefinition": "Rows with no Creature-tagged entities; not a hostile-free, safety, encounter difficulty or pacing claim. Shop/starter row creature counts are not measured.",
+  "canVerify": "Actual detached zone generation, stocked contents, observed core OpenContainer events with legal adjacent placement, actual factory equipped loadouts, actual designed starter grant and generated shop inventories, exact table expectations and neutral sale quotes.",
+  "cannotVerify": "Bounded selected cells, not all 400; no native bootstrap/input/rendering, natural player acquisition or balance. Locked/unapproachable containers remain unopened but contents are counted separately. Stable-hash standalone maps differ from Unity. Loadout RNG is explicitly seeded per zone; this census does not claim production global RNG replay. Equipment samples are factory distributions, not natural encounter frequency.",
+  "keyAcquisition": "Not attempted in this150-zone census. Locked sources remain skipped; separate C11 native/key proofs cover their contract.",
+  "speciesIdentityBoundary": "Raw historical Snapjaw-era names are retained in before receipts; current raw Marlback names retained after. Counts do not assert lineage equivalence.",
+  "source": "published shared sources; private runner/selection",
+  "privateAndSharedReportsByteIdentical": true
+}

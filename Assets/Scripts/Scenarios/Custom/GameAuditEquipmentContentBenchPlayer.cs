@@ -30,11 +30,11 @@ namespace CavesOfOoo.Scenarios.Custom
             { Actor = actor; Equipped = equipped.Split(';'); Carried = carried.Length == 0 ? Array.Empty<string>() : carried.Split(';'); }
         }
         private static readonly Kit[] Kits = {
-            new Kit("Snapjaw", "Dagger;LeatherCap"),
-            new Kit("SnapjawScavenger", "LeatherGloves;Dagger"),
-            new Kit("SnapjawHunter", "Spear;LeatherBoots"),
-            new Kit("SnapjawChieftain", "ShortSword;LeatherArmor;LeatherCap"),
-            new Kit("SnapjawWarlord", "LeatherArmor;IronHelmet;IronshodBoots"),
+            new Kit("MarlbackScrabbler", "Dagger;LeatherCap"),
+            new Kit("MarlbackGleaner", "LeatherGloves;Dagger"),
+            new Kit("MarlbackTunnelguard", "Spear;LeatherBoots"),
+            new Kit("MarlbackWallkeeper", "ShortSword;LeatherArmor;LeatherCap"),
+            new Kit("MarlbackBreacher", "LeatherArmor;IronHelmet;IronshodBoots"),
             new Kit("DesertBandit", "ShortSword;LeatherCap"),
             new Kit("RuinScavenger", "Dagger;LeatherGloves"),
             new Kit("SkeletalSentry", "IronHelmet"),
@@ -175,13 +175,13 @@ namespace CavesOfOoo.Scenarios.Custom
                 && beast.GetPart<LoadoutPart>() == null && beast.GetPart<Body>().GetParts().All(p => p._Equipped == null)
                 && beast.GetPart<Body>().GetParts().Any(p => p._DefaultBehavior?.GetPart<MeleeWeaponPart>()?.BaseDamage == "2d4"));
             Entity alternate;
-            try { LoadoutPart.Rng = new ContentRolls(secondPick: true); alternate = input.EntityFactory.CreateEntity("SnapjawScavenger"); }
+            try { LoadoutPart.Rng = new ContentRolls(secondPick: true); alternate = input.EntityFactory.CreateEntity("MarlbackGleaner"); }
             finally { LoadoutPart.Rng = loadoutRng; }
-            _bench.Check("actual_scavenger_pick_can_choose_second_weapon_without_double_arming", ExactKit(alternate, new Kit("SnapjawScavenger", "LeatherGloves;ShortSword"))
+            _bench.Check("actual_scavenger_pick_can_choose_second_weapon_without_double_arming", ExactKit(alternate, new Kit("MarlbackGleaner", "LeatherGloves;ShortSword"))
                 && alternate.GetPart<Body>().GetParts().Count(p => p._Equipped?.GetPart<MeleeWeaponPart>() != null) == 1 && Ownership(alternate));
 
             BuildArena(input);
-            var warlord = Actor(input, "SnapjawWarlord"); var sentry = Actor(input, "SkeletalSentry");
+            var warlord = Actor(input, "MarlbackBreacher"); var sentry = Actor(input, "SkeletalSentry");
             _bootsID = Equipped(warlord).Single(e => e.BlueprintName == "IronshodBoots").ID;
             _warlordItemIDs = Equipped(warlord).Select(e => e.ID).ToArray();
             _bench.Check("armor_is_location_specific_and_boots_apply_exact_slowdown", PartAV(warlord, "Body") == 7 && PartAV(warlord, "Head") == 6 && PartAV(warlord, "Feet") == 6
@@ -217,7 +217,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 && !Owned(warlord).Contains(boots) && warlord.GetStat("Speed").Penalty == warlord.GetPart<Body>().CalculateMobilityPenalty()
                 && warlord.GetStat("Speed").Penalty > 0 && warlord.GetStatValue("Hitpoints") == hp && Alive(input, warlord));
             Record(input, "nonmortal_cleanup"); var oldWarlord = warlord; var oldPlayer = input.PlayerEntity;
-            yield return Tap(Key.F6); warlord = Actor(input, "SnapjawWarlord"); sentry = Actor(input, "SkeletalSentry");
+            yield return Tap(Key.F6); warlord = Actor(input, "MarlbackBreacher"); sentry = Actor(input, "SkeletalSentry");
             _bench.Check("native_F6_restores_fresh_healthy_graph_without_regrant", MessageLog.GetLast() == "Game loaded." && Restored(input)
                 && !ReferenceEquals(oldPlayer, input.PlayerEntity) && !ReferenceEquals(oldWarlord, warlord) && warlord.GetPart<Body>().DismemberedParts.Count == 0
                 && _warlordItemIDs.All(id => Equipped(warlord).Count(e => e.ID == id) == 1) && warlord.GetStat("Speed").Penalty == 5);
@@ -257,7 +257,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 && Signature(input.PlayerEntity) == pickedSignature && EquippedBy(input.PlayerEntity, boots) && Quantity(boots) == 1);
             oldPlayer = input.PlayerEntity; yield return Tap(Key.F6);
             _bench.Check("final_native_F6_restores_healthy_owner_and_removes_drop_duplicates", MessageLog.GetLast() == "Game loaded." && Restored(input)
-                && !ReferenceEquals(oldPlayer, input.PlayerEntity) && Owned(input.PlayerEntity).Length == 0 && Actor(input, "SnapjawWarlord").GetStat("Speed").Penalty == 5
+                && !ReferenceEquals(oldPlayer, input.PlayerEntity) && Owned(input.PlayerEntity).Length == 0 && Actor(input, "MarlbackBreacher").GetStat("Speed").Penalty == 5
                 && _warlordItemIDs.All(id => input.CurrentZone.GetReadOnlyEntities().All(e => e.ID != id)) && _healthyBytes.SequenceEqual(File.ReadAllBytes(QuickPath())));
             _bench.Check("all_checkpoints_stay_in_private_disposable_save_scope", SaveGameService.SaveRootOverride == _root && SaveGameService.GetSaveInfo("Quick")?.GameID == _freshID
                 && Directory.GetFiles(_root, "Quick.sav.gz", SearchOption.AllDirectories).Length == 2 && _markerBytes.SequenceEqual(File.ReadAllBytes(Path.Combine(_root, _markerID, "Quick.sav.gz")))
@@ -292,8 +292,8 @@ namespace CavesOfOoo.Scenarios.Custom
             for (int i = 0; i < _created.Length; i++)
             {
                 var actor = _created[i]; var brain = actor.GetPart<BrainPart>(); if (brain != null) actor.RemovePart(brain);
-                int x = actor.BlueprintName == "SnapjawWarlord" ? 21 : actor.BlueprintName == "SkeletalSentry" ? 22 : 30 + (i % 8) * 3;
-                int y = actor.BlueprintName == "SnapjawWarlord" ? 12 : actor.BlueprintName == "SkeletalSentry" ? 13 : 6 + (i / 8) * 5;
+                int x = actor.BlueprintName == "MarlbackBreacher" ? 21 : actor.BlueprintName == "SkeletalSentry" ? 22 : 30 + (i % 8) * 3;
+                int y = actor.BlueprintName == "MarlbackBreacher" ? 12 : actor.BlueprintName == "SkeletalSentry" ? 13 : 6 + (i / 8) * 5;
                 Place(actor, x, y); turns.AddEntity(actor);
             }
             var target = input.EntityFactory.CreateEntity("Villager"); Need(target != null, "Actual Villager target unavailable.");

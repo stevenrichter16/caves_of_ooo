@@ -88,7 +88,7 @@ namespace CavesOfOoo.Tests
         [TestCase(8, false)] [TestCase(9, true)]
         public void HostileSafetyUsesTheRealRestBoundary(int distance, bool success)
         {
-            _zone.AddEntity(_factory.CreateEntity("Snapjaw"), 10 + distance, 10);
+            _zone.AddEntity(_factory.CreateEntity("MarlbackScrabbler"), 10 + distance, 10);
             Dispatch(); AssertOutcome(success);
         }
         [Test] public void RepeatSleepDoesNotRepeatTheFirstMeetingEvent()

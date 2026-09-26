@@ -114,9 +114,9 @@ namespace CavesOfOoo.Tests
             // Counter-check: the matrix passes creatures through — the
             // gate must not change the creature path at all.
             var zone = new Zone("Z");
-            var creature = new Entity { ID = "c", BlueprintName = "Snapjaw" };
+            var creature = new Entity { ID = "c", BlueprintName = "MarlbackScrabbler" };
             creature.Tags["Creature"] = "";
-            creature.AddPart(new RenderPart { DisplayName = "snapjaw" });
+            creature.AddPart(new RenderPart { DisplayName = "marlback" });
             creature.AddPart(new ThermalPart
             { Temperature = 25f, FreezeTemperature = 0f, HeatCapacity = 1f });
             creature.Statistics["Hitpoints"] = new Stat

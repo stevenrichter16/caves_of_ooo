@@ -254,7 +254,7 @@ namespace CavesOfOoo.Tests
             // creature stood on a live rail unharmed.
             var zone = new Zone();
             zone.AddEntity(_factory.CreateEntity("CopperPipe"), 10, 10);
-            var victim = Creature(zone, "snapjaw", 10, 10);
+            var victim = Creature(zone, "marlback", 10, 10);
             int hp = victim.GetStatValue("Hitpoints");
 
             ZoneTileStateSystem.AddCharge(zone, 10, 10, 2);
@@ -269,7 +269,7 @@ namespace CavesOfOoo.Tests
         {
             var zone = new Zone();
             zone.AddEntity(_factory.CreateEntity("CopperPipe"), 10, 10);
-            var victim = Creature(zone, "snapjaw", 10, 10);
+            var victim = Creature(zone, "marlback", 10, 10);
 
             ZoneTileStateSystem.AddCharge(zone, 10, 10, 2);
             ZoneTileStateSystem.ResolveAfterAbility(zone);

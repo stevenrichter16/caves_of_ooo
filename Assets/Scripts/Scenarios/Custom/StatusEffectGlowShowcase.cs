@@ -3,40 +3,40 @@ using CavesOfOoo.Core;
 namespace CavesOfOoo.Scenarios.Custom
 {
     /// <summary>
-    /// Status-effect glow showcase. Spawns six Snapjaws in a vertical
+    /// Status-effect glow showcase. Spawns six OutlandRaiders in a vertical
     /// column east of the player; five wear an HDR-color status effect
     /// (Burning, Acidic, Electrified, Frozen, Poisoned), one is a
     /// control with no effect. Lets you visually verify whether the
     /// Pass 3 §3.B HDR colors are actually blooming on the screen.
     ///
-    ///                  [Snapjaw E-2: NO EFFECT (control)]
-    ///                  [Snapjaw E-1: Burning   (HDR red)   ]
-    ///                  [Snapjaw E  : Acidic    (HDR green) ]
-    ///   [Player] →→→→  [Snapjaw E+1: Electrified (HDR yellow)]
-    ///                  [Snapjaw E+2: Frozen    (HDR cyan)  ]
-    ///                  [Snapjaw E+3: Poisoned  (HDR green) ]
+    ///                  [MarlbackScrabbler E-2: NO EFFECT (control)]
+    ///                  [MarlbackScrabbler E-1: Burning   (HDR red)   ]
+    ///                  [MarlbackScrabbler E  : Acidic    (HDR green) ]
+    ///   [Player] →→→→  [MarlbackScrabbler E+1: Electrified (HDR yellow)]
+    ///                  [MarlbackScrabbler E+2: Frozen    (HDR cyan)  ]
+    ///                  [MarlbackScrabbler E+3: Poisoned  (HDR green) ]
     ///
     /// <para><b>How to use:</b> click <c>Caves Of Ooo / Scenarios /
     /// Combat Stress / Status Effect Glow Showcase</c>; press ▶ Play;
     /// the URP Bloom volume from Pass 1 (threshold 1.05) should make
-    /// each affected Snapjaw's glyph emit a halo. Compare against the
-    /// no-effect Snapjaw — if all six look identical, bloom is NOT
+    /// each affected MarlbackScrabbler's glyph emit a halo. Compare against the
+    /// no-effect MarlbackScrabbler — if all six look identical, bloom is NOT
     /// firing (gap is in the runtime render-pipeline; data + wiring
     /// proven by `Pass3WiringAdversarialTests`).</para>
     ///
     /// <para><b>Note:</b> Acidic and Poisoned both use HDR-bright-green
     /// (&amp;*G) so they look the same — that's an authoring choice
     /// (acid and venom share the green-hue language). The control
-    /// (no effect) Snapjaw uses the blueprint's default color so you
+    /// (no effect) MarlbackScrabbler uses the blueprint's default color so you
     /// can confirm the effects are doing the tinting.</para>
     ///
-    /// <para>Each Snapjaw has HP=999 + Passive so they don't aggro
+    /// <para>Each MarlbackScrabbler has HP=999 + Passive so they don't aggro
     /// the player and the layout stays stable for inspection.</para>
     /// </summary>
     [Scenario(
         name: "Status Effect Glow Showcase",
         category: "Combat",
-        description: "Visual verification of Pass 3 §3.B HDR status colors. 5 status-effect Snapjaws + 1 control; URP Bloom should halo each affected glyph. If they all look the same, the runtime render-pipeline gap is the next thing to fix.")]
+        description: "Visual verification of Pass 3 §3.B HDR status colors. 5 status-effect OutlandRaiders + 1 control; URP Bloom should halo each affected glyph. If they all look the same, the runtime render-pipeline gap is the next thing to fix.")]
     public class StatusEffectGlowShowcase : IScenario
     {
         public void Apply(ScenarioContext ctx)
@@ -50,20 +50,20 @@ namespace CavesOfOoo.Scenarios.Custom
                 .SetStatMax("Strength", 30)
                 .SetStat("Strength", 24);
 
-            // === Six snapjaws in a vertical column 5 cells east ===
+            // === Six marlbacks in a vertical column 5 cells east ===
             // Placed at p.x + 5 so they're visible without the player
             // having to walk far. Y offsets keep them in a readable
             // column.
             int x = p.x + 5;
 
             // Control — no effect, blueprint-default color.
-            ctx.Spawn("Snapjaw")
+            ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 999).WithHpAbsolute(999)
                 .Passive()
                 .At(x, p.y - 2);
 
             // Burning — &*R HDR red.
-            var burning = ctx.Spawn("Snapjaw")
+            var burning = ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 999).WithHpAbsolute(999)
                 .Passive()
                 .At(x, p.y - 1);
@@ -71,7 +71,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 burning.ApplyEffect(new BurningEffect());
 
             // Acidic — &*G HDR green.
-            var acidic = ctx.Spawn("Snapjaw")
+            var acidic = ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 999).WithHpAbsolute(999)
                 .Passive()
                 .At(x, p.y);
@@ -79,7 +79,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 acidic.ApplyEffect(new AcidicEffect());
 
             // Electrified — &*Y HDR yellow.
-            var electrified = ctx.Spawn("Snapjaw")
+            var electrified = ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 999).WithHpAbsolute(999)
                 .Passive()
                 .At(x, p.y + 1);
@@ -87,7 +87,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 electrified.ApplyEffect(new ElectrifiedEffect());
 
             // Frozen — &*C HDR cyan.
-            var frozen = ctx.Spawn("Snapjaw")
+            var frozen = ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 999).WithHpAbsolute(999)
                 .Passive()
                 .At(x, p.y + 2);
@@ -95,7 +95,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 frozen.ApplyEffect(new FrozenEffect());
 
             // Poisoned — &*G HDR green (same hue as Acidic, by design).
-            var poisoned = ctx.Spawn("Snapjaw")
+            var poisoned = ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 999).WithHpAbsolute(999)
                 .Passive()
                 .At(x, p.y + 3);
@@ -106,7 +106,7 @@ namespace CavesOfOoo.Scenarios.Custom
             ctx.Log("=== Status Effect Glow Showcase (Pass 3 §3.B HDR colors) ===");
             ctx.Log($"5 effects + 1 control, in a vertical column at x={x}.");
             ctx.Log("If URP Bloom (threshold 1.05) is firing, each effect's");
-            ctx.Log("glyph should have a halo. The no-effect Snapjaw is the");
+            ctx.Log("glyph should have a halo. The no-effect MarlbackScrabbler is the");
             ctx.Log("baseline — no halo. If all 6 look identical, the gap is");
             ctx.Log("in the runtime render-pipeline (HDR tilemap shader / ");
             ctx.Log("render-target format). Data + wiring already proven by");

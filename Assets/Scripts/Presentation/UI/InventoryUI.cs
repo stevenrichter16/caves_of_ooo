@@ -156,6 +156,17 @@ namespace CavesOfOoo.Rendering
 
         public bool IsOpen => _isOpen;
 
+        private bool _pendingEverydayTurn;
+
+        /// <summary>Transfers a successful water/cooking action's turn to the input
+        /// controller exactly once. Closing the menu preserves this pending turn.</summary>
+        public bool ConsumePendingEverydayTurn()
+        {
+            bool pending = _pendingEverydayTurn;
+            _pendingEverydayTurn = false;
+            return pending;
+        }
+
         private struct DisplayRow
         {
             public bool IsHeader;
@@ -240,6 +251,7 @@ namespace CavesOfOoo.Rendering
         public void Open()
         {
             if (PlayerEntity == null) return;
+            _pendingEverydayTurn = false;
             ClearActionStatus();
             _isOpen = true;
             // The world is still on the shared tilemap during the frame
@@ -1392,6 +1404,14 @@ namespace CavesOfOoo.Rendering
                     Close();
                     return;
                 default: completed = TryPerformActionViaCommand(item, action.Command); break;
+            }
+            if (completed && (action.Command == "FillWaterskin"
+                || action.Command == "DrinkWaterskin" || action.Command == "Cook"
+                || action.Command == "LightTorch" || action.Command == "ExtinguishTorch"))
+            {
+                _pendingEverydayTurn = true;
+                Close();
+                return;
             }
             // A refused command retains its exact menu, cursor and item for retry.
             if (completed) _itemActionPopup = null;

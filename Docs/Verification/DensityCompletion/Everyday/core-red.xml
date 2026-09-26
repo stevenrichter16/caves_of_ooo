@@ -1,0 +1,907 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="35" result="Failed" start-time="2026-09-26T19:52:04.1402370Z" end-time="2026-09-26T19:52:04.7741340Z" duration="0.634351" total="35" passed="0" failed="35" inconclusive="0" skipped="0" warnings="0" asserts="60" random-seed="1982757080">
+  <command-line><![CDATA[/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/Everyday/core-red.xml --where "class =~ /DensityEverydayTests/"]]></command-line>
+  <filter>
+    <class re="1">DensityEverydayTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1045" name="EditModeRunner.dll" fullname="/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-09-26T19:52:04.1402370Z" end-time="2026-09-26T19:52:04.7741340Z" duration="0.634351" total="35" passed="0" failed="35" warnings="0" inconclusive="0" skipped="0" asserts="60">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-everyday-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-everyday-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="49062" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1046" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-09-26T19:52:04.1418980Z" end-time="2026-09-26T19:52:04.7741280Z" duration="0.632692" total="35" passed="0" failed="35" warnings="0" inconclusive="0" skipped="0" asserts="60">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1047" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-09-26T19:52:04.1420800Z" end-time="2026-09-26T19:52:04.7740970Z" duration="0.632479" total="35" passed="0" failed="35" warnings="0" inconclusive="0" skipped="0" asserts="60">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="DensityEverydayTests" fullname="CavesOfOoo.Tests.DensityEverydayTests" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-09-26T19:52:04.1427150Z" end-time="2026-09-26T19:52:04.7740900Z" duration="0.631837" total="35" passed="0" failed="35" warnings="0" inconclusive="0" skipped="0" asserts="60">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1044" name="Campfire_OffersBothExistingRestAndNextBand" fullname="CavesOfOoo.Tests.DensityEverydayTests.Campfire_OffersBothExistingRestAndNextBand" methodname="Campfire_OffersBothExistingRestAndNextBand" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1608391889" result="Failed" start-time="2026-09-26T19:52:04.1441760Z" end-time="2026-09-26T19:52:04.2290970Z" duration="0.085009" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Campfire_OffersBothExistingRestAndNextBand() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 151
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Campfire_OffersBothExistingRestAndNextBand() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 151
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1034" name="Cooking_AfterListenerThrows_RestoresMergedOutputAndOriginalStack" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_AfterListenerThrows_RestoresMergedOutputAndOriginalStack" methodname="Cooking_AfterListenerThrows_RestoresMergedOutputAndOriginalStack" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1577212910" result="Failed" start-time="2026-09-26T19:52:04.2297660Z" end-time="2026-09-26T19:52:04.2511940Z" duration="0.021444" asserts="5">
+            <failure>
+              <message><![CDATA[  Cookable is required
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.RequirePart(Entity entity, String name) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 45
+   at CavesOfOoo.Tests.DensityEverydayTests.Cooking_AfterListenerThrows_RestoresMergedOutputAndOriginalStack() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 134
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Cookable is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.RequirePart(Entity entity, String name) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 45
+   at CavesOfOoo.Tests.DensityEverydayTests.Cooking_AfterListenerThrows_RestoresMergedOutputAndOriginalStack() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 134
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1036" name="Cooking_AtCapacity_ReplacementOfEqualWeightSucceeds" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_AtCapacity_ReplacementOfEqualWeightSucceeds" methodname="Cooking_AtCapacity_ReplacementOfEqualWeightSucceeds" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1960394545" result="Failed" start-time="2026-09-26T19:52:04.2512500Z" end-time="2026-09-26T19:52:04.2665360Z" duration="0.015297" asserts="3">
+            <failure>
+              <message><![CDATA[  Cookable is required
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.RequirePart(Entity entity, String name) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 45
+   at CavesOfOoo.Tests.DensityEverydayTests.Cooking_AtCapacity_ReplacementOfEqualWeightSucceeds() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 138
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Cookable is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.RequirePart(Entity entity, String name) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 45
+   at CavesOfOoo.Tests.DensityEverydayTests.Cooking_AtCapacity_ReplacementOfEqualWeightSucceeds() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 138
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1035" name="Cooking_HeavierExistingMergedOutputCannotOverflowCapacity" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_HeavierExistingMergedOutputCannotOverflowCapacity" methodname="Cooking_HeavierExistingMergedOutputCannotOverflowCapacity" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1519928580" result="Failed" start-time="2026-09-26T19:52:04.2665650Z" end-time="2026-09-26T19:52:04.2835400Z" duration="0.016987" asserts="5">
+            <failure>
+              <message><![CDATA[  Cookable is required
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.RequirePart(Entity entity, String name) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 45
+   at CavesOfOoo.Tests.DensityEverydayTests.Cooking_HeavierExistingMergedOutputCannotOverflowCapacity() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 136
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Cookable is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.RequirePart(Entity entity, String name) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 45
+   at CavesOfOoo.Tests.DensityEverydayTests.Cooking_HeavierExistingMergedOutputCannotOverflowCapacity() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 136
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1033" name="Cooking_MissingOrDistantFire_Refuses" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_MissingOrDistantFire_Refuses" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-26T19:52:04.2835630Z" end-time="2026-09-26T19:52:04.3244600Z" duration="0.040927" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1031" name="Cooking_MissingOrDistantFire_Refuses(False)" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_MissingOrDistantFire_Refuses(False)" methodname="Cooking_MissingOrDistantFire_Refuses" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1254035089" result="Failed" start-time="2026-09-26T19:52:04.2837110Z" end-time="2026-09-26T19:52:04.3064350Z" duration="0.022740" asserts="3">
+              <failure>
+                <message><![CDATA[  Cookable is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.RequirePart(Entity entity, String name) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 45
+   at CavesOfOoo.Tests.DensityEverydayTests.Cooking_MissingOrDistantFire_Refuses(Boolean distant) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 132
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Cookable is required
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.RequirePart(Entity entity, String name) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 45
+   at CavesOfOoo.Tests.DensityEverydayTests.Cooking_MissingOrDistantFire_Refuses(Boolean distant) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 132
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1032" name="Cooking_MissingOrDistantFire_Refuses(True)" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_MissingOrDistantFire_Refuses(True)" methodname="Cooking_MissingOrDistantFire_Refuses" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1301927610" result="Failed" start-time="2026-09-26T19:52:04.3064560Z" end-time="2026-09-26T19:52:04.3240180Z" duration="0.017575" asserts="3">
+              <failure>
+                <message><![CDATA[  Cookable is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.RequirePart(Entity entity, String name) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 45
+   at CavesOfOoo.Tests.DensityEverydayTests.Cooking_MissingOrDistantFire_Refuses(Boolean distant) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 132
+   at InvokeStub_DensityEverydayTests.Cooking_MissingOrDistantFire_Refuses(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Cookable is required
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.RequirePart(Entity entity, String name) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 45
+   at CavesOfOoo.Tests.DensityEverydayTests.Cooking_MissingOrDistantFire_Refuses(Boolean distant) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 132
+   at InvokeStub_DensityEverydayTests.Cooking_MissingOrDistantFire_Refuses(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1037" name="Cooking_MissingOutputFactory_RefusesWithoutLoss" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_MissingOutputFactory_RefusesWithoutLoss" methodname="Cooking_MissingOutputFactory_RefusesWithoutLoss" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1204324880" result="Failed" start-time="2026-09-26T19:52:04.3246310Z" end-time="2026-09-26T19:52:04.3392110Z" duration="0.014591" asserts="3">
+            <failure>
+              <message><![CDATA[  Cookable is required
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.RequirePart(Entity entity, String name) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 45
+   at CavesOfOoo.Tests.DensityEverydayTests.Cooking_MissingOutputFactory_RefusesWithoutLoss() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 140
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Cookable is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.RequirePart(Entity entity, String name) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 45
+   at CavesOfOoo.Tests.DensityEverydayTests.Cooking_MissingOutputFactory_RefusesWithoutLoss() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 140
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1038" name="Cooking_PreparedRecipesRemainAuthored_AndNewMushroomHasThreeD4" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_PreparedRecipesRemainAuthored_AndNewMushroomHasThreeD4" methodname="Cooking_PreparedRecipesRemainAuthored_AndNewMushroomHasThreeD4" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="2101402738" result="Failed" start-time="2026-09-26T19:52:04.3392310Z" end-time="2026-09-26T19:52:04.3574210Z" duration="0.018203" asserts="3">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Cooking_PreparedRecipesRemainAuthored_AndNewMushroomHasThreeD4() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 142
+]]></stack-trace>
+            </failure>
+            <output><![CDATA[[Error] EntityFactory: unknown blueprint 'RoastedMushroom'
+]]></output>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Cooking_PreparedRecipesRemainAuthored_AndNewMushroomHasThreeD4() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 142
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1030" name="Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-26T19:52:04.3574630Z" end-time="2026-09-26T19:52:04.4033190Z" duration="0.045889" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="9">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1027" name="Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses(&quot;RawMeat&quot;,&quot;CookedMeat&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses(&quot;RawMeat&quot;,&quot;CookedMeat&quot;)" methodname="Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1786618743" result="Failed" start-time="2026-09-26T19:52:04.3574810Z" end-time="2026-09-26T19:52:04.3734540Z" duration="0.015985" asserts="3">
+              <failure>
+                <message><![CDATA[  Cookable is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.RequirePart(Entity entity, String name) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 45
+   at CavesOfOoo.Tests.DensityEverydayTests.Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses(String raw, String cooked) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 127
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Cookable is required
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.RequirePart(Entity entity, String name) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 45
+   at CavesOfOoo.Tests.DensityEverydayTests.Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses(String raw, String cooked) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 127
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1028" name="Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses(&quot;Starapple&quot;,&quot;RoastedStarapple&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses(&quot;Starapple&quot;,&quot;RoastedStarapple&quot;)" methodname="Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="505311749" result="Failed" start-time="2026-09-26T19:52:04.3734830Z" end-time="2026-09-26T19:52:04.3883540Z" duration="0.014882" asserts="3">
+              <failure>
+                <message><![CDATA[  Cookable is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.RequirePart(Entity entity, String name) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 45
+   at CavesOfOoo.Tests.DensityEverydayTests.Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses(String raw, String cooked) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 127
+   at InvokeStub_DensityEverydayTests.Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Cookable is required
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.RequirePart(Entity entity, String name) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 45
+   at CavesOfOoo.Tests.DensityEverydayTests.Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses(String raw, String cooked) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 127
+   at InvokeStub_DensityEverydayTests.Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1029" name="Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses(&quot;Mushroom&quot;,&quot;RoastedMushroom&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses(&quot;Mushroom&quot;,&quot;RoastedMushroom&quot;)" methodname="Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="2097871295" result="Failed" start-time="2026-09-26T19:52:04.3884080Z" end-time="2026-09-26T19:52:04.4032750Z" duration="0.014878" asserts="3">
+              <failure>
+                <message><![CDATA[  Cookable is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.RequirePart(Entity entity, String name) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 45
+   at CavesOfOoo.Tests.DensityEverydayTests.Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses(String raw, String cooked) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 127
+   at InvokeStub_DensityEverydayTests.Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Cookable is required
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.RequirePart(Entity entity, String name) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 45
+   at CavesOfOoo.Tests.DensityEverydayTests.Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses(String raw, String cooked) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 127
+   at InvokeStub_DensityEverydayTests.Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1017" name="Drink_ConsumesExactlyOneChargeAndParchedStack" fullname="CavesOfOoo.Tests.DensityEverydayTests.Drink_ConsumesExactlyOneChargeAndParchedStack" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-26T19:52:04.4033310Z" end-time="2026-09-26T19:52:04.4363940Z" duration="0.033087" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1015" name="Drink_ConsumesExactlyOneChargeAndParchedStack(1)" fullname="CavesOfOoo.Tests.DensityEverydayTests.Drink_ConsumesExactlyOneChargeAndParchedStack(1)" methodname="Drink_ConsumesExactlyOneChargeAndParchedStack" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1063060113" result="Failed" start-time="2026-09-26T19:52:04.4033420Z" end-time="2026-09-26T19:52:04.4207650Z" duration="0.017436" asserts="1">
+              <failure>
+                <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.Drink_ConsumesExactlyOneChargeAndParchedStack(Int32 stacks) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 92
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'Waterskin'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.Drink_ConsumesExactlyOneChargeAndParchedStack(Int32 stacks) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 92
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1016" name="Drink_ConsumesExactlyOneChargeAndParchedStack(3)" fullname="CavesOfOoo.Tests.DensityEverydayTests.Drink_ConsumesExactlyOneChargeAndParchedStack(3)" methodname="Drink_ConsumesExactlyOneChargeAndParchedStack" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1096535739" result="Failed" start-time="2026-09-26T19:52:04.4207860Z" end-time="2026-09-26T19:52:04.4363750Z" duration="0.015601" asserts="1">
+              <failure>
+                <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.Drink_ConsumesExactlyOneChargeAndParchedStack(Int32 stacks) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 92
+   at InvokeStub_DensityEverydayTests.Drink_ConsumesExactlyOneChargeAndParchedStack(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'Waterskin'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.Drink_ConsumesExactlyOneChargeAndParchedStack(Int32 stacks) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 92
+   at InvokeStub_DensityEverydayTests.Drink_ConsumesExactlyOneChargeAndParchedStack(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1018" name="EmptyDrink_RefusesAndRetainsVessel" fullname="CavesOfOoo.Tests.DensityEverydayTests.EmptyDrink_RefusesAndRetainsVessel" methodname="EmptyDrink_RefusesAndRetainsVessel" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="2034000580" result="Failed" start-time="2026-09-26T19:52:04.4364010Z" end-time="2026-09-26T19:52:04.4508650Z" duration="0.014475" asserts="1">
+            <failure>
+              <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.EmptyDrink_RefusesAndRetainsVessel() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 99
+]]></stack-trace>
+            </failure>
+            <output><![CDATA[[Error] EntityFactory: unknown blueprint 'Waterskin'
+]]></output>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.EmptyDrink_RefusesAndRetainsVessel() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 99
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1013" name="FillEmptyPoolOrDistantWellOrTemporaryCoating_Refuses" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillEmptyPoolOrDistantWellOrTemporaryCoating_Refuses" methodname="FillEmptyPoolOrDistantWellOrTemporaryCoating_Refuses" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="940525860" result="Failed" start-time="2026-09-26T19:52:04.4509060Z" end-time="2026-09-26T19:52:04.4683780Z" duration="0.017485" asserts="1">
+            <failure>
+              <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.FillEmptyPoolOrDistantWellOrTemporaryCoating_Refuses() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 87
+]]></stack-trace>
+            </failure>
+            <output><![CDATA[[Error] EntityFactory: unknown blueprint 'Waterskin'
+]]></output>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.FillEmptyPoolOrDistantWellOrTemporaryCoating_Refuses() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 87
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1007" name="FillFinitePool_ConservesVolume" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillFinitePool_ConservesVolume" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-26T19:52:04.4684450Z" end-time="2026-09-26T19:52:04.5146880Z" duration="0.046277" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1004" name="FillFinitePool_ConservesVolume(1,1,0)" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillFinitePool_ConservesVolume(1,1,0)" methodname="FillFinitePool_ConservesVolume" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="318674843" result="Failed" start-time="2026-09-26T19:52:04.4684600Z" end-time="2026-09-26T19:52:04.4847710Z" duration="0.016323" asserts="1">
+              <failure>
+                <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.FillFinitePool_ConservesVolume(Int32 volume, Int32 charges, Int32 remainder) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 82
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'Waterskin'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.FillFinitePool_ConservesVolume(Int32 volume, Int32 charges, Int32 remainder) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 82
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1005" name="FillFinitePool_ConservesVolume(2,2,0)" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillFinitePool_ConservesVolume(2,2,0)" methodname="FillFinitePool_ConservesVolume" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1428067364" result="Failed" start-time="2026-09-26T19:52:04.4848980Z" end-time="2026-09-26T19:52:04.5004040Z" duration="0.015518" asserts="1">
+              <failure>
+                <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.FillFinitePool_ConservesVolume(Int32 volume, Int32 charges, Int32 remainder) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 82
+   at InvokeStub_DensityEverydayTests.FillFinitePool_ConservesVolume(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'Waterskin'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.FillFinitePool_ConservesVolume(Int32 volume, Int32 charges, Int32 remainder) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 82
+   at InvokeStub_DensityEverydayTests.FillFinitePool_ConservesVolume(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1006" name="FillFinitePool_ConservesVolume(8,3,5)" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillFinitePool_ConservesVolume(8,3,5)" methodname="FillFinitePool_ConservesVolume" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1169534396" result="Failed" start-time="2026-09-26T19:52:04.5004250Z" end-time="2026-09-26T19:52:04.5146350Z" duration="0.014220" asserts="1">
+              <failure>
+                <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.FillFinitePool_ConservesVolume(Int32 volume, Int32 charges, Int32 remainder) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 82
+   at InvokeStub_DensityEverydayTests.FillFinitePool_ConservesVolume(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'Waterskin'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.FillFinitePool_ConservesVolume(Int32 volume, Int32 charges, Int32 remainder) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 82
+   at InvokeStub_DensityEverydayTests.FillFinitePool_ConservesVolume(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1014" name="FillFullVessel_DoesNotConsumeFiniteWater" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillFullVessel_DoesNotConsumeFiniteWater" methodname="FillFullVessel_DoesNotConsumeFiniteWater" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1529673957" result="Failed" start-time="2026-09-26T19:52:04.5146960Z" end-time="2026-09-26T19:52:04.5288570Z" duration="0.014171" asserts="1">
+            <failure>
+              <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.FillFullVessel_DoesNotConsumeFiniteWater() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 89
+]]></stack-trace>
+            </failure>
+            <output><![CDATA[[Error] EntityFactory: unknown blueprint 'Waterskin'
+]]></output>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.FillFullVessel_DoesNotConsumeFiniteWater() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 89
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1003" name="FillRenewableSource_ThreeDrinksWithoutConsumingSource" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillRenewableSource_ThreeDrinksWithoutConsumingSource" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-26T19:52:04.5288780Z" end-time="2026-09-26T19:52:04.5618870Z" duration="0.033033" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="FillRenewableSource_ThreeDrinksWithoutConsumingSource(&quot;well&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillRenewableSource_ThreeDrinksWithoutConsumingSource(&quot;well&quot;)" methodname="FillRenewableSource_ThreeDrinksWithoutConsumingSource" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="563040995" result="Failed" start-time="2026-09-26T19:52:04.5288930Z" end-time="2026-09-26T19:52:04.5452600Z" duration="0.016379" asserts="1">
+              <failure>
+                <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.FillRenewableSource_ThreeDrinksWithoutConsumingSource(String source) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 79
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'Waterskin'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.FillRenewableSource_ThreeDrinksWithoutConsumingSource(String source) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 79
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="FillRenewableSource_ThreeDrinksWithoutConsumingSource(&quot;spring&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillRenewableSource_ThreeDrinksWithoutConsumingSource(&quot;spring&quot;)" methodname="FillRenewableSource_ThreeDrinksWithoutConsumingSource" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="335143750" result="Failed" start-time="2026-09-26T19:52:04.5452850Z" end-time="2026-09-26T19:52:04.5618600Z" duration="0.016587" asserts="1">
+              <failure>
+                <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.FillRenewableSource_ThreeDrinksWithoutConsumingSource(String source) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 79
+   at InvokeStub_DensityEverydayTests.FillRenewableSource_ThreeDrinksWithoutConsumingSource(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'Waterskin'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.FillRenewableSource_ThreeDrinksWithoutConsumingSource(String source) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 79
+   at InvokeStub_DensityEverydayTests.FillRenewableSource_ThreeDrinksWithoutConsumingSource(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1012" name="FillUnsafeLiquid_RefusesWithoutChangingEitherSide" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-26T19:52:04.5619280Z" end-time="2026-09-26T19:52:04.6211320Z" duration="0.059247" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="4">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1008" name="FillUnsafeLiquid_RefusesWithoutChangingEitherSide(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide(&quot;oil&quot;)" methodname="FillUnsafeLiquid_RefusesWithoutChangingEitherSide" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1920709339" result="Failed" start-time="2026-09-26T19:52:04.5619450Z" end-time="2026-09-26T19:52:04.5756460Z" duration="0.013711" asserts="1">
+              <failure>
+                <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide(String liquid) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 85
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'Waterskin'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide(String liquid) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 85
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1009" name="FillUnsafeLiquid_RefusesWithoutChangingEitherSide(&quot;brine&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide(&quot;brine&quot;)" methodname="FillUnsafeLiquid_RefusesWithoutChangingEitherSide" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="333820442" result="Failed" start-time="2026-09-26T19:52:04.5756680Z" end-time="2026-09-26T19:52:04.5913430Z" duration="0.015687" asserts="1">
+              <failure>
+                <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide(String liquid) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 85
+   at InvokeStub_DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'Waterskin'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide(String liquid) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 85
+   at InvokeStub_DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1010" name="FillUnsafeLiquid_RefusesWithoutChangingEitherSide(&quot;acid&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide(&quot;acid&quot;)" methodname="FillUnsafeLiquid_RefusesWithoutChangingEitherSide" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="523355746" result="Failed" start-time="2026-09-26T19:52:04.5914000Z" end-time="2026-09-26T19:52:04.6069150Z" duration="0.015526" asserts="1">
+              <failure>
+                <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide(String liquid) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 85
+   at InvokeStub_DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'Waterskin'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide(String liquid) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 85
+   at InvokeStub_DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1011" name="FillUnsafeLiquid_RefusesWithoutChangingEitherSide(&quot;memory_bath&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide(&quot;memory_bath&quot;)" methodname="FillUnsafeLiquid_RefusesWithoutChangingEitherSide" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1676112536" result="Failed" start-time="2026-09-26T19:52:04.6069350Z" end-time="2026-09-26T19:52:04.6211030Z" duration="0.014178" asserts="1">
+              <failure>
+                <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide(String liquid) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 85
+   at InvokeStub_DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'Waterskin'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide(String liquid) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 85
+   at InvokeStub_DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1043" name="NextBandRest_LandsExactlyOnNextBoundary" fullname="CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-26T19:52:04.6211430Z" end-time="2026-09-26T19:52:04.6812070Z" duration="0.060108" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="4">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1039" name="NextBandRest_LandsExactlyOnNextBoundary(0,300)" fullname="CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(0,300)" methodname="NextBandRest_LandsExactlyOnNextBoundary" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1983919687" result="Failed" start-time="2026-09-26T19:52:04.6211580Z" end-time="2026-09-26T19:52:04.6358800Z" duration="0.014733" asserts="1">
+              <failure>
+                <message><![CDATA[  Next-band rest API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Int32 before, Int32 after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 147
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Next-band rest API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Int32 before, Int32 after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 147
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1040" name="NextBandRest_LandsExactlyOnNextBoundary(299,300)" fullname="CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(299,300)" methodname="NextBandRest_LandsExactlyOnNextBoundary" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="240869577" result="Failed" start-time="2026-09-26T19:52:04.6358990Z" end-time="2026-09-26T19:52:04.6520270Z" duration="0.016140" asserts="1">
+              <failure>
+                <message><![CDATA[  Next-band rest API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Int32 before, Int32 after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 147
+   at InvokeStub_DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Next-band rest API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Int32 before, Int32 after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 147
+   at InvokeStub_DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1041" name="NextBandRest_LandsExactlyOnNextBoundary(300,600)" fullname="CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(300,600)" methodname="NextBandRest_LandsExactlyOnNextBoundary" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1332889716" result="Failed" start-time="2026-09-26T19:52:04.6520780Z" end-time="2026-09-26T19:52:04.6669160Z" duration="0.014850" asserts="1">
+              <failure>
+                <message><![CDATA[  Next-band rest API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Int32 before, Int32 after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 147
+   at InvokeStub_DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Next-band rest API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Int32 before, Int32 after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 147
+   at InvokeStub_DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1042" name="NextBandRest_LandsExactlyOnNextBoundary(1199,1200)" fullname="CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(1199,1200)" methodname="NextBandRest_LandsExactlyOnNextBoundary" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1522989262" result="Failed" start-time="2026-09-26T19:52:04.6669670Z" end-time="2026-09-26T19:52:04.6811680Z" duration="0.014212" asserts="1">
+              <failure>
+                <message><![CDATA[  Next-band rest API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Int32 before, Int32 after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 147
+   at InvokeStub_DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Next-band rest API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Int32 before, Int32 after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 147
+   at InvokeStub_DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1019" name="NonParchedDrink_StillConsumesWaterWithoutHealing" fullname="CavesOfOoo.Tests.DensityEverydayTests.NonParchedDrink_StillConsumesWaterWithoutHealing" methodname="NonParchedDrink_StillConsumesWaterWithoutHealing" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="514244652" result="Failed" start-time="2026-09-26T19:52:04.6812190Z" end-time="2026-09-26T19:52:04.6957540Z" duration="0.014547" asserts="1">
+            <failure>
+              <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.NonParchedDrink_StillConsumesWaterWithoutHealing() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 101
+]]></stack-trace>
+            </failure>
+            <output><![CDATA[[Error] EntityFactory: unknown blueprint 'Waterskin'
+]]></output>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.NonParchedDrink_StillConsumesWaterWithoutHealing() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 101
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1022" name="StaleSkin_ForgedBackReferenceCannotAuthorize" fullname="CavesOfOoo.Tests.DensityEverydayTests.StaleSkin_ForgedBackReferenceCannotAuthorize" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-26T19:52:04.6958220Z" end-time="2026-09-26T19:52:04.7280730Z" duration="0.032275" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1020" name="StaleSkin_ForgedBackReferenceCannotAuthorize(&quot;FillWaterskin&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.StaleSkin_ForgedBackReferenceCannotAuthorize(&quot;FillWaterskin&quot;)" methodname="StaleSkin_ForgedBackReferenceCannotAuthorize" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1536938657" result="Failed" start-time="2026-09-26T19:52:04.6958440Z" end-time="2026-09-26T19:52:04.7124720Z" duration="0.016641" asserts="1">
+              <failure>
+                <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.StaleSkin_ForgedBackReferenceCannotAuthorize(String command) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 104
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'Waterskin'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.StaleSkin_ForgedBackReferenceCannotAuthorize(String command) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 104
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1021" name="StaleSkin_ForgedBackReferenceCannotAuthorize(&quot;DrinkWaterskin&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.StaleSkin_ForgedBackReferenceCannotAuthorize(&quot;DrinkWaterskin&quot;)" methodname="StaleSkin_ForgedBackReferenceCannotAuthorize" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1976238053" result="Failed" start-time="2026-09-26T19:52:04.7124910Z" end-time="2026-09-26T19:52:04.7280440Z" duration="0.015565" asserts="1">
+              <failure>
+                <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.StaleSkin_ForgedBackReferenceCannotAuthorize(String command) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 104
+   at InvokeStub_DensityEverydayTests.StaleSkin_ForgedBackReferenceCannotAuthorize(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'Waterskin'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.StaleSkin_ForgedBackReferenceCannotAuthorize(String command) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 104
+   at InvokeStub_DensityEverydayTests.StaleSkin_ForgedBackReferenceCannotAuthorize(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1023" name="TwoVessels_NeverMergeOrShareCharges_AndSavePreservesState" fullname="CavesOfOoo.Tests.DensityEverydayTests.TwoVessels_NeverMergeOrShareCharges_AndSavePreservesState" methodname="TwoVessels_NeverMergeOrShareCharges_AndSavePreservesState" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="299724660" result="Failed" start-time="2026-09-26T19:52:04.7280850Z" end-time="2026-09-26T19:52:04.7424700Z" duration="0.014396" asserts="1">
+            <failure>
+              <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.TwoVessels_NeverMergeOrShareCharges_AndSavePreservesState() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 107
+]]></stack-trace>
+            </failure>
+            <output><![CDATA[[Error] EntityFactory: unknown blueprint 'Waterskin'
+]]></output>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.TwoVessels_NeverMergeOrShareCharges_AndSavePreservesState() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 107
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1026" name="WaterAfterListenerThrows_RollsBackChargePoolAndParched" fullname="CavesOfOoo.Tests.DensityEverydayTests.WaterAfterListenerThrows_RollsBackChargePoolAndParched" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-26T19:52:04.7425510Z" end-time="2026-09-26T19:52:04.7740270Z" duration="0.031499" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1024" name="WaterAfterListenerThrows_RollsBackChargePoolAndParched(&quot;FillWaterskin&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.WaterAfterListenerThrows_RollsBackChargePoolAndParched(&quot;FillWaterskin&quot;)" methodname="WaterAfterListenerThrows_RollsBackChargePoolAndParched" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="780926369" result="Failed" start-time="2026-09-26T19:52:04.7425890Z" end-time="2026-09-26T19:52:04.7577090Z" duration="0.015131" asserts="1">
+              <failure>
+                <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.WaterAfterListenerThrows_RollsBackChargePoolAndParched(String command) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 116
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'Waterskin'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.WaterAfterListenerThrows_RollsBackChargePoolAndParched(String command) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 116
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1025" name="WaterAfterListenerThrows_RollsBackChargePoolAndParched(&quot;DrinkWaterskin&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.WaterAfterListenerThrows_RollsBackChargePoolAndParched(&quot;DrinkWaterskin&quot;)" methodname="WaterAfterListenerThrows_RollsBackChargePoolAndParched" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="434441566" result="Failed" start-time="2026-09-26T19:52:04.7577870Z" end-time="2026-09-26T19:52:04.7740000Z" duration="0.016226" asserts="1">
+              <failure>
+                <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.WaterAfterListenerThrows_RollsBackChargePoolAndParched(String command) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 116
+   at InvokeStub_DensityEverydayTests.WaterAfterListenerThrows_RollsBackChargePoolAndParched(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'Waterskin'
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Authored reusable Waterskin blueprint is required
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Skin(Int32 charges) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 51
+   at CavesOfOoo.Tests.DensityEverydayTests.WaterAfterListenerThrows_RollsBackChargePoolAndParched(String command) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 116
+   at InvokeStub_DensityEverydayTests.WaterAfterListenerThrows_RollsBackChargePoolAndParched(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

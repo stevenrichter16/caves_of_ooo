@@ -26,7 +26,7 @@ namespace CavesOfOoo.Scenarios.Custom
             Require(OwnedCheckpoint()&&ReadyForPlayerInput(),"Actions require the owned live N session after its F5/F6 and UI gates.");
             yield return WaitForRing();
             var zone=input.CurrentZone;var player=input.PlayerEntity;var turns=input.TurnManager;
-            Entity vein=null,snapjaw=null;
+            Entity vein=null,marlback=null;
             EntityAttackVisualHandler attackObserver=null;EntityDamageVisualHandler damageObserver=null;
             var originalAttack=EntityVisualHooks.AttackCallback;var originalDamage=EntityVisualHooks.DamageCallback;
             int startTick=turns.TickCount,startHp=player.GetStatValue("Hitpoints"),harvestYield=0;
@@ -72,39 +72,39 @@ namespace CavesOfOoo.Scenarios.Custom
                 Require(ReadyForPlayerInput(),"Harvest returned to the live normal player boundary.");
 
                 var enemyCell=ActionFixtureCell(zone);
-                snapjaw=input.ZoneManager.Factory.CreateEntity("Snapjaw");
-                Require(snapjaw!=null&&snapjaw.HasTag("Creature")&&snapjaw.GetPart<BrainPart>()!=null&&snapjaw.GetStatValue("Hitpoints")>0,
-                    "Actual factory Snapjaw with its authored anatomy, loadout, health and brain.");
-                Require(FactionManager.IsHostile(player,snapjaw),"Native faction relation must permit an ordinary bump attack; never force hostility.");
-                Require(zone.AddEntity(snapjaw,enemyCell.x,enemyCell.y),"Place only the declared enemy adjacent to the player.");
-                snapjaw.GetPart<BrainPart>().CurrentZone=zone; // Required context for this newly placed fixture only.
-                turns.AddEntity(snapjaw); // Normal registration; Brain initializes its own native RNG on TakeTurn.
-                ZoneRenderHooks.MarkCellDirty(enemyCell.x,enemyCell.y,"SpawnRingNative.ActionSnapjaw");
+                marlback=input.ZoneManager.Factory.CreateEntity("MarlbackScrabbler");
+                Require(marlback!=null&&marlback.HasTag("Creature")&&marlback.GetPart<BrainPart>()!=null&&marlback.GetStatValue("Hitpoints")>0,
+                    "Actual factory MarlbackScrabbler with its authored anatomy, loadout, health and brain.");
+                Require(FactionManager.IsHostile(player,marlback),"Native faction relation must permit an ordinary bump attack; never force hostility.");
+                Require(zone.AddEntity(marlback,enemyCell.x,enemyCell.y),"Place only the declared enemy adjacent to the player.");
+                marlback.GetPart<BrainPart>().CurrentZone=zone; // Required context for this newly placed fixture only.
+                turns.AddEntity(marlback); // Normal registration; Brain initializes its own native RNG on TakeTurn.
+                ZoneRenderHooks.MarkCellDirty(enemyCell.x,enemyCell.y,"SpawnRingNative.ActionMarlbackScrabbler");
                 yield return null;yield return null;
-                actionViews.Add(ActionView(player,"combat-player-before"));actionViews.Add(ActionView(snapjaw,"combat-fixture-before"));
+                actionViews.Add(ActionView(player,"combat-player-before"));actionViews.Add(ActionView(marlback,"combat-fixture-before"));
                 Require(actionViews.Last().shown&&ActionView(player,"preflight").shown,"Both actual actor models are visible before the action.");
-                ActionCheck("no_stale_combat_pose",QueuedActionClip(player)!="Attack"&&QueuedActionClip(player)!="Hit"&&QueuedActionClip(snapjaw)!="Attack"&&QueuedActionClip(snapjaw)!="Hit");
-                int enemyHpBefore=snapjaw.GetStatValue("Hitpoints"),playerHpBefore=player.GetStatValue("Hitpoints"),tickBefore=turns.TickCount;
-                var bumpFrom=Position();int combatLogStart=MessageLog.Count;string enemyDisplayName=snapjaw.GetDisplayName();
+                ActionCheck("no_stale_combat_pose",QueuedActionClip(player)!="Attack"&&QueuedActionClip(player)!="Hit"&&QueuedActionClip(marlback)!="Attack"&&QueuedActionClip(marlback)!="Hit");
+                int enemyHpBefore=marlback.GetStatValue("Hitpoints"),playerHpBefore=player.GetStatValue("Hitpoints"),tickBefore=turns.TickCount;
+                var bumpFrom=Position();int combatLogStart=MessageLog.Count;string enemyDisplayName=marlback.GetDisplayName();
                 attackObserver=(attacker,defender,current)=>
                 {
                     if(!ReferenceEquals(current,zone))return;
-                    if(ReferenceEquals(attacker,player)&&ReferenceEquals(defender,snapjaw))RecordActionHook("Attack",attacker,defender,current,0,false,"player-to-fixture");
-                    else if(ReferenceEquals(attacker,snapjaw)&&ReferenceEquals(defender,player))RecordActionHook("Attack",attacker,defender,current,0,false,"fixture-retaliation");
+                    if(ReferenceEquals(attacker,player)&&ReferenceEquals(defender,marlback))RecordActionHook("Attack",attacker,defender,current,0,false,"player-to-fixture");
+                    else if(ReferenceEquals(attacker,marlback)&&ReferenceEquals(defender,player))RecordActionHook("Attack",attacker,defender,current,0,false,"fixture-retaliation");
                 };
                 damageObserver=(target,source,current,amount,lethal)=>
                 {
-                    if(ReferenceEquals(current,zone)&&(ReferenceEquals(target,player)||ReferenceEquals(target,snapjaw)))
-                        RecordActionHook("Hit",target,source,current,amount,lethal,ReferenceEquals(target,snapjaw)?"fixture-damage":"player-damage");
+                    if(ReferenceEquals(current,zone)&&(ReferenceEquals(target,player)||ReferenceEquals(target,marlback)))
+                        RecordActionHook("Hit",target,source,current,amount,lethal,ReferenceEquals(target,marlback)?"fixture-damage":"player-damage");
                 };
                 EntityVisualHooks.AttackCallback+=attackObserver;EntityVisualHooks.DamageCallback+=damageObserver;
                 yield return Capture("actions-combat-before");
                 // One real movement-key pulse through InputHandler's hostile bump
                 // branch. No direct CombatSystem call, RNG replacement or retry.
                 yield return PulseActionKey(ActionDirection(bumpFrom,enemyCell));
-                actionViews.Add(ActionView(player,"combat-player-action-frame"));actionViews.Add(ActionView(snapjaw,"combat-fixture-action-frame"));
+                actionViews.Add(ActionView(player,"combat-player-action-frame"));actionViews.Add(ActionView(marlback,"combat-fixture-action-frame"));
                 yield return Capture("actions-combat-action-frame");
-                int enemyHpAfter=snapjaw.GetStatValue("Hitpoints"),playerHpAfter=player.GetStatValue("Hitpoints");
+                int enemyHpAfter=marlback.GetStatValue("Hitpoints"),playerHpAfter=player.GetStatValue("Hitpoints");
                 var attempted=actionHooks.Where(r=>r.route=="player-to-fixture").ToArray();
                 var dealt=actionHooks.Where(r=>r.route=="fixture-damage").ToArray();
                 int damageFromPlayer=dealt.Where(r=>r.otherIsPlayer).Sum(r=>r.amount);
@@ -125,7 +125,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 combatLog=MessageLog.GetMessages().Skip(combatLogStart).ToArray();
                 ActionCheck("native_combat_log_observed",combatLog.Any(line=>line.IndexOf(enemyDisplayName,StringComparison.Ordinal)>=0),"Only messages added after this attack preflight are included.");
                 yield return new WaitForSecondsRealtime(.35f);
-                actionViews.Add(ActionView(player,"combat-player-after"));actionViews.Add(ActionView(snapjaw,"combat-fixture-after"));
+                actionViews.Add(ActionView(player,"combat-player-after"));actionViews.Add(ActionView(marlback,"combat-fixture-after"));
                 yield return Capture("actions-combat-after");
                 Require(ReadyForPlayerInput(),"Action probe ends alive with native controls usable; never heal/resurrect/force-yield.");
                 actionComplete=true;
@@ -138,10 +138,10 @@ namespace CavesOfOoo.Scenarios.Custom
                     &&ActionDelegatesPreserved(originalAttack,EntityVisualHooks.AttackCallback)&&ActionDelegatesPreserved(originalDamage,EntityVisualHooks.DamageCallback));
                 // No broad before/after entity deletion: legitimate loot/corpses,
                 // harvest yield and all real preexisting actors/items remain native.
-                var preserved=zone.GetReadOnlyEntities().Where(e=>!ReferenceEquals(e,vein)&&!ReferenceEquals(e,snapjaw))
+                var preserved=zone.GetReadOnlyEntities().Where(e=>!ReferenceEquals(e,vein)&&!ReferenceEquals(e,marlback))
                     .Select(e=>(entity:e,cell:zone.GetEntityCell(e))).ToArray();
-                ActionRemoveFixture(zone,turns,snapjaw);ActionRemoveFixture(zone,turns,vein);
-                actionCleanup=(snapjaw==null||(!turns.IsRegistered(snapjaw)&&zone.GetEntityCell(snapjaw)==null))
+                ActionRemoveFixture(zone,turns,marlback);ActionRemoveFixture(zone,turns,vein);
+                actionCleanup=(marlback==null||(!turns.IsRegistered(marlback)&&zone.GetEntityCell(marlback)==null))
                     &&(vein==null||zone.GetEntityCell(vein)==null)&&preserved.All(p=>ReferenceEquals(zone.GetEntityCell(p.entity),p.cell));
                 ActionCheck("only_declared_fixtures_removed",actionCleanup);
                 ActionCheck("optional_action_workload_complete",actionComplete);
@@ -149,7 +149,7 @@ namespace CavesOfOoo.Scenarios.Custom
                     complete=actionComplete,cleanup=actionCleanup,failures=actionChecks.Count(c=>!c.pass),startTick=startTick,endTick=turns.TickCount,
                     startPlayerHp=startHp,endPlayerHp=player.GetStatValue("Hitpoints"),harvestYield=harvestYield,checks=actionChecks.ToArray(),hooks=actionHooks.ToArray(),views=actionViews.ToArray(),combatLog=combatLog,
                     screenshots=screenshots.Where(f=>Path.GetFileName(f).StartsWith(Stem+"-actions-",StringComparison.Ordinal)).ToArray(),
-                    bounds="Optional native acceptance after F5/F6 and UI gates, not profiling. Actual factory GlowQuartzVein and Snapjaw are explicit temporary fixture entities on existing adjacent visible empty cells. Real C/direction/resolved menu shortcut harvest and one ordinary hostile bump key. No HP/stat, faction, RNG, speed, AI policy, turn energy or clock override; newly placed Snapjaw gets normal CurrentZone/TurnManager registration. A miss/resist is valid and reports unobserved fixture Hit. Damage callbacks record exact sources and the live ring consumer's queued clip, controller and current/next Animator hashes; same-call retaliation/death may supersede or hide a pose before the screenshot. No claim that an unobserved Attack/Hit frame rendered or that Harvest emits Interact. Actor death/blocked input fails usability honestly. Only the two declared entities are removed/unregistered; real harvest yield, death loot/corpse/gear, reputation, damage and other normal consequences remain in this private disposable session. No subsequent save or load is performed by this partial. Human screenshot inspection remains required."};
+                    bounds="Optional native acceptance after F5/F6 and UI gates, not profiling. Actual factory GlowQuartzVein and MarlbackScrabbler are explicit temporary fixture entities on existing adjacent visible empty cells. Real C/direction/resolved menu shortcut harvest and one ordinary hostile bump key. No HP/stat, faction, RNG, speed, AI policy, turn energy or clock override; newly placed MarlbackScrabbler gets normal CurrentZone/TurnManager registration. A miss/resist is valid and reports unobserved fixture Hit. Damage callbacks record exact sources and the live ring consumer's queued clip, controller and current/next Animator hashes; same-call retaliation/death may supersede or hide a pose before the screenshot. No claim that an unobserved Attack/Hit frame rendered or that Harvest emits Interact. Actor death/blocked input fails usability honestly. Only the two declared entities are removed/unregistered; real harvest yield, death loot/corpse/gear, reputation, damage and other normal consequences remain in this private disposable session. No subsequent save or load is performed by this partial. Human screenshot inspection remains required."};
                 File.WriteAllText(Path.Combine(Dir,Stem+"-actions.json"),JsonUtility.ToJson(result,true));
             }
         }

@@ -92,7 +92,7 @@ namespace CavesOfOoo.Tests
         {
             var part = Setup("Q");
             MakePlayer();
-            var npc = new Entity { ID = "npc", BlueprintName = "Snapjaw" };
+            var npc = new Entity { ID = "npc", BlueprintName = "MarlbackScrabbler" };
             var item = MakeStarterItem("Q");
             FireTaken(item, npc);
             Assert.IsFalse(part.IsQuestActive("Q"),

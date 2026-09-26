@@ -434,7 +434,7 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
         [Test]
         public void Gap_BrainPart_ScalarFields_RoundTrip()
         {
-            var npc = MakeCreature("n-1", "Snapjaw");
+            var npc = MakeCreature("n-1", "MarlbackScrabbler");
             var brain = new BrainPart
             {
                 SightRadius = 7,
@@ -505,7 +505,7 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
             zone.AddEntity(player, 0, 0);
             zone.AddEntity(foe, 5, 5);
 
-            var npc = MakeCreature("n-1", "Snapjaw");
+            var npc = MakeCreature("n-1", "MarlbackScrabbler");
             var brain = new BrainPart();
             brain.PersonalEnemies.Add(player);  // public HashSet field
             brain.PersonalEnemies.Add(foe);
@@ -546,7 +546,7 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
         [Test]
         public void Gap_GoalStack_DelegateGoals_AreFilteredFromSave()
         {
-            var npc = MakeCreature("n-1", "Snapjaw");
+            var npc = MakeCreature("n-1", "MarlbackScrabbler");
             var brain = new BrainPart();
             npc.AddPart(brain);
             var zone = new Zone("Z");
@@ -700,7 +700,7 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
             // Set up MessageLog state pre-save.
             MessageLog.Clear();
             MessageLog.Add("Hello, Ooo!");
-            MessageLog.Add("A snapjaw appears.");
+            MessageLog.Add("A marlback appears.");
             int preFlash = MessageLog.FlashStamp;
 
             byte[] bytes = Serialize(GameSessionState.Capture("g", "v", mgr, turns, player));
@@ -716,7 +716,7 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
             var loaded = MessageLog.GetAllEntries();
             Assert.AreEqual(2, loaded.Count, "Saved entries restored on load.");
             Assert.AreEqual("Hello, Ooo!", loaded[0].Text);
-            Assert.AreEqual("A snapjaw appears.", loaded[1].Text);
+            Assert.AreEqual("A marlback appears.", loaded[1].Text);
         }
 
         /// <summary>
@@ -730,20 +730,20 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
 
             PlayerReputation.Restore(new Dictionary<string, int>
             {
-                { "Snapjaws", -50 },
+                { "OutlandRaiders", -50 },
                 { "Villagers", 25 }
             });
 
             byte[] bytes = Serialize(GameSessionState.Capture("g", "v", mgr, turns, player));
 
             // Mutate live state.
-            PlayerReputation.Restore(new Dictionary<string, int> { { "Snapjaws", 999 } });
+            PlayerReputation.Restore(new Dictionary<string, int> { { "OutlandRaiders", 999 } });
 
             using var stream = new MemoryStream(bytes);
             GameSessionState.Load(new SaveReader(stream, null));
 
             var restored = PlayerReputation.GetAll();
-            Assert.AreEqual(-50, restored["Snapjaws"], "Snapjaws reputation restored.");
+            Assert.AreEqual(-50, restored["OutlandRaiders"], "OutlandRaiders reputation restored.");
             Assert.AreEqual(25, restored["Villagers"], "Villagers reputation restored.");
             Assert.IsFalse(restored.ContainsKey("ShouldNotExist"));
         }

@@ -75,7 +75,7 @@ namespace CavesOfOoo.Tests
         public void AIBoredEvent_HandlerConsumes_CreatureDoesNotWander()
         {
             var zone = new Zone("TestZone");
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             var handler = new TestBoredHandler();
             creature.AddPart(handler);
             var brain = new BrainPart
@@ -101,7 +101,7 @@ namespace CavesOfOoo.Tests
         public void AIBoredEvent_NoHandler_CreatureWanders()
         {
             var zone = new Zone("TestZone");
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             var brain = new BrainPart
             {
                 Wanders = true,
@@ -122,7 +122,7 @@ namespace CavesOfOoo.Tests
         public void AIBoredEvent_HostileTakesPriority()
         {
             var zone = new Zone("TestZone");
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             var handler = new TestBoredHandler();
             creature.AddPart(handler);
             var brain = new BrainPart
@@ -147,7 +147,7 @@ namespace CavesOfOoo.Tests
         public void AIBoredEvent_UnhandledPassthrough_CreatureWanders()
         {
             var zone = new Zone("TestZone");
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             var passthrough = new TestPassthroughHandler();
             creature.AddPart(passthrough);
             var brain = new BrainPart

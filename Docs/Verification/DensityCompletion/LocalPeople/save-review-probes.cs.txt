@@ -1,0 +1,61 @@
+using System;
+using System.IO;
+using System.Linq;
+using CavesOfOoo.Core;
+using CavesOfOoo.Data;
+using NUnit.Framework;
+namespace CavesOfOoo.Tests
+{
+    public class DensityLocalPeopleReviewTests
+    {
+        DensityLootTestScope scope;
+        EntityFactory Factory => scope.Factory;
+        [SetUp] public void Setup() { scope = new DensityLootTestScope(); ConversationManager.EndConversation(); }
+        [TearDown] public void Cleanup() { ConversationManager.EndConversation(); scope.Dispose(); }
+        OverworldZoneManager Manager() => OverworldZoneManager.CreateDetached(Factory, 808);
+        GameSessionState RoundTrip(GameSessionState state)
+        {
+            using (var bytes = new MemoryStream()) { state.Save(new SaveWriter(bytes)); bytes.Position = 0; return GameSessionState.Load(new SaveReader(bytes, Factory)); }
+        }
+        [Test]
+        public void Review_LedgerFreeLoadedGraphAdoptsCachedOwnerWithoutChangingLegacyDuplicates()
+        {
+            var manager = Manager(); var a = new Zone("Overworld.1.1.0"); var b = new Zone("Overworld.2.1.0");
+            var old = Factory.CreateEntity("Mogu"); var legacyDuplicate = Factory.CreateEntity("Mogu"); a.AddEntity(old, 10, 10); b.AddEntity(legacyDuplicate, 10, 10);
+            manager.SetActiveZone(a); manager.SetActiveZone(b); var world = new Entity { BlueprintName = "World" };
+            var state = GameSessionState.Capture("legacy", "test", manager, new TurnManager(), old, world: world);
+            Assert.IsNull(world.GetPart<LocalPeopleLedgerPart>());
+            // Deliberately bypass the new writer: this is the actual post-load hook
+            // receiving an old graph with no new part, not a new-save roundtrip.
+            SaveGraphSerializer.RebuildLoadedWorld(state);
+            Assert.IsNull(world.GetPart<LocalPeopleLedgerPart>());
+            Assert.That(a.GetAllEntities(), Does.Contain(old)); Assert.That(b.GetAllEntities(), Does.Contain(legacyDuplicate));
+            Assert.AreEqual("Solm", old.GetDisplayName());
+            var fresh = new Zone("Overworld.3.1.0"); fresh.AddEntity(Factory.CreateEntity("Mogu"), 10, 10); LocalPeople.Apply(fresh, manager);
+            Assert.IsEmpty(fresh.GetAllEntities());
+        }
+        [Test]
+        public void Review_FreshPersonalIdentitySurvivesFullSessionSaveLoad()
+        {
+            var manager = Manager(); var zone = manager.GetZone("Overworld.10.10.0");
+            var resident = zone.GetAllEntities().First(e => e.BlueprintName == "Villager" && e.Properties.ContainsKey("LocalPersonalName"));
+            string name = resident.GetDisplayName(), id = resident.ID; var properties = resident.Properties.ToArray();
+            var loaded = RoundTrip(GameSessionState.Capture("named", "test", manager, new TurnManager(), resident));
+            Assert.AreEqual(name, loaded.Player.GetDisplayName()); Assert.AreEqual(id, loaded.Player.ID);
+            foreach (var property in properties) Assert.AreEqual(property.Value, loaded.Player.GetProperty(property.Key));
+            Assert.AreEqual("Villager_1", loaded.Player.GetPart<ConversationPart>().ConversationID);
+            Assert.AreSame(loaded.ZoneManager.GetZone(zone.ZoneID), loaded.Player.SpatialZone);
+        }
+        [TestCase(false)] [TestCase(true)]
+        public void Review_NullWorldSaveOnlyCreatesMetadataWhenClaimsExist(bool withClaim)
+        {
+            var manager = Manager(); var zone = new Zone("Overworld.1.1.0"); var player = Factory.CreateEntity("Player"); zone.AddEntity(player, 10, 10);
+            if (withClaim) zone.AddEntity(Factory.CreateEntity("Mogu"), 12, 10);
+            LocalPeople.Apply(zone, manager); manager.SetActiveZone(zone);
+            var loaded = RoundTrip(GameSessionState.Capture("null-world", "test", manager, new TurnManager(), player));
+            if (!withClaim) { Assert.IsNull(loaded.World); return; }
+            Assert.IsTrue(loaded.World.HasTag("WorldEntity")); Assert.AreEqual(1, loaded.World.GetPart<LocalPeopleLedgerPart>().Count);
+            var fresh = new Zone("Overworld.2.1.0"); fresh.AddEntity(Factory.CreateEntity("Mogu"), 10, 10); LocalPeople.Apply(fresh, loaded.ZoneManager); Assert.IsEmpty(fresh.GetAllEntities());
+        }
+    }
+}

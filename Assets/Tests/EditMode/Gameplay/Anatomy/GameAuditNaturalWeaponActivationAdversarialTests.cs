@@ -13,29 +13,30 @@ namespace CavesOfOoo.Tests
     // Positive factory cases NEVER call UpdateBodyParts/RegenerateDefaultEquipment.
     public class GameAuditNaturalWeaponActivationAdversarialTests
     {
-        // Literal actor/recipe baseline: 41 direct declarations, 2 inherited actors.
-        // Density Phase 1 §T1.3 added MawToad, Bandfrog and Shambler (43 total).
+        // Literal actor/recipe baseline, including the two independent quest creatures.
+        // Original-enemy migration adds SootGremlin and DirtGnome (45 total).
         static readonly string[] Declared = {
-            "Snapjaw|SnapjawClaw", "SnapjawScavenger|SnapjawClaw", "SnapjawHunter|SnapjawHunterClaw",
+            "MarlbackScrabbler|MarlbackRake", "MarlbackGleaner|MarlbackRake", "MarlbackTunnelguard|MarlbackGuardRake",
             "ChoirTendril|ChoirLash", "CaveBat|BatBite", "CaveSlime|SlimePseudopod", "CaveBear|CaveBearClaw",
             "Glowmaw|GlowmawBite", "Scorpion|ScorpionSting", "DesertBandit|BanditBlade", "SandWurm|WurmBite",
             "GiantSpider|SpiderBite", "Viper|ViperBite", "JungleApe|ApeFist", "RuinScavenger|ScavengerClaw",
             "SkeletalSentry|BoneBlade", "StoneGolem|GolemFist", "PaleStalker|StalkerTalon", "ObsidianBrute|ObsidianFist",
-            "SnapjawChieftain|SnapjawClaw", "SnapjawWarlord|WarlordCleaver", "Mosshulk|MosshulkSlam",
+            "MarlbackWallkeeper|MarlbackRake", "MarlbackBreacher|BreacherCleaver", "Mosshulk|MosshulkSlam",
             "DesertProwler|ProwlerClaw", "DuneLurker|LurkerMaw", "BrittleHound|BrittleFangs", "JungleStalker|StalkerClaw",
             "Rotling|RotlingClaw", "CanopyStrangler|StranglerLash", "AncientGuardian|GuardianFist", "VaultSentinel|SentinelHalberd",
             "BrassHusk|HuskFist", "GlassScorpion|GlassSting", "SporeShambler|SporeTouch", "IceWight|WightTouch",
             "CharredHusk|HuskTouch", "SleepingTroll|TrollFist", "MimicChest|MimicBite", "AmbushBandit|BanditBlade",
             "RuneCultist|CultistKnife", "SunStriker|DefaultBite",
-            "MawToad|DefaultBite", "Bandfrog|DefaultBite", "Shambler|DefaultTendril"
+            "MawToad|DefaultBite", "Bandfrog|DefaultBite", "Shambler|DefaultTendril",
+            "SootGremlin|ScavengerClaw", "DirtGnome|ScavengerClaw"
         };
         // Literal recipe dice baseline prevents a nonnull premature DefaultFist from passing.
         static readonly Dictionary<string,string> RecipeDice = new Dictionary<string,string> {
-            {"SnapjawClaw","1d4"},{"SnapjawHunterClaw","1d6"},{"ChoirLash","2d4"},{"BatBite","1d2"},
+            {"MarlbackRake","1d4"},{"MarlbackGuardRake","1d6"},{"ChoirLash","2d4"},{"BatBite","1d2"},
             {"SlimePseudopod","1d3"},{"CaveBearClaw","2d4"},{"GlowmawBite","2d4"},{"ScorpionSting","1d3"},
             {"BanditBlade","1d6"},{"WurmBite","2d6+1"},{"SpiderBite","1d4"},{"ViperBite","1d3"},
             {"ApeFist","1d6+1"},{"ScavengerClaw","1d4"},{"BoneBlade","1d6+1"},{"GolemFist","2d6"},
-            {"StalkerTalon","2d5"},{"ObsidianFist","3d6"},{"WarlordCleaver","2d5"},{"MosshulkSlam","2d5"},
+            {"StalkerTalon","2d5"},{"ObsidianFist","3d6"},{"BreacherCleaver","2d5"},{"MosshulkSlam","2d5"},
             {"ProwlerClaw","2d4"},{"LurkerMaw","2d6"},{"BrittleFangs","1d6"},{"StalkerClaw","2d4"},
             {"RotlingClaw","1d3"},{"StranglerLash","2d4"},{"GuardianFist","2d6+2"},{"SentinelHalberd","2d6"},
             {"HuskFist","1d6"},{"GlassSting","1d4"},{"SporeTouch","1d4"},{"WightTouch","1d6"},
@@ -69,7 +70,7 @@ namespace CavesOfOoo.Tests
             {
                 var resolved = f.Factory.Blueprints.Values.Where(b => b.Props.TryGetValue("NaturalWeapon", out var recipe) && !string.IsNullOrEmpty(recipe))
                     .Select(b => b.Name + "|" + b.Props["NaturalWeapon"]).ToArray();
-                Assert.AreEqual(43, resolved.Length); CollectionAssert.AreEquivalent(Declared, resolved);
+                Assert.AreEqual(45, resolved.Length); CollectionAssert.AreEquivalent(Declared, resolved);
                 foreach (string row in Declared)
                 {
                     var fields = row.Split('|'); var actor = f.Create(fields[0]); var hands = Hands(actor);
@@ -113,8 +114,9 @@ namespace CavesOfOoo.Tests
         {
             using (var f = new EntityEquipmentContentFixture())
             {
-                var actor = f.Create("SnapjawWarlord"); var naturals = Hands(actor).Select(h => h._DefaultBehavior).ToArray();
-                Assert.IsTrue(naturals.All(e => e != null)); Assert.AreEqual(3, Items(actor).Length);
+                var actor = f.Create("MarlbackBreacher"); var naturals = Hands(actor).Select(h => h._DefaultBehavior).ToArray();
+                Assert.IsTrue(naturals.All(e => e != null)); Assert.AreEqual(4, Items(actor).Length);
+                Assert.IsTrue(Items(actor).Any(e => e.BlueprintName == "BreacherCleaver" && !e.HasTag("Natural")), "the physical cleaver is real gear; fallback naturals are separate");
                 var zone = new Zone("natural-not-loot"); Assert.IsTrue(zone.AddEntity(actor, 5, 5));
                 Assert.IsTrue(naturals.All(e => !Items(actor).Contains(e) && zone.GetEntityCell(e) == null && e.GetPart<PhysicsPart>() == null));
                 Assert.IsFalse(actor.GetPart<InventoryPart>().GetAllEquipped().Any(e => e.HasTag("Natural")));
@@ -174,7 +176,7 @@ namespace CavesOfOoo.Tests
         {
             using (var f = new LoadoutLifecycleFixture("Dagger"))
             {
-                f.ActorBlueprint.Props["NaturalWeapon"] = "WarlordCleaver"; Entity[] observed = null; int created = 0, before = 0;
+                f.ActorBlueprint.Props["NaturalWeapon"] = "BreacherCleaver"; Entity[] observed = null; int created = 0, before = 0;
                 LoadoutAuditProbe.AuditHook = (probe, e) => {
                     if (e.ID == "ObjectCreated")
                     { created++; Assert.AreEqual(0, Items(probe.ParentEntity).Length); observed = Hands(probe.ParentEntity).Select(h => h._DefaultBehavior).ToArray(); Assert.IsTrue(observed.All(x => x != null && x.GetPart<MeleeWeaponPart>().BaseDamage == "2d5")); }
@@ -240,7 +242,7 @@ namespace CavesOfOoo.Tests
         {
             using (var f = new EntityEquipmentContentFixture())
             {
-                var actor = f.Create("Snapjaw"); var body = actor.GetPart<Body>(); var hand = Hands(actor).Single(h => h._Equipped?.BlueprintName == "Dagger");
+                var actor = f.Create("MarlbackScrabbler"); var body = actor.GetPart<Body>(); var hand = Hands(actor).Single(h => h._Equipped?.BlueprintName == "Dagger");
                 var natural = hand._DefaultBehavior; var dagger = hand._Equipped; Assert.NotNull(natural);
                 var zone = new Zone("natural-sever"); Assert.IsTrue(zone.AddEntity(actor, 5, 5));
                 Assert.IsTrue(body.Dismember(hand, zone)); Assert.AreSame(natural, hand._DefaultBehavior);
@@ -256,7 +258,7 @@ namespace CavesOfOoo.Tests
         {
             using (var f = new EntityEquipmentContentFixture())
             {
-                var actor = f.Create("SnapjawWarlord"); var body = actor.GetPart<Body>(); var hands = Hands(actor); var kept = hands[0]._DefaultBehavior;
+                var actor = f.Create("MarlbackBreacher"); var body = actor.GetPart<Body>(); var hands = Hands(actor); var kept = hands[0]._DefaultBehavior;
                 Assert.NotNull(kept); hands[1]._DefaultBehavior = null; hands[1].FirstSlotForDefaultBehavior = false;
                 var gear = ItemSignature(actor); int penalty = actor.GetStat("Speed").Penalty; f.Messages.Clear();
                 body.OnAfterLoad(null); var repaired = hands[1]._DefaultBehavior; Assert.NotNull(repaired); Assert.AreNotSame(kept, repaired);
@@ -270,7 +272,7 @@ namespace CavesOfOoo.Tests
         {
             using (var f = new EntityEquipmentContentFixture())
             {
-                var actor = f.Create("SnapjawWarlord"); var inventory = actor.GetPart<InventoryPart>();
+                var actor = f.Create("MarlbackBreacher"); var inventory = actor.GetPart<InventoryPart>();
                 foreach (var item in inventory.GetAllEquipped().ToArray()) { Assert.IsTrue(InventorySystem.UnequipItem(actor, item)); Assert.IsTrue(inventory.RemoveObject(item)); }
                 foreach (var hand in Hands(actor)) { hand._DefaultBehavior = null; hand.FirstSlotForDefaultBehavior = false; }
                 Assert.AreEqual(0, Items(actor).Length); f.Messages.Clear();
@@ -286,7 +288,7 @@ namespace CavesOfOoo.Tests
         {
             using (var f = new EntityEquipmentContentFixture())
             {
-                var actor = f.Create("SnapjawWarlord"); var hands = Hands(actor); Assert.IsTrue(hands.All(h => h._DefaultBehavior != null));
+                var actor = f.Create("MarlbackBreacher"); var hands = Hands(actor); Assert.IsTrue(hands.All(h => h._DefaultBehavior != null));
                 hands[0]._DefaultBehavior.GetPart<MeleeWeaponPart>().PenBonus = 7; hands[1]._DefaultBehavior.GetPart<MeleeWeaponPart>().OnHitEffectsRaw = "Stunned,17,,4,0";
                 var loaded = RoundTrip(actor); var restored = Hands(loaded);
                 Assert.AreNotSame(restored[0]._DefaultBehavior, restored[1]._DefaultBehavior); Assert.AreEqual(2, restored.Count(h => h.FirstSlotForDefaultBehavior));
@@ -300,7 +302,7 @@ namespace CavesOfOoo.Tests
         {
             using (var f = new LoadoutLifecycleFixture("Dagger", body: false))
             {
-                f.ActorBlueprint.Props["NaturalWeapon"] = "WarlordCleaver"; var actor = f.Create();
+                f.ActorBlueprint.Props["NaturalWeapon"] = "BreacherCleaver"; var actor = f.Create();
                 Assert.IsNull(actor.GetPart<Body>()); LoadoutLifecycleFixture.Carried(actor, LoadoutLifecycleFixture.OnlyItem(actor));
                 Assert.AreEqual(0, actor.GetPart<LoadoutAuditProbe>().BeforeCount); Assert.IsFalse(Items(actor).Any(e => e.HasTag("Natural")));
             }
@@ -321,7 +323,7 @@ namespace CavesOfOoo.Tests
         {
             using (var f = new EntityEquipmentContentFixture())
             {
-                var actor = f.Create("SnapjawWarlord"); var hand = Hands(actor)[0]; Assert.NotNull(hand._DefaultBehavior);
+                var actor = f.Create("MarlbackBreacher"); var hand = Hands(actor)[0]; Assert.NotNull(hand._DefaultBehavior);
                 hand.DefaultBehaviorBlueprint = ""; hand.Flags = BodyPart.FLAG_CONTACT; int exactFlags = hand.Flags;
                 var loaded = RoundTrip(actor); var restored = Hands(loaded).Single(h => h.ID == hand.ID);
                 Assert.NotNull(restored._DefaultBehavior); Assert.AreEqual(exactFlags, restored.Flags); Assert.IsFalse(restored.FirstSlotForDefaultBehavior);

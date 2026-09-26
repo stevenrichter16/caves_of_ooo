@@ -13,8 +13,8 @@ namespace CavesOfOoo.Tests
     /// (Docs/BIOME-OVERHAUL.md §2 A5, log in Docs/BIOME-OVERHAUL-LOG.md).
     /// Three verified defects: (1) GetBiomeTable has no tier-3 branch, so
     /// the far ring of the world is no harder than the middle ring;
-    /// (2) boss XP is inverted (SnapjawChieftain: 40 HP for an inherited
-    /// 15 XP — less than a SnapjawHunter); (3) five hostiles punch with
+    /// (2) boss XP is inverted (MarlbackWallkeeper: 40 HP for an inherited
+    /// 15 XP — less than a MarlbackTunnelguard); (3) five hostiles punch with
     /// the 1d2 default fist because their blueprints carry no
     /// NaturalWeapon prop (DesertBandit, BrassHusk, GlassScorpion,
     /// SporeShambler, RuneCultist).
@@ -155,9 +155,9 @@ namespace CavesOfOoo.Tests
         {
             // Round-6 beta audit: XP grants tier-scale (t2 x3, t3 x5)
             // so the cubic level curve stays climbable. Tier-2 lair
-            // bosses land at 195 (above SnapjawHunter's 120), the
+            // bosses land at 195 (above MarlbackTunnelguard's 120), the
             // tier-3 boss at 500 (above non-boss ChoirTendril's 350).
-            Assert.AreEqual(195, XpOf("SnapjawChieftain"), "chieftain");
+            Assert.AreEqual(195, XpOf("MarlbackWallkeeper"), "chieftain");
             Assert.AreEqual(195, XpOf("DesertProwler"), "prowler");
             Assert.AreEqual(195, XpOf("JungleStalker"), "stalker");
             Assert.AreEqual(500, XpOf("AncientGuardian"), "guardian");
@@ -168,8 +168,8 @@ namespace CavesOfOoo.Tests
         {
             // Counter-check: the boss retune must not drift the rank
             // and file that AlphaCombatStakesTests already pinned.
-            Assert.AreEqual(15, XpOf("Snapjaw"));
-            Assert.AreEqual(120 /* round-6: t2 x3 scaling */, XpOf("SnapjawHunter"));
+            Assert.AreEqual(15, XpOf("MarlbackScrabbler"));
+            Assert.AreEqual(120 /* round-6: t2 x3 scaling */, XpOf("MarlbackTunnelguard"));
             Assert.AreEqual(350 /* round-6: tier-scaled XP */, XpOf("ChoirTendril"));
         }
 

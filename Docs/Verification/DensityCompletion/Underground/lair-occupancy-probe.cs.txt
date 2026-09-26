@@ -1,0 +1,33 @@
+using System;
+using System.Linq;
+using CavesOfOoo.Core;
+using NUnit.Framework;
+namespace CavesOfOoo.Tests
+{
+ public sealed class DensityLairOccupancyProbeTests
+ {
+  sealed class PlaceAtBoss : System.Random
+  {
+   readonly int count, index;
+   public PlaceAtBoss(int count,int index){this.count=count;this.index=index;}
+   public override int Next(int maxValue)=>maxValue==count?index:0;
+   public override int Next(int minValue,int maxValue)=>minValue;
+  }
+  [TestCase(true)] [TestCase(false)]
+  public void GuardMustNotShareSolidBossCell(bool bossPresent)
+  {
+   using(var f=new DensityLootTestScope())
+   {
+    var z=new Zone("Overworld.4.8.0");
+    var poi=new PointOfInterest(POIType.Lair,"probe",tier:2,bossBlueprint:bossPresent?"MarlbackWallkeeper":null);
+    Assert.IsTrue(new LairBuilder(BiomeType.Spread,poi).BuildZone(z,f.Factory,new Random(64)));
+    Assert.IsTrue(new ConnectivityBuilder().BuildZone(z,f.Factory,new Random(64)));
+    var cells=Enumerable.Range(0,Zone.Width).SelectMany(x=>Enumerable.Range(0,Zone.Height).Select(y=>(x,y))).Where(p=>z.GetCell(p.x,p.y).IsPassable()).ToArray();
+    int index=Array.FindIndex(cells,p=>p.x==40&&p.y==12);Assert.GreaterOrEqual(index,0);
+    Assert.IsTrue(new LairPopulationBuilder(BiomeType.Spread,poi).BuildZone(z,f.Factory,new PlaceAtBoss(cells.Length,index)));
+    var creatures=z.GetCell(40,12).Occupants.Where(e=>e.HasTag("Creature")).ToArray();
+    Assert.AreEqual(1,creatures.Length,string.Join(",",creatures.Select(e=>e.BlueprintName)));
+   }
+  }
+ }
+}

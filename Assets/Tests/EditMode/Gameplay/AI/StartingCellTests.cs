@@ -40,7 +40,7 @@ namespace CavesOfOoo.Tests
             Zone zone, int x, int y,
             bool wanders = true, bool wandersRandomly = true, bool staying = false)
         {
-            var entity = CreateCreature("Snapjaws");
+            var entity = CreateCreature("OutlandRaiders");
             var brain = new BrainPart
             {
                 SightRadius = 10,

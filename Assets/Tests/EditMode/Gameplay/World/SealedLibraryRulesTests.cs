@@ -59,7 +59,7 @@ namespace CavesOfOoo.Tests
         [TestCase(false)] [TestCase(true)]
         public void TumbleRefusesEitherBlockedSwapEndpointWithoutPartialMutation(bool actorEnd)
         {
-            var z=new Zone();var actor=Place(z,"Player");var target=Place(z,"Snapjaw",11,10);
+            var z=new Zone();var actor=Place(z,"Player");var target=Place(z,"MarlbackScrabbler",11,10);
             Place(z,"SealedLibraryDoor",actorEnd?10:11,10);
             int v=z.EntityVersion;Assert.IsFalse(new Acrobatics_Tumble().OnCommand(Context(z,actor)));
             Assert.AreEqual((10,10),z.GetEntityPosition(actor));Assert.AreEqual((11,10),z.GetEntityPosition(target));
@@ -67,7 +67,7 @@ namespace CavesOfOoo.Tests
         }
         [Test] public void OrdinaryTumbleStillSwapsBothActors()
         {
-            var z=new Zone();var actor=Place(z,"Player");var target=Place(z,"Snapjaw",11,10);
+            var z=new Zone();var actor=Place(z,"Player");var target=Place(z,"MarlbackScrabbler",11,10);
             Assert.IsTrue(new Acrobatics_Tumble().OnCommand(Context(z,actor)));
             Assert.AreEqual((11,10),z.GetEntityPosition(actor));Assert.AreEqual((10,10),z.GetEntityPosition(target));
         }

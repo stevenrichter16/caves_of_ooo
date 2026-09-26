@@ -121,7 +121,7 @@ namespace CavesOfOoo.Tests
         [TestCase(false)] [TestCase(true)]
         public void Adversarial_FollowerPlacementSkipsInteriorOrLeavesItBehind(bool outsideAvailable)
         {
-            var old=new Zone();var next=new Zone();var leader=Place(old,"Player");var follower=Place(old,"Snapjaw",11,10);
+            var old=new Zone();var next=new Zone();var leader=Place(old,"Player");var follower=Place(old,"MarlbackScrabbler",11,10);
             var brain=leader.GetPart<BrainPart>();if(brain==null){brain=new BrainPart();leader.AddPart(brain);}
             brain.PartyMembers.Add(follower);follower.GetPart<BrainPart>().CurrentZone=old;
             for(int x=6;x<=14;x++)for(int y=6;y<=14;y++)Place(next,"SealedLibraryFloor",x,y);

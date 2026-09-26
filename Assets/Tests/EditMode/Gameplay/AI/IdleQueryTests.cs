@@ -66,7 +66,7 @@ namespace CavesOfOoo.Tests
             var chair = CreateChair();
             zone.AddEntity(chair, 5, 5);
 
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             creature.Tags["AllowIdleBehavior"] = "";
             var brain = new BrainPart { CurrentZone = zone, Rng = new Random(42) };
             creature.AddPart(brain);
@@ -91,7 +91,7 @@ namespace CavesOfOoo.Tests
             var chair = CreateChair(owner: "Innkeeper");
             zone.AddEntity(chair, 5, 5);
 
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             creature.Tags["AllowIdleBehavior"] = "";
             var brain = new BrainPart { CurrentZone = zone, Rng = new Random(42) };
             creature.AddPart(brain);
@@ -109,7 +109,7 @@ namespace CavesOfOoo.Tests
             var chair = CreateChair(owner: "Innkeeper");
             zone.AddEntity(chair, 5, 5);
 
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             creature.Tags["AllowIdleBehavior"] = "";
             creature.Tags["Innkeeper"] = "";
             var brain = new BrainPart { CurrentZone = zone, Rng = new Random(42) };
@@ -129,7 +129,7 @@ namespace CavesOfOoo.Tests
             chair.GetPart<ChairPart>().Occupied = true;
             zone.AddEntity(chair, 5, 5);
 
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             creature.Tags["AllowIdleBehavior"] = "";
             var brain = new BrainPart { CurrentZone = zone, Rng = new Random(42) };
             creature.AddPart(brain);
@@ -147,7 +147,7 @@ namespace CavesOfOoo.Tests
             var chair = CreateChair();
             zone.AddEntity(chair, 5, 5);
 
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             // No AllowIdleBehavior tag
             var brain = new BrainPart { CurrentZone = zone, Rng = new Random(42) };
             creature.AddPart(brain);
@@ -184,7 +184,7 @@ namespace CavesOfOoo.Tests
         public void SittingEffect_SittingNPC_StaysSeated_WhenNoHostile()
         {
             var zone = new Zone("TestZone");
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             creature.Tags["AllowIdleBehavior"] = "";
             var brain = new BrainPart
             {
@@ -213,7 +213,7 @@ namespace CavesOfOoo.Tests
         public void SittingEffect_RemovedOnHostile()
         {
             var zone = new Zone("TestZone");
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             creature.Tags["AllowIdleBehavior"] = "";
             var brain = new BrainPart
             {
@@ -247,7 +247,7 @@ namespace CavesOfOoo.Tests
             var chairPart = chair.GetPart<ChairPart>();
             chairPart.Occupied = true;
 
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             creature.AddPart(new StatusEffectsPart());
             zone.AddEntity(creature, 5, 5);
 
@@ -368,7 +368,7 @@ namespace CavesOfOoo.Tests
             var bed = CreateBed();
             zone.AddEntity(bed, 5, 5);
 
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             creature.Tags["AllowIdleBehavior"] = "";
             var brain = new BrainPart { CurrentZone = zone, Rng = new Random(42) };
             creature.AddPart(brain);
@@ -395,7 +395,7 @@ namespace CavesOfOoo.Tests
             zone.AddEntity(chair, 5, 5);
 
             // First NPC queries successfully and reserves the chair
-            var creature1 = CreateCreature("Snapjaws");
+            var creature1 = CreateCreature("OutlandRaiders");
             creature1.Tags["AllowIdleBehavior"] = "";
             creature1.AddPart(new BrainPart { CurrentZone = zone, Rng = new Random(1) });
             zone.AddEntity(creature1, 3, 5);
@@ -404,7 +404,7 @@ namespace CavesOfOoo.Tests
             Assert.IsNotNull(offer1, "First NPC should get an offer");
 
             // Second NPC should be rejected — chair is already reserved
-            var creature2 = CreateCreature("Snapjaws");
+            var creature2 = CreateCreature("OutlandRaiders");
             creature2.Tags["AllowIdleBehavior"] = "";
             creature2.AddPart(new BrainPart { CurrentZone = zone, Rng = new Random(2) });
             zone.AddEntity(creature2, 4, 5);
@@ -420,7 +420,7 @@ namespace CavesOfOoo.Tests
             var chair = CreateChair();
             zone.AddEntity(chair, 5, 5);
 
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             creature.Tags["AllowIdleBehavior"] = "";
             creature.AddPart(new BrainPart { CurrentZone = zone, Rng = new Random(1) });
             zone.AddEntity(creature, 3, 5);
@@ -436,7 +436,7 @@ namespace CavesOfOoo.Tests
                 "Cleanup callback should release the reservation");
 
             // Third NPC should now be able to query successfully
-            var creature2 = CreateCreature("Snapjaws");
+            var creature2 = CreateCreature("OutlandRaiders");
             creature2.Tags["AllowIdleBehavior"] = "";
             creature2.AddPart(new BrainPart { CurrentZone = zone, Rng = new Random(2) });
             zone.AddEntity(creature2, 4, 5);
@@ -459,7 +459,7 @@ namespace CavesOfOoo.Tests
             var chair = CreateChair();
             zone.AddEntity(chair, 10, 10);
 
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             creature.Tags["AllowIdleBehavior"] = "";
             creature.AddPart(new StatusEffectsPart());
             var brain = new BrainPart { CurrentZone = zone, Rng = new Random(42) };
@@ -509,7 +509,7 @@ namespace CavesOfOoo.Tests
                     if (dx != 0 || dy != 0)
                         PlaceWall(10 + dx, 10 + dy);
 
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             creature.Tags["AllowIdleBehavior"] = "";
             creature.AddPart(new StatusEffectsPart());
             var brain = new BrainPart { CurrentZone = zone, Rng = new Random(42) };
@@ -544,7 +544,7 @@ namespace CavesOfOoo.Tests
             bool actionRan = false;
 
             var zone = new Zone("TestZone");
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             var brain = new BrainPart { CurrentZone = zone, Rng = new Random(42) };
             creature.AddPart(brain);
             zone.AddEntity(creature, 5, 5);

@@ -385,7 +385,7 @@ namespace CavesOfOoo.Tests
             // that would leak live enemy positions through the fog.
             var zone = new Zone("T");
             zone.AddEntity(TerrainEntity("Grass", "."), 5, 3);
-            var snapjaw = new Entity { ID = "sj", BlueprintName = "Snapjaw" };
+            var snapjaw = new Entity { ID = "sj", BlueprintName = "MarlbackScrabbler" };
             snapjaw.AddPart(new RenderPart { DisplayName = "snapjaw", RenderString = "s", RenderLayer = 5 });
             zone.AddEntity(snapjaw, 5, 3);
             Reveal(zone);
@@ -865,9 +865,10 @@ namespace CavesOfOoo.Tests
 
             Assert.AreEqual("JungleApe", FindOverlay().GetTile(tilePos)?.name,
                 "the bestiary resolves by blueprint through the actor tier");
-            Assert.AreEqual(58, EnvironmentSpriteRenderer.CreatureSprites.Length,
+            Assert.AreEqual(62, EnvironmentSpriteRenderer.CreatureSprites.Length,
                 "roster pin: the 44-creature bestiary + the gin frog (W5.6) "
-                + "+ the tepui's lowland band (W6.3a) + summit/sima wave (W6.3b) + the native MawToad pilot icon + the Recension Searcher and the Curation Indexer (Stillleaf Archive SA.2, SA.3)");
+                + "+ the tepui's lowland band (W6.3a) + summit/sima wave (W6.3b) + the native MawToad pilot icon + the Recension Searcher and the Curation Indexer (Stillleaf Archive SA.2, SA.3) "
+                + "+ explicit Marlback Scrabbler/Gleaner/Tunnelguard and Grove Lantern-Moth rows (C13; two existing leader rows were replaced)");
             Object.DestroyImmediate(aGlyph);
         }
 
@@ -890,7 +891,7 @@ namespace CavesOfOoo.Tests
         [Test]
         public void ReskinnedCreature_KeepsItsHonestGlyph()
         {
-            // Dirt gnomes are Snapjaws reskinned to 'g' — same guard,
+            // Dirt gnomes are MarlbackScrabblers reskinned to 'g' — same guard,
             // bestiary flavor: a JungleApe reskinned to 'x' stands down.
             var zone = new Zone("T");
             var ape = new Entity { ID = "rx", BlueprintName = "JungleApe" };

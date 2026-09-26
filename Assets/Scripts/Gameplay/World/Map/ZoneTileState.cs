@@ -92,6 +92,30 @@ namespace CavesOfOoo.Core
         /// lightmap changes only (CLAUDE.md perf rule 4).</summary>
         public System.Action<int, int> OnCellChanged;
 
+        /// <summary>Runtime cache epoch for opaque cloud changes, not ordinary
+        /// coating/energy writes. Save data remains only the authored tile state.</summary>
+        public int SightVersion { get; private set; }
+        /// <summary>Runtime observer for opacity changes; observer failure cannot cancel state changes.</summary>
+        public System.Action OnSightChanged;
+        /// <summary>True only for live authored smoke. Out-of-bounds and other cloud IDs are transparent.</summary>
+        public bool ObscuresSight(int x, int y)
+        {
+            var state = Get(x, y);
+            return state != null && state.Cloud == "smoke" && state.CloudTurns > 0;
+        }
+        private void SightChanged()
+        {
+            unchecked { SightVersion++; }
+            try { OnSightChanged?.Invoke(); }
+            catch (System.Exception) { /* A presentation observer must not abort simulation state. */ }
+        }
+        private bool HasSmoke()
+        {
+            foreach (var entry in _states)
+                if (entry.Value.Cloud == "smoke" && entry.Value.CloudTurns > 0) return true;
+            return false;
+        }
+
         // ── Keys and bounds ──────────────────────────────────────
 
         private static bool InBounds(int x, int y)
@@ -266,9 +290,11 @@ namespace CavesOfOoo.Core
         public void WriteCloud(int x, int y, string gasId, int turns)
         {
             if (!InBounds(x, y) || string.IsNullOrEmpty(gasId) || turns <= 0) return;
+            bool before = ObscuresSight(x, y);
             var s = GetOrCreate(x, y);
             s.Cloud = gasId;
             s.CloudTurns = turns;
+            if (before != ObscuresSight(x, y)) SightChanged();
             Changed(x, y);
         }
 
@@ -303,7 +329,9 @@ namespace CavesOfOoo.Core
             int removed = CountLayers(x, y);
             if (removed == 0) return 0;
 
+            bool before = ObscuresSight(x, y);
             _states.Remove(Key(x, y));
+            if (before) SightChanged();
             Changed(x, y);
             return removed;
         }
@@ -342,6 +370,7 @@ namespace CavesOfOoo.Core
 
             _reclaimScratch.Clear();
             int visited = 0;
+            bool sightChanged = false;
 
             // Snapshot the keys before iterating. Decay alone would be
             // safe with a plain foreach, but P3's reactions run INSIDE
@@ -370,8 +399,10 @@ namespace CavesOfOoo.Core
 
                 if (!string.IsNullOrEmpty(s.Cloud))
                 {
+                    bool wasSmoke = s.Cloud == "smoke" && s.CloudTurns > 0;
                     s.CloudTurns--;
-                    if (s.CloudTurns <= 0) { s.Cloud = ""; s.CloudTurns = 0; }
+                    if (s.CloudTurns <= 0)
+                    { s.Cloud = ""; s.CloudTurns = 0; sightChanged |= wasSmoke; }
                 }
 
                 if (s.IsEmpty) _reclaimScratch.Add(stateKey);
@@ -384,6 +415,7 @@ namespace CavesOfOoo.Core
                 OnCellChanged?.Invoke(k % Zone.Width, k / Zone.Width);
             }
 
+            if (sightChanged) SightChanged();
             return visited;
         }
 
@@ -427,23 +459,28 @@ namespace CavesOfOoo.Core
         /// save from before this feature existed must load cleanly.</summary>
         public void LoadFromString(string json)
         {
-            _states.Clear();
-            if (string.IsNullOrWhiteSpace(json)) return;
-
-            SaveFile file;
-            try { file = JsonUtility.FromJson<SaveFile>(json); }
-            catch (System.Exception) { return; }
-            if (file?.Entries == null) return;
-
-            for (int i = 0; i < file.Entries.Count; i++)
+            bool before = HasSmoke();
+            try
             {
-                var entry = file.Entries[i];
-                if (entry?.State == null) continue;
-                if (entry.State.Coatings == null) entry.State.Coatings = new List<Layer>();
-                if (entry.State.Residues == null) entry.State.Residues = new List<Layer>();
-                if (entry.State.IsEmpty) continue;
-                _states[entry.Key] = entry.State;
+                _states.Clear();
+                if (string.IsNullOrWhiteSpace(json)) return;
+
+                SaveFile file;
+                try { file = JsonUtility.FromJson<SaveFile>(json); }
+                catch (System.Exception) { return; }
+                if (file?.Entries == null) return;
+
+                for (int i = 0; i < file.Entries.Count; i++)
+                {
+                    var entry = file.Entries[i];
+                    if (entry?.State == null) continue;
+                    if (entry.State.Coatings == null) entry.State.Coatings = new List<Layer>();
+                    if (entry.State.Residues == null) entry.State.Residues = new List<Layer>();
+                    if (entry.State.IsEmpty) continue;
+                    _states[entry.Key] = entry.State;
+                }
             }
+            finally { if (before || HasSmoke()) SightChanged(); }
         }
     }
 }

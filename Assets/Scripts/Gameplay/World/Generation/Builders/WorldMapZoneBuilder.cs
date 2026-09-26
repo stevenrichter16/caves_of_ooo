@@ -177,7 +177,7 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// POI → (glyph, color, displayName). The display name
         /// includes the POI's <c>Name</c> so the cell examine surfaces
-        /// "Sill village" / "Snapjaw lair" rather than the
+        /// "Sill village" / "MarlbackScrabbler lair" rather than the
         /// generic biome label.
         /// </summary>
         public static (string glyph, string color, string displayName) GetPOIRender(PointOfInterest poi)

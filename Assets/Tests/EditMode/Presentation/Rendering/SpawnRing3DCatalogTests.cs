@@ -82,7 +82,7 @@ namespace CavesOfOoo.Tests
         [Test] public void CompleteCoverageResolvesExactNativeFellingOwnersAndEightZones()
         {
             var d=Fresh();var parsed=Parse(d);
-            Assert.AreEqual(73,d.blueprints.Length);Assert.AreEqual(55,d.fellingOwners.Length);
+            Assert.AreEqual(77,d.blueprints.Length);Assert.AreEqual(55,d.fellingOwners.Length);
             Assert.AreEqual(39,d.fellingOwners.Count(o=>o.mutable));Assert.AreEqual(8,d.zones.Length);
             Assert.AreEqual(4,d.blueprints.Single(b=>b.blueprint=="GlowQuartzVein").models.Length,"Actual alternate-seed vein needs its four authored variants.");
             foreach(var b in d.blueprints)Assert.NotNull(Invoke(parsed,"FindBlueprint",b.blueprint),b.blueprint);

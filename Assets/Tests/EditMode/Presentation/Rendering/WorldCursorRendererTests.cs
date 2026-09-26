@@ -41,9 +41,9 @@ namespace CavesOfOoo.Tests
             var player = CreateEntity("Player", "@", "&Y", renderLayer: 10);
             player.SetTag("Player");
             player.SetTag("Creature");
-            var hostile = CreateEntity("Snapjaw", "s", "&g", renderLayer: 10);
+            var hostile = CreateEntity("MarlbackScrabbler", "s", "&g", renderLayer: 10);
             hostile.SetTag("Creature");
-            hostile.SetTag("Faction", "Snapjaws");
+            hostile.SetTag("Faction", "OutlandRaiders");
             zone.AddEntity(player, 10, 10);
             zone.AddEntity(hostile, 11, 10);
 

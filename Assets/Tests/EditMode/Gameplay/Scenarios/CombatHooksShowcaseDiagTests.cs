@@ -17,12 +17,12 @@ namespace CavesOfOoo.Tests.Scenarios
     /// The two pinnable contracts the scenario claims:
     ///
     ///   - **Phase F (BeforeTakeDamage)**: hits on the StoneSkin
-    ///     Snapjaw run through <see cref="ShowcaseStoneSkinPart"/>,
+    ///     MarlbackScrabbler run through <see cref="ShowcaseStoneSkinPart"/>,
     ///     which subtracts 2 from <see cref="Damage.Amount"/>. Hits
-    ///     on the unmodified control Snapjaw take full damage.
+    ///     on the unmodified control MarlbackScrabbler take full damage.
     ///
     ///   - **Phase H (CanBeDismembered)**: dismember rolls that pass
-    ///     the chance check on the Indestructible Snapjaw are vetoed
+    ///     the chance check on the Indestructible MarlbackScrabbler are vetoed
     ///     by <see cref="ShowcaseIndestructiblePart"/> — body parts
     ///     stay attached even with massive damage.
     ///
@@ -53,15 +53,15 @@ namespace CavesOfOoo.Tests.Scenarios
         // ====================================================================
 
         [Test]
-        public void StoneSkinSnapjaw_ReducesIncomingDamageByTwo()
+        public void StoneSkinMarlbackScrabbler_ReducesIncomingDamageByTwo()
         {
             var ctx = _harness.CreateContext(playerBlueprint: "Player");
             new CombatHooksShowcase().Apply(ctx);
 
-            var stoneSkin = FindSnapjawWithPart<ShowcaseStoneSkinPart>(ctx);
-            var control = FindControlSnapjaw(ctx);
-            Assert.IsNotNull(stoneSkin, "Scenario must spawn a Snapjaw with ShowcaseStoneSkinPart.");
-            Assert.IsNotNull(control, "Scenario must spawn a control Snapjaw with no showcase parts.");
+            var stoneSkin = FindMarlbackScrabblerWithPart<ShowcaseStoneSkinPart>(ctx);
+            var control = FindControlMarlbackScrabbler(ctx);
+            Assert.IsNotNull(stoneSkin, "Scenario must spawn a MarlbackScrabbler with ShowcaseStoneSkinPart.");
+            Assert.IsNotNull(control, "Scenario must spawn a control MarlbackScrabbler with no showcase parts.");
 
             Diag.ResetAll();
 
@@ -107,18 +107,18 @@ namespace CavesOfOoo.Tests.Scenarios
         }
 
         // ====================================================================
-        // Phase H — Indestructible Snapjaw never loses limbs (positive)
+        // Phase H — Indestructible MarlbackScrabbler never loses limbs (positive)
         // ====================================================================
 
         [Test]
-        public void IndestructibleSnapjaw_NeverLosesLimbsAcrossManyRolls()
+        public void IndestructibleMarlbackScrabbler_NeverLosesLimbsAcrossManyRolls()
         {
             var ctx = _harness.CreateContext(playerBlueprint: "Player");
             new CombatHooksShowcase().Apply(ctx);
 
-            var indestructible = FindSnapjawWithPart<ShowcaseIndestructiblePart>(ctx);
+            var indestructible = FindMarlbackScrabblerWithPart<ShowcaseIndestructiblePart>(ctx);
             Assert.IsNotNull(indestructible,
-                "Scenario must spawn a Snapjaw with ShowcaseIndestructiblePart.");
+                "Scenario must spawn a MarlbackScrabbler with ShowcaseIndestructiblePart.");
 
             // Override max HP so a damage of 99 easily clears the
             // DISMEMBER_DAMAGE_THRESHOLD (0.25 * maxHP). At Max=100,
@@ -128,17 +128,17 @@ namespace CavesOfOoo.Tests.Scenarios
             indestructible.Statistics["Hitpoints"].BaseValue = 100;
 
             var body = indestructible.GetPart<Body>();
-            Assert.IsNotNull(body, "Snapjaw must have a Body part.");
+            Assert.IsNotNull(body, "MarlbackScrabbler must have a Body part.");
 
             var hitPart = body.GetParts()
                 .FirstOrDefault(p => p.IsSeverable() && !p.Mortal);
             Assert.IsNotNull(hitPart,
-                "Snapjaw body must contain at least one non-Mortal severable part " +
+                "MarlbackScrabbler body must contain at least one non-Mortal severable part " +
                 "(arms, legs, etc.) for the dismember roll to land on.");
 
             int beforeCount = body.DismemberedParts.Count;
             Assert.AreEqual(0, beforeCount,
-                "Sanity: a freshly-spawned Snapjaw should have zero dismembered parts.");
+                "Sanity: a freshly-spawned MarlbackScrabbler should have zero dismembered parts.");
 
             // 100 seeded dismember-check calls. With chance=42 and the veto
             // disabled, we'd expect ~42 dismember attempts to succeed.
@@ -152,7 +152,7 @@ namespace CavesOfOoo.Tests.Scenarios
 
             int afterCount = body.DismemberedParts.Count;
             Assert.AreEqual(0, afterCount,
-                $"Indestructible Snapjaw must NEVER lose a limb — every " +
+                $"Indestructible MarlbackScrabbler must NEVER lose a limb — every " +
                 $"CanBeDismembered event is vetoed by ShowcaseIndestructiblePart. " +
                 $"DismemberedParts.Count went from {beforeCount} → {afterCount}. " +
                 $"If non-zero, the veto path through FireEventAndRelease " +
@@ -160,7 +160,7 @@ namespace CavesOfOoo.Tests.Scenarios
         }
 
         // ====================================================================
-        // Phase H counter-check — control Snapjaw DOES lose a limb
+        // Phase H counter-check — control MarlbackScrabbler DOES lose a limb
         //
         // Without this, the positive test would still pass even if a
         // hypothetical bug "dismemberment is silently disabled for ALL
@@ -169,19 +169,19 @@ namespace CavesOfOoo.Tests.Scenarios
         // ====================================================================
 
         [Test]
-        public void ControlSnapjaw_LosesAtLeastOneLimbAcrossManyRolls()
+        public void ControlMarlbackScrabbler_LosesAtLeastOneLimbAcrossManyRolls()
         {
             var ctx = _harness.CreateContext(playerBlueprint: "Player");
             new CombatHooksShowcase().Apply(ctx);
 
-            var control = FindControlSnapjaw(ctx);
-            Assert.IsNotNull(control, "Scenario must spawn a control Snapjaw with no showcase parts.");
+            var control = FindControlMarlbackScrabbler(ctx);
+            Assert.IsNotNull(control, "Scenario must spawn a control MarlbackScrabbler with no showcase parts.");
 
             control.Statistics["Hitpoints"].Max = 100;
             control.Statistics["Hitpoints"].BaseValue = 100;
 
             var body = control.GetPart<Body>();
-            Assert.IsNotNull(body, "Snapjaw must have a Body part.");
+            Assert.IsNotNull(body, "MarlbackScrabbler must have a Body part.");
 
             // Re-find the severable hit-target each loop: once a limb is
             // dismembered it leaves body.GetParts(), so we'd need a still-
@@ -200,7 +200,7 @@ namespace CavesOfOoo.Tests.Scenarios
 
             int finalDismemberCount = body.DismemberedParts.Count;
             Assert.GreaterOrEqual(finalDismemberCount, 1,
-                $"Control (non-Indestructible) Snapjaw MUST lose at least one " +
+                $"Control (non-Indestructible) MarlbackScrabbler MUST lose at least one " +
                 $"limb in 100 seeded rolls. Got {finalDismemberCount}. " +
                 $"If 0, the test setup is broken (the rolls + threshold + chance " +
                 $"never produce a successful dismember) — re-tune the damage / " +
@@ -212,32 +212,32 @@ namespace CavesOfOoo.Tests.Scenarios
         // ====================================================================
 
         /// <summary>
-        /// Finds the first Snapjaw the scenario spawned that has
+        /// Finds the first MarlbackScrabbler the scenario spawned that has
         /// <typeparamref name="TPart"/> attached. Used to locate the
         /// StoneSkin and Indestructible probes by their Part type.
         /// </summary>
-        private static Entity FindSnapjawWithPart<TPart>(
+        private static Entity FindMarlbackScrabblerWithPart<TPart>(
             CavesOfOoo.Scenarios.ScenarioContext ctx) where TPart : Part
         {
             return ctx.Zone.GetAllEntities()
                 .FirstOrDefault(e => e != null
                     && e != ctx.PlayerEntity
-                    && e.BlueprintName == "Snapjaw"
+                    && e.BlueprintName == "MarlbackScrabbler"
                     && e.GetPart<TPart>() != null);
         }
 
         /// <summary>
-        /// Finds the control Snapjaw — the one with NO showcase parts.
-        /// The scenario spawns three Snapjaws: StoneSkin (NW), control
+        /// Finds the control MarlbackScrabbler — the one with NO showcase parts.
+        /// The scenario spawns three OutlandRaiders: StoneSkin (NW), control
         /// (E), Indestructible (NE). The control is identified by the
         /// absence of ShowcaseStoneSkinPart and ShowcaseIndestructiblePart.
         /// </summary>
-        private static Entity FindControlSnapjaw(CavesOfOoo.Scenarios.ScenarioContext ctx)
+        private static Entity FindControlMarlbackScrabbler(CavesOfOoo.Scenarios.ScenarioContext ctx)
         {
             return ctx.Zone.GetAllEntities()
                 .FirstOrDefault(e => e != null
                     && e != ctx.PlayerEntity
-                    && e.BlueprintName == "Snapjaw"
+                    && e.BlueprintName == "MarlbackScrabbler"
                     && e.GetPart<ShowcaseStoneSkinPart>() == null
                     && e.GetPart<ShowcaseIndestructiblePart>() == null);
         }

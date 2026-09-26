@@ -12,12 +12,12 @@ namespace CavesOfOoo.Scenarios.Custom
     ///                   ↗  ↗
     ///   [Player] →→→→→ [StoneGolem E: ER=50, halved]
     ///                   ↘  ↘
-    ///                   [Snapjaw SE: ER=0, control, full damage]
+    ///                   [MarlbackScrabbler SE: ER=0, control, full damage]
     ///
     /// Three swings of the ThunderHammer expose the entire Phase E curve:
     ///
     ///   - StoneGolem (ER=+50) → damage halved (`amount × 0.5`)
-    ///   - Snapjaw    (ER=0)   → full damage (`amount × 1.0`)
+    ///   - MarlbackScrabbler    (ER=0)   → full damage (`amount × 1.0`)
     ///   - BrassHusk  (ER=-50) → damage amplified 50% (`amount × 1.5`)
     ///
     /// This is the first scenario to demonstrate **negative resistance**
@@ -32,7 +32,7 @@ namespace CavesOfOoo.Scenarios.Custom
     [Scenario(
         name: "ThunderHammer Showcase",
         category: "Combat",
-        description: "Phase C × Phase E full curve: ThunderHammer vs StoneGolem (ER=50, halved), Snapjaw (control), BrassHusk (ER=-50, amplified). First scenario to expose negative resistance in-game.")]
+        description: "Phase C × Phase E full curve: ThunderHammer vs StoneGolem (ER=50, halved), MarlbackScrabbler (control), BrassHusk (ER=-50, amplified). First scenario to expose negative resistance in-game.")]
     public class ThunderHammerShowcase : IScenario
     {
         public void Apply(ScenarioContext ctx)
@@ -70,22 +70,22 @@ namespace CavesOfOoo.Scenarios.Custom
             if (husk != null)
                 husk.AddPart(new ThunderHammerDemoProbePart());
 
-            // === SE: Snapjaw — ER=0, CONTROL ===
+            // === SE: MarlbackScrabbler — ER=0, CONTROL ===
             // No ElectricResistance. Full damage. Reference point.
-            var snapjaw = ctx.Spawn("Snapjaw")
+            var marlback = ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 200)
                 .WithHpAbsolute(200)
                 .AsPersonalEnemyOf(ctx.PlayerEntity)
                 .At(p.x + 3, p.y + 2);
-            if (snapjaw != null)
-                snapjaw.AddPart(new ThunderHammerDemoProbePart());
+            if (marlback != null)
+                marlback.AddPart(new ThunderHammerDemoProbePart());
 
             // === Walk-through log ===
             ctx.Log("=== ThunderHammer Showcase (Phase C × Phase E full curve) ===");
             ctx.Log("Loadout: ThunderHammer equipped, Cudgel in inventory.");
             ctx.Log("E  StoneGolem (ER=+50): swing ThunderHammer → HALVED. Resistant.");
             ctx.Log("NE BrassHusk  (ER=-50): swing ThunderHammer → AMPLIFIED 1.5×. Vulnerable.");
-            ctx.Log("SE Snapjaw    (ER=0):   swing ThunderHammer → full damage. Control.");
+            ctx.Log("SE MarlbackScrabbler    (ER=0):   swing ThunderHammer → full damage. Control.");
             ctx.Log("Watch for [ThunderDemo] log lines — they show the live");
             ctx.Log("ElectricResistance value (including sign) and the LIGHTNING flag.");
             ctx.Log("Swap to Cudgel (Bludgeoning, no Lightning) to confirm the elemental");

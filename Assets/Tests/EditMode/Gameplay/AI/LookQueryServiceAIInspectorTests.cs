@@ -49,14 +49,14 @@ namespace CavesOfOoo.Tests
             // a Brain. Proves the zero-cost default path.
             AIDebug.AIInspectorEnabled = false;
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").AtPlayerOffset(2, 0);
-            var pos = ctx.Zone.GetEntityPosition(snapjaw);
+            var marlback = ctx.Spawn("MarlbackScrabbler").AtPlayerOffset(2, 0);
+            var pos = ctx.Zone.GetEntityPosition(marlback);
 
             var snap = LookQueryService.BuildSnapshot(
                 ctx.PlayerEntity, ctx.Zone, pos.x, pos.y);
 
-            Assert.AreSame(snapjaw, snap.PrimaryEntity,
-                "Sanity: snapshot's primary should be the spawned Snapjaw.");
+            Assert.AreSame(marlback, snap.PrimaryEntity,
+                "Sanity: snapshot's primary should be the spawned MarlbackScrabbler.");
             Assert.IsNull(snap.GoalStackLines,
                 "Inspector OFF → GoalStackLines must stay null.");
             Assert.IsNull(snap.LastThought,
@@ -68,23 +68,23 @@ namespace CavesOfOoo.Tests
         {
             // Positive path: toggle on, hover a Creature-with-Brain, expect
             // GoalStackLines non-null and containing at least one rendered goal.
-            // The snapjaw just spawned — its BoredGoal hasn't been pushed yet
+            // The marlback just spawned — its BoredGoal hasn't been pushed yet
             // (that happens on first TakeTurn), so the stack may be empty OR
             // contain BoredGoal after a single tick. Fire one TakeTurn to
             // stabilize, then assert.
             AIDebug.AIInspectorEnabled = true;
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").AtPlayerOffset(4, 0);
-            snapjaw.FireEvent(GameEvent.New("TakeTurn"));
+            var marlback = ctx.Spawn("MarlbackScrabbler").AtPlayerOffset(4, 0);
+            marlback.FireEvent(GameEvent.New("TakeTurn"));
 
-            var pos = ctx.Zone.GetEntityPosition(snapjaw);
+            var pos = ctx.Zone.GetEntityPosition(marlback);
             var snap = LookQueryService.BuildSnapshot(
                 ctx.PlayerEntity, ctx.Zone, pos.x, pos.y);
 
             Assert.IsNotNull(snap.GoalStackLines,
                 "Inspector ON + Creature + BrainPart → GoalStackLines must populate.");
             Assert.GreaterOrEqual(snap.GoalStackLines.Count, 1,
-                "After one TakeTurn the Snapjaw should have at least one goal on the stack (BoredGoal or KillGoal).");
+                "After one TakeTurn the MarlbackScrabbler should have at least one goal on the stack (BoredGoal or KillGoal).");
             Assert.IsNotNull(snap.LastThought,
                 "LastThought is populated with 'none' when the creature hasn't thought yet — never raw-null when other inspector fields populate.");
         }
@@ -146,7 +146,7 @@ namespace CavesOfOoo.Tests
             // collapsing entirely would break this test.
             AIDebug.AIInspectorEnabled = true;
             var ctx = _harness.CreateContext();
-            var creature = ctx.Spawn("Snapjaw").AtPlayerOffset(3, 0);
+            var creature = ctx.Spawn("MarlbackScrabbler").AtPlayerOffset(3, 0);
 
             // Replace the stack with three identical synthetic goals so we
             // can assert the rendered form deterministically. (Using real
@@ -175,7 +175,7 @@ namespace CavesOfOoo.Tests
             // separate lines — the "x2" collapse must not over-merge.
             AIDebug.AIInspectorEnabled = true;
             var ctx = _harness.CreateContext();
-            var creature = ctx.Spawn("Snapjaw").AtPlayerOffset(3, 0);
+            var creature = ctx.Spawn("MarlbackScrabbler").AtPlayerOffset(3, 0);
 
             var brain = creature.GetPart<BrainPart>();
             brain.ClearGoals();
@@ -203,7 +203,7 @@ namespace CavesOfOoo.Tests
             // "none" sentinel — it's used ONLY when LastThought is null/empty.
             AIDebug.AIInspectorEnabled = true;
             var ctx = _harness.CreateContext();
-            var creature = ctx.Spawn("Snapjaw").AtPlayerOffset(3, 0);
+            var creature = ctx.Spawn("MarlbackScrabbler").AtPlayerOffset(3, 0);
             var brain = creature.GetPart<BrainPart>();
             brain.Think("I see you, player");
 
@@ -223,7 +223,7 @@ namespace CavesOfOoo.Tests
             // "Thought: <x>" line without a null check.
             AIDebug.AIInspectorEnabled = true;
             var ctx = _harness.CreateContext();
-            var creature = ctx.Spawn("Snapjaw").AtPlayerOffset(3, 0);
+            var creature = ctx.Spawn("MarlbackScrabbler").AtPlayerOffset(3, 0);
 
             var pos = ctx.Zone.GetEntityPosition(creature);
             var snap = LookQueryService.BuildSnapshot(

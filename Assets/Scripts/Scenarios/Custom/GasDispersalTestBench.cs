@@ -227,7 +227,7 @@ namespace CavesOfOoo.Scenarios.Custom
 
         private static Entity Dummy(ScenarioContext ctx, int x, int y, string label)
         {
-            var npc = ctx.Spawn("Snapjaw")
+            var npc = ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 4000)
                 .WithHpAbsolute(4000)
                 .Passive()
@@ -242,7 +242,7 @@ namespace CavesOfOoo.Scenarios.Custom
             if (npc.GetStat("AcidResistance") == null) S("AcidResistance", 0);
             if (npc.GetStat("Toughness") == null) S("Toughness", 12);
             var render = npc.GetPart<RenderPart>();
-            if (render != null) render.DisplayName = "snapjaw (" + label + ")";
+            if (render != null) render.DisplayName = "marlback (" + label + ")";
             return npc;
         }
 

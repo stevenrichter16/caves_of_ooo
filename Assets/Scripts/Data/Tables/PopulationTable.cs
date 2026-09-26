@@ -189,7 +189,7 @@ namespace CavesOfOoo.Data
         /// of the bestiary to work indicating a band or a state
         /// (FELLING-WORLD-DESIGN §3.6), and until now the Stump
         /// borrowed the CAVE tables outright: the god-tree's stump was
-        /// populated by snapjaws.
+        /// populated by marlbacks.
         ///
         /// <para><c>StumpBand.None</c> (a Stump-biome cell off the
         /// authored band map, or a pipeline built without coordinates)
@@ -370,7 +370,7 @@ namespace CavesOfOoo.Data
                     // The hedge is where the snake is.
                     new PopulationEntry { BlueprintName = "Viper", Weight = 2, MinCount = 1, MaxCount = 2, EncounterGroup = "SpreadTier1Encounter" },
                     // One small encounter per zone: roadside trouble OR a snake hedge.
-                    new PopulationEntry { BlueprintName = "Snapjaw", Weight = 2, MinCount = 1, MaxCount = 2, EncounterGroup = "SpreadTier1Encounter" },
+                    new PopulationEntry { BlueprintName = "MarlbackScrabbler", Weight = 2, MinCount = 1, MaxCount = 2, EncounterGroup = "SpreadTier1Encounter" },
                     // Worked country feeds you.
                     new PopulationEntry { BlueprintName = "BerryBush", Weight = 4, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "Beehive", Weight = 2, MinCount = 0, MaxCount = 2 },
@@ -393,8 +393,8 @@ namespace CavesOfOoo.Data
                 {
                     new PopulationEntry { BlueprintName = "Magpie", Weight = 3, MinCount = 1, MaxCount = 3 },
                     // Further out, the road stops being safe.
-                    new PopulationEntry { BlueprintName = "Snapjaw", Weight = 4, MinCount = 1, MaxCount = 3 },
-                    new PopulationEntry { BlueprintName = "SnapjawScavenger", Weight = 3, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "MarlbackScrabbler", Weight = 4, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "MarlbackGleaner", Weight = 3, MinCount = 1, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Viper", Weight = 3, MinCount = 1, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "GiantSpider", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "BerryBush", Weight = 3, MinCount = 1, MaxCount = 2 },
@@ -416,9 +416,9 @@ namespace CavesOfOoo.Data
                 {
                     // The far Spread: the fields thin out and what walks
                     // them is organised.
-                    new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 4, MinCount = 1, MaxCount = 3 },
-                    new PopulationEntry { BlueprintName = "Snapjaw", Weight = 3, MinCount = 1, MaxCount = 3 },
-                    new PopulationEntry { BlueprintName = "SnapjawScavenger", Weight = 2, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "MarlbackTunnelguard", Weight = 4, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "MarlbackScrabbler", Weight = 3, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "MarlbackGleaner", Weight = 2, MinCount = 1, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "GiantSpider", Weight = 2, MinCount = 0, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Viper", Weight = 2, MinCount = 0, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Magpie", Weight = 2, MinCount = 0, MaxCount = 2 },
@@ -494,7 +494,7 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "GlassScorpion", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "SunStriker", Weight = 2, MinCount = 0, MaxCount = 2 },
                     // Organised human trouble follows the caravans out.
-                    new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "MarlbackTunnelguard", Weight = 2, MinCount = 0, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Saltbriar", Weight = 2, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "Bones", Weight = 3, MinCount = 1, MaxCount = 3 },
                 }
@@ -508,9 +508,9 @@ namespace CavesOfOoo.Data
                 Name = "CaveTier1",
                 Entries = new List<PopulationEntry>
                 {
-                    new PopulationEntry { BlueprintName = "Snapjaw", Weight = 5, MinCount = 2, MaxCount = 5 },
-                    new PopulationEntry { BlueprintName = "SnapjawScavenger", Weight = 3, MinCount = 1, MaxCount = 3 },
-                    new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 1, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "MarlbackScrabbler", Weight = 5, MinCount = 2, MaxCount = 5 },
+                    new PopulationEntry { BlueprintName = "MarlbackGleaner", Weight = 3, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "MarlbackTunnelguard", Weight = 1, MinCount = 0, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "CaveBat", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "CaveSlime", Weight = 2, MinCount = 0, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Glowmaw", Weight = 2, MinCount = 0, MaxCount = 2 },
@@ -611,7 +611,7 @@ namespace CavesOfOoo.Data
                 Entries = new List<PopulationEntry>
                 {
                     new PopulationEntry { BlueprintName = "HelmwoodFrog", Weight = 1, MinCount = 0, MaxCount = 1 },
-                    new PopulationEntry { BlueprintName = "GlowMoth", Weight = 5, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "GroveLanternMoth", Weight = 5, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "Rotling", Weight = 2, MinCount = 0, MaxCount = 2 },
                     // Review: the slow shapes arrive with tier 2, like
                     // the Sodden's toads — the gentle ring stays gentle.
@@ -628,7 +628,7 @@ namespace CavesOfOoo.Data
                 Entries = new List<PopulationEntry>
                 {
                     new PopulationEntry { BlueprintName = "HelmwoodFrog", Weight = 1, MinCount = 0, MaxCount = 1 },
-                    new PopulationEntry { BlueprintName = "GlowMoth", Weight = 3, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "GroveLanternMoth", Weight = 3, MinCount = 1, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Rotling", Weight = 3, MinCount = 1, MaxCount = 2, EncounterGroup = "GrovelandsTier2Encounter" },
                     new PopulationEntry { BlueprintName = "Shambler", Weight = 3, MinCount = 1, MaxCount = 2, EncounterGroup = "GrovelandsTier2Encounter" },
                     new PopulationEntry { BlueprintName = "WineLeafSundew", Weight = 3, MinCount = 1, MaxCount = 2 },
@@ -662,8 +662,8 @@ namespace CavesOfOoo.Data
                 Name = "DesertTier1",
                 Entries = new List<PopulationEntry>
                 {
-                    new PopulationEntry { BlueprintName = "Snapjaw", Weight = 3, MinCount = 1, MaxCount = 3 },
-                    new PopulationEntry { BlueprintName = "SnapjawScavenger", Weight = 2, MinCount = 0, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "MarlbackScrabbler", Weight = 3, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "MarlbackGleaner", Weight = 2, MinCount = 0, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Scorpion", Weight = 4, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "DesertBandit", Weight = 2, MinCount = 0, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Rock", Weight = 4, MinCount = 2, MaxCount = 6 },
@@ -685,8 +685,8 @@ namespace CavesOfOoo.Data
                 Name = "JungleTier1",
                 Entries = new List<PopulationEntry>
                 {
-                    new PopulationEntry { BlueprintName = "Snapjaw", Weight = 3, MinCount = 1, MaxCount = 3 },
-                    new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 2, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "MarlbackScrabbler", Weight = 3, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "MarlbackTunnelguard", Weight = 2, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "GiantSpider", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "Viper", Weight = 3, MinCount = 1, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Glowmaw", Weight = 2, MinCount = 0, MaxCount = 2 },
@@ -713,8 +713,8 @@ namespace CavesOfOoo.Data
                 Name = "RuinsTier1",
                 Entries = new List<PopulationEntry>
                 {
-                    new PopulationEntry { BlueprintName = "SnapjawScavenger", Weight = 3, MinCount = 1, MaxCount = 3 },
-                    new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 2, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "MarlbackGleaner", Weight = 3, MinCount = 1, MaxCount = 3 },
+                    new PopulationEntry { BlueprintName = "MarlbackTunnelguard", Weight = 2, MinCount = 1, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "RuinScavenger", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "LongSword", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "LeatherArmor", Weight = 1, MinCount = 0, MaxCount = 1 },
@@ -741,7 +741,7 @@ namespace CavesOfOoo.Data
                 Entries = new List<PopulationEntry>
                 {
                     new PopulationEntry { BlueprintName = "CaveBear", Weight = 3, MinCount = 1, MaxCount = 2 },
-                    new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 4, MinCount = 2, MaxCount = 4 },
+                    new PopulationEntry { BlueprintName = "MarlbackTunnelguard", Weight = 4, MinCount = 2, MaxCount = 4 },
                     new PopulationEntry { BlueprintName = "CaveSlime", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "CaveBat", Weight = 2, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "Glowmaw", Weight = 2, MinCount = 0, MaxCount = 2 },
@@ -795,7 +795,7 @@ namespace CavesOfOoo.Data
                     new PopulationEntry { BlueprintName = "GiantSpider", Weight = 3, MinCount = 2, MaxCount = 4 },
                     new PopulationEntry { BlueprintName = "Viper", Weight = 3, MinCount = 1, MaxCount = 3 },
                     new PopulationEntry { BlueprintName = "Glowmaw", Weight = 2, MinCount = 0, MaxCount = 2 },
-                    new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 2, MinCount = 1, MaxCount = 2 },
+                    new PopulationEntry { BlueprintName = "MarlbackTunnelguard", Weight = 2, MinCount = 1, MaxCount = 2 },
                     new PopulationEntry { BlueprintName = "Dagger", Weight = 2, MinCount = 0, MaxCount = 2 },
                     // LOOT OVERHAUL SM7 — wider loose-gear pool.
                     new PopulationEntry { BlueprintName = "Mace", Weight = 1, MinCount = 0, MaxCount = 1 },
@@ -833,7 +833,7 @@ namespace CavesOfOoo.Data
 
         // ── Tier 3 Tables (BIOME-OVERHAUL A5) ──────────────────────────
         // The far ring (Manhattan dist > 8). Hostile backbone comes from
-        // Beasts/Snapjaws-faction bruisers; the faction-tagged mutants
+        // Beasts/OutlandRaiders-faction bruisers; the faction-tagged mutants
         // (GlassScorpion/SporeShambler/BrassHusk/PalimpsestEcho/
         // ChoirTendril) spawn as ECOLOGY — their factions start at rep 0,
         // so they are neutral until provoked, same as the Elemental
@@ -850,13 +850,13 @@ namespace CavesOfOoo.Data
                     // Round 5 — buried-mechanic surfacing: heal-over-time spring
                     new PopulationEntry { BlueprintName = "ConvalescencePool", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "CaveBear", Weight = 3, MinCount = 1, MaxCount = 3 },
-                    new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 4, MinCount = 2, MaxCount = 4 },
+                    new PopulationEntry { BlueprintName = "MarlbackTunnelguard", Weight = 4, MinCount = 2, MaxCount = 4 },
                     new PopulationEntry { BlueprintName = "Glowmaw", Weight = 3, MinCount = 1, MaxCount = 3 },
                     // Phase C: the far ring's leadership and its grazers.
-                    new PopulationEntry { BlueprintName = "SnapjawWarlord", Weight = 2, MinCount = 0, MaxCount = 1 },
+                    new PopulationEntry { BlueprintName = "MarlbackBreacher", Weight = 2, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "Mosshulk", Weight = 2, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "CaveSlime", Weight = 2, MinCount = 1, MaxCount = 2 },
-                    new PopulationEntry { BlueprintName = "Snapjaw", Weight = 3, MinCount = 2, MaxCount = 4 },
+                    new PopulationEntry { BlueprintName = "MarlbackScrabbler", Weight = 3, MinCount = 2, MaxCount = 4 },
                     new PopulationEntry { BlueprintName = "LongSword", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "ChainMail", Weight = 1, MinCount = 0, MaxCount = 1 },
                     new PopulationEntry { BlueprintName = "Stalagmite", Weight = 3, MinCount = 2, MaxCount = 6 },
@@ -969,7 +969,7 @@ namespace CavesOfOoo.Data
                         Name = "LairGuards_Cave",
                         Entries = new List<PopulationEntry>
                         {
-                            new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = 4, MinCount = 2, MaxCount = 4 },
+                            new PopulationEntry { BlueprintName = "MarlbackTunnelguard", Weight = 4, MinCount = 2, MaxCount = 4 },
                             new PopulationEntry { BlueprintName = "CaveBear", Weight = 2, MinCount = 0, MaxCount = 1 },
                             new PopulationEntry { BlueprintName = "CaveBat", Weight = 3, MinCount = 1, MaxCount = 3 },
                             new PopulationEntry { BlueprintName = "Glowmaw", Weight = 2, MinCount = 0, MaxCount = 2 },
@@ -1082,7 +1082,7 @@ namespace CavesOfOoo.Data
         {
             int tier = depth <= 0 ? 1 : System.Math.Min(depth / 3 + 1, 8);
 
-            // One group per depth roll; cap pack size instead of filling deep caves with snapjaws.
+            // One group per depth roll; cap pack size instead of filling deep caves with marlbacks.
             int snapMin = 1 + System.Math.Min(tier - 1, 2);
             int snapMax = 3 + System.Math.Min(tier - 1, 2);
             int scavMin = 1;
@@ -1095,9 +1095,9 @@ namespace CavesOfOoo.Data
                 Name = $"Underground_Depth{depth}",
                 Entries = new List<PopulationEntry>
                 {
-                    new PopulationEntry { BlueprintName = "Snapjaw", Weight = tier == 1 ? 5 : 2, MinCount = snapMin, MaxCount = snapMax, EncounterGroup = "DepthEncounter" },
-                    new PopulationEntry { BlueprintName = "SnapjawScavenger", Weight = tier == 1 ? 3 : 1, MinCount = scavMin, MaxCount = scavMax, EncounterGroup = "DepthEncounter" },
-                    new PopulationEntry { BlueprintName = "SnapjawHunter", Weight = tier == 1 ? 2 : 1, MinCount = huntMin, MaxCount = huntMax, EncounterGroup = "DepthEncounter" },
+                    new PopulationEntry { BlueprintName = "MarlbackScrabbler", Weight = tier == 1 ? 5 : 2, MinCount = snapMin, MaxCount = snapMax, EncounterGroup = "DepthEncounter" },
+                    new PopulationEntry { BlueprintName = "MarlbackGleaner", Weight = tier == 1 ? 3 : 1, MinCount = scavMin, MaxCount = scavMax, EncounterGroup = "DepthEncounter" },
+                    new PopulationEntry { BlueprintName = "MarlbackTunnelguard", Weight = tier == 1 ? 2 : 1, MinCount = huntMin, MaxCount = huntMax, EncounterGroup = "DepthEncounter" },
                     new PopulationEntry { BlueprintName = "Stalagmite", Weight = 3, MinCount = 2, MaxCount = 6 },
                     new PopulationEntry { BlueprintName = "Glowmaw", Weight = 2, MinCount = 0, MaxCount = 1 + tier / 2 },
                 }
@@ -1119,6 +1119,7 @@ namespace CavesOfOoo.Data
             if (tier >= 2)
             {
                 table.Entries.Add(new PopulationEntry { BlueprintName = "CaveBear", Weight = 3, MinCount = 1, MaxCount = 1, EncounterGroup = "DepthEncounter" });
+                table.Entries.Add(new PopulationEntry { BlueprintName = "IceWight", Weight = 2, MinCount = 1, MaxCount = 1, EncounterGroup = "DepthEncounter" });
                 table.Entries.Add(new PopulationEntry { BlueprintName = "Rotling", Weight = 3, MinCount = 1, MaxCount = 2, EncounterGroup = "DepthEncounter" });
             }
             if (tier >= 3)

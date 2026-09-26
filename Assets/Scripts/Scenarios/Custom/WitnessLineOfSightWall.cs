@@ -10,8 +10,8 @@ namespace CavesOfOoo.Scenarios.Custom
     /// - Scribe #1 at player+3,0 (north of the kill path, clear LOS).
     /// - Wall belt at player+4..6 on y=+2 (blocks LOS from south).
     /// - Scribe #2 at player+5,3 (south of the wall belt, LOS blocked).
-    /// - One-HP Snapjaw at player+5,0 (the kill cell).
-    /// - Player kills the Snapjaw.
+    /// - One-HP MarlbackScrabbler at player+5,0 (the kill cell).
+    /// - Player kills the MarlbackScrabbler.
     /// - Scribe #1 receives WitnessedEffect ("Scribe looks shaken.")
     /// - Scribe #2 does NOT — wall blocks LOS.
     /// - Visually: north scribe paces, south scribe stays still.
@@ -26,13 +26,13 @@ namespace CavesOfOoo.Scenarios.Custom
     [Scenario(
         name: "Witness LOS Wall (M2.3)",
         category: "AI Behavior",
-        description: "Two Scribes, one behind a wall. Kill the Snapjaw; only the Scribe with LOS shakes.")]
+        description: "Two Scribes, one behind a wall. Kill the MarlbackScrabbler; only the Scribe with LOS shakes.")]
     public class WitnessLineOfSightWall : IScenario
     {
         public void Apply(ScenarioContext ctx)
         {
             // Clear the east row so Scribe #1 has LOS to the kill cell and
-            // the player can reach the Snapjaw. The starting zone's West
+            // the player can reach the MarlbackScrabbler. The starting zone's West
             // compass stone (player+2,0) and grimoire chest (player+4,0)
             // would both block LOS on the kill-row otherwise.
             var p = ctx.Zone.GetEntityPosition(ctx.PlayerEntity);
@@ -53,12 +53,12 @@ namespace CavesOfOoo.Scenarios.Custom
             // Scribe #2 — identical to #1, but wall-blocked LOS to the death cell.
             ctx.Spawn("Scribe").AtPlayerOffset(5, 4);
 
-            ctx.Spawn("Snapjaw")
+            ctx.Spawn("MarlbackScrabbler")
                .WithHpAbsolute(1)
                .AsPersonalEnemyOf(ctx.PlayerEntity)
                .AtPlayerOffset(5, 0);
 
-            ctx.Log("Kill the Snapjaw. North Scribe (clear LOS) shakes; south Scribe (behind wall) stays still.");
+            ctx.Log("Kill the MarlbackScrabbler. North Scribe (clear LOS) shakes; south Scribe (behind wall) stays still.");
         }
     }
 }

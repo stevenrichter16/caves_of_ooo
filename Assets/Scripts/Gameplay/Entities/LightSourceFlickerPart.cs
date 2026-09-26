@@ -82,7 +82,7 @@ namespace CavesOfOoo.Core
         public void UpdateIntensityAt(float time)
         {
             var lightSource = ParentEntity?.GetPart<LightSourcePart>();
-            if (lightSource == null) return;
+            if (lightSource == null || !lightSource.Enabled) return;
 
             if (_phaseOffset < 0f)
             {

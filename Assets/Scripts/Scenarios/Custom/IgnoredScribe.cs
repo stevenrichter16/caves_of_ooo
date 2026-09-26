@@ -2,15 +2,15 @@ namespace CavesOfOoo.Scenarios.Custom
 {
     /// <summary>
     /// M1.2 showcase — Scribe with <c>BrainPart.Passive=true</c> seeing a
-    /// hostile Snapjaw within her 8-cell sight radius. Passive NPCs ignore
+    /// hostile MarlbackScrabbler within her 8-cell sight radius. Passive NPCs ignore
     /// hostile sight (no engagement, no flee on proximity) but still
     /// retaliate when attacked.
     ///
     /// Expected flow when launched:
-    /// - Turn 1: Scribe sees Snapjaw at distance 3. Passive — no engagement.
-    /// - Turns 2–5: Snapjaw (Snapjaws faction, hostile to Villagers) walks
+    /// - Turn 1: Scribe sees MarlbackScrabbler at distance 3. Passive — no engagement.
+    /// - Turns 2–5: MarlbackScrabbler (OutlandRaiders faction, hostile to Villagers) walks
     ///   toward the closer target (Scribe).
-    /// - Turn 6ish: Snapjaw attacks Scribe adjacent. Scribe retaliates
+    /// - Turn 6ish: MarlbackScrabbler attacks Scribe adjacent. Scribe retaliates
     ///   (Passive ≠ pacifist).
     /// - Scribe's HP drops below 80% → her AISelfPreservation (thresholds
     ///   0.8/0.95) pushes RetreatGoal targeting her StartingCell.
@@ -31,7 +31,7 @@ namespace CavesOfOoo.Scenarios.Custom
     [Scenario(
         name: "Ignored Scribe",
         category: "AI Behavior",
-        description: "Passive Scribe ignores a nearby Snapjaw on sight. Retaliates if attacked, then flees west.")]
+        description: "Passive Scribe ignores a nearby MarlbackScrabbler on sight. Retaliates if attacked, then flees west.")]
     public class IgnoredScribe : IScenario
     {
         public void Apply(ScenarioContext ctx)
@@ -39,8 +39,8 @@ namespace CavesOfOoo.Scenarios.Custom
             var playerPos = ctx.Zone.GetEntityPosition(ctx.PlayerEntity);
 
             // Scribe 5 east of player; her "safe" waypoint is 3 west of player.
-            // Snapjaw spawns 3 cells east of Scribe so Scribe is the closer
-            // target (Snapjaw melee-targets closest hostile).
+            // MarlbackScrabbler spawns 3 cells east of Scribe so Scribe is the closer
+            // target (MarlbackScrabbler melee-targets closest hostile).
             int scribeX = playerPos.x + 5;
             int scribeY = playerPos.y;
             int safeX = playerPos.x - 3;
@@ -50,9 +50,9 @@ namespace CavesOfOoo.Scenarios.Custom
                .WithStartingCell(safeX, safeY)
                .At(scribeX, scribeY);
 
-            ctx.Spawn("Snapjaw").AtPlayerOffset(8, 0);   // 3 cells east of Scribe
+            ctx.Spawn("MarlbackScrabbler").AtPlayerOffset(8, 0);   // 3 cells east of Scribe
 
-            ctx.Log("Scribe at player+5 (safe post 3 west of player). Snapjaw at player+8. Passive on sight; retreat west after being hit.");
+            ctx.Log("Scribe at player+5 (safe post 3 west of player). MarlbackScrabbler at player+8. Passive on sight; retreat west after being hit.");
         }
     }
 }

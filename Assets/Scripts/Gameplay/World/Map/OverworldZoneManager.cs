@@ -89,7 +89,8 @@ namespace CavesOfOoo.Core
 
             // Underground zones use a dedicated pipeline
             if (wz > 0)
-                return CreateUndergroundPipeline(wz);
+                return CreateUndergroundPipeline(wz,
+                    UndergroundLayoutPlan.Select(WorldSeed,zoneID,biome,poi,Factory));
 
             // Check for POI -- villages, lairs, and river chunks get special pipelines
             if (poi != null)
@@ -114,6 +115,10 @@ namespace CavesOfOoo.Core
                         return CreateRiverChunkPipeline();
                 }
             }
+
+            if(zoneID==ReferenceGladePlan.ZoneID&&biome==BiomeType.Spread&&poi==null
+                &&ReferenceGladeBuilder.SupportsContent(Factory))
+            {var glade=new ZoneGenerationPipeline();glade.AddBuilder(new ReferenceGladeBuilder(WorldSeed));return glade;}
 
             // Determine tier from distance to center
             int tier = GetTierForCoords(wx, wy);
@@ -473,24 +478,30 @@ namespace CavesOfOoo.Core
             }
         }
 
-        private ZoneGenerationPipeline CreateUndergroundPipeline(int depth)
+        private ZoneGenerationPipeline CreateUndergroundPipeline(int depth, UndergroundLayoutPlan layout = null)
         {
             var (wallBP, floorBP) = SolidEarthBuilder.GetMaterialsForDepth(depth);
 
             var pipeline = new ZoneGenerationPipeline();
             pipeline.AddBuilder(new SolidEarthBuilder(wallBP));
-            pipeline.AddBuilder(new StrataBuilder(depth, wallBP, floorBP));
+            layout?.RecordSelection();
+            pipeline.AddBuilder(layout?.CreateGeometryBuilder() ?? new StrataBuilder(depth, wallBP, floorBP));
             pipeline.AddBuilder(new ConnectivityBuilder { FloorBlueprint = floorBP });
             pipeline.AddBuilder(new StairsUpBuilder(this));
             pipeline.AddBuilder(new StairsDownBuilder(this));
             pipeline.AddBuilder(new StairConnectorBuilder(floorBP));
+            if(layout?.IsOrdinaryColumn==true
+                &&(layout.SurfaceBiome==BiomeType.Spread||layout.SurfaceBiome==BiomeType.Sodden||layout.SurfaceBiome==BiomeType.Beating)
+                &&Factory.Blueprints.ContainsKey("StairsUp")&&Factory.Blueprints.ContainsKey("StairsDown"))
+                pipeline.AddBuilder(new UndergroundRouteReservationBuilder());
             // BIOME-OVERHAUL G: underground landmarks by depth band
             // (galleries, the Curation's rest stop, reliquaries).
             // Tier formula mirrors ZoneManager.GetZoneTier's depth
             // band: depth/3 + 1, capped at 8.
             int undergroundTier = System.Math.Min(depth / 3 + 1, 8);
             pipeline.AddBuilder(new LandmarkBuilder(BiomeType.Cave,
-                undergroundTier, StampCatalog.Underground(depth)));
+                undergroundTier, StampCatalog.Underground(depth,
+                    layout?.SurfaceBiome ?? BiomeType.Cave, layout?.IsOrdinaryColumn ?? false)));
             pipeline.AddBuilder(new HazardTerrainBuilder(BiomeType.Cave, underground: true));
             pipeline.AddBuilder(new PopulationBuilder(PopulationTable.UndergroundTier(depth)));
             pipeline.AddBuilder(new ContainerBuilder(BiomeType.Cave, undergroundTier,
@@ -627,7 +638,7 @@ namespace CavesOfOoo.Core
         /// simply did not exist in that world. Future authored zones
         /// join this list.</summary>
         public static readonly string[] AuthoredWildernessZoneIDs =
-            { TenthFireZoneID, WovenDollZoneID };
+            { TenthFireZoneID, WovenDollZoneID, ReferenceGladePlan.ZoneID };
 
         private ZoneGenerationPipeline CreateBeatingPipeline(int tier = 1, string zoneID = null, bool composed = false)
         {
@@ -786,7 +797,7 @@ namespace CavesOfOoo.Core
             // W6.3a — and its own fauna, by band. The shared surface
             // spine already added a PopulationBuilder carrying
             // GetBiomeTable(Stump, tier), which returned the CAVE
-            // table: the god-tree's stump was populated by snapjaws.
+            // table: the god-tree's stump was populated by marlbacks.
             pipeline.RemoveBuilders<PopulationBuilder>();
             pipeline.AddBuilder(new PopulationBuilder(
                 PopulationTable.GetStumpTable(band, tier)) { HabitatFilter = StumpFaunaHabitat.Allows });
@@ -1063,11 +1074,14 @@ namespace CavesOfOoo.Core
         protected override void OnZoneAttached(Zone zone)
         {
             AreaCompositionScope.Attach(zone, WorldMap);
+            ReferenceGladePlan.Attach(zone, WorldMap,
+                zone.ZoneID==ReferenceGladePlan.ZoneID&&ReferenceGladeBuilder.SupportsContent(Factory));
             WorldLocationContext.Attach(zone, this);
         }
 
         protected override void OnZoneGenerated(Zone zone, string zoneID)
         {
+            LocalPeople.Apply(zone, this);
             if (!WorldMap.IsOverworldZoneID(zoneID))
                 return;
 

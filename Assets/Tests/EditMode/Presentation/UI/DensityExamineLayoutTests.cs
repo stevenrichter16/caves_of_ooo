@@ -64,7 +64,7 @@ namespace CavesOfOoo.Tests
             TestContext.WriteLine("Inspected " + checkedItems + " items; largest popup=" + maximumRows + " rows (" + longest + ").");
         }
 
-        [TestCase("WarlordCleaver")]
+        [TestCase("BreacherCleaver")]
         [TestCase("FlamingSword")]
         public void TwoValidEnhancementsAndLiveAfflictionsRemainVisible(string blueprint)
         {
@@ -90,7 +90,7 @@ namespace CavesOfOoo.Tests
             string shortText = factory.CreateEntity("LeatherArmor").GetPart<ExaminablePart>().BuildExamineLine();
             ui.Open(shortText);
             var expectedFg = Occupied(ui.Tilemap); var expectedBg = Occupied(ui.BgTilemap);
-            string longer = factory.CreateEntity("WarlordCleaver").GetPart<ExaminablePart>().BuildExamineLine();
+            string longer = factory.CreateEntity("BreacherCleaver").GetPart<ExaminablePart>().BuildExamineLine();
             Assert.That(longer.Length, Is.GreaterThan(shortText.Length));
             ui.Open(longer); ui.Open(shortText);
             CollectionAssert.AreEquivalent(expectedFg, Occupied(ui.Tilemap));

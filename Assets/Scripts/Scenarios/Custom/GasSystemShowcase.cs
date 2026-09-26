@@ -18,7 +18,7 @@ namespace CavesOfOoo.Scenarios.Custom
     /// </code>
     /// Each gas pool is a 3-cell strip. The strips are STABLE (anchored),
     /// so they stay fixed in place for the whole showcase rather than
-    /// spreading/dissipating. Each strip has 1 dummy (passive Snapjaw with 800 HP) so
+    /// spreading/dissipating. Each strip has 1 dummy (passive MarlbackScrabbler with 800 HP) so
     /// the player can compare effects on a creature vs themselves.
     /// The poison strip has THREE dummies (bare, masked, immune) so
     /// G.6 defenses are visible side-by-side.</para>
@@ -47,7 +47,7 @@ namespace CavesOfOoo.Scenarios.Custom
             ("cryo-mist",       "CRYO",      "&C"),
             ("sleep-vapor",     "SLEEP",     "&B"),
             // G.8d — fungal spores: probabilistic infection (chance
-            // scales vs Toughness). The downwind snapjaw may take a
+            // scales vs Toughness). The downwind marlback may take a
             // few turns to actually catch it, then progresses through
             // the multi-stage infection + becomes a contagion vector
             // itself (Blooming/Terminal hosts release more spore gas).
@@ -80,18 +80,18 @@ namespace CavesOfOoo.Scenarios.Custom
             // Defenses column — at p.x+3..+5, one dummy per defense
             // configuration, EACH standing in its own anchored poison
             // cloud so G.6 defenses are visible side-by-side from turn 0.
-            //   p.x+3 : bare snapjaw  (no defense)     → full poison
-            //   p.x+4 : masked snapjaw (GasMaskPart)   → reduced intake
-            //   p.x+5 : immune snapjaw (GasImmunityPart)→ vetoed entirely
+            //   p.x+3 : bare marlback  (no defense)     → full poison
+            //   p.x+4 : masked marlback (GasMaskPart)   → reduced intake
+            //   p.x+5 : immune marlback (GasImmunityPart)→ vetoed entirely
             // (Pre-anchor this trio sat WEST of the strip and relied on
             // poison spreading over to envelop them — but anchored gas no
             // longer spreads, so we now seed a poison cloud directly on
             // each cell. Same outcome, no dependence on dispersal.)
-            var bareSnapjaw = SpawnDummy(ctx, p.x + 3, p.y, "bare");
-            var maskedSnapjaw = SpawnDummy(ctx, p.x + 4, p.y, "masked");
-            maskedSnapjaw?.AddPart(new GasMaskPart { Power = 10 });
-            var immuneSnapjaw = SpawnDummy(ctx, p.x + 5, p.y, "poison-immune");
-            immuneSnapjaw?.AddPart(new GasImmunityPart { GasType = "Poison" });
+            var bareMarlbackScrabbler = SpawnDummy(ctx, p.x + 3, p.y, "bare");
+            var maskedMarlbackScrabbler = SpawnDummy(ctx, p.x + 4, p.y, "masked");
+            maskedMarlbackScrabbler?.AddPart(new GasMaskPart { Power = 10 });
+            var immuneMarlbackScrabbler = SpawnDummy(ctx, p.x + 5, p.y, "poison-immune");
+            immuneMarlbackScrabbler?.AddPart(new GasImmunityPart { GasType = "Poison" });
             for (int dxDef = 3; dxDef <= 5; dxDef++)
             {
                 var defGas = GasFactory.SpawnGas(ctx.Zone, p.x + dxDef, p.y, "poison-vapor",
@@ -102,7 +102,7 @@ namespace CavesOfOoo.Scenarios.Custom
 
             // Place each gas strip — 3 cells wide, 1 cell tall.
             // Strip i centered at (p.x + 8 + i*8, p.y).
-            // A passive Snapjaw sits at the strip's east edge so the
+            // A passive MarlbackScrabbler sits at the strip's east edge so the
             // player sees both "I'm in the cloud" and "the dummy is too."
             for (int i = 0; i < GasStrips.Length; i++)
             {
@@ -128,15 +128,15 @@ namespace CavesOfOoo.Scenarios.Custom
                     var gp = gasEnt?.GetPart<GasPoolPart>();
                     if (gp != null) gp.Stable = true;
                 }
-                // Passive Snapjaw east of the strip, in the cloud's path.
+                // Passive MarlbackScrabbler east of the strip, in the cloud's path.
                 SpawnDummy(ctx, stripX + 1, p.y, label.ToLowerInvariant() + "-victim");
             }
 
             ctx.Log("=== Gas System Showcase ===");
             ctx.Log("Walk EAST through 6 gas types (poison → stun → confusion → cryo → sleep → fungal).");
-            ctx.Log("First column (p.x+3..+5): bare / masked / poison-immune snapjaws.");
-            ctx.Log("Each gas strip: 3 cells of cloud + 1 passive snapjaw downwind.");
-            ctx.Log("FUNGAL is probabilistic — the snapjaw may take a few turns to catch it,");
+            ctx.Log("First column (p.x+3..+5): bare / masked / poison-immune marlbacks.");
+            ctx.Log("Each gas strip: 3 cells of cloud + 1 passive marlback downwind.");
+            ctx.Log("FUNGAL is probabilistic — the marlback may take a few turns to catch it,");
             ctx.Log("  then progresses Incubation→Symptomatic→Blooming→Terminal + spreads spores.");
             ctx.Log("Watch [Applied] / [PoisonTick] / [Knockback] / [Contagion] log lines.");
             ctx.Log("Diag: diag_query category=gas (Created/Dispersed/Spread/Applied/Merged/Contagion/...).");
@@ -145,7 +145,7 @@ namespace CavesOfOoo.Scenarios.Custom
 
         private static Entity SpawnDummy(ScenarioContext ctx, int x, int y, string label)
         {
-            var npc = ctx.Spawn("Snapjaw")
+            var npc = ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 800)
                 .WithHpAbsolute(800)
                 .Passive()
@@ -167,7 +167,7 @@ namespace CavesOfOoo.Scenarios.Custom
             // Render label appended for visual disambiguation.
             var render = npc.GetPart<RenderPart>();
             if (render != null)
-                render.DisplayName = "snapjaw (" + label + ")";
+                render.DisplayName = "marlback (" + label + ")";
             return npc;
         }
     }

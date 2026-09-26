@@ -142,14 +142,14 @@ namespace CavesOfOoo.Tests
                 Name = "Flood",
                 Entries = new List<PopulationEntry>
                 {
-                    new PopulationEntry { BlueprintName = "Snapjaw", Weight = 1, MinCount = 200, MaxCount = 200 },
+                    new PopulationEntry { BlueprintName = "MarlbackScrabbler", Weight = 1, MinCount = 200, MaxCount = 200 },
                 }
             };
             new PopulationBuilder(table).BuildZone(zone, _factory, new Random(9));
 
-            foreach (var snapjaw in FindByBlueprint(zone, "Snapjaw"))
+            foreach (var marlback in FindByBlueprint(zone, "MarlbackScrabbler"))
             {
-                var cell = zone.GetEntityCell(snapjaw);
+                var cell = zone.GetEntityCell(marlback);
                 Assert.IsFalse(reserved.Contains((cell.X, cell.Y)),
                     $"creature spawned inside the stamp footprint at {cell.X},{cell.Y}");
             }
@@ -178,9 +178,9 @@ namespace CavesOfOoo.Tests
                 "#...+",
                 "#####",
             };
-            stamp.Legend['b'] = "spawn:Snapjaw";
+            stamp.Legend['b'] = "spawn:MarlbackScrabbler";
             var zone = BuildCaveZoneWith(new List<StructureStamp> { stamp }, seed: 5);
-            Assert.AreEqual(1, FindByBlueprint(zone, "Snapjaw").Count,
+            Assert.AreEqual(1, FindByBlueprint(zone, "MarlbackScrabbler").Count,
                 "spawn: markers place their creature");
         }
 

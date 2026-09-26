@@ -8,7 +8,8 @@ namespace CavesOfOoo.Rendering
     /// <summary>
     /// Renders a centered modal popup for important game announcements.
     /// Uses the centered popup overlay grid inside the gameplay viewport.
-    /// Player must press Enter/Space/Escape or click to dismiss.
+    /// Long announcements are paginated. Enter/Space/click advances or dismisses
+    /// the final page; arrows/PageUp/PageDown navigate and Escape dismisses.
     /// </summary>
     public class AnnouncementUI : MonoBehaviour
     {
@@ -18,11 +19,13 @@ namespace CavesOfOoo.Rendering
 
         private const int POPUP_W = 56;
         private const int MAX_TEXT_WIDTH = POPUP_W - 4; // 2 chars padding each side
+        private const int PAGE_LINES = 33; // Leave space above the underlying inventory action rows.
         private static readonly Color PopupBgColor = new Color(0f, 0f, 0f, 1f);
 
         private bool _isOpen;
         private string _message;
         private readonly List<string> _wrappedLines = new List<string>();
+        private int _pageIndex;
 
         private int _worldOriginX;
         private int _worldTopY;
@@ -47,12 +50,32 @@ namespace CavesOfOoo.Rendering
 
         public bool IsOpen => _isOpen;
 
+        /// <summary>Number of pages in the current message, including its final partial page.</summary>
+        public int PageCount => (_wrappedLines.Count + PAGE_LINES - 1) / PAGE_LINES;
+
+        /// <summary>A detached snapshot of the current page's wrapped text, in reading order.</summary>
+        public IReadOnlyList<string> VisibleLines => _wrappedLines.GetRange(
+            _pageIndex * PAGE_LINES, VisibleLineCount);
+
+        private int VisibleLineCount => System.Math.Min(PAGE_LINES,
+            _wrappedLines.Count - _pageIndex * PAGE_LINES);
+
+        /// <summary>Shows a zero-based page while open. Invalid indices leave the message unchanged.</summary>
+        public bool GoToPage(int page)
+        {
+            if (!_isOpen || page < 0 || page >= PageCount) return false;
+            _pageIndex = page;
+            Render();
+            return true;
+        }
+
         public void Open(string message)
         {
             if (string.IsNullOrEmpty(message)) return;
             _message = message;
             _isOpen = true;
             _wrappedLines.Clear();
+            _pageIndex = 0;
             WrapText(message, MAX_TEXT_WIDTH, _wrappedLines);
             Render();
         }
@@ -69,15 +92,26 @@ namespace CavesOfOoo.Rendering
         {
             if (!_isOpen) return;
 
-            if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.Space) || InputHelper.GetKeyDown(KeyCode.Escape))
+            if (InputHelper.GetKeyDown(KeyCode.Escape))
             {
                 Close();
                 return;
             }
 
-            if (Input.GetMouseButtonDown(0))
+            if (InputHelper.GetKeyDown(KeyCode.LeftArrow) || InputHelper.GetKeyDown(KeyCode.PageUp))
             {
-                Close();
+                GoToPage(_pageIndex - 1);
+                return;
+            }
+            if (InputHelper.GetKeyDown(KeyCode.RightArrow) || InputHelper.GetKeyDown(KeyCode.PageDown))
+            {
+                GoToPage(_pageIndex + 1);
+                return;
+            }
+            if (InputHelper.GetKeyDown(KeyCode.Return) || InputHelper.GetKeyDown(KeyCode.Space)
+                || Input.GetMouseButtonDown(0))
+            {
+                if (!GoToPage(_pageIndex + 1)) Close();
                 return;
             }
         }
@@ -86,7 +120,7 @@ namespace CavesOfOoo.Rendering
 
         private void ComputePopupPosition()
         {
-            int textLines = _wrappedLines.Count;
+            int textLines = VisibleLineCount;
 
             // Layout: top border + blank + text lines + blank + action bar + bottom border
             _popupH = 2 + textLines + 2 + 1;
@@ -107,7 +141,7 @@ namespace CavesOfOoo.Rendering
             ClearBgRegion();
             ComputePopupPosition();
 
-            int textLines = _wrappedLines.Count;
+            int textLines = VisibleLineCount;
 
             DrawBgFill(0, 0, POPUP_W, _popupH - 1);
 
@@ -123,7 +157,7 @@ namespace CavesOfOoo.Rendering
             {
                 DrawChar(0, y, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
                 DrawChar(POPUP_W - 1, y, CP437TilesetGenerator.BoxVertical, QudColorParser.Gray);
-                DrawText(2, y, _wrappedLines[i], QudColorParser.BrightYellow);
+                DrawText(2, y, _wrappedLines[_pageIndex * PAGE_LINES + i], QudColorParser.BrightYellow);
                 y++;
             }
 
@@ -140,7 +174,9 @@ namespace CavesOfOoo.Rendering
             y++;
 
             // Action bar
-            string actions = " [Enter] okay";
+            string actions = PageCount > 1
+                ? $" {_pageIndex + 1}/{PageCount} [Left/Right] page [Enter] next [Esc] close"
+                : " [Enter] okay";
             DrawText(0, y, actions, QudColorParser.DarkGray);
 
             // Record the full FG footprint we just painted (box rows +
@@ -268,7 +304,7 @@ namespace CavesOfOoo.Rendering
             int wx = _worldOriginX + gx;
             int wy = _worldTopY - gy;
             var tilePos = new Vector3Int(wx, wy, 0);
-            var tile = CP437TilesetGenerator.GetUiTile(c);
+            var tile = CP437TilesetGenerator.GetUiTile(Cp437.Map(c));
             if (tile == null) return;
             Tilemap.SetTile(tilePos, tile);
             Tilemap.SetTileFlags(tilePos, TileFlags.None);

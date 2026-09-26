@@ -47,13 +47,13 @@ namespace CavesOfOoo.Tests
         [Test]
         public void ThrownTonic_DirectHit_AdjacentCreatureAlsoReceivesEffect()
         {
-            // Layout: thrower at (10,10), primary target snapjaw at (12,10),
-            // adjacent snapjaw at (12,11). Throw an AcidTonic at (12,10).
-            // BOTH snapjaws should end up with AcidicEffect (3×3 AOE).
+            // Layout: thrower at (10,10), primary target marlback at (12,10),
+            // adjacent marlback at (12,11). Throw an AcidTonic at (12,10).
+            // BOTH marlbacks should end up with AcidicEffect (3×3 AOE).
             var ctx = _harness.CreateContext();
             var thrower = SetupThrowerWithTonic(ctx, "AcidTonic", out _);
-            var primary = ctx.Spawn("Snapjaw").NotRegisteredForTurns().At(12, 10);
-            var adjacent = ctx.Spawn("Snapjaw").NotRegisteredForTurns().At(12, 11);
+            var primary = ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(12, 10);
+            var adjacent = ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(12, 11);
 
             ExecuteThrow(thrower, ctx, 12, 10);
 
@@ -70,12 +70,12 @@ namespace CavesOfOoo.Tests
         [Test]
         public void ThrownTonic_DirectHit_CreatureOutsideRadius_DoesNotReceiveEffect()
         {
-            // Snapjaw at (15,10) is 3 cells from impact (12,10) — Chebyshev
+            // MarlbackScrabbler at (15,10) is 3 cells from impact (12,10) — Chebyshev
             // distance 3, outside radius 1.
             var ctx = _harness.CreateContext();
             var thrower = SetupThrowerWithTonic(ctx, "AcidTonic", out _);
-            ctx.Spawn("Snapjaw").NotRegisteredForTurns().At(12, 10); // primary
-            var farAway = ctx.Spawn("Snapjaw").NotRegisteredForTurns().At(15, 10);
+            ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(12, 10); // primary
+            var farAway = ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(15, 10);
 
             ExecuteThrow(thrower, ctx, 12, 10);
 
@@ -119,14 +119,14 @@ namespace CavesOfOoo.Tests
             // because it was added between trace + apply, or AOE),
             // it should still receive the effect.
             //
-            // Practical setup: spawn snapjaw OFF the throw line, then
-            // throw at a cell adjacent to the snapjaw so it's in AOE
+            // Practical setup: spawn marlback OFF the throw line, then
+            // throw at a cell adjacent to the marlback so it's in AOE
             // radius 1 of an empty landing cell.
             var ctx = _harness.CreateContext();
             var thrower = SetupThrowerWithTonic(ctx, "AcidTonic", out _);
-            var nearby = ctx.Spawn("Snapjaw").NotRegisteredForTurns().At(15, 11);
+            var nearby = ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(15, 11);
 
-            // Throw at (15, 10) — empty cell adjacent to the snapjaw.
+            // Throw at (15, 10) — empty cell adjacent to the marlback.
             ExecuteThrow(thrower, ctx, 15, 10);
 
             Assert.IsTrue(nearby.GetPart<StatusEffectsPart>().HasEffect<AcidicEffect>(),
@@ -200,11 +200,11 @@ namespace CavesOfOoo.Tests
         [Test]
         public void ThrownTonic_AoeHits_AllCreaturesInRadius()
         {
-            // Five snapjaws clustered in a 3×3 around the target cell —
+            // Five marlbacks clustered in a 3×3 around the target cell —
             // every one should get the tonic's effect from a single throw.
             //
             // Layout note: positions deliberately avoid the trace path
-            // (10,10)→(15,10). A snapjaw on that path would cause
+            // (10,10)→(15,10). A marlback on that path would cause
             // LineTargeting to stop early, making the AOE center the
             // first creature instead of the aimed cell. The test pins
             // "AOE applies to all 5 within radius 1 of the impact cell"
@@ -213,13 +213,13 @@ namespace CavesOfOoo.Tests
             var thrower = SetupThrowerWithTonic(ctx, "FrostTonic", out _);
 
             // s1 is the aimed-at target; HitEntity will resolve to s1 and
-            // ImpactCell to (15,10). All 5 snapjaws are within radius 1
+            // ImpactCell to (15,10). All 5 marlbacks are within radius 1
             // of (15,10) and not on the throw trajectory.
-            var s1 = ctx.Spawn("Snapjaw").NotRegisteredForTurns().At(15, 10);
-            var s2 = ctx.Spawn("Snapjaw").NotRegisteredForTurns().At(16, 10);
-            var s3 = ctx.Spawn("Snapjaw").NotRegisteredForTurns().At(15, 11);
-            var s4 = ctx.Spawn("Snapjaw").NotRegisteredForTurns().At(16, 11);
-            var s5 = ctx.Spawn("Snapjaw").NotRegisteredForTurns().At(14, 11);
+            var s1 = ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(15, 10);
+            var s2 = ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(16, 10);
+            var s3 = ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(15, 11);
+            var s4 = ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(16, 11);
+            var s5 = ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(14, 11);
 
             ExecuteThrow(thrower, ctx, 15, 10);
 
@@ -244,7 +244,7 @@ namespace CavesOfOoo.Tests
             var ctx = _harness.CreateContext();
             var thrower = SetupThrowerWithTonic(ctx, "WaterTonic", out _);
             var ally = ctx.Spawn("Villager").NotRegisteredForTurns().At(15, 10);
-            var enemy = ctx.Spawn("Snapjaw").NotRegisteredForTurns().At(15, 11);
+            var enemy = ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(15, 11);
 
             ExecuteThrow(thrower, ctx, 15, 10);
 
@@ -281,7 +281,7 @@ namespace CavesOfOoo.Tests
             stack.GetPart<StackerPart>().StackCount = 3;
             inv.AddObject(stack);
 
-            ctx.Spawn("Snapjaw").NotRegisteredForTurns().At(12, 10);
+            ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(12, 10);
 
             var throwCmd = new ThrowItemCommand(stack, 12, 10);
             var result = InventorySystem.ExecuteCommand(throwCmd, thrower, ctx.Zone);
@@ -359,7 +359,7 @@ namespace CavesOfOoo.Tests
             // still work end-to-end after the AOE upgrade.
             var ctx = _harness.CreateContext();
             var thrower = SetupThrowerWithTonic(ctx, "LightningTonic", out var tonic);
-            var victim = ctx.Spawn("Snapjaw").NotRegisteredForTurns().At(12, 10);
+            var victim = ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(12, 10);
 
             ExecuteThrow(thrower, ctx, 12, 10);
 

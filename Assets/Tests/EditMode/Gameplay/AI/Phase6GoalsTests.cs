@@ -289,7 +289,7 @@ namespace CavesOfOoo.Tests
         {
             var zone = new Zone("TestZone");
             var petter = CreateCreature(zone, 5, 5, "Villagers");
-            var hostile = CreateCreature(zone, 6, 5, "Snapjaws");
+            var hostile = CreateCreature(zone, 6, 5, "OutlandRaiders");
             var brain = petter.GetPart<BrainPart>();
 
             var goal = new PetGoal();
@@ -313,7 +313,7 @@ namespace CavesOfOoo.Tests
             brain.Passive = true;
             brain.SightRadius = 12;
 
-            var snapjaw = CreateCreature(zone, 12, 10, "Snapjaws");
+            var marlback = CreateCreature(zone, 12, 10, "OutlandRaiders");
 
             villager.FireEvent(GameEvent.New("TakeTurn"));
 
@@ -335,7 +335,7 @@ namespace CavesOfOoo.Tests
             // Drop HP below FleeThreshold (25%)
             villager.GetStat("Hitpoints").BaseValue = 10; // 10% of 100
 
-            var snapjaw = CreateCreature(zone, 12, 10, "Snapjaws");
+            var marlback = CreateCreature(zone, 12, 10, "OutlandRaiders");
             villager.FireEvent(GameEvent.New("TakeTurn"));
 
             Assert.IsTrue(brain.HasGoal<FleeGoal>(),
@@ -351,8 +351,8 @@ namespace CavesOfOoo.Tests
             brain.Passive = true;
             brain.SightRadius = 12;
 
-            var snapjaw = CreateCreature(zone, 12, 10, "Snapjaws");
-            brain.SetPersonallyHostile(snapjaw); // direct aggro
+            var marlback = CreateCreature(zone, 12, 10, "OutlandRaiders");
+            brain.SetPersonallyHostile(marlback); // direct aggro
 
             villager.FireEvent(GameEvent.New("TakeTurn"));
 
@@ -369,7 +369,7 @@ namespace CavesOfOoo.Tests
             brain.Passive = false; // default, being explicit
             brain.SightRadius = 12;
 
-            var snapjaw = CreateCreature(zone, 12, 10, "Snapjaws");
+            var marlback = CreateCreature(zone, 12, 10, "OutlandRaiders");
             villager.FireEvent(GameEvent.New("TakeTurn"));
 
             Assert.IsTrue(brain.HasGoal<KillGoal>(),
@@ -416,7 +416,7 @@ namespace CavesOfOoo.Tests
             var brain = villager.GetPart<BrainPart>();
             brain.SightRadius = 12;
 
-            var snapjaw = CreateCreature(zone, 12, 10, "Snapjaws");
+            var marlback = CreateCreature(zone, 12, 10, "OutlandRaiders");
 
             // Push NoFightGoal on top — BoredGoal won't run, no KillGoal pushed.
             brain.PushGoal(new NoFightGoal());
@@ -911,12 +911,12 @@ namespace CavesOfOoo.Tests
             goal.TakeAction();
             Assert.IsFalse(goal.Finished(), "No hostile yet — stays dormant");
 
-            var snapjaw = CreateCreature(zone, 12, 10, "Snapjaws");
+            var marlback = CreateCreature(zone, 12, 10, "OutlandRaiders");
             goal.TakeAction();
 
             Assert.IsTrue(goal.Finished(),
                 "DormantGoal with WakeOnHostileInSight should finish when a hostile enters sight");
-            Assert.AreSame(snapjaw, brain.Target,
+            Assert.AreSame(marlback, brain.Target,
                 "Woken creature should have Target set to the triggering hostile");
         }
 
@@ -959,7 +959,7 @@ namespace CavesOfOoo.Tests
 
             // Wall between sleeper and hostile
             CreateWall(zone, 11, 10);
-            var snapjaw = CreateCreature(zone, 12, 10, "Snapjaws");
+            var marlback = CreateCreature(zone, 12, 10, "OutlandRaiders");
 
             var goal = new DormantGoal(wakeOnDamage: false, wakeOnHostileInSight: true);
             brain.PushGoal(goal);

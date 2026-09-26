@@ -8,21 +8,21 @@ namespace CavesOfOoo.Scenarios.Custom
     /// three creatures that, together, expose all four meaningful weapon ×
     /// resistance interactions:
     ///
-    ///                   [Snapjaw NE: CR=25]
+    ///                   [MarlbackScrabbler NE: CR=25]
     ///                   ↗  ↗
     ///   [Player] →→→→→ [Glowmaw E: HR=50, CR=0]
     ///                   ↘  ↘
-    ///                   [SnapjawHunter SE: CR=50]
+    ///                   [MarlbackTunnelguard SE: CR=50]
     ///
     /// Interactions to test:
     ///
     ///   1. FlamingSword vs Glowmaw      → HALVED (Fire × HR=50)
     ///   2. IceSword     vs Glowmaw      → full   (Glowmaw has no CR; control for Ice)
-    ///   3. IceSword     vs Snapjaw      → 25%-reduced (Cold × CR=25 — graded resistance)
-    ///   4. IceSword     vs SnapjawHunter → HALVED (Cold × CR=50)
+    ///   3. IceSword     vs MarlbackScrabbler      → 25%-reduced (Cold × CR=25 — graded resistance)
+    ///   4. IceSword     vs MarlbackTunnelguard → HALVED (Cold × CR=50)
     ///
-    /// Plus the implicit complement: FlamingSword swung at Snapjaw or
-    /// SnapjawHunter is unaffected by their CR (HR=0 on Snapjaws). So you
+    /// Plus the implicit complement: FlamingSword swung at MarlbackScrabbler or
+    /// MarlbackTunnelguard is unaffected by their CR (HR=0 on OutlandRaiders). So you
     /// can also confirm "Fire damage on a CR-only creature lands fully" by
     /// swinging FlamingSword northeast or southeast.
     ///
@@ -44,7 +44,7 @@ namespace CavesOfOoo.Scenarios.Custom
     [Scenario(
         name: "Elemental Swords Showcase",
         category: "Combat",
-        description: "Phase C × Phase E full matrix: FlamingSword + IceSword vs Glowmaw, Snapjaw, and SnapjawHunter. All four weapon×resistance combinations visible side-by-side.")]
+        description: "Phase C × Phase E full matrix: FlamingSword + IceSword vs Glowmaw, MarlbackScrabbler, and MarlbackTunnelguard. All four weapon×resistance combinations visible side-by-side.")]
     public class ElementalSwordsShowcase : IScenario
     {
         public void Apply(ScenarioContext ctx)
@@ -72,22 +72,22 @@ namespace CavesOfOoo.Scenarios.Custom
             if (glowmaw != null)
                 glowmaw.AddPart(new ElementalDemoProbePart());
 
-            // === NE: Snapjaw — CR=25, no HR ===
+            // === NE: MarlbackScrabbler — CR=25, no HR ===
             // Graded resistance: 25% reduction on Ice damage. The "the
             // formula isn't binary" demonstration. Also: full damage on
             // FlamingSword (no HR).
-            var snapjaw = ctx.Spawn("Snapjaw")
+            var marlback = ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 200)
                 .WithHpAbsolute(200)
                 .AsPersonalEnemyOf(ctx.PlayerEntity)
                 .At(p.x + 3, p.y - 2);
-            if (snapjaw != null)
-                snapjaw.AddPart(new ElementalDemoProbePart());
+            if (marlback != null)
+                marlback.AddPart(new ElementalDemoProbePart());
 
-            // === SE: SnapjawHunter — CR=50, no HR ===
+            // === SE: MarlbackTunnelguard — CR=50, no HR ===
             // The thematic Ice pairing: half-absorbs Ice. Symmetric to
             // FlamingSword vs Glowmaw on the other side.
-            var hunter = ctx.Spawn("SnapjawHunter")
+            var hunter = ctx.Spawn("MarlbackTunnelguard")
                 .WithStatMax("Hitpoints", 200)
                 .WithHpAbsolute(200)
                 .AsPersonalEnemyOf(ctx.PlayerEntity)
@@ -99,8 +99,8 @@ namespace CavesOfOoo.Scenarios.Custom
             ctx.Log("=== Elemental Swords Showcase (Phase C × Phase E) ===");
             ctx.Log("Loadout: FlamingSword equipped, IceSword in inventory.");
             ctx.Log("E  Glowmaw       (HR=50, CR=0):  swing FlamingSword → HALVED. IceSword → full.");
-            ctx.Log("NE Snapjaw       (HR=0,  CR=25): swing IceSword → 25%-reduced.");
-            ctx.Log("SE SnapjawHunter (HR=0,  CR=50): swing IceSword → HALVED.");
+            ctx.Log("NE MarlbackScrabbler       (HR=0,  CR=25): swing IceSword → 25%-reduced.");
+            ctx.Log("SE MarlbackTunnelguard (HR=0,  CR=50): swing IceSword → HALVED.");
             ctx.Log("Watch for [ElementalDemo] log lines on each hit — they show");
             ctx.Log("the damage's attribute list and BOTH resistance stats live.");
         }

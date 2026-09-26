@@ -59,9 +59,9 @@ namespace CavesOfOoo.Tests
             LiquidRegistry.InitializeFromJsonSources(all);
         }
 
-        private static Entity Creature(Zone zone, int x, int y, string name = "snapjaw")
+        private static Entity Creature(Zone zone, int x, int y, string name = "marlback")
         {
-            var e = new Entity { ID = name + x + "_" + y, BlueprintName = "Snapjaw" };
+            var e = new Entity { ID = name + x + "_" + y, BlueprintName = "MarlbackScrabbler" };
             e.Tags["Creature"] = "";
             e.AddPart(new RenderPart { DisplayName = name });
             e.AddPart(new PhysicsPart { Solid = true });

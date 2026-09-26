@@ -63,9 +63,9 @@ namespace CavesOfOoo.Tests
             return skill;
         }
 
-        private static Entity Snapjaw(Zone zone, int x, int y, int hp = 20)
+        private static Entity MarlbackScrabbler(Zone zone, int x, int y, int hp = 20)
         {
-            var e = new Entity { ID = "snapjaw" + x + "_" + y, BlueprintName = "Snapjaw" };
+            var e = new Entity { ID = "marlback" + x + "_" + y, BlueprintName = "MarlbackScrabbler" };
             e.Tags["Creature"] = "";
             e.AddPart(new PhysicsPart { Solid = true });
             e.Statistics["Hitpoints"] = new Stat
@@ -132,7 +132,7 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("Z");
             var caster = Caster(zone, 5, 5);
             Learn<Cryomancy_IceLance>(caster);
-            var target = Snapjaw(zone, 8, 5);
+            var target = MarlbackScrabbler(zone, 8, 5);
             target.AddPart(new ThermalPart { Temperature = 25f, HeatCapacity = 1.0f });
 
             var (handled, _) = Cast(caster, zone, "CommandIceLance", dx: 1, range: 6);
@@ -151,7 +151,7 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("Z");
             var caster = Caster(zone, 5, 5);
             Learn<Galvanism_ArcBolt>(caster);
-            var target = Snapjaw(zone, 7, 5, hp: 30);
+            var target = MarlbackScrabbler(zone, 7, 5, hp: 30);
 
             var (handled, _) = Cast(caster, zone, "CommandArcBolt", dx: 1);
 
@@ -167,7 +167,7 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("Z");
             var caster = Caster(zone, 5, 5);
             Learn<Hydromancy_Quench>(caster);
-            var target = Snapjaw(zone, 7, 5, hp: 30);
+            var target = MarlbackScrabbler(zone, 7, 5, hp: 30);
             target.AddPart(new ThermalPart { Temperature = 60f, HeatCapacity = 1.0f });
 
             var (handled, _) = Cast(caster, zone, "CommandQuench", dx: 1);
@@ -184,7 +184,7 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("Z");
             var caster = Caster(zone, 5, 5);
             Learn<Corrosion_AcidSpray>(caster);
-            var target = Snapjaw(zone, 7, 5, hp: 30);
+            var target = MarlbackScrabbler(zone, 7, 5, hp: 30);
 
             var (handled, _) = Cast(caster, zone, "CommandAcidSpray", dx: 1, range: 4);
 
@@ -200,7 +200,7 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("Z");
             var caster = Caster(zone, 5, 5);
             Learn<Spellcraft_Calm>(caster);
-            var target = Snapjaw(zone, 8, 5);
+            var target = MarlbackScrabbler(zone, 8, 5);
             var brain = new BrainPart();
             target.AddPart(brain);
 
@@ -237,7 +237,7 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("Z");
             var caster = Caster(zone, 5, 5);
             Learn<Cryomancy_RimeNova>(caster);
-            var target = Snapjaw(zone, 6, 5, hp: 30);
+            var target = MarlbackScrabbler(zone, 6, 5, hp: 30);
             var prop = ThermalProp(zone, 4, 5, temperature: 25f);
 
             var (handled, blocks) = Cast(caster, zone, "CommandRimeNova");
@@ -258,7 +258,7 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("Z");
             var caster = Caster(zone, 5, 5);
             Learn<Galvanism_Thunderclap>(caster);
-            var target = Snapjaw(zone, 6, 5, hp: 40);
+            var target = MarlbackScrabbler(zone, 6, 5, hp: 40);
             target.ApplyEffect(new WetEffect(0.5f));
             var anvil = Crate(zone, 4, 5, "Metal");
             var woodCrate = Crate(zone, 5, 6, "Wood");
@@ -305,7 +305,7 @@ namespace CavesOfOoo.Tests
             var caster = Caster(zone, 5, 5);
             Learn<Hydromancy_DryingBreeze>(caster);
             caster.ApplyEffect(new WetEffect(0.9f));
-            var neighbor = Snapjaw(zone, 6, 5);
+            var neighbor = MarlbackScrabbler(zone, 6, 5);
             neighbor.ApplyEffect(new WetEffect(0.9f));
 
             var (handled, _) = Cast(caster, zone, "CommandDryingBreeze");

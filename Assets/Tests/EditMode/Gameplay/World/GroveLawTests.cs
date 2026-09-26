@@ -285,6 +285,19 @@ namespace CavesOfOoo.Tests
 
                 PlayerReputation.Reset();
                 var player = Player(zone);
+                // The generated vein can be far from the fixture's default spawn.
+                // Approach its cell before testing the actual dig-law consequence.
+                var at = zone.GetEntityPosition(vein);
+                Cell approach = null;
+                for (int dx = -1; dx <= 1 && approach == null; dx++)
+                    for (int dy = -1; dy <= 1; dy++)
+                    {
+                        var candidate = zone.GetCell(at.x + dx, at.y + dy);
+                        if (candidate != null && !candidate.BlocksMovement()) { approach = candidate; break; }
+                    }
+                if (approach == null) continue;
+                zone.RemoveEntity(player);
+                Assert.IsTrue(zone.AddEntity(player, approach.X, approach.Y));
                 Harvest(vein, player, zone);
                 chainProven = PlayerReputation.Get("RotChoir") == GroveLaw.DigRepLoss;
             }

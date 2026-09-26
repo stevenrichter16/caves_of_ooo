@@ -21,6 +21,12 @@ namespace CavesOfOoo.Core
         /// <summary>If true, container is locked and must be unlocked to open.</summary>
         public bool Locked = false;
 
+        /// <summary>Live access authority. Legacy saved locks and the key-based
+        /// LockPart can each deny access; clearing either never clears the other.
+        /// Computed from current state so stale menus cannot bypass a relock.
+        /// Generation may still stock a locked container through AddItem.</summary>
+        public bool IsLocked => Locked || ParentEntity?.GetPart<LockPart>()?.IsLocked == true;
+
         /// <summary>Max items allowed. -1 = unlimited.</summary>
         public int MaxItems = -1;
 
@@ -100,8 +106,12 @@ namespace CavesOfOoo.Core
                 var actions = e.GetParameter<InventoryActionList>("Actions");
                 if (actions != null)
                 {
-                    if (Locked)
-                        actions.AddAction("Unlock", "unlock", "Unlock", 'u', 10);
+                    if (IsLocked)
+                    {
+                        // The key-based lock contributes its own Unlock action.
+                        if (ParentEntity?.GetPart<LockPart>()?.IsLocked != true)
+                            actions.AddAction("Unlock", "unlock", "Unlock", 'u', 10);
+                    }
                     else
                         actions.AddAction("Open", "open", "OpenContainer", 'o', 30);
                 }
@@ -116,7 +126,7 @@ namespace CavesOfOoo.Core
                     var actor = e.GetParameter<Entity>("Actor");
                     if (actor == null) return true;
 
-                    if (Locked)
+                    if (IsLocked)
                     {
                         MessageLog.Add($"The {ParentEntity.GetDisplayName()} is locked.");
                         e.Handled = true;

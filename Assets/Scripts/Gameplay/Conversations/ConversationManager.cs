@@ -16,6 +16,12 @@ namespace CavesOfOoo.Core
         public static Entity Listener;
         public static bool IsActive => CurrentConversation != null;
 
+        /// <summary>Per-speaker presentation; shared authored nodes remain immutable.</summary>
+        public static string CurrentText => WorldTravellers.DescribeConversation(Speaker, Listener,
+            CurrentConversation?.ID, CurrentNode?.ID,
+            LocalPeople.DescribeConversation(Speaker, Listener,
+                CurrentConversation?.ID, CurrentNode?.ID, CurrentNode?.Text ?? ""));
+
         /// <summary>
         /// Set by the StartTrade action before conversation ends.
         /// InputHandler checks this to transition from dialogue to trade UI.

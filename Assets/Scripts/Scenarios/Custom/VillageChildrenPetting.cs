@@ -20,7 +20,7 @@ namespace CavesOfOoo.Scenarios.Custom
     ///   lands visibly with a real blueprint
     /// - Confirming the magenta '*' pet particle renders correctly
     /// - Demonstrating Passive behavior — child won't engage if a hostile
-    ///   is adjacent (try spawning a snapjaw and watch the child NOT react)
+    ///   is adjacent (try spawning a marlback and watch the child NOT react)
     ///
     /// Side-effect note: PetGoal's TakeAction fires during TurnManager ticks,
     /// which only run when the player isn't mid-action. Skipping turns with

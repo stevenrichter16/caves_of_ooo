@@ -137,7 +137,7 @@ namespace CavesOfOoo.Tests
         {
             // Counter-check to the register above: "opt-in" has to actually
             // exclude the rest of the game, or the register is decorative.
-            foreach (var blueprint in new[] { "Rubble", "Snapjaw", "Villager", "GoldCoin" })
+            foreach (var blueprint in new[] { "Rubble", "MarlbackScrabbler", "Villager", "GoldCoin" })
             {
                 var e = _factory.CreateEntity(blueprint);
                 Assert.IsNotNull(e, blueprint);

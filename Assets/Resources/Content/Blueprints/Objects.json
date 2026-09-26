@@ -396,6 +396,15 @@
               "Value": "-150"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A short blade with a close-fitting grip. The point has been kept sharp."
+            }
+          ]
         }
       ],
       "Stats": [
@@ -600,7 +609,7 @@
       ]
     },
     {
-      "Name": "Snapjaw",
+      "Name": "MarlbackScrabbler",
       "Inherits": "Creature",
       "Parts": [
         {
@@ -608,7 +617,7 @@
           "Params": [
             {
               "Key": "DisplayName",
-              "Value": "snapjaw"
+              "Value": "marlback scrabbler"
             },
             {
               "Key": "RenderString",
@@ -642,7 +651,7 @@
             },
             {
               "Key": "CorpseBlueprint",
-              "Value": "SnapjawCorpse"
+              "Value": "MarlbackCorpse"
             }
           ]
         },
@@ -651,7 +660,7 @@
           "Params": [
             {
               "Key": "Equip",
-              "Value": "Dagger;LeatherCap:20"
+              "Value": "LeatherCap:35;LeatherGloves:20"
             },
             {
               "Key": "Carry",
@@ -659,7 +668,16 @@
             },
             {
               "Key": "Pick",
-              "Value": ""
+              "Value": "1;Dagger;Hatchet;Cudgel"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A short-faced bank burrower with a broad back of overlapping shale plates. Its grasping foreclaws rake loose earth into low walls around the burrow mouth."
             }
           ]
         }
@@ -697,7 +715,7 @@
       "Tags": [
         {
           "Key": "Faction",
-          "Value": "Snapjaws"
+          "Value": "OutlandRaiders"
         },
         {
           "Key": "Tier",
@@ -707,7 +725,7 @@
       "Props": [
         {
           "Key": "NaturalWeapon",
-          "Value": "SnapjawClaw"
+          "Value": "MarlbackRake"
         }
       ]
     },
@@ -784,7 +802,7 @@
       ]
     },
     {
-      "Name": "SnapjawCorpse",
+      "Name": "MarlbackCorpse",
       "Inherits": "PhysicalObject",
       "Parts": [
         {
@@ -792,7 +810,7 @@
           "Params": [
             {
               "Key": "DisplayName",
-              "Value": "snapjaw corpse"
+              "Value": "marlback remains"
             },
             {
               "Key": "RenderString",
@@ -844,6 +862,15 @@
             {
               "Key": "MaterialTagsRaw",
               "Value": "Organic"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Overlapping shale plates lie slack above short limbs and broad digging claws. Mud still fills the seams of the bank burrower’s back."
             }
           ]
         }
@@ -1253,15 +1280,45 @@
       ]
     },
     {
-      "Name": "SnapjawScavenger",
-      "Inherits": "Snapjaw",
+      "Name": "MarlbackGleaner",
+      "Inherits": "MarlbackScrabbler",
       "Parts": [
+      {
+        "Name": "Brain",
+        "Params": [
+          {
+            "Key": "FleeThreshold",
+            "Value": "0.40"
+          }
+        ]
+      },
+      {
+        "Name": "CombatTactics",
+        "Params": [
+          {
+            "Key": "SkillClasses",
+            "Value": "ShortBlades_Shank;LongBlades_Lunge"
+          },
+          {
+            "Key": "AbilityChance",
+            "Value": "45"
+          },
+          {
+            "Key": "AssistAllies",
+            "Value": "true"
+          },
+          {
+            "Key": "AssistRadius",
+            "Value": "6"
+          }
+        ]
+      },
         {
           "Name": "Render",
           "Params": [
             {
               "Key": "DisplayName",
-              "Value": "snapjaw scavenger"
+              "Value": "marlback gleaner"
             },
             {
               "Key": "RenderString",
@@ -1291,7 +1348,7 @@
           "Params": [
             {
               "Key": "Equip",
-              "Value": "LeatherGloves:35"
+              "Value": "LeatherGloves:50;LeatherArmor:25"
             },
             {
               "Key": "Carry",
@@ -1300,6 +1357,15 @@
             {
               "Key": "Pick",
               "Value": "1;Dagger;ShortSword"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Discarded cutting tools sit between this marlback’s shale back plates. It works the river wrack with a blunt snout and quick grasping claws, retreating toward its burrow when pressed."
             }
           ]
         }
@@ -1328,15 +1394,36 @@
       ]
     },
     {
-      "Name": "SnapjawHunter",
-      "Inherits": "Snapjaw",
+      "Name": "MarlbackTunnelguard",
+      "Inherits": "MarlbackScrabbler",
       "Parts": [
+      {
+        "Name": "CombatTactics",
+        "Params": [
+          {
+            "Key": "SkillClasses",
+            "Value": "ShortBlades_Shank"
+          },
+          {
+            "Key": "AbilityChance",
+            "Value": "45"
+          },
+          {
+            "Key": "AssistAllies",
+            "Value": "true"
+          },
+          {
+            "Key": "AssistRadius",
+            "Value": "6"
+          }
+        ]
+      },
         {
           "Name": "Render",
           "Params": [
             {
               "Key": "DisplayName",
-              "Value": "snapjaw hunter"
+              "Value": "marlback tunnelguard"
             },
             {
               "Key": "RenderString",
@@ -1364,6 +1451,10 @@
         {
           "Name": "Brain",
           "Params": [
+          {
+            "Key": "FleeThreshold",
+            "Value": "0.35"
+          },
             {
               "Key": "SightRadius",
               "Value": "15"
@@ -1375,7 +1466,7 @@
           "Params": [
             {
               "Key": "Equip",
-              "Value": "Spear;LeatherBoots:35"
+              "Value": "Spear;LeatherBoots:50;LeatherCap:25"
             },
             {
               "Key": "Carry",
@@ -1384,6 +1475,15 @@
             {
               "Key": "Pick",
               "Value": ""
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "This short-faced marlback braces a salvaged pole across the passage. Pale shale plates overlap its broad back; hooked digging claws grip the wet bank beneath it."
             }
           ]
         }
@@ -1423,7 +1523,7 @@
       "Props": [
         {
           "Key": "NaturalWeapon",
-          "Value": "SnapjawHunterClaw"
+          "Value": "MarlbackGuardRake"
         }
       ]
     },
@@ -1457,6 +1557,15 @@
       "Name": "Starapple",
       "Inherits": "FoodItem",
       "Parts": [
+      {
+        "Name": "Cookable",
+        "Params": [
+          {
+            "Key": "Into",
+            "Value": "RoastedStarapple"
+          }
+        ]
+      },
         {
           "Name": "Render",
           "Params": [
@@ -4297,6 +4406,15 @@
               "Value": "1.0"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Panels of thick leather are joined where the body needs to bend. The fastening straps show repeated use."
+            }
+          ]
         }
       ],
       "Stats": [
@@ -4413,6 +4531,15 @@
             {
               "Key": "BrittleTemperature",
               "Value": "-150"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Small metal rings overlap in a flexible mesh. Their weight gathers wherever the garment folds."
             }
           ]
         }
@@ -4702,6 +4829,15 @@
               "Value": "0.05"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Interwoven stems have thickened into a wall. More growth knots around the older strands."
+            }
+          ]
         }
       ],
       "Stats": [],
@@ -4792,6 +4928,15 @@
               "Value": "0.04"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A woody trunk rises from a spread of roots. Branches fill the space above it."
+            }
+          ]
         }
       ],
       "Stats": [],
@@ -4869,6 +5014,15 @@
         {
           "Name": "Chair",
           "Params": []
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A seat and back are joined above a set of legs. The places hands rest are worn smooth."
+            }
+          ]
         }
       ],
       "Stats": [],
@@ -4916,6 +5070,15 @@
         {
           "Name": "Bed",
           "Params": []
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Straw fills the sleeping place. The top has been pressed flat and gathered up again."
+            }
+          ]
         }
       ],
       "Stats": [],
@@ -5552,6 +5715,15 @@
               "Value": "-150"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A long, straight blade balanced above a plain crossguard."
+            }
+          ]
         }
       ],
       "Stats": [
@@ -5694,6 +5866,15 @@
             {
               "Key": "BrittleTemperature",
               "Value": "-150"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A broad axe head sits on a reinforced haft. The cutting edge curves away from the socket."
             }
           ]
         }
@@ -5842,6 +6023,15 @@
             {
               "Key": "BrittleTemperature",
               "Value": "-150"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A large blade with room for both hands on the hilt. Its reach begins well beyond the grip."
             }
           ]
         }
@@ -6154,6 +6344,15 @@
               "Value": "-150"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A compact sword with a straight edge and enough grip to keep the hand behind the guard."
+            }
+          ]
         }
       ],
       "Stats": [
@@ -6274,6 +6473,15 @@
             {
               "Key": "BrittleTemperature",
               "Value": "-150"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A heavy head on a short haft. Its raised faces concentrate the weight of a blow."
             }
           ]
         }
@@ -6398,6 +6606,15 @@
               "Value": "-150"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A narrow point extends from a long shaft. The join is bound close beneath the head."
+            }
+          ]
         }
       ],
       "Stats": [
@@ -6476,6 +6693,15 @@
             {
               "Key": "Value",
               "Value": "12"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A short haft carries a wedge-shaped head. The back of the blade is thick enough to take a knock."
             }
           ]
         }
@@ -6580,6 +6806,15 @@
               "Value": "65"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A broad sword with a long grip and a guard that spreads well clear of the blade."
+            }
+          ]
         }
       ],
       "Stats": [
@@ -6662,6 +6897,15 @@
             {
               "Key": "Value",
               "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A stout club, heavier at the striking end and smoothed where a hand holds it."
             }
           ]
         }
@@ -6749,6 +6993,15 @@
               "Value": "20"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A small shield with a raised centre and a grip behind it."
+            }
+          ]
         }
       ],
       "Stats": [
@@ -6832,6 +7085,15 @@
             {
               "Key": "Value",
               "Value": "25"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A worked iron shell with an opening for the face. The rim has been turned away from the skin."
             }
           ]
         }
@@ -6919,6 +7181,15 @@
               "Value": "12"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Supple leather boots with thicker soles and reinforced seams around the toes."
+            }
+          ]
         }
       ],
       "Stats": [
@@ -7004,6 +7275,15 @@
               "Value": "8"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Close-fitting gloves with extra leather across the palms."
+            }
+          ]
         }
       ],
       "Stats": [
@@ -7087,6 +7367,15 @@
             {
               "Key": "Value",
               "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A fitted leather cap, stitched in curved panels to follow the head."
             }
           ]
         }
@@ -7178,6 +7467,15 @@
               "Value": "28"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Iron strengthens the soles of these boots. Scuffs mark the places that meet the ground first."
+            }
+          ]
         }
       ],
       "Stats": [
@@ -7261,6 +7559,15 @@
             {
               "Key": "Value",
               "Value": "40"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Fine stitching follows the edges of this cloak. The repeated pattern continues around the fastening."
             }
           ]
         }
@@ -7348,6 +7655,15 @@
               "Value": "45"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A compact iron shield. Its turned rim leaves a shallow bowl behind the face."
+            }
+          ]
         }
       ],
       "Stats": [
@@ -7422,6 +7738,15 @@
             {
               "Key": "Value",
               "Value": "100"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Shaped plates overlap at the joints, with straps holding each section against the body."
             }
           ]
         }
@@ -7507,6 +7832,15 @@
             {
               "Key": "Value",
               "Value": "18"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A broad piece of cloth with a fastening at the neck. Its hem carries the wear of travel."
             }
           ]
         }
@@ -7758,6 +8092,15 @@
       "Name": "Mushroom",
       "Inherits": "FoodItem",
       "Parts": [
+      {
+        "Name": "Cookable",
+        "Params": [
+          {
+            "Key": "Into",
+            "Value": "RoastedMushroom"
+          }
+        ]
+      },
         {
           "Name": "Render",
           "Params": [
@@ -9834,6 +10177,15 @@
             {
               "Key": "Value",
               "Value": "45"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A dense striking head is fixed across a long handle. The face is narrower than the mass behind it."
             }
           ]
         }
@@ -12935,6 +13287,36 @@
       "Name": "CaveSlime",
       "Inherits": "Creature",
       "Parts": [
+      {
+        "Name": "Brain",
+        "Params": [
+          {
+            "Key": "FleeThreshold",
+            "Value": "0"
+          }
+        ]
+      },
+      {
+        "Name": "CombatTactics",
+        "Params": [
+          {
+            "Key": "SkillClasses",
+            "Value": "Corrosion_AcidSpray"
+          },
+          {
+            "Key": "AbilityChance",
+            "Value": "60"
+          },
+          {
+            "Key": "AssistAllies",
+            "Value": "false"
+          },
+          {
+            "Key": "AssistRadius",
+            "Value": "6"
+          }
+        ]
+      },
         {
           "Name": "Corpse",
           "Params": [
@@ -13545,6 +13927,36 @@
       "Name": "DesertBandit",
       "Inherits": "Creature",
       "Parts": [
+      {
+        "Name": "Brain",
+        "Params": [
+          {
+            "Key": "FleeThreshold",
+            "Value": "0.35"
+          }
+        ]
+      },
+      {
+        "Name": "CombatTactics",
+        "Params": [
+          {
+            "Key": "SkillClasses",
+            "Value": "LongBlades_Lunge"
+          },
+          {
+            "Key": "AbilityChance",
+            "Value": "45"
+          },
+          {
+            "Key": "AssistAllies",
+            "Value": "true"
+          },
+          {
+            "Key": "AssistRadius",
+            "Value": "6"
+          }
+        ]
+      },
         {
           "Name": "Render",
           "Params": [
@@ -13580,7 +13992,7 @@
           "Params": [
             {
               "Key": "Equip",
-              "Value": "ShortSword;LeatherCap:30"
+              "Value": "ShortSword;LeatherCap:40;LeatherBoots:20"
             },
             {
               "Key": "Carry",
@@ -13622,7 +14034,7 @@
       "Tags": [
         {
           "Key": "Faction",
-          "Value": "Snapjaws"
+          "Value": "OutlandRaiders"
         },
         {
           "Key": "Tier",
@@ -14167,7 +14579,7 @@
           "Params": [
             {
               "Key": "Equip",
-              "Value": "Dagger;LeatherGloves:35"
+              "Value": "LeatherGloves:50;LeatherCap:25"
             },
             {
               "Key": "Carry",
@@ -14175,7 +14587,7 @@
             },
             {
               "Key": "Pick",
-              "Value": ""
+              "Value": "1;Dagger;Cudgel;OldWorldPipe"
             }
           ]
         }
@@ -14709,15 +15121,45 @@
       ]
     },
     {
-      "Name": "SnapjawChieftain",
-      "Inherits": "Snapjaw",
+      "Name": "MarlbackWallkeeper",
+      "Inherits": "MarlbackScrabbler",
       "Parts": [
+      {
+        "Name": "Brain",
+        "Params": [
+          {
+            "Key": "FleeThreshold",
+            "Value": "0.15"
+          }
+        ]
+      },
+      {
+        "Name": "CombatTactics",
+        "Params": [
+          {
+            "Key": "SkillClasses",
+            "Value": "LongBlades_Lunge"
+          },
+          {
+            "Key": "AbilityChance",
+            "Value": "55"
+          },
+          {
+            "Key": "AssistAllies",
+            "Value": "true"
+          },
+          {
+            "Key": "AssistRadius",
+            "Value": "6"
+          }
+        ]
+      },
         {
           "Name": "Render",
           "Params": [
             {
               "Key": "DisplayName",
-              "Value": "snapjaw chieftain"
+              "Value": "marlback wallkeeper"
             },
             {
               "Key": "RenderString",
@@ -14747,7 +15189,7 @@
           "Params": [
             {
               "Key": "Equip",
-              "Value": "ShortSword;LeatherArmor;LeatherCap"
+              "Value": "LongSword;LeatherArmor;LeatherCap;LeatherBoots:35"
             },
             {
               "Key": "Carry",
@@ -14756,6 +15198,15 @@
             {
               "Key": "Pick",
               "Value": ""
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Layers of dark shale broaden this marlback’s back above a patched digging harness. It keeps a long cutting tool ready beside the low wall of its burrow."
             }
           ]
         }
@@ -14796,15 +15247,45 @@
       ]
     },
     {
-      "Name": "SnapjawWarlord",
-      "Inherits": "Snapjaw",
+      "Name": "MarlbackBreacher",
+      "Inherits": "MarlbackScrabbler",
       "Parts": [
+      {
+        "Name": "Brain",
+        "Params": [
+          {
+            "Key": "FleeThreshold",
+            "Value": "0.05"
+          }
+        ]
+      },
+      {
+        "Name": "CombatTactics",
+        "Params": [
+          {
+            "Key": "SkillClasses",
+            "Value": "Axe_Berserk"
+          },
+          {
+            "Key": "AbilityChance",
+            "Value": "55"
+          },
+          {
+            "Key": "AssistAllies",
+            "Value": "true"
+          },
+          {
+            "Key": "AssistRadius",
+            "Value": "6"
+          }
+        ]
+      },
         {
           "Name": "Render",
           "Params": [
             {
               "Key": "DisplayName",
-              "Value": "snapjaw warlord"
+              "Value": "marlback breacher"
             },
             {
               "Key": "RenderString",
@@ -14834,7 +15315,7 @@
           "Params": [
             {
               "Key": "Equip",
-              "Value": "LeatherArmor;IronHelmet;IronshodBoots"
+              "Value": "BreacherCleaver;LeatherArmor;IronHelmet;IronshodBoots"
             },
             {
               "Key": "Carry",
@@ -14843,6 +15324,15 @@
             {
               "Key": "Pick",
               "Value": ""
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Heavy shale plates crowd the shoulders of this blunt-faced marlback. It carries a wedge-cleaver made for splitting roots and swings its weight forward with each stubborn step."
             }
           ]
         }
@@ -14874,7 +15364,7 @@
       "Props": [
         {
           "Key": "NaturalWeapon",
-          "Value": "WarlordCleaver"
+          "Value": "BreacherCleaver"
         }
       ],
       "Tags": [
@@ -14986,7 +15476,7 @@
       ]
     },
     {
-      "Name": "WarlordCleaver",
+      "Name": "BreacherCleaver",
       "Inherits": "MeleeWeapon",
       "Parts": [
         {
@@ -14994,7 +15484,7 @@
           "Params": [
             {
               "Key": "DisplayName",
-              "Value": "warlord's cleaver"
+              "Value": "wedge-cleaver"
             },
             {
               "Key": "RenderString",
@@ -15054,7 +15544,7 @@
           "Params": [
             {
               "Key": "Description",
-              "Value": "A snapjaw warband banner-blade, notched from a hundred raids. Heavier than it looks; meaner than it needs to be."
+              "Value": "A salvaged wedge-blade lashed to a short haft. Shale grit fills its binding; the broad edge is worn from splitting roots and breaking packed banks."
             }
           ]
         }
@@ -16361,6 +16851,27 @@
               "Value": "fungal-spores"
             }
           ]
+        },
+        {
+          "Name": "Corpse",
+          "Params": [
+            {
+              "Key": "HarvestBlueprint",
+              "Value": "ShamblerSporeSac"
+            },
+            {
+              "Key": "HarvestMin",
+              "Value": "1"
+            },
+            {
+              "Key": "HarvestMax",
+              "Value": "1"
+            },
+            {
+              "Key": "HarvestChance",
+              "Value": "100"
+            }
+          ]
         }
       ],
       "Stats": [
@@ -17100,6 +17611,36 @@
       "Name": "IceWight",
       "Inherits": "Creature",
       "Parts": [
+      {
+        "Name": "Brain",
+        "Params": [
+          {
+            "Key": "FleeThreshold",
+            "Value": "0"
+          }
+        ]
+      },
+      {
+        "Name": "CombatTactics",
+        "Params": [
+          {
+            "Key": "SkillClasses",
+            "Value": "Cryomancy_IceLance"
+          },
+          {
+            "Key": "AbilityChance",
+            "Value": "60"
+          },
+          {
+            "Key": "AssistAllies",
+            "Value": "false"
+          },
+          {
+            "Key": "AssistRadius",
+            "Value": "6"
+          }
+        ]
+      },
         {
           "Name": "Render",
           "Params": [
@@ -17246,6 +17787,36 @@
       "Name": "CharredHusk",
       "Inherits": "Creature",
       "Parts": [
+      {
+        "Name": "Brain",
+        "Params": [
+          {
+            "Key": "FleeThreshold",
+            "Value": "0"
+          }
+        ]
+      },
+      {
+        "Name": "CombatTactics",
+        "Params": [
+          {
+            "Key": "SkillClasses",
+            "Value": "Pyromancy_EmberSpit"
+          },
+          {
+            "Key": "AbilityChance",
+            "Value": "60"
+          },
+          {
+            "Key": "AssistAllies",
+            "Value": "false"
+          },
+          {
+            "Key": "AssistRadius",
+            "Value": "6"
+          }
+        ]
+      },
         {
           "Name": "Corpse",
           "Params": [
@@ -17664,6 +18235,15 @@
               "Value": "0.05"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Low branches and leaves form a close tangle near the ground."
+            }
+          ]
         }
       ],
       "Tags": [ { "Key": "Vegetation", "Value": "" } ]
@@ -17895,6 +18475,15 @@
             {
               "Key": "ExhaustProduct",
               "Value": "AshPile"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Stones mark a place for a fire. Ash has collected between them."
             }
           ]
         }
@@ -18396,6 +18985,15 @@
             {
               "Key": "RenderLayer",
               "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Jointed stems stand close together, with narrow leaves folded along their sides."
             }
           ]
         }
@@ -19245,6 +19843,15 @@
       "Name": "RawMeat",
       "Inherits": "FoodItem",
       "Parts": [
+      {
+        "Name": "Cookable",
+        "Params": [
+          {
+            "Key": "Into",
+            "Value": "CookedMeat"
+          }
+        ]
+      },
         {
           "Name": "Render",
           "Params": [
@@ -19547,6 +20154,14 @@
       "Inherits": "Item",
       "Parts": [
         {
+          "Name": "TorchLight",
+          "Params": [{ "Key": "LightTemperature", "Value": "450" }]
+        },
+        {
+          "Name": "Equippable",
+          "Params": [{ "Key": "Slot", "Value": "Hand" }]
+        },
+        {
           "Name": "Render",
           "Params": [
             {
@@ -19754,6 +20369,15 @@
         {
           "Name": "Well",
           "Params": []
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Hands and hauled ropes have polished the rim. The water lies below."
+            }
+          ]
         }
       ],
       "Tags": [
@@ -19821,6 +20445,15 @@
             {
               "Key": "Solid",
               "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A counter gives someone a place to set out goods. Trading belongs to whoever tends it."
             }
           ]
         }
@@ -20290,6 +20923,15 @@
             {
               "Key": "AmbientDecayRate",
               "Value": "0.04"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A hinged lid closes over a deep storage box. The frame is reinforced at the corners."
             }
           ]
         }
@@ -23242,7 +23884,7 @@
       "Tags": [
         {
           "Key": "Faction",
-          "Value": "Snapjaws"
+          "Value": "OutlandRaiders"
         },
         {
           "Key": "Tier",
@@ -23374,7 +24016,7 @@
       "Tags": [
         {
           "Key": "Faction",
-          "Value": "Snapjaws"
+          "Value": "OutlandRaiders"
         },
         {
           "Key": "Tier",
@@ -23390,6 +24032,27 @@
       "Name": "AmbushBandit",
       "Inherits": "Creature",
       "Parts": [
+      {
+        "Name": "CombatTactics",
+        "Params": [
+          {
+            "Key": "SkillClasses",
+            "Value": "LongBlades_Lunge"
+          },
+          {
+            "Key": "AbilityChance",
+            "Value": "45"
+          },
+          {
+            "Key": "AssistAllies",
+            "Value": "true"
+          },
+          {
+            "Key": "AssistRadius",
+            "Value": "6"
+          }
+        ]
+      },
         {
           "Name": "Render",
           "Params": [
@@ -23436,6 +24099,10 @@
         {
           "Name": "Brain",
           "Params": [
+          {
+            "Key": "FleeThreshold",
+            "Value": "0.25"
+          },
             {
               "Key": "SightRadius",
               "Value": "10"
@@ -23476,7 +24143,7 @@
           "Params": [
             {
               "Key": "Equip",
-              "Value": "ShortSword;LeatherArmor:35"
+              "Value": "ShortSword;LeatherArmor:35;LeatherBoots:25"
             },
             {
               "Key": "Carry",
@@ -23522,7 +24189,7 @@
       "Tags": [
         {
           "Key": "Faction",
-          "Value": "Snapjaws"
+          "Value": "OutlandRaiders"
         },
         {
           "Key": "Tier",
@@ -23951,6 +24618,36 @@
       "Name": "RuneCultist",
       "Inherits": "Creature",
       "Parts": [
+      {
+        "Name": "Brain",
+        "Params": [
+          {
+            "Key": "FleeThreshold",
+            "Value": "0.40"
+          }
+        ]
+      },
+      {
+        "Name": "CombatTactics",
+        "Params": [
+          {
+            "Key": "SkillClasses",
+            "Value": "Cryomancy_IceLance"
+          },
+          {
+            "Key": "AbilityChance",
+            "Value": "60"
+          },
+          {
+            "Key": "AssistAllies",
+            "Value": "true"
+          },
+          {
+            "Key": "AssistRadius",
+            "Value": "6"
+          }
+        ]
+      },
         {
           "Name": "Render",
           "Params": [
@@ -24007,7 +24704,7 @@
           "Params": [
             {
               "Key": "Equip",
-              "Value": "Dagger;LeatherGloves:35"
+              "Value": "Dagger;LeatherGloves:50;Cloak:30"
             },
             {
               "Key": "Carry",
@@ -24609,6 +25306,15 @@
               "Value": "0.05"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Wild berries cluster among the leaves. The fruit can be gathered."
+            }
+          ]
         }
       ],
       "Tags": [ { "Key": "Vegetation", "Value": "" } ]
@@ -24661,6 +25367,15 @@
             {
               "Key": "YieldMax",
               "Value": "2"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Wax cells crowd the inside. Some hold honey."
             }
           ]
         }
@@ -25413,6 +26128,15 @@
               "Value": "10"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Boards enclose a cargo space. Its corners bear the marks of lifting and stacking."
+            }
+          ]
         }
       ]
     },
@@ -25456,6 +26180,15 @@
             {
               "Key": "MaxItems",
               "Value": "6"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Coarse cloth is gathered at the mouth. The folds conceal whatever has been packed inside."
             }
           ]
         }
@@ -25713,6 +26446,15 @@
               "Value": "Solid,Organic,Combustible"
             }
           ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A close weave rises to a stiff rim, making a light container for things that need carrying."
+            }
+          ]
         }
       ]
     },
@@ -25773,6 +26515,15 @@
             {
               "Key": "MaterialTagsRaw",
               "Value": "Solid,Organic,Combustible"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "The centre of the wood is hollow. The opening leaves room to store small things inside."
             }
           ]
         }
@@ -28700,6 +29451,27 @@
           "Params": [
             { "Key": "Description", "Value": "Picked clean and dried white. Whatever it was, it was walking the road." }
           ]
+        },
+        {
+          "Name": "Harvestable",
+          "Params": [
+            {
+              "Key": "YieldBlueprint",
+              "Value": "Bone"
+            },
+            {
+              "Key": "YieldMin",
+              "Value": "1"
+            },
+            {
+              "Key": "YieldMax",
+              "Value": "2"
+            },
+            {
+              "Key": "YieldChance",
+              "Value": "100"
+            }
+          ]
         }
       ],
       "Stats": [],
@@ -28728,6 +29500,27 @@
           "Name": "Examinable",
           "Params": [
             { "Key": "Description", "Value": "A big banded lizard basking flat on the crust, all display and speed. It holds its ground like it owns the noon." }
+          ]
+        },
+        {
+          "Name": "Corpse",
+          "Params": [
+            {
+              "Key": "HarvestBlueprint",
+              "Value": "RawMeat"
+            },
+            {
+              "Key": "HarvestMin",
+              "Value": "1"
+            },
+            {
+              "Key": "HarvestMax",
+              "Value": "2"
+            },
+            {
+              "Key": "HarvestChance",
+              "Value": "100"
+            }
           ]
         }
       ],
@@ -30646,6 +31439,27 @@
         {
           "Name": "Examinable",
           "Params": [ { "Key": "Description", "Value": "A heavy pit viper the colour of wet stone, coiled where the litter is deepest. It does not rattle and it does not flee. Where these are thick on a slope, something underneath is awake." } ]
+        },
+        {
+          "Name": "Corpse",
+          "Params": [
+            {
+              "Key": "HarvestBlueprint",
+              "Value": "VenomGland"
+            },
+            {
+              "Key": "HarvestMin",
+              "Value": "1"
+            },
+            {
+              "Key": "HarvestMax",
+              "Value": "1"
+            },
+            {
+              "Key": "HarvestChance",
+              "Value": "100"
+            }
+          ]
         }
       ],
       "Stats": [
@@ -31264,13 +32078,13 @@
       "Tags": []
     },
     {
-      "Name": "GlowMoth",
+      "Name": "GroveLanternMoth",
       "Inherits": "Creature",
       "Parts": [
         {
           "Name": "Render",
           "Params": [
-            { "Key": "DisplayName", "Value": "glow-moth" },
+            { "Key": "DisplayName", "Value": "grove lantern-moth" },
             { "Key": "RenderString", "Value": "m" },
             { "Key": "ColorString", "Value": "&Y" },
             { "Key": "RenderLayer", "Value": "10" }
@@ -31290,7 +32104,7 @@
         {
           "Name": "Examinable",
           "Params": [
-            { "Key": "Description", "Value": "A moth the size of a hand, dusted the same pale light as the columns. It navigates by the groves, which is to say it is never lost." }
+            { "Key": "Description", "Value": "A hand-sized moth with broad translucent wings, each crossed by three soft bars of pale grove-light. It navigates by the columns; the glow is dust on its wings." }
           ]
         }
       ],
@@ -33512,6 +34326,1736 @@
         {
           "Key": "Furniture",
           "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "Codex01",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "copy of From the Reading: the Felling, collated"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "codex-01"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "A reading copy with its source recorded. Read it to follow the account in full."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "Codex02",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "copy of The telling of the man who said no"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "codex-02"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "A reading copy with its source recorded. Read it to follow the account in full."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "Codex03",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "copy of Internal memorandum: the founding provisions"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "codex-03"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "A reading copy with its source recorded. Read it to follow the account in full."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "Codex04",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "copy of The oath of the cloth"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "codex-04"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "A reading copy with its source recorded. Read it to follow the account in full."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "Codex05",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "copy of Readings from a plaque-wall"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "codex-05"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "A reading copy with its source recorded. Read it to follow the account in full."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "Codex06",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "copy of Standard contract of carriage (short form)"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "codex-06"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "A reading copy with its source recorded. Read it to follow the account in full."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "Codex07",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "copy of File: OTHREN. Selected entries."
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "codex-07"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "A reading copy with its source recorded. Read it to follow the account in full."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "Codex08",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "copy of HAVE YOU THOUGHT ABOUT BEING KEPT?"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "codex-08"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "A reading copy with its source recorded. Read it to follow the account in full."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "Codex09",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "copy of The dimming song"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "codex-09"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "A reading copy with its source recorded. Read it to follow the account in full."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "Codex10",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "copy of Transcript of a reading: the scribe Ollun, folio three"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "codex-10"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "A reading copy with its source recorded. Read it to follow the account in full."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "Codex11",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "copy of The sign at the grove-edge"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "codex-11"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "A reading copy with its source recorded. Read it to follow the account in full."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "Codex12",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "copy of How they tell it in Sill"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "codex-12"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "A reading copy with its source recorded. Read it to follow the account in full."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "Codex13",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "copy of Condition report: the First Account"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "codex-13"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "A reading copy with its source recorded. Read it to follow the account in full."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "ReadableDocument",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "Waterskin",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "waterskin"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "!"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&c"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Waterskin",
+          "Params": [
+            {
+              "Key": "Capacity",
+              "Value": "3"
+            },
+            {
+              "Key": "Charges",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "Handling",
+          "Params": [
+            {
+              "Key": "GripType",
+              "Value": "OneHand"
+            },
+            {
+              "Key": "BulkClass",
+              "Value": "Light"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "Holds three drinks. Fill beside a well, cistern or standing fresh water; a drink relieves one layer of parch."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Item",
+          "Value": "true"
+        },
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ]
+    },
+    {
+      "Name": "RoastedMushroom",
+      "Inherits": "FoodItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "roasted mushroom"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "%"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&Y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Food",
+          "Params": [
+            {
+              "Key": "Healing",
+              "Value": "3d4"
+            },
+            {
+              "Key": "Cooking",
+              "Value": "Meal"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "The edges have browned and curled; the flesh inside is still soft."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ]
+    },
+    {
+      "Name": "SootGremlin",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "soot gremlin"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "s"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&K"
+            }
+          ]
+        },
+        {
+          "Name": "Armor",
+          "Params": [
+            {
+              "Key": "AV",
+              "Value": "2"
+            },
+            {
+              "Key": "DV",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Corpse",
+          "Params": [
+            {
+              "Key": "CorpseChance",
+              "Value": "70"
+            },
+            {
+              "Key": "CorpseBlueprint",
+              "Value": "CreatureCorpse"
+            }
+          ]
+        },
+        {
+          "Name": "Loadout",
+          "Params": [
+            {
+              "Key": "Equip",
+              "Value": "Dagger;LeatherCap:20"
+            },
+            {
+              "Key": "Carry",
+              "Value": ""
+            },
+            {
+              "Key": "Pick",
+              "Value": ""
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A small soot-dark creature with blunt claws and a nose dusted grey from old hearths. It paws through anything left near the cold ash."
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 15,
+          "Min": 0,
+          "Max": 15
+        },
+        {
+          "Name": "Strength",
+          "Value": 16
+        },
+        {
+          "Name": "Agility",
+          "Value": 14
+        },
+        {
+          "Name": "Toughness",
+          "Value": 14
+        },
+        {
+          "Name": "XPValue",
+          "Value": 15
+        },
+        {
+          "Name": "ColdResistance",
+          "Value": 25,
+          "Min": -100,
+          "Max": 200
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Faction",
+          "Value": "OutlandRaiders"
+        },
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ],
+      "Props": [
+        {
+          "Key": "NaturalWeapon",
+          "Value": "ScavengerClaw"
+        }
+      ]
+    },
+    {
+      "Name": "DirtGnome",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "dirt gnome"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "g"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            }
+          ]
+        },
+        {
+          "Name": "Armor",
+          "Params": [
+            {
+              "Key": "AV",
+              "Value": "2"
+            },
+            {
+              "Key": "DV",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Corpse",
+          "Params": [
+            {
+              "Key": "CorpseChance",
+              "Value": "70"
+            },
+            {
+              "Key": "CorpseBlueprint",
+              "Value": "CreatureCorpse"
+            }
+          ]
+        },
+        {
+          "Name": "Loadout",
+          "Params": [
+            {
+              "Key": "Equip",
+              "Value": "Dagger;LeatherCap:20"
+            },
+            {
+              "Key": "Carry",
+              "Value": ""
+            },
+            {
+              "Key": "Pick",
+              "Value": ""
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A squat earth-grubber with soil worked into the creases of its skin. Its broad claws have loosened more roots than the farmer cares to count."
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 15,
+          "Min": 0,
+          "Max": 15
+        },
+        {
+          "Name": "Strength",
+          "Value": 16
+        },
+        {
+          "Name": "Agility",
+          "Value": 14
+        },
+        {
+          "Name": "Toughness",
+          "Value": 14
+        },
+        {
+          "Name": "XPValue",
+          "Value": 15
+        },
+        {
+          "Name": "ColdResistance",
+          "Value": 25,
+          "Min": -100,
+          "Max": 200
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Faction",
+          "Value": "OutlandRaiders"
+        },
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ],
+      "Props": [
+        {
+          "Key": "NaturalWeapon",
+          "Value": "ScavengerClaw"
+        }
+      ]
+    },
+    {
+      "Name": "TemperedLongSword",
+      "Inherits": "LongSword",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "tempered long sword"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&W"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Weight",
+              "Value": "9"
+            }
+          ]
+        },
+        {
+          "Name": "MeleeWeapon",
+          "Params": [
+            {
+              "Key": "BaseDamage",
+              "Value": "1d10+1"
+            },
+            {
+              "Key": "PenBonus",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "90"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A narrow line follows the hardened edge. The tang runs through a plain grip to a peened pommel."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "4"
+        }
+      ]
+    },
+    {
+      "Name": "CounterweightMaul",
+      "Inherits": "Warhammer",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "counterweight maul"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&Y"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Weight",
+              "Value": "22"
+            }
+          ]
+        },
+        {
+          "Name": "MeleeWeapon",
+          "Params": [
+            {
+              "Key": "BaseDamage",
+              "Value": "2d6+2"
+            },
+            {
+              "Key": "PenBonus",
+              "Value": "6"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "110"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A heavy striking head is balanced by a smaller weight below the grip. Both ends are scarred by use."
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Steel"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0"
+            },
+            {
+              "Key": "Conductivity",
+              "Value": "0.8"
+            },
+            {
+              "Key": "Brittleness",
+              "Value": "0.2"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Metal,Conductor"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "4"
+        }
+      ]
+    },
+    {
+      "Name": "FineRingMail",
+      "Inherits": "ChainMail",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "fine-ring mail"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&W"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Weight",
+              "Value": "24"
+            }
+          ]
+        },
+        {
+          "Name": "Armor",
+          "Params": [
+            {
+              "Key": "AV",
+              "Value": "6"
+            },
+            {
+              "Key": "DV",
+              "Value": "-1"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "125"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Closely fitted rings lie in shallow folds. Small overlapping links cover the seams beneath each arm."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "4"
+        }
+      ]
+    },
+    {
+      "Name": "RivetedPlate",
+      "Inherits": "PlateArmor",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "riveted plate"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&C"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Weight",
+              "Value": "46"
+            }
+          ]
+        },
+        {
+          "Name": "Armor",
+          "Params": [
+            {
+              "Key": "AV",
+              "Value": "9"
+            },
+            {
+              "Key": "DV",
+              "Value": "-4"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "140"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Thick overlapping plates are held by broad rivets. Deep straps carry their weight across the shoulders."
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Steel"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0"
+            },
+            {
+              "Key": "Conductivity",
+              "Value": "0.8"
+            },
+            {
+              "Key": "Brittleness",
+              "Value": "0.2"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Metal,Conductor"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "4"
         }
       ]
     }

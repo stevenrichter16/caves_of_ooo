@@ -1,0 +1,37 @@
+[
+  {
+    "Name": "FindDeepEquipmentT4",
+    "PickOne": true,
+    "MinPicks": 1,
+    "MaxPicks": 1,
+    "Entries": [
+      {
+        "Blueprint": "TemperedLongSword",
+        "Weight": 1
+      },
+      {
+        "Blueprint": "CounterweightMaul",
+        "Weight": 1
+      },
+      {
+        "Blueprint": "FineRingMail",
+        "Weight": 1
+      },
+      {
+        "Blueprint": "RivetedPlate",
+        "Weight": 1
+      }
+    ]
+  },
+  {
+    "Name": "DeepReliquaryT4",
+    "Entries": [
+      {
+        "TableRef": "SealedVaultT3"
+      },
+      {
+        "TableRef": "FindDeepEquipmentT4"
+      }
+    ]
+  }
+]

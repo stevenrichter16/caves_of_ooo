@@ -69,25 +69,25 @@ namespace CavesOfOoo.Tests
               ""Tags"": [{ ""Key"": ""Creature"", ""Value"": """" }]
             },
             {
-              ""Name"": ""Snapjaw"",
+              ""Name"": ""MarlbackScrabbler"",
               ""Inherits"": ""Creature"",
               ""Parts"": [
                 { ""Name"": ""Render"", ""Params"": [
-                  { ""Key"": ""DisplayName"", ""Value"": ""snapjaw"" },
+                  { ""Key"": ""DisplayName"", ""Value"": ""marlback"" },
                   { ""Key"": ""RenderString"", ""Value"": ""s"" }
                 ]}
               ],
               ""Stats"": [
                 { ""Name"": ""Hitpoints"", ""Value"": 15, ""Min"": 0, ""Max"": 15 }
               ],
-              ""Tags"": [{ ""Key"": ""Faction"", ""Value"": ""Snapjaws"" }]
+              ""Tags"": [{ ""Key"": ""Faction"", ""Value"": ""OutlandRaiders"" }]
             },
             {
-              ""Name"": ""SnapjawScavenger"",
-              ""Inherits"": ""Snapjaw"",
+              ""Name"": ""MarlbackGleaner"",
+              ""Inherits"": ""MarlbackScrabbler"",
               ""Parts"": [
                 { ""Name"": ""Render"", ""Params"": [
-                  { ""Key"": ""DisplayName"", ""Value"": ""snapjaw scavenger"" }
+                  { ""Key"": ""DisplayName"", ""Value"": ""marlback gleaner"" }
                 ]}
               ],
               ""Stats"": [
@@ -96,11 +96,11 @@ namespace CavesOfOoo.Tests
               ""Tags"": []
             },
             {
-              ""Name"": ""SnapjawHunter"",
-              ""Inherits"": ""Snapjaw"",
+              ""Name"": ""MarlbackTunnelguard"",
+              ""Inherits"": ""MarlbackScrabbler"",
               ""Parts"": [
                 { ""Name"": ""Render"", ""Params"": [
-                  { ""Key"": ""DisplayName"", ""Value"": ""snapjaw hunter"" }
+                  { ""Key"": ""DisplayName"", ""Value"": ""marlback tunnelguard"" }
                 ]}
               ],
               ""Stats"": [

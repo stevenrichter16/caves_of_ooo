@@ -70,9 +70,9 @@ namespace CavesOfOoo.Tests
 
         private static Entity MakeNPC()
         {
-            var e = new Entity { ID = "snapjaw", BlueprintName = "snapjaw" };
+            var e = new Entity { ID = "marlback", BlueprintName = "marlback" };
             e.Tags["Creature"] = "";
-            e.AddPart(new RenderPart { DisplayName = "snapjaw" });
+            e.AddPart(new RenderPart { DisplayName = "marlback" });
             return e;
         }
 

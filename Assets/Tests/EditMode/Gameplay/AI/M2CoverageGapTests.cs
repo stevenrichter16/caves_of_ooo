@@ -172,10 +172,10 @@ namespace CavesOfOoo.Tests
             // the 'pacified-while-talking' design.
             var zone = new Zone("TestZone");
             var npc = CreateCreature(zone, 5, 5, faction: "Villagers");
-            var hostile = CreateCreature(zone, 7, 5, faction: "Snapjaws");
+            var hostile = CreateCreature(zone, 7, 5, faction: "OutlandRaiders");
             // Make them mutually hostile.
-            FactionManager.SetFactionFeeling("Villagers", "Snapjaws", -100);
-            FactionManager.SetFactionFeeling("Snapjaws", "Villagers", -100);
+            FactionManager.SetFactionFeeling("Villagers", "OutlandRaiders", -100);
+            FactionManager.SetFactionFeeling("OutlandRaiders", "Villagers", -100);
 
             var brain = npc.GetPart<BrainPart>();
             brain.InConversation = true;

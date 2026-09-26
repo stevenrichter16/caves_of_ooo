@@ -105,7 +105,7 @@ namespace CavesOfOoo.Tests.Scenarios
         // FlamingSwordShowcase — equips FlamingSword (same Fire+Burning
         // contract as covered for FlamingSword in OnHitEffectsShowcase),
         // but the scenario sets up a different target lineup (Glowmaw
-        // HR=50 vs Snapjaw control). Verifying this scenario as its
+        // HR=50 vs MarlbackScrabbler control). Verifying this scenario as its
         // own ship.
         // ====================================================================
 

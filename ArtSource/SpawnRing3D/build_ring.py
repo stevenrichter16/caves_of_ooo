@@ -11,6 +11,9 @@ for s in ('models','textures','reports','scenes','renders'): (OUT/s).mkdir(exist
 def read_native(name):
  with gzip.open(SOURCE/'native'/(name+'.json.gz'),'rt') as f:return json.load(f)
 INDEX=read_native('ring-index');FELLING=read_native('Felling-native-definition');CONTRACT=json.loads((SOURCE/'catalog-contract.json').read_text())
+# Immutable native snapshots retain old IDs. Only this art replay maps them.
+# These are never blueprint registry aliases or spawnable gameplay content.
+CAPTURED_BLUEPRINT_ALIASES={'Snapjaw':'MarlbackScrabbler','SnapjawScavenger':'MarlbackGleaner','SnapjawHunter':'MarlbackTunnelguard','SnapjawChieftain':'MarlbackWallkeeper','SnapjawWarlord':'MarlbackBreacher','GlowMoth':'GroveLanternMoth'}
 SEED=9092026;RNG=random.Random(SEED);MODELS={};CURRENT=None;PLACEMENTS=[];STATIC=[];SERIAL=0
 bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False)
 for c in list(bpy.data.collections):
@@ -462,6 +465,79 @@ def rig_parts(mid,bone_defs,weights,family):
  for p in rig.pose.bones:p.rotation_euler=(0,0,0);p.location=(0,0,0);p.scale=(1,1,1)
  MODELS[mid].update(rigged=True,clips=['Idle','Walk','Interact','Attack','Hit'],sockets=[],rigFamily=family)
 
+# Original bank-burrowers retain the tested equipment bone names and clips, but
+# have their own low skeleton, broad mineral back and blunt digging anatomy.
+def marlback(mid,bp):
+ global CURRENT
+ character('stone_dark',mid);coll=MODELS[mid]['collection'];CURRENT=coll;SCENE.collection.children.link(coll)
+ rig=next(o for o in coll.objects if o.type=='ARMATURE')
+ for ob in list(coll.objects):
+  if ob.type=='MESH':bpy.data.objects.remove(ob,do_unlink=True)
+ bpy.context.view_layer.objects.active=rig;rig.select_set(True);bpy.ops.object.mode_set(mode='EDIT')
+ bones={'Root':((0,0,0),(0,0,.15)),'Spine':((0,.07,.22),(0,.07,.66)),'Head':((0,-.15,.53),(0,-.30,.72))}
+ for side,sx in [('L',-1),('R',1)]:
+  bones['Arm.'+side]=((sx*.30,-.04,.49),(sx*.46,-.24,.24))
+  bones['Hand.'+side]=((sx*.46,-.24,.24),(sx*.46,-.36,.14))
+  bones['Leg.'+side]=((sx*.25,.20,.29),(sx*.29,.13,.07))
+ for name,(head,tail) in bones.items():rig.data.edit_bones[name].head=head;rig.data.edit_bones[name].tail=tail
+ bpy.ops.object.mode_set(mode='OBJECT');rig.select_set(False);bpy.context.view_layer.update()
+ positions={'Equipment.Head':(0,-.28,.81),'Equipment.Hand.L':(-.46,-.36,.17),'Equipment.Hand.R':(.46,-.36,.17),'Equipment.Back':(0,.32,.68)}
+ for sock in coll.objects:
+  if 'socketName' not in sock:continue
+  bone=sock['socketBone'];sock.matrix_parent_inverse=(rig.matrix_world@rig.pose.bones[bone].matrix@Matrix.Translation((0,rig.data.bones[bone].length,0))).inverted()
+  sock.matrix_basis=Matrix.Translation(positions[sock['socketName']])
+ def part(ob,bone='Spine'):
+  vg=ob.vertex_groups.new(name=bone);vg.add(list(range(len(ob.data.vertices))),1,'REPLACE')
+  mod=ob.modifiers.new('SpawnRingRig','ARMATURE');mod.object=rig;ob.parent=rig;return ob
+ rng=random.Random(seed(bp));heavy=bp=='MarlbackBreacher';width=.44 if heavy else .39
+ part(ellipsoid('Marlback_mud_body',(0,.035,.39),(width,.34,.28),'soil',2))
+ part(ellipsoid('Marlback_blunt_face',(0,-.305,.47),(.265,.135,.185),'stone_dark',2),'Head')
+ part(softstone('Marlback_nose_pad',(0,-.432,.475),(.27,.055,.095),'wet_rock',rng),'Head')
+ for sx,side in [(-1,'L'),(1,'R')]:
+  part(ellipsoid('Marlback_recessed_eye',(sx*.193,-.403,.552),(.033,.020,.027),'black',2),'Head')
+  part(beam('Marlback_mineral_brow',(sx*.13,-.420,.599),(sx*.253,-.368,.592),.036,'stone_light',7),'Head')
+  part(ellipsoid('Marlback_forelimb',(sx*.377,-.145,.325),(.135,.16,.18),'wood_dark',2),'Arm.'+side)
+  part(ellipsoid('Marlback_digging_palm',(sx*.463,-.305,.171),(.135,.135,.085),'stone_dark',2),'Hand.'+side)
+  for finger in [-1,0,1]:
+   x=sx*.463+finger*.070
+   part(beam('Marlback_digging_rake',(x,-.367,.158),(x,-.485,.095),.030,'bone_shadow',6),'Hand.'+side)
+  part(ellipsoid('Marlback_splayed_foot',(sx*.285,.13,.084),(.17,.18,.084),'wood_dark',2),'Leg.'+side)
+  part(softstone('Marlback_shoulder_plate',(sx*.34,.00,.60),(.25,.36,.15),'stone_dark',rng,sx*.22))
+ # Offset, overlapping slabs make a continuous low back, not a dorsal mane.
+ for j,(y,z,w) in enumerate([(-.06,.64,.72),(.105,.73,.78),(.275,.69,.64)]):
+  part(softstone('Marlback_shale_plate',(0,y,z),(w+(0.08 if heavy else 0),.29,.15 if heavy else .11),['stone_dark','stone','wet_rock'][j],rng,(-1 if j%2 else 1)*.06))
+  for sx in [-1,1]:part(beam('Marlback_slab_seam',(sx*.035,y-.10,z+.056),(sx*w*.35,y-.08,z+.042),.011,'stone_light',5))
+ if bp=='MarlbackGleaner':
+  for sx in [-1,1]:
+   part(box('Gleaner_plate_tool_sheath',(sx*.22,.235,.755),(.065,.22,.038),'leather',.01,sx*.22))
+   part(beam('Gleaner_stored_cutting_handle',(sx*.20,.245,.77),(sx*.18,.33,.79),.025,'wood_light',6))
+ elif bp=='MarlbackTunnelguard':
+  part(box('Tunnelguard_pole_brace',(.39,-.04,.49),(.11,.15,.16),'iron',.025),'Arm.R')
+  part(beam('Tunnelguard_brace_strap',(.32,.02,.48),(.48,-.11,.36),.035,'leather',6),'Arm.R')
+ elif bp=='MarlbackWallkeeper':
+  for sx in [-1,1]:part(beam('Wallkeeper_patched_harness',(sx*.25,-.10,.72),(sx*.22,.31,.76),.037,'cloth_old',6))
+  part(box('Wallkeeper_harness_patch',(-.25,.08,.795),(.12,.11,.02),'leather',.005))
+ elif heavy:
+  for sx in [-1,1]:part(softstone('Breacher_forward_shale',(sx*.18,-.18,.69),(.32,.28,.17),'stone_light',rng,sx*.17))
+  # Wedge-cleaver is actual equipment supplied by gameplay, never baked twice.
+ MODELS[mid]['rigFamily']='humanoid';SCENE.collection.children.unlink(coll)
+
+def lantern_moth(mid):
+ model(mid,'actor','feet-root');weights={}
+ def part(ob,bone='Body'):weights[ob.name]=bone;return ob
+ part(ellipsoid('Lantern_moth_body',(0,0,.36),(.040,.105,.044),'bone_shadow',2))
+ part(ellipsoid('Lantern_moth_head',(0,-.095,.37),(.047,.045,.042),'fungal_pale',2),'Head')
+ for sx,side in [(-1,'L'),(1,'R')]:
+  bone='Wing.'+side
+  part(ellipsoid('Lantern_moth_forewing',(sx*.175,-.038,.365),(.192,.17,.018),'fungal_light',2),bone)
+  part(ellipsoid('Lantern_moth_hindwing',(sx*.135,.112,.36),(.144,.13,.016),'dew',2),bone)
+  for band in range(3):
+   x=sx*(.11+band*.073)
+   part(ellipsoid('Lantern_moth_wing_band',(x,-.035+band*.012,.385),(.012,.115-band*.018,.003),'bone_shadow',2),bone)
+  part(beam('Lantern_moth_antenna',(sx*.023,-.12,.39),(sx*.074,-.20,.416),.005,'fungal_pale',5),'Head')
+ bones=[('Root',(0,0,0),(0,0,.10),None),('Body',(0,0,.10),(0,0,.36),'Root'),('Head',(0,-.04,.36),(0,-.12,.37),'Body'),('Wing.L',(-.025,0,.36),(-.28,0,.36),'Body'),('Wing.R',(.025,0,.36),(.28,0,.36),'Body')]
+ rig_parts(mid,bones,weights,'avian')
+
 def creature(mid,bp,family):
  rng=random.Random(seed(bp));coll=model(mid,'actor','feet-root');weights={}
  def bind(ob,bone='Body'):weights[ob.name]=bone;return ob
@@ -727,21 +803,15 @@ for mapping in CONTRACT['blueprints']:
  bp=mapping['blueprint']
  for i,mid in enumerate(mapping['models']):
   row=rows_by[mid];family=row['rigFamily']
-  if family=='humanoid':
-   colors={'Player':'hood_teal','CaveHermit':'hood_olive','Mogu':'hood_violet','Grib':'hood_gold','Nam':'hood_teal','Sien':'hood_olive','Sopp':'hood_violet','Snapjaw':'hood_olive','SnapjawWarlord':'hood_gold'}
+  if bp.startswith('Marlback'):marlback(mid,bp)
+  elif bp=='GroveLanternMoth':lantern_moth(mid)
+  elif family=='humanoid':
+   colors={'Player':'hood_teal','CaveHermit':'hood_olive','Mogu':'hood_violet','Grib':'hood_gold','Nam':'hood_teal','Sien':'hood_olive','Sopp':'hood_violet'}
    character(colors[bp],mid);CURRENT=MODELS[mid]['collection']
    # Named residents have distinct subtle silhouette details, no fake carried gear.
    rig=next(o for o in CURRENT.objects if o.type=='ARMATURE')
    decorations=[]
-   if bp in ('Snapjaw','SnapjawWarlord'):
-    for ob in list(CURRENT.objects):
-     if any(n in ob.name for n in ('Hood','Face')):bpy.data.objects.remove(ob,do_unlink=True)
-    decorations.append((ellipsoid('Scaled_canine_head',(0,-.01,1.34),(.25,.27,.31),'wood',2),'Head'))
-    decorations.append((ellipsoid('Long_snapjaw_muzzle',(0,-.29,1.29),(.17,.23,.14),'skin',2),'Head'))
-    for sx in [-1,1]:
-     decorations.append((ellipsoid('Canine_ear',(sx*.19,.03,1.58),(.09,.10,.21),'wood_dark',1),'Head'))
-     decorations.append((ellipsoid('Snapjaw_eye',(sx*.18,-.20,1.45),(.028,.032,.027),'gold',1),'Head'))
-   elif bp=='CaveHermit':
+   if bp=='CaveHermit':
     decorations.append((ellipsoid('Mossy_hood_patch',(.07,.02,1.67),(.24,.22,.075),'leaf_olive',1),'Head'))
     decorations.append((ellipsoid('Old_beard',(0,-.34,1.16),(.15,.10,.20),'cream',2),'Head'))
    elif bp!='Player':
@@ -774,7 +844,7 @@ for mid,info in MODELS.items():
  assert pts and tris>0,mid
  mins=[min(p[k] for p in pts) for k in range(3)];maxs=[max(p[k] for p in pts) for k in range(3)]
  center=[(a+b)/2 for a,b in zip(mins,maxs)];size=[b-a for a,b in zip(mins,maxs)]
- row={k:v for k,v in rows_by[mid].items() if k not in ('metadataStatus','sourceBlueprint')}
+ row={k:v for k,v in rows_by[mid].items() if k != 'metadataStatus'}
  row.update(triangles=tris,boundsCenter=uv3(*center),boundsSize=uv3(*size),pivot=info['pivot'],rigged=info.get('rigged',False),clips=info.get('clips',[]),sockets=info.get('sockets',[]))
  model_rows.append(row)
  if not args.skip_export and (not args.export_only or mid in args.export_only.split(',')):export_collection(mid)
@@ -845,7 +915,7 @@ for zid in CATALOG['zones']:
    place('ring-water-surface',cell['x'],cell['y'],role='current-native-water',height=.035)
  for e in onground:
   if e['token'] in accounted:continue
-  bp=e['blueprint'];owner=''
+  bp=CAPTURED_BLUEPRINT_ALIASES.get(e['blueprint'],e['blueprint']);owner=''
   if bp=='FellingSceneProp':owner=public_fields(e,'FellingSceneProp')['ComponentId'];mid=FOWN[owner]
   else:
    ids=BLUE[bp]['models'];mid=ids[seed((e['id'] or bp)+':'+bp)%len(ids)]

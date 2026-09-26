@@ -70,7 +70,7 @@ namespace CavesOfOoo.Core
                 // Passive creatures do not initiate combat proactively. They WILL
                 // still defend themselves against entities they've personally
                 // aggroed (PersonalEnemies), and they'll still flee when HP is low
-                // — but a Passive scholar won't chase a snapjaw across the zone.
+                // — but a Passive scholar won't chase a marlback across the zone.
                 // Mirrors Qud's Brain.Passive + !HasGoal() gate.
                 bool canInitiate = !ParentBrain.Passive
                     || ParentBrain.IsPersonallyHostileTo(hostile);
@@ -82,6 +82,7 @@ namespace CavesOfOoo.Core
 
                     if (firstAggro)
                     {
+                        ParentEntity.GetPart<CombatTacticsPart>()?.AlertAllies(hostile, CurrentZone);
                         var myPos = CurrentZone.GetEntityPosition(ParentEntity);
                         if (myPos.x >= 0)
                             AsciiFxBus.EmitParticle(CurrentZone, myPos.x, myPos.y - 1, '!', "&R", 0.25f);

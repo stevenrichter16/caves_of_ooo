@@ -1,0 +1,72 @@
+using System;
+using System.IO;
+using System.Linq;
+using System.Collections.Generic;
+using CavesOfOoo.Core;
+using CavesOfOoo.Data;
+using NUnit.Framework;
+using UnityEngine;
+namespace CavesOfOoo.Tests
+{
+    public class DensitySceneryAuditTests
+    {
+        [Serializable] public class BlueprintRow { public string blueprint,parent,description,corpse,harvest; public bool creature,item,suppress; public int corpseChance,harvestMin,harvestMax; public string[] parts,tags; }
+        [Serializable] public class LiveRow { public string blueprint; public int instances,zones; public string[] actions; }
+        [Serializable] public class Report { public int zones; public BlueprintRow[] blueprints; public LiveRow[] scenery; }
+        [Test] public void Audit_CurrentBoundedSourcesAndActualActions()
+        {
+            using(var scope=new DensityLootTestScope())
+            {
+                var rows=new List<BlueprintRow>();
+                foreach(var bp in scope.Factory.Blueprints.Values)
+                {
+                    bp.Parts.TryGetValue("Corpse",out var corpse);bp.Parts.TryGetValue("Examinable",out var examine);
+                    string Value(Dictionary<string,string> fields,string name,string fallback="") => fields!=null&&fields.TryGetValue(name,out var v)?v:fallback;
+                    rows.Add(new BlueprintRow{blueprint=bp.Name,parent=bp.Inherits,description=Value(examine,"Description"),creature=bp.Tags.ContainsKey("Creature"),item=bp.Tags.ContainsKey("Item"),suppress=bp.Tags.ContainsKey("SuppressCorpseDrops"),corpse=Value(corpse,"CorpseBlueprint"),harvest=Value(corpse,"HarvestBlueprint"),corpseChance=int.Parse(Value(corpse,"CorpseChance","0")),harvestMin=int.Parse(Value(corpse,"HarvestMin","1")),harvestMax=int.Parse(Value(corpse,"HarvestMax","1")),parts=bp.Parts.Keys.ToArray(),tags=bp.Tags.Keys.ToArray()});
+                }
+                var sources=File.ReadAllLines("/tmp/coo-scenery-zones.tsv");
+                var counts=new Dictionary<string,int>();var zones=new Dictionary<string,int>();var actions=new Dictionary<string,HashSet<string>>();int total=0;
+                foreach(var group in sources.Select(s=>s.Split('\t')).GroupBy(s=>int.Parse(s[0])))
+                {
+                    var manager=OverworldZoneManager.CreateDetached(scope.Factory,group.Key);
+                    foreach(var source in group)
+                    {
+                        scope.Seed(group.Key);var zone=manager.GetZone(source[1]);total++;
+                        var actor=scope.Factory.CreateEntity("Player");zone.AddEntity(actor,2,2);
+                        foreach(var set in zone.GetAllEntities().Where(e=>!e.HasTag("Creature")&&!e.HasTag("Item")).GroupBy(e=>e.BlueprintName))
+                        {
+                            string bp=set.Key;if(!counts.ContainsKey(bp)){counts[bp]=0;zones[bp]=0;actions[bp]=new HashSet<string>();}
+                            counts[bp]+=set.Count();zones[bp]++;
+                            foreach(var target in set)
+                            {
+                                var query=GameEvent.New("GetInventoryActions");var list=new InventoryActionList();
+                                try {query.SetParameter("Actor",actor);query.SetParameter("Zone",zone);query.SetParameter("Actions",list);target.FireEvent(query);foreach(var a in list.Actions)actions[bp].Add(a.Command);}
+                                finally{query.Release();}
+                            }
+                        }
+                    }
+                }
+                var report=new Report{zones=total,blueprints=rows.ToArray(),scenery=counts.Keys.OrderBy(s=>s).Select(s=>new LiveRow{blueprint=s,instances=counts[s],zones=zones[s],actions=actions[s].OrderBy(a=>a).ToArray()}).ToArray()};
+                File.WriteAllText("/tmp/coo-scenery-census.json",JsonUtility.ToJson(report,true));Assert.Greater(total,150);
+            }
+        }
+        [TestCase("spent")] [TestCase("foreign")]
+        public void Audit_HarvestOwnershipAndSingleUseHypothesis(string mode)
+        {
+            using(var scope=new DensityLootTestScope())
+            {
+                var old=HarvestablePart.Factory;HarvestablePart.Factory=scope.Factory;
+                try
+                {
+                    var actor=scope.Factory.CreateEntity("Player");var other=scope.Factory.CreateEntity("Player");var corpse=scope.Factory.CreateEntity("CreatureCorpse");corpse.AddPart(new HarvestablePart{YieldBlueprint="RawMeat",YieldMin=1,YieldMax=1});
+                    (mode=="foreign"?other:actor).GetPart<InventoryPart>().AddObject(corpse);
+                    void Act(){var ev=GameEvent.New("InventoryAction");try{ev.SetParameter("Actor",actor);ev.SetParameter("Command","Harvest");corpse.FireEvent(ev);}finally{ev.Release();}}
+                    int Count()=>actor.GetPart<InventoryPart>().Objects.Where(e=>e.BlueprintName=="RawMeat").Sum(e=>e.GetPart<StackerPart>()?.StackCount??1);
+                    if(mode=="spent"){Act();Assert.AreEqual(1,Count());Act();Assert.AreEqual(1,Count(),"a spent corpse must not create another yield");}
+                    else{Act();Assert.AreEqual(0,Count(),"an actor must not harvest another owner's inventory");Assert.That(other.GetPart<InventoryPart>().Objects,Does.Contain(corpse));}
+                }
+                finally{HarvestablePart.Factory=old;}
+            }
+        }
+    }
+}

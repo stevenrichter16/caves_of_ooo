@@ -91,7 +91,7 @@ namespace CavesOfOoo.Tests
             // Qud-parity gate: an NPC taking the item must NOT complete it.
             var part = SetupQuest("Q", "find_relic");
             MakePlayer(); // a player exists, but the taker below is someone else
-            var npc = new Entity { ID = "npc", BlueprintName = "Snapjaw" };
+            var npc = new Entity { ID = "npc", BlueprintName = "MarlbackScrabbler" };
             var item = MakeItem("Q", "find_relic");
             FireTaken(item, npc);
             Assert.IsFalse(part.IsObjectiveFinished("Q", "find_relic"),

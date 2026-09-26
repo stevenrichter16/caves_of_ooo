@@ -25,8 +25,8 @@ namespace CavesOfOoo.Core
     ///
     /// <para><b>Why the footprint is claimed:</b> the sinkhole floor
     /// pipeline still runs PopulationBuilder(UndergroundTier) after
-    /// this builder, and at this depth that table rolls snapjaws. A
-    /// village square full of snapjaws is not a village — so the
+    /// this builder, and at this depth that table rolls marlbacks. A
+    /// village square full of marlbacks is not a village — so the
     /// chamber goes into <c>GenReservedCells</c>, which is how the
     /// surface town keeps its own square clear.</para>
     ///

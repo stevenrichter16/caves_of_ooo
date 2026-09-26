@@ -74,16 +74,18 @@ namespace CavesOfOoo.Tests
     {
         // Literal content requirements, independent of the blueprint's actual authored values.
         public static readonly EquipmentContentKit[] Kits = {
-            new EquipmentContentKit("Snapjaw", "Dagger;LeatherCap:20"),
-            new EquipmentContentKit("SnapjawScavenger", "LeatherGloves:35", pick: "1;Dagger;ShortSword"),
-            new EquipmentContentKit("SnapjawHunter", "Spear;LeatherBoots:35"),
-            new EquipmentContentKit("SnapjawChieftain", "ShortSword;LeatherArmor;LeatherCap"),
-            new EquipmentContentKit("SnapjawWarlord", "LeatherArmor;IronHelmet;IronshodBoots"),
-            new EquipmentContentKit("DesertBandit", "ShortSword;LeatherCap:30"),
-            new EquipmentContentKit("RuinScavenger", "Dagger;LeatherGloves:35"),
+            new EquipmentContentKit("MarlbackScrabbler", "LeatherCap:35;LeatherGloves:20", pick: "1;Dagger;Hatchet;Cudgel"),
+            new EquipmentContentKit("MarlbackGleaner", "LeatherGloves:50;LeatherArmor:25", pick: "1;Dagger;ShortSword"),
+            new EquipmentContentKit("MarlbackTunnelguard", "Spear;LeatherBoots:50;LeatherCap:25"),
+            new EquipmentContentKit("MarlbackWallkeeper", "LongSword;LeatherArmor;LeatherCap;LeatherBoots:35"),
+            new EquipmentContentKit("MarlbackBreacher", "BreacherCleaver;LeatherArmor;IronHelmet;IronshodBoots"),
+            new EquipmentContentKit("DesertBandit", "ShortSword;LeatherCap:40;LeatherBoots:20"),
+            new EquipmentContentKit("RuinScavenger", "LeatherGloves:50;LeatherCap:25", pick: "1;Dagger;Cudgel;OldWorldPipe"),
             new EquipmentContentKit("SkeletalSentry", "IronHelmet"),
-            new EquipmentContentKit("AmbushBandit", "ShortSword;LeatherArmor:35"),
-            new EquipmentContentKit("RuneCultist", "Dagger;LeatherGloves:35"),
+            new EquipmentContentKit("DirtGnome", "Dagger;LeatherCap:20"),
+            new EquipmentContentKit("SootGremlin", "Dagger;LeatherCap:20"),
+            new EquipmentContentKit("AmbushBandit", "ShortSword;LeatherArmor:35;LeatherBoots:25"),
+            new EquipmentContentKit("RuneCultist", "Dagger;LeatherGloves:50;Cloak:30"),
             new EquipmentContentKit("Warden", "LongSword;LeatherArmor;LeatherBoots"),
             new EquipmentContentKit("Quartermaster", "Spear;LeatherArmor;LeatherBoots"),
             new EquipmentContentKit("Weaponsmith", "LeatherGloves;LeatherBoots"),
@@ -190,7 +192,7 @@ namespace CavesOfOoo.Tests
                 var actor = f.Create(); var boots = LoadoutLifecycleFixture.OnlyItem(actor);
                 Assert.AreEqual(1, attempts); Assert.IsTrue(nested);
                 LoadoutLifecycleFixture.Equipped(other, dagger); LoadoutLifecycleFixture.Equipped(actor, boots);
-                Assert.AreEqual(1, messages.Count(x => x == other.GetDisplayName() + " equips " + dagger.GetDisplayName() + "."));
+                Assert.AreEqual(1, messages.Count(x => x == "You equip " + dagger.GetDisplayName() + "."));
                 Assert.IsFalse(messages.Any(x => x == actor.GetDisplayName() + " equips " + boots.GetDisplayName() + "."));
             }
         }

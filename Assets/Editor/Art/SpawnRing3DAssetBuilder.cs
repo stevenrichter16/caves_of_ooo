@@ -58,7 +58,9 @@ namespace CavesOfOoo.Editor
             if(string.IsNullOrEmpty(source))throw new ArgumentException("Supply -spawnRing3dSource <completed export directory>.");
             Build(source,Argument(args,"-spawnRing3dReport"));
         }
-        public static Report Build(string sourceDirectory,string reportPath=null)
+        /// <summary>Optional explicit model IDs replace only those prefabs/controllers.
+        /// Every unselected model row and palette must match the accepted library.</summary>
+        public static Report Build(string sourceDirectory,string reportPath=null,string[] modelIds=null)
         {
             var c=new Context();c.Report.runId=Guid.NewGuid().ToString("N");c.Report.startedUtc=DateTime.UtcNow.ToString("O");
             c.ReportPath=string.IsNullOrEmpty(reportPath)?Path.Combine(Path.GetTempPath(),"SpawnRing3DImport-"+c.Report.runId+".json"):Path.GetFullPath(reportPath);
@@ -69,6 +71,32 @@ namespace CavesOfOoo.Editor
                 string source=Path.GetFullPath(sourceDirectory);c.Report.sourceRoot=source;
                 string catalogFile=SafeSourceFile(source,"catalog.json");
                 var definition=SpawnRing3DCatalog.Parse(File.ReadAllText(catalogFile),FellingSceneDefinition.Load());
+                HashSet<string> selected=null;
+                var retained=new Dictionary<string,SpawnRing3DLibrary.ModelBinding>(StringComparer.Ordinal);
+                if(modelIds!=null)
+                {
+                    selected=new HashSet<string>(modelIds,StringComparer.Ordinal);
+                    if(selected.Count==0||selected.Count!=modelIds.Length||selected.Any(id=>string.IsNullOrEmpty(id)||!definition.models.Any(m=>m.id==id)))
+                        throw new ArgumentException("Select distinct current model IDs for bounded ring import.");
+                    var accepted=AssetDatabase.LoadAssetAtPath<SpawnRing3DLibrary>(LibraryPath);
+                    if(accepted==null||accepted.Catalog==null||accepted.Models==null)
+                        throw new InvalidOperationException("Bounded import requires an existing accepted ring library.");
+                    // Parse old metadata without current required-blueprint validation:
+                    // an explicit content migration may intentionally replace those keys.
+                    var old=JsonUtility.FromJson<SpawnRing3DCatalog>(accepted.Catalog.text);
+                    foreach(var row in definition.models.Where(m=>!selected.Contains(m.id)))
+                    {
+                        var before=old.models.SingleOrDefault(m=>m.id==row.id);
+                        var binding=accepted.Models.SingleOrDefault(m=>m.Id==row.id);
+                        if(before==null||binding==null||binding.Prefab==null||JsonUtility.ToJson(before)!=JsonUtility.ToJson(row))
+                            throw new InvalidOperationException("Unselected ring model changed or missing: "+row.id);
+                        retained.Add(row.id,binding);
+                    }
+                    if(old.models.Any(m=>!definition.models.Any(row=>row.id==m.id)))
+                        throw new InvalidOperationException("Bounded ring import cannot remove existing model identities.");
+                    if(FileHash(Art+"/Textures/SpawnRingPalette.png")!=FileHash(SafeSourceFile(source,definition.paletteTexture)))
+                        throw new InvalidOperationException("Bounded ring import cannot change the shared palette.");
+                }
                 // A source contract proposal with no real measured bounds/triangles fails Parse.
                 // Check all files before writing any asset; no layout sample is imported as gameplay.
                 foreach(var model in definition.models)SafeSourceFile(source,model.path);
@@ -106,6 +134,7 @@ namespace CavesOfOoo.Editor
                 var bindings=new List<SpawnRing3DLibrary.ModelBinding>(definition.models.Length);
                 foreach(var model in definition.models)
                 {
+                    if(selected!=null&&!selected.Contains(model.id)){bindings.Add(retained[model.id]);continue;}
                     string modelPath=Art+"/Models/"+model.id+".fbx";
                     CopyIfChanged(c,SafeSourceFile(source,model.path),modelPath);ConfigureModel(modelPath,model);
                     var imported=AssetDatabase.LoadAssetAtPath<GameObject>(modelPath);

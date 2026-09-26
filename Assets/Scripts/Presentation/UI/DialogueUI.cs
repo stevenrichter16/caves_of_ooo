@@ -260,7 +260,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            string text = ConversationManager.CurrentNode.Text ?? "";
+            string text = ConversationManager.CurrentText;
 
             // ----- Compute desired popup width -----
             // Layout budget per row:

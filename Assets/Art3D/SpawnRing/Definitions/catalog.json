@@ -2550,16 +2550,17 @@
         "Equipment.Hand.R",
         "Equipment.Back"
       ],
-      "triangles": 840,
+      "sourceBlueprint": "MarlbackScrabbler",
+      "triangles": 1424,
       "boundsCenter": {
         "x": 0.0,
-        "y": 0.885,
-        "z": -0.0475
+        "y": 0.398222,
+        "z": -0.040281
       },
       "boundsSize": {
-        "x": 1.125718,
-        "y": 1.81,
-        "z": 0.945
+        "x": 1.182786,
+        "y": 0.796444,
+        "z": 0.913911
       },
       "pivot": "feet-root"
     },
@@ -2583,16 +2584,17 @@
         "Equipment.Hand.R",
         "Equipment.Back"
       ],
-      "triangles": 840,
+      "sourceBlueprint": "MarlbackBreacher",
+      "triangles": 1544,
       "boundsCenter": {
         "x": 0.0,
-        "y": 0.885,
-        "z": -0.0475
+        "y": 0.4025,
+        "z": -0.038287
       },
       "boundsSize": {
-        "x": 1.125718,
-        "y": 1.81,
-        "z": 0.945
+        "x": 1.182786,
+        "y": 0.805,
+        "z": 0.917899
       },
       "pivot": "feet-root"
     },
@@ -4972,6 +4974,137 @@
         "z": 1.0
       },
       "pivot": "ground-centre"
+    },
+    {
+      "id": "ring-marlback-gleaner",
+      "path": "models/ring-marlback-gleaner.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "sourceBlueprint": "MarlbackGleaner",
+      "triangles": 1584,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.405552,
+        "z": -0.040843
+      },
+      "boundsSize": {
+        "x": 1.182786,
+        "y": 0.811104,
+        "z": 0.912786
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-marlback-tunnelguard",
+      "path": "models/ring-marlback-tunnelguard.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "sourceBlueprint": "MarlbackTunnelguard",
+      "triangles": 1504,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.398222,
+        "z": -0.034277
+      },
+      "boundsSize": {
+        "x": 1.182786,
+        "y": 0.796444,
+        "z": 0.92592
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-marlback-wallkeeper",
+      "path": "models/ring-marlback-wallkeeper.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "sourceBlueprint": "MarlbackWallkeeper",
+      "triangles": 1524,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.4025,
+        "z": -0.034547
+      },
+      "boundsSize": {
+        "x": 1.182786,
+        "y": 0.805,
+        "z": 0.925379
+      },
+      "pivot": "feet-root"
+    },
+    {
+      "id": "ring-grove-lantern-moth",
+      "path": "models/ring-grove-lantern-moth.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "avian",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "sourceBlueprint": "GroveLanternMoth",
+      "triangles": 992,
+      "boundsCenter": {
+        "x": 0.0,
+        "y": 0.368293,
+        "z": 0.017
+      },
+      "boundsSize": {
+        "x": 0.715206,
+        "y": 0.104586,
+        "z": 0.45
+      },
+      "pivot": "feet-root"
     }
   ],
   "blueprints": [
@@ -5385,14 +5518,14 @@
       "role": "actor"
     },
     {
-      "blueprint": "Snapjaw",
+      "blueprint": "MarlbackScrabbler",
       "models": [
         "ring-snapjaw"
       ],
       "role": "actor"
     },
     {
-      "blueprint": "SnapjawWarlord",
+      "blueprint": "MarlbackBreacher",
       "models": [
         "ring-snapjaw-warlord"
       ],
@@ -5572,6 +5705,34 @@
       "blueprint": "YellowfootWayfarer",
       "models": [
         "ring-yellowfoot-wayfarer"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "MarlbackGleaner",
+      "models": [
+        "ring-marlback-gleaner"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "MarlbackTunnelguard",
+      "models": [
+        "ring-marlback-tunnelguard"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "MarlbackWallkeeper",
+      "models": [
+        "ring-marlback-wallkeeper"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "GroveLanternMoth",
+      "models": [
+        "ring-grove-lantern-moth"
       ],
       "role": "actor"
     }

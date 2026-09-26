@@ -19,7 +19,7 @@ namespace CavesOfOoo.Scenarios.Custom
     ///                                ↗
     ///   [Player] →→→→→ [CharredHusk E: HR=100, CR=-50 — extremes]
     ///                                ↘
-    ///                   [SnapjawHunter SE: CR=50 — Cold-resist contrast]
+    ///                   [MarlbackTunnelguard SE: CR=50 — Cold-resist contrast]
     ///
     /// What the player should see when they swing each weapon at each target:
     ///
@@ -28,8 +28,8 @@ namespace CavesOfOoo.Scenarios.Custom
     /// | EmberSpear vs CharredHusk | **0 damage**     | HR=100 × Fire = full immunity|
     /// | IceSword vs CharredHusk   | **1.5× damage**  | CR=-50 × Cold = vulnerable   |
     /// | EmberSpear vs Glowmaw     | halved           | HR=50 × Fire = graded        |
-    /// | EmberSpear vs SnapjawHunter | full damage    | SnapjawHunter has no HR      |
-    /// | IceSword vs SnapjawHunter | halved           | CR=50 × Cold (control case)  |
+    /// | EmberSpear vs MarlbackTunnelguard | full damage    | MarlbackTunnelguard has no HR      |
+    /// | IceSword vs MarlbackTunnelguard | halved           | CR=50 × Cold (control case)  |
     ///
     /// The [ElementalDemo] probe lines (reused from ElementalSwordsShowcase)
     /// surface the live HR/CR values plus the FIRE/ICE flag on each hit.
@@ -78,11 +78,11 @@ namespace CavesOfOoo.Scenarios.Custom
             if (glowmaw != null)
                 glowmaw.AddPart(new ElementalDemoProbePart());
 
-            // === SE: SnapjawHunter — CR=50, no HR ===
-            // Control: EmberSpear lands FULL damage (no HR on SnapjawHunter).
-            // IceSword on SnapjawHunter is HALVED — the existing Cold-resist
+            // === SE: MarlbackTunnelguard — CR=50, no HR ===
+            // Control: EmberSpear lands FULL damage (no HR on MarlbackTunnelguard).
+            // IceSword on MarlbackTunnelguard is HALVED — the existing Cold-resist
             // sanity check.
-            var hunter = ctx.Spawn("SnapjawHunter")
+            var hunter = ctx.Spawn("MarlbackTunnelguard")
                 .WithStatMax("Hitpoints", 200)
                 .WithHpAbsolute(200)
                 .AsPersonalEnemyOf(ctx.PlayerEntity)
@@ -95,7 +95,7 @@ namespace CavesOfOoo.Scenarios.Custom
             ctx.Log("Loadout: EmberSpear equipped, IceSword in inventory.");
             ctx.Log("E  CharredHusk    (HR=100, CR=-50): EmberSpear → 0 damage. IceSword → 1.5×.");
             ctx.Log("NE Glowmaw        (HR=50,  CR=0):    EmberSpear → halved.");
-            ctx.Log("SE SnapjawHunter  (CR=50,  HR=0):    EmberSpear → full. IceSword → halved.");
+            ctx.Log("SE MarlbackTunnelguard  (CR=50,  HR=0):    EmberSpear → full. IceSword → halved.");
             ctx.Log("[ElementalDemo] lines fire on each hit with live HR/CR.");
         }
     }

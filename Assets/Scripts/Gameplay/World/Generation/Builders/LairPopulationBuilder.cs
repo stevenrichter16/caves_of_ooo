@@ -164,15 +164,58 @@ namespace CavesOfOoo.Core
         private bool PlaceEntity(Zone zone, EntityFactory factory, System.Random rng,
             List<(int x, int y)> openCells, string blueprint)
         {
-            if (openCells.Count == 0) return false;
+            if (openCells.Count == 0)
+                return PlacementRejected(zone, blueprint, "no_open_cells");
+            if (string.IsNullOrEmpty(blueprint) || factory?.Blueprints == null || !factory.Blueprints.ContainsKey(blueprint))
+                return PlacementRejected(zone, blueprint, "missing_blueprint");
 
-            int idx = rng.Next(openCells.Count);
-            var (x, y) = openCells[idx];
+            // Creation hooks can change the zone. Select only after they settle,
+            // then validate the complete prospective body, including its offsets.
+            var entity = factory.CreateEntity(blueprint);
+            if (entity == null) return PlacementRejected(zone, blueprint, "creation_failed");
+            var eligible = new List<int>();
+            for (int i = 0; i < openCells.Count; i++)
+            {
+                var candidate = openCells[i];
+                if (!zone.CanPlaceFootprint(entity, candidate.x, candidate.y)) continue;
+                bool safe = true;
+                foreach (var cell in zone.GetOccupiedCells(entity, candidate.x, candidate.y))
+                    if (!IsPlacementCell(zone, cell)) { safe = false; break; }
+                if (safe) eligible.Add(i);
+            }
+            if (eligible.Count == 0)
+                return PlacementRejected(zone, blueprint, "no_legal_footprint");
 
-            Entity entity = BuilderSpawn.TryPlace(zone, factory, blueprint, x, y);
-            if (entity == null) return false;
-            openCells.RemoveAt(idx);
+            int index = eligible[rng.Next(eligible.Count)];
+            var (x, y) = openCells[index];
+            if (!zone.AddEntity(entity, x, y))
+                return PlacementRejected(zone, blueprint, "placement_failed");
+            // A larger creature consumes every physical cell, not just its anchor.
+            foreach (var cell in zone.GetOccupiedCells(entity))
+                openCells.Remove((cell.X, cell.Y));
+            if (Diag.IsChannelEnabled("worldgen"))
+                Diag.Record("worldgen", "LairEntityPlaced", target: entity, payload: new
+                { zone = zone.ZoneID, blueprint, x, y, cells = zone.GetOccupiedCells(entity).Count });
             return true;
+        }
+
+        private static bool IsPlacementCell(Zone zone, Cell cell)
+        {
+            if (cell == null || cell.BlocksMovement() || zone.GenReservedCells.Contains((cell.X, cell.Y)))
+                return false;
+            foreach (var occupant in cell.Occupants)
+                if (occupant != null && (!occupant.HasTag("Terrain")
+                    || occupant.HasPart<TriggerOnStepPart>() || occupant.HasPart<StairsUpPart>()
+                    || occupant.HasPart<StairsDownPart>())) return false;
+            return true;
+        }
+
+        private static bool PlacementRejected(Zone zone, string blueprint, string reason)
+        {
+            if (Diag.IsChannelEnabled("worldgen"))
+                Diag.Record("worldgen", "LairPlacementRejected", payload: new
+                { zone = zone?.ZoneID, blueprint, reason });
+            return false;
         }
 
         private List<(int x, int y)> GatherOpenCells(Zone zone)
@@ -180,7 +223,7 @@ namespace CavesOfOoo.Core
             var cells = new List<(int x, int y)>();
             zone.ForEachCell((cell, x, y) =>
             {
-                if (cell.IsPassable())
+                if (IsPlacementCell(zone, cell))
                     cells.Add((x, y));
             });
             return cells;

@@ -342,6 +342,7 @@ namespace CavesOfOoo.Core
 
         public void Save(SaveWriter writer)
         {
+            World = LocalPeople.BindForSave(ZoneManager, World);
             writer.WriteHeader(GameVersion);
             writer.WriteCheck("GameSession.Begin");
             writer.Write(SaveVersion);
@@ -878,6 +879,7 @@ namespace CavesOfOoo.Core
                 entity.Parts.Add(part);
             }
             reader.ExpectCheck("Entity.End");
+            OriginalEnemyIdentity.EntityBody(entity);
         }
 
         public static void SaveOverworldZoneManager(OverworldZoneManager manager, SaveWriter writer)
@@ -961,6 +963,7 @@ namespace CavesOfOoo.Core
             if (zones != null)
             {
                 foreach (var kvp in zones) kvp.Value.RebuildEntityCellsFromCells();
+                LocalPeople.Restore(state.ZoneManager, state.World);
                 if(zones.TryGetValue(MultiCellPilotRuntime.ZoneID,out var pilotZone))
                     MultiCellPilotRuntime.UpgradeCachedZone(pilotZone,state.ZoneManager.Factory);
                 // The active loaded zone may render without another GetZone call.
@@ -1128,7 +1131,7 @@ namespace CavesOfOoo.Core
             PlayerReputation.Restore(ReadPlayerReputation(reader));
         }
 
-        internal static Dictionary<string, int> ReadPlayerReputation(SaveReader reader) => ReadIntDictionary(reader);
+        internal static Dictionary<string, int> ReadPlayerReputation(SaveReader reader) => OriginalEnemyIdentity.Reputation(ReadIntDictionary(reader));
 
         private static void SaveZone(Zone zone, SaveWriter writer)
         {
@@ -1274,10 +1277,10 @@ namespace CavesOfOoo.Core
                 return null;
             return new PointOfInterest(
                 (POIType)reader.ReadInt(),
-                reader.ReadString(),
-                reader.ReadString(),
+                OriginalEnemyIdentity.PlaceName(reader.ReadString()),
+                OriginalEnemyIdentity.Faction(reader.ReadString()),
                 reader.ReadInt(),
-                reader.ReadString());
+                OriginalEnemyIdentity.Blueprint(reader.ReadString()));
         }
 
         private static void SaveZoneConnection(ZoneConnection conn, SaveWriter writer)
@@ -1728,7 +1731,7 @@ namespace CavesOfOoo.Core
                 TargetWeight = reader.ReadInt(),
                 Flags = reader.ReadInt(),
                 Position = reader.ReadInt(),
-                DefaultBehaviorBlueprint = reader.ReadString()
+                DefaultBehaviorBlueprint = OriginalEnemyIdentity.Blueprint(reader.ReadString())
             };
             part.ID = reader.ReadInt();
             part._Equipped = reader.ReadEntityReference();

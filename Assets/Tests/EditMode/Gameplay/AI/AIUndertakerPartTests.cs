@@ -52,9 +52,9 @@ namespace CavesOfOoo.Tests
 
         private Entity CreateCorpse(Zone zone, int x, int y, int weight = 10, string id = "Corpse-1")
         {
-            var corpse = new Entity { BlueprintName = "SnapjawCorpse", ID = id };
+            var corpse = new Entity { BlueprintName = "MarlbackCorpse", ID = id };
             corpse.Tags["Corpse"] = "";
-            corpse.AddPart(new RenderPart { DisplayName = "snapjaw corpse", RenderString = "%", ColorString = "&r" });
+            corpse.AddPart(new RenderPart { DisplayName = "marlback remains", RenderString = "%", ColorString = "&r" });
             corpse.AddPart(new PhysicsPart { Takeable = true, Weight = weight });
             zone.AddEntity(corpse, x, y);
             return corpse;

@@ -87,7 +87,7 @@ namespace CavesOfOoo.Tests
             else if (partial) AssertCarried(flower, 1, 2);
             else Assert.IsFalse(Inv.Contains(flower));
             Assert.AreEqual(!barren && !partial ? 1 : 0, probe.After);
-            Assert.AreEqual(!barren, _messages.Any(m => m.Contains(" drops ")));
+            Assert.AreEqual(!barren, _messages.Any(m => m.StartsWith("You drop ",System.StringComparison.Ordinal)));
         }
 
         [TestCase(false)] [TestCase(true)]

@@ -90,12 +90,12 @@ namespace CavesOfOoo.Tests.Scenarios
             // Even if someone accidentally PlaceObjects a creature blueprint, it
             // shouldn't start taking turns — that's the whole contract vs Spawn().
             var (ctx, _, _, tm) = BuildContext();
-            var entity = ctx.World.PlaceObject("Snapjaw").At(20, 10);
+            var entity = ctx.World.PlaceObject("MarlbackScrabbler").At(20, 10);
 
             Assert.IsNotNull(entity);
             // TurnManager is only the player at this point.
             // (Player was added via zone.AddEntity, not tm.AddEntity — so tm starts empty.)
-            // Assert that the Snapjaw isn't on the turn list.
+            // Assert that the MarlbackScrabbler isn't on the turn list.
             // We don't have a public "contains" API, so we re-register manually as
             // a sentinel: if it's already there, the second add is a no-op but the
             // first add is what we care about. We can use the returned entity
@@ -182,14 +182,14 @@ namespace CavesOfOoo.Tests.Scenarios
         {
             var (ctx, _, _, tm) = BuildContext();
 
-            // Spawn a Snapjaw via EntityBuilder so it's registered for turns.
-            ctx.Spawn("Snapjaw").At(20, 10);
+            // Spawn a MarlbackScrabbler via EntityBuilder so it's registered for turns.
+            ctx.Spawn("MarlbackScrabbler").At(20, 10);
 
-            // Find the snapjaw at (20, 10) — it should be registered.
+            // Find the marlback at (20, 10) — it should be registered.
             // TurnManager doesn't expose a count, but it does expose AddEntity's
             // side effect: a later AddEntity is a no-op if present. We'll verify
             // deregistration via behavior: after ClearCell, we re-Spawn at the
-            // same cell and fire Advance(1). If the original snapjaw were still
+            // same cell and fire Advance(1). If the original marlback were still
             // in the turn order, we'd see its tick fire — which we can't easily
             // observe in isolation. Simpler: just verify the zone removal.
             // (Turn-manager deregistration is exercised indirectly by
@@ -202,8 +202,8 @@ namespace CavesOfOoo.Tests.Scenarios
             var cell = ctx.Zone.GetCell(20, 10);
             foreach (var e in cell.Objects)
             {
-                Assert.AreNotEqual("Snapjaw", e.BlueprintName,
-                    "Snapjaw should be cleared from the cell.");
+                Assert.AreNotEqual("MarlbackScrabbler", e.BlueprintName,
+                    "MarlbackScrabbler should be cleared from the cell.");
             }
         }
 
@@ -215,9 +215,9 @@ namespace CavesOfOoo.Tests.Scenarios
         public void RemoveEntitiesWithTag_Creature_RemovesMonstersButPreservesPlayer()
         {
             var (ctx, zone, player, _) = BuildContext();
-            ctx.Spawn("Snapjaw").At(20, 10);
-            ctx.Spawn("Snapjaw").At(25, 10);
-            ctx.Spawn("Snapjaw").At(30, 10);
+            ctx.Spawn("MarlbackScrabbler").At(20, 10);
+            ctx.Spawn("MarlbackScrabbler").At(25, 10);
+            ctx.Spawn("MarlbackScrabbler").At(30, 10);
 
             ctx.World.RemoveEntitiesWithTag("Creature");
 
@@ -235,65 +235,65 @@ namespace CavesOfOoo.Tests.Scenarios
         public void RemoveEntitiesWithTag_NullOrEmpty_LogsAndSkips()
         {
             var (ctx, zone, _, _) = BuildContext();
-            ctx.Spawn("Snapjaw").At(20, 10);
+            ctx.Spawn("MarlbackScrabbler").At(20, 10);
 
             LogAssert.Expect(LogType.Warning, new System.Text.RegularExpressions.Regex(@"tagName is null/empty"));
             ctx.World.RemoveEntitiesWithTag(null);
 
-            // Snapjaw still exists (tag KEY "Faction" is on Snapjaws, not a tag
-            // KEY "Snapjaws" — so we look up the blueprint name to verify).
+            // MarlbackScrabbler still exists (tag KEY "Faction" is on OutlandRaiders, not a tag
+            // KEY "OutlandRaiders" — so we look up the blueprint name to verify).
             bool found = false;
             foreach (var e in zone.GetReadOnlyEntities())
-                if (e.BlueprintName == "Snapjaw") { found = true; break; }
-            Assert.IsTrue(found, "Null tagName should be a no-op — Snapjaw still here.");
+                if (e.BlueprintName == "MarlbackScrabbler") { found = true; break; }
+            Assert.IsTrue(found, "Null tagName should be a no-op — MarlbackScrabbler still here.");
         }
 
         [Test]
         public void RemoveEntitiesWithTag_NonexistentTag_IsNoOp()
         {
             var (ctx, zone, _, _) = BuildContext();
-            ctx.Spawn("Snapjaw").At(20, 10);
+            ctx.Spawn("MarlbackScrabbler").At(20, 10);
 
             ctx.World.RemoveEntitiesWithTag("DefinitelyNoSuchTag");
 
-            // Snapjaw still in zone.
+            // MarlbackScrabbler still in zone.
             bool found = false;
             foreach (var e in zone.GetReadOnlyEntities())
-                if (e.BlueprintName == "Snapjaw") { found = true; break; }
-            Assert.IsTrue(found, "Snapjaw should still be in the zone.");
+                if (e.BlueprintName == "MarlbackScrabbler") { found = true; break; }
+            Assert.IsTrue(found, "MarlbackScrabbler should still be in the zone.");
         }
 
         [Test]
         public void RemoveEntitiesWithTag_DeregistersFromTurnManager()
         {
-            // Verify the Snapjaw isn't lingering in the TurnManager after removal
+            // Verify the MarlbackScrabbler isn't lingering in the TurnManager after removal
             // by checking that re-adding the exact same reference is... fine (TM
             // silently ignores duplicates). The real check is a behavior test:
             // use TurnManager's internal list via AddEntity being idempotent.
             //
-            // Cleanest black-box check: after removal, we can re-Spawn fresh Snapjaws
-            // and Advance turns, and there should be no "ghost" Snapjaw acting.
+            // Cleanest black-box check: after removal, we can re-Spawn fresh OutlandRaiders
+            // and Advance turns, and there should be no "ghost" MarlbackScrabbler acting.
             // But that's an integration test. For this unit level, we accept the
             // docstring contract and verify via the absence of a known blueprint
             // from the turn order via reflection-free means.
             //
             // Practical check: tm.RemoveEntity is called with each creature we
             // remove. We can't directly observe that, but we CAN verify that
-            // after removal the Snapjaw is fully gone from the zone (which
+            // after removal the MarlbackScrabbler is fully gone from the zone (which
             // implicitly means TakeTurn events won't fire on it via the bootstrap
             // loop — which only iterates zone entities).
             var (ctx, zone, _, tm) = BuildContext();
-            ctx.Spawn("Snapjaw").At(20, 10);
-            ctx.Spawn("Snapjaw").At(25, 10);
+            ctx.Spawn("MarlbackScrabbler").At(20, 10);
+            ctx.Spawn("MarlbackScrabbler").At(25, 10);
 
             ctx.World.RemoveEntitiesWithTag("Creature");
 
-            // Indirectly verifies TurnManager is in a clean state: no Snapjaws
-            // remain, so no Snapjaw turns can fire.
+            // Indirectly verifies TurnManager is in a clean state: no OutlandRaiders
+            // remain, so no MarlbackScrabbler turns can fire.
             foreach (var e in zone.GetReadOnlyEntities())
             {
-                Assert.AreNotEqual("Snapjaw", e.BlueprintName,
-                    "No Snapjaw should be left after RemoveEntitiesWithTag('Creature').");
+                Assert.AreNotEqual("MarlbackScrabbler", e.BlueprintName,
+                    "No MarlbackScrabbler should be left after RemoveEntitiesWithTag('Creature').");
             }
         }
 
@@ -302,10 +302,10 @@ namespace CavesOfOoo.Tests.Scenarios
         {
             // Since HasTag matches tag KEYS (not values), the right way to
             // faction-target is to add a tag with a unique key. Here we add a
-            // "EnemyTeam" key to Snapjaws and verify only those get removed.
+            // "EnemyTeam" key to OutlandRaiders and verify only those get removed.
             var (ctx, zone, _, _) = BuildContext();
-            var s1 = ctx.Spawn("Snapjaw").At(20, 10);
-            var s2 = ctx.Spawn("Snapjaw").At(25, 10);
+            var s1 = ctx.Spawn("MarlbackScrabbler").At(20, 10);
+            var s2 = ctx.Spawn("MarlbackScrabbler").At(25, 10);
             s1.SetTag("EnemyTeam");
             s2.SetTag("EnemyTeam");
 
@@ -317,10 +317,10 @@ namespace CavesOfOoo.Tests.Scenarios
             ctx.World.RemoveEntitiesWithTag("EnemyTeam");
 
             Assert.IsNotNull(zone.GetEntityCell(villager), "Villager should remain.");
-            int snapjawsLeft = 0;
+            int marlbacksLeft = 0;
             foreach (var e in zone.GetReadOnlyEntities())
-                if (e.BlueprintName == "Snapjaw") snapjawsLeft++;
-            Assert.AreEqual(0, snapjawsLeft, "All EnemyTeam-tagged Snapjaws should be removed.");
+                if (e.BlueprintName == "MarlbackScrabbler") marlbacksLeft++;
+            Assert.AreEqual(0, marlbacksLeft, "All EnemyTeam-tagged OutlandRaiders should be removed.");
         }
 
         // ======================================================
@@ -331,20 +331,20 @@ namespace CavesOfOoo.Tests.Scenarios
         public void FluentChain_ClearThenPlace()
         {
             var (ctx, zone, _, _) = BuildContext();
-            ctx.Spawn("Snapjaw").At(20, 10);
+            ctx.Spawn("MarlbackScrabbler").At(20, 10);
 
             ctx.World
                 .ClearCell(20, 10)
-                .RemoveEntitiesWithTag("Snapjaws"); // idempotent after clear
+                .RemoveEntitiesWithTag("OutlandRaiders"); // idempotent after clear
 
             var chest = ctx.World.PlaceObject("Chest").At(20, 10);
             Assert.IsNotNull(chest);
 
             var cell = zone.GetCell(20, 10);
-            int snapjawsInCell = 0;
+            int marlbacksInCell = 0;
             foreach (var e in cell.Objects)
-                if (e.BlueprintName == "Snapjaw") snapjawsInCell++;
-            Assert.AreEqual(0, snapjawsInCell);
+                if (e.BlueprintName == "MarlbackScrabbler") marlbacksInCell++;
+            Assert.AreEqual(0, marlbacksInCell);
         }
     }
 }

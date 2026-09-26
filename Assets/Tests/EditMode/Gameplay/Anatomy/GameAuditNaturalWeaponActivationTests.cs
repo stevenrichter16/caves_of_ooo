@@ -32,13 +32,17 @@ namespace CavesOfOoo.Tests
             return HotbarSaveFixture.RoundTrip(GameSessionState.Capture(Guid.NewGuid().ToString("N"), "natural activation", manager, turns, actor));
         }
 
-        [TestCase("SnapjawWarlord", "cleaver", "2d5", "Axe")]
-        [TestCase("SkeletalSentry", "bone blade", "1d6+1", "Cutting")]
-        public void FreshOrdinaryEnemyDispatchesItsDeclaredNaturalAttack(string name, string weapon, string dice, string attribute)
+        [TestCase("MarlbackBreacher", "wedge-cleaver", "1d10", "Axe", false)]
+        [TestCase("MarlbackBreacher", "cleaver", "2d5", "Axe", true)]
+        [TestCase("SkeletalSentry", "bone blade", "1d6+1", "Cutting", false)]
+        public void EnemyDispatchesEquippedWeaponOrRetainedNaturalFallback(string name, string weapon, string dice, string attribute, bool disarmed)
         {
             using (var f = new EntityEquipmentContentFixture())
             {
                 var actor = f.Create(name); actor.ID = "GA03i-natural-" + Guid.NewGuid().ToString("N");
+                if (disarmed)
+                    foreach (var item in actor.GetPart<InventoryPart>().GetAllEquipped().ToArray())
+                        if (item.HasPart<MeleeWeaponPart>()) Assert.IsTrue(InventorySystem.UnequipItem(actor, item));
                 var target = HaulLifecycleFixture.MakeActor("natural attack target");
                 target.GetStat("Hitpoints").BaseValue = 10000; target.GetStat("Hitpoints").Max = 10000;
                 var zone = new Zone("natural-first-swing"); Assert.IsTrue(zone.AddEntity(actor, 5, 5)); Assert.IsTrue(zone.AddEntity(target, 6, 5));
@@ -57,7 +61,7 @@ namespace CavesOfOoo.Tests
             }
         }
 
-        [TestCase("SnapjawWarlord", "2d5")] [TestCase("SkeletalSentry", "1d6+1")]
+        [TestCase("MarlbackBreacher", "2d5")] [TestCase("SkeletalSentry", "1d6+1")]
         public void OlderSavedMissingDefaultsAreRepairedWithoutRestockingGear(string name, string dice)
         {
             using (var f = new EntityEquipmentContentFixture())
@@ -78,7 +82,7 @@ namespace CavesOfOoo.Tests
         {
             using (var f = new EntityEquipmentContentFixture())
             {
-                var actor = f.Create("SnapjawWarlord"); var hand = actor.GetPart<Body>().GetPartsByType("Hand")[0];
+                var actor = f.Create("MarlbackBreacher"); var hand = actor.GetPart<Body>().GetPartsByType("Hand")[0];
                 var custom = NaturalWeaponFactory.Create("DefaultFist"); custom.ID = "custom-natural";
                 custom.GetPart<MeleeWeaponPart>().BaseDamage = "3d7";
                 hand._DefaultBehavior = custom; if (!declaration) hand.DefaultBehaviorBlueprint = "";
@@ -93,9 +97,9 @@ namespace CavesOfOoo.Tests
         {
             using (var f = new EntityEquipmentContentFixture())
             {
-                var actor = f.Create("SnapjawWarlord"); var body = actor.GetPart<Body>();
+                var actor = f.Create("MarlbackBreacher"); var body = actor.GetPart<Body>();
                 var hand = body.GetPartsByType("Hand")[0];
-                hand._DefaultBehavior = missing ? null : NaturalWeaponFactory.Create("WarlordCleaver");
+                hand._DefaultBehavior = missing ? null : NaturalWeaponFactory.Create("BreacherCleaver");
                 if (!missing) hand._DefaultBehavior.ID = "retained-detached-natural";
                 Assert.IsTrue(body.Dismember(hand));
                 var loaded = RoundTrip(actor).Player; var restored = loaded.GetPart<Body>();
@@ -115,7 +119,7 @@ namespace CavesOfOoo.Tests
         {
             using (var f = new EntityEquipmentContentFixture())
             {
-                var actor = f.Create("SnapjawWarlord"); var hand = actor.GetPart<Body>().GetPartsByType("Hand")[0];
+                var actor = f.Create("MarlbackBreacher"); var hand = actor.GetPart<Body>().GetPartsByType("Hand")[0];
                 hand.DefaultBehaviorBlueprint = "custom-unsupported-recipe";
                 hand._DefaultBehavior = null; hand.FirstSlotForDefaultBehavior = false; int flags = hand.Flags;
                 var loaded = RoundTrip(actor).Player.GetPart<Body>().GetParts().Single(x => x.ID == hand.ID);

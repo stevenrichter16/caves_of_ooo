@@ -12,7 +12,7 @@ namespace CavesOfOoo.Tests
     /// visual feedback. PressurePlate hits "felt invisible". The TripWire's
     /// LINE coverage damaged actors at every segment cell but the player
     /// only saw the message log line "The tripwire snaps taut!" and HP
-    /// changes on the HUD — the snapjaw at the far segment took damage
+    /// changes on the HUD — the marlback at the far segment took damage
     /// silently.
     ///
     /// Fix: emit AsciiFxBus.EmitFloatingNumber from inside ApplyDamage,

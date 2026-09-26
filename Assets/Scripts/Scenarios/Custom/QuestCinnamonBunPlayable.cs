@@ -73,7 +73,7 @@ namespace CavesOfOoo.Scenarios.Custom
             if (bunRender != null) { bunRender.DisplayName = "Rullok"; bunRender.RenderString = "b"; bunRender.ColorString = "&Y"; }
 
             // The soot gremlin — slaying it finishes "drive_off_gremlin" (Q5.1).
-            var gremlin = ctx.Spawn("Snapjaw")
+            var gremlin = ctx.Spawn("SootGremlin")
                 .AsPersonalEnemyOf(ctx.PlayerEntity)
                 .WithStatMax("Hitpoints", 18)
                 .WithHpAbsolute(18)

@@ -1,0 +1,80 @@
+using System.Linq;
+using CavesOfOoo.Core;
+using CavesOfOoo.Rendering;
+using NUnit.Framework;
+using UnityEngine;
+namespace CavesOfOoo.Tests
+{
+    public sealed class ReferenceGladeProfileTests
+    {
+        [TestCase(true)][TestCase(false)]
+        public void LightingUsesOwnedGladeProfileOnly(bool glade)
+        {
+            var library=Resources.Load<SpawnRing3DLibrary>(SpawnRing3DLibrary.ResourcePath);
+            float ambient=library.WorldMaterial.GetFloat("_AmbientStrength"),exposure=library.WorldMaterial.GetFloat("_Exposure");
+            using(var f=new SpawnRing3DIntegrationFixture(glade?ReferenceGladePlan.ZoneID:SpawnRing3DIntegrationFixture.Grove))
+            {
+                var surface=f.Get<NativeZone3DRenderSurface>("ActiveSurface");Assert.NotNull(surface);
+                var owned=surface.MaterialFor(library.WorldMaterial);Assert.AreNotSame(library.WorldMaterial,owned);
+                if(glade)
+                {
+                    Assert.LessOrEqual(owned.GetFloat("_AmbientStrength"),.35f);Assert.That(owned.GetFloat("_Exposure"),Is.InRange(1.1f,1.8f));
+                    Assert.GreaterOrEqual(surface.Sun.shadowStrength,.75f);Assert.LessOrEqual(surface.Sun.shadowNormalBias,.025f);
+                    Assert.Less(surface.WorldCamera.transform.position.y,25);Assert.AreEqual(FilterMode.Point,surface.WorldCamera.targetTexture.filterMode);
+                    Assert.Greater(surface.Sun.transform.eulerAngles.y,180);Assert.Less(surface.Sun.transform.eulerAngles.y,250);
+                }
+                else
+                {Assert.AreEqual(2.2f,owned.GetFloat("_Exposure"));Assert.AreEqual(ambient,owned.GetFloat("_AmbientStrength"));Assert.AreEqual(.55f,surface.Sun.shadowStrength);Assert.AreEqual(35,surface.WorldCamera.transform.position.y);Assert.AreEqual(FilterMode.Bilinear,surface.WorldCamera.targetTexture.filterMode);}
+                Village3DSettings.LowDetail=true;f.Frame();Assert.AreEqual(LightShadows.None,surface.Sun.shadows);
+                Village3DSettings.LowDetail=false;f.Frame();Assert.AreEqual(LightShadows.Soft,surface.Sun.shadows);
+            }
+            Assert.AreEqual(ambient,library.WorldMaterial.GetFloat("_AmbientStrength"));Assert.AreEqual(exposure,library.WorldMaterial.GetFloat("_Exposure"));
+        }
+        [TestCase("Player")][TestCase("Warden")][TestCase("Villager")][TestCase("MarlbackScrabbler")][TestCase("MarlbackGleaner")]
+        public void NativeActorsAreSmallRiggedPickableAndStillOwned(string blueprint)
+        {
+            using(var f=new SpawnRing3DIntegrationFixture(ReferenceGladePlan.ZoneID))
+            {
+                var e=blueprint=="Player"?f.Player:f.Add(blueprint);f.CleanGear(e);f.Refresh();var root=f.View(e);
+                Assert.Less(root.transform.localScale.x,.8f);Assert.NotNull(root.GetComponentInChildren<Animator>());
+                var renderers=root.GetComponentsInChildren<Renderer>();var bounds=renderers[0].bounds;foreach(var r in renderers)bounds.Encapsulate(r.bounds);
+                Assert.LessOrEqual(bounds.size.y,1.05f);Assert.LessOrEqual(bounds.size.x,.95f);
+                Assert.IsTrue(f.Pick(e,out var point));int version=f.Zone.EntityVersion;var original=f.Zone.GetEntityPosition(e);
+                f.Refresh();Assert.AreEqual(version,f.Zone.EntityVersion);Assert.AreEqual(original,f.Zone.GetEntityPosition(e));
+                e.GetPart<RenderPart>().Visible=false;f.Refresh(f.Dirty(e));Assert.IsFalse(f.Rendered(e));
+            }
+        }
+        [Test]public void PlayerGearSharesSmallRigAndOrdinaryZoneRetainsFullScale()
+        {
+            using(var f=new SpawnRing3DIntegrationFixture(ReferenceGladePlan.ZoneID))
+            {
+                f.CleanGear(f.Player);var item=f.Equip(f.Player,"Dagger");f.Refresh();Assert.IsTrue(f.Equipment(f.Player,item,out var gear));
+                var actor=f.View(f.Player);Assert.IsTrue(gear.transform.IsChildOf(actor.transform));Assert.Less(actor.transform.localScale.x,.6f);
+                Assert.AreSame(f.Player,item.GetPart<PhysicsPart>().Equipped);Assert.IsTrue(f.Pick(f.Player,out var point));
+            }
+            using(var f=new SpawnRing3DIntegrationFixture())Assert.AreEqual(Vector3.one,f.View(f.Player).transform.localScale);
+        }
+        [TestCase("Warden")][TestCase("Villager")]
+        public void LocalHumanoidAliasRefusesChangedGlyphOrForeignZone(string blueprint)
+        {
+            using(var f=new SpawnRing3DIntegrationFixture(ReferenceGladePlan.ZoneID))
+            {
+                var e=f.Add(blueprint);f.Refresh();Assert.IsTrue(f.Rendered(e));e.GetPart<RenderPart>().RenderString="!";f.Refresh();Assert.IsFalse(f.Authored(e));
+                e.GetPart<RenderPart>().RenderString="@";f.Zone.RemoveEntity(e);Assert.IsNull(SpawnRing3DRecipes.Resolve(f.Zone,e,f.Library.Definition).ModelId);
+            }
+            using(var f=new SpawnRing3DIntegrationFixture()){var e=f.Add(blueprint);Assert.IsNull(SpawnRing3DRecipes.Resolve(f.Zone,e,f.Library.Definition).ModelId);}
+        }
+        [TestCase("Chest","chest")][TestCase("WoodenBarrel","barrel")]
+        public void RealPropsHaveScopedDetailedModelsAndRemovedOwnersDisappear(string blueprint,string family)
+        {
+            using(var f=new SpawnRing3DIntegrationFixture(ReferenceGladePlan.ZoneID))
+            {
+                var e=f.Add(blueprint);f.Refresh();var recipe=SpawnRing3DRecipes.Resolve(f.Zone,e,f.Library.Definition);
+                Assert.That(recipe.ModelId,Does.StartWith("reference-glade-"+family+"-"));Assert.AreSame(e,recipe.Owner);
+                var mesh=ReferenceGladeVoxelLibrary.Load().Find(recipe.ModelId).Mesh;Assert.Greater(mesh.vertexCount,400);Assert.LessOrEqual(mesh.bounds.size.y,.7f);
+                f.Zone.RemoveEntity(e);f.Refresh();Assert.IsFalse(f.Authored(e));
+            }
+            using(var f=new SpawnRing3DIntegrationFixture()){var e=f.Add(blueprint);Assert.IsFalse(SpawnRing3DRecipes.Resolve(f.Zone,e,f.Library.Definition).ModelId.StartsWith("reference-glade-"));}
+        }
+    }
+}

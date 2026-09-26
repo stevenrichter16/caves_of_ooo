@@ -20,10 +20,16 @@ namespace CavesOfOoo.Rendering
         /// <summary>Distinct unmapped sources, excluding already baked meshes.</summary>
         public int MissingMeshCount => missing.Count;
 
-        private VoxelWorldPresentation(string zoneId, VoxelWorldMeshCatalog catalog)
+        private VoxelWorldPresentation(string zoneId, VoxelWorldMeshCatalog catalog, bool referenceGlade)
         {
             this.catalog = catalog; ZoneId = zoneId; catalog.Validate();
             foreach (var binding in catalog.Bindings) generated.Add(binding.Voxel);
+            if(referenceGlade)
+            {
+                var glade=ReferenceGladeVoxelLibrary.Load();if(glade==null)throw new InvalidOperationException("Reference glade voxel kit missing.");
+                glade.Validate();foreach(var entry in glade.Entries)generated.Add(entry.Mesh);
+                foreach(var paint in glade.ActorPaints)generated.Add(paint.Painted);
+            }
             // Pool hazards and market stalls can occur in any supported native
             // zone. Register their already-voxel meshes once per bind, not frame.
             var pools = DensityPhase1VoxelLibrary.Load();
@@ -201,7 +207,7 @@ namespace CavesOfOoo.Rendering
             {
                 var library = Resources.Load<VoxelWorldMeshCatalog>(VoxelWorldMeshCatalog.ResourcePath);
                 if (library == null) throw new InvalidOperationException("Required voxel mesh catalogue is unavailable.");
-                var result = new VoxelWorldPresentation(zone.ZoneID, library);
+                var result = new VoxelWorldPresentation(zone.ZoneID, library, ReferenceGladePlan.IsActive(zone));
                 if (Diag.IsChannelEnabled("worldgen")) Diag.Record("worldgen", "VoxelPresentationBound",
                     payload: new { zoneId = zone.ZoneID, bindings = library.Bindings.Length });
                 return result;

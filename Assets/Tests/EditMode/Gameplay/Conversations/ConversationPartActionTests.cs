@@ -18,7 +18,7 @@ namespace CavesOfOoo.Tests
     /// - Chat command on a hostile NPC does NOT double-log (StartConversation
     ///   logs the "refuses to speak" line; we skip the fallback)
     /// - Entities WITHOUT ConversationPart don't contribute Chat (sanity —
-    ///   e.g., a Snapjaw)
+    ///   e.g., a MarlbackScrabbler)
     /// </summary>
     [TestFixture]
     public class ConversationPartActionTests
@@ -75,18 +75,18 @@ namespace CavesOfOoo.Tests
         [Test]
         public void EntityWithoutConversationPart_DoesNotDeclareChat()
         {
-            // Sanity: a Snapjaw (hostile creature, no ConversationPart) should
+            // Sanity: a MarlbackScrabbler (hostile creature, no ConversationPart) should
             // not surface a Chat action.
-            var snapjaw = _factory.CreateEntity("Snapjaw");
+            var marlback = _factory.CreateEntity("MarlbackScrabbler");
 
             var actions = new InventoryActionList();
             var e = GameEvent.New("GetInventoryActions");
             e.SetParameter("Actions", actions);
-            snapjaw.FireEvent(e);
+            marlback.FireEvent(e);
 
             foreach (var a in actions.Actions)
                 Assert.AreNotEqual("Chat", a.Command,
-                    "Snapjaw lacks ConversationPart so Chat should not appear.");
+                    "MarlbackScrabbler lacks ConversationPart so Chat should not appear.");
         }
 
         // ==========================================================
@@ -162,7 +162,7 @@ namespace CavesOfOoo.Tests
             // Use two faction-tagged entities to get hostile resolution.
             var npc = new Entity { BlueprintName = "Hostile NPC" };
             npc.Tags["Creature"] = "";
-            npc.Tags["Faction"] = "Snapjaws"; // hostile to Villagers/Player
+            npc.Tags["Faction"] = "OutlandRaiders"; // hostile to Villagers/Player
             npc.AddPart(new RenderPart { DisplayName = "brute" });
             npc.AddPart(new ConversationPart { ConversationID = "" });
 
@@ -172,7 +172,7 @@ namespace CavesOfOoo.Tests
             player.Tags["Faction"] = "Villagers";
 
             Assume.That(FactionManager.IsHostile(npc, player), Is.True,
-                "Pre-condition: Snapjaws vs Villagers should be hostile.");
+                "Pre-condition: OutlandRaiders vs Villagers should be hostile.");
 
             npc.FireEvent(BuildChatCommand(player));
 

@@ -706,34 +706,8 @@ namespace CavesOfOoo.Core
                 return traded ? null : "mineral_trade_refused";
             });
 
-            Register("RestAtInn", (speaker, listener, arg) =>
-            {
-                if (listener == null) return;
-                string site = "inn";
-                string costPart = arg ?? "";
-                int colon = costPart.IndexOf(':');
-                if (colon >= 0)
-                {
-                    string label = costPart.Substring(colon + 1).Trim();
-                    if (label.Length > 0) site = label;
-                    costPart = costPart.Substring(0, colon);
-                }
-                if (!int.TryParse(costPart, out int cost) || cost < 0) cost = 10;
-
-                int drams = listener.GetIntProperty(TradeSystem.CURRENCY_PROP, 0);
-                if (drams < cost)
-                {
-                    MessageLog.Add($"The rest costs {cost} drams — you can't cover it.");
-                    return;
-                }
-
-                if (!RestSystem.TryRest(listener, SettlementRuntime.ActiveZone, site, out _))
-                    return; // TryRest already messaged + diag'd; no charge.
-
-                listener.SetIntProperty(TradeSystem.CURRENCY_PROP, drams - cost);
-                listener.ForceApplyEffect(new WellRestedEffect());
-                MessageLog.Add($"You pay {cost} drams.");
-            });
+            Register("RestAtInn", (speaker, listener, arg) => RestAtInn(listener, arg, false));
+            Register("RestAtInnUntilNextBand", (speaker, listener, arg) => RestAtInn(listener, arg, true));
 
             // CureEffect(effectName) — BIOME-OVERHAUL B2. Remove the
             // named status effect from the listener; matches the effect
@@ -890,6 +864,36 @@ namespace CavesOfOoo.Core
             _actions.Clear();
             _requiredActions.Clear();
             _initialized = false;
+        }
+        private static void RestAtInn(Entity listener, string arg, bool untilNextBand)
+        {
+            if (listener == null) return;
+            string site = "inn";
+            string costPart = arg ?? "";
+            int colon = costPart.IndexOf(':');
+            if (colon >= 0)
+            {
+                string label = costPart.Substring(colon + 1).Trim();
+                if (label.Length > 0) site = label;
+                costPart = costPart.Substring(0, colon);
+            }
+            if (!int.TryParse(costPart, out int cost) || cost < 0) cost = 10;
+
+            int drams = listener.GetIntProperty(TradeSystem.CURRENCY_PROP, 0);
+            if (drams < cost)
+            {
+                MessageLog.Add($"The rest costs {cost} drams — you can't cover it.");
+                return;
+            }
+
+            bool rested = untilNextBand
+                ? RestSystem.TryRestUntilNextBand(listener, SettlementRuntime.ActiveZone, site, out _)
+                : RestSystem.TryRest(listener, SettlementRuntime.ActiveZone, site, out _);
+            if (!rested) return; // Rest already messaged + diagnosed; no charge.
+
+            listener.SetIntProperty(TradeSystem.CURRENCY_PROP, drams - cost);
+            listener.ForceApplyEffect(new WellRestedEffect());
+            MessageLog.Add($"You pay {cost} drams.");
         }
     }
 }

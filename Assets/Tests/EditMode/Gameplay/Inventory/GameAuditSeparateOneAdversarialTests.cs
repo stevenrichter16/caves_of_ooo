@@ -128,7 +128,7 @@ namespace CavesOfOoo.Tests
             var command = Command(source);
             MessageLog.OnMessage = message =>
             {
-                if (called || !message.Contains(" separates one ")) return; called = true;
+                if (called || !message.StartsWith("You separate one ",StringComparison.Ordinal)) return; called = true;
                 var target = chooseNew ? Recipient(command) : source; Assert.NotNull(target);
                 Assert.IsFalse(InventorySystem.Drop(actor, target, zone), "source and singleton are claimed before notification");
                 Assert.IsTrue(InventorySystem.Drop(actor, torch, zone)); if (fail) throw new InvalidOperationException("Publication probe");

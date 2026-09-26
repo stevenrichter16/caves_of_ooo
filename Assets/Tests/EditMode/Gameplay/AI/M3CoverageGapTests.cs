@@ -305,7 +305,7 @@ namespace CavesOfOoo.Tests
             dog.AddPart(new AIRetrieverPart { AlliesOnly = false, NoticeRadius = 10 });
 
             var bone = CreateShinyItem(zone, 7, 5, "bone");
-            var enemy = CreateCreature(zone, 4, 5, faction: "Snapjaws");
+            var enemy = CreateCreature(zone, 4, 5, faction: "OutlandRaiders");
 
             var ev = GameEvent.New(ItemLandedEvent.ID);
             ev.SetParameter("Item", (object)bone);

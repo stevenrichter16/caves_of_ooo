@@ -98,7 +98,7 @@ namespace CavesOfOoo.Tests
         [TestCase(false)] [TestCase(true)] public void PublicationExceptionKeepsCommittedOutputAndReleasesGuard(bool brew)
         {
             var actor = Crafter(); BuildSetup(actor); var source = brew ? CarryUnit(actor, "GlimmerBrine", 2) : null;
-            MessageLog.OnMessage = message => { if (message.Contains(brew ? " brews " : " crafts ")) throw new InvalidOperationException("publication"); };
+            MessageLog.OnMessage = message => { if (message.Contains(brew ? " brew " : " craft ")) throw new InvalidOperationException("publication"); };
             Assert.Throws<InvalidOperationException>(() => Craft(actor, brew, source)); MessageLog.OnMessage = _oldMessage;
             var inv = actor.GetPart<InventoryPart>(); var resident = inv.Objects.Single(e => e.BlueprintName == (brew ? "BrewedTonic" : "Dagger")); Assert.AreEqual(1, Quantity(resident));
             Assert.IsTrue(Craft(actor, brew, source)); Assert.AreEqual(2, Quantity(resident)); Assert.AreEqual(brew ? 2 : 0, actor.GetPart<BitLockerPart>().GetBitCount('B'));
@@ -126,7 +126,7 @@ namespace CavesOfOoo.Tests
         {
             var actor = Crafter(); if (merged) BrewUnit(actor); Diag.SetChannel("alchemy", true); var made = BrewUnit(actor);
             var record = DiagQuery.Apply(new DiagQuery.Filter { Kind = "BrewResolved", Actor = actor.ID }).Records.Last(); Assert.AreEqual(made.ID, record.TargetId);
-            StringAssert.DoesNotContain("(x2)", MessageLog.GetLast()); StringAssert.Contains(" brews ", MessageLog.GetLast()); Assert.AreEqual(merged ? 2 : 1, Quantity(made));
+            StringAssert.DoesNotContain("(x2)", MessageLog.GetLast()); StringAssert.Contains("You brew ", MessageLog.GetLast()); Assert.AreEqual(merged ? 2 : 1, Quantity(made));
         }
         [TestCase(false)] [TestCase(true)] public void ClaimedSourceRefusesWithoutChangingIndependentTransfer(bool brew)
         {

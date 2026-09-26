@@ -73,3 +73,23 @@ The 218-model,73-blueprint,55-owner contract and native placements stay fixed. U
 
 
 Surface polish follow-up: the accepted editable master and model FBXs now include the reviewed sculpt-normal pass. See `../ModelPolish3D/README.md` for the required fresh-build → polish → validate pipeline, original archive and preservation limits. `renders/polish-before.png` / `polish-after.png` are matched Blender galleries, not native screenshots. Per-model decisions are in `reports/polish.json`.
+
+### Current original-creature extension (density C13)
+
+The current live contract is222 models /77 blueprint bindings. Six original
+creature bodies are authored by `marlback` and `lantern_moth`: five low,
+shale-backed Marlback roles and the passive GroveLanternMoth. The two old internal
+`ring-snapjaw*` model filenames remain nonspawnable compatibility keys for existing
+animation paths; their current sourceBlueprints and geometry are original. No
+retired enemy blueprint is a live art binding. Immutable native captures remain
+historical and the replay builder translates their six old identities locally.
+
+For this wave, only the six selected FBXs were built in a private output, polished
+with the existing ModelPolish3D recipe, roundtripped and adopted. The accepted
+editable master merged those six collections while preserving the other216
+collections' geometry/normals/UV/weight/transform/bone signatures. Source/runtime
+FBX and unrelated runtime asset byte checks are preserved under
+`Docs/Verification/DensityCompletion/OriginalEnemies/Art`. The explicit native
+importer and voxel baker support selected model/file paths, preserving unrelated
+prefabs, controllers and toolkit/coarse voxel overrides. Never replace the full
+accepted bundle with an unpolished fresh export just to update these creatures.

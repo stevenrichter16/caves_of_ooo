@@ -165,12 +165,12 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void Snapjaw_IsNotPassive_FromBlueprint()
+        public void MarlbackScrabbler_IsNotPassive_FromBlueprint()
         {
-            // Sanity check: Snapjaws are hostile aggressors
-            var snapjaw = _factory.CreateEntity("Snapjaw");
-            Assert.IsFalse(snapjaw.GetPart<BrainPart>().Passive,
-                "Snapjaw should NOT be Passive — it's a hostile monster");
+            // Sanity check: OutlandRaiders are hostile aggressors
+            var marlback = _factory.CreateEntity("MarlbackScrabbler");
+            Assert.IsFalse(marlback.GetPart<BrainPart>().Passive,
+                "MarlbackScrabbler should NOT be Passive — it's a hostile monster");
         }
 
         // ========================
@@ -243,9 +243,9 @@ namespace CavesOfOoo.Tests
             // End-to-end: Passive scribe ignores a sighted hostile at full HP
             var zone = new Zone("TestZone");
             var scribe = _factory.CreateEntity("Scribe");
-            var snapjaw = _factory.CreateEntity("Snapjaw");
+            var marlback = _factory.CreateEntity("MarlbackScrabbler");
             zone.AddEntity(scribe, 10, 10);
-            zone.AddEntity(snapjaw, 12, 10);
+            zone.AddEntity(marlback, 12, 10);
 
             var brain = scribe.GetPart<BrainPart>();
             brain.CurrentZone = zone;
@@ -274,9 +274,9 @@ namespace CavesOfOoo.Tests
             // skipping AIBoredEvent.
             var zone = new Zone("TestZone");
             var warden = _factory.CreateEntity("Warden");
-            var snapjaw = _factory.CreateEntity("Snapjaw");
+            var marlback = _factory.CreateEntity("MarlbackScrabbler");
             zone.AddEntity(warden, 10, 10);
-            zone.AddEntity(snapjaw, 12, 10);
+            zone.AddEntity(marlback, 12, 10);
 
             var brain = warden.GetPart<BrainPart>();
             brain.CurrentZone = zone;

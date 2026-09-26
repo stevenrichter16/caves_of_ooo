@@ -42,3 +42,15 @@ Commit reviewable milestones with CLAUDE.md §2.3's template and same-commit doc
 Pushing to main is authorized. Before each push, fetch/rebase and preserve
 unrelated local work, then push `origin HEAD:main` and verify the remote commit.
 Report concrete shipped behavior and remaining limitations in plain language.
+
+User addition: complete C13, replacing recognizable Qud enemies such as Snapjaws
+with original Ooo creatures across live content and tested compatibility paths.
+Audit identity and source references before replacement; historical receipts stay
+unchanged. Root coordinates shared blueprint edits and affected tests.
+
+User addition: execute C14 and `Docs/DENSITY-REFERENCE-GLADE.md`. Match the supplied
+voxel reference through native scene captures and iteration. Build real playable
+content, preserve original enemy replacements, add a launchable scene, and verify
+movement, blocking, combat, loot, persistence and world exits. Use scoped assets
+and existing render contracts; never treat a detached beauty render as in-game
+acceptance. Continue the earlier completion milestones alongside this addition.

@@ -10,15 +10,15 @@ namespace CavesOfOoo.Scenarios.Custom
     ///
     /// Setup (player at left edge):
     ///
-    ///                 . . . . [Snapjaw3] . . . . .
+    ///                 . . . . [MarlbackScrabbler3] . . . . .
     ///                 .                           .
     ///   [Player] . [Wire1A] [Wire1B] [Wire1C] . [Wire2A] [Wire2B] .
     ///                 .                           .
-    ///                 . . . . [Snapjaw1] . . . [Snapjaw2] . . . .
+    ///                 . . . . [MarlbackScrabbler1] . . . [MarlbackScrabbler2] . . . .
     ///
     /// Wire 1 (group "wire-1"): 3 horizontal segments at p.y. Stepping
-    /// on any of the three detonates all three; if Snapjaw1 is at the
-    /// southmost segment's cell, the snapjaw also takes damage even if
+    /// on any of the three detonates all three; if MarlbackScrabbler1 is at the
+    /// southmost segment's cell, the marlback also takes damage even if
     /// the player steps on a different segment cell (proves the
     /// LINE-vs-AOE contract).
     ///
@@ -36,7 +36,7 @@ namespace CavesOfOoo.Scenarios.Custom
     ///   --- Step east onto Wire1A (or B, or C) ---
     ///   "The tripwire snaps taut!"
     ///   <player takes Damage>      (player at the stepped-on cell)
-    ///   <Snapjaw1 takes Damage>    (placed at one of the OTHER
+    ///   <MarlbackScrabbler1 takes Damage>    (placed at one of the OTHER
     ///                               segments' cells via the scenario;
     ///                               proves multi-cell line strike)
     ///   <all 3 wire-1 segments removed from the zone>
@@ -50,7 +50,7 @@ namespace CavesOfOoo.Scenarios.Custom
     [Scenario(
         name: "TripWire Showcase",
         category: "Combat",
-        description: "Multi-segment line trap demo. Wire-1 is 3 segments + a snapjaw planted at one segment cell — stepping on ANY of the 3 detonates all 3 and damages the snapjaw too (LINE vs AOE). Wire-2 is independent. Wire-3 is a degenerate 1-segment.")]
+        description: "Multi-segment line trap demo. Wire-1 is 3 segments + a marlback planted at one segment cell — stepping on ANY of the 3 detonates all 3 and damages the marlback too (LINE vs AOE). Wire-2 is independent. Wire-3 is a degenerate 1-segment.")]
     public class TripWireShowcase : IScenario
     {
         public void Apply(ScenarioContext ctx)
@@ -68,7 +68,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 .SetStat("Strength", 24)
                 .GiveItem("HealingTonic", 5);
 
-            // Clear the corridor — entities spawning on wire/snapjaw
+            // Clear the corridor — entities spawning on wire/marlback
             // cells would block placement.
             for (int dx = 1; dx <= 11; dx++)
             {
@@ -83,16 +83,16 @@ namespace CavesOfOoo.Scenarios.Custom
             SpawnWireSegment(ctx, p.x + 3, p.y, "wire-1");
             SpawnWireSegment(ctx, p.x + 4, p.y, "wire-1");
 
-            // Snapjaw planted at the FAR segment of wire-1 (p.x+4).
+            // MarlbackScrabbler planted at the FAR segment of wire-1 (p.x+4).
             // This is the LINE-vs-AOE pin: even if the player steps onto
-            // the NEAR segment (p.x+2), this snapjaw at the FAR segment's
+            // the NEAR segment (p.x+2), this marlback at the FAR segment's
             // cell still takes damage because the wire detonates at every
             // segment's cell, not just the tripped one.
-            // (We give the snapjaw a unique tag for the QA observation
+            // (We give the marlback a unique tag for the QA observation
             // path: "diag_query category=damage" should show damage
-            // applied to TWO entities — player + this snapjaw — from a
+            // applied to TWO entities — player + this marlback — from a
             // single step event.)
-            ctx.Spawn("Snapjaw")
+            ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 100)
                 .WithHpAbsolute(100)
                 .At(p.x + 4, p.y);
@@ -118,7 +118,7 @@ namespace CavesOfOoo.Scenarios.Custom
             // systems, so a player skimming the log can distinguish
             // scenario instructions from gameplay events.
             ctx.Log("TripWire Showcase: walk east. Three wires lie in wait.");
-            ctx.Log("Wire-1 (cells x+2..x+4) — 3-segment LINE; snapjaw at x+4 takes damage too.");
+            ctx.Log("Wire-1 (cells x+2..x+4) — 3-segment LINE; marlback at x+4 takes damage too.");
             ctx.Log("Wire-2 (cells x+7,x+8) — 2-segment, independent group.");
             ctx.Log("Wire-3 (cell x+10) — degenerate 1-segment (content-author robustness).");
         }

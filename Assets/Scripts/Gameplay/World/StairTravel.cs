@@ -78,7 +78,7 @@ namespace CavesOfOoo.Core
         /// <summary>How near a hostile has to be to stop you. Cold-eye
         /// 🟡: this used to be the whole zone, which meant travel
         /// refused to start in essentially every underground zone —
-        /// the population builder seeds snapjaws in the strips a
+        /// the population builder seeds marlbacks in the strips a
         /// village or vault does not claim, and one of them asleep in a
         /// far corner cancelled the feature outright. Something you
         /// cannot see is not a reason to stop walking.

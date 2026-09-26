@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "runner": "private .NET standalone; deterministic hashing differs from Unity",
+  "tests": 91,
+  "passed": 91,
+  "failed": 0,
+  "before": "equipment-pins-before.xml.gz (broader combat sweep; not matching-corpus test differential)",
+  "after": "equipment-pins-green.xml.gz",
+  "contracts": [
+    "nine final C1 kit literals plus two explicit C13 kit holders",
+    "17 optional armor boundary pairs",
+    "equipped physical breacher cleaver vs two natural hands when unequipped",
+    "old saves remain gear-free, new breacher has four items",
+    "exact death-dropped identities and actual pickup/equip preserved",
+    "independent nested equip stays audible; factory equip stays quiet"
+  ],
+  "message_correction": "Three legacy assertions now require You equip, matching the independently implemented player-grammar correction; no drop/ownership assertion removed."
+}

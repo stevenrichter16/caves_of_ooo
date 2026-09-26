@@ -48,8 +48,8 @@ namespace CavesOfOoo.Tests.TestSupport
         public void EntityCount_CorrectCount_Passes()
         {
             var ctx = _harness.CreateContext();
-            ctx.Spawn("Snapjaw").At(20, 10);
-            ctx.Spawn("Snapjaw").At(25, 10);
+            ctx.Spawn("MarlbackScrabbler").At(20, 10);
+            ctx.Spawn("MarlbackScrabbler").At(25, 10);
             // Plus the player = 3 total with Creature tag.
             ctx.Verify().EntityCount(withTag: "Creature", expected: 3);
         }
@@ -111,17 +111,17 @@ namespace CavesOfOoo.Tests.TestSupport
         public void Entity_IsAt_Passes()
         {
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
-            ctx.Verify().Entity(snapjaw).IsAt(20, 10);
+            var marlback = ctx.Spawn("MarlbackScrabbler").At(20, 10);
+            ctx.Verify().Entity(marlback).IsAt(20, 10);
         }
 
         [Test]
         public void Entity_IsAt_Fails_WithPositionInMessage()
         {
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
+            var marlback = ctx.Spawn("MarlbackScrabbler").At(20, 10);
             var ex = Assert.Throws<AssertionException>(
-                () => ctx.Verify().Entity(snapjaw).IsAt(99, 99));
+                () => ctx.Verify().Entity(marlback).IsAt(99, 99));
             StringAssert.Contains("(20,10)", ex.Message);
             StringAssert.Contains("(99,99)", ex.Message);
         }
@@ -130,67 +130,67 @@ namespace CavesOfOoo.Tests.TestSupport
         public void Entity_HasHpFraction_WithinTolerance_Passes()
         {
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").WithHp(0.5f).At(20, 10);
-            ctx.Verify().Entity(snapjaw).HasHpFraction(0.5f);
+            var marlback = ctx.Spawn("MarlbackScrabbler").WithHp(0.5f).At(20, 10);
+            ctx.Verify().Entity(marlback).HasHpFraction(0.5f);
         }
 
         [Test]
         public void Entity_HasHpFraction_OutsideTolerance_Fails()
         {
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").WithHp(0.2f).At(20, 10);
+            var marlback = ctx.Spawn("MarlbackScrabbler").WithHp(0.2f).At(20, 10);
             Assert.Throws<AssertionException>(
-                () => ctx.Verify().Entity(snapjaw).HasHpFraction(0.9f));
+                () => ctx.Verify().Entity(marlback).HasHpFraction(0.9f));
         }
 
         [Test]
         public void Entity_IsAlive_HealthyEntity_Passes()
         {
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
-            ctx.Verify().Entity(snapjaw).IsAlive();
+            var marlback = ctx.Spawn("MarlbackScrabbler").At(20, 10);
+            ctx.Verify().Entity(marlback).IsAlive();
         }
 
         [Test]
         public void Entity_IsAlive_ZeroHp_Fails()
         {
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
-            snapjaw.GetStat("Hitpoints").BaseValue = 0;
-            Assert.Throws<AssertionException>(() => ctx.Verify().Entity(snapjaw).IsAlive());
+            var marlback = ctx.Spawn("MarlbackScrabbler").At(20, 10);
+            marlback.GetStat("Hitpoints").BaseValue = 0;
+            Assert.Throws<AssertionException>(() => ctx.Verify().Entity(marlback).IsAlive());
         }
 
         [Test]
         public void Entity_HasStat_Passes()
         {
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").WithStat("Strength", 20).At(20, 10);
-            ctx.Verify().Entity(snapjaw).HasStat("Strength", 20);
+            var marlback = ctx.Spawn("MarlbackScrabbler").WithStat("Strength", 20).At(20, 10);
+            ctx.Verify().Entity(marlback).HasStat("Strength", 20);
         }
 
         [Test]
         public void Entity_HasStatAtLeast_Passes()
         {
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").WithStat("Strength", 20).At(20, 10);
-            ctx.Verify().Entity(snapjaw).HasStatAtLeast("Strength", 15);
+            var marlback = ctx.Spawn("MarlbackScrabbler").WithStat("Strength", 20).At(20, 10);
+            ctx.Verify().Entity(marlback).HasStatAtLeast("Strength", 15);
         }
 
         [Test]
         public void Entity_HasStatAtLeast_BelowMin_Fails()
         {
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").WithStat("Strength", 10).At(20, 10);
+            var marlback = ctx.Spawn("MarlbackScrabbler").WithStat("Strength", 10).At(20, 10);
             Assert.Throws<AssertionException>(
-                () => ctx.Verify().Entity(snapjaw).HasStatAtLeast("Strength", 30));
+                () => ctx.Verify().Entity(marlback).HasStatAtLeast("Strength", 30));
         }
 
         [Test]
         public void Entity_HasPartOfType_Passes()
         {
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
-            ctx.Verify().Entity(snapjaw).HasPartOfType<BrainPart>();
+            var marlback = ctx.Spawn("MarlbackScrabbler").At(20, 10);
+            ctx.Verify().Entity(marlback).HasPartOfType<BrainPart>();
         }
 
         [Test]
@@ -207,17 +207,17 @@ namespace CavesOfOoo.Tests.TestSupport
         public void Entity_HasTag_Passes()
         {
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
-            ctx.Verify().Entity(snapjaw).HasTag("Creature");
+            var marlback = ctx.Spawn("MarlbackScrabbler").At(20, 10);
+            ctx.Verify().Entity(marlback).HasTag("Creature");
         }
 
         [Test]
         public void Entity_HasTag_Missing_Fails()
         {
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
+            var marlback = ctx.Spawn("MarlbackScrabbler").At(20, 10);
             var ex = Assert.Throws<AssertionException>(
-                () => ctx.Verify().Entity(snapjaw).HasTag("NoSuchTag"));
+                () => ctx.Verify().Entity(marlback).HasTag("NoSuchTag"));
             StringAssert.Contains("HasTag", ex.Message);
             StringAssert.Contains("NoSuchTag", ex.Message);
         }
@@ -226,9 +226,9 @@ namespace CavesOfOoo.Tests.TestSupport
         public void Entity_HasStat_WrongValue_Fails()
         {
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").WithStat("Strength", 10).At(20, 10);
+            var marlback = ctx.Spawn("MarlbackScrabbler").WithStat("Strength", 10).At(20, 10);
             var ex = Assert.Throws<AssertionException>(
-                () => ctx.Verify().Entity(snapjaw).HasStat("Strength", 99));
+                () => ctx.Verify().Entity(marlback).HasStat("Strength", 99));
             StringAssert.Contains("Strength", ex.Message);
             StringAssert.Contains("expected 99", ex.Message);
         }
@@ -252,21 +252,21 @@ namespace CavesOfOoo.Tests.TestSupport
         public void Entity_HasGoalOnStack_WithMatchingGoal_Passes()
         {
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
-            var brain = snapjaw.GetPart<BrainPart>();
+            var marlback = ctx.Spawn("MarlbackScrabbler").At(20, 10);
+            var brain = marlback.GetPart<BrainPart>();
             brain.PushGoal(new WaitGoal(3));
 
-            ctx.Verify().Entity(snapjaw).HasGoalOnStack<WaitGoal>();
+            ctx.Verify().Entity(marlback).HasGoalOnStack<WaitGoal>();
         }
 
         [Test]
         public void Entity_HasGoalOnStack_GoalNotPresent_Fails()
         {
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
+            var marlback = ctx.Spawn("MarlbackScrabbler").At(20, 10);
             // No goals pushed — stack is empty.
             var ex = Assert.Throws<AssertionException>(
-                () => ctx.Verify().Entity(snapjaw).HasGoalOnStack<WaitGoal>());
+                () => ctx.Verify().Entity(marlback).HasGoalOnStack<WaitGoal>());
             StringAssert.Contains("HasGoalOnStack", ex.Message);
             StringAssert.Contains("WaitGoal", ex.Message);
         }
@@ -396,7 +396,7 @@ namespace CavesOfOoo.Tests.TestSupport
         public void Cell_HasNoEntityWithTag_CreaturePresent_Fails()
         {
             var ctx = _harness.CreateContext();
-            ctx.Spawn("Snapjaw").At(5, 5);
+            ctx.Spawn("MarlbackScrabbler").At(5, 5);
             Assert.Throws<AssertionException>(
                 () => ctx.Verify().Cell(5, 5).HasNoEntityWithTag("Creature"));
         }
@@ -447,13 +447,13 @@ namespace CavesOfOoo.Tests.TestSupport
         public void FluentChain_EntityThenPlayerThenCell_RunsAllAssertions()
         {
             var ctx = _harness.CreateContext(playerBlueprint: "Player", playerX: 5, playerY: 5);
-            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
+            var marlback = ctx.Spawn("MarlbackScrabbler").At(20, 10);
             ctx.World.PlaceObject("Chest").At(25, 15);
             ctx.Player.GiveItem("HealingTonic");
 
             // Single fluent chain verifying entity, player, and cell state.
             ctx.Verify()
-                .Entity(snapjaw)
+                .Entity(marlback)
                     .IsAt(20, 10)
                     .HasTag("Creature")
                 .Back()
@@ -464,15 +464,15 @@ namespace CavesOfOoo.Tests.TestSupport
                 .Cell(25, 15)
                     .ContainsBlueprint("Chest")
                 .Back()
-                .EntityCount(withTag: "Creature", expected: 2); // player + snapjaw
+                .EntityCount(withTag: "Creature", expected: 2); // player + marlback
         }
 
         [Test]
         public void FluentChain_BackReturnsRoot_AllowsRepeatedEntity()
         {
             var ctx = _harness.CreateContext();
-            var a = ctx.Spawn("Snapjaw").At(10, 10);
-            var b = ctx.Spawn("Snapjaw").At(20, 20);
+            var a = ctx.Spawn("MarlbackScrabbler").At(10, 10);
+            var b = ctx.Spawn("MarlbackScrabbler").At(20, 20);
 
             ctx.Verify()
                 .Entity(a).IsAt(10, 10).Back()
@@ -488,17 +488,17 @@ namespace CavesOfOoo.Tests.TestSupport
         public void Entity_IsNotAt_Passes_WhenElsewhere()
         {
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
-            ctx.Verify().Entity(snapjaw).IsNotAt(5, 5);
+            var marlback = ctx.Spawn("MarlbackScrabbler").At(20, 10);
+            ctx.Verify().Entity(marlback).IsNotAt(5, 5);
         }
 
         [Test]
         public void Entity_IsNotAt_Fails_WhenAtPosition()
         {
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
+            var marlback = ctx.Spawn("MarlbackScrabbler").At(20, 10);
             var ex = Assert.Throws<AssertionException>(
-                () => ctx.Verify().Entity(snapjaw).IsNotAt(20, 10));
+                () => ctx.Verify().Entity(marlback).IsNotAt(20, 10));
             StringAssert.Contains("IsNotAt", ex.Message);
         }
 
@@ -514,28 +514,28 @@ namespace CavesOfOoo.Tests.TestSupport
         public void Entity_HasNoPartOfType_Fails_WhenPartPresent()
         {
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
+            var marlback = ctx.Spawn("MarlbackScrabbler").At(20, 10);
             Assert.Throws<AssertionException>(
-                () => ctx.Verify().Entity(snapjaw).HasNoPartOfType<BrainPart>());
+                () => ctx.Verify().Entity(marlback).HasNoPartOfType<BrainPart>());
         }
 
         [Test]
         public void Entity_HasNoGoalOnStack_EmptyStack_Passes()
         {
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
+            var marlback = ctx.Spawn("MarlbackScrabbler").At(20, 10);
             // No goals pushed.
-            ctx.Verify().Entity(snapjaw).HasNoGoalOnStack<WaitGoal>();
+            ctx.Verify().Entity(marlback).HasNoGoalOnStack<WaitGoal>();
         }
 
         [Test]
         public void Entity_HasNoGoalOnStack_GoalPresent_Fails()
         {
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
-            snapjaw.GetPart<BrainPart>().PushGoal(new WaitGoal(3));
+            var marlback = ctx.Spawn("MarlbackScrabbler").At(20, 10);
+            marlback.GetPart<BrainPart>().PushGoal(new WaitGoal(3));
             var ex = Assert.Throws<AssertionException>(
-                () => ctx.Verify().Entity(snapjaw).HasNoGoalOnStack<WaitGoal>());
+                () => ctx.Verify().Entity(marlback).HasNoGoalOnStack<WaitGoal>());
             StringAssert.Contains("HasNoGoalOnStack", ex.Message);
         }
 
@@ -554,17 +554,17 @@ namespace CavesOfOoo.Tests.TestSupport
         public void Entity_DoesNotHaveTag_Passes_WhenAbsent()
         {
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
-            ctx.Verify().Entity(snapjaw).DoesNotHaveTag("NoSuchTag");
+            var marlback = ctx.Spawn("MarlbackScrabbler").At(20, 10);
+            ctx.Verify().Entity(marlback).DoesNotHaveTag("NoSuchTag");
         }
 
         [Test]
         public void Entity_DoesNotHaveTag_Fails_WhenPresent()
         {
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").At(20, 10);
+            var marlback = ctx.Spawn("MarlbackScrabbler").At(20, 10);
             Assert.Throws<AssertionException>(
-                () => ctx.Verify().Entity(snapjaw).DoesNotHaveTag("Creature"));
+                () => ctx.Verify().Entity(marlback).DoesNotHaveTag("Creature"));
         }
 
         // =========================================================

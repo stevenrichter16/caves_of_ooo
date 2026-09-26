@@ -119,7 +119,7 @@ namespace CavesOfOoo.Tests
             // Generated cave enemies outside the chamber may legitimately block rest through a wall.
             // Stage the safe/unsafe comparison explicitly; do not weaken the production safety gate.
             foreach(var enemy in home.GetAllEntities().Where(e=>e.HasPart<BrainPart>()&&FactionManager.IsHostile(e,actor)).ToArray()) home.RemoveEntity(enemy);
-            if(!quiet) home.AddEntity(_factory.CreateEntity("Snapjaw"),pc.X-1,pc.Y);
+            if(!quiet) home.AddEntity(_factory.CreateEntity("MarlbackScrabbler"),pc.X-1,pc.Y);
             Action(plume,actor,home,FoundingPlumePart.SleepCommand);
             if(!quiet)
             {Assert.AreEqual(before,turns.TickCount); Assert.AreEqual(0,NarrativeStatePart.Current.GetFact("RootedMet")); Assert.IsFalse(FoundingPlumePart.HasBloom(actor)); return;}

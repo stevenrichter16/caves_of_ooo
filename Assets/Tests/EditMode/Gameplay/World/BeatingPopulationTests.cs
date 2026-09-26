@@ -73,7 +73,7 @@ namespace CavesOfOoo.Tests
             var hostiles = new[]
             {
                 "Scorpion", "GlassScorpion", "BrittleHound", "DuneLurker",
-                "SnapjawHunter", "SunStriker",
+                "MarlbackTunnelguard", "SunStriker",
             };
 
             int[] weight = new int[4];

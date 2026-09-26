@@ -50,7 +50,7 @@ namespace CavesOfOoo.Tests
         private Zone BuildLairZone(BiomeType biome, int seed, string bossBlueprint = null)
         {
             var zone = new Zone($"Lair.{biome}.{seed}");
-            var poi = new PointOfInterest(POIType.Lair, "TestLair", "Snapjaws", 1, bossBlueprint);
+            var poi = new PointOfInterest(POIType.Lair, "TestLair", "OutlandRaiders", 1, bossBlueprint);
             var builder = new LairPopulationBuilder(biome, poi);
             builder.BuildZone(zone, _factory, new System.Random(seed));
             return zone;
@@ -197,7 +197,7 @@ namespace CavesOfOoo.Tests
             // same pool via RemoveAt(idx), any pool that's rebuilt
             // independently (as roomCells was) silently loses that dedup
             // guarantee — so a mimic / sleeping troll could land on top of
-            // a snapjaw guard or a dropped weapon.
+            // a marlback guard or a dropped weapon.
             //
             // Fix: GatherRoomCells now filters the already-pruned openCells
             // list instead of rescanning the zone, so guard/loot cells

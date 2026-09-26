@@ -47,7 +47,7 @@ namespace CavesOfOoo.Tests
 
         private static Entity MakeMob(string quest, string objective)
         {
-            var e = new Entity { ID = "mob", BlueprintName = "Snapjaw" };
+            var e = new Entity { ID = "mob", BlueprintName = "MarlbackScrabbler" };
             e.AddPart(new FinishObjectiveWhenSlain { Quest = quest, Objective = objective });
             return e;
         }

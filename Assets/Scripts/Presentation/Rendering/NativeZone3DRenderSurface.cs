@@ -34,6 +34,9 @@ namespace CavesOfOoo.Rendering
         // Independent ownership survives external destruction of the hierarchy.
         private RenderTexture target;
         private bool disposed;
+        private float cameraAltitude = CameraAltitude;
+        private FilterMode targetFilter = FilterMode.Bilinear;
+        private SphericalHarmonicsL2[] ownedAmbientProbe;
         public Transform ContentRoot { get; private set; }
         public Camera WorldCamera { get; private set; }
         public Texture2D FogTexture { get; private set; }
@@ -77,6 +80,44 @@ namespace CavesOfOoo.Rendering
             }
             catch { Dispose(); throw; }
         }
+        /// <summary>Changes only this surface's owned clones, sunlight and camera.
+        /// Call once at bind for an authored profile. Borrowed assets and global
+        /// render settings remain unchanged; low-detail Sync still disables shadows.</summary>
+        public void ConfigureLighting(float exposure, float ambient, float sunlight, Color color,
+            Vector3 euler, float strength, float bias, float normalBias, float altitude, FilterMode filter)
+        {
+            if (disposed) throw new ObjectDisposedException(nameof(NativeZone3DRenderSurface));
+            if (!Village3DProjection.Finite(exposure) || exposure <= 0 || !Village3DProjection.Finite(ambient) || ambient < 0
+                || !Village3DProjection.Finite(sunlight) || sunlight < 0 || !Village3DProjection.Finite(altitude) || altitude < 5
+                || !Village3DProjection.Finite(strength) || strength < 0 || strength > 1
+                || !Village3DProjection.Finite(bias) || bias < 0 || !Village3DProjection.Finite(normalBias) || normalBias < 0
+                || !Village3DProjection.Finite(euler.x) || !Village3DProjection.Finite(euler.y) || !Village3DProjection.Finite(euler.z)
+                || !Village3DProjection.Finite(color.r) || color.r < 0 || !Village3DProjection.Finite(color.g) || color.g < 0
+                || !Village3DProjection.Finite(color.b) || color.b < 0 || (filter != FilterMode.Point && filter != FilterMode.Bilinear))
+                throw new ArgumentException("Invalid owned native lighting profile.");
+            foreach (var material in ownedMaterials)
+            {
+                material.SetFloat("_Exposure", exposure);
+                if (material.HasProperty("_AmbientStrength")) material.SetFloat("_AmbientStrength", ambient);
+                if (material.HasProperty("_SunStrength")) material.SetFloat("_SunStrength", sunlight);
+            }
+            Sun.color = color; Sun.shadowStrength = strength; Sun.shadowBias = bias; Sun.shadowNormalBias = normalBias;
+            Sun.transform.rotation = Quaternion.Euler(euler); cameraAltitude = altitude; targetFilter = filter;
+            if (target != null) target.filterMode = filter;
+        }
+        /// <summary>Supplies soft authored fill only to subsequently prepared owned
+        /// renderers. Call at bind before adding models. This never writes scene
+        /// RenderSettings, shared materials or another surface's probe state.</summary>
+        public void ConfigureAmbientProbe(Color fill)
+        {
+            if (disposed) throw new ObjectDisposedException(nameof(NativeZone3DRenderSurface));
+            if (!Village3DProjection.Finite(fill.r) || fill.r < 0 || fill.r > 1
+                || !Village3DProjection.Finite(fill.g) || fill.g < 0 || fill.g > 1
+                || !Village3DProjection.Finite(fill.b) || fill.b < 0 || fill.b > 1)
+                throw new ArgumentException("Invalid owned ambient fill.");
+            var probe = new SphericalHarmonicsL2(); probe.AddAmbientLight(fill);
+            ownedAmbientProbe = new[] { probe };
+        }
         private static void ValidateMaterial(Material material)
         {
             if (material == null || material.shader == null || !material.shader.isSupported)
@@ -114,6 +155,11 @@ namespace CavesOfOoo.Rendering
                 for (int i = 0; i < materials.Length; i++) materials[i] = MaterialFor(materials[i]);
                 renderer.sharedMaterials = materials;
                 renderer.GetPropertyBlock(properties); properties.SetFloat("_Transient", transient ? 1 : 0);
+                if (ownedAmbientProbe != null)
+                {
+                    renderer.lightProbeUsage = LightProbeUsage.CustomProvided;
+                    properties.CopySHCoefficientArraysFrom(ownedAmbientProbe);
+                }
                 renderer.SetPropertyBlock(properties); properties.Clear();
                 // Indexed blocks override the renderer-level block. Preserve
                 // their other values, but keep the native visibility policy.
@@ -123,6 +169,7 @@ namespace CavesOfOoo.Rendering
                     if (!properties.isEmpty)
                     {
                         properties.SetFloat("_Transient", transient ? 1 : 0);
+                        if (ownedAmbientProbe != null) properties.CopySHCoefficientArraysFrom(ownedAmbientProbe);
                         renderer.SetPropertyBlock(properties, i);
                     }
                     properties.Clear();
@@ -196,7 +243,7 @@ namespace CavesOfOoo.Rendering
             {
                 ReleaseTarget();
                 target = new RenderTexture(width, height, 24, RenderTextureFormat.ARGB32)
-                { name = "Native map texture", hideFlags = HideFlags.DontSave, filterMode = FilterMode.Bilinear, antiAliasing = 1 };
+                { name = "Native map texture", hideFlags = HideFlags.DontSave, filterMode = targetFilter, antiAliasing = 1 };
                 if (!target.Create()) { ReleaseTarget(); SetVisible(false); return; }
                 WorldCamera.targetTexture = target; compositeMaterial.SetTexture("_MainTex", target);
             }
@@ -205,7 +252,7 @@ namespace CavesOfOoo.Rendering
             WorldCamera.depth = borrowedSource.depth - 1; WorldCamera.rect = new Rect(0, 0, 1, 1);
             Vector3 position = borrowedSource.transform.position;
             WorldCamera.transform.SetPositionAndRotation(
-                new Vector3(position.x, CameraAltitude, position.y - CameraAltitude * PitchCot),
+                new Vector3(position.x, cameraAltitude, position.y - cameraAltitude * PitchCot),
                 Quaternion.Euler(CameraPitchDegrees, 0, 0));
             // Rebuild from camera parameters each frame: compensating the old
             // custom matrix repeatedly would accumulate scale and skew the grid.

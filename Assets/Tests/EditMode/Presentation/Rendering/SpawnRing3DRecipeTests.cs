@@ -77,7 +77,7 @@ namespace CavesOfOoo.Tests
         [Test] public void PlayerAndConditionalSpeciesResolveWithoutNeedingTheReferenceSpawn()
         {
             var zone=new Zone(Ring[0]);
-            foreach(string name in new[]{"Player","SariSnake","SkySari","Snapjaw","SnapjawWarlord","ChoirIronVein"})
+            foreach(string name in new[]{"Player","SariSnake","SkySari","MarlbackScrabbler","MarlbackBreacher","ChoirIronVein"})
             {
                 var entity=scope.Factory.CreateEntity(name);Assert.NotNull(entity,name);zone.AddEntity(entity,15,12);
                 var recipe=Resolve(zone,entity);Assert.IsTrue(Supported(recipe),name);

@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="497" result="Failed" start-time="2026-09-26T20:43:34.2774160Z" end-time="2026-09-26T20:43:34.7414930Z" duration="0.464064" total="25" passed="15" failed="10" inconclusive="0" skipped="0" warnings="0" asserts="81" random-seed="188850175">
+  <command-line><![CDATA[/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/Everyday/torch-adversarial-expanded-red.xml --where "class =~ /DensityTorchAdversarialTests/"]]></command-line>
+  <filter>
+    <class re="1">DensityTorchAdversarialTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1611" name="EditModeRunner.dll" fullname="/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="497" result="Failed" site="Child" start-time="2026-09-26T20:43:34.2774160Z" end-time="2026-09-26T20:43:34.7414930Z" duration="0.464064" total="25" passed="15" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="81">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-everyday-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-everyday-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="66821" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1612" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="497" result="Failed" site="Child" start-time="2026-09-26T20:43:34.2790730Z" end-time="2026-09-26T20:43:34.7414810Z" duration="0.462405" total="25" passed="15" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="81">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1613" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="497" result="Failed" site="Child" start-time="2026-09-26T20:43:34.2791740Z" end-time="2026-09-26T20:43:34.7414450Z" duration="0.462268" total="25" passed="15" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="81">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1564" name="DensityTorchAdversarialTests" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" testcasecount="25" result="Failed" site="Child" start-time="2026-09-26T20:43:34.2795230Z" end-time="2026-09-26T20:43:34.7414390Z" duration="0.461913" total="25" passed="15" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="81">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1567" name="DestructiveBurning_LooseTorch_ConsumesFuelOnceAndStillDamagesTool" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.DestructiveBurning_LooseTorch_ConsumesFuelOnceAndStillDamagesTool" methodname="DestructiveBurning_LooseTorch_ConsumesFuelOnceAndStillDamagesTool" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="1982407646" result="Failed" start-time="2026-09-26T20:43:34.2804390Z" end-time="2026-09-26T20:43:34.3639230Z" duration="0.083508" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: 49.700000762939453d +/- 9.9999997473787516E-05d
+  But was:  49.400001525878906d
+  Off by:   0.29999923706054688d
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.DestructiveBurning_LooseTorch_ConsumesFuelOnceAndStillDamagesTool() in /tmp/DensityTorchAdversarialTests.cs:line 23
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 49.700000762939453d +/- 9.9999997473787516E-05d
+  But was:  49.400001525878906d
+  Off by:   0.29999923706054688d
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.DestructiveBurning_LooseTorch_ConsumesFuelOnceAndStillDamagesTool() in /tmp/DensityTorchAdversarialTests.cs:line 23
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1568" name="FrozenTorch_RefusesRelightUntilThawed" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.FrozenTorch_RefusesRelightUntilThawed" methodname="FrozenTorch_RefusesRelightUntilThawed" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="760162582" result="Failed" start-time="2026-09-26T20:43:34.3646120Z" end-time="2026-09-26T20:43:34.3869410Z" duration="0.022329" asserts="3">
+            <failure>
+              <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.FrozenTorch_RefusesRelightUntilThawed() in /tmp/DensityTorchAdversarialTests.cs:line 25
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.FrozenTorch_RefusesRelightUntilThawed() in /tmp/DensityTorchAdversarialTests.cs:line 25
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1578" name="InvalidBurnRate_TickExtinguishesWithoutAddingFuel" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.InvalidBurnRate_TickExtinguishesWithoutAddingFuel" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-26T20:43:34.3869810Z" end-time="2026-09-26T20:43:34.4500290Z" duration="0.063047" total="4" passed="4" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <test-case id="1574" name="InvalidBurnRate_TickExtinguishesWithoutAddingFuel(float.NaN)" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.InvalidBurnRate_TickExtinguishesWithoutAddingFuel(float.NaN)" methodname="InvalidBurnRate_TickExtinguishesWithoutAddingFuel" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="281316588" result="Passed" start-time="2026-09-26T20:43:34.3870630Z" end-time="2026-09-26T20:43:34.4029750Z" duration="0.015913" asserts="3" />
+            <test-case id="1575" name="InvalidBurnRate_TickExtinguishesWithoutAddingFuel(float.PositiveInfinity)" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.InvalidBurnRate_TickExtinguishesWithoutAddingFuel(float.PositiveInfinity)" methodname="InvalidBurnRate_TickExtinguishesWithoutAddingFuel" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="1313835364" result="Passed" start-time="2026-09-26T20:43:34.4030010Z" end-time="2026-09-26T20:43:34.4172390Z" duration="0.014238" asserts="3" />
+            <test-case id="1576" name="InvalidBurnRate_TickExtinguishesWithoutAddingFuel(-1.0f)" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.InvalidBurnRate_TickExtinguishesWithoutAddingFuel(-1.0f)" methodname="InvalidBurnRate_TickExtinguishesWithoutAddingFuel" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="1423564691" result="Passed" start-time="2026-09-26T20:43:34.4172680Z" end-time="2026-09-26T20:43:34.4335980Z" duration="0.016330" asserts="3" />
+            <test-case id="1577" name="InvalidBurnRate_TickExtinguishesWithoutAddingFuel(0.0f)" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.InvalidBurnRate_TickExtinguishesWithoutAddingFuel(0.0f)" methodname="InvalidBurnRate_TickExtinguishesWithoutAddingFuel" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="471740010" result="Passed" start-time="2026-09-26T20:43:34.4336220Z" end-time="2026-09-26T20:43:34.4495290Z" duration="0.015907" asserts="3" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1573" name="InvalidFuel_RefusesRelightWithoutChangingState" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.InvalidFuel_RefusesRelightWithoutChangingState" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-26T20:43:34.4502050Z" end-time="2026-09-26T20:43:34.5113830Z" duration="0.061178" total="4" passed="4" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="16">
+            <test-case id="1569" name="InvalidFuel_RefusesRelightWithoutChangingState(float.NaN)" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.InvalidFuel_RefusesRelightWithoutChangingState(float.NaN)" methodname="InvalidFuel_RefusesRelightWithoutChangingState" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="641655274" result="Passed" start-time="2026-09-26T20:43:34.4502210Z" end-time="2026-09-26T20:43:34.4665950Z" duration="0.016374" asserts="4" />
+            <test-case id="1570" name="InvalidFuel_RefusesRelightWithoutChangingState(float.PositiveInfinity)" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.InvalidFuel_RefusesRelightWithoutChangingState(float.PositiveInfinity)" methodname="InvalidFuel_RefusesRelightWithoutChangingState" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="693241877" result="Passed" start-time="2026-09-26T20:43:34.4666170Z" end-time="2026-09-26T20:43:34.4806000Z" duration="0.013983" asserts="4" />
+            <test-case id="1571" name="InvalidFuel_RefusesRelightWithoutChangingState(-1.0f)" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.InvalidFuel_RefusesRelightWithoutChangingState(-1.0f)" methodname="InvalidFuel_RefusesRelightWithoutChangingState" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="296454122" result="Passed" start-time="2026-09-26T20:43:34.4806320Z" end-time="2026-09-26T20:43:34.4956710Z" duration="0.015039" asserts="4" />
+            <test-case id="1572" name="InvalidFuel_RefusesRelightWithoutChangingState(0.0f)" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.InvalidFuel_RefusesRelightWithoutChangingState(0.0f)" methodname="InvalidFuel_RefusesRelightWithoutChangingState" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="457302316" result="Passed" start-time="2026-09-26T20:43:34.4957020Z" end-time="2026-09-26T20:43:34.5113360Z" duration="0.015634" asserts="4" />
+          </test-suite>
+          <test-case id="1583" name="LooseStack_ToggleRefusedWithoutSplittingOrChangingState" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.LooseStack_ToggleRefusedWithoutSplittingOrChangingState" methodname="LooseStack_ToggleRefusedWithoutSplittingOrChangingState" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="742254722" result="Passed" start-time="2026-09-26T20:43:34.5114070Z" end-time="2026-09-26T20:43:34.5265830Z" duration="0.015175" asserts="4" />
+          <test-case id="1580" name="ObserverThrows_CommittedTorchAndSuccessReceiptSurvive" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.ObserverThrows_CommittedTorchAndSuccessReceiptSurvive" methodname="ObserverThrows_CommittedTorchAndSuccessReceiptSurvive" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="406660822" result="Passed" start-time="2026-09-26T20:43:34.5266040Z" end-time="2026-09-26T20:43:34.5409380Z" duration="0.014334" asserts="3" />
+          <test-case id="1581" name="OtherEquippedLights_AreNotExtinguishedByTorch" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.OtherEquippedLights_AreNotExtinguishedByTorch" methodname="OtherEquippedLights_AreNotExtinguishedByTorch" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="427803691" result="Passed" start-time="2026-09-26T20:43:34.5409610Z" end-time="2026-09-26T20:43:34.5577890Z" duration="0.016828" asserts="4" />
+          <test-case id="1582" name="RemoteHotSource_CannotIgniteViaFootprintlessAnchor" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.RemoteHotSource_CannotIgniteViaFootprintlessAnchor" methodname="RemoteHotSource_CannotIgniteViaFootprintlessAnchor" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="301658986" result="Passed" start-time="2026-09-26T20:43:34.5578220Z" end-time="2026-09-26T20:43:34.5735500Z" duration="0.015728" asserts="3" />
+          <test-case id="1584" name="SourceWithEmptyFuel_IsNotAnInfiniteIgnitionSource" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.SourceWithEmptyFuel_IsNotAnInfiniteIgnitionSource" methodname="SourceWithEmptyFuel_IsNotAnInfiniteIgnitionSource" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="1576149485" result="Passed" start-time="2026-09-26T20:43:34.5735770Z" end-time="2026-09-26T20:43:34.5894670Z" duration="0.015890" asserts="3" />
+          <test-case id="1566" name="SplittingWetTorch_DoesNotEraseWetness" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.SplittingWetTorch_DoesNotEraseWetness" methodname="SplittingWetTorch_DoesNotEraseWetness" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="1582683121" result="Failed" start-time="2026-09-26T20:43:34.5894890Z" end-time="2026-09-26T20:43:34.6054540Z" duration="0.015965" asserts="3">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.SplittingWetTorch_DoesNotEraseWetness() in /tmp/DensityTorchAdversarialTests.cs:line 21
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.SplittingWetTorch_DoesNotEraseWetness() in /tmp/DensityTorchAdversarialTests.cs:line 21
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1592" name="SupportedEnvironmentSplit_PreservesIndependentEffectOwnerAndLifetime" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.SupportedEnvironmentSplit_PreservesIndependentEffectOwnerAndLifetime" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-26T20:43:34.6054740Z" end-time="2026-09-26T20:43:34.6496220Z" duration="0.044147" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1589" name="SupportedEnvironmentSplit_PreservesIndependentEffectOwnerAndLifetime(&quot;wet&quot;)" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.SupportedEnvironmentSplit_PreservesIndependentEffectOwnerAndLifetime(&quot;wet&quot;)" methodname="SupportedEnvironmentSplit_PreservesIndependentEffectOwnerAndLifetime" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="1299041584" result="Failed" start-time="2026-09-26T20:43:34.6054870Z" end-time="2026-09-26T20:43:34.6208020Z" duration="0.015316" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.SupportedEnvironmentSplit_PreservesIndependentEffectOwnerAndLifetime(String kind) in /tmp/DensityTorchAdversarialTests.cs:line 59
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.SupportedEnvironmentSplit_PreservesIndependentEffectOwnerAndLifetime(String kind) in /tmp/DensityTorchAdversarialTests.cs:line 59
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1590" name="SupportedEnvironmentSplit_PreservesIndependentEffectOwnerAndLifetime(&quot;frozen&quot;)" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.SupportedEnvironmentSplit_PreservesIndependentEffectOwnerAndLifetime(&quot;frozen&quot;)" methodname="SupportedEnvironmentSplit_PreservesIndependentEffectOwnerAndLifetime" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="2030540567" result="Failed" start-time="2026-09-26T20:43:34.6208270Z" end-time="2026-09-26T20:43:34.6358920Z" duration="0.015066" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.SupportedEnvironmentSplit_PreservesIndependentEffectOwnerAndLifetime(String kind) in /tmp/DensityTorchAdversarialTests.cs:line 59
+   at InvokeStub_DensityTorchAdversarialTests.SupportedEnvironmentSplit_PreservesIndependentEffectOwnerAndLifetime(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.SupportedEnvironmentSplit_PreservesIndependentEffectOwnerAndLifetime(String kind) in /tmp/DensityTorchAdversarialTests.cs:line 59
+   at InvokeStub_DensityTorchAdversarialTests.SupportedEnvironmentSplit_PreservesIndependentEffectOwnerAndLifetime(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1591" name="SupportedEnvironmentSplit_PreservesIndependentEffectOwnerAndLifetime(&quot;burning&quot;)" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.SupportedEnvironmentSplit_PreservesIndependentEffectOwnerAndLifetime(&quot;burning&quot;)" methodname="SupportedEnvironmentSplit_PreservesIndependentEffectOwnerAndLifetime" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="1429992614" result="Failed" start-time="2026-09-26T20:43:34.6359170Z" end-time="2026-09-26T20:43:34.6496020Z" duration="0.013686" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.SupportedEnvironmentSplit_PreservesIndependentEffectOwnerAndLifetime(String kind) in /tmp/DensityTorchAdversarialTests.cs:line 59
+   at InvokeStub_DensityTorchAdversarialTests.SupportedEnvironmentSplit_PreservesIndependentEffectOwnerAndLifetime(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.SupportedEnvironmentSplit_PreservesIndependentEffectOwnerAndLifetime(String kind) in /tmp/DensityTorchAdversarialTests.cs:line 59
+   at InvokeStub_DensityTorchAdversarialTests.SupportedEnvironmentSplit_PreservesIndependentEffectOwnerAndLifetime(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1593" name="TorchOffField_IsSavedWithoutModifyingUnrelatedLights" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.TorchOffField_IsSavedWithoutModifyingUnrelatedLights" methodname="TorchOffField_IsSavedWithoutModifyingUnrelatedLights" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="1616041749" result="Passed" start-time="2026-09-26T20:43:34.6496740Z" end-time="2026-09-26T20:43:34.6666580Z" duration="0.016983" asserts="4" />
+          <test-suite type="ParameterizedMethod" id="1588" name="UnknownEffect_SplitRefusesWithoutLosingCountOrState" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.UnknownEffect_SplitRefusesWithoutLosingCountOrState" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-26T20:43:34.6667190Z" end-time="2026-09-26T20:43:34.7106050Z" duration="0.043886" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1585" name="UnknownEffect_SplitRefusesWithoutLosingCountOrState(&quot;equip&quot;)" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.UnknownEffect_SplitRefusesWithoutLosingCountOrState(&quot;equip&quot;)" methodname="UnknownEffect_SplitRefusesWithoutLosingCountOrState" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="1220425218" result="Failed" start-time="2026-09-26T20:43:34.6667470Z" end-time="2026-09-26T20:43:34.6821140Z" duration="0.015367" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.UnknownEffect_SplitRefusesWithoutLosingCountOrState(String route) in /tmp/DensityTorchAdversarialTests.cs:line 48
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.UnknownEffect_SplitRefusesWithoutLosingCountOrState(String route) in /tmp/DensityTorchAdversarialTests.cs:line 48
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1586" name="UnknownEffect_SplitRefusesWithoutLosingCountOrState(&quot;partial&quot;)" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.UnknownEffect_SplitRefusesWithoutLosingCountOrState(&quot;partial&quot;)" methodname="UnknownEffect_SplitRefusesWithoutLosingCountOrState" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="541682335" result="Failed" start-time="2026-09-26T20:43:34.6821370Z" end-time="2026-09-26T20:43:34.6970340Z" duration="0.014898" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  <Entity(torch)>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.UnknownEffect_SplitRefusesWithoutLosingCountOrState(String route) in /tmp/DensityTorchAdversarialTests.cs:line 49
+   at InvokeStub_DensityTorchAdversarialTests.UnknownEffect_SplitRefusesWithoutLosingCountOrState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  <Entity(torch)>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.UnknownEffect_SplitRefusesWithoutLosingCountOrState(String route) in /tmp/DensityTorchAdversarialTests.cs:line 49
+   at InvokeStub_DensityTorchAdversarialTests.UnknownEffect_SplitRefusesWithoutLosingCountOrState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1587" name="UnknownEffect_SplitRefusesWithoutLosingCountOrState(&quot;remove&quot;)" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.UnknownEffect_SplitRefusesWithoutLosingCountOrState(&quot;remove&quot;)" methodname="UnknownEffect_SplitRefusesWithoutLosingCountOrState" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="1068633885" result="Failed" start-time="2026-09-26T20:43:34.6970550Z" end-time="2026-09-26T20:43:34.7105430Z" duration="0.013488" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  <Entity(torch)>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.UnknownEffect_SplitRefusesWithoutLosingCountOrState(String route) in /tmp/DensityTorchAdversarialTests.cs:line 50
+   at InvokeStub_DensityTorchAdversarialTests.UnknownEffect_SplitRefusesWithoutLosingCountOrState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  <Entity(torch)>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.UnknownEffect_SplitRefusesWithoutLosingCountOrState(String route) in /tmp/DensityTorchAdversarialTests.cs:line 50
+   at InvokeStub_DensityTorchAdversarialTests.UnknownEffect_SplitRefusesWithoutLosingCountOrState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1565" name="WetAndDryTorches_DoNotMergeTheirEnvironmentalState" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.WetAndDryTorches_DoNotMergeTheirEnvironmentalState" methodname="WetAndDryTorches_DoNotMergeTheirEnvironmentalState" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="1450904730" result="Failed" start-time="2026-09-26T20:43:34.7106140Z" end-time="2026-09-26T20:43:34.7255240Z" duration="0.014910" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.WetAndDryTorches_DoNotMergeTheirEnvironmentalState() in /tmp/DensityTorchAdversarialTests.cs:line 19
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.WetAndDryTorches_DoNotMergeTheirEnvironmentalState() in /tmp/DensityTorchAdversarialTests.cs:line 19
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1579" name="WetHeldTorch_ExtinguishesWithoutBurningAwayWaterOrFuel" fullname="CavesOfOoo.Tests.DensityTorchAdversarialTests.WetHeldTorch_ExtinguishesWithoutBurningAwayWaterOrFuel" methodname="WetHeldTorch_ExtinguishesWithoutBurningAwayWaterOrFuel" classname="CavesOfOoo.Tests.DensityTorchAdversarialTests" runstate="Runnable" seed="414820093" result="Passed" start-time="2026-09-26T20:43:34.7255580Z" end-time="2026-09-26T20:43:34.7413920Z" duration="0.015834" asserts="4" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

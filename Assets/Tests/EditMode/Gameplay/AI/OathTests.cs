@@ -156,7 +156,7 @@ namespace CavesOfOoo.Tests
         {
             var zone = new Zone("Z");
             var guest = Guest(zone);
-            var raider = Npc(zone, "Snapjaws", 12, 10, "raider");
+            var raider = Npc(zone, "OutlandRaiders", 12, 10, "raider");
 
             Assert.IsTrue(FactionManager.IsHostile(raider, guest), "hostile before the cloth");
 
@@ -291,7 +291,7 @@ namespace CavesOfOoo.Tests
         {
             var zone = new Zone("Z");
             var guest = Guest(zone);
-            var raider = Npc(zone, "Snapjaws", 12, 10, "raider");
+            var raider = Npc(zone, "OutlandRaiders", 12, 10, "raider");
             Claim(guest);
             Assert.IsFalse(FactionManager.IsHostile(raider, guest));
 

@@ -100,6 +100,13 @@ namespace CavesOfOoo.Tests
                 if(!SpreadCompositionPlan.IsWildernessZone(id))continue;
                 p=(ZoneGenerationPipeline)get.Invoke(manager,new object[]{id});
                 bool poi=manager.WorldMap.GetPOI(x,y)!=null;
+                if(id==ReferenceGladePlan.ZoneID)
+                {
+                    Assert.IsFalse(poi,"The playable glade reserves its actual wilderness address.");
+                    Assert.IsTrue(p.Builders.Any(b=>b is ReferenceGladeBuilder));
+                    Assert.IsFalse(p.Builders.Any(b=>b is SpreadCompositionBuilder));
+                    continue;
+                }
                 Assert.AreEqual(!poi,p.Builders.Any(b=>b is SpreadCompositionBuilder),id);
                 if(!poi)sawComposed=true;
             }

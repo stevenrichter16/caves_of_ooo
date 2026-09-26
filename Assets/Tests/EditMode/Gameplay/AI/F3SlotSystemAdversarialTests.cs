@@ -94,7 +94,7 @@ namespace CavesOfOoo.Tests
             // surface as +20 or 0.
             var player = MakePlayer();
             var npc = MakeActor("npc");
-            npc.AddPart(new GrantsRepAsFollowerPart("Snapjaws", 10));
+            npc.AddPart(new GrantsRepAsFollowerPart("OutlandRaiders", 10));
             var zone = new Zone("z");
             zone.AddEntity(player, 5, 5); zone.AddEntity(npc, 6, 5);
             player.GetPart<BrainPart>().CurrentZone = zone;
@@ -108,7 +108,7 @@ namespace CavesOfOoo.Tests
             npc.GetPart<BrainPart>().SetPartyLeader(player);
             part.CheckApplyBonus(player);              // apply +10
 
-            Assert.AreEqual(10, PlayerReputation.Get("Snapjaws"),
+            Assert.AreEqual(10, PlayerReputation.Get("OutlandRaiders"),
                 "After apply→unapply→apply: final rep is +10. " +
                 "Any deviation indicates a bookkeeping mistake.");
         }
@@ -121,7 +121,7 @@ namespace CavesOfOoo.Tests
             // After 5 cycles, rep should be the same as after 0 cycles.
             var player = MakePlayer();
             var npc = MakeActor("npc");
-            npc.AddPart(new GrantsRepAsFollowerPart("Snapjaws", 10));
+            npc.AddPart(new GrantsRepAsFollowerPart("OutlandRaiders", 10));
             var zoneA = new Zone("A");
             var zoneB = new Zone("B");
             zoneA.AddEntity(player, 5, 5);
@@ -142,7 +142,7 @@ namespace CavesOfOoo.Tests
             }
 
             // Final state: player in zoneB, follower in zoneA → unapplied → 0
-            Assert.AreEqual(0, PlayerReputation.Get("Snapjaws"),
+            Assert.AreEqual(0, PlayerReputation.Get("OutlandRaiders"),
                 "5 oscillations → final unapplied state → 0 rep. " +
                 "Any drift (e.g. +50, -50) indicates apply/unapply isn't balanced.");
         }
@@ -192,7 +192,7 @@ namespace CavesOfOoo.Tests
             var player = MakePlayer();
             var bossNpc = MakeActor("boss");
             var minionNpc = MakeActor("minion");
-            minionNpc.AddPart(new GrantsRepAsFollowerPart("Snapjaws", 10));
+            minionNpc.AddPart(new GrantsRepAsFollowerPart("OutlandRaiders", 10));
             var zone = new Zone("z");
             zone.AddEntity(player, 5, 5);
             zone.AddEntity(bossNpc, 7, 5);
@@ -207,7 +207,7 @@ namespace CavesOfOoo.Tests
             var endTurn = GameEvent.New("EndTurn");
             minionNpc.FireEventAndRelease(endTurn);
 
-            Assert.AreEqual(0, PlayerReputation.Get("Snapjaws"),
+            Assert.AreEqual(0, PlayerReputation.Get("OutlandRaiders"),
                 "NPC leader → no player-rep flow.");
         }
 
@@ -225,7 +225,7 @@ namespace CavesOfOoo.Tests
             // conditions-flip case (apply, unapply, apply, ...).
             var player = MakePlayer();
             var npc = MakeActor("npc");
-            npc.AddPart(new GrantsRepAsFollowerPart("Snapjaws", 100));
+            npc.AddPart(new GrantsRepAsFollowerPart("OutlandRaiders", 100));
             var zone = new Zone("z");
             zone.AddEntity(player, 5, 5); zone.AddEntity(npc, 6, 5);
             player.GetPart<BrainPart>().CurrentZone = zone;
@@ -244,7 +244,7 @@ namespace CavesOfOoo.Tests
 
             // After 100 apply-unapply cycles, ending in unapplied state:
             // net rep is zero. No drift.
-            Assert.AreEqual(0, PlayerReputation.Get("Snapjaws"),
+            Assert.AreEqual(0, PlayerReputation.Get("OutlandRaiders"),
                 "100 apply/unapply cycles → net zero rep. No pump exploit.");
         }
 
@@ -292,9 +292,9 @@ namespace CavesOfOoo.Tests
             // → +20 total.
             var player = MakePlayer();
             var npc1 = MakeActor("npc1");
-            npc1.AddPart(new GrantsRepAsFollowerPart("Snapjaws", 10));
+            npc1.AddPart(new GrantsRepAsFollowerPart("OutlandRaiders", 10));
             var npc2 = MakeActor("npc2");
-            npc2.AddPart(new GrantsRepAsFollowerPart("Snapjaws", 10));
+            npc2.AddPart(new GrantsRepAsFollowerPart("OutlandRaiders", 10));
             var zone = new Zone("z");
             zone.AddEntity(player, 5, 5);
             zone.AddEntity(npc1, 6, 5);
@@ -308,18 +308,18 @@ namespace CavesOfOoo.Tests
             npc1.GetPart<GrantsRepAsFollowerPart>().CheckApplyBonus(player);
             npc2.GetPart<GrantsRepAsFollowerPart>().CheckApplyBonus(player);
 
-            Assert.AreEqual(20, PlayerReputation.Get("Snapjaws"),
+            Assert.AreEqual(20, PlayerReputation.Get("OutlandRaiders"),
                 "Two followers, each +10 → +20 total (linear stack).");
         }
 
         [Test]
         public void Adversarial_DifferentFollowers_DifferentFactions_IndependentApply()
         {
-            // npc1 grants Snapjaws rep, npc2 grants Bandits rep.
+            // npc1 grants OutlandRaiders rep, npc2 grants Bandits rep.
             // They apply independently to different factions.
             var player = MakePlayer();
             var npc1 = MakeActor("npc1");
-            npc1.AddPart(new GrantsRepAsFollowerPart("Snapjaws", 10));
+            npc1.AddPart(new GrantsRepAsFollowerPart("OutlandRaiders", 10));
             var npc2 = MakeActor("npc2");
             npc2.AddPart(new GrantsRepAsFollowerPart("Bandits", 5));
             var zone = new Zone("z");
@@ -335,7 +335,7 @@ namespace CavesOfOoo.Tests
             npc1.GetPart<GrantsRepAsFollowerPart>().CheckApplyBonus(player);
             npc2.GetPart<GrantsRepAsFollowerPart>().CheckApplyBonus(player);
 
-            Assert.AreEqual(10, PlayerReputation.Get("Snapjaws"));
+            Assert.AreEqual(10, PlayerReputation.Get("OutlandRaiders"));
             Assert.AreEqual(5, PlayerReputation.Get("Bandits"));
         }
 
@@ -371,10 +371,10 @@ namespace CavesOfOoo.Tests
         [Test]
         public void Adversarial_Parser_ColonWithoutValue_FallsBackToValue()
         {
-            // "Snapjaws:" (colon with empty value) → falls back to Value.
+            // "OutlandRaiders:" (colon with empty value) → falls back to Value.
             var player = MakePlayer();
             var npc = MakeActor("npc");
-            npc.AddPart(new GrantsRepAsFollowerPart("Snapjaws:", 5));
+            npc.AddPart(new GrantsRepAsFollowerPart("OutlandRaiders:", 5));
             var zone = new Zone("z");
             zone.AddEntity(player, 5, 5); zone.AddEntity(npc, 6, 5);
             player.GetPart<BrainPart>().CurrentZone = zone;
@@ -383,17 +383,17 @@ namespace CavesOfOoo.Tests
 
             npc.GetPart<GrantsRepAsFollowerPart>().CheckApplyBonus(player);
 
-            Assert.AreEqual(5, PlayerReputation.Get("Snapjaws"),
+            Assert.AreEqual(5, PlayerReputation.Get("OutlandRaiders"),
                 "Colon without value → fallback to default Value.");
         }
 
         [Test]
         public void Adversarial_Parser_NonNumericColonValue_FallsBackToValue()
         {
-            // "Snapjaws:abc" → can't parse "abc" as int → falls back to Value.
+            // "OutlandRaiders:abc" → can't parse "abc" as int → falls back to Value.
             var player = MakePlayer();
             var npc = MakeActor("npc");
-            npc.AddPart(new GrantsRepAsFollowerPart("Snapjaws:abc", 5));
+            npc.AddPart(new GrantsRepAsFollowerPart("OutlandRaiders:abc", 5));
             var zone = new Zone("z");
             zone.AddEntity(player, 5, 5); zone.AddEntity(npc, 6, 5);
             player.GetPart<BrainPart>().CurrentZone = zone;
@@ -402,7 +402,7 @@ namespace CavesOfOoo.Tests
 
             npc.GetPart<GrantsRepAsFollowerPart>().CheckApplyBonus(player);
 
-            Assert.AreEqual(5, PlayerReputation.Get("Snapjaws"),
+            Assert.AreEqual(5, PlayerReputation.Get("OutlandRaiders"),
                 "Non-numeric colon value → graceful fallback, no crash.");
         }
 
@@ -431,10 +431,10 @@ namespace CavesOfOoo.Tests
         [Test]
         public void Adversarial_Parser_NegativeValueInString_AppliedAsNegative()
         {
-            // Negative deltas are valid: "Snapjaws:-10" decreases rep.
+            // Negative deltas are valid: "OutlandRaiders:-10" decreases rep.
             var player = MakePlayer();
             var npc = MakeActor("npc");
-            npc.AddPart(new GrantsRepAsFollowerPart("Snapjaws:-10", 0));
+            npc.AddPart(new GrantsRepAsFollowerPart("OutlandRaiders:-10", 0));
             var zone = new Zone("z");
             zone.AddEntity(player, 5, 5); zone.AddEntity(npc, 6, 5);
             player.GetPart<BrainPart>().CurrentZone = zone;
@@ -443,7 +443,7 @@ namespace CavesOfOoo.Tests
 
             npc.GetPart<GrantsRepAsFollowerPart>().CheckApplyBonus(player);
 
-            Assert.AreEqual(-10, PlayerReputation.Get("Snapjaws"),
+            Assert.AreEqual(-10, PlayerReputation.Get("OutlandRaiders"),
                 "Negative per-faction values honored (an annoying companion " +
                 "that costs you rep).");
         }

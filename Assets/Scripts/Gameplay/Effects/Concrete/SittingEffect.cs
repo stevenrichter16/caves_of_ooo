@@ -26,7 +26,9 @@ namespace CavesOfOoo.Core
             if (Furniture != null)
             {
                 var chair = Furniture.GetPart<ChairPart>();
-                if (chair != null) chair.Occupied = false;
+                if (chair != null && (chair.Occupant == target
+                    || (chair.Occupant == null && !target.HasTag("Player"))))
+                { chair.Occupied = false; chair.Occupant = null; }
 
                 var bed = Furniture.GetPart<BedPart>();
                 if (bed != null) bed.Occupied = false;

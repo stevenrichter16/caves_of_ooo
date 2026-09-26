@@ -67,7 +67,7 @@ namespace CavesOfOoo.Editor
         /// it with recipe import and the Morrowfast coarse overlay. This method
         /// alone is not the final gameplay art build; use either public command
         /// wrapper or ToolkitImporter.BuildAllFromCommandLine for published art.</summary>
-        public static Report Build(string reportPath=null)
+        public static Report Build(string reportPath=null,string[] sourceAssetPaths=null)
         {
             var report=new Report {startedUtc=DateTime.UtcNow.ToString("O"),status="running",catalogAsset=CatalogPath};
             string destination=Path.GetFullPath(string.IsNullOrEmpty(reportPath)?"Docs/Verification/VoxelWorld/mesh-build.json":reportPath);
@@ -88,6 +88,26 @@ namespace CavesOfOoo.Editor
                 report.prefabCount=prefabs.Length;
                 foreach(var library in new Object[]{village,ring,pilot,ring.EquipmentLibrary})TrackBorrowed(AssetDatabase.GetAssetPath(library),borrowed);
                 var sources=Collect(prefabs,borrowed);
+                var retained=new List<VoxelWorldMeshCatalog.Binding>();
+                if(sourceAssetPaths!=null)
+                {
+                    var selected=new HashSet<string>(sourceAssetPaths,StringComparer.Ordinal);
+                    if(selected.Count==0||selected.Count!=sourceAssetPaths.Length||selected.Any(p=>string.IsNullOrEmpty(p)||!sources.Any(s=>s.Path==p)))
+                        throw new ArgumentException("Select distinct native source asset paths with actual meshes.");
+                    var accepted=AssetDatabase.LoadAssetAtPath<VoxelWorldMeshCatalog>(CatalogPath);
+                    if(accepted==null||accepted.Bindings==null)throw new InvalidOperationException("Bounded voxel bake requires the accepted catalog.");
+                    // Imported FBX replacement can invalidate its old local mesh IDs.
+                    // Match their persistent file GUID prefix even when Source is null.
+                    var prefixes=selected.Select(p=>AssetDatabase.AssetPathToGUID(p)+"_").ToArray();
+                    if(prefixes.Any(p=>p=="_"))throw new InvalidOperationException("Selected source has no persistent GUID.");
+                    foreach(var row in accepted.Bindings)
+                    {
+                        if(row==null)throw new InvalidOperationException("Accepted voxel catalog contains an invalid row.");
+                        if(prefixes.Any(prefix=>row.SourceKey!=null&&row.SourceKey.StartsWith(prefix,StringComparison.Ordinal)))continue;
+                        retained.Add(row);
+                    }
+                    sources=sources.Where(s=>selected.Contains(s.Path)).ToList();
+                }
                 if(sources.Count==0)throw new InvalidOperationException("No native model meshes were found.");
                 // Validate and bake every mesh in memory before touching destinations.
                 // Asset publication below keeps existing GUIDs; the catalog table is
@@ -125,7 +145,8 @@ namespace CavesOfOoo.Editor
                 ApplyObjectPalettes(prepared);
                 CheckBorrowed(borrowed);
                 EnsureFolder(ArtRoot+"/Meshes");EnsureFolder("Assets/Resources/VoxelWorld");
-                var bindings=new List<VoxelWorldMeshCatalog.Binding>(prepared.Count);
+                // Keep unrelated toolkit and Morrowfast coarse overrides intact.
+                var bindings=new List<VoxelWorldMeshCatalog.Binding>(retained);
                 foreach(var entry in prepared)
                 {
                     string path=entry.Report.outputPath;var mesh=AssetDatabase.LoadAssetAtPath<Mesh>(path);

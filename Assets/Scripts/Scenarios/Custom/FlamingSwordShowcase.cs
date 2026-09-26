@@ -8,7 +8,7 @@ namespace CavesOfOoo.Scenarios.Custom
     ///
     /// Setup (player at center; coordinates are player-relative):
     ///
-    ///       . . [Snapjaw NE: HR=0 — Fire NOT reduced]
+    ///       . . [MarlbackScrabbler NE: HR=0 — Fire NOT reduced]
     ///       . . .
     ///   [Player]   [Glowmaw E: HR=50 — Fire HALVED]
     ///       . . .
@@ -29,9 +29,9 @@ namespace CavesOfOoo.Scenarios.Custom
     ///   [FlameDemo] glowmaw incoming: amount=8 FIRE HR=50 attrs=[Melee,Strength,Cutting,Fire,LongBlades]
     ///   (Glowmaw HP drops by ~4, not 8 — HeatResistance halved it)
     ///
-    ///   --- Swing FlamingSword at Snapjaw NE ---
-    ///   [FlameDemo] snapjaw incoming: amount=8 FIRE HR=0 attrs=[Melee,Strength,Cutting,Fire,LongBlades]
-    ///   (Snapjaw HP drops by ~8 — no Heat resistance, full Fire damage)
+    ///   --- Swing FlamingSword at MarlbackScrabbler NE ---
+    ///   [FlameDemo] marlback incoming: amount=8 FIRE HR=0 attrs=[Melee,Strength,Cutting,Fire,LongBlades]
+    ///   (MarlbackScrabbler HP drops by ~8 — no Heat resistance, full Fire damage)
     ///
     ///   --- Swap to ShortSword (inventory `i` to swap), swing at Glowmaw SE ---
     ///   [FlameDemo] glowmaw incoming: amount=6 non-fire HR=50 attrs=[Melee,Strength,Cutting,LongBlades]
@@ -44,7 +44,7 @@ namespace CavesOfOoo.Scenarios.Custom
     [Scenario(
         name: "FlamingSword Showcase",
         category: "Combat",
-        description: "Phase C × Phase E showcase: FlamingSword's Fire attribute halved by Glowmaw's HeatResistance (50), full damage on a non-resistant Snapjaw, and a non-Fire ShortSword unaffected by HeatResistance.")]
+        description: "Phase C × Phase E showcase: FlamingSword's Fire attribute halved by Glowmaw's HeatResistance (50), full damage on a non-resistant MarlbackScrabbler, and a non-Fire ShortSword unaffected by HeatResistance.")]
     public class FlamingSwordShowcase : IScenario
     {
         public void Apply(ScenarioContext ctx)
@@ -75,18 +75,18 @@ namespace CavesOfOoo.Scenarios.Custom
             if (glowmawHeatResist != null)
                 glowmawHeatResist.AddPart(new FlamingSwordDemoProbePart());
 
-            // === Snapjaw NE: no HeatResistance — Fire NOT reduced ===
+            // === MarlbackScrabbler NE: no HeatResistance — Fire NOT reduced ===
             // The control for "does the Fire attribute matter at all on a
             // target without HeatResistance?" Answer: no — full damage.
-            // Snapjaw blueprint declares ColdResistance (25), which is
+            // MarlbackScrabbler blueprint declares ColdResistance (25), which is
             // unrelated and irrelevant to a Fire-tagged hit.
-            var snapjawNoHeatResist = ctx.Spawn("Snapjaw")
+            var marlbackNoHeatResist = ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 200)
                 .WithHpAbsolute(200)
                 .AsPersonalEnemyOf(ctx.PlayerEntity)
                 .At(p.x + 3, p.y - 2);
-            if (snapjawNoHeatResist != null)
-                snapjawNoHeatResist.AddPart(new FlamingSwordDemoProbePart());
+            if (marlbackNoHeatResist != null)
+                marlbackNoHeatResist.AddPart(new FlamingSwordDemoProbePart());
 
             // === Glowmaw SE: HeatResistance=50, but swing the ShortSword ===
             // The control for "does HeatResistance affect non-Fire damage?"
@@ -106,7 +106,7 @@ namespace CavesOfOoo.Scenarios.Custom
             ctx.Log("=== FlamingSword Showcase (Phase C × Phase E) ===");
             ctx.Log("Loadout: FlamingSword equipped, ShortSword in inventory.");
             ctx.Log("E  (Glowmaw  HR=50): swing FlamingSword. Fire damage HALVED.");
-            ctx.Log("NE (Snapjaw  HR=0):  swing FlamingSword. Fire damage NOT reduced.");
+            ctx.Log("NE (MarlbackScrabbler  HR=0):  swing FlamingSword. Fire damage NOT reduced.");
             ctx.Log("SE (Glowmaw  HR=50): swap to ShortSword. Non-Fire damage NOT reduced.");
             ctx.Log("Watch for [FlameDemo] log lines on each hit — they show the");
             ctx.Log("damage's attribute list and the target's HeatResistance live.");

@@ -130,9 +130,9 @@ namespace CavesOfOoo.Tests
         //    AND emits floating numbers for them too
         //    Cold-eye Finding 9: pin the LINE-strike + visual-feedback
         //    contract end-to-end. The user originally reported "tripwire
-        //    doesn't work" because the snapjaw at the FAR segment took
+        //    doesn't work" because the marlback at the FAR segment took
         //    silent damage (no number, no message). After the
-        //    damage-numbers-on-ApplyDamage fix, the snapjaw's hit MUST
+        //    damage-numbers-on-ApplyDamage fix, the marlback's hit MUST
         //    surface as a visible number. This test pins that.
         // ====================================================================
 

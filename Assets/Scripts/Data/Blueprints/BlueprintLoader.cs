@@ -19,9 +19,9 @@ namespace CavesOfOoo.Data
     ///       "Tags": { "Creature": "" }
     ///     },
     ///     {
-    ///       "Name": "Snapjaw",
+    ///       "Name": "MarlbackScrabbler",
     ///       "Inherits": "Creature",
-    ///       "Parts": { "Render": { "DisplayName": "snapjaw", "RenderString": "s", "ColorString": "&amp;w" } },
+    ///       "Parts": { "Render": { "DisplayName": "marlback", "RenderString": "s", "ColorString": "&amp;w" } },
     ///       "Stats": { "Hitpoints": { "Value": 15 }, "Strength": { "Value": 16 } }
     ///     }
     ///   ]

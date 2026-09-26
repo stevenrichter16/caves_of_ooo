@@ -77,7 +77,7 @@ Per Phase 3, the Thinning (Gens 34-36) is the Root's holding-field weakening and
 - **Recension (`02`)** — the Wall-of-Names archetype hosts a Recension sub-station; villager plaque-tending and Recension re-membering are kindred crafts; Re-Membering hosting is a major village service (design file §VIII).
 - **Pale Curation (`03`)** — village preservation traditions (Salt-Cure, Honey-Seal) intersect Pale Curation supply contracts; the unwanted-Catcher-cell quest hook (Patch-Bright archetype) is the village-side of the `09` faction.
 - **Saccharine Concord (`04`)** — the Patch-Bright archetype is Concord-aligned; the Concord runs the longest surface-to-catacomb supply lines and the largest Glow-Quartz mine (per `04`, IDEAS.md:801). Light-economy trade is the villager-Concord spine.
-- **Bower-Folk (`05`)** — they treasure the most beautiful patches and rare-spectrum strains; Bower-Folk installations and Glow-moth displays appear inside aesthetically-rich villages; the villager Cleaner and Bower-Folk Cleaner are kin crafts.
+- **Bower-Folk (`05`)** — they treasure the most beautiful patches and rare-spectrum strains; Bower-Folk installations and Grove lantern-moth displays appear inside aesthetically-rich villages; the villager Cleaner and Bower-Folk Cleaner are kin crafts.
 - **Imminent Archive (`09`)** — Catcher cells embedded in villages the village can no longer endorse but cannot evict (design file §IX, Patch-Bright; `09` Penitent-cell content).
 - **Tent-Right (`07`)** — adjacent guest-protection logic; villager cave-quiet sign language overlaps Tent-Right surface-sign (design file §VI). Two different cultures, same hospitality instinct.
 

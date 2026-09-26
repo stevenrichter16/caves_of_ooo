@@ -1,0 +1,32 @@
+{
+  "total": "20",
+  "passed": "14",
+  "failed": "6",
+  "failures": [
+    {
+      "test": "CavesOfOoo.Tests.DensityContainerLockAuthorityTests.EitherLockAuthorityBlocksActualOpenEvent(True,False)",
+      "message": "  Expected: 0\n  But was:  1\n"
+    },
+    {
+      "test": "CavesOfOoo.Tests.DensityContainerLockAuthorityTests.EitherLockAuthorityBlocksPutWithoutOwnershipMutation(True,False)",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "test": "CavesOfOoo.Tests.DensityContainerLockAuthorityTests.EitherLockAuthorityBlocksTakeAllWithoutOwnershipMutation(True,False)",
+      "message": "  Expected: 0\n  But was:  1\n"
+    },
+    {
+      "test": "CavesOfOoo.Tests.DensityContainerLockAuthorityTests.EitherLockAuthorityBlocksTakeWithoutOwnershipMutation(True,False)",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "test": "CavesOfOoo.Tests.DensityContainerLockAuthorityTests.MenuDoesNotOfferOpenThroughEitherLockOrDuplicateUnlock(True,False)",
+      "message": "  Expected: 0\n  But was:  1\n"
+    },
+    {
+      "test": "CavesOfOoo.Tests.DensityContainerLockAuthorityTests.MenuDoesNotOfferOpenThroughEitherLockOrDuplicateUnlock(True,True)",
+      "message": "  Expected: 1\n  But was:  2\n"
+    }
+  ],
+  "boundary": "Real factory locked chest, adjacent ordinary player; unchanged core. Open event and actual take/take-all/put must honor either authority. Menu checks duplicate Unlock."
+}

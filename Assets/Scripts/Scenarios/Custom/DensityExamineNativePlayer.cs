@@ -109,7 +109,7 @@ namespace CavesOfOoo.Scenarios.Custom
             Require(place != null, "clear cardinal neighbor for an explicit signpost fixture");
             _sign = _context.Factory.CreateEntity("Signpost");
             Require(_stagedZone.AddEntity(_sign, place.X, place.Y), "factory signpost placement");
-            foreach (string blueprint in new[] { "WarlordCleaver", "IronshodBoots" })
+            foreach (string blueprint in new[] { "BreacherCleaver", "IronshodBoots" })
             {
                 var item = _context.Factory.CreateEntity(blueprint);
                 Require(item != null && _input.PlayerEntity.GetPart<InventoryPart>().AddObject(item), "stage " + blueprint);
@@ -282,7 +282,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 complete = Complete, errorsFinalized = _errorsFinalized, seconds = _clock?.Elapsed.TotalSeconds ?? 0,
                 zone = _stagedZone?.ZoneID, fatal = _fatal, audit = _audit.ToArray(), screenshots = _screenshots.ToArray(), descriptions = _descriptions.ToArray(),
                 canVerify = "Native N bootstrap; actual keyboard look/world-action and inventory/action/announcement paths; one visible Examine per item; expected live description strings; same-row return and no turn/HP/effect/item cost; no destination generation or travel note; screenshot files.",
-                cannotVerify = "Explicitly staged factory Signpost, WarlordCleaver with Serrated tier 2 and IronshodBoots in an owned disposable game; HealingTonic is the real designed starter stack. No natural acquisition, placement frequency, balance or ordinary progression claim. Reflection observes UI fields only. Screenshots require separate visual inspection for legibility/orientation. Unexpected errors count Application.logMessageReceived only; native backend messages require separate console review."
+                cannotVerify = "Explicitly staged factory Signpost, BreacherCleaver with Serrated tier 2 and IronshodBoots in an owned disposable game; HealingTonic is the real designed starter stack. No natural acquisition, placement frequency, balance or ordinary progression claim. Reflection observes UI fields only. Screenshots require separate visual inspection for legibility/orientation. Unexpected errors count Application.logMessageReceived only; native backend messages require separate console review."
             }, true));
             Debug.Log("[DensityExamineNative] report=" + ReportPath + " failures=" + Failures);
         }

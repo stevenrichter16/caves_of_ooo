@@ -53,7 +53,7 @@ namespace CavesOfOoo.Tests.Scenarios
 
             string[] expectedBlueprints =
             {
-                "Snapjaw", "SnapjawHunter", "IceWight", "CharredHusk",
+                "MarlbackScrabbler", "MarlbackTunnelguard", "IceWight", "CharredHusk",
                 "Glowmaw", "StoneGolem", "BrassHusk", "CaveSlime", "Scorpion",
             };
 
@@ -91,8 +91,8 @@ namespace CavesOfOoo.Tests.Scenarios
                 .GroupBy(e => e.BlueprintName)
                 .ToDictionary(g => g.Key, g => g.First());
 
-            AssertResistance(byBlueprint, "Snapjaw",        "ColdResistance",     25);
-            AssertResistance(byBlueprint, "SnapjawHunter",  "ColdResistance",     50);
+            AssertResistance(byBlueprint, "MarlbackScrabbler",        "ColdResistance",     25);
+            AssertResistance(byBlueprint, "MarlbackTunnelguard",  "ColdResistance",     50);
             AssertResistance(byBlueprint, "IceWight",       "ColdResistance",    100);
             AssertResistance(byBlueprint, "IceWight",       "HeatResistance",    -50);
             AssertResistance(byBlueprint, "CharredHusk",    "HeatResistance",    100);

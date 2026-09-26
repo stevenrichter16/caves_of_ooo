@@ -250,60 +250,67 @@ def draw_role_prop(draw, role, facing, state, phase, top, foot, cx, palette):
         draw.line((cx - 4, top + 5, cx - 6 - extension, top + 1), fill=palette.accent_light)
 
 
-def snapjaw_frame(facing, state, frame):
+def marlback_frame(facing, state, frame, role="scrabbler"):
+    """Low shale-backed bank burrower, with a short face and broad digging hands."""
     image = blank()
     draw = ImageDraw.Draw(image)
-    body_dark = rgba((91, 50, 32))
-    body = rgba((151, 80, 42))
-    body_light = rgba((207, 126, 62))
-    muzzle = rgba((191, 151, 86))
-    accent = rgba((224, 194, 87))
+    mud, shale, edge = rgba((74, 66, 49)), rgba((109, 120, 100)), rgba((156, 154, 128))
     bob = -1 if state == 1 and frame in (1, 3) else 0
-    attack = (0, 1, 3, 1)[frame] if state == 2 else 0
-
-    if facing in (1, 2):
-        # East profile, mirrored for west.
-        draw.line((4, 13 + bob, 2, 10 + bob), fill=body_dark, width=2)
-        draw.polygon([(4, 10 + bob), (10, 9 + bob), (12, 14 + bob),
-                      (10, 19 + bob), (4, 18 + bob)], fill=body)
-        draw.rectangle((4, 14 + bob, 6, 18 + bob), fill=body_dark)
-        draw.rectangle((5, 18, 7, 22), fill=body_dark)
-        draw.rectangle((10, 18, 12, 22), fill=body)
-        draw.rectangle((4, 22, 7, 22), fill=DEEP)
-        draw.rectangle((10, 22, 13, 22), fill=DEEP)
-        draw.polygon([(9, 5 + bob), (13, 7 + bob), (14, 11 + bob),
-                      (10, 13 + bob), (8, 9 + bob)], fill=body)
-        draw.polygon([(9, 5 + bob), (10, 2 + bob), (12, 6 + bob)], fill=body_dark)
-        draw.polygon([(12, 6 + bob), (14, 3 + bob), (14, 8 + bob)], fill=body_dark)
-        draw.rectangle((12, 9 + bob, 14 + attack, 11 + bob), fill=muzzle)
-        draw.point((12, 7 + bob), fill=accent)
-        draw.line((8, 12 + bob, 12 + attack, 15 + bob), fill=body_light, width=2)
-        result = add_outline(image)
-        return ImageOps.mirror(result) if facing == 1 else result
-
-    draw.line((4, 12 + bob, 2, 9 + bob), fill=body_dark, width=2)
-    draw.line((12, 12 + bob, 14, 9 + bob), fill=body_dark, width=2)
-    draw.polygon([(5, 9 + bob), (11, 9 + bob), (13, 17 + bob),
-                  (10, 19 + bob), (6, 19 + bob), (3, 17 + bob)], fill=body)
-    draw.rectangle((4, 12 + bob, 5, 18 + bob), fill=body_dark)
-    draw.rectangle((5, 18, 7, 22), fill=body_dark)
-    draw.rectangle((9, 18, 11, 22), fill=body)
-    draw.rectangle((4, 22, 7, 22), fill=DEEP)
-    draw.rectangle((9, 22, 12, 22), fill=DEEP)
-    if facing == 0:
-        draw.polygon([(5, 5 + bob), (8, 3 + bob), (11, 5 + bob),
-                      (12, 10 + bob), (8, 12 + bob), (4, 10 + bob)], fill=body)
-        draw.polygon([(5, 6 + bob), (4, 2 + bob), (7, 5 + bob)], fill=body_dark)
-        draw.polygon([(10, 5 + bob), (12, 2 + bob), (11, 7 + bob)], fill=body_dark)
-        draw.rectangle((6, 8 + bob, 10, 11 + bob + min(attack, 1)), fill=muzzle)
-        draw.point((6, 7 + bob), fill=accent)
-        draw.point((10, 7 + bob), fill=accent)
-    else:
-        draw.polygon([(5, 5 + bob), (8, 3 + bob), (11, 5 + bob),
-                      (12, 10 + bob), (8, 12 + bob), (4, 10 + bob)], fill=body_dark)
-        draw.line((6, 6 + bob, 10, 6 + bob), fill=body_light)
+    reach = (0, 1, 2, 0)[frame] if state == 2 else 0
+    # Unlike a standing canine, the wide mineral back is above the small face.
+    draw.polygon([(3, 13+bob), (2, 16+bob), (4, 20), (12, 20),
+                  (14, 16+bob), (12, 13+bob)], fill=mud)
+    for row, left, right in [(10, 5, 10), (12, 3, 12), (14, 2, 13)]:
+        draw.polygon([(left+1, row-1+bob), (right-1, row-1+bob),
+                      (right, row+1+bob), (left, row+2+bob)], fill=shale)
+        draw.line((left+1, row-1+bob, right-1, row-1+bob), fill=edge)
+    # Feet and splayed rakes remain within the 16-pixel ownership cell.
+    draw.rectangle((3, 20, 5, 21), fill=mud); draw.rectangle((10, 20, 12, 21), fill=mud)
+    for x in (1, 2, 3, 12, 13, 14):
+        draw.point((x, 19 + (reach if x > 8 else 0)), fill=edge)
+    if facing != 3:
+        draw.rounded_rectangle((5, 16+bob, 10, 19+bob), radius=1, fill=shale)
+        draw.point((6, 17+bob), fill=INK); draw.point((9, 17+bob), fill=INK)
+        draw.line((6, 19+bob, 9, 19+bob), fill=mud)
+    if role == "gleaner":
+        draw.line((5, 10+bob, 4, 13+bob), fill=rgba((192, 159, 105)))
+        draw.line((10, 10+bob, 11, 13+bob), fill=rgba((192, 159, 105)))
+    elif role == "tunnelguard":
+        draw.rectangle((11, 15+bob, 13, 17+bob), fill=rgba((67, 77, 74)))
+        draw.line((11, 16+bob, 13, 16+bob), fill=edge)
+    elif role == "wallkeeper":
+        draw.line((5, 10+bob, 4, 16+bob), fill=rgba((137, 114, 75)))
+        draw.line((10, 10+bob, 11, 16+bob), fill=rgba((137, 114, 75)))
+        draw.point((4, 14+bob), fill=rgba((84, 67, 47)))
+    elif role == "breacher":
+        draw.polygon([(3, 14+bob), (6, 13+bob), (7, 16+bob), (3, 17+bob)], fill=edge)
+        draw.polygon([(9, 13+bob), (12, 14+bob), (12, 17+bob), (8, 16+bob)], fill=edge)
     if state == 3 and frame in (1, 2):
-        draw.line((5, 13, 11, 13), fill=rgba((235, 151, 103)))
+        draw.line((5, 14+bob, 10, 14+bob), fill=rgba((188, 173, 137)))
+    result = add_outline(image)
+    if facing in (1, 2):
+        # Offset the blunt face one pixel in profile; no snout or pointed ears.
+        face = result.crop((4, 16+bob, 11, 20+bob))
+        result.paste((0, 0, 0, 0), (4, 16+bob, 11, 20+bob))
+        result.alpha_composite(face, (5, 16+bob))
+        if facing == 1: result = ImageOps.mirror(result)
+    return result
+
+
+def lantern_moth_frame(facing, state, frame):
+    """Hand-sized pale moth: three quiet wing bars, no emissive paint."""
+    image = blank(); draw = ImageDraw.Draw(image)
+    flap = (0, 1, 2, 1)[frame] if state in (0, 1, 2) else 1
+    pale, bar = rgba((205, 204, 175)), rgba((153, 160, 140))
+    draw.polygon([(7, 12), (2+flap, 10), (1+flap, 14),
+                  (3+flap, 17), (7, 15)], fill=pale)
+    draw.polygon([(8, 12), (13-flap, 10), (14-flap, 14),
+                  (12-flap, 17), (8, 15)], fill=pale)
+    for offset in range(3):
+        draw.point((3+flap+offset, 12+offset), fill=bar)
+        draw.point((12-flap-offset, 12+offset), fill=bar)
+    draw.line((7, 11, 7, 16), fill=rgba((129, 119, 87)))
+    draw.point((6, 10), fill=bar); draw.point((8, 10), fill=bar)
     return add_outline(image)
 
 
@@ -547,7 +554,9 @@ def main():
     save_actor("elder", lambda f, s, i: humanoid_frame(PALETTES["elder"], f, s, i, "elder"))
     save_actor("warden", lambda f, s, i: humanoid_frame(PALETTES["warden"], f, s, i, "warden"))
     save_actor("child", lambda f, s, i: humanoid_frame(PALETTES["child"], f, s, i, "child", child=True))
-    save_actor("snapjaw", snapjaw_frame)
+    for role in ("scrabbler", "gleaner", "tunnelguard", "wallkeeper", "breacher"):
+        save_actor("marlback_" + role, lambda f, s, i, r=role: marlback_frame(f, s, i, r))
+    save_actor("grove_lantern_moth", lantern_moth_frame)
     save_actor("sari_snake", lambda f, s, i: snake_frame(f, s, i, False))
     save_actor("wardline", lambda f, s, i: snake_frame(f, s, i, True))
     save_actor("cascade_father", lambda f, s, i: frog_frame(f, s, i, False))

@@ -1,0 +1,31 @@
+{
+  "scope": "Read-only audit only; private probes, no production edits. Bounded standalone generation and actual action events, no native UI. Runtime roster predates requested enemy replacement.",
+  "zones": 190,
+  "blueprints": 492,
+  "live_scenery_blueprints": 115,
+  "raw_examine_only_candidates": 54,
+  "all_creature_tagged_including_base_and_player": 106,
+  "effective_harvest_configs": 17,
+  "result": {
+    "total": "3",
+    "passed": "1",
+    "failed": "2",
+    "duration": "3.407142"
+  },
+  "confirmed_private_event_failures": [
+    {
+      "name": "CavesOfOoo.Tests.DensitySceneryAuditTests.Audit_HarvestOwnershipAndSingleUseHypothesis(\"spent\")",
+      "message": "  a spent corpse must not create another yield\n  Expected: 1\n  But was:  2\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySceneryAuditTests.Audit_HarvestOwnershipAndSingleUseHypothesis(\"foreign\")",
+      "message": "  an actor must not harvest another owner's inventory\n  Expected: 0\n  But was:  1\n"
+    }
+  ],
+  "source_hashes": {
+    "Assets/Resources/Content/Blueprints/Objects.json": "906fc8ba3ebbf7cb150a337e155036ac34d354781335f3752d1afd7a50570e31",
+    "Assets/Scripts/Gameplay/Items/HarvestablePart.cs": "94c9ffa0c2b4648fc8c29eb5deb25ecc9fa2da2fc7241ab056d33c03c52281af",
+    "Assets/Scripts/Gameplay/Entities/CorpsePart.cs": "3527ed6c3db2548b62cd81ab17c95556864c8b9bbef99d60927718a60f9080bc"
+  },
+  "bounds": "150 C1 sample zones + 5 Morrowfast + 35 seven-culture settlements. Event queries use a Player placed at 2,2; verbs whose declaration depends on exact reach/context may be absent. No claim that raw Examine-only candidates lack passive, movement, global-key, repair, physics or material behavior. Hash-patched standalone maps differ from Unity. No overall biodiversity/food economy or user-facing replay exploit claim without routed UI proof."
+}

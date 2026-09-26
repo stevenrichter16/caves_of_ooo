@@ -88,7 +88,7 @@ namespace CavesOfOoo.Tests
             // inspector block.
             AIDebug.AIInspectorEnabled = false;
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").AtPlayerOffset(3, 0);
+            var snapjaw = ctx.Spawn("MarlbackScrabbler").AtPlayerOffset(3, 0);
 
             var pos = ctx.Zone.GetEntityPosition(snapjaw);
             var snap = LookQueryService.BuildSnapshot(
@@ -114,7 +114,7 @@ namespace CavesOfOoo.Tests
             // contains the section header "Goals:" and a "Thought:" line.
             AIDebug.AIInspectorEnabled = true;
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").AtPlayerOffset(3, 0);
+            var snapjaw = ctx.Spawn("MarlbackScrabbler").AtPlayerOffset(3, 0);
             // Fire one tick so the brain pushes at least BoredGoal
             // (brand-new creatures have Goals.Count == 0 until first turn).
             snapjaw.FireEvent(GameEvent.New("TakeTurn"));
@@ -144,7 +144,7 @@ namespace CavesOfOoo.Tests
             // visually. If a refactor drops the indent, this fires.
             AIDebug.AIInspectorEnabled = true;
             var ctx = _harness.CreateContext();
-            var snapjaw = ctx.Spawn("Snapjaw").AtPlayerOffset(3, 0);
+            var snapjaw = ctx.Spawn("MarlbackScrabbler").AtPlayerOffset(3, 0);
             snapjaw.FireEvent(GameEvent.New("TakeTurn"));
 
             var pos = ctx.Zone.GetEntityPosition(snapjaw);
@@ -172,7 +172,7 @@ namespace CavesOfOoo.Tests
             // collapse doesn't interfere.
             AIDebug.AIInspectorEnabled = true;
             var ctx = _harness.CreateContext();
-            var creature = ctx.Spawn("Snapjaw").AtPlayerOffset(3, 0);
+            var creature = ctx.Spawn("MarlbackScrabbler").AtPlayerOffset(3, 0);
             var brain = creature.GetPart<BrainPart>();
             brain.ClearGoals();
             // Push 11 goals with unique descriptions. Expected: 8 rendered
@@ -203,7 +203,7 @@ namespace CavesOfOoo.Tests
             // surface verbatim on the "Thought: <x>" line.
             AIDebug.AIInspectorEnabled = true;
             var ctx = _harness.CreateContext();
-            var creature = ctx.Spawn("Snapjaw").AtPlayerOffset(3, 0);
+            var creature = ctx.Spawn("MarlbackScrabbler").AtPlayerOffset(3, 0);
             var brain = creature.GetPart<BrainPart>();
             brain.Think("chasing prey");
 

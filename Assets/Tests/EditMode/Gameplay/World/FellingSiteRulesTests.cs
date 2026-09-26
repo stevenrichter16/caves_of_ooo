@@ -77,7 +77,7 @@ namespace CavesOfOoo.Tests
                 var e=GameEvent.New("InventoryAction");e.SetParameter("Command","PlantSeed");e.SetParameter("Actor",(object)_actor);e.SetParameter("Zone",(object)_zone);
                 seed.FireEventAndRelease(e);
                 Assert.IsTrue(inv.Objects.Contains(seed));Assert.IsFalse(_zone.GetCell(10,10).HasObjectWithPart<CropPart>());
-                Assert.IsFalse(MessageLog.GetMessages().Any(m=>m.Contains(" plants ")));
+                Assert.IsFalse(MessageLog.GetMessages().Any(m=>m.StartsWith("You plant ",System.StringComparison.Ordinal)));
             }
             finally { SeedPart.Factory=previous; }
         }

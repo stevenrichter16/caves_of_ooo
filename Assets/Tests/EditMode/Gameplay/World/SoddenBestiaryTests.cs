@@ -53,7 +53,7 @@ namespace CavesOfOoo.Tests
 
         private static Entity Attacker(Zone zone, int x, int y, int hp = 30)
         {
-            var e = new Entity { ID = "atk" + x + "_" + y, BlueprintName = "Snapjaw" };
+            var e = new Entity { ID = "atk" + x + "_" + y, BlueprintName = "MarlbackScrabbler" };
             e.Tags["Creature"] = "";
             e.AddPart(new RenderPart { DisplayName = "attacker" });
             e.Statistics["Hitpoints"] = new Stat

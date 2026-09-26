@@ -5,7 +5,7 @@ namespace CavesOfOoo.Scenarios.Custom
     /// spawns three creatures with distinct behaviors so the inspector's
     /// rendering has something to show across the major goal types:
     ///
-    /// - Snapjaw   (hostile)  → KillGoal targeting the player once in sight.
+    /// - MarlbackScrabbler   (hostile)  → KillGoal targeting the player once in sight.
     /// - Warden    (guard)    → BoredGoal scanning post; may retreat at low HP.
     /// - VillageChild (pet)   → BoredGoal / WanderRandomlyGoal, occasional PetGoal.
     ///
@@ -17,7 +17,7 @@ namespace CavesOfOoo.Scenarios.Custom
     ///       KillGoal: target=player
     ///       BoredGoal
     ///     Thought: attacking player
-    /// - Goals/thought update live as the NPC ticks. The Snapjaw's Thought
+    /// - Goals/thought update live as the NPC ticks. The MarlbackScrabbler's Thought
     ///   cycles through "closing on player" → "attacking player" → etc as
     ///   its KillGoal branches.
     ///
@@ -29,7 +29,7 @@ namespace CavesOfOoo.Scenarios.Custom
     [Scenario(
         name: "Inspect AI Goals (Phase 10)",
         category: "Debug",
-        description: "Enables AI goal-stack inspector; spawns Snapjaw + Warden + VillageChild. Look-mode ('L') on each creature shows their goal stack + last thought in the sidebar.")]
+        description: "Enables AI goal-stack inspector; spawns MarlbackScrabbler + Warden + VillageChild. Look-mode ('L') on each creature shows their goal stack + last thought in the sidebar.")]
     public class InspectAIGoals : IScenario
     {
         public void Apply(ScenarioContext ctx)
@@ -51,11 +51,11 @@ namespace CavesOfOoo.Scenarios.Custom
                 ctx.World.ClearCell(p.x + dx, p.y + 1);
             }
 
-            // Snapjaw 6 east — within sight radius, so BoredGoal's hostile
+            // MarlbackScrabbler 6 east — within sight radius, so BoredGoal's hostile
             // scan immediately promotes to KillGoal targeting the player.
             // Great first sample for the inspector (Thought cycles on each
             // approach/attack tick).
-            ctx.Spawn("Snapjaw").AtPlayerOffset(6, 0);
+            ctx.Spawn("MarlbackScrabbler").AtPlayerOffset(6, 0);
 
             // Warden 3 north-east — AIGuardPart from M1.1 pushes GuardGoal
             // which stays as BoredGoal until hostile appears. Shows the

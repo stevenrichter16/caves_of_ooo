@@ -60,17 +60,17 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_SpellFxShowcase()
             => ScenarioRunner.Launch<SpellFxShowcase>();
 
-        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Five Snapjaw Ambush", priority = 100)]
-        private static void Launch_FiveSnapjawAmbush()
-            => ScenarioRunner.Launch<FiveSnapjawAmbush>();
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Five MarlbackScrabbler Ambush", priority = 100)]
+        private static void Launch_FiveMarlbackScrabblerAmbush()
+            => ScenarioRunner.Launch<FiveMarlbackScrabblerAmbush>();
 
-        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Snapjaw Ring Ambush (x8)", priority = 101)]
-        private static void Launch_SnapjawRingAmbush()
-            => ScenarioRunner.Launch<SnapjawRingAmbush>();
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/MarlbackScrabbler Ring Ambush (x8)", priority = 101)]
+        private static void Launch_MarlbackScrabblerRingAmbush()
+            => ScenarioRunner.Launch<MarlbackScrabblerRingAmbush>();
 
-        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Personally-hostile Stout Snapjaw", priority = 102)]
-        private static void Launch_StoutSnapjaw()
-            => ScenarioRunner.Launch<StoutSnapjaw>();
+        [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Personally-hostile Stout MarlbackScrabbler", priority = 102)]
+        private static void Launch_StoutMarlbackScrabbler()
+            => ScenarioRunner.Launch<StoutMarlbackScrabbler>();
 
         [MenuItem("Caves Of Ooo/Scenarios/Combat Stress/Rune Cultists (M6 neutral)", priority = 103)]
         private static void Launch_RuneCultistAmbush()
@@ -192,9 +192,9 @@ namespace CavesOfOoo.Editor.Scenarios
         private static void Launch_ScribeSeeksShelter()
             => ScenarioRunner.Launch<ScribeSeeksShelter>();
 
-        [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Snapjaw Burial (M5 Corpse system)", priority = 205)]
-        private static void Launch_SnapjawBurial()
-            => ScenarioRunner.Launch<SnapjawBurial>();
+        [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/MarlbackScrabbler Burial (M5 Corpse system)", priority = 205)]
+        private static void Launch_MarlbackScrabblerBurial()
+            => ScenarioRunner.Launch<MarlbackScrabblerBurial>();
 
         // =========================================================
         // Content Demo
@@ -228,9 +228,9 @@ namespace CavesOfOoo.Editor.Scenarios
         // AI Behavior — M2.3 witness scenarios
         // =========================================================
 
-        [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Scribe Witnesses Snapjaw Kill (M2.3)", priority = 210)]
-        private static void Launch_ScribeWitnessesSnapjawKill()
-            => ScenarioRunner.Launch<ScribeWitnessesSnapjawKill>();
+        [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Scribe Witnesses MarlbackScrabbler Kill (M2.3)", priority = 210)]
+        private static void Launch_ScribeWitnessesMarlbackScrabblerKill()
+            => ScenarioRunner.Launch<ScribeWitnessesMarlbackScrabblerKill>();
 
         [MenuItem("Caves Of Ooo/Scenarios/AI Behavior/Witness LOS Wall (M2.3)", priority = 211)]
         private static void Launch_WitnessLineOfSightWall()

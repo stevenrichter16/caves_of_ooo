@@ -1,0 +1,95 @@
+EEEEE
+======================================================================
+ERROR: test_boxes_stay_inside_native_cell_and_have_volume (test_kit.GladeKitTests.test_boxes_stay_inside_native_cell_and_have_volume)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/ReferenceGlade3D/test_kit.py", line 10, in test_boxes_stay_inside_native_cell_and_have_volume
+    for m in self.read()['models']:
+             ^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/ReferenceGlade3D/test_kit.py", line 6, in read
+    def read(self):return json.loads((ROOT/'kit.json').read_text())
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/steven/caves-of-ooo/ArtSource/ReferenceGlade3D/kit.json'
+
+======================================================================
+ERROR: test_exact_seven_families_four_variants (test_kit.GladeKitTests.test_exact_seven_families_four_variants)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/ReferenceGlade3D/test_kit.py", line 8, in test_exact_seven_families_four_variants
+    d=self.read();self.assertEqual(28,len(d['models']));self.assertEqual({'reference-glade-'+f+'-'+str(v) for f in FAMILIES for v in range(4)},{m['id'] for m in d['models']})
+      ^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/ReferenceGlade3D/test_kit.py", line 6, in read
+    def read(self):return json.loads((ROOT/'kit.json').read_text())
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/steven/caves-of-ooo/ArtSource/ReferenceGlade3D/kit.json'
+
+======================================================================
+ERROR: test_low_plant_and_wall_height_hierarchy (test_kit.GladeKitTests.test_low_plant_and_wall_height_hierarchy)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/ReferenceGlade3D/test_kit.py", line 20, in test_low_plant_and_wall_height_hierarchy
+    d=self.read();ranges={'ground':(.005,.1),'pale-reeds':(.4,.95),'green-grass':(.12,.38),'dark-ruin':(.35,.9),'low-wall':(.35,.75),'lit-wall':(.35,.75),'gravel':(.02,.16)}
+      ^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/ReferenceGlade3D/test_kit.py", line 6, in read
+    def read(self):return json.loads((ROOT/'kit.json').read_text())
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/steven/caves-of-ooo/ArtSource/ReferenceGlade3D/kit.json'
+
+======================================================================
+ERROR: test_palette_is_bounded_and_role_colors_are_distinct (test_kit.GladeKitTests.test_palette_is_bounded_and_role_colors_are_distinct)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/ReferenceGlade3D/test_kit.py", line 16, in test_palette_is_bounded_and_role_colors_are_distinct
+    d=self.read();self.assertEqual(16,len(d['palette']));self.assertEqual(16,len(set(d['palette'])))
+      ^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/ReferenceGlade3D/test_kit.py", line 6, in read
+    def read(self):return json.loads((ROOT/'kit.json').read_text())
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/steven/caves-of-ooo/ArtSource/ReferenceGlade3D/kit.json'
+
+======================================================================
+ERROR: test_variants_have_real_geometric_changes (test_kit.GladeKitTests.test_variants_have_real_geometric_changes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/ReferenceGlade3D/test_kit.py", line 24, in test_variants_have_real_geometric_changes
+    d=self.read()
+      ^^^^^^^^^^^
+  File "/Users/steven/caves-of-ooo/ArtSource/ReferenceGlade3D/test_kit.py", line 6, in read
+    def read(self):return json.loads((ROOT/'kit.json').read_text())
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/steven/.pyenv/versions/3.12.12/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/steven/caves-of-ooo/ArtSource/ReferenceGlade3D/kit.json'
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+FAILED (errors=5)

@@ -48,7 +48,7 @@ namespace CavesOfOoo.Rendering
             "MawToad","MillStone","Mogu","Mosshulk","MushroomRing","MycelialColumn",
             "Nam","OreCache","PeatBog","Player","Rock","Rotling",
             "Sack","SariSnake","SeventhPosition","Shambler","Sien","SinkholeLip",
-            "SkySari","Snapjaw","SnapjawWarlord","Sopp","SprayPool","StairsDown",
+            "SkySari","MarlbackScrabbler","MarlbackGleaner","MarlbackTunnelguard","MarlbackWallkeeper","MarlbackBreacher","GroveLanternMoth","Sopp","SprayPool","StairsDown",
             "StairsUp","SteamVent","StoneCoffer","StrongBox","TarSeep","TepuiStone",
             "TepuiWall","Tepuibone","TepuiboneVein","Tree","VineWall","Wall",
             "Wardline","WaterPuddle","WineLeafSundew","WoodenBarrel","WovenBasket","YellowfootWayfarer"
@@ -75,8 +75,9 @@ namespace CavesOfOoo.Rendering
             {"Shambler","fungal"},
             {"Sien","humanoid"},
             {"SkySari","avian"},
-            {"Snapjaw","humanoid"},
-            {"SnapjawWarlord","humanoid"},
+            {"MarlbackScrabbler","humanoid"},
+            {"MarlbackGleaner","humanoid"},{"MarlbackTunnelguard","humanoid"},{"MarlbackWallkeeper","humanoid"},{"GroveLanternMoth","avian"},
+            {"MarlbackBreacher","humanoid"},
             {"Sopp","humanoid"},
             {"Wardline","serpent"},
             {"YellowfootWayfarer","tortoise"}
@@ -158,7 +159,7 @@ namespace CavesOfOoo.Rendering
             zoneIndex=new HashSet<string>(zones,StringComparer.Ordinal);
         }
         public Model FindModel(string modelId)
-        {if(string.IsNullOrEmpty(modelId))return null;if(modelIndex==null)Validate();return modelIndex.TryGetValue(modelId,out var value)?value:DensityPhase1VoxelLibrary.Load()?.Find(modelId)?.Spec ?? SpreadVoxelLibrary.Load()?.Find(modelId)?.Spec ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Spec ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Spec ?? StumpVoxelLibrary.Load()?.Find(modelId)?.Spec ?? OverwritVoxelLibrary.Load()?.Find(modelId)?.Spec ?? GinmereVoxelLibrary.Load()?.Find(modelId)?.Spec ?? CathedralVoxelLibrary.Load()?.Find(modelId)?.Spec ?? StillleafVoxelLibrary.Load()?.Find(modelId)?.Spec ?? OlderdeepVoxelLibrary.Load()?.Find(modelId)?.Spec ?? WellmeetVoxelLibrary.Load()?.Find(modelId)?.Spec ?? CinderholdVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? SumpholdVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? DrownedLedgerVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? MarrowstyeVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? FirstTentVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? LastCounterVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? GantryVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? TineVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? QuillholdVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? TallyVoxelKitLibrary.Load()?.Find(modelId)?.Spec;}
+        {if(string.IsNullOrEmpty(modelId))return null;if(modelIndex==null)Validate();return modelIndex.TryGetValue(modelId,out var value)?value:ReferenceGladeVoxelLibrary.Load()?.Find(modelId)?.Spec ?? DensityPhase1VoxelLibrary.Load()?.Find(modelId)?.Spec ?? SpreadVoxelLibrary.Load()?.Find(modelId)?.Spec ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Spec ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Spec ?? StumpVoxelLibrary.Load()?.Find(modelId)?.Spec ?? OverwritVoxelLibrary.Load()?.Find(modelId)?.Spec ?? GinmereVoxelLibrary.Load()?.Find(modelId)?.Spec ?? CathedralVoxelLibrary.Load()?.Find(modelId)?.Spec ?? StillleafVoxelLibrary.Load()?.Find(modelId)?.Spec ?? OlderdeepVoxelLibrary.Load()?.Find(modelId)?.Spec ?? WellmeetVoxelLibrary.Load()?.Find(modelId)?.Spec ?? CinderholdVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? SumpholdVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? DrownedLedgerVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? MarrowstyeVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? FirstTentVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? LastCounterVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? GantryVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? TineVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? QuillholdVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? TallyVoxelKitLibrary.Load()?.Find(modelId)?.Spec;}
         public BlueprintBinding FindBlueprint(string blueprint)
         {if(string.IsNullOrEmpty(blueprint))return null;if(blueprintIndex==null)Validate();return blueprintIndex.TryGetValue(blueprint,out var value)?value:null;}
         public FellingOwner FindFellingOwner(string componentId)

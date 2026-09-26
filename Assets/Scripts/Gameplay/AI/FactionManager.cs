@@ -79,18 +79,18 @@ namespace CavesOfOoo.Core
             Reset();
 
             RegisterFaction("Player");
-            RegisterFaction("Snapjaws");
+            RegisterFaction("OutlandRaiders");
             RegisterFaction("Villagers");
 
-            // Snapjaws hate the player and villagers
-            SetFactionFeeling("Snapjaws", "Villagers", -100);
-            SetFactionFeeling("Villagers", "Snapjaws", -100);
+            // OutlandRaiders hate the player and villagers
+            SetFactionFeeling("OutlandRaiders", "Villagers", -100);
+            SetFactionFeeling("Villagers", "OutlandRaiders", -100);
 
             // Store minimal faction data for display
-            _factionData["Snapjaws"] = new FactionEntry
+            _factionData["OutlandRaiders"] = new FactionEntry
             {
-                Name = "Snapjaws",
-                DisplayName = "the Snapjaws",
+                Name = "OutlandRaiders",
+                DisplayName = "the outland raiders",
                 Visible = true,
                 InitialPlayerReputation = -100
             };
@@ -105,7 +105,7 @@ namespace CavesOfOoo.Core
             // Initialize player reputation from hardcoded data
             PlayerReputation.Initialize(new[]
             {
-                _factionData["Snapjaws"],
+                _factionData["OutlandRaiders"],
                 _factionData["Villagers"]
             });
         }

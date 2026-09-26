@@ -45,9 +45,9 @@ namespace CavesOfOoo.Tests
 
         private static Entity Creature(Zone zone, int x, int y)
         {
-            var e = new Entity { ID = "c" + x + "_" + y, BlueprintName = "Snapjaw" };
+            var e = new Entity { ID = "c" + x + "_" + y, BlueprintName = "MarlbackScrabbler" };
             e.Tags["Creature"] = "";
-            e.AddPart(new RenderPart { DisplayName = "snapjaw" });
+            e.AddPart(new RenderPart { DisplayName = "marlback" });
             e.Statistics["Hitpoints"] = new Stat
             { Owner = e, Name = "Hitpoints", BaseValue = 20, Min = 0, Max = 20 };
             zone.AddEntity(e, x, y);

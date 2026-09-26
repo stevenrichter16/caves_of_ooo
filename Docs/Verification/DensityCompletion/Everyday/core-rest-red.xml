@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="43" result="Failed" start-time="2026-09-26T19:58:16.7895340Z" end-time="2026-09-26T19:58:17.4777990Z" duration="0.688244" total="43" passed="33" failed="10" inconclusive="0" skipped="0" warnings="0" asserts="279" random-seed="856650267">
+  <command-line><![CDATA[/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/Everyday/core-rest-red.xml --where "class =~ /DensityEverydayTests/"]]></command-line>
+  <filter>
+    <class re="1">DensityEverydayTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1054" name="EditModeRunner.dll" fullname="/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="43" result="Failed" site="Child" start-time="2026-09-26T19:58:16.7895340Z" end-time="2026-09-26T19:58:17.4777990Z" duration="0.688244" total="43" passed="33" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="279">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-everyday-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-everyday-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="50962" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1055" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="43" result="Failed" site="Child" start-time="2026-09-26T19:58:16.7911250Z" end-time="2026-09-26T19:58:17.4777970Z" duration="0.686670" total="43" passed="33" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="279">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1056" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="43" result="Failed" site="Child" start-time="2026-09-26T19:58:16.7912330Z" end-time="2026-09-26T19:58:17.4777940Z" duration="0.686559" total="43" passed="33" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="279">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="DensityEverydayTests" fullname="CavesOfOoo.Tests.DensityEverydayTests" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="43" result="Failed" site="Child" start-time="2026-09-26T19:58:16.7915730Z" end-time="2026-09-26T19:58:17.4777760Z" duration="0.686200" total="43" passed="33" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="279">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1044" name="Campfire_OffersBothExistingRestAndNextBand" fullname="CavesOfOoo.Tests.DensityEverydayTests.Campfire_OffersBothExistingRestAndNextBand" methodname="Campfire_OffersBothExistingRestAndNextBand" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1185108147" result="Failed" start-time="2026-09-26T19:58:16.7924070Z" end-time="2026-09-26T19:58:16.8642220Z" duration="0.071840" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Campfire_OffersBothExistingRestAndNextBand() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 151
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Campfire_OffersBothExistingRestAndNextBand() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 151
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1034" name="Cooking_AfterListenerThrows_RestoresMergedOutputAndOriginalStack" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_AfterListenerThrows_RestoresMergedOutputAndOriginalStack" methodname="Cooking_AfterListenerThrows_RestoresMergedOutputAndOriginalStack" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1888751680" result="Passed" start-time="2026-09-26T19:58:16.8647960Z" end-time="2026-09-26T19:58:16.8915000Z" duration="0.026705" asserts="10" />
+          <test-case id="1036" name="Cooking_AtCapacity_ReplacementOfEqualWeightSucceeds" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_AtCapacity_ReplacementOfEqualWeightSucceeds" methodname="Cooking_AtCapacity_ReplacementOfEqualWeightSucceeds" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1552456258" result="Passed" start-time="2026-09-26T19:58:16.8915400Z" end-time="2026-09-26T19:58:16.9140940Z" duration="0.022555" asserts="6" />
+          <test-case id="1035" name="Cooking_HeavierExistingMergedOutputCannotOverflowCapacity" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_HeavierExistingMergedOutputCannotOverflowCapacity" methodname="Cooking_HeavierExistingMergedOutputCannotOverflowCapacity" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="162239064" result="Passed" start-time="2026-09-26T19:58:16.9141270Z" end-time="2026-09-26T19:58:16.9291280Z" duration="0.015001" asserts="9" />
+          <test-suite type="ParameterizedMethod" id="1033" name="Cooking_MissingOrDistantFire_Refuses" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_MissingOrDistantFire_Refuses" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-26T19:58:16.9291710Z" end-time="2026-09-26T19:58:16.9628730Z" duration="0.033702" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <test-case id="1031" name="Cooking_MissingOrDistantFire_Refuses(False)" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_MissingOrDistantFire_Refuses(False)" methodname="Cooking_MissingOrDistantFire_Refuses" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1372046711" result="Passed" start-time="2026-09-26T19:58:16.9292740Z" end-time="2026-09-26T19:58:16.9471390Z" duration="0.017865" asserts="6" />
+            <test-case id="1032" name="Cooking_MissingOrDistantFire_Refuses(True)" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_MissingOrDistantFire_Refuses(True)" methodname="Cooking_MissingOrDistantFire_Refuses" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="33810582" result="Passed" start-time="2026-09-26T19:58:16.9471630Z" end-time="2026-09-26T19:58:16.9623770Z" duration="0.015215" asserts="6" />
+          </test-suite>
+          <test-case id="1037" name="Cooking_MissingOutputFactory_RefusesWithoutLoss" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_MissingOutputFactory_RefusesWithoutLoss" methodname="Cooking_MissingOutputFactory_RefusesWithoutLoss" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1987270737" result="Passed" start-time="2026-09-26T19:58:16.9630450Z" end-time="2026-09-26T19:58:16.9760960Z" duration="0.013051" asserts="5" />
+          <test-case id="1038" name="Cooking_PreparedRecipesRemainAuthored_AndNewMushroomHasThreeD4" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_PreparedRecipesRemainAuthored_AndNewMushroomHasThreeD4" methodname="Cooking_PreparedRecipesRemainAuthored_AndNewMushroomHasThreeD4" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="639802532" result="Passed" start-time="2026-09-26T19:58:16.9761160Z" end-time="2026-09-26T19:58:16.9898580Z" duration="0.013742" asserts="4" />
+          <test-suite type="ParameterizedMethod" id="1030" name="Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-26T19:58:16.9898860Z" end-time="2026-09-26T19:58:17.0308830Z" duration="0.040997" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="27">
+            <test-case id="1027" name="Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses(&quot;RawMeat&quot;,&quot;CookedMeat&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses(&quot;RawMeat&quot;,&quot;CookedMeat&quot;)" methodname="Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="774644642" result="Passed" start-time="2026-09-26T19:58:16.9899020Z" end-time="2026-09-26T19:58:17.0044510Z" duration="0.014549" asserts="9" />
+            <test-case id="1028" name="Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses(&quot;Starapple&quot;,&quot;RoastedStarapple&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses(&quot;Starapple&quot;,&quot;RoastedStarapple&quot;)" methodname="Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="811089120" result="Passed" start-time="2026-09-26T19:58:17.0044730Z" end-time="2026-09-26T19:58:17.0178080Z" duration="0.013335" asserts="9" />
+            <test-case id="1029" name="Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses(&quot;Mushroom&quot;,&quot;RoastedMushroom&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses(&quot;Mushroom&quot;,&quot;RoastedMushroom&quot;)" methodname="Cooking_TransformsWholeStack_ConservesQuantity_AndStaleRetryRefuses" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1036210145" result="Passed" start-time="2026-09-26T19:58:17.0178300Z" end-time="2026-09-26T19:58:17.0308390Z" duration="0.013010" asserts="9" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1017" name="Drink_ConsumesExactlyOneChargeAndParchedStack" fullname="CavesOfOoo.Tests.DensityEverydayTests.Drink_ConsumesExactlyOneChargeAndParchedStack" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-26T19:58:17.0309040Z" end-time="2026-09-26T19:58:17.0622940Z" duration="0.031390" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="22">
+            <test-case id="1015" name="Drink_ConsumesExactlyOneChargeAndParchedStack(1)" fullname="CavesOfOoo.Tests.DensityEverydayTests.Drink_ConsumesExactlyOneChargeAndParchedStack(1)" methodname="Drink_ConsumesExactlyOneChargeAndParchedStack" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1229161143" result="Passed" start-time="2026-09-26T19:58:17.0309260Z" end-time="2026-09-26T19:58:17.0482690Z" duration="0.017343" asserts="11" />
+            <test-case id="1016" name="Drink_ConsumesExactlyOneChargeAndParchedStack(3)" fullname="CavesOfOoo.Tests.DensityEverydayTests.Drink_ConsumesExactlyOneChargeAndParchedStack(3)" methodname="Drink_ConsumesExactlyOneChargeAndParchedStack" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1423936509" result="Passed" start-time="2026-09-26T19:58:17.0483040Z" end-time="2026-09-26T19:58:17.0622710Z" duration="0.013967" asserts="11" />
+          </test-suite>
+          <test-case id="1018" name="EmptyDrink_RefusesAndRetainsVessel" fullname="CavesOfOoo.Tests.DensityEverydayTests.EmptyDrink_RefusesAndRetainsVessel" methodname="EmptyDrink_RefusesAndRetainsVessel" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1893626948" result="Passed" start-time="2026-09-26T19:58:17.0623050Z" end-time="2026-09-26T19:58:17.0756390Z" duration="0.013334" asserts="6" />
+          <test-case id="1013" name="FillEmptyPoolOrDistantWellOrTemporaryCoating_Refuses" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillEmptyPoolOrDistantWellOrTemporaryCoating_Refuses" methodname="FillEmptyPoolOrDistantWellOrTemporaryCoating_Refuses" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1460446009" result="Passed" start-time="2026-09-26T19:58:17.0756600Z" end-time="2026-09-26T19:58:17.0895390Z" duration="0.013879" asserts="7" />
+          <test-suite type="ParameterizedMethod" id="1007" name="FillFinitePool_ConservesVolume" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillFinitePool_ConservesVolume" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-26T19:58:17.0895620Z" end-time="2026-09-26T19:58:17.1314250Z" duration="0.041864" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="24">
+            <test-case id="1004" name="FillFinitePool_ConservesVolume(1,1,0)" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillFinitePool_ConservesVolume(1,1,0)" methodname="FillFinitePool_ConservesVolume" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1014890350" result="Passed" start-time="2026-09-26T19:58:17.0895820Z" end-time="2026-09-26T19:58:17.1047300Z" duration="0.015148" asserts="8" />
+            <test-case id="1005" name="FillFinitePool_ConservesVolume(2,2,0)" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillFinitePool_ConservesVolume(2,2,0)" methodname="FillFinitePool_ConservesVolume" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="761797868" result="Passed" start-time="2026-09-26T19:58:17.1047540Z" end-time="2026-09-26T19:58:17.1185790Z" duration="0.013825" asserts="8" />
+            <test-case id="1006" name="FillFinitePool_ConservesVolume(8,3,5)" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillFinitePool_ConservesVolume(8,3,5)" methodname="FillFinitePool_ConservesVolume" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="518948246" result="Passed" start-time="2026-09-26T19:58:17.1185950Z" end-time="2026-09-26T19:58:17.1313960Z" duration="0.012801" asserts="8" />
+          </test-suite>
+          <test-case id="1014" name="FillFullVessel_DoesNotConsumeFiniteWater" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillFullVessel_DoesNotConsumeFiniteWater" methodname="FillFullVessel_DoesNotConsumeFiniteWater" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1327137553" result="Passed" start-time="2026-09-26T19:58:17.1314420Z" end-time="2026-09-26T19:58:17.1445170Z" duration="0.013075" asserts="6" />
+          <test-suite type="ParameterizedMethod" id="1003" name="FillRenewableSource_ThreeDrinksWithoutConsumingSource" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillRenewableSource_ThreeDrinksWithoutConsumingSource" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-26T19:58:17.1445370Z" end-time="2026-09-26T19:58:17.1719220Z" duration="0.027385" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="18">
+            <test-case id="1001" name="FillRenewableSource_ThreeDrinksWithoutConsumingSource(&quot;well&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillRenewableSource_ThreeDrinksWithoutConsumingSource(&quot;well&quot;)" methodname="FillRenewableSource_ThreeDrinksWithoutConsumingSource" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1078251437" result="Passed" start-time="2026-09-26T19:58:17.1445570Z" end-time="2026-09-26T19:58:17.1593900Z" duration="0.014833" asserts="9" />
+            <test-case id="1002" name="FillRenewableSource_ThreeDrinksWithoutConsumingSource(&quot;spring&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillRenewableSource_ThreeDrinksWithoutConsumingSource(&quot;spring&quot;)" methodname="FillRenewableSource_ThreeDrinksWithoutConsumingSource" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1447600727" result="Passed" start-time="2026-09-26T19:58:17.1594130Z" end-time="2026-09-26T19:58:17.1718990Z" duration="0.012485" asserts="9" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1012" name="FillUnsafeLiquid_RefusesWithoutChangingEitherSide" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-26T19:58:17.1719320Z" end-time="2026-09-26T19:58:17.2258230Z" duration="0.053892" total="4" passed="4" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="36">
+            <test-case id="1008" name="FillUnsafeLiquid_RefusesWithoutChangingEitherSide(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide(&quot;oil&quot;)" methodname="FillUnsafeLiquid_RefusesWithoutChangingEitherSide" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1776011030" result="Passed" start-time="2026-09-26T19:58:17.1719490Z" end-time="2026-09-26T19:58:17.1855960Z" duration="0.013647" asserts="9" />
+            <test-case id="1009" name="FillUnsafeLiquid_RefusesWithoutChangingEitherSide(&quot;brine&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide(&quot;brine&quot;)" methodname="FillUnsafeLiquid_RefusesWithoutChangingEitherSide" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="687253693" result="Passed" start-time="2026-09-26T19:58:17.1856150Z" end-time="2026-09-26T19:58:17.1995270Z" duration="0.013912" asserts="9" />
+            <test-case id="1010" name="FillUnsafeLiquid_RefusesWithoutChangingEitherSide(&quot;acid&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide(&quot;acid&quot;)" methodname="FillUnsafeLiquid_RefusesWithoutChangingEitherSide" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="2005470124" result="Passed" start-time="2026-09-26T19:58:17.1995480Z" end-time="2026-09-26T19:58:17.2130860Z" duration="0.013538" asserts="9" />
+            <test-case id="1011" name="FillUnsafeLiquid_RefusesWithoutChangingEitherSide(&quot;memory_bath&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.FillUnsafeLiquid_RefusesWithoutChangingEitherSide(&quot;memory_bath&quot;)" methodname="FillUnsafeLiquid_RefusesWithoutChangingEitherSide" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1886052415" result="Passed" start-time="2026-09-26T19:58:17.2131350Z" end-time="2026-09-26T19:58:17.2257970Z" duration="0.012662" asserts="9" />
+          </test-suite>
+          <test-case id="1053" name="GuestBed_AdvertisesNextBandOnlyThroughExistingOwnerPart" fullname="CavesOfOoo.Tests.DensityEverydayTests.GuestBed_AdvertisesNextBandOnlyThroughExistingOwnerPart" methodname="GuestBed_AdvertisesNextBandOnlyThroughExistingOwnerPart" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1221230903" result="Failed" start-time="2026-09-26T19:58:17.2258370Z" end-time="2026-09-26T19:58:17.2389940Z" duration="0.013157" asserts="1">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.GuestBed_AdvertisesNextBandOnlyThroughExistingOwnerPart() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 193
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.GuestBed_AdvertisesNextBandOnlyThroughExistingOwnerPart() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 193
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1045" name="NextBandCampfire_RestIsReachChecked_AndHostileBlocksTime" fullname="CavesOfOoo.Tests.DensityEverydayTests.NextBandCampfire_RestIsReachChecked_AndHostileBlocksTime" methodname="NextBandCampfire_RestIsReachChecked_AndHostileBlocksTime" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="2126631619" result="Failed" start-time="2026-09-26T19:58:17.2390160Z" end-time="2026-09-26T19:58:17.2567220Z" duration="0.017706" asserts="6">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandCampfire_RestIsReachChecked_AndHostileBlocksTime() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 157
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandCampfire_RestIsReachChecked_AndHostileBlocksTime() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 157
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1046" name="NextBandPaidRest_ChargesExistingPriceAndAddsWellRested" fullname="CavesOfOoo.Tests.DensityEverydayTests.NextBandPaidRest_ChargesExistingPriceAndAddsWellRested" methodname="NextBandPaidRest_ChargesExistingPriceAndAddsWellRested" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1782848528" result="Failed" start-time="2026-09-26T19:58:17.2567360Z" end-time="2026-09-26T19:58:17.2728960Z" duration="0.016161" asserts="1">
+            <failure>
+              <message><![CDATA[  Expected: 300
+  But was:  299
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandPaidRest_ChargesExistingPriceAndAddsWellRested() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 164
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 300
+  But was:  299
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandPaidRest_ChargesExistingPriceAndAddsWellRested() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 164
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1049" name="NextBandPaidRest_RefusalNeverCharges" fullname="CavesOfOoo.Tests.DensityEverydayTests.NextBandPaidRest_RefusalNeverCharges" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-26T19:58:17.2729160Z" end-time="2026-09-26T19:58:17.2985490Z" duration="0.025633" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="8">
+            <test-case id="1047" name="NextBandPaidRest_RefusalNeverCharges(False)" fullname="CavesOfOoo.Tests.DensityEverydayTests.NextBandPaidRest_RefusalNeverCharges(False)" methodname="NextBandPaidRest_RefusalNeverCharges" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="608989783" result="Passed" start-time="2026-09-26T19:58:17.2729320Z" end-time="2026-09-26T19:58:17.2853560Z" duration="0.012425" asserts="4" />
+            <test-case id="1048" name="NextBandPaidRest_RefusalNeverCharges(True)" fullname="CavesOfOoo.Tests.DensityEverydayTests.NextBandPaidRest_RefusalNeverCharges(True)" methodname="NextBandPaidRest_RefusalNeverCharges" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1853940608" result="Passed" start-time="2026-09-26T19:58:17.2854060Z" end-time="2026-09-26T19:58:17.2985220Z" duration="0.013116" asserts="4" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1043" name="NextBandRest_LandsExactlyOnNextBoundary" fullname="CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-26T19:58:17.2985600Z" end-time="2026-09-26T19:58:17.3538090Z" duration="0.055250" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="4">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1039" name="NextBandRest_LandsExactlyOnNextBoundary(0,300)" fullname="CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(0,300)" methodname="NextBandRest_LandsExactlyOnNextBoundary" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1079313766" result="Failed" start-time="2026-09-26T19:58:17.2985740Z" end-time="2026-09-26T19:58:17.3134000Z" duration="0.014827" asserts="1">
+              <failure>
+                <message><![CDATA[  Next-band rest API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Int32 before, Int32 after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 147
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Next-band rest API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Int32 before, Int32 after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 147
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1040" name="NextBandRest_LandsExactlyOnNextBoundary(299,300)" fullname="CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(299,300)" methodname="NextBandRest_LandsExactlyOnNextBoundary" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="2045373817" result="Failed" start-time="2026-09-26T19:58:17.3134190Z" end-time="2026-09-26T19:58:17.3281810Z" duration="0.014762" asserts="1">
+              <failure>
+                <message><![CDATA[  Next-band rest API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Int32 before, Int32 after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 147
+   at InvokeStub_DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Next-band rest API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Int32 before, Int32 after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 147
+   at InvokeStub_DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1041" name="NextBandRest_LandsExactlyOnNextBoundary(300,600)" fullname="CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(300,600)" methodname="NextBandRest_LandsExactlyOnNextBoundary" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="878759010" result="Failed" start-time="2026-09-26T19:58:17.3282010Z" end-time="2026-09-26T19:58:17.3405930Z" duration="0.012392" asserts="1">
+              <failure>
+                <message><![CDATA[  Next-band rest API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Int32 before, Int32 after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 147
+   at InvokeStub_DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Next-band rest API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Int32 before, Int32 after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 147
+   at InvokeStub_DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1042" name="NextBandRest_LandsExactlyOnNextBoundary(1199,1200)" fullname="CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(1199,1200)" methodname="NextBandRest_LandsExactlyOnNextBoundary" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1351419362" result="Failed" start-time="2026-09-26T19:58:17.3406130Z" end-time="2026-09-26T19:58:17.3537920Z" duration="0.013179" asserts="1">
+              <failure>
+                <message><![CDATA[  Next-band rest API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Int32 before, Int32 after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 147
+   at InvokeStub_DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Next-band rest API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Int32 before, Int32 after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 147
+   at InvokeStub_DensityEverydayTests.NextBandRest_LandsExactlyOnNextBoundary(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1050" name="NextBandRest_MissingZone_Refuses" fullname="CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_MissingZone_Refuses" methodname="NextBandRest_MissingZone_Refuses" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="476479634" result="Failed" start-time="2026-09-26T19:58:17.3538180Z" end-time="2026-09-26T19:58:17.3674780Z" duration="0.013660" asserts="1">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_MissingZone_Refuses() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 180
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_MissingZone_Refuses() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 180
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1051" name="NextBandRest_OverflowBoundaryRefusesWithoutHeal" fullname="CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_OverflowBoundaryRefusesWithoutHeal" methodname="NextBandRest_OverflowBoundaryRefusesWithoutHeal" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="481789027" result="Failed" start-time="2026-09-26T19:58:17.3674970Z" end-time="2026-09-26T19:58:17.3803820Z" duration="0.012885" asserts="1">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_OverflowBoundaryRefusesWithoutHeal() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 185
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.NextBandRest_OverflowBoundaryRefusesWithoutHeal() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 185
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1019" name="NonParchedDrink_StillConsumesWaterWithoutHealing" fullname="CavesOfOoo.Tests.DensityEverydayTests.NonParchedDrink_StillConsumesWaterWithoutHealing" methodname="NonParchedDrink_StillConsumesWaterWithoutHealing" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1452738836" result="Passed" start-time="2026-09-26T19:58:17.3804030Z" end-time="2026-09-26T19:58:17.3930830Z" duration="0.012680" asserts="8" />
+          <test-case id="1052" name="OldRest_StillAdvancesSixtyTicks" fullname="CavesOfOoo.Tests.DensityEverydayTests.OldRest_StillAdvancesSixtyTicks" methodname="OldRest_StillAdvancesSixtyTicks" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="359658656" result="Passed" start-time="2026-09-26T19:58:17.3931050Z" end-time="2026-09-26T19:58:17.4079100Z" duration="0.014805" asserts="2" />
+          <test-suite type="ParameterizedMethod" id="1022" name="StaleSkin_ForgedBackReferenceCannotAuthorize" fullname="CavesOfOoo.Tests.DensityEverydayTests.StaleSkin_ForgedBackReferenceCannotAuthorize" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-26T19:58:17.4079380Z" end-time="2026-09-26T19:58:17.4340960Z" duration="0.026158" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="14">
+            <test-case id="1020" name="StaleSkin_ForgedBackReferenceCannotAuthorize(&quot;FillWaterskin&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.StaleSkin_ForgedBackReferenceCannotAuthorize(&quot;FillWaterskin&quot;)" methodname="StaleSkin_ForgedBackReferenceCannotAuthorize" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1609134529" result="Passed" start-time="2026-09-26T19:58:17.4079510Z" end-time="2026-09-26T19:58:17.4213980Z" duration="0.013448" asserts="7" />
+            <test-case id="1021" name="StaleSkin_ForgedBackReferenceCannotAuthorize(&quot;DrinkWaterskin&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.StaleSkin_ForgedBackReferenceCannotAuthorize(&quot;DrinkWaterskin&quot;)" methodname="StaleSkin_ForgedBackReferenceCannotAuthorize" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="194761795" result="Passed" start-time="2026-09-26T19:58:17.4214140Z" end-time="2026-09-26T19:58:17.4340740Z" duration="0.012660" asserts="7" />
+          </test-suite>
+          <test-case id="1023" name="TwoVessels_NeverMergeOrShareCharges_AndSavePreservesState" fullname="CavesOfOoo.Tests.DensityEverydayTests.TwoVessels_NeverMergeOrShareCharges_AndSavePreservesState" methodname="TwoVessels_NeverMergeOrShareCharges_AndSavePreservesState" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="250533660" result="Passed" start-time="2026-09-26T19:58:17.4341050Z" end-time="2026-09-26T19:58:17.4498000Z" duration="0.015695" asserts="17" />
+          <test-suite type="ParameterizedMethod" id="1026" name="WaterAfterListenerThrows_RollsBackChargePoolAndParched" fullname="CavesOfOoo.Tests.DensityEverydayTests.WaterAfterListenerThrows_RollsBackChargePoolAndParched" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-26T19:58:17.4498220Z" end-time="2026-09-26T19:58:17.4777490Z" duration="0.027927" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="22">
+            <test-case id="1024" name="WaterAfterListenerThrows_RollsBackChargePoolAndParched(&quot;FillWaterskin&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.WaterAfterListenerThrows_RollsBackChargePoolAndParched(&quot;FillWaterskin&quot;)" methodname="WaterAfterListenerThrows_RollsBackChargePoolAndParched" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1389021926" result="Passed" start-time="2026-09-26T19:58:17.4498390Z" end-time="2026-09-26T19:58:17.4641310Z" duration="0.014293" asserts="11" />
+            <test-case id="1025" name="WaterAfterListenerThrows_RollsBackChargePoolAndParched(&quot;DrinkWaterskin&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.WaterAfterListenerThrows_RollsBackChargePoolAndParched(&quot;DrinkWaterskin&quot;)" methodname="WaterAfterListenerThrows_RollsBackChargePoolAndParched" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="689174531" result="Passed" start-time="2026-09-26T19:58:17.4641530Z" end-time="2026-09-26T19:58:17.4777270Z" duration="0.013574" asserts="11" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

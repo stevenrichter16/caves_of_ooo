@@ -25,9 +25,9 @@ namespace CavesOfOoo.Core
     ///
     /// <para><b>Faction string syntax (Qud parity):</b></para>
     /// <list type="bullet">
-    ///   <item><c>"Snapjaws"</c> — single faction, uses <see cref="Value"/></item>
-    ///   <item><c>"Snapjaws,Bandits"</c> — comma-delimited, each uses <see cref="Value"/></item>
-    ///   <item><c>"Snapjaws:10,Bandits:-3"</c> — per-faction colon override</item>
+    ///   <item><c>"OutlandRaiders"</c> — single faction, uses <see cref="Value"/></item>
+    ///   <item><c>"OutlandRaiders,Bandits"</c> — comma-delimited, each uses <see cref="Value"/></item>
+    ///   <item><c>"OutlandRaiders:10,Bandits:-3"</c> — per-faction colon override</item>
     ///   <item><c>"FactionA,FactionB:7"</c> — mixed; FactionA uses Value, FactionB uses 7</item>
     ///   <item><c>"*allvisiblefactions:N"</c> — wildcard, applies +N to EVERY known
     ///         faction (post-audit-fix Finding #2 — Qud parity). Semantic note:

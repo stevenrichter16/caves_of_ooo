@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-density-combat-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="17" result="Failed" start-time="2026-09-26T19:45:47.4264440Z" end-time="2026-09-26T19:45:47.7587850Z" duration="0.332323" total="17" passed="5" failed="12" inconclusive="0" skipped="0" warnings="0" asserts="18" random-seed="279819881">
+  <command-line><![CDATA[/private/tmp/coo-density-combat-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-density-combat-content-red.xml --where "class =~ /DensityCombatContentTests/"]]></command-line>
+  <filter>
+    <class re="1">DensityCombatContentTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1020" name="EditModeRunner.dll" fullname="/private/tmp/coo-density-combat-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="17" result="Failed" site="Child" start-time="2026-09-26T19:45:47.4264440Z" end-time="2026-09-26T19:45:47.7587850Z" duration="0.332323" total="17" passed="5" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="18">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-density-combat-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-density-combat-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="47453" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1021" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="17" result="Failed" site="Child" start-time="2026-09-26T19:45:47.4280190Z" end-time="2026-09-26T19:45:47.7587560Z" duration="0.330732" total="17" passed="5" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="18">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1022" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="17" result="Failed" site="Child" start-time="2026-09-26T19:45:47.4281580Z" end-time="2026-09-26T19:45:47.7587320Z" duration="0.330569" total="17" passed="5" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="18">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="DensityCombatContentTests" fullname="CavesOfOoo.Tests.DensityCombatContentTests" classname="CavesOfOoo.Tests.DensityCombatContentTests" runstate="Runnable" testcasecount="17" result="Failed" site="Child" start-time="2026-09-26T19:45:47.4285500Z" end-time="2026-09-26T19:45:47.7587250Z" duration="0.330170" total="17" passed="5" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="18">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1011" name="AuthoredCreatureActuallyOwnsRegisteredSkill" fullname="CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill" classname="CavesOfOoo.Tests.DensityCombatContentTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-09-26T19:45:47.4293960Z" end-time="2026-09-26T19:45:47.6525680Z" duration="0.223168" total="10" passed="0" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="10">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="AuthoredCreatureActuallyOwnsRegisteredSkill(&quot;SnapjawScavenger&quot;,&quot;ShortBlades_Shank&quot;,0.4f)" fullname="CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(&quot;SnapjawScavenger&quot;,&quot;ShortBlades_Shank&quot;,0.4f)" methodname="AuthoredCreatureActuallyOwnsRegisteredSkill" classname="CavesOfOoo.Tests.DensityCombatContentTests" runstate="Runnable" seed="1077612303" result="Failed" start-time="2026-09-26T19:45:47.4294810Z" end-time="2026-09-26T19:45:47.5143170Z" duration="0.084862" asserts="1">
+              <failure>
+                <message><![CDATA[  SnapjawScavenger must have an authored usable kit.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(String blueprint, String skillClass, Single flee) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 37
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  SnapjawScavenger must have an authored usable kit.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(String blueprint, String skillClass, Single flee) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 37
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="AuthoredCreatureActuallyOwnsRegisteredSkill(&quot;SnapjawHunter&quot;,&quot;ShortBlades_Shank&quot;,0.35f)" fullname="CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(&quot;SnapjawHunter&quot;,&quot;ShortBlades_Shank&quot;,0.35f)" methodname="AuthoredCreatureActuallyOwnsRegisteredSkill" classname="CavesOfOoo.Tests.DensityCombatContentTests" runstate="Runnable" seed="1939188798" result="Failed" start-time="2026-09-26T19:45:47.5148720Z" end-time="2026-09-26T19:45:47.5300460Z" duration="0.015174" asserts="1">
+              <failure>
+                <message><![CDATA[  SnapjawHunter must have an authored usable kit.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(String blueprint, String skillClass, Single flee) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 37
+   at InvokeStub_DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  SnapjawHunter must have an authored usable kit.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(String blueprint, String skillClass, Single flee) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 37
+   at InvokeStub_DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="AuthoredCreatureActuallyOwnsRegisteredSkill(&quot;DesertBandit&quot;,&quot;LongBlades_Lunge&quot;,0.35f)" fullname="CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(&quot;DesertBandit&quot;,&quot;LongBlades_Lunge&quot;,0.35f)" methodname="AuthoredCreatureActuallyOwnsRegisteredSkill" classname="CavesOfOoo.Tests.DensityCombatContentTests" runstate="Runnable" seed="581950492" result="Failed" start-time="2026-09-26T19:45:47.5300780Z" end-time="2026-09-26T19:45:47.5455400Z" duration="0.015462" asserts="1">
+              <failure>
+                <message><![CDATA[  DesertBandit must have an authored usable kit.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(String blueprint, String skillClass, Single flee) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 37
+   at InvokeStub_DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  DesertBandit must have an authored usable kit.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(String blueprint, String skillClass, Single flee) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 37
+   at InvokeStub_DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1004" name="AuthoredCreatureActuallyOwnsRegisteredSkill(&quot;AmbushBandit&quot;,&quot;LongBlades_Lunge&quot;,0.25f)" fullname="CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(&quot;AmbushBandit&quot;,&quot;LongBlades_Lunge&quot;,0.25f)" methodname="AuthoredCreatureActuallyOwnsRegisteredSkill" classname="CavesOfOoo.Tests.DensityCombatContentTests" runstate="Runnable" seed="1854381620" result="Failed" start-time="2026-09-26T19:45:47.5455650Z" end-time="2026-09-26T19:45:47.5605710Z" duration="0.015007" asserts="1">
+              <failure>
+                <message><![CDATA[  AmbushBandit must have an authored usable kit.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(String blueprint, String skillClass, Single flee) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 37
+   at InvokeStub_DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  AmbushBandit must have an authored usable kit.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(String blueprint, String skillClass, Single flee) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 37
+   at InvokeStub_DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1005" name="AuthoredCreatureActuallyOwnsRegisteredSkill(&quot;SnapjawChieftain&quot;,&quot;LongBlades_Lunge&quot;,0.15f)" fullname="CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(&quot;SnapjawChieftain&quot;,&quot;LongBlades_Lunge&quot;,0.15f)" methodname="AuthoredCreatureActuallyOwnsRegisteredSkill" classname="CavesOfOoo.Tests.DensityCombatContentTests" runstate="Runnable" seed="442873677" result="Failed" start-time="2026-09-26T19:45:47.5605830Z" end-time="2026-09-26T19:45:47.5771470Z" duration="0.016564" asserts="1">
+              <failure>
+                <message><![CDATA[  SnapjawChieftain must have an authored usable kit.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(String blueprint, String skillClass, Single flee) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 37
+   at InvokeStub_DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  SnapjawChieftain must have an authored usable kit.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(String blueprint, String skillClass, Single flee) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 37
+   at InvokeStub_DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1006" name="AuthoredCreatureActuallyOwnsRegisteredSkill(&quot;SnapjawWarlord&quot;,&quot;Axe_Berserk&quot;,0.05f)" fullname="CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(&quot;SnapjawWarlord&quot;,&quot;Axe_Berserk&quot;,0.05f)" methodname="AuthoredCreatureActuallyOwnsRegisteredSkill" classname="CavesOfOoo.Tests.DensityCombatContentTests" runstate="Runnable" seed="601861976" result="Failed" start-time="2026-09-26T19:45:47.5771620Z" end-time="2026-09-26T19:45:47.5928820Z" duration="0.015720" asserts="1">
+              <failure>
+                <message><![CDATA[  SnapjawWarlord must have an authored usable kit.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(String blueprint, String skillClass, Single flee) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 37
+   at InvokeStub_DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  SnapjawWarlord must have an authored usable kit.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(String blueprint, String skillClass, Single flee) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 37
+   at InvokeStub_DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1007" name="AuthoredCreatureActuallyOwnsRegisteredSkill(&quot;CaveSlime&quot;,&quot;Corrosion_AcidSpray&quot;,0.0f)" fullname="CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(&quot;CaveSlime&quot;,&quot;Corrosion_AcidSpray&quot;,0.0f)" methodname="AuthoredCreatureActuallyOwnsRegisteredSkill" classname="CavesOfOoo.Tests.DensityCombatContentTests" runstate="Runnable" seed="851692650" result="Failed" start-time="2026-09-26T19:45:47.5929020Z" end-time="2026-09-26T19:45:47.6075110Z" duration="0.014609" asserts="1">
+              <failure>
+                <message><![CDATA[  CaveSlime must have an authored usable kit.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(String blueprint, String skillClass, Single flee) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 37
+   at InvokeStub_DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  CaveSlime must have an authored usable kit.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(String blueprint, String skillClass, Single flee) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 37
+   at InvokeStub_DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1008" name="AuthoredCreatureActuallyOwnsRegisteredSkill(&quot;IceWight&quot;,&quot;Cryomancy_IceLance&quot;,0.0f)" fullname="CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(&quot;IceWight&quot;,&quot;Cryomancy_IceLance&quot;,0.0f)" methodname="AuthoredCreatureActuallyOwnsRegisteredSkill" classname="CavesOfOoo.Tests.DensityCombatContentTests" runstate="Runnable" seed="1979424798" result="Failed" start-time="2026-09-26T19:45:47.6075440Z" end-time="2026-09-26T19:45:47.6229320Z" duration="0.015388" asserts="1">
+              <failure>
+                <message><![CDATA[  IceWight must have an authored usable kit.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(String blueprint, String skillClass, Single flee) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 37
+   at InvokeStub_DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  IceWight must have an authored usable kit.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(String blueprint, String skillClass, Single flee) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 37
+   at InvokeStub_DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1009" name="AuthoredCreatureActuallyOwnsRegisteredSkill(&quot;CharredHusk&quot;,&quot;Pyromancy_EmberSpit&quot;,0.0f)" fullname="CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(&quot;CharredHusk&quot;,&quot;Pyromancy_EmberSpit&quot;,0.0f)" methodname="AuthoredCreatureActuallyOwnsRegisteredSkill" classname="CavesOfOoo.Tests.DensityCombatContentTests" runstate="Runnable" seed="1616398061" result="Failed" start-time="2026-09-26T19:45:47.6229500Z" end-time="2026-09-26T19:45:47.6379180Z" duration="0.014968" asserts="1">
+              <failure>
+                <message><![CDATA[  CharredHusk must have an authored usable kit.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(String blueprint, String skillClass, Single flee) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 37
+   at InvokeStub_DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  CharredHusk must have an authored usable kit.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(String blueprint, String skillClass, Single flee) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 37
+   at InvokeStub_DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1010" name="AuthoredCreatureActuallyOwnsRegisteredSkill(&quot;RuneCultist&quot;,&quot;Cryomancy_IceLance&quot;,0.4f)" fullname="CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(&quot;RuneCultist&quot;,&quot;Cryomancy_IceLance&quot;,0.4f)" methodname="AuthoredCreatureActuallyOwnsRegisteredSkill" classname="CavesOfOoo.Tests.DensityCombatContentTests" runstate="Runnable" seed="2107174329" result="Failed" start-time="2026-09-26T19:45:47.6379380Z" end-time="2026-09-26T19:45:47.6521480Z" duration="0.014209" asserts="1">
+              <failure>
+                <message><![CDATA[  RuneCultist must have an authored usable kit.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(String blueprint, String skillClass, Single flee) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 37
+   at InvokeStub_DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  RuneCultist must have an authored usable kit.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(String blueprint, String skillClass, Single flee) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 37
+   at InvokeStub_DensityCombatContentTests.AuthoredCreatureActuallyOwnsRegisteredSkill(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1019" name="IceWightHasARealDepthGroupSourceWithoutEnteringFirstTier" fullname="CavesOfOoo.Tests.DensityCombatContentTests.IceWightHasARealDepthGroupSourceWithoutEnteringFirstTier" methodname="IceWightHasARealDepthGroupSourceWithoutEnteringFirstTier" classname="CavesOfOoo.Tests.DensityCombatContentTests" runstate="Runnable" seed="1721228589" result="Failed" start-time="2026-09-26T19:45:47.6527240Z" end-time="2026-09-26T19:45:47.6692780Z" duration="0.016554" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.IceWightHasARealDepthGroupSourceWithoutEnteringFirstTier() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 58
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.IceWightHasARealDepthGroupSourceWithoutEnteringFirstTier() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 58
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1017" name="UnauthoredCreaturesKeepTheirExistingBehavior" fullname="CavesOfOoo.Tests.DensityCombatContentTests.UnauthoredCreaturesKeepTheirExistingBehavior" classname="CavesOfOoo.Tests.DensityCombatContentTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-26T19:45:47.6692920Z" end-time="2026-09-26T19:45:47.7427490Z" duration="0.073457" total="5" passed="5" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="5">
+            <test-case id="1012" name="UnauthoredCreaturesKeepTheirExistingBehavior(&quot;Player&quot;)" fullname="CavesOfOoo.Tests.DensityCombatContentTests.UnauthoredCreaturesKeepTheirExistingBehavior(&quot;Player&quot;)" methodname="UnauthoredCreaturesKeepTheirExistingBehavior" classname="CavesOfOoo.Tests.DensityCombatContentTests" runstate="Runnable" seed="1002947118" result="Passed" start-time="2026-09-26T19:45:47.6693020Z" end-time="2026-09-26T19:45:47.6846060Z" duration="0.015304" asserts="1" />
+            <test-case id="1013" name="UnauthoredCreaturesKeepTheirExistingBehavior(&quot;GlassScorpion&quot;)" fullname="CavesOfOoo.Tests.DensityCombatContentTests.UnauthoredCreaturesKeepTheirExistingBehavior(&quot;GlassScorpion&quot;)" methodname="UnauthoredCreaturesKeepTheirExistingBehavior" classname="CavesOfOoo.Tests.DensityCombatContentTests" runstate="Runnable" seed="255927134" result="Passed" start-time="2026-09-26T19:45:47.6846300Z" end-time="2026-09-26T19:45:47.6983080Z" duration="0.013677" asserts="1" />
+            <test-case id="1014" name="UnauthoredCreaturesKeepTheirExistingBehavior(&quot;Shambler&quot;)" fullname="CavesOfOoo.Tests.DensityCombatContentTests.UnauthoredCreaturesKeepTheirExistingBehavior(&quot;Shambler&quot;)" methodname="UnauthoredCreaturesKeepTheirExistingBehavior" classname="CavesOfOoo.Tests.DensityCombatContentTests" runstate="Runnable" seed="1830096697" result="Passed" start-time="2026-09-26T19:45:47.6983250Z" end-time="2026-09-26T19:45:47.7135620Z" duration="0.015237" asserts="1" />
+            <test-case id="1015" name="UnauthoredCreaturesKeepTheirExistingBehavior(&quot;Reedfrog&quot;)" fullname="CavesOfOoo.Tests.DensityCombatContentTests.UnauthoredCreaturesKeepTheirExistingBehavior(&quot;Reedfrog&quot;)" methodname="UnauthoredCreaturesKeepTheirExistingBehavior" classname="CavesOfOoo.Tests.DensityCombatContentTests" runstate="Runnable" seed="121362157" result="Passed" start-time="2026-09-26T19:45:47.7135850Z" end-time="2026-09-26T19:45:47.7286980Z" duration="0.015114" asserts="1" />
+            <test-case id="1016" name="UnauthoredCreaturesKeepTheirExistingBehavior(&quot;Snapjaw&quot;)" fullname="CavesOfOoo.Tests.DensityCombatContentTests.UnauthoredCreaturesKeepTheirExistingBehavior(&quot;Snapjaw&quot;)" methodname="UnauthoredCreaturesKeepTheirExistingBehavior" classname="CavesOfOoo.Tests.DensityCombatContentTests" runstate="Runnable" seed="592497436" result="Passed" start-time="2026-09-26T19:45:47.7287170Z" end-time="2026-09-26T19:45:47.7427080Z" duration="0.013991" asserts="1" />
+          </test-suite>
+          <test-case id="1018" name="WarlordActuallyWieldsAnAxeForBerserk" fullname="CavesOfOoo.Tests.DensityCombatContentTests.WarlordActuallyWieldsAnAxeForBerserk" methodname="WarlordActuallyWieldsAnAxeForBerserk" classname="CavesOfOoo.Tests.DensityCombatContentTests" runstate="Runnable" seed="1314251749" result="Failed" start-time="2026-09-26T19:45:47.7427660Z" end-time="2026-09-26T19:45:47.7586650Z" duration="0.015899" asserts="1">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.WarlordActuallyWieldsAnAxeForBerserk() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 52
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatContentTests.WarlordActuallyWieldsAnAxeForBerserk() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatContentTests.cs:line 52
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

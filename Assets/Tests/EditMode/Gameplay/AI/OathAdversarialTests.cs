@@ -114,7 +114,7 @@ namespace CavesOfOoo.Tests
             // forfeits it.
             var zone = new Zone("Z");
             var guest = Guest(zone);
-            var raider = Npc(zone, "Snapjaws", 11, 10, "raider");
+            var raider = Npc(zone, "OutlandRaiders", 11, 10, "raider");
             Claim(guest);
             Assert.IsFalse(FactionManager.IsHostile(raider, guest), "floored — cannot fight back");
             int repBefore = PlayerReputation.Get("TentRight");
@@ -281,7 +281,7 @@ namespace CavesOfOoo.Tests
             guest.AddPart(new StatusEffectsPart());
             guest.AddPart(new SkillsPart());
             guest.GetPart<SkillsPart>().AddSkill(new Persuasion_Recruit(), source: "test");
-            var raider = Npc(zone, "Snapjaws", 11, 10, "raider");
+            var raider = Npc(zone, "OutlandRaiders", 11, 10, "raider");
             Claim(guest);
             Assert.IsFalse(FactionManager.IsHostile(raider, guest), "truce holds");
 
@@ -331,7 +331,7 @@ namespace CavesOfOoo.Tests
             camp.RemoveEntity(guest);
             var wilds = new Zone("Overworld.9.9.0");
             wilds.AddEntity(guest, 10, 10);
-            var raider = Npc(wilds, "Snapjaws", 12, 10, "raider");
+            var raider = Npc(wilds, "OutlandRaiders", 12, 10, "raider");
 
             Assert.IsTrue(guest.HasEffect<UnderTheClothEffect>(), "the effect rode along");
             Assert.IsFalse(FactionManager.IsHostile(raider, guest),
@@ -371,7 +371,7 @@ namespace CavesOfOoo.Tests
             // pursuit drops the guest the turn the cloth goes on.
             var zone = new Zone("Z");
             var guest = Guest(zone);
-            var raider = Npc(zone, "Snapjaws", 13, 10, "raider");
+            var raider = Npc(zone, "OutlandRaiders", 13, 10, "raider");
 
             Assert.AreSame(guest, AIHelpers.FindNearestHostile(raider, zone, 10),
                 "mid-hunt before the cloth");

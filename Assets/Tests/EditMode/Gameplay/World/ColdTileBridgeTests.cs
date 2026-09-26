@@ -67,11 +67,11 @@ namespace CavesOfOoo.Tests
             return s;
         }
 
-        private static Entity Snapjaw(Zone zone, int x, int y, int hp = 40)
+        private static Entity MarlbackScrabbler(Zone zone, int x, int y, int hp = 40)
         {
-            var e = new Entity { ID = "snapjaw" + x + "_" + y, BlueprintName = "Snapjaw" };
+            var e = new Entity { ID = "marlback" + x + "_" + y, BlueprintName = "MarlbackScrabbler" };
             e.Tags["Creature"] = "";
-            e.AddPart(new RenderPart { DisplayName = "snapjaw" });
+            e.AddPart(new RenderPart { DisplayName = "marlback" });
             e.AddPart(new PhysicsPart { Solid = true });
             e.Statistics["Hitpoints"] = new Stat
             { Owner = e, Name = "Hitpoints", BaseValue = hp, Min = 0, Max = hp };
@@ -168,7 +168,7 @@ namespace CavesOfOoo.Tests
             var caster = Caster(zone, 5, 5);
             Learn<Cryomancy_RimeGrip>(caster);
             zone.TileState.WriteCoating(7, 5, "water", 6);
-            var target = Snapjaw(zone, 7, 5);
+            var target = MarlbackScrabbler(zone, 7, 5);
 
             var (handled, _) = Cast(caster, zone, "CommandRimeGrip", dx: 1);
 
@@ -273,7 +273,7 @@ namespace CavesOfOoo.Tests
             var caster = Caster(zone, 5, 5);
             Learn<Cryomancy_RimeGrip>(caster);
             zone.TileState.WriteCoating(7, 5, "water", 6);
-            var target = Snapjaw(zone, 7, 5);
+            var target = MarlbackScrabbler(zone, 7, 5);
 
             Cast(caster, zone, "CommandRimeGrip", dx: 1);
 
@@ -312,7 +312,7 @@ namespace CavesOfOoo.Tests
             var caster = Caster(zone, 5, 5);
             Learn<Cryomancy_IceLance>(caster);
             zone.TileState.WriteCoating(8, 5, "water", 6);
-            var target = Snapjaw(zone, 8, 5);
+            var target = MarlbackScrabbler(zone, 8, 5);
 
             var (handled, _) = Cast(caster, zone, "CommandIceLance", dx: 1, range: 6);
 

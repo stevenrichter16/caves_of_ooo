@@ -41,7 +41,7 @@ namespace CavesOfOoo.Rendering
         {
             var inventoryState = InventoryScreenData.Build(player);
 
-            var vitalLines = new List<string>(4)
+            var vitalLines = new List<string>(5)
             {
                 ComposeDualLine("HP", FindStat(inventoryState, "HP", "0"), "MP", FindStat(inventoryState, "MP", "-")),
                 ComposeDualLine("LV", FindStat(inventoryState, "LV", GetLevel(player).ToString()), "XP", GetXpLine(player)),
@@ -50,7 +50,8 @@ namespace CavesOfOoo.Rendering
                     "WT",
                     inventoryState.CarriedWeight + "/" + inventoryState.MaxCarryWeight,
                     "DR",
-                    inventoryState.Drams.ToString())
+                    inventoryState.Drams.ToString()),
+                "TIME " + WorldClock.BandName(WorldClock.GetBand(WorldClock.CurrentTick), WorldMap.GetDepth(zone?.ZoneID))
             };
 
             string statusText = BuildStatusText(player);

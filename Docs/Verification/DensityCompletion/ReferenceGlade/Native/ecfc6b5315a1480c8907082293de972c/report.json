@@ -1,0 +1,24 @@
+{
+    "runId": "ecfc6b5315a1480c8907082293de972c",
+    "zone": "Overworld.11.10.0",
+    "fatal": "System.InvalidOperationException: Density completion precondition: native action shortcut Equip\n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer.Require (System.Boolean condition, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:202 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<ItemAction>d__42.MoveNext () [0x001e5] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:162 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RunSafely>d__51.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:215 ",
+    "canVerify": "Native glade new game; ordinary HP and starting kit; keyboard walking, gear, real chest loot, blocking, finite quartz harvest, F5/F6 persistence and world exit/return. Actual rendered screenshots.",
+    "cannotVerify": "Routes are script-selected through real keyboard input. Full-reveal composition frames are labelled and reveal is restored before play. No natural discovery, player-solo combat balance or enjoyment claim. Screenshots need visual inspection.",
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS keyboard_moves_one_native_cell",
+        "FAIL native_precondition_failed"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/ecfc6b5315a1480c8907082293de972c/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/ecfc6b5315a1480c8907082293de972c/02-composition-full-reveal.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/ecfc6b5315a1480c8907082293de972c/03-world-only-full-reveal.png"
+    ],
+    "descriptions": [],
+    "cases": 3,
+    "failures": 2,
+    "unexpectedErrors": 1,
+    "complete": false,
+    "errorsFinalized": true,
+    "seconds": 2.4038454
+}

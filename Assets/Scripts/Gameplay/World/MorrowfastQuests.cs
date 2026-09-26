@@ -8,6 +8,7 @@ namespace CavesOfOoo.Core
     {
         public const string ReturnQuestId = "MorrowfastReturnNotch", BellQuestId = "MorrowfastBell", SupperQuestId = "MorrowfastSupper";
         public const string InspectCordCommand = "MorrowfastInspectCord", RepairBellCommand = "MorrowfastRepairBell", LoudBellCommand = "MorrowfastLoudBell", RingBellCommand = "MorrowfastRingBell", MoveStoolCommand = "MorrowfastMoveSupperStool", RestCommand = "MorrowfastRestGuestBed";
+        public const string RestNextBandCommand = "MorrowfastRestGuestBedUntilNextBand";
         public const string EddenConsent = "MorrowfastEddenConsent", BellDiagnosed = "MorrowfastBellDiagnosed", BellWorked = "MorrowfastBellWorked", SupperMoved = "MorrowfastSupperMoved";
         private const string ZoneId = "Overworld.3.6.0";
 
@@ -18,7 +19,7 @@ namespace CavesOfOoo.Core
             if (part == null) { part = new MorrowfastQuestPropPart(); owner.AddPart(part); }
             part.ComponentId = componentId;
         }
-        public static bool IsWorldCommand(string command) => command == InspectCordCommand || command == RepairBellCommand || command == LoudBellCommand || command == RingBellCommand || command == MoveStoolCommand || command == RestCommand;
+        public static bool IsWorldCommand(string command) => command == InspectCordCommand || command == RepairBellCommand || command == LoudBellCommand || command == RingBellCommand || command == MoveStoolCommand || command == RestCommand || command == RestNextBandCommand;
 
         private static bool Present(Entity target, Entity actor, Zone zone)
         {
@@ -108,10 +109,12 @@ namespace CavesOfOoo.Core
                 || !MorrowfastSceneRuntime.WithinOwnerReach(actor, target, zone)) return false;
             var spec = MorrowfastSceneDefinition.Load()?.FindOwner(id);
             if (spec == null || (spec.kind != "stool" && zone.GetEntityPosition(target) != (spec.anchorX, spec.anchorY))) return false;
-            if (command == RestCommand)
+            if (command == RestCommand || command == RestNextBandCommand)
             {
                 if (id != "guest-bed-west" && id != "guest-bed-east") return false;
-                return RestSystem.TryRest(actor, zone, "Dry Hem guest bed", out _);
+                return command == RestNextBandCommand
+                    ? RestSystem.TryRestUntilNextBand(actor, zone, "Dry Hem guest bed", out _)
+                    : RestSystem.TryRest(actor, zone, "Dry Hem guest bed", out _);
             }
             if (command == InspectCordCommand)
             {
@@ -181,7 +184,11 @@ namespace CavesOfOoo.Core
                 actions.AddAction("RingBell", "ring the watch bell", MorrowfastQuests.RingBellCommand, 'b', 19);
             }
             if (ComponentId == "guest-stool-south") actions.AddAction("MoveSupperStool", "make room for supper", MorrowfastQuests.MoveStoolCommand, 'm', 20);
-            if (ComponentId == "guest-bed-west" || ComponentId == "guest-bed-east") actions.AddAction("RestGuest", "rest in the guest bed (free)", MorrowfastQuests.RestCommand, 's', 20);
+            if (ComponentId == "guest-bed-west" || ComponentId == "guest-bed-east")
+            {
+                actions.AddAction("RestGuest", "rest in the guest bed (free)", MorrowfastQuests.RestCommand, 's', 20);
+                actions.AddAction("RestGuestNextBand", "rest until the next time of day (free)", MorrowfastQuests.RestNextBandCommand, 'n', 19);
+            }
             return true;
         }
     }

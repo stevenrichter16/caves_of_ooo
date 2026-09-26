@@ -12,14 +12,14 @@ namespace CavesOfOoo.Scenarios.Custom
     ///                   ↗  ↗
     ///   [Player] →→→→→ [CaveSlime E: AR=+50, halved]
     ///                   ↘  ↘
-    ///                   [Snapjaw SE: AR=0, control, full damage]
+    ///                   [MarlbackScrabbler SE: AR=0, control, full damage]
     ///
     /// Three swings of the AcidicDagger expose the entire Phase E curve
     /// for the Acid axis:
     ///
     ///   - CaveSlime (AR=+50) → damage halved (slime is chemically inert,
     ///     mostly water — acid washes off)
-    ///   - Snapjaw   (AR=0)   → full damage (control, no AR stat)
+    ///   - MarlbackScrabbler   (AR=0)   → full damage (control, no AR stat)
     ///   - Scorpion  (AR=-50) → amplified 1.5× (chitinous exoskeleton
     ///     dissolves under acid)
     ///
@@ -31,7 +31,7 @@ namespace CavesOfOoo.Scenarios.Custom
     [Scenario(
         name: "AcidicDagger Showcase",
         category: "Combat",
-        description: "Phase C × Phase E full curve for Acid: AcidicDagger vs CaveSlime (AR=+50, halved), Snapjaw (control), Scorpion (AR=-50, amplified). Pair with the base Dagger to confirm Acid is the lever.")]
+        description: "Phase C × Phase E full curve for Acid: AcidicDagger vs CaveSlime (AR=+50, halved), MarlbackScrabbler (control), Scorpion (AR=-50, amplified). Pair with the base Dagger to confirm Acid is the lever.")]
     public class AcidicDaggerShowcase : IScenario
     {
         public void Apply(ScenarioContext ctx)
@@ -69,22 +69,22 @@ namespace CavesOfOoo.Scenarios.Custom
             if (scorpion != null)
                 scorpion.AddPart(new AcidicDaggerDemoProbePart());
 
-            // === SE: Snapjaw — AR=0, CONTROL ===
+            // === SE: MarlbackScrabbler — AR=0, CONTROL ===
             // No AcidResistance. Reference point for full damage.
-            var snapjaw = ctx.Spawn("Snapjaw")
+            var marlback = ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 200)
                 .WithHpAbsolute(200)
                 .AsPersonalEnemyOf(ctx.PlayerEntity)
                 .At(p.x + 3, p.y + 2);
-            if (snapjaw != null)
-                snapjaw.AddPart(new AcidicDaggerDemoProbePart());
+            if (marlback != null)
+                marlback.AddPart(new AcidicDaggerDemoProbePart());
 
             // === Walk-through log ===
             ctx.Log("=== AcidicDagger Showcase (Phase C × Phase E full curve, Acid axis) ===");
             ctx.Log("Loadout: AcidicDagger equipped, Dagger in inventory.");
             ctx.Log("E  CaveSlime (AR=+50): swing AcidicDagger → HALVED. Resistant slime.");
             ctx.Log("NE Scorpion  (AR=-50): swing AcidicDagger → AMPLIFIED 1.5×. Chitin dissolves.");
-            ctx.Log("SE Snapjaw   (AR=0):   swing AcidicDagger → full damage. Control.");
+            ctx.Log("SE MarlbackScrabbler   (AR=0):   swing AcidicDagger → full damage. Control.");
             ctx.Log("Watch for [AcidDemo] log lines — they show the live");
             ctx.Log("AcidResistance value (including sign) and the ACID flag.");
             ctx.Log("Swap to base Dagger (Piercing, no Acid) to confirm the elemental");

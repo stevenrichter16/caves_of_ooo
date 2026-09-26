@@ -128,7 +128,7 @@ namespace CavesOfOoo.Rendering
             switch (kind)
             {
                 case ActorSpriteKind.Player:        return '@';
-                case ActorSpriteKind.Snapjaw:       return 's';
+                case ActorSpriteKind.Marlback:       return 's';
                 case ActorSpriteKind.Villager:      return '@';
                 case ActorSpriteKind.Merchant:      return '@';
                 case ActorSpriteKind.Elder:         return '@';
@@ -171,7 +171,9 @@ namespace CavesOfOoo.Rendering
             ("DuneLurker", "dune_lurker", 'd'), ("Mogu", "mogu", 'M'),
             ("Grib", "grib", 'G'), ("Nam", "nam", 'N'),
             ("Sien", "sien", 'S'), ("Sopp", "sopp", 's'),
-            ("SnapjawChieftain", "snapjaw_chieftain", 'S'), ("SnapjawWarlord", "snapjaw_warlord", 'S'),
+            ("MarlbackScrabbler", "marlback_scrabbler", 's'), ("MarlbackGleaner", "marlback_gleaner", 's'),
+            ("MarlbackTunnelguard", "marlback_tunnelguard", 's'), ("GroveLanternMoth", "grove_lantern_moth", 'm'),
+            ("MarlbackWallkeeper", "marlback_wallkeeper", 'S'), ("MarlbackBreacher", "marlback_breacher", 'S'),
             // W5.6 — Ginmere makes the drowned sima reachable, and its
             // headline fauna stops being a bare letter.
             ("GinFrog", "gin_frog", 'f'),
@@ -353,7 +355,7 @@ namespace CavesOfOoo.Rendering
         private Sprite _alchemyStillSprite;    // AlchemyStill ('&' uncovered)
         // Pass 13 — Muted Overgrowth actor pilot + ruin fixtures
         private Sprite _playerSprite;          // Player ('@'), authored-color
-        private Sprite _snapjawSprite;         // Snapjaw family ('s'/'S'), authored-color
+        private Sprite _marlbackSprite;         // MarlbackScrabbler family ('s'/'S'), authored-color
         private Sprite _pillarSprite;          // Pillar 'I' / BrokenColumn ','
         // Pass 14 — 15-sprite expansion (STYLE-GUIDE.md; GRAPHICS-PASS14.md)
         private Sprite _villagerSprite;        // Villager/Innkeeper/WellKeeper/Scribe
@@ -414,7 +416,7 @@ namespace CavesOfOoo.Rendering
         private Tile _alchemyStillTile;
         // Pass 13 tiles
         private Tile _playerTile;
-        private Tile _snapjawTile;
+        private Tile _marlbackTile;
         private Tile _pillarTile;
         // Pass 14 tiles
         private Tile _villagerTile;
@@ -638,7 +640,7 @@ namespace CavesOfOoo.Rendering
             _alchemyStillSprite    = LoadSingle(SpriteRoot + "alchemy_still");
             // Pass 13
             _playerSprite          = LoadSingle(SpriteRoot + "player");
-            _snapjawSprite         = LoadSingle(SpriteRoot + "snapjaw");
+            _marlbackSprite         = LoadSingle(SpriteRoot + "marlback_scrabbler");
             _pillarSprite          = LoadSingle(SpriteRoot + "pillar");
             // Pass 14
             _villagerSprite        = LoadSingle(SpriteRoot + "villager");
@@ -851,7 +853,7 @@ namespace CavesOfOoo.Rendering
             _alchemyStillTile    = MakeTile(_alchemyStillSprite,    "AlchemyStill");
             // Pass 13
             _playerTile          = MakeTile(_playerSprite,          "Player");
-            _snapjawTile         = MakeTile(_snapjawSprite,         "Snapjaw");
+            _marlbackTile         = MakeTile(_marlbackSprite,         "Marlback");
             _pillarTile          = MakeTile(_pillarSprite,          "Pillar");
             // Pass 14
             _villagerTile        = MakeTile(_villagerSprite,        "Villager");
@@ -1407,7 +1409,7 @@ namespace CavesOfOoo.Rendering
         private static bool BlueprintIsCorpse(string bp)
         {
             // Pass 11 — corpse blueprints. Most named entities use the
-            // suffix "Corpse" (e.g. SnapjawCorpse). We match suffix to
+            // suffix "Corpse" (e.g. MarlbackScrabblerCorpse). We match suffix to
             // avoid colliding with names that have "corpse" in the
             // middle (none currently, but safer if content grows).
             if (string.IsNullOrEmpty(bp)) return false;
@@ -1427,13 +1429,13 @@ namespace CavesOfOoo.Rendering
         }
 
         /// <summary>Pass 13 — actor sprites (STYLE-GUIDE.md §6). The
-        /// player plus the living Snapjaw family; corpses are excluded
+        /// player plus the living MarlbackScrabbler family; corpses are excluded
         /// (they keep Pass 11 corpse handling). Actor sprites are
         /// AUTHORED-COLOR: the renderer applies only lighting value,
         /// never the glyph hue — a &amp;Y player must not render yellow.</summary>
         public enum ActorSpriteKind
         {
-            None, Player, Snapjaw,
+            None, Player, Marlback,
             // Pass 14
             Villager, Merchant, Elder, Warden, Child, SporeShambler, IceWight
         }
@@ -1442,9 +1444,9 @@ namespace CavesOfOoo.Rendering
         {
             if (string.IsNullOrEmpty(blueprintName)) return ActorSpriteKind.None;
             if (blueprintName == "Player") return ActorSpriteKind.Player;
-            if (blueprintName.StartsWith("Snapjaw", System.StringComparison.Ordinal)
+            if (blueprintName.StartsWith("Marlback", System.StringComparison.Ordinal)
                 && !blueprintName.EndsWith("Corpse", System.StringComparison.OrdinalIgnoreCase))
-                return ActorSpriteKind.Snapjaw;
+                return ActorSpriteKind.Marlback;
             switch (blueprintName)
             {
                 // Robed townsfolk share one sprite; role NPCs with a
@@ -1548,7 +1550,7 @@ namespace CavesOfOoo.Rendering
                 string bpName = topEntity?.BlueprintName;
 
                 // Pass 13 — actor tier runs before everything: the
-                // player and snapjaw family render as authored-color
+                // player and marlback family render as authored-color
                 // Muted Overgrowth sprites (STYLE-GUIDE.md §6/§8).
                 // Round 2 (S3): blueprint-named role NPCs (shopkeepers
                 // + hermits) resolve first — they are not in the
@@ -1556,7 +1558,7 @@ namespace CavesOfOoo.Rendering
                 // ROUND 3 audit 🟡 — the RESKIN GUARD: quest builders
                 // repurpose base blueprints by mutating RenderString
                 // (BMO is a Villager reskinned to 'b'; dirt gnomes are
-                // Snapjaws reskinned to 'g'). If the entity's CURRENT
+                // MarlbackScrabblers reskinned to 'g'). If the entity's CURRENT
                 // glyph is not the kind's canonical one, it is not
                 // that kind anymore — honest ASCII beats a lookalike
                 // villager.
@@ -1579,8 +1581,8 @@ namespace CavesOfOoo.Rendering
                     case ActorSpriteKind.Player:
                         if (_playerTile != null) { authoredColor = true; return _playerTile; }
                         break;
-                    case ActorSpriteKind.Snapjaw:
-                        if (_snapjawTile != null) { authoredColor = true; return _snapjawTile; }
+                    case ActorSpriteKind.Marlback:
+                        if (_marlbackTile != null) { authoredColor = true; return _marlbackTile; }
                         break;
                     // Pass 14 actors
                     case ActorSpriteKind.Villager:

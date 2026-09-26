@@ -84,7 +84,7 @@ namespace CavesOfOoo.Scenarios.Custom
         {
             var table = PopulationTable.SpreadTier1();
             var control = PopulationTable.SpreadTier1();
-            control.Entries.RemoveAll(e => e.BlueprintName == "Viper" || e.BlueprintName == "Snapjaw");
+            control.Entries.RemoveAll(e => e.BlueprintName == "Viper" || e.BlueprintName == "MarlbackScrabbler");
             int valid = 0, controls = 0;
             var species = new HashSet<string>();
             for (int seed = 1; seed <= 64; seed++)
@@ -98,7 +98,7 @@ namespace CavesOfOoo.Scenarios.Custom
             Measure("spread_both_group_choices", species.Count, 2, species.Count == 2);
             Measure("spread_removed_rows_control", controls, 64, controls == 64);
         }
-        private static bool IsSpreadEncounter(string blueprint) => blueprint == "Viper" || blueprint == "Snapjaw";
+        private static bool IsSpreadEncounter(string blueprint) => blueprint == "Viper" || blueprint == "MarlbackScrabbler";
 
         private void AuditLairs(EntityFactory factory)
         {

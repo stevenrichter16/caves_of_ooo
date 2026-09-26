@@ -71,7 +71,7 @@ namespace CavesOfOoo.Tests.TestSupport
         /// Assert that the zone contains exactly <paramref name="expected"/>
         /// entities carrying the tag KEY <paramref name="withTag"/>. Remember
         /// tag KEYS (not values) — faction info uses key <c>"Faction"</c>, not
-        /// <c>"Snapjaws"</c>.
+        /// <c>"OutlandRaiders"</c>.
         /// </summary>
         public ScenarioVerifier EntityCount(string withTag, int expected)
         {

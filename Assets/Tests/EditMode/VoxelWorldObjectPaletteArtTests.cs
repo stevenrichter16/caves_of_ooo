@@ -44,7 +44,9 @@ namespace CavesOfOoo.Tests
                 .Concat(pilot.Models.Select(m => m.Prefab))
                 .Concat(ring.EquipmentLibrary.Models.Select(m => m.Prefab)).Distinct().ToArray();
             bindings = catalog.Bindings.ToDictionary(b => b.Source);
-            Assert.AreEqual(392, prefabs.Length); Assert.AreEqual(406, bindings.Count);
+            // Four original creature rigs add four prefabs/mesh bindings.
+            // All geometry, bone, water and palette assertions still inspect every row.
+            Assert.AreEqual(396, prefabs.Length); Assert.AreEqual(410, bindings.Count);
             var sources = new HashSet<Mesh>(prefabs.SelectMany(p => p.GetComponentsInChildren<Renderer>(true)).Select(Source));
             Assert.IsFalse(sources.Contains(null)); CollectionAssert.AreEquivalent(sources, bindings.Keys);
         }
@@ -96,7 +98,7 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void All392CompleteNativeObjectsUseAtMostTwoAuthoredBaseColors()
+        public void All396CompleteNativeObjectsUseAtMostTwoAuthoredBaseColors()
         {
             var failures = new List<string>(); int twoColorObjects = 0, visited = 0;
             foreach (var prefab in prefabs)
@@ -108,7 +110,7 @@ namespace CavesOfOoo.Tests
                 if (colors.Count == 2) twoColorObjects++;
                 visited++;
             }
-            Assert.AreEqual(392, visited);
+            Assert.AreEqual(396, visited);
             Assert.IsEmpty(failures, "Whole-object palette violations: " + string.Join(", ", failures));
             Assert.Greater(twoColorObjects, 0, "The gate must not pass by flattening every object to one color.");
         }
@@ -216,7 +218,7 @@ namespace CavesOfOoo.Tests
             }
             Assert.AreEqual(15, toolkit, "Active ring recipe overrides retain their independent topology/fit gate.");
             Assert.AreEqual(117, coarse, "Only the complete native-coordinate Morrowfast scenery overlay is exempt from the old surface bake.");
-            Assert.AreEqual(274, checkedMeshes);
+            Assert.AreEqual(278, checkedMeshes);
         }
 
         [Test]

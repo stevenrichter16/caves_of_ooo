@@ -234,7 +234,7 @@ namespace CavesOfOoo.Rendering
                 return false;
 
             // Blueprint fallback preserves the existing reskin guard. A quest may
-            // reuse Villager or Snapjaw and replace its current glyph; that entity
+            // reuse Villager or MarlbackScrabbler and replace its current glyph; that entity
             // must keep honest fallback art unless it explicitly chooses a VisualID.
             if (!resolvedExplicitVisual && !string.IsNullOrEmpty(definition.CanonicalGlyph))
             {

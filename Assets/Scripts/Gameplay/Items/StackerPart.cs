@@ -97,6 +97,8 @@ namespace CavesOfOoo.Core
         public Entity SplitStack(int count)
         {
             if (count <= 0 || count >= StackCount) return null;
+            var torch = ParentEntity.GetPart<TorchLightPart>();
+            if (torch != null && !torch.CanSplitSafely()) { torch.ReportSplitRefusal(); return null; }
 
             StackCount -= count;
             RefreshCarriedOwners(ParentEntity);
@@ -108,10 +110,13 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Split off one item. If this is the last item, returns ParentEntity itself.
         /// Otherwise creates a clone with count 1 and decrements this stack.
+        /// Returns null without changing quantity if state cannot be split safely.
         /// </summary>
         public Entity RemoveOne()
         {
             if (StackCount <= 1) return ParentEntity;
+            var torch = ParentEntity.GetPart<TorchLightPart>();
+            if (torch != null && !torch.CanSplitSafely()) { torch.ReportSplitRefusal(); return null; }
 
             StackCount--;
             RefreshCarriedOwners(ParentEntity);

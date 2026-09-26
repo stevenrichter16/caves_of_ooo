@@ -29,10 +29,12 @@ namespace CavesOfOoo.Tests
                 {Source=Triangle("source"+i),Voxel=Triangle("voxel"+i),VoxelSize=.25f,WorldVoxelSize=.25f,SourceKey="owned-source_"+i};
             return catalog;
         }
+        // Explicitly construct the ordinary-zone branch of the private adapter;
+        // the glade-only mesh registry is covered by ReferenceGladeArtTests.
         static VoxelWorldPresentation Adapter(VoxelWorldMeshCatalog catalog)
         {
             try {return (VoxelWorldPresentation)Activator.CreateInstance(typeof(VoxelWorldPresentation),BindingFlags.Instance|BindingFlags.NonPublic,
-                null,new object[]{"Overworld.3.7.0",catalog},null);}
+                null,new object[]{"Overworld.3.7.0",catalog,false},null);}
             catch(TargetInvocationException error){throw error.InnerException??error;}
         }
         static MeshFilter Filter(GameObject root,Mesh mesh)

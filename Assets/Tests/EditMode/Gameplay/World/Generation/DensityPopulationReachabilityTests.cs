@@ -49,7 +49,7 @@ namespace CavesOfOoo.Tests
         public void SceneryCannotCloseASingleCellPassageEvenBesideAMobileCreature(bool mobileNeighbor)
         {
             var z = Floor((1, 12), (2, 12), (3, 12), (4, 12), (5, 12), (6, 12));
-            if (mobileNeighbor) z.AddEntity(factory.CreateEntity("Snapjaw"), 3, 12);
+            if (mobileNeighbor) z.AddEntity(factory.CreateEntity("MarlbackScrabbler"), 3, 12);
             var rng = new FirstCellRandom();
             PlaceOnlyAt(z, "Stalagmite", 4, 12, rng);
             Assert.IsFalse(z.GetCell(4, 12).BlocksMovement(), "Late scenery must preserve the corridor already connected by terrain.");
@@ -85,7 +85,7 @@ namespace CavesOfOoo.Tests
                 "The guard preserves existing connectivity; it does not require an already perfect zone.");
         }
 
-        [TestCase("Snapjaw")] [TestCase("Torch")]
+        [TestCase("MarlbackScrabbler")] [TestCase("Torch")]
         public void MobileCreaturesAndNonblockingItemsCanOccupyAPassage(string blueprint)
         {
             var z = Floor((1, 12), (2, 12), (3, 12));

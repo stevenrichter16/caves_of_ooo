@@ -415,6 +415,9 @@ namespace CavesOfOoo.Core
         /// </summary>
         public Entity CloneForStack()
         {
+            var torch = GetPart<TorchLightPart>();
+            if (torch != null && !torch.CanSplitSafely())
+                throw new InvalidOperationException("Cannot clone a torch with unsupported effect state.");
             // A split unit is independently selectable, including during Part.Initialize.
             var clone = new Entity { ID = Guid.NewGuid().ToString("N") };
             clone.BlueprintName = BlueprintName;
@@ -441,6 +444,8 @@ namespace CavesOfOoo.Core
                 }
                 clone.AddPart(newPart);
             }
+
+            torch?.CopySplitEffectsTo(clone);
 
             // Clear context references — clone starts fresh
             var clonePhysics = clone.GetPart<PhysicsPart>();

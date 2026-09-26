@@ -126,9 +126,9 @@ namespace CavesOfOoo.Tests
         // ── BlueprintIsCorpse (Pass 11) ───────────────────────────
 
         [Test]
-        public void Corpse_SnapjawCorpse_Matches()
+        public void Corpse_MarlbackScrabblerCorpse_Matches()
         {
-            Assert.IsTrue(InvokeIsCorpse("SnapjawCorpse"));
+            Assert.IsTrue(InvokeIsCorpse("MarlbackScrabblerCorpse"));
         }
 
         [Test]
@@ -287,28 +287,28 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void Actor_SnapjawFamily_AllLivingVariantsMatch()
+        public void Actor_MarlbackScrabblerFamily_AllLivingVariantsMatch()
         {
-            // Content set: Snapjaw, SnapjawScavenger, SnapjawHunter,
-            // SnapjawChieftain — one sprite for the family.
-            Assert.AreEqual(EnvironmentSpriteRenderer.ActorSpriteKind.Snapjaw,
-                EnvironmentSpriteRenderer.ResolveActorKind("Snapjaw"));
-            Assert.AreEqual(EnvironmentSpriteRenderer.ActorSpriteKind.Snapjaw,
-                EnvironmentSpriteRenderer.ResolveActorKind("SnapjawScavenger"));
-            Assert.AreEqual(EnvironmentSpriteRenderer.ActorSpriteKind.Snapjaw,
-                EnvironmentSpriteRenderer.ResolveActorKind("SnapjawHunter"));
-            Assert.AreEqual(EnvironmentSpriteRenderer.ActorSpriteKind.Snapjaw,
-                EnvironmentSpriteRenderer.ResolveActorKind("SnapjawChieftain"));
+            // Content set: MarlbackScrabbler, MarlbackGleaner, MarlbackTunnelguard,
+            // MarlbackWallkeeper — one sprite for the family.
+            Assert.AreEqual(EnvironmentSpriteRenderer.ActorSpriteKind.Marlback,
+                EnvironmentSpriteRenderer.ResolveActorKind("MarlbackScrabbler"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.ActorSpriteKind.Marlback,
+                EnvironmentSpriteRenderer.ResolveActorKind("MarlbackGleaner"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.ActorSpriteKind.Marlback,
+                EnvironmentSpriteRenderer.ResolveActorKind("MarlbackTunnelguard"));
+            Assert.AreEqual(EnvironmentSpriteRenderer.ActorSpriteKind.Marlback,
+                EnvironmentSpriteRenderer.ResolveActorKind("MarlbackWallkeeper"));
         }
 
         [Test]
-        public void Actor_SnapjawCorpse_DoesNotMatch()
+        public void Actor_MarlbackScrabblerCorpse_DoesNotMatch()
         {
             // The corpse is loot, not an actor — it keeps the Pass 11
             // corpse-sprite handling. A live-actor sprite on a corpse
             // would un-kill it visually.
             Assert.AreEqual(EnvironmentSpriteRenderer.ActorSpriteKind.None,
-                EnvironmentSpriteRenderer.ResolveActorKind("SnapjawCorpse"));
+                EnvironmentSpriteRenderer.ResolveActorKind("MarlbackScrabblerCorpse"));
         }
 
         [Test]
@@ -382,7 +382,7 @@ namespace CavesOfOoo.Tests
             // WellGroundMarker must not inherit WellKeeper's sprite;
             // corpses keep Pass 11 handling.
             Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveActorKind("WellGroundMarker"));
-            Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveActorKind("SnapjawCorpse"));
+            Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveActorKind("MarlbackScrabblerCorpse"));
             Assert.AreEqual(none, EnvironmentSpriteRenderer.ResolveActorKind("SandWurm"));
         }
 

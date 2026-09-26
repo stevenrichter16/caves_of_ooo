@@ -1,7 +1,7 @@
 namespace CavesOfOoo.Scenarios.Custom
 {
     /// <summary>
-    /// M2.3 stacking showcase — one Scribe, two one-HP Snapjaws.
+    /// M2.3 stacking showcase — one Scribe, two one-HP OutlandRaiders.
     /// Kill A, Scribe shakes. Kill B shortly after, the existing
     /// WitnessedEffect's <c>OnStack</c> fires instead of adding a
     /// duplicate to the status list.
@@ -14,11 +14,11 @@ namespace CavesOfOoo.Scenarios.Custom
     /// existing clock continues uninterrupted.
     ///
     /// Expected flow when launched:
-    /// - Kill Snapjaw A → "Scribe looks shaken." (Duration = 20 fresh)
-    /// - Kill Snapjaw B within a few turns → OnStack fires, NO second
+    /// - Kill MarlbackScrabbler A → "Scribe looks shaken." (Duration = 20 fresh)
+    /// - Kill MarlbackScrabbler B within a few turns → OnStack fires, NO second
     ///   "looks shaken" message (idempotency — only one effect on list)
     /// - Scribe's pacing continues from wherever Duration currently is
-    /// - If Snapjaw B is killed after Snapjaw A's Duration drops to
+    /// - If MarlbackScrabbler B is killed after MarlbackScrabbler A's Duration drops to
     ///   below 20, the second kill extends back up to 20
     ///
     /// Good for:
@@ -31,13 +31,13 @@ namespace CavesOfOoo.Scenarios.Custom
     [Scenario(
         name: "Witness Stacks on Second Death (M2.3)",
         category: "AI Behavior",
-        description: "Kill two Snapjaws near one Scribe. Second kill's effect stacks; no duplicate 'shaken' message.")]
+        description: "Kill two OutlandRaiders near one Scribe. Second kill's effect stacks; no duplicate 'shaken' message.")]
     public class WitnessStacksOnSecondDeath : IScenario
     {
         public void Apply(ScenarioContext ctx)
         {
             // Clear the east row so LOS from Scribe to both kill cells is
-            // unblocked and the player can reach the Snapjaws without
+            // unblocked and the player can reach the outland raiders without
             // routing around compass stones or the chest.
             var p = ctx.Zone.GetEntityPosition(ctx.PlayerEntity);
             for (int dx = 1; dx <= 5; dx++)
@@ -45,19 +45,19 @@ namespace CavesOfOoo.Scenarios.Custom
 
             ctx.Spawn("Scribe").AtPlayerOffset(3, 0);
 
-            ctx.Spawn("Snapjaw")
+            ctx.Spawn("MarlbackScrabbler")
                .WithHpAbsolute(1)
                .AsPersonalEnemyOf(ctx.PlayerEntity)
                .AtPlayerOffset(5, 0);
 
-            // Second Snapjaw two rows down so the player has to move to attack it,
+            // Second MarlbackScrabbler two rows down so the player has to move to attack it,
             // giving the Scribe a few turns of pacing between the two kills.
-            ctx.Spawn("Snapjaw")
+            ctx.Spawn("MarlbackScrabbler")
                .WithHpAbsolute(1)
                .AsPersonalEnemyOf(ctx.PlayerEntity)
                .AtPlayerOffset(5, 2);
 
-            ctx.Log("Kill both Snapjaws. Scribe shakes once; second kill's OnStack continues the effect without a duplicate message.");
+            ctx.Log("Kill both OutlandRaiders. Scribe shakes once; second kill's OnStack continues the effect without a duplicate message.");
         }
     }
 }

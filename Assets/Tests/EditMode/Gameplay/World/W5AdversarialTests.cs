@@ -69,7 +69,7 @@ namespace CavesOfOoo.Tests
             // Cross-actor counter-check: an NPC torching the cathedral
             // is the Choir's own problem, never the player's ledger.
             var vault = new Zone("Overworld.5.4.2");
-            var npc = new Entity { ID = "npc", BlueprintName = "Snapjaw" };
+            var npc = new Entity { ID = "npc", BlueprintName = "MarlbackScrabbler" };
             npc.Tags["Creature"] = "";
             GroveLaw.OnIgnite(npc, null, vault);
             Assert.AreEqual(0, PlayerReputation.Get("RotChoir"),

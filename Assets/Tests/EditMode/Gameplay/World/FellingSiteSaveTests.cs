@@ -57,11 +57,11 @@ namespace CavesOfOoo.Tests
         public void LoadingPreservesAnExistingDifferentPOI(int kind)
         {
             var manager = new OverworldZoneManager(_factory, 64);
-            manager.WorldMap.SetPOI(3, 5, new PointOfInterest((POIType)kind, "A saved place", "SavedFaction", 2, "Snapjaw"));
+            manager.WorldMap.SetPOI(3, 5, new PointOfInterest((POIType)kind, "A saved place", "SavedFaction", 2, "MarlbackScrabbler"));
             var zone = manager.GetZone("WorldMap"); var player = _factory.CreateEntity("Player"); zone.AddEntity(player, 40, 12);
             var loaded = Roundtrip(manager, zone, player); var poi = loaded.ZoneManager.WorldMap.GetPOI(3, 5);
             Assert.AreEqual(kind, (int)poi.Type); Assert.AreEqual("A saved place", poi.Name);
-            Assert.AreEqual("SavedFaction", poi.Faction); Assert.AreEqual(2, poi.Tier); Assert.AreEqual("Snapjaw", poi.BossBlueprint);
+            Assert.AreEqual("SavedFaction", poi.Faction); Assert.AreEqual(2, poi.Tier); Assert.AreEqual("MarlbackScrabbler", poi.BossBlueprint);
         }
         [Test]
         public void LoadingDoesNotGenerateAnUncachedWorldMap()

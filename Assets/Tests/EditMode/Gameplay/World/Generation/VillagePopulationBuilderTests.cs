@@ -152,13 +152,10 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void BuildZone_WarrenGnomes_DieAsGnomes_NotAsSnapjaws()
+        public void BuildZone_WarrenGnomes_HaveIndependentIdentityAndGenericRemains()
         {
-            // Playtest bug: the gnomes are reskinned Snapjaws, and the
-            // reskin changed the FACE but not the remains — a dead
-            // "dirt gnome" dropped a snapjaw corpse, because Snapjaw's
-            // Corpse part overrides the generic blueprint. A reskin must
-            // reskin the whole lifecycle.
+            // The original quest reskin leaked its donor species on death.
+            // Independent blueprints must keep both identity and remains.
             string z = FindZoneForQuest("ClearTheWarren");
             Assert.IsNotNull(z);
             BuildVillage(z, out var zone);
@@ -171,8 +168,9 @@ namespace CavesOfOoo.Tests
                 checkedGnomes++;
                 var corpse = e.GetPart<CorpsePart>();
                 Assert.IsNotNull(corpse, "gnomes leave remains");
-                Assert.AreNotEqual("SnapjawCorpse", corpse.CorpseBlueprint,
-                    "a dirt gnome must not die as a snapjaw");
+                Assert.AreEqual("DirtGnome", e.BlueprintName);
+                Assert.AreNotEqual("MarlbackCorpse", corpse.CorpseBlueprint,
+                    "a dirt gnome must not die as a marlback");
             }
             Assert.AreEqual(3, checkedGnomes, "all three gnomes were checked");
         }

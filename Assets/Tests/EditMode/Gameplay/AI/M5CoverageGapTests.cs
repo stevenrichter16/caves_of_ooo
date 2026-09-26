@@ -42,11 +42,11 @@ namespace CavesOfOoo.Tests
                     ""Tags"": []
                 },
                 {
-                    ""Name"": ""SnapjawCorpse"",
+                    ""Name"": ""MarlbackCorpse"",
                     ""Inherits"": ""PhysicalObject"",
                     ""Parts"": [
                         { ""Name"": ""Render"", ""Params"": [
-                            { ""Key"": ""DisplayName"", ""Value"": ""snapjaw corpse"" },
+                            { ""Key"": ""DisplayName"", ""Value"": ""marlback remains"" },
                             { ""Key"": ""RenderString"", ""Value"": ""%"" }
                         ]},
                         { ""Name"": ""Physics"", ""Params"": [
@@ -164,9 +164,9 @@ namespace CavesOfOoo.Tests
 
         private static Entity MakeBareCorpse(Zone zone, int x, int y, int weight = 10, string id = "Corpse-X")
         {
-            var corpse = new Entity { BlueprintName = "SnapjawCorpse", ID = id };
+            var corpse = new Entity { BlueprintName = "MarlbackCorpse", ID = id };
             corpse.Tags["Corpse"] = "";
-            corpse.AddPart(new RenderPart { DisplayName = "snapjaw corpse" });
+            corpse.AddPart(new RenderPart { DisplayName = "marlback remains" });
             corpse.AddPart(new PhysicsPart { Takeable = true, Weight = weight });
             zone.AddEntity(corpse, x, y);
             return corpse;
@@ -201,7 +201,7 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("TestZone");
             // BuildCorpseChance=0 with any rng → first Next(100) is >= 0 always,
             // so the gate fires every time.
-            var creature = MakeCreature(zone, 5, 5, corpseChance: 100, corpseBlueprint: "SnapjawCorpse", buildChance: 0);
+            var creature = MakeCreature(zone, 5, 5, corpseChance: 100, corpseBlueprint: "MarlbackCorpse", buildChance: 0);
 
             var died = MakeDiedEvent(creature, zone);
             creature.FireEvent(died);
@@ -221,7 +221,7 @@ namespace CavesOfOoo.Tests
         {
             CorpsePart.Factory = null;  // explicitly disable
             var zone = new Zone("TestZone");
-            var creature = MakeCreature(zone, 5, 5, corpseChance: 100, corpseBlueprint: "SnapjawCorpse");
+            var creature = MakeCreature(zone, 5, 5, corpseChance: 100, corpseBlueprint: "MarlbackCorpse");
 
             var died = MakeDiedEvent(creature, zone);
             Assert.DoesNotThrow(() => creature.FireEvent(died),
@@ -269,7 +269,7 @@ namespace CavesOfOoo.Tests
         {
             CorpsePart.Factory = MakeFactory();
             var zone = new Zone("TestZone");
-            var creature = MakeCreature(zone, 5, 5, corpseChance: 100, corpseBlueprint: "SnapjawCorpse");
+            var creature = MakeCreature(zone, 5, 5, corpseChance: 100, corpseBlueprint: "MarlbackCorpse");
 
             // Build event WITHOUT Zone parameter.
             var died = GameEvent.New("Died");
@@ -292,7 +292,7 @@ namespace CavesOfOoo.Tests
         {
             CorpsePart.Factory = MakeFactory();
             var zone = new Zone("TestZone");
-            var creature = MakeCreature(zone, 5, 5, corpseChance: 100, corpseBlueprint: "SnapjawCorpse");
+            var creature = MakeCreature(zone, 5, 5, corpseChance: 100, corpseBlueprint: "MarlbackCorpse");
 
             // Pre-remove from zone before firing Died.
             zone.RemoveEntity(creature);
@@ -351,7 +351,7 @@ namespace CavesOfOoo.Tests
         {
             CorpsePart.Factory = MakeFactory();
             var zone = new Zone("TestZone");
-            var creature = MakeCreature(zone, 5, 5, corpseChance: 100, corpseBlueprint: "SnapjawCorpse");
+            var creature = MakeCreature(zone, 5, 5, corpseChance: 100, corpseBlueprint: "MarlbackCorpse");
             // Force ID to empty (helper sets a non-empty default).
             creature.ID = "";
 
@@ -368,7 +368,7 @@ namespace CavesOfOoo.Tests
         /// <summary>
         /// Production line 204-210: when the corpse blueprint's Render is
         /// missing or DisplayName != "corpse", interpolation must NOT
-        /// overwrite. SnapjawCorpse has DisplayName="snapjaw corpse" — must
+        /// overwrite. MarlbackCorpse has DisplayName="marlback remains" — must
         /// be preserved verbatim. Existing test pins this from the blueprint
         /// path; this version pins it via direct CorpsePart manipulation,
         /// proving the gate is on render.DisplayName, not blueprint name.
@@ -378,7 +378,7 @@ namespace CavesOfOoo.Tests
         {
             CorpsePart.Factory = MakeFactory();
             var zone = new Zone("TestZone");
-            var creature = MakeCreature(zone, 5, 5, corpseChance: 100, corpseBlueprint: "SnapjawCorpse");
+            var creature = MakeCreature(zone, 5, 5, corpseChance: 100, corpseBlueprint: "MarlbackCorpse");
             // Override creature DisplayName so we'd see interpolation if it ran.
             creature.GetPart<RenderPart>().DisplayName = "ancient lich king";
 
@@ -388,7 +388,7 @@ namespace CavesOfOoo.Tests
 
             var corpse = FindCorpseAt(zone, 5, 5);
             Assert.IsNotNull(corpse);
-            Assert.AreEqual("snapjaw corpse", corpse.GetPart<RenderPart>().DisplayName,
+            Assert.AreEqual("marlback remains", corpse.GetPart<RenderPart>().DisplayName,
                 "Authored DisplayName must NOT be overwritten when it isn't the bare default 'corpse'.");
         }
 
@@ -403,7 +403,7 @@ namespace CavesOfOoo.Tests
         {
             CorpsePart.Factory = MakeFactory();
             var zone = new Zone("TestZone");
-            var creature = MakeCreature(zone, 5, 5, corpseChance: 100, corpseBlueprint: "SnapjawCorpse");
+            var creature = MakeCreature(zone, 5, 5, corpseChance: 100, corpseBlueprint: "MarlbackCorpse");
             var corpsePart = creature.GetPart<CorpsePart>();
 
             var died = MakeDiedEvent(creature, zone);
@@ -448,7 +448,7 @@ namespace CavesOfOoo.Tests
         [Test]
         public void DisposeOfCorpseGoal_CanFight_IsTrue()
         {
-            var corpse = new Entity { BlueprintName = "SnapjawCorpse" };
+            var corpse = new Entity { BlueprintName = "MarlbackCorpse" };
             corpse.Tags["Corpse"] = "";
             var grave = new Entity { BlueprintName = "Graveyard" };
             grave.Tags["Graveyard"] = "";

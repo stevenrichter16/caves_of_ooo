@@ -42,11 +42,11 @@ namespace CavesOfOoo.Tests.Scenarios
         public void WithStat_SetsStatBaseValue()
         {
             var (ctx, _, _) = BuildContext();
-            var snapjaw = ctx.Spawn("Snapjaw")
+            var marlback = ctx.Spawn("MarlbackScrabbler")
                              .WithStat("Strength", 25)
                              .At(42, 12);
-            Assert.IsNotNull(snapjaw);
-            Assert.AreEqual(25, snapjaw.GetStatValue("Strength", -1));
+            Assert.IsNotNull(marlback);
+            Assert.AreEqual(25, marlback.GetStatValue("Strength", -1));
         }
 
         [Test]
@@ -55,10 +55,10 @@ namespace CavesOfOoo.Tests.Scenarios
             // Sanity: without WithStatMax, setting a stat above its Max=30 default
             // clamps silently. This pins the documented caveat so regressions are visible.
             var (ctx, _, _) = BuildContext();
-            var snapjaw = ctx.Spawn("Snapjaw")
+            var marlback = ctx.Spawn("MarlbackScrabbler")
                              .WithStat("Strength", 999)
                              .At(42, 12);
-            var stat = snapjaw.GetStat("Strength");
+            var stat = marlback.GetStat("Strength");
             Assert.LessOrEqual(stat.BaseValue, stat.Max,
                 "Without WithStatMax, high values must clamp to the blueprint Max (~30).");
         }
@@ -67,11 +67,11 @@ namespace CavesOfOoo.Tests.Scenarios
         public void WithStatMax_AndWithStat_TogetherRaiseCeilingAndBaseValue()
         {
             var (ctx, _, _) = BuildContext();
-            var snapjaw = ctx.Spawn("Snapjaw")
+            var marlback = ctx.Spawn("MarlbackScrabbler")
                              .WithStatMax("Strength", 100)
                              .WithStat("Strength", 80)
                              .At(42, 12);
-            var stat = snapjaw.GetStat("Strength");
+            var stat = marlback.GetStat("Strength");
             Assert.AreEqual(100, stat.Max, "Max should be raised to 100.");
             Assert.AreEqual(80, stat.BaseValue, "BaseValue should land at 80 (under raised Max).");
         }
@@ -83,7 +83,7 @@ namespace CavesOfOoo.Tests.Scenarios
             var (ctx, _, _) = BuildContext();
             Assert.DoesNotThrow(() =>
             {
-                ctx.Spawn("Snapjaw")
+                ctx.Spawn("MarlbackScrabbler")
                    .WithStat("DoesNotExistStat", 5)
                    .At(42, 12);
             });
@@ -97,8 +97,8 @@ namespace CavesOfOoo.Tests.Scenarios
         public void Passive_SetsBrainPassiveFlag()
         {
             var (ctx, _, _) = BuildContext();
-            var snapjaw = ctx.Spawn("Snapjaw").Passive().At(42, 12);
-            Assert.IsTrue(snapjaw.GetPart<BrainPart>().Passive);
+            var marlback = ctx.Spawn("MarlbackScrabbler").Passive().At(42, 12);
+            Assert.IsTrue(marlback.GetPart<BrainPart>().Passive);
         }
 
         [Test]
@@ -119,8 +119,8 @@ namespace CavesOfOoo.Tests.Scenarios
         public void AsPersonalEnemyOf_AddsTargetToPersonalEnemies()
         {
             var (ctx, _, player) = BuildContext();
-            var snapjaw = ctx.Spawn("Snapjaw").AsPersonalEnemyOf(player).At(42, 12);
-            Assert.IsTrue(snapjaw.GetPart<BrainPart>().IsPersonallyHostileTo(player));
+            var marlback = ctx.Spawn("MarlbackScrabbler").AsPersonalEnemyOf(player).At(42, 12);
+            Assert.IsTrue(marlback.GetPart<BrainPart>().IsPersonallyHostileTo(player));
         }
 
         // ===========================================
@@ -131,10 +131,10 @@ namespace CavesOfOoo.Tests.Scenarios
         public void WithStartingCell_OverridesDefaultAutoSet()
         {
             var (ctx, _, _) = BuildContext();
-            var snapjaw = ctx.Spawn("Snapjaw")
+            var marlback = ctx.Spawn("MarlbackScrabbler")
                              .WithStartingCell(55, 20)
                              .At(42, 12); // spawn at 42,12 but home is 55,20
-            var brain = snapjaw.GetPart<BrainPart>();
+            var brain = marlback.GetPart<BrainPart>();
             Assert.AreEqual(55, brain.StartingCellX);
             Assert.AreEqual(20, brain.StartingCellY);
         }
@@ -144,8 +144,8 @@ namespace CavesOfOoo.Tests.Scenarios
         {
             // Sanity: without the override, StartingCell auto-sets to the spawn position.
             var (ctx, _, _) = BuildContext();
-            var snapjaw = ctx.Spawn("Snapjaw").At(42, 12);
-            var brain = snapjaw.GetPart<BrainPart>();
+            var marlback = ctx.Spawn("MarlbackScrabbler").At(42, 12);
+            var brain = marlback.GetPart<BrainPart>();
             Assert.AreEqual(42, brain.StartingCellX);
             Assert.AreEqual(12, brain.StartingCellY);
         }
@@ -158,11 +158,11 @@ namespace CavesOfOoo.Tests.Scenarios
         public void WithInventory_AddsItemsToInventoryPart()
         {
             var (ctx, _, _) = BuildContext();
-            var snapjaw = ctx.Spawn("Snapjaw")
+            var marlback = ctx.Spawn("MarlbackScrabbler")
                              .WithInventory("ShortSword", "HealingTonic")
                              .At(42, 12);
-            var inv = snapjaw.GetPart<InventoryPart>();
-            Assert.IsNotNull(inv, "Snapjaw should have an InventoryPart via Creature inheritance.");
+            var inv = marlback.GetPart<InventoryPart>();
+            Assert.IsNotNull(inv, "MarlbackScrabbler should have an InventoryPart via Creature inheritance.");
             Assert.AreEqual(2, inv.Objects.Count,
                 "Two items should have been added to carried inventory.");
         }
@@ -178,10 +178,10 @@ namespace CavesOfOoo.Tests.Scenarios
                 "[Scenario] WithInventory item blueprint 'TotallyFakeBlueprint' not found — skipping item.");
 
             var (ctx, _, _) = BuildContext();
-            var snapjaw = ctx.Spawn("Snapjaw")
+            var marlback = ctx.Spawn("MarlbackScrabbler")
                              .WithInventory("ShortSword", "TotallyFakeBlueprint", "HealingTonic")
                              .At(42, 12);
-            var inv = snapjaw.GetPart<InventoryPart>();
+            var inv = marlback.GetPart<InventoryPart>();
             Assert.AreEqual(2, inv.Objects.Count,
                 "Only the 2 real blueprints should have been added; the fake is skipped.");
         }
@@ -194,11 +194,11 @@ namespace CavesOfOoo.Tests.Scenarios
         public void WithEquipment_EquipsItemOnSpawnedCreature()
         {
             var (ctx, _, _) = BuildContext();
-            var snapjaw = ctx.Spawn("Snapjaw")
+            var marlback = ctx.Spawn("MarlbackScrabbler")
                              .WithEquipment("ShortSword")
                              .At(42, 12);
             // Confirm the item ended up somewhere on the creature (inventory or body)
-            var inv = snapjaw.GetPart<InventoryPart>();
+            var inv = marlback.GetPart<InventoryPart>();
             Assert.IsNotNull(inv);
             bool swordFound = false;
             foreach (var carried in inv.Objects)
@@ -217,10 +217,10 @@ namespace CavesOfOoo.Tests.Scenarios
         {
             var (ctx, _, _) = BuildContext();
             var customGoal = new BoredGoal();
-            var snapjaw = ctx.Spawn("Snapjaw")
+            var marlback = ctx.Spawn("MarlbackScrabbler")
                              .WithGoal(customGoal)
                              .At(42, 12);
-            var brain = snapjaw.GetPart<BrainPart>();
+            var brain = marlback.GetPart<BrainPart>();
             Assert.IsTrue(brain.HasGoal<BoredGoal>(),
                 "BoredGoal should be on the brain's goal stack after WithGoal.");
         }

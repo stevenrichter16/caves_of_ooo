@@ -56,13 +56,13 @@ namespace CavesOfOoo.Tests
             return entity;
         }
 
-        /// <summary>Build a bare SnapjawCorpse-equivalent (no Stacker so adding to
+        /// <summary>Build a bare MarlbackCorpse-equivalent (no Stacker so adding to
         /// a container doesn't merge / stack).</summary>
         private Entity CreateCorpse(Zone zone, int x, int y)
         {
-            var corpse = new Entity { BlueprintName = "SnapjawCorpse", ID = "Corpse-1" };
+            var corpse = new Entity { BlueprintName = "MarlbackCorpse", ID = "Corpse-1" };
             corpse.Tags["Corpse"] = "";
-            corpse.AddPart(new RenderPart { DisplayName = "snapjaw corpse", RenderString = "%", ColorString = "&r" });
+            corpse.AddPart(new RenderPart { DisplayName = "marlback remains", RenderString = "%", ColorString = "&r" });
             corpse.AddPart(new PhysicsPart { Takeable = true, Weight = 10, Solid = false });
             zone.AddEntity(corpse, x, y);
             return corpse;
@@ -456,7 +456,7 @@ namespace CavesOfOoo.Tests
                 "Dead undertaker should be removed from the zone.");
             var corpseCell = zone.GetEntityCell(corpse);
             Assert.IsNotNull(corpseCell,
-                "The snapjaw corpse must be dropped back into the zone — not orphaned in the dead undertaker's inventory.");
+                "The marlback remains must be dropped back into the zone — not orphaned in the dead undertaker's inventory.");
             Assert.AreEqual(10, corpseCell.X, "Corpse should drop at the undertaker's cell X.");
             Assert.AreEqual(10, corpseCell.Y, "Corpse should drop at the undertaker's cell Y.");
         }

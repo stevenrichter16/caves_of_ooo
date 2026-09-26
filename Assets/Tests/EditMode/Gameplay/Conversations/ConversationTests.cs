@@ -420,7 +420,7 @@ namespace CavesOfOoo.Tests
         {
             var conv = CreateSimpleConversation();
             ConversationLoader.Register(conv);
-            var speaker = CreateNPC(faction: "Snapjaws");
+            var speaker = CreateNPC(faction: "OutlandRaiders");
             var player = CreatePlayer();
             player.Tags["Faction"] = "Player";
 

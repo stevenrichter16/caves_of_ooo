@@ -15,7 +15,7 @@ namespace CavesOfOoo.Tests
     ///   FlamingSword → IceSword
     ///   "Fire" → "Ice"
     ///   HeatResistance → ColdResistance
-    ///   Glowmaw → SnapjawHunter (HR=50 → CR=50)
+    ///   Glowmaw → MarlbackTunnelguard (HR=50 → CR=50)
     ///
     /// The chain proven by these tests:
     ///   Phase C: weapon Attributes string includes "Ice"
@@ -110,23 +110,23 @@ namespace CavesOfOoo.Tests
         }
 
         // ====================================================================
-        // The thematic pairing: IceSword damage flow on a real SnapjawHunter
-        // (ColdResistance=50, plus the standard Snapjaw armor profile). This
+        // The thematic pairing: IceSword damage flow on a real MarlbackTunnelguard
+        // (ColdResistance=50, plus the standard MarlbackScrabbler armor profile). This
         // is a sanity-check on the *direction* of the effect (less damage
         // than a control), not the exact magnitude.
         // ====================================================================
 
         [Test]
-        public void IceSword_OnSnapjawHunter_TakesLessDamageThan_ControlTarget()
+        public void IceSword_OnMarlbackTunnelguard_TakesLessDamageThan_ControlTarget()
         {
             var sword = _harness.Factory.CreateEntity("IceSword");
             var weapon = sword.GetPart<MeleeWeaponPart>();
 
-            // Real SnapjawHunter (ColdResistance=50) loaded from blueprint
-            var hunter = _harness.Factory.CreateEntity("SnapjawHunter");
-            Assert.IsNotNull(hunter, "SnapjawHunter blueprint must exist");
+            // Real MarlbackTunnelguard (ColdResistance=50) loaded from blueprint
+            var hunter = _harness.Factory.CreateEntity("MarlbackTunnelguard");
+            Assert.IsNotNull(hunter, "MarlbackTunnelguard blueprint must exist");
             Assert.AreEqual(50, hunter.GetStatValue("ColdResistance", 0),
-                "SnapjawHunter blueprint should keep ColdResistance=50 (the thematic premise)");
+                "MarlbackTunnelguard blueprint should keep ColdResistance=50 (the thematic premise)");
 
             var zone = new Zone();
             zone.AddEntity(hunter, 5, 5);
@@ -135,7 +135,7 @@ namespace CavesOfOoo.Tests
             zone.AddEntity(control, 8, 8);
 
             // Two identical Damage objects synthesized from the IceSword's
-            // Attributes; one applied to SnapjawHunter, one to the control.
+            // Attributes; one applied to MarlbackTunnelguard, one to the control.
             int hunterHpBefore = hunter.GetStatValue("Hitpoints");
             int controlHpBefore = control.GetStatValue("Hitpoints");
 
@@ -148,9 +148,9 @@ namespace CavesOfOoo.Tests
             int controlDelta = controlHpBefore - control.GetStatValue("Hitpoints");
 
             Assert.Less(hunterDelta, controlDelta,
-                $"SnapjawHunter should take strictly less IceSword damage than the " +
+                $"MarlbackTunnelguard should take strictly less IceSword damage than the " +
                 $"control (ColdResistance=50 halves Cold-attributed damage). " +
-                $"Got SnapjawHunter delta {hunterDelta} vs control delta {controlDelta}.");
+                $"Got MarlbackTunnelguard delta {hunterDelta} vs control delta {controlDelta}.");
         }
 
         // ====================================================================

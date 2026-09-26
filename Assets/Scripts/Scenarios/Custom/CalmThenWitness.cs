@@ -9,10 +9,10 @@ namespace CavesOfOoo.Scenarios.Custom
     /// interaction.
     ///
     /// Expected flow when launched:
-    /// - Cast Calm eastward — target the SCRIBE (not the Snapjaw).
+    /// - Cast Calm eastward — target the SCRIBE (not the MarlbackScrabbler).
     ///   Scribe brain gets NoFightGoal on stack.
     ///   Look mode over her now reads "pacified."
-    /// - Kill the one-HP Snapjaw further east.
+    /// - Kill the one-HP MarlbackScrabbler further east.
     ///   BroadcastDeathWitnessed sees Scribe in range (clear LOS, Passive,
     ///   within radius), applies WitnessedEffect(20).
     ///   Scribe's OnApply pushes WanderDurationGoal on top of NoFightGoal.
@@ -35,7 +35,7 @@ namespace CavesOfOoo.Scenarios.Custom
     [Scenario(
         name: "Calm then Witness (M2.2 × M2.3)",
         category: "AI Behavior",
-        description: "Pacify a Scribe then kill a Snapjaw. Scribe paces, then returns to pacified idle.")]
+        description: "Pacify a Scribe then kill a MarlbackScrabbler. Scribe paces, then returns to pacified idle.")]
     public class CalmThenWitness : IScenario
     {
         public void Apply(ScenarioContext ctx)
@@ -43,7 +43,7 @@ namespace CavesOfOoo.Scenarios.Custom
             ctx.Player.AddSkill("Spellcraft_Calm");
 
             // Clear the east row so the Calm projectile reaches the Scribe
-            // and the player can reach the Snapjaw. Starting zone otherwise
+            // and the player can reach the MarlbackScrabbler. Starting zone otherwise
             // has West compass stone at player+2,0 and chest at player+4,0
             // blocking the line.
             var p = ctx.Zone.GetEntityPosition(ctx.PlayerEntity);
@@ -52,12 +52,12 @@ namespace CavesOfOoo.Scenarios.Custom
 
             ctx.Spawn("Scribe").AtPlayerOffset(3, 0);
 
-            ctx.Spawn("Snapjaw")
+            ctx.Spawn("MarlbackScrabbler")
                .WithHpAbsolute(1)
                .AsPersonalEnemyOf(ctx.PlayerEntity)
                .AtPlayerOffset(5, 0);
 
-            ctx.Log("Cast Calm on the Scribe first (east, key 8). Then kill the Snapjaw. Scribe paces for ~20 turns, then returns to pacified idle.");
+            ctx.Log("Cast Calm on the Scribe first (east, key 8). Then kill the MarlbackScrabbler. Scribe paces for ~20 turns, then returns to pacified idle.");
         }
     }
 }

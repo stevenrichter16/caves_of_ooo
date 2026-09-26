@@ -87,6 +87,7 @@ namespace CavesOfOoo.Tests
             Assert.IsNotNull(vein, "GlowQuartzVein blueprint must exist");
             zone.AddEntity(vein, 5, 5);
             var actor = MakeActor();
+            zone.AddEntity(actor, 4, 5); // actual adjacent harvester
 
             Diag.ResetAll();
             FireHarvest(vein, actor, zone);
@@ -113,6 +114,7 @@ namespace CavesOfOoo.Tests
             { YieldBlueprint = "GlowQuartz", YieldChance = 0 });
             zone.AddEntity(husk, 3, 3);
             var actor = MakeActor();
+            zone.AddEntity(actor, 2, 3); // actual adjacent harvester
 
             FireHarvest(husk, actor, zone);
 

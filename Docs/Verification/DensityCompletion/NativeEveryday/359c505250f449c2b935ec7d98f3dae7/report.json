@@ -1,0 +1,86 @@
+{
+    "runId": "359c505250f449c2b935ec7d98f3dae7",
+    "zone": "Overworld.2.6.0",
+    "fatal": "",
+    "canVerify": "Native new game; actual generated Sella/Scribe stock bought through Chat/Trade keyboard UI and authored Felling mushrooms harvested; ordinary starting money and HP; real well/fire fill/drink/cook actions; action turns/refusal; canonical book read with previous/next keys; screenshots.",
+    "cannotVerify": "Actor positioning shortcuts travel to legal cells beside already generated sources; no ordinary walking route, natural encounter pacing, combat balance or frequency claim. No source rates, inventory, money, HP or NPC scheduling are altered. Screenshots require visual inspection.",
+    "audit": [
+        "PASS waterskin_bought_actual_instance",
+        "PASS fill_spends_one_turn_and_fills_three",
+        "PASS full_fill_refusal_is_free",
+        "PASS drink_spends_one_turn_preserves_skin",
+        "PASS harvested_actual_source",
+        "PASS cooks_actual_harvested_stack_in_one_turn",
+        "PASS canonical-copy_bought_actual_instance",
+        "PASS natural_shop_book_has_full_canonical_text",
+        "PASS all_pages_reached_with_keyboard",
+        "PASS keyboard_previous_page",
+        "PASS read_is_free_and_returns_inventory",
+        "PASS ordinary_stats_and_no_tinkering_grant",
+        "PASS normal_input_restored"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/NativeEveryday/359c505250f449c2b935ec7d98f3dae7/waterskin-actual-stock.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/NativeEveryday/359c505250f449c2b935ec7d98f3dae7/water-and-clock.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/NativeEveryday/359c505250f449c2b935ec7d98f3dae7/cooked-supplies.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/NativeEveryday/359c505250f449c2b935ec7d98f3dae7/canonical-copy-actual-stock.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/NativeEveryday/359c505250f449c2b935ec7d98f3dae7/document-page-1.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/NativeEveryday/359c505250f449c2b935ec7d98f3dae7/document-page-2.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "MorrowfastSella",
+            "source": "generated source; actor travel shortcut to Overworld.3.6.0",
+            "text": "morrowfast-owner:southern-food-vendor",
+            "units": 0
+        },
+        {
+            "subject": "MorrowfastSceneProp",
+            "source": "generated source; actor travel shortcut to Overworld.3.6.0",
+            "text": "morrowfast-owner:central-cistern",
+            "units": 0
+        },
+        {
+            "subject": "turn-cost",
+            "source": "scheduler energy accounting",
+            "text": "ticks=10; before=1000; after=1000; speed=100",
+            "units": 0
+        },
+        {
+            "subject": "turn-cost",
+            "source": "scheduler energy accounting",
+            "text": "ticks=10; before=1000; after=1000; speed=100",
+            "units": 0
+        },
+        {
+            "subject": "MushroomRing",
+            "source": "generated source; actor travel shortcut to Overworld.3.5.0",
+            "text": "felling-dressing:mushroom-pink-tall",
+            "units": 0
+        },
+        {
+            "subject": "Campfire",
+            "source": "generated source; actor travel shortcut to Overworld.10.10.0",
+            "text": "9329",
+            "units": 0
+        },
+        {
+            "subject": "turn-cost",
+            "source": "scheduler energy accounting",
+            "text": "ticks=10; before=1000; after=1000; speed=100",
+            "units": 0
+        },
+        {
+            "subject": "Scribe",
+            "source": "generated source; actor travel shortcut to Overworld.10.10.0",
+            "text": "9392",
+            "units": 0
+        }
+    ],
+    "cases": 13,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": false,
+    "errorsFinalized": true,
+    "seconds": 14.8069785
+}

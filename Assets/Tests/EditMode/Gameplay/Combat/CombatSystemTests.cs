@@ -470,16 +470,16 @@ namespace CavesOfOoo.Tests
             var factory = new EntityFactory();
             factory.LoadBlueprints(GetTestJson());
 
-            var snapjaw = factory.CreateEntity("Snapjaw");
-            Assert.IsNotNull(snapjaw);
+            var marlback = factory.CreateEntity("MarlbackScrabbler");
+            Assert.IsNotNull(marlback);
 
-            var weapon = snapjaw.GetPart<MeleeWeaponPart>();
-            Assert.IsNotNull(weapon, "Snapjaw should have MeleeWeaponPart");
+            var weapon = marlback.GetPart<MeleeWeaponPart>();
+            Assert.IsNotNull(weapon, "MarlbackScrabbler should have MeleeWeaponPart");
             Assert.AreEqual("1d4", weapon.BaseDamage);
             Assert.AreEqual(1, weapon.PenBonus);
 
-            var armor = snapjaw.GetPart<ArmorPart>();
-            Assert.IsNotNull(armor, "Snapjaw should have ArmorPart");
+            var armor = marlback.GetPart<ArmorPart>();
+            Assert.IsNotNull(armor, "MarlbackScrabbler should have ArmorPart");
             Assert.AreEqual(2, armor.AV);
             Assert.AreEqual(1, armor.DV);
         }
@@ -784,10 +784,10 @@ namespace CavesOfOoo.Tests
                         ]
                     },
                     {
-                        ""Name"": ""Snapjaw"",
+                        ""Name"": ""MarlbackScrabbler"",
                         ""Inherits"": ""Creature"",
                         ""Parts"": [
-                            { ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""snapjaw"" }] },
+                            { ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""marlback"" }] },
                             { ""Name"": ""MeleeWeapon"", ""Params"": [{ ""Key"": ""BaseDamage"", ""Value"": ""1d4"" }, { ""Key"": ""PenBonus"", ""Value"": ""1"" }] },
                             { ""Name"": ""Armor"", ""Params"": [{ ""Key"": ""AV"", ""Value"": ""2"" }, { ""Key"": ""DV"", ""Value"": ""1"" }] }
                         ],
@@ -796,7 +796,7 @@ namespace CavesOfOoo.Tests
                             { ""Name"": ""Strength"", ""Value"": 16 }
                         ],
                         ""Tags"": [
-                            { ""Key"": ""Faction"", ""Value"": ""Snapjaws"" }
+                            { ""Key"": ""Faction"", ""Value"": ""OutlandRaiders"" }
                         ]
                     }
                 ]

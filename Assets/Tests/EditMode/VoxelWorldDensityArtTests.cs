@@ -133,10 +133,10 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void AllTwentyEightSkinsRetainEveryBoneThatHadVisibleBaselineGeometry()
+        public void AllThirtyTwoSkinsRetainEveryBoneThatHadVisibleBaselineGeometry()
         {
             var skins = catalog.Bindings.Where(b => b.Source.bindposeCount > 0).ToArray();
-            Assert.AreEqual(28, skins.Length, "Pin the complete current animated library, not a selected humanoid.");
+            Assert.AreEqual(32, skins.Length, "Pin all32 current skins, including the four added original creature rigs; retain every bone/geometry check.");
             int articulated = 0;
             foreach (var row in skins)
             {
@@ -152,7 +152,7 @@ namespace CavesOfOoo.Tests
         public void EveryPublishedSkinExactlyMatchesAFreshBakeAtItsRecordedPitch()
         {
             var skins = catalog.Bindings.Where(b => b.Source.bindposeCount > 0).ToArray();
-            Assert.AreEqual(28, skins.Length);
+            Assert.AreEqual(32, skins.Length);
             foreach (var row in skins)
             {
                 // Reusing an existing Mesh asset must replace its vertex streams
@@ -204,7 +204,7 @@ namespace CavesOfOoo.Tests
             }
             Assert.AreEqual(15, toolkit, "Only the unchanged SpawnRing toolkit bindings remain active here.");
             Assert.AreEqual(117, coarse, "Only the separately verified 111 native scenery models (six water children) change shape.");
-            Assert.AreEqual(274, compared);
+            Assert.AreEqual(278, compared);
             Assert.AreEqual(catalog.Bindings.Length - toolkit - coarse, compared);
         }
 

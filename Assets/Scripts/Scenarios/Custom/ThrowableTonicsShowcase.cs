@@ -8,9 +8,9 @@ namespace CavesOfOoo.Scenarios.Custom
     ///
     /// Setup (player at center; coordinates are player-relative):
     ///
-    ///     . . . . [Snapjaw NE]
-    ///     . . . [Snapjaw N] [Snapjaw NE2]
-    ///     . . [Snapjaw NW] [Snapjaw N2] [Snapjaw center]
+    ///     . . . . [MarlbackScrabbler NE]
+    ///     . . . [MarlbackScrabbler N] [MarlbackScrabbler NE2]
+    ///     . . [MarlbackScrabbler NW] [MarlbackScrabbler N2] [MarlbackScrabbler center]
     ///   [Player]
     ///
     /// Player loadout:
@@ -25,18 +25,18 @@ namespace CavesOfOoo.Scenarios.Custom
     ///
     ///   --- Throw FrostTonic at center of cluster ---
     ///   "frost tonic shatters, splashing 5 targets."
-    ///   All 5 snapjaws gain FrozenEffect — visible in their cell color
-    ///   and as "snapjaw is frozen!" log lines for any caught.
+    ///   All 5 marlbacks gain FrozenEffect — visible in their cell color
+    ///   and as "marlback is frozen!" log lines for any caught.
     ///
-    ///   --- Throw WaterTonic on the snapjaws ---
+    ///   --- Throw WaterTonic on the marlbacks ---
     ///   "water tonic shatters, splashing 5 targets."
-    ///   All 5 snapjaws gain WetEffect (low-damage but conductive).
+    ///   All 5 marlbacks gain WetEffect (low-damage but conductive).
     ///
-    ///   --- Throw LightningTonic on now-wet snapjaws ---
+    ///   --- Throw LightningTonic on now-wet marlbacks ---
     ///   "lightning tonic shatters, splashing 5 targets."
-    ///   All 5 snapjaws gain ElectrifiedEffect — combo unlocks.
+    ///   All 5 marlbacks gain ElectrifiedEffect — combo unlocks.
     ///
-    ///   --- Throw AcidTonic at empty cell next to a single snapjaw ---
+    ///   --- Throw AcidTonic at empty cell next to a single marlback ---
     ///   "acid tonic shatters, splashing 1 target."
     ///   Demonstrates that misses still shatter, with smaller AOE
     ///   reach.
@@ -46,14 +46,14 @@ namespace CavesOfOoo.Scenarios.Custom
     ///   Demonstrates wall-shatter path; AOE applies at last
     ///   traversable cell.
     ///
-    /// The 5-snapjaw cluster ensures multiple targets in AOE radius 1.
-    /// Snapjaws are personally hostile so they engage immediately,
+    /// The 5-marlback cluster ensures multiple targets in AOE radius 1.
+    /// OutlandRaiders are personally hostile so they engage immediately,
     /// giving the player a clear "did the throw matter?" feedback loop.
     /// </summary>
     [Scenario(
         name: "Throwable Tonics Showcase",
         category: "Combat",
-        description: "Tonics shatter on impact with radius-1 AOE. Demonstrates direct-hit, miss, and wall-hit shatter paths. 5-snapjaw cluster lets the player see all 5 enemies receive a single tonic's effect.")]
+        description: "Tonics shatter on impact with radius-1 AOE. Demonstrates direct-hit, miss, and wall-hit shatter paths. 5-marlback cluster lets the player see all 5 enemies receive a single tonic's effect.")]
     public class ThrowableTonicsShowcase : IScenario
     {
         public void Apply(ScenarioContext ctx)
@@ -75,36 +75,36 @@ namespace CavesOfOoo.Scenarios.Custom
                 .GiveItem("FireTonic", 5)
                 .GiveItem("HealingTonic", 5);
 
-            // === Snapjaw cluster ===
-            // Five snapjaws in a 3×3 around (p.x+4, p.y) — within radius
+            // === MarlbackScrabbler cluster ===
+            // Five marlbacks in a 3×3 around (p.x+4, p.y) — within radius
             // 1 of each other so a single thrown tonic at the center
             // hits all of them. Personally hostile to keep them engaged
             // (they'll close on the player but the cluster stays tight
             // for the first few turns).
             int cx = p.x + 4;
             int cy = p.y;
-            ctx.Spawn("Snapjaw")
+            ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 80).WithHpAbsolute(80)
                 .AsPersonalEnemyOf(ctx.PlayerEntity)
                 .At(cx, cy); // center
-            ctx.Spawn("Snapjaw")
+            ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 80).WithHpAbsolute(80)
                 .AsPersonalEnemyOf(ctx.PlayerEntity)
                 .At(cx + 1, cy); // east
-            ctx.Spawn("Snapjaw")
+            ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 80).WithHpAbsolute(80)
                 .AsPersonalEnemyOf(ctx.PlayerEntity)
                 .At(cx, cy - 1); // north
-            ctx.Spawn("Snapjaw")
+            ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 80).WithHpAbsolute(80)
                 .AsPersonalEnemyOf(ctx.PlayerEntity)
                 .At(cx + 1, cy - 1); // northeast
-            ctx.Spawn("Snapjaw")
+            ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 80).WithHpAbsolute(80)
                 .AsPersonalEnemyOf(ctx.PlayerEntity)
                 .At(cx, cy + 1); // south
 
-            MessageLog.Add("Throwable Tonics Showcase: throw an elemental tonic into the snapjaw cluster.");
+            MessageLog.Add("Throwable Tonics Showcase: throw an elemental tonic into the marlback cluster.");
             MessageLog.Add("Tonics shatter on impact and apply their effect in a 3×3 area.");
             MessageLog.Add("Try: Frost (freeze them), Water+Lightning (combo), Acid (DoT), Fire (DoT).");
         }

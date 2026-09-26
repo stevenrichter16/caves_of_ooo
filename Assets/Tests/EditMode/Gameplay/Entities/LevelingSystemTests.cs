@@ -32,7 +32,7 @@ namespace CavesOfOoo.Tests
         public void AwardKillXP_PreservesOverflowTowardNextLevel()
         {
             var player = CreatePlayer(level: 1, experience: 100, hitpoints: 12, maxHitpoints: 12, mp: 2);
-            var victim = new Entity { BlueprintName = "Snapjaw" };
+            var victim = new Entity { BlueprintName = "MarlbackScrabbler" };
             victim.Statistics["XPValue"] = new Stat { Name = "XPValue", BaseValue = 20, Value = 20, Min = 0, Max = 9999 };
 
             LevelingSystem.AwardKillXP(player, victim, null);

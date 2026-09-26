@@ -27,8 +27,8 @@ namespace CavesOfOoo.Tests
         // Ginmere family branch. Keep their behavior symmetric with the new
         // family branch, including current single-model aliases. Tepuibone is
         // an actual takeable shared-catalog item, not a synthetic physics flag.
-        [TestCase("SnapjawScavenger", false)] [TestCase("SnapjawScavenger", true)]
-        [TestCase("SnapjawHunter", false)] [TestCase("SnapjawHunter", true)]
+        [TestCase("MarlbackGleaner", false)] [TestCase("MarlbackGleaner", true)]
+        [TestCase("MarlbackTunnelguard", false)] [TestCase("MarlbackTunnelguard", true)]
         [TestCase("Player", false)] [TestCase("Player", true)]
         [TestCase("Tepuibone", false)] [TestCase("Tepuibone", true)]
         public void Adversarial_SharedNativeActorOrItemRetainsItsBodyAcrossNativeMovement(string blueprint, bool crossDepth)

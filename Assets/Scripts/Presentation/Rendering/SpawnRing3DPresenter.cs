@@ -37,6 +37,7 @@ namespace CavesOfOoo.Rendering
         private SpawnRing3DLibrary library;
         private VoxelWorldPresentation voxel;
         private MultiCellPilot3DLibrary pilotLibrary;
+        private ReferenceGladeVoxelLibrary gladeLibrary;
         private SpawnRing3DCatalog definition;
         private NativeZone3DRenderSurface surface;
         private NativeSpellFxLibrary spellLibrary;
@@ -45,6 +46,7 @@ namespace CavesOfOoo.Rendering
         private NativeQuestCueViews questCues;
         private Camera source;
         private bool requestedVisible = true, hooks;
+        private bool boundReferenceGlade;
         public Zone CurrentZone { get; private set; }
         public Camera WorldCamera => surface?.WorldCamera;
         public bool IsReady { get; private set; }
@@ -53,7 +55,11 @@ namespace CavesOfOoo.Rendering
         public int VoxelAppliedMeshCount => voxel?.AppliedMeshCount ?? 0;
         public int VoxelMissingMeshCount => voxel?.MissingMeshCount ?? 0;
         public bool FullReveal { get; set; }
-        private bool PresentationRequested => IsReady && requestedVisible && Village3DSettings.Enabled && source != null && isActiveAndEnabled && AreaCompositionScope.Allows(CurrentZone);
+        // Model choice, ground palette and actor scale are captured at Bind. A
+        // managed map change must rebuild that owned presentation as one unit.
+        private bool GladeAuthorityMatches => CurrentZone == null
+            || boundReferenceGlade == ReferenceGladePlan.IsActive(CurrentZone);
+        private bool PresentationRequested => GladeAuthorityMatches && IsReady && requestedVisible && Village3DSettings.Enabled && source != null && isActiveAndEnabled && AreaCompositionScope.Allows(CurrentZone);
         public bool PresentationVisible => PresentationRequested && surface != null && surface.IsVisible;
         public NativeZone3DRenderSurface ActiveSurface => PresentationVisible ? surface : null;
         public int GroundBuildCount => ground?.GroundBuildCount ?? 0;
@@ -63,11 +69,12 @@ namespace CavesOfOoo.Rendering
 
         public void Bind(Zone zone, Camera sourceCamera)
         {
+            bool referenceGlade = ReferenceGladePlan.IsActive(zone);
             if(zone!=null&&!AreaCompositionScope.Allows(zone))
-            {Release();CurrentZone=zone;source=sourceCamera;return;}
-            if (ReferenceEquals(CurrentZone, zone) && (IsReady || Failure != null))
+            {Release();CurrentZone=zone;source=sourceCamera;boundReferenceGlade=referenceGlade;return;}
+            if (ReferenceEquals(CurrentZone, zone) && boundReferenceGlade == referenceGlade && (IsReady || Failure != null))
             { source = sourceCamera; SyncCamera(); return; }
-            Release(); CurrentZone = zone; source = sourceCamera;
+            Release(); CurrentZone = zone; source = sourceCamera; boundReferenceGlade = referenceGlade;
             if (!Village3DSettings.Enabled || zone == null || source == null || !SupportsZone(zone.ZoneID)) return;
             if (zone.ZoneID == FellingSiteBuilder.ZoneID && !FellingSceneRuntime.IsActive(zone)) return;
             try
@@ -85,10 +92,22 @@ namespace CavesOfOoo.Rendering
                 var materials = new List<Material> { library.WorldMaterial, library.WaterMaterial,
                     library.EquipmentLibrary.WorldMaterial, library.EquipmentLibrary.WaterMaterial };
                 if (pilotLibrary != null) { materials.Add(pilotLibrary.WorldMaterial); materials.Add(pilotLibrary.TarMaterial); materials.Add(pilotLibrary.GroundMaterial); }
+                ReferenceGladeVoxelLibrary glade=null;
+                if(ReferenceGladePlan.IsActive(zone))
+                {
+                    glade=ReferenceGladeVoxelLibrary.Load();if(glade==null)throw new InvalidOperationException("Reference glade kit is unavailable.");
+                    glade.Validate();gladeLibrary=glade;materials.Add(glade.Material);
+                }
                 surface = new NativeZone3DRenderSurface(transform, library.Renderer, library.RendererIndex,
                     library.CompositeMaterial, materials.ToArray(), 2.2f);
+                if (glade != null)
+                {
+                    surface.ConfigureLighting(1.45f, .65f, .9f, new Color(1f, .98f, .92f),
+                        new Vector3(55, -145, 0), .68f, .008f, .018f, 18f, FilterMode.Bilinear);
+                    surface.ConfigureAmbientProbe(new Color(.28f, .32f, .30f));
+                }
                 questCues = new NativeQuestCueViews(surface, library.WorldMaterial, 16);
-                ground = new SpawnRing3DGroundPatches(surface, library, pilotLibrary, voxel);
+                ground = new SpawnRing3DGroundPatches(surface, library, pilotLibrary, voxel, glade);
                 equipment = new Village3DEquipmentViews(library.EquipmentLibrary, go => PrepareModel(go, true));
                 IsReady = true; Subscribe(); Refresh(null); SyncCamera();
             }
@@ -112,6 +131,8 @@ namespace CavesOfOoo.Rendering
         /// dirtyCells checks the complete ground fingerprint; no seed is replayed.</summary>
         public void Refresh(LightMap light, HashSet<int> dirtyCells = null)
         {
+            if (CurrentZone != null && source != null && !GladeAuthorityMatches)
+                Bind(CurrentZone, source);
             if (!IsReady || CurrentZone == null) return;
             if(!AreaCompositionScope.Allows(CurrentZone))
             {var zone=CurrentZone;var camera=source;Release();CurrentZone=zone;source=camera;return;}
@@ -178,6 +199,21 @@ namespace CavesOfOoo.Rendering
             root.transform.position = recipe.Position;
             if(recipe.QuarterTurns!=0)root.transform.localRotation=Quaternion.Euler(0,recipe.QuarterTurns*90,0);
             PrepareModel(root, recipe.Transient);
+            if (ReferenceGladePlan.IsActive(CurrentZone) && (recipe.Owner.HasTag("Creature") || recipe.Owner.HasTag("Player")))
+            {
+                // Measure the actual adopted voxel rig, not its finer source bounds.
+                // Scaling the root keeps animation, equipment and picking together.
+                var renderers = root.GetComponentsInChildren<Renderer>(true);
+                if (renderers.Length > 0)
+                {
+                    var bounds = renderers[0].bounds;
+                    for (int i = 1; i < renderers.Length; i++) bounds.Encapsulate(renderers[i].bounds);
+                    bool marlback = recipe.Owner.BlueprintName?.StartsWith("Marlback", StringComparison.Ordinal) == true;
+                    float scale = Mathf.Min(1f, Mathf.Min((marlback ? .62f : .9f) / Mathf.Max(.01f,bounds.size.y),
+                        (marlback ? .84f : .68f) / Mathf.Max(.01f,bounds.size.x)));
+                    root.transform.localScale *= scale;
+                }
+            }
             var view = new View { Owner = recipe.Owner, ModelId = recipe.ModelId, Root = root, Target = recipe.Position,
                 AuthoredQuarterTurns=recipe.QuarterTurns,
                 AuthoredIdleFacing=recipe.ModelId.StartsWith("cathedral-elder-",StringComparison.Ordinal),
@@ -289,6 +325,8 @@ namespace CavesOfOoo.Rendering
         }
         private void LateUpdate()
         {
+            if (CurrentZone != null && source != null && !GladeAuthorityMatches)
+                Bind(CurrentZone, source);
             if (IsReady && equipment != null && equipment.NeedsRefresh) RefreshEquipment(false);
             SyncCamera(); if (!PresentationVisible) return;
             foreach (var view in views.Values)
@@ -426,11 +464,12 @@ namespace CavesOfOoo.Rendering
             questCues?.Dispose(); questCues = null;
             equipment?.Dispose(); equipment = null; ground?.Dispose(); ground = null; surface?.Dispose(); surface = null;
             recipes.Clear(); views.Clear(); byCollider.Clear(); seen.Clear(); removed.Clear();
-            CurrentZone = null; source = null; library = null; pilotLibrary = null; definition = null;
+            CurrentZone = null; source = null; library = null; pilotLibrary = null; gladeLibrary = null; definition = null;
         }
         private void PrepareModel(GameObject root, bool transient)
         {
             voxel?.Apply(root);
+            gladeLibrary?.ApplyActorPaint(root);
             surface.PrepareModel(root, transient);
         }
         private static void DestroyOwned(UnityEngine.Object value)

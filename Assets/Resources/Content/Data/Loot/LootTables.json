@@ -14,6 +14,7 @@
     {
       "Name": "MorrowfastProvisionerStock",
       "Entries": [
+        { "Blueprint": "Waterskin", "MinCount": 1, "MaxCount": 1 },
         { "Blueprint": "Mushroom", "MinCount": 8, "MaxCount": 8 },
         { "Blueprint": "DriedMeat", "MinCount": 4, "MaxCount": 4 },
         { "Blueprint": "HealingTonic", "MinCount": 2, "MaxCount": 2 },
@@ -196,7 +197,8 @@
         {
           "Blueprint": "BloodletterLedgerGrimoire",
           "Weight": 42
-        }
+        },
+        {"Blueprint": "Codex01", "Weight": 100}
       ]
     },
     {
@@ -237,7 +239,7 @@
           "MaxCount": 14
         },
         {
-          "Blueprint": "WarlordCleaver",
+          "Blueprint": "BreacherCleaver",
           "Chance": 35
         },
         {
@@ -296,7 +298,8 @@
         {
           "Blueprint": "BloodletterLedgerGrimoire",
           "Chance": 14
-        }
+        },
+        {"Blueprint": "Codex09", "Chance": 35}
       ]
     },
     {
@@ -402,7 +405,8 @@
         {
           "Blueprint": "StillHeartGrimoire",
           "Weight": 47
-        }
+        },
+        {"Blueprint": "Codex13", "Weight": 150}
       ]
     },
     {
@@ -760,6 +764,11 @@
       "Name": "ProvisionerStock",
       "Entries": [
         {
+          "Blueprint": "Waterskin",
+          "MinCount": 1,
+          "MaxCount": 1
+        },
+        {
           "Blueprint": "DriedMeat",
           "MinCount": 2,
           "MaxCount": 4
@@ -1010,6 +1019,92 @@
         },
         {
           "Blueprint": "DissolutionMaul",
+          "Weight": 1
+        }
+      ]
+    },
+    {
+      "Name": "FindArmorT1",
+      "PickOne": true,
+      "Entries": [
+        {
+          "Blueprint": "LeatherArmor",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "Buckler",
+          "Weight": 1
+        },
+        {
+          "Blueprint": "LeatherBoots",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "LeatherGloves",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "LeatherCap",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "Cloak",
+          "Weight": 1
+        }
+      ]
+    },
+    {
+      "Name": "FindArmorT2",
+      "PickOne": true,
+      "Entries": [
+        {
+          "Blueprint": "ChainMail",
+          "Weight": 3
+        },
+        {
+          "Blueprint": "IronHelmet",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "IronshodBoots",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "WardedCloak",
+          "Weight": 1
+        },
+        {
+          "Blueprint": "IronBuckler",
+          "Weight": 2
+        }
+      ]
+    },
+    {
+      "Name": "FindArmorT3",
+      "PickOne": true,
+      "Entries": [
+        {
+          "Blueprint": "PlateArmor",
+          "Weight": 4
+        },
+        {
+          "Blueprint": "ChainMail",
+          "Weight": 1
+        },
+        {
+          "Blueprint": "IronHelmet",
+          "Weight": 1
+        },
+        {
+          "Blueprint": "IronshodBoots",
+          "Weight": 1
+        },
+        {
+          "Blueprint": "WardedCloak",
+          "Weight": 2
+        },
+        {
+          "Blueprint": "IronBuckler",
           "Weight": 1
         }
       ]
@@ -1342,6 +1437,10 @@
         {
           "TableRef": "FindOffenseT1",
           "Chance": 20
+        },
+        {
+          "TableRef": "FindArmorT1",
+          "Chance": 20
         }
       ]
     },
@@ -1381,6 +1480,10 @@
         {
           "TableRef": "FindOffenseT2",
           "Chance": 25
+        },
+        {
+          "TableRef": "FindArmorT2",
+          "Chance": 25
         }
       ]
     },
@@ -1419,6 +1522,10 @@
         },
         {
           "TableRef": "FindOffenseT3",
+          "Chance": 30
+        },
+        {
+          "TableRef": "FindArmorT3",
           "Chance": 30
         }
       ]
@@ -1504,6 +1611,10 @@
         {
           "TableRef": "FindWeaponT1",
           "Chance": 15
+        },
+        {
+          "TableRef": "FindArmorT1",
+          "Chance": 10
         }
       ]
     },
@@ -1535,6 +1646,10 @@
         {
           "TableRef": "FindWeaponT2",
           "Chance": 20
+        },
+        {
+          "TableRef": "FindArmorT2",
+          "Chance": 15
         }
       ]
     },
@@ -1566,6 +1681,10 @@
         {
           "TableRef": "FindWeaponT3",
           "Chance": 25
+        },
+        {
+          "TableRef": "FindArmorT3",
+          "Chance": 20
         }
       ]
     },
@@ -1650,6 +1769,10 @@
         {
           "TableRef": "FindWeaponT1",
           "Chance": 25
+        },
+        {
+          "TableRef": "FindArmorT1",
+          "Chance": 20
         }
       ]
     },
@@ -1679,6 +1802,10 @@
         {
           "TableRef": "FindWeaponT2",
           "Chance": 30
+        },
+        {
+          "TableRef": "FindArmorT2",
+          "Chance": 25
         }
       ]
     },
@@ -1708,6 +1835,10 @@
         {
           "TableRef": "FindWeaponT3",
           "Chance": 35
+        },
+        {
+          "TableRef": "FindArmorT3",
+          "Chance": 30
         }
       ]
     },
@@ -1855,6 +1986,10 @@
         {
           "TableRef": "FindOffenseT1",
           "Chance": 20
+        },
+        {
+          "TableRef": "FindArmorT1",
+          "Chance": 25
         }
       ]
     },
@@ -1894,6 +2029,10 @@
         {
           "TableRef": "FindOffenseT2",
           "Chance": 25
+        },
+        {
+          "TableRef": "FindArmorT2",
+          "Chance": 30
         }
       ]
     },
@@ -1933,6 +2072,10 @@
         {
           "TableRef": "FindOffenseT3",
           "Chance": 30
+        },
+        {
+          "TableRef": "FindArmorT3",
+          "Chance": 35
         }
       ]
     },
@@ -1972,6 +2115,10 @@
         {
           "TableRef": "FindOffenseT2",
           "Chance": 15
+        },
+        {
+          "TableRef": "FindArmorT2",
+          "Chance": 20
         }
       ]
     },
@@ -2015,6 +2162,10 @@
         {
           "TableRef": "FindOffenseT3",
           "Chance": 20
+        },
+        {
+          "TableRef": "FindArmorT3",
+          "Chance": 25
         }
       ]
     },
@@ -2041,7 +2192,8 @@
         {
           "Blueprint": "ShatteredRimeGrimoire",
           "Weight": 8
-        }
+        },
+        {"Blueprint": "Codex08", "Weight": 80}
       ],
       "PickOne": true,
       "MinPicks": 1,
@@ -2079,7 +2231,9 @@
         {
           "Blueprint": "BloodletterLedgerGrimoire",
           "Weight": 8
-        }
+        },
+        {"Blueprint": "Codex03", "Weight": 80},
+        {"Blueprint": "Codex10", "Weight": 80}
       ],
       "PickOne": true,
       "MinPicks": 1,
@@ -2296,6 +2450,10 @@
         {
           "TableRef": "FindOffenseT1",
           "Chance": 10
+        },
+        {
+          "TableRef": "FindArmorT1",
+          "Chance": 15
         }
       ]
     },
@@ -2386,6 +2544,11 @@
       "Name": "WellKeeperStock",
       "Entries": [
         {
+          "Blueprint": "Waterskin",
+          "MinCount": 1,
+          "MaxCount": 1
+        },
+        {
           "Blueprint": "WaterTonic",
           "Chance": 100,
           "MinCount": 1,
@@ -2425,7 +2588,8 @@
         {
           "Blueprint": "Cloak",
           "Chance": 20
-        }
+        },
+        {"Blueprint": "Codex05", "Chance": 100}
       ]
     },
     {
@@ -2452,7 +2616,8 @@
         {
           "Blueprint": "RenderedSteamGrimoire",
           "Chance": 12
-        }
+        },
+        {"Blueprint": "Codex04", "Chance": 100}
       ]
     },
     {
@@ -2525,7 +2690,8 @@
         {
           "Blueprint": "WardedCloak",
           "Chance": 15
-        }
+        },
+        {"Blueprint": "Codex12", "Chance": 100}
       ]
     },
     {
@@ -2568,7 +2734,8 @@
         {
           "Blueprint": "IronKey",
           "Chance": 25
-        }
+        },
+        {"Blueprint": "Codex06", "Chance": 70}
       ]
     },
     {
@@ -2733,7 +2900,8 @@
         {
           "Blueprint": "FulminationGrimoire",
           "Chance": 15
-        }
+        },
+        {"Blueprint": "Codex07", "Chance": 100}
       ]
     },
     {
@@ -2758,7 +2926,8 @@
         {
           "TableRef": "ComponentAny",
           "Chance": 35
-        }
+        },
+        {"Blueprint": "Codex02", "Chance": 100}
       ]
     },
     {
@@ -2779,7 +2948,8 @@
         {
           "Blueprint": "GrimoireCopy",
           "Chance": 25
-        }
+        },
+        {"Blueprint": "Codex11", "Chance": 100}
       ]
     },
     {
@@ -2843,6 +3013,41 @@
         {
           "TableRef": "ReagentRare",
           "Chance": 40
+        }
+      ]
+    },
+    {
+      "Name": "FindDeepEquipmentT4",
+      "PickOne": true,
+      "MinPicks": 1,
+      "MaxPicks": 1,
+      "Entries": [
+        {
+          "Blueprint": "TemperedLongSword",
+          "Weight": 1
+        },
+        {
+          "Blueprint": "CounterweightMaul",
+          "Weight": 1
+        },
+        {
+          "Blueprint": "FineRingMail",
+          "Weight": 1
+        },
+        {
+          "Blueprint": "RivetedPlate",
+          "Weight": 1
+        }
+      ]
+    },
+    {
+      "Name": "DeepReliquaryT4",
+      "Entries": [
+        {
+          "TableRef": "SealedVaultT3"
+        },
+        {
+          "TableRef": "FindDeepEquipmentT4"
         }
       ]
     }

@@ -1,0 +1,31 @@
+{
+    "runId": "1647cf16f0de46229488dbe0e017179a",
+    "zone": "Overworld.11.10.0",
+    "fatal": "System.InvalidOperationException: Sequence contains no matching element\n  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RunAudit>d__36.MoveNext () [0x0090f] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:96 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RunSafely>d__51.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:215 ",
+    "canVerify": "Native glade new game; ordinary HP and starting kit; keyboard walking, gear, real chest loot, blocking, finite quartz harvest, F5/F6 persistence and world exit/return. Actual rendered screenshots.",
+    "cannotVerify": "Routes are script-selected through real keyboard input. Full-reveal composition frames are labelled and reveal is restored before play. No natural discovery, player-solo combat balance or enjoyment claim. Screenshots need visual inspection.",
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS keyboard_moves_one_native_cell",
+        "PASS starting_dagger_equipped_by_keyboard",
+        "PASS native_chest_contents_taken",
+        "PASS gray_wall_blocks_keyboard_movement",
+        "PASS actual_lit_seam_harvested",
+        "FAIL native_precondition_failed"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/1647cf16f0de46229488dbe0e017179a/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/1647cf16f0de46229488dbe0e017179a/02-composition-full-reveal.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/1647cf16f0de46229488dbe0e017179a/03-world-only-full-reveal.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/1647cf16f0de46229488dbe0e017179a/04-chest-loot.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/1647cf16f0de46229488dbe0e017179a/05-solid-wall.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/1647cf16f0de46229488dbe0e017179a/06-harvested-green-seam.png"
+    ],
+    "descriptions": [],
+    "cases": 7,
+    "failures": 2,
+    "unexpectedErrors": 1,
+    "complete": false,
+    "errorsFinalized": true,
+    "seconds": 12.584516599999999
+}

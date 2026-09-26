@@ -1,4 +1,5 @@
 using System;
+using CavesOfOoo.Core.Inventory;
 
 namespace CavesOfOoo.Core
 {
@@ -29,8 +30,34 @@ namespace CavesOfOoo.Core
         /// </summary>
         public bool Occupied;
 
+        /// <summary>Identity of a seated player; null retains the existing NPC
+        /// reservation contract. Persisted with the effect/furniture save graph.</summary>
+        public Entity Occupant;
+
         public override bool HandleEvent(GameEvent e)
         {
+            if (e.ID == "GetInventoryActions")
+            {
+                var actor = e.GetParameter<Entity>("Actor");
+                if (actor?.HasTag("Player") == true)
+                {
+                    bool seatedHere = actor.GetPart<StatusEffectsPart>()?.GetEffect<SittingEffect>()?.Furniture == ParentEntity;
+                    e.GetParameter<InventoryActionList>("Actions")?.AddAction(
+                        seatedHere ? "Stand" : "Sit", seatedHere ? "stand up" : "sit in chair",
+                        seatedHere ? PlayerSeatService.StandCommand : PlayerSeatService.SitCommand, 's', 10);
+                }
+            }
+            if (e.ID == "InventoryAction")
+            {
+                string command = e.GetStringParameter("Command");
+                if (command == PlayerSeatService.SitCommand || command == PlayerSeatService.StandCommand)
+                {
+                    if (PlayerSeatService.TryAct(e.GetParameter<Entity>("Actor"), ParentEntity,
+                        e.GetParameter<Zone>("Zone"), command, e.GetParameter<InventoryTransaction>("InventoryTransaction")))
+                    { e.Handled = true; return false; }
+                    return true;
+                }
+            }
             if (e.ID == IdleQueryEvent.ID)
                 return HandleIdleQuery(e);
             return true;

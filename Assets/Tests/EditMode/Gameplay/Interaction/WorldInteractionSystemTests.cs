@@ -104,16 +104,16 @@ namespace CavesOfOoo.Tests
             // Cell.AddObject inserts in ascending render-layer order, so the
             // last-inserted entity ends up at the highest index if layers tie.
             // For the test, use blueprints with explicit different render layers.
-            // Snapjaw (RenderLayer=10 via Creature) vs HealingTonic (item).
-            var snapjaw = _factory.CreateEntity("Snapjaw");
+            // MarlbackScrabbler (RenderLayer=10 via Creature) vs HealingTonic (item).
+            var marlback = _factory.CreateEntity("MarlbackScrabbler");
             var tonic = _factory.CreateEntity("HealingTonic");
             _zone.AddEntity(tonic, 5, 5);
-            _zone.AddEntity(snapjaw, 5, 5);
+            _zone.AddEntity(marlback, 5, 5);
             var cell = _zone.GetCell(5, 5);
 
-            // Snapjaw has higher RenderLayer (10) than HealingTonic (items
-            // usually render at layer 1-5), so Snapjaw is the visual top.
-            Assert.AreSame(snapjaw, WorldInteractionSystem.ResolveTarget(cell),
+            // MarlbackScrabbler has higher RenderLayer (10) than HealingTonic (items
+            // usually render at layer 1-5), so MarlbackScrabbler is the visual top.
+            Assert.AreSame(marlback, WorldInteractionSystem.ResolveTarget(cell),
                 "Among multiple non-terrain, the higher render-layer entity wins.");
         }
 
@@ -146,13 +146,13 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void GatherActions_Snapjaw_ReturnsExamineOnly()
+        public void GatherActions_MarlbackScrabbler_ReturnsExamineOnly()
         {
-            // Snapjaw has Creature + items but no ConversationPart (not talk-
+            // MarlbackScrabbler has Creature + items but no ConversationPart (not talk-
             // able) and no ContainerPart (not openable). Only Examinable
             // cascades from PhysicalObject.
-            var snapjaw = _factory.CreateEntity("Snapjaw");
-            var actions = WorldInteractionSystem.GatherActions(snapjaw);
+            var marlback = _factory.CreateEntity("MarlbackScrabbler");
+            var actions = WorldInteractionSystem.GatherActions(marlback);
 
             Assert.AreEqual(1, actions.Count);
             Assert.AreEqual("Examine", actions[0].Command);
@@ -334,7 +334,7 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(WorldInteractionSystem.IsTerrain(entity));
         }
 
-        [TestCase("Snapjaw")]
+        [TestCase("MarlbackScrabbler")]
         [TestCase("Warden")]
         [TestCase("Chest")]
         [TestCase("HealingTonic")]
@@ -364,8 +364,8 @@ namespace CavesOfOoo.Tests
             // for its own action menu. Non-terrain objects lead (top-most
             // first); terrain (the floor) is still reachable at the bottom.
             var floor = Place("stone floor", 3, 3, terrain: true);
-            var corpse = Place("snapjaw corpse", 3, 3);
-            var hunter = Place("snapjaw hunter", 3, 3);
+            var corpse = Place("marlback remains", 3, 3);
+            var hunter = Place("marlback tunnelguard", 3, 3);
             var cell = _zone.GetCell(3, 3);
 
             var rows = WorldInteractionSystem.BuildTargetPickerActions(cell);
@@ -377,7 +377,7 @@ namespace CavesOfOoo.Tests
                 rows[1].Command);
             Assert.AreEqual(WorldInteractionSystem.PickTargetCommandPrefix + floor.ID,
                 rows[2].Command, "terrain listed last");
-            StringAssert.Contains("snapjaw hunter", rows[0].Display);
+            StringAssert.Contains("marlback tunnelguard", rows[0].Display);
         }
 
         [Test]
@@ -391,7 +391,7 @@ namespace CavesOfOoo.Tests
         [Test]
         public void FindInCell_ResolvesByIdAndRejectsUnknown()
         {
-            var corpse = Place("snapjaw corpse", 4, 4);
+            var corpse = Place("marlback remains", 4, 4);
             var cell = _zone.GetCell(4, 4);
 
             Assert.AreSame(corpse, WorldInteractionSystem.FindInCell(cell, corpse.ID));

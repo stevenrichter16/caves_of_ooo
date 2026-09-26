@@ -1,0 +1,13 @@
+..F.....
+======================================================================
+FAIL: test_live_catalog_does_not_bind_retired_spawnable_blueprints (test_original_creatures.OriginalCreatureArtTests.test_live_catalog_does_not_bind_retired_spawnable_blueprints) (path='/Users/steven/caves-of-ooo/Assets/Art3D/SpawnRing/Definitions/catalog.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/caves-of-ooo/ArtSource/SpawnRing3D/test_original_creatures.py", line 32, in test_live_catalog_does_not_bind_retired_spawnable_blueprints
+    self.assertFalse(LEGACY & {b['blueprint'] for b in data['blueprints']})
+AssertionError: {'Snapjaw', 'SnapjawWarlord'} is not false
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.002s
+
+FAILED (failures=1)

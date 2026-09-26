@@ -26,7 +26,7 @@ namespace CavesOfOoo.Tests
             {
                 var zone=new Zone();var player=f.Factory.CreateEntity("Player");Assert.IsTrue(zone.AddEntity(player,10,10));
                 Entity blocker=null;if(obstruction!="clear")
-                {blocker=f.Factory.CreateEntity(obstruction=="creature"?"Snapjaw":"WatchLantern");Assert.IsTrue(zone.AddEntity(blocker,11,10));}
+                {blocker=f.Factory.CreateEntity(obstruction=="creature"?"MarlbackScrabbler":"WatchLantern");Assert.IsTrue(zone.AddEntity(blocker,11,10));}
                 int version=zone.EntityVersion;var entities=zone.GetReadOnlyEntities().ToArray();var positions=entities.Select(zone.GetEntityPosition).ToArray();
                 Assert.IsTrue(Choose(zone,player,(10,10),(11,10),(-1,-1),out var target));
                 Assert.AreEqual(obstruction=="clear",target==(11,10));Assert.AreEqual(1,Math.Abs(target.Item1-10)+Math.Abs(target.Item2-10));

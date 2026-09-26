@@ -27,10 +27,10 @@ namespace CavesOfOoo.Core.Anatomy
                     return CreateWeapon("claw", "1d4", 0, "&r", "Cutting Animal");
                 case "DefaultTendril":
                     return CreateWeapon("tendril", "1d3", 0, "&g", "Bludgeoning Animal");
-                case "SnapjawClaw":
-                    return CreateWeapon("claw", "1d4", 1, "&w", "Cutting Animal");
-                case "SnapjawHunterClaw":
-                    return CreateWeapon("claw", "1d6", 2, "&w", "Cutting Animal");
+                case "MarlbackRake":
+                    return CreateWeapon("digging rake", "1d4", 1, "&w", "Cutting Animal");
+                case "MarlbackGuardRake":
+                    return CreateWeapon("hooked digging rake", "1d6", 2, "&w", "Cutting Animal");
 
                 // ALPHA-READINESS combat-stakes SM3: natural weapons for
                 // the bruisers stuck on the 1d2 default fist (see
@@ -101,7 +101,7 @@ namespace CavesOfOoo.Core.Anatomy
                 // BIOME-OVERHAUL C-G: the nine biome-pass creatures
                 // (Docs/BIOME-OVERHAUL.md §4.1). Registered together so
                 // each phase's blueprint drop-in finds its case waiting.
-                case "WarlordCleaver":
+                case "BreacherCleaver":
                     return CreateWeapon("cleaver", "2d5", 2, "&M", "Cutting Axe");
                 case "MosshulkSlam":
                     return CreateWeapon("mossy fist", "2d5", 2, "&g", "Bludgeoning Animal");

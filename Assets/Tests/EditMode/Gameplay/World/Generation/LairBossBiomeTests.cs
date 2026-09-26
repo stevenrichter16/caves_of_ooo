@@ -13,7 +13,7 @@ namespace CavesOfOoo.Tests
     /// (Spread, Sodden, Beating, Grovelands; never the Overwrit or the
     /// Stump), but <c>WorldGenerator.GetBossForBiome</c> only had cases for
     /// the four retired biomes. Every lair in every world fell through to
-    /// <c>default: "SnapjawChieftain"</c>, so the desert prowler and the
+    /// <c>default: "MarlbackWallkeeper"</c>, so the desert prowler and the
     /// jungle stalker, both finished bosses, could never be met.
     ///
     /// User-visible invariant: "a lair's boss belongs to the country it
@@ -26,8 +26,8 @@ namespace CavesOfOoo.Tests
 
         private static readonly Dictionary<BiomeType, string> Expected = new Dictionary<BiomeType, string>
         {
-            { BiomeType.Spread, "SnapjawChieftain" },
-            { BiomeType.Sodden, "SnapjawChieftain" },
+            { BiomeType.Spread, "MarlbackWallkeeper" },
+            { BiomeType.Sodden, "MarlbackWallkeeper" },
             { BiomeType.Beating, "DesertProwler" },
             { BiomeType.Grovelands, "JungleStalker" },
         };

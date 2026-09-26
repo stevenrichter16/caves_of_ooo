@@ -1,0 +1,18 @@
+{
+    "runId": "3e68389358c04d8482bfa1e84a6dab96",
+    "zone": "Overworld.2.6.0",
+    "fatal": "System.InvalidOperationException: Density completion precondition: actual authored Sella\n  at CavesOfOoo.Scenarios.Custom.DensityCompletionNativePlayer.Require (System.Boolean condition, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DensityCompletionNativePlayer.cs:263 \n  at CavesOfOoo.Scenarios.Custom.DensityCompletionNativePlayer+<RunAudit>d__36.MoveNext () [0x001cb] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DensityCompletionNativePlayer.cs:72 \n  at CavesOfOoo.Scenarios.Custom.DensityCompletionNativePlayer+<RunSafely>d__50.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DensityCompletionNativePlayer.cs:276 ",
+    "canVerify": "Native new game; actual generated Sella/Scribe stock bought through Chat/Trade keyboard UI and authored Felling mushrooms harvested; ordinary starting money and HP; real well/fire fill/drink/cook actions; action turns/refusal; canonical book read with previous/next keys; screenshots.",
+    "cannotVerify": "Actor positioning shortcuts travel to legal cells beside already generated sources; no ordinary walking route, natural encounter pacing, combat balance or frequency claim. No source rates, inventory, money, HP or NPC scheduling are altered. Screenshots require visual inspection.",
+    "audit": [
+        "FAIL native_precondition_failed"
+    ],
+    "screenshots": [],
+    "descriptions": [],
+    "cases": 1,
+    "failures": 2,
+    "unexpectedErrors": 1,
+    "complete": false,
+    "errorsFinalized": true,
+    "seconds": 1.1690403999999999
+}

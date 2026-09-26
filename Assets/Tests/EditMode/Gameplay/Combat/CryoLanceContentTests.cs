@@ -77,7 +77,7 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(weapon.Attributes.Contains("Ice"),
                 "CryoLance must contain 'Ice' in its Attributes — that's what " +
                 "routes its damage through ColdResistance (Phase E) on " +
-                "cold-resistant creatures like SnapjawHunter and IceWight.");
+                "cold-resistant creatures like MarlbackTunnelguard and IceWight.");
         }
 
         [Test]
@@ -201,15 +201,15 @@ namespace CavesOfOoo.Tests
         // ====================================================================
 
         [Test]
-        public void CryoLance_OnSnapjawHunter_TakesLessDamageThan_ControlTarget()
+        public void CryoLance_OnMarlbackTunnelguard_TakesLessDamageThan_ControlTarget()
         {
             var lance = _harness.Factory.CreateEntity("CryoLance");
             var weapon = lance.GetPart<MeleeWeaponPart>();
 
-            var hunter = _harness.Factory.CreateEntity("SnapjawHunter");
-            Assert.IsNotNull(hunter, "SnapjawHunter blueprint must exist.");
+            var hunter = _harness.Factory.CreateEntity("MarlbackTunnelguard");
+            Assert.IsNotNull(hunter, "MarlbackTunnelguard blueprint must exist.");
             Assert.AreEqual(50, hunter.GetStatValue("ColdResistance", 0),
-                "SnapjawHunter blueprint should keep ColdResistance=50.");
+                "MarlbackTunnelguard blueprint should keep ColdResistance=50.");
 
             var zone = new Zone();
             zone.AddEntity(hunter, 5, 5);
@@ -229,9 +229,9 @@ namespace CavesOfOoo.Tests
             int controlDelta = controlHpBefore - control.GetStatValue("Hitpoints");
 
             Assert.Less(hunterDelta, controlDelta,
-                "SnapjawHunter should take strictly less CryoLance damage than the " +
+                "MarlbackTunnelguard should take strictly less CryoLance damage than the " +
                 "control (ColdResistance=50 halves Cold-attributed damage). " +
-                $"Got SnapjawHunter delta {hunterDelta} vs control delta {controlDelta}.");
+                $"Got MarlbackTunnelguard delta {hunterDelta} vs control delta {controlDelta}.");
         }
 
         // ====================================================================

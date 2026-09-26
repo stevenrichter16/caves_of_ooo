@@ -15,8 +15,8 @@ namespace CavesOfOoo.Editor
     /// <see cref="SampleScenePath"/> in its place.
     ///
     /// It also wires <see cref="EditorSceneManager.playModeStartScene"/>
-    /// so pressing Play always enters SampleScene first, regardless of
-    /// which scene happens to be in the hierarchy at that moment.
+    /// so pressing Play enters the supported active game scene, falling back
+    /// to SampleScene for unrelated or unsaved editor scenes.
     /// </summary>
     [InitializeOnLoad]
     internal static class DefaultSceneLoader
@@ -27,6 +27,7 @@ namespace CavesOfOoo.Editor
         {
             EditorApplication.delayCall += EnsureSampleSceneLoaded;
             EditorApplication.delayCall += EnsurePlayModeStartScene;
+            EditorSceneManager.activeSceneChangedInEditMode += (previous, current) => EnsurePlayModeStartScene();
         }
 
         private static void EnsureSampleSceneLoaded()
@@ -52,11 +53,16 @@ namespace CavesOfOoo.Editor
             EditorSceneManager.OpenScene(SampleScenePath, OpenSceneMode.Single);
         }
 
+        private const string GladeScenePath = "Assets/Scenes/Main/ReferenceGlade.unity";
+
         private static void EnsurePlayModeStartScene()
         {
-            if (!File.Exists(SampleScenePath)) return;
+            if (EditorApplication.isPlayingOrWillChangePlaymode) return;
+            string selected = SceneManager.GetActiveScene().path == GladeScenePath
+                ? GladeScenePath : SampleScenePath;
+            if (!File.Exists(selected)) return;
 
-            var asset = AssetDatabase.LoadAssetAtPath<SceneAsset>(SampleScenePath);
+            var asset = AssetDatabase.LoadAssetAtPath<SceneAsset>(selected);
             if (asset == null) return;
 
             // Only (re)assign if it's missing or pointing elsewhere, to

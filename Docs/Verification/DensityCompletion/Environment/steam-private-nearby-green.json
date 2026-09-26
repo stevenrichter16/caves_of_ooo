@@ -1,0 +1,45 @@
+{
+  "status": "private candidate; shared runtime unchanged; awaiting root native gate",
+  "before": {
+    "total": "259",
+    "passed": "244",
+    "failed": "15",
+    "duration": "1.569237"
+  },
+  "after": {
+    "total": "259",
+    "passed": "259",
+    "failed": "0",
+    "duration": "1.884108"
+  },
+  "newlyFailing": [],
+  "newlyPassing": [
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_ActivePropsReceiveExactlyOneStartAndEnd(\"steam\")",
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_DetachedPropsAreNotTicked(False)",
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_NewlySpawnedSteamWaitsForTheNextSnapshot(True)",
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_NewlySpawnedSteamWaitsForTheNextSnapshot(False)",
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_PhysicalBodySizeDoesNotMultiplyTurnDispatch(\"0,0;1,0\")",
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_PhysicalBodySizeDoesNotMultiplyTurnDispatch(\"2,0\")",
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_RemovedSnapshotMemberNeverReceivesALaterTurn(False,\"steam\")",
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_RemovedSnapshotMemberNeverReceivesALaterTurn(True,\"thermal\")",
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_SelfRemovalAtStartCannotReceiveEndTurn(True)",
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_SelfRemovalAtStartCannotReceiveEndTurn(False)",
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_SteamExpiresAndStopsSchedulingWithoutThermalDisplacement(0.05f)",
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_SteamExpiresAndStopsSchedulingWithoutThermalDisplacement(0.8f)",
+    "CavesOfOoo.Tests.DensitySteamSchedulingTests.RealReactionSteamCoolsAndWetsAfterOriginalPropStopsBurning(False)",
+    "CavesOfOoo.Tests.DensitySteamSchedulingTests.RealReactionSteamCoolsAndWetsAfterOriginalPropStopsBurning(True)",
+    "CavesOfOoo.Tests.DensitySteamSchedulingTests.RealReactionSteamLifetimeAdvancesWithoutDependingOnUnrelatedHeat(False)"
+  ],
+  "exactCaseNamesMatch": true,
+  "newCases": 34,
+  "existingNearbyCases": 225,
+  "fixtureCorrections": [
+    "Initial warm passive-neighbor WetEffect evaporated within its own EndTurn. Final target is explicitly a Creature whose own turn is not dispatched by the material tick. Direct-owner countercheck retained.",
+    "Initial synthetic burning-only control omitted combustible material and was refused by the object status matrix. Added actual material and HasEffect precondition assertion."
+  ],
+  "files": {
+    "/tmp/coo-density-steam/Assets/Tests/EditMode/Gameplay/Materials/DensitySteamSchedulingTests.cs": "1f107fd83821624d1ca8b4e2625a46dff66779dd585e0082ef02cebb8027f77a",
+    "/tmp/coo-density-steam/Assets/Tests/EditMode/Gameplay/Materials/DensitySteamSchedulingAdversarialTests.cs": "f5ccd680fc9092f0812903facdb7455ae2d59d6376c1cfae9adaa39076a2ebe1",
+    "/tmp/coo-density-steam/Assets/Scripts/Gameplay/Materials/MaterialSimSystem.cs": "4cf9058ccfddfa252c7a0196b3b99b66c2ec697ff0ac5d2f6692a858b3a880dc"
+  }
+}

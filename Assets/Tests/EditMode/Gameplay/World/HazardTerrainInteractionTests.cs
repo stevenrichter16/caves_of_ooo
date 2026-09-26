@@ -88,7 +88,7 @@ namespace CavesOfOoo.Tests
             // own oil, so no spell is needed to prepare the ground.
             var zone = new Zone();
             Place(zone, "TarSeep", 8, 8);
-            var victim = Creature(zone, "snapjaw", 8, 8);
+            var victim = Creature(zone, "marlback", 8, 8);
             int hp = victim.GetStatValue("Hitpoints");
 
             ZoneTileStateSystem.SeedTerrainSources(zone);
@@ -280,7 +280,7 @@ namespace CavesOfOoo.Tests
             Place(zone, "TarSeep", 15, 15);
 
             Entity npc = null;
-            foreach (var bp in new[] { "Snapjaw", "SootGremlin", "Rotling", "DuneLurker" })
+            foreach (var bp in new[] { "MarlbackScrabbler", "SootGremlin", "Rotling", "DuneLurker" })
             {
                 npc = _factory.CreateEntity(bp);
                 if (npc != null) { zone.AddEntity(npc, 15, 15); break; }

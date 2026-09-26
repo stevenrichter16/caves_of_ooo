@@ -152,16 +152,16 @@ namespace CavesOfOoo.Tests
             var zone = Floored();
             var you = Walker(zone, 10, 10);
             you.Tags["Faction"] = "Villagers";
-            var beast = new Entity { ID = "beast", BlueprintName = "Snapjaw" };
+            var beast = new Entity { ID = "beast", BlueprintName = "MarlbackScrabbler" };
             beast.Tags["Creature"] = "";
-            beast.Tags["Faction"] = "Snapjaws";
+            beast.Tags["Faction"] = "OutlandRaiders";
             beast.Statistics["Hitpoints"] = new Stat
             { Owner = beast, Name = "Hitpoints", BaseValue = 10, Min = 0, Max = 10 };
-            beast.AddPart(new RenderPart { DisplayName = "snapjaw" });
+            beast.AddPart(new RenderPart { DisplayName = "marlback" });
             zone.AddEntity(beast, 14, 10);
 
             Assert.IsTrue(StairTravel.ShouldInterrupt(zone, you),
-                "you do not stroll past a snapjaw");
+                "you do not stroll past a marlback");
         }
 
         [Test]
@@ -170,7 +170,7 @@ namespace CavesOfOoo.Tests
             // Counter-check on the NoticeRadius gate (cold-eye fix D):
             // the old rule vetoed travel whenever ANY hostile existed
             // anywhere in the zone, which made the feature unusable in
-            // exactly the zones it exists for. A snapjaw 30 cells away
+            // exactly the zones it exists for. A marlback 30 cells away
             // has not noticed you; you walk. A revert to the zone-wide
             // scan fails here.
             var zone = Floored();
@@ -204,12 +204,12 @@ namespace CavesOfOoo.Tests
 
         private static Entity FarBeast(Zone zone, int x, int y)
         {
-            var beast = new Entity { ID = "beast@" + x + "," + y, BlueprintName = "Snapjaw" };
+            var beast = new Entity { ID = "beast@" + x + "," + y, BlueprintName = "MarlbackScrabbler" };
             beast.Tags["Creature"] = "";
-            beast.Tags["Faction"] = "Snapjaws";
+            beast.Tags["Faction"] = "OutlandRaiders";
             beast.Statistics["Hitpoints"] = new Stat
             { Owner = beast, Name = "Hitpoints", BaseValue = 10, Min = 0, Max = 10 };
-            beast.AddPart(new RenderPart { DisplayName = "snapjaw" });
+            beast.AddPart(new RenderPart { DisplayName = "marlback" });
             zone.AddEntity(beast, x, y);
             return beast;
         }

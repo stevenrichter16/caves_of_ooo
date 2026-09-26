@@ -215,7 +215,7 @@ namespace CavesOfOoo.Tests.TestSupport
             // CombatSystem.HandleDeath removes the dead entity from the Zone
             // but NOT from the TurnManager. The only code path in the entire
             // codebase that calls TurnManager.RemoveEntity is ZoneBuilder.
-            // So a Snapjaw killed on turn N stays in the TurnManager and
+            // So a MarlbackScrabbler killed on turn N stays in the TurnManager and
             // continues receiving TakeTurn events on turn N+1, N+2, ...
             //
             // AdvanceTurns inherits this behavior (by design — it matches how

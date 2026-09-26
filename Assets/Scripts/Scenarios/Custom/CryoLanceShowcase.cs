@@ -15,7 +15,7 @@ namespace CavesOfOoo.Scenarios.Custom
     ///
     /// Layout (player at left, walks east):
     ///
-    ///                   [SnapjawHunter NE: CR=50 — graded contrast]
+    ///                   [MarlbackTunnelguard NE: CR=50 — graded contrast]
     ///                                ↗
     ///   [Player] →→→→→ [IceWight E: CR=100, HR=-50 — extremes]
     ///                                ↘
@@ -27,7 +27,7 @@ namespace CavesOfOoo.Scenarios.Custom
     /// |-------------------------|----------------------|--------------------------------|
     /// | CryoLance vs IceWight   | **0 damage**         | CR=100 × Ice = full immunity   |
     /// | FlamingSword vs IceWight| **1.5× damage**      | HR=-50 × Fire = vulnerability  |
-    /// | CryoLance vs SnapjawHunter | halved             | CR=50 × Ice = graded           |
+    /// | CryoLance vs MarlbackTunnelguard | halved             | CR=50 × Ice = graded           |
     /// | CryoLance vs Glowmaw    | full damage          | Glowmaw has no CR              |
     /// | FlamingSword vs Glowmaw | halved               | HR=50 × Fire (control case)    |
     ///
@@ -66,11 +66,11 @@ namespace CavesOfOoo.Scenarios.Custom
             if (iceWight != null)
                 iceWight.AddPart(new ElementalDemoProbePart());
 
-            // === NE: SnapjawHunter — CR=50, no HR ===
+            // === NE: MarlbackTunnelguard — CR=50, no HR ===
             // Graded-resistance contrast: shows CryoLance damage is halved
             // (not zeroed) by a partial CR. Demonstrates that the
             // resistance formula is graded, not binary.
-            var hunter = ctx.Spawn("SnapjawHunter")
+            var hunter = ctx.Spawn("MarlbackTunnelguard")
                 .WithStatMax("Hitpoints", 200)
                 .WithHpAbsolute(200)
                 .AsPersonalEnemyOf(ctx.PlayerEntity)
@@ -94,7 +94,7 @@ namespace CavesOfOoo.Scenarios.Custom
             ctx.Log("=== CryoLance Showcase (resistance extremes) ===");
             ctx.Log("Loadout: CryoLance equipped, FlamingSword in inventory.");
             ctx.Log("E  IceWight       (CR=100, HR=-50): CryoLance → 0 damage. FlamingSword → 1.5×.");
-            ctx.Log("NE SnapjawHunter  (CR=50,  HR=0):    CryoLance → halved.");
+            ctx.Log("NE MarlbackTunnelguard  (CR=50,  HR=0):    CryoLance → halved.");
             ctx.Log("SE Glowmaw        (HR=50,  CR=0):    CryoLance → full. FlamingSword → halved.");
             ctx.Log("[ElementalDemo] lines fire on each hit with live HR/CR.");
         }

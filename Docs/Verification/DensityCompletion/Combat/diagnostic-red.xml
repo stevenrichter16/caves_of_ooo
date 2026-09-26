@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-density-combat-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="250" result="Failed" start-time="2026-09-26T19:59:59.7387870Z" end-time="2026-09-26T19:59:59.8223950Z" duration="0.083594" total="1" passed="0" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="2" random-seed="1746096244">
+  <command-line><![CDATA[/private/tmp/coo-density-combat-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-density-combat-diag-red.xml --where "test =~ /GrantAndUseDiagnostics/"]]></command-line>
+  <filter>
+    <test re="1">GrantAndUseDiagnostics</test>
+  </filter>
+  <test-suite type="Assembly" id="1276" name="EditModeRunner.dll" fullname="/private/tmp/coo-density-combat-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="250" result="Failed" site="Child" start-time="2026-09-26T19:59:59.7387870Z" end-time="2026-09-26T19:59:59.8223950Z" duration="0.083594" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="2">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-density-combat-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-density-combat-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="51529" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1277" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="250" result="Failed" site="Child" start-time="2026-09-26T19:59:59.7402840Z" end-time="2026-09-26T19:59:59.8223910Z" duration="0.082107" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="2">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1278" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="250" result="Failed" site="Child" start-time="2026-09-26T19:59:59.7403980Z" end-time="2026-09-26T19:59:59.8223720Z" duration="0.081974" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="2">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1042" name="DensityCombatAdversarialTests" fullname="CavesOfOoo.Tests.DensityCombatAdversarialTests" classname="CavesOfOoo.Tests.DensityCombatAdversarialTests" runstate="Runnable" testcasecount="64" result="Failed" site="Child" start-time="2026-09-26T19:59:59.7407200Z" end-time="2026-09-26T19:59:59.8222610Z" duration="0.081541" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="2">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1105" name="Adversarial_GrantAndUseDiagnosticsNameTheSameCommand" fullname="CavesOfOoo.Tests.DensityCombatAdversarialTests.Adversarial_GrantAndUseDiagnosticsNameTheSameCommand" methodname="Adversarial_GrantAndUseDiagnosticsNameTheSameCommand" classname="CavesOfOoo.Tests.DensityCombatAdversarialTests" runstate="Runnable" seed="614866427" result="Failed" start-time="2026-09-26T19:59:59.7415930Z" end-time="2026-09-26T19:59:59.8214600Z" duration="0.079892" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: String containing ""command":"CommandIceLance""
+  But was:  "{"command":"Cryomancy_IceLance","reason":"","cooldown":0}"
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatAdversarialTests.Adversarial_GrantAndUseDiagnosticsNameTheSameCommand() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatAdversarialTests.cs:line 238
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: String containing ""command":"CommandIceLance""
+  But was:  "{"command":"Cryomancy_IceLance","reason":"","cooldown":0}"
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCombatAdversarialTests.Adversarial_GrantAndUseDiagnosticsNameTheSameCommand() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityCombatAdversarialTests.cs:line 238
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

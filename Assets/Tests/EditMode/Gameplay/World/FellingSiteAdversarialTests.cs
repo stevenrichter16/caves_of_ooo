@@ -165,7 +165,7 @@ namespace CavesOfOoo.Tests
         [Test] public void Adversarial_OrdinaryActorEndsDoNotTickTheStandingPlayersExposure()
         {
             var f=Exposure();f.turns.EndTurn(f.actor,f.z);var effect=f.actor.GetPart<StatusEffectsPart>().GetEffect<ConfusedEffect>();
-            var npc=Place(f.z,"Snapjaw",20,10);f.turns.AddEntity(npc);
+            var npc=Place(f.z,"MarlbackScrabbler",20,10);f.turns.AddEntity(npc);
             for(int i=0;i<20;i++)f.turns.EndTurn(npc,f.z);Assert.AreEqual(2,effect.Duration);
         }
         private GameSessionState Roundtrip(OverworldZoneManager m,Zone z,Entity actor)

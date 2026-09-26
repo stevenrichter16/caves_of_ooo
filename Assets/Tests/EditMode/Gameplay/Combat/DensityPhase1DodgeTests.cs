@@ -110,7 +110,7 @@ namespace CavesOfOoo.Tests
         }
 
         [TestCase("Creature")] [TestCase("Viper")] [TestCase("SunStriker")]
-        [TestCase("SnapjawWarlord")] [TestCase("Player")]
+        [TestCase("MarlbackBreacher")] [TestCase("Player")]
         public void CreaturesHaveZeroDVAdjustment_WithRoomForNegativeEffects(string name)
         {
             var dv = Create(name).GetStat("DV");

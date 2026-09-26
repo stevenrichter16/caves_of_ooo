@@ -23,13 +23,13 @@ namespace CavesOfOoo.Tests
         [Test]
         public void ShippedCatalog_IsValidAndCompleteForTheVerticalSlice()
         {
-            Assert.AreEqual(15, EntityVisualCatalog.DefinitionCount);
+            Assert.AreEqual(20, EntityVisualCatalog.DefinitionCount);
             CollectionAssert.IsEmpty(EntityVisualCatalog.ValidationIssues);
 
             foreach (string blueprint in new[]
             {
                 "Player", "Villager", "Merchant", "Elder", "Warden",
-                "VillageChild", "Snapjaw", "SariSnake", "Wardline",
+                "VillageChild", "MarlbackScrabbler", "SariSnake", "Wardline",
                 "CascadeFather", "GlasspaneFrog", "YellowfootWayfarer",
                 "PalimpsestEcho", "MorrowfastFarra", "MorrowfastEdden",
             })
@@ -66,7 +66,7 @@ namespace CavesOfOoo.Tests
                 Assert.AreEqual(new Vector2(8, 0), cast.pivot);
                 Assert.AreEqual(FilterMode.Point, cast.texture.filterMode);
             }
-            Assert.IsTrue(EntityVisualCatalog.TryGetAsset(Actor("Snapjaw", "s"), out var fauna));
+            Assert.IsTrue(EntityVisualCatalog.TryGetAsset(Actor("MarlbackScrabbler", "s"), out var fauna));
             Assert.IsFalse(fauna.HasCastingArt);
             Assert.AreSame(fauna.GetFrame(EntityVisualState.Attack, EntityVisualFacing.East, 2),
                 fauna.GetFrame(EntityVisualState.Cast, EntityVisualFacing.East, 2));

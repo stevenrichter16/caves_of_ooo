@@ -12,7 +12,7 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
         {
             Entity player = CreateCreature("player-1", "Player", "@", isPlayer: true);
             Entity item = CreateItem("blade-1", "IronLongsword", "/");
-            Entity npc = CreateCreature("npc-1", "Snapjaw", "s", isPlayer: false);
+            Entity npc = CreateCreature("npc-1", "MarlbackScrabbler", "s", isPlayer: false);
 
             var root = new BodyPart { Type = "Body", Name = "body", ID = 100 };
             var hand = new BodyPart { Type = "Hand", Name = "hand", ID = 101 };

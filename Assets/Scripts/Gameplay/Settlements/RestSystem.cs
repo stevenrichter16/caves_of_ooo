@@ -1,3 +1,4 @@
+using System;
 using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
@@ -12,7 +13,7 @@ namespace CavesOfOoo.Core
     /// (well relapse timers, trader restocks, crop-growth checks) moves
     /// while you sleep. Resting costs world-time, not nothing.
     /// Blocked while a hostile is within <see cref="HostileScanRadius"/>
-    /// (Chebyshev, no LOS — sleeping next to a wall a snapjaw is
+    /// (Chebyshev, no LOS — sleeping next to a wall a marlback is
     /// circling is still a bad idea).
     /// </summary>
     public static class RestSystem
@@ -26,11 +27,42 @@ namespace CavesOfOoo.Core
         /// furniture/RestBlocked with the reason, mutate nothing.
         /// </summary>
         public static bool TryRest(Entity actor, Zone zone, string site, out string blockReason)
+            => TryRestFor(actor, zone, site, RestClockTurns, out blockReason);
+
+        /// <summary>Rest to the next 300-tick boundary, including a full band
+        /// when already on a boundary. Retains the ordinary hostile/heal rules.</summary>
+        public static bool TryRestUntilNextBand(Entity actor, Zone zone, string site, out string blockReason)
+        {
+            var clock = TurnManager.Active;
+            int tick = clock?.TickCount ?? -1;
+            int advance = WorldClock.BandLengthTicks - Math.Max(0, tick) % WorldClock.BandLengthTicks;
+            if (actor == null || zone?.GetEntityCell(actor) == null || clock == null || tick < 0
+                || (long)tick + advance > int.MaxValue)
+            {
+                blockReason = "no valid resting place or clock";
+                MessageLog.Add("You cannot settle down here right now.");
+                Diag.Record("furniture", "RestBlocked", actor: actor,
+                    payload: new { site, reason = "invalid_rest_context" });
+                return false;
+            }
+            return TryRestFor(actor, zone, site, advance, out blockReason);
+        }
+
+        private static bool TryRestFor(Entity actor, Zone zone, string site, int clockAdvance, out string blockReason)
         {
             blockReason = null;
             if (actor == null)
             {
                 blockReason = "no actor";
+                return false;
+            }
+
+            if (CombatSystem.IsDeathHandled(actor) || (actor.GetStat("Hitpoints") is Stat hpBefore && hpBefore.Value <= 0))
+            {
+                blockReason = "actor is dead";
+                MessageLog.Add("You cannot rest while dead.");
+                Diag.Record("furniture", "RestBlocked", actor: actor,
+                    payload: new { site, reason = "actor_dead" });
                 return false;
             }
 
@@ -59,7 +91,7 @@ namespace CavesOfOoo.Core
 
             actor.GetPart<StatusEffectsPart>()?.RemoveEffect<BleedingEffect>();
 
-            TurnManager.Active?.AdvanceClock(RestClockTurns);
+            TurnManager.Active?.AdvanceClock(clockAdvance);
 
             MessageLog.Add(healed > 0
                 ? $"You rest by the {site}. ({healed} HP restored; time passes.)"
@@ -69,7 +101,7 @@ namespace CavesOfOoo.Core
             {
                 Diag.Record(category: "furniture", kind: "Rested",
                     actor: actor,
-                    payload: new { site, healed, clockAdvanced = RestClockTurns });
+                    payload: new { site, healed, clockAdvanced = clockAdvance });
             }
             return true;
         }

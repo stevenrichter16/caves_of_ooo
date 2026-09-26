@@ -13,6 +13,7 @@ namespace CavesOfOoo.Core
         private float[,] _brightness;
         private Color[,] _tint;
         private int _lastEntityVersion = -1;
+        private int _lastSightVersion = -1;
         // Cache key also tracks EquipmentChangeBus.GlobalVersion so
         // equipping/unequipping invalidates the LightMap cache immediately
         // — closes the T2.2 cache-staleness 🟡 finding (commit cd355b5).
@@ -65,6 +66,7 @@ namespace CavesOfOoo.Core
             // recompute every turn whether or not the light changed.
             if (ReferenceEquals(zone, _lastZone)
                 && zone.EntityVersion == _lastEntityVersion
+                && zone.TileState.SightVersion == _lastSightVersion
                 && currentEquipmentVersion == _lastEquipmentVersion
                 && currentDoors == _lastMorrowfastDoors
                 && zone.AmbientLevel == _lastAmbientLevel
@@ -72,6 +74,7 @@ namespace CavesOfOoo.Core
                 return;
             _lastZone = zone;
             _lastEntityVersion = zone.EntityVersion;
+            _lastSightVersion = zone.TileState.SightVersion;
             _lastEquipmentVersion = currentEquipmentVersion;
             _lastMorrowfastDoors = currentDoors;
             _lastAmbientLevel = zone.AmbientLevel;
@@ -112,7 +115,7 @@ namespace CavesOfOoo.Core
             {
                 // Pass 1: the entity itself is a light source.
                 var ownLight = entity.GetPart<LightSourcePart>();
-                if (ownLight != null)
+                if (ownLight != null && ownLight.Enabled)
                 {
                     var cell = zone.GetEntityCell(entity);
                     if (cell != null)
@@ -145,7 +148,7 @@ namespace CavesOfOoo.Core
                     if (!_equipDedupe.Add(item)) continue;
 
                     var itemLight = item.GetPart<LightSourcePart>();
-                    if (itemLight == null) continue;
+                    if (itemLight == null || !itemLight.Enabled) continue;
 
                     Color itemColor = QudColorParser.Parse(itemLight.LightColor);
                     AddLight(zone, wielderCell.X, wielderCell.Y, itemLight.Radius,
@@ -222,7 +225,7 @@ namespace CavesOfOoo.Core
                 if (cx == x1 && cy == y1) break;
 
                 var cell = zone.GetCell(cx, cy);
-                if (cell != null && cell.IsWall())
+                if (cell != null && (cell.IsWall() || zone.TileState.ObscuresSight(cx, cy)))
                     return false;
             }
 

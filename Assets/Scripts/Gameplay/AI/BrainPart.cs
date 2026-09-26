@@ -38,7 +38,7 @@ namespace CavesOfOoo.Core
         /// Passive creatures do not proactively initiate combat. They'll still defend
         /// themselves against entities in <see cref="PersonalEnemies"/> (populated when
         /// they're directly attacked), and they'll still flee when HP drops below
-        /// <see cref="FleeThreshold"/> — but a Passive scholar won't chase a snapjaw
+        /// <see cref="FleeThreshold"/> — but a Passive scholar won't chase a marlback
         /// across the zone just because it walked into sight.
         /// Mirrors Qud's Brain.Passive flag. Used by non-combat NPCs (scholars, clerics,
         /// civilians, wildlife that doesn't hunt).
@@ -60,12 +60,16 @@ namespace CavesOfOoo.Core
         /// </summary>
         public HashSet<Entity> PersonalEnemies = new HashSet<Entity>();
 
-        public void SetPersonallyHostile(Entity target)
+        /// <summary>Records personal hostility. Set alertAllies false only for an
+        /// already-delivered local alert, preventing a zone-wide relay cascade.</summary>
+        public void SetPersonallyHostile(Entity target, bool alertAllies = true)
         {
             if (target == null) return;
             bool wasNew = PersonalEnemies.Add(target);
             Target = target;
             InConversation = false;
+            if (wasNew && alertAllies)
+                ParentEntity?.GetPart<CombatTacticsPart>()?.AlertAllies(target, ParentEntity.SpatialZone);
 
             if (wasNew && CurrentZone != null)
             {

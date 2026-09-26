@@ -18,8 +18,8 @@ namespace CavesOfOoo.Tests
         private System.Random previousRng;
         private static readonly string[] MenderItems = { "Torch", "Dagger", "Spear", "LeatherArmor", "Tepuibone", "FireClay" };
         private static readonly int[] MenderCounts = { 4, 2, 1, 1, 3, 4 };
-        private static readonly string[] FoodItems = { "Mushroom", "DriedMeat", "HealingTonic", "BurnSalve", "WaterTonic" };
-        private static readonly int[] FoodCounts = { 8, 4, 2, 2, 3 };
+        private static readonly string[] FoodItems = { "Mushroom", "DriedMeat", "HealingTonic", "BurnSalve", "WaterTonic", "Waterskin" };
+        private static readonly int[] FoodCounts = { 8, 4, 2, 2, 3, 1 };
 
         [SetUp] public void SetUp()
         {

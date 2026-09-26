@@ -6,7 +6,7 @@ namespace CavesOfOoo.Scenarios.Custom
     /// Phases F/G/H showcase. Three concrete listeners + one player-side stat
     /// to demonstrate the new combat hooks visibly:
     ///
-    ///   - **F (BeforeTakeDamage)**: a Snapjaw with <see cref="ShowcaseStoneSkinPart"/>
+    ///   - **F (BeforeTakeDamage)**: a MarlbackScrabbler with <see cref="ShowcaseStoneSkinPart"/>
     ///     reduces incoming damage by 2 and logs the reduction. Each hit's
     ///     log line shows raw → reduced damage.
     ///
@@ -19,7 +19,7 @@ namespace CavesOfOoo.Scenarios.Custom
     ///     The stat value is logged so a human can read it back via
     ///     execute_code.
     ///
-    ///   - **H (CanBeDismembered)**: a Snapjaw with <see cref="ShowcaseIndestructiblePart"/>
+    ///   - **H (CanBeDismembered)**: a MarlbackScrabbler with <see cref="ShowcaseIndestructiblePart"/>
     ///     vetoes every dismemberment attempt. The "[Showcase] Indestructible: vetoed"
     ///     line fires whenever the chance roll passed but the limb stays attached.
     ///
@@ -32,10 +32,10 @@ namespace CavesOfOoo.Scenarios.Custom
     ///
     /// To verify the hooks fire as expected:
     ///   1. Launch this scenario (Caves Of Ooo / Scenarios / Combat Stress / Combat Hooks Showcase)
-    ///   2. Walk up to each Snapjaw and attack
+    ///   2. Walk up to each MarlbackScrabbler and attack
     ///   3. Watch the message log:
-    ///      - Hits on the StoneSkin Snapjaw show "[Showcase] StoneSkin: X -> X-2"
-    ///      - Hits on the Indestructible Snapjaw never sever limbs even with
+    ///      - Hits on the StoneSkin MarlbackScrabbler show "[Showcase] StoneSkin: X -> X-2"
+    ///      - Hits on the Indestructible MarlbackScrabbler never sever limbs even with
     ///        massive damage; "[Showcase] Indestructible: vetoed" fires on
     ///        every attempted dismemberment
     /// </summary>
@@ -62,9 +62,9 @@ namespace CavesOfOoo.Scenarios.Custom
                 Max = 10
             };
 
-            // === Phase F: StoneSkin Snapjaw (NW, player+2,-2) ===
+            // === Phase F: StoneSkin MarlbackScrabbler (NW, player+2,-2) ===
             // Listens for BeforeTakeDamage and reduces incoming damage by 2.
-            var stoneSkin = ctx.Spawn("Snapjaw")
+            var stoneSkin = ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 9999)
                 .WithHpAbsolute(9999)
                 .AsPersonalEnemyOf(ctx.PlayerEntity)
@@ -72,17 +72,17 @@ namespace CavesOfOoo.Scenarios.Custom
             if (stoneSkin != null)
                 stoneSkin.AddPart(new ShowcaseStoneSkinPart());
 
-            // === Control: normal Snapjaw (E, player+3,0) ===
+            // === Control: normal MarlbackScrabbler (E, player+3,0) ===
             // No probes attached. Used for visual comparison vs StoneSkin.
-            ctx.Spawn("Snapjaw")
+            ctx.Spawn("MarlbackScrabbler")
                .WithStatMax("Hitpoints", 9999)
                .WithHpAbsolute(9999)
                .AsPersonalEnemyOf(ctx.PlayerEntity)
                .At(p.x + 3, p.y);
 
-            // === Phase H: Indestructible Snapjaw (NE, player+4,-2) ===
+            // === Phase H: Indestructible MarlbackScrabbler (NE, player+4,-2) ===
             // Vetoes CanBeDismembered. Limbs stay attached even on massive hits.
-            var indestructible = ctx.Spawn("Snapjaw")
+            var indestructible = ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 9999)
                 .WithHpAbsolute(9999)
                 .AsPersonalEnemyOf(ctx.PlayerEntity)
@@ -92,9 +92,9 @@ namespace CavesOfOoo.Scenarios.Custom
 
             ctx.Log("=== Combat Hooks Showcase (Phases F/G/H) ===");
             ctx.Log("Player: MultiWeaponSkillBonus = +5 (off-hand swings more often, +5% chance).");
-            ctx.Log("StoneSkin Snapjaw NW — every hit reduced by 2. Look for '[Showcase] StoneSkin: X -> Y'.");
-            ctx.Log("Control Snapjaw E — no probes; reference for off-hand swing rate.");
-            ctx.Log("Indestructible Snapjaw NE — limbs never sever. Look for '[Showcase] Indestructible: vetoed'.");
+            ctx.Log("StoneSkin MarlbackScrabbler NW — every hit reduced by 2. Look for '[Showcase] StoneSkin: X -> Y'.");
+            ctx.Log("Control MarlbackScrabbler E — no probes; reference for off-hand swing rate.");
+            ctx.Log("Indestructible MarlbackScrabbler NE — limbs never sever. Look for '[Showcase] Indestructible: vetoed'.");
         }
     }
 

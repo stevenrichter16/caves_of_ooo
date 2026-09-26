@@ -37,7 +37,7 @@ namespace CavesOfOoo.Tests
 
         [Test] public void EveryCompletedModelIsAnActualImportedFbxAndPersistentPrefab()
         {
-            var library=Library();var doc=Doc(library);Assert.AreEqual(218,doc.models.Length);
+            var library=Library();var doc=Doc(library);Assert.AreEqual(222,doc.models.Length);
             var catalog=Field<TextAsset>(library,"Catalog");
             Assert.AreEqual("Assets/Art3D/SpawnRing/Definitions/catalog.json",AssetDatabase.GetAssetPath(catalog));
             foreach(var model in doc.models)
@@ -112,7 +112,7 @@ namespace CavesOfOoo.Tests
                 if(model.rigFamily=="humanoid")CollectionAssert.AreEquivalent(new[]{"Equipment.Head","Equipment.Hand.L","Equipment.Hand.R","Equipment.Back"},sockets,model.id);
                 else Assert.IsEmpty(sockets,model.id+" must not acquire fake hands");
             }
-            Assert.AreEqual(21,rigs);Assert.AreEqual(12,nonhuman);
+            Assert.AreEqual(25,rigs);Assert.AreEqual(13,nonhuman);
         }
         [Test] public void ActualRingPaletteAndWaterAreIndependentAndEveryImportedMaterialSlotIsMapped()
         {

@@ -28,7 +28,7 @@ namespace CavesOfOoo.Tests
     ///   - Warhammer       → "Bludgeoning Cudgel"
     /// Natural (NaturalWeaponFactory):
     ///   - DefaultFist     → "Bludgeoning Unarmed"
-    ///   - SnapjawClaw     → "Cutting Animal"
+    ///   - MarlbackRake     → "Cutting Animal"
     /// </summary>
     public class WeaponAttributesContentTests
     {
@@ -164,7 +164,7 @@ namespace CavesOfOoo.Tests
             Assert.IsTrue(weapon.Attributes.Contains("Ice"),
                 "IceSword must contain 'Ice' in its Attributes — that's what " +
                 "routes its damage through ColdResistance (Phase E) on " +
-                "cold-resistant creatures like SnapjawHunter");
+                "cold-resistant creatures like MarlbackTunnelguard");
         }
 
         [Test]
@@ -483,9 +483,9 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void SnapjawClaw_HasCuttingAnimalAttribute()
+        public void MarlbackRake_HasCuttingAnimalAttribute()
         {
-            var claw = NaturalWeaponFactory.Create("SnapjawClaw");
+            var claw = NaturalWeaponFactory.Create("MarlbackRake");
             var weapon = claw.GetPart<MeleeWeaponPart>();
             Assert.IsNotNull(weapon);
             Assert.AreEqual("Cutting Animal", weapon.Attributes);

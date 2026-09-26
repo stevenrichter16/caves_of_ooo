@@ -152,9 +152,9 @@ namespace CavesOfOoo.Tests
             // after colon, no trailing punctuation). If someone rewrites
             // GetDescription to use a different separator, inspector lines
             // drift silently — this test catches that.
-            var goal = new DetailOnlyTestGoal { Details = "target=Snapjaw" };
+            var goal = new DetailOnlyTestGoal { Details = "target=MarlbackScrabbler" };
             Assert.AreEqual(
-                "DetailOnlyTestGoal: target=Snapjaw",
+                "DetailOnlyTestGoal: target=MarlbackScrabbler",
                 goal.GetDescription());
         }
 
@@ -188,10 +188,10 @@ namespace CavesOfOoo.Tests
         [Test]
         public void KillGoal_GetDetails_IncludesTargetDisplayName()
         {
-            var target = new Entity { BlueprintName = "Snapjaw" };
-            target.AddPart(new RenderPart { DisplayName = "snapjaw" });
+            var target = new Entity { BlueprintName = "MarlbackScrabbler" };
+            target.AddPart(new RenderPart { DisplayName = "marlback" });
             var goal = new KillGoal(target);
-            Assert.AreEqual("target=snapjaw", goal.GetDetails());
+            Assert.AreEqual("target=marlback", goal.GetDetails());
         }
 
         [Test]

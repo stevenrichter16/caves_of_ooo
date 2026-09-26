@@ -226,7 +226,7 @@ namespace CavesOfOoo.Tests
             // The lair builder's ground drops must come from this table.
             var zone = new Zone("Overworld.3.3.0");
             var poi = new PointOfInterest(POIType.Lair, "Test Lair", "Beasts")
-            { BossBlueprint = "SnapjawChieftain" };
+            { BossBlueprint = "MarlbackWallkeeper" };
             Assert.IsTrue(new LairBuilder(BiomeType.Cave, poi).BuildZone(zone, _factory, new Random(9)));
             Assert.IsTrue(new LairPopulationBuilder(BiomeType.Cave, poi).BuildZone(zone, _factory, new Random(9)));
 

@@ -7,9 +7,9 @@ namespace CavesOfOoo.Scenarios
     /// metadata used by the editor menu and (future) scenario browser window.
     ///
     /// Usage:
-    ///   [Scenario("Five Snapjaw Ambush", category: "Combat Stress",
-    ///       description: "Player surrounded by 5 snapjaws in a ring.")]
-    ///   public class FiveSnapjawAmbush : IScenario { ... }
+    ///   [Scenario("Five MarlbackScrabbler Ambush", category: "Combat Stress",
+    ///       description: "Player surrounded by 5 marlbacks in a ring.")]
+    ///   public class FiveMarlbackScrabblerAmbush : IScenario { ... }
     ///
     /// The menu path is assembled as "Caves Of Ooo/Scenarios/{Category}/{Name}".
     /// A matching entry must still be added to <c>ScenarioMenuItems.cs</c> in the

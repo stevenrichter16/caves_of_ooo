@@ -15,15 +15,15 @@ namespace CavesOfOoo.Tests.Scenarios
     /// What's being pinned at the scenario level:
     ///
     ///   1. Each elemental tonic the showcase puts in player inventory
-    ///      shatters on impact at the snapjaw cluster center and applies
-    ///      its expected status effect to ≥1 cluster Snapjaw via the
+    ///      shatters on impact at the marlback cluster center and applies
+    ///      its expected status effect to ≥1 cluster MarlbackScrabbler via the
     ///      AOE-radius-1 splash.
     ///         AcidTonic       → AcidicEffect
     ///         FrostTonic      → FrozenEffect
     ///         LightningTonic  → ElectrifiedEffect
     ///         FireTonic       → BurningEffect
     ///   2. Counter-check: HealingTonic does NOT apply any of the
-    ///      elemental status effects to cluster Snapjaws (it has no
+    ///      elemental status effects to cluster OutlandRaiders (it has no
     ///      throwable status payload — the AOE produces zero status
     ///      effect/OnApply records).
     ///
@@ -35,7 +35,7 @@ namespace CavesOfOoo.Tests.Scenarios
     /// Why this style: existing TonicTests verify each tonic's
     /// status payload in isolation. This fixture verifies the
     /// scenario-level wiring — the showcase's player inventory + the
-    /// snapjaw cluster + the shatter-on-impact AOE all line up so a
+    /// marlback cluster + the shatter-on-impact AOE all line up so a
     /// throw produces the right effect on the cluster.
     /// </summary>
     [TestFixture]
@@ -171,14 +171,14 @@ namespace CavesOfOoo.Tests.Scenarios
             int matching = onApplyRecords.Count(r => r.PayloadJson.Contains(expectedEffectTypeName));
             Assert.GreaterOrEqual(matching, 1,
                 $"{blueprintName}: must apply '{expectedEffectTypeName}' to at least " +
-                $"one cluster Snapjaw via the AOE shatter. Got {matching} matching OnApply " +
+                $"one cluster MarlbackScrabbler via the AOE shatter. Got {matching} matching OnApply " +
                 $"records. All OnApply payloads: " +
                 $"[{string.Join(", ", onApplyRecords.Select(r => r.PayloadJson))}]");
         }
 
         /// <summary>
         /// Returns the cluster center position the scenario uses: 4 east
-        /// of the player on the same row. The 5-snapjaw cluster is in
+        /// of the player on the same row. The 5-marlback cluster is in
         /// a 3×3 around this point, so a thrown tonic lands its AOE
         /// (radius 1) entirely over the cluster.
         /// </summary>

@@ -130,16 +130,16 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void Snapjaw_DoesNotHaveStaying()
+        public void MarlbackScrabbler_DoesNotHaveStaying()
         {
             // Sanity check: hostile monsters should NOT be Staying — they should
             // still chase the player. Tier 2a only affected friendly village NPCs.
-            var snapjaw = _factory.CreateEntity("Snapjaw");
-            Assert.IsNotNull(snapjaw);
-            Assert.IsFalse(snapjaw.GetPart<BrainPart>().Staying,
-                "Snapjaw should NOT be Staying — it is a hostile monster, not a villager");
-            Assert.IsFalse(snapjaw.HasTag("AllowIdleBehavior"),
-                "Snapjaw should not have AllowIdleBehavior tag");
+            var marlback = _factory.CreateEntity("MarlbackScrabbler");
+            Assert.IsNotNull(marlback);
+            Assert.IsFalse(marlback.GetPart<BrainPart>().Staying,
+                "MarlbackScrabbler should NOT be Staying — it is a hostile monster, not a villager");
+            Assert.IsFalse(marlback.HasTag("AllowIdleBehavior"),
+                "MarlbackScrabbler should not have AllowIdleBehavior tag");
         }
 
         // ========================

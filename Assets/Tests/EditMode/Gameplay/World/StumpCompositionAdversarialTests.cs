@@ -187,6 +187,11 @@ namespace CavesOfOoo.Tests
             var veins=z.GetAllEntities().Where(e=>e.BlueprintName=="TepuiboneVein").Take(2).ToArray();Assert.AreEqual(2,veins.Length);
             var actor=new Entity();var pack=new InventoryPart{MaxWeight=capacity};actor.AddPart(pack);z.AddEntity(actor,0,0);
             var ev=GameEvent.New("InventoryAction");ev.SetParameter("Command","Harvest");ev.SetParameter("Actor",actor);ev.SetParameter("Zone",z);ev.SetParameter("Random",new Random(1));veins[0].FireEventAndRelease(ev);
+            Assert.NotNull(z.GetEntityCell(veins[0]),"Remote harvesting must refuse before consuming its source.");Assert.IsEmpty(pack.Objects);
+            var origin=z.GetEntityCell(veins[0]);var approach=new[]{(1,0),(-1,0),(0,1),(0,-1)}
+                .Select(d=>z.GetCell(origin.X+d.Item1,origin.Y+d.Item2)).First(c=>c!=null&&c.IsPassable()&&c.Objects.All(e=>!e.HasTag("Creature")));
+            Assert.IsTrue(z.MoveEntity(actor,approach.X,approach.Y));
+            ev=GameEvent.New("InventoryAction");ev.SetParameter("Command","Harvest");ev.SetParameter("Actor",actor);ev.SetParameter("Zone",z);ev.SetParameter("Random",new Random(1));veins[0].FireEventAndRelease(ev);
             Assert.IsNull(z.GetEntityCell(veins[0]));Assert.NotNull(z.GetEntityCell(veins[1]));
             var goods=pack.Objects.Concat(z.GetAllEntities()).Where(e=>e.BlueprintName=="Tepuibone").ToArray();
             Assert.That(goods.Sum(e=>e.GetPart<StackerPart>()?.StackCount??1),Is.InRange(1,2));
@@ -250,7 +255,7 @@ namespace CavesOfOoo.Tests
                 string id=WorldMap.ToZoneID(wx,wy);if(!StumpCompositionPlan.IsWildernessZone(id))continue;
                 Assert.IsNull(manager.WorldMap.GetPOI(wx,wy),id);
                 var plan=StumpCompositionPlan.Create(id,seed);var zone=manager.GetZone(id);Assert.NotNull(zone);checkedZones++;
-                campOccupants+=zone.GetAllEntities().Count(e=>e.BlueprintName=="CaveHermit"||e.BlueprintName=="SnapjawWarlord");
+                campOccupants+=zone.GetAllEntities().Count(e=>e.BlueprintName=="CaveHermit"||e.BlueprintName=="MarlbackBreacher");
                 var reached=ConnectivityBuilder.FloodFill(zone,0,plan.WestY);
                 foreach(var p in new[]{(0,plan.WestY),(79,plan.EastY),(plan.NorthX,0),(plan.SouthX,24),(plan.FocalX,plan.FocalY)})
                 {

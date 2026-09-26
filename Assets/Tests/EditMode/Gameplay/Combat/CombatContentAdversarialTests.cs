@@ -409,15 +409,15 @@ namespace CavesOfOoo.Tests
             tonic.AddPart(new HandlingPart { Carryable = true, Throwable = true, Weight = 1 });
             inv.AddObject(tonic);
 
-            // Snapjaw at (1,1) — the corner target.
-            var snapjaw = ctx.Spawn("Snapjaw").NotRegisteredForTurns().At(1, 1);
+            // MarlbackScrabbler at (1,1) — the corner target.
+            var marlback = ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(1, 1);
 
             var throwCmd = new ThrowItemCommand(tonic, 1, 1);
             var result = InventorySystem.ExecuteCommand(throwCmd, thrower, ctx.Zone);
             Assert.IsTrue(result.Success, "Throw to corner: " + result.ErrorMessage);
 
-            Assert.IsTrue(snapjaw.GetPart<StatusEffectsPart>().HasEffect<AcidicEffect>(),
-                "Corner snapjaw must still receive AOE — out-of-bounds neighbors are skipped, not aborted.");
+            Assert.IsTrue(marlback.GetPart<StatusEffectsPart>().HasEffect<AcidicEffect>(),
+                "Corner marlback must still receive AOE — out-of-bounds neighbors are skipped, not aborted.");
         }
 
         // ========================================================================

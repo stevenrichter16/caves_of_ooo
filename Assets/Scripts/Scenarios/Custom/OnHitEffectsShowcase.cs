@@ -5,15 +5,15 @@ namespace CavesOfOoo.Scenarios.Custom
     /// <summary>
     /// On-Hit Effects Showcase — exposes the Tier-2 class-based + per-weapon
     /// hook system end-to-end. Player gets 5 weapons in inventory and faces
-    /// 4 padded Snapjaws (one per "lane"). Each Snapjaw carries an
+    /// 4 padded OutlandRaiders (one per "lane"). Each MarlbackScrabbler carries an
     /// <see cref="OnHitEventProbePart"/> that announces every status-effect
     /// application, so the player can read which class hook fired and which
     /// per-weapon hook fired per swing.
     ///
-    ///   [Snapjaw NW: receive Bludgeoning hits → watch for Stunned]
-    ///   [Snapjaw N : receive Cutting hits     → watch for Bleeding]
-    ///   [Snapjaw NE: receive Piercing hits    → watch for Confused]
-    ///   [Snapjaw S : receive elemental swings → watch for Burning/Frozen/Electrified/Acidic]
+    ///   [MarlbackScrabbler NW: receive Bludgeoning hits → watch for Stunned]
+    ///   [MarlbackScrabbler N : receive Cutting hits     → watch for Bleeding]
+    ///   [MarlbackScrabbler NE: receive Piercing hits    → watch for Confused]
+    ///   [MarlbackScrabbler S : receive elemental swings → watch for Burning/Frozen/Electrified/Acidic]
     ///
     /// Inventory:
     ///   Mace            (Bludgeoning, base — class Stun chance only)
@@ -51,7 +51,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 .GiveItem("ThunderHammer", 1)
                 .GiveItem("HealingTonic", 5);
 
-            // 4 padded Snapjaws spread out so the player can pick targets
+            // 4 padded OutlandRaiders spread out so the player can pick targets
             SpawnTarget(ctx, p.x + 3, p.y - 2, "[Bludgeoning lane: swing Mace or ThunderHammer]");
             SpawnTarget(ctx, p.x + 3, p.y - 1, "[Cutting lane: swing LongSword or FlamingSword]");
             SpawnTarget(ctx, p.x + 3, p.y + 1, "[Piercing lane: swing Dagger]");
@@ -69,7 +69,7 @@ namespace CavesOfOoo.Scenarios.Custom
 
         private static void SpawnTarget(ScenarioContext ctx, int x, int y, string laneNote)
         {
-            var t = ctx.Spawn("Snapjaw")
+            var t = ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 200)
                 .WithHpAbsolute(200)
                 .AsPersonalEnemyOf(ctx.PlayerEntity)

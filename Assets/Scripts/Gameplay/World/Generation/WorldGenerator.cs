@@ -20,7 +20,7 @@ namespace CavesOfOoo.Core
         };
 
         private static readonly string[] LairNames = {
-            "Snapjaw Lair", "Prowler Den", "Spider Nest", "Ruined Vault",
+            "Marlback Burrow", "Prowler Den", "Spider Nest", "Ruined Vault",
             "Stalker Cave", "Wurm Burrow", "Golem Crypt", "Bandit Hideout"
         };
 
@@ -185,7 +185,7 @@ namespace CavesOfOoo.Core
         {
             switch (biome)
             {
-                case BiomeType.Cave: return "SnapjawChieftain";
+                case BiomeType.Cave: return "MarlbackWallkeeper";
                 case BiomeType.Desert: return "DesertProwler";
                 case BiomeType.Jungle: return "JungleStalker";
                 case BiomeType.Ruins: return "AncientGuardian";
@@ -193,11 +193,11 @@ namespace CavesOfOoo.Core
                 // only generate in these four since W0.6, and every one of
                 // them used to fall through to the default. The Overwrit
                 // and the Stump never host a lair (PlacePOIs above).
-                case BiomeType.Spread: return "SnapjawChieftain";
-                case BiomeType.Sodden: return "SnapjawChieftain";
+                case BiomeType.Spread: return "MarlbackWallkeeper";
+                case BiomeType.Sodden: return "MarlbackWallkeeper";
                 case BiomeType.Beating: return "DesertProwler";
                 case BiomeType.Grovelands: return "JungleStalker";
-                default: return "SnapjawChieftain";
+                default: return "MarlbackWallkeeper";
             }
         }
 

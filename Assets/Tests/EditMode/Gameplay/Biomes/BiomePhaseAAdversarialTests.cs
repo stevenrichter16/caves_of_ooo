@@ -114,6 +114,7 @@ namespace CavesOfOoo.Tests
             zone.AddEntity(vein, 5, 5);
             var bare = new Entity { ID = "bare" };
             bare.AddPart(new RenderPart { DisplayName = "bare" });
+            zone.AddEntity(bare, 4, 5); // no inventory, but physically present
 
             var e = GameEvent.New("InventoryAction");
             e.SetParameter("Command", "Harvest");

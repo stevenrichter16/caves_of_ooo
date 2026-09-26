@@ -75,7 +75,7 @@ namespace CavesOfOoo.Rendering
 
         // --- UI text tiles: full-width (16x16) PURE FONT ---
         // The game atlas overrides many characters with gameplay sprites
-        // ('s'=snapjaw, 'T'=tree, '/'=dagger, '-'=line, '.'=floor speck,
+        // ('s'=marlback, 'T'=tree, '/'=dagger, '-'=line, '.'=floor speck,
         // apostrophe=pebble, '?'=unknown-blob, '<'/'>'=stairs, ...), which
         // made popup TEXT render creatures and terrain mid-sentence. UI
         // surfaces draw from this bank instead: the same hex font plus
@@ -290,7 +290,7 @@ namespace CavesOfOoo.Rendering
                 "X.......",
                 "........"
             });
-            DrawChar('s', new[] {  // Snapjaw
+            DrawChar('s', new[] {  // MarlbackScrabbler
                 "..XXXX..",
                 ".X....X.",
                 "X......X",

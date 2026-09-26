@@ -35,14 +35,14 @@ namespace CavesOfOoo.Tests.Scenarios
         // Existing scenarios (baseline — catch regressions)
         // ======================================================
 
-        [Test] public void FiveSnapjawAmbush_Applies_WithoutThrowing() =>
-            Assert.DoesNotThrow(() => new FiveSnapjawAmbush().Apply(FreshContext()));
+        [Test] public void FiveMarlbackScrabblerAmbush_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new FiveMarlbackScrabblerAmbush().Apply(FreshContext()));
 
-        [Test] public void SnapjawRingAmbush_Applies_WithoutThrowing() =>
-            Assert.DoesNotThrow(() => new SnapjawRingAmbush().Apply(FreshContext()));
+        [Test] public void MarlbackScrabblerRingAmbush_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new MarlbackScrabblerRingAmbush().Apply(FreshContext()));
 
-        [Test] public void StoutSnapjaw_Applies_WithoutThrowing() =>
-            Assert.DoesNotThrow(() => new StoutSnapjaw().Apply(FreshContext()));
+        [Test] public void StoutMarlbackScrabbler_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new StoutMarlbackScrabbler().Apply(FreshContext()));
 
         [Test] public void MimicSurprise_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new MimicSurprise().Apply(FreshContext()));
@@ -82,8 +82,8 @@ namespace CavesOfOoo.Tests.Scenarios
         [Test] public void ScribeSeeksShelter_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new ScribeSeeksShelter().Apply(FreshContext()));
 
-        [Test] public void SnapjawBurial_Applies_WithoutThrowing() =>
-            Assert.DoesNotThrow(() => new SnapjawBurial().Apply(FreshContext()));
+        [Test] public void MarlbackScrabblerBurial_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new MarlbackScrabblerBurial().Apply(FreshContext()));
 
         // ======================================================
         // M2.2 scenarios (Calm-based)
@@ -110,8 +110,8 @@ namespace CavesOfOoo.Tests.Scenarios
         // M2.3 scenarios (Witness pipeline)
         // ======================================================
 
-        [Test] public void ScribeWitnessesSnapjawKill_Applies_WithoutThrowing() =>
-            Assert.DoesNotThrow(() => new ScribeWitnessesSnapjawKill().Apply(FreshContext()));
+        [Test] public void ScribeWitnessesMarlbackScrabblerKill_Applies_WithoutThrowing() =>
+            Assert.DoesNotThrow(() => new ScribeWitnessesMarlbackScrabblerKill().Apply(FreshContext()));
 
         [Test] public void WitnessLineOfSightWall_Applies_WithoutThrowing() =>
             Assert.DoesNotThrow(() => new WitnessLineOfSightWall().Apply(FreshContext()));

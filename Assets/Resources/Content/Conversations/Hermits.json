@@ -13,6 +13,11 @@
               "Actions": [{ "Key": "RestAtInn", "Value": "8:hermit's fire" }]
             },
             {
+              "Text": "[8 drams] Rest until the next time of day.",
+              "Target": "Start",
+              "Actions": [{ "Key": "RestAtInnUntilNextBand", "Value": "8:hermit's fire" }]
+            },
+            {
               "Text": "What grows down in the caves?",
               "Target": "Rumor"
             },
@@ -24,7 +29,7 @@
         },
         {
           "ID": "Rumor",
-          "Text": "Quartz that hums, down past the sandstone. Miners cracked veins of it before the snapjaws took the shafts back. Bring a strong arm; the veins give to anyone patient.",
+          "Text": "Quartz that hums, down past the sandstone. Miners cracked veins of it before the marlbacks took the shafts back. Bring a strong arm; the veins give to anyone patient.",
           "Choices": [
             { "Text": "Good to know.", "Target": "Start" }
           ]
@@ -42,6 +47,11 @@
               "Text": "[8 drams] Rest a while.",
               "Target": "Start",
               "Actions": [{ "Key": "RestAtInn", "Value": "8:hermit's fire" }]
+            },
+            {
+              "Text": "[8 drams] Rest until the next time of day.",
+              "Target": "Start",
+              "Actions": [{ "Key": "RestAtInnUntilNextBand", "Value": "8:hermit's fire" }]
             },
             {
               "Text": "What should I fear out here?",
@@ -80,6 +90,11 @@
               "Actions": [{ "Key": "RestAtInn", "Value": "8:hermit's fire" }]
             },
             {
+              "Text": "[8 drams] Rest until the next time of day.",
+              "Target": "Start",
+              "Actions": [{ "Key": "RestAtInnUntilNextBand", "Value": "8:hermit's fire" }]
+            },
+            {
               "Text": "What's safe to eat out there?",
               "Target": "Rumor"
             },
@@ -109,6 +124,11 @@
               "Text": "[8 drams] Rest in the lamplight.",
               "Target": "Start",
               "Actions": [{ "Key": "RestAtInn", "Value": "8:hermit's fire" }]
+            },
+            {
+              "Text": "[8 drams] Rest until the next time of day.",
+              "Target": "Start",
+              "Actions": [{ "Key": "RestAtInnUntilNextBand", "Value": "8:hermit's fire" }]
             },
             {
               "Text": "What's buried in these ruins?",

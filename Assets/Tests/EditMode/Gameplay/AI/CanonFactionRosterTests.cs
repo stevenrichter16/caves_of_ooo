@@ -107,7 +107,7 @@ namespace CavesOfOoo.Tests
             var json = FactionsJson();
             foreach (string id in new[]
             {
-                "Snapjaws", "Beasts", "Villagers", "RotChoir", "Palimpsest",
+                "OutlandRaiders", "Beasts", "Villagers", "RotChoir", "Palimpsest",
                 "SaccharineConcord", "PaleCuration", "GlassblownRemnant",
                 "Cultists", "TentRight", "CatacombFolk", "BowerFolk",
                 "ImminentArchive",

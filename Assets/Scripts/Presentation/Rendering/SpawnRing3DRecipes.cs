@@ -32,6 +32,24 @@ namespace CavesOfOoo.Rendering
             if (cell == null || !cell.Objects.Contains(entity)) return Refused(entity, "not-current-zone-member");
             var render = entity.GetPart<RenderPart>();
             if (render == null || !render.Visible) return Refused(entity, "native-render-hidden");
+            if (ReferenceGladePlan.IsActive(zone))
+            {
+                string humanoid = entity.BlueprintName == "Warden" ? "ring-sien" : entity.BlueprintName == "Villager" ? "ring-nam" : null;
+                if (humanoid != null)
+                {
+                    if (!MatchesNativeActorGlyph(entity.BlueprintName, render.RenderString)) return Refused(entity,"reskinned-native-actor");
+                    return new SpawnRing3DRecipe(entity,humanoid,null,Village3DProjection.CellCentre(cell.X,cell.Y),true,false);
+                }
+                string family=ReferenceGladeVoxelLibrary.Family(entity);
+                if (family == null && string.IsNullOrEmpty(render.VisualID))
+                    family = entity.BlueprintName == "Chest" ? "chest" : entity.BlueprintName == "WoodenBarrel" ? "barrel" : entity.BlueprintName == "MushroomRing" ? "mushroom-ring" : null;
+                if(family!=null)
+                {
+                    string id=ReferenceGladeVoxelLibrary.ModelId(family,Variant(zone.ZoneID,entity.BlueprintName,entity.ID,cell.X,cell.Y,4));
+                    int turn=((entity.GetIntProperty("ReferenceGladeQuarterTurns")%4)+4)%4;
+                    return new SpawnRing3DRecipe(entity,id,null,Village3DProjection.CellCentre(cell.X,cell.Y),false,true,quarterTurns:turn);
+                }
+            }
             if (entity.HasPart<MultiCellPilotPropPart>()) return ResolvePilot(zone, entity, pilot);
             var component = entity.GetPart<FellingScenePropPart>();
             string componentId = null, modelId;
@@ -205,10 +223,10 @@ namespace CavesOfOoo.Rendering
                     // The canonical Warren now lives at Wellmeet. Retain the
                     // same authored quest-body exception as the other towns,
                     // requiring its actual kill-fact contract, not just a glyph.
-                    if(wellmeet&&entity.BlueprintName=="Snapjaw"&&render.RenderString=="g")
+                    if(wellmeet&&entity.BlueprintName=="DirtGnome")
                     {
                         var fact=entity.GetPart<CavesOfOoo.Storylets.AddFactWhenSlain>();
-                        if(fact?.Fact!="warren_gnomes_routed"||fact.Amount!=1)return Refused(entity,"reskinned-native-actor");
+                        if(render.RenderString!="g"||fact?.Fact!="warren_gnomes_routed"||fact.Amount!=1)return Refused(entity,"reskinned-native-actor");
                         return new SpawnRing3DRecipe(entity,WellmeetVoxelLibrary.ModelId("child",2),null,Village3DProjection.CellCentre(cell.X,cell.Y),true,false);
                     }
                     if(olderdeep&&zone.ZoneID=="Overworld.4.6.2"&&entity.BlueprintName=="SandstoneWall")
@@ -389,10 +407,6 @@ namespace CavesOfOoo.Rendering
                 // alias is introduced and the original native owner stays intact.
                 if (binding == null && (entity.BlueprintName == "OilSlick" || entity.BlueprintName == "OilSeep"))
                     binding = catalog.FindBlueprint("TarSeep");
-                // Native cave snapjaw roles share the species' body while their
-                // real brains, equipment and glyph-reskin guard remain intact.
-                if(binding==null&&caveArt&&(entity.BlueprintName=="SnapjawScavenger"||entity.BlueprintName=="SnapjawHunter"))
-                    binding=catalog.FindBlueprint("Snapjaw");
                 // Existing green harvestable uses the shipped green plant family;
                 // only its appearance is shared, never the Bush entity or mechanics.
                 if (binding == null && entity.BlueprintName == "MendleafPlant") binding = catalog.FindBlueprint("Bush");
@@ -557,7 +571,7 @@ namespace CavesOfOoo.Rendering
                     case "Merchant":case "Quartermaster":case "Scribe":case "Tinker":
                     case "Villager":case "Warden":case "Farmer":case "WellKeeper": canonical = '@'; break;
                     case "VillageChild":canonical='c';break;
-                    case "Snapjaw": canonical = 's'; break;
+                    case "MarlbackScrabbler": canonical = 's'; break;
                     case "Shambler": canonical = 'z'; break;
                     case "MawToad": canonical = 't'; break;
                 }

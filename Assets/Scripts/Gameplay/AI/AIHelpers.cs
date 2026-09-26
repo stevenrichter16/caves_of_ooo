@@ -90,7 +90,7 @@ namespace CavesOfOoo.Core
 
                 // Check intermediate cells for solidity
                 var cell = zone.GetCell(cx, cy);
-                if (cell != null && cell.IsSolid())
+                if (cell != null && (cell.IsSolid() || zone.TileState.ObscuresSight(cx, cy)))
                     return false;
             }
 

@@ -21,14 +21,14 @@ namespace CavesOfOoo.Tests
             for (int seed = 0; seed < 200; seed++)
             {
                 var roll = PopulationTable.SpreadTier1().Roll(new Random(seed));
-                var enemies = roll.Where(n => n == "Snapjaw" || n == "Viper").ToList();
+                var enemies = roll.Where(n => n == "MarlbackScrabbler" || n == "Viper").ToList();
                 Assert.That(enemies.Count, Is.InRange(1, 2), "seed " + seed);
                 Assert.AreEqual(1, enemies.Distinct().Count(), "one group, not both kinds");
                 CollectionAssert.Contains(roll, "Magpie");
                 CollectionAssert.DoesNotContain(roll, "GiantSpider");
                 seen.UnionWith(enemies);
             }
-            CollectionAssert.AreEquivalent(new[] { "Viper", "Snapjaw" }, seen);
+            CollectionAssert.AreEquivalent(new[] { "Viper", "MarlbackScrabbler" }, seen);
         }
 
         [TestCase(BiomeType.Sodden, 2)]
@@ -66,8 +66,8 @@ namespace CavesOfOoo.Tests
             {
                 var roll = PopulationTable.UndergroundTier(depth).Roll(new Random(seed));
                 if (roll.Contains(blueprint)) appearances++;
-                // Counter-check: a special encounter isn't three compulsory snapjaw packs plus one rare extra.
-                if (roll.Contains(blueprint)) Assert.IsFalse(roll.Any(n => n.StartsWith("Snapjaw")));
+                // Counter-check: a special encounter isn't three compulsory marlback packs plus one rare extra.
+                if (roll.Contains(blueprint)) Assert.IsFalse(roll.Any(n => n.StartsWith("Marlback")));
             }
             Assert.Greater(appearances, 15, "new depth species should appear in >5% of zones");
             Assert.Less(appearances, 180, "variety, not a new monoculture");
@@ -80,7 +80,7 @@ namespace CavesOfOoo.Tests
             {
                 var roll = PopulationTable.UndergroundTier(1).Roll(new Random(seed));
                 Assert.IsFalse(roll.Any(n => new[] { "StoneGolem", "ObsidianBrute", "PaleStalker", "CaveBear" }.Contains(n)));
-                Assert.That(roll.Count(n => n.StartsWith("Snapjaw")), Is.InRange(1, 3));
+                Assert.That(roll.Count(n => n.StartsWith("Marlback")), Is.InRange(1, 3));
             }
         }
 
@@ -142,7 +142,7 @@ namespace CavesOfOoo.Tests
             for (int seed = 0; seed < 40 && !(hit && miss); seed++)
             {
                 Diag.ResetAll();
-                new LairPopulationBuilder(BiomeType.Beating, new PointOfInterest(POIType.Lair, "test", "Snapjaws", 2, null))
+                new LairPopulationBuilder(BiomeType.Beating, new PointOfInterest(POIType.Lair, "test", "OutlandRaiders", 2, null))
                     .BuildZone(new Zone("density-lair"), factory, new Random(seed));
                 var records = DiagQuery.Apply(new DiagQuery.Filter { Category = "worldgen", Kind = "AmbusherRolled" }).Records;
                 var record = records.FirstOrDefault(r => r.PayloadJson.Contains("AmbushBandit"));

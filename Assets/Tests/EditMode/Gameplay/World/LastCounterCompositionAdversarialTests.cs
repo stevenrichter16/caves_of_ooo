@@ -61,7 +61,7 @@ namespace CavesOfOoo.Tests
                 var f=GrovelandsCompositionTests.Factory();var z=new Zone(LastCounterCompositionTests.Id);var b=new LastCounterCompositionBuilder(64);
                 Assert.IsTrue(b.BuildZone(z,f,new Random(1)));Assert.IsTrue(new LastCounterProfileBuilder(b).BuildZone(z,f,new Random(1)));
                 var fire=z.GetAllEntities().Single(e=>e.BlueprintName=="Campfire");var c=z.GetEntityPosition(fire);var player=CinderholdCompositionTests.Player();player.GetStat("Hitpoints").BaseValue=10;z.AddEntity(player,c.x,c.y-1);
-                if(hostile){var enemy=f.CreateEntity("Snapjaw");z.AddEntity(enemy,c.x+1,c.y-1);Assert.IsTrue(FactionManager.IsHostile(enemy,player));}
+                if(hostile){var enemy=f.CreateEntity("MarlbackScrabbler");z.AddEntity(enemy,c.x+1,c.y-1);Assert.IsTrue(FactionManager.IsHostile(enemy,player));}
                 var action=new GameEvent("InventoryAction");action.SetParameter("Command","RestAtCampfire");action.SetParameter("Actor",player);action.SetParameter("Zone",z);fire.FireEvent(action);
                 Assert.IsTrue(action.Handled);Assert.AreEqual(hostile?10:40,player.GetStatValue("Hitpoints"));Assert.AreEqual(hostile?0:RestSystem.RestClockTurns,tm.TickCount);
             }

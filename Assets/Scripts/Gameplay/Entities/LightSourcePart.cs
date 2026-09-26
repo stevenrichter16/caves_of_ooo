@@ -23,6 +23,9 @@ namespace CavesOfOoo.Core
         /// </summary>
         public float Intensity = 1.0f;
 
+        /// <summary>Saved switch state. Existing permanent lights default on.</summary>
+        public bool Enabled = true;
+
         public override bool HandleEvent(GameEvent e)
         {
             return true;

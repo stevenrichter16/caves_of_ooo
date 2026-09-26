@@ -131,10 +131,10 @@ namespace CavesOfOoo.Tests
         {
             var entity = new Entity();
             entity.SetTag("Creature");
-            entity.SetTag("Faction", "Snapjaws");
+            entity.SetTag("Faction", "OutlandRaiders");
 
             Assert.IsTrue(entity.HasTag("Creature"));
-            Assert.AreEqual("Snapjaws", entity.GetTag("Faction"));
+            Assert.AreEqual("OutlandRaiders", entity.GetTag("Faction"));
             Assert.IsFalse(entity.HasTag("Item"));
         }
 
@@ -240,11 +240,11 @@ namespace CavesOfOoo.Tests
               ]
             },
             {
-              ""Name"": ""Snapjaw"",
+              ""Name"": ""MarlbackScrabbler"",
               ""Inherits"": ""Creature"",
               ""Parts"": [
                 { ""Name"": ""Render"", ""Params"": [
-                  { ""Key"": ""DisplayName"", ""Value"": ""snapjaw"" },
+                  { ""Key"": ""DisplayName"", ""Value"": ""marlback"" },
                   { ""Key"": ""RenderString"", ""Value"": ""s"" },
                   { ""Key"": ""ColorString"", ""Value"": ""&w"" }
                 ]}
@@ -254,7 +254,7 @@ namespace CavesOfOoo.Tests
                 { ""Name"": ""Strength"", ""Value"": 16 }
               ],
               ""Tags"": [
-                { ""Key"": ""Faction"", ""Value"": ""Snapjaws"" }
+                { ""Key"": ""Faction"", ""Value"": ""OutlandRaiders"" }
               ]
             },
             {
@@ -289,7 +289,7 @@ namespace CavesOfOoo.Tests
             var blueprints = BlueprintLoader.LoadFromJson(TestBlueprints);
 
             Assert.IsTrue(blueprints.ContainsKey("Creature"));
-            Assert.IsTrue(blueprints.ContainsKey("Snapjaw"));
+            Assert.IsTrue(blueprints.ContainsKey("MarlbackScrabbler"));
             Assert.IsTrue(blueprints.ContainsKey("Dagger"));
         }
 
@@ -297,18 +297,18 @@ namespace CavesOfOoo.Tests
         public void BlueprintLoader_InheritanceResolved()
         {
             var blueprints = BlueprintLoader.LoadFromJson(TestBlueprints);
-            var snapjaw = blueprints["Snapjaw"];
+            var marlback = blueprints["MarlbackScrabbler"];
 
-            // Snapjaw should inherit Creature tag
-            Assert.IsTrue(snapjaw.Tags.ContainsKey("Creature"));
+            // MarlbackScrabbler should inherit Creature tag
+            Assert.IsTrue(marlback.Tags.ContainsKey("Creature"));
             // And have its own
-            Assert.AreEqual("Snapjaws", snapjaw.Tags["Faction"]);
+            Assert.AreEqual("OutlandRaiders", marlback.Tags["Faction"]);
 
             // Should inherit Render part with merged params
-            Assert.IsTrue(snapjaw.Parts.ContainsKey("Render"));
-            Assert.AreEqual("s", snapjaw.Parts["Render"]["RenderString"]);
+            Assert.IsTrue(marlback.Parts.ContainsKey("Render"));
+            Assert.AreEqual("s", marlback.Parts["Render"]["RenderString"]);
             // Inherited RenderLayer from Creature
-            Assert.AreEqual("10", snapjaw.Parts["Render"]["RenderLayer"]);
+            Assert.AreEqual("10", marlback.Parts["Render"]["RenderLayer"]);
         }
 
         [Test]
@@ -471,28 +471,28 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void EntityFactory_CreatesSnapjaw_WithInheritedStats()
+        public void EntityFactory_CreatesMarlbackScrabbler_WithInheritedStats()
         {
             var factory = new EntityFactory();
             factory.LoadBlueprints(TestBlueprints);
 
-            var snapjaw = factory.CreateEntity("Snapjaw");
+            var marlback = factory.CreateEntity("MarlbackScrabbler");
 
-            Assert.IsNotNull(snapjaw);
+            Assert.IsNotNull(marlback);
 
             // Overridden stats
-            Assert.AreEqual(15, snapjaw.GetStatValue("Hitpoints"));
-            Assert.AreEqual(16, snapjaw.GetStatValue("Strength"));
+            Assert.AreEqual(15, marlback.GetStatValue("Hitpoints"));
+            Assert.AreEqual(16, marlback.GetStatValue("Strength"));
 
             // Render
-            var render = snapjaw.GetPart<RenderPart>();
-            Assert.AreEqual("snapjaw", render.DisplayName);
+            var render = marlback.GetPart<RenderPart>();
+            Assert.AreEqual("marlback", render.DisplayName);
             Assert.AreEqual("s", render.RenderString);
             Assert.AreEqual(10, render.RenderLayer); // Inherited from Creature
 
             // Tags
-            Assert.IsTrue(snapjaw.HasTag("Creature"));
-            Assert.AreEqual("Snapjaws", snapjaw.GetTag("Faction"));
+            Assert.IsTrue(marlback.HasTag("Creature"));
+            Assert.AreEqual("OutlandRaiders", marlback.GetTag("Faction"));
         }
 
         [Test]
@@ -501,8 +501,8 @@ namespace CavesOfOoo.Tests
             var factory = new EntityFactory();
             factory.LoadBlueprints(TestBlueprints);
 
-            var s1 = factory.CreateEntity("Snapjaw");
-            var s2 = factory.CreateEntity("Snapjaw");
+            var s1 = factory.CreateEntity("MarlbackScrabbler");
+            var s2 = factory.CreateEntity("MarlbackScrabbler");
 
             // Different IDs
             Assert.AreNotEqual(s1.ID, s2.ID);

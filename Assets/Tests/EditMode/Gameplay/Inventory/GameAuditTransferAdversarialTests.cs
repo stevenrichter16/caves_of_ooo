@@ -219,8 +219,14 @@ namespace CavesOfOoo.Tests
         public void Adversarial_PostPlacementMessageExceptionRestoresExactItems(bool container)
         {
             var item = Carry("Torch", 3); var sack = Item("Sack"); var existing = Item("Torch", 2); sack.GetPart<ContainerPart>().AddItem(existing);
-            MessageLog.OnMessage = message => { if (message.StartsWith("You put ") || message.Contains(" drops ")) throw new InvalidOperationException("Injected message failure"); };
+            int injectedFailures = 0;
+            MessageLog.OnMessage = message =>
+            {
+                if (message.StartsWith("You put ") || message.StartsWith("You drop "))
+                { injectedFailures++; throw new InvalidOperationException("Injected message failure"); }
+            };
             var result = Run(container ? new PutInContainerCommand(sack, item) : new DropCommand(item));
+            Assert.AreEqual(1, injectedFailures, "The post-placement observer must actually inject the rollback failure.");
             Assert.IsFalse(result.Success); Assert.AreSame(item, Inv.Objects[0]); Assert.AreEqual(3, item.GetPart<StackerPart>().StackCount);
             Assert.IsNull(_zone.GetEntityCell(item)); Assert.AreEqual(2, existing.GetPart<StackerPart>().StackCount);
             MessageLog.OnMessage = null;

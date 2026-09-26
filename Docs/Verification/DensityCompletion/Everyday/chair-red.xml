@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="411" result="Failed" start-time="2026-09-26T20:16:41.5610890Z" end-time="2026-09-26T20:16:41.5921190Z" duration="0.031017" total="15" passed="7" failed="8" inconclusive="0" skipped="0" warnings="0" asserts="26" random-seed="584054835">
+  <command-line><![CDATA[/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/Everyday/chair-red.xml --where "class =~ /DensityPlayerChairTests/"]]></command-line>
+  <filter>
+    <class re="1">DensityPlayerChairTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1505" name="EditModeRunner.dll" fullname="/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="411" result="Failed" site="Child" start-time="2026-09-26T20:16:41.5610890Z" end-time="2026-09-26T20:16:41.5921190Z" duration="0.031017" total="15" passed="7" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="26">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-everyday-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-everyday-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="57586" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1506" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="411" result="Failed" site="Child" start-time="2026-09-26T20:16:41.5625430Z" end-time="2026-09-26T20:16:41.5921180Z" duration="0.029574" total="15" passed="7" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="26">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1507" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="411" result="Failed" site="Child" start-time="2026-09-26T20:16:41.5626800Z" end-time="2026-09-26T20:16:41.5921160Z" duration="0.029436" total="15" passed="7" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="26">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1480" name="DensityPlayerChairTests" fullname="CavesOfOoo.Tests.DensityPlayerChairTests" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" testcasecount="15" result="Failed" site="Child" start-time="2026-09-26T20:16:41.5629980Z" end-time="2026-09-26T20:16:41.5921040Z" duration="0.029105" total="15" passed="7" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="26">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1487" name="AdjacentOrRemoteChair_RequiresStandingAtSeat" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.AdjacentOrRemoteChair_RequiresStandingAtSeat" methodname="AdjacentOrRemoteChair_RequiresStandingAtSeat" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="500729298" result="Passed" start-time="2026-09-26T20:16:41.5639260Z" end-time="2026-09-26T20:16:41.5713450Z" duration="0.007443" asserts="3" />
+          <test-case id="1493" name="Death_ReleasesReservation" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.Death_ReleasesReservation" methodname="Death_ReleasesReservation" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="674645887" result="Failed" start-time="2026-09-26T20:16:41.5718920Z" end-time="2026-09-26T20:16:41.5833370Z" duration="0.011446" asserts="1">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPlayerChairTests.Death_ReleasesReservation() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityPlayerChairTests.cs:line 49
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPlayerChairTests.Death_ReleasesReservation() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityPlayerChairTests.cs:line 49
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1490" name="EffectApplicationVeto_LeavesChairUnclaimed" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.EffectApplicationVeto_LeavesChairUnclaimed" methodname="EffectApplicationVeto_LeavesChairUnclaimed" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="853624102" result="Passed" start-time="2026-09-26T20:16:41.5833970Z" end-time="2026-09-26T20:16:41.5837670Z" duration="0.000370" asserts="3" />
+          <test-case id="1481" name="FreeChair_PlayerCanSitThenStand_WithActualReservation" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.FreeChair_PlayerCanSitThenStand_WithActualReservation" methodname="FreeChair_PlayerCanSitThenStand_WithActualReservation" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="227736711" result="Failed" start-time="2026-09-26T20:16:41.5837860Z" end-time="2026-09-26T20:16:41.5863810Z" duration="0.002595" asserts="1">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPlayerChairTests.FreeChair_PlayerCanSitThenStand_WithActualReservation() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityPlayerChairTests.cs:line 22
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPlayerChairTests.FreeChair_PlayerCanSitThenStand_WithActualReservation() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityPlayerChairTests.cs:line 22
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1494" name="GenericCommandException_RestoresChairAndEffect" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.GenericCommandException_RestoresChairAndEffect" methodname="GenericCommandException_RestoresChairAndEffect" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="1778293703" result="Passed" start-time="2026-09-26T20:16:41.5863980Z" end-time="2026-09-26T20:16:41.5866200Z" duration="0.000222" asserts="3" />
+          <test-case id="1489" name="NonPlayer_CannotUsePlayerSeatCommand" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.NonPlayer_CannotUsePlayerSeatCommand" methodname="NonPlayer_CannotUsePlayerSeatCommand" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="859122584" result="Passed" start-time="2026-09-26T20:16:41.5866350Z" end-time="2026-09-26T20:16:41.5867340Z" duration="0.000099" asserts="2" />
+          <test-case id="1488" name="OrdinaryBed_DoesNotGrantFreeInnHealing" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.OrdinaryBed_DoesNotGrantFreeInnHealing" methodname="OrdinaryBed_DoesNotGrantFreeInnHealing" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="1167659497" result="Passed" start-time="2026-09-26T20:16:41.5867450Z" end-time="2026-09-26T20:16:41.5868980Z" duration="0.000153" asserts="2" />
+          <test-case id="1486" name="OutstandingNpcReservation_CannotBeStolenOrStoodFrom" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.OutstandingNpcReservation_CannotBeStolenOrStoodFrom" methodname="OutstandingNpcReservation_CannotBeStolenOrStoodFrom" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="821656668" result="Passed" start-time="2026-09-26T20:16:41.5869090Z" end-time="2026-09-26T20:16:41.5869920Z" duration="0.000083" asserts="3" />
+          <test-suite type="ParameterizedMethod" id="1485" name="OwnerIdOrTag_IsRespected" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.OwnerIdOrTag_IsRespected" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-26T20:16:41.5870030Z" end-time="2026-09-26T20:16:41.5911660Z" duration="0.004163" total="3" passed="1" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="4">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1482" name="OwnerIdOrTag_IsRespected(&quot;player&quot;,True)" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.OwnerIdOrTag_IsRespected(&quot;player&quot;,True)" methodname="OwnerIdOrTag_IsRespected" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="47580641" result="Failed" start-time="2026-09-26T20:16:41.5870710Z" end-time="2026-09-26T20:16:41.5902880Z" duration="0.003217" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPlayerChairTests.OwnerIdOrTag_IsRespected(String owner, Boolean allowed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityPlayerChairTests.cs:line 29
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPlayerChairTests.OwnerIdOrTag_IsRespected(String owner, Boolean allowed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityPlayerChairTests.cs:line 29
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1483" name="OwnerIdOrTag_IsRespected(&quot;Stillcord&quot;,True)" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.OwnerIdOrTag_IsRespected(&quot;Stillcord&quot;,True)" methodname="OwnerIdOrTag_IsRespected" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="1052990113" result="Failed" start-time="2026-09-26T20:16:41.5903040Z" end-time="2026-09-26T20:16:41.5907750Z" duration="0.000471" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPlayerChairTests.OwnerIdOrTag_IsRespected(String owner, Boolean allowed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityPlayerChairTests.cs:line 29
+   at InvokeStub_DensityPlayerChairTests.OwnerIdOrTag_IsRespected(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPlayerChairTests.OwnerIdOrTag_IsRespected(String owner, Boolean allowed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityPlayerChairTests.cs:line 29
+   at InvokeStub_DensityPlayerChairTests.OwnerIdOrTag_IsRespected(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1484" name="OwnerIdOrTag_IsRespected(&quot;other-owner&quot;,False)" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.OwnerIdOrTag_IsRespected(&quot;other-owner&quot;,False)" methodname="OwnerIdOrTag_IsRespected" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="872251333" result="Passed" start-time="2026-09-26T20:16:41.5907880Z" end-time="2026-09-26T20:16:41.5908540Z" duration="0.000066" asserts="2" />
+          </test-suite>
+          <test-case id="1496" name="SaveGraph_PreservesSeatReferenceAndReservation" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.SaveGraph_PreservesSeatReferenceAndReservation" methodname="SaveGraph_PreservesSeatReferenceAndReservation" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="1448498765" result="Failed" start-time="2026-09-26T20:16:41.5913180Z" end-time="2026-09-26T20:16:41.5915120Z" duration="0.000194" asserts="1">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPlayerChairTests.SaveGraph_PreservesSeatReferenceAndReservation() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityPlayerChairTests.cs:line 55
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPlayerChairTests.SaveGraph_PreservesSeatReferenceAndReservation() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityPlayerChairTests.cs:line 55
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1495" name="StandFromDifferentChair_DoesNotReleaseOriginalSeat" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.StandFromDifferentChair_DoesNotReleaseOriginalSeat" methodname="StandFromDifferentChair_DoesNotReleaseOriginalSeat" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="343922914" result="Failed" start-time="2026-09-26T20:16:41.5915220Z" end-time="2026-09-26T20:16:41.5917050Z" duration="0.000183" asserts="1">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPlayerChairTests.StandFromDifferentChair_DoesNotReleaseOriginalSeat() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityPlayerChairTests.cs:line 53
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPlayerChairTests.StandFromDifferentChair_DoesNotReleaseOriginalSeat() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityPlayerChairTests.cs:line 53
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1491" name="SuccessfulMovement_ReleasesOwnSeat_ButBlockedMovementDoesNot" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.SuccessfulMovement_ReleasesOwnSeat_ButBlockedMovementDoesNot" methodname="SuccessfulMovement_ReleasesOwnSeat_ButBlockedMovementDoesNot" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="506057747" result="Failed" start-time="2026-09-26T20:16:41.5917090Z" end-time="2026-09-26T20:16:41.5918810Z" duration="0.000172" asserts="1">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPlayerChairTests.SuccessfulMovement_ReleasesOwnSeat_ButBlockedMovementDoesNot() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityPlayerChairTests.cs:line 42
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPlayerChairTests.SuccessfulMovement_ReleasesOwnSeat_ButBlockedMovementDoesNot() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityPlayerChairTests.cs:line 42
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1492" name="TakingDamage_StandsPlayerWithoutHealing" fullname="CavesOfOoo.Tests.DensityPlayerChairTests.TakingDamage_StandsPlayerWithoutHealing" methodname="TakingDamage_StandsPlayerWithoutHealing" classname="CavesOfOoo.Tests.DensityPlayerChairTests" runstate="Runnable" seed="1895779781" result="Failed" start-time="2026-09-26T20:16:41.5918930Z" end-time="2026-09-26T20:16:41.5920740Z" duration="0.000181" asserts="1">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPlayerChairTests.TakingDamage_StandsPlayerWithoutHealing() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityPlayerChairTests.cs:line 47
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPlayerChairTests.TakingDamage_StandsPlayerWithoutHealing() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/DensityPlayerChairTests.cs:line 47
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

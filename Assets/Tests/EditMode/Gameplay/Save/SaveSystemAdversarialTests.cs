@@ -91,7 +91,7 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
             var (player, zone, mgr, turns) = MakeMinimalState();
             // Stat doesn't have a float field (BaseValue/Min/Max are ints), but
             // FleeThreshold on BrainPart is float — exercise that path.
-            var npc = MakeCreature("n-1", "Snapjaw");
+            var npc = MakeCreature("n-1", "MarlbackScrabbler");
             var brain = new BrainPart { FleeThreshold = float.NaN };
             npc.AddPart(brain);
             zone.AddEntity(npc, 5, 5);
@@ -170,7 +170,7 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
         public void Adv_Goal_NegativeAge_RoundTrips()
         {
             var (player, zone, mgr, turns) = MakeMinimalState();
-            var npc = MakeCreature("n-1", "Snapjaw");
+            var npc = MakeCreature("n-1", "MarlbackScrabbler");
             var brain = new BrainPart();
             npc.AddPart(brain);
             zone.AddEntity(npc, 3, 3);
@@ -213,8 +213,8 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
         {
             var player = MakeCreature("p-1", "Player");
             player.SetTag("Player");
-            var npcA = MakeCreature("a-1", "Snapjaw");
-            var npcB = MakeCreature("b-1", "Snapjaw");
+            var npcA = MakeCreature("a-1", "MarlbackScrabbler");
+            var npcB = MakeCreature("b-1", "MarlbackScrabbler");
             var brainA = new BrainPart { Target = npcB };  // A → B
             var brainB = new BrainPart { Target = npcA };  // B → A (cycle)
             npcA.AddPart(brainA);
@@ -576,7 +576,7 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
             AsciiFxBus.Clear();
             var player = MakeCreature("p-1", "Player");
             player.SetTag("Player");
-            var npc = MakeCreature("victim-1", "Snapjaw");
+            var npc = MakeCreature("victim-1", "MarlbackScrabbler");
             var effects = new StatusEffectsPart();
             npc.AddPart(effects);
 

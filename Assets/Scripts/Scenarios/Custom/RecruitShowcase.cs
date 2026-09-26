@@ -14,7 +14,7 @@ namespace CavesOfOoo.Scenarios.Custom
     ///   [Scribe NW  — recruit target #1: easy]
     ///   [Scribe N   — recruit target #2: easy]
     ///   [Player]
-    ///   [Snapjaw E  — hostile: Veto #7 (target_hostile) probe]
+    ///   [MarlbackScrabbler E  — hostile: Veto #7 (target_hostile) probe]
     /// </code>
     ///
     /// <para><b>Loadout:</b> high Ego (22 → +3 mod) so the d20 vs DC=10
@@ -38,7 +38,7 @@ namespace CavesOfOoo.Scenarios.Custom
     ///   <item>Try Recruit on the same Scribe again. Nothing happens —
     ///         Veto #5 <c>already_recruited</c> blocks the cast.</item>
     ///   <item>Recruit Scribe N. Now you have 2 followers.</item>
-    ///   <item>Walk up to the Snapjaw. Try Recruit. Nothing happens —
+    ///   <item>Walk up to the MarlbackScrabbler. Try Recruit. Nothing happens —
     ///         Veto #7 <c>target_hostile</c> blocks (faction-default
     ///         hostility against the player).</item>
     ///   <item>Activate Dismiss adjacent to one of the Scribes. They
@@ -49,7 +49,7 @@ namespace CavesOfOoo.Scenarios.Custom
     [Scenario(
         name: "Recruit Showcase (F.2 verb)",
         category: "AI Behavior",
-        description: "F.2 recruitment end-to-end. Player has Persuasion_Recruit + Persuasion_Dismiss as activated abilities; 2 neutral Scribes available for recruit, 1 hostile Snapjaw probes the hostile-target veto.")]
+        description: "F.2 recruitment end-to-end. Player has Persuasion_Recruit + Persuasion_Dismiss as activated abilities; 2 neutral Scribes available for recruit, 1 hostile MarlbackScrabbler probes the hostile-target veto.")]
     public class RecruitShowcase : IScenario
     {
         public void Apply(ScenarioContext ctx)
@@ -83,15 +83,15 @@ namespace CavesOfOoo.Scenarios.Custom
             // Two neutral Scribes within easy walking distance for the
             // recruit demo. Spawned via the existing Scribe blueprint
             // (used in IgnoredScribe / VillageChildrenPetting / etc.),
-            // so they come with BrainPart + a non-Snapjaws faction.
+            // so they come with BrainPart + a non-OutlandRaiders faction.
             ctx.Spawn("Scribe").At(p.x - 1, p.y - 2); // NW
             ctx.Spawn("Scribe").At(p.x,     p.y - 2); // N
 
-            // One hostile Snapjaw to probe Veto #7 — recruit refuses
+            // One hostile MarlbackScrabbler to probe Veto #7 — recruit refuses
             // because faction-default hostility puts GetFeeling below
             // HOSTILE_THRESHOLD. Player has to either de-escalate (out
             // of scope here) or just see the silent failure.
-            ctx.Spawn("Snapjaw")
+            ctx.Spawn("MarlbackScrabbler")
                 .AsPersonalEnemyOf(ctx.PlayerEntity)
                 .At(p.x + 2, p.y);
 
@@ -100,14 +100,14 @@ namespace CavesOfOoo.Scenarios.Custom
             ctx.Log("Press M to open abilities. You have Recruit + Dismiss.");
             ctx.Log("");
             ctx.Log("Layout: 2 Scribes NW/N of you (neutral — recruitable).");
-            ctx.Log("         1 Snapjaw E (hostile — Recruit will refuse).");
+            ctx.Log("         1 MarlbackScrabbler E (hostile — Recruit will refuse).");
             ctx.Log("");
             ctx.Log("Try:");
             ctx.Log("  1) Walk adjacent to a Scribe → Recruit. Watch [RecruitDemo].");
             ctx.Log("  2) Move several cells. The Scribe should follow (F.1.5 goal).");
             ctx.Log("  3) Recruit the same Scribe again → silently rejected (Veto #5).");
             ctx.Log("  4) Recruit the other Scribe → 2 followers now.");
-            ctx.Log("  5) Walk adjacent to the Snapjaw → Recruit → silently rejected (Veto #7).");
+            ctx.Log("  5) Walk adjacent to the MarlbackScrabbler → Recruit → silently rejected (Veto #7).");
             ctx.Log("  6) Dismiss a Scribe → [RecruitDemo] confirms removal.");
             ctx.Log("");
             ctx.Log("Stats: Ego 22 (+3 mod), Level 5. Most rolls succeed.");

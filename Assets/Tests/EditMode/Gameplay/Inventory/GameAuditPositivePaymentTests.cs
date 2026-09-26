@@ -115,7 +115,7 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(1, Crops().Length); Assert.AreEqual("CandyCarrotCrop", Crops()[0].BlueprintName);
             Assert.AreEqual(count > 1, Inventory.Objects.Contains(seed)); Assert.AreEqual(count > 1 ? count - 1 : 1, Quantity(seed));
             Assert.AreSame(count > 1 ? Player : null, seed.GetPart<PhysicsPart>().InInventory); Assert.AreEqual(1, After.Count); Assert.AreEqual(1, Records("CropPlanted"));
-            Assert.IsTrue(MessageLog.GetMessages().Contains(Player.GetDisplayName() + " plants " + seed.GetPart<RenderPart>().DisplayName + "."), "planting prose must describe one unit, not the remaining stack");
+            Assert.IsTrue(MessageLog.GetMessages().Contains("You plant " + seed.GetPart<RenderPart>().DisplayName + "."), "planting prose must describe one unit, not the remaining stack");
         }
         [TestCase(0)] [TestCase(-1)] public void EmptyMineralCannotBuyReputation(int count)
         {

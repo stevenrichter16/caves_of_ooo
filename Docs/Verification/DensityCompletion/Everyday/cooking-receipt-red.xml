@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="413" result="Failed" start-time="2026-09-26T20:24:48.5014640Z" end-time="2026-09-26T20:24:48.6010450Z" duration="0.099568" total="2" passed="0" failed="2" inconclusive="0" skipped="0" warnings="0" asserts="10" random-seed="1239558682">
+  <command-line><![CDATA[/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/Everyday/cooking-receipt-red.xml --where "class =~ /DensityCookingReceiptReviewTests/"]]></command-line>
+  <filter>
+    <class re="1">DensityCookingReceiptReviewTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1509" name="EditModeRunner.dll" fullname="/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="413" result="Failed" site="Child" start-time="2026-09-26T20:24:48.5014640Z" end-time="2026-09-26T20:24:48.6010450Z" duration="0.099568" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="10">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-everyday-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-everyday-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="59998" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1510" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="413" result="Failed" site="Child" start-time="2026-09-26T20:24:48.5029400Z" end-time="2026-09-26T20:24:48.6010440Z" duration="0.098103" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="10">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1511" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="413" result="Failed" site="Child" start-time="2026-09-26T20:24:48.5030750Z" end-time="2026-09-26T20:24:48.6010420Z" duration="0.097967" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="10">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1505" name="DensityCookingReceiptReviewTests" fullname="CavesOfOoo.Tests.DensityCookingReceiptReviewTests" classname="CavesOfOoo.Tests.DensityCookingReceiptReviewTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-26T20:24:48.5033930Z" end-time="2026-09-26T20:24:48.6010320Z" duration="0.097638" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="10">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1508" name="CapacityRefusal_AfterLocalRestore_DoesNotUndoIndependentDroppedResident" fullname="CavesOfOoo.Tests.DensityCookingReceiptReviewTests.CapacityRefusal_AfterLocalRestore_DoesNotUndoIndependentDroppedResident" classname="CavesOfOoo.Tests.DensityCookingReceiptReviewTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-26T20:24:48.5043110Z" end-time="2026-09-26T20:24:48.6008260Z" duration="0.096514" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="10">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1506" name="CapacityRefusal_AfterLocalRestore_DoesNotUndoIndependentDroppedResident(False)" fullname="CavesOfOoo.Tests.DensityCookingReceiptReviewTests.CapacityRefusal_AfterLocalRestore_DoesNotUndoIndependentDroppedResident(False)" methodname="CapacityRefusal_AfterLocalRestore_DoesNotUndoIndependentDroppedResident" classname="CavesOfOoo.Tests.DensityCookingReceiptReviewTests" runstate="Runnable" seed="2011576762" result="Failed" start-time="2026-09-26T20:24:48.5043900Z" end-time="2026-09-26T20:24:48.5829320Z" duration="0.078567" asserts="5">
+              <failure>
+                <message><![CDATA[  Second receipt restore must not resurrect the dropped resident.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCookingReceiptReviewTests.CapacityRefusal_AfterLocalRestore_DoesNotUndoIndependentDroppedResident(Boolean outerTransaction) in /tmp/DensityCookingReceiptReviewTests.cs:line 27
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Second receipt restore must not resurrect the dropped resident.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCookingReceiptReviewTests.CapacityRefusal_AfterLocalRestore_DoesNotUndoIndependentDroppedResident(Boolean outerTransaction) in /tmp/DensityCookingReceiptReviewTests.cs:line 27
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1507" name="CapacityRefusal_AfterLocalRestore_DoesNotUndoIndependentDroppedResident(True)" fullname="CavesOfOoo.Tests.DensityCookingReceiptReviewTests.CapacityRefusal_AfterLocalRestore_DoesNotUndoIndependentDroppedResident(True)" methodname="CapacityRefusal_AfterLocalRestore_DoesNotUndoIndependentDroppedResident" classname="CavesOfOoo.Tests.DensityCookingReceiptReviewTests" runstate="Runnable" seed="980785552" result="Failed" start-time="2026-09-26T20:24:48.5835240Z" end-time="2026-09-26T20:24:48.6004050Z" duration="0.016881" asserts="5">
+              <failure>
+                <message><![CDATA[  Second receipt restore must not resurrect the dropped resident.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCookingReceiptReviewTests.CapacityRefusal_AfterLocalRestore_DoesNotUndoIndependentDroppedResident(Boolean outerTransaction) in /tmp/DensityCookingReceiptReviewTests.cs:line 27
+   at InvokeStub_DensityCookingReceiptReviewTests.CapacityRefusal_AfterLocalRestore_DoesNotUndoIndependentDroppedResident(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Second receipt restore must not resurrect the dropped resident.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityCookingReceiptReviewTests.CapacityRefusal_AfterLocalRestore_DoesNotUndoIndependentDroppedResident(Boolean outerTransaction) in /tmp/DensityCookingReceiptReviewTests.cs:line 27
+   at InvokeStub_DensityCookingReceiptReviewTests.CapacityRefusal_AfterLocalRestore_DoesNotUndoIndependentDroppedResident(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

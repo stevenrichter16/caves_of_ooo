@@ -250,7 +250,7 @@ namespace CavesOfOoo.Tests
             // diag's actualDamage field must be 0 while rawRoll stays > 0.
             var zone = new Zone("Adversarial.FullResist");
             var caster = CreateMutationCaster();
-            var target = CreateMutationTarget("snapjaw", 20);
+            var target = CreateMutationTarget("marlback", 20);
             target.Statistics["HeatResistance"] = new Stat
             { Name = "HeatResistance", BaseValue = 100, Min = -100, Max = 100 };
 
@@ -291,7 +291,7 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("Adversarial.SkillBonus");
             var caster = CreateMutationCaster();
             caster.GetPart<SkillsPart>().AddSkill(new Spellcraft_Empower(), source: "test");
-            var target = CreateMutationTarget("snapjaw", 20); // no resistance -- isolates the skill-bonus effect
+            var target = CreateMutationTarget("marlback", 20); // no resistance -- isolates the skill-bonus effect
 
             zone.AddEntity(caster, 5, 5);
             zone.AddEntity(target, 7, 5);
@@ -323,7 +323,7 @@ namespace CavesOfOoo.Tests
             // silently mislabel every other of the 9 subclasses.
             var zone = new Zone("Adversarial.MutationClassField");
             var caster = CreateMutationCaster();
-            var target = CreateMutationTarget("snapjaw", 20);
+            var target = CreateMutationTarget("marlback", 20);
             zone.AddEntity(caster, 5, 5);
             zone.AddEntity(target, 7, 5);
 

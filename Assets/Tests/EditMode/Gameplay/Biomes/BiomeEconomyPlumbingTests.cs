@@ -67,7 +67,7 @@ namespace CavesOfOoo.Tests
         [Test]
         public void WildCreature_HasNoWallet_CounterCheck()
         {
-            Assert.AreEqual(-1, DramsOf("Snapjaw"),
+            Assert.AreEqual(-1, DramsOf("MarlbackScrabbler"),
                 "wallets are a villager-NPC thing; wild creatures stay walletless");
         }
 

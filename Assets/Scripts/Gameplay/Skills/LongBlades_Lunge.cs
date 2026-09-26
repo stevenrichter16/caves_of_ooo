@@ -114,7 +114,7 @@ namespace CavesOfOoo.Skills
             // Line-trace LUNGE_RANGE cells in the chosen direction.
             // TraceFirstImpact stops on the first creature, targetable
             // object, or solid cell — exactly the semantics Lunge wants
-            // (you can't lunge THROUGH a wall to hit the snapjaw behind
+            // (you can't lunge THROUGH a wall to hit the marlback behind
             // it). The trace already ignores the caster, so we don't
             // self-hit if we're somehow in our own line.
             var trace = LineTargeting.TraceFirstImpact(

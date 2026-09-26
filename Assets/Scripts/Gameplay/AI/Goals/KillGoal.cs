@@ -8,11 +8,12 @@ namespace CavesOfOoo.Core
     /// Finishes when the target dies or leaves the zone.
     ///
     /// Approach strategy:
-    /// - Adjacent → melee attack
+    /// - Authored tactics → one safe supported ability, when selected
+    /// - Adjacent fallback → melee attack
     /// - Not adjacent → try ranged ability, else walk toward target
     /// - Walking uses TryApproachWithPathfinding: greedy-first with A* fallback
     ///   when blocked by walls, so creatures navigate around obstacles to reach
-    ///   moving targets (no more snapjaws stuck on building walls).
+    ///   moving targets (no more marlbacks stuck on building walls).
     /// </summary>
     public class KillGoal : GoalHandler
     {
@@ -51,6 +52,9 @@ namespace CavesOfOoo.Core
                 return;
             }
 
+            var tactics = ParentEntity.GetPart<CombatTacticsPart>();
+            if (tactics != null && tactics.TryUseAbility(Target, CurrentZone, Rng)) return;
+
             if (SpatialQuery.Distance(CurrentZone,ParentEntity,Target) == 1)
             {
                 Think($"attacking {Target.GetDisplayName()}");
@@ -58,7 +62,7 @@ namespace CavesOfOoo.Core
             }
             else
             {
-                if (!AIHelpers.TryUseRangedAbility(ParentEntity, CurrentZone, Rng, myPos, targetPos))
+                if (tactics != null || !AIHelpers.TryUseRangedAbility(ParentEntity, CurrentZone, Rng, myPos, targetPos))
                 {
                     Think($"closing on {Target.GetDisplayName()}");
                     if (ParentEntity.HasPart<SpatialFootprintPart>() || Target.HasPart<SpatialFootprintPart>())

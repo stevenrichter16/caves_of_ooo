@@ -32,11 +32,11 @@ namespace CavesOfOoo.Tests
         [Test]
         public void GetPOIRender_Lair_ReturnsAmpersand()
         {
-            var poi = new PointOfInterest(POIType.Lair, "Snapjaw");
+            var poi = new PointOfInterest(POIType.Lair, "MarlbackScrabbler");
             var (glyph, color, name) = WorldMapZoneBuilder.GetPOIRender(poi);
             Assert.AreEqual("&", glyph);
             Assert.AreEqual("&R", color);
-            StringAssert.Contains("Snapjaw", name);
+            StringAssert.Contains("MarlbackScrabbler", name);
             StringAssert.Contains("lair", name);
         }
 

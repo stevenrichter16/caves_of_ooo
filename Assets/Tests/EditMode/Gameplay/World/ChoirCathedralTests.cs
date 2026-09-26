@@ -128,7 +128,7 @@ namespace CavesOfOoo.Tests
         public void TheFootprintIsClaimed()
         {
             // Same hazard the village had: PopulationBuilder runs after
-            // this and rolls snapjaws. A vault full of snapjaws is not a
+            // this and rolls marlbacks. A vault full of marlbacks is not a
             // cathedral.
             var zone = BuildVault();
             Assert.Greater(zone.GenReservedCells.Count, 100);

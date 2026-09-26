@@ -11,13 +11,13 @@ namespace CavesOfOoo.Tests
     /// User-visible invariant: "When you attack a thematically-themed
     /// creature with the matching elemental damage type, that creature's
     /// resistance reduces the damage you deal. A Glowmaw (phosphorus,
-    /// glowing) shrugs off Fire damage; a Snapjaw (cold-tolerant
+    /// glowing) shrugs off Fire damage; a MarlbackScrabbler (cold-tolerant
     /// scavenger) shrugs off some Cold damage."
     ///
     /// Coverage targets:
     ///   - Glowmaw         → HeatResistance: 50  (themed phosphorus/glowing)
-    ///   - Snapjaw         → ColdResistance: 25  (cold-tolerant baseline)
-    ///   - SnapjawHunter   → ColdResistance: 50  (tougher elite override)
+    ///   - MarlbackScrabbler         → ColdResistance: 25  (cold-tolerant baseline)
+    ///   - MarlbackTunnelguard   → ColdResistance: 50  (tougher elite override)
     ///
     /// (Kept to 3 to limit content scope; the resistance code path
     /// already has comprehensive unit-level coverage in ResistanceTests.cs.)
@@ -53,23 +53,23 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void Snapjaw_HasColdResistance25()
+        public void MarlbackScrabbler_HasColdResistance25()
         {
-            var snapjaw = _harness.Factory.CreateEntity("Snapjaw");
-            int resist = snapjaw.GetStatValue("ColdResistance", -999);
+            var marlback = _harness.Factory.CreateEntity("MarlbackScrabbler");
+            int resist = marlback.GetStatValue("ColdResistance", -999);
             Assert.AreEqual(25, resist,
-                "Snapjaw should declare ColdResistance: 25 (cold-tolerant scavenger)");
+                "MarlbackScrabbler should declare ColdResistance: 25 (cold-tolerant scavenger)");
         }
 
         [Test]
-        public void SnapjawHunter_OverridesParent_ColdResistance50()
+        public void MarlbackTunnelguard_OverridesParent_ColdResistance50()
         {
-            // SnapjawHunter inherits from Snapjaw but should have a
+            // MarlbackTunnelguard inherits from MarlbackScrabbler but should have a
             // higher ColdResistance via override.
-            var hunter = _harness.Factory.CreateEntity("SnapjawHunter");
+            var hunter = _harness.Factory.CreateEntity("MarlbackTunnelguard");
             int resist = hunter.GetStatValue("ColdResistance", -999);
             Assert.AreEqual(50, resist,
-                "SnapjawHunter overrides parent — ColdResistance: 50");
+                "MarlbackTunnelguard overrides parent — ColdResistance: 50");
         }
 
         // ====================================================================

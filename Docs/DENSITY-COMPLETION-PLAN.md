@@ -1,6 +1,6 @@
 # Content density completion — implementation plan
 
-**Status:** planned before implementation, 26 September 2026. Execution is
+**Status:** implementation and native acceptance in progress, 26 September 2026. This plan was recorded before implementation. Execution is
 authorized by the user's instruction to analyze the gaps, write a thorough plan,
 write an execution prompt, and implement it. Baseline: `50ef23d2` on `main`.
 The companion [execution prompt](DENSITY-EXECUTION-PROMPT.md) drives this work.
@@ -280,6 +280,33 @@ Q1 symmetry, Q2 public contracts, Q3 branch/counter completeness and Q4 docs;
 perform independent adversarial and player-flow hypothesis reviews. Record
 remaining uncertainties honestly, fetch/rebase and push verified commits to main.
 
+### C13 — Original enemy roster (user addition)
+
+Audit every active creature against recognizable Caves of Qud imports, starting
+with the Snapjaw family. Replace confirmed imports with original Ooo creatures,
+including distinct ecology, appearance, descriptions and role-appropriate combat
+kits. Preserve encounter difficulty and regional intent while removing imported
+names from current blueprints, generated encounters, quests, dialogue and UI.
+Check inherited families, bosses, factions, corpses, equipment and sprite bindings.
+Historical design references and test evidence remain truthful archival records.
+
+Acceptance: a recorded roster decision for each suspect; failing tests before
+replacement; no retired enemy in fresh generated content; actual factory/spawn,
+equipment/death and quest paths work with replacements; deliberate, tested old-save
+compatibility without rebuilding unrelated saved parts. Do not confuse common
+fantasy creature names with confirmed game-specific imports. Pair each new design
+with a distinct encounter role, and repeat affected density and combat checks.
+
+### C14 — Reference glade, models and playable scene (user addition)
+
+Build the supplied image as an authored playable wilderness scene, with original
+Ooo enemies. The detailed plan and source corrections live in
+`Docs/DENSITY-REFERENCE-GLADE.md`. Implement the composition with native entities,
+scoped voxel models/materials and the existing orthographic renderer, then save a
+launchable Unity scene. Require test-first world placement, persistence and
+interaction checks, native keyboard play and inspected screenshots. Iterate the
+art against the actual image; passing logic tests alone cannot close this milestone.
+
 ## 5. Execution order and ownership
 
 First wave: C0 baseline plus C1 loot, C2 tactics and C3/C4 preparation can be
@@ -299,19 +326,21 @@ gates, not a substitute for focused RED evidence.
 
 | Milestone | Status | Evidence / next gate |
 |---|---|---|
-| C0 | Planned | New baseline census before loot/population edits |
-| C1 | Planned | Armor/loadout sweep; baseline and RED |
-| C2 | Planned | Target-safe ability design; baseline and RED |
-| C3 | Planned | Water/cooking transactions; baseline and RED |
-| C4 | Planned | Clock/rest/furniture/grammar sweep |
-| C5 | Planned | Canonical document registry and paginated Read RED |
-| C6 | Planned | Generic/unique identity census and voice review |
-| C7 | Planned | Sari/remarks/traveller persistence sweep |
-| C8 | Planned | Thermal/liquid/gas contracts and native fire gate |
-| C9 | Planned | Action and corpse coverage census |
-| C10 | Planned | Cave/stair/lair ownership and progression sweep |
-| C11 | Planned | Authored tiers/mods/legendary contracts |
-| C12 | Planned | Final census, ordinary-stat play, full suites |
+| C0 | Baseline recorded | Five seeds, 150 zones, 447 stocked container observations; historical open counter overcounted locked-container attempts; exact-key C12 replay now separates lock refusal and observed opens |
+| C1 | Implemented, native integration green | 51 RED (41 missing-content, 10 controls); 138 focused GREEN; native new content/adversarial GREEN; armor 19→59 in scoped census |
+| C2 | Implemented, play gate pending | Ten kits, local assistance/flee, 98 new checks native GREEN; ordinary-stat scheduler audit under verification |
+| C3 | Water/cooking implemented | 75 core/adversarial +16 UI native GREEN; native input acquisition13/13 complete; general liquid carry/pour still open |
+| C4 | Partial implementation | Day band/rest, chairs and finite carried torches implemented with native action timing; beds and generated-door gate remain open |
+| C5 | Readables and examine coverage implemented | 13 canonical copies, native pagination and acquisition proof;39 useful descriptions added after39 actual-factory RED cases,116 focused GREEN |
+| C6 | Implemented | 27 roles/seven cultures; five unique Choir identities;59 native GREEN, additional saved-graph and dead-listener controls verified standalone |
+| C7 | Implemented, broader play pending | Sari45 native GREEN; contextual remarks and finite persistent travellers; native transition/cache integration GREEN; 126 focused checks |
+| C8 | Partial implementation | Full-body hazard navigation108 focused GREEN; smoke visibility/cache181 core/nearby GREEN; thermal contact and native fire gate remain open |
+| C9 | Implemented; native follow-up pending | Corpse/scenery census,4 content yields and transactional finite harvest;90 focused GREEN plus independent malformed-product guards |
+| C10 | Placement and second layout implemented | Boss/guard overlap repaired; depth-aware alternate room layout and reserved travel routes pass 188 focused standalone checks. Native layout/integration GREEN in the580-case selection; saved multi-level lair graph remains private for a separate commit |
+| C11 | First T4 slice implemented | Four mundane equipment finds behind eligible deep reliquaries; source/lock tests and private generated cohort pass. Native source/lock checks GREEN, including three real finds in60 generated zones; modified and legendary finds remain open |
+| C12 | Foundation integration green; campaign gate open | Exact standalone differential has zero new failures. Final unfiltered native Unity sweep passes 16,996/16,996 with no skips. Exact-key census: 445 containers, 39 locked, 406 observed opens. Follow-up source changes require their own checks; representative campaign play remains open |
+| C13 | Runtime and scoped models implemented | Original Marlbacks, Grove lantern moth and two quest creatures; exact saved-identity compatibility, 163+7 native art checks. Full live roster inspection remains open |
+| C14 | Playable scene implemented; visual iteration | Real authored world zone,40 scoped prop models,8 persistent actor paint meshes and saved scene. Third native route12/12 with zero errors;60.208-second editor sample mean6.117ms/p957.010ms. Fourth proportion pass remains private; visual fidelity is not yet complete |
 
 ## 7. Implementation log and self-review
 
@@ -321,3 +350,10 @@ gates, not a substitute for focused RED evidence.
   historical Qud comparison's speculative volume or an unsupported percentage.
 - ⚪ Optional guns, new anatomy slots and hundreds of effects are separate rules
   expansions. They are named exclusions, not silently marked implemented.
+
+- First integrated native run: 392 cases, 391 passed, one catalog-null-array validation failure. Unity normalized null to an empty array; implementation now rejects either. MCP timed out before test initialization, but NUnit subsequently completed: raw XML is the authoritative receipt.
+- C1 scope-only census: the same 447 stocked container observations contain 19→59 armor units. Commerce value 11,706→14,013 (+19.7%); neutral sale value 3,809→4,615 (+21.2%). These measure source/economy changes, not difficulty or enjoyable pacing. The historical helper counted handled open attempts, so they are not evidence that every locked container was successfully opened.
+- Native C3/C5 driver uses real generated stock and harvested ingredients with keyboard interactions and ordinary starting money/stats. Travel positioning is explicitly accelerated and cannot establish ordinary walking-route balance.
+
+- Native integration follow-up:141/141 passed (chair/torch inventory timing, sari entry/ending, local people, ordinary-stat combat scheduler). The preceding33-case RED had7 intended missing-hook failures. This is native EditMode integration, not a keyboard combat/balance playtest.
+- Isolated baseline full standalone corpus:10,060 cases,9,765 passed,295 environment failures. The exact same 672-file selection after C10/C11 yields 10,075 cases, 9,780 passed, and the same 295 failures: zero newly failing. Renamed/added test cases explain the count change; new fixtures outside this selection have separate focused coverage.

@@ -26,16 +26,29 @@ namespace CavesOfOoo.Core
             {
                 var actions = e.GetParameter<InventoryActionList>("Actions");
                 actions?.AddAction("Rest", "rest", "RestAtCampfire", 'r', 20);
+                actions?.AddAction("RestNextBand", "rest until the next time of day", "RestUntilNextBand", 's', 19);
                 return true;
             }
             if (e.ID == "InventoryAction")
             {
-                if (e.GetStringParameter("Command") != "RestAtCampfire") return true;
+                string command = e.GetStringParameter("Command");
+                if (command != "RestAtCampfire" && command != "RestUntilNextBand") return true;
                 var actor = e.GetParameter<Entity>("Actor");
                 if (actor == null) return true;
 
                 Zone zone = e.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone;
-                RestSystem.TryRest(actor, zone, "campfire", out _);
+                if (command == "RestUntilNextBand")
+                {
+                    if (SpatialQuery.Distance(zone, actor, ParentEntity) > 1)
+                    {
+                        MessageLog.Add("Stand beside the fire to rest.");
+                        CavesOfOoo.Diagnostics.Diag.Record("furniture", "RestBlocked", actor: actor,
+                            payload: new { site = "campfire", reason = "out_of_reach" });
+                        return true;
+                    }
+                    if (!RestSystem.TryRestUntilNextBand(actor, zone, "campfire", out _)) return true;
+                }
+                else RestSystem.TryRest(actor, zone, "campfire", out _);
                 e.Handled = true;
                 return false;
             }

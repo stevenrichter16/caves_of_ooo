@@ -266,11 +266,11 @@ namespace CavesOfOoo.Tests
               ]
             },
             {
-              ""Name"": ""Snapjaw"",
+              ""Name"": ""MarlbackScrabbler"",
               ""Inherits"": ""Creature"",
               ""Parts"": [
                 { ""Name"": ""Render"", ""Params"": [
-                  { ""Key"": ""DisplayName"", ""Value"": ""snapjaw"" },
+                  { ""Key"": ""DisplayName"", ""Value"": ""marlback"" },
                   { ""Key"": ""RenderString"", ""Value"": ""s"" },
                   { ""Key"": ""ColorString"", ""Value"": ""&w"" }
                 ]},
@@ -289,7 +289,7 @@ namespace CavesOfOoo.Tests
                 { ""Name"": ""Toughness"", ""Value"": 14 }
               ],
               ""Tags"": [
-                { ""Key"": ""Faction"", ""Value"": ""Snapjaws"" },
+                { ""Key"": ""Faction"", ""Value"": ""OutlandRaiders"" },
                 { ""Key"": ""Tier"", ""Value"": ""1"" }
               ]
             },
@@ -365,20 +365,20 @@ namespace CavesOfOoo.Tests
               ]
             },
             {
-              ""Name"": ""SnapjawScavenger"",
-              ""Inherits"": ""Snapjaw"",
+              ""Name"": ""MarlbackGleaner"",
+              ""Inherits"": ""MarlbackScrabbler"",
               ""Parts"": [
                 { ""Name"": ""Render"", ""Params"": [
-                  { ""Key"": ""DisplayName"", ""Value"": ""snapjaw scavenger"" }
+                  { ""Key"": ""DisplayName"", ""Value"": ""marlback gleaner"" }
                 ]}
               ]
             },
             {
-              ""Name"": ""SnapjawHunter"",
-              ""Inherits"": ""Snapjaw"",
+              ""Name"": ""MarlbackTunnelguard"",
+              ""Inherits"": ""MarlbackScrabbler"",
               ""Parts"": [
                 { ""Name"": ""Render"", ""Params"": [
-                  { ""Key"": ""DisplayName"", ""Value"": ""snapjaw hunter"" }
+                  { ""Key"": ""DisplayName"", ""Value"": ""marlback tunnelguard"" }
                 ]}
               ]
             },
@@ -462,14 +462,14 @@ namespace CavesOfOoo.Tests
             { ""Name"": ""BrassHusk"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""brass husk"" }, { ""Key"": ""RenderString"", ""Value"": ""H"" }, { ""Key"": ""ColorString"", ""Value"": ""&y"" }]}] },
             { ""Name"": ""PalimpsestEcho"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""palimpsest echo"" }, { ""Key"": ""RenderString"", ""Value"": ""p"" }, { ""Key"": ""ColorString"", ""Value"": ""&m"" }]}] },
             { ""Name"": ""ChoirTendril"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""choir tendril"" }, { ""Key"": ""RenderString"", ""Value"": ""T"" }, { ""Key"": ""ColorString"", ""Value"": ""&m"" }]}] },
-            { ""Name"": ""SnapjawWarlord"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""snapjaw warlord"" }, { ""Key"": ""RenderString"", ""Value"": ""S"" }]}] },
+            { ""Name"": ""MarlbackBreacher"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""marlback breacher"" }, { ""Key"": ""RenderString"", ""Value"": ""S"" }]}] },
             { ""Name"": ""Mosshulk"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""mosshulk"" }, { ""Key"": ""RenderString"", ""Value"": ""M"" }]}] },
             { ""Name"": ""DuneLurker"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""dune lurker"" }, { ""Key"": ""RenderString"", ""Value"": ""d"" }]}] },
             { ""Name"": ""BrittleHound"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""brittle hound"" }, { ""Key"": ""RenderString"", ""Value"": ""b"" }]}] },
             { ""Name"": ""Rotling"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""rotling"" }, { ""Key"": ""RenderString"", ""Value"": ""r"" }]}] },
             { ""Name"": ""CanopyStrangler"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""canopy strangler"" }, { ""Key"": ""RenderString"", ""Value"": ""C"" }]}] },
             { ""Name"": ""VaultSentinel"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""vault sentinel"" }, { ""Key"": ""RenderString"", ""Value"": ""V"" }]}] },
-            { ""Name"": ""SnapjawChieftain"", ""Inherits"": ""Snapjaw"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""snapjaw chieftain"" }]}] },
+            { ""Name"": ""MarlbackWallkeeper"", ""Inherits"": ""MarlbackScrabbler"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""marlback wallkeeper"" }]}] },
             { ""Name"": ""DesertProwler"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""desert prowler"" }, { ""Key"": ""RenderString"", ""Value"": ""D"" }, { ""Key"": ""ColorString"", ""Value"": ""&W"" }]}] },
             { ""Name"": ""JungleStalker"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""jungle stalker"" }, { ""Key"": ""RenderString"", ""Value"": ""J"" }, { ""Key"": ""ColorString"", ""Value"": ""&G"" }]}] },
             { ""Name"": ""AncientGuardian"", ""Inherits"": ""Creature"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""ancient guardian"" }, { ""Key"": ""RenderString"", ""Value"": ""H"" }, { ""Key"": ""ColorString"", ""Value"": ""&w"" }]}] },
@@ -1396,7 +1396,7 @@ namespace CavesOfOoo.Tests
             string[] blueprintNames = {
                 "Sand", "Grass", "StoneFloor", "StoneWall",
                 "SandstoneWall", "VineWall", "Tree", "Rock",
-                "Stalagmite", "SnapjawScavenger", "SnapjawHunter",
+                "Stalagmite", "MarlbackGleaner", "MarlbackTunnelguard",
                 "LeatherArmor", "LongSword"
             };
 
@@ -1573,7 +1573,7 @@ namespace CavesOfOoo.Tests
         [Test]
         public void LairBuilder_ProducesPassableCells()
         {
-            var poi = new PointOfInterest(POIType.Lair, "TestLair", null, 1, "Snapjaw");
+            var poi = new PointOfInterest(POIType.Lair, "TestLair", null, 1, "MarlbackScrabbler");
             var zone = RunBiomePipeline(new LairBuilder(BiomeType.Cave, poi), seed: 42);
             int passable = CountPassableInterior(zone);
             Assert.Greater(passable, 20,
@@ -1583,9 +1583,9 @@ namespace CavesOfOoo.Tests
         [Test]
         public void LairBuilder_PlacesBoss()
         {
-            var poi = new PointOfInterest(POIType.Lair, "TestLair", null, 1, "Snapjaw");
+            var poi = new PointOfInterest(POIType.Lair, "TestLair", null, 1, "MarlbackScrabbler");
             var zone = RunBiomePipeline(new LairBuilder(BiomeType.Cave, poi), seed: 42);
-            Assert.IsTrue(ZoneHasBlueprint(zone, "Snapjaw"),
+            Assert.IsTrue(ZoneHasBlueprint(zone, "MarlbackScrabbler"),
                 "Lair should contain the boss entity");
         }
     }

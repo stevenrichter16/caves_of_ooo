@@ -43,7 +43,7 @@ namespace CavesOfOoo.Scenarios.Custom
     ///
     /// Counter-experiment (enemy throw filter): to observe the
     /// AlliesOnly filter in action, launch the scenario, then use
-    /// execute_code in a live session to simulate a Snapjaw throwing.
+    /// execute_code in a live session to simulate a MarlbackScrabbler throwing.
     /// The dog should NOT react. The AIRetriever_IgnoresEnemyThrow
     /// unit test already pins this semantic.
     /// </summary>

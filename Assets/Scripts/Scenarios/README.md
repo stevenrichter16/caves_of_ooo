@@ -25,7 +25,7 @@ rationale and long-range roadmap, see `Docs/SCENARIO_SCRIPTING.md`.
        {
            public void Apply(ScenarioContext ctx)
            {
-               ctx.Spawn("Snapjaw").AtPlayerOffset(3, 0);
+               ctx.Spawn("MarlbackScrabbler").AtPlayerOffset(3, 0);
                ctx.Log("My Scenario applied.");
            }
        }
@@ -61,7 +61,7 @@ rationale and long-range roadmap, see `Docs/SCENARIO_SCRIPTING.md`.
 ### Modifying spawned entities (EntityBuilder)
 
 ```csharp
-ctx.Spawn("Snapjaw")
+ctx.Spawn("MarlbackScrabbler")
    .WithStatMax("Hitpoints", 100).WithStat("Hitpoints", 100)
    .WithStatMax("Strength", 30).WithStat("Strength", 28)
    .WithEquipment("LongSword")
@@ -90,7 +90,7 @@ ctx.Player
    .Equip("ShortSword")
    .ClearInventory()                     // carried items only
    .SetFactionReputation("Villagers", 100)
-   .ModifyFactionReputation("Snapjaws", -50);
+   .ModifyFactionReputation("OutlandRaiders", -50);
 ```
 
 Every method is fluent (returns `this`) and applies immediately. Use
@@ -110,9 +110,9 @@ ctx.World.RemoveEntitiesWithTag("Creature"); // baseline-empty zone, player pres
 creatures. Both `ClearCell` and `RemoveEntitiesWithTag` unconditionally
 preserve `ctx.PlayerEntity` and anything tagged `Wall`, `Floor`, or `Terrain`.
 
-`RemoveEntitiesWithTag` matches tag **keys only**, not values. Snapjaw's
-blueprint has `{ Key: "Faction", Value: "Snapjaws" }` — so passing `"Faction"`
-removes every faction-bearing entity, but `"Snapjaws"` matches nothing. For
+`RemoveEntitiesWithTag` matches tag **keys only**, not values. MarlbackScrabbler's
+blueprint has `{ Key: "Faction", Value: "OutlandRaiders" }` — so passing `"Faction"`
+removes every faction-bearing entity, but `"OutlandRaiders"` matches nothing. For
 per-faction removal, add a unique key (e.g. `entity.SetTag("EnemyTeam")`) at
 spawn time and remove by that key.
 
@@ -127,7 +127,7 @@ spawn time and remove by that key.
 - **No cell-level effects.** Can't `PlaceOilSlick(x, y)` yet — deferred to
   Phase 5 when `ZoneBuilder.ApplyEffectToCell` ships.
 - **No parameterized scenarios.** Every scenario is a fixed setup — no
-  `[ScenarioParam] int SnapjawCount = 5` yet. Phase 5 target.
+  `[ScenarioParam] int MarlbackScrabblerCount = 5` yet. Phase 5 target.
 - **Restart required.** Scenarios apply on `GameBootstrap.OnAfterBootstrap`
   — can't be applied mid-session. Exit play, click, re-enter.
 
@@ -364,7 +364,7 @@ See `AIBehaviorPartTests.cs` for working examples of both patterns.
   `ProcessUntilPlayerTurn`) is energy/Speed-accurate. For speed-variance
   tests, drive the production loop directly.
 - **`HasHpFraction` tolerance is 0.05.** Integer rounding on small-Max
-  entities (Snapjaw Max=15 → HalfHP=8 → fraction=0.533) needs headroom.
+  entities (MarlbackScrabbler Max=15 → HalfHP=8 → fraction=0.533) needs headroom.
 
 ---
 
@@ -383,9 +383,9 @@ Assets/Scripts/Scenarios/
 │   ├── PlayerBuilder.cs          ctx.Player — player mods
 │   └── ZoneBuilder.cs            ctx.World — world mods
 └── Custom/
-    ├── FiveSnapjawAmbush.cs
-    ├── SnapjawRingAmbush.cs
-    ├── StoutSnapjaw.cs
+    ├── FiveMarlbackScrabblerAmbush.cs
+    ├── MarlbackScrabblerRingAmbush.cs
+    ├── StoutMarlbackScrabbler.cs
     ├── WoundedWarden.cs
     ├── MimicSurprise.cs
     ├── EmptyStartingZone.cs

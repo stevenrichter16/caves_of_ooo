@@ -47,8 +47,8 @@ namespace CavesOfOoo.Rendering
         // verification, 2026-05-23): all glyphs here render via
         // CP437TilesetGenerator.GetTextTile (the narrow TEXT atlas), NOT
         // GetTile. The GAME atlas overrides letters with entity glyphs
-        // ('T' = tree, 's' = snapjaw, ...) — UI text drawn through GetTile
-        // shows trees/snapjaws mid-word. The TEXT atlas has no such
+        // ('T' = tree, 's' = marlback, ...) — UI text drawn through GetTile
+        // shows trees/marlbacks mid-word. The TEXT atlas has no such
         // overrides (it's the path Sidebar/Hotbar use for legible text),
         // so letters AND these ASCII markers render correctly. Status is
         // conveyed by marker + color (green/yellow/grey).

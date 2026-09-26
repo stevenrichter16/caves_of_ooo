@@ -162,7 +162,7 @@ namespace CavesOfOoo.Tests
         [Test]
         public void ExistingFlavorEnhancementAndAfflictionArePreservedOnce()
         {
-            var item = Item("WarlordCleaver");
+            var item = Item("BreacherCleaver");
             string flavor = item.GetPart<ExaminablePart>().Text;
             var enhancement = new EnhancementSerrated(); enhancement.ApplyTier(2); item.AddPart(enhancement);
             item.ApplyEffect(new PoisonedEffect(7, "1d3"));
@@ -175,7 +175,7 @@ namespace CavesOfOoo.Tests
         }
 
         [TestCase("Viper")]
-        [TestCase("Snapjaw")]
+        [TestCase("MarlbackScrabbler")]
         [TestCase("Chest")]
         public void NonItemsKeepTheirExistingDescriptionWithoutItemMechanics(string name)
         {

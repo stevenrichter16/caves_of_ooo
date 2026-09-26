@@ -237,6 +237,12 @@ namespace CavesOfOoo.Tests
             FireAction(veins[0], actor, zone, "NotHarvest");
             Assert.NotNull(zone.GetEntityCell(veins[0])); Assert.AreEqual(0, inventory.Objects.Count);
             FireAction(veins[0], actor, zone, "Harvest");
+            Assert.NotNull(zone.GetEntityCell(veins[0]), "A remote actor cannot harvest the vein.");
+            Assert.AreEqual(0, inventory.Objects.Count);
+            var approach = Directions.Select(d => zone.GetCell(origin.X+d.x,origin.Y+d.y))
+                .First(c => c!=null && c.IsPassable() && c.Objects.All(e => !e.HasTag("Creature")));
+            Assert.IsTrue(zone.MoveEntity(actor,approach.X,approach.Y), "Move into real harvesting reach.");
+            FireAction(veins[0], actor, zone, "Harvest");
             Assert.IsNull(zone.GetEntityCell(veins[0])); Assert.NotNull(zone.GetEntityCell(veins[1]));
             var packed = inventory.Objects.Where(e => e.BlueprintName == "PaleSalt").ToArray();
             var dropped = zone.GetCell(origin.X, origin.Y).Objects.Where(e => e.BlueprintName == "PaleSalt").ToArray();

@@ -209,14 +209,14 @@ namespace CavesOfOoo.Core
             // Conditional on the corpse blueprint's authored DisplayName
             // being exactly the CreatureCorpse default ("corpse"). A
             // per-creature corpse blueprint that hand-authored a flavored
-            // name — e.g. SnapjawCorpse with DisplayName="snapjaw corpse"
-            // — keeps its author-chosen string. Worth noting SnapjawCorpse's
+            // name — e.g. MarlbackCorpse with DisplayName="marlback remains"
+            // — keeps its author-chosen string. Worth noting MarlbackCorpse's
             // value coincidentally equals what interpolation would produce,
             // so this condition matters primarily for future flavored
-            // corpses (e.g. "gnawed snapjaw corpse"), not current content.
+            // corpses (e.g. "gnawed marlback remains"), not current content.
             //
             // Qud-parity note: Qud uses NameMaker.MakeName to build richer
-            // "the corpse of a gnarled N-armed snapjaw" descriptors. CoO's
+            // "the corpse of a gnarled N-armed marlback" descriptors. CoO's
             // simpler "{creatureName} corpse" template is a documented
             // simplification; a fuller formatter can layer on later.
             var render = corpse.GetPart<RenderPart>();

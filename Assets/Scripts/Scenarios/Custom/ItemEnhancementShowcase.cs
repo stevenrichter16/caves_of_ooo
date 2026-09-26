@@ -12,7 +12,7 @@ namespace CavesOfOoo.Scenarios.Custom
     /// <pre>
     ///                   [SporeShambler NW: Fungal — Choir-Iron BONUS]
     ///                   [SkeletalSentry N : Undead — Pale-Salt BONUS]
-    ///                   [Snapjaw NE       : neutral — NO bonus (control)]
+    ///                   [MarlbackScrabbler NE       : neutral — NO bonus (control)]
     ///   [Tinker W]   ← Player →   [3 targets row above]
     ///   [Scribe SW: PaleCuration trade partner]
     /// </pre>
@@ -43,8 +43,8 @@ namespace CavesOfOoo.Scenarios.Custom
     ///         shows TWO incoming damage instances per swing: primary + a
     ///         smaller secondary "+bonus damage" (4 for Tier-2 PaleSalt). HP
     ///         drops by primary+bonus.</item>
-    ///   <item>Swing same edged LongSword at Snapjaw (control) → ONE incoming
-    ///         per swing. No bonus fires (Snapjaw lacks Undead tag).</item>
+    ///   <item>Swing same edged LongSword at MarlbackScrabbler (control) → ONE incoming
+    ///         per swing. No bonus fires (MarlbackScrabbler lacks Undead tag).</item>
     ///   <item>Walk back to Tinker, apply Choir-Iron — second enhancement
     ///         attaches (slot-cap=2 now FULL).</item>
     ///   <item>Try to apply a THIRD enhancement → "Item already has the maximum
@@ -129,10 +129,10 @@ namespace CavesOfOoo.Scenarios.Custom
             if (undeadTarget != null)
                 undeadTarget.AddPart(new ItemEnhancementDemoProbePart());
 
-            // Snapjaw NE: control — neither Undead nor Fungal. A weapon
+            // MarlbackScrabbler NE: control — neither Undead nor Fungal. A weapon
             // with PaleSalt + ChoirIron deals NO bonus here. Pin: the
             // tag-match gate works.
-            var controlTarget = ctx.Spawn("Snapjaw")
+            var controlTarget = ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 150)
                 .WithHpAbsolute(150)
                 .AsPersonalEnemyOf(ctx.PlayerEntity)
@@ -151,15 +151,15 @@ namespace CavesOfOoo.Scenarios.Custom
             // === PaleCuration Scribe SW: mineral-trade partner ===
             // Inline-built NPC (no PaleCuration blueprint in Objects.json
             // yet — E.5+ content). WantsMineralPart configured to accept
-            // PaleSalt + ChoirIron at +15 rep each. Snapjaw glyph as a
+            // PaleSalt + ChoirIron at +15 rep each. MarlbackScrabbler glyph as a
             // visual placeholder.
-            var scribe = ctx.Spawn("Snapjaw")
+            var scribe = ctx.Spawn("MarlbackScrabbler")
                 .Passive()
                 .At(p.x - 2, p.y + 3);
             if (scribe != null)
             {
                 // Override display name + faction so the scribe reads
-                // as a PaleCuration NPC, not a Snapjaw.
+                // as a PaleCuration NPC, not a MarlbackScrabbler.
                 var render = scribe.GetPart<RenderPart>();
                 if (render != null) render.DisplayName = "pale curation scribe";
                 scribe.Tags["Faction"] = "PaleCuration";
@@ -173,7 +173,7 @@ namespace CavesOfOoo.Scenarios.Custom
             ctx.Log("=== Item Enhancement Showcase (Phase E.1–E.3) ===");
             ctx.Log("Loadout: LongSword equipped + 3 minerals + spare Mace + spare LeatherArmor.");
             ctx.Log("");
-            ctx.Log("Targets row (N): SporeShambler (Fungal), SkeletalSentry (Undead), Snapjaw (control).");
+            ctx.Log("Targets row (N): SporeShambler (Fungal), SkeletalSentry (Undead), MarlbackScrabbler (control).");
             ctx.Log("Tinker NPC W (4 tiles): applies mineral enhancements via conversation.");
             ctx.Log("Pale Curation Scribe SW: WantsMineralPart accepts Pale-Salt + Choir-Iron for +15 rep each.");
             ctx.Log("");
@@ -197,7 +197,7 @@ namespace CavesOfOoo.Scenarios.Custom
     ///
     /// <para>The probe also logs whether the defender has the
     /// <c>Undead</c> / <c>Fungal</c> MaterialTags — so the player can
-    /// see why Pale-Salt fires on the Skeleton but not the Snapjaw.</para>
+    /// see why Pale-Salt fires on the Skeleton but not the MarlbackScrabbler.</para>
     ///
     /// <para>Production combat does NOT emit these lines; the probe
     /// is scenario-only.</para>

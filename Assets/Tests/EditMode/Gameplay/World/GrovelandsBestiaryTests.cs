@@ -13,7 +13,7 @@ namespace CavesOfOoo.Tests
     /// W4.3 (Docs/FELLING-W4-PLAN.md §3) — Choir country's own fauna.
     /// The Grovelands stops borrowing the jungle's roster; what stays
     /// (rotlings, mosshulks) stays because it is FUNGAL fauna, Choir-
-    /// adjacent by nature. The new residents: glow-moths that navigate
+    /// adjacent by nature. The new residents: grove lantern-moths that navigate
     /// by the groves, spore shamblers that used to be somebody, and
     /// wine-leaf sundews whose leaf color is a danger read — the
     /// design doc's "Shamblers ... (all ship)" was a false premise
@@ -113,13 +113,13 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void TheGlowMoth_IsGentle_AndCarriesNoLight()
+        public void TheGroveLanternMoth_IsGentle_AndCarriesNoLight()
         {
             // The perf rule (plan §4): no LightSourcePart on a MOVING
             // entity — every wander step would dirty the lightmap. The
             // moth is dusted the columns' color; the render carries the
             // idea, the part stays off.
-            var moth = _factory.CreateEntity("GlowMoth");
+            var moth = _factory.CreateEntity("GroveLanternMoth");
             Assert.IsTrue(moth.GetPart<BrainPart>().Passive, "it has never hurt anything");
             Assert.IsNull(moth.GetPart<LightSourcePart>(),
                 "a wandering light source is a per-turn lightmap recompute — the glow is paint");

@@ -1,0 +1,373 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="457" result="Failed" start-time="2026-09-26T20:34:08.3690570Z" end-time="2026-09-26T20:34:08.7765770Z" duration="0.407505" total="24" passed="7" failed="17" inconclusive="0" skipped="0" warnings="0" asserts="59" random-seed="1132776198">
+  <command-line><![CDATA[/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/Everyday/torch-red.xml --where "class =~ /DensityTorchLightTests/"]]></command-line>
+  <filter>
+    <class re="1">DensityTorchLightTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1564" name="EditModeRunner.dll" fullname="/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="457" result="Failed" site="Child" start-time="2026-09-26T20:34:08.3690570Z" end-time="2026-09-26T20:34:08.7765770Z" duration="0.407505" total="24" passed="7" failed="17" warnings="0" inconclusive="0" skipped="0" asserts="59">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-everyday-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-everyday-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="62845" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1565" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="457" result="Failed" site="Child" start-time="2026-09-26T20:34:08.3705130Z" end-time="2026-09-26T20:34:08.7765760Z" duration="0.406060" total="24" passed="7" failed="17" warnings="0" inconclusive="0" skipped="0" asserts="59">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1566" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="457" result="Failed" site="Child" start-time="2026-09-26T20:34:08.3706220Z" end-time="2026-09-26T20:34:08.7765730Z" duration="0.405950" total="24" passed="7" failed="17" warnings="0" inconclusive="0" skipped="0" asserts="59">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1536" name="DensityTorchLightTests" fullname="CavesOfOoo.Tests.DensityTorchLightTests" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" testcasecount="24" result="Failed" site="Child" start-time="2026-09-26T20:34:08.3709510Z" end-time="2026-09-26T20:34:08.7765570Z" duration="0.405604" total="24" passed="7" failed="17" warnings="0" inconclusive="0" skipped="0" asserts="59">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1554" name="DeadActor_CannotExtinguish" fullname="CavesOfOoo.Tests.DensityTorchLightTests.DeadActor_CannotExtinguish" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-26T20:34:08.3718970Z" end-time="2026-09-26T20:34:08.4453220Z" duration="0.073425" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <test-case id="1552" name="DeadActor_CannotExtinguish(False)" fullname="CavesOfOoo.Tests.DensityTorchLightTests.DeadActor_CannotExtinguish(False)" methodname="DeadActor_CannotExtinguish" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1274186596" result="Passed" start-time="2026-09-26T20:34:08.3719880Z" end-time="2026-09-26T20:34:08.4278420Z" duration="0.055877" asserts="3" />
+            <test-case id="1553" name="DeadActor_CannotExtinguish(True)" fullname="CavesOfOoo.Tests.DensityTorchLightTests.DeadActor_CannotExtinguish(True)" methodname="DeadActor_CannotExtinguish" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1336346047" result="Passed" start-time="2026-09-26T20:34:08.4284250Z" end-time="2026-09-26T20:34:08.4449320Z" duration="0.016507" asserts="3" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1561" name="DifferentTorchPayload_DoesNotMerge" fullname="CavesOfOoo.Tests.DensityTorchLightTests.DifferentTorchPayload_DoesNotMerge" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-26T20:34:08.4454930Z" end-time="2026-09-26T20:34:08.5005170Z" duration="0.055024" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1558" name="DifferentTorchPayload_DoesNotMerge(&quot;fuel&quot;)" fullname="CavesOfOoo.Tests.DensityTorchLightTests.DifferentTorchPayload_DoesNotMerge(&quot;fuel&quot;)" methodname="DifferentTorchPayload_DoesNotMerge" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="6018725" result="Failed" start-time="2026-09-26T20:34:08.4455150Z" end-time="2026-09-26T20:34:08.4720780Z" duration="0.026563" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.DifferentTorchPayload_DoesNotMerge(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 65
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.DifferentTorchPayload_DoesNotMerge(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 65
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1559" name="DifferentTorchPayload_DoesNotMerge(&quot;thermal&quot;)" fullname="CavesOfOoo.Tests.DensityTorchLightTests.DifferentTorchPayload_DoesNotMerge(&quot;thermal&quot;)" methodname="DifferentTorchPayload_DoesNotMerge" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="409552438" result="Failed" start-time="2026-09-26T20:34:08.4721550Z" end-time="2026-09-26T20:34:08.4860710Z" duration="0.013916" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.DifferentTorchPayload_DoesNotMerge(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 65
+   at InvokeStub_DensityTorchLightTests.DifferentTorchPayload_DoesNotMerge(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.DifferentTorchPayload_DoesNotMerge(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 65
+   at InvokeStub_DensityTorchLightTests.DifferentTorchPayload_DoesNotMerge(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1560" name="DifferentTorchPayload_DoesNotMerge(&quot;light&quot;)" fullname="CavesOfOoo.Tests.DensityTorchLightTests.DifferentTorchPayload_DoesNotMerge(&quot;light&quot;)" methodname="DifferentTorchPayload_DoesNotMerge" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1699428534" result="Failed" start-time="2026-09-26T20:34:08.4860960Z" end-time="2026-09-26T20:34:08.5004820Z" duration="0.014386" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.DifferentTorchPayload_DoesNotMerge(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 65
+   at InvokeStub_DensityTorchLightTests.DifferentTorchPayload_DoesNotMerge(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.DifferentTorchPayload_DoesNotMerge(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 65
+   at InvokeStub_DensityTorchLightTests.DifferentTorchPayload_DoesNotMerge(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1548" name="DuplicateEquipmentSlot_TicksOnePhysicalTorchOnlyOnce" fullname="CavesOfOoo.Tests.DensityTorchLightTests.DuplicateEquipmentSlot_TicksOnePhysicalTorchOnlyOnce" methodname="DuplicateEquipmentSlot_TicksOnePhysicalTorchOnlyOnce" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1411769478" result="Failed" start-time="2026-09-26T20:34:08.5005380Z" end-time="2026-09-26T20:34:08.5169060Z" duration="0.016369" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: 49.700000762939453d +/- 9.9999997473787516E-05d
+  But was:  50.0d
+  Off by:   -0.29999923706054688d
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.DuplicateEquipmentSlot_TicksOnePhysicalTorchOnlyOnce() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 48
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 49.700000762939453d +/- 9.9999997473787516E-05d
+  But was:  50.0d
+  Off by:   -0.29999923706054688d
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.DuplicateEquipmentSlot_TicksOnePhysicalTorchOnlyOnce() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 48
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1540" name="Extinguish_ChangesCachedLightWithoutMovement_AndFlickerCannotRelight" fullname="CavesOfOoo.Tests.DensityTorchLightTests.Extinguish_ChangesCachedLightWithoutMovement_AndFlickerCannotRelight" methodname="Extinguish_ChangesCachedLightWithoutMovement_AndFlickerCannotRelight" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1247415085" result="Failed" start-time="2026-09-26T20:34:08.5169290Z" end-time="2026-09-26T20:34:08.5356680Z" duration="0.018739" asserts="3">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.Extinguish_ChangesCachedLightWithoutMovement_AndFlickerCannotRelight() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 34
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.Extinguish_ChangesCachedLightWithoutMovement_AndFlickerCannotRelight() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 34
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1549" name="ExtinguishedTick_DoesNotConsumeFuelOrHeat" fullname="CavesOfOoo.Tests.DensityTorchLightTests.ExtinguishedTick_DoesNotConsumeFuelOrHeat" methodname="ExtinguishedTick_DoesNotConsumeFuelOrHeat" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1967258835" result="Failed" start-time="2026-09-26T20:34:08.5356880Z" end-time="2026-09-26T20:34:08.5487700Z" duration="0.013082" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.ExtinguishedTick_DoesNotConsumeFuelOrHeat() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 50
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.ExtinguishedTick_DoesNotConsumeFuelOrHeat() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 50
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1541" name="ExtinguishedTorch_RelightsOnlyAtActualHotFire" fullname="CavesOfOoo.Tests.DensityTorchLightTests.ExtinguishedTorch_RelightsOnlyAtActualHotFire" methodname="ExtinguishedTorch_RelightsOnlyAtActualHotFire" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1797445795" result="Failed" start-time="2026-09-26T20:34:08.5487960Z" end-time="2026-09-26T20:34:08.5625370Z" duration="0.013742" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.ExtinguishedTorch_RelightsOnlyAtActualHotFire() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 38
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.ExtinguishedTorch_RelightsOnlyAtActualHotFire() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 38
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1555" name="ForeignOrStaleEquipmentReference_Refuses" fullname="CavesOfOoo.Tests.DensityTorchLightTests.ForeignOrStaleEquipmentReference_Refuses" methodname="ForeignOrStaleEquipmentReference_Refuses" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="2028601856" result="Passed" start-time="2026-09-26T20:34:08.5625610Z" end-time="2026-09-26T20:34:08.5773830Z" duration="0.014823" asserts="3" />
+          <test-case id="1537" name="FreshTorch_HasExplicitLightPartAndHandEquipment" fullname="CavesOfOoo.Tests.DensityTorchLightTests.FreshTorch_HasExplicitLightPartAndHandEquipment" methodname="FreshTorch_HasExplicitLightPartAndHandEquipment" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="887525625" result="Failed" start-time="2026-09-26T20:34:08.5774200Z" end-time="2026-09-26T20:34:08.5925790Z" duration="0.015160" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.FreshTorch_HasExplicitLightPartAndHandEquipment() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 26
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.FreshTorch_HasExplicitLightPartAndHandEquipment() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 26
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1547" name="HeldTick_ConsumesExactlyOneBurnRateWithoutDamagingTheTool" fullname="CavesOfOoo.Tests.DensityTorchLightTests.HeldTick_ConsumesExactlyOneBurnRateWithoutDamagingTheTool" methodname="HeldTick_ConsumesExactlyOneBurnRateWithoutDamagingTheTool" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="400506280" result="Failed" start-time="2026-09-26T20:34:08.5926020Z" end-time="2026-09-26T20:34:08.6057300Z" duration="0.013129" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: 49.700000762939453d +/- 9.9999997473787516E-05d
+  But was:  50.0d
+  Off by:   -0.29999923706054688d
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.HeldTick_ConsumesExactlyOneBurnRateWithoutDamagingTheTool() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 46
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 49.700000762939453d +/- 9.9999997473787516E-05d
+  But was:  50.0d
+  Off by:   -0.29999923706054688d
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.HeldTick_ConsumesExactlyOneBurnRateWithoutDamagingTheTool() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 46
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1539" name="HeldTorch_OffersExtinguish_ThenRelight" fullname="CavesOfOoo.Tests.DensityTorchLightTests.HeldTorch_OffersExtinguish_ThenRelight" methodname="HeldTorch_OffersExtinguish_ThenRelight" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="415594867" result="Failed" start-time="2026-09-26T20:34:08.6057480Z" end-time="2026-09-26T20:34:08.6205310Z" duration="0.014784" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.HeldTorch_OffersExtinguish_ThenRelight() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 30
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.HeldTorch_OffersExtinguish_ThenRelight() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 30
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1562" name="IdenticalFreshTorches_StillStack" fullname="CavesOfOoo.Tests.DensityTorchLightTests.IdenticalFreshTorches_StillStack" methodname="IdenticalFreshTorches_StillStack" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="444121776" result="Passed" start-time="2026-09-26T20:34:08.6205540Z" end-time="2026-09-26T20:34:08.6352070Z" duration="0.014654" asserts="2" />
+          <test-case id="1550" name="LastFuelTick_ExtinguishesAndCannotRelight" fullname="CavesOfOoo.Tests.DensityTorchLightTests.LastFuelTick_ExtinguishesAndCannotRelight" methodname="LastFuelTick_ExtinguishesAndCannotRelight" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="898839942" result="Failed" start-time="2026-09-26T20:34:08.6352330Z" end-time="2026-09-26T20:34:08.6482530Z" duration="0.013020" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: 0
+  But was:  0.100000001f
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.LastFuelTick_ExtinguishesAndCannotRelight() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 52
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 0
+  But was:  0.100000001f
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.LastFuelTick_ExtinguishesAndCannotRelight() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 52
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1551" name="LooseTorch_MaterialTickConsumesFuel_AndReachIsRechecked" fullname="CavesOfOoo.Tests.DensityTorchLightTests.LooseTorch_MaterialTickConsumesFuel_AndReachIsRechecked" methodname="LooseTorch_MaterialTickConsumesFuel_AndReachIsRechecked" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="573247427" result="Failed" start-time="2026-09-26T20:34:08.6482730Z" end-time="2026-09-26T20:34:08.6622850Z" duration="0.014011" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: 49.700000762939453d +/- 9.9999997473787516E-05d
+  But was:  50.0d
+  Off by:   -0.29999923706054688d
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.LooseTorch_MaterialTickConsumesFuel_AndReachIsRechecked() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 54
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 49.700000762939453d +/- 9.9999997473787516E-05d
+  But was:  50.0d
+  Off by:   -0.29999923706054688d
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.LooseTorch_MaterialTickConsumesFuel_AndReachIsRechecked() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 54
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1538" name="OrdinaryEquip_SplitsOneTorchFromStack" fullname="CavesOfOoo.Tests.DensityTorchLightTests.OrdinaryEquip_SplitsOneTorchFromStack" methodname="OrdinaryEquip_SplitsOneTorchFromStack" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1537141661" result="Failed" start-time="2026-09-26T20:34:08.6623050Z" end-time="2026-09-26T20:34:08.6770450Z" duration="0.014741" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.OrdinaryEquip_SplitsOneTorchFromStack() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 28
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.OrdinaryEquip_SplitsOneTorchFromStack() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 28
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1563" name="OtherLights_RemainUntouched" fullname="CavesOfOoo.Tests.DensityTorchLightTests.OtherLights_RemainUntouched" methodname="OtherLights_RemainUntouched" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1138596925" result="Passed" start-time="2026-09-26T20:34:08.6771080Z" end-time="2026-09-26T20:34:08.6926130Z" duration="0.015506" asserts="3" />
+          <test-case id="1556" name="PostActionFailure_RestoresLightHeatAndFuel" fullname="CavesOfOoo.Tests.DensityTorchLightTests.PostActionFailure_RestoresLightHeatAndFuel" methodname="PostActionFailure_RestoresLightHeatAndFuel" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1176941950" result="Passed" start-time="2026-09-26T20:34:08.6926430Z" end-time="2026-09-26T20:34:08.7055230Z" duration="0.012881" asserts="5" />
+          <test-case id="1542" name="RemoteOrColdFire_DoesNotRelight" fullname="CavesOfOoo.Tests.DensityTorchLightTests.RemoteOrColdFire_DoesNotRelight" methodname="RemoteOrColdFire_DoesNotRelight" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="181349662" result="Failed" start-time="2026-09-26T20:34:08.7055480Z" end-time="2026-09-26T20:34:08.7198820Z" duration="0.014335" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.RemoteOrColdFire_DoesNotRelight() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 40
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.RemoteOrColdFire_DoesNotRelight() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 40
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1557" name="SaveGraph_PreservesOffStateAndRemainingFuel" fullname="CavesOfOoo.Tests.DensityTorchLightTests.SaveGraph_PreservesOffStateAndRemainingFuel" methodname="SaveGraph_PreservesOffStateAndRemainingFuel" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="672322217" result="Failed" start-time="2026-09-26T20:34:08.7199110Z" end-time="2026-09-26T20:34:08.7348070Z" duration="0.014896" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.SaveGraph_PreservesOffStateAndRemainingFuel() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 62
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.SaveGraph_PreservesOffStateAndRemainingFuel() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 62
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1546" name="StowedTorch_DoesNotLightTickOrOfferAction" fullname="CavesOfOoo.Tests.DensityTorchLightTests.StowedTorch_DoesNotLightTickOrOfferAction" methodname="StowedTorch_DoesNotLightTickOrOfferAction" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="1753371055" result="Passed" start-time="2026-09-26T20:34:08.7348350Z" end-time="2026-09-26T20:34:08.7491530Z" duration="0.014317" asserts="5" />
+          <test-suite type="ParameterizedMethod" id="1545" name="WetOrExhaustedTorch_RefusesRelight" fullname="CavesOfOoo.Tests.DensityTorchLightTests.WetOrExhaustedTorch_RefusesRelight" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-26T20:34:08.7491840Z" end-time="2026-09-26T20:34:08.7765060Z" duration="0.027322" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="4">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1543" name="WetOrExhaustedTorch_RefusesRelight(False)" fullname="CavesOfOoo.Tests.DensityTorchLightTests.WetOrExhaustedTorch_RefusesRelight(False)" methodname="WetOrExhaustedTorch_RefusesRelight" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="2000676456" result="Failed" start-time="2026-09-26T20:34:08.7492080Z" end-time="2026-09-26T20:34:08.7626910Z" duration="0.013483" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.WetOrExhaustedTorch_RefusesRelight(Boolean wet) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 42
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.WetOrExhaustedTorch_RefusesRelight(Boolean wet) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 42
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1544" name="WetOrExhaustedTorch_RefusesRelight(True)" fullname="CavesOfOoo.Tests.DensityTorchLightTests.WetOrExhaustedTorch_RefusesRelight(True)" methodname="WetOrExhaustedTorch_RefusesRelight" classname="CavesOfOoo.Tests.DensityTorchLightTests" runstate="Runnable" seed="2071375094" result="Failed" start-time="2026-09-26T20:34:08.7627160Z" end-time="2026-09-26T20:34:08.7764790Z" duration="0.013763" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.WetOrExhaustedTorch_RefusesRelight(Boolean wet) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 42
+   at InvokeStub_DensityTorchLightTests.WetOrExhaustedTorch_RefusesRelight(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchLightTests.WetOrExhaustedTorch_RefusesRelight(Boolean wet) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchLightTests.cs:line 42
+   at InvokeStub_DensityTorchLightTests.WetOrExhaustedTorch_RefusesRelight(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

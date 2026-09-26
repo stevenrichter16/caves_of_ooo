@@ -139,25 +139,25 @@ namespace CavesOfOoo.Tests
               ""Tags"": [{ ""Key"": ""Creature"", ""Value"": """" }]
             },
             {
-              ""Name"": ""Snapjaw"",
+              ""Name"": ""MarlbackScrabbler"",
               ""Inherits"": ""Creature"",
               ""Parts"": [
                 { ""Name"": ""Render"", ""Params"": [
-                  { ""Key"": ""DisplayName"", ""Value"": ""snapjaw"" },
+                  { ""Key"": ""DisplayName"", ""Value"": ""marlback"" },
                   { ""Key"": ""RenderString"", ""Value"": ""s"" }
                 ]}
               ],
               ""Stats"": [
                 { ""Name"": ""Hitpoints"", ""Value"": 15, ""Min"": 0, ""Max"": 15 }
               ],
-              ""Tags"": [{ ""Key"": ""Faction"", ""Value"": ""Snapjaws"" }]
+              ""Tags"": [{ ""Key"": ""Faction"", ""Value"": ""OutlandRaiders"" }]
             },
             {
-              ""Name"": ""SnapjawScavenger"",
-              ""Inherits"": ""Snapjaw"",
+              ""Name"": ""MarlbackGleaner"",
+              ""Inherits"": ""MarlbackScrabbler"",
               ""Parts"": [
                 { ""Name"": ""Render"", ""Params"": [
-                  { ""Key"": ""DisplayName"", ""Value"": ""snapjaw scavenger"" }
+                  { ""Key"": ""DisplayName"", ""Value"": ""marlback gleaner"" }
                 ]}
               ],
               ""Stats"": [
@@ -166,11 +166,11 @@ namespace CavesOfOoo.Tests
               ""Tags"": []
             },
             {
-              ""Name"": ""SnapjawHunter"",
-              ""Inherits"": ""Snapjaw"",
+              ""Name"": ""MarlbackTunnelguard"",
+              ""Inherits"": ""MarlbackScrabbler"",
               ""Parts"": [
                 { ""Name"": ""Render"", ""Params"": [
-                  { ""Key"": ""DisplayName"", ""Value"": ""snapjaw hunter"" }
+                  { ""Key"": ""DisplayName"", ""Value"": ""marlback tunnelguard"" }
                 ]}
               ],
               ""Stats"": [
@@ -195,9 +195,9 @@ namespace CavesOfOoo.Tests
             { ""Name"": ""GlowQuartzVein"", ""Inherits"": ""Stalagmite"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""glowquartz vein"" }, { ""Key"": ""RenderString"", ""Value"": ""*"" }]}] },
             { ""Name"": ""PaleSaltVein"", ""Inherits"": ""Stalagmite"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""pale salt vein"" }, { ""Key"": ""RenderString"", ""Value"": ""*"" }]}] },
             { ""Name"": ""ChoirIronVein"", ""Inherits"": ""Stalagmite"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""choir iron vein"" }, { ""Key"": ""RenderString"", ""Value"": ""*"" }]}] },
-            { ""Name"": ""CaveBear"", ""Inherits"": ""Snapjaw"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""cave bear"" }, { ""Key"": ""RenderString"", ""Value"": ""B"" }]}] },
-            { ""Name"": ""Rotling"", ""Inherits"": ""Snapjaw"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""rotling"" }, { ""Key"": ""RenderString"", ""Value"": ""r"" }]}] },
-            { ""Name"": ""Glowmaw"", ""Inherits"": ""Snapjaw"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""glowmaw"" }, { ""Key"": ""RenderString"", ""Value"": ""g"" }]}] },
+            { ""Name"": ""CaveBear"", ""Inherits"": ""MarlbackScrabbler"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""cave bear"" }, { ""Key"": ""RenderString"", ""Value"": ""B"" }]}] },
+            { ""Name"": ""Rotling"", ""Inherits"": ""MarlbackScrabbler"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""rotling"" }, { ""Key"": ""RenderString"", ""Value"": ""r"" }]}] },
+            { ""Name"": ""Glowmaw"", ""Inherits"": ""MarlbackScrabbler"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""glowmaw"" }, { ""Key"": ""RenderString"", ""Value"": ""g"" }]}] },
             { ""Name"": ""BerryBush"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""berry bush"" }, { ""Key"": ""RenderString"", ""Value"": "";"" }]}] },
             { ""Name"": ""Beehive"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""beehive"" }, { ""Key"": ""RenderString"", ""Value"": ""6"" }]}] },
             { ""Name"": ""HollowStump"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""hollow stump"" }, { ""Key"": ""RenderString"", ""Value"": ""u"" }]}] },
@@ -236,11 +236,11 @@ namespace CavesOfOoo.Tests
             { ""Name"": ""WeaponRack"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""weapon rack"" }, { ""Key"": ""RenderString"", ""Value"": ""T"" }]}, { ""Name"": ""Container"", ""Params"": [{ ""Key"": ""MaxItems"", ""Value"": ""8"" }]}] },
             { ""Name"": ""AlchemyShelf"", ""Inherits"": ""PhysicalObject"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""alchemy shelf"" }, { ""Key"": ""RenderString"", ""Value"": ""n"" }]}, { ""Name"": ""Container"", ""Params"": [{ ""Key"": ""MaxItems"", ""Value"": ""8"" }]}] },
             { ""Name"": ""MirrorMucilagePool"", ""Inherits"": ""Terrain"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""mirror-mucilage seep"" }, { ""Key"": ""RenderString"", ""Value"": ""~"" }]}] },
-            { ""Name"": ""SkeletalSentry"", ""Inherits"": ""Snapjaw"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""skeletal sentry"" }, { ""Key"": ""RenderString"", ""Value"": ""s"" }]}] },
-            { ""Name"": ""CharredHusk"", ""Inherits"": ""Snapjaw"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""charred husk"" }, { ""Key"": ""RenderString"", ""Value"": ""H"" }]}] },
-            { ""Name"": ""PaleStalker"", ""Inherits"": ""Snapjaw"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""pale stalker"" }, { ""Key"": ""RenderString"", ""Value"": ""p"" }]}] },
-            { ""Name"": ""StoneGolem"", ""Inherits"": ""Snapjaw"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""stone golem"" }, { ""Key"": ""RenderString"", ""Value"": ""G"" }]}] },
-            { ""Name"": ""ObsidianBrute"", ""Inherits"": ""Snapjaw"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""obsidian brute"" }, { ""Key"": ""RenderString"", ""Value"": ""O"" }]}] }
+            { ""Name"": ""SkeletalSentry"", ""Inherits"": ""MarlbackScrabbler"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""skeletal sentry"" }, { ""Key"": ""RenderString"", ""Value"": ""s"" }]}] },
+            { ""Name"": ""CharredHusk"", ""Inherits"": ""MarlbackScrabbler"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""charred husk"" }, { ""Key"": ""RenderString"", ""Value"": ""H"" }]}] },
+            { ""Name"": ""PaleStalker"", ""Inherits"": ""MarlbackScrabbler"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""pale stalker"" }, { ""Key"": ""RenderString"", ""Value"": ""p"" }]}] },
+            { ""Name"": ""StoneGolem"", ""Inherits"": ""MarlbackScrabbler"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""stone golem"" }, { ""Key"": ""RenderString"", ""Value"": ""G"" }]}] },
+            { ""Name"": ""ObsidianBrute"", ""Inherits"": ""MarlbackScrabbler"", ""Parts"": [{ ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""obsidian brute"" }, { ""Key"": ""RenderString"", ""Value"": ""O"" }]}] }
           ]
         }";
 
@@ -772,20 +772,20 @@ namespace CavesOfOoo.Tests
         [Test]
         public void PopulationTable_UndergroundTier_ChangesEncountersInsteadOfCrowding()
         {
-            // Density Phase 1 replaces three compulsory snapjaw packs with
+            // Density Phase 1 replaces three compulsory marlback packs with
             // one depth group. Depth means different encounters, not a
             // guaranteed increase in total entities for one arbitrary seed.
-            int deepWithoutSnapjaws = 0;
+            int deepWithoutOutlandRaiders = 0;
             for (int seed = 0; seed < 200; seed++)
             {
                 var shallow = PopulationTable.UndergroundTier(1).Roll(new System.Random(seed));
                 var deep = PopulationTable.UndergroundTier(9).Roll(new System.Random(seed));
-                Assert.IsTrue(shallow.Exists(n => n.StartsWith("Snapjaw")), "shallow counter-case");
-                if (!deep.Exists(n => n.StartsWith("Snapjaw"))) deepWithoutSnapjaws++;
+                Assert.IsTrue(shallow.Exists(n => n.StartsWith("Marlback")), "shallow counter-case");
+                if (!deep.Exists(n => n.StartsWith("Marlback"))) deepWithoutOutlandRaiders++;
             }
-            Assert.Greater(deepWithoutSnapjaws, 100,
-                "most deep encounters should use depth fauna instead of compulsory snapjaws");
-            Assert.Less(deepWithoutSnapjaws, 200, "snapjaw groups remain possible at depth");
+            Assert.Greater(deepWithoutOutlandRaiders, 100,
+                "most deep encounters should use depth fauna instead of compulsory marlbacks");
+            Assert.Less(deepWithoutOutlandRaiders, 200, "marlback groups remain possible at depth");
         }
 
         [Test]

@@ -64,10 +64,10 @@ namespace CavesOfOoo.Tests.Scenarios
             new OnHitEffectsShowcase().Apply(ctx);
 
             // Player has Mace equipped per the scenario's Apply().
-            // Find the bludgeoning-lane snapjaw (any snapjaw in this
+            // Find the bludgeoning-lane marlback (any marlback in this
             // scenario is a valid melee target — pick the first).
-            var defender = FirstSnapjaw(ctx);
-            Assert.IsNotNull(defender, "Scenario must spawn at least one Snapjaw target.");
+            var defender = FirstMarlbackScrabbler(ctx);
+            Assert.IsNotNull(defender, "Scenario must spawn at least one MarlbackScrabbler target.");
 
             // Reset diag AFTER scenario setup so we don't conflate
             // setup-time records (e.g., entity-blueprint-fired events
@@ -115,7 +115,7 @@ namespace CavesOfOoo.Tests.Scenarios
             // → no on-hit hooks. The harness docstring spells this out.
             var ctx = _harness.CreateContext(playerBlueprint: "Player");
             new OnHitEffectsShowcase().Apply(ctx);
-            var defender = FirstSnapjaw(ctx);
+            var defender = FirstMarlbackScrabbler(ctx);
             Diag.ResetAll();
 
             // Bludgeoning class hook is 15%/hit. With ~70% hit rate at
@@ -179,7 +179,7 @@ namespace CavesOfOoo.Tests.Scenarios
                 .Equip("FlamingSword");
 
             var p = ctx.Zone.GetEntityPosition(ctx.PlayerEntity);
-            var defender = ctx.Spawn("Snapjaw")
+            var defender = ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 200)
                 .WithHpAbsolute(200)
                 .AsPersonalEnemyOf(ctx.PlayerEntity)
@@ -222,18 +222,18 @@ namespace CavesOfOoo.Tests.Scenarios
         // ====================================================================
 
         /// <summary>
-        /// Finds the first Snapjaw the scenario spawned. The scenario
-        /// places multiple snapjaws around the player; for our hook
+        /// Finds the first MarlbackScrabbler the scenario spawned. The scenario
+        /// places multiple marlbacks around the player; for our hook
         /// verification we just need any one (the hook system doesn't
-        /// distinguish lanes — all snapjaws receive the same melee
+        /// distinguish lanes — all marlbacks receive the same melee
         /// hits from the equipped weapon).
         /// </summary>
-        private static Entity FirstSnapjaw(CavesOfOoo.Scenarios.ScenarioContext ctx)
+        private static Entity FirstMarlbackScrabbler(CavesOfOoo.Scenarios.ScenarioContext ctx)
         {
             return ctx.Zone.GetAllEntities()
                 .FirstOrDefault(e => e != null
                     && e != ctx.PlayerEntity
-                    && e.BlueprintName == "Snapjaw");
+                    && e.BlueprintName == "MarlbackScrabbler");
         }
 
         /// <summary>

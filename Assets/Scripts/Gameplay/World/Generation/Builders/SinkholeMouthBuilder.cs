@@ -82,7 +82,7 @@ namespace CavesOfOoo.Core
                     // the cleared void — a Choir shrine (five NPCs and
                     // a campfire) could generate standing INSIDE the
                     // hole. Same mechanism the village uses to keep
-                    // snapjaws off its square.
+                    // marlbacks off its square.
                     zone.GenReservedCells.Add((x, y));
                 }
 

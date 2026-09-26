@@ -59,7 +59,7 @@ namespace CavesOfOoo.Tests
             LayRuneGoal.Factory = null;
             // Reset faction state — RuneCultist_Faction_IsRegistered_AndHostileToPlayer
             // overrides static FactionManager state; subsequent fixtures expect
-            // the default hardcoded init (Snapjaws/Villagers only).
+            // the default hardcoded init (OutlandRaiders/Villagers only).
             FactionManager.Initialize();
         }
 

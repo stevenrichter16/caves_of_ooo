@@ -92,7 +92,7 @@ namespace CavesOfOoo.Core
                     }
 
                     var checkCell = zone.GetCell(mapX, mapY);
-                    bool isOpaque = checkCell != null && checkCell.IsWall();
+                    bool isOpaque = checkCell != null && (checkCell.IsWall() || zone.TileState.ObscuresSight(mapX, mapY));
 
                     if (blocked)
                     {

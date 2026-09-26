@@ -37,7 +37,7 @@ OUTLINE_4 = [
     "corpse", "crop_seed", "door_closed", "door_open", "elder",
     "emberwheat_crop", "forge", "gold_pile", "ice_stalactite",
     "ice_wight", "lantern", "market_stall", "merchant", "mushroom",
-    "oven", "pillar", "rubble", "shrine", "snapjaw",
+    "oven", "pillar", "rubble", "shrine", "marlback_scrabbler",
     "spore_shambler", "stairs_down", "stairs_up", "stalactite",
     "stalagmite", "tree", "village_child", "villager", "warden",
     "weapon_ground", "well",
@@ -52,7 +52,7 @@ OUTLINE_4 = [
     "cave_bat", "magpie", "cave_slime", "rotling", "glowmaw",
     "skeletal_sentry", "vault_sentinel", "choir_tendril",
     "canopy_strangler", "dune_lurker", "mogu", "grib", "nam", "sien",
-    "sopp", "snapjaw_chieftain", "snapjaw_warlord",
+    "sopp", "marlback_gleaner", "marlback_tunnelguard", "marlback_wallkeeper", "marlback_breacher", "grove_lantern_moth",
     # Round 5 — item bodies + interactable fixtures
     "item_vial", "item_book", "item_gem", "item_key", "item_torch",
     "item_meat", "item_fruit", "item_seed", "item_armor", "item_bone",

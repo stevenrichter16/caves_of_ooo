@@ -44,11 +44,11 @@ namespace CavesOfOoo.Tests
                     ""Tags"": []
                 },
                 {
-                    ""Name"": ""SnapjawCorpse"",
+                    ""Name"": ""MarlbackCorpse"",
                     ""Inherits"": ""PhysicalObject"",
                     ""Parts"": [
                         { ""Name"": ""Render"", ""Params"": [
-                            { ""Key"": ""DisplayName"", ""Value"": ""snapjaw corpse"" },
+                            { ""Key"": ""DisplayName"", ""Value"": ""marlback remains"" },
                             { ""Key"": ""RenderString"", ""Value"": ""%"" }
                         ]},
                         { ""Name"": ""Physics"", ""Params"": [
@@ -154,9 +154,9 @@ namespace CavesOfOoo.Tests
 
         private static Entity MakeBareCorpse(Zone zone, int x, int y, int weight = 10, string id = "Corpse-X")
         {
-            var c = new Entity { BlueprintName = "SnapjawCorpse", ID = id };
+            var c = new Entity { BlueprintName = "MarlbackCorpse", ID = id };
             c.Tags["Corpse"] = "";
-            c.AddPart(new RenderPart { DisplayName = "snapjaw corpse" });
+            c.AddPart(new RenderPart { DisplayName = "marlback remains" });
             c.AddPart(new PhysicsPart { Takeable = true, Weight = weight });
             zone.AddEntity(c, x, y);
             return c;
@@ -189,7 +189,7 @@ namespace CavesOfOoo.Tests
         public void Replay_DiedFiredTwice_SpawnsTwoCorpses()
         {
             var zone = new Zone("TestZone");
-            var creature = MakeCreature(zone, 5, 5, 100, "SnapjawCorpse");
+            var creature = MakeCreature(zone, 5, 5, 100, "MarlbackCorpse");
 
             var d1 = MakeDied(creature, zone); creature.FireEvent(d1); d1.Release();
             var d2 = MakeDied(creature, zone); creature.FireEvent(d2); d2.Release();
@@ -210,9 +210,9 @@ namespace CavesOfOoo.Tests
         public void DoubleCorpsePart_SpawnsTwoCorpses()
         {
             var zone = new Zone("TestZone");
-            var creature = MakeCreature(zone, 5, 5, 100, "SnapjawCorpse");
+            var creature = MakeCreature(zone, 5, 5, 100, "MarlbackCorpse");
             // Double up.
-            creature.AddPart(new CorpsePart { CorpseChance = 100, CorpseBlueprint = "SnapjawCorpse", TestRng = new Random(7) });
+            creature.AddPart(new CorpsePart { CorpseChance = 100, CorpseBlueprint = "MarlbackCorpse", TestRng = new Random(7) });
 
             var died = MakeDied(creature, zone);
             creature.FireEvent(died);
@@ -271,7 +271,7 @@ namespace CavesOfOoo.Tests
         public void KillerWithBlueprintNameOnly_SetsBlueprintNotID()
         {
             var zone = new Zone("TestZone");
-            var creature = MakeCreature(zone, 5, 5, 100, "SnapjawCorpse");
+            var creature = MakeCreature(zone, 5, 5, 100, "MarlbackCorpse");
 
             var killer = new Entity { BlueprintName = "PhantomKiller", ID = "" };  // empty ID
             killer.AddPart(new RenderPart { DisplayName = "phantom" });

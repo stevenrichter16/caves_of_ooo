@@ -225,7 +225,7 @@ namespace CavesOfOoo.Core
             if (actor.GetPart<InventoryPart>() == null)
                 return 0;
 
-            if (containerPart.Locked)
+            if (containerPart.IsLocked)
             {
                 MessageLog.Add($"The {container.GetDisplayName()} is locked.");
                 return 0;

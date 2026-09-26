@@ -147,7 +147,7 @@ namespace CavesOfOoo.Tests
                 Assert.IsNotNull(table);
                 StringAssert.Contains("Stump", table.Name, band.ToString());
                 foreach (var e in table.Entries)
-                    Assert.AreNotEqual("Snapjaw", e.BlueprintName,
+                    Assert.AreNotEqual("MarlbackScrabbler", e.BlueprintName,
                         band + " does not spawn cave content");
             }
         }

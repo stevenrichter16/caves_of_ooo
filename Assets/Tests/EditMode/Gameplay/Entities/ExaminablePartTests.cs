@@ -12,7 +12,7 @@ namespace CavesOfOoo.Tests
     /// - Logs a description line when the "Examine" InventoryAction command fires
     /// - Uses the optional <c>Text</c> field for flavor when set
     /// - Cascades to every blueprint inheriting <c>PhysicalObject</c>
-    ///   (sampled via Chest, Snapjaw, Warden, HealingTonic)
+    ///   (sampled via Chest, MarlbackScrabbler, Warden, HealingTonic)
     /// </summary>
     [TestFixture]
     public class ExaminablePartTests
@@ -149,7 +149,7 @@ namespace CavesOfOoo.Tests
 
         [TestCase("Chest")]
         [TestCase("MimicChest")]
-        [TestCase("Snapjaw")]
+        [TestCase("MarlbackScrabbler")]
         [TestCase("Warden")]
         [TestCase("HealingTonic")]
         [TestCase("ShortSword")]
@@ -196,9 +196,18 @@ namespace CavesOfOoo.Tests
         public void Blueprint_Chest_ExamineFiresDescriptionLine()
         {
             var chest = _factory.CreateEntity("Chest");
+            var contents = chest.GetPart<ContainerPart>();
+            bool locked = contents.Locked;
+            var coin = _factory.CreateEntity("GoldCoin");
+            Assert.IsTrue(contents.AddItem(coin));
             chest.FireEvent(BuildCommand("Examine"));
 
-            Assert.That(MessageLog.GetMessages(), Does.Contain("You see a chest."));
+            Assert.That(MessageLog.GetMessages(), Does.Contain("You see a chest. A hinged lid closes over a deep storage box. The frame is reinforced at the corners."));
+            StringAssert.DoesNotContain("Damage:", MessageLog.GetLast());
+            StringAssert.DoesNotContain("AV:", MessageLog.GetLast());
+            Assert.AreEqual(locked, contents.Locked);
+            CollectionAssert.AreEqual(new[] { coin }, contents.Contents);
+            Assert.AreSame(chest, coin.GetPart<PhysicsPart>().InInventory);
         }
 
         // ==========================================================

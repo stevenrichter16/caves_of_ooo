@@ -762,14 +762,14 @@ namespace CavesOfOoo.Scenarios.Custom
 
         /// <summary>
         /// Spawn a stationary, turn-unregistered, stat-bearing dummy,
-        /// inject the combat/resistance stats Snapjaw's blueprint lacks,
+        /// inject the combat/resistance stats MarlbackScrabbler's blueprint lacks,
         /// pre-apply a permanent coat (<paramref name="liquidId"/> null
         /// = Dry control), ring it with a cosmetic pool, attach the
         /// manual-cast probe, and return the entity for the audit.
         /// </summary>
         private static Entity Dummy(ScenarioContext ctx, string liquidId, int x, int y)
         {
-            var npc = ctx.Spawn("Snapjaw")
+            var npc = ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 4000)
                 .WithHpAbsolute(4000)
                 .Passive()

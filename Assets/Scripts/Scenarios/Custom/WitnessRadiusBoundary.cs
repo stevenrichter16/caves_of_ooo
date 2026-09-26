@@ -11,7 +11,7 @@ namespace CavesOfOoo.Scenarios.Custom
     /// - Scribe A at player+2,0  → distance 3 to death cell at player+5,0 → shakes.
     /// - Scribe B at player-3,0  → distance 8 (boundary, inclusive) → shakes.
     /// - Scribe C at player-5,0  → distance 10 → does NOT shake.
-    /// - Player kills the one-HP Snapjaw at player+5,0.
+    /// - Player kills the one-HP MarlbackScrabbler at player+5,0.
     /// - Two "Scribe looks shaken." messages in the log (A and B).
     /// - Scribe C remains still.
     ///
@@ -33,7 +33,7 @@ namespace CavesOfOoo.Scenarios.Custom
     {
         public void Apply(ScenarioContext ctx)
         {
-            // Clear the east row so the player can reach the Snapjaw and the
+            // Clear the east row so the player can reach the MarlbackScrabbler and the
             // kill-row isn't blocked by compass stones / chest.
             var p = ctx.Zone.GetEntityPosition(ctx.PlayerEntity);
             for (int dx = 1; dx <= 5; dx++)
@@ -52,12 +52,12 @@ namespace CavesOfOoo.Scenarios.Custom
             ctx.Spawn("Scribe").AtPlayerOffset(5,  8);
             ctx.Spawn("Scribe").AtPlayerOffset(5, 10);
 
-            ctx.Spawn("Snapjaw")
+            ctx.Spawn("MarlbackScrabbler")
                .WithHpAbsolute(1)
                .AsPersonalEnemyOf(ctx.PlayerEntity)
                .AtPlayerOffset(5, 0);
 
-            ctx.Log("Kill the Snapjaw east of you. Two Scribes shake (dist 3 and dist 8 — boundary inclusive). Far Scribe at dist 10 does not.");
+            ctx.Log("Kill the MarlbackScrabbler east of you. Two Scribes shake (dist 3 and dist 8 — boundary inclusive). Far Scribe at dist 10 does not.");
         }
     }
 }

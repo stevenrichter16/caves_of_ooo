@@ -75,9 +75,9 @@ namespace CavesOfOoo.Tests
 
             var zone = new Zone("SidebarZone");
             var player = CreatePlayer();
-            var hostile = CreateEntity("Snapjaw", "s", "&g");
+            var hostile = CreateEntity("MarlbackScrabbler", "s", "&g");
             hostile.SetTag("Creature");
-            hostile.SetTag("Faction", "Snapjaws");
+            hostile.SetTag("Faction", "OutlandRaiders");
             zone.AddEntity(player, 10, 10);
             zone.AddEntity(hostile, 11, 10);
             zoneRenderer.PlayerEntity = player;
@@ -88,7 +88,7 @@ namespace CavesOfOoo.Tests
 
             InvokeNonPublic(zoneRenderer, "LateUpdate");
 
-            Assert.IsTrue(TilemapContainsText(zoneRenderer.SidebarTilemap, "Snapjaw"));
+            Assert.IsTrue(TilemapContainsText(zoneRenderer.SidebarTilemap, "MarlbackScrabbler"));
         }
 
         [Test]

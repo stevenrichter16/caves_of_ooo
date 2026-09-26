@@ -888,6 +888,10 @@ namespace CavesOfOoo.Rendering
             CurrentZone = result.NewZone;
             ZoneManager.SetActiveZone(result.NewZone);
 
+            // Entry encounters must exist before scheduler/render registration
+            // and before autosave captures their persistent stock and roll receipt.
+            WorldTravellers.OnZoneEntered(PlayerEntity, result.NewZone);
+
             // Register new zone's creatures in TurnManager
             var newCreatures = result.NewZone.GetEntitiesWithTag("Creature");
             foreach (var creature in newCreatures)
@@ -930,6 +934,9 @@ namespace CavesOfOoo.Rendering
             // Trigger fade-from-black visual transition
             if (ScreenFade != null)
                 ScreenFade.FadeFromBlack(0.3f);
+
+            // Arrival memory must be captured by the transition autosave.
+            SariAmbience.OnZoneEntered(PlayerEntity, result.NewZone);
 
             // ALPHA save-lifeline SM4: autosave on every successful zone
             // transition (this method only runs for successful results —
@@ -2857,6 +2864,21 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            // Seating is a paid action only after the shared transaction commits.
+            // Post-action refusals restore the seat/effect and leave time unchanged.
+            if (action.Command == PlayerSeatService.SitCommand || action.Command == PlayerSeatService.StandCommand)
+            {
+                var seatResult = InventorySystem.ExecuteCommand(
+                    new PerformInventoryActionCommand(target, action.Command), PlayerEntity, CurrentZone);
+                if (seatResult.Success)
+                {
+                    EndTurnAndProcess();
+                    RequestZoneRedraw("Furniture.PlayerSeat");
+                }
+                _inputState = _worldActionMenuReturnState;
+                return;
+            }
+
             // Regional deliveries must join the same native command transaction
             // as inventory actions, including AfterInventoryAction rollback.
             // Keep the existing zero-turn C-action policy; ordinary world verbs
@@ -2898,7 +2920,7 @@ namespace CavesOfOoo.Rendering
             if (action.Command == "OpenContainer")
             {
                 var containerPart = target.GetPart<ContainerPart>();
-                if (containerPart != null && !containerPart.Locked && containerPart.Contents.Count > 0)
+                if (containerPart != null && !containerPart.IsLocked && containerPart.Contents.Count > 0)
                 {
                     OpenContainerLoot(target, containerPart);
                     return;
@@ -3514,6 +3536,13 @@ namespace CavesOfOoo.Rendering
             }
 
             InventoryUI.HandleInput();
+
+            if (InventoryUI.ConsumePendingEverydayTurn())
+            {
+                CloseInventory();
+                EndTurnAndProcess();
+                return;
+            }
 
             var throwRequest = InventoryUI.ConsumePendingThrowRequest();
             if (throwRequest != null && throwRequest.Item != null)

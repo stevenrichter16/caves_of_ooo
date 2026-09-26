@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="75" result="Failed" start-time="2026-09-26T20:05:01.2554140Z" end-time="2026-09-26T20:05:01.3631070Z" duration="0.107677" total="2" passed="0" failed="2" inconclusive="0" skipped="0" warnings="0" asserts="6" random-seed="387835986">
+  <command-line><![CDATA[/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/Everyday/penalty-undo-red.xml --where "method =~ /DrinkOuterRollback/"]]></command-line>
+  <filter>
+    <method re="1">DrinkOuterRollback</method>
+  </filter>
+  <test-suite type="Assembly" id="1094" name="EditModeRunner.dll" fullname="/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="75" result="Failed" site="Child" start-time="2026-09-26T20:05:01.2554140Z" end-time="2026-09-26T20:05:01.3631070Z" duration="0.107677" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="6">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-everyday-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-everyday-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="53349" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1095" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="75" result="Failed" site="Child" start-time="2026-09-26T20:05:01.2570380Z" end-time="2026-09-26T20:05:01.3631050Z" duration="0.106067" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="6">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1096" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="75" result="Failed" site="Child" start-time="2026-09-26T20:05:01.2571580Z" end-time="2026-09-26T20:05:01.3630840Z" duration="0.105925" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="6">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1058" name="DensityEverydayAdversarialTests" fullname="CavesOfOoo.Tests.DensityEverydayAdversarialTests" classname="CavesOfOoo.Tests.DensityEverydayAdversarialTests" runstate="Runnable" testcasecount="29" result="Failed" site="Child" start-time="2026-09-26T20:05:01.2575120Z" end-time="2026-09-26T20:05:01.3630630Z" duration="0.105551" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="6">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1080" name="DrinkOuterRollback_PreservesIndependentStrengthPenalty" fullname="CavesOfOoo.Tests.DensityEverydayAdversarialTests.DrinkOuterRollback_PreservesIndependentStrengthPenalty" classname="CavesOfOoo.Tests.DensityEverydayAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-26T20:05:01.2584640Z" end-time="2026-09-26T20:05:01.3628970Z" duration="0.104432" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1078" name="DrinkOuterRollback_PreservesIndependentStrengthPenalty(1)" fullname="CavesOfOoo.Tests.DensityEverydayAdversarialTests.DrinkOuterRollback_PreservesIndependentStrengthPenalty(1)" methodname="DrinkOuterRollback_PreservesIndependentStrengthPenalty" classname="CavesOfOoo.Tests.DensityEverydayAdversarialTests" runstate="Runnable" seed="1750174513" result="Failed" start-time="2026-09-26T20:05:01.2585490Z" end-time="2026-09-26T20:05:01.3423280Z" duration="0.083807" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: 3
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayAdversarialTests.DrinkOuterRollback_PreservesIndependentStrengthPenalty(Int32 stacks) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayAdversarialTests.cs:line 68
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 3
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayAdversarialTests.DrinkOuterRollback_PreservesIndependentStrengthPenalty(Int32 stacks) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayAdversarialTests.cs:line 68
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1079" name="DrinkOuterRollback_PreservesIndependentStrengthPenalty(3)" fullname="CavesOfOoo.Tests.DensityEverydayAdversarialTests.DrinkOuterRollback_PreservesIndependentStrengthPenalty(3)" methodname="DrinkOuterRollback_PreservesIndependentStrengthPenalty" classname="CavesOfOoo.Tests.DensityEverydayAdversarialTests" runstate="Runnable" seed="441124289" result="Failed" start-time="2026-09-26T20:05:01.3430370Z" end-time="2026-09-26T20:05:01.3625070Z" duration="0.019471" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: 5
+  But was:  3
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayAdversarialTests.DrinkOuterRollback_PreservesIndependentStrengthPenalty(Int32 stacks) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayAdversarialTests.cs:line 68
+   at InvokeStub_DensityEverydayAdversarialTests.DrinkOuterRollback_PreservesIndependentStrengthPenalty(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 5
+  But was:  3
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayAdversarialTests.DrinkOuterRollback_PreservesIndependentStrengthPenalty(Int32 stacks) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayAdversarialTests.cs:line 68
+   at InvokeStub_DensityEverydayAdversarialTests.DrinkOuterRollback_PreservesIndependentStrengthPenalty(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

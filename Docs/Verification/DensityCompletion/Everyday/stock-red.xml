@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="73" result="Failed" start-time="2026-09-26T20:03:59.8457070Z" end-time="2026-09-26T20:03:59.9571670Z" duration="0.111444" total="3" passed="0" failed="3" inconclusive="0" skipped="0" warnings="0" asserts="6" random-seed="243938623">
+  <command-line><![CDATA[/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/Everyday/stock-red.xml --where "method =~ /Stock_Always/"]]></command-line>
+  <filter>
+    <method re="1">Stock_Always</method>
+  </filter>
+  <test-suite type="Assembly" id="1091" name="EditModeRunner.dll" fullname="/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="73" result="Failed" site="Child" start-time="2026-09-26T20:03:59.8457070Z" end-time="2026-09-26T20:03:59.9571670Z" duration="0.111444" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="6">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-everyday-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-everyday-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="52972" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1092" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="73" result="Failed" site="Child" start-time="2026-09-26T20:03:59.8473170Z" end-time="2026-09-26T20:03:59.9571650Z" duration="0.109848" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="6">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1093" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="73" result="Failed" site="Child" start-time="2026-09-26T20:03:59.8474300Z" end-time="2026-09-26T20:03:59.9571630Z" duration="0.109733" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="6">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="DensityEverydayTests" fullname="CavesOfOoo.Tests.DensityEverydayTests" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="46" result="Failed" site="Child" start-time="2026-09-26T20:03:59.8478020Z" end-time="2026-09-26T20:03:59.9571490Z" duration="0.109347" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="6">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1057" name="Stock_AlwaysOffersOneEmptyReusableWaterskin" fullname="CavesOfOoo.Tests.DensityEverydayTests.Stock_AlwaysOffersOneEmptyReusableWaterskin" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-26T20:03:59.8486610Z" end-time="2026-09-26T20:03:59.9569340Z" duration="0.108273" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1054" name="Stock_AlwaysOffersOneEmptyReusableWaterskin(&quot;MorrowfastProvisionerStock&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.Stock_AlwaysOffersOneEmptyReusableWaterskin(&quot;MorrowfastProvisionerStock&quot;)" methodname="Stock_AlwaysOffersOneEmptyReusableWaterskin" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1986281109" result="Failed" start-time="2026-09-26T20:03:59.8487350Z" end-time="2026-09-26T20:03:59.9198070Z" duration="0.071098" asserts="2">
+              <failure>
+                <message><![CDATA[  Guaranteed waterskin stock
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Stock_AlwaysOffersOneEmptyReusableWaterskin(String tableName) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 203
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Guaranteed waterskin stock
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Stock_AlwaysOffersOneEmptyReusableWaterskin(String tableName) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 203
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1055" name="Stock_AlwaysOffersOneEmptyReusableWaterskin(&quot;ProvisionerStock&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.Stock_AlwaysOffersOneEmptyReusableWaterskin(&quot;ProvisionerStock&quot;)" methodname="Stock_AlwaysOffersOneEmptyReusableWaterskin" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1549417689" result="Failed" start-time="2026-09-26T20:03:59.9204400Z" end-time="2026-09-26T20:03:59.9403760Z" duration="0.019936" asserts="2">
+              <failure>
+                <message><![CDATA[  Guaranteed waterskin stock
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Stock_AlwaysOffersOneEmptyReusableWaterskin(String tableName) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 203
+   at InvokeStub_DensityEverydayTests.Stock_AlwaysOffersOneEmptyReusableWaterskin(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Guaranteed waterskin stock
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Stock_AlwaysOffersOneEmptyReusableWaterskin(String tableName) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 203
+   at InvokeStub_DensityEverydayTests.Stock_AlwaysOffersOneEmptyReusableWaterskin(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1056" name="Stock_AlwaysOffersOneEmptyReusableWaterskin(&quot;WellKeeperStock&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayTests.Stock_AlwaysOffersOneEmptyReusableWaterskin(&quot;WellKeeperStock&quot;)" methodname="Stock_AlwaysOffersOneEmptyReusableWaterskin" classname="CavesOfOoo.Tests.DensityEverydayTests" runstate="Runnable" seed="1289262188" result="Failed" start-time="2026-09-26T20:03:59.9404010Z" end-time="2026-09-26T20:03:59.9564750Z" duration="0.016074" asserts="2">
+              <failure>
+                <message><![CDATA[  Guaranteed waterskin stock
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Stock_AlwaysOffersOneEmptyReusableWaterskin(String tableName) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 203
+   at InvokeStub_DensityEverydayTests.Stock_AlwaysOffersOneEmptyReusableWaterskin(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Guaranteed waterskin stock
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayTests.Stock_AlwaysOffersOneEmptyReusableWaterskin(String tableName) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayTests.cs:line 203
+   at InvokeStub_DensityEverydayTests.Stock_AlwaysOffersOneEmptyReusableWaterskin(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

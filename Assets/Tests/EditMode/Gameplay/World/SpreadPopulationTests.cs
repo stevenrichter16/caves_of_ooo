@@ -80,8 +80,8 @@ namespace CavesOfOoo.Tests
             int settled = WeightOf(t1, "Magpie") + WeightOf(t1, "PetDog")
                         + WeightOf(t1, "BerryBush") + WeightOf(t1, "Beehive")
                         + WeightOf(t1, "HollowStump") + WeightOf(t1, "Signpost");
-            int hostile = WeightOf(t1, "Snapjaw") + WeightOf(t1, "SnapjawScavenger")
-                        + WeightOf(t1, "SnapjawHunter") + WeightOf(t1, "Viper")
+            int hostile = WeightOf(t1, "MarlbackScrabbler") + WeightOf(t1, "MarlbackGleaner")
+                        + WeightOf(t1, "MarlbackTunnelguard") + WeightOf(t1, "Viper")
                         + WeightOf(t1, "GiantSpider");
 
             Assert.Greater(settled, hostile,
@@ -96,8 +96,8 @@ namespace CavesOfOoo.Tests
             int Hostiles(int tier)
             {
                 var t = PopulationTable.GetBiomeTable(BiomeType.Spread, tier);
-                return WeightOf(t, "Snapjaw") + WeightOf(t, "SnapjawScavenger")
-                     + WeightOf(t, "SnapjawHunter") + WeightOf(t, "GiantSpider");
+                return WeightOf(t, "MarlbackScrabbler") + WeightOf(t, "MarlbackGleaner")
+                     + WeightOf(t, "MarlbackTunnelguard") + WeightOf(t, "GiantSpider");
             }
 
             Assert.Less(Hostiles(1), Hostiles(2), "tier 2 must be rougher than tier 1");

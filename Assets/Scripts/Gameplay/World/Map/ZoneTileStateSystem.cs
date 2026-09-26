@@ -142,11 +142,16 @@ namespace CavesOfOoo.Core
         /// cells in the zone actually on screen. Assignment rather than
         /// += keeps re-binding idempotent.
         /// </summary>
+        private static System.WeakReference<Zone> _boundRenderZone;
         public static void BindRenderHook(Zone zone)
         {
             if (zone == null) return;
+            if (_boundRenderZone != null && _boundRenderZone.TryGetTarget(out var previous) && previous != zone)
+            { previous.TileState.OnCellChanged = null; previous.TileState.OnSightChanged = null; }
+            _boundRenderZone = new System.WeakReference<Zone>(zone);
             zone.TileState.OnCellChanged =
                 (x, y) => ZoneRenderHooks.MarkCellDirty(x, y, "TileState");
+            zone.TileState.OnSightChanged = () => ZoneRenderHooks.MarkFullDirty("TileState.Visibility");
         }
 
         // ── Write wrappers — the only sanctioned path ────────────

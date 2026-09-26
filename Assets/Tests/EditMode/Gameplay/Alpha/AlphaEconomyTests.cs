@@ -64,7 +64,7 @@ namespace CavesOfOoo.Tests
         [Test]
         public void Corpses_HaveSellValue()
         {
-            foreach (var (name, min) in new[] { ("CreatureCorpse", 1), ("SnapjawCorpse", 1) })
+            foreach (var (name, min) in new[] { ("CreatureCorpse", 1), ("MarlbackCorpse", 1) })
             {
                 var corpse = _factory.CreateEntity(name);
                 var commerce = corpse.GetPart<CommercePart>();

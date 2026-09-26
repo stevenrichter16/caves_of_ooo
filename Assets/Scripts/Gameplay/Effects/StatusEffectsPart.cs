@@ -309,6 +309,15 @@ namespace CavesOfOoo.Core
             }
         }
 
+        // Inventory rollback restores only the removed object, preserving unrelated
+        // effects added by callbacks. Its part-specific undo restores penalties.
+        internal void RestoreRemovedEffectForInventoryUndo(Effect effect, int index)
+        {
+            if (effect == null || _effects.Contains(effect)) return;
+            effect.Owner = ParentEntity;
+            _effects.Insert(Math.Max(0, Math.Min(index, _effects.Count)), effect);
+        }
+
         public override void OnAfterLoad(SaveReader reader)
         {
             // Resolve the entity's current zone so IAuraProvider effects can
@@ -389,6 +398,12 @@ namespace CavesOfOoo.Core
             if (e.ID == "BeforeMove")
                 return HandleBeforeMove(e);
 
+            if (e.ID == "AfterMove")
+            {
+                PlayerSeatService.AfterMovement(ParentEntity);
+                return true;
+            }
+
             if (e.ID == "EndTurn")
             {
                 HandleEndTurn(e);
@@ -403,6 +418,7 @@ namespace CavesOfOoo.Core
 
             if (e.ID == "TakeDamage")
             {
+                if (ParentEntity.HasTag("Player")) RemoveEffect<SittingEffect>();
                 HandleTakeDamage(e);
                 return true;
             }

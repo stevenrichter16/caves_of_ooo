@@ -27,7 +27,7 @@ namespace CavesOfOoo.Tests
         {
             using (var f = new EntityEquipmentContentFixture())
             {
-                var actor = f.Create("SnapjawWarlord"); var body = actor.GetPart<Body>(); var hands = body.GetPartsByType("Hand");
+                var actor = f.Create("MarlbackBreacher"); var body = actor.GetPart<Body>(); var hands = body.GetPartsByType("Hand");
                 Assert.NotNull(hands[0]._DefaultBehavior, "Fresh factory must materialize without fixture repair.");
                 var shared = hands[0]._DefaultBehavior; shared.ID = "shared-custom-natural"; shared.GetPart<MeleeWeaponPart>().BaseDamage = "3d7";
                 hands[1]._DefaultBehavior = shared; body.GetBody().RecalculateFirstDefaultBehavior();
@@ -51,7 +51,7 @@ namespace CavesOfOoo.Tests
         {
             using (var f = new EntityEquipmentContentFixture())
             {
-                var actor = f.Create("SnapjawWarlord"); var body = actor.GetPart<Body>(); var hands = body.GetPartsByType("Hand");
+                var actor = f.Create("MarlbackBreacher"); var body = actor.GetPart<Body>(); var hands = body.GetPartsByType("Hand");
                 Assert.NotNull(hands[0]._DefaultBehavior); hands[1]._DefaultBehavior = hands[0]._DefaultBehavior;
                 body.GetBody().RecalculateFirstDefaultBehavior(); Assert.AreEqual(1, Gathered(actor));
                 var loaded = RoundTrip(actor); var restored = loaded.GetPart<Body>().GetPartsByType("Hand");
@@ -64,7 +64,7 @@ namespace CavesOfOoo.Tests
         {
             using (var f = new EntityEquipmentContentFixture())
             {
-                var actor = f.Create("SnapjawWarlord"); var body = actor.GetPart<Body>(); var hands = body.GetPartsByType("Hand");
+                var actor = f.Create("MarlbackBreacher"); var body = actor.GetPart<Body>(); var hands = body.GetPartsByType("Hand");
                 Assert.NotNull(hands[0]._DefaultBehavior); Assert.NotNull(hands[1]._DefaultBehavior);
                 Assert.AreNotSame(hands[0]._DefaultBehavior, hands[1]._DefaultBehavior); Assert.AreEqual(2, Gathered(actor));
                 int detachedID = hands[1].ID; Assert.IsTrue(body.Dismember(hands[1]));

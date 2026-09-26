@@ -228,10 +228,10 @@ namespace CavesOfOoo.Tests
         public void DormantGoal_SameFactionCreatureInSight_DoesNotWake()
         {
             var zone = new Zone("AdvZone");
-            var ambusher = CreateCreature(zone, 10, 10, faction: "Snapjaws", hp: 30);
+            var ambusher = CreateCreature(zone, 10, 10, faction: "OutlandRaiders", hp: 30);
 
             // Allied (same-faction) creature nearby.
-            var ally = CreateCreature(zone, 12, 10, faction: "Snapjaws", hp: 30);
+            var ally = CreateCreature(zone, 12, 10, faction: "OutlandRaiders", hp: 30);
 
             var brain = ambusher.GetPart<BrainPart>();
             var dormant = new DormantGoal(wakeOnDamage: false, wakeOnHostileInSight: true);
@@ -254,7 +254,7 @@ namespace CavesOfOoo.Tests
         public void DormantGoal_BothFlags_DamageAndHostile_WakesOnceTotal()
         {
             var zone = new Zone("AdvZone");
-            var ambusher = CreateCreature(zone, 10, 10, faction: "Snapjaws", hp: 30);
+            var ambusher = CreateCreature(zone, 10, 10, faction: "OutlandRaiders", hp: 30);
 
             var hostile = new Entity { BlueprintName = "Player" };
             hostile.Tags["Creature"] = "";
@@ -314,7 +314,7 @@ namespace CavesOfOoo.Tests
         public void DormantGoal_SleepParticleIntervalOne_EmitsEveryTickAfterFirst()
         {
             var zone = new Zone("AdvZone");
-            var ambusher = CreateCreature(zone, 10, 10, faction: "Snapjaws", hp: 30);
+            var ambusher = CreateCreature(zone, 10, 10, faction: "OutlandRaiders", hp: 30);
             var brain = ambusher.GetPart<BrainPart>();
             var dormant = new DormantGoal(wakeOnDamage: false, wakeOnHostileInSight: false,
                 sleepParticleInterval: 1);
@@ -348,9 +348,9 @@ namespace CavesOfOoo.Tests
         {
             var zone = new Zone("AdvZone");
             var attacker = CreateCreature(zone, 5, 5, faction: "Villagers");
-            var enemy = CreateCreature(zone, 7, 5, faction: "Snapjaws");
-            FactionManager.SetFactionFeeling("Villagers", "Snapjaws", -100);
-            FactionManager.SetFactionFeeling("Snapjaws", "Villagers", -100);
+            var enemy = CreateCreature(zone, 7, 5, faction: "OutlandRaiders");
+            FactionManager.SetFactionFeeling("Villagers", "OutlandRaiders", -100);
+            FactionManager.SetFactionFeeling("OutlandRaiders", "Villagers", -100);
 
             var brain = attacker.GetPart<BrainPart>();
             // Attacker has acquired the enemy and pushed KillGoal.

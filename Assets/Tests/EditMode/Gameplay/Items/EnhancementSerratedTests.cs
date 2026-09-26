@@ -52,7 +52,7 @@ namespace CavesOfOoo.Tests
             return e;
         }
 
-        private static Entity MakeCreature(string id = "snapjaw")
+        private static Entity MakeCreature(string id = "marlback")
         {
             // Mirrors MakeFighter() in OnHitClassEffectsTests — minimal
             // stats + StatusEffectsPart so Bleeding can attach.

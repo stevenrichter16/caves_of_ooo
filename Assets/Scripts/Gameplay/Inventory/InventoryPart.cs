@@ -578,6 +578,18 @@ namespace CavesOfOoo.Core
         /// </summary>
         public override bool HandleEvent(GameEvent e)
         {
+            if (e.ID == "EndTurn")
+            {
+                // Only actual equipped torches tick; the snapshot also deduplicates
+                // a physical item occupying more than one equipment slot.
+                HashSet<Entity> torches = null;
+                foreach (var item in EquippedItems.Values)
+                    if (item?.GetPart<TorchLightPart>() != null && item.GetPart<PhysicsPart>()?.Equipped == ParentEntity)
+                        (torches ??= new HashSet<Entity>()).Add(item);
+                if (torches != null) foreach (var item in torches)
+                    if (EquippedItems.ContainsValue(item) && item.GetPart<PhysicsPart>()?.Equipped == ParentEntity)
+                        item.GetPart<TorchLightPart>().Tick(e.GetParameter<Zone>("Zone"));
+            }
             if (e.ID == "BeforeMove")
             {
                 if (IsOverburdened())

@@ -16,9 +16,9 @@
               "Target": "Supplies"
             },
             {
-              "Text": "I've been dealing with snapjaws nearby.",
-              "Target": "SnapjawTalk",
-              "Predicates": [{ "Key": "IfHaveTag", "Value": "KilledSnapjaw" }]
+              "Text": "I've been dealing with marlbacks nearby.",
+              "Target": "MarlbackScrabblerTalk",
+              "Predicates": [{ "Key": "IfHaveTag", "Value": "KilledMarlback" }]
             },
             {
               "Text": "What do you know about the factions in the deep caves?",
@@ -71,7 +71,7 @@
         },
         {
           "ID": "DifferentHow",
-          "Text": "The mushrooms came first. Growing in places nothing should grow -- through stone, through metal, through the walls of the mine. Then the lights. Faint blue glimmers deep in the tunnels, like reflections of something that isn't there. And then the creatures. Not the snapjaws -- those came later. I mean the things that think. The things that speak.",
+          "Text": "The mushrooms came first. Growing in places nothing should grow -- through stone, through metal, through the walls of the mine. Then the lights. Faint blue glimmers deep in the tunnels, like reflections of something that isn't there. And then the creatures. Not the marlbacks -- those came later. I mean the things that think. The things that speak.",
           "Choices": [
             {
               "Text": "You've encountered the Rot Choir.",
@@ -160,7 +160,7 @@
         },
         {
           "ID": "ElderFiveFactions",
-          "Text": "Five factions... The Choir you've told me about. And four others? This is larger than I imagined. The world truly has changed, and we've been sitting up here on the surface, thinking it was just snapjaws and bad harvests. Tell me about the others when you can, wanderer. This old man still has much to learn.",
+          "Text": "Five factions... The Choir you've told me about. And four others? This is larger than I imagined. The world truly has changed, and we've been sitting up here on the surface, thinking it was just marlbacks and bad harvests. Tell me about the others when you can, wanderer. This old man still has much to learn.",
           "Choices": [
             {
               "Text": "I will. Live and drink, elder.",
@@ -292,8 +292,8 @@
           ]
         },
         {
-          "ID": "SnapjawTalk",
-          "Text": "You've fought the snapjaws? Good. They've been raiding our stores. The village owes you a debt.",
+          "ID": "MarlbackScrabblerTalk",
+          "Text": "You've fought the marlbacks? Good. They've been raiding our stores. The village owes you a debt.",
           "Choices": [
             {
               "Text": "Just doing what needs to be done.",
@@ -301,8 +301,8 @@
               "Actions": [{ "Key": "ChangeFactionFeeling", "Value": "Villagers:Player:10" }]
             },
             {
-              "Text": "The snapjaws may be fleeing something deeper in the caves.",
-              "Target": "SnapjawDeeper",
+              "Text": "The marlbacks may be fleeing something deeper in the caves.",
+              "Target": "MarlbackScrabblerDeeper",
               "Predicates": [{ "Key": "IfHaveProperty", "Value": "MetChoir" }]
             },
             {
@@ -312,12 +312,12 @@
           ]
         },
         {
-          "ID": "SnapjawDeeper",
-          "Text": "Fleeing? You mean the snapjaws aren't raiding us out of malice? They're running from something? That... changes things. If the caves are pushing creatures to the surface, the problem is not the creatures. The problem is what drives them.",
+          "ID": "MarlbackScrabblerDeeper",
+          "Text": "Fleeing? You mean the marlbacks aren't raiding us out of malice? They're running from something? That... changes things. If the caves are pushing creatures to the surface, the problem is not the creatures. The problem is what drives them.",
           "Choices": [
             {
               "Text": "The Rot Choir's growth may be displacing them.",
-              "Target": "SnapjawChoir"
+              "Target": "MarlbackScrabblerChoir"
             },
             {
               "Text": "Something is expanding in the deep caves. It's complicated.",
@@ -327,8 +327,8 @@
           ]
         },
         {
-          "ID": "SnapjawChoir",
-          "Text": "A growing consciousness, displacing creatures upward to our doorstep. So the snapjaws are refugees, in a sense. That does not make them less dangerous, but it does make them less evil. Thank you for this perspective, wanderer. It will change how we deal with them.",
+          "ID": "MarlbackScrabblerChoir",
+          "Text": "A growing consciousness, displacing creatures upward to our doorstep. So the marlbacks are refugees, in a sense. That does not make them less dangerous, but it does make them less evil. Thank you for this perspective, wanderer. It will change how we deal with them.",
           "Choices": [
             {
               "Text": "Maybe coexistence is possible.",

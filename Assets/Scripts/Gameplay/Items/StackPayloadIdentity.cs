@@ -8,7 +8,7 @@ namespace CavesOfOoo.Core
         {
             // Preserve order only among parts sharing a dispatch path. A temper marker's
             // position relative to an enhancement is merely crafting history.
-            for (int group = 1; group <= 4; group++)
+            for (int group = 1; group <= 5; group++)
             {
                 int ai = 0, bi = 0;
                 while (true)
@@ -38,6 +38,7 @@ namespace CavesOfOoo.Core
         private static int Group(Entity item, Part part)
         {
             if (part is TonicPart || part is BrewItemPart || part is StatusTonicPart || part is CureTonicPart) return 1;
+            if (part is TorchLightPart) return 5;
             if (part is IItemEnhancement) return 2;
             if (part is MeleeWeaponPart) return 3;
             if (part is WeaponTemperPart temper)
@@ -63,6 +64,23 @@ namespace CavesOfOoo.Core
             var type = a.GetType();
             if (type != b.GetType()) return false;
             // Exact types: an extension may add state that these comparisons do not know.
+            if (type == typeof(TorchLightPart))
+            {
+                var x = a.ParentEntity; var y = b.ParentEntity;
+                // Effects carry independent lifetimes/source/other state. Even
+                // matching wetness is not a license to erase another effect.
+                if ((x.GetPart<StatusEffectsPart>()?.EffectCount ?? 0) != 0
+                    || (y.GetPart<StatusEffectsPart>()?.EffectCount ?? 0) != 0) return false;
+                var xf = x.GetPart<FuelPart>(); var yf = y.GetPart<FuelPart>();
+                var xt = x.GetPart<ThermalPart>(); var yt = y.GetPart<ThermalPart>();
+                return ((TorchLightPart)a).LightTemperature.Equals(((TorchLightPart)b).LightTemperature)
+                    && x.GetPart<LightSourcePart>()?.Enabled == y.GetPart<LightSourcePart>()?.Enabled
+                    && xf?.FuelMass == yf?.FuelMass && xf?.MaxFuel == yf?.MaxFuel
+                    && xf?.BurnRate == yf?.BurnRate && xf?.HeatOutput == yf?.HeatOutput
+                    && xf?.ExhaustProduct == yf?.ExhaustProduct
+                    && xt?.Temperature == yt?.Temperature && xt?.FlameTemperature == yt?.FlameTemperature
+                    && xt?.AmbientTemperature == yt?.AmbientTemperature;
+            }
             if (type == typeof(TonicPart))
             {
                 var x = (TonicPart)a; var y = (TonicPart)b;

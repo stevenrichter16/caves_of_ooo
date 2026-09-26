@@ -1,0 +1,62 @@
+{
+  "before": {
+    "source": "/tmp/coo-completion-regression-before.xml",
+    "tests": [
+      {
+        "name": "CavesOfOoo.Tests.GameAuditPositivePaymentTests.PositiveSeedPaysOneAndReportsExactlyOnePlant(1)",
+        "result": "Passed",
+        "message": null
+      },
+      {
+        "name": "CavesOfOoo.Tests.GameAuditPositivePaymentTests.PositiveSeedPaysOneAndReportsExactlyOnePlant(3)",
+        "result": "Passed",
+        "message": null
+      },
+      {
+        "name": "CavesOfOoo.Tests.GameAuditTransferAdversarialTests.Adversarial_PostPlacementMessageExceptionRestoresExactItems(False)",
+        "result": "Passed",
+        "message": null
+      },
+      {
+        "name": "CavesOfOoo.Tests.GameAuditTransferAdversarialTests.Adversarial_PostPlacementMessageExceptionRestoresExactItems(True)",
+        "result": "Passed",
+        "message": null
+      },
+      {
+        "name": "CavesOfOoo.Tests.StatusApplicationFacadeTests.NoProductionCode_BypassesTheFacade",
+        "result": "Passed",
+        "message": null
+      }
+    ]
+  },
+  "after": {
+    "source": "/tmp/coo-completion-regression-after.xml",
+    "tests": [
+      {
+        "name": "CavesOfOoo.Tests.GameAuditPositivePaymentTests.PositiveSeedPaysOneAndReportsExactlyOnePlant(1)",
+        "result": "Failed",
+        "message": "  planting prose must describe one unit, not the remaining stack\n  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.GameAuditPositivePaymentTests.PositiveSeedPaysOneAndReportsExactlyOnePlant(3)",
+        "result": "Failed",
+        "message": "  planting prose must describe one unit, not the remaining stack\n  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.GameAuditTransferAdversarialTests.Adversarial_PostPlacementMessageExceptionRestoresExactItems(False)",
+        "result": "Failed",
+        "message": "  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "CavesOfOoo.Tests.GameAuditTransferAdversarialTests.Adversarial_PostPlacementMessageExceptionRestoresExactItems(True)",
+        "result": "Passed",
+        "message": null
+      },
+      {
+        "name": "CavesOfOoo.Tests.StatusApplicationFacadeTests.NoProductionCode_BypassesTheFacade",
+        "result": "Failed",
+        "message": "  these files reach past the fa\u00e7ade to StatusEffectsPart directly:\n  Gameplay/AI/PlayerSeatService.cs\n  Expected: <empty>\n  But was:  < \"Gameplay/AI/PlayerSeatService.cs\" >\n"
+      }
+    ]
+  }
+}

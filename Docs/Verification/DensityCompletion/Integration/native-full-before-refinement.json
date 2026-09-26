@@ -1,0 +1,280 @@
+{
+  "summary": {
+    "id": "2",
+    "testcasecount": "16794",
+    "result": "Failed(Child)",
+    "total": "16794",
+    "passed": "16742",
+    "failed": "52",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-26 21:49:53Z",
+    "end-time": "2026-09-26 22:04:02Z",
+    "duration": "849.140737"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.BeatingCompositionAdversarialTests.Adversarial_HarvestedSaltBecomesRealGoodsAndLeavesItsNeighbor(-1)",
+      "message": "  Expected: null\n  But was:  <Cell(3,5) [2 objects]>\n",
+      "stack": "at CavesOfOoo.Tests.BeatingCompositionAdversarialTests.Adversarial_HarvestedSaltBecomesRealGoodsAndLeavesItsNeighbor (System.Int32 maxWeight) [0x000c8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingCompositionAdversarialTests.cs:240\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.BeatingCompositionAdversarialTests.Adversarial_HarvestedSaltBecomesRealGoodsAndLeavesItsNeighbor(0)",
+      "message": "  Expected: null\n  But was:  <Cell(3,5) [2 objects]>\n",
+      "stack": "at CavesOfOoo.Tests.BeatingCompositionAdversarialTests.Adversarial_HarvestedSaltBecomesRealGoodsAndLeavesItsNeighbor (System.Int32 maxWeight) [0x000c8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BeatingCompositionAdversarialTests.cs:240\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.CanonicalVillageQuestAdversarialTests.WellmeetWarrenModelsRequireActualAuthoredQuestContracts(False)",
+      "message": "  unmodeled-native-blueprint\n  Expected: not null\n  But was:  null\n",
+      "stack": "at CavesOfOoo.Tests.CanonicalVillageQuestAdversarialTests.WellmeetWarrenModelsRequireActualAuthoredQuestContracts (System.Boolean giver) [0x0008b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Storylets/CanonicalVillageQuestAdversarialTests.cs:58\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DiagPerfTests.Diag_DisabledChannelOverhead_BoundedPerCall",
+      "message": "  Disabled-channel Diag.Record overhead 204 ns/call exceeded ceiling 200 ns/call. The IsChannelEnabled short-circuit may have regressed (extra allocation? lock contention? full-method dispatch?).\n  Expected: less than 200.0d\n  But was:  204.19d\n",
+      "stack": "at CavesOfOoo.Tests.DiagPerfTests.Diag_DisabledChannelOverhead_BoundedPerCall () [0x000b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Diagnostics/DiagPerfTests.cs:75\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.EnvironmentSpriteRendererHarnessTests.JungleApe_ClaimsItsBestiarySprite",
+      "message": "  roster pin: the 44-creature bestiary + the gin frog (W5.6) + the tepui's lowland band (W6.3a) + summit/sima wave (W6.3b) + the native MawToad pilot icon + the Recension Searcher and the Curation Indexer (Stillleaf Archive SA.2, SA.3)\n  Expected: 58\n  But was:  62\n",
+      "stack": "at CavesOfOoo.Tests.EnvironmentSpriteRendererHarnessTests.JungleApe_ClaimsItsBestiarySprite () [0x000fa] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/EnvironmentSpriteRendererHarnessTests.cs:868\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FoundingCampRenderingTests.EveryVisibleNativeOwnerAcrossFourChunksHasAReadOnlyModel(64)",
+      "message": "  Overworld.8.16.0 DirtGnome: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"Overworld.8.16.0 DirtGnome: unmodeled-native-blueprint\" >\n",
+      "stack": "at CavesOfOoo.Tests.FoundingCampRenderingTests.EveryVisibleNativeOwnerAcrossFourChunksHasAReadOnlyModel (System.Int32 seed) [0x0019b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FoundingCampRenderingTests.cs:69\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FoundingCampRenderingTests.EveryVisibleNativeOwnerAcrossFourChunksHasAReadOnlyModel(1729)",
+      "message": "  Overworld.8.16.0 DirtGnome: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"Overworld.8.16.0 DirtGnome: unmodeled-native-blueprint\" >\n",
+      "stack": "at CavesOfOoo.Tests.FoundingCampRenderingTests.EveryVisibleNativeOwnerAcrossFourChunksHasAReadOnlyModel (System.Int32 seed) [0x0019b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FoundingCampRenderingTests.cs:69\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FoundingCampRenderingTests.EveryVisibleNativeOwnerAcrossFourChunksHasAReadOnlyModel(729490642)",
+      "message": "  Overworld.8.16.0 DirtGnome: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"Overworld.8.16.0 DirtGnome: unmodeled-native-blueprint\" >\n",
+      "stack": "at CavesOfOoo.Tests.FoundingCampRenderingTests.EveryVisibleNativeOwnerAcrossFourChunksHasAReadOnlyModel (System.Int32 seed) [0x0019b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FoundingCampRenderingTests.cs:69\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FoundingCampRenderingTests.StateReactiveNativePopulationAlsoHasVoxelCoverage(False)",
+      "message": "  Overworld.8.16.0 DirtGnome: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"Overworld.8.16.0 DirtGnome: unmodeled-native-blueprint\" >\n",
+      "stack": "at CavesOfOoo.Tests.FoundingCampRenderingTests.EveryVisibleNativeOwnerAcrossFourChunksHasAReadOnlyModel (System.Int32 seed) [0x0019b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FoundingCampRenderingTests.cs:69\nat CavesOfOoo.Tests.FoundingCampRenderingTests.StateReactiveNativePopulationAlsoHasVoxelCoverage (System.Boolean urquActive) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FoundingCampRenderingTests.cs:21\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.FoundingCampRenderingTests.StateReactiveNativePopulationAlsoHasVoxelCoverage(True)",
+      "message": "  Overworld.8.16.0 DirtGnome: unmodeled-native-blueprint\n  Expected: <empty>\n  But was:  < \"Overworld.8.16.0 DirtGnome: unmodeled-native-blueprint\" >\n",
+      "stack": "at CavesOfOoo.Tests.FoundingCampRenderingTests.EveryVisibleNativeOwnerAcrossFourChunksHasAReadOnlyModel (System.Int32 seed) [0x0019b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FoundingCampRenderingTests.cs:69\nat CavesOfOoo.Tests.FoundingCampRenderingTests.StateReactiveNativePopulationAlsoHasVoxelCoverage (System.Boolean urquActive) [0x00026] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FoundingCampRenderingTests.cs:21\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.PartialBrewSuccessDoesNotBecomeAFalseAllOrNothingFailure(False)",
+      "message": "  Expected: 1\n  But was:  0\n",
+      "stack": "at CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.PartialBrewSuccessDoesNotBecomeAFalseAllOrNothingFailure (System.Boolean removeRemaining) [0x000c7] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackAdversarialTests.cs:111\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.PartialBrewSuccessDoesNotBecomeAFalseAllOrNothingFailure(True)",
+      "message": "  Expected: 1\n  But was:  0\n",
+      "stack": "at CavesOfOoo.Tests.GameAuditActionFeedbackAdversarialTests.PartialBrewSuccessDoesNotBecomeAFalseAllOrNothingFailure (System.Boolean removeRemaining) [0x000c7] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/GameAuditActionFeedbackAdversarialTests.cs:111\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditSeparateOneAdversarialTests.PublicationProtectsBothParticipantsButAllowsUnrelatedDrop(False,False)",
+      "message": "  Expected: True\n  But was:  False\n",
+      "stack": "at CavesOfOoo.Tests.GameAuditSeparateOneAdversarialTests.PublicationProtectsBothParticipantsButAllowsUnrelatedDrop (System.Boolean chooseNew, System.Boolean fail) [0x000cd] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/GameAuditSeparateOneAdversarialTests.cs:137\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditSeparateOneAdversarialTests.PublicationProtectsBothParticipantsButAllowsUnrelatedDrop(False,True)",
+      "message": "  Expected: True\n  But was:  False\n",
+      "stack": "at CavesOfOoo.Tests.GameAuditSeparateOneAdversarialTests.PublicationProtectsBothParticipantsButAllowsUnrelatedDrop (System.Boolean chooseNew, System.Boolean fail) [0x000cd] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/GameAuditSeparateOneAdversarialTests.cs:137\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditSeparateOneAdversarialTests.PublicationProtectsBothParticipantsButAllowsUnrelatedDrop(True,False)",
+      "message": "  Expected: True\n  But was:  False\n",
+      "stack": "at CavesOfOoo.Tests.GameAuditSeparateOneAdversarialTests.PublicationProtectsBothParticipantsButAllowsUnrelatedDrop (System.Boolean chooseNew, System.Boolean fail) [0x000cd] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/GameAuditSeparateOneAdversarialTests.cs:137\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditSeparateOneAdversarialTests.PublicationProtectsBothParticipantsButAllowsUnrelatedDrop(True,True)",
+      "message": "  Expected: True\n  But was:  False\n",
+      "stack": "at CavesOfOoo.Tests.GameAuditSeparateOneAdversarialTests.PublicationProtectsBothParticipantsButAllowsUnrelatedDrop (System.Boolean chooseNew, System.Boolean fail) [0x000cd] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/GameAuditSeparateOneAdversarialTests.cs:137\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditTransferTests.SyntheticCarriedVegetation_DropRespectsActualPlacementRefusal(False,False)",
+      "message": "  Expected: True\n  But was:  False\n",
+      "stack": "at CavesOfOoo.Tests.GameAuditTransferTests.SyntheticCarriedVegetation_DropRespectsActualPlacementRefusal (System.Boolean barren, System.Boolean partial) [0x0017a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/GameAuditTransferTests.cs:90\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.GameAuditTransferTests.SyntheticCarriedVegetation_DropRespectsActualPlacementRefusal(False,True)",
+      "message": "  Expected: True\n  But was:  False\n",
+      "stack": "at CavesOfOoo.Tests.GameAuditTransferTests.SyntheticCarriedVegetation_DropRespectsActualPlacementRefusal (System.Boolean barren, System.Boolean partial) [0x0017a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/GameAuditTransferTests.cs:90\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeProfileTests.LightingUsesOwnedGladeProfileOnly(True)",
+      "message": "  Expected: less than or equal to 0.349999994f\n  But was:  0.699999988f\n",
+      "stack": "at CavesOfOoo.Tests.ReferenceGladeProfileTests.LightingUsesOwnedGladeProfileOnly (System.Boolean glade) [0x00079] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/ReferenceGladeProfileTests.cs:21\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeProfileTests.LocalHumanoidAliasRefusesChangedGlyphOrForeignZone(\"Warden\")",
+      "message": "  Expected: True\n  But was:  False\n",
+      "stack": "at CavesOfOoo.Tests.ReferenceGladeProfileTests.LocalHumanoidAliasRefusesChangedGlyphOrForeignZone (System.String blueprint) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/ReferenceGladeProfileTests.cs:62\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeProfileTests.LocalHumanoidAliasRefusesChangedGlyphOrForeignZone(\"Villager\")",
+      "message": "  Expected: True\n  But was:  False\n",
+      "stack": "at CavesOfOoo.Tests.ReferenceGladeProfileTests.LocalHumanoidAliasRefusesChangedGlyphOrForeignZone (System.String blueprint) [0x0001d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/ReferenceGladeProfileTests.cs:62\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeProfileTests.NativeActorsAreSmallRiggedPickableAndStillOwned(\"Player\")",
+      "message": "  Expected: less than 0.800000012f\n  But was:  1.0f\n",
+      "stack": "at CavesOfOoo.Tests.ReferenceGladeProfileTests.NativeActorsAreSmallRiggedPickableAndStillOwned (System.String blueprint) [0x00040] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/ReferenceGladeProfileTests.cs:39\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeProfileTests.NativeActorsAreSmallRiggedPickableAndStillOwned(\"Warden\")",
+      "message": "  Warden\n  Expected: True\n  But was:  False\n",
+      "stack": "at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture.View (CavesOfOoo.Core.Entity entity) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:100\nat CavesOfOoo.Tests.ReferenceGladeProfileTests.NativeActorsAreSmallRiggedPickableAndStillOwned (System.String blueprint) [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/ReferenceGladeProfileTests.cs:38\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeProfileTests.NativeActorsAreSmallRiggedPickableAndStillOwned(\"Villager\")",
+      "message": "  Villager\n  Expected: True\n  But was:  False\n",
+      "stack": "at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture.View (CavesOfOoo.Core.Entity entity) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:100\nat CavesOfOoo.Tests.ReferenceGladeProfileTests.NativeActorsAreSmallRiggedPickableAndStillOwned (System.String blueprint) [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/ReferenceGladeProfileTests.cs:38\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeProfileTests.NativeActorsAreSmallRiggedPickableAndStillOwned(\"MarlbackScrabbler\")",
+      "message": "  Expected: less than 0.800000012f\n  But was:  1.0f\n",
+      "stack": "at CavesOfOoo.Tests.ReferenceGladeProfileTests.NativeActorsAreSmallRiggedPickableAndStillOwned (System.String blueprint) [0x00040] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/ReferenceGladeProfileTests.cs:39\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeProfileTests.NativeActorsAreSmallRiggedPickableAndStillOwned(\"MarlbackGleaner\")",
+      "message": "  Expected: less than 0.800000012f\n  But was:  1.0f\n",
+      "stack": "at CavesOfOoo.Tests.ReferenceGladeProfileTests.NativeActorsAreSmallRiggedPickableAndStillOwned (System.String blueprint) [0x00040] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/ReferenceGladeProfileTests.cs:39\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeProfileTests.PlayerGearSharesSmallRigAndOrdinaryZoneRetainsFullScale",
+      "message": "  Expected: less than 0.600000024f\n  But was:  1.0f\n",
+      "stack": "at CavesOfOoo.Tests.ReferenceGladeProfileTests.PlayerGearSharesSmallRigAndOrdinaryZoneRetainsFullScale () [0x00068] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/ReferenceGladeProfileTests.cs:52\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeProfileTests.RealPropsHaveScopedDetailedModelsAndRemovedOwnersDisappear(\"Chest\",\"chest\")",
+      "message": "  Expected: String starting with \"reference-glade-chest-\"\n  But was:  \"ring-chest\"\n",
+      "stack": "at CavesOfOoo.Tests.ReferenceGladeProfileTests.RealPropsHaveScopedDetailedModelsAndRemovedOwnersDisappear (System.String blueprint, System.String family) [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/ReferenceGladeProfileTests.cs:73\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeProfileTests.RealPropsHaveScopedDetailedModelsAndRemovedOwnersDisappear(\"WoodenBarrel\",\"barrel\")",
+      "message": "  Expected: String starting with \"reference-glade-barrel-\"\n  But was:  \"ring-wooden-barrel\"\n",
+      "stack": "at CavesOfOoo.Tests.ReferenceGladeProfileTests.RealPropsHaveScopedDetailedModelsAndRemovedOwnersDisappear (System.String blueprint, System.String family) [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/ReferenceGladeProfileTests.cs:73\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCompositionAdversarialTests.SharedPoiPipelineRetainsLegacyTerrain",
+      "message": "  Overworld.11.10.0\n  Expected: True\n  But was:  False\n",
+      "stack": "at CavesOfOoo.Tests.SpreadCompositionAdversarialTests.SharedPoiPipelineRetainsLegacyTerrain () [0x0010f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCompositionAdversarialTests.cs:103\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StumpCompositionAdversarialTests.Adversarial_ComposedVeinHarvestPreservesHeavyYieldAndNeighbor(0)",
+      "message": "  Expected: null\n  But was:  <Cell(9,11) [2 objects]>\n",
+      "stack": "at CavesOfOoo.Tests.StumpCompositionAdversarialTests.Adversarial_ComposedVeinHarvestPreservesHeavyYieldAndNeighbor (System.Int32 capacity) [0x000f7] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpCompositionAdversarialTests.cs:190\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StumpCompositionAdversarialTests.Adversarial_ComposedVeinHarvestPreservesHeavyYieldAndNeighbor(24)",
+      "message": "  Expected: null\n  But was:  <Cell(9,11) [2 objects]>\n",
+      "stack": "at CavesOfOoo.Tests.StumpCompositionAdversarialTests.Adversarial_ComposedVeinHarvestPreservesHeavyYieldAndNeighbor (System.Int32 capacity) [0x000f7] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/StumpCompositionAdversarialTests.cs:190\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityArtTests.AllTwentyEightSkinsRetainEveryBoneThatHadVisibleBaselineGeometry",
+      "message": "  Pin the complete current animated library, not a selected humanoid.\n  Expected: 28\n  But was:  32\n",
+      "stack": "at CavesOfOoo.Tests.VoxelWorldDensityArtTests.AllTwentyEightSkinsRetainEveryBoneThatHadVisibleBaselineGeometry () [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldDensityArtTests.cs:139\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityArtTests.CompleteNativeCoverageKeepsEveryBaselineBoundsEdgeWithinOneNewCell",
+      "message": "  Expected: 274\n  But was:  278\n",
+      "stack": "at CavesOfOoo.Tests.VoxelWorldDensityArtTests.CompleteNativeCoverageKeepsEveryBaselineBoundsEdgeWithinOneNewCell () [0x00202] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldDensityArtTests.cs:207\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldDensityArtTests.EveryPublishedSkinExactlyMatchesAFreshBakeAtItsRecordedPitch",
+      "message": "  Expected: 28\n  But was:  32\n",
+      "stack": "at CavesOfOoo.Tests.VoxelWorldDensityArtTests.EveryPublishedSkinExactlyMatchesAFreshBakeAtItsRecordedPitch () [0x00035] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldDensityArtTests.cs:155\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteArtTests.All392CompleteNativeObjectsUseAtMostTwoAuthoredBaseColors",
+      "message": "OneTimeSetUp:   Expected: 392\n  But was:  396\n",
+      "stack": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteArtTests.BothNativeStallsRetainTheirAuthoredCanopyIdentityAndOneWoodColor(0)",
+      "message": "OneTimeSetUp:   Expected: 392\n  But was:  396\n",
+      "stack": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteArtTests.BothNativeStallsRetainTheirAuthoredCanopyIdentityAndOneWoodColor(1)",
+      "message": "OneTimeSetUp:   Expected: 392\n  But was:  396\n",
+      "stack": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteArtTests.ColorReductionPreservesEveryGenericGeometryAndSkinBindingOutsideVerifiedShapeOverlays",
+      "message": "OneTimeSetUp:   Expected: 392\n  But was:  396\n",
+      "stack": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteArtTests.FourteenMixedWaterObjectsReserveOneColorAndStandaloneWaterKeepsItsSolidColor",
+      "message": "OneTimeSetUp:   Expected: 392\n  But was:  396\n",
+      "stack": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldObjectPaletteArtTests.WaterGeometryAndUvsRemainExactlyOutsideThePaintRewrite",
+      "message": "OneTimeSetUp:   Expected: 392\n  But was:  396\n",
+      "stack": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_InactiveChildrenAreConvertedBeforeTheyBecomeVisible",
+      "message": "System.MissingMethodException : Constructor on type 'CavesOfOoo.Rendering.VoxelWorldPresentation' not found.",
+      "stack": "  at System.RuntimeType.CreateInstanceImpl (System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes, System.Threading.StackCrawlMark& stackMark) [0x0022b] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes) [0x0009c] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adapter (CavesOfOoo.Rendering.VoxelWorldMeshCatalog catalog) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:34 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_InactiveChildrenAreConvertedBeforeTheyBecomeVisible () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:58 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 "
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_IndependentBindingsKeepIndependentCoverageCounters",
+      "message": "System.MissingMethodException : Constructor on type 'CavesOfOoo.Rendering.VoxelWorldPresentation' not found.",
+      "stack": "  at System.RuntimeType.CreateInstanceImpl (System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes, System.Threading.StackCrawlMark& stackMark) [0x0022b] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes) [0x0009c] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adapter (CavesOfOoo.Rendering.VoxelWorldMeshCatalog catalog) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:34 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_IndependentBindingsKeepIndependentCoverageCounters () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:98 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 "
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_LateInvalidRowRejectsBeforeAnyOwnedInstanceCanBeChanged",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  <System.MissingMethodException: Constructor on type 'CavesOfOoo.Rendering.VoxelWorldPresentation' not found.\n  at System.RuntimeType.CreateInstanceImpl (System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes, System.Threading.StackCrawlMark& stackMark) [0x0022b] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes) [0x0009c] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adapter (CavesOfOoo.Rendering.VoxelWorldMeshCatalog catalog) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:34 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests+<>c__DisplayClass15_0.<Adversarial_LateInvalidRowRejectsBeforeAnyOwnedInstanceCanBeChanged>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:94 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n",
+      "stack": "at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_LateInvalidRowRejectsBeforeAnyOwnedInstanceCanBeChanged () [0x00049] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:94\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_NullAndAlreadyGeneratedMeshesAreNotMissingContent",
+      "message": "System.MissingMethodException : Constructor on type 'CavesOfOoo.Rendering.VoxelWorldPresentation' not found.",
+      "stack": "  at System.RuntimeType.CreateInstanceImpl (System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes, System.Threading.StackCrawlMark& stackMark) [0x0022b] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes) [0x0009c] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adapter (CavesOfOoo.Rendering.VoxelWorldMeshCatalog catalog) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:34 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_NullAndAlreadyGeneratedMeshesAreNotMissingContent () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:69 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 "
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_NullInstanceRejectsButAnEmptyOwnedInstanceIsHarmless",
+      "message": "System.MissingMethodException : Constructor on type 'CavesOfOoo.Rendering.VoxelWorldPresentation' not found.",
+      "stack": "  at System.RuntimeType.CreateInstanceImpl (System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes, System.Threading.StackCrawlMark& stackMark) [0x0022b] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes) [0x0009c] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adapter (CavesOfOoo.Rendering.VoxelWorldMeshCatalog catalog) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:34 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_NullInstanceRejectsButAnEmptyOwnedInstanceIsHarmless () [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:73 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 "
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_PreexistingCollisionMeshIsNotMistakenForSimulationOwnership",
+      "message": "System.MissingMethodException : Constructor on type 'CavesOfOoo.Rendering.VoxelWorldPresentation' not found.",
+      "stack": "  at System.RuntimeType.CreateInstanceImpl (System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes, System.Threading.StackCrawlMark& stackMark) [0x0022b] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes) [0x0009c] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adapter (CavesOfOoo.Rendering.VoxelWorldMeshCatalog catalog) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:34 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_PreexistingCollisionMeshIsNotMistakenForSimulationOwnership () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:87 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 "
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_RepeatedPrepareReplacesOnceAndDoesNotMutateBorrowedVertices",
+      "message": "System.MissingMethodException : Constructor on type 'CavesOfOoo.Rendering.VoxelWorldPresentation' not found.",
+      "stack": "  at System.RuntimeType.CreateInstanceImpl (System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes, System.Threading.StackCrawlMark& stackMark) [0x0022b] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes) [0x0009c] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adapter (CavesOfOoo.Rendering.VoxelWorldMeshCatalog catalog) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:34 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_RepeatedPrepareReplacesOnceAndDoesNotMutateBorrowedVertices () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:43 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 "
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_SkinRetainsItsExactBonesRootAndAnimationEnvelope",
+      "message": "System.MissingMethodException : Constructor on type 'CavesOfOoo.Rendering.VoxelWorldPresentation' not found.",
+      "stack": "  at System.RuntimeType.CreateInstanceImpl (System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes, System.Threading.StackCrawlMark& stackMark) [0x0022b] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes) [0x0009c] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adapter (CavesOfOoo.Rendering.VoxelWorldMeshCatalog catalog) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:34 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_SkinRetainsItsExactBonesRootAndAnimationEnvelope () [0x000ec] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:79 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 "
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_TwoInstancesShareReplacementWithoutChangingTheSourceTemplate",
+      "message": "System.MissingMethodException : Constructor on type 'CavesOfOoo.Rendering.VoxelWorldPresentation' not found.",
+      "stack": "  at System.RuntimeType.CreateInstanceImpl (System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes, System.Threading.StackCrawlMark& stackMark) [0x0022b] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes) [0x0009c] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adapter (CavesOfOoo.Rendering.VoxelWorldMeshCatalog catalog) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:34 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_TwoInstancesShareReplacementWithoutChangingTheSourceTemplate () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:50 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 "
+    },
+    {
+      "name": "CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_UnknownMeshesKeepTheirOwnIdentityAndCountByReference",
+      "message": "System.MissingMethodException : Constructor on type 'CavesOfOoo.Rendering.VoxelWorldPresentation' not found.",
+      "stack": "  at System.RuntimeType.CreateInstanceImpl (System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes, System.Threading.StackCrawlMark& stackMark) [0x0022b] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture, System.Object[] activationAttributes) [0x0009c] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at System.Activator.CreateInstance (System.Type type, System.Reflection.BindingFlags bindingAttr, System.Reflection.Binder binder, System.Object[] args, System.Globalization.CultureInfo culture) [0x00000] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adapter (CavesOfOoo.Rendering.VoxelWorldMeshCatalog catalog) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:34 \n  at CavesOfOoo.Tests.VoxelWorldPresentationAdversarialTests.Adversarial_UnknownMeshesKeepTheirOwnIdentityAndCountByReference () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/VoxelWorldPresentationAdversarialTests.cs:63 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 "
+    },
+    {
+      "name": "CavesOfOoo.Tests.WorldCursorRendererTests.CursorColor_IsRedForHostileCreature",
+      "message": "  Expected: RGBA(1.000, 0.330, 0.330, 1.000)\n  But was:  RGBA(1.000, 1.000, 1.000, 1.000)\n",
+      "stack": "at CavesOfOoo.Tests.WorldCursorRendererTests.CursorColor_IsRedForHostileCreature () [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/WorldCursorRendererTests.cs:52\n"
+    }
+  ]
+}

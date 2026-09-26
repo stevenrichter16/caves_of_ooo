@@ -1,0 +1,32 @@
+{
+  "runtime": "standalone .NET stable-hash precheck",
+  "total": "26",
+  "passed": "4",
+  "failed": "22",
+  "failures": [
+    "CavesOfOoo.Tests.DensityCensusAuditTests.ActualOpenRecordsOneAttemptAndNoRefusal",
+    "CavesOfOoo.Tests.DensityCensusAuditTests.CombinedLockAuthorityIsSkippedAndGeneratedContentsRemainSeparate(True,False)",
+    "CavesOfOoo.Tests.DensityCensusAuditTests.DuplicateZoneIdentityIsRejectedEvenAcrossSourceLabels",
+    "CavesOfOoo.Tests.DensityCensusAuditTests.InvalidRecordedIDsNeverFallBackToRescanning(null)",
+    "CavesOfOoo.Tests.DensityCensusAuditTests.InvalidRecordedIDsNeverFallBackToRescanning(\"\")",
+    "CavesOfOoo.Tests.DensityCensusAuditTests.InvalidRecordedIDsNeverFallBackToRescanning(\"Overworld.08.0.0\")",
+    "CavesOfOoo.Tests.DensityCensusAuditTests.InvalidRecordedIDsNeverFallBackToRescanning(\"Overworld.20.0.0\")",
+    "CavesOfOoo.Tests.DensityCensusAuditTests.InvalidRecordedIDsNeverFallBackToRescanning(\"Overworld.8.0.-1\")",
+    "CavesOfOoo.Tests.DensityCensusAuditTests.InvalidRecordedIDsNeverFallBackToRescanning(\"not-a-zone\")",
+    "CavesOfOoo.Tests.DensityCensusAuditTests.MissingSeedIsRejected",
+    "CavesOfOoo.Tests.DensityCensusAuditTests.MissingSelectionDataIsRejected(True)",
+    "CavesOfOoo.Tests.DensityCensusAuditTests.MissingSelectionDataIsRejected(False)",
+    "CavesOfOoo.Tests.DensityCensusAuditTests.RecordedSelectionPreservesExactOrderAndLabelsButCopiesRows",
+    "CavesOfOoo.Tests.DensityCensusAuditTests.RefusalAndWrongContainerEventsDoNotCountAsOpened(\"handled\")",
+    "CavesOfOoo.Tests.DensityCensusAuditTests.RefusalAndWrongContainerEventsDoNotCountAsOpened(\"unhandled\")",
+    "CavesOfOoo.Tests.DensityCensusAuditTests.RefusalAndWrongContainerEventsDoNotCountAsOpened(\"other\")",
+    "CavesOfOoo.Tests.DensityCensusAuditTests.SecondaryBodyOccupancyBlocksTheOnlyApproach(True)",
+    "CavesOfOoo.Tests.DensityCensusAuditTests.StarterAndShopsAreNotReplayedAsZoneRows",
+    "CavesOfOoo.Tests.DensityCensusAuditTests.ThrowingOpenHandlerCannotLeaveMeasurementActorOrObserverInWorld",
+    "CavesOfOoo.Tests.DensityCensusAuditTests.UnknownSourceLabelsAreRejected(\"NewUnreviewedKind\")",
+    "CavesOfOoo.Tests.DensityCensusAuditTests.UnknownSourceLabelsAreRejected(\"\")",
+    "CavesOfOoo.Tests.DensityCensusAuditTests.UnknownSourceLabelsAreRejected(null)"
+  ],
+  "canVerify": "Concrete incorrect access measurement plus missing recorded-cohort API assertions. Four existing controls pass.",
+  "cannotVerify": "Native input/rendering or campaign acquisition."
+}

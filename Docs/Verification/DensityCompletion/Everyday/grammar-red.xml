@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="389" result="Failed" start-time="2026-09-26T20:11:44.8317130Z" end-time="2026-09-26T20:11:44.8840880Z" duration="0.052355" total="21" passed="10" failed="11" inconclusive="0" skipped="0" warnings="0" asserts="23" random-seed="674859686">
+  <command-line><![CDATA[/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/Everyday/grammar-red.xml --where "class =~ /DensityEverydayGrammarTests/"]]></command-line>
+  <filter>
+    <class re="1">DensityEverydayGrammarTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1480" name="EditModeRunner.dll" fullname="/private/tmp/coo-everyday-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="389" result="Failed" site="Child" start-time="2026-09-26T20:11:44.8317130Z" end-time="2026-09-26T20:11:44.8840880Z" duration="0.052355" total="21" passed="10" failed="11" warnings="0" inconclusive="0" skipped="0" asserts="23">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-everyday-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-everyday-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="55898" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1481" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="389" result="Failed" site="Child" start-time="2026-09-26T20:11:44.8333880Z" end-time="2026-09-26T20:11:44.8840860Z" duration="0.050698" total="21" passed="10" failed="11" warnings="0" inconclusive="0" skipped="0" asserts="23">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1482" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="389" result="Failed" site="Child" start-time="2026-09-26T20:11:44.8335040Z" end-time="2026-09-26T20:11:44.8840840Z" duration="0.050580" total="21" passed="10" failed="11" warnings="0" inconclusive="0" skipped="0" asserts="23">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1456" name="DensityEverydayGrammarTests" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" testcasecount="21" result="Failed" site="Child" start-time="2026-09-26T20:11:44.8338580Z" end-time="2026-09-26T20:11:44.8840630Z" duration="0.050205" total="21" passed="10" failed="11" warnings="0" inconclusive="0" skipped="0" asserts="23">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1478" name="AnnouncementProse_RemainsRawInLogQueueAndCallback" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.AnnouncementProse_RemainsRawInLogQueueAndCallback" methodname="AnnouncementProse_RemainsRawInLogQueueAndCallback" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" seed="1568433070" result="Passed" start-time="2026-09-26T20:11:44.8347870Z" end-time="2026-09-26T20:11:44.8371930Z" duration="0.002431" asserts="3" />
+          <test-suite type="ParameterizedMethod" id="1467" name="PlayerLeadingClause_UsesSecondPerson" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-09-26T20:11:44.8377800Z" end-time="2026-09-26T20:11:44.8544540Z" duration="0.016674" total="10" passed="0" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="10">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1457" name="PlayerLeadingClause_UsesSecondPerson(&quot;you is confused!&quot;,&quot;You are confused!&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(&quot;you is confused!&quot;,&quot;You are confused!&quot;)" methodname="PlayerLeadingClause_UsesSecondPerson" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" seed="241843120" result="Failed" start-time="2026-09-26T20:11:44.8378490Z" end-time="2026-09-26T20:11:44.8528030Z" duration="0.014955" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected string length 17 but was 16. Strings differ at index 0.
+  Expected: "You are confused!"
+  But was:  "you is confused!"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(String before, String after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayGrammarTests.cs:line 23
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 17 but was 16. Strings differ at index 0.
+  Expected: "You are confused!"
+  But was:  "you is confused!"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(String before, String after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayGrammarTests.cs:line 23
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1458" name="PlayerLeadingClause_UsesSecondPerson(&quot;you has recovered.&quot;,&quot;You have recovered.&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(&quot;you has recovered.&quot;,&quot;You have recovered.&quot;)" methodname="PlayerLeadingClause_UsesSecondPerson" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" seed="7928314" result="Failed" start-time="2026-09-26T20:11:44.8528670Z" end-time="2026-09-26T20:11:44.8532380Z" duration="0.000371" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected string length 19 but was 18. Strings differ at index 0.
+  Expected: "You have recovered."
+  But was:  "you has recovered."
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(String before, String after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayGrammarTests.cs:line 23
+   at InvokeStub_DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 19 but was 18. Strings differ at index 0.
+  Expected: "You have recovered."
+  But was:  "you has recovered."
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(String before, String after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayGrammarTests.cs:line 23
+   at InvokeStub_DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1459" name="PlayerLeadingClause_UsesSecondPerson(&quot;you was stunned.&quot;,&quot;You were stunned.&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(&quot;you was stunned.&quot;,&quot;You were stunned.&quot;)" methodname="PlayerLeadingClause_UsesSecondPerson" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" seed="1965706071" result="Failed" start-time="2026-09-26T20:11:44.8532580Z" end-time="2026-09-26T20:11:44.8533990Z" duration="0.000141" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected string length 17 but was 16. Strings differ at index 0.
+  Expected: "You were stunned."
+  But was:  "you was stunned."
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(String before, String after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayGrammarTests.cs:line 23
+   at InvokeStub_DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 17 but was 16. Strings differ at index 0.
+  Expected: "You were stunned."
+  But was:  "you was stunned."
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(String before, String after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayGrammarTests.cs:line 23
+   at InvokeStub_DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1460" name="PlayerLeadingClause_UsesSecondPerson(&quot;you does not resist.&quot;,&quot;You do not resist.&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(&quot;you does not resist.&quot;,&quot;You do not resist.&quot;)" methodname="PlayerLeadingClause_UsesSecondPerson" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" seed="1757574041" result="Failed" start-time="2026-09-26T20:11:44.8534110Z" end-time="2026-09-26T20:11:44.8535040Z" duration="0.000093" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected string length 18 but was 20. Strings differ at index 0.
+  Expected: "You do not resist."
+  But was:  "you does not resist."
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(String before, String after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayGrammarTests.cs:line 23
+   at InvokeStub_DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 18 but was 20. Strings differ at index 0.
+  Expected: "You do not resist."
+  But was:  "you does not resist."
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(String before, String after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayGrammarTests.cs:line 23
+   at InvokeStub_DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1461" name="PlayerLeadingClause_UsesSecondPerson(&quot;you picks up tepuibone.&quot;,&quot;You pick up tepuibone.&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(&quot;you picks up tepuibone.&quot;,&quot;You pick up tepuibone.&quot;)" methodname="PlayerLeadingClause_UsesSecondPerson" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" seed="370231999" result="Failed" start-time="2026-09-26T20:11:44.8535110Z" end-time="2026-09-26T20:11:44.8535860Z" duration="0.000075" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected string length 22 but was 23. Strings differ at index 0.
+  Expected: "You pick up tepuibone."
+  But was:  "you picks up tepuibone."
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(String before, String after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayGrammarTests.cs:line 23
+   at InvokeStub_DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 22 but was 23. Strings differ at index 0.
+  Expected: "You pick up tepuibone."
+  But was:  "you picks up tepuibone."
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(String before, String after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayGrammarTests.cs:line 23
+   at InvokeStub_DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1462" name="PlayerLeadingClause_UsesSecondPerson(&quot;you heals 3 HP.&quot;,&quot;You heal 3 HP.&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(&quot;you heals 3 HP.&quot;,&quot;You heal 3 HP.&quot;)" methodname="PlayerLeadingClause_UsesSecondPerson" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" seed="746260895" result="Failed" start-time="2026-09-26T20:11:44.8535900Z" end-time="2026-09-26T20:11:44.8536600Z" duration="0.000070" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected string length 14 but was 15. Strings differ at index 0.
+  Expected: "You heal 3 HP."
+  But was:  "you heals 3 HP."
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(String before, String after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayGrammarTests.cs:line 23
+   at InvokeStub_DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 14 but was 15. Strings differ at index 0.
+  Expected: "You heal 3 HP."
+  But was:  "you heals 3 HP."
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(String before, String after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayGrammarTests.cs:line 23
+   at InvokeStub_DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1463" name="PlayerLeadingClause_UsesSecondPerson(&quot;You throws a dagger, but misses!&quot;,&quot;You throw a dagger, but misses!&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(&quot;You throws a dagger, but misses!&quot;,&quot;You throw a dagger, but misses!&quot;)" methodname="PlayerLeadingClause_UsesSecondPerson" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" seed="1507213439" result="Failed" start-time="2026-09-26T20:11:44.8536710Z" end-time="2026-09-26T20:11:44.8538090Z" duration="0.000138" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected string length 31 but was 32. Strings differ at index 9.
+  Expected: "You throw a dagger, but misses!"
+  But was:  "You throws a dagger, but misses!"
+  --------------------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(String before, String after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayGrammarTests.cs:line 23
+   at InvokeStub_DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 31 but was 32. Strings differ at index 9.
+  Expected: "You throw a dagger, but misses!"
+  But was:  "You throws a dagger, but misses!"
+  --------------------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(String before, String after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayGrammarTests.cs:line 23
+   at InvokeStub_DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1464" name="PlayerLeadingClause_UsesSecondPerson(&quot;you's overload finds no conductors.&quot;,&quot;Your overload finds no conductors.&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(&quot;you's overload finds no conductors.&quot;,&quot;Your overload finds no conductors.&quot;)" methodname="PlayerLeadingClause_UsesSecondPerson" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" seed="951735376" result="Failed" start-time="2026-09-26T20:11:44.8538180Z" end-time="2026-09-26T20:11:44.8539010Z" duration="0.000083" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected string length 34 but was 35. Strings differ at index 0.
+  Expected: "Your overload finds no conductors."
+  But was:  "you's overload finds no conductors."
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(String before, String after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayGrammarTests.cs:line 23
+   at InvokeStub_DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 34 but was 35. Strings differ at index 0.
+  Expected: "Your overload finds no conductors."
+  But was:  "you's overload finds no conductors."
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(String before, String after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayGrammarTests.cs:line 23
+   at InvokeStub_DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1465" name="PlayerLeadingClause_UsesSecondPerson(&quot;you’s skin sears the snapjaw.&quot;,&quot;Your skin sears the snapjaw.&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(&quot;you’s skin sears the snapjaw.&quot;,&quot;Your skin sears the snapjaw.&quot;)" methodname="PlayerLeadingClause_UsesSecondPerson" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" seed="2028338487" result="Failed" start-time="2026-09-26T20:11:44.8539100Z" end-time="2026-09-26T20:11:44.8539880Z" duration="0.000078" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected string length 28 but was 29. Strings differ at index 0.
+  Expected: "Your skin sears the snapjaw."
+  But was:  "you’s skin sears the snapjaw."
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(String before, String after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayGrammarTests.cs:line 23
+   at InvokeStub_DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 28 but was 29. Strings differ at index 0.
+  Expected: "Your skin sears the snapjaw."
+  But was:  "you’s skin sears the snapjaw."
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(String before, String after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayGrammarTests.cs:line 23
+   at InvokeStub_DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1466" name="PlayerLeadingClause_UsesSecondPerson(&quot;you dies.&quot;,&quot;You die.&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(&quot;you dies.&quot;,&quot;You die.&quot;)" methodname="PlayerLeadingClause_UsesSecondPerson" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" seed="2131758606" result="Failed" start-time="2026-09-26T20:11:44.8540030Z" end-time="2026-09-26T20:11:44.8540800Z" duration="0.000077" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected string length 8 but was 9. Strings differ at index 0.
+  Expected: "You die."
+  But was:  "you dies."
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(String before, String after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayGrammarTests.cs:line 23
+   at InvokeStub_DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 8 but was 9. Strings differ at index 0.
+  Expected: "You die."
+  But was:  "you dies."
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(String before, String after) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayGrammarTests.cs:line 23
+   at InvokeStub_DensityEverydayGrammarTests.PlayerLeadingClause_UsesSecondPerson(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1479" name="RealParchedEffect_PlayerAndNpcAreDistinct" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.RealParchedEffect_PlayerAndNpcAreDistinct" methodname="RealParchedEffect_PlayerAndNpcAreDistinct" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" seed="1241582395" result="Failed" start-time="2026-09-26T20:11:44.8546220Z" end-time="2026-09-26T20:11:44.8838340Z" duration="0.029212" asserts="1">
+            <failure>
+              <message><![CDATA[  Expected string length 29 but was 28. Strings differ at index 0.
+  Expected: "You are parched by the glare."
+  But was:  "you is parched by the glare."
+  -----------^
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayGrammarTests.RealParchedEffect_PlayerAndNpcAreDistinct() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayGrammarTests.cs:line 36
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected string length 29 but was 28. Strings differ at index 0.
+  Expected: "You are parched by the glare."
+  But was:  "you is parched by the glare."
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityEverydayGrammarTests.RealParchedEffect_PlayerAndNpcAreDistinct() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityEverydayGrammarTests.cs:line 36
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1477" name="UnrelatedOrQuotedOrCorrectText_RemainsByteForByte" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.UnrelatedOrQuotedOrCorrectText_RemainsByteForByte" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-09-26T20:11:44.8838540Z" end-time="2026-09-26T20:11:44.8840410Z" duration="0.000187" total="9" passed="9" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="9">
+            <test-case id="1468" name="UnrelatedOrQuotedOrCorrectText_RemainsByteForByte(&quot;A snapjaw is confused!&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.UnrelatedOrQuotedOrCorrectText_RemainsByteForByte(&quot;A snapjaw is confused!&quot;)" methodname="UnrelatedOrQuotedOrCorrectText_RemainsByteForByte" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" seed="449186944" result="Passed" start-time="2026-09-26T20:11:44.8838640Z" end-time="2026-09-26T20:11:44.8838990Z" duration="0.000036" asserts="1" />
+            <test-case id="1469" name="UnrelatedOrQuotedOrCorrectText_RemainsByteForByte(&quot;You are already rested.&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.UnrelatedOrQuotedOrCorrectText_RemainsByteForByte(&quot;You are already rested.&quot;)" methodname="UnrelatedOrQuotedOrCorrectText_RemainsByteForByte" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" seed="1036650538" result="Passed" start-time="2026-09-26T20:11:44.8839120Z" end-time="2026-09-26T20:11:44.8839860Z" duration="0.000074" asserts="1" />
+            <test-case id="1470" name="UnrelatedOrQuotedOrCorrectText_RemainsByteForByte(&quot;The keeper says, 'you is a stranger'.&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.UnrelatedOrQuotedOrCorrectText_RemainsByteForByte(&quot;The keeper says, 'you is a stranger'.&quot;)" methodname="UnrelatedOrQuotedOrCorrectText_RemainsByteForByte" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" seed="72676151" result="Passed" start-time="2026-09-26T20:11:44.8839970Z" end-time="2026-09-26T20:11:44.8840040Z" duration="0.000006" asserts="1" />
+            <test-case id="1471" name="UnrelatedOrQuotedOrCorrectText_RemainsByteForByte(&quot;\&quot;you is unwelcome\&quot;&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.UnrelatedOrQuotedOrCorrectText_RemainsByteForByte(&quot;\&quot;you is unwelcome\&quot;&quot;)" methodname="UnrelatedOrQuotedOrCorrectText_RemainsByteForByte" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" seed="95927885" result="Passed" start-time="2026-09-26T20:11:44.8840060Z" end-time="2026-09-26T20:11:44.8840090Z" duration="0.000003" asserts="1" />
+            <test-case id="1472" name="UnrelatedOrQuotedOrCorrectText_RemainsByteForByte(&quot;young moss is growing.&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.UnrelatedOrQuotedOrCorrectText_RemainsByteForByte(&quot;young moss is growing.&quot;)" methodname="UnrelatedOrQuotedOrCorrectText_RemainsByteForByte" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" seed="1592183179" result="Passed" start-time="2026-09-26T20:11:44.8840110Z" end-time="2026-09-26T20:11:44.8840130Z" duration="0.000003" asserts="1" />
+            <test-case id="1473" name="UnrelatedOrQuotedOrCorrectText_RemainsByteForByte(&quot;younger roots have spread.&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.UnrelatedOrQuotedOrCorrectText_RemainsByteForByte(&quot;younger roots have spread.&quot;)" methodname="UnrelatedOrQuotedOrCorrectText_RemainsByteForByte" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" seed="1778557360" result="Passed" start-time="2026-09-26T20:11:44.8840150Z" end-time="2026-09-26T20:11:44.8840170Z" duration="0.000002" asserts="1" />
+            <test-case id="1474" name="UnrelatedOrQuotedOrCorrectText_RemainsByteForByte(&quot;you is quoted lore.\nA second line.&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.UnrelatedOrQuotedOrCorrectText_RemainsByteForByte(&quot;you is quoted lore.\nA second line.&quot;)" methodname="UnrelatedOrQuotedOrCorrectText_RemainsByteForByte" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" seed="852193805" result="Passed" start-time="2026-09-26T20:11:44.8840180Z" end-time="2026-09-26T20:11:44.8840210Z" duration="0.000002" asserts="1" />
+            <test-case id="1475" name="UnrelatedOrQuotedOrCorrectText_RemainsByteForByte(&quot;Your sword falls to the ground.&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.UnrelatedOrQuotedOrCorrectText_RemainsByteForByte(&quot;Your sword falls to the ground.&quot;)" methodname="UnrelatedOrQuotedOrCorrectText_RemainsByteForByte" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" seed="1665146280" result="Passed" start-time="2026-09-26T20:11:44.8840220Z" end-time="2026-09-26T20:11:44.8840260Z" duration="0.000004" asserts="1" />
+            <test-case id="1476" name="UnrelatedOrQuotedOrCorrectText_RemainsByteForByte(&quot;&amp;Yyou is a colored quotation&amp;y&quot;)" fullname="CavesOfOoo.Tests.DensityEverydayGrammarTests.UnrelatedOrQuotedOrCorrectText_RemainsByteForByte(&quot;&amp;Yyou is a colored quotation&amp;y&quot;)" methodname="UnrelatedOrQuotedOrCorrectText_RemainsByteForByte" classname="CavesOfOoo.Tests.DensityEverydayGrammarTests" runstate="Runnable" seed="2003899347" result="Passed" start-time="2026-09-26T20:11:44.8840280Z" end-time="2026-09-26T20:11:44.8840300Z" duration="0.000002" asserts="1" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

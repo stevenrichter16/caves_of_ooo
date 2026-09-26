@@ -933,7 +933,7 @@ namespace CavesOfOoo.Core
             int gidx = rng.Next(openCells.Count);
             var (gx, gy) = openCells[gidx];
             openCells.RemoveAt(gidx);
-            Entity gremlin = TryCreateEntity(factory, "Snapjaw");
+            Entity gremlin = TryCreateEntity(factory, "SootGremlin");
             if (gremlin != null)
             {
                 gremlin.AddPart(new CavesOfOoo.Storylets.SetFactWhenSlain { Fact = "rbg_gremlin_routed", Value = 1 });
@@ -1065,7 +1065,7 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>Pool quest — Clear the Warren (kill-N counter). Giver + THREE
-        /// "dirt gnome" mobs (Snapjaw reskinned), each carrying
+        /// "dirt gnome" mobs with their own blueprint, each carrying
         /// <c>AddFactWhenSlain</c> on the SHARED <c>warren_gnomes_routed</c> fact.
         /// Slaying all three — in any order, by any killer (player, warden) —
         /// drives the <c>IfFact:warren_gnomes_routed:>=:3</c> objective; the fact
@@ -1090,15 +1090,13 @@ namespace CavesOfOoo.Core
                 int gi = rng.Next(openCells.Count);
                 var (gx, gy) = openCells[gi];
                 openCells.RemoveAt(gi);
-                Entity gnome = TryCreateEntity(factory, "Snapjaw");
+                Entity gnome = TryCreateEntity(factory, "DirtGnome");
                 if (gnome == null) continue;
                 gnome.AddPart(new CavesOfOoo.Storylets.AddFactWhenSlain { Fact = "warren_gnomes_routed", Amount = 1 });
                 var gr = gnome.GetPart<RenderPart>();
                 if (gr != null) { gr.DisplayName = "dirt gnome"; gr.RenderString = "g"; gr.ColorString = "&y"; }
-                // Playtest bug: the reskin changed the FACE but not the
-                // remains — a dead "dirt gnome" dropped a snapjaw corpse,
-                // because Snapjaw's Corpse part overrides the generic one.
-                // A reskin must reskin the whole lifecycle.
+                // Keep generic quest remains even if this independently
+                // authored creature is retuned in a later content pass.
                 var gc = gnome.GetPart<CorpsePart>();
                 if (gc != null) gc.CorpseBlueprint = "CreatureCorpse";
                 zone.AddEntity(gnome, gx, gy);

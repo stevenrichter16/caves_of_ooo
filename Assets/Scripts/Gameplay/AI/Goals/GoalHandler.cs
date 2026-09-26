@@ -110,13 +110,13 @@ namespace CavesOfOoo.Core
         /// fields joined with <c>" | "</c>, no trailing punctuation.
         ///
         /// Examples of good overrides:
-        ///   "target=Snapjaw"
+        ///   "target=MarlbackScrabbler"
         ///   "phase=Pickup | attempts=1/2 | item=Bone"
         ///   "to=(44,11) age=3/100"
         ///
         /// Examples to AVOID (too verbose / multi-line / unstable reprs):
-        ///   "{Target=Snapjaw, Pos=[44,11]}"      // object-dump style
-        ///   "target: Snapjaw\nphase: Pickup"     // multi-line
+        ///   "{Target=MarlbackScrabbler, Pos=[44,11]}"      // object-dump style
+        ///   "target: MarlbackScrabbler\nphase: Pickup"     // multi-line
         ///
         /// Mirrors Qud's <c>GoalHandler.GetDetails</c>.
         /// </summary>

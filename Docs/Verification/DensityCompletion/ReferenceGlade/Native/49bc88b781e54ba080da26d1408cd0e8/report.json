@@ -1,0 +1,42 @@
+{
+    "runId": "49bc88b781e54ba080da26d1408cd0e8",
+    "zone": "Overworld.11.10.0",
+    "fatal": "",
+    "canVerify": "Native glade new game; ordinary HP and starting kit; keyboard walking, gear, real chest loot, blocking, finite quartz harvest, F5/F6 persistence and world exit/return. Actual rendered screenshots.",
+    "cannotVerify": "Routes are script-selected through real keyboard input. Full-reveal composition frames are labelled and reveal is restored before play. No natural discovery, player-solo combat balance or enjoyment claim. Screenshots need visual inspection. Optional frame sampling measures this editor session during real keyboard movement; it is not a player-build benchmark or allocation claim.",
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS keyboard_moves_one_native_cell",
+        "PASS starting_dagger_equipped_by_keyboard",
+        "PASS native_chest_contents_taken",
+        "PASS gray_wall_blocks_keyboard_movement",
+        "PASS actual_lit_seam_harvested",
+        "PASS native_save_load_restores_position_and_depletion",
+        "PASS combat_uses_live_creatures",
+        "PASS native_east_exit",
+        "PASS return_does_not_refill_glade_chest",
+        "PASS normal_input_after_return",
+        "PASS sixty_seconds_native_movement_profile"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/49bc88b781e54ba080da26d1408cd0e8/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/49bc88b781e54ba080da26d1408cd0e8/02-composition-full-reveal.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/49bc88b781e54ba080da26d1408cd0e8/03-world-only-full-reveal.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/49bc88b781e54ba080da26d1408cd0e8/04-chest-loot.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/49bc88b781e54ba080da26d1408cd0e8/05-solid-wall.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/49bc88b781e54ba080da26d1408cd0e8/06-harvested-green-seam.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/49bc88b781e54ba080da26d1408cd0e8/07-returned-from-world.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/49bc88b781e54ba080da26d1408cd0e8/08-profile-complete.png"
+    ],
+    "descriptions": [],
+    "cases": 12,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": true,
+    "errorsFinalized": true,
+    "seconds": 89.156888,
+    "profileSeconds": 60.163372209000048,
+    "profileFrames": 9518,
+    "profileFrameMeanMs": 6.321011066436768,
+    "profileFrameP95Ms": 7.617126941680908
+}

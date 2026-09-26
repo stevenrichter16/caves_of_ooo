@@ -49,7 +49,9 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static int FlashStamp;
 
-        public static void Add(string message)
+        public static void Add(string message) => AddRaw(PlayerMessageGrammar.Normalize(message));
+
+        private static void AddRaw(string message)
         {
             Messages.Add(message);
             Ticks.Add(TickProvider != null ? TickProvider() : 0);
@@ -63,7 +65,9 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static void AddAnnouncement(string message)
         {
-            Add(message);
+            // Announcements include authored lore and quoted documents. Preserve
+            // their exact bytes in both the log and the popup queue.
+            AddRaw(message);
             Announcements.Enqueue(message);
             FlashStamp++;
         }

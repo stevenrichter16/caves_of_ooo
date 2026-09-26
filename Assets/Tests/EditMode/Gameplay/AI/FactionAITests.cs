@@ -72,29 +72,29 @@ namespace CavesOfOoo.Tests
         [Test]
         public void FactionManager_SameFaction_Returns100()
         {
-            Assert.AreEqual(100, FactionManager.GetFactionFeeling("Snapjaws", "Snapjaws"));
+            Assert.AreEqual(100, FactionManager.GetFactionFeeling("OutlandRaiders", "OutlandRaiders"));
         }
 
         [Test]
         public void FactionManager_HostileFactions_ReturnsNegative()
         {
-            Assert.AreEqual(-100, FactionManager.GetFactionFeeling("Snapjaws", "Villagers"));
-            Assert.AreEqual(-100, FactionManager.GetFactionFeeling("Villagers", "Snapjaws"));
+            Assert.AreEqual(-100, FactionManager.GetFactionFeeling("OutlandRaiders", "Villagers"));
+            Assert.AreEqual(-100, FactionManager.GetFactionFeeling("Villagers", "OutlandRaiders"));
         }
 
         [Test]
         public void PlayerReputation_InitialValues()
         {
-            Assert.AreEqual(-100, PlayerReputation.Get("Snapjaws"));
+            Assert.AreEqual(-100, PlayerReputation.Get("OutlandRaiders"));
             Assert.AreEqual(50, PlayerReputation.Get("Villagers"));
-            Assert.AreEqual(PlayerReputation.Attitude.Disliked, PlayerReputation.GetAttitude("Snapjaws"));
+            Assert.AreEqual(PlayerReputation.Attitude.Disliked, PlayerReputation.GetAttitude("OutlandRaiders"));
             Assert.AreEqual(PlayerReputation.Attitude.Liked, PlayerReputation.GetAttitude("Villagers"));
         }
 
         [Test]
         public void PlayerReputation_GetFeeling_MapsAttitudeToFeeling()
         {
-            Assert.AreEqual(-50, PlayerReputation.GetFeeling("Snapjaws"));
+            Assert.AreEqual(-50, PlayerReputation.GetFeeling("OutlandRaiders"));
             Assert.AreEqual(50, PlayerReputation.GetFeeling("Villagers"));
         }
 
@@ -108,45 +108,45 @@ namespace CavesOfOoo.Tests
         [Test]
         public void FactionManager_UnknownFaction_ReturnsNeutral()
         {
-            Assert.AreEqual(0, FactionManager.GetFactionFeeling("Snapjaws", "Robots"));
+            Assert.AreEqual(0, FactionManager.GetFactionFeeling("OutlandRaiders", "Robots"));
         }
 
         [Test]
         public void FactionManager_SetFactionFeeling_Overrides()
         {
-            FactionManager.SetFactionFeeling("Snapjaws", "Player", 50);
-            Assert.AreEqual(50, FactionManager.GetFactionFeeling("Snapjaws", "Player"));
+            FactionManager.SetFactionFeeling("OutlandRaiders", "Player", 50);
+            Assert.AreEqual(50, FactionManager.GetFactionFeeling("OutlandRaiders", "Player"));
         }
 
         [Test]
         public void FactionManager_GetFeeling_EntityToEntity_Hostile()
         {
-            var snapjaw = CreateCreature("Snapjaws");
+            var marlback = CreateCreature("OutlandRaiders");
             var player = CreatePlayer();
-            Assert.Less(FactionManager.GetFeeling(snapjaw, player), FactionManager.HOSTILE_THRESHOLD);
+            Assert.Less(FactionManager.GetFeeling(marlback, player), FactionManager.HOSTILE_THRESHOLD);
         }
 
         [Test]
         public void FactionManager_GetFeeling_SameFactionEntities_Allied()
         {
-            var snap1 = CreateCreature("Snapjaws");
-            var snap2 = CreateCreature("Snapjaws");
+            var snap1 = CreateCreature("OutlandRaiders");
+            var snap2 = CreateCreature("OutlandRaiders");
             Assert.AreEqual(100, FactionManager.GetFeeling(snap1, snap2));
         }
 
         [Test]
         public void FactionManager_IsHostile_True()
         {
-            var snapjaw = CreateCreature("Snapjaws");
+            var marlback = CreateCreature("OutlandRaiders");
             var player = CreatePlayer();
-            Assert.IsTrue(FactionManager.IsHostile(snapjaw, player));
+            Assert.IsTrue(FactionManager.IsHostile(marlback, player));
         }
 
         [Test]
         public void FactionManager_IsHostile_False_SameFaction()
         {
-            var snap1 = CreateCreature("Snapjaws");
-            var snap2 = CreateCreature("Snapjaws");
+            var snap1 = CreateCreature("OutlandRaiders");
+            var snap2 = CreateCreature("OutlandRaiders");
             Assert.IsFalse(FactionManager.IsHostile(snap1, snap2));
         }
 
@@ -160,15 +160,15 @@ namespace CavesOfOoo.Tests
         [Test]
         public void FactionManager_GetFaction_FactionTag()
         {
-            var snapjaw = CreateCreature("Snapjaws");
-            Assert.AreEqual("Snapjaws", FactionManager.GetFaction(snapjaw));
+            var marlback = CreateCreature("OutlandRaiders");
+            Assert.AreEqual("OutlandRaiders", FactionManager.GetFaction(marlback));
         }
 
         [Test]
         public void FactionManager_Reset_ClearsState()
         {
             FactionManager.Reset();
-            Assert.AreEqual(0, FactionManager.GetFactionFeeling("Snapjaws", "Player"));
+            Assert.AreEqual(0, FactionManager.GetFactionFeeling("OutlandRaiders", "Player"));
         }
 
         // ========================
@@ -280,11 +280,11 @@ namespace CavesOfOoo.Tests
         public void FindNearestHostile_FindsEnemy()
         {
             var zone = CreateZone();
-            var snapjaw = CreateCreatureWithBrain("Snapjaws", zone, 5, 5);
+            var marlback = CreateCreatureWithBrain("OutlandRaiders", zone, 5, 5);
             var player = CreatePlayer();
             zone.AddEntity(player, 8, 5);
 
-            var target = AIHelpers.FindNearestHostile(snapjaw, zone, 10);
+            var target = AIHelpers.FindNearestHostile(marlback, zone, 10);
             Assert.AreEqual(player, target);
         }
 
@@ -292,8 +292,8 @@ namespace CavesOfOoo.Tests
         public void FindNearestHostile_IgnoresAllies()
         {
             var zone = CreateZone();
-            var snap1 = CreateCreatureWithBrain("Snapjaws", zone, 5, 5);
-            var snap2 = CreateCreature("Snapjaws");
+            var snap1 = CreateCreatureWithBrain("OutlandRaiders", zone, 5, 5);
+            var snap2 = CreateCreature("OutlandRaiders");
             zone.AddEntity(snap2, 6, 5);
 
             var target = AIHelpers.FindNearestHostile(snap1, zone, 10);
@@ -304,11 +304,11 @@ namespace CavesOfOoo.Tests
         public void FindNearestHostile_OutOfRange_ReturnsNull()
         {
             var zone = CreateZone();
-            var snapjaw = CreateCreatureWithBrain("Snapjaws", zone, 5, 5);
+            var marlback = CreateCreatureWithBrain("OutlandRaiders", zone, 5, 5);
             var player = CreatePlayer();
             zone.AddEntity(player, 20, 5); // distance 15, beyond radius 10
 
-            var target = AIHelpers.FindNearestHostile(snapjaw, zone, 10);
+            var target = AIHelpers.FindNearestHostile(marlback, zone, 10);
             Assert.IsNull(target);
         }
 
@@ -316,7 +316,7 @@ namespace CavesOfOoo.Tests
         public void FindNearestHostile_BehindWall_ReturnsNull()
         {
             var zone = CreateZone();
-            var snapjaw = CreateCreatureWithBrain("Snapjaws", zone, 5, 5);
+            var marlback = CreateCreatureWithBrain("OutlandRaiders", zone, 5, 5);
             var player = CreatePlayer();
             zone.AddEntity(player, 10, 5);
 
@@ -327,7 +327,7 @@ namespace CavesOfOoo.Tests
             wall.AddPart(new PhysicsPart { Solid = true });
             zone.AddEntity(wall, 7, 5);
 
-            var target = AIHelpers.FindNearestHostile(snapjaw, zone, 10);
+            var target = AIHelpers.FindNearestHostile(marlback, zone, 10);
             Assert.IsNull(target);
         }
 
@@ -339,7 +339,7 @@ namespace CavesOfOoo.Tests
         public void RandomPassableDirection_FindsOpenCell()
         {
             var zone = CreateZone();
-            var entity = CreateCreature("Snapjaws");
+            var entity = CreateCreature("OutlandRaiders");
             zone.AddEntity(entity, 10, 10);
 
             var (dx, dy) = AIHelpers.RandomPassableDirection(entity, zone, new Random(42));
@@ -350,7 +350,7 @@ namespace CavesOfOoo.Tests
         public void RandomPassableDirection_Surrounded_ReturnsZero()
         {
             var zone = CreateZone();
-            var entity = CreateCreature("Snapjaws");
+            var entity = CreateCreature("OutlandRaiders");
             zone.AddEntity(entity, 10, 10);
 
             // Surround with walls
@@ -380,28 +380,28 @@ namespace CavesOfOoo.Tests
         public void BrainPart_HandlesTakeTurnEvent()
         {
             var zone = CreateZone();
-            var snapjaw = CreateCreatureWithBrain("Snapjaws", zone, 5, 5);
+            var marlback = CreateCreatureWithBrain("OutlandRaiders", zone, 5, 5);
 
             // Fire TakeTurn — should not throw
-            snapjaw.FireEvent(GameEvent.New("TakeTurn"));
+            marlback.FireEvent(GameEvent.New("TakeTurn"));
         }
 
         [Test]
         public void BrainPart_ChasesHostile()
         {
             var zone = CreateZone();
-            var snapjaw = CreateCreatureWithBrain("Snapjaws", zone, 5, 5);
+            var marlback = CreateCreatureWithBrain("OutlandRaiders", zone, 5, 5);
             var player = CreatePlayer();
             zone.AddEntity(player, 8, 5); // distance 3
 
-            snapjaw.FireEvent(GameEvent.New("TakeTurn"));
+            marlback.FireEvent(GameEvent.New("TakeTurn"));
 
             // Should have moved closer to player
-            var pos = zone.GetEntityPosition(snapjaw);
-            Assert.AreEqual(6, pos.x, "Snapjaw should move toward player (x)");
-            Assert.AreEqual(5, pos.y, "Snapjaw should stay on same row (y)");
+            var pos = zone.GetEntityPosition(marlback);
+            Assert.AreEqual(6, pos.x, "MarlbackScrabbler should move toward player (x)");
+            Assert.AreEqual(5, pos.y, "MarlbackScrabbler should stay on same row (y)");
 
-            var brain = snapjaw.GetPart<BrainPart>();
+            var brain = marlback.GetPart<BrainPart>();
             Assert.AreEqual(AIState.Chase, brain.CurrentState);
         }
 
@@ -409,15 +409,15 @@ namespace CavesOfOoo.Tests
         public void BrainPart_AttacksAdjacentHostile()
         {
             var zone = CreateZone();
-            var snapjaw = CreateCreatureWithBrain("Snapjaws", zone, 5, 5);
+            var marlback = CreateCreatureWithBrain("OutlandRaiders", zone, 5, 5);
             var player = CreatePlayer(hp: 50);
             zone.AddEntity(player, 6, 5); // adjacent
 
             int hpBefore = player.GetStatValue("Hitpoints");
-            snapjaw.FireEvent(GameEvent.New("TakeTurn"));
+            marlback.FireEvent(GameEvent.New("TakeTurn"));
 
-            // Snapjaw should not have moved (still at 5,5)
-            var pos = zone.GetEntityPosition(snapjaw);
+            // MarlbackScrabbler should not have moved (still at 5,5)
+            var pos = zone.GetEntityPosition(marlback);
             Assert.AreEqual(5, pos.x);
             Assert.AreEqual(5, pos.y);
 
@@ -429,25 +429,25 @@ namespace CavesOfOoo.Tests
         public void BrainPart_WandersWhenNoTarget()
         {
             var zone = CreateZone();
-            var snapjaw = CreateCreatureWithBrain("Snapjaws", zone, 10, 10);
+            var marlback = CreateCreatureWithBrain("OutlandRaiders", zone, 10, 10);
             // No player in zone — should wander
 
-            snapjaw.FireEvent(GameEvent.New("TakeTurn"));
+            marlback.FireEvent(GameEvent.New("TakeTurn"));
 
-            var brain = snapjaw.GetPart<BrainPart>();
+            var brain = marlback.GetPart<BrainPart>();
             Assert.AreEqual(AIState.Wander, brain.CurrentState);
 
             // Should have moved somewhere
-            var pos = zone.GetEntityPosition(snapjaw);
+            var pos = zone.GetEntityPosition(marlback);
             bool moved = pos.x != 10 || pos.y != 10;
-            Assert.IsTrue(moved, "Snapjaw should have wandered to a new cell");
+            Assert.IsTrue(moved, "MarlbackScrabbler should have wandered to a new cell");
         }
 
         [Test]
         public void BrainPart_IdleWhenWanderDisabled()
         {
             var zone = CreateZone();
-            var snapjaw = CreateCreature("Snapjaws");
+            var marlback = CreateCreature("OutlandRaiders");
             var brain = new BrainPart
             {
                 SightRadius = 10,
@@ -456,13 +456,13 @@ namespace CavesOfOoo.Tests
                 CurrentZone = zone,
                 Rng = new Random(42)
             };
-            snapjaw.AddPart(brain);
-            zone.AddEntity(snapjaw, 10, 10);
+            marlback.AddPart(brain);
+            zone.AddEntity(marlback, 10, 10);
 
-            snapjaw.FireEvent(GameEvent.New("TakeTurn"));
+            marlback.FireEvent(GameEvent.New("TakeTurn"));
 
             Assert.AreEqual(AIState.Idle, brain.CurrentState);
-            var pos = zone.GetEntityPosition(snapjaw);
+            var pos = zone.GetEntityPosition(marlback);
             Assert.AreEqual(10, pos.x);
             Assert.AreEqual(10, pos.y);
         }
@@ -471,13 +471,13 @@ namespace CavesOfOoo.Tests
         public void BrainPart_IgnoresOutOfSightTarget()
         {
             var zone = CreateZone();
-            var snapjaw = CreateCreatureWithBrain("Snapjaws", zone, 5, 5, sightRadius: 3);
+            var marlback = CreateCreatureWithBrain("OutlandRaiders", zone, 5, 5, sightRadius: 3);
             var player = CreatePlayer();
             zone.AddEntity(player, 15, 5); // distance 10, beyond sight radius 3
 
-            snapjaw.FireEvent(GameEvent.New("TakeTurn"));
+            marlback.FireEvent(GameEvent.New("TakeTurn"));
 
-            var brain = snapjaw.GetPart<BrainPart>();
+            var brain = marlback.GetPart<BrainPart>();
             Assert.IsNull(brain.Target, "Should not have acquired target beyond sight radius");
         }
 
@@ -485,20 +485,20 @@ namespace CavesOfOoo.Tests
         public void BrainPart_StopsChasingDeadTarget()
         {
             var zone = CreateZone();
-            var snapjaw = CreateCreatureWithBrain("Snapjaws", zone, 5, 5);
+            var marlback = CreateCreatureWithBrain("OutlandRaiders", zone, 5, 5);
             var player = CreatePlayer(hp: 50);
             zone.AddEntity(player, 8, 5);
 
             // First turn: acquire target
-            snapjaw.FireEvent(GameEvent.New("TakeTurn"));
-            var brain = snapjaw.GetPart<BrainPart>();
+            marlback.FireEvent(GameEvent.New("TakeTurn"));
+            var brain = marlback.GetPart<BrainPart>();
             Assert.IsNotNull(brain.Target);
 
             // Kill the target (remove from zone)
             zone.RemoveEntity(player);
 
             // Next turn: should clear target
-            snapjaw.FireEvent(GameEvent.New("TakeTurn"));
+            marlback.FireEvent(GameEvent.New("TakeTurn"));
             Assert.IsNull(brain.Target);
         }
 
@@ -527,19 +527,19 @@ namespace CavesOfOoo.Tests
         [Test]
         public void BrainPart_NoopWhenNoZone()
         {
-            var snapjaw = CreateCreature("Snapjaws");
+            var marlback = CreateCreature("OutlandRaiders");
             var brain = new BrainPart { CurrentZone = null };
-            snapjaw.AddPart(brain);
+            marlback.AddPart(brain);
 
             // Should not throw
-            snapjaw.FireEvent(GameEvent.New("TakeTurn"));
+            marlback.FireEvent(GameEvent.New("TakeTurn"));
         }
 
         [Test]
         public void BrainPart_DoesNotSeeThoughWalls()
         {
             var zone = CreateZone();
-            var snapjaw = CreateCreatureWithBrain("Snapjaws", zone, 5, 5);
+            var marlback = CreateCreatureWithBrain("OutlandRaiders", zone, 5, 5);
             var player = CreatePlayer();
             zone.AddEntity(player, 10, 5);
 
@@ -550,9 +550,9 @@ namespace CavesOfOoo.Tests
             wall.AddPart(new PhysicsPart { Solid = true });
             zone.AddEntity(wall, 7, 5);
 
-            snapjaw.FireEvent(GameEvent.New("TakeTurn"));
+            marlback.FireEvent(GameEvent.New("TakeTurn"));
 
-            var brain = snapjaw.GetPart<BrainPart>();
+            var brain = marlback.GetPart<BrainPart>();
             Assert.IsNull(brain.Target, "Should not see through walls");
         }
 
@@ -564,14 +564,14 @@ namespace CavesOfOoo.Tests
         public void Integration_NPC_KillsTarget()
         {
             var zone = CreateZone();
-            var snapjaw = CreateCreatureWithBrain("Snapjaws", zone, 5, 5);
-            // Give snapjaw a strong weapon
-            snapjaw.GetPart<MeleeWeaponPart>().BaseDamage = "10d6";
+            var marlback = CreateCreatureWithBrain("OutlandRaiders", zone, 5, 5);
+            // Give marlback a strong weapon
+            marlback.GetPart<MeleeWeaponPart>().BaseDamage = "10d6";
 
             var player = CreatePlayer(hp: 1); // 1 HP, will die
             zone.AddEntity(player, 6, 5); // adjacent
 
-            snapjaw.FireEvent(GameEvent.New("TakeTurn"));
+            marlback.FireEvent(GameEvent.New("TakeTurn"));
 
             // Player should be dead (removed from zone)
             Assert.IsNull(zone.GetEntityCell(player), "Player should be removed from zone after death");

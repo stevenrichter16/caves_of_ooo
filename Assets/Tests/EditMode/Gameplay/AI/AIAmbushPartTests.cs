@@ -51,7 +51,7 @@ namespace CavesOfOoo.Tests
         {
             var entity = new Entity { BlueprintName = "TestAmbusher" };
             entity.Tags["Creature"] = "";
-            entity.Tags["Faction"] = "Snapjaws";
+            entity.Tags["Faction"] = "OutlandRaiders";
             entity.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 20, Min = 0, Max = 20 };
             entity.Statistics["Speed"] = new Stat { Name = "Speed", BaseValue = 100, Min = 25, Max = 200 };
             entity.AddPart(new RenderPart());
@@ -173,7 +173,7 @@ namespace CavesOfOoo.Tests
             // on the first TakeTurn.
             var entity = new Entity { BlueprintName = "TestOrderingEdgeCase" };
             entity.Tags["Creature"] = "";
-            entity.Tags["Faction"] = "Snapjaws";
+            entity.Tags["Faction"] = "OutlandRaiders";
             entity.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 20, Min = 0, Max = 20 };
             entity.Statistics["Speed"] = new Stat { Name = "Speed", BaseValue = 100, Min = 25, Max = 200 };
             entity.AddPart(new RenderPart());
@@ -317,14 +317,14 @@ namespace CavesOfOoo.Tests
         [Test]
         public void AmbushCreatures_AreHostileFaction()
         {
-            // All three ambushers must be Snapjaws-faction so they engage
+            // All three ambushers must be OutlandRaiders-faction so they engage
             // player/villagers when they wake up
             string[] ambushBlueprints = { "SleepingTroll", "MimicChest", "AmbushBandit" };
             foreach (var bp in ambushBlueprints)
             {
                 var entity = _factory.CreateEntity(bp);
-                Assert.AreEqual("Snapjaws", entity.GetTag("Faction"),
-                    $"{bp} must be in Snapjaws faction so it's hostile when awake");
+                Assert.AreEqual("OutlandRaiders", entity.GetTag("Faction"),
+                    $"{bp} must be in OutlandRaiders faction so it's hostile when awake");
             }
         }
 
@@ -367,7 +367,7 @@ namespace CavesOfOoo.Tests
 
             var villager = new Entity();
             villager.Tags["Creature"] = "";
-            villager.Tags["Faction"] = "Villagers"; // hostile to mimic's Snapjaws faction
+            villager.Tags["Faction"] = "Villagers"; // hostile to mimic's OutlandRaiders faction
             villager.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 10, Min = 0, Max = 10 };
             villager.Statistics["Speed"] = new Stat { Name = "Speed", BaseValue = 100, Min = 25, Max = 200 };
             villager.AddPart(new RenderPart());

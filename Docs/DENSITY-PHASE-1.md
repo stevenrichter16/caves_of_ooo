@@ -892,3 +892,49 @@ three follow-up living docs and verification receipts. Capture files/evidence
 are separately listed in §11.4's manifest. No new natural weapon, neutral
 GlassScorpion change, plain Shambler spore effect, normal-play BitLocker, or
 combustibility unification is included.
+
+
+## 12. Content completion and reference-scene continuation
+
+The shipped Phase1 handoff is now followed by the separately scoped
+[DENSITY-COMPLETION-PLAN.md](DENSITY-COMPLETION-PLAN.md) and its executed
+[DENSITY-EXECUTION-PROMPT.md](DENSITY-EXECUTION-PROMPT.md). That plan records
+remaining everyday, progression and final campaign gates rather than treating
+Phase1 reachability as full content completion. Its status ledger is authoritative
+for C0–C14. BitLocker remains dev-only and the shipped Urqu rule is preserved.
+
+Current additions include hostile equipment/tactics, preparation and finite
+torches, canonical readables and examine descriptions, local identities and
+travellers, smoke/navigation, finite corpse/scenery harvest, and the original
+enemy replacement audit. C13 replaces the imported enemy family in fresh content
+and retains narrowly tested old-save compatibility. The six new body models have
+native import/ownership checks; full roster appearance is a separate gate.
+
+The user also supplied an image for a functional 3D glade.
+[DENSITY-REFERENCE-GLADE.md](DENSITY-REFERENCE-GLADE.md) records its source sweep,
+saved scene, native world address, scoped kit and screenshot iterations. One
+ordinary-input run has passed all11 functional checks with no console errors,
+including real loot, harvest, combat observation, save/load and exit/return.
+Visual fidelity remains under refinement; successful interaction does not certify
+that the scene matches the reference or is balanced for solo combat.
+
+The exact baseline672-file standalone comparison is now clean:10,060 baseline
+cases versus10,075 current cases, with the same295 environment failures and
+**zero newly failing tests**. Current new fixtures have separate focused evidence.
+The first unfiltered native EditMode sweep completed 16,794 cases: 16,742 passed
+and 52 failed, including planned art RED checks and stale integration pins.
+The repaired affected selection passes 580/580. The final unfiltered native
+Unity 6000.3.4f1 run passes **16,996/16,996**, zero failures or skips, in
+921.086 seconds. The complete XML and source snapshot are preserved under
+`Verification/DensityCompletion/Integration/native-full-foundation-green.*`.
+The corrected exact-key census records 445 containers, 39 locked refusals and
+406 observed authorized opens; historical C1 stock counts remain separate.
+
+The second glade iteration repeated the full native route and a 60-second movement
+profile: 12/12 checks, zero errors, mean 6.321 ms and p95 7.617 ms for this editor
+session. Screenshot comparison rejected its remaining silhouette/lighting issues;
+the third art refinement passed239/239 native focused checks and repeated12/12
+functional/profile checks with zero errors (60.208s, mean6.117ms, p957.010ms).
+Its screenshots are closer but still show broad-topped reeds and undersized
+figures. A fourth bounded mesh/proportion pass remains separate and private
+after the verified foundation checkpoint. No visual-completion claim is made.

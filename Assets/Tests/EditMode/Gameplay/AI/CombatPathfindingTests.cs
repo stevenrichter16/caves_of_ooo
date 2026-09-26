@@ -57,7 +57,7 @@ namespace CavesOfOoo.Tests
 
         private (Entity creature, BrainPart brain) CreateAttacker(Zone zone, int x, int y, int sightRadius = 20)
         {
-            var entity = CreateCreature("Snapjaws", hp: 50);
+            var entity = CreateCreature("OutlandRaiders", hp: 50);
             var brain = new BrainPart
             {
                 SightRadius = sightRadius,
@@ -77,7 +77,7 @@ namespace CavesOfOoo.Tests
         public void TryApproach_OpenTerrain_UsesGreedyStep()
         {
             var zone = new Zone("TestZone");
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             zone.AddEntity(creature, 5, 5);
 
             bool moved = AIHelpers.TryApproachWithPathfinding(creature, zone, 5, 5, 10, 5);
@@ -96,7 +96,7 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("TestZone");
             PlaceWall(zone, 6, 5);
 
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             zone.AddEntity(creature, 5, 5);
 
             bool moved = AIHelpers.TryApproachWithPathfinding(creature, zone, 5, 5, 10, 5);
@@ -117,7 +117,7 @@ namespace CavesOfOoo.Tests
             for (int wy = 3; wy <= 10; wy++)
                 PlaceWall(zone, 7, wy);
 
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             zone.AddEntity(creature, 5, 6);
 
             bool moved = AIHelpers.TryApproachWithPathfinding(creature, zone, 5, 6, 10, 6);
@@ -137,7 +137,7 @@ namespace CavesOfOoo.Tests
                     if (dx != 0 || dy != 0)
                         PlaceWall(zone, 5 + dx, 5 + dy);
 
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             zone.AddEntity(creature, 5, 5);
 
             bool moved = AIHelpers.TryApproachWithPathfinding(creature, zone, 5, 5, 20, 20);

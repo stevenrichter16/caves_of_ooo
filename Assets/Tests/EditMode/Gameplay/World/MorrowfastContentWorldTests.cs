@@ -81,7 +81,7 @@ namespace CavesOfOoo.Tests
         {
             var bed = Approach("guest-bed-west"); int drams = TradeSystem.GetDrams(player); var hp = player.GetStat("Hitpoints");
             hp.BaseValue = Math.Max(1, hp.Max - 5); int before = hp.Value;
-            var hostile = factory.CreateEntity("Snapjaw"); hostile.GetPart<BrainPart>().SetPersonallyHostile(player);
+            var hostile = factory.CreateEntity("MarlbackScrabbler"); hostile.GetPart<BrainPart>().SetPersonallyHostile(player);
             var pc = zone.GetEntityCell(player); zone.AddEntity(hostile, pc.X, pc.Y);
             Assert.IsFalse(MorrowfastQuests.TryWorldAction(bed, player, zone, MorrowfastQuests.RestCommand, out int energy)); Assert.AreEqual(0, energy); Assert.AreEqual(before, hp.Value);
             zone.RemoveEntity(hostile);

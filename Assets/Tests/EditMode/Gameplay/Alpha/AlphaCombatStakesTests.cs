@@ -78,9 +78,9 @@ namespace CavesOfOoo.Tests
         public void Xp_RiskMatchesReward_AcrossTiers()
         {
             // The risk/reward inversion: a StoneGolem (T3, 50 HP, 2d6
-            // fists) must be worth more than a SnapjawHunter (T1).
-            Assert.Greater(XpOf("StoneGolem"), XpOf("SnapjawHunter"));
-            Assert.Greater(XpOf("CaveBear"), XpOf("Snapjaw"));
+            // fists) must be worth more than a MarlbackTunnelguard (T1).
+            Assert.Greater(XpOf("StoneGolem"), XpOf("MarlbackTunnelguard"));
+            Assert.Greater(XpOf("CaveBear"), XpOf("MarlbackScrabbler"));
             Assert.Greater(XpOf("AncientGuardian"), XpOf("StoneGolem"));
             Assert.Greater(XpOf("SandWurm"), XpOf("CaveBear"));
         }

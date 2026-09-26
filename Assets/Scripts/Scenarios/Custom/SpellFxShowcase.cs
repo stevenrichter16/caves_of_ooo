@@ -171,12 +171,12 @@ namespace CavesOfOoo.Scenarios.Custom
             int distance = spec.TargetingMode == AbilityTargetingMode.AdjacentCell || spec.Range == 1 ? 1 : 2;
             if (definition.SkillID != "Cryomancy_GlacialWall")
             {
-                stage.PrimaryTarget = CreateActor(ctx.Zone, "First target", "Snapjaw", "s", x + distance, y,
+                stage.PrimaryTarget = CreateActor(ctx.Zone, "First target", "MarlbackScrabbler", "s", x + distance, y,
                     definition.Outcome == Variant.Death ? 1 : 250);
                 stage.Targets.Add(stage.PrimaryTarget);
-                stage.Targets.Add(CreateActor(ctx.Zone, "Far target", "Snapjaw", "s", x + 4, y, 250));
-                stage.Targets.Add(CreateActor(ctx.Zone, "Upper target", "Snapjaw", "s", x + 2, y - 1, 250));
-                stage.Targets.Add(CreateActor(ctx.Zone, "Lower target", "Snapjaw", "s", x + 2, y + 1, 250));
+                stage.Targets.Add(CreateActor(ctx.Zone, "Far target", "MarlbackScrabbler", "s", x + 4, y, 250));
+                stage.Targets.Add(CreateActor(ctx.Zone, "Upper target", "MarlbackScrabbler", "s", x + 2, y - 1, 250));
+                stage.Targets.Add(CreateActor(ctx.Zone, "Lower target", "MarlbackScrabbler", "s", x + 2, y + 1, 250));
             }
             stage.TargetCell = ctx.Zone.GetCell(x + distance, y);
 
@@ -262,7 +262,7 @@ namespace CavesOfOoo.Scenarios.Custom
             actor.Tags["Creature"] = "";
             actor.Tags["SpellFxShowcase"] = "";
             actor.AddPart(new RenderPart { DisplayName = label, RenderString = glyph, RenderLayer = 20,
-                VisualID = blueprint == "Player" ? "actor.player" : "actor.snapjaw" });
+                VisualID = blueprint == "Player" ? "actor.player" : "actor.marlback" });
             actor.AddPart(new PhysicsPart());
             actor.AddPart(new StatusEffectsPart());
             actor.AddPart(new ThermalPart());

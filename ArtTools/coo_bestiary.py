@@ -257,21 +257,15 @@ def imp(base, eye):
     return im
 
 
-def snapjaw_boss(base, eye, crest):
-    """Bulked snapjaw with a crest — chieftain/warlord."""
-    dark, mid, light = tones(base)
-    im = blank(); px = im.load()
-    px_rows(px, {2: range(5, 10), 3: range(4, 11), 4: range(4, 12)}, mid)   # big head
-    px_rows(px, {4: range(9, 13), 5: range(10, 13)}, dark)            # JAW
-    px_rows(px, {5: range(4, 10), 6: range(3, 12), 7: range(3, 12),
-                 8: range(3, 12), 9: range(4, 11), 10: range(4, 11)}, mid)
-    px_rows(px, {6: [3, 4], 7: [3], 8: [3, 4]}, dark)
-    px_rows(px, {2: range(5, 7), 5: range(5, 7)}, light)
-    px_rows(px, {6: [2, 12], 7: [2, 12], 8: [2, 12]}, dark)           # arms
-    px_rows(px, {11: [5, 6, 9, 10], 12: [5, 6, 9, 10], 13: [5, 6, 9, 10]}, dark)
-    px_rows(px, {1: range(5, 10), 0: [6, 8]}, crest)                  # war crest
-    px[5, 3] = eye; px[8, 3] = eye
-    return im
+def marlback_static(role):
+    # Share anatomy with the live four-facing actor sheets.
+    from coo_vertical_slice import marlback_frame
+    return marlback_frame(0, 0, 0, role).crop((0, 8, 16, 24))
+
+
+def lantern_moth_static():
+    from coo_vertical_slice import lantern_moth_frame
+    return lantern_moth_frame(0, 0, 0).crop((0, 8, 16, 24))
 
 
 # ── the roster: (file, archetype-call) ───────────────────────────
@@ -337,9 +331,10 @@ ROSTER = {
     "nam":             lambda: imp(COL['y'], EYE_W),
     "sien":            lambda: imp(COL['W'], EYE_K),
     "sopp":            lambda: imp(COL['K'], EYE_Y),
-    # snapjaw bosses
-    "snapjaw_chieftain": lambda: snapjaw_boss(COL['R'], EYE_Y, (196, 166, 80, 255)),
-    "snapjaw_warlord":   lambda: snapjaw_boss(COL['M'], EYE_R, (110, 60, 110, 255)),
+    # Original mineral-backed burrowers and passive grove moth.
+    **{"marlback_"+role: (lambda r=role: marlback_static(r))
+       for role in ("scrabbler", "gleaner", "tunnelguard", "wallkeeper", "breacher")},
+    "grove_lantern_moth": lantern_moth_static,
 }
 
 def main():

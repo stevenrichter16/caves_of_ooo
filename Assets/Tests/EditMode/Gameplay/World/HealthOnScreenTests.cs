@@ -91,15 +91,15 @@ namespace CavesOfOoo.Tests
             // relation label, which sat inside the same branch.
             var zone = new Zone("Z");
             var player = Player();
-            var snapjaw = Visible("Snapjaw", "s");
-            snapjaw.SetTag("Creature");
-            snapjaw.SetTag("Faction", "Snapjaws");
-            snapjaw.AddPart(new PhysicsPart { Solid = true });
-            snapjaw.Statistics["Hitpoints"] = new Stat
-            { Owner = snapjaw, Name = "Hitpoints", BaseValue = 6, Min = 0, Max = 10 };
+            var marlback = Visible("MarlbackScrabbler", "s");
+            marlback.SetTag("Creature");
+            marlback.SetTag("Faction", "OutlandRaiders");
+            marlback.AddPart(new PhysicsPart { Solid = true });
+            marlback.Statistics["Hitpoints"] = new Stat
+            { Owner = marlback, Name = "Hitpoints", BaseValue = 6, Min = 0, Max = 10 };
 
             zone.AddEntity(player, 10, 10);
-            zone.AddEntity(snapjaw, 11, 10);
+            zone.AddEntity(marlback, 11, 10);
 
             var snapshot = LookQueryService.BuildSnapshot(player, zone, 11, 10);
 

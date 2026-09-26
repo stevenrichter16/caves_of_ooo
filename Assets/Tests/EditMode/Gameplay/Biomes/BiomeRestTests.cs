@@ -66,9 +66,9 @@ namespace CavesOfOoo.Tests
 
         private Entity AddHostile(Zone zone, int x, int y)
         {
-            var snapjaw = _factory.CreateEntity("Snapjaw");
-            zone.AddEntity(snapjaw, x, y);
-            return snapjaw;
+            var marlback = _factory.CreateEntity("MarlbackScrabbler");
+            zone.AddEntity(marlback, x, y);
+            return marlback;
         }
 
         // ── 1. RestSystem core ───────────────────────────────────

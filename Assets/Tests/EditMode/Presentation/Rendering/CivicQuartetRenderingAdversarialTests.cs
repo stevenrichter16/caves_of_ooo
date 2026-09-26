@@ -54,12 +54,20 @@ namespace CavesOfOoo.Tests
         [TestCase("Overworld.7.8.0")][TestCase("Overworld.13.7.0")][TestCase("Overworld.14.9.0")][TestCase("Overworld.10.14.0")]
         public void WarrenQuestMobRequiresItsRealDeathFact(string id)
         {
-            var z=new Zone(id);var e=GrovelandsCompositionTests.Factory().CreateEntity("Snapjaw");z.AddEntity(e,20,10);
-            e.GetPart<RenderPart>().RenderString="g";e.AddPart(new AddFactWhenSlain{Fact="warren_gnomes_routed",Amount=1});
+            // The independent quest creature is DirtGnome; a disguised Marlback
+            // must not acquire this exact authored quest adapter.
+            var z=new Zone(id);var e=GrovelandsCompositionTests.Factory().CreateEntity("DirtGnome");z.AddEntity(e,20,10);
+            Assert.AreEqual("g",e.GetPart<RenderPart>().RenderString);
+            e.AddPart(new AddFactWhenSlain{Fact="warren_gnomes_routed",Amount=1});
             var r=SpawnRing3DRecipes.Resolve(z,e,Catalog);Assert.NotNull(r.ModelId);Assert.IsTrue(r.Transient);
             e.GetPart<AddFactWhenSlain>().Amount=2;Assert.IsNull(SpawnRing3DRecipes.Resolve(z,e,Catalog).ModelId);
             e.GetPart<AddFactWhenSlain>().Amount=1;
             e.GetPart<AddFactWhenSlain>().Fact="unrelated";Assert.IsNull(SpawnRing3DRecipes.Resolve(z,e,Catalog).ModelId);
+            e.GetPart<AddFactWhenSlain>().Fact="warren_gnomes_routed";
+            e.GetPart<RenderPart>().RenderString="?";Assert.IsNull(SpawnRing3DRecipes.Resolve(z,e,Catalog).ModelId);
+            e.GetPart<RenderPart>().RenderString="g";e.BlueprintName="MarlbackScrabbler";
+            Assert.IsNull(SpawnRing3DRecipes.Resolve(z,e,Catalog).ModelId,"Matching glyph and kill fact cannot impersonate the quest creature.");
+            e.BlueprintName="DirtGnome";Assert.AreEqual(r.ModelId,SpawnRing3DRecipes.Resolve(z,e,Catalog).ModelId);
         }
         [TestCase("Overworld.7.8.0","GantryRegistryDesk")][TestCase("Overworld.13.7.0","Duckboard")]
         [TestCase("Overworld.14.9.0","QuillholdArchiveShelf")][TestCase("Overworld.10.14.0","Crate")]

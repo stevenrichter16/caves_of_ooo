@@ -53,12 +53,11 @@ namespace CavesOfOoo.Core
         /// are treated as passable. Use for combat approach (KillGoal) where the attacker
         /// should path through allied creatures. If false (default), cells with
         /// PhysicsPart.Solid entities are impassable (correct for furniture walks).</param>
-        /// <param name="actor">G.11 — when non-null, cells holding gas the
-        /// actor isn't immune to get an extra A* step cost
-        /// (<see cref="GasNavigationWeight.ForCell"/>), so the path routes
-        /// AROUND gas clouds. null (default) = no gas weighting, identical
-        /// to the pre-G.11 pathfinder (the implicit gate for existing
-        /// callers).</param>
+        /// <param name="actor">When non-null, hazardous gas, liquid pools and
+        /// slippery floors add a finite step cost across the prospective body
+        /// (<see cref="TerrainNavigationWeight.ForStep"/>). The cost respects
+        /// supported actor resistances and permits a sole hazardous route.
+        /// null (default) preserves searches without hazard weighting.</param>
         public static FindPath Search(Zone zone, int startX, int startY, int goalX, int goalY,
             int maxNodes = 2000, bool ignoreCreatures = false, Entity actor = null, Entity contactTarget = null)
         {
@@ -134,7 +133,7 @@ namespace CavesOfOoo.Core
                     if (Pool[neighborIdx].InClosed) continue;
 
                     // Fetch the neighbor cell once — reused for the
-                    // passability check AND the G.11 gas penalty.
+                    // passability check and the terrain/gas hazard penalty.
                     var neighborCell = zone.GetCell(nx, ny);
 
                     // Goal cell is always considered passable (we want to path TO it)
@@ -170,13 +169,12 @@ namespace CavesOfOoo.Core
                             continue; // Can't squeeze diagonally between two walls
                     }
 
-                    // G.11: gas-avoidance penalty. Only when an actor is
-                    // supplied (existing actor-less callers are unchanged).
-                    // Soft cost — routes around gas but still traverses a
-                    // gas-only route to the goal.
+                    // Finite terrain/gas avoidance cost for the complete body.
+                    // Actor-less callers remain unchanged; a sole hazardous
+                    // route can still reach the goal.
                     int tentativeG = Pool[currentIdx].G + Cost[dir];
                     if (actor != null && neighborCell != null)
-                        tentativeG += GasNavigationWeight.ForCell(neighborCell, actor);
+                        tentativeG += TerrainNavigationWeight.ForStep(zone, nx, ny, actor);
 
                     if (!Pool[neighborIdx].InOpen)
                     {

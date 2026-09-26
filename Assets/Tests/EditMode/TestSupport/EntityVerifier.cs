@@ -70,7 +70,7 @@ namespace CavesOfOoo.Tests.TestSupport
         /// Assert Hitpoints is approximately <paramref name="fraction"/> of Max.
         /// Default tolerance is 0.05 (5 percentage points) — wider than you'd
         /// think necessary, but required to absorb integer-rounding drift on
-        /// small-Max entities (e.g., a Snapjaw with Max=15 rounds HalfHP to 8,
+        /// small-Max entities (e.g., a MarlbackScrabbler with Max=15 rounds HalfHP to 8,
         /// effective fraction 0.533, drift 0.033).
         /// </summary>
         public EntityVerifier HasHpFraction(float fraction, float tolerance = 0.05f)

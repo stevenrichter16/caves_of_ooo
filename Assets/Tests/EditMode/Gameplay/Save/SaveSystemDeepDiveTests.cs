@@ -154,8 +154,8 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
         public void DeepDive_EntityIDCollision_OnLoad_DoesNotSilentlyMergeInstances()
         {
             var (player, zone, mgr, turns) = MakeMinimalState();
-            var clone1 = MakeCreature("collision-id", "Snapjaw");
-            var clone2 = MakeCreature("collision-id", "Snapjaw");
+            var clone1 = MakeCreature("collision-id", "MarlbackScrabbler");
+            var clone2 = MakeCreature("collision-id", "MarlbackScrabbler");
             zone.AddEntity(clone1, 5, 5);
             zone.AddEntity(clone2, 6, 5);
 
@@ -163,12 +163,12 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
             {
                 var loaded = RoundTrip(player, zone, mgr, turns);
                 var lZone = loaded.ZoneManager.ActiveZone;
-                var snapjaws = lZone.GetAllEntities()
-                    .Where(e => e.BlueprintName == "Snapjaw").ToList();
-                Assert.AreEqual(2, snapjaws.Count,
-                    $"Two pre-save Snapjaws with colliding IDs should yield TWO loaded entities. " +
-                    $"Got {snapjaws.Count} — silent-merge bug suspected.");
-                Assert.AreNotSame(snapjaws[0], snapjaws[1],
+                var marlbacks = lZone.GetAllEntities()
+                    .Where(e => e.BlueprintName == "MarlbackScrabbler").ToList();
+                Assert.AreEqual(2, marlbacks.Count,
+                    $"Two pre-save OutlandRaiders with colliding IDs should yield TWO loaded entities. " +
+                    $"Got {marlbacks.Count} — silent-merge bug suspected.");
+                Assert.AreNotSame(marlbacks[0], marlbacks[1],
                     "Two loaded entities must be distinct instances even with same ID");
             }
             catch (System.Exception ex)
@@ -197,15 +197,15 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
         public void DeepDive_CorpsePart_FieldsRoundTrip_AfterColdLoad()
         {
             var (player, zone, mgr, turns) = MakeMinimalState();
-            var snapjaw = MakeCreature("snapjaw-1", "Snapjaw");
-            snapjaw.AddPart(new CorpsePart { CorpseChance = 75, CorpseBlueprint = "TestCorpse" });
-            zone.AddEntity(snapjaw, 5, 5);
+            var marlback = MakeCreature("marlback-1", "MarlbackScrabbler");
+            marlback.AddPart(new CorpsePart { CorpseChance = 75, CorpseBlueprint = "TestCorpse" });
+            zone.AddEntity(marlback, 5, 5);
 
             var loaded = RoundTrip(player, zone, mgr, turns);
-            var loadedSnapjaw = FindEntityByID(loaded.ZoneManager.ActiveZone, "snapjaw-1");
-            Assert.IsNotNull(loadedSnapjaw, "Snapjaw must round-trip");
+            var loadedMarlbackScrabbler = FindEntityByID(loaded.ZoneManager.ActiveZone, "marlback-1");
+            Assert.IsNotNull(loadedMarlbackScrabbler, "MarlbackScrabbler must round-trip");
 
-            var loadedCorpse = loadedSnapjaw.GetPart<CorpsePart>();
+            var loadedCorpse = loadedMarlbackScrabbler.GetPart<CorpsePart>();
             Assert.IsNotNull(loadedCorpse, "CorpsePart must round-trip");
             Assert.AreEqual(75, loadedCorpse.CorpseChance);
             Assert.AreEqual("TestCorpse", loadedCorpse.CorpseBlueprint);
@@ -395,7 +395,7 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
         public void DeepDive_SaveWithEntityAtZeroHP_RoundTripsCleanly()
         {
             var (player, zone, mgr, turns) = MakeMinimalState();
-            var dying = MakeCreature("dying-1", "Snapjaw");
+            var dying = MakeCreature("dying-1", "MarlbackScrabbler");
             zone.AddEntity(dying, 5, 5);
             dying.GetStat("Hitpoints").BaseValue = 0;  // pre-killed
 
@@ -500,8 +500,8 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
         public void DeepDive_TwoEntities_SameBlueprint_DifferentIDs_StayDistinct()
         {
             var (player, zone, mgr, turns) = MakeMinimalState();
-            var s1 = MakeCreature("snap-A", "Snapjaw");
-            var s2 = MakeCreature("snap-B", "Snapjaw");
+            var s1 = MakeCreature("snap-A", "MarlbackScrabbler");
+            var s2 = MakeCreature("snap-B", "MarlbackScrabbler");
             zone.AddEntity(s1, 4, 4);
             zone.AddEntity(s2, 5, 5);
 
@@ -513,8 +513,8 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
             Assert.IsNotNull(loadedB);
             Assert.AreNotSame(loadedA, loadedB,
                 "Two entities with same blueprint, distinct IDs must be distinct instances");
-            Assert.AreEqual("Snapjaw", loadedA.BlueprintName);
-            Assert.AreEqual("Snapjaw", loadedB.BlueprintName);
+            Assert.AreEqual("MarlbackScrabbler", loadedA.BlueprintName);
+            Assert.AreEqual("MarlbackScrabbler", loadedB.BlueprintName);
         }
     }
 }

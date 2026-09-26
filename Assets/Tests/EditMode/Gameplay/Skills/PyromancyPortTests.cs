@@ -45,9 +45,9 @@ namespace CavesOfOoo.Tests
             return skill;
         }
 
-        private static Entity Snapjaw(Zone zone, int x, int y, int hp = 20)
+        private static Entity MarlbackScrabbler(Zone zone, int x, int y, int hp = 20)
         {
-            var e = new Entity { ID = "snapjaw", BlueprintName = "Snapjaw" };
+            var e = new Entity { ID = "marlback", BlueprintName = "MarlbackScrabbler" };
             e.Tags["Creature"] = "";
             e.AddPart(new PhysicsPart { Solid = true });
             e.Statistics["Hitpoints"] = new Stat
@@ -96,13 +96,13 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("Z");
             var caster = Caster(zone, 5, 5);
             var kindle = Learn<Pyromancy_Kindle>(caster);
-            var snapjaw = Snapjaw(zone, 7, 5);
+            var marlback = MarlbackScrabbler(zone, 7, 5);
 
             var (handled, blocks) = Cast(caster, zone, "CommandKindle", dx: 1, dy: 0);
 
             Assert.IsTrue(handled, "the bolt flew");
             Assert.IsTrue(blocks, "projectile FX hold the turn");
-            Assert.Less(snapjaw.GetStatValue("Hitpoints", 0), 20, "damage landed");
+            Assert.Less(marlback.GetStatValue("Hitpoints", 0), 20, "damage landed");
             var ability = caster.GetPart<ActivatedAbilitiesPart>()
                 .GetAbility(kindle.ActivatedAbilityID);
             Assert.AreEqual(Pyromancy_Kindle.COOLDOWN, ability.CooldownRemaining);
@@ -204,7 +204,7 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("Z");
             var caster = Caster(zone, 5, 5);
             Learn<Pyromancy_FlamingHands>(caster);
-            var snapjaw = Snapjaw(zone, 6, 5);
+            var marlback = MarlbackScrabbler(zone, 6, 5);
             var bush = Bush(zone, 6, 5);
 
             var (handled, blocks) = Cast(caster, zone, "CommandFlamingHands",
@@ -212,7 +212,7 @@ namespace CavesOfOoo.Tests
 
             Assert.IsTrue(handled);
             Assert.IsTrue(blocks);
-            Assert.Less(snapjaw.GetStatValue("Hitpoints", 0), 20, "creature hit");
+            Assert.Less(marlback.GetStatValue("Hitpoints", 0), 20, "creature hit");
             Assert.Less(bush.GetPart<DestructiblePart>().HP, 6, "scenery hit too");
         }
 
@@ -225,11 +225,11 @@ namespace CavesOfOoo.Tests
             var zone = new Zone("Z");
             var caster = Caster(zone, 5, 5);
             Learn<Pyromancy_FlamingHands>(caster);
-            var snapjaw = Snapjaw(zone, 6, 5, hp: 30);
+            var marlback = MarlbackScrabbler(zone, 6, 5, hp: 30);
 
             Cast(caster, zone, "CommandFlamingHands", targetCell: zone.GetCell(6, 5));
 
-            int dealt = 30 - snapjaw.GetStatValue("Hitpoints", 0);
+            int dealt = 30 - marlback.GetStatValue("Hitpoints", 0);
             Assert.GreaterOrEqual(dealt, 1);
             Assert.LessOrEqual(dealt, 4, "flat 1d4 — the frozen level-1 figure");
         }

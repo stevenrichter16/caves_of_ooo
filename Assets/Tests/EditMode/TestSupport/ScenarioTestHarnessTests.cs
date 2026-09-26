@@ -18,14 +18,14 @@ namespace CavesOfOoo.Tests.TestSupport
         {
             using (var harness = new ScenarioTestHarness())
             {
-                // Factory resolved — Snapjaw is a known blueprint.
-                var snapjaw = harness.Factory.CreateEntity("Snapjaw");
-                Assert.IsNotNull(snapjaw, "Factory should resolve known blueprints after construction.");
+                // Factory resolved — MarlbackScrabbler is a known blueprint.
+                var marlback = harness.Factory.CreateEntity("MarlbackScrabbler");
+                Assert.IsNotNull(marlback, "Factory should resolve known blueprints after construction.");
 
-                // FactionManager initialized — Snapjaws faction exists in the registry.
+                // FactionManager initialized — OutlandRaiders faction exists in the registry.
                 var factions = FactionManager.GetAllFactions();
-                Assert.Contains("Snapjaws", factions,
-                    "FactionManager should be initialized with Snapjaws faction post-construction.");
+                Assert.Contains("OutlandRaiders", factions,
+                    "FactionManager should be initialized with OutlandRaiders faction post-construction.");
             }
         }
 
@@ -142,7 +142,7 @@ namespace CavesOfOoo.Tests.TestSupport
             // faction config could leak across fixtures and cause flakes in distant
             // tests that would be maddening to diagnose.
             var harness = new ScenarioTestHarness();
-            Assert.Contains("Snapjaws", FactionManager.GetAllFactions(),
+            Assert.Contains("OutlandRaiders", FactionManager.GetAllFactions(),
                 "Sanity: FactionManager initialized by constructor.");
 
             harness.Dispose();

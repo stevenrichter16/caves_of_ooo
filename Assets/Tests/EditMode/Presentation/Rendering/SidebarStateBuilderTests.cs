@@ -44,7 +44,8 @@ namespace CavesOfOoo.Tests
                     "HP 25/30 | MP 3",
                     "LV 2 | XP 10/220",
                     "AV 0 | DV 6",
-                    "WT 12/150 | DR 27"
+                    "WT 12/150 | DR 27",
+                    "TIME " + WorldClock.BandName(WorldClock.GetBand(WorldClock.CurrentTick), 0)
                 },
                 snapshot.VitalLines);
             Assert.AreEqual("poisoned", snapshot.StatusText);

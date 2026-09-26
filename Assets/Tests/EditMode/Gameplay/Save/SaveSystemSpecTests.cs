@@ -290,7 +290,7 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
         public void Spec_Zone_TwoEntitiesAtDifferentCells_StayDistinct_AfterLoad()
         {
             var player = MakeCreature("p-1", "Player", isPlayer: true);
-            var npc = MakeCreature("n-1", "Snapjaw");
+            var npc = MakeCreature("n-1", "MarlbackScrabbler");
             var zone = new Zone("Overworld.10.10.0");
             zone.AddEntity(player, 1, 1);
             zone.AddEntity(npc, 5, 5);
@@ -327,7 +327,7 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
         public void Spec_BrainPart_TargetReference_PointsToLoadedEntity_NotOriginal()
         {
             var player = MakeCreature("p-1", "Player", isPlayer: true);
-            var npc = MakeCreature("n-1", "Snapjaw");
+            var npc = MakeCreature("n-1", "MarlbackScrabbler");
             var brain = new BrainPart { Target = player };
             npc.AddPart(brain);
 
@@ -522,7 +522,7 @@ namespace CavesOfOoo.Tests.EditMode.Gameplay.Save
         public void Spec_TurnManager_PerEntityEnergy_Preserved()
         {
             var player = MakeCreature("p-1", "Player", isPlayer: true);
-            var npc = MakeCreature("n-1", "Snapjaw");
+            var npc = MakeCreature("n-1", "MarlbackScrabbler");
             var zone = new Zone("Overworld.10.10.0");
             zone.AddEntity(player, 1, 1);
             zone.AddEntity(npc, 2, 2);

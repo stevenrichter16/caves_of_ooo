@@ -138,7 +138,7 @@ namespace CavesOfOoo.Tests
         [Test]
         public void PopupRetainsAuthoredFlavorAndEnhancementAlongsideMechanics()
         {
-            var item = Carry("WarlordCleaver");
+            var item = Carry("BreacherCleaver");
             var mod = new EnhancementSerrated(); mod.ApplyTier(2); item.AddPart(mod);
             string text = ExamineAndDismiss(item);
             StringAssert.Contains(item.GetPart<ExaminablePart>().Text, text);

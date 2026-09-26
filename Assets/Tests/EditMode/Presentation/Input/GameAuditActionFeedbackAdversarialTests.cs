@@ -106,7 +106,7 @@ namespace CavesOfOoo.Tests
         [TestCase(false)] [TestCase(true)] public void PartialBrewSuccessDoesNotBecomeAFalseAllOrNothingFailure(bool removeRemaining)
         {
             Assert.IsTrue(Zone.AddEntity(Item("AlchemyStill"),9,10));var reagent=Carry("GlimmerBrine",2);BrewMode();Pick(reagent);Assert.AreEqual(2,Get("_craftBatchMax"));var previous=MessageLog.OnMessage;bool armed=true,dropped=false;int callbacks=0;
-            MessageLog.OnMessage=message=>{previous?.Invoke(message);if(!armed||!message.Contains(" brews "))return;armed=false;callbacks++;if(removeRemaining)dropped=InventorySystem.Drop(Player,reagent,Zone);};
+            MessageLog.OnMessage=message=>{previous?.Invoke(message);if(!armed||!message.StartsWith("You brew ",StringComparison.Ordinal))return;armed=false;callbacks++;if(removeRemaining)dropped=InventorySystem.Drop(Player,reagent,Zone);};
             try{Call("ExecuteCraft",true);}finally{MessageLog.OnMessage=previous;}
             Assert.AreEqual(1,callbacks);Assert.AreEqual(removeRemaining,dropped);Assert.AreEqual(removeRemaining?1:2,Inventory.Objects.Where(e=>e.HasPart<BrewItemPart>()).Sum(e=>e.GetPart<StackerPart>()?.StackCount??1));Assert.IsTrue(string.IsNullOrEmpty(Status));if(removeRemaining){Assert.AreSame(Zone.GetEntityCell(Player),Zone.GetEntityCell(reagent));Assert.AreEqual(1,reagent.GetPart<StackerPart>().StackCount);}else Assert.IsFalse(Inventory.Contains(reagent));
         }

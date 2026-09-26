@@ -57,14 +57,14 @@ namespace CavesOfOoo.Tests
             var ctx = _harness.CreateContext();
             var warden = ctx.Spawn("Warden").At(10, 10);
             // Observer — not registered, won't tick on its own.
-            ctx.Spawn("Snapjaw").NotRegisteredForTurns().At(12, 10);
+            ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(12, 10);
 
             ctx.AdvanceTurns(1);
 
             // No Verify method for brain state — inline check. The rest of the
             // test chain uses Verify.
             Assert.AreEqual(AIState.Chase, warden.GetPart<BrainPart>().CurrentState,
-                "Warden should chase hostile Snapjaw.");
+                "Warden should chase hostile MarlbackScrabbler.");
         }
 
         [Test]
@@ -107,7 +107,7 @@ namespace CavesOfOoo.Tests
             ctx.AdvanceTurns(1); // Warden at post with GuardGoal idling
             ctx.Verify().Entity(warden).HasGoalOnStack<GuardGoal>();
 
-            ctx.Spawn("Snapjaw").NotRegisteredForTurns().At(12, 10);
+            ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(12, 10);
             ctx.AdvanceTurns(1);
 
             ctx.Verify().Entity(warden).HasGoalOnStack<KillGoal>();
@@ -148,8 +148,8 @@ namespace CavesOfOoo.Tests
             ctx.AdvanceTurns(1); // pushes GuardGoal
             ctx.Verify().Entity(warden).HasGoalOnStack<GuardGoal>();
 
-            // Fragile Snapjaw — 1 HP.
-            var snapjaw = ctx.Spawn("Snapjaw")
+            // Fragile MarlbackScrabbler — 1 HP.
+            var marlback = ctx.Spawn("MarlbackScrabbler")
                 .WithStatMax("Hitpoints", 1)
                 .WithHpAbsolute(1)
                 .At(12, 10);
@@ -158,9 +158,9 @@ namespace CavesOfOoo.Tests
             for (int i = 0; i < 5; i++)
             {
                 ctx.AdvanceTurns(1);
-                if (ctx.Zone.GetEntityCell(snapjaw) == null) break;
+                if (ctx.Zone.GetEntityCell(marlback) == null) break;
             }
-            Assert.IsNull(ctx.Zone.GetEntityCell(snapjaw), "Snapjaw should be dead after warden attack");
+            Assert.IsNull(ctx.Zone.GetEntityCell(marlback), "MarlbackScrabbler should be dead after warden attack");
 
             // Return to post.
             ctx.AdvanceTurns(15);
@@ -741,7 +741,7 @@ namespace CavesOfOoo.Tests
             // trigger the fetch. Pins the AlliesOnly filter branch.
             var ctx = _harness.CreateContext();
             var dog = BuildRetrieverCreature(ctx, 10, 10, alliesOnly: true, noticeRadius: 10);
-            var enemy = ctx.Spawn("Snapjaw").NotRegisteredForTurns().At(10, 9);
+            var enemy = ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(10, 9);
             var item = BuildFloorItem(ctx, "Bone");
             ctx.Zone.AddEntity(item, 12, 10);
             var landingCell = ctx.Zone.GetCell(12, 10);
@@ -972,7 +972,7 @@ namespace CavesOfOoo.Tests
             }
 
             // Hit target directly in the throw trajectory.
-            var victim = ctx.Spawn("Snapjaw").NotRegisteredForTurns().At(11, 10);
+            var victim = ctx.Spawn("MarlbackScrabbler").NotRegisteredForTurns().At(11, 10);
 
             // Tonic with a throwable payload (Healing set → HasThrowablePayload true).
             var tonic = new Entity { BlueprintName = "TestTonic" };

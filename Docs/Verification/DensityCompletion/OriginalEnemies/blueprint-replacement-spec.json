@@ -1,0 +1,69 @@
+{
+  "status": "43 roster/compatibility tests RED: 42 failing, 1 unknown-identity control passes",
+  "preserve": "all existing stats, tiers, corpse yields, loadout/tactics/Brain parameters, glyph mechanics unless a deliberate art-only glyph improvement",
+  "blueprints": {
+    "Snapjaw": {
+      "id": "MarlbackScrabbler",
+      "display": "marlback scrabbler",
+      "description": "A short-faced bank burrower with a broad back of overlapping shale plates. Its grasping foreclaws rake loose earth into low walls around the burrow mouth."
+    },
+    "SnapjawScavenger": {
+      "id": "MarlbackGleaner",
+      "display": "marlback gleaner",
+      "description": "Discarded cutting tools sit between this marlback’s shale back plates. It works the river wrack with a blunt snout and quick grasping claws, retreating toward its burrow when pressed."
+    },
+    "SnapjawHunter": {
+      "id": "MarlbackTunnelguard",
+      "display": "marlback tunnelguard",
+      "description": "This short-faced marlback braces a salvaged pole across the passage. Pale shale plates overlap its broad back; hooked digging claws grip the wet bank beneath it."
+    },
+    "SnapjawChieftain": {
+      "id": "MarlbackWallkeeper",
+      "display": "marlback wallkeeper",
+      "description": "Layers of dark shale broaden this marlback’s back above a patched digging harness. It keeps a long cutting tool ready beside the low wall of its burrow."
+    },
+    "SnapjawWarlord": {
+      "id": "MarlbackBreacher",
+      "display": "marlback breacher",
+      "description": "Heavy shale plates crowd the shoulders of this blunt-faced marlback. It carries a wedge-cleaver made for splitting roots and swings its weight forward with each stubborn step."
+    },
+    "SnapjawCorpse": {
+      "id": "MarlbackCorpse",
+      "display": "marlback remains",
+      "description": "Overlapping shale plates lie slack above short limbs and broad digging claws. Mud still fills the seams of the bank burrower’s back."
+    },
+    "GlowMoth": {
+      "id": "GroveLanternMoth",
+      "display": "grove lantern-moth",
+      "description": "A hand-sized moth with broad translucent wings, each crossed by three soft bars of pale grove-light. It navigates by the columns; the glow is dust on its wings."
+    },
+    "WarlordCleaver": {
+      "id": "BreacherCleaver",
+      "display": "wedge-cleaver",
+      "description": "A salvaged wedge-blade lashed to a short haft. Shale grit fills its binding; the broad edge is worn from splitting roots and breaking packed banks."
+    }
+  },
+  "tokens": {
+    "Snapjaws": "OutlandRaiders",
+    "SnapjawClaw": "MarlbackRake",
+    "SnapjawHunterClaw": "MarlbackGuardRake",
+    "WarlordCleaver": "BreacherCleaver"
+  },
+  "quest_blueprints": {
+    "SootGremlin": {
+      "inherits": "Creature",
+      "display": "soot gremlin",
+      "description": "A small soot-dark creature with blunt claws and a nose dusted grey from old hearths. It paws through anything left near the cold ash.",
+      "copy_behavior": "copy old base Snapjaw concrete stats, tags and parts before rename, replace faction OutlandRaiders, corpse CreatureCorpse, NaturalWeapon ScavengerClaw; no Marlback inheritance, no CombatTactics",
+      "color": "&K"
+    },
+    "DirtGnome": {
+      "inherits": "Creature",
+      "display": "dirt gnome",
+      "description": "A squat earth-grubber with soil worked into the creases of its skin. Its broad claws have loosened more roots than the farmer cares to count.",
+      "copy_behavior": "copy old base Snapjaw concrete stats, tags and parts before rename, replace faction OutlandRaiders, corpse CreatureCorpse, NaturalWeapon ScavengerClaw; no Marlback inheritance, no CombatTactics",
+      "glyph": "g",
+      "color": "&y"
+    }
+  }
+}

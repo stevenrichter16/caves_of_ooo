@@ -73,7 +73,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Container transfer prerequisites are missing.");
             }
 
-            if (containerPart.Locked)
+            if (containerPart.IsLocked)
             {
                 MessageLog.Add($"The {_container.GetDisplayName()} is locked.");
                 return InventoryCommandResult.Fail(

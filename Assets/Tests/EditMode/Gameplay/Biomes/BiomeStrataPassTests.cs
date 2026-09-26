@@ -11,7 +11,7 @@ namespace CavesOfOoo.Tests
     /// <summary>
     /// BIOME-OVERHAUL Phase G — the Strata pass
     /// (Docs/BIOME-OVERHAUL.md §3.5). Depth finally means VARIETY, not
-    /// just more snapjaws: limestone brings bears and rotlings, the
+    /// just more marlbacks: limestone brings bears and rotlings, the
     /// shale band brings the burned and the pale, the quartzite deep
     /// brings golems and the ObsidianBrute. Underground landmarks
     /// arrive too — mine galleries, the Pale Curation's gallery (the
@@ -90,7 +90,7 @@ namespace CavesOfOoo.Tests
             var shale = PopulationTable.UndergroundTier(7);     // tier 3 — shale
             var quartzite = PopulationTable.UndergroundTier(10); // tier 4 — quartzite
 
-            Assert.IsFalse(Has(shallow, "CaveBear"), "the first shaft is snapjaw country");
+            Assert.IsFalse(Has(shallow, "CaveBear"), "the first shaft is marlback country");
             Assert.IsFalse(Has(shallow, "PaleStalker"));
 
             Assert.IsTrue(Has(lime, "CaveBear"), "bears den in the limestone");

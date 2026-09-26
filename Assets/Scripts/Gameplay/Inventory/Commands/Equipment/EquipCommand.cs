@@ -116,6 +116,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
             if (sourceStacker != null && sourceStacker.StackCount > 1)
             {
                 itemToEquip = sourceStacker.RemoveOne();
+                if (itemToEquip == null)
+                    return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "The item stack cannot be separated safely.");
                 transaction.TryClaim(itemToEquip, actor, "Equip"); // A fresh split belongs to this same transaction.
                 var splitItem = itemToEquip;
                 transaction.Do(

@@ -13,11 +13,11 @@ namespace CavesOfOoo.Tests
     /// <summary>
     /// BIOME-OVERHAUL Phase C — the Cave pass ("The Mossveil Reach",
     /// Docs/BIOME-OVERHAUL.md §3.1, log in Docs/BIOME-OVERHAUL-LOG.md).
-    /// Two new creatures (SnapjawWarlord: the tier-3 warband leader;
+    /// Two new creatures (MarlbackBreacher: the tier-3 warband leader;
     /// Mosshulk: the slow tank whose corpse yields Mendleaf), the
     /// warband camp stamp carrying the game's FIRST world-placed
     /// LockedChest + IronKey loop (lockedchest: marker), and the
-    /// WarlordCleaver — a real weapon that circulates via warband loot.
+    /// BreacherCleaver — a real weapon that circulates via warband loot.
     /// </summary>
     [TestFixture]
     public class BiomeCavePassTests
@@ -55,15 +55,15 @@ namespace CavesOfOoo.Tests
         // ── 1. New creatures ─────────────────────────────────────
 
         [Test]
-        public void SnapjawWarlord_LeadsFromTheFront()
+        public void MarlbackBreacher_LeadsFromTheFront()
         {
-            var warlord = _factory.CreateEntity("SnapjawWarlord");
+            var warlord = _factory.CreateEntity("MarlbackBreacher");
             Assert.IsNotNull(warlord);
             Assert.AreEqual(45, warlord.GetStat("Hitpoints").Value);
             Assert.AreEqual(450 /* round-6 beta audit: tier-scaled XP (t3 x5, t2 x3) */, warlord.GetStat("XPValue").Value,
                 "a warband leader outpays its chieftain cousin (65)");
-            Assert.AreEqual("Snapjaws", warlord.Tags["Faction"]);
-            Assert.AreEqual("2d5", HandWeapon(warlord).BaseDamage, "WarlordCleaver");
+            Assert.AreEqual("OutlandRaiders", warlord.Tags["Faction"]);
+            Assert.AreEqual("2d5", HandWeapon(warlord).BaseDamage, "BreacherCleaver");
         }
 
         [Test]
@@ -87,19 +87,19 @@ namespace CavesOfOoo.Tests
             bool warlord = false, hulk = false;
             foreach (var e in t3.Entries)
             {
-                if (e.BlueprintName == "SnapjawWarlord") warlord = true;
+                if (e.BlueprintName == "MarlbackBreacher") warlord = true;
                 if (e.BlueprintName == "Mosshulk") hulk = true;
             }
             Assert.IsTrue(warlord, "warlord stalks the far ring");
             Assert.IsTrue(hulk, "mosshulk grazes the far ring");
         }
 
-        // ── 2. WarlordCleaver circulates ─────────────────────────
+        // ── 2. BreacherCleaver circulates ─────────────────────────
 
         [Test]
-        public void WarlordCleaver_IsARealWeapon()
+        public void BreacherCleaver_IsARealWeapon()
         {
-            var cleaver = _factory.CreateEntity("WarlordCleaver");
+            var cleaver = _factory.CreateEntity("BreacherCleaver");
             Assert.IsNotNull(cleaver);
             var w = cleaver.GetPart<MeleeWeaponPart>();
             Assert.AreEqual("1d10", w.BaseDamage);
@@ -123,7 +123,7 @@ namespace CavesOfOoo.Tests
             {
                 if (kvp.Value.StartsWith("lockedchest:")) locked = true;
                 if (kvp.Value == "IronKey") key = true;
-                if (kvp.Value == "spawn:SnapjawWarlord") warlord = true;
+                if (kvp.Value == "spawn:MarlbackBreacher") warlord = true;
             }
             Assert.IsTrue(locked, "the haul is locked");
             Assert.IsTrue(key, "the key is in the camp — always obtainable");
@@ -160,7 +160,7 @@ namespace CavesOfOoo.Tests
             Assert.IsNotNull(table, "WarbandLootT2 ships");
             bool cleaver = false;
             foreach (var e in table.Entries)
-                if (e.Blueprint == "WarlordCleaver") cleaver = true;
+                if (e.Blueprint == "BreacherCleaver") cleaver = true;
             Assert.IsTrue(cleaver, "the warlord's cleaver is the camp's prize");
         }
     }

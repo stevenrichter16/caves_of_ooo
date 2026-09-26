@@ -37,7 +37,7 @@ namespace CavesOfOoo.Scenarios.Builders
         /// <see cref="ObjectPlacer"/> requires a positioning terminal (<c>.At</c>
         /// or <c>.AtPlayerOffset</c>) to actually spawn.
         ///
-        /// "Non-creature" is advisory, not enforced — if you pass a Snapjaw
+        /// "Non-creature" is advisory, not enforced — if you pass a MarlbackScrabbler
         /// blueprint here, it'll spawn but WON'T take turns or run AI. That's
         /// almost never what you want; use <see cref="ScenarioContext.Spawn(string)"/>
         /// for creatures. PlaceObject is for chests, walls, furniture, items, decor.
@@ -85,8 +85,8 @@ namespace CavesOfOoo.Scenarios.Builders
         /// normally you wouldn't pass <c>"Wall"</c> here anyway.
         ///
         /// Matches tag KEYS only, not values. Blueprints store faction as
-        /// <c>{ Key: "Faction", Value: "Snapjaws" }</c> — so <c>RemoveEntitiesWithTag("Faction")</c>
-        /// removes every faction-bearing entity, but <c>RemoveEntitiesWithTag("Snapjaws")</c>
+        /// <c>{ Key: "Faction", Value: "OutlandRaiders" }</c> — so <c>RemoveEntitiesWithTag("Faction")</c>
+        /// removes every faction-bearing entity, but <c>RemoveEntitiesWithTag("OutlandRaiders")</c>
         /// matches nothing. For faction-specific removal, add the faction name
         /// as an extra tag at spawn time, or filter manually via
         /// <c>zone.GetAllEntities()</c>.

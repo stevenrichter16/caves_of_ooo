@@ -1,0 +1,173 @@
+{
+  "scope": "Actual source before C9 implementation/content. One fixture compile correction used Entity.RemovePart(instance), then canonical executable RED.",
+  "result": {
+    "result": "Failed",
+    "total": "32",
+    "passed": "9",
+    "failed": "23",
+    "duration": "0.631949"
+  },
+  "cases": [
+    {
+      "name": "CavesOfOoo.Tests.DensityCorpseCoverageTests.AuthoredBiologicalFamilyDeathProducesARealHarvestableProduct(\"SariSnake\",\"VenomGland\")",
+      "result": "Failed",
+      "failure": "  SariSnake\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityCorpseCoverageTests.AuthoredBiologicalFamilyDeathProducesARealHarvestableProduct(\"SunStriker\",\"RawMeat\")",
+      "result": "Failed",
+      "failure": "  SunStriker\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityCorpseCoverageTests.AuthoredBiologicalFamilyDeathProducesARealHarvestableProduct(\"SporeShambler\",\"ShamblerSporeSac\")",
+      "result": "Failed",
+      "failure": "  SporeShambler\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityCorpseCoverageTests.AuthoredBogBodyRemainsUntouchedAndConstructSalvageStaysMineral",
+      "result": "Passed",
+      "failure": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityCorpseCoverageTests.CleanBoneSceneryYieldsExistingBoneWithoutRemovingOtherOccupants",
+      "result": "Failed",
+      "failure": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityCorpseCoverageTests.ProtectedPeopleAndUnresolvedFamiliesDoNotAcquireMeatRewards(\"Villager\")",
+      "result": "Passed",
+      "failure": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityCorpseCoverageTests.ProtectedPeopleAndUnresolvedFamiliesDoNotAcquireMeatRewards(\"VillageChild\")",
+      "result": "Passed",
+      "failure": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityCorpseCoverageTests.ProtectedPeopleAndUnresolvedFamiliesDoNotAcquireMeatRewards(\"PetDog\")",
+      "result": "Passed",
+      "failure": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityCorpseCoverageTests.ProtectedPeopleAndUnresolvedFamiliesDoNotAcquireMeatRewards(\"GlassScorpion\")",
+      "result": "Passed",
+      "failure": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityCorpseCoverageTests.ProtectedPeopleAndUnresolvedFamiliesDoNotAcquireMeatRewards(\"GinFrog\")",
+      "result": "Passed",
+      "failure": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityCorpseCoverageTests.ProtectedPeopleAndUnresolvedFamiliesDoNotAcquireMeatRewards(\"Mogu\")",
+      "result": "Passed",
+      "failure": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestSecurityTests.CapacityOverflowKeepsEveryProductOnTheSourceCell",
+      "result": "Passed",
+      "failure": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestSecurityTests.CarriedHarvestIsSingleUseAndSpentTargetStopsAdvertising",
+      "result": "Failed",
+      "failure": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestSecurityTests.ForeignCarriedSourceCannotYieldOrBeSpent",
+      "result": "Failed",
+      "failure": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestSecurityTests.MalformedYieldBoundsRefuseWithoutChangingSource(-1,1,100)",
+      "result": "Failed",
+      "failure": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestSecurityTests.MalformedYieldBoundsRefuseWithoutChangingSource(2,1,100)",
+      "result": "Failed",
+      "failure": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestSecurityTests.MalformedYieldBoundsRefuseWithoutChangingSource(1,65,100)",
+      "result": "Failed",
+      "failure": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestSecurityTests.MalformedYieldBoundsRefuseWithoutChangingSource(1,1,-1)",
+      "result": "Failed",
+      "failure": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestSecurityTests.MalformedYieldBoundsRefuseWithoutChangingSource(1,1,101)",
+      "result": "Failed",
+      "failure": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestSecurityTests.MissingActorRefusesWithoutSpending",
+      "result": "Passed",
+      "failure": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestSecurityTests.MissingYieldInfrastructureRefusesWithoutLosingTheSource(\"no-factory\")",
+      "result": "Failed",
+      "failure": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestSecurityTests.MissingYieldInfrastructureRefusesWithoutLosingTheSource(\"unknown-yield\")",
+      "result": "Failed",
+      "failure": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestSecurityTests.NoOverflowDestinationRefusesAtomically",
+      "result": "Failed",
+      "failure": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestSecurityTests.OuterCommandRollbackRestoresSourceAndAllYield(False)",
+      "result": "Failed",
+      "failure": "  Expected: 0\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestSecurityTests.OuterCommandRollbackRestoresSourceAndAllYield(True)",
+      "result": "Failed",
+      "failure": "  Expected: 0\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestSecurityTests.ProductInitializationCannotReenterTheSameHarvest",
+      "result": "Failed",
+      "failure": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestSecurityTests.ProductInitializationMovingSourceAwayRejectsTheOuterHarvest",
+      "result": "Failed",
+      "failure": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestSecurityTests.WorldHarvestRequiresALivingPresentActorWithinReach(\"distant\")",
+      "result": "Failed",
+      "failure": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestSecurityTests.WorldHarvestRequiresALivingPresentActorWithinReach(\"detached\")",
+      "result": "Failed",
+      "failure": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestSecurityTests.WorldHarvestRequiresALivingPresentActorWithinReach(\"foreign-zone\")",
+      "result": "Failed",
+      "failure": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestSecurityTests.WorldHarvestRequiresALivingPresentActorWithinReach(\"dead\")",
+      "result": "Failed",
+      "failure": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestSecurityTests.ZeroChanceStillSpendsExactlyOnce",
+      "result": "Failed",
+      "failure": "  Expected: False\n  But was:  True\n"
+    }
+  ],
+  "source_sha256": "94c9ffa0c2b4648fc8c29eb5deb25ecc9fa2da2fc7241ab056d33c03c52281af"
+}

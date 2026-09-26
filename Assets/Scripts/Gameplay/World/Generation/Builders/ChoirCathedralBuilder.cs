@@ -146,7 +146,7 @@ namespace CavesOfOoo.Core
             }
 
             // ── Claim the vault against later spawners (the W5.4 lesson:
-            //    PopulationBuilder runs after this and rolls snapjaws).
+            //    PopulationBuilder runs after this and rolls marlbacks).
             int reserved = 0;
             for (int x = 6; x <= 73; x++)
                 for (int y = NaveTop - 2; y <= NaveBottom + 2; y++)

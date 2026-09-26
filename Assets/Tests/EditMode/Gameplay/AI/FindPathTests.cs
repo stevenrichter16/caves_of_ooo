@@ -201,7 +201,7 @@ namespace CavesOfOoo.Tests
             for (int y = 3; y <= 7; y++)
                 PlaceWall(zone, 7, y);
 
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             var brain = new BrainPart
             {
                 CurrentZone = zone,
@@ -231,7 +231,7 @@ namespace CavesOfOoo.Tests
         public void MoveToGoal_RecomputesOnBlock()
         {
             var zone = CreateZone();
-            var creature = CreateCreature("Snapjaws");
+            var creature = CreateCreature("OutlandRaiders");
             var brain = new BrainPart
             {
                 CurrentZone = zone,

@@ -43,13 +43,23 @@ namespace CavesOfOoo.Tests
             return HotbarSaveFixture.RoundTrip(GameSessionState.Capture(Guid.NewGuid().ToString("N"), "equipment content", manager, turns, actor));
         }
 
-        [TestCase("Snapjaw", "LeatherCap", 20)]
-        [TestCase("SnapjawScavenger", "LeatherGloves", 35)]
-        [TestCase("SnapjawHunter", "LeatherBoots", 35)]
-        [TestCase("DesertBandit", "LeatherCap", 30)]
-        [TestCase("RuinScavenger", "LeatherGloves", 35)]
+        [TestCase("MarlbackScrabbler", "LeatherCap", 35)]
+        [TestCase("MarlbackScrabbler", "LeatherGloves", 20)]
+        [TestCase("MarlbackGleaner", "LeatherGloves", 50)]
+        [TestCase("MarlbackGleaner", "LeatherArmor", 25)]
+        [TestCase("MarlbackTunnelguard", "LeatherBoots", 50)]
+        [TestCase("MarlbackTunnelguard", "LeatherCap", 25)]
+        [TestCase("MarlbackWallkeeper", "LeatherBoots", 35)]
+        [TestCase("DesertBandit", "LeatherCap", 40)]
+        [TestCase("DesertBandit", "LeatherBoots", 20)]
+        [TestCase("RuinScavenger", "LeatherGloves", 50)]
+        [TestCase("RuinScavenger", "LeatherCap", 25)]
         [TestCase("AmbushBandit", "LeatherArmor", 35)]
-        [TestCase("RuneCultist", "LeatherGloves", 35)]
+        [TestCase("AmbushBandit", "LeatherBoots", 25)]
+        [TestCase("RuneCultist", "LeatherGloves", 50)]
+        [TestCase("RuneCultist", "Cloak", 30)]
+        [TestCase("DirtGnome", "LeatherCap", 20)]
+        [TestCase("SootGremlin", "LeatherCap", 20)]
         public void Adversarial_OptionalArmorUsesExactProbabilityBoundary(string name, string optional, int chance)
         {
             // Hypothesis: a percent typo or inherited row makes optional armor guaranteed.
@@ -66,13 +76,13 @@ namespace CavesOfOoo.Tests
         }
 
         [TestCase(false)] [TestCase(true)]
-        public void Adversarial_ScavengerChoiceCannotRetainParentDaggerOrCap(bool gloves)
+        public void Adversarial_ScavengerChoiceCannotRetainParentWeaponOrCap(bool optionalArmor)
         {
             using (var f = Fixture())
             {
-                LoadoutPart.Rng = new EquipmentContentRng { LastPick = true, OptionalAbsent = !gloves };
-                var actor = f.Create("SnapjawScavenger");
-                CollectionAssert.AreEquivalent(gloves ? new[] { "ShortSword", "LeatherGloves" } : new[] { "ShortSword" },
+                LoadoutPart.Rng = new EquipmentContentRng { LastPick = true, OptionalAbsent = !optionalArmor };
+                var actor = f.Create("MarlbackGleaner");
+                CollectionAssert.AreEquivalent(optionalArmor ? new[] { "ShortSword", "LeatherGloves", "LeatherArmor" } : new[] { "ShortSword" },
                     Items(actor).Select(x => x.BlueprintName));
                 Assert.AreEqual(1, Weapons(actor).Count(x => x.ParentEntity.BlueprintName == "ShortSword"));
                 Assert.AreEqual(1, Weapons(actor).Count(x => x.ParentEntity.HasTag("Natural")));
@@ -104,8 +114,8 @@ namespace CavesOfOoo.Tests
 
         [TestCase("Warden", "Body", 6, 3, -1, 0)]
         [TestCase("Quartermaster", "Body", 5, 2, -1, 0)]
-        [TestCase("SnapjawChieftain", "Body", 7, 4, -1, 0)]
-        [TestCase("SnapjawWarlord", "Feet", 6, 4, -1, 5)]
+        [TestCase("MarlbackWallkeeper", "Body", 7, 4, -1, 0)]
+        [TestCase("MarlbackBreacher", "Feet", 6, 4, -1, 5)]
         [TestCase("SkeletalSentry", "Head", 7, 5, 0, 0)]
         public void Adversarial_ArmorProtectsItsLocationAndRemovalReversesOnlyItsEffects(
             string name, string slot, int armored, int natural, int dv, int speed)
@@ -128,20 +138,34 @@ namespace CavesOfOoo.Tests
             }
         }
 
-        [TestCase("SnapjawWarlord", "2d5", 2, "Cutting Axe")]
+        [TestCase("MarlbackBreacher", "2d5", 2, "Cutting Axe")]
         [TestCase("SkeletalSentry", "1d6+1", 1, "Cutting")]
-        public void Adversarial_ArmorOnlyEnemiesKeepBothStrongerNaturalHands(string name, string damage, int pen, string attributes)
+        public void Adversarial_UnarmedEnemiesKeepBothStrongerNaturalHands(string name, string damage, int pen, string attributes)
         {
             using (var f = Fixture())
             {
-                var actor = f.Create(name); var weapons = Weapons(actor); Assert.AreEqual(2, weapons.Count);
+                var actor = f.Create(name);
+                var inventory = actor.GetPart<InventoryPart>();
+                var melee = inventory.GetAllEquipped().Where(x => x.GetPart<MeleeWeaponPart>() != null).ToArray();
+                if (name == "MarlbackBreacher")
+                {
+                    Assert.AreEqual(1, melee.Length);
+                    Assert.AreEqual("BreacherCleaver", melee[0].BlueprintName);
+                    Assert.AreEqual(1, Weapons(actor).Count(x => x.ParentEntity.HasTag("Natural")));
+                    Assert.IsTrue(InventorySystem.UnequipItem(actor, melee[0]));
+                    LoadoutLifecycleFixture.Carried(actor, melee[0]);
+                }
+                else Assert.AreEqual(0, melee.Length);
+                var weapons = Weapons(actor); Assert.AreEqual(2, weapons.Count);
                 foreach (var weapon in weapons)
                 { Assert.IsTrue(weapon.ParentEntity.HasTag("Natural")); Assert.AreEqual(damage, weapon.BaseDamage); Assert.AreEqual(pen, weapon.PenBonus); Assert.AreEqual(attributes, weapon.Attributes); }
                 Assert.IsFalse(actor.GetPart<InventoryPart>().GetAllEquipped().Any(x => x.GetPart<MeleeWeaponPart>() != null));
             }
         }
 
-        [TestCase("Snapjaw", "Dagger", "1d4", 1, "Piercing")]
+        [TestCase("MarlbackScrabbler", "Dagger", "1d4", 1, "Piercing")]
+        [TestCase("MarlbackBreacher", "BreacherCleaver", "1d10", 2, "Cutting Axe")]
+        [TestCase("MarlbackWallkeeper", "LongSword", "1d8", 2, "Cutting LongBlades")]
         [TestCase("DesertBandit", "ShortSword", "1d6", 1, "Cutting LongBlades")]
         [TestCase("Warden", "LongSword", "1d8", 2, "Cutting LongBlades")]
         [TestCase("Quartermaster", "Spear", "1d6+1", 2, "Piercing")]
@@ -161,7 +185,7 @@ namespace CavesOfOoo.Tests
             }
         }
 
-        [TestCase("SnapjawWarlord")] [TestCase("Quartermaster")]
+        [TestCase("MarlbackBreacher")] [TestCase("Quartermaster")]
         [TestCase("PeatCutter")] [TestCase("TentRightHost")]
         public void Adversarial_ActualKitsRoundTripWithoutNewIDsOrRegrant(string name)
         {
@@ -183,17 +207,17 @@ namespace CavesOfOoo.Tests
         {
             using (var f = Fixture())
             {
-                var bp = f.Factory.Blueprints["SnapjawWarlord"]; var loadout = bp.Parts["Loadout"];
-                bp.Parts.Remove("Loadout"); var oldActor = f.Create("SnapjawWarlord"); bp.Parts.Add("Loadout", loadout);
+                var bp = f.Factory.Blueprints["MarlbackBreacher"]; var loadout = bp.Parts["Loadout"];
+                bp.Parts.Remove("Loadout"); var oldActor = f.Create("MarlbackBreacher"); bp.Parts.Add("Loadout", loadout);
                 Assert.AreEqual(0, Items(oldActor).Count);
                 var loaded = RoundTrip(oldActor).Player;
                 Assert.AreEqual(0, Items(loaded).Count); Assert.IsNull(loaded.GetPart<LoadoutPart>());
                 Assert.AreEqual(0, loaded.GetStat("Speed").Penalty);
-                Assert.AreEqual(3, Items(f.Create("SnapjawWarlord")).Count);
+                Assert.AreEqual(4, Items(f.Create("MarlbackBreacher")).Count);
             }
         }
 
-        [TestCase("SnapjawWarlord")] [TestCase("TentRightHost")]
+        [TestCase("MarlbackBreacher")] [TestCase("TentRightHost")]
         public void Adversarial_DeathDropsExactKitOnceAndAnotherActorCanUseIt(string name)
         {
             using (var f = Fixture())
@@ -209,7 +233,7 @@ namespace CavesOfOoo.Tests
                 var player = f.Create("Player"); Assert.IsTrue(zone.AddEntity(player, 5, 5));
                 var gear = items.First(x => x.GetPart<EquippablePart>() != null); f.Messages.Clear();
                 Assert.IsTrue(InventorySystem.Pickup(player, gear, zone)); LoadoutLifecycleFixture.Equipped(player, gear);
-                Assert.AreEqual(1, f.Messages.Count(x => x == player.GetDisplayName() + " equips " + gear.GetDisplayName() + "."));
+                Assert.AreEqual(1, f.Messages.Count(x => x == "You equip " + gear.GetDisplayName() + "."));
             }
         }
 
@@ -218,9 +242,9 @@ namespace CavesOfOoo.Tests
         {
             using (var f = Fixture())
             {
-                var a = f.Create("SnapjawWarlord"); var b = f.Create("SnapjawWarlord");
+                var a = f.Create("MarlbackBreacher"); var b = f.Create("MarlbackBreacher");
                 var aItems = Items(a); var bItems = Items(b);
-                Assert.AreEqual(0, aItems.Intersect(bItems).Count()); Assert.AreEqual(6, aItems.Concat(bItems).Select(x => x.ID).Distinct().Count());
+                Assert.AreEqual(0, aItems.Intersect(bItems).Count()); Assert.AreEqual(8, aItems.Concat(bItems).Select(x => x.ID).Distinct().Count());
                 Assert.IsTrue(InventorySystem.UnequipItem(a, aItems.Single(x => x.BlueprintName == "IronshodBoots")));
                 Assert.AreEqual(0, a.GetStat("Speed").Penalty); Assert.AreEqual(5, b.GetStat("Speed").Penalty);
                 foreach (var item in bItems) LoadoutLifecycleFixture.Equipped(b, item);

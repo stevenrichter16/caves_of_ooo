@@ -164,6 +164,37 @@ namespace CavesOfOoo.Core
             return UndergroundStamps;
         }
 
+        /// <summary>Ordinary deep columns in manufactured country can hold one
+        /// authored T4 find in the existing guarded reliquary. Legacy callers,
+        /// authored POIs and natural Choir country retain the original tables.
+        /// Returns an isolated copy of the changed stamp so one zone cannot
+        /// rewrite another zone's source, chance or geometry.</summary>
+        public static IReadOnlyList<StructureStamp> Underground(int depth,
+            BiomeType surfaceBiome, bool ordinaryColumn)
+        {
+            if (depth < 9 || !ordinaryColumn
+                || (surfaceBiome != BiomeType.Spread && surfaceBiome != BiomeType.Sodden
+                    && surfaceBiome != BiomeType.Beating))
+                return UndergroundStamps;
+
+            var result = new List<StructureStamp>(UndergroundStamps);
+            for (int i = 0; i < result.Count; i++)
+            {
+                var source = result[i];
+                if (source.Name != "Reliquary") continue;
+                var copy = new StructureStamp
+                {
+                    Name = source.Name, Chance = source.Chance, MinTier = source.MinTier,
+                    Rows = (string[])source.Rows.Clone(),
+                    Legend = new Dictionary<char, string>(source.Legend),
+                    ClearsVegetation = source.ClearsVegetation,
+                };
+                copy.Legend['L'] = "lockedchest:DeepReliquaryT4";
+                result[i] = copy;
+            }
+            return result;
+        }
+
         // The Grovelands deliberately has no manufactured ruins (its existing
         // identity pin forbids this stamp). Reclaim the vine-choked ruin in the
         // living underground instead, starting at depth 3 / tier 2.
@@ -523,8 +554,8 @@ namespace CavesOfOoo.Core
                 Legend = new Dictionary<char, string>
                 {
                     { '#', "Wall" },
-                    { 'X', "spawn:SnapjawWarlord" },
-                    { 's', "spawn:Snapjaw" },
+                    { 'X', "spawn:MarlbackBreacher" },
+                    { 's', "spawn:MarlbackScrabbler" },
                     { 'L', "lockedchest:WarbandLootT2" },
                     { 'k', "IronKey" },
                     { '+', "" },

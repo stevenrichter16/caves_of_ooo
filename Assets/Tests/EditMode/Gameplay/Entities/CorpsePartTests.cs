@@ -18,7 +18,7 @@ namespace CavesOfOoo.Tests
     /// Tests use the direct Zone + Entity construction pattern (same shape as
     /// <see cref="MoveToInteriorExteriorGoalTests"/>) plus a minimal inline
     /// blueprint JSON that includes <c>PhysicalObject</c> and
-    /// <c>SnapjawCorpse</c> — enough for the CorpsePart to spawn a corpse
+    /// <c>MarlbackCorpse</c> — enough for the CorpsePart to spawn a corpse
     /// without loading the full game Objects.json.
     /// </summary>
     [TestFixture]
@@ -36,11 +36,11 @@ namespace CavesOfOoo.Tests
                     ""Tags"": []
                 },
                 {
-                    ""Name"": ""SnapjawCorpse"",
+                    ""Name"": ""MarlbackCorpse"",
                     ""Inherits"": ""PhysicalObject"",
                     ""Parts"": [
                         { ""Name"": ""Render"", ""Params"": [
-                            { ""Key"": ""DisplayName"", ""Value"": ""snapjaw corpse"" },
+                            { ""Key"": ""DisplayName"", ""Value"": ""marlback remains"" },
                             { ""Key"": ""RenderString"", ""Value"": ""%"" },
                             { ""Key"": ""ColorString"", ""Value"": ""&r"" }
                         ]},
@@ -88,9 +88,9 @@ namespace CavesOfOoo.Tests
         private Entity CreateCreatureWithCorpsePart(
             Zone zone, int x, int y,
             int corpseChance, string corpseBlueprint,
-            string blueprintName = "TestSnapjaw")
+            string blueprintName = "TestMarlbackScrabbler")
         {
-            var entity = new Entity { BlueprintName = blueprintName, ID = "TestSnapjaw-1" };
+            var entity = new Entity { BlueprintName = blueprintName, ID = "TestMarlbackScrabbler-1" };
             entity.Tags["Creature"] = "";
             entity.AddPart(new RenderPart { DisplayName = blueprintName });
             entity.AddPart(new PhysicsPart { Solid = true });
@@ -140,22 +140,22 @@ namespace CavesOfOoo.Tests
         public void CorpsePart_SpawnsCorpseAtDeathCell_WhenChance100()
         {
             var zone = new Zone("TestZone");
-            var snapjaw = CreateCreatureWithCorpsePart(zone, 10, 10, corpseChance: 100, corpseBlueprint: "SnapjawCorpse");
+            var marlback = CreateCreatureWithCorpsePart(zone, 10, 10, corpseChance: 100, corpseBlueprint: "MarlbackCorpse");
 
-            FireDied(snapjaw, killer: null, zone);
+            FireDied(marlback, killer: null, zone);
 
             var corpse = FindCorpseAt(zone, 10, 10);
-            Assert.IsNotNull(corpse, "CorpsePart should spawn a SnapjawCorpse at the death cell when CorpseChance=100.");
-            Assert.AreEqual("SnapjawCorpse", corpse.BlueprintName);
+            Assert.IsNotNull(corpse, "CorpsePart should spawn a MarlbackCorpse at the death cell when CorpseChance=100.");
+            Assert.AreEqual("MarlbackCorpse", corpse.BlueprintName);
         }
 
         [Test]
         public void CorpsePart_DoesNotSpawn_WhenCorpseChanceZero()
         {
             var zone = new Zone("TestZone");
-            var snapjaw = CreateCreatureWithCorpsePart(zone, 10, 10, corpseChance: 0, corpseBlueprint: "SnapjawCorpse");
+            var marlback = CreateCreatureWithCorpsePart(zone, 10, 10, corpseChance: 0, corpseBlueprint: "MarlbackCorpse");
 
-            FireDied(snapjaw, killer: null, zone);
+            FireDied(marlback, killer: null, zone);
 
             var corpse = FindCorpseAt(zone, 10, 10);
             Assert.IsNull(corpse, "CorpsePart must NOT spawn a corpse when CorpseChance=0 (regression pin for the chance gate).");
@@ -165,11 +165,11 @@ namespace CavesOfOoo.Tests
         public void CorpsePart_SuppressCorpseDropsTag_PreventsSpawn()
         {
             var zone = new Zone("TestZone");
-            var snapjaw = CreateCreatureWithCorpsePart(zone, 10, 10, corpseChance: 100, corpseBlueprint: "SnapjawCorpse");
+            var marlback = CreateCreatureWithCorpsePart(zone, 10, 10, corpseChance: 100, corpseBlueprint: "MarlbackCorpse");
             // Mirror Qud's SuppressCorpseDrops gate (Corpse.cs line 89).
-            snapjaw.SetTag("SuppressCorpseDrops");
+            marlback.SetTag("SuppressCorpseDrops");
 
-            FireDied(snapjaw, killer: null, zone);
+            FireDied(marlback, killer: null, zone);
 
             var corpse = FindCorpseAt(zone, 10, 10);
             Assert.IsNull(corpse, "SuppressCorpseDrops tag must bypass the spawn even when CorpseChance=100.");
@@ -183,16 +183,16 @@ namespace CavesOfOoo.Tests
         public void CorpsePart_SpawnedCorpseCarries_CreatureName_And_SourceBlueprint()
         {
             var zone = new Zone("TestZone");
-            var snapjaw = CreateCreatureWithCorpsePart(zone, 10, 10, corpseChance: 100, corpseBlueprint: "SnapjawCorpse",
-                blueprintName: "Snapjaw");
+            var marlback = CreateCreatureWithCorpsePart(zone, 10, 10, corpseChance: 100, corpseBlueprint: "MarlbackCorpse",
+                blueprintName: "MarlbackScrabbler");
 
-            FireDied(snapjaw, killer: null, zone);
+            FireDied(marlback, killer: null, zone);
 
             var corpse = FindCorpseAt(zone, 10, 10);
             Assert.IsNotNull(corpse);
-            Assert.AreEqual("Snapjaw", corpse.GetProperty("CreatureName"),
+            Assert.AreEqual("MarlbackScrabbler", corpse.GetProperty("CreatureName"),
                 "Spawned corpse should carry the deceased's display name (mirrors Qud Corpse.cs line 141).");
-            Assert.AreEqual("Snapjaw", corpse.GetProperty("SourceBlueprint"),
+            Assert.AreEqual("MarlbackScrabbler", corpse.GetProperty("SourceBlueprint"),
                 "Spawned corpse should carry the deceased's blueprint (mirrors Qud Corpse.cs line 155).");
         }
 
@@ -200,13 +200,13 @@ namespace CavesOfOoo.Tests
         public void CorpsePart_SpawnedCorpseCarries_KillerID_WhenKillerHasID()
         {
             var zone = new Zone("TestZone");
-            var snapjaw = CreateCreatureWithCorpsePart(zone, 10, 10, corpseChance: 100, corpseBlueprint: "SnapjawCorpse");
+            var marlback = CreateCreatureWithCorpsePart(zone, 10, 10, corpseChance: 100, corpseBlueprint: "MarlbackCorpse");
 
             var killer = new Entity { BlueprintName = "Warden", ID = "Warden-7" };
             killer.AddPart(new RenderPart { DisplayName = "warden" });
             // Killer does not need to be in zone — mirrors Qud passing killer via event param.
 
-            FireDied(snapjaw, killer, zone);
+            FireDied(marlback, killer, zone);
 
             var corpse = FindCorpseAt(zone, 10, 10);
             Assert.IsNotNull(corpse);
@@ -223,9 +223,9 @@ namespace CavesOfOoo.Tests
             // (Corpse.cs line 156: `if (E.Killer != null && E.Killer != ParentObject)`).
             // Pin that behaviour explicitly.
             var zone = new Zone("TestZone");
-            var snapjaw = CreateCreatureWithCorpsePart(zone, 10, 10, corpseChance: 100, corpseBlueprint: "SnapjawCorpse");
+            var marlback = CreateCreatureWithCorpsePart(zone, 10, 10, corpseChance: 100, corpseBlueprint: "MarlbackCorpse");
 
-            FireDied(snapjaw, killer: snapjaw, zone);
+            FireDied(marlback, killer: marlback, zone);
 
             var corpse = FindCorpseAt(zone, 10, 10);
             Assert.IsNotNull(corpse);
@@ -248,17 +248,17 @@ namespace CavesOfOoo.Tests
             // someone reorders HandleDeath and moves RemoveEntity above the
             // Died event, this test breaks loudly.
             var zone = new Zone("TestZone");
-            var snapjaw = CreateCreatureWithCorpsePart(zone, 10, 10, corpseChance: 100, corpseBlueprint: "SnapjawCorpse");
+            var marlback = CreateCreatureWithCorpsePart(zone, 10, 10, corpseChance: 100, corpseBlueprint: "MarlbackCorpse");
             // Full creature stats needed so HandleDeath drops equipment/inventory
             // without throwing (Body/Inventory null-checks tolerate absence,
             // but HP stat is read).
-            snapjaw.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 0, Min = 0, Max = 15 };
+            marlback.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 0, Min = 0, Max = 15 };
 
-            CombatSystem.HandleDeath(snapjaw, killer: null, zone);
+            CombatSystem.HandleDeath(marlback, killer: null, zone);
 
-            // After HandleDeath: snapjaw is gone from zone but the SnapjawCorpse
+            // After HandleDeath: marlback is gone from zone but the MarlbackCorpse
             // replaces it at the same cell.
-            Assert.IsNull(zone.GetEntityCell(snapjaw), "Deceased entity should be removed from zone post-HandleDeath.");
+            Assert.IsNull(zone.GetEntityCell(marlback), "Deceased entity should be removed from zone post-HandleDeath.");
             var corpse = FindCorpseAt(zone, 10, 10);
             Assert.IsNotNull(corpse,
                 "CorpsePart must have spawned during the Died event's cell-still-valid window " +
@@ -271,11 +271,11 @@ namespace CavesOfOoo.Tests
     /// corpses" report. Loads the real Objects.json to exercise blueprint
     /// inheritance and the CreatureCorpse + Creature.CorpsePart wiring.
     ///
-    /// Context: M5.1 originally only attached CorpsePart to <c>Snapjaw</c>,
+    /// Context: M5.1 originally only attached CorpsePart to <c>MarlbackScrabbler</c>,
     /// which left every other creature (Villager, Scribe, Warden, Farmer,
     /// and ~40 more) silently corpse-less. Fix: attach a CorpsePart to the
     /// <c>Creature</c> parent pointing at a new <c>CreatureCorpse</c>
-    /// blueprint; Snapjaw's override continues to point at SnapjawCorpse;
+    /// blueprint; MarlbackScrabbler's override continues to point at MarlbackCorpse;
     /// <c>Player</c> and <c>MimicChest</c> opt out via the
     /// <c>SuppressCorpseDrops</c> tag.
     /// </summary>
@@ -322,22 +322,22 @@ namespace CavesOfOoo.Tests
             var physics = corpse.GetPart<PhysicsPart>();
             Assert.IsNotNull(physics);
             Assert.IsTrue(physics.Takeable, "Corpse must be Takeable for PickupCommand.");
-            Assert.AreEqual(10, physics.Weight, "Default corpse weight=10 matches SnapjawCorpse convention.");
+            Assert.AreEqual(10, physics.Weight, "Default corpse weight=10 matches MarlbackCorpse convention.");
         }
 
         [Test]
-        public void SnapjawBlueprint_OverridesCreatureCorpse_StillSpawnsSnapjawCorpse()
+        public void MarlbackScrabblerBlueprint_OverridesCreatureCorpse_StillSpawnsMarlbackCorpse()
         {
             // Blueprint inheritance merges Parts by name with child-wins.
-            // Snapjaw's Corpse part entry should OVERRIDE the Creature parent's
-            // entry, pointing at SnapjawCorpse not CreatureCorpse.
-            var snapjaw = _factory.CreateEntity("Snapjaw");
-            var cp = snapjaw.GetPart<CorpsePart>();
-            Assert.IsNotNull(cp, "Snapjaw should still have a CorpsePart.");
-            Assert.AreEqual("SnapjawCorpse", cp.CorpseBlueprint,
-                "Snapjaw's override must stick — not fall through to CreatureCorpse.");
+            // MarlbackScrabbler's Corpse part entry should OVERRIDE the Creature parent's
+            // entry, pointing at MarlbackCorpse not CreatureCorpse.
+            var marlback = _factory.CreateEntity("MarlbackScrabbler");
+            var cp = marlback.GetPart<CorpsePart>();
+            Assert.IsNotNull(cp, "MarlbackScrabbler should still have a CorpsePart.");
+            Assert.AreEqual("MarlbackCorpse", cp.CorpseBlueprint,
+                "MarlbackScrabbler's override must stick — not fall through to CreatureCorpse.");
             Assert.AreEqual(70, cp.CorpseChance,
-                "Snapjaw's 70% corpse-chance override must stick.");
+                "MarlbackScrabbler's 70% corpse-chance override must stick.");
         }
 
         [Test]
@@ -359,7 +359,7 @@ namespace CavesOfOoo.Tests
         }
 
         // End-to-end integration: spawn a Villager, fire Died via HandleDeath,
-        // confirm CreatureCorpse lands at the death cell. Mirrors the Snapjaw
+        // confirm CreatureCorpse lands at the death cell. Mirrors the MarlbackScrabbler
         // integration test above, but exercises the inherited CorpsePart path.
         [Test]
         public void Villager_OnDied_SpawnsCreatureCorpseAtDeathCell()
@@ -413,30 +413,30 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void Snapjaw_Corpse_DisplayName_PreservesBlueprintValue_NotInterpolated()
+        public void MarlbackScrabbler_Corpse_DisplayName_PreservesBlueprintValue_NotInterpolated()
         {
-            // Counter-check for the conditional override: SnapjawCorpse has
-            // a hand-authored Render.DisplayName = "snapjaw corpse". The
+            // Counter-check for the conditional override: MarlbackCorpse has
+            // a hand-authored Render.DisplayName = "marlback remains". The
             // interpolation condition (`render.DisplayName == "corpse"`)
             // should not fire, so the author-chosen flavor is preserved
-            // even if a future SnapjawCorpse ships as "gnawed snapjaw corpse"
+            // even if a future MarlbackCorpse ships as "gnawed marlback remains"
             // or similar.
             FactionManager.Initialize();
             var zone = new Zone("TestZone");
-            var snapjaw = _factory.CreateEntity("Snapjaw");
-            zone.AddEntity(snapjaw, 10, 10);
+            var marlback = _factory.CreateEntity("MarlbackScrabbler");
+            zone.AddEntity(marlback, 10, 10);
             // Force deterministic drop (default CorpseChance=70).
-            snapjaw.GetPart<CorpsePart>().CorpseChance = 100;
+            marlback.GetPart<CorpsePart>().CorpseChance = 100;
 
-            CombatSystem.HandleDeath(snapjaw, killer: null, zone);
+            CombatSystem.HandleDeath(marlback, killer: null, zone);
 
             CavesOfOoo.Core.Entity corpse = null;
             foreach (var obj in zone.GetCell(10, 10).Objects)
-                if (obj.BlueprintName == "SnapjawCorpse") { corpse = obj; break; }
+                if (obj.BlueprintName == "MarlbackCorpse") { corpse = obj; break; }
             Assert.IsNotNull(corpse);
             var render = corpse.GetPart<RenderPart>();
-            Assert.AreEqual("snapjaw corpse", render.DisplayName,
-                "SnapjawCorpse blueprint's hand-authored \"snapjaw corpse\" DisplayName " +
+            Assert.AreEqual("marlback remains", render.DisplayName,
+                "MarlbackCorpse blueprint's hand-authored \"marlback remains\" DisplayName " +
                 "must be preserved — the interpolation override only fires when the " +
                 "blueprint default is the flat \"corpse\".");
         }

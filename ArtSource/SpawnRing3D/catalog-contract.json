@@ -1412,7 +1412,7 @@
         "Equipment.Hand.R",
         "Equipment.Back"
       ],
-      "sourceBlueprint": "Snapjaw",
+      "sourceBlueprint": "MarlbackScrabbler",
       "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
     },
     {
@@ -1435,7 +1435,7 @@
         "Equipment.Hand.R",
         "Equipment.Back"
       ],
-      "sourceBlueprint": "SnapjawWarlord",
+      "sourceBlueprint": "MarlbackBreacher",
       "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
     },
     {
@@ -2736,6 +2736,93 @@
       "sockets": [],
       "sourceBlueprint": "GlowQuartzVein",
       "metadataStatus": "planned; actual seed1729 native producer confirmed"
+    },
+    {
+      "id": "ring-marlback-gleaner",
+      "path": "models/ring-marlback-gleaner.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "sourceBlueprint": "MarlbackGleaner",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-marlback-tunnelguard",
+      "path": "models/ring-marlback-tunnelguard.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "sourceBlueprint": "MarlbackTunnelguard",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-marlback-wallkeeper",
+      "path": "models/ring-marlback-wallkeeper.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "humanoid",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "sourceBlueprint": "MarlbackWallkeeper",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
+    },
+    {
+      "id": "ring-grove-lantern-moth",
+      "path": "models/ring-grove-lantern-moth.fbx",
+      "kind": "actor",
+      "rigged": true,
+      "rigFamily": "avian",
+      "materialFamily": "ring-palette",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "sourceBlueprint": "GroveLanternMoth",
+      "metadataStatus": "planned; bounds/triangles populated from real mesh after build"
     }
   ],
   "blueprints": [
@@ -3149,14 +3236,14 @@
       "role": "actor"
     },
     {
-      "blueprint": "Snapjaw",
+      "blueprint": "MarlbackScrabbler",
       "models": [
         "ring-snapjaw"
       ],
       "role": "actor"
     },
     {
-      "blueprint": "SnapjawWarlord",
+      "blueprint": "MarlbackBreacher",
       "models": [
         "ring-snapjaw-warlord"
       ],
@@ -3336,6 +3423,34 @@
       "blueprint": "YellowfootWayfarer",
       "models": [
         "ring-yellowfoot-wayfarer"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "MarlbackGleaner",
+      "models": [
+        "ring-marlback-gleaner"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "MarlbackTunnelguard",
+      "models": [
+        "ring-marlback-tunnelguard"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "MarlbackWallkeeper",
+      "models": [
+        "ring-marlback-wallkeeper"
+      ],
+      "role": "actor"
+    },
+    {
+      "blueprint": "GroveLanternMoth",
+      "models": [
+        "ring-grove-lantern-moth"
       ],
       "role": "actor"
     }

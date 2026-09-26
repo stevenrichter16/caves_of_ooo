@@ -318,7 +318,7 @@ namespace CavesOfOoo.Tests
             // before combat can engage — wasting a turn.
             var zone = new Zone("TestZone");
 
-            var ambusher = CreateCreature(zone, 10, 10, faction: "Snapjaws", hp: 30);
+            var ambusher = CreateCreature(zone, 10, 10, faction: "OutlandRaiders", hp: 30);
             var ambusherBrain = ambusher.GetPart<BrainPart>();
 
             var player = new Entity { BlueprintName = "Player" };
@@ -478,7 +478,7 @@ namespace CavesOfOoo.Tests
             // that ticking with damage and hostiles present does NOT
             // auto-wake.
             var zone = new Zone("TestZone");
-            var ambusher = CreateCreature(zone, 10, 10, faction: "Snapjaws", hp: 30);
+            var ambusher = CreateCreature(zone, 10, 10, faction: "OutlandRaiders", hp: 30);
             var brain = ambusher.GetPart<BrainPart>();
 
             var player = new Entity { BlueprintName = "Player" };

@@ -2337,9 +2337,9 @@ namespace CavesOfOoo.Tests
             var factory = new EntityFactory();
             factory.LoadBlueprints(GetTestJson());
 
-            var snapjaw = factory.CreateEntity("Snapjaw");
-            Assert.IsNotNull(snapjaw.GetPart<InventoryPart>(), "Creature blueprint should have InventoryPart");
-            Assert.AreEqual(150, snapjaw.GetPart<InventoryPart>().MaxWeight);
+            var marlback = factory.CreateEntity("MarlbackScrabbler");
+            Assert.IsNotNull(marlback.GetPart<InventoryPart>(), "Creature blueprint should have InventoryPart");
+            Assert.AreEqual(150, marlback.GetPart<InventoryPart>().MaxWeight);
         }
 
         [Test]
@@ -5874,10 +5874,10 @@ namespace CavesOfOoo.Tests
                         ""Tags"": [{ ""Key"": ""Creature"", ""Value"": """" }]
                     },
                     {
-                        ""Name"": ""Snapjaw"",
+                        ""Name"": ""MarlbackScrabbler"",
                         ""Inherits"": ""Creature"",
                         ""Parts"": [
-                            { ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""snapjaw"" }] },
+                            { ""Name"": ""Render"", ""Params"": [{ ""Key"": ""DisplayName"", ""Value"": ""marlback"" }] },
                             { ""Name"": ""MeleeWeapon"", ""Params"": [{ ""Key"": ""BaseDamage"", ""Value"": ""1d4"" }, { ""Key"": ""PenBonus"", ""Value"": ""1"" }] },
                             { ""Name"": ""Armor"", ""Params"": [{ ""Key"": ""AV"", ""Value"": ""2"" }, { ""Key"": ""DV"", ""Value"": ""1"" }] }
                         ],
@@ -5885,7 +5885,7 @@ namespace CavesOfOoo.Tests
                             { ""Name"": ""Hitpoints"", ""Value"": 15, ""Min"": 0, ""Max"": 15 },
                             { ""Name"": ""Strength"", ""Value"": 16 }
                         ],
-                        ""Tags"": [{ ""Key"": ""Faction"", ""Value"": ""Snapjaws"" }]
+                        ""Tags"": [{ ""Key"": ""Faction"", ""Value"": ""OutlandRaiders"" }]
                     },
                     {
                         ""Name"": ""Player"",
