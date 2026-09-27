@@ -1,0 +1,130 @@
+{
+  "status": "PRIVATE ONLY. Root owns native publication and execution. No Core, content, gameplay, save format or accepted glade driver changes.",
+  "testOnlyPhase": [
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/NativeDensitySceneRestorationTests.cs",
+      "candidate": "/tmp/coo-c9-corpse-native/NativeDensitySceneRestorationTests.cs",
+      "beforeSha256": "8511f50c829262c9b90bc50428fd0a35d54506b4bd1bbeeaf906250cd463067d",
+      "sha256": "13cd64a9e4bff5976d698c317c9ff1c3ed09222d21f9a523ec66eac2ead23c4b",
+      "kind": "two-additive-reflection-restoration-rows"
+    }
+  ],
+  "implementationPhase": [
+    {
+      "path": "Assets/Scripts/Scenarios/Custom/DensityCorpseHarvestEvidence.cs",
+      "candidate": "/tmp/coo-c9-corpse-native/DensityCorpseHarvestEvidence.cs",
+      "beforeSha256": null,
+      "sha256": "85859a4db237930b5267474c5e640537f65ab0cdf7378d429015e109f621ced4",
+      "kind": "new-owned-native-audit"
+    },
+    {
+      "path": "Assets/Scripts/Scenarios/Custom/DensityCorpseHarvestEvidence.cs.meta",
+      "candidate": "/tmp/coo-c9-corpse-native/DensityCorpseHarvestEvidence.cs.meta",
+      "beforeSha256": null,
+      "sha256": "97c9e87d0feb7d1881ad2c37f04303bb5cd3f7e034d04876dbd92fd07e8a4ab8",
+      "kind": "fresh-meta"
+    },
+    {
+      "path": "Assets/Scripts/Scenarios/Custom/DensityCorpseHarvestNativePlayer.cs",
+      "candidate": "/tmp/coo-c9-corpse-native/DensityCorpseHarvestNativePlayer.cs",
+      "beforeSha256": null,
+      "sha256": "332f3a0e23dfc1fd2b0f2799dbcd441a3079c69161c3c18d3ec339934c883d83",
+      "kind": "new-owned-native-audit"
+    },
+    {
+      "path": "Assets/Scripts/Scenarios/Custom/DensityCorpseHarvestNativePlayer.cs.meta",
+      "candidate": "/tmp/coo-c9-corpse-native/DensityCorpseHarvestNativePlayer.cs.meta",
+      "beforeSha256": null,
+      "sha256": "67db3e8f653e9ca47a72686f5baa03ca898d248ce5edf90f6f1fe8c7cfe311e3",
+      "kind": "fresh-meta"
+    },
+    {
+      "path": "Assets/Editor/Scenarios/DensityCorpseHarvestNativeBatch.cs",
+      "candidate": "/tmp/coo-c9-corpse-native/DensityCorpseHarvestNativeBatch.cs",
+      "beforeSha256": null,
+      "sha256": "819b9714beb03a4b86690107a63a62218c2bb590f3c6de4c9aa4d5f01183b189",
+      "kind": "new-owned-native-audit"
+    },
+    {
+      "path": "Assets/Editor/Scenarios/DensityCorpseHarvestNativeBatch.cs.meta",
+      "candidate": "/tmp/coo-c9-corpse-native/DensityCorpseHarvestNativeBatch.cs.meta",
+      "beforeSha256": null,
+      "sha256": "e5e4074dcbd4bc39a5f99d2c6a925b4221be2b33bfd7b6400720f07860c2e102",
+      "kind": "fresh-meta"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Input/DensityCorpseHarvestEvidenceTests.cs",
+      "candidate": "/tmp/coo-c9-corpse-native/DensityCorpseHarvestEvidenceTests.cs",
+      "beforeSha256": null,
+      "sha256": "d6fae48b76eb0a7d2cee122754f3a089c98fd5c92ded8cb76819c5d0a15346f9",
+      "kind": "new-owned-native-audit"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Input/DensityCorpseHarvestEvidenceTests.cs.meta",
+      "candidate": "/tmp/coo-c9-corpse-native/DensityCorpseHarvestEvidenceTests.cs.meta",
+      "beforeSha256": null,
+      "sha256": "dd3023ecfc70d1f734d8b6f526bbc81d3b47704954042db3783d9c3df08cd727",
+      "kind": "fresh-meta"
+    }
+  ],
+  "entryPoints": {
+    "launcher": "CavesOfOoo.Editor.DensityCorpseHarvestNativeBatch.Launch",
+    "finiteDriver": "CavesOfOoo.Scenarios.Custom.DensityCorpseHarvestNativePlayer",
+    "helperFixture": "CavesOfOoo.Tests.DensityCorpseHarvestEvidenceTests",
+    "cleanupFixture": "CavesOfOoo.Tests.NativeDensitySceneRestorationTests (two new DensityCorpseHarvestNativeBatch parameters)"
+  },
+  "review": [
+    "render_completion: native menu/inventory/capture/restoration reread clear; actual images and route pending",
+    "standalone_verify: source/melee/commit/conservation/savegraph reread clear; post-harvest absence only"
+  ],
+  "dependencyPreconditions": [
+    {
+      "path": "Assets/Resources/Content/Blueprints/Objects.json",
+      "sha256": "fe86cad007e60220fda8dfb6f26039c07b48bfad145ecf6c24d0c8b125856393",
+      "currentSha256": "fe86cad007e60220fda8dfb6f26039c07b48bfad145ecf6c24d0c8b125856393"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/Items/HarvestablePart.cs",
+      "sha256": "0fc5e1619c9ad4d3a8ca880396c78980f3e752b3fb1f7a8e1160f2258faab330",
+      "currentSha256": "0fc5e1619c9ad4d3a8ca880396c78980f3e752b3fb1f7a8e1160f2258faab330"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/Entities/CorpsePart.cs",
+      "sha256": "e83de1e2138c628cd2a3302dcbfb0b8b2ed2ca8cf69e181083a446a6a9cacf14",
+      "currentSha256": "e83de1e2138c628cd2a3302dcbfb0b8b2ed2ca8cf69e181083a446a6a9cacf14"
+    },
+    {
+      "path": "Assets/Scripts/Data/Tables/PopulationTable.cs",
+      "sha256": "cec85854d5d938d04c0679010914e0ae8e57827160912720f60cecfe6eb933f3",
+      "currentSha256": "cec85854d5d938d04c0679010914e0ae8e57827160912720f60cecfe6eb933f3"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+      "sha256": "ae82b1a54bc19dab86c904889947d5f664381b67567a5d8b23674ca74d5ab8d5",
+      "currentSha256": "ae82b1a54bc19dab86c904889947d5f664381b67567a5d8b23674ca74d5ab8d5"
+    },
+    {
+      "path": "Assets/Scripts/Scenarios/Custom/ReferenceGladeNativeCombat.cs",
+      "sha256": "94ae352c89072c7b1062dd269b586321d7d57fd9e88c80ce613d05b4426bb6d2",
+      "currentSha256": "94ae352c89072c7b1062dd269b586321d7d57fd9e88c80ce613d05b4426bb6d2"
+    },
+    {
+      "path": "Assets/Scripts/Scenarios/Custom/ReferenceGladeCombatEvidence.cs",
+      "sha256": "2d6e696569de1f8285cb499785ebc55514acde3ab4f270f3058cc5e4a1f14b7c",
+      "currentSha256": "2d6e696569de1f8285cb499785ebc55514acde3ab4f270f3058cc5e4a1f14b7c"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Input/DensityHarvestNativeUiTests.cs",
+      "sha256": "8d5021d27cfe92f61e4bfdbbe0fe04dfbc2321b660a2b405c89a848a2a794506",
+      "currentSha256": "8d5021d27cfe92f61e4bfdbbe0fe04dfbc2321b660a2b405c89a848a2a794506"
+    }
+  ],
+  "bounds": [
+    "One labelled living-player approach transfer into first qualifying actual seed64 Beating wilderness graph; <=24 current real addresses, no outcome reroll.",
+    "No grants, TestRng injection, source/goal/stat/world edits, NPC suppression, repeated attempts after death or gameplay changes.",
+    "Original two tonics may be used by native free action at<=two-thirdsHP with exact fresh consumption witness.",
+    "Yield observer conserves packed+floor; native route requires ordinary carry capacity and records overflow as incomplete.",
+    "Post-harvest F5/drop/step/F6 proves earned yield and absent source persistence, not pre-harvest corpse save/load.",
+    "Core runner and reference compilation do not prove actual native input, editor cleanup, generated source availability, survival, screenshots or game balance."
+  ]
+}

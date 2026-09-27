@@ -1,9 +1,9 @@
 # C9 — scenery and corpse reachability audit
 
-**Status:** bounded C9 implementation and core/adversarial verification complete.
-The final shared-source focused group is **154/154 GREEN**: 52 new harvest/content
+**Status:** bounded C9 implementation and actual killed-corpse keyboard acceptance complete: **14/14 native route checks**, **65/65 native witness/restoration checks**,0 failures/errors and exact restoration. Generated Bones and all-family discovery remain separate bounds.
+The earlier shared-source focused group was **154/154 GREEN**: 52 new harvest/content
 cases, 38 existing harvest/corpse/GroveLaw checks and 64 local-people cases.
-Native keyboard harvest/replay acceptance and the final native suite remain due.
+Historical evidence and the current native completion are recorded below.
 Root owns integration and blueprint surgery. The initial census predates the
 user-requested removal of imported enemy names; its historical counts are not a
 claim about final roster labels.
@@ -260,3 +260,17 @@ are in `Verification/DensityCompletion/Scenery/NativeCorpseAcceptance/PLAN.md`
 and `source-sweep.json`. This plan keeps glade combat unchanged and records
 generated Bones as a separate residual rather than inferring it from a generic
 harvest check name. Root owns the eventual test-only and implementation windows.
+
+## Private corpse-native implementation checkpoint (2026-09-27)
+
+The dedicated SunStriker driver, isolated launcher and read-only corpse/harvest/save-graph witnesses are implemented privately. The helper ran29 cases against a false skeleton (5 intended positive RED/24 controls), then29 GREEN; the replacement-graph slice added1 positive RED/40 controls, then41 GREEN. Three deliberate private counterchecks each exposed their removed guard (killer identity, overflow conservation and restored target absence), and the exact final helper returned41 GREEN. Nearby existing corpse/harvest tests plus the witness pass100/100 in the standalone runner. Actual full runtime, editor launcher and native fixture reference compilation each report zero errors. Two peers found no remaining concrete source/menu/savegraph/cleanup blocker after the bounded rereads.
+
+This is harness readiness, not native acquisition acceptance. The new reflection restoration rows still require root-owned native missing-launcher RED and GREEN; the actual generated source, ordinary fight, precise corpse menu/Harvest, F5/drop/paid-step/F6 and viewed frames remain unrun. The native route counts any overflow and ends incomplete if ordinary carry capacity cannot receive all yield; it never deletes kit to force success. Its checkpoint proves post-harvest source absence and exact earned inventory, not pre-harvest corpse serialization. Accepted glade modes and gameplay/content are unchanged. Exact9-path candidate/phase manifest, raw paired results, counters and compilation logs are in `Verification/DensityCompletion/Scenery/NativeCorpseAcceptance/`.
+
+## Actual killed-corpse native acceptance (2026-09-27)
+
+The published dedicated route now completes14/14 required checks in actual Play (`NativeCorpseAcceptance/6ba32133d91e40829b0cbbfa23742606`),0 failures and0 finalized errors, exact scene/prefs/save-root restoration. The separate native helper/restoration selection passes65/65 after the two missing-launcher RED cases. One actual generated SunStriker24955 in Beating `Overworld.14.14.0`, approached with one labelled player shortcut, died to one native dagger attack after three walking keys. Its corpse24971 was selected/examined and harvested through the real menu into RawMeat24972×1; the source disappeared and remained depleted through native F5/earned-item drop/paid step/F6 replacement. The ordinary actor earned25XP, stayed at40HP, and used no tonic or control spell; no retaliation occurred, so this is not C2 enemy-retaliation evidence. No gameplay, corpse chance, yield or source changed to make the route pass.
+
+Root viewed02 corpse-menu and06 restored-world frames, as recorded with hashes in the run’s `root-visual-review.json`; four other frames remain unreviewed. Exact inventory counts/ownership are established by the report, not inferred from the closed-inventory screenshot. This closes the actual killed-corpse keyboard-harvest gate for this source. Generated Bones, other corpse families, pre-harvest corpse serialization, ordinary discovery/food balance and Beating3D style remain distinct bounds. The exact9-Assets ownership and finite related documentation/receipt stage list are in `NativeCorpseAcceptance/owned-stage-manifest.json`.
+
+A separate observed language defect remains queued: the actual kill log reads `You [left hand: dagger] hits …`. The player qualifier is not normalized to the player verb form. This observation does not change the successful C9 identity/action evidence; no grammar source was changed in this milestone.

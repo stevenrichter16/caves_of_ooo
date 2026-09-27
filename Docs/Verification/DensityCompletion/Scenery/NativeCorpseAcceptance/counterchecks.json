@@ -1,0 +1,29 @@
+{
+  "scope": "Private witness mutations only; exact original restored. No gameplay mutation or Unity execution.",
+  "results": [
+    {
+      "mutation": "killer-identity",
+      "changedExactGuard": "&& corpse.GetProperty(\"KillerID\") == player",
+      "exitCode": 0,
+      "failedCases": [
+        "CavesOfOoo.Tests.DensityCorpseHarvestEvidenceTests.SimilarRemainsOrInvalidOwnershipCannotSubstitute(\"killer-id\")"
+      ]
+    },
+    {
+      "mutation": "floor-conservation",
+      "changedExactGuard": "&& (long)packedAfter - packedBefore == packed && (long)floorAfter - floorBefore == floor",
+      "exitCode": 0,
+      "failedCases": [
+        "CavesOfOoo.Tests.DensityCorpseHarvestEvidenceTests.CountsOrUnrelatedLogsAloneDoNotProveNativeHarvest(\"missing-overflow\")"
+      ]
+    },
+    {
+      "mutation": "saved-source-absence",
+      "changedExactGuard": "e.ID == sourceId || e.ID == corpseId",
+      "exitCode": 0,
+      "failedCases": [
+        "CavesOfOoo.Tests.DensityCorpseHarvestEvidenceTests.InventoryCountDoesNotSubstituteForReplacementAndDepletedSavedGraph(\"resurrected-source\")"
+      ]
+    }
+  ]
+}

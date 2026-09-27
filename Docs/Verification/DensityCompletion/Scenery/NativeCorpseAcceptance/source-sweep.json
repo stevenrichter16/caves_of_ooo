@@ -1,0 +1,104 @@
+{
+  "status": "Read-only source/receipt sweep; no generated-world probe, Unity, runtime change or native acceptance in this task",
+  "files": [
+    {
+      "path": "Assets/Resources/Content/Blueprints/Objects.json",
+      "sha256": "fe86cad007e60220fda8dfb6f26039c07b48bfad145ecf6c24d0c8b125856393"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/Items/HarvestablePart.cs",
+      "sha256": "0fc5e1619c9ad4d3a8ca880396c78980f3e752b3fb1f7a8e1160f2258faab330"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/Entities/CorpsePart.cs",
+      "sha256": "e83de1e2138c628cd2a3302dcbfb0b8b2ed2ca8cf69e181083a446a6a9cacf14"
+    },
+    {
+      "path": "Assets/Scripts/Data/Tables/PopulationTable.cs",
+      "sha256": "cec85854d5d938d04c0679010914e0ae8e57827160912720f60cecfe6eb933f3"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Map/WorldMapAuthoring.cs",
+      "sha256": "ae82b1a54bc19dab86c904889947d5f664381b67567a5d8b23674ca74d5ab8d5"
+    },
+    {
+      "path": "Assets/Scripts/Scenarios/Custom/ReferenceGladeNativeCombat.cs",
+      "sha256": "94ae352c89072c7b1062dd269b586321d7d57fd9e88c80ce613d05b4426bb6d2"
+    },
+    {
+      "path": "Assets/Scripts/Scenarios/Custom/ReferenceGladeCombatEvidence.cs",
+      "sha256": "2d6e696569de1f8285cb499785ebc55514acde3ab4f270f3058cc5e4a1f14b7c"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Input/DensityHarvestNativeUiTests.cs",
+      "sha256": "8d5021d27cfe92f61e4bfdbbe0fe04dfbc2321b660a2b405c89a848a2a794506"
+    }
+  ],
+  "creatures": {
+    "MarlbackScrabbler": {
+      "Corpse": {
+        "CorpseChance": "70",
+        "CorpseBlueprint": "MarlbackCorpse"
+      },
+      "explicitCorpseHarvestable": {}
+    },
+    "SunStriker": {
+      "Corpse": {
+        "CorpseChance": "100",
+        "CorpseBlueprint": "CreatureCorpse",
+        "HarvestBlueprint": "RawMeat",
+        "HarvestMin": "1",
+        "HarvestMax": "2",
+        "HarvestChance": "100"
+      },
+      "explicitCorpseHarvestable": {}
+    },
+    "Viper": {
+      "Corpse": {
+        "CorpseChance": "100",
+        "CorpseBlueprint": "CreatureCorpse",
+        "HarvestBlueprint": "VenomGland",
+        "HarvestMin": "1",
+        "HarvestMax": "1",
+        "HarvestChance": "75"
+      },
+      "explicitCorpseHarvestable": {}
+    }
+  },
+  "harvestAdmission": "No cutting/tool/item-stat gate exists; actual alive+ownership/reach+finite recipe/product validation",
+  "beatingAuthoredTierCounts": {
+    "2": 47,
+    "3": 60
+  },
+  "combatReceipt": {
+    "path": "Docs/Verification/DensityCompletion/ReferenceGlade/NativeCombat/c9e07d91e9c944c1a4d2f901c73c227c/report.json",
+    "complete": true,
+    "cases": 12,
+    "failures": 0,
+    "finiteDeathOutput": [
+      {
+        "subject": "Actual finite death output",
+        "source": "2076",
+        "text": "corpse=2709; corpseAtDeath=True; original-owned gear now at death cell=2077",
+        "units": 0
+      }
+    ]
+  },
+  "sceneryReceipt": {
+    "path": "Docs/Verification/DensityCompletion/SpreadBiome/NativeWalkthrough/ec0fae7a14d44a4795224202908d99ac/report.json",
+    "complete": true,
+    "cases": 23,
+    "failures": 0,
+    "source": [
+      "HARVEST exact generated Overworld.12.10.0:4961:BerryBush yields WildBerries range=1..3 chance=100; no roll override"
+    ],
+    "correction": "Actual successful route harvested BerryBush, not Bones; do not infer generated Bones keyboard acceptance."
+  },
+  "notProven": [
+    "specific native SunStriker zone/position",
+    "safe actual fight/harvest route",
+    "SunStriker native death/harvest yields",
+    "generated Bones keyboard route",
+    "new acceptance helper RED/GREEN"
+  ]
+}

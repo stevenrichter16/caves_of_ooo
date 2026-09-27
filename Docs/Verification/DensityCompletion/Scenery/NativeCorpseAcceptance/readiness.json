@@ -1,0 +1,104 @@
+{
+  "status": "Published and root-owned native acceptance complete. Historical private readiness/tests retained below.",
+  "checks": [
+    {
+      "receipt": "evidence-red.xml.gz",
+      "total": 29,
+      "passed": 24,
+      "failed": [
+        "CavesOfOoo.Tests.DensityCorpseHarvestEvidenceTests.ActualDeathMetadataAndCurrentFiniteRecipeIdentifyTheCorpse",
+        "CavesOfOoo.Tests.DensityCorpseHarvestEvidenceTests.FreshCommitMustAccountForBothPackedAndOverflowUnits(1,0)",
+        "CavesOfOoo.Tests.DensityCorpseHarvestEvidenceTests.FreshCommitMustAccountForBothPackedAndOverflowUnits(2,0)",
+        "CavesOfOoo.Tests.DensityCorpseHarvestEvidenceTests.FreshCommitMustAccountForBothPackedAndOverflowUnits(0,2)",
+        "CavesOfOoo.Tests.DensityCorpseHarvestEvidenceTests.FreshCommitMustAccountForBothPackedAndOverflowUnits(1,1)"
+      ]
+    },
+    {
+      "receipt": "evidence-green.xml.gz",
+      "total": 29,
+      "passed": 29,
+      "failed": []
+    },
+    {
+      "receipt": "checkpoint-red.xml.gz",
+      "total": 41,
+      "passed": 40,
+      "failed": [
+        "CavesOfOoo.Tests.DensityCorpseHarvestEvidenceTests.EquivalentReplacementGraphRetainsActualEarnedOwnerAndNoSpentSource"
+      ]
+    },
+    {
+      "receipt": "checkpoint-green.xml.gz",
+      "total": 41,
+      "passed": 41,
+      "failed": []
+    },
+    {
+      "receipt": "final-witness-green.xml.gz",
+      "total": 41,
+      "passed": 41,
+      "failed": []
+    },
+    {
+      "receipt": "nearby-green.xml.gz",
+      "total": 100,
+      "passed": 100,
+      "failed": []
+    },
+    {
+      "receipt": "counter-killer-identity.xml.gz",
+      "total": 41,
+      "passed": 40,
+      "failed": [
+        "CavesOfOoo.Tests.DensityCorpseHarvestEvidenceTests.SimilarRemainsOrInvalidOwnershipCannotSubstitute(\"killer-id\")"
+      ]
+    },
+    {
+      "receipt": "counter-floor-conservation.xml.gz",
+      "total": 41,
+      "passed": 40,
+      "failed": [
+        "CavesOfOoo.Tests.DensityCorpseHarvestEvidenceTests.CountsOrUnrelatedLogsAloneDoNotProveNativeHarvest(\"missing-overflow\")"
+      ]
+    },
+    {
+      "receipt": "counter-saved-source-absence.xml.gz",
+      "total": 41,
+      "passed": 40,
+      "failed": [
+        "CavesOfOoo.Tests.DensityCorpseHarvestEvidenceTests.InventoryCountDoesNotSubstituteForReplacementAndDepletedSavedGraph(\"resurrected-source\")"
+      ]
+    }
+  ],
+  "compilation": {
+    "runtime": "zero errors, full current source plus helper/player; preexisting warnings retained",
+    "editor": "zero errors, actual editor references plus current runtime candidate",
+    "tests": "zero errors, actual NUnit/EditMode references with editor types reached only by reflection"
+  },
+  "premiseCorrections": [
+    "Initial private helper fixture used nonexistent Entity.SetProperty; fixed to actual Properties and reran actual assertion RED.",
+    "Private full-reference test response needed candidate runtime DLL instead of old compiled reference; corrected before zero-error evidence.",
+    "Private nearby runner selection required existing DensityLootTestScope source and PartRoundTripHelper; HotbarSaveFixture uses runner-owned adapter, not native duplicate."
+  ],
+  "counterReviewNote": "A peer read overlapped the deliberate floor-conservation mutant. The peer identified that exact defect; all mutants were restored and final41 GREEN plus final reread were obtained. Further concurrent mutants must use separate copies.",
+  "reviews": [
+    "render_completion: native menu/inventory/capture/restoration reread clear; actual images and route pending",
+    "standalone_verify: source/melee/commit/conservation/savegraph reread clear; post-harvest absence only"
+  ],
+  "manifestSha256": "f07f610ff2b48b35cbd3b9a493fb3a8f0df64fb3beb82aaa536136d5b559336f",
+  "native": {
+    "testOnlyRed": "Docs/Verification/DensityCompletion/Integration/native-liquid91-green-corpse2-red.json",
+    "unitGreen": "native65-green.json",
+    "unitTotal": 65,
+    "unitPassed": 65,
+    "playReport": "6ba32133d91e40829b0cbbfa23742606/report.json",
+    "checks": 14,
+    "passed": 14,
+    "failures": 0,
+    "errorsFinalized": true,
+    "seconds": 10.409601499999999,
+    "restorationExact": true,
+    "visualReview": "6ba32133d91e40829b0cbbfa23742606/root-visual-review.json",
+    "visualBound": "Two of six images viewed by root. Exact quantity/ownership is report evidence, not the closed-inventory screenshot."
+  }
+}
