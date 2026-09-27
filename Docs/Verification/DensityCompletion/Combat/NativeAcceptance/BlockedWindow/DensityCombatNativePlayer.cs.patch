@@ -1,0 +1,61 @@
+--- Assets/Scripts/Scenarios/Custom/DensityCombatNativePlayer.cs
++++ Assets/Scripts/Scenarios/Custom/DensityCombatNativePlayer.cs
+@@ -36,7 +36,7 @@
+         private readonly Dictionary<string,Entity> _startingTonics=new Dictionary<string,Entity>();
+         private readonly Dictionary<string,Guid> _originalSkills=new Dictionary<string,Guid>(),_enemySkills=new Dictionary<string,Guid>();
+         private System.Diagnostics.Stopwatch _clock;private EntityMovedVisualHandler _moveObserver;
+-        private int _failures,_unexpectedErrors,_moves,_attacks,_tonics,_casts,_paidActions,_coins;
++        private int _failures,_unexpectedErrors,_moves,_attacks,_tonics,_casts,_paidActions,_nativeActionInputs,_coins;
+         private string _fatal,_saveRoot,_sourceZoneId,_targetId,_usedCommand,_checkpointHash;
+         private Entity _target,_dagger;private Zone _source;private Cell _approach;
+         private bool _used,_fallback,_primary,_playerDamage;private NoFightGoal _calm;
+@@ -180,6 +180,12 @@
+                 yield return Settled();Require(Ordinary()&&Player.GetStatValue("Hitpoints")>10,"ordinary living safety stop");
+                 if(_used&&_fallback&&_primary)yield break;
+                 Require(_target.GetStatValue("Hitpoints")>0&&!CombatSystem.IsDeathHandled(_target)&&Zone.GetEntityCell(_target)!=null,"same source remains alive until missing witnesses complete");
++                if(Player.GetPart<StatusEffectsPart>()?.IsActionBlocked()==true)
++                {
++                    Require(_paidActions<60,"finite blocked-turn bound");
++                    var from=At;yield return ActionKey(Key.Period,"ordinary-blocked-observation");
++                    Require(At==from,"blocked native wait remains stationary");continue;
++                }
+                 yield return UseOriginalTonic();
+                 Require(_paidActions<60&&_moves<40,"finite encounter action bounds");
+                 if(Policy=="control"&&_used&&_fallback&&!_primary&&TryAim(At,_target,6,out int cdx,out int cdy))
+@@ -246,11 +252,13 @@
+             {
+                 yield return Tap(key);yield return Settled();
+                 _lastRows=Diag.Snapshot(Diag.BufferCapacity).SkipWhile(r=>r.TraceId!=_lastMarker).ToArray();
+-                int playerEnds=DensityCombatNativeEvidence.CountEnds(_lastRows,_lastMarker,Player.ID,_targetId,Player.ID);
+                 int enemyEnds=DensityCombatNativeEvidence.CountEnds(_lastRows,_lastMarker,Player.ID,_targetId,_targetId);
+-                Require(playerEnds>=1&&Ambient-ambient==playerEnds&&Player.GetStatValue("Speed",100)==speed
+-                    &&DensityCombatNativeEvidence.EnergyMatches(energy,Energy,Tick-tick,speed,playerEnds),"actual paid player turns including blocked actions");
+-                _paidActions+=playerEnds;
++                int playerEnds=-1;bool scheduledPlayerHasZone=ReferenceEquals(Player.GetPart<BrainPart>()?.CurrentZone,Zone);
++                Require(Player.GetStatValue("Speed",100)==speed
++                    &&DensityCombatNativeEvidence.TryPaidPlayerInput(_lastRows,_lastMarker,Player.ID,_targetId,
++                        energy,Energy,Tick-tick,speed,Ambient-ambient,scheduledPlayerHasZone,out playerEnds),
++                    "one native input and exact paid player turns including automatic blocked actions");
++                _paidActions+=playerEnds;_nativeActionInputs++;
+                 if(_input.TurnManager.IsRegistered(_target))Require(enemyEnds>=0&&_target.GetStatValue("Speed",100)==enemySpeed
+                     &&DensityCombatNativeEvidence.EnergyMatches(enemyEnergy,_input.TurnManager.GetEnergy(_target),Tick-tick,enemySpeed,enemyEnds),"exact enemy actor turns/energy");
+                 foreach(var pair in _enemySkills)
+@@ -258,7 +266,8 @@
+                     if(!DensityCombatNativeEvidence.OwnsAbility(_target,pair.Value,pair.Key,out var ability))continue;
+                     if(DensityCombatNativeEvidence.TryTacticTurn(_lastRows,_lastMarker,Player.ID,_targetId,pair.Key,out var used))
+                     {_used=true;_usedCommand=pair.Key;_notes.Add("ACTUAL ENEMY TACTIC "+JsonConvert.SerializeObject(used));}
+-                    if(_usedCommand==pair.Key&&DensityCombatNativeEvidence.TryCooldownFallback(_lastRows,_lastMarker,Player.ID,_targetId,pair.Key,cooldowns[pair.Key],ability.CooldownRemaining,out var fallback))
++                    if(_usedCommand==pair.Key&&(DensityCombatNativeEvidence.TryCooldownFallback(_lastRows,_lastMarker,Player.ID,_targetId,pair.Key,cooldowns[pair.Key],ability.CooldownRemaining,out var fallback)
++                        ||DensityCombatNativeEvidence.TryTacticThenCooldownFallback(_lastRows,_lastMarker,Player.ID,_targetId,pair.Key,ability.CooldownRemaining,out fallback)))
+                     {_fallback=true;_notes.Add("ACTUAL SAME-ABILITY COOLDOWN FALLBACK "+JsonConvert.SerializeObject(fallback));}
+                 }
+             }
+@@ -452,7 +461,7 @@
+             Directory.CreateDirectory(DirectoryPath);ReportPath=Path.Combine(DirectoryPath,"report.json");
+             string json=JsonConvert.SerializeObject(new{runId=RunId,policy=Policy,complete=Complete,failures=Failures,unexpectedErrors=_unexpectedErrors,errorsFinalized=_errorsFinalized,seconds=_clock?.Elapsed.TotalSeconds??0,
+                 fatal=_fatal,audit=_audit,requiredChecks=RequiredChecks,keys=_keys,observations=_observations,windows=_windows,notes=_notes,screenshots=_screenshots,
+-                sourceZone=_sourceZoneId,target=_targetId,actualTacticCommand=_usedCommand,moves=_moves,attacks=_attacks,casts=_casts,paidActions=_paidActions,originalTonicsUsed=_tonics,checkpointHash=_checkpointHash,
++                sourceZone=_sourceZoneId,target=_targetId,actualTacticCommand=_usedCommand,moves=_moves,attacks=_attacks,casts=_casts,paidActions=_paidActions,nativeActionInputs=_nativeActionInputs,paidActionsMeaning="completed player scheduler turns, including automatic blocked turns",originalTonicsUsed=_tonics,checkpointHash=_checkpointHash,
+                 canVerify="One declared ordinary starter policy, actual generated unchanged source, real native player commands and enemy owned tactic/turn/cooldown/fallback. Control mode additionally validates current exact stationary goal and F5/real native mutation/F6 replacement graph.",
+                 cannotVerify="Three independent policies are not progression/class builds or a balance ranking. One labelled player approach per mode, finite source/action selection, unchanged authored AI RNG/chance and possible honest failure. No grants, enemy suppression, forced effects or direct gameplay events. Existing core controls cover broader rule refusals. Captures require actual visual review."},Formatting.Indented);
+             var parsed=JObject.Parse(json);Require(parsed["windows"] is JArray w&&w.Count==_windows.Count&&parsed["keys"] is JArray k&&k.Count==_keys.Count,"nested evidence serialized");File.WriteAllText(ReportPath,json);

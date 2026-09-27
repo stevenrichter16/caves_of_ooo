@@ -1,0 +1,30 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "1f1e882927914fa6bc52128b2b6d7659",
+  "run": {
+    "id": "2",
+    "testcasecount": "72",
+    "result": "Failed(Child)",
+    "total": "72",
+    "passed": "70",
+    "failed": "2",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 14:51:15Z",
+    "end-time": "2026-09-27 14:51:15Z",
+    "duration": "0.318281"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.NativeDensitySceneRestorationTests.NoPendingRestoreRemovesTheRetryWithoutOpeningAnyScene(\"DensityCombatNativeBatch\")",
+      "message": "System.InvalidOperationException : Sequence contains no matching element"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeDensitySceneRestorationTests.RepeatedSchedulingKeepsOneFallbackUntilTheEditorSettles(\"DensityCombatNativeBatch\")",
+      "message": "System.InvalidOperationException : Sequence contains no matching element"
+    }
+  ]
+}

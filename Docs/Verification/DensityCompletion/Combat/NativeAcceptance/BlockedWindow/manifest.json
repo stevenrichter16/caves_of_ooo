@@ -1,0 +1,42 @@
+{
+  "status": "private60/60GREEN; actual runtime and EditModeTests reference compile0; independent peer clear; native replay pending",
+  "files": [
+    {
+      "source": "/tmp/coo-c2-blocked-window/DensityCombatNativeEvidence.cs",
+      "target": "Assets/Scripts/Scenarios/Custom/DensityCombatNativeEvidence.cs",
+      "expectedBeforeSha256": "37ae0a49fe94e7c605d86df68a3be25c004b17ddc423ea71d3d4d169c6ea5b31",
+      "sha256": "172a665c5475ca5d9dfd0deed3db41a693d8aeafde5ec7bd670e63207757faea"
+    },
+    {
+      "source": "/tmp/coo-c2-blocked-window/DensityCombatNativePlayer.cs",
+      "target": "Assets/Scripts/Scenarios/Custom/DensityCombatNativePlayer.cs",
+      "expectedBeforeSha256": "d7872aca000f3d15c6b7cb0b2b78b822db81a3d4a89bc0dbf9051a9ec51bf78d",
+      "sha256": "997fb8246ec12f313d0b202e90e218c8b6b9e471f0b1ebbf5dbcfc6097cfdbb4"
+    },
+    {
+      "source": "/tmp/coo-c2-blocked-window/DensityCombatNativeEvidenceTests.cs",
+      "target": "Assets/Tests/EditMode/Gameplay/Combat/DensityCombatNativeEvidenceTests.cs",
+      "expectedBeforeSha256": "d0676306488ecb9cc51e854cd297376eaaa532530b4714832d9ad3b85e41b794",
+      "sha256": "155a2336fb49e0913eb8717308b9ae4572686f24c9bf217133a9498befcc2c51"
+    }
+  ],
+  "actualFailure": "Docs/Verification/DensityCompletion/Combat/NativeAcceptance/a2b5a8386f65495a99ffe042f8084e55/report.json",
+  "newCases": 14,
+  "red": {
+    "total": 60,
+    "passed": 57,
+    "failed": 3
+  },
+  "green": {
+    "total": 60,
+    "passed": 60,
+    "failed": 0
+  },
+  "gameplayChanges": 0,
+  "sharedAssetsWritten": false,
+  "independentReview": "combat_density: scheduler/ambient/two-turn evidence guards clear; native test Newtonsoft direct dependency corrected to literal Diag.Entry rows before actual test-reference compile0.",
+  "compile": {
+    "runtimeErrors": 0,
+    "nativeTestReferenceErrors": 0
+  }
+}

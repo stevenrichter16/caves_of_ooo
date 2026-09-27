@@ -1,0 +1,189 @@
+{
+  "status": "bounded positive sub-witness extracted from an explicitly failed native run; original complete=false preserved",
+  "source": "Docs/Verification/DensityCompletion/Combat/NativeAcceptance/6b75e3af2c1c492d939413061fd1d626/report.json",
+  "sourceSha256": "7a663194feb5c173db9e04207300777f23ee62a36b9b5682e322e2249c177631",
+  "originalComplete": false,
+  "originalAudit": [
+    "PASS ordinary_start_and_original_skills",
+    "PASS actual_generated_tactic_owner",
+    "PASS labelled_approach_scheduler",
+    "PASS native_original_dagger_equipped",
+    "FAIL native_precondition_failed"
+  ],
+  "windowMarker": "cd100f56",
+  "rows": [
+    {
+      "TraceId": "cd100f56",
+      "Category": "scenario",
+      "Kind": "DensityCombatNativeKeyStart",
+      "TimestampUnixMs": 1790520882365,
+      "Turn": 30,
+      "ActorId": "2701",
+      "TargetId": "52668",
+      "CauseTraceId": null,
+      "PayloadJson": "{\"runId\":\"6b75e3af2c1c492d939413061fd1d626\",\"policy\":\"ranged\",\"kind\":\"CommandEmberSpit\"}"
+    },
+    {
+      "TraceId": "d996bc04",
+      "Category": "damage",
+      "Kind": "DamageDealt",
+      "TimestampUnixMs": 1790520882369,
+      "Turn": 30,
+      "ActorId": "2701",
+      "TargetId": "52668",
+      "CauseTraceId": null,
+      "PayloadJson": "{\"amount\":4,\"hpAfter\":20,\"lethal\":false,\"attributes\":[\"Fire\",\"Heat\"]}"
+    },
+    {
+      "TraceId": "20e62a98",
+      "Category": "skill",
+      "Kind": "CommandRouted",
+      "TimestampUnixMs": 1790520882370,
+      "Turn": 30,
+      "ActorId": "2701",
+      "TargetId": "2701",
+      "CauseTraceId": null,
+      "PayloadJson": "{\"command\":\"CommandEmberSpit\",\"skillClass\":\"Pyromancy_EmberSpit\",\"displayName\":\"Ember Spit\"}"
+    },
+    {
+      "TraceId": "e3ceebf2",
+      "Category": "effect",
+      "Kind": "NativeSpellRejected",
+      "TimestampUnixMs": 1790520882372,
+      "Turn": 30,
+      "ActorId": "2701",
+      "TargetId": null,
+      "CauseTraceId": null,
+      "PayloadJson": "{\"spellId\":\"Pyromancy_EmberSpit\",\"zoneId\":\"Overworld.11.0.3\",\"pieces\":0,\"reason\":\"native-surface-unavailable\",\"duration\":0.0,\"backend\":\"native\"}"
+    },
+    {
+      "TraceId": "fd1dd788",
+      "Category": "turn",
+      "Kind": "End",
+      "TimestampUnixMs": 1790520883071,
+      "Turn": 30,
+      "ActorId": "2701",
+      "TargetId": null,
+      "CauseTraceId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "TraceId": "b530b861",
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "TimestampUnixMs": 1790520883071,
+      "Turn": 39,
+      "ActorId": "52668",
+      "TargetId": null,
+      "CauseTraceId": null,
+      "PayloadJson": "{\"blueprintName\":\"IceWight\",\"hp\":20}"
+    },
+    {
+      "TraceId": "56d29145",
+      "Category": "damage",
+      "Kind": "DamageDealt",
+      "TimestampUnixMs": 1790520883071,
+      "Turn": 39,
+      "ActorId": "2701",
+      "TargetId": "52668",
+      "CauseTraceId": null,
+      "PayloadJson": "{\"amount\":1,\"hpAfter\":19,\"lethal\":false,\"attributes\":[\"Fire\"]}"
+    },
+    {
+      "TraceId": "66ac76b5",
+      "Category": "damage",
+      "Kind": "DamageDealt",
+      "TimestampUnixMs": 1790520883072,
+      "Turn": 39,
+      "ActorId": null,
+      "TargetId": "52668",
+      "CauseTraceId": null,
+      "PayloadJson": "{\"amount\":7,\"hpAfter\":12,\"lethal\":false,\"attributes\":[\"Heat\"]}"
+    },
+    {
+      "TraceId": "0d95e69f",
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "TimestampUnixMs": 1790520883072,
+      "Turn": 39,
+      "ActorId": "52668",
+      "TargetId": null,
+      "CauseTraceId": null,
+      "PayloadJson": "{\"blueprintName\":\"IceWight\",\"hp\":12}"
+    },
+    {
+      "TraceId": "13dd58f6",
+      "Category": "turn",
+      "Kind": "Begin",
+      "TimestampUnixMs": 1790520883072,
+      "Turn": 40,
+      "ActorId": "2701",
+      "TargetId": null,
+      "CauseTraceId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    }
+  ],
+  "afterAction": {
+    "phase": "action-end",
+    "policy": "ranged",
+    "state": "Normal",
+    "zone": "Overworld.11.0.3",
+    "player": "2701",
+    "x": 60,
+    "y": 17,
+    "hp": 40,
+    "tick": 40,
+    "energy": 1000,
+    "ambient": 3,
+    "coins": 50,
+    "stats": "Agility:18:18:0:0:0:999|DV:0:0:0:0:-50:200|Ego:16:16:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:18:18:0:0:0:999|Toughness:18:18:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999",
+    "gear": "carry:2703:HealingTonic:2:2701|carry:2704:DriedMeat:2:2701|carry:2705:WateringGrimoire:1:2701|carry:2706:CandyCarrotSeed:4:2701|carry:2707:EmberwheatSeed:2:2701|equip:167:2702:2701;body=167:2702",
+    "abilities": "5b79d8d6-5628-47e2-af43-803bcc1984e1:CommandFlamingHands:1:10:0|5bdf3724-d5c0-4529-bf91-b6495286b090:CommandEmberSpit:4:8:7|6668cc02-80eb-498d-b405-f38fa5f33784:CommandGroundSurge:4:30:0|97e5e880-5b04-41a4-8847-6c43e47ea49e:CommandRimeGrip:5:35:0|9e0fdf40-344e-4d94-a693-5909963d2051:CommandCalm:6:20:0|b61b1fea-e9d4-4111-8164-39f7d1d79b17:CommandJetBlast:2:20:0",
+    "target": "52668",
+    "targetX": null,
+    "targetY": null,
+    "targetHP": 12,
+    "targetAbilities": "daeb9cb1-b943-46df-9bb0-4abbdd6b1dc4:CommandIceLance:6:8:0",
+    "goals": "BoredGoal:1:|KillGoal:0:target=you",
+    "used": false,
+    "fallback": false,
+    "primary": false,
+    "messages": [
+      "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+      "Villagers have work for you \u2014 press [Q] for your quest log.",
+      "Starting a new game. Initial checkpoint saved.",
+      "Autosaved.",
+      "You equip dagger.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Ember Spit - choose a direction.",
+      "ice wight catches fire!",
+      "Your ember spatters across ice wight, and catches!",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "ice wight takes 1 fire damage.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "canVerify": [
+    "Actual original player skill GUID is unchanged from ordinary start; native Digit1 then Numpad3 casts Ember Spit.",
+    "Exact player2701\u2192target52668 Heat4 at tick30 lowers target24\u219220; attributed Burning1 and ambient Heat7 follow, leaving stored targetHP12.",
+    "One actual player End30\u2192Begin40, energy1000\u21921000; original Ember cooldown0\u21927; player remains40HP.",
+    "Ranged damage is a directly observed sub-witness even though original combined acceptance fails."
+  ],
+  "cannotVerify": [
+    "Target death: no lethal/Death receipt exists in this window, target still has12HP but no current zone cell.",
+    "A completed ranged encounter, successful final first-strike policy replay, freeze recovery, survival and returning fire, or success rate.",
+    "Native3D projectile here: actual NativeSpellRejected reason native-surface-unavailable preserves legacy fallback; no 3D acceptance claimed."
+  ],
+  "separateThreatRun": "7006e539e07f42a0a5bdaf67384d4156",
+  "latestFirstStrikeFailure": "558a7d2f35e348a6884f4bfba8b0a1c6",
+  "removalSourceTrace": {
+    "classification": "consistent with authored fire_plus_ice material replacement; native replacement owner not recorded",
+    "reaction": "Assets/Resources/Content/Data/MaterialReactions/fire_plus_ice.json",
+    "runtime": [
+      "Assets/Scripts/Gameplay/Effects/Concrete/BurningEffect.cs:185",
+      "Assets/Scripts/Gameplay/Materials/MaterialReactionResolver.cs:390"
+    ],
+    "controls": "Assets/Tests/EditMode/Gameplay/Materials/MaterialReactionPhaseCRETests.cs:280",
+    "reason": "Actual Ice-tagged burning owner received exact Heat5\u21927 reaction immediately before removal; SwapBlueprint does not require HP<=0."
+  }
+}

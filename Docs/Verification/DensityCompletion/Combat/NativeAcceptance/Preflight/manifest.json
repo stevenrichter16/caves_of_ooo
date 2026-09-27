@@ -1,0 +1,96 @@
+{
+  "status": "private compiler-GREEN and helper46 GREEN; independent evidence/player/launcher review clear; ready for coordinated publication, actual native acceptance unrun",
+  "files": [
+    {
+      "source": "/tmp/coo-c2-native/DensityCombatNativeEvidence.cs",
+      "target": "Assets/Scripts/Scenarios/Custom/DensityCombatNativeEvidence.cs",
+      "expectedBeforeSha256": null,
+      "sha256": "37ae0a49fe94e7c605d86df68a3be25c004b17ddc423ea71d3d4d169c6ea5b31"
+    },
+    {
+      "source": "/tmp/coo-c2-native/DensityCombatNativeEvidence.cs.meta",
+      "target": "Assets/Scripts/Scenarios/Custom/DensityCombatNativeEvidence.cs.meta",
+      "expectedBeforeSha256": null,
+      "sha256": "74a034b9db6a35d066e159d97e9e6331797762e2351416ac404c7a7731a3da71"
+    },
+    {
+      "source": "/tmp/coo-c2-native/DensityCombatNativePlayer.cs",
+      "target": "Assets/Scripts/Scenarios/Custom/DensityCombatNativePlayer.cs",
+      "expectedBeforeSha256": null,
+      "sha256": "32ae78b5231f7d9119cf8fb1ce1fe2da7ee65f00caf9ac57aa100d27e4af6834"
+    },
+    {
+      "source": "/tmp/coo-c2-native/DensityCombatNativePlayer.cs.meta",
+      "target": "Assets/Scripts/Scenarios/Custom/DensityCombatNativePlayer.cs.meta",
+      "expectedBeforeSha256": null,
+      "sha256": "a6393834fecda5fcaa85ffc53a3af642a51f5192508a12dc468bf79eddcb3bba"
+    },
+    {
+      "source": "/tmp/coo-c2-native/DensityCombatNativeBatch.cs",
+      "target": "Assets/Editor/Scenarios/DensityCombatNativeBatch.cs",
+      "expectedBeforeSha256": null,
+      "sha256": "a177acd923a27249ae6f3c5675834941f0a26bed0c7399dc35a137e2ed439934"
+    },
+    {
+      "source": "/tmp/coo-c2-native/DensityCombatNativeBatch.cs.meta",
+      "target": "Assets/Editor/Scenarios/DensityCombatNativeBatch.cs.meta",
+      "expectedBeforeSha256": null,
+      "sha256": "89e483263838073bb9986b7de9249b1865835427d3171bd45678442e17ddec03"
+    },
+    {
+      "source": "/tmp/coo-c2-native/DensityCombatNativeEvidenceTests.cs",
+      "target": "Assets/Tests/EditMode/Gameplay/Combat/DensityCombatNativeEvidenceTests.cs",
+      "expectedBeforeSha256": null,
+      "sha256": "d0676306488ecb9cc51e854cd297376eaaa532530b4714832d9ad3b85e41b794"
+    },
+    {
+      "source": "/tmp/coo-c2-native/DensityCombatNativeEvidenceTests.cs.meta",
+      "target": "Assets/Tests/EditMode/Gameplay/Combat/DensityCombatNativeEvidenceTests.cs.meta",
+      "expectedBeforeSha256": null,
+      "sha256": "234df382d99832bbe727ef5443ff8558e13af674367edf9db20ab97f3e566d7f"
+    },
+    {
+      "source": "/tmp/coo-c2-native/NativeDensitySceneRestorationTests.cs",
+      "target": "Assets/Tests/EditMode/Presentation/Rendering/NativeDensitySceneRestorationTests.cs",
+      "expectedBeforeSha256": "13cd64a9e4bff5976d698c317c9ff1c3ed09222d21f9a523ec66eac2ead23c4b",
+      "sha256": "9cd93d91a078390c32be7f0a77c1c7c023d8149e98d1167b70cdf7104c3d0cf4"
+    }
+  ],
+  "testGroups": [
+    "CavesOfOoo.Tests.DensityCombatNativeEvidenceTests",
+    "CavesOfOoo.Tests.NativeDensitySceneRestorationTests"
+  ],
+  "newCoreCases": 46,
+  "newLauncherRestorationCases": 2,
+  "launchers": [
+    "CavesOfOoo.Editor.DensityCombatNativeBatch.LaunchMelee()",
+    "CavesOfOoo.Editor.DensityCombatNativeBatch.LaunchRanged()",
+    "CavesOfOoo.Editor.DensityCombatNativeBatch.LaunchControl()"
+  ],
+  "plan": "Docs/Verification/DensityCompletion/Combat/NativeAcceptance/PLAN.md",
+  "livingDoc": "Docs/DENSITY-COMBAT-KITS.md",
+  "review": "/tmp/coo-c2-native/REVIEW.md",
+  "productionGameplayChanges": 0,
+  "compilation": {
+    "runtime": {
+      "errors": 0,
+      "log": "/tmp/coo-c2-native/runtime-compile.log"
+    },
+    "editor": {
+      "errors": 0,
+      "log": "/tmp/coo-c2-native/editor-compile.log"
+    },
+    "tests": {
+      "errors": 0,
+      "log": "/tmp/coo-c2-native/tests-compile.log"
+    }
+  },
+  "evidence": {
+    "initialMissingAPI": "/tmp/coo-c2-native/evidence-red.log",
+    "green": "/tmp/coo-c2-native/evidence-scheduler-green.xml",
+    "counterchecks": "/tmp/coo-c2-native/counterchecks.json"
+  },
+  "bounds": "Three independent seed64 ordinary N starter policies; at most12 actual ordinary columns,60 paid encounter actions/40 moves/550sec per mode. One labelled player transfer; no grants/stat/AI/RNG/source mutation. Real native tests and play remain pending.",
+  "independentReview": "combat_density bounded reads found no concrete false-positive blocker: exact source/connected real stair/labelled transfer, original skills/native damage, actual actor turn/energy, exact save replacement and launcher retry. Actual chance/survival/menu/FX/images remain gates.",
+  "verification": "/tmp/coo-c2-native/verification.json"
+}

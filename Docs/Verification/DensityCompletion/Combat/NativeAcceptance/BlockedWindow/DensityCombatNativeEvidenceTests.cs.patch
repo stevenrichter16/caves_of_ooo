@@ -1,0 +1,69 @@
+--- Assets/Tests/EditMode/Gameplay/Combat/DensityCombatNativeEvidenceTests.cs
++++ Assets/Tests/EditMode/Gameplay/Combat/DensityCombatNativeEvidenceTests.cs
+@@ -155,5 +155,66 @@
+             finally
+             {if(observer!=null)EntityVisualHooks.MovedCallback-=observer;foreach(var pair in old)Diag.SetChannel(pair.Key,pair.Value);}
+         }
++        // Exact retained native window a2b5a838: one input, two player Ends,
++        // IceLance followed by its cooldown fallback. Only timestamps omitted.
++        static List<Diag.Entry> FrozenNativeWindow() => new List<Diag.Entry> {
++            new Diag.Entry{TraceId="a66da958",Category="scenario",Kind="DensityCombatNativeKeyStart",ActorId="2702",TargetId="52674",Turn=20,PayloadJson="{\"runId\":\"a2b5a8386f65495a99ffe042f8084e55\",\"policy\":\"ranged\",\"kind\":\"ordinary-observe-enemy\"}"},
++            new Diag.Entry{TraceId="401ecfb6",Category="scenario",Kind="ReferenceGladeCombatKeyStart",ActorId="2702",TargetId="52674",Turn=20,PayloadJson="{\"runId\":\"a2b5a8386f65495a99ffe042f8084e55\",\"kind\":\"ordinary-observe-enemy\"}"},
++            new Diag.Entry{TraceId="6cb50684",Category="turn",Kind="End",ActorId="2702",TargetId=null,Turn=20,PayloadJson="{\"blueprintName\":\"Player\",\"hp\":40}"},
++            new Diag.Entry{TraceId="bc07a108",Category="turn-verbose",Kind="Begin",ActorId="52674",TargetId=null,Turn=25,PayloadJson="{\"blueprintName\":\"IceWight\",\"hp\":24}"},
++            new Diag.Entry{TraceId="53254925",Category="ai",Kind="AssistRejected",ActorId="52674",TargetId="2702",Turn=25,PayloadJson="{\"command\":\"\",\"reason\":\"caller-ineligible\",\"cooldown\":0,\"skillClass\":\"\"}"},
++            new Diag.Entry{TraceId="f04655a8",Category="damage",Kind="DamageDealt",ActorId="52674",TargetId="2702",Turn=25,PayloadJson="{\"amount\":2,\"hpAfter\":38,\"lethal\":false,\"attributes\":[\"Spell\",\"Cold\"]}"},
++            new Diag.Entry{TraceId="59e2214c",Category="damage",Kind="SpellDamage",ActorId="52674",TargetId="2702",Turn=25,PayloadJson="{\"powerClass\":\"Cryomancy_IceLance\",\"diceRolled\":\"1d6\",\"rawRoll\":2,\"elementAttribute\":\"Cold\",\"actualDamage\":2}"},
++            new Diag.Entry{TraceId="2be6d554",Category="effect",Kind="OnApply",ActorId="52674",TargetId="2702",Turn=25,PayloadJson="{\"effect\":\"FrozenEffect\",\"duration\":-1,\"justApplied\":false,\"forced\":false}"},
++            new Diag.Entry{TraceId="0c56f193",Category="tile",Kind="TileWritten",ActorId="52674",TargetId="52674",Turn=25,PayloadJson="{\"x\":59,\"y\":16,\"layer\":\"energy\",\"id\":\"cold\",\"magnitude\":1,\"ability\":\"Cryomancy_IceLance\",\"writtenTiles\":3}"},
++            new Diag.Entry{TraceId="38bcdc04",Category="skill",Kind="CommandRouted",ActorId="52674",TargetId="52674",Turn=25,PayloadJson="{\"command\":\"CommandIceLance\",\"skillClass\":\"Cryomancy_IceLance\",\"displayName\":\"Ice Lance\"}"},
++            new Diag.Entry{TraceId="ad4efb09",Category="ai",Kind="TacticUsed",ActorId="52674",TargetId="2702",Turn=25,PayloadJson="{\"command\":\"CommandIceLance\",\"reason\":\"\",\"cooldown\":8,\"skillClass\":\"\"}"},
++            new Diag.Entry{TraceId="8e4ab9ce",Category="turn-verbose",Kind="End",ActorId="52674",TargetId=null,Turn=25,PayloadJson="{\"blueprintName\":\"IceWight\",\"hp\":24}"},
++            new Diag.Entry{TraceId="3dcdeca7",Category="turn",Kind="Begin",ActorId="2702",TargetId=null,Turn=30,PayloadJson="{\"blueprintName\":\"Player\",\"hp\":38}"},
++            new Diag.Entry{TraceId="0f59c106",Category="turn",Kind="End",ActorId="2702",TargetId=null,Turn=30,PayloadJson="{\"blueprintName\":\"Player\",\"hp\":38}"},
++            new Diag.Entry{TraceId="621aeecc",Category="turn-verbose",Kind="Begin",ActorId="52674",TargetId=null,Turn=39,PayloadJson="{\"blueprintName\":\"IceWight\",\"hp\":24}"},
++            new Diag.Entry{TraceId="528e5c8d",Category="ai",Kind="TacticRejected",ActorId="52674",TargetId="2702",Turn=39,PayloadJson="{\"command\":\"CommandIceLance\",\"reason\":\"cooldown\",\"cooldown\":7,\"skillClass\":\"\"}"},
++            new Diag.Entry{TraceId="f47fcf3b",Category="ai",Kind="TacticRejected",ActorId="52674",TargetId="2702",Turn=39,PayloadJson="{\"command\":\"\",\"reason\":\"no-eligible-ability\",\"cooldown\":0,\"skillClass\":\"\"}"},
++            new Diag.Entry{TraceId="4309dc04",Category="scenario",Kind="DensityCombatNativeMoveObserved",ActorId="52674",TargetId=null,Turn=39,PayloadJson="{\"scheduledActor\":\"52674\",\"forced\":false,\"oldX\":65,\"oldY\":22,\"newX\":64,\"newY\":21}"},
++            new Diag.Entry{TraceId="35fe8d79",Category="turn-verbose",Kind="End",ActorId="52674",TargetId=null,Turn=39,PayloadJson="{\"blueprintName\":\"IceWight\",\"hp\":24}"},
++            new Diag.Entry{TraceId="02a19257",Category="effect",Kind="NativeSpellRejected",ActorId="52674",TargetId=null,Turn=40,PayloadJson="{\"spellId\":\"Cryomancy_IceLance\",\"zoneId\":\"Overworld.11.0.3\",\"pieces\":0,\"reason\":\"native-surface-unavailable\",\"duration\":0.0,\"backend\":\"native\"}"},
++        };
++        const string FrozenMarker="a66da958", FrozenPlayer="2702", FrozenEnemy="52674";
++        static bool PaidFrozen(List<Diag.Entry> r,int ambient=1,int after=1000)
++            => DensityCombatNativeEvidence.TryPaidPlayerInput(r,FrozenMarker,FrozenPlayer,FrozenEnemy,
++                1000,after,20,100,ambient,false,out _);
++        static bool FrozenFallback(List<Diag.Entry> r,int after=6)
++            => DensityCombatNativeEvidence.TryTacticThenCooldownFallback(r,FrozenMarker,FrozenPlayer,FrozenEnemy,
++                "CommandIceLance",after,out _);
++        [Test] public void ActualFrozenNativeWindowAccountsOneInputAndTwoPaidPlayerTurns()
++        {var r=FrozenNativeWindow();Assert.True(DensityCombatNativeEvidence.TryPaidPlayerInput(r,FrozenMarker,FrozenPlayer,FrozenEnemy,
++            1000,1000,20,100,1,false,out int turns));Assert.AreEqual(2,turns);}
++        [TestCase("ambient")][TestCase("energy")][TestCase("missing-blocked-begin")][TestCase("duplicate-end")][TestCase("foreign-begin")]
++        public void FrozenPaymentRequiresActualEnergyAmbientAndPairedAutomaticTurn(string mutation)
++        {var r=FrozenNativeWindow();int ambient=1,energy=1000;
++            if(mutation=="ambient")ambient=2;if(mutation=="energy")energy=900;
++            int begin=r.FindIndex(x=>x.TraceId=="3dcdeca7");
++            if(mutation=="missing-blocked-begin")r.RemoveAt(begin);
++            if(mutation=="foreign-begin")Edit(r,begin,x=>{x.ActorId="foreign";return x;});
++            if(mutation=="duplicate-end"){var x=r.Single(x=>x.TraceId=="0f59c106");x.TraceId="extra-end";r.Add(x);}
++            Assert.False(PaidFrozen(r,ambient,energy));}
++        [Test] public void OneOrdinaryInputAndScheduledZoneAmbientControlRemainExact()
++        {var r=FrozenNativeWindow();r.RemoveAll(x=>x.TraceId=="3dcdeca7"||x.TraceId=="0f59c106");
++            Assert.True(DensityCombatNativeEvidence.TryPaidPlayerInput(r,FrozenMarker,FrozenPlayer,FrozenEnemy,1000,1000,10,100,1,false,out int n));Assert.AreEqual(1,n);
++            Assert.True(DensityCombatNativeEvidence.TryPaidPlayerInput(FrozenNativeWindow(),FrozenMarker,FrozenPlayer,FrozenEnemy,1000,1000,20,100,2,true,out n));Assert.AreEqual(2,n);}
++        [Test] public void ActualFrozenWindowTacticThenFallbackRemainTwoDistinctCompletedEnemyTurns()
++        {Assert.True(DensityCombatNativeEvidence.TryTacticThenCooldownFallback(FrozenNativeWindow(),FrozenMarker,FrozenPlayer,FrozenEnemy,"CommandIceLance",6,out var found));
++            Assert.AreEqual("621aeecc",found.BeginTrace);Assert.AreEqual("35fe8d79",found.EndTrace);Assert.AreEqual("4309dc04",found.ActionTrace);Assert.AreEqual(6,found.Cooldown);}
++        [TestCase("missing-used")][TestCase("missing-routed")][TestCase("missing-action")][TestCase("foreign-action")][TestCase("wrong-final-cooldown")][TestCase("duplicate-used")]
++        public void TwoTurnFallbackCannotBeInferredFromUnrelatedOrIncompleteRecords(string mutation)
++        {var r=FrozenNativeWindow();int after=6;
++            if(mutation=="missing-used")r.RemoveAll(x=>x.TraceId=="ad4efb09");
++            if(mutation=="missing-routed")r.RemoveAll(x=>x.TraceId=="38bcdc04");
++            if(mutation=="missing-action")r.RemoveAll(x=>x.TraceId=="4309dc04");
++            if(mutation=="foreign-action"){int i=r.FindIndex(x=>x.TraceId=="4309dc04");Edit(r,i,x=>{x.ActorId="foreign";return x;});}
++            if(mutation=="wrong-final-cooldown")after=7;
++            if(mutation=="duplicate-used"){var x=r.Single(x=>x.TraceId=="ad4efb09");x.TraceId="duplicate-used";r.Insert(r.FindIndex(x=>x.TraceId=="8e4ab9ce"),x);}
++            Assert.False(FrozenFallback(r,after));}
++
+     }
+ }

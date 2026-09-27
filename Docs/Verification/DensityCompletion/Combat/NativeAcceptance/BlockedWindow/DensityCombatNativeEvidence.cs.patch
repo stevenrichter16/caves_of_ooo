@@ -1,0 +1,52 @@
+--- Assets/Scripts/Scenarios/Custom/DensityCombatNativeEvidence.cs
++++ Assets/Scripts/Scenarios/Custom/DensityCombatNativeEvidence.cs
+@@ -101,6 +101,49 @@
+             return expected==after;
+         }
+ 
++        /// <summary>One input can also spend one automatic blocked player turn.
++        /// The native player has no Brain zone: its automatic End lacks the zone
++        /// needed by cosmetic ambience, although energy/cooldowns still advance.</summary>
++        public static bool TryPaidPlayerInput(IReadOnlyList<Diag.Entry> rows,string marker,string player,string enemy,
++            int before,int after,int ticks,int speed,int ambientDelta,bool scheduledPlayerHasZone,out int turns)
++        {
++            turns=0;if(!Window(rows,marker,player,enemy,out var window)||!rows[window.Start].Turn.HasValue)return false;
++            bool began=false;int beginTick=-1,lastTick=rows[window.Start].Turn.Value;
++            for(int i=window.Start+1;i<window.End;i++)
++            {
++                var row=rows[i];if(row.ActorId!=player||row.Category!="turn"||(row.Kind!="Begin"&&row.Kind!="End"))continue;
++                if(!row.Turn.HasValue||row.Turn.Value<lastTick||row.Turn.Value>(long)rows[window.Start].Turn.Value+ticks)return false;
++                lastTick=row.Turn.Value;
++                if(row.Kind=="Begin")
++                {if(turns==0||began)return false;began=true;beginTick=row.Turn.Value;}
++                else
++                {
++                    if(turns==0){if(began||row.Turn!=rows[window.Start].Turn)return false;}
++                    else if(!began||row.Turn!=beginTick)return false;
++                    if(++turns>2)return false;began=false;
++                }
++            }
++            // A second blocked turn ends without another Begin before yielding.
++            if(turns<1||(turns==2&&began))return false;
++            int expectedAmbient=scheduledPlayerHasZone?turns:1;
++            return ambientDelta==expectedAmbient&&EnergyMatches(before,after,ticks,speed,turns);
++        }
++
++        /// <summary>The native freeze window can contain the tactic and its next
++        /// cooldown fallback. Require both exact completed turns and the final
++        /// twice-ticked cooldown; never infer a fallback from rejection alone.</summary>
++        public static bool TryTacticThenCooldownFallback(IReadOnlyList<Diag.Entry> rows,string marker,string player,string enemy,
++            string command,int afterCooldown,out TurnEvidence result)
++        {
++            result=default;
++            if(!Window(rows,marker,player,enemy,out var window)||!EnemyTurns(rows,window,enemy,out var turns)||turns.Count!=2
++                ||!TryTacticTurn(rows,marker,player,enemy,command,out var used)
++                ||used.BeginTrace!=rows[turns[0].Start].TraceId||used.Cooldown<2||afterCooldown!=used.Cooldown-2)return false;
++            var second=new List<Diag.Entry>{rows[window.Start]};
++            for(int i=turns[1].Start;i<=turns[1].End;i++)second.Add(rows[i]);
++            return TryCooldownFallback(second,marker,player,enemy,command,used.Cooldown-1,afterCooldown,out result);
++        }
++
+         public static bool CurrentCalm(Entity owner,Zone zone,NoFightGoal exactGoal)
+         {
+             if(owner==null||zone==null||exactGoal==null||owner.GetStatValue("Hitpoints")<=0||CombatSystem.IsDeathHandled(owner))return false;

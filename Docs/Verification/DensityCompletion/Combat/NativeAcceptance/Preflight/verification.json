@@ -1,0 +1,64 @@
+{
+  "status": "private helper GREEN; native pending",
+  "helperSha256": "37ae0a49fe94e7c605d86df68a3be25c004b17ddc423ea71d3d4d169c6ea5b31",
+  "tests": {
+    "total": 46,
+    "passed": 46,
+    "failed": 0
+  },
+  "compile": {
+    "runtime": {
+      "errors": 0,
+      "sha256": "c221062aee2375502e6e4df8ed98674d11562ab82d3cb5bf879091a0ed1aeded"
+    },
+    "editor": {
+      "errors": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tests": {
+      "errors": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "counterchecks": {
+    "sourceSha256": "37ae0a49fe94e7c605d86df68a3be25c004b17ddc423ea71d3d4d169c6ea5b31",
+    "candidateUnchanged": true,
+    "runs": [
+      {
+        "name": "marker-target",
+        "total": "46",
+        "passed": "45",
+        "failed": "1",
+        "failures": [
+          "CavesOfOoo.Tests.DensityCombatNativeEvidenceTests.TacticCountsCannotSubstituteForFreshActorTargetCommandAndTurn(\"wrong-marker-target\")"
+        ],
+        "log": "/tmp/coo-c2-native/counter-marker-target.log",
+        "xml": "/tmp/coo-c2-native/counter-marker-target.xml"
+      },
+      {
+        "name": "buried-goal",
+        "total": "46",
+        "passed": "45",
+        "failed": "1",
+        "failures": [
+          "CavesOfOoo.Tests.DensityCombatNativeEvidenceTests.StalePacificationCannotSuspendThreatPolicy(\"buried\")"
+        ],
+        "log": "/tmp/coo-c2-native/counter-buried-goal.log",
+        "xml": "/tmp/coo-c2-native/counter-buried-goal.xml"
+      },
+      {
+        "name": "foreign-move",
+        "total": "46",
+        "passed": "45",
+        "failed": "1",
+        "failures": [
+          "CavesOfOoo.Tests.DensityCombatNativeEvidenceTests.RefusalAloneOrUnrelatedChangeCannotClaimFallback(\"foreign-current-actor\")"
+        ],
+        "log": "/tmp/coo-c2-native/counter-foreign-move.log",
+        "xml": "/tmp/coo-c2-native/counter-foreign-move.xml"
+      }
+    ]
+  },
+  "sharedAssetsWritten": false,
+  "nativeInvoked": false
+}

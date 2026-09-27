@@ -1,0 +1,18 @@
+--- /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/NativeDensitySceneRestorationTests.cs	2026-09-27 09:19:42
++++ /tmp/coo-c2-native/NativeDensitySceneRestorationTests.cs	2026-09-27 09:45:26
+@@ -28,6 +28,7 @@
+         [TestCase("DensitySpreadStartNativeBatch")]
+         [TestCase("DensityTravellerNativeBatch")]
+         [TestCase("DensityCorpseHarvestNativeBatch")]
++        [TestCase("DensityCombatNativeBatch")]
+         public void RepeatedSchedulingKeepsOneFallbackUntilTheEditorSettles(string name)
+         {
+             var type = Launcher(name); var callback = Callback(type);
+@@ -61,6 +62,7 @@
+         [TestCase("DensitySpreadStartNativeBatch")]
+         [TestCase("DensityTravellerNativeBatch")]
+         [TestCase("DensityCorpseHarvestNativeBatch")]
++        [TestCase("DensityCombatNativeBatch")]
+         public void NoPendingRestoreRemovesTheRetryWithoutOpeningAnyScene(string name)
+         {
+             var type = Launcher(name); var callback = Callback(type);

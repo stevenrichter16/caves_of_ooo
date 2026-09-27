@@ -1,0 +1,39 @@
+{
+  "sourceSha256": "37ae0a49fe94e7c605d86df68a3be25c004b17ddc423ea71d3d4d169c6ea5b31",
+  "candidateUnchanged": true,
+  "runs": [
+    {
+      "name": "marker-target",
+      "total": "46",
+      "passed": "45",
+      "failed": "1",
+      "failures": [
+        "CavesOfOoo.Tests.DensityCombatNativeEvidenceTests.TacticCountsCannotSubstituteForFreshActorTargetCommandAndTurn(\"wrong-marker-target\")"
+      ],
+      "log": "/tmp/coo-c2-native/counter-marker-target.log",
+      "xml": "/tmp/coo-c2-native/counter-marker-target.xml"
+    },
+    {
+      "name": "buried-goal",
+      "total": "46",
+      "passed": "45",
+      "failed": "1",
+      "failures": [
+        "CavesOfOoo.Tests.DensityCombatNativeEvidenceTests.StalePacificationCannotSuspendThreatPolicy(\"buried\")"
+      ],
+      "log": "/tmp/coo-c2-native/counter-buried-goal.log",
+      "xml": "/tmp/coo-c2-native/counter-buried-goal.xml"
+    },
+    {
+      "name": "foreign-move",
+      "total": "46",
+      "passed": "45",
+      "failed": "1",
+      "failures": [
+        "CavesOfOoo.Tests.DensityCombatNativeEvidenceTests.RefusalAloneOrUnrelatedChangeCannotClaimFallback(\"foreign-current-actor\")"
+      ],
+      "log": "/tmp/coo-c2-native/counter-foreign-move.log",
+      "xml": "/tmp/coo-c2-native/counter-foreign-move.xml"
+    }
+  ]
+}
