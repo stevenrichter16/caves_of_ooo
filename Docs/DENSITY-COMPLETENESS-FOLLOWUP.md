@@ -120,3 +120,9 @@ When an item stalls, distinguish a normal-play defect from a test-route inconven
 | Further generic fire-unit changes | Deferred medium and balance-sensitive | A fresh-content plan identifies64 mixed-unit authors, but no extra thermal bridge or save migration is justified. The concrete hot-source interface issue is complete; broader fire changes need their own bounded native counter-scene |
 
 This prioritization supersedes treating the unfinished pet keyboard route as a prerequisite for higher-impact work. BitLocker, lore restrictions and old-save boundaries are unchanged.
+
+Final integrated checkpoint: actual Unity EditMode **20,068/20,068 GREEN**,
+zero failures/skips,904.367seconds, exact editor/save/input restoration and
+zero changes among5,687 recorded inputs. See
+`Verification/DensityCompletion/Integration/PostContent/`. This confirms the
+integrated code while retaining the live-route and visual limits above.
