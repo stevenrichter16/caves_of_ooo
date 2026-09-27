@@ -274,26 +274,18 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void GoFetchGoal_GetDetails_DoesNotExposePrivateFieldsAsPublic()
+        public void GoFetchGoal_GetDetailsUsesThePublicSavedProgressFields()
         {
-            // Regression: the inspector needs to read _walkAttempts (private).
-            // The plan's approach is GetDetails reading its OWN class's private
-            // field directly — no new public property. This test catches a
-            // future refactor that "fixes" access by adding `public int
-            // WalkAttempts { get; }` — that would break encapsulation without
-            // need, since GetDetails already has in-class access.
-            var fi = typeof(GoFetchGoal).GetField(
-                "_walkAttempts",
-                System.Reflection.BindingFlags.NonPublic
-                    | System.Reflection.BindingFlags.Instance);
-            Assert.IsNotNull(fi,
-                "GoFetchGoal._walkAttempts must remain a private field.");
-
-            var pi = typeof(GoFetchGoal).GetProperty("WalkAttempts");
-            Assert.IsNull(pi,
-                "GoFetchGoal must NOT have a public WalkAttempts property — " +
-                "GetDetails reads the private field directly and no external " +
-                "code should need the value.");
+            // Goal saves serialize mutable fields and bypass constructors. The
+            // old private-only pin would restart an acquired fetch after load.
+            var attempts = typeof(GoFetchGoal).GetField("WalkAttempts");
+            var phase = typeof(GoFetchGoal).GetField("CurrentPhase");
+            Assert.NotNull(attempts); Assert.False(attempts.IsInitOnly);
+            Assert.NotNull(phase); Assert.False(phase.IsInitOnly);
+            Assert.IsNull(typeof(GoFetchGoal).GetProperty("WalkAttempts"),
+                "A display-only accessor would still not enter the saved field stream.");
+            var goal = new GoFetchGoal(null) { WalkAttempts = 1, CurrentPhase = GoFetchGoal.Phase.Pickup };
+            Assert.AreEqual("phase=Pickup | attempts=1/2 | item=null", goal.GetDetails());
         }
     }
 }

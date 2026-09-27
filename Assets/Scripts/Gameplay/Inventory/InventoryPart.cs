@@ -73,7 +73,16 @@ namespace CavesOfOoo.Core
             return false;
         }
 
-        private bool AddObjectCore(Entity item, bool deferCapacity, out Entity recipient)
+        // Retrieval retains the exact thrown object instead of merging it into a
+        // resident stack. The command owns transfer validation and rollback.
+        internal bool AddRetrievedObject(Entity item)
+        {
+            if (item == null || Objects.Contains(item)) return false;
+            if (MaxWeight >= 0 && (long)GetCarriedWeight() + GetItemWeight(item) > MaxWeight) return false;
+            return AddObjectCore(item, false, out _, merge: false);
+        }
+
+        private bool AddObjectCore(Entity item, bool deferCapacity, out Entity recipient, bool merge = true)
         {
             recipient = null;
             if (!deferCapacity && MaxWeight >= 0)
@@ -85,7 +94,7 @@ namespace CavesOfOoo.Core
 
             // Try to merge into existing stack
             var itemStacker = item.GetPart<StackerPart>();
-            if (itemStacker != null)
+            if (merge && itemStacker != null)
             {
                 for (int i = 0; i < Objects.Count; i++)
                 {

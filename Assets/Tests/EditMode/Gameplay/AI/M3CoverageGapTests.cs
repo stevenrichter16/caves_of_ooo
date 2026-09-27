@@ -166,7 +166,7 @@ namespace CavesOfOoo.Tests
             // CRITICAL behavioral pin: the difference between Hoarder
             // and Retriever is exactly that Hoarder fetches WITH
             // returnHome=true (carry it back to nest), while Retriever
-            // fetches with returnHome=false (just stop on arrival).
+            // fetches with returnHome=false (returns to the current thrower).
             // If a refactor flips this, Magpies stop returning gold
             // to their nests — the M3.2 acceptance behavior is broken.
             var zone = new Zone("HoarderZone");
@@ -262,11 +262,8 @@ namespace CavesOfOoo.Tests
         [Test]
         public void AIRetriever_PushedGoFetchGoal_HasReturnHomeFalse()
         {
-            // Counter-pin to AIHoarder's returnHome=true. Retriever
-            // fetches but does NOT return — pet stops on the bone, no
-            // round-trip. The TODO(pet-ux) comment in production
-            // acknowledges the better UX is "drop at thrower," but
-            // returnHome=false is what ships today.
+            // Retrieval returns to its current thrower, not the pet's home.
+            // Keep the explicit counter-pin to AIHoarder's ReturnHome=true.
             var zone = new Zone("RetrieverZone");
             var dog = CreateCreature(zone, 5, 5, faction: "Villagers");
             var brain = dog.GetPart<BrainPart>();
@@ -283,6 +280,8 @@ namespace CavesOfOoo.Tests
 
             var goal = brain.FindGoal<GoFetchGoal>();
             Assert.IsNotNull(goal, "Retriever must push GoFetchGoal on ItemLanded.");
+            Assert.IsTrue(goal.ReturnsToThrower);
+            Assert.AreSame(thrower, goal.Thrower);
             Assert.IsFalse(goal.ReturnHome,
                 "Retriever MUST set returnHome=false. Counter-pin to " +
                 "AIHoarder's returnHome=true — these two parts use the " +

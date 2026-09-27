@@ -1,0 +1,74 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "2a1f417dea554b78bf1a153cd686529f",
+  "run": {
+    "id": "2",
+    "testcasecount": "20",
+    "result": "Failed(Child)",
+    "total": "20",
+    "passed": "7",
+    "failed": "13",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 15:12:19Z",
+    "end-time": "2026-09-27 15:12:19Z",
+    "duration": "0.0945961"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.ActualLandedEventReturnsTheSameObjectAndLeavesHoarderHomeUnchanged",
+      "message": "  The actual fetched object must return to the floor.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.FetchDoesNotMergeIntoTheDogsPreexistingCompatibleStack",
+      "message": "  Previously owned units are not part of the fetch.\n  Expected: 3\n  But was:  4\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.FetchKeepsGoldPhysicalInsteadOfCreditingTheDogsPurse",
+      "message": "  Expected: 0\n  But was:  5\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.FetchKeepsTheThrownWeaponCarriedRatherThanEquippingIt",
+      "message": "  Expected: null\n  But was:  <Entity(dog)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(\"null-thrower\")",
+      "message": "  Expected: null\n  But was:  <CavesOfOoo.Core.GoFetchGoal>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(\"dead-thrower\")",
+      "message": "  Expected: null\n  But was:  <CavesOfOoo.Core.GoFetchGoal>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(\"removed-thrower\")",
+      "message": "  Expected: null\n  But was:  <CavesOfOoo.Core.GoFetchGoal>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(\"foreign-cell\")",
+      "message": "  Expected: null\n  But was:  <CavesOfOoo.Core.GoFetchGoal>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(\"different-source-cell\")",
+      "message": "  Expected: null\n  But was:  <CavesOfOoo.Core.GoFetchGoal>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(\"dead-dog\")",
+      "message": "  Expected: null\n  But was:  <CavesOfOoo.Core.GoFetchGoal>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.ReturnReplansForThrowerMovingAfterTheActualPickup",
+      "message": "  The actual fetched object must return to the floor.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.SaveRoundTripRetainsActiveFetchProgressRatherThanRestartingPickup(False)",
+      "message": "  Serialized goal progress must not be constructor-defaulted.\n  Expected string length 39 but was 43. Strings differ at index 6.\n  Expected: \"phase=Pickup | attempts=1/2 | item=Bone\"\n  But was:  \"phase=WalkToItem | attempts=0/2 | item=Bone\"\n  -----------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.SaveRoundTripRetainsActiveFetchProgressRatherThanRestartingPickup(True)",
+      "message": "  Serialized goal progress must not be constructor-defaulted.\n  Expected string length 41 but was 43. Strings differ at index 10.\n  Expected: \"phase=WalkHome | attempts=0/2 | item=Bone\"\n  But was:  \"phase=WalkToItem | attempts=0/2 | item=Bone\"\n  ---------------------^\n"
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "runId": "bb29379cffdc4b6e801377b8d047c997",
+  "status": "Actual bounded native route failure; no gameplay success claim",
+  "audit": [
+    "PASS ordinary_start_original_dagger",
+    "PASS actual_generated_pet_and_route",
+    "PASS one_labelled_player_approach",
+    "PASS native_first_throw_admitted",
+    "FAIL native_precondition_failed"
+  ],
+  "final": {
+    "phase": "native_precondition_failed",
+    "state": "Normal",
+    "zone": "Overworld.11.10.0",
+    "player": "2702",
+    "hp": 40,
+    "x": 25,
+    "y": 16,
+    "tick": 260,
+    "energy": 1000,
+    "dog": "2094",
+    "dogHP": 15,
+    "dogX": 35,
+    "dogY": 16,
+    "goal": "1|WalkToItem|24|0|False|1|4|0|0|0||True|True|2702|2703",
+    "item": "2703",
+    "itemQuantity": 1,
+    "itemInventory": null,
+    "itemEquipped": null,
+    "messages": [
+      "marlback gleaner's leather armor falls to the ground!",
+      "marlback gleaner's dagger falls to the ground!",
+      "marlback gleaner's leather gloves falls to the ground!",
+      "Kesset Rillpost, warden [left hand: long sword] hits marlback gleaner in the body for 2 damage!",
+      "marlback gleaner is bleeding!",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd",
+      "Kesset Rillpost, warden is no longer confused.",
+      "\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd\u00cd"
+    ]
+  },
+  "diagnosis": "The n<24 harness limit, not Fetch==null, failed. The same active WalkToItem goal and exact ground Dagger remained. Fetch performed3 approach actions, paused for the real20-turn WitnessedEffect pacing reaction to nearby death, then performed approach action4. Archived full log explicitly records dog looks shaken via CombatSystem.BroadcastDeathWitnessed/WitnessedEffect.OnApply.",
+  "aiRecords": [
+    {
+      "TraceId": "f0c0aec7",
+      "Category": "ai",
+      "Kind": "FetchAdmission",
+      "TimestampUnixMs": 1790523251434,
+      "Turn": 10,
+      "ActorId": "2094",
+      "TargetId": "2703",
+      "CauseTraceId": null,
+      "PayloadJson": "{\"outcome\":\"accepted\",\"reason\":null,\"thrower\":\"2702\",\"quantity\":1}"
+    },
+    {
+      "TraceId": "1e83aa6d",
+      "Category": "ai",
+      "Kind": "FetchProgress",
+      "TimestampUnixMs": 1790523251907,
+      "Turn": 20,
+      "ActorId": "2094",
+      "TargetId": "2703",
+      "CauseTraceId": null,
+      "PayloadJson": "{\"reason\":\"approach_action\",\"thrower\":\"2702\",\"phase\":\"WalkToItem\",\"quantity\":1,\"approachActions\":1,\"returnActions\":0,\"dropAttempts\":0,\"fallbackReason\":null}"
+    },
+    {
+      "TraceId": "69466522",
+      "Category": "ai",
+      "Kind": "FetchProgress",
+      "TimestampUnixMs": 1790523252079,
+      "Turn": 30,
+      "ActorId": "2094",
+      "TargetId": "2703",
+      "CauseTraceId": null,
+      "PayloadJson": "{\"reason\":\"approach_action\",\"thrower\":\"2702\",\"phase\":\"WalkToItem\",\"quantity\":1,\"approachActions\":2,\"returnActions\":0,\"dropAttempts\":0,\"fallbackReason\":null}"
+    },
+    {
+      "TraceId": "553dbf2d",
+      "Category": "ai",
+      "Kind": "FetchProgress",
+      "TimestampUnixMs": 1790523252371,
+      "Turn": 40,
+      "ActorId": "2094",
+      "TargetId": "2703",
+      "CauseTraceId": null,
+      "PayloadJson": "{\"reason\":\"approach_action\",\"thrower\":\"2702\",\"phase\":\"WalkToItem\",\"quantity\":1,\"approachActions\":3,\"returnActions\":0,\"dropAttempts\":0,\"fallbackReason\":null}"
+    },
+    {
+      "TraceId": "08a7a45c",
+      "Category": "ai",
+      "Kind": "FetchProgress",
+      "TimestampUnixMs": 1790523256705,
+      "Turn": 250,
+      "ActorId": "2094",
+      "TargetId": "2703",
+      "CauseTraceId": null,
+      "PayloadJson": "{\"reason\":\"approach_action\",\"thrower\":\"2702\",\"phase\":\"WalkToItem\",\"quantity\":1,\"approachActions\":4,\"returnActions\":0,\"dropAttempts\":0,\"fallbackReason\":null}"
+    }
+  ],
+  "proposedNarrowRepair": "Separate at most20 exact observed witness-suspension waits from24 ordinary outward waits, all within original80 total paid actions. Observe actual effect/goal identity and continued/resumed same fetch; no direct mutation or priority change.",
+  "rootOnlyPublication": true,
+  "reportSha256": "6cdb314617ea5a1b1d4907f22592e0615980e520db5b5be2fae3d930d5de5d57",
+  "followupStatus": "DEFERRED LOW PRIORITY per user steering. Proposed wait-accounting correction was not published; no end-to-end native closure."
+}

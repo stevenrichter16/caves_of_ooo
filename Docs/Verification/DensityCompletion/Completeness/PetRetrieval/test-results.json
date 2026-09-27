@@ -1,0 +1,220 @@
+{
+  "bounds": "Private Unity-free runner XMLs; native20 RED separately archived by root. No native driver success yet.",
+  "results": [
+    {
+      "path": "Docs/Verification/DensityCompletion/Completeness/PetRetrieval/admission-diagnostics-red.xml",
+      "total": "48",
+      "passed": "46",
+      "failed": "2",
+      "failures": [
+        {
+          "name": "CavesOfOoo.Tests.DensityPetRetrievalAdversarialTests.AdmissionDiagnosticsDistinguishCurrentSuccessFromSourceRefusal(False)",
+          "message": "  Expected: 1\n  But was:  0\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.DensityPetRetrievalAdversarialTests.AdmissionDiagnosticsDistinguishCurrentSuccessFromSourceRefusal(True)",
+          "message": "  Expected: 1\n  But was:  0\n"
+        }
+      ]
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Completeness/PetRetrieval/nearby-after.xml",
+      "total": "606",
+      "passed": "605",
+      "failed": "1",
+      "failures": [
+        {
+          "name": "CavesOfOoo.Tests.AIBehaviorPartTests.AIRetriever_PushesGoFetchGoal_OnItemLandedFromAlly",
+          "message": "Verify.Entity(TestDog).HasGoalOnStack<GoFetchGoal>: goal not found on stack (count = 0)."
+        }
+      ]
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Completeness/PetRetrieval/nearby-corrected-before.xml",
+      "total": "606",
+      "passed": "606",
+      "failed": "0",
+      "failures": []
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Completeness/PetRetrieval/expanded-green.xml",
+      "total": "48",
+      "passed": "48",
+      "failed": "0",
+      "failures": []
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Completeness/PetRetrieval/focused-green.xml",
+      "total": "20",
+      "passed": "20",
+      "failed": "0",
+      "failures": []
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Completeness/PetRetrieval/current-api-red.xml",
+      "total": "20",
+      "passed": "7",
+      "failed": "13",
+      "failures": [
+        {
+          "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.ActualLandedEventReturnsTheSameObjectAndLeavesHoarderHomeUnchanged",
+          "message": "  The actual fetched object must return to the floor.\n  Expected: not null\n  But was:  null\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.FetchDoesNotMergeIntoTheDogsPreexistingCompatibleStack",
+          "message": "  Previously owned units are not part of the fetch.\n  Expected: 3\n  But was:  4\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.FetchKeepsGoldPhysicalInsteadOfCreditingTheDogsPurse",
+          "message": "  Expected: 0\n  But was:  5\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.FetchKeepsTheThrownWeaponCarriedRatherThanEquippingIt",
+          "message": "  Expected: null\n  But was:  <Entity(dog)>\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(\"null-thrower\")",
+          "message": "  Expected: null\n  But was:  <CavesOfOoo.Core.GoFetchGoal>\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(\"dead-thrower\")",
+          "message": "  Expected: null\n  But was:  <CavesOfOoo.Core.GoFetchGoal>\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(\"removed-thrower\")",
+          "message": "  Expected: null\n  But was:  <CavesOfOoo.Core.GoFetchGoal>\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(\"foreign-cell\")",
+          "message": "  Expected: null\n  But was:  <CavesOfOoo.Core.GoFetchGoal>\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(\"different-source-cell\")",
+          "message": "  Expected: null\n  But was:  <CavesOfOoo.Core.GoFetchGoal>\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(\"dead-dog\")",
+          "message": "  Expected: null\n  But was:  <CavesOfOoo.Core.GoFetchGoal>\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.ReturnReplansForThrowerMovingAfterTheActualPickup",
+          "message": "  The actual fetched object must return to the floor.\n  Expected: not null\n  But was:  null\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.SaveRoundTripRetainsActiveFetchProgressRatherThanRestartingPickup(False)",
+          "message": "  Serialized goal progress must not be constructor-defaulted.\n  Expected string length 39 but was 43. Strings differ at index 6.\n  Expected: \"phase=Pickup | attempts=1/2 | item=Bone\"\n  But was:  \"phase=WalkToItem | attempts=0/2 | item=Bone\"\n  -----------------^\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.DensityPetRetrievalTests.SaveRoundTripRetainsActiveFetchProgressRatherThanRestartingPickup(True)",
+          "message": "  Serialized goal progress must not be constructor-defaulted.\n  Expected string length 41 but was 43. Strings differ at index 10.\n  Expected: \"phase=WalkHome | attempts=0/2 | item=Bone\"\n  But was:  \"phase=WalkToItem | attempts=0/2 | item=Bone\"\n  ---------------------^\n"
+        }
+      ]
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Completeness/PetRetrieval/callback-ownership-red.xml",
+      "total": "64",
+      "passed": "62",
+      "failed": "2",
+      "failures": [
+        {
+          "name": "CavesOfOoo.Tests.AIDebugSavedContractRunnerProbe.GoFetchGoal_GetDetails_DoesNotExposePrivateFieldsAsPublic",
+          "message": "  GoFetchGoal._walkAttempts must remain a private field.\n  Expected: not null\n  But was:  null\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.DensityPetRetrievalAdversarialTests.PickupCallbackCannotRemoveCurrentPhysicalAuthorityThenStillAcquire(\"actor-physics\")",
+          "message": "  Expected: False\n  But was:  True\n"
+        }
+      ]
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Completeness/PetRetrieval/adversarial-first.xml",
+      "total": "41",
+      "passed": "39",
+      "failed": "2",
+      "failures": [
+        {
+          "name": "CavesOfOoo.Tests.DensityPetRecruitmentProbeTests.ExistingOrNewRecruitmentCannotPermanentlyBuryAnActiveFetch(True)",
+          "message": "  The actual fetched object must return to the floor.\n  Expected: not null\n  But was:  null\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.DensityPetRetrievalAdversarialTests.ARefusedDropDoesNotMakeTheNextTurnIgnoreAMovingRecipient",
+          "message": "  The second drop is still addressed to the current thrower, not its previous position.\n  Expected: null\n  But was:  <Cell(8,5) [2 objects]>\n"
+        }
+      ]
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Completeness/PetRetrieval/adversarial-green.xml",
+      "total": "39",
+      "passed": "39",
+      "failed": "0",
+      "failures": []
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Completeness/PetRetrieval/final-nearby-green.xml",
+      "total": "676",
+      "passed": "676",
+      "failed": "0",
+      "failures": []
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Completeness/PetRetrieval/nearby-before.xml",
+      "total": "606",
+      "passed": "606",
+      "failed": "0",
+      "failures": []
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Completeness/PetRetrieval/nearby-corrected-after.xml",
+      "total": "606",
+      "passed": "606",
+      "failed": "0",
+      "failures": []
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Completeness/PetRetrieval/final-expanded-first.xml",
+      "total": "58",
+      "passed": "57",
+      "failed": "1",
+      "failures": [
+        {
+          "name": "CavesOfOoo.Tests.AIDebugSavedContractRunnerProbe.GoFetchGoal_GetDetails_DoesNotExposePrivateFieldsAsPublic",
+          "message": "  GoFetchGoal._walkAttempts must remain a private field.\n  Expected: not null\n  But was:  null\n"
+        }
+      ]
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Completeness/PetRetrieval/final-focused-green.xml",
+      "total": "65",
+      "passed": "65",
+      "failed": "0",
+      "failures": []
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Completeness/PetRetrieval/recipient-callback-green.xml",
+      "total": "70",
+      "passed": "70",
+      "failed": "0",
+      "failures": []
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Completeness/PetRetrieval/recipient-callback-red.xml",
+      "total": "69",
+      "passed": "66",
+      "failed": "3",
+      "failures": [
+        {
+          "name": "CavesOfOoo.Tests.DensityPetRetrievalAdversarialTests.PickupVetoCallbacksRevalidateTheExactRecipientBeforeAnyAcquisition(\"removed\")",
+          "message": "  Expected: False\n  But was:  True\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.DensityPetRetrievalAdversarialTests.PickupVetoCallbacksRevalidateTheExactRecipientBeforeAnyAcquisition(\"dead\")",
+          "message": "  Expected: False\n  But was:  True\n"
+        },
+        {
+          "name": "CavesOfOoo.Tests.DensityPetRetrievalAdversarialTests.PickupVetoCallbacksRevalidateTheExactRecipientBeforeAnyAcquisition(\"alliance-lost\")",
+          "message": "  Expected: False\n  But was:  True\n"
+        }
+      ]
+    }
+  ]
+}

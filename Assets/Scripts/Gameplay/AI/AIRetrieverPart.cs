@@ -1,3 +1,5 @@
+using CavesOfOoo.Diagnostics;
+
 namespace CavesOfOoo.Core
 {
     /// <summary>
@@ -70,63 +72,46 @@ namespace CavesOfOoo.Core
 
         private bool HandleItemLanded(GameEvent e)
         {
-            var brain = ParentEntity.GetPart<BrainPart>();
-            if (brain == null || brain.CurrentZone == null)
-                return true;
-
-            // Idempotency.
-            if (brain.HasGoal("GoFetchGoal"))
-                return true;
-
-            // Inventory required — no stow, no fetch.
-            if (ParentEntity.GetPart<InventoryPart>() == null)
-                return true;
-
             var item = e.GetParameter<Entity>("Item");
-            if (item == null) return true;
-
             var thrower = e.GetParameter<Entity>("Thrower");
-            if (AlliesOnly && thrower != null
-                && !FactionManager.IsAllied(ParentEntity, thrower))
-            {
-                // Different faction + we only fetch for allies.
-                return true;
-            }
-            // Thrower==null (environmental drop) currently unreachable via
-            // ThrowItemCommand, but passes the gate if AlliesOnly=false. A
-            // future wild-drop source (tornado, item rain) would trigger
-            // universal fetch; adjust if that shows up.
-
+            var brain = ParentEntity?.GetPart<BrainPart>();
+            var zone = brain?.CurrentZone;
+            if (brain == null || brain.ParentEntity != ParentEntity || !GoFetchGoal.LiveMember(ParentEntity, zone)
+                || ParentEntity.GetPart<InventoryPart>()?.ParentEntity != ParentEntity)
+                return Refuse(item, thrower, "actor_unavailable");
+            if (brain.HasGoal<GoFetchGoal>()) return Refuse(item, thrower, "already_fetching");
             var landingCell = e.GetParameter<Cell>("LandingCell");
-            if (landingCell == null) return true;
+            if (thrower == ParentEntity || thrower == item || !GoFetchGoal.LiveMember(thrower, zone)
+                || (AlliesOnly && !FactionManager.IsAllied(ParentEntity, thrower)))
+                return Refuse(item, thrower, "recipient_unavailable");
+            if (landingCell == null || zone.GetCell(landingCell.X, landingCell.Y) != landingCell
+                || !GoFetchGoal.GroundItem(item, zone, landingCell, item?.GetPart<StackerPart>()?.StackCount ?? 1))
+                return Refuse(item, thrower, "invalid_landing");
+            var myCell = zone.GetEntityCell(ParentEntity);
+            if (AIHelpers.ChebyshevDistance(myCell.X, myCell.Y, landingCell.X, landingCell.Y) > NoticeRadius)
+                return Refuse(item, thrower, "outside_notice_radius");
 
-            var myCell = brain.CurrentZone.GetEntityCell(ParentEntity);
-            if (myCell == null) return true;
+            // Return to the actual thrower, not the pet's StartingCell. The goal
+            // rechecks the landed source after the throw transaction has committed.
+            brain.PushGoal(GoFetchGoal.ForThrow(item, thrower, AlliesOnly));
+            Record(item, thrower, null);
+            return false;
+        }
 
-            int dist = AIHelpers.ChebyshevDistance(
-                myCell.X, myCell.Y, landingCell.X, landingCell.Y);
-            if (dist > NoticeRadius) return true;
+        private bool Refuse(Entity item, Entity thrower, string reason)
+        {
+            Record(item, thrower, reason);
+            return true;
+        }
 
-            // Retriever fetches WITHOUT returning home — pet walks to the
-            // item's landing cell, picks it up, and stops. It does NOT walk
-            // back to the thrower or drop the item. ReturnHome=true would
-            // send the pet to its own StartingCell (still not the thrower).
-            //
-            // TODO(pet-ux): Real "dog fetches bone to owner" UX wants a third
-            // mode — walk to an empty cell ADJACENT to the thrower, then
-            // DropCommand the fetched item there. Requires:
-            //   1. Extend GoFetchGoal with ReturnToEntity (tracks thrower).
-            //   2. New Phase.WalkToThrower after Pickup, targeting a
-            //      passable cell adjacent to the tracked entity (recompute
-            //      each tick in case the thrower moves).
-            //   3. Phase.DropAtThrower fires DropCommand on arrival.
-            //   4. AIRetrieverPart passes `thrower` from the ItemLandedEvent.
-            //   5. Tests: arrival + drop, thrower-moves-during-fetch,
-            //      thrower-dies-during-fetch (fall back to ReturnHome).
-            // Punted during M3.2 polish — fetch+hoard works, but the loop
-            // is "throw once, bone gone forever into dog's inventory."
-            brain.PushGoal(new GoFetchGoal(item, returnHome: false));
-            return false; // consumed
+        private void Record(Entity item, Entity thrower, string reason)
+        {
+            if (!Diag.IsChannelEnabled("ai")) return;
+            Diag.Record("ai", "FetchAdmission", ParentEntity, item, payload: new
+            {
+                outcome = reason == null ? "accepted" : "refused", reason,
+                thrower = thrower?.ID, quantity = item?.GetPart<StackerPart>()?.StackCount ?? 1
+            });
         }
     }
 }

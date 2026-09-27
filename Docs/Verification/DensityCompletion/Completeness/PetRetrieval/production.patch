@@ -1,0 +1,605 @@
+--- Assets/Scripts/Gameplay/AI/AIRetrieverPart.cs
++++ Assets/Scripts/Gameplay/AI/AIRetrieverPart.cs
+@@ -1,3 +1,5 @@
++using CavesOfOoo.Diagnostics;
++
+ namespace CavesOfOoo.Core
+ {
+     /// <summary>
+@@ -70,63 +72,46 @@
+ 
+         private bool HandleItemLanded(GameEvent e)
+         {
+-            var brain = ParentEntity.GetPart<BrainPart>();
+-            if (brain == null || brain.CurrentZone == null)
+-                return true;
++            var item = e.GetParameter<Entity>("Item");
++            var thrower = e.GetParameter<Entity>("Thrower");
++            var brain = ParentEntity?.GetPart<BrainPart>();
++            var zone = brain?.CurrentZone;
++            if (brain == null || brain.ParentEntity != ParentEntity || !GoFetchGoal.LiveMember(ParentEntity, zone)
++                || ParentEntity.GetPart<InventoryPart>()?.ParentEntity != ParentEntity)
++                return Refuse(item, thrower, "actor_unavailable");
++            if (brain.HasGoal<GoFetchGoal>()) return Refuse(item, thrower, "already_fetching");
++            var landingCell = e.GetParameter<Cell>("LandingCell");
++            if (thrower == ParentEntity || thrower == item || !GoFetchGoal.LiveMember(thrower, zone)
++                || (AlliesOnly && !FactionManager.IsAllied(ParentEntity, thrower)))
++                return Refuse(item, thrower, "recipient_unavailable");
++            if (landingCell == null || zone.GetCell(landingCell.X, landingCell.Y) != landingCell
++                || !GoFetchGoal.GroundItem(item, zone, landingCell, item?.GetPart<StackerPart>()?.StackCount ?? 1))
++                return Refuse(item, thrower, "invalid_landing");
++            var myCell = zone.GetEntityCell(ParentEntity);
++            if (AIHelpers.ChebyshevDistance(myCell.X, myCell.Y, landingCell.X, landingCell.Y) > NoticeRadius)
++                return Refuse(item, thrower, "outside_notice_radius");
+ 
+-            // Idempotency.
+-            if (brain.HasGoal("GoFetchGoal"))
+-                return true;
++            // Return to the actual thrower, not the pet's StartingCell. The goal
++            // rechecks the landed source after the throw transaction has committed.
++            brain.PushGoal(GoFetchGoal.ForThrow(item, thrower, AlliesOnly));
++            Record(item, thrower, null);
++            return false;
++        }
+ 
+-            // Inventory required — no stow, no fetch.
+-            if (ParentEntity.GetPart<InventoryPart>() == null)
+-                return true;
++        private bool Refuse(Entity item, Entity thrower, string reason)
++        {
++            Record(item, thrower, reason);
++            return true;
++        }
+ 
+-            var item = e.GetParameter<Entity>("Item");
+-            if (item == null) return true;
+-
+-            var thrower = e.GetParameter<Entity>("Thrower");
+-            if (AlliesOnly && thrower != null
+-                && !FactionManager.IsAllied(ParentEntity, thrower))
++        private void Record(Entity item, Entity thrower, string reason)
++        {
++            if (!Diag.IsChannelEnabled("ai")) return;
++            Diag.Record("ai", "FetchAdmission", ParentEntity, item, payload: new
+             {
+-                // Different faction + we only fetch for allies.
+-                return true;
+-            }
+-            // Thrower==null (environmental drop) currently unreachable via
+-            // ThrowItemCommand, but passes the gate if AlliesOnly=false. A
+-            // future wild-drop source (tornado, item rain) would trigger
+-            // universal fetch; adjust if that shows up.
+-
+-            var landingCell = e.GetParameter<Cell>("LandingCell");
+-            if (landingCell == null) return true;
+-
+-            var myCell = brain.CurrentZone.GetEntityCell(ParentEntity);
+-            if (myCell == null) return true;
+-
+-            int dist = AIHelpers.ChebyshevDistance(
+-                myCell.X, myCell.Y, landingCell.X, landingCell.Y);
+-            if (dist > NoticeRadius) return true;
+-
+-            // Retriever fetches WITHOUT returning home — pet walks to the
+-            // item's landing cell, picks it up, and stops. It does NOT walk
+-            // back to the thrower or drop the item. ReturnHome=true would
+-            // send the pet to its own StartingCell (still not the thrower).
+-            //
+-            // TODO(pet-ux): Real "dog fetches bone to owner" UX wants a third
+-            // mode — walk to an empty cell ADJACENT to the thrower, then
+-            // DropCommand the fetched item there. Requires:
+-            //   1. Extend GoFetchGoal with ReturnToEntity (tracks thrower).
+-            //   2. New Phase.WalkToThrower after Pickup, targeting a
+-            //      passable cell adjacent to the tracked entity (recompute
+-            //      each tick in case the thrower moves).
+-            //   3. Phase.DropAtThrower fires DropCommand on arrival.
+-            //   4. AIRetrieverPart passes `thrower` from the ItemLandedEvent.
+-            //   5. Tests: arrival + drop, thrower-moves-during-fetch,
+-            //      thrower-dies-during-fetch (fall back to ReturnHome).
+-            // Punted during M3.2 polish — fetch+hoard works, but the loop
+-            // is "throw once, bone gone forever into dog's inventory."
+-            brain.PushGoal(new GoFetchGoal(item, returnHome: false));
+-            return false; // consumed
++                outcome = reason == null ? "accepted" : "refused", reason,
++                thrower = thrower?.ID, quantity = item?.GetPart<StackerPart>()?.StackCount ?? 1
++            });
+         }
+     }
+ }
+--- Assets/Scripts/Gameplay/AI/Goals/GoFetchGoal.cs
++++ Assets/Scripts/Gameplay/AI/Goals/GoFetchGoal.cs
+@@ -1,29 +1,14 @@
++using CavesOfOoo.Core.Inventory.Commands;
++using CavesOfOoo.Diagnostics;
++
+ namespace CavesOfOoo.Core
+ {
+     /// <summary>
+-    /// Goal that walks an NPC to an item on the floor, picks it up, and optionally returns home.
+-    /// Mirrors Qud's GoFetch goal handler.
+-    ///
+-    /// Use cases:
+-    /// - Pet dog fetches a thrown bone
+-    /// - Villager retrieves dropped tool
+-    /// - Hoarder creature grabs shiny loot they spotted
+-    /// - Quest NPC picks up a specific item from the floor
+-    ///
+-    /// Execution sequence:
+-    /// 1. Locate the item's current cell (it may have moved if another entity picked it up)
+-    /// 2. Push MoveToGoal toward the item cell
+-    /// 3. On arrival, call InventorySystem.Pickup
+-    /// 4. If ReturnHome and StartingCell is set, push MoveToGoal back home
+-    /// 5. Pop
+-    ///
+-    /// Failure modes (goal pops without picking up):
+-    /// - Item no longer exists in the zone (picked up by another, destroyed)
+-    /// - Item cell unreachable via A* (Failed() called with FailToParent)
+-    /// - Item cell reachable but MoveToGoal timed out before arriving
+-    ///   (capped by <see cref="MaxWalkAttempts"/> to prevent infinite loop)
+-    /// - NPC has no InventoryPart
+-    /// - Pickup fails validation (carry weight, etc.)
++    /// Fetches an actual ground object. Legacy callers keep ordinary pickup and
++    /// optional best-effort home return. AIRetriever uses an explicit mode that
++    /// retains the thrown object, follows its current thrower and drops it.
++    /// Progress fields use the existing public-field save stream; no callbacks
++    /// or temporary path caches need to be reconstructed after loading.
+     /// </summary>
+     public class GoFetchGoal : GoalHandler
+     {
+@@ -36,9 +21,37 @@
+         public Entity Item;
+         public bool ReturnHome;
+ 
+-        private enum Phase { WalkToItem, Pickup, WalkHome, Done }
+-        private Phase _phase = Phase.WalkToItem;
+-        private int _walkAttempts;
++        // Mutable public fields are deliberately saved by SaveGoal. Constructors
++        // are bypassed during load, so mode zero retains the legacy contract.
++        public enum Phase { WalkToItem, Pickup, WalkHome, Done, ReturnToThrower, Drop }
++        public Phase CurrentPhase;
++        public int WalkAttempts;
++        public int ProgressVersion = 1;
++        public bool ReturnsToThrower;
++        public Entity Thrower;
++        public bool RequireAlliedThrower;
++        public int ExpectedQuantity;
++        public int ApproachActions;
++        public int ReturnActions;
++        public int BlockedActions;
++        public int DropAttempts;
++        public string FallbackReason;
++
++        public const int MaxReturnActions = 100;
++        public const int MaxBlockedActions = 3;
++        public const int MaxDropAttempts = 2;
++        public const int MaxRetrievalAge = 400;
++
++        internal static GoFetchGoal ForThrow(Entity item, Entity thrower, bool alliesOnly)
++        {
++            return new GoFetchGoal(item)
++            {
++                ReturnsToThrower = true,
++                Thrower = thrower,
++                RequireAlliedThrower = alliesOnly,
++                ExpectedQuantity = item.GetPart<StackerPart>()?.StackCount ?? 1
++            };
++        }
+ 
+         public GoFetchGoal(Entity item, bool returnHome = false)
+         {
+@@ -46,19 +59,40 @@
+             ReturnHome = returnHome;
+         }
+ 
+-        public override bool Finished() => _phase == Phase.Done;
++        public override bool Finished() => CurrentPhase == Phase.Done;
+ 
+         public override string GetDetails()
+         {
+             string itemName = Item?.GetDisplayName() ?? "null";
+-            return $"phase={_phase} | attempts={_walkAttempts}/{MaxWalkAttempts} | item={itemName}";
++            string details = $"phase={CurrentPhase} | attempts={WalkAttempts}/{MaxWalkAttempts} | item={itemName}";
++            return ReturnsToThrower ? details + $" | return={ReturnActions}/{MaxReturnActions} | thrower={Thrower?.ID ?? "null"}" : details;
+         }
+ 
+         public override void TakeAction()
+         {
+-            if (Item == null || CurrentZone == null) { Pop(); return; }
+-
+-            switch (_phase)
++            if (ReturnsToThrower)
++            {
++                Retrieve();
++                return;
++            }
++            if (Item == null || CurrentZone == null || CurrentPhase < Phase.WalkToItem || CurrentPhase > Phase.Done)
++            { Pop(); return; }
++            if (ProgressVersion == 0)
++            {
++                // An old home fetch may already carry its item, but old one-way
++                // goals have no saved thrower. Never invent one during migration.
++                ProgressVersion = 1;
++                if (ReturnHome && ParentEntity.GetPart<InventoryPart>()?.Contains(Item) == true)
++                {
++                    CurrentPhase = Phase.WalkHome;
++                    if (ParentBrain.HasStartingCell)
++                        PushChildGoal(new MoveToGoal(ParentBrain.StartingCellX, ParentBrain.StartingCellY, 200));
++                    else CurrentPhase = Phase.Done;
++                    return;
++                }
++            }
++
++            switch (CurrentPhase)
+             {
+                 case Phase.WalkToItem:
+                     WalkToItem();
+@@ -69,7 +103,7 @@
+                 case Phase.WalkHome:
+                     // Child MoveToGoal home has popped; we're done regardless of whether
+                     // it arrived (home return is best-effort, pickup already succeeded).
+-                    _phase = Phase.Done;
++                    CurrentPhase = Phase.Done;
+                     break;
+             }
+         }
+@@ -80,7 +114,7 @@
+             if (itemCell == null) { Pop(); return; } // item no longer in zone
+ 
+             var myPos = CurrentZone.GetEntityPosition(ParentEntity);
+-            _phase = Phase.Pickup;
++            CurrentPhase = Phase.Pickup;
+ 
+             if (myPos.x == itemCell.X && myPos.y == itemCell.Y)
+             {
+@@ -93,14 +127,14 @@
+             // without calling FailToParent, so Failed() can't catch that case. Without
+             // this cap, an unreachable item would cause GoFetchGoal to oscillate
+             // WalkToItem ↔ Pickup forever.
+-            if (_walkAttempts >= MaxWalkAttempts)
++            if (WalkAttempts >= MaxWalkAttempts)
+             {
+                 Think("giving up on fetch — max walk attempts");
+                 Pop();
+                 return;
+             }
+ 
+-            _walkAttempts++;
++            WalkAttempts++;
+             Think($"walking to {Item?.GetDisplayName() ?? "item"} at ({itemCell.X},{itemCell.Y})");
+             PushChildGoal(new MoveToGoal(itemCell.X, itemCell.Y, WalkStepBudget));
+         }
+@@ -116,8 +150,8 @@
+                 && !(myPos.x == itemCell.X && myPos.y == itemCell.Y))
+             {
+                 // MoveToGoal pushed us close but not close enough (timed out?).
+-                // Retry via WalkToItem, bounded by _walkAttempts counter.
+-                _phase = Phase.WalkToItem;
++                // Retry via WalkToItem, bounded by WalkAttempts counter.
++                CurrentPhase = Phase.WalkToItem;
+                 return;
+             }
+ 
+@@ -126,7 +160,7 @@
+ 
+             if (ReturnHome && ParentBrain != null && ParentBrain.HasStartingCell)
+             {
+-                _phase = Phase.WalkHome;
++                CurrentPhase = Phase.WalkHome;
+                 PushChildGoal(new MoveToGoal(
+                     ParentBrain.StartingCellX,
+                     ParentBrain.StartingCellY,
+@@ -134,8 +168,157 @@
+             }
+             else
+             {
+-                _phase = Phase.Done;
+-            }
++                CurrentPhase = Phase.Done;
++            }
++        }
++
++        internal static bool LiveMember(Entity actor, Zone zone)
++        {
++            if (actor == null || zone == null || actor.GetStatValue("Hitpoints") <= 0
++                || CombatSystem.IsDeathHandled(actor) || actor.SpatialZone != zone) return false;
++            var cell = zone.GetEntityCell(actor);
++            return cell != null && cell.Objects.Contains(actor)
++                && actor.GetPart<PhysicsPart>()?.ParentEntity == actor;
++        }
++
++        internal static bool GroundItem(Entity item, Zone zone, Cell expectedCell, int quantity)
++        {
++            if (item == null || zone == null || quantity <= 0 || item.SpatialZone != zone) return false;
++            var physics = item.GetPart<PhysicsPart>();
++            var stacker = item.GetPart<StackerPart>();
++            var handling = item.GetPart<HandlingPart>();
++            var cell = zone.GetEntityCell(item);
++            return cell != null && cell.Objects.Contains(item) && (expectedCell == null || cell == expectedCell)
++                && physics?.ParentEntity == item && physics.Takeable
++                && physics.InInventory == null && physics.Equipped == null
++                && (stacker == null || stacker.ParentEntity == item) && (stacker?.StackCount ?? 1) == quantity
++                && (handling == null || (handling.ParentEntity == item && handling.Carryable));
++        }
++
++        private bool RecipientCurrent()
++        {
++            return Thrower != ParentEntity && Thrower != Item && LiveMember(Thrower, CurrentZone)
++                && (!RequireAlliedThrower || FactionManager.IsAllied(ParentEntity, Thrower));
++        }
++
++        private bool CarriesPayload()
++        {
++            var inventory = ParentEntity?.GetPart<InventoryPart>();
++            var physics = Item?.GetPart<PhysicsPart>();
++            var stacker = Item?.GetPart<StackerPart>();
++            return inventory?.ParentEntity == ParentEntity && Item != null && Item.SpatialZone == null
++                && inventory.Objects.Contains(Item) && !inventory.EquippedItems.ContainsValue(Item)
++                && physics?.ParentEntity == Item && physics.InInventory == ParentEntity && physics.Equipped == null
++                && (stacker == null || stacker.ParentEntity == Item) && (stacker?.StackCount ?? 1) == ExpectedQuantity;
++        }
++
++        private void Retrieve()
++        {
++            if (!LiveMember(ParentEntity, CurrentZone) || ParentBrain.ParentEntity != ParentEntity
++                || ParentEntity.GetPart<BrainPart>() != ParentBrain
++                || ParentEntity.GetPart<InventoryPart>()?.ParentEntity != ParentEntity)
++            { Finish("actor_unavailable"); return; }
++            if (ProgressVersion != 1 || ExpectedQuantity <= 0 || CurrentPhase < Phase.WalkToItem || CurrentPhase > Phase.Drop
++                || ApproachActions < 0 || ReturnActions < 0 || DropAttempts < 0 || BlockedActions < 0)
++            { Finish("invalid_progress"); return; }
++            if (CurrentPhase == Phase.Done) return;
++            if (CurrentPhase == Phase.WalkToItem || CurrentPhase == Phase.Pickup)
++            {
++                if (!RecipientCurrent() || !GroundItem(Item, CurrentZone, null, ExpectedQuantity))
++                { Finish("source_or_recipient_changed"); return; }
++                if (Age > MaxRetrievalAge || ApproachActions >= MaxWalkAttempts * WalkStepBudget)
++                { Finish("approach_budget"); return; }
++                ApproachActions++;
++                if (SpatialQuery.Distance(CurrentZone, ParentEntity, Item) <= 1)
++                {
++                    CurrentPhase = Phase.Pickup;
++                    bool picked = InventorySystem.ExecuteCommand(PickupCommand.ForRetrieval(Item, ExpectedQuantity, Thrower, RequireAlliedThrower), ParentEntity, CurrentZone).Success;
++                    if (!picked || !CarriesPayload()) { Finish("pickup_refused_or_changed"); return; }
++                    CurrentPhase = Phase.ReturnToThrower;
++                    BlockedActions = 0;
++                    Record("acquired");
++                    return;
++                }
++                if (StepToContact(Item)) BlockedActions = 0;
++                else if (++BlockedActions >= MaxBlockedActions) Finish("approach_blocked");
++                return;
++            }
++            if (!CarriesPayload()) { Finish("payload_changed"); return; }
++            // A vetoed drop may be retried on a later turn. The recipient can
++            // move or disappear meanwhile, just as during the return walk.
++            if (CurrentPhase == Phase.Drop && FallbackReason == null)
++            {
++                if (!RecipientCurrent()) BeginFallback("recipient_unavailable");
++                else if (SpatialQuery.Distance(CurrentZone, ParentEntity, Thrower) > 1)
++                    CurrentPhase = Phase.ReturnToThrower;
++            }
++            if (CurrentPhase == Phase.ReturnToThrower)
++            {
++                if (!RecipientCurrent()) BeginFallback("recipient_unavailable");
++                else if (Age > MaxRetrievalAge || ReturnActions >= MaxReturnActions) BeginFallback("return_budget");
++                else
++                {
++                    ReturnActions++;
++                    if (SpatialQuery.Distance(CurrentZone, ParentEntity, Thrower) <= 1) CurrentPhase = Phase.Drop;
++                    else
++                    {
++                        if (StepToContact(Thrower)) BlockedActions = 0;
++                        else if (++BlockedActions >= MaxBlockedActions) BeginFallback("return_blocked");
++                        return;
++                    }
++                }
++            }
++            if (CurrentPhase != Phase.Drop) { Finish("invalid_retrieval_phase"); return; }
++            if (DropAttempts >= MaxDropAttempts) { Finish("drop_refused"); return; }
++            DropAttempts++;
++            var cell = CurrentZone.GetEntityCell(ParentEntity);
++            bool dropped = InventorySystem.Drop(ParentEntity, Item, CurrentZone);
++            if (dropped)
++            {
++                bool exact = GroundItem(Item, CurrentZone, cell, ExpectedQuantity);
++                Finish(exact ? "dropped" : "drop_changed");
++            }
++            else if (!CarriesPayload() || DropAttempts >= MaxDropAttempts) Finish("drop_refused_or_changed");
++            else Record("drop_retry");
++        }
++
++        private bool StepToContact(Entity target)
++        {
++            var from = CurrentZone.GetEntityCell(ParentEntity);
++            var to = CurrentZone.GetEntityCell(target);
++            if (from == null || to == null) return false;
++            var path = FindPath.Search(CurrentZone, from.X, from.Y, to.X, to.Y,
++                actor: ParentEntity, contactTarget: target);
++            if (!path.Usable || path.Steps.Count == 0) return false;
++            var step = path.Steps[0];
++            var result = MovementSystem.TryMoveDetailed(ParentEntity, CurrentZone, step.dx, step.dy);
++            if (result.Moved || result.ActionPerformed) Record("approach_action");
++            return result.Moved || result.ActionPerformed;
++        }
++
++        private void BeginFallback(string reason)
++        {
++            FallbackReason = reason;
++            CurrentPhase = Phase.Drop;
++            Record("local_fallback");
++        }
++
++        private void Finish(string reason)
++        {
++            Record(reason);
++            CurrentPhase = Phase.Done;
++            Pop();
++        }
++
++        private void Record(string reason)
++        {
++            if (!Diag.IsChannelEnabled("ai")) return;
++            Diag.Record("ai", "FetchProgress", ParentEntity, Item, payload: new
++            {
++                reason, thrower = Thrower?.ID, phase = CurrentPhase.ToString(), quantity = ExpectedQuantity,
++                approachActions = ApproachActions, returnActions = ReturnActions, dropAttempts = DropAttempts,
++                fallbackReason = FallbackReason
++            });
+         }
+ 
+         public override void Failed(GoalHandler child)
+--- Assets/Scripts/Gameplay/AI/BrainPart.cs
++++ Assets/Scripts/Gameplay/AI/BrainPart.cs
+@@ -501,6 +501,25 @@
+             goal.OnPush();
+         }
+ 
++        // Recruitment's persistent follower must not bury an already accepted
++        // retrieval forever. Insert below that exact subtree, without replaying
++        // any existing goal's lifecycle or disturbing its active children.
++        internal void PushFollowGoal(FollowLeaderGoal follow)
++        {
++            for (int i = 0; i < _goals.Count; i++)
++            {
++                if (_goals[i] is GoFetchGoal fetch && fetch.ParentBrain == this
++                    && fetch.ReturnsToThrower && !fetch.Finished())
++                {
++                    follow.ParentBrain = this;
++                    _goals.Insert(i, follow);
++                    follow.OnPush();
++                    return;
++                }
++            }
++            PushGoal(follow);
++        }
++
+         /// <summary>Remove a specific goal from the stack.</summary>
+         public void RemoveGoal(GoalHandler goal)
+         {
+--- Assets/Scripts/Gameplay/Effects/Concrete/RecruitedEffect.cs
++++ Assets/Scripts/Gameplay/Effects/Concrete/RecruitedEffect.cs
+@@ -76,7 +76,7 @@
+             // F.1.5's FollowLeaderGoal handles termination on
+             // null/destroyed/cross-zone leader (with F.2.6 persistent-
+             // follow semantics: idles when close, doesn't pop).
+-            brain.PushGoal(new FollowLeaderGoal { Leader = Recruiter });
++            brain.PushFollowGoal(new FollowLeaderGoal { Leader = Recruiter });
+ 
+             MessageLog.Add(target.GetDisplayName() + " joins " + Recruiter.GetDisplayName() + "!");
+         }
+--- Assets/Scripts/Gameplay/Inventory/Commands/Acquisition/PickupCommand.cs
++++ Assets/Scripts/Gameplay/Inventory/Commands/Acquisition/PickupCommand.cs
+@@ -3,6 +3,22 @@
+     public sealed class PickupCommand : IInventoryCommand
+     {
+         private readonly Entity _item;
++        private readonly bool _retainIdentity;
++        private readonly int _expectedQuantity;
++        private readonly Entity _retrievalRecipient;
++        private readonly bool _requireAlliedRecipient;
++
++        internal static PickupCommand ForRetrieval(Entity item, int expectedQuantity, Entity recipient, bool requireAlliedRecipient) =>
++            new PickupCommand(item, expectedQuantity, recipient, requireAlliedRecipient);
++
++        private PickupCommand(Entity item, int expectedQuantity, Entity recipient, bool requireAlliedRecipient)
++        {
++            _item = item;
++            _retainIdentity = true;
++            _expectedQuantity = expectedQuantity;
++            _retrievalRecipient = recipient;
++            _requireAlliedRecipient = requireAlliedRecipient;
++        }
+ 
+         public string Name => "Pickup";
+ 
+@@ -77,7 +93,7 @@
+ 
+             if (!transaction.TryClaim(_item, actor, Name))
+                 return Refuse(context, "transfer_in_progress", "Item transfer is already in progress.");
+-            if (!IsGroundSource(context))
++            if (!IsGroundSource(context) || (_retainIdentity && !RetrievalSourceCurrent(context)))
+                 return Refuse(context, "invalid_ground_source", "That item is no longer on this ground.");
+             if ((_item.GetPart<StackerPart>()?.StackCount ?? 1) <= 0)
+                 return Refuse(context, "empty_stack", "There is no positive unit to pick up.");
+@@ -109,12 +125,12 @@
+             }
+ 
+             // Veto hooks can move/remove the source or change its quantity.
+-            if (!IsGroundSource(context))
++            if (!IsGroundSource(context) || (_retainIdentity && !RetrievalSourceCurrent(context)))
+                 return Refuse(context, "source_changed", "That item is no longer on this ground.");
+             var stacker = _item.GetPart<StackerPart>();
+             int quantity = stacker?.StackCount ?? 1;
+             if (quantity <= 0) return Refuse(context, "empty_stack", "There is no positive unit to pick up.");
+-            bool gold = _item.BlueprintName == "GoldCoin";
++            bool gold = !_retainIdentity && _item.BlueprintName == "GoldCoin";
+             long credit = gold ? (long)quantity * 5 : 0;
+             int purse = TradeSystem.GetDrams(actor);
+             if (gold && (long)purse + credit > int.MaxValue)
+@@ -140,7 +156,7 @@
+             {
+                 var destination = InventoryTransferSnapshot.Capture(inventory, _item);
+                 transaction.Do(apply: null, undo: destination.Restore);
+-                if (!destination.Apply(() => inventory.AddObject(_item)))
++                if (!destination.Apply(() => _retainIdentity ? inventory.AddRetrievedObject(_item) : inventory.AddObject(_item)))
+                 {
+                     MessageLog.Add($"You can't carry {itemName}: too heavy!");
+                     return Refuse(context, "weight_limit", "Weight limit exceeded.");
+@@ -163,7 +179,7 @@
+ 
+             // Preserve auto-equip-on-pickup behavior through command-native flow.
+             // Failures are non-fatal for pickup and simply mean "left carried".
+-            if (!gold) new AutoEquipCommand(_item).Execute(context, transaction);
++            if (!gold && !_retainIdentity) new AutoEquipCommand(_item).Execute(context, transaction);
+ 
+             // Fire AfterPickup on actor.
+             var afterPickup = GameEvent.New("AfterPickup");
+@@ -175,6 +191,19 @@
+             return InventoryCommandResult.Ok();
+         }
+ 
++        private bool RetrievalSourceCurrent(InventoryContext context)
++        {
++            var actor = context.Actor;
++            return GoFetchGoal.LiveMember(actor, context.Zone)
++                && _retrievalRecipient != actor && _retrievalRecipient != _item
++                && GoFetchGoal.LiveMember(_retrievalRecipient, context.Zone)
++                && (!_requireAlliedRecipient || FactionManager.IsAllied(actor, _retrievalRecipient))
++                && actor.GetPart<InventoryPart>() == context.Inventory && context.Inventory.ParentEntity == actor
++                && GoFetchGoal.GroundItem(_item, context.Zone, null, _expectedQuantity)
++                && SpatialQuery.Distance(context.Zone, actor, _item) <= 1
++                && HandlingService.CanLift(actor, _item, out _);
++        }
++
+         private bool IsGroundSource(InventoryContext context)
+         {
+             var physics = _item.GetPart<PhysicsPart>();
+--- Assets/Scripts/Gameplay/Inventory/InventoryPart.cs
++++ Assets/Scripts/Gameplay/Inventory/InventoryPart.cs
+@@ -73,7 +73,16 @@
+             return false;
+         }
+ 
+-        private bool AddObjectCore(Entity item, bool deferCapacity, out Entity recipient)
++        // Retrieval retains the exact thrown object instead of merging it into a
++        // resident stack. The command owns transfer validation and rollback.
++        internal bool AddRetrievedObject(Entity item)
++        {
++            if (item == null || Objects.Contains(item)) return false;
++            if (MaxWeight >= 0 && (long)GetCarriedWeight() + GetItemWeight(item) > MaxWeight) return false;
++            return AddObjectCore(item, false, out _, merge: false);
++        }
++
++        private bool AddObjectCore(Entity item, bool deferCapacity, out Entity recipient, bool merge = true)
+         {
+             recipient = null;
+             if (!deferCapacity && MaxWeight >= 0)
+@@ -85,7 +94,7 @@
+ 
+             // Try to merge into existing stack
+             var itemStacker = item.GetPart<StackerPart>();
+-            if (itemStacker != null)
++            if (merge && itemStacker != null)
+             {
+                 for (int i = 0; i < Objects.Count; i++)
+                 {

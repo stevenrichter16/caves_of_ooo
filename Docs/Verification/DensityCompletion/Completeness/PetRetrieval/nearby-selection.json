@@ -1,0 +1,33 @@
+{
+  "fixtures": [
+    "Gameplay/AI/Phase6GoalsTests.cs",
+    "Gameplay/AI/AIBehaviorPartTests.cs",
+    "Gameplay/AI/M3CoverageGapTests.cs",
+    "Gameplay/AI/FollowLeaderGoalTests.cs",
+    "Gameplay/AI/FollowerSystemTests.cs",
+    "Gameplay/AI/FollowerSystemAdversarialTests.cs",
+    "Gameplay/Effects/RecruitedEffectTests.cs",
+    "Gameplay/Effects/RecruitedEffectAdversarialTests.cs",
+    "Gameplay/Inventory/InventorySystemTests.cs",
+    "Gameplay/Inventory/ItemTakenEventTests.cs",
+    "Gameplay/Inventory/GameAuditAcquisitionTests.cs",
+    "Gameplay/Inventory/GameAuditAcquisitionAdversarialTests.cs",
+    "Gameplay/Inventory/GameAuditTransferTests.cs",
+    "Gameplay/Inventory/GameAuditTransferAdversarialTests.cs",
+    "TestSupport/PartRoundTripHelper.cs"
+  ],
+  "production": [
+    "Assets/Scripts/Gameplay/AI/AIRetrieverPart.cs",
+    "Assets/Scripts/Gameplay/AI/Goals/GoFetchGoal.cs",
+    "Assets/Scripts/Gameplay/AI/BrainPart.cs",
+    "Assets/Scripts/Gameplay/Effects/Concrete/RecruitedEffect.cs",
+    "Assets/Scripts/Gameplay/Inventory/Commands/Acquisition/PickupCommand.cs",
+    "Assets/Scripts/Gameplay/Inventory/InventoryPart.cs"
+  ],
+  "method": "identical existing fixture files against captured baseline/candidate six production files; no shared mutation",
+  "runner_exclusions": [
+    "GameAuditAcquisitionTests.cs",
+    "GameAuditTransferTests.cs"
+  ],
+  "exclusion_reason": "Both baseline/candidate require actual Unity GameObject/TradeUI. Retain adversarial command fixtures; native full fixtures pending."
+}

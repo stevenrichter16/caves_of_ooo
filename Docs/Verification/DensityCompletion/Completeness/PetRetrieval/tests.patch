@@ -1,0 +1,454 @@
+--- Assets/Tests/EditMode/Gameplay/AI/AIDebugTests.cs
++++ Assets/Tests/EditMode/Gameplay/AI/AIDebugTests.cs
+@@ -274,26 +274,18 @@
+         }
+ 
+         [Test]
+-        public void GoFetchGoal_GetDetails_DoesNotExposePrivateFieldsAsPublic()
+-        {
+-            // Regression: the inspector needs to read _walkAttempts (private).
+-            // The plan's approach is GetDetails reading its OWN class's private
+-            // field directly — no new public property. This test catches a
+-            // future refactor that "fixes" access by adding `public int
+-            // WalkAttempts { get; }` — that would break encapsulation without
+-            // need, since GetDetails already has in-class access.
+-            var fi = typeof(GoFetchGoal).GetField(
+-                "_walkAttempts",
+-                System.Reflection.BindingFlags.NonPublic
+-                    | System.Reflection.BindingFlags.Instance);
+-            Assert.IsNotNull(fi,
+-                "GoFetchGoal._walkAttempts must remain a private field.");
+-
+-            var pi = typeof(GoFetchGoal).GetProperty("WalkAttempts");
+-            Assert.IsNull(pi,
+-                "GoFetchGoal must NOT have a public WalkAttempts property — " +
+-                "GetDetails reads the private field directly and no external " +
+-                "code should need the value.");
++        public void GoFetchGoal_GetDetailsUsesThePublicSavedProgressFields()
++        {
++            // Goal saves serialize mutable fields and bypass constructors. The
++            // old private-only pin would restart an acquired fetch after load.
++            var attempts = typeof(GoFetchGoal).GetField("WalkAttempts");
++            var phase = typeof(GoFetchGoal).GetField("CurrentPhase");
++            Assert.NotNull(attempts); Assert.False(attempts.IsInitOnly);
++            Assert.NotNull(phase); Assert.False(phase.IsInitOnly);
++            Assert.IsNull(typeof(GoFetchGoal).GetProperty("WalkAttempts"),
++                "A display-only accessor would still not enter the saved field stream.");
++            var goal = new GoFetchGoal(null) { WalkAttempts = 1, CurrentPhase = GoFetchGoal.Phase.Pickup };
++            Assert.AreEqual("phase=Pickup | attempts=1/2 | item=null", goal.GetDetails());
+         }
+     }
+ }
+--- Assets/Tests/EditMode/Gameplay/AI/AIBehaviorPartTests.cs
++++ Assets/Tests/EditMode/Gameplay/AI/AIBehaviorPartTests.cs
+@@ -730,8 +730,10 @@
+             ctx.Verify().Entity(dog).HasGoalOnStack<GoFetchGoal>();
+             var goal = dog.GetPart<BrainPart>().FindGoal<GoFetchGoal>();
+             Assert.AreSame(item, goal.Item);
++            Assert.IsTrue(goal.ReturnsToThrower);
++            Assert.AreSame(ally, goal.Thrower);
+             Assert.IsFalse(goal.ReturnHome,
+-                "Retriever mode — item stays where pet is (no return home).");
++                "Retrieval follows the thrower instead of the dog's recorded home.");
+         }
+ 
+         [Test]
+@@ -1173,6 +1175,7 @@
+                 StartingCellX = x,
+                 StartingCellY = y
+             });
++            entity.AddPart(new PhysicsPart { Solid = true });
+             entity.AddPart(new InventoryPart { MaxWeight = 10 });
+             entity.AddPart(new AIRetrieverPart { AlliesOnly = alliesOnly, NoticeRadius = noticeRadius });
+             ctx.Zone.AddEntity(entity, x, y);
+--- Assets/Tests/EditMode/Gameplay/AI/M3CoverageGapTests.cs
++++ Assets/Tests/EditMode/Gameplay/AI/M3CoverageGapTests.cs
+@@ -166,7 +166,7 @@
+             // CRITICAL behavioral pin: the difference between Hoarder
+             // and Retriever is exactly that Hoarder fetches WITH
+             // returnHome=true (carry it back to nest), while Retriever
+-            // fetches with returnHome=false (just stop on arrival).
++            // fetches with returnHome=false (returns to the current thrower).
+             // If a refactor flips this, Magpies stop returning gold
+             // to their nests — the M3.2 acceptance behavior is broken.
+             var zone = new Zone("HoarderZone");
+@@ -262,11 +262,8 @@
+         [Test]
+         public void AIRetriever_PushedGoFetchGoal_HasReturnHomeFalse()
+         {
+-            // Counter-pin to AIHoarder's returnHome=true. Retriever
+-            // fetches but does NOT return — pet stops on the bone, no
+-            // round-trip. The TODO(pet-ux) comment in production
+-            // acknowledges the better UX is "drop at thrower," but
+-            // returnHome=false is what ships today.
++            // Retrieval returns to its current thrower, not the pet's home.
++            // Keep the explicit counter-pin to AIHoarder's ReturnHome=true.
+             var zone = new Zone("RetrieverZone");
+             var dog = CreateCreature(zone, 5, 5, faction: "Villagers");
+             var brain = dog.GetPart<BrainPart>();
+@@ -283,6 +280,8 @@
+ 
+             var goal = brain.FindGoal<GoFetchGoal>();
+             Assert.IsNotNull(goal, "Retriever must push GoFetchGoal on ItemLanded.");
++            Assert.IsTrue(goal.ReturnsToThrower);
++            Assert.AreSame(thrower, goal.Thrower);
+             Assert.IsFalse(goal.ReturnHome,
+                 "Retriever MUST set returnHome=false. Counter-pin to " +
+                 "AIHoarder's returnHome=true — these two parts use the " +
+--- /dev/null
++++ Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalAdversarialTests.cs
+@@ -0,0 +1,354 @@
++using System;
++using System.Linq;
++using CavesOfOoo.Core;
++using CavesOfOoo.Core.Inventory.Commands;
++using NUnit.Framework;
++using static CavesOfOoo.Tests.DensityPetRetrievalTests;
++
++namespace CavesOfOoo.Tests
++{
++    public sealed class DensityPetRetrievalAdversarialTests
++    {
++        private LogScope log;
++        private Zone zone;
++        private Entity dog, thrower, item;
++        [SetUp]
++        public void Setup()
++        {
++            log = new LogScope(); zone = new Zone("pet-adversarial");
++            dog = Creature(zone, 5, 5, "dog", true); thrower = Creature(zone, 9, 5, "thrower");
++            item = Item(); Assert.True(zone.AddEntity(item, 5, 5));
++            Land(dog, thrower, item, zone.GetEntityCell(item)); Assert.NotNull(Fetch(dog));
++        }
++        [TearDown] public void Cleanup() { log?.Dispose(); }
++        private void Acquire()
++        { Turn(dog); Assert.True(dog.GetPart<InventoryPart>().Objects.Contains(item)); Assert.AreSame(dog, item.GetPart<PhysicsPart>().InInventory); }
++
++        [TestCase(false)][TestCase(true)]
++        public void AdmissionDiagnosticsDistinguishCurrentSuccessFromSourceRefusal(bool invalid)
++        {
++            var brain = dog.GetPart<BrainPart>(); brain.ClearGoals();
++            bool previous = CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("ai");
++            var prior = new System.Collections.Generic.HashSet<string>(CavesOfOoo.Diagnostics.Diag.Snapshot(CavesOfOoo.Diagnostics.Diag.BufferCapacity).Select(r => r.TraceId));
++            try
++            {
++                CavesOfOoo.Diagnostics.Diag.SetChannel("ai", true);
++                Land(dog, thrower, item, invalid ? zone.GetCell(6, 5) : zone.GetEntityCell(item));
++                var rows = CavesOfOoo.Diagnostics.Diag.Snapshot(CavesOfOoo.Diagnostics.Diag.BufferCapacity)
++                    .Where(r => !prior.Contains(r.TraceId) && r.Kind == "FetchAdmission" && r.ActorId == dog.ID).ToArray();
++                Assert.AreEqual(1, rows.Length);
++                StringAssert.Contains("\"outcome\":\"" + (invalid ? "refused" : "accepted") + "\"", rows[0].PayloadJson);
++                Assert.AreEqual(!invalid, Fetch(dog) != null);
++            }
++            finally { CavesOfOoo.Diagnostics.Diag.SetChannel("ai", previous); }
++        }
++
++        [Test]
++        public void CompetingDogsAndReplayedLandingCannotDuplicateTheFetchedUnit()
++        {
++            var other = Creature(zone, 5, 6, "second-dog", true);
++            Land(other, thrower, item, zone.GetEntityCell(item)); Assert.NotNull(Fetch(other));
++            Turn(dog); Turn(other); Assert.IsNull(Fetch(other));
++            Assert.AreSame(dog, item.GetPart<PhysicsPart>().InInventory);
++            Advance(dog); Returned(zone, dog, thrower, item);
++            var floor = zone.GetEntityCell(item);
++            Advance(dog); Advance(other);
++            Assert.AreSame(floor, zone.GetEntityCell(item)); Assert.AreEqual(1, item.GetPart<StackerPart>().StackCount);
++            Assert.False(other.GetPart<InventoryPart>().Contains(item));
++        }
++        [Test]
++        public void OffsetRecipientFootprintReceivesAtPhysicalContactRatherThanItsAnchor()
++        {
++            Acquire(); Assert.True(zone.RemoveEntity(thrower));
++            thrower.AddPart(new SpatialFootprintPart { CellsRaw = "-2,0;-1,0;0,0" });
++            Assert.True(zone.AddEntity(thrower, 9, 5));
++            Advance(dog); Returned(zone, dog, thrower, item);
++            Assert.Greater(AIHelpers.ChebyshevDistance(zone.GetEntityCell(dog).X, zone.GetEntityCell(dog).Y, 9, 5), 1);
++        }
++        [TestCase("physics")][TestCase("inventory")][TestCase("stacker")]
++        public void ForeignPartBacklinksNeverAuthorizePickup(string part)
++        {
++            var foreign = new Entity();
++            if (part == "physics") item.GetPart<PhysicsPart>().ParentEntity = foreign;
++            if (part == "inventory") dog.GetPart<InventoryPart>().ParentEntity = foreign;
++            if (part == "stacker") item.GetPart<StackerPart>().ParentEntity = foreign;
++            Turn(dog); Assert.AreSame(zone.GetCell(5, 5), zone.GetEntityCell(item));
++            Assert.IsNull(item.GetPart<PhysicsPart>().InInventory); Assert.IsNull(Fetch(dog));
++        }
++        [TestCase(false, false)][TestCase(false, true)][TestCase(true, false)][TestCase(true, true)]
++        public void LegacyFieldAbsentWireRetainsHomePolicyAndNeverInventsARecipient(bool home, bool carried)
++        {
++            dog.GetPart<BrainPart>().ClearGoals();
++            if (carried) { Assert.True(zone.RemoveEntity(item)); Assert.True(dog.GetPart<InventoryPart>().AddObject(item)); }
++            dog.GetPart<BrainPart>().StartingCellX = 9; dog.GetPart<BrainPart>().StartingCellY = 5;
++            // The exact pre-change public field wire: Item, ReturnHome and Age.
++            // New progress fields are genuinely absent, not explicitly zeroed.
++            using (var stream = new System.IO.MemoryStream())
++            {
++                var writer = new CavesOfOoo.Core.SaveWriter(stream); writer.WriteEntityReference(dog);
++                writer.WriteString(typeof(GoFetchGoal).AssemblyQualifiedName); writer.Write(3); writer.Write(3);
++                writer.WriteString("Item"); writer.WriteEntityReference(item);
++                writer.WriteString("ReturnHome"); writer.Write(home);
++                writer.WriteString("Age"); writer.Write(3); writer.WriteQueuedEntityBodies(); stream.Position = 0;
++                var reader = new CavesOfOoo.Core.SaveReader(stream, factory: null);
++                var loadedDog = reader.ReadEntityReference();
++                var method = typeof(CavesOfOoo.Core.SaveGraphSerializer).GetMethod("LoadGoal", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
++                var loaded = (GoFetchGoal)method.Invoke(null, new object[] { reader }); reader.ReadEntityBodies();
++                Assert.Zero(loaded.ProgressVersion); Assert.False(loaded.ReturnsToThrower); Assert.IsNull(loaded.Thrower); Assert.AreEqual(3, loaded.Age);
++                dog = loadedDog; item = loaded.Item; zone = new Zone("legacy-loaded");
++                Assert.True(zone.AddEntity(dog, 5, 5)); dog.GetPart<BrainPart>().CurrentZone = zone;
++                if (!carried) Assert.True(zone.AddEntity(item, 5, 5));
++                dog.GetPart<BrainPart>().PushGoal(loaded); Advance(dog);
++                Assert.IsNull(Fetch(dog)); Assert.True(dog.GetPart<InventoryPart>().Contains(item)); Assert.IsNull(zone.GetEntityCell(item));
++                Assert.AreSame(dog, item.GetPart<PhysicsPart>().InInventory);
++                Assert.AreEqual(home ? (9, 5) : (5, 5), zone.GetEntityPosition(dog));
++            }
++        }
++
++        private sealed class Hook : Part
++        {
++            public string Event; public Action Action; public bool Veto; public int Calls;
++            public override bool HandleEvent(GameEvent e)
++            {
++                if (e.ID != Event) return true;
++                Calls++; Action?.Invoke(); return !Veto;
++            }
++        }
++        [TestCase("removed")][TestCase("dead")][TestCase("alliance-lost")][TestCase("still-current")][TestCase("alliance-allowed")]
++        public void PickupVetoCallbacksRevalidateTheExactRecipientBeforeAnyAcquisition(string change)
++        {
++            bool allowed = change == "still-current" || change == "alliance-allowed";
++            if (change == "alliance-allowed")
++            {
++                dog.GetPart<BrainPart>().ClearGoals(); dog.GetPart<AIRetrieverPart>().AlliesOnly = false;
++                Land(dog, thrower, item, zone.GetEntityCell(item));
++            }
++            dog.AddPart(new Hook { Event = "BeforePickup", Action = () =>
++            {
++                if (change == "removed") Assert.True(zone.RemoveEntity(thrower));
++                if (change == "dead") thrower.GetStat("Hitpoints").BaseValue = 0;
++                if (change == "alliance-lost" || change == "alliance-allowed") dog.GetPart<BrainPart>().PersonalEnemies.Add(thrower);
++            } });
++            Turn(dog);
++            Assert.AreEqual(allowed, dog.GetPart<InventoryPart>().Objects.Contains(item));
++            Assert.AreEqual(!allowed, zone.GetEntityCell(item) == zone.GetCell(5, 5));
++            Assert.AreEqual(allowed, Fetch(dog) != null); Assert.AreEqual(1, item.GetPart<StackerPart>().StackCount);
++        }
++
++        [TestCase("actor-physics")][TestCase("item-physics")][TestCase("source-zone")]
++        public void PickupCallbackCannotRemoveCurrentPhysicalAuthorityThenStillAcquire(string mutation)
++        {
++            var foreign = new Entity(); var elsewhere = new Zone("callback-elsewhere");
++            dog.AddPart(new Hook { Event = "BeforePickup", Action = () =>
++            {
++                if (mutation == "actor-physics") dog.GetPart<PhysicsPart>().ParentEntity = foreign;
++                if (mutation == "item-physics") item.GetPart<PhysicsPart>().ParentEntity = foreign;
++                if (mutation == "source-zone") { Assert.True(zone.RemoveEntity(item)); Assert.True(elsewhere.AddEntity(item, 5, 5)); }
++            } });
++            Turn(dog); Assert.False(dog.GetPart<InventoryPart>().Objects.Contains(item));
++            Assert.AreSame((mutation == "source-zone" ? elsewhere : zone).GetCell(5, 5), (mutation == "source-zone" ? elsewhere : zone).GetEntityCell(item));
++            Assert.AreEqual(1, item.GetPart<StackerPart>().StackCount); Assert.IsNull(Fetch(dog));
++        }
++        [TestCase("stack")][TestCase("gold")][TestCase("weapon")]
++        public void ReturnedObjectUsesNormalPlayerPickupWithoutRetainingRetrievalMode(string kind)
++        {
++            dog.GetPart<BrainPart>().ClearGoals(); Assert.True(zone.RemoveEntity(item));
++            item = Item(blueprint: kind == "gold" ? "GoldCoin" : kind == "weapon" ? "Dagger" : "Bone", weapon: kind == "weapon");
++            var resident = Item("player-resident", count: 3); Assert.True(thrower.GetPart<InventoryPart>().AddObject(resident));
++            int purse = TradeSystem.GetDrams(thrower); Assert.True(zone.AddEntity(item, 5, 5)); Land(dog, thrower, item, zone.GetEntityCell(item));
++            Advance(dog); Returned(zone, dog, thrower, item); Assert.True(InventorySystem.Pickup(thrower, item, zone));
++            if (kind == "stack") { Assert.AreEqual(4, resident.GetPart<StackerPart>().StackCount); Assert.Zero(item.GetPart<StackerPart>().StackCount); }
++            if (kind == "gold") { Assert.AreEqual(purse + 5, TradeSystem.GetDrams(thrower)); Assert.Zero(item.GetPart<StackerPart>().StackCount); }
++            if (kind == "weapon") { Assert.AreSame(thrower, item.GetPart<PhysicsPart>().Equipped); Assert.False(thrower.GetPart<InventoryPart>().Objects.Contains(item)); }
++        }
++
++        [TestCase(false)][TestCase(true)]
++        public void ChangedQuantityBeforeOrInsidePickupCannotTakeUnthrownUnits(bool duringHook)
++        {
++            if (duringHook) dog.AddPart(new Hook { Event = "BeforePickup", Action = () => item.GetPart<StackerPart>().StackCount++ });
++            else item.GetPart<StackerPart>().StackCount++;
++            Turn(dog); Assert.AreEqual(2, item.GetPart<StackerPart>().StackCount);
++            Assert.NotNull(zone.GetEntityCell(item)); Assert.False(dog.GetPart<InventoryPart>().Contains(item)); Assert.IsNull(Fetch(dog));
++        }
++        [TestCase("capacity")][TestCase("item-veto")][TestCase("actor-veto")]
++        public void RefusedPickupPreservesExactGroundProperty(string refusal)
++        {
++            if (refusal == "capacity") dog.GetPart<InventoryPart>().MaxWeight = 0;
++            if (refusal == "item-veto") item.AddPart(new Hook { Event = "BeforeBeingPickedUp", Veto = true });
++            if (refusal == "actor-veto") dog.AddPart(new Hook { Event = "BeforePickup", Veto = true });
++            Turn(dog); Assert.AreSame(zone.GetCell(5, 5), zone.GetEntityCell(item)); Assert.AreEqual(1, item.GetPart<StackerPart>().StackCount);
++            Assert.IsNull(item.GetPart<PhysicsPart>().InInventory); Assert.IsNull(Fetch(dog));
++        }
++        [Test]
++        public void PickupHookTransferToARealOtherOwnerIsNeverReclaimedByFetch()
++        {
++            var other = Creature(zone, 15, 5, "other");
++            dog.AddPart(new Hook { Event = "AfterPickup", Action = () =>
++            {
++                Assert.True(dog.GetPart<InventoryPart>().RemoveObject(item)); Assert.True(other.GetPart<InventoryPart>().AddObject(item));
++            } });
++            Turn(dog); Advance(dog); Assert.IsNull(Fetch(dog)); Assert.IsNull(zone.GetEntityCell(item));
++            Assert.AreSame(other, item.GetPart<PhysicsPart>().InInventory); Assert.True(other.GetPart<InventoryPart>().Objects.Contains(item));
++        }
++        [TestCase("dead")][TestCase("detached")][TestCase("different-zone")][TestCase("alliance-lost")]
++        public void LostRecipientAfterPickupDropsOnlyAtTheLivingDogsCurrentCell(string reason)
++        {
++            Acquire(); var cell = zone.GetEntityCell(dog);
++            if (reason == "dead") thrower.GetStat("Hitpoints").BaseValue = 0;
++            if (reason == "detached") Assert.True(zone.RemoveEntity(thrower));
++            if (reason == "different-zone") { Assert.True(zone.RemoveEntity(thrower)); Assert.True(new Zone("elsewhere").AddEntity(thrower, 9, 5)); }
++            if (reason == "alliance-lost") dog.GetPart<BrainPart>().PersonalEnemies.Add(thrower);
++            Turn(dog); Assert.AreSame(cell, zone.GetEntityCell(item)); Assert.IsNull(item.GetPart<PhysicsPart>().InInventory); Assert.IsNull(Fetch(dog));
++        }
++        [TestCase(false)][TestCase(true)]
++        public void DeadOrDetachedRetrieverDoesNotManufactureAFloorDrop(bool detached)
++        {
++            Acquire(); if (detached) Assert.True(zone.RemoveEntity(dog)); else dog.GetStat("Hitpoints").BaseValue = 0;
++            // Direct invocation probes the goal's own defensive boundary, not a
++            // claim that the scheduler normally gives dead/detached actors turns.
++            Fetch(dog).TakeAction(); Assert.IsNull(zone.GetEntityCell(item));
++            Assert.AreSame(dog, item.GetPart<PhysicsPart>().InInventory); Assert.AreEqual(1, item.GetPart<StackerPart>().StackCount);
++        }
++        [Test]
++        public void ImpassableReturnIsFiniteAndLeavesTheSameObjectLocally()
++        {
++            Acquire(); var goal = Fetch(dog);
++            for (int dx = -1; dx <= 1; dx++) for (int dy = -1; dy <= 1; dy++)
++            {
++                if (dx == 0 && dy == 0) continue;
++                var wall = new Entity(); wall.SetTag("Solid"); Assert.True(zone.AddEntity(wall, 5 + dx, 5 + dy));
++            }
++            Advance(dog, GoFetchGoal.MaxBlockedActions + 2);
++            Assert.AreSame(zone.GetCell(5, 5), zone.GetEntityCell(item)); Assert.IsNull(Fetch(dog));
++            Assert.AreEqual("return_blocked", goal.FallbackReason);
++        }
++        [TestCase(false)][TestCase(true)]
++        public void OrdinaryDropVetoIsRespectedAndBounded(bool veto)
++        {
++            Acquire(); var hook = new Hook { Event = "BeforeDrop", Veto = veto }; dog.AddPart(hook);
++            Advance(dog); Assert.AreEqual(veto ? GoFetchGoal.MaxDropAttempts : 1, hook.Calls); Assert.IsNull(Fetch(dog));
++            if (veto) { Assert.IsNull(zone.GetEntityCell(item)); Assert.AreSame(dog, item.GetPart<PhysicsPart>().InInventory); }
++            else Returned(zone, dog, thrower, item);
++        }
++        [Test]
++        public void ARefusedDropDoesNotMakeTheNextTurnIgnoreAMovingRecipient()
++        {
++            Acquire(); var hook = new Hook { Event = "BeforeDrop", Veto = true }; dog.AddPart(hook);
++            for (int i = 0; i < 10 && hook.Calls == 0; i++) Turn(dog);
++            Assert.AreEqual(1, hook.Calls); hook.Veto = false;
++            Assert.True(MovementSystem.TryMove(thrower, zone, 1, 1)); Assert.True(MovementSystem.TryMove(thrower, zone, 1, 1));
++            Assert.Greater(SpatialQuery.Distance(zone, dog, thrower), 1);
++            Turn(dog); Assert.IsNull(zone.GetEntityCell(item), "The second drop is still addressed to the current thrower, not its previous position.");
++            Advance(dog); Returned(zone, dog, thrower, item);
++        }
++        [TestCase(false)][TestCase(true)]
++        public void ActualSavedCarriedGraphResumesWithTheSameRemainingReturnBudget(bool exhausted)
++        {
++            Acquire(); var goal = Fetch(dog); goal.ReturnActions = exhausted ? GoFetchGoal.MaxReturnActions : 2;
++            var oldDog = dog; var oldThrower = thrower; var oldItem = item;
++            dog = PartRoundTripHelper.RoundTripEntityViaTokenGraph(dog); goal = Fetch(dog); item = goal.Item; thrower = goal.Thrower;
++            Assert.AreNotSame(oldDog, dog); Assert.AreNotSame(oldThrower, thrower); Assert.AreNotSame(oldItem, item);
++            Assert.AreEqual(exhausted ? GoFetchGoal.MaxReturnActions : 2, goal.ReturnActions); Assert.AreSame(dog, item.GetPart<PhysicsPart>().InInventory);
++            zone = new Zone("loaded-pet"); Assert.True(zone.AddEntity(dog, 5, 5)); Assert.True(zone.AddEntity(thrower, 9, 5));
++            dog.GetPart<BrainPart>().CurrentZone = zone; thrower.GetPart<BrainPart>().CurrentZone = zone;
++            Advance(dog); Assert.IsNull(Fetch(dog));
++            if (exhausted) Assert.AreSame(zone.GetCell(5, 5), zone.GetEntityCell(item)); else Returned(zone, dog, thrower, item);
++        }
++        [Test]
++        public void RolledBackThrowCannotBeRetrievedFromTheThrowersRestoredInventory()
++        {
++            dog.GetPart<BrainPart>().ClearGoals(); Assert.True(zone.RemoveEntity(item));
++            Assert.True(thrower.GetPart<InventoryPart>().AddObject(item));
++            var command = new ThrowItemCommand(item, 8, 6, new Random(19));
++            var context = new CavesOfOoo.Core.Inventory.InventoryContext(thrower, zone);
++            var transaction = new CavesOfOoo.Core.Inventory.InventoryTransaction();
++            try
++            {
++                Assert.True(command.Execute(context, transaction).Success);
++                Assert.NotNull(zone.GetEntityCell(item)); Assert.NotNull(Fetch(dog));
++            }
++            finally { transaction.Rollback(); }
++            Assert.IsNull(zone.GetEntityCell(item)); Assert.AreSame(thrower, item.GetPart<PhysicsPart>().InInventory);
++            Advance(dog); Assert.IsNull(Fetch(dog)); Assert.True(thrower.GetPart<InventoryPart>().Objects.Contains(item));
++            Assert.False(dog.GetPart<InventoryPart>().Contains(item)); Assert.AreEqual(1, item.GetPart<StackerPart>().StackCount);
++        }
++
++        [Test]
++        public void RealThrowCommandCanRepeatWithoutGivingOrCloningTheReturnedUnit()
++        {
++            // The fixed flat source fixture is explicit. This is the actual command
++            // path, not native input, generation, visual or ordinary-source proof.
++            dog.GetPart<BrainPart>().ClearGoals(); Assert.True(zone.RemoveEntity(item));
++            Assert.True(thrower.GetPart<InventoryPart>().AddObject(item));
++            for (int loop = 0; loop < 2; loop++)
++            {
++                var result = InventorySystem.ExecuteCommand(new ThrowItemCommand(item, 8, 6, new Random(19 + loop)), thrower, zone);
++                Assert.True(result.Success); Assert.NotNull(zone.GetEntityCell(item)); Assert.NotNull(Fetch(dog));
++                Advance(dog); Returned(zone, dog, thrower, item);
++                Assert.True(InventorySystem.Pickup(thrower, item, zone)); Assert.AreSame(thrower, item.GetPart<PhysicsPart>().InInventory);
++                Assert.AreEqual(1, item.GetPart<StackerPart>().StackCount);
++            }
++        }
++    }
++
++    public sealed class DensityPetRecruitmentProbeTests
++    {
++        private sealed class ChildProbe : GoalHandler
++        {
++            public int Pushes, Pops;
++            public override void OnPush() { Pushes++; }
++            public override void OnPop() { Pops++; }
++            public override void TakeAction() { }
++        }
++        [Test]
++        public void RecruitmentPreservesExistingSubtreeReferencesOrderAndLifecycleThenDismissesOnlyFollow()
++        {
++            using (var log = new LogScope())
++            {
++                var z = new Zone("recruit-subtree"); var d = Creature(z, 5, 5, "dog", true); var owner = Creature(z, 9, 5, "owner");
++                var it = Item(); Assert.True(z.AddEntity(it, 6, 5)); Land(d, owner, it, z.GetEntityCell(it));
++                var fetch = Fetch(d); var child = new ChildProbe(); fetch.PushChildGoal(child);
++                var brain = d.GetPart<BrainPart>(); var before = brain.GetGoalsSnapshot();
++                var effect = new RecruitedEffect(owner); Assert.True(d.ApplyEffect(effect));
++                var after = brain.GetGoalsSnapshot(); Assert.AreEqual(before.Count + 1, after.Count);
++                CollectionAssert.AreEqual(before, after.Skip(1)); Assert.IsInstanceOf<FollowLeaderGoal>(after[0]);
++                Assert.AreSame(fetch, child.ParentHandler); Assert.AreSame(brain, child.ParentBrain);
++                Assert.AreEqual(1, child.Pushes); Assert.Zero(child.Pops); Assert.AreSame(child, brain.PeekGoal());
++                effect.Dismiss(owner); CollectionAssert.AreEqual(before, brain.GetGoalsSnapshot());
++                Assert.AreSame(fetch, child.ParentHandler); Assert.AreEqual(1, child.Pushes); Assert.Zero(child.Pops);
++            }
++        }
++        [TestCase("no-fetch")][TestCase("hoarder")][TestCase("finished")][TestCase("foreign-parent")]
++        public void OnlyAnActiveOwnedRetrievalChangesTheNormalFollowPushOrder(string state)
++        {
++            using (var log = new LogScope())
++            {
++                var z = new Zone("recruit-control"); var d = Creature(z, 5, 5, "dog", true); var owner = Creature(z, 9, 5, "owner");
++                var it = Item(); Assert.True(z.AddEntity(it, 6, 5)); Land(d, owner, it, z.GetEntityCell(it));
++                var brain = d.GetPart<BrainPart>(); var fetch = Fetch(d);
++                if (state == "no-fetch") brain.ClearGoals();
++                if (state == "hoarder") { brain.ClearGoals(); brain.PushGoal(new GoFetchGoal(it, true)); }
++                if (state == "finished") fetch.CurrentPhase = GoFetchGoal.Phase.Done;
++                if (state == "foreign-parent") fetch.ParentBrain = new BrainPart();
++                var before = brain.GetGoalsSnapshot(); Assert.True(d.ApplyEffect(new RecruitedEffect(owner)));
++                var after = brain.GetGoalsSnapshot(); CollectionAssert.AreEqual(before, after.Take(before.Count));
++                Assert.IsInstanceOf<FollowLeaderGoal>(brain.PeekGoal());
++            }
++        }
++        [TestCase(false)][TestCase(true)]
++        public void ExistingOrNewRecruitmentCannotPermanentlyBuryAnActiveFetch(bool duringReturn)
++        {
++            using (var log = new LogScope())
++            {
++                var zone = new Zone("recruit"); var dog = Creature(zone, 5, 5, "dog", true); var thrower = Creature(zone, 9, 5, "thrower");
++                if (!duringReturn) Assert.True(dog.ApplyEffect(new RecruitedEffect(thrower)));
++                var item = Item(); Assert.True(zone.AddEntity(item, 5, 5)); Land(dog, thrower, item, zone.GetEntityCell(item));
++                Turn(dog); Assert.True(dog.GetPart<InventoryPart>().Objects.Contains(item));
++                if (duringReturn) Assert.True(dog.ApplyEffect(new RecruitedEffect(thrower)));
++                Advance(dog); Returned(zone, dog, thrower, item);
++                Assert.AreSame(thrower, dog.GetPart<BrainPart>().PartyLeader);
++                Assert.NotNull(dog.GetPart<BrainPart>().FindGoal<FollowLeaderGoal>());
++            }
++        }
++    }
++}

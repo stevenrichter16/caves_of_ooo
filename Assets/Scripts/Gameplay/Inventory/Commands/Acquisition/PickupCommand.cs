@@ -3,6 +3,22 @@ namespace CavesOfOoo.Core.Inventory.Commands
     public sealed class PickupCommand : IInventoryCommand
     {
         private readonly Entity _item;
+        private readonly bool _retainIdentity;
+        private readonly int _expectedQuantity;
+        private readonly Entity _retrievalRecipient;
+        private readonly bool _requireAlliedRecipient;
+
+        internal static PickupCommand ForRetrieval(Entity item, int expectedQuantity, Entity recipient, bool requireAlliedRecipient) =>
+            new PickupCommand(item, expectedQuantity, recipient, requireAlliedRecipient);
+
+        private PickupCommand(Entity item, int expectedQuantity, Entity recipient, bool requireAlliedRecipient)
+        {
+            _item = item;
+            _retainIdentity = true;
+            _expectedQuantity = expectedQuantity;
+            _retrievalRecipient = recipient;
+            _requireAlliedRecipient = requireAlliedRecipient;
+        }
 
         public string Name => "Pickup";
 
@@ -77,7 +93,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
             if (!transaction.TryClaim(_item, actor, Name))
                 return Refuse(context, "transfer_in_progress", "Item transfer is already in progress.");
-            if (!IsGroundSource(context))
+            if (!IsGroundSource(context) || (_retainIdentity && !RetrievalSourceCurrent(context)))
                 return Refuse(context, "invalid_ground_source", "That item is no longer on this ground.");
             if ((_item.GetPart<StackerPart>()?.StackCount ?? 1) <= 0)
                 return Refuse(context, "empty_stack", "There is no positive unit to pick up.");
@@ -109,12 +125,12 @@ namespace CavesOfOoo.Core.Inventory.Commands
             }
 
             // Veto hooks can move/remove the source or change its quantity.
-            if (!IsGroundSource(context))
+            if (!IsGroundSource(context) || (_retainIdentity && !RetrievalSourceCurrent(context)))
                 return Refuse(context, "source_changed", "That item is no longer on this ground.");
             var stacker = _item.GetPart<StackerPart>();
             int quantity = stacker?.StackCount ?? 1;
             if (quantity <= 0) return Refuse(context, "empty_stack", "There is no positive unit to pick up.");
-            bool gold = _item.BlueprintName == "GoldCoin";
+            bool gold = !_retainIdentity && _item.BlueprintName == "GoldCoin";
             long credit = gold ? (long)quantity * 5 : 0;
             int purse = TradeSystem.GetDrams(actor);
             if (gold && (long)purse + credit > int.MaxValue)
@@ -140,7 +156,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             {
                 var destination = InventoryTransferSnapshot.Capture(inventory, _item);
                 transaction.Do(apply: null, undo: destination.Restore);
-                if (!destination.Apply(() => inventory.AddObject(_item)))
+                if (!destination.Apply(() => _retainIdentity ? inventory.AddRetrievedObject(_item) : inventory.AddObject(_item)))
                 {
                     MessageLog.Add($"You can't carry {itemName}: too heavy!");
                     return Refuse(context, "weight_limit", "Weight limit exceeded.");
@@ -163,7 +179,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
             // Preserve auto-equip-on-pickup behavior through command-native flow.
             // Failures are non-fatal for pickup and simply mean "left carried".
-            if (!gold) new AutoEquipCommand(_item).Execute(context, transaction);
+            if (!gold && !_retainIdentity) new AutoEquipCommand(_item).Execute(context, transaction);
 
             // Fire AfterPickup on actor.
             var afterPickup = GameEvent.New("AfterPickup");
@@ -173,6 +189,19 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
             AcquisitionDiagnostics.Record(context, _item, Name, zone.ZoneID, quantity);
             return InventoryCommandResult.Ok();
+        }
+
+        private bool RetrievalSourceCurrent(InventoryContext context)
+        {
+            var actor = context.Actor;
+            return GoFetchGoal.LiveMember(actor, context.Zone)
+                && _retrievalRecipient != actor && _retrievalRecipient != _item
+                && GoFetchGoal.LiveMember(_retrievalRecipient, context.Zone)
+                && (!_requireAlliedRecipient || FactionManager.IsAllied(actor, _retrievalRecipient))
+                && actor.GetPart<InventoryPart>() == context.Inventory && context.Inventory.ParentEntity == actor
+                && GoFetchGoal.GroundItem(_item, context.Zone, null, _expectedQuantity)
+                && SpatialQuery.Distance(context.Zone, actor, _item) <= 1
+                && HandlingService.CanLift(actor, _item, out _);
         }
 
         private bool IsGroundSource(InventoryContext context)

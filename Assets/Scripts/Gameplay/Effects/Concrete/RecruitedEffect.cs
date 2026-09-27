@@ -76,7 +76,7 @@ namespace CavesOfOoo.Core
             // F.1.5's FollowLeaderGoal handles termination on
             // null/destroyed/cross-zone leader (with F.2.6 persistent-
             // follow semantics: idles when close, doesn't pop).
-            brain.PushGoal(new FollowLeaderGoal { Leader = Recruiter });
+            brain.PushFollowGoal(new FollowLeaderGoal { Leader = Recruiter });
 
             MessageLog.Add(target.GetDisplayName() + " joins " + Recruiter.GetDisplayName() + "!");
         }

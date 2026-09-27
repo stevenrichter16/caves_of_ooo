@@ -730,8 +730,10 @@ namespace CavesOfOoo.Tests
             ctx.Verify().Entity(dog).HasGoalOnStack<GoFetchGoal>();
             var goal = dog.GetPart<BrainPart>().FindGoal<GoFetchGoal>();
             Assert.AreSame(item, goal.Item);
+            Assert.IsTrue(goal.ReturnsToThrower);
+            Assert.AreSame(ally, goal.Thrower);
             Assert.IsFalse(goal.ReturnHome,
-                "Retriever mode — item stays where pet is (no return home).");
+                "Retrieval follows the thrower instead of the dog's recorded home.");
         }
 
         [Test]
@@ -1173,6 +1175,7 @@ namespace CavesOfOoo.Tests
                 StartingCellX = x,
                 StartingCellY = y
             });
+            entity.AddPart(new PhysicsPart { Solid = true });
             entity.AddPart(new InventoryPart { MaxWeight = 10 });
             entity.AddPart(new AIRetrieverPart { AlliesOnly = alliesOnly, NoticeRadius = noticeRadius });
             ctx.Zone.AddEntity(entity, x, y);

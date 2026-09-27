@@ -1,0 +1,11 @@
+--- Assets/Scripts/Scenarios/Custom/DensityPetNativePlayer.cs
++++ Assets/Scripts/Scenarios/Custom/DensityPetNativePlayer.cs
+@@ -255,7 +255,7 @@
+             var inv=owner.GetPart<InventoryPart>();return string.Join("|",inv.Objects.Where(e=>e.ID!=except).Select(e=>"carry:"+e.ID+":"+e.BlueprintName+":"+Quantity(e))
+                 .Concat(inv.EquippedItems.Where(p=>p.Value.ID!=except).Select(p=>"equip:"+p.Key+":"+p.Value.ID)).OrderBy(x=>x,StringComparer.Ordinal));
+         }
+-        private static string GoalState(GoFetchGoal g)=>g==null?"none":g.ProgressVersion+"|"+g.CurrentPhase+"|"+g.Age+"|"+g.ExpectedQuantity+"|"+g.ApproachActions+"|"+g.ReturnActions+"|"+g.BlockedActions+"|"+g.DropAttempts+"|"+g.FallbackReason+"|"+g.ReturnsToThrower+"|"+g.RequireAlliedThrower+"|"+g.Thrower?.ID+"|"+g.Item?.ID;
++        private static string GoalState(GoFetchGoal g)=>g==null?"none":g.ProgressVersion+"|"+g.CurrentPhase+"|"+g.Age+"|"+g.WalkAttempts+"|"+g.ReturnHome+"|"+g.ExpectedQuantity+"|"+g.ApproachActions+"|"+g.ReturnActions+"|"+g.BlockedActions+"|"+g.DropAttempts+"|"+g.FallbackReason+"|"+g.ReturnsToThrower+"|"+g.RequireAlliedThrower+"|"+g.Thrower?.ID+"|"+g.Item?.ID;
+         private IEnumerator Checkpoint()
+         {
+             Require(Carried(),"save while actual dog carries exact original unit");var player=Player;var dog=_dog;var item=_dagger;var zone=Zone;var goal=Fetch;

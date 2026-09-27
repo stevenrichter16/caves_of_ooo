@@ -106,3 +106,17 @@ Plan before production: record effective value before changing the existing pena
 Executed: ten new requested-output assertions ran RED while all37 existing weakening controls passed (`feedback-native47-red.xml.gz`, job `a8c52ba0049241aba828c89219f66577`). The plain-stat pair checks consistent new prose; modified and clamped pairs expose inaccurate old numbers, and the indefinite pair exposes negative-turn wording. These are ten cases, not ten distinct bugs. Application now captures `str.Value` before adding the unchanged penalty and reports the resulting `str.Value`; removal reports that effective value after the unchanged subtraction. The duration label says `until removed` for indefinite effects, refining the pre-fix test wording `until it wears off` to avoid promising automatic expiration. No arithmetic or save field changed.
 
 Native139/139 PASS, zero skipped/failed (job `505750dde9824fa38ecfb10a91bb68d4`,0.9092407seconds) covers47 weakening cases, challenge controls, everyday grammar and status lifecycle. Q1–Q4: application/removal read the same effective stat as gameplay, preserve unrelated modifiers and min/max rules, pair player/named subjects and actual UI callback output, and retain already-tested quote protection. Sources, stacking and saves are unchanged. The earlier numeric-message limitation is now resolved for these apply/remove messages; arbitrary stat replacement remains outside the stacking contract. No extra keyboard acquisition, new visual result or balance claim is made.
+
+
+## Importance review and stopping rule — user direction, 27 September
+
+When an item stalls, distinguish a normal-play defect from a test-route inconvenience, assess its player impact, and continue only if the value warrants the effort. Record lower-priority limitations rather than treating every imperfect scenario as a release blocker.
+
+| Item | Importance / disposition | Current evidence |
+|---|---|---|
+| Hidden hot-source inspection | High enough to finish: overlapping terrain can prevent keyboard users from inspecting the object that carries the scald warning | Live steam route reaches real706°C steam, then the menu cannot reach the OilSeep beneath WaterPuddle/SteamCloud. Actual UI RED/repair is next; preserve existing loot-pile behavior |
+| Ordinary resource journey | High: finding supplies, purchasing, recovering and saving are core progression | A continuous native route is in preparation; no teleports or resource grants, and bounded cost/source failures remain honest |
+| Dog fetching | Low priority for further live-test iteration; defer delivery/save/repeat demonstration | Core changes pass751 native cases including69 new checks. Actual first throw is admitted; ordinary Witnessed fear interrupts the dog for20 turns, then fetch resumes. The24-wait audit ends before delivery; no item/goal loss was established. Keep the failed receipt, do not claim end-to-end native completion, and stop extending this harness now |
+| Further generic fire-unit changes | Medium and balance-sensitive | A fresh-content plan identifies mixed units, but no extra thermal bridge or save migration is justified. Complete the concrete hot-source interface issue first; broader fire changes need their own bounded native counter-scene |
+
+This prioritization supersedes treating the unfinished pet keyboard route as a prerequisite for higher-impact work. BitLocker, lore restrictions and old-save boundaries are unchanged.

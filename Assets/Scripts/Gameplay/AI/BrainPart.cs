@@ -501,6 +501,25 @@ namespace CavesOfOoo.Core
             goal.OnPush();
         }
 
+        // Recruitment's persistent follower must not bury an already accepted
+        // retrieval forever. Insert below that exact subtree, without replaying
+        // any existing goal's lifecycle or disturbing its active children.
+        internal void PushFollowGoal(FollowLeaderGoal follow)
+        {
+            for (int i = 0; i < _goals.Count; i++)
+            {
+                if (_goals[i] is GoFetchGoal fetch && fetch.ParentBrain == this
+                    && fetch.ReturnsToThrower && !fetch.Finished())
+                {
+                    follow.ParentBrain = this;
+                    _goals.Insert(i, follow);
+                    follow.OnPush();
+                    return;
+                }
+            }
+            PushGoal(follow);
+        }
+
         /// <summary>Remove a specific goal from the stack.</summary>
         public void RemoveGoal(GoalHandler goal)
         {

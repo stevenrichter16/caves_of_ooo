@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-pet-retrieval/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="20" result="Failed" start-time="2026-09-27T14:41:50.2636480Z" end-time="2026-09-27T14:41:50.3477390Z" duration="0.084079" total="20" passed="7" failed="13" inconclusive="0" skipped="0" warnings="0" asserts="103" random-seed="38051442">
+  <command-line><![CDATA[/private/tmp/coo-pet-retrieval/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-pet-retrieval/current-api-red.xml --where "class =~ /DensityPetRetrievalTests/"]]></command-line>
+  <filter>
+    <class re="1">DensityPetRetrievalTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1025" name="EditModeRunner.dll" fullname="/private/tmp/coo-pet-retrieval/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-09-27T14:41:50.2636480Z" end-time="2026-09-27T14:41:50.3477390Z" duration="0.084079" total="20" passed="7" failed="13" warnings="0" inconclusive="0" skipped="0" asserts="103">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-pet-retrieval/Tools/EditModeRunner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-pet-retrieval/Tools/EditModeRunner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="87626" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1026" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-09-27T14:41:50.2653600Z" end-time="2026-09-27T14:41:50.3477380Z" duration="0.082378" total="20" passed="7" failed="13" warnings="0" inconclusive="0" skipped="0" asserts="103">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1027" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-09-27T14:41:50.2654790Z" end-time="2026-09-27T14:41:50.3477360Z" duration="0.082257" total="20" passed="7" failed="13" warnings="0" inconclusive="0" skipped="0" asserts="103">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="DensityPetRetrievalTests" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-09-27T14:41:50.2658980Z" end-time="2026-09-27T14:41:50.3477340Z" duration="0.081835" total="20" passed="7" failed="13" warnings="0" inconclusive="0" skipped="0" asserts="103">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1001" name="ActualLandedEventReturnsTheSameObjectAndLeavesHoarderHomeUnchanged" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.ActualLandedEventReturnsTheSameObjectAndLeavesHoarderHomeUnchanged" methodname="ActualLandedEventReturnsTheSameObjectAndLeavesHoarderHomeUnchanged" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" seed="2095880560" result="Failed" start-time="2026-09-27T14:41:50.2669980Z" end-time="2026-09-27T14:41:50.3263490Z" duration="0.059376" asserts="6">
+            <failure>
+              <message><![CDATA[  The actual fetched object must return to the floor.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.Returned(Zone zone, Entity dog, Entity thrower, Entity item) in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 57
+   at CavesOfOoo.Tests.DensityPetRetrievalTests.ActualLandedEventReturnsTheSameObjectAndLeavesHoarderHomeUnchanged() in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 71
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  The actual fetched object must return to the floor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.Returned(Zone zone, Entity dog, Entity thrower, Entity item) in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 57
+   at CavesOfOoo.Tests.DensityPetRetrievalTests.ActualLandedEventReturnsTheSameObjectAndLeavesHoarderHomeUnchanged() in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 71
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1015" name="AlliancePolicyStillControlsRealLivingThrowers" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.AlliancePolicyStillControlsRealLivingThrowers" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-27T14:41:50.3268780Z" end-time="2026-09-27T14:41:50.3308360Z" duration="0.003957" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="8">
+            <test-case id="1013" name="AlliancePolicyStillControlsRealLivingThrowers(False)" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.AlliancePolicyStillControlsRealLivingThrowers(False)" methodname="AlliancePolicyStillControlsRealLivingThrowers" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" seed="1973193861" result="Passed" start-time="2026-09-27T14:41:50.3269510Z" end-time="2026-09-27T14:41:50.3301370Z" duration="0.003186" asserts="4" />
+            <test-case id="1014" name="AlliancePolicyStillControlsRealLivingThrowers(True)" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.AlliancePolicyStillControlsRealLivingThrowers(True)" methodname="AlliancePolicyStillControlsRealLivingThrowers" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" seed="2055208792" result="Passed" start-time="2026-09-27T14:41:50.3301650Z" end-time="2026-09-27T14:41:50.3305110Z" duration="0.000345" asserts="4" />
+          </test-suite>
+          <test-case id="1016" name="DuplicateLandedEventKeepsTheOriginalGoalAndPayload" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.DuplicateLandedEventKeepsTheOriginalGoalAndPayload" methodname="DuplicateLandedEventKeepsTheOriginalGoalAndPayload" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" seed="2110176031" result="Passed" start-time="2026-09-27T14:41:50.3309810Z" end-time="2026-09-27T14:41:50.3314860Z" duration="0.000506" asserts="7" />
+          <test-case id="1021" name="ExistingHoarderModeStillKeepsTheItemAndWalksToItsOwnHome" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.ExistingHoarderModeStillKeepsTheItemAndWalksToItsOwnHome" methodname="ExistingHoarderModeStillKeepsTheItemAndWalksToItsOwnHome" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" seed="1637031709" result="Passed" start-time="2026-09-27T14:41:50.3315190Z" end-time="2026-09-27T14:41:50.3320360Z" duration="0.000517" asserts="5" />
+          <test-case id="1003" name="FetchDoesNotMergeIntoTheDogsPreexistingCompatibleStack" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.FetchDoesNotMergeIntoTheDogsPreexistingCompatibleStack" methodname="FetchDoesNotMergeIntoTheDogsPreexistingCompatibleStack" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" seed="738655666" result="Failed" start-time="2026-09-27T14:41:50.3320530Z" end-time="2026-09-27T14:41:50.3335960Z" duration="0.001543" asserts="5">
+            <failure>
+              <message><![CDATA[  Previously owned units are not part of the fetch.
+  Expected: 3
+  But was:  4
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.FetchDoesNotMergeIntoTheDogsPreexistingCompatibleStack() in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 89
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Previously owned units are not part of the fetch.
+  Expected: 3
+  But was:  4
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.FetchDoesNotMergeIntoTheDogsPreexistingCompatibleStack() in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 89
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1004" name="FetchKeepsGoldPhysicalInsteadOfCreditingTheDogsPurse" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.FetchKeepsGoldPhysicalInsteadOfCreditingTheDogsPurse" methodname="FetchKeepsGoldPhysicalInsteadOfCreditingTheDogsPurse" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" seed="1920396752" result="Failed" start-time="2026-09-27T14:41:50.3336230Z" end-time="2026-09-27T14:41:50.3354720Z" duration="0.001849" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: 0
+  But was:  5
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.FetchKeepsGoldPhysicalInsteadOfCreditingTheDogsPurse() in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 99
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 0
+  But was:  5
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.FetchKeepsGoldPhysicalInsteadOfCreditingTheDogsPurse() in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 99
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1005" name="FetchKeepsTheThrownWeaponCarriedRatherThanEquippingIt" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.FetchKeepsTheThrownWeaponCarriedRatherThanEquippingIt" methodname="FetchKeepsTheThrownWeaponCarriedRatherThanEquippingIt" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" seed="1065193898" result="Failed" start-time="2026-09-27T14:41:50.3354980Z" end-time="2026-09-27T14:41:50.3367760Z" duration="0.001278" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: null
+  But was:  <Entity(dog)>
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.FetchKeepsTheThrownWeaponCarriedRatherThanEquippingIt() in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 108
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: null
+  But was:  <Entity(dog)>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.FetchKeepsTheThrownWeaponCarriedRatherThanEquippingIt() in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 108
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1012" name="InvalidLandedSourceOrRecipientNeverStartsAnAcquisition" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-27T14:41:50.3367910Z" end-time="2026-09-27T14:41:50.3399250Z" duration="0.003133" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="25">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1006" name="InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(&quot;null-thrower&quot;)" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(&quot;null-thrower&quot;)" methodname="InvalidLandedSourceOrRecipientNeverStartsAnAcquisition" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" seed="719084182" result="Failed" start-time="2026-09-27T14:41:50.3368040Z" end-time="2026-09-27T14:41:50.3387970Z" duration="0.001994" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  <CavesOfOoo.Core.GoFetchGoal>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(String mutation) in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 125
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  <CavesOfOoo.Core.GoFetchGoal>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(String mutation) in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 125
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1007" name="InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(&quot;dead-thrower&quot;)" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(&quot;dead-thrower&quot;)" methodname="InvalidLandedSourceOrRecipientNeverStartsAnAcquisition" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" seed="322306147" result="Failed" start-time="2026-09-27T14:41:50.3388300Z" end-time="2026-09-27T14:41:50.3391510Z" duration="0.000320" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  <CavesOfOoo.Core.GoFetchGoal>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(String mutation) in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 125
+   at InvokeStub_DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  <CavesOfOoo.Core.GoFetchGoal>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(String mutation) in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 125
+   at InvokeStub_DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1008" name="InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(&quot;removed-thrower&quot;)" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(&quot;removed-thrower&quot;)" methodname="InvalidLandedSourceOrRecipientNeverStartsAnAcquisition" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" seed="1941643337" result="Failed" start-time="2026-09-27T14:41:50.3391710Z" end-time="2026-09-27T14:41:50.3393420Z" duration="0.000171" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  <CavesOfOoo.Core.GoFetchGoal>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(String mutation) in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 125
+   at InvokeStub_DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  <CavesOfOoo.Core.GoFetchGoal>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(String mutation) in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 125
+   at InvokeStub_DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1009" name="InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(&quot;foreign-cell&quot;)" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(&quot;foreign-cell&quot;)" methodname="InvalidLandedSourceOrRecipientNeverStartsAnAcquisition" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" seed="946005028" result="Failed" start-time="2026-09-27T14:41:50.3393570Z" end-time="2026-09-27T14:41:50.3395970Z" duration="0.000240" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  <CavesOfOoo.Core.GoFetchGoal>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(String mutation) in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 125
+   at InvokeStub_DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  <CavesOfOoo.Core.GoFetchGoal>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(String mutation) in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 125
+   at InvokeStub_DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1010" name="InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(&quot;different-source-cell&quot;)" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(&quot;different-source-cell&quot;)" methodname="InvalidLandedSourceOrRecipientNeverStartsAnAcquisition" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" seed="1695408919" result="Failed" start-time="2026-09-27T14:41:50.3396190Z" end-time="2026-09-27T14:41:50.3397620Z" duration="0.000143" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  <CavesOfOoo.Core.GoFetchGoal>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(String mutation) in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 125
+   at InvokeStub_DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  <CavesOfOoo.Core.GoFetchGoal>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(String mutation) in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 125
+   at InvokeStub_DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1011" name="InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(&quot;dead-dog&quot;)" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(&quot;dead-dog&quot;)" methodname="InvalidLandedSourceOrRecipientNeverStartsAnAcquisition" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" seed="848865708" result="Failed" start-time="2026-09-27T14:41:50.3397860Z" end-time="2026-09-27T14:41:50.3399100Z" duration="0.000124" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  <CavesOfOoo.Core.GoFetchGoal>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(String mutation) in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 125
+   at InvokeStub_DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  <CavesOfOoo.Core.GoFetchGoal>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(String mutation) in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 125
+   at InvokeStub_DensityPetRetrievalTests.InvalidLandedSourceOrRecipientNeverStartsAnAcquisition(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1020" name="OrdinaryPickupRetainsItsExistingAcquisitionSemantics" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.OrdinaryPickupRetainsItsExistingAcquisitionSemantics" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-27T14:41:50.3399470Z" end-time="2026-09-27T14:41:50.3405480Z" duration="0.000601" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="18">
+            <test-case id="1017" name="OrdinaryPickupRetainsItsExistingAcquisitionSemantics(&quot;stack&quot;)" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.OrdinaryPickupRetainsItsExistingAcquisitionSemantics(&quot;stack&quot;)" methodname="OrdinaryPickupRetainsItsExistingAcquisitionSemantics" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" seed="51407523" result="Passed" start-time="2026-09-27T14:41:50.3399760Z" end-time="2026-09-27T14:41:50.3402710Z" duration="0.000294" asserts="6" />
+            <test-case id="1018" name="OrdinaryPickupRetainsItsExistingAcquisitionSemantics(&quot;gold&quot;)" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.OrdinaryPickupRetainsItsExistingAcquisitionSemantics(&quot;gold&quot;)" methodname="OrdinaryPickupRetainsItsExistingAcquisitionSemantics" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" seed="709062308" result="Passed" start-time="2026-09-27T14:41:50.3402820Z" end-time="2026-09-27T14:41:50.3404350Z" duration="0.000153" asserts="6" />
+            <test-case id="1019" name="OrdinaryPickupRetainsItsExistingAcquisitionSemantics(&quot;weapon&quot;)" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.OrdinaryPickupRetainsItsExistingAcquisitionSemantics(&quot;weapon&quot;)" methodname="OrdinaryPickupRetainsItsExistingAcquisitionSemantics" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" seed="1904986794" result="Passed" start-time="2026-09-27T14:41:50.3404500Z" end-time="2026-09-27T14:41:50.3405410Z" duration="0.000091" asserts="6" />
+          </test-suite>
+          <test-case id="1002" name="ReturnReplansForThrowerMovingAfterTheActualPickup" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.ReturnReplansForThrowerMovingAfterTheActualPickup" methodname="ReturnReplansForThrowerMovingAfterTheActualPickup" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" seed="864358212" result="Failed" start-time="2026-09-27T14:41:50.3405730Z" end-time="2026-09-27T14:41:50.3410070Z" duration="0.000434" asserts="7">
+            <failure>
+              <message><![CDATA[  The actual fetched object must return to the floor.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.Returned(Zone zone, Entity dog, Entity thrower, Entity item) in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 57
+   at CavesOfOoo.Tests.DensityPetRetrievalTests.ReturnReplansForThrowerMovingAfterTheActualPickup() in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 81
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  The actual fetched object must return to the floor.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.Returned(Zone zone, Entity dog, Entity thrower, Entity item) in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 57
+   at CavesOfOoo.Tests.DensityPetRetrievalTests.ReturnReplansForThrowerMovingAfterTheActualPickup() in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 81
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1024" name="SaveRoundTripRetainsActiveFetchProgressRatherThanRestartingPickup" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.SaveRoundTripRetainsActiveFetchProgressRatherThanRestartingPickup" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27T14:41:50.3410320Z" end-time="2026-09-27T14:41:50.3477050Z" duration="0.006672" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="14">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1022" name="SaveRoundTripRetainsActiveFetchProgressRatherThanRestartingPickup(False)" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.SaveRoundTripRetainsActiveFetchProgressRatherThanRestartingPickup(False)" methodname="SaveRoundTripRetainsActiveFetchProgressRatherThanRestartingPickup" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" seed="1633786178" result="Failed" start-time="2026-09-27T14:41:50.3410390Z" end-time="2026-09-27T14:41:50.3472700Z" duration="0.006231" asserts="7">
+              <failure>
+                <message><![CDATA[  Serialized goal progress must not be constructor-defaulted.
+  Expected string length 39 but was 43. Strings differ at index 6.
+  Expected: "phase=Pickup | attempts=1/2 | item=Bone"
+  But was:  "phase=WalkToItem | attempts=0/2 | item=Bone"
+  -----------------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.SaveRoundTripRetainsActiveFetchProgressRatherThanRestartingPickup(Boolean carried) in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 174
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Serialized goal progress must not be constructor-defaulted.
+  Expected string length 39 but was 43. Strings differ at index 6.
+  Expected: "phase=Pickup | attempts=1/2 | item=Bone"
+  But was:  "phase=WalkToItem | attempts=0/2 | item=Bone"
+  -----------------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.SaveRoundTripRetainsActiveFetchProgressRatherThanRestartingPickup(Boolean carried) in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 174
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1023" name="SaveRoundTripRetainsActiveFetchProgressRatherThanRestartingPickup(True)" fullname="CavesOfOoo.Tests.DensityPetRetrievalTests.SaveRoundTripRetainsActiveFetchProgressRatherThanRestartingPickup(True)" methodname="SaveRoundTripRetainsActiveFetchProgressRatherThanRestartingPickup" classname="CavesOfOoo.Tests.DensityPetRetrievalTests" runstate="Runnable" seed="1307623729" result="Failed" start-time="2026-09-27T14:41:50.3472830Z" end-time="2026-09-27T14:41:50.3476960Z" duration="0.000413" asserts="7">
+              <failure>
+                <message><![CDATA[  Serialized goal progress must not be constructor-defaulted.
+  Expected string length 41 but was 43. Strings differ at index 10.
+  Expected: "phase=WalkHome | attempts=0/2 | item=Bone"
+  But was:  "phase=WalkToItem | attempts=0/2 | item=Bone"
+  ---------------------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.SaveRoundTripRetainsActiveFetchProgressRatherThanRestartingPickup(Boolean carried) in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 174
+   at InvokeStub_DensityPetRetrievalTests.SaveRoundTripRetainsActiveFetchProgressRatherThanRestartingPickup(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Serialized goal progress must not be constructor-defaulted.
+  Expected string length 41 but was 43. Strings differ at index 10.
+  Expected: "phase=WalkHome | attempts=0/2 | item=Bone"
+  But was:  "phase=WalkToItem | attempts=0/2 | item=Bone"
+  ---------------------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityPetRetrievalTests.SaveRoundTripRetainsActiveFetchProgressRatherThanRestartingPickup(Boolean carried) in /tmp/coo-pet-retrieval/Assets/Tests/EditMode/Gameplay/AI/DensityPetRetrievalTests.cs:line 174
+   at InvokeStub_DensityPetRetrievalTests.SaveRoundTripRetainsActiveFetchProgressRatherThanRestartingPickup(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
