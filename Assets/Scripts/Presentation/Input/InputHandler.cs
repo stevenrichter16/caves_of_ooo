@@ -2535,7 +2535,11 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            if (includeBackRow)
+            // Terrain stacks are not loot piles, but their lower owners can
+            // carry the hazard/service the player needs to inspect. Reuse the
+            // actual picker rows so one selectable owner stays a direct menu.
+            if ((includeBackRow || WorldInteractionSystem.BuildTargetPickerActions(cell).Count > 1)
+                && !actions.Exists(a => a.Command == WorldInteractionSystem.PickCellCommand))
             {
                 actions.Add(new InventoryAction(
                     "PickCell", "<< everything here",

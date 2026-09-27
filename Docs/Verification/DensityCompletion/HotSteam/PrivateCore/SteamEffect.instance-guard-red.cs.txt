@@ -1,0 +1,156 @@
+using System;
+using System.Collections.Generic;
+using CavesOfOoo.Diagnostics;
+
+namespace CavesOfOoo.Core
+{
+    /// <summary>
+    /// Steam cools/wets its existing adjacent neighbors and dissipates.
+    /// A placed, genuinely hot source also scalds living physical contacts.
+    /// The water_plus_fire reaction attaches this effect to its original owner;
+    /// the separate SteamCloud and tile-cloud visuals are not damage sources.
+    /// </summary>
+    public class SteamEffect : Effect
+    {
+        public override string DisplayName => "steam";
+
+        /// <summary>0..1. Density decays each turn until dissipated.</summary>
+        public float Density;
+
+        // Effects load without constructors. These unsaved per-source scratch
+        // collections are initialized lazily and cleared even after callbacks.
+        private List<Entity> _contacts;
+        private HashSet<Entity> _seen;
+        private bool _pulsing;
+
+        public SteamEffect(float density = 1.0f)
+        {
+            Density = density > 1.0f ? 1.0f : (density < 0f ? 0f : density);
+            Duration = DURATION_INDEFINITE;
+        }
+
+        public override void OnApply(Entity target)
+        {
+            MessageLog.Add(target.GetDisplayName() + " is wreathed in steam.");
+        }
+
+        public override void OnRemove(Entity target)
+        {
+            // Silent — vapor just fades.
+        }
+
+        public override void OnTurnStart(Entity target, GameEvent context)
+        {
+            Zone zone = context?.GetParameter<Zone>("Zone");
+            if (_pulsing)
+            {
+                RecordRejected(target, "reentrant-pulse");
+                return;
+            }
+            if (target == null || zone == null || Density <= 0f)
+            {
+                RecordRejected(target, target == null ? "no-source" : zone == null ? "no-zone" : "invalid-density");
+                return;
+            }
+            _pulsing = true;
+            try
+            {
+                // Preserve the existing anchor-adjacent cooling and wetting.
+                // Only the new damage uses physical co-occupants/perimeter.
+                MaterialSimSystem.EmitHeatToAdjacent(target, zone, -20f * Density);
+                var sourceCell = zone.GetEntityCell(target);
+                if (sourceCell != null)
+                    for (int dir = 0; dir < 8; dir++)
+                    {
+                        var cell = zone.GetCellInDirection(sourceCell.X, sourceCell.Y, dir);
+                        if (cell == null) continue;
+                        for (int i = 0; i < cell.Objects.Count; i++)
+                        {
+                            var neighbor = cell.Objects[i];
+                            if (neighbor != target)
+                                neighbor.ApplyEffect(new WetEffect(moisture: 0.1f * Density), target, zone);
+                        }
+                    }
+                ScaldContacts(target, zone);
+            }
+            finally
+            {
+                _contacts?.Clear();
+                _seen?.Clear();
+                _pulsing = false;
+            }
+        }
+
+        private void ScaldContacts(Entity source, Zone zone)
+        {
+            string rejection = SteamContact.RejectionReason(source, this, zone);
+            if (rejection != null) { RecordRejected(source, rejection); return; }
+            if (_contacts == null) _contacts = new List<Entity>(8);
+            if (_seen == null) _seen = new HashSet<Entity>();
+
+            // Snapshot identities before any damage callback; physical cells
+            // can touch repeatedly but each owner receives at most one hit.
+            foreach (var foot in zone.GetOccupiedCells(source))
+            {
+                if (foot == null) continue;
+                for (int dy = -1; dy <= 1; dy++)
+                    for (int dx = -1; dx <= 1; dx++)
+                    {
+                        var cell = zone.GetCell(foot.X + dx, foot.Y + dy);
+                        if (cell == null) continue;
+                        foreach (var actor in cell.Occupants)
+                            if (actor != source && SteamContact.IsLivingCreature(actor) && _seen.Add(actor))
+                                _contacts.Add(actor);
+                    }
+            }
+            for (int i = 0; i < _contacts.Count; i++)
+            {
+                rejection = SteamContact.RejectionReason(source, this, zone);
+                if (rejection != null) { RecordRejected(source, rejection); break; }
+                Entity actor = _contacts[i];
+                if (!SteamContact.Touches(zone, source, actor)) continue;
+                var hitpoints = actor.GetStat("Hitpoints");
+                int before = hitpoints.BaseValue;
+                float temperature = source.GetPart<ThermalPart>().Temperature;
+                float density = Density;
+                var damage = new Damage(SteamContact.DamagePerPulse);
+                damage.AddAttribute("Heat");
+                CombatSystem.ApplyDamage(actor, damage, source, zone);
+                int landed = Math.Max(0, before - hitpoints.BaseValue);
+                if (landed > 0)
+                    MessageLog.Add("Hot steam scalds " + actor.GetDisplayName() + " for " + landed + " damage.");
+                if (Diag.IsChannelEnabled("effect"))
+                    Diag.Record("effect", "SteamScald", actor: source, target: actor,
+                        payload: new { amount = landed, temperature, density,
+                            outcome = landed > 0 ? "landed" : "prevented" });
+            }
+        }
+
+        private static void RecordRejected(Entity source, string reason)
+        {
+            if (Diag.IsChannelEnabled("effect"))
+                Diag.Record("effect", "SteamPulseRejected", actor: source, payload: new { reason });
+        }
+
+        public override void OnTurnEnd(Entity target)
+        {
+            Density = System.Math.Max(0f, Density - 0.1f);
+            if (Density <= 0f)
+                Duration = 0;
+        }
+
+        public override bool OnStack(Effect incoming)
+        {
+            if (incoming is SteamEffect steam)
+            {
+                Density += steam.Density * 0.5f;
+                if (Density > 1.0f)
+                    Density = 1.0f;
+                return true;
+            }
+            return false;
+        }
+
+        public override string GetRenderColorOverride() => "&b";
+    }
+}

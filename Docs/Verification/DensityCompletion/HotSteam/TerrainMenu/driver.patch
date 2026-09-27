@@ -1,0 +1,74 @@
+--- Assets/Scripts/Scenarios/Custom/DensityHotSteamNativePlayer.cs
++++ Assets/Scripts/Scenarios/Custom/DensityHotSteamNativePlayer.cs
+@@ -35,6 +35,7 @@
+         readonly List<ActionWitness> actionWitnesses=new List<ActionWitness>();
+         readonly List<Readout> readouts=new List<Readout>();
+         readonly List<CellCheck> cellChecks=new List<CellCheck>();
++        readonly List<MenuCheck> menuChecks=new List<MenuCheck>();
+         System.Diagnostics.Stopwatch clock;
+         string DirectoryPath=>Path.GetFullPath(Path.Combine(Application.dataPath,"../Docs/Verification/DensityCompletion/Environment/NativeHotSteam",RunId));
+         public const int PlannedCases=3;
+@@ -239,10 +240,17 @@
+             for(int i=0;cursor.X!=targetX||cursor.Y!=targetY;i++)
+             {Require(i<16,"bounded native source cursor");yield return Tap(cursor.X<targetX?Key.D:cursor.X>targetX?Key.A:cursor.Y<targetY?Key.S:Key.W);}
+             yield return Tap(Key.Enter);Require(State()=="WorldActionMenuOpen","native source cell menu");
+-            if(input.WorldActionMenuUI.SelectedCellIsPile)yield return MenuAction(WorldInteractionSystem.PickCellCommand);
++            string choose=WorldInteractionSystem.PickTargetCommandPrefix+target.ID;
++            RecordMenu("opened-source-cell");
++            if(input.WorldActionMenuUI.SelectedCellIsPile||!ReferenceEquals(input.WorldActionMenuUI.SelectedTarget,target))
++            {
++                var offered=(List<InventoryAction>)Field(input.WorldActionMenuUI,"_actions");
++                if(!offered.Any(a=>a.Command==choose)&&offered.Any(a=>a.Command==WorldInteractionSystem.PickCellCommand))
++                    yield return MenuAction(WorldInteractionSystem.PickCellCommand);
++            }
+             if(!ReferenceEquals(input.WorldActionMenuUI.SelectedTarget,target)
+-                ||((List<InventoryAction>)Field(input.WorldActionMenuUI,"_actions")).Any(a=>a.Command==WorldInteractionSystem.PickTargetCommandPrefix+target.ID))
+-                yield return MenuAction(WorldInteractionSystem.PickTargetCommandPrefix+target.ID);
++                ||((List<InventoryAction>)Field(input.WorldActionMenuUI,"_actions")).Any(a=>a.Command==choose))
++                yield return MenuAction(choose);
+             Require(ReferenceEquals(input.WorldActionMenuUI.SelectedTarget,target),"exact current source selected through native pile/owner picker");
+             yield return Capture(caseName+"-source-menu");yield return MenuAction("Examine");
+             var lines=MessageLog.GetRecentEntries(24).Where(e=>e.Serial>=serial&&e.Text.StartsWith("You see",StringComparison.OrdinalIgnoreCase)).Select(e=>e.Text).ToArray();
+@@ -253,8 +261,17 @@
+             Require(tick==input.TurnManager.TickCount&&energy==input.TurnManager.GetEnergy(input.PlayerEntity)&&hp==input.PlayerEntity.GetStatValue("Hitpoints")&&density==(target.GetEffect<SteamEffect>()?.Density??0),"native examination is free and cannot consume hazard lifetime");
+             CheckResult(caseName+"_live_readout_is_free",true);
+         }
++        void RecordMenu(string requested)
++        {
++            var ui=input.WorldActionMenuUI;var actions=(List<InventoryAction>)Field(ui,"_actions");var cell=ui.SelectedCell;
++            menuChecks.Add(new MenuCheck{caseName=caseName,requested=requested,state=State(),selectedId=ui.SelectedTarget?.ID,
++                selectedBlueprint=ui.SelectedTarget?.BlueprintName,pile=ui.SelectedCellIsPile,x=cell?.X??-1,y=cell?.Y??-1,
++                commands=actions.Select(a=>a.Command).ToArray(),labels=actions.Select(a=>a.Display).ToArray(),
++                owners=cell?.Occupants.Select(e=>e.BlueprintName+":"+e.ID).ToArray()??new string[0]});WriteReport();
++        }
+         IEnumerator MenuAction(string command)
+         {
++            RecordMenu(command);
+             Require(State()=="WorldActionMenuOpen","current source menu");var actions=(List<InventoryAction>)Field(input.WorldActionMenuUI,"_actions");int index=actions.FindIndex(a=>a.Command==command);
+             Require(index>=0,"visible current action "+command);
+             for(int i=0;(int)Field(input.WorldActionMenuUI,"_cursorIndex")!=index;i++)
+@@ -373,7 +390,7 @@
+         void WriteReport()
+         {
+             if(clock==null)return;Directory.CreateDirectory(DirectoryPath);ReportPath=Path.Combine(DirectoryPath,"report.json");
+-            File.WriteAllText(ReportPath,JsonUtility.ToJson(new Report{runId=RunId,zone=zoneId,checkpointGameId=checkpointGameId,checkpointHash=checkpointHash,cases=caseCount,plannedCases=PlannedCases,failures=Failures,unexpectedErrors=unexpected,complete=Complete,errorsFinalized=errorsFinalized,seconds=clock.Elapsed.TotalSeconds,fatal=fatal,observations=observations.ToArray(),checks=checks.ToArray(),screenshots=screenshots.ToArray(),nativeKeys=nativeKeys.ToArray(),actionWitnesses=actionWitnesses.ToArray(),readouts=readouts.ToArray(),cellChecks=cellChecks.ToArray(),
++            File.WriteAllText(ReportPath,JsonUtility.ToJson(new Report{runId=RunId,zone=zoneId,checkpointGameId=checkpointGameId,checkpointHash=checkpointHash,cases=caseCount,plannedCases=PlannedCases,failures=Failures,unexpectedErrors=unexpected,complete=Complete,errorsFinalized=errorsFinalized,seconds=clock.Elapsed.TotalSeconds,fatal=fatal,observations=observations.ToArray(),checks=checks.ToArray(),screenshots=screenshots.ToArray(),nativeKeys=nativeKeys.ToArray(),actionWitnesses=actionWitnesses.ToArray(),readouts=readouts.ToArray(),cellChecks=cellChecks.ToArray(),menuChecks=menuChecks.ToArray(),
+                 canVerify="Actual native N, learned grimoire, fire/water and waits create a nonburning hot reaction-owned source. Three F5/F6-matched cases observe live owner Examine through keyboard/pile selection, one paid approach and wait, source/target-specific canonical Heat records plus observed HP, and escape while source steam remains. No positive temperature, density, HP or resistance is assigned.",
+                 cannotVerify="Source prop and grimoire are explicit factory fixtures; bounded generated-lane travel is a shortcut, not natural acquisition. Each negative repeats source creation then changes only source temperature to ambient or removes SteamEffect. Attempt records alone do not prove landed damage; exact canonical hit and HP pairs do. Unit tests cover immunity/veto/multibody/callback/save behavior. Images need independent warning/feedback inspection; this does not establish universal thermal propagation or global balance."},true));
+         }
+@@ -386,6 +403,7 @@
+             if(input?.CurrentZone!=null)foreach(var e in input.CurrentZone.GetAllEntities().Where(e=>fixtureIds.Contains(e.ID)).ToArray())input.CurrentZone.RemoveEntity(e);
+         }
+         void OnDestroy(){if(!Finished&&clock!=null){fatal="Play stopped before baseline completion.";CheckResult("native_interrupted",false);Finish();}Cleanup();EmitSummary();if(clock!=null){Diag.SetChannel("scenario",oldScenario);Diag.SetChannel("effect",oldEffect);Diag.SetChannel("damage",oldDamage);}}
++        [Serializable] public sealed class MenuCheck{public string caseName,requested,state,selectedId,selectedBlueprint;public int x,y;public bool pile;public string[] commands,labels,owners;}
+         [Serializable] public sealed class CellCheck{public string caseName,tileState;public int x,y,heat;public bool blocksAll,blocksOtherOwners;public string[] occupants;}
+         [Serializable] public sealed class ObservedRecord
+         {public string category,kind,traceId,sourceId,targetId,payload;public static ObservedRecord From(Diag.Entry e)=>new ObservedRecord{category=e.Category,kind=e.Kind,traceId=e.TraceId,sourceId=e.ActorId,targetId=e.TargetId,payload=e.PayloadJson};}
+@@ -400,6 +418,6 @@
+             public bool targetPresent;public float temperature,flameTemperature,effectiveFlame,volatility,combustibility,playerBurn,playerWet,targetBurn,targetWet,targetSteam;
+         }
+         [Serializable] sealed class Report
+-        {public string runId,zone,checkpointGameId,checkpointHash,fatal,canVerify,cannotVerify;public int cases,plannedCases,failures,unexpectedErrors;public bool complete,errorsFinalized;public double seconds;public Observation[] observations;public Check[] checks;public string[] screenshots;public NativeKeyAction[] nativeKeys;public ActionWitness[] actionWitnesses;public Readout[] readouts;public CellCheck[] cellChecks;}
++        {public string runId,zone,checkpointGameId,checkpointHash,fatal,canVerify,cannotVerify;public int cases,plannedCases,failures,unexpectedErrors;public bool complete,errorsFinalized;public double seconds;public Observation[] observations;public Check[] checks;public string[] screenshots;public NativeKeyAction[] nativeKeys;public ActionWitness[] actionWitnesses;public Readout[] readouts;public CellCheck[] cellChecks;public MenuCheck[] menuChecks;}
+     }
+ }

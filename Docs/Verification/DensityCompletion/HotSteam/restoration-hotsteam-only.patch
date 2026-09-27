@@ -1,0 +1,18 @@
+--- a/Assets/Tests/EditMode/Presentation/Rendering/NativeDensitySceneRestorationTests.cs
++++ b/Assets/Tests/EditMode/Presentation/Rendering/NativeDensitySceneRestorationTests.cs
+@@ -29,6 +29,7 @@
+         [TestCase("DensityTravellerNativeBatch")]
+         [TestCase("DensityCorpseHarvestNativeBatch")]
+         [TestCase("DensityCombatNativeBatch")]
++        [TestCase("DensityHotSteamNativeBatch")]
+         [TestCase("DensityPetNativeBatch")]
+         public void RepeatedSchedulingKeepsOneFallbackUntilTheEditorSettles(string name)
+         {
+@@ -64,6 +65,7 @@
+         [TestCase("DensityTravellerNativeBatch")]
+         [TestCase("DensityCorpseHarvestNativeBatch")]
+         [TestCase("DensityCombatNativeBatch")]
++        [TestCase("DensityHotSteamNativeBatch")]
+         [TestCase("DensityPetNativeBatch")]
+         public void NoPendingRestoreRemovesTheRetryWithoutOpeningAnyScene(string name)
+         {

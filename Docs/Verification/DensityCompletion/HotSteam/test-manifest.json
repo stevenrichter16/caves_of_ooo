@@ -1,0 +1,58 @@
+{
+  "status": "Test-only candidate; both peer reviews clear after captured-null cleanup repair. Native behavior RED pending; production unwritten. Original79 actual-reference compile0; latest full reference retry has one unrelated shared Grammar fixture NUnit error, no hot-steam errors.",
+  "plan": "/tmp/coo-c8-environment-audit/PLAN.md",
+  "classCountsBySourceAttributes": {
+    "HotSteamContactTests": 30,
+    "HotSteamContactAdversarialTests": 29,
+    "HotSteamNavigationTests": 20
+  },
+  "total": 79,
+  "groups": [
+    "CavesOfOoo.Tests.HotSteamContactTests",
+    "CavesOfOoo.Tests.HotSteamContactAdversarialTests",
+    "CavesOfOoo.Tests.HotSteamNavigationTests"
+  ],
+  "files": [
+    {
+      "source": "/tmp/coo-c8-environment-audit/HotSteamContactTests.cs",
+      "destination": "Assets/Tests/EditMode/Gameplay/Materials/HotSteamContactTests.cs",
+      "beforeSha256": null,
+      "sha256": "c7235f0b8a3bb9eb85bb344ff1c42faaaf03e086697b1aac177b22b37750b007"
+    },
+    {
+      "source": "/tmp/coo-c8-environment-audit/HotSteamContactTests.cs.meta",
+      "destination": "Assets/Tests/EditMode/Gameplay/Materials/HotSteamContactTests.cs.meta",
+      "beforeSha256": null,
+      "sha256": "6e92430dfe06af6ab44021ebe57b6b6db1e5159f512a2c1bc9066d8bc75b0a40"
+    },
+    {
+      "source": "/tmp/coo-c8-environment-audit/HotSteamContactAdversarialTests.cs",
+      "destination": "Assets/Tests/EditMode/Gameplay/Materials/HotSteamContactAdversarialTests.cs",
+      "beforeSha256": null,
+      "sha256": "bf35e5830a7e0444e99376c731226ce3b0898a6936a581fe6415611b099df717"
+    },
+    {
+      "source": "/tmp/coo-c8-environment-audit/HotSteamContactAdversarialTests.cs.meta",
+      "destination": "Assets/Tests/EditMode/Gameplay/Materials/HotSteamContactAdversarialTests.cs.meta",
+      "beforeSha256": null,
+      "sha256": "71272705f4d423e1d70dc8a94c7c54de1f272bd139839f242d598ddcbac90dde"
+    },
+    {
+      "source": "/tmp/coo-c8-environment-audit/HotSteamNavigationTests.cs",
+      "destination": "Assets/Tests/EditMode/Gameplay/AI/HotSteamNavigationTests.cs",
+      "beforeSha256": null,
+      "sha256": "0c109278c75288eb5a13b238871342ee262534ee01f6cac7dd2595db91a57bb0"
+    },
+    {
+      "source": "/tmp/coo-c8-environment-audit/HotSteamNavigationTests.cs.meta",
+      "destination": "Assets/Tests/EditMode/Gameplay/AI/HotSteamNavigationTests.cs.meta",
+      "beforeSha256": null,
+      "sha256": "c76c579fe4da7378634ce525926e822adc4667b9e791f6c1a7bbab44168196cb"
+    }
+  ],
+  "planSha256": "5e7422b8b350be90cfb4f054b9fce2ca2938c224e3a4022a7fb3d04092de1893",
+  "review": {
+    "standalone": "Core30/navigation20 actual-source, scheduling, path and setup review clear; exact-null cleanup concern fixed.",
+    "combat": "Adversarial29 callback/save/dedup/physical/next-pulse review clear; exact-null cleanup concern fixed."
+  }
+}

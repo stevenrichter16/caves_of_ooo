@@ -1,0 +1,11 @@
+# Hot steam native discovery: stacked terrain keyboard selection
+
+Status: native run499d8a0894774dc3af2dee4b83aa0063 passed both dry cells and then failed selecting PickTarget:OilSeep. Private test-first slice approved by root; production not written. Keep combustion normalization paused.
+
+The actual source cell contains OilSeep, water produced by ConjureWater and the short reaction SteamCloud, all Terrain-tagged. IsPileCell deliberately counts two nonterrain owners, so this stack is not a loot pile. OpenWorldActionMenu resolves the top cloud, then OpenWorldActionMenuFor(includeBackRow:false) exposes no route to the existing owner picker. BuildTargetPickerActions already lists valid-ID physical occupants including terrain. Look keyboard Enter and C share this entry; direct mouse scene-owner selection is a separate path and cannot establish keyboard availability.
+
+Smallest proposed change after native RED: retain initial target and existing loot pile summary, but expose one existing PickCell ('everything here') navigation action from an individual menu if its current cell has multiple valid picker rows. Use the real helper, not a second terrain census. Preserve individual Examine context, target-ID re-resolution, range/paid-action gates, current cell owner identity, and no duplicate back entry. The picker itself remains existing code. Do not add menu actions to the native audit directly.
+
+Tests use actual InputHandler menu methods and current WorldActionMenuUI selections, actual factory OilSeep/WaterPuddle/SteamCloud and existing HotbarSaveFixture exact teardown. Pairs: Look vs C; cloud present vs expired; hot vs ambient source description; single owner and invalid-ID counter; one item with terrain; existing loot pile summary; stale removed owner; return from picker after only one owner remains. Navigation and source Examine must preserve clock/energy/HP/density. These are native EditMode method tests, not keyboard replay; live route remains final gate.
+
+Audit delta separately records offered command/label arrays, selected owner and physical cell owners before every menu action; it navigates PickCell if offered before exact PickTarget, never creates actions or skips source inspection. Initial failed report is preserved. Source correction and native route acceptance remain separate from units/bridge work.

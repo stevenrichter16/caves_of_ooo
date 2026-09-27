@@ -1,9 +1,11 @@
 # Connected environmental behavior — density C8
 
-Status: navigation and smoke visibility implemented with focused core/adversarial
-verification. Native environment presentation remains pending.
-Global combustibility/thermal changes still require the separately planned native
-fire and counter-scene gate. No fire balance claim is made here.
+Status: navigation and smoke visibility have focused core/adversarial verification.
+The bounded hot-steam contact, avoidance, warning and keyboard source-inspection
+slice now passes270 core tests,50 menu/neighbor tests and30 matched live checks;
+see `DENSITY-HOT-STEAM.md` for the actual captures, controls and limits.
+Global combustibility/thermal changes remain deferred pending their separately
+planned native fire and counter-scene gate. No global fire balance claim is made here.
 
 ## Scope and source corrections
 
@@ -38,7 +40,7 @@ hazards. Native visual/environment proof is a later C8 gate, not inferred from A
 
 - Authored combustibility audit and native fire/counter-scene before scale changes.
 - Connect actual thermal contact without double damage/reactions.
-- Smoke visibility and temperature-dependent steam scalding.
+- Broader smoke presentation coverage; temperature-dependent SteamEffect scalding is complete within the bounded hot-source contract in `DENSITY-HOT-STEAM.md`.
 - Sources for unsourced authored liquid/gas interactions after regional review.
 
 ## Review and evidence

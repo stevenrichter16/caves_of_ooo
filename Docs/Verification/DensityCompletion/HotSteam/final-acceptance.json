@@ -1,0 +1,140 @@
+{
+  "nativeRun": "10851284a3874055a979dcc7bdd1b391",
+  "checks": 30,
+  "cases": 3,
+  "captures": 16,
+  "seconds": 31.074044599999997,
+  "unexpectedErrors": 0,
+  "complete": true,
+  "exactRestoration": true,
+  "actionCosts": [
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000
+  ],
+  "outcomes": [
+    {
+      "case": "hot-steam",
+      "phase": "approach",
+      "hpBefore": 40,
+      "hpAfter": 38,
+      "hits": 1
+    },
+    {
+      "case": "hot-steam",
+      "phase": "adjacent-wait",
+      "hpBefore": 38,
+      "hpAfter": 36,
+      "hits": 1
+    },
+    {
+      "case": "hot-steam",
+      "phase": "escape",
+      "hpBefore": 36,
+      "hpAfter": 36,
+      "hits": 0
+    },
+    {
+      "case": "hot-steam",
+      "phase": "escaped-wait",
+      "hpBefore": 36,
+      "hpAfter": 36,
+      "hits": 0
+    },
+    {
+      "case": "cool-steam",
+      "phase": "approach",
+      "hpBefore": 40,
+      "hpAfter": 40,
+      "hits": 0
+    },
+    {
+      "case": "cool-steam",
+      "phase": "adjacent-wait",
+      "hpBefore": 40,
+      "hpAfter": 40,
+      "hits": 0
+    },
+    {
+      "case": "cool-steam",
+      "phase": "escape",
+      "hpBefore": 40,
+      "hpAfter": 40,
+      "hits": 0
+    },
+    {
+      "case": "cool-steam",
+      "phase": "escaped-wait",
+      "hpBefore": 40,
+      "hpAfter": 40,
+      "hits": 0
+    },
+    {
+      "case": "hot-no-steam",
+      "phase": "approach",
+      "hpBefore": 40,
+      "hpAfter": 40,
+      "hits": 0
+    },
+    {
+      "case": "hot-no-steam",
+      "phase": "adjacent-wait",
+      "hpBefore": 40,
+      "hpAfter": 40,
+      "hits": 0
+    },
+    {
+      "case": "hot-no-steam",
+      "phase": "escape",
+      "hpBefore": 40,
+      "hpAfter": 40,
+      "hits": 0
+    },
+    {
+      "case": "hot-no-steam",
+      "phase": "escaped-wait",
+      "hpBefore": 40,
+      "hpAfter": 40,
+      "hits": 0
+    }
+  ],
+  "nativeCore": {
+    "total": 270,
+    "passed": 270,
+    "seconds": 2.583263,
+    "job": "96e7544da5a8436c953ce220f8e45863"
+  },
+  "nativeMenus": {
+    "total": 50,
+    "passed": 50,
+    "seconds": 1.0469011,
+    "job": "589a114d5ee447fc87e64ce258944bb4"
+  },
+  "visualReview": {
+    "viewedBy": [
+      "root",
+      "render_completion"
+    ],
+    "images": [
+      "hot-steam-source-examine.png",
+      "hot-steam-adjacent-after-wait.png",
+      "cool-steam-source-examine.png"
+    ],
+    "observed": "Distinct hot/cool description is visible; actual hot wait shows red2 floating hit and HP36.",
+    "limitation": "Right HUD text is clipped at the image edge; this is not full-text layout acceptance. Source/grimoire and negative controls are explicitly staged, not natural acquisition or global balance."
+  },
+  "priorFailures": [
+    "a116022957504407afd0d79e2b31207c",
+    "499d8a0894774dc3af2dee4b83aa0063"
+  ],
+  "deferred": "Exact64 fractional Combustibility author normalization remains MEDIUM/balance-sensitive, source plan saved, no Assets changes."
+}

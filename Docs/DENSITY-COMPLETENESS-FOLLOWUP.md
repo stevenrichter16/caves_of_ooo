@@ -1,6 +1,6 @@
 # Coded-system completeness follow-up
 
-Status: Spread acceptance is complete and published; the live-system audit is active. Weakened stacking is published/native GREEN; pet retrieval and hot steam are separate active plans. Remaining initial observations below are classified by their recorded evidence. Follow `DENSITY-EXECUTION-PROMPT.md` and the test-first workflow before production changes.
+Status: Spread acceptance is complete and published; the live-system audit is active. Weakened stacking and feedback, pet retrieval core, and hot steam have passed their native checks. The pet end-to-end keyboard demonstration is explicitly deferred. Remaining initial observations below are classified by their recorded evidence. Follow `DENSITY-EXECUTION-PROMPT.md` and the test-first workflow before production changes.
 
 ## Audit method
 
@@ -114,9 +114,9 @@ When an item stalls, distinguish a normal-play defect from a test-route inconven
 
 | Item | Importance / disposition | Current evidence |
 |---|---|---|
-| Hidden hot-source inspection | High enough to finish: overlapping terrain can prevent keyboard users from inspecting the object that carries the scald warning | Live steam route reaches real706°C steam, then the menu cannot reach the OilSeep beneath WaterPuddle/SteamCloud. Actual UI RED/repair is next; preserve existing loot-pile behavior |
+| Hidden hot-source inspection | Resolved: overlapping terrain exposes lower owners through the existing keyboard picker | Actual UI10 tests first reproduced7 failures; repaired UI plus neighbors pass50/50. Matched native hot/cool/no-steam route passes30 checks, including free exact-source warning inspection. Existing loot-pile, reach and current-target rules are preserved |
 | Ordinary resource journey | High: finding supplies, purchasing, recovering and saving are core progression | A continuous native route is in preparation; no teleports or resource grants, and bounded cost/source failures remain honest |
 | Dog fetching | Low priority for further live-test iteration; defer delivery/save/repeat demonstration | Core changes pass751 native cases including69 new checks. Actual first throw is admitted; ordinary Witnessed fear interrupts the dog for20 turns, then fetch resumes. The24-wait audit ends before delivery; no item/goal loss was established. Keep the failed receipt, do not claim end-to-end native completion, and stop extending this harness now |
-| Further generic fire-unit changes | Medium and balance-sensitive | A fresh-content plan identifies mixed units, but no extra thermal bridge or save migration is justified. Complete the concrete hot-source interface issue first; broader fire changes need their own bounded native counter-scene |
+| Further generic fire-unit changes | Deferred medium and balance-sensitive | A fresh-content plan identifies64 mixed-unit authors, but no extra thermal bridge or save migration is justified. The concrete hot-source interface issue is complete; broader fire changes need their own bounded native counter-scene |
 
 This prioritization supersedes treating the unfinished pet keyboard route as a prerequisite for higher-impact work. BitLocker, lore restrictions and old-save boundaries are unchanged.

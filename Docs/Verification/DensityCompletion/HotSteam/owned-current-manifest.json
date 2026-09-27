@@ -1,0 +1,875 @@
+{
+  "checkpoint": "Bounded hot-steam/contact/navigation/readout plus normal keyboard stacked-owner access",
+  "head": "a37aaa151f241af3d88a552779e6313b9be7d0ad",
+  "nativeAcceptance": "Docs/Verification/DensityCompletion/HotSteam/final-acceptance.json",
+  "wholeFileCount": 142,
+  "assetsWholeFileCount": 20,
+  "files": [
+    {
+      "path": "Assets/Editor/Scenarios/DensityHotSteamNativeBatch.cs",
+      "sha256": "ff8f2cdf208869c5034929c7548b8edf99436fb79a8de32c49fae887d5afb0ec",
+      "bytes": 8239,
+      "ownership": "exact hot-steam gameplay/UI/native package"
+    },
+    {
+      "path": "Assets/Editor/Scenarios/DensityHotSteamNativeBatch.cs.meta",
+      "sha256": "a206e8a441edd2d4d863f4580ae3512564473671fa24c27275007f2c5fef74b9",
+      "bytes": 60,
+      "ownership": "exact hot-steam gameplay/UI/native package"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/AI/TerrainNavigationWeight.cs",
+      "sha256": "2ce97a8dfe7352ae5ad3b27841c03698aa383317fc395f9b6ad698f72fcbb394",
+      "bytes": 5471,
+      "ownership": "exact hot-steam gameplay/UI/native package"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/Effects/Concrete/SteamEffect.cs",
+      "sha256": "c7b6879a0bbe2f2c63edcd24ec37c107967f7ba4b6e10ad2643e58704b4084d3",
+      "bytes": 6267,
+      "ownership": "exact hot-steam gameplay/UI/native package"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/Effects/EffectDescriber.cs",
+      "sha256": "e079232a2654c779aa2fad29e107fbb1edbbe2884a195491a1376a1619e46a96",
+      "bytes": 6836,
+      "ownership": "exact hot-steam gameplay/UI/native package"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/Effects/SteamContact.cs",
+      "sha256": "e9b9f61e0e3da26c688bbb99f2cc9e2356a6b8ba1927fe72d998c220ba91ff4b",
+      "bytes": 4456,
+      "ownership": "exact hot-steam gameplay/UI/native package"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/Effects/SteamContact.cs.meta",
+      "sha256": "e5e6f666b7e46067cc79fdbee0dbb72927246ac22dd27ed9fe2e09381b912438",
+      "bytes": 60,
+      "ownership": "exact hot-steam gameplay/UI/native package"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Input/InputHandler.cs",
+      "sha256": "61907b3788362ae5b7c84ff7be59e443bcc5d170421df4663b412f37a8bd298d",
+      "bytes": 171760,
+      "ownership": "exact hot-steam gameplay/UI/native package"
+    },
+    {
+      "path": "Assets/Scripts/Scenarios/Custom/DensityHotSteamNativePlayer.cs",
+      "sha256": "e3d05d1262ff9e7b4b006731b2fec7fc74dc217696e18161e149a045b724afc8",
+      "bytes": 42080,
+      "ownership": "exact hot-steam gameplay/UI/native package"
+    },
+    {
+      "path": "Assets/Scripts/Scenarios/Custom/DensityHotSteamNativePlayer.cs.meta",
+      "sha256": "b30a4c18449177bc4a80b29663dd3ecd80425ca6f27d68df1906da7c1be3e73e",
+      "bytes": 60,
+      "ownership": "exact hot-steam gameplay/UI/native package"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/AI/HotSteamNavigationTests.cs",
+      "sha256": "0c109278c75288eb5a13b238871342ee262534ee01f6cac7dd2595db91a57bb0",
+      "bytes": 4907,
+      "ownership": "exact hot-steam gameplay/UI/native package"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/AI/HotSteamNavigationTests.cs.meta",
+      "sha256": "c76c579fe4da7378634ce525926e822adc4667b9e791f6c1a7bbab44168196cb",
+      "bytes": 60,
+      "ownership": "exact hot-steam gameplay/UI/native package"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/Materials/HotSteamContactAdversarialTests.cs",
+      "sha256": "d944e0db1afeef04e1d7144bae7ab9cf8c83844ceca821fd116048e37ea3ba14",
+      "bytes": 10193,
+      "ownership": "exact hot-steam gameplay/UI/native package"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/Materials/HotSteamContactAdversarialTests.cs.meta",
+      "sha256": "71272705f4d423e1d70dc8a94c7c54de1f272bd139839f242d598ddcbac90dde",
+      "bytes": 60,
+      "ownership": "exact hot-steam gameplay/UI/native package"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/Materials/HotSteamContactTests.cs",
+      "sha256": "c7235f0b8a3bb9eb85bb344ff1c42faaaf03e086697b1aac177b22b37750b007",
+      "bytes": 7534,
+      "ownership": "exact hot-steam gameplay/UI/native package"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/Materials/HotSteamContactTests.cs.meta",
+      "sha256": "6e92430dfe06af6ab44021ebe57b6b6db1e5159f512a2c1bc9066d8bc75b0a40",
+      "bytes": 60,
+      "ownership": "exact hot-steam gameplay/UI/native package"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/Materials/HotSteamReentryTests.cs",
+      "sha256": "8e8d00d0068458841fdff74d7c59165d96bc02814f03906b986c81169c070183",
+      "bytes": 7530,
+      "ownership": "exact hot-steam gameplay/UI/native package"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/Materials/HotSteamReentryTests.cs.meta",
+      "sha256": "9a6ecf593837ee75a3b6ae52aa915b6b69569625ce1eb0ef114db1a172287a4e",
+      "bytes": 60,
+      "ownership": "exact hot-steam gameplay/UI/native package"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Input/HotSteamTerrainMenuTests.cs",
+      "sha256": "d2499ab50d762231e2128724b39939934fe61b4ee1d639a2aca4ebbf14eb073a",
+      "bytes": 6322,
+      "ownership": "exact hot-steam gameplay/UI/native package"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Input/HotSteamTerrainMenuTests.cs.meta",
+      "sha256": "690365e66b2f2e54e09119bf70dff0edc3a2b35bcacfc93abcf5c949b277cc8c",
+      "bytes": 60,
+      "ownership": "exact hot-steam gameplay/UI/native package"
+    },
+    {
+      "path": "Docs/DENSITY-HOT-STEAM.md",
+      "sha256": "3c2593a13fed430de2787f02cfce943e1cf4105f18f0fc7ad7f96ffb1e13da6f",
+      "bytes": 34371,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/10851284a3874055a979dcc7bdd1b391/cool-steam-adjacent-after-approach.png",
+      "sha256": "8c645d94cacb47b982d8b1743b8c9ecfe3533d83b0f439412d4c8f7fa30d97bf",
+      "bytes": 895190,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/10851284a3874055a979dcc7bdd1b391/cool-steam-adjacent-after-wait.png",
+      "sha256": "1da477fd773bc9826003cbe53ae64051fe1cc0f8f6935f5afe44289d80cd15c5",
+      "bytes": 894742,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/10851284a3874055a979dcc7bdd1b391/cool-steam-escaped.png",
+      "sha256": "decfa91749f4d2f59001a2139ec10274a88fb824d44b10451053474067cf6dee",
+      "bytes": 893815,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/10851284a3874055a979dcc7bdd1b391/cool-steam-source-examine.png",
+      "sha256": "903bec77b1edc9df25d2aac68d04a1cd00ba06989c3d6852a8fe0412dd6cdc83",
+      "bytes": 895507,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/10851284a3874055a979dcc7bdd1b391/cool-steam-source-menu.png",
+      "sha256": "13b2f4ec69dae23969a100aba375b57fea850a4eb72e5eb31a5fbbd2ade2a9fa",
+      "bytes": 739120,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/10851284a3874055a979dcc7bdd1b391/hot-no-steam-adjacent-after-approach.png",
+      "sha256": "96e238733dfd6d4a8bcaf13f62d40b03dde90c049f33f1cfc94deeeae2f86be0",
+      "bytes": 893644,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/10851284a3874055a979dcc7bdd1b391/hot-no-steam-adjacent-after-wait.png",
+      "sha256": "69079717c0d24454a93f60332a96b1418b04a90ac4fd76709d5243b5a055f84a",
+      "bytes": 893818,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/10851284a3874055a979dcc7bdd1b391/hot-no-steam-escaped.png",
+      "sha256": "beb5d709ff308077b703786aa88fe4a8e6d98ff6cd90080b2e3a876a3cfb4a1d",
+      "bytes": 893334,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/10851284a3874055a979dcc7bdd1b391/hot-no-steam-source-examine.png",
+      "sha256": "11dc9b538646964e91c95ddf1ab2b5e06a4271264fc5e0e0dfd420fe373d279e",
+      "bytes": 895263,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/10851284a3874055a979dcc7bdd1b391/hot-no-steam-source-menu.png",
+      "sha256": "9becc42e4da7132471af5a9acd486c1e160f367ab276aa9eee7f3af36f8440b2",
+      "bytes": 750589,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/10851284a3874055a979dcc7bdd1b391/hot-steam-adjacent-after-approach.png",
+      "sha256": "5641ac55bf83934864f0b4e3f6937074c387468705297be2387418cb9ce0a34d",
+      "bytes": 897577,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/10851284a3874055a979dcc7bdd1b391/hot-steam-adjacent-after-wait.png",
+      "sha256": "16c56bb41c955511d0bb1672e599b7e56c29a7f92ab247086e5d8d39874049a0",
+      "bytes": 898081,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/10851284a3874055a979dcc7bdd1b391/hot-steam-escaped.png",
+      "sha256": "b7abfecc5f7bc3e800b726ca8cac02720fc62e16c1a9c20a1f86d94ef1963408",
+      "bytes": 894185,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/10851284a3874055a979dcc7bdd1b391/hot-steam-source-examine.png",
+      "sha256": "89df483355cf7869f2a898db435857e08a4e13f0d622139ed7ae4abf44acefc6",
+      "bytes": 896399,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/10851284a3874055a979dcc7bdd1b391/hot-steam-source-menu.png",
+      "sha256": "717a5de2287da144b500c8552831d11a97827baf526e037ee8285d3ed80236ae",
+      "bytes": 739080,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/10851284a3874055a979dcc7bdd1b391/ordinary-stats-and-fixture-lane.png",
+      "sha256": "0749d88963c4855002f64a7a2b69d8d5bde17a7818449ac823a24272d001de90",
+      "bytes": 896690,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/10851284a3874055a979dcc7bdd1b391/report.json",
+      "sha256": "94ff4ed73627f99afa89b4585e06445efd6ff963fd04a3ad8b3d71a3887c71bc",
+      "bytes": 122140,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/10851284a3874055a979dcc7bdd1b391/restoration.json",
+      "sha256": "92518bc8522a2cd6066b58cb42d0c2353bc6bbf1e227dc3f6a52133a9f2551a7",
+      "bytes": 674,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/10851284a3874055a979dcc7bdd1b391/unity-log-range.json",
+      "sha256": "441c40b441f37da5eecc318da537d81f3ce0ba9948e3d2d1f8ed971ee40241cb",
+      "bytes": 324,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/10851284a3874055a979dcc7bdd1b391/unity-log-segment.log.gz",
+      "sha256": "58b3e7ac6de1ae39bd6b77a86b36127e7ca2fc92ac811d9b13b7d51066b23d11",
+      "bytes": 10423,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/499d8a0894774dc3af2dee4b83aa0063/ordinary-stats-and-fixture-lane.png",
+      "sha256": "597de9c5e7edbe7d148a5ace59b03b7b30bcefffea0a969a95c526f0f284e49e",
+      "bytes": 889227,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/499d8a0894774dc3af2dee4b83aa0063/report.json",
+      "sha256": "2b11a931909abe05b4c8fa923acbc381727c88bd4c8471e659239ed9069b420a",
+      "bytes": 22515,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/499d8a0894774dc3af2dee4b83aa0063/restoration.json",
+      "sha256": "92518bc8522a2cd6066b58cb42d0c2353bc6bbf1e227dc3f6a52133a9f2551a7",
+      "bytes": 674,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/499d8a0894774dc3af2dee4b83aa0063/unity-log-range.json",
+      "sha256": "991a6a1fc3c5f2e221124535e8d46de79c7337a398cbe272f735a5f44d49a8c3",
+      "bytes": 324,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/499d8a0894774dc3af2dee4b83aa0063/unity-log-segment.log.gz",
+      "sha256": "420e46e6eb48059e0fc78f2d9f86e4071353b4a939c9f00567b6057cc7db9b51",
+      "bytes": 6455,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/a116022957504407afd0d79e2b31207c/ordinary-stats-and-fixture-lane.png",
+      "sha256": "7e717e987d7efa241cf7407c38a3aa73b9a426407e043039f1000941ee9a7d8f",
+      "bytes": 888380,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/a116022957504407afd0d79e2b31207c/report.json",
+      "sha256": "b298846f220c2c91b5ed9183986f0c0544c48abf09c03c736dc3e2c11e57a1ba",
+      "bytes": 20729,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/a116022957504407afd0d79e2b31207c/restoration.json",
+      "sha256": "92518bc8522a2cd6066b58cb42d0c2353bc6bbf1e227dc3f6a52133a9f2551a7",
+      "bytes": 674,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/a116022957504407afd0d79e2b31207c/unity-log-range.json",
+      "sha256": "4eeb02f227aa9a668ac7f9bffc0cd6e44be6b99a4640448a210fea71d9710175",
+      "bytes": 324,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/Environment/NativeHotSteam/a116022957504407afd0d79e2b31207c/unity-log-segment.log.gz",
+      "sha256": "1a3158f0286f99a42efdd62d0d7b3a5d8e701ae38d3f034f90fe2774abf56948",
+      "bytes": 6326,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/DeferredCombustion/PLAN.md",
+      "sha256": "389d19864fd6edd55e807e26960abf0c83e1237c62e656a28eb2e23bca3a352e",
+      "bytes": 7460,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/DeferredCombustion/authored-census.json",
+      "sha256": "df3138a383b428fa55718c11520c65216a28b356f1e9def0ba3f2b5fbaf040a5",
+      "bytes": 30305,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/DeferredCombustion/source-inheritance-closure.json",
+      "sha256": "1de9650e36c2f6ae163dc5879b42ea63bdc9d845b4856a1dc1d8c40fa5839e5f",
+      "bytes": 31287,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/NativeHarness/approved-native-plan.md",
+      "sha256": "bafe0cca221094a371dc98b1fb223c6d3b67182f91e2dd17608ff41c5e79cbce",
+      "bytes": 3971,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/NativeHarness/cell-fix-compile.log",
+      "sha256": "7e033871810bf7080f0641bbd57ccb3ad8f6aba9929dada944b0686099e96126",
+      "bytes": 1018,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/NativeHarness/cell-fix-manifest.json",
+      "sha256": "584795af0c63a4eb93e4aff57825b6cbdae09f653be1c06c8fbb3103cb5712d8",
+      "bytes": 755,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/NativeHarness/cell-fix.patch",
+      "sha256": "135103adee6677779354233b314eab1644fcaddf86f18d33626358ef0b59363a",
+      "bytes": 6875,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/NativeHarness/cell-premise-receipt.json",
+      "sha256": "6e5881b41da3832c0976db4856daa886c58f6a17ff57169fbfd2d7205758a177",
+      "bytes": 989,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/NativeHarness/cell-premise-tests.cs.txt",
+      "sha256": "8c67c9d22c69b2f089842855409015831ed16f930728ba56462745e7b683ca5b",
+      "bytes": 1292,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/NativeHarness/cell-premise.log",
+      "sha256": "c3f36a4bad6c8bac0c19283888adf6787f0d3178dd0c791ab85842024d61b4bf",
+      "bytes": 827,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/NativeHarness/cell-premise.xml",
+      "sha256": "3e9ede3dbaab70212c37db783b3018256dc8424446e719705d2775620ff7ccc9",
+      "bytes": 5993,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/NativeHarness/evidence.json",
+      "sha256": "2dfc4f807599b5902e3524fde5a2928791140f2007e3c8e2db2a9bd2f4aac43d",
+      "bytes": 3108,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/NativeHarness/initial-driver.cs.txt",
+      "sha256": "363f5f4d59a5e58a9f93fc1bc5eb1ece2ab63442dfd47d43c28e92c6de5259ea",
+      "bytes": 39541,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/NativeHarness/initial-four-path-manifest.json",
+      "sha256": "bc96cae090ad1f797da290242a122c2cb21b2124248bfc07de7a38e2b4142051",
+      "bytes": 1886,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/NativeHarness/launcher.cs.txt",
+      "sha256": "ff8f2cdf208869c5034929c7548b8edf99436fb79a8de32c49fae887d5afb0ec",
+      "bytes": 8239,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/NativeHarness/self-ignore-driver.cs.txt",
+      "sha256": "fcadfd71ad1f156bffe5eb2c40a851ab0b49e01ade30f2b9bc352ffaaf579c9f",
+      "bytes": 40699,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PLAN.md",
+      "sha256": "5e7422b8b350be90cfb4f054b9fce2ca2938c224e3a4022a7fb3d04092de1893",
+      "bytes": 17034,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/EffectDescriber.cs.txt",
+      "sha256": "e079232a2654c779aa2fad29e107fbb1edbbe2884a195491a1376a1619e46a96",
+      "bytes": 6836,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/HotSteamContactAdversarialTests.cs.txt",
+      "sha256": "d944e0db1afeef04e1d7144bae7ab9cf8c83844ceca821fd116048e37ea3ba14",
+      "bytes": 10193,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/HotSteamReentryTests.cs.txt",
+      "sha256": "8e8d00d0068458841fdff74d7c59165d96bc02814f03906b986c81169c070183",
+      "bytes": 7530,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/PLAN.md",
+      "sha256": "dfb3e817db76529c583479aebb651146907a959e6ad92b2e21840b623cd07ed0",
+      "bytes": 18219,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/SteamContact.cs.txt",
+      "sha256": "e9b9f61e0e3da26c688bbb99f2cc9e2356a6b8ba1927fe72d998c220ba91ff4b",
+      "bytes": 4456,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/SteamContact.instance-guard-red.cs.txt",
+      "sha256": "edda24a69bff096727609b98b204ace1051c1faed908af8b2bb74379dd691b17",
+      "bytes": 3776,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/SteamEffect.cs.txt",
+      "sha256": "c7b6879a0bbe2f2c63edcd24ec37c107967f7ba4b6e10ad2643e58704b4084d3",
+      "bytes": 6267,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/SteamEffect.instance-guard-red.cs.txt",
+      "sha256": "76aef86dd54370afa899dadf92b422845c16d9e8aa76e058baa5af6a0bffc50b",
+      "bytes": 6414,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/TerrainNavigationWeight.cs.txt",
+      "sha256": "2ce97a8dfe7352ae5ad3b27841c03698aa383317fc395f9b6ad698f72fcbb394",
+      "bytes": 5471,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/attempt-contract-red.log.gz",
+      "sha256": "e2ba0944c6272f1e9508479db99b42f98f6f04fa4a9f4c8de9375e4ea792c02b",
+      "bytes": 925,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/attempt-contract-red.xml.gz",
+      "sha256": "846c1282d9fbd8388bbbf924974f2f539be055356e834c1ea0f3acde73a7ac44",
+      "bytes": 1907,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/candidate-final-tests-compile.log.gz",
+      "sha256": "3cfdcf14f640e4fe9b1cde4aebe976b7f9f315c19ea347828f098511fb685b6a",
+      "bytes": 531,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/candidate-publication-manifest.json",
+      "sha256": "333af361addf45907f4758f724a627b35553aa0818c972e864865c4cf8fbb688",
+      "bytes": 2999,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/diagnostic-red.log.gz",
+      "sha256": "c82f01bfd7bb322e8aee4fbdc152d4a949476a225f7f53d48eb1b2d77bb2114c",
+      "bytes": 722,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/diagnostic-red.xml.gz",
+      "sha256": "b19e8517ed431960bce3549d224b3be38eeca106bf75167cc53a25f7bc6222af",
+      "bytes": 1534,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/evidence.json",
+      "sha256": "e17ba60de2585957bbe8491cbf905b7a74fac5fd56444ebc8aca6550aedb6bba",
+      "bytes": 9507,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/final270-before.log.gz",
+      "sha256": "bbd66c1c79bb1959f44d49ef41b32e8fd1395e49bf999b90a358461bbbf94f52",
+      "bytes": 2554,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/final270-before.xml.gz",
+      "sha256": "1fb35f5611cf879f2a15adb1b806f041e239117e56c499d48620a3bb1991d4b5",
+      "bytes": 19754,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/final270-diff.log.gz",
+      "sha256": "f5d64732026a751494c1ebdcead10f07434363b67dd75d51e2b4215f1029a159",
+      "bytes": 1084,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/final270-green.log.gz",
+      "sha256": "0e9b6ff6624ee74924856148048b94f33e6f509b3761ad2eb60e58a53f873b62",
+      "bytes": 482,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/final270-green.xml.gz",
+      "sha256": "4cdf80d67009ba26fa10fca3d6c442749ca448f87d89785f878c35500ec54633",
+      "bytes": 17736,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/native-selection.json",
+      "sha256": "9de0b7de94429700a28b85f9b9662b50e8031d8cdc8d6899eac06439a5821bba",
+      "bytes": 1087,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/production-manifest.json",
+      "sha256": "2ea65b2b5df9a1688ee40fa24c5ecf5d94a794133b44cdf1da4c7918837c40a8",
+      "bytes": 2022,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/production.diff",
+      "sha256": "f4ade33e1993b657970eb1a0871f391bfab988a9dbb2cfa39deddf554802ad7e",
+      "bytes": 13575,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/reentry-green.log.gz",
+      "sha256": "982b0a3c4e2afeca095a16d05e92b10be62e61578f1986bbb0e230eded1442a2",
+      "bytes": 467,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/reentry-green.xml.gz",
+      "sha256": "3bb1908f56ae5b2f5d978ec2286eb8497e2c34aeb85595c91c51be0233cea17f",
+      "bytes": 1125,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/reentry-red.log.gz",
+      "sha256": "db54fe02244a4e858d55962e3b48aada6df3e91a415871292b8c61ffcdcc7e00",
+      "bytes": 650,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/reentry-red.xml.gz",
+      "sha256": "76a85520dbf9158c021c031feac796d30225492144f704c3d5bb4d09623c92fb",
+      "bytes": 1385,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/runtime-final-compile.log.gz",
+      "sha256": "8618a85c26778acb87da55fae125b64a907b2396040e3a26a2f00fbf0736b68a",
+      "bytes": 382,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/standalone83-first.log.gz",
+      "sha256": "293d710b46f7d7c12755755f77498b5d079e4c6eee483a1829dceecf0d192d74",
+      "bytes": 474,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/standalone83-first.xml.gz",
+      "sha256": "b7751645d7ebb287c4821618f887a7b3c900512fd7d6fd4fc0a606a9e7fc6712",
+      "bytes": 6316,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/standalone83-instance-guard-baseline.log.gz",
+      "sha256": "f7db5a6e915be2b5a6d3349ab400417e17d51a426492d014b18c2ca6060244a6",
+      "bytes": 684,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/standalone83-instance-guard-baseline.xml.gz",
+      "sha256": "20f1db658dc68658b332a8307a6a05b21093fa98bf09c6762077aa8cd05c45e4",
+      "bytes": 6744,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/supplement-test-manifest.json",
+      "sha256": "44defaf60c7d61276660dfb2da6d01e5da69ee38ab3c50ca1516fb252c889da2",
+      "bytes": 1242,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/PrivateCore/supplement-tests.diff",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/TerrainMenu/driver-reference-compile.log",
+      "sha256": "268ea9eeb7ee3d082a36ab9273b880a2d28d4a3a9859591c766078cda4db6b7a",
+      "bytes": 1010,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/TerrainMenu/driver.patch",
+      "sha256": "01c866787859dfa5589a7528432a0b034ae20a62c2fa37a7295a9c7c4c0d3815",
+      "bytes": 8868,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/TerrainMenu/evidence.json",
+      "sha256": "b60d3cdebb1fc917ed874461085dfa1f2e2c0e26e97abcfa24fe7c500828694a",
+      "bytes": 2482,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/TerrainMenu/native-selection.json",
+      "sha256": "cc4f4f0b6a7cde608682536d4487bb5fb3b11d79a60713b772730c4f2b6a857c",
+      "bytes": 499,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/TerrainMenu/plan.md",
+      "sha256": "fac37b7a60526187504de8d3b6e440f6b47f8a2514699f8da00ed9733fa8590f",
+      "bytes": 2345,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/TerrainMenu/production-manifest.json",
+      "sha256": "f0e496f7d3ba138d3cd71a7ecf5da732ea9090abc1a754071b05bd3df1f27385",
+      "bytes": 847,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/TerrainMenu/production.patch",
+      "sha256": "d8e6abeeec07ca70b04a1fa0decc47dd3253b237323caa0a5537052b0290f3f2",
+      "bytes": 760,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/TerrainMenu/runtime-reference-compile.log",
+      "sha256": "c221062aee2375502e6e4df8ed98674d11562ab82d3cb5bf879091a0ed1aeded",
+      "bytes": 894,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/TerrainMenu/test-manifest.json",
+      "sha256": "d20e64c6e650232af69dadbb60f26ac78b80ce89034f41f5b46193c22bbea7ad",
+      "bytes": 700,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/TerrainMenu/test-reference-compile.log",
+      "sha256": "7b9e630bf575c2b76790f77d9dc5fc1452e5aa79a2b429840e0ad4fa4015a633",
+      "bytes": 5707,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/TerrainMenu/tests.cs.txt",
+      "sha256": "d2499ab50d762231e2128724b39939934fe61b4ee1d639a2aca4ebbf14eb073a",
+      "bytes": 6322,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/final-acceptance.json",
+      "sha256": "954d875667ded94fdaa46216912f919197722a00572ea2a2b0fc9697ba14ddca",
+      "bytes": 2984,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/menu-production-publication.json",
+      "sha256": "2b13416e35221ac10c415d1c0715c6ad7be17d5c2d28c7ba7ad95a1598a895cf",
+      "bytes": 1064,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/menu-test-publication.json",
+      "sha256": "9bfa1d0085b4ec0f2cc560fed13f1623784c769e007f1f648eb46db8ef7bc943",
+      "bytes": 972,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/native-cell-premise-publication.json",
+      "sha256": "41dd9126ddfd35f1b547abf618cec98f5daee1302f08250cfc43a61d4f4eaf13",
+      "bytes": 592,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/native-driver-publication.json",
+      "sha256": "e78024f59a8858ad9dbbbe03cf19a98bc09af9e2983712e67492a3d92424e642",
+      "bytes": 1860,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/native-restoration-test-publication.json",
+      "sha256": "3d440cb2ba4fb535a5f57a03027974d552053467225c69bc79c0a2a14ccbc5d5",
+      "bytes": 627,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/native10-menu-red.json",
+      "sha256": "b5fd7eff37d65abd6118cdef401162c12582ddf7e91fd89b22b26009865d8426",
+      "bytes": 1904,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/native10-menu-red.xml.gz",
+      "sha256": "12d61bf9f0d875bb1d714baa03b22761e0462b3966eca49c57964bf141a69445",
+      "bytes": 1887,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/native270-green.json",
+      "sha256": "02c6dcdae8168d8154b471f5ebe17620b7750d68976b4386d8475512cc94f4af",
+      "bytes": 558,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/native270-green.xml.gz",
+      "sha256": "58c005a14c95031d6956ade57a07792363f1d2db5c19da2f65e58adbafd29520",
+      "bytes": 14704,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/native28-launcher-green.json",
+      "sha256": "d3fb706e36734dd89930f157c937ad96eafc0980d68523d82cb26215da1b9d55",
+      "bytes": 556,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/native28-launcher-green.xml.gz",
+      "sha256": "e1546e5c65d60359e6d5892bd70059bb5a8b1925d99407872f6a2f623a4d994c",
+      "bytes": 1796,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/native28-launcher-red.json",
+      "sha256": "d41555ce9a9c54fcf3a0a1866103720be7eb4586fa277ef90fd9b2f9a05ad875",
+      "bytes": 1087,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/native28-launcher-red.xml.gz",
+      "sha256": "b0c881fd13aaab38fd06a2981328fd61a3cc5443825071bfc79a527cc32d5f51",
+      "bytes": 2414,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/native50-menu-green.json",
+      "sha256": "0258376f632837370b1bae8ed074ab0a82d7c609e35e77b510bd094bb606545a",
+      "bytes": 556,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/native50-menu-green.xml.gz",
+      "sha256": "73a3ed3ed6ae7a297ab7d2106e071cd207ba3f4bfe7fe4603b8fee34e25a5bd0",
+      "bytes": 4148,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/native79-red.json",
+      "sha256": "b70696f7b2e50b69d3eeb7201450911a5ed9184b55480162706b3bd8c7d384ef",
+      "bytes": 8109,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/native79-red.xml.gz",
+      "sha256": "3a857b9610f4165e9dc3f38d66c58a9461f934a1cf6c5f2e179c7147df8b06a4",
+      "bytes": 5961,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/native79-refresh-race-red.json",
+      "sha256": "0b441aaaf0b636e26c762129cd6e3d358930f0c65f97e5069f4b4ac5cddd7033",
+      "bytes": 8109,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/native79-refresh-race-red.xml.gz",
+      "sha256": "dd3862d1d35c16b136949f32e51f743a249634406e9aabb0fcbd48c9c8ee8597",
+      "bytes": 6018,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/native86-red.json",
+      "sha256": "afb88b38a534719bfdf9aae590afc681b989169f6a2ac238e620b7a14b864fbb",
+      "bytes": 9435,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/native86-red.xml.gz",
+      "sha256": "f61df21c5ae61cf44fc0da88df439b14901b6c8b40d95480ebedd14fe8bfab68",
+      "bytes": 6629,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/production-publication.json",
+      "sha256": "f44c3d862c3ebfdd95ac39654bd24c9690d92a82af635a3c5d13422fc43dcae2",
+      "bytes": 2424,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/restoration-hotsteam-only.cs.txt",
+      "sha256": "7743222949b738746e0ed17075c407a43db0b03e05435f0a70a97244cf9628aa",
+      "bytes": 4487,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/restoration-hotsteam-only.patch",
+      "sha256": "f8d248d2bf0ecf5b5cdda8ef03d6c06c958e787124444fa2c4e8d4fd5795c21d",
+      "bytes": 912,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/supplement-test-publication.json",
+      "sha256": "f99d1d3dace0d1ec692f7483b352446d8ac53972670bfca16b0a182209fe3e4f",
+      "bytes": 1538,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/test-manifest.json",
+      "sha256": "72e3868a244aa6a06cccc12659a58c65f4d7d6d8d736e1911b88b4c8bd373149",
+      "bytes": 2832,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/HotSteam/test-publication.json",
+      "sha256": "ad2851e0e592a6ee7b006c88b0891b7525adbccc866af2f4541c1ede2f2f1db2",
+      "bytes": 2806,
+      "ownership": "exact hot-steam plan/evidence or one of3 declared native runs"
+    }
+  ],
+  "partialFiles": [
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/NativeDensitySceneRestorationTests.cs",
+      "headBlobSha256": "882eb1371644b50acc7e0fd816f137f17b83dbc957ac779532899d1b6269da43",
+      "selectedContentSha256": "7743222949b738746e0ed17075c407a43db0b03e05435f0a70a97244cf9628aa",
+      "workingFileSha256": "8d0cbd17b187ced11af71932bd4c8ffbef1929ee8cfd611cd8413258d1dd20ea",
+      "patch": "Docs/Verification/DensityCompletion/HotSteam/restoration-hotsteam-only.patch",
+      "selectedSnapshot": "Docs/Verification/DensityCompletion/HotSteam/restoration-hotsteam-only.cs.txt",
+      "scope": "ONLY two DensityHotSteamNativeBatch TestCase rows; exclude uncommitted DensityCampaignNativeBatch rows",
+      "alreadyTrackedMeta": "Assets/Tests/EditMode/Presentation/Rendering/NativeDensitySceneRestorationTests.cs.meta"
+    }
+  ],
+  "manifestSelf": "Docs/Verification/DensityCompletion/HotSteam/owned-current-manifest.json",
+  "excluded": "No combustion64 content changes, no Campaign/pet/corpse production, no foreign generated art, no broad directory staging. Existing tracked unchanged metas remain HEAD dependencies. No staging performed."
+}

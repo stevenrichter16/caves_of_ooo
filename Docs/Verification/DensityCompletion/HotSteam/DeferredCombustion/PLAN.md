@@ -1,0 +1,37 @@
+Status: **DEFERRED — MEDIUM impact, balance-sensitive** after the completed hot-steam checkpoint. User-directed prioritization favors finishing verified work; no64-value content mutation, runtime heuristic, migration, test fixture or native route was published. This saved source-grounded plan is a future proposal, not shipped behavior.
+
+# C8 next slice — fresh-content combustion units and existing bridges
+
+Read-only/private proposal. Hot-SteamEffect native route remains first priority. No new production, Assets edits or feature tests are written for this proposal. User accepts older saves retaining previously authored entity values; no automatic migration or new serialized version fields are proposed.
+
+## Verified current census and consumers
+
+`authored-census.json` scans122 content JSON files:131 direct Material.Combustibility authors,63 zero,68 positive. All68 positives are in Objects.json:64 fractional values in(0,1],4 percentage values (OilSlick90,TarSeep95,DryBrush85,PeatBog60). The exact file hash, names and values are recorded. This is a direct-author census; inherited instances are a larger closure and must be enumerated through EntityFactory before editing.
+
+- MaterialPart.TryIgnite vetoes only<=0. Converting positive.6→60 does not by itself change the thermal ignition gate.
+- TilePropagationSystem.FlammableThreshold=50, using actual physical Occupants and liquid coating definitions. Thirty of64 direct definitions cross that threshold after conversion. Bush.6→60 and Hedge.55→55 become tile fuel; Tree.45→45 and Chest.4→40 remain below threshold. Do not "fix" those deliberate below-threshold cases by lowering the gate.
+- FireDose already calibrates actual thermal skill heat (Attack300, Cantrip150, Ignition600, Blast900), self-sustain and adjacent spreading (SpreadTotal1200 divided across8). BurningEffect already calls those paths. No new entity-to-entity heat bridge is missing here.
+- FlamingHands already writes tile heat and resolves tile reactions before entity FireDose. Tile fire propagation writes embers on fuel; it does not ApplyHeat to every reached object. Oil+heat/oil+embers reactions already consume oil, create smoke/embers and deal8typedFire to living occupants. Another generic embers damage8 or per-ability thermal bridge would duplicate behavior.
+- AcidicEffect currently subtracts the absolute numeric quantity .05*Corrosion each pulse, then decays Corrosion. Charred stores the exact initial quantity, multiplies it by.3, and restores that exact saved snapshot on removal. These are live mutation semantics, not merely labels.
+- SaveGraphSerializer writes MaterialPart public fields and Charred OriginalCombustibility/HasStoredOriginal. LoadEntityBody clears factory parts, loads saved parts/values and reconnects owner backlinks; no blueprint Material value reapplication exists. Existing cached entities keep their old fields; new entities and uncached zones use updated blueprints, even within an old save. No save reset or uniform-generation claim is valid.
+
+## Smallest recommended first unit
+
+Surgically rewrite the exact64 listed positive fractional authored values to percentage points, preserving63 zero and4 already-percentage authors and every unrelated JSON token. Do not run a live `<=1 ? *100` heuristic: saved or deliberately low percentages are ambiguous. Do not alter FlameTemperature, HeatCapacity, volatility/porosity, FireDose, LiquidDefinition, reaction damage or propagation range. Pin inherited effective values through the actual factory.
+
+Keep Acidic's existing absolute subtraction in this first unit. Explicit consequence: old saved.6 still becomes.55 after corrosion1, while fresh60 becomes59.95. Thus acid removes a smaller fraction of newly normalized fuel. This is a real balance divergence to accept explicitly, not a claim that all old relative outcomes are preserved. Charred remains proportionally consistent (fresh60→18→60; old.6→.18→.6). An alternative later acid design could remove a percentage of current fuel, but that deliberately changes old behavior too and should have its own plan/RED; without saved provenance it is impossible to infer old-vs-new units unambiguously from current values after effects. Do not add migration metadata merely to avoid documenting this choice.
+
+The first unit completes fresh Material authoring consistency for the existing tile consumer. It does not unify coarse tile energy0–2 with continuous temperature, ignite scenery from embers, or retroactively change saved old fuel. Those remain separate design questions.
+
+## Test-first outline
+
+1. Execute a prechange exact factory/content corpus: all64 fresh effective values at expected percentages; unchanged4 already-scaled and63 zero source authors. Pin complete parsed source outside the64 tokens and actual inheritance closure; no generic search/replace of other fractional material fields.
+2. Existing thermal gates remain: dryBush oneAttack lights, Tar oneAttack stays below effective170, stone neverignites, Wet suppresses as authored. Reuse current FireIgnitionTests and material/thermal fixtures; no invented dose changes.
+3. Physical tile fuel positives/counters: freshBush60/Hedge55 vsTree45/Chest40; oil90 remains positive, water/nonfuel false. Ember propagation reaches connected qualifying cells and does not jump an unqualified gap. Actual object Thermal temperature/Burning state does not change merely because PropagateFire wrote residue.
+4. Save paired old/new values: serialize synthetic faithfully old.6 +Charred original.6 (and a separately saved corroded value), then load through the current factory after authored update. Preserve saved value/owner/effect snapshot; removal restores.6, while newly createdBush uses60. Roundtrip current60 and affected inherited actors separately. Do not mutate arbitrary user's saves.
+5. Acidic/Charred mutation counters: exact.05 subtraction on old/fresh values and a50→49.95 threshold crossing; charred60→18 suppresses fuel and removal returns60. Retain actual Organic-only rule, zero floor and nonorganic control. Document absolute-vs-relative difference rather than silently multiplying Acidic by100.
+6. Native paired fresh-content scene: exact factory-staged Bush/Hedge fuel lane with an inert/Tree45 gap, real native oil+fire skill source and one paid action. Record authored identity/material and actual tile residue transition, then source/adjacent thermal heat separately. No new bridge is inferred from the same scene. Real thermal source spread is already a distinct existing path. Native visuals/escape/collateral behavior remain acceptance gates.
+
+## Separate bridge follow-up, only if desired after this gate
+
+A continuous entity↔coarse tile bridge needs a named transfer rule, once-per-source/target budget and explicit source/target physical ownership. First prove a reachable missing behavior against existing FireDose/skill bridges. Proposed bounded observation: actual burningBush neighboring a fresh poured oil pool, vs nonburning/hot-onlyBush, with only natural paid turns. Existing thermal spread can already ignite the liquid owner; do not add a duplicate merely because tile embers arrive through a different path. Conversely, a tile-only ember adjacent to scenery has no current temperature transfer; making it heat that scenery is a new authored rule, not a bug established by the absence alone. Require oil8damage dedup and root design approval before any code.

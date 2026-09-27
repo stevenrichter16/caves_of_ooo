@@ -1,0 +1,266 @@
+--- Assets/Scripts/Gameplay/Effects/SteamContact.cs
++++ Assets/Scripts/Gameplay/Effects/SteamContact.cs
+@@ -0,0 +1,82 @@
++using System;
++using System.Collections.Generic;
++namespace CavesOfOoo.Core
++{
++    /// <summary>Hot SteamEffect contact only. Tile clouds and the separate
++    /// SteamCloud lifespan visual have no inferred temperature or damage.
++    /// Pure admission/distance queries are shared by pulses, readout and AI.</summary>
++    internal static class SteamContact
++    {
++        // This set is only the current synchronous pulse stack, not a dedup
++        // cache or saved state. Remove in finally; it holds no source between
++        // calls. Keying the owner survives replacement of its effect instance.
++        [ThreadStatic] private static HashSet<Entity> _activeSources;
++        internal static bool TryBeginPulse(Entity source)
++        {
++            if (source == null) return false;
++            if (_activeSources == null) _activeSources = new HashSet<Entity>();
++            return _activeSources.Add(source);
++        }
++        internal static void EndPulse(Entity source) => _activeSources?.Remove(source);
++
++        internal const float ScaldTemperature = 100f;
++        internal const int DamagePerPulse = 2;
++        internal const int NavigationPenalty = TerrainNavigationWeight.BasePenalty + DamagePerPulse * 6;
++
++        internal static string RejectionReason(Entity source, SteamEffect steam, Zone zone)
++        {
++            if (zone == null) return "no-zone";
++            if (source == null || zone.GetEntityCell(source) == null) return "detached-source";
++            return SourceRejectionReason(source, steam);
++        }
++
++        // Descriptions can also inspect a detached item: this describes its
++        // current steam temperature, not a claim of a placed hazard footprint.
++        internal static string SourceRejectionReason(Entity source, SteamEffect steam)
++        {
++            if (source == null || steam == null || steam.Owner != source
++                || source.GetPart<StatusEffectsPart>()?.ParentEntity != source
++                || source.GetEffect<SteamEffect>() != steam) return "stale-steam-owner";
++            if (steam.Duration == 0 || steam.Duration < Effect.DURATION_INDEFINITE) return "expired-steam";
++            if (float.IsNaN(steam.Density) || float.IsInfinity(steam.Density) || steam.Density <= 0f) return "invalid-density";
++            if (source.HasTag("_DeathHandled") || (source.HasTag("Creature")
++                && source.GetStat("Hitpoints") != null && source.GetStat("Hitpoints").BaseValue <= 0)) return "dead-source";
++            var thermal = source.GetPart<ThermalPart>();
++            if (thermal == null || thermal.ParentEntity != source) return "missing-thermal";
++            if (float.IsNaN(thermal.Temperature) || float.IsInfinity(thermal.Temperature)) return "nonfinite-temperature";
++            return thermal.Temperature > ScaldTemperature ? null : "cool-steam";
++        }
++
++        internal static bool IsLivingCreature(Entity actor) => actor != null
++            && actor.HasTag("Creature") && !actor.HasTag("_DeathHandled")
++            && actor.GetStat("Hitpoints")?.BaseValue > 0;
++
++        internal static bool Touches(Zone zone, Entity source, Entity actor) => actor != source
++            && IsLivingCreature(actor) && zone?.GetEntityCell(actor) != null
++            && SpatialQuery.Distance(zone, source, actor) <= 1;
++
++        internal static int ForCell(Cell cell, Entity actor)
++        {
++            if (cell?.ParentZone == null || !IsLivingCreature(actor)
++                || actor.GetStatValue("HeatResistance") >= 100) return 0;
++            var zone = cell.ParentZone;
++            // A source's physical foot may be here or in the immediate perimeter;
++            // its anchor can be elsewhere. No all-zone scan or query-side effects.
++            for (int dy = -1; dy <= 1; dy++)
++                for (int dx = -1; dx <= 1; dx++)
++                {
++                    var nearby = zone.GetCell(cell.X + dx, cell.Y + dy);
++                    if (nearby == null) continue;
++                    foreach (var source in nearby.Occupants)
++                    {
++                        if (source == actor || source == null) continue;
++                        var steam = source.GetEffect<SteamEffect>();
++                        if (RejectionReason(source, steam, zone) == null
++                            && SpatialQuery.DistanceToCell(zone, source, cell.X, cell.Y) <= 1)
++                            return NavigationPenalty;
++                    }
++                }
++            return 0;
++        }
++    }
++}
+--- Assets/Scripts/Gameplay/Effects/Concrete/SteamEffect.cs
++++ Assets/Scripts/Gameplay/Effects/Concrete/SteamEffect.cs
+@@ -1,10 +1,14 @@
++using System;
++using System.Collections.Generic;
++using CavesOfOoo.Diagnostics;
++
+ namespace CavesOfOoo.Core
+ {
+     /// <summary>
+-    /// Steam: a thin vapor field that cools adjacent entities slightly and
+-    /// lightly wets them as it touches. Dissipates over time. Primarily used
+-    /// as a reaction product — spawned by water_plus_fire and the vapor crossing
+-    /// in ThermalPart.
++    /// Steam cools/wets its existing adjacent neighbors and dissipates.
++    /// A placed, genuinely hot source also scalds living physical contacts.
++    /// The water_plus_fire reaction attaches this effect to its original owner;
++    /// the separate SteamCloud and tile-cloud visuals are not damage sources.
+     /// </summary>
+     public class SteamEffect : Effect
+     {
+@@ -12,6 +16,11 @@
+ 
+         /// <summary>0..1. Density decays each turn until dissipated.</summary>
+         public float Density;
++
++        // Effects load without constructors. These unsaved per-source scratch
++        // collections are initialized lazily and cleared even after callbacks.
++        private List<Entity> _contacts;
++        private HashSet<Entity> _seen;
+ 
+         public SteamEffect(float density = 1.0f)
+         {
+@@ -32,30 +41,90 @@
+         public override void OnTurnStart(Entity target, GameEvent context)
+         {
+             Zone zone = context?.GetParameter<Zone>("Zone");
+-            if (zone == null || Density <= 0f)
++            if (target == null || zone == null || Density <= 0f)
++            {
++                RecordRejected(target, target == null ? "no-source" : zone == null ? "no-zone" : "invalid-density");
+                 return;
++            }
++            if (!SteamContact.TryBeginPulse(target))
++            {
++                RecordRejected(target, "reentrant-pulse");
++                return;
++            }
++            try
++            {
++                // Preserve the existing anchor-adjacent cooling and wetting.
++                // Only the new damage uses physical co-occupants/perimeter.
++                MaterialSimSystem.EmitHeatToAdjacent(target, zone, -20f * Density);
++                var sourceCell = zone.GetEntityCell(target);
++                if (sourceCell != null)
++                    for (int dir = 0; dir < 8; dir++)
++                    {
++                        var cell = zone.GetCellInDirection(sourceCell.X, sourceCell.Y, dir);
++                        if (cell == null) continue;
++                        for (int i = 0; i < cell.Objects.Count; i++)
++                        {
++                            var neighbor = cell.Objects[i];
++                            if (neighbor != target)
++                                neighbor.ApplyEffect(new WetEffect(moisture: 0.1f * Density), target, zone);
++                        }
++                    }
++                ScaldContacts(target, zone);
++            }
++            finally
++            {
++                _contacts?.Clear();
++                _seen?.Clear();
++                SteamContact.EndPulse(target);
++            }
++        }
+ 
+-            // Cool adjacent entities (negative radiant heat) and lightly wet them.
+-            MaterialSimSystem.EmitHeatToAdjacent(target, zone, -20f * Density);
++        private void ScaldContacts(Entity source, Zone zone)
++        {
++            string rejection = SteamContact.RejectionReason(source, this, zone);
++            if (rejection != null) { RecordRejected(source, rejection); return; }
++            if (_contacts == null) _contacts = new List<Entity>(8);
++            if (_seen == null) _seen = new HashSet<Entity>();
+ 
+-            var sourceCell = zone.GetEntityCell(target);
+-            if (sourceCell == null)
+-                return;
++            // Snapshot identities before any damage callback; physical cells
++            // can touch repeatedly but each owner receives at most one hit.
++            foreach (var foot in zone.GetOccupiedCells(source))
++            {
++                if (foot == null) continue;
++                for (int dy = -1; dy <= 1; dy++)
++                    for (int dx = -1; dx <= 1; dx++)
++                    {
++                        var cell = zone.GetCell(foot.X + dx, foot.Y + dy);
++                        if (cell == null) continue;
++                        foreach (var actor in cell.Occupants)
++                            if (actor != source && SteamContact.IsLivingCreature(actor) && _seen.Add(actor))
++                                _contacts.Add(actor);
++                    }
++            }
++            for (int i = 0; i < _contacts.Count; i++)
++            {
++                rejection = SteamContact.RejectionReason(source, this, zone);
++                if (rejection != null) { RecordRejected(source, rejection); break; }
++                Entity actor = _contacts[i];
++                if (!SteamContact.Touches(zone, source, actor)) continue;
++                float temperature = source.GetPart<ThermalPart>().Temperature;
++                float density = Density;
++                var damage = new Damage(SteamContact.DamagePerPulse);
++                damage.AddAttribute("Heat");
++                // Callback nesting can change HP independently of this hit.
++                // Record only the request here; canonical combat owns landed
++                // damage diagnostics and visual feedback, including veto/overkill.
++                if (Diag.IsChannelEnabled("effect"))
++                    Diag.Record("effect", "SteamScaldAttempt", actor: source, target: actor,
++                        payload: new { requestedAmount = SteamContact.DamagePerPulse, temperature, density });
++                CombatSystem.ApplyDamage(actor, damage, source, zone);
++            }
++        }
+ 
+-            for (int dir = 0; dir < 8; dir++)
+-            {
+-                var cell = zone.GetCellInDirection(sourceCell.X, sourceCell.Y, dir);
+-                if (cell == null)
+-                    continue;
+-
+-                for (int i = 0; i < cell.Objects.Count; i++)
+-                {
+-                    var neighbor = cell.Objects[i];
+-                    if (neighbor == target)
+-                        continue;
+-                    neighbor.ApplyEffect(new WetEffect(moisture: 0.1f * Density), target, zone);
+-                }
+-            }
++        private static void RecordRejected(Entity source, string reason)
++        {
++            if (Diag.IsChannelEnabled("effect"))
++                Diag.Record("effect", "SteamPulseRejected", actor: source, payload: new { reason });
+         }
+ 
+         public override void OnTurnEnd(Entity target)
+--- Assets/Scripts/Gameplay/Effects/EffectDescriber.cs
++++ Assets/Scripts/Gameplay/Effects/EffectDescriber.cs
+@@ -29,6 +29,10 @@
+                 case ElectrifiedEffect el:
+                     return "Electrified - charge " + el.Charge.ToString("0.#")
+                         + " for " + el.Duration + " turns.";
++                case SteamEffect steam:
++                    return SteamContact.SourceRejectionReason(steam.Owner, steam) == null
++                        ? "Hot steam - scalds creatures on or beside its source for 2 Heat damage per pulse (Heat resistance applies)."
++                        : "Steam - cools and lightly wets neighboring objects as it fades.";
+                 case WetEffect w:
+                     return "Soaked - " + (w.Moisture * 100f).ToString("0")
+                         + "% drenched (douses flame, conducts shock).";
+--- Assets/Scripts/Gameplay/AI/TerrainNavigationWeight.cs
++++ Assets/Scripts/Gameplay/AI/TerrainNavigationWeight.cs
+@@ -3,7 +3,8 @@
+ {
+     /// <summary>Finite cost for actual liquid contact and floor slipping. Pure
+     /// queries only: no effects, events, RNG, allocations or persistent cache.
+-    /// Tile energy alone is reaction state, not invented contact damage.</summary>
++    /// Includes actual hot SteamEffect contact; tile energy/clouds alone are
++    /// reaction state, not invented contact damage.</summary>
+     public static class TerrainNavigationWeight
+     {
+         public const int MaxPenalty = 90;
+@@ -29,8 +30,9 @@
+         /// resistance modifiers are included conservatively before claiming immunity.</summary>
+         public static int ForCell(Cell cell, Entity actor)
+         {
+-            if (cell == null || actor == null || !actor.HasTag("Creature") || !LiquidRegistry.IsInitialized) return 0;
+-            int max = 0;
++            if (cell == null || actor == null || !actor.HasTag("Creature")) return 0;
++            int max = SteamContact.ForCell(cell, actor);
++            if (!LiquidRegistry.IsInitialized) return max;
+             var state = cell.ParentZone?.TileState.Get(cell.X, cell.Y);
+             if (state != null)
+                 for (int i = 0; i < state.Coatings.Count; i++)

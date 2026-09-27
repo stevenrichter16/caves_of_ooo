@@ -1,0 +1,25 @@
+using CavesOfOoo.Core;
+using NUnit.Framework;
+namespace CavesOfOoo.Tests
+{
+ public sealed class HotSteamCellPremiseTests
+ {
+  [TestCase(false)][TestCase(true)]public void ActualFactoryPlayerIsItsOwnMovementBlockerButOtherBodiesStillBlock(bool foreign)
+  {
+   using(var scope=new DensityLootTestScope())
+   {
+    var zone=new Zone("steam-cell-premise");var player=scope.Factory.CreateEntity("Player");Assert.True(zone.AddEntity(player,3,13));
+    Assert.True(player.GetPart<PhysicsPart>().Solid);var cell=zone.GetEntityCell(player);
+    if(foreign){var blocker=new Entity();blocker.AddPart(new PhysicsPart{Solid=true});Assert.True(zone.AddEntity(blocker,3,13));}
+    Assert.True(cell.BlocksMovement(),"old no-ignore preflight rejects its own current actor");
+    Assert.AreEqual(foreign,cell.BlocksMovement(player),"existing overload excludes exactly the current actor, never a foreign blocker");
+   }
+  }
+  [TestCase(false)][TestCase(true)]public void EmptyOrDoorCellRetainsTheSameOtherOwnerGate(bool closed)
+  {
+   var zone=new Zone("steam-door-premise");var player=new Entity();var cell=zone.GetCell(4,13);
+   if(closed){var door=new Entity();door.AddPart(new DoorPart{IsOpen=false});Assert.True(zone.AddEntity(door,4,13));}
+   Assert.AreEqual(closed,cell.BlocksMovement(player));
+  }
+ }
+}

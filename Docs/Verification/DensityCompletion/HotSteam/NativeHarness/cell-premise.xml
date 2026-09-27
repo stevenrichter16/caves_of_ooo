@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-hot-steam-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="290" result="Passed" start-time="2026-09-27T15:32:33.2984540Z" end-time="2026-09-27T15:32:33.3916940Z" duration="0.093224" total="4" passed="4" failed="0" inconclusive="0" skipped="0" warnings="0" asserts="12" random-seed="1770224005">
+  <command-line><![CDATA[/private/tmp/coo-hot-steam-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-hot-steam-native/cell-premise.xml --where "class =~ /HotSteamCellPremiseTests/"]]></command-line>
+  <filter>
+    <class re="1">HotSteamCellPremiseTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1356" name="EditModeRunner.dll" fullname="/private/tmp/coo-hot-steam-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="290" result="Passed" start-time="2026-09-27T15:32:33.2984540Z" end-time="2026-09-27T15:32:33.3916940Z" duration="0.093224" total="4" passed="4" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="12">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-hot-steam-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-hot-steam-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="4154" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <test-suite type="TestSuite" id="1357" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="290" result="Passed" start-time="2026-09-27T15:32:33.3000050Z" end-time="2026-09-27T15:32:33.3916930Z" duration="0.091686" total="4" passed="4" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="12">
+      <test-suite type="TestSuite" id="1358" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="290" result="Passed" start-time="2026-09-27T15:32:33.3001160Z" end-time="2026-09-27T15:32:33.3916910Z" duration="0.091574" total="4" passed="4" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="12">
+        <test-suite type="TestFixture" id="1333" name="HotSteamCellPremiseTests" fullname="CavesOfOoo.Tests.HotSteamCellPremiseTests" classname="CavesOfOoo.Tests.HotSteamCellPremiseTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-27T15:32:33.3004490Z" end-time="2026-09-27T15:32:33.3916870Z" duration="0.091237" total="4" passed="4" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="12">
+          <test-suite type="ParameterizedMethod" id="1336" name="ActualFactoryPlayerIsItsOwnMovementBlockerButOtherBodiesStillBlock" fullname="CavesOfOoo.Tests.HotSteamCellPremiseTests.ActualFactoryPlayerIsItsOwnMovementBlockerButOtherBodiesStillBlock" classname="CavesOfOoo.Tests.HotSteamCellPremiseTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-27T15:32:33.3013860Z" end-time="2026-09-27T15:32:33.3908270Z" duration="0.089440" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="9">
+            <test-case id="1334" name="ActualFactoryPlayerIsItsOwnMovementBlockerButOtherBodiesStillBlock(False)" fullname="CavesOfOoo.Tests.HotSteamCellPremiseTests.ActualFactoryPlayerIsItsOwnMovementBlockerButOtherBodiesStillBlock(False)" methodname="ActualFactoryPlayerIsItsOwnMovementBlockerButOtherBodiesStillBlock" classname="CavesOfOoo.Tests.HotSteamCellPremiseTests" runstate="Runnable" seed="684454437" result="Passed" start-time="2026-09-27T15:32:33.3014810Z" end-time="2026-09-27T15:32:33.3713600Z" duration="0.069901" asserts="4" />
+            <test-case id="1335" name="ActualFactoryPlayerIsItsOwnMovementBlockerButOtherBodiesStillBlock(True)" fullname="CavesOfOoo.Tests.HotSteamCellPremiseTests.ActualFactoryPlayerIsItsOwnMovementBlockerButOtherBodiesStillBlock(True)" methodname="ActualFactoryPlayerIsItsOwnMovementBlockerButOtherBodiesStillBlock" classname="CavesOfOoo.Tests.HotSteamCellPremiseTests" runstate="Runnable" seed="496364623" result="Passed" start-time="2026-09-27T15:32:33.3718960Z" end-time="2026-09-27T15:32:33.3904050Z" duration="0.018509" asserts="5" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1339" name="EmptyOrDoorCellRetainsTheSameOtherOwnerGate" fullname="CavesOfOoo.Tests.HotSteamCellPremiseTests.EmptyOrDoorCellRetainsTheSameOtherOwnerGate" classname="CavesOfOoo.Tests.HotSteamCellPremiseTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-27T15:32:33.3910270Z" end-time="2026-09-27T15:32:33.3916670Z" duration="0.000640" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <test-case id="1337" name="EmptyOrDoorCellRetainsTheSameOtherOwnerGate(False)" fullname="CavesOfOoo.Tests.HotSteamCellPremiseTests.EmptyOrDoorCellRetainsTheSameOtherOwnerGate(False)" methodname="EmptyOrDoorCellRetainsTheSameOtherOwnerGate" classname="CavesOfOoo.Tests.HotSteamCellPremiseTests" runstate="Runnable" seed="1174562495" result="Passed" start-time="2026-09-27T15:32:33.3910500Z" end-time="2026-09-27T15:32:33.3913520Z" duration="0.000302" asserts="1" />
+            <test-case id="1338" name="EmptyOrDoorCellRetainsTheSameOtherOwnerGate(True)" fullname="CavesOfOoo.Tests.HotSteamCellPremiseTests.EmptyOrDoorCellRetainsTheSameOtherOwnerGate(True)" methodname="EmptyOrDoorCellRetainsTheSameOtherOwnerGate" classname="CavesOfOoo.Tests.HotSteamCellPremiseTests" runstate="Runnable" seed="621850515" result="Passed" start-time="2026-09-27T15:32:33.3914150Z" end-time="2026-09-27T15:32:33.3916540Z" duration="0.000239" asserts="2" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

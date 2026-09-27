@@ -1,0 +1,52 @@
+--- Assets/Scripts/Scenarios/Custom/DensityHotSteamNativePlayer.cs
++++ Assets/Scripts/Scenarios/Custom/DensityHotSteamNativePlayer.cs
+@@ -34,6 +34,7 @@
+         readonly List<NativeKeyAction> nativeKeys=new List<NativeKeyAction>();
+         readonly List<ActionWitness> actionWitnesses=new List<ActionWitness>();
+         readonly List<Readout> readouts=new List<Readout>();
++        readonly List<CellCheck> cellChecks=new List<CellCheck>();
+         System.Diagnostics.Stopwatch clock;
+         string DirectoryPath=>Path.GetFullPath(Path.Combine(Application.dataPath,"../Docs/Verification/DensityCompletion/Environment/NativeHotSteam",RunId));
+         public const int PlannedCases=3;
+@@ -186,7 +187,15 @@
+         }
+         void RequireDry(Cell cell)
+         {
+-            Require(cell!=null&&!cell.BlocksMovement()&&input.CurrentZone.TileState.Heat(cell.X,cell.Y)==0,"dry reachable player measurement cell");
++            Require(cell!=null,"current measurement cell exists");
++            var check=new CellCheck{caseName=caseName,x=cell.X,y=cell.Y,heat=input.CurrentZone.TileState.Heat(cell.X,cell.Y),
++                blocksAll=cell.BlocksMovement(),blocksOtherOwners=cell.BlocksMovement(input.PlayerEntity),
++                tileState=JsonUtility.ToJson(input.CurrentZone.TileState.Get(cell.X,cell.Y)),
++                occupants=cell.Occupants.Select(e=>e.BlueprintName+":"+e.ID+":self="+(e==input.PlayerEntity)+":solidTag="+e.HasTag("Solid")+":physicsSolid="+(e.GetPart<PhysicsPart>()?.Solid??false)).ToArray()};
++            cellChecks.Add(check);WriteReport();
++            // A current actor blocks its own occupied cell. Exclude exactly that
++            // owner through the existing movement API; every other blocker stays.
++            Require(!check.blocksOtherOwners&&check.heat==0,"dry reachable player measurement cell "+cell.X+","+cell.Y+"; heat="+check.heat+"; otherBlockers="+check.blocksOtherOwners);
+             Require(cell.Occupants.All(e=>e==input.PlayerEntity||WorldInteractionSystem.IsTerrain(e))
+                 &&cell.Occupants.All(e=>!e.HasPart<LiquidPoolPart>()&&!e.HasPart<GasPoolPart>()&&!e.HasTag("Trap")&&!e.HasEffect<BurningEffect>()),"no other physical contact hazard");
+             var state=input.CurrentZone.TileState.Get(cell.X,cell.Y);
+@@ -364,7 +373,7 @@
+         void WriteReport()
+         {
+             if(clock==null)return;Directory.CreateDirectory(DirectoryPath);ReportPath=Path.Combine(DirectoryPath,"report.json");
+-            File.WriteAllText(ReportPath,JsonUtility.ToJson(new Report{runId=RunId,zone=zoneId,checkpointGameId=checkpointGameId,checkpointHash=checkpointHash,cases=caseCount,plannedCases=PlannedCases,failures=Failures,unexpectedErrors=unexpected,complete=Complete,errorsFinalized=errorsFinalized,seconds=clock.Elapsed.TotalSeconds,fatal=fatal,observations=observations.ToArray(),checks=checks.ToArray(),screenshots=screenshots.ToArray(),nativeKeys=nativeKeys.ToArray(),actionWitnesses=actionWitnesses.ToArray(),readouts=readouts.ToArray(),
++            File.WriteAllText(ReportPath,JsonUtility.ToJson(new Report{runId=RunId,zone=zoneId,checkpointGameId=checkpointGameId,checkpointHash=checkpointHash,cases=caseCount,plannedCases=PlannedCases,failures=Failures,unexpectedErrors=unexpected,complete=Complete,errorsFinalized=errorsFinalized,seconds=clock.Elapsed.TotalSeconds,fatal=fatal,observations=observations.ToArray(),checks=checks.ToArray(),screenshots=screenshots.ToArray(),nativeKeys=nativeKeys.ToArray(),actionWitnesses=actionWitnesses.ToArray(),readouts=readouts.ToArray(),cellChecks=cellChecks.ToArray(),
+                 canVerify="Actual native N, learned grimoire, fire/water and waits create a nonburning hot reaction-owned source. Three F5/F6-matched cases observe live owner Examine through keyboard/pile selection, one paid approach and wait, source/target-specific canonical Heat records plus observed HP, and escape while source steam remains. No positive temperature, density, HP or resistance is assigned.",
+                 cannotVerify="Source prop and grimoire are explicit factory fixtures; bounded generated-lane travel is a shortcut, not natural acquisition. Each negative repeats source creation then changes only source temperature to ambient or removes SteamEffect. Attempt records alone do not prove landed damage; exact canonical hit and HP pairs do. Unit tests cover immunity/veto/multibody/callback/save behavior. Images need independent warning/feedback inspection; this does not establish universal thermal propagation or global balance."},true));
+         }
+@@ -377,6 +386,7 @@
+             if(input?.CurrentZone!=null)foreach(var e in input.CurrentZone.GetAllEntities().Where(e=>fixtureIds.Contains(e.ID)).ToArray())input.CurrentZone.RemoveEntity(e);
+         }
+         void OnDestroy(){if(!Finished&&clock!=null){fatal="Play stopped before baseline completion.";CheckResult("native_interrupted",false);Finish();}Cleanup();EmitSummary();if(clock!=null){Diag.SetChannel("scenario",oldScenario);Diag.SetChannel("effect",oldEffect);Diag.SetChannel("damage",oldDamage);}}
++        [Serializable] public sealed class CellCheck{public string caseName,tileState;public int x,y,heat;public bool blocksAll,blocksOtherOwners;public string[] occupants;}
+         [Serializable] public sealed class ObservedRecord
+         {public string category,kind,traceId,sourceId,targetId,payload;public static ObservedRecord From(Diag.Entry e)=>new ObservedRecord{category=e.Category,kind=e.Kind,traceId=e.TraceId,sourceId=e.ActorId,targetId=e.TargetId,payload=e.PayloadJson};}
+         [Serializable] public sealed class ActionWitness{public string caseName,phase,sourceId,playerId,marker;public int hpBefore,hpAfter,expectedHits;public long cost;public ObservedRecord[] damage,attempts;}
+@@ -390,6 +400,6 @@
+             public bool targetPresent;public float temperature,flameTemperature,effectiveFlame,volatility,combustibility,playerBurn,playerWet,targetBurn,targetWet,targetSteam;
+         }
+         [Serializable] sealed class Report
+-        {public string runId,zone,checkpointGameId,checkpointHash,fatal,canVerify,cannotVerify;public int cases,plannedCases,failures,unexpectedErrors;public bool complete,errorsFinalized;public double seconds;public Observation[] observations;public Check[] checks;public string[] screenshots;public NativeKeyAction[] nativeKeys;public ActionWitness[] actionWitnesses;public Readout[] readouts;}
++        {public string runId,zone,checkpointGameId,checkpointHash,fatal,canVerify,cannotVerify;public int cases,plannedCases,failures,unexpectedErrors;public bool complete,errorsFinalized;public double seconds;public Observation[] observations;public Check[] checks;public string[] screenshots;public NativeKeyAction[] nativeKeys;public ActionWitness[] actionWitnesses;public Readout[] readouts;public CellCheck[] cellChecks;}
+     }
+ }
