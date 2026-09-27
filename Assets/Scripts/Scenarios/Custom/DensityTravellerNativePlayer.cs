@@ -234,43 +234,123 @@ namespace CavesOfOoo.Scenarios.Custom
                 "real native trade exact identity/quantity/purse conservation and free UI semantics");
             _notes.Add("TRANSACTION "+label+" item="+item.ID+" price="+price+" buy="+buy+" player="+playerCoins+"→"+TradeSystem.GetDrams(Player)+" seller="+sellerCoins+"→"+TradeSystem.GetDrams(seller));Observe(label);
         }
+        private sealed class RemarkSource
+        { public Zone Zone; public Entity Speaker; public Cell Approach; public string Seats; }
+
+        // This is a read-only capability preflight, not an idle offer: querying
+        // IdleQueryEvent would reserve a seat and alter the behavior under test.
+        private static Entity[] UsableScribeSeats(Entity speaker,Zone zone)
+        {
+            var origin=zone.GetEntityCell(speaker);
+            if(origin==null||!speaker.HasTag("AllowIdleBehavior"))return Array.Empty<Entity>();
+            return zone.GetReadOnlyEntities().Where(seat=>
+            {
+                var chair=seat.GetPart<ChairPart>();var bed=seat.GetPart<BedPart>();
+                if(chair==null&&bed==null)return false;
+                string owner=chair!=null?chair.Owner:bed.Owner;
+                if((chair!=null?chair.Occupied:bed.Occupied)||CombatSystem.IsDeathHandled(seat)
+                    ||(!string.IsNullOrEmpty(owner)&&owner!=speaker.ID&&!speaker.HasTag(owner)))return false;
+                var cell=zone.GetEntityCell(seat);
+                if(cell==null||!cell.Objects.Contains(seat)||!zone.CanPlaceFootprint(speaker,cell.X,cell.Y))return false;
+                if(origin==cell)return true;
+                var path=FindPath.Search(zone,origin.X,origin.Y,cell.X,cell.Y,actor:speaker);
+                if(!path.Usable||path.Steps.Count==0||path.Steps.Count>48)return false;
+                int x=origin.X,y=origin.Y,actions=path.Steps.Count;
+                var doors=new HashSet<Entity>();
+                foreach(var step in path.Steps)
+                {
+                    // Single-cell legacy path search can overlook a physical-only
+                    // solid prop. Preflight the actual body and native diagonal
+                    // rule as well, counting existing paid door openings.
+                    if(step.dx!=0&&step.dy!=0&&!zone.CanPlaceFootprint(speaker,x+step.dx,y)
+                        &&!zone.CanPlaceFootprint(speaker,x,y+step.dy))return false;
+                    x+=step.dx;y+=step.dy;
+                    if(!zone.CanPlaceFootprint(speaker,x,y,allowOperableDoors:true))return false;
+                    foreach(var body in zone.GetOccupiedCells(speaker,x,y))foreach(var item in body.Occupants)
+                        if(item.GetPart<DoorPart>()?.IsClosed==true&&doors.Add(item))actions++;
+                }
+                return actions<=48;
+            }).OrderBy(e=>e.ID,StringComparer.Ordinal).ToArray();
+        }
+        private List<RemarkSource> RemarkSources()
+        {
+            var result=new List<RemarkSource>();int examined=0;
+            for(int y=0;y<WorldMap.Height&&examined<16&&result.Count<3;y++)
+                for(int x=0;x<WorldMap.Width&&examined<16&&result.Count<3;x++)
+                {
+                    if(Manager.WorldMap.GetPOI(x,y)?.Type!=POIType.Village||WorldMapAuthoring.TierAt(x,y)>2)continue;
+                    examined++;var zone=Manager.GetZone(WorldMap.ToZoneID(x,y,0));if(zone==null)continue;
+                    var threats=Threats(zone);
+                    var actors=zone.GetReadOnlyEntities().Where(e=>e.BlueprintName=="Scribe"
+                        &&e.GetStatValue("Hitpoints")>0&&!CombatSystem.IsDeathHandled(e)&&e.GetPart<BrainPart>()!=null
+                        &&e.GetPart<BrainPart>().Target==null&&!FactionManager.IsHostile(e,Player)&&!FactionManager.IsHostile(Player,e))
+                        .OrderBy(e=>e.ID,StringComparer.Ordinal).ToArray();
+                    _notes.Add("CONTEXT CAPABILITY SCAN "+zone.ZoneID+" hostileOwners="+threats.Length+" scribes="+string.Join(",",actors.Select(e=>e.ID)));
+                    if(threats.Length!=0||SariAmbience.TierFor(zone)>2)continue;
+                    foreach(var candidate in actors)
+                    {
+                        var seats=UsableScribeSeats(candidate,zone);
+                        _notes.Add("ACTUAL SEAT CAPABILITY "+zone.ZoneID+" speaker="+candidate.ID+" liveContext="+(Context(candidate,zone)??"none")
+                            +" seats="+string.Join(",",seats.Select(e=>e.ID+":"+e.BlueprintName)));
+                        if(seats.Length==0)continue;
+                        var at=zone.GetEntityCell(candidate);Cell approach=null;
+                        for(int dy=-2;dy<=2&&approach==null;dy++)for(int dx=-2;dx<=2&&approach==null;dx++)
+                        {
+                            if(Math.Max(Math.Abs(dx),Math.Abs(dy))!=2)continue;var cell=zone.GetCell(at.X+dx,at.Y+dy);
+                            if(Safe(zone,cell,12,threats)&&AIHelpers.HasLineOfSight(zone,cell.X,cell.Y,at.X,at.Y))approach=cell;
+                        }
+                        if(approach==null)continue;
+                        result.Add(new RemarkSource{Zone=zone,Speaker=candidate,Approach=approach,Seats=string.Join(",",seats.Select(e=>e.ID))});break;
+                    }
+                }
+            WriteReport();return result;
+        }
+        private void ObserveRoutine(Entity speaker,int action,string reason)
+        {
+            var cell=Zone.GetEntityCell(speaker);var brain=speaker.GetPart<BrainPart>();var seat=speaker.GetEffect<SittingEffect>()?.Furniture;
+            _observations.Add(new{phase="actual-npc-routine",action,reason,zone=Zone.ZoneID,speaker=speaker.ID,x=cell?.X,y=cell?.Y,
+                tick=Tick,ambient=Ambient,brainZone=brain?.CurrentZone?.ZoneID,goals=brain?.GetGoalsSnapshot().Select(g=>g.GetType().Name+":"+g.GetDetails()).ToArray(),
+                context=cell==null?null:Context(speaker,Zone),eligible=cell!=null&&Eligible(speaker,Zone),seat=seat?.ID,
+                seats=Zone.GetReadOnlyEntities().Where(e=>e.HasPart<ChairPart>()||e.HasPart<BedPart>()).Select(e=>new{id=e.ID,blueprint=e.BlueprintName,
+                    owner=e.GetPart<ChairPart>()?.Owner??e.GetPart<BedPart>()?.Owner,occupied=e.GetPart<ChairPart>()?.Occupied??e.GetPart<BedPart>()?.Occupied}).ToArray()});WriteReport();
+        }
         private IEnumerator ObserveRemark()
         {
-            Entity speaker=null;Zone selected=null;Cell approach=null;int examined=0;
-            for(int y=0;y<WorldMap.Height&&speaker==null;y++)for(int x=0;x<WorldMap.Width&&speaker==null;x++)
-            {
-                if(Manager.WorldMap.GetPOI(x,y)?.Type!=POIType.Village||WorldMapAuthoring.TierAt(x,y)>2)continue;
-                if(++examined>16)break;var zone=Manager.GetZone(WorldMap.ToZoneID(x,y,0));if(zone==null)continue;
-                var threats=Threats(zone);var actors=zone.GetReadOnlyEntities().Where(e=>Context(e,zone)!=null)
-                    .OrderBy(e=>e.BlueprintName=="Farmer"?0:e.BlueprintName=="Innkeeper"?1:2).ThenBy(e=>e.ID,StringComparer.Ordinal).ToArray();
-                _notes.Add("CONTEXT SCAN "+zone.ZoneID+" hostileOwners="+threats.Length+" actualMatching="+string.Join(",",actors.Select(e=>e.BlueprintName+":"+e.ID)));
-                foreach(var candidate in actors)
-                {
-                    if(candidate.GetStatValue("Hitpoints")<=0||CombatSystem.IsDeathHandled(candidate)||candidate.GetPart<BrainPart>()?.Target!=null
-                        ||FactionManager.IsHostile(candidate,Player)||FactionManager.IsHostile(Player,candidate))continue;
-                    var at=zone.GetEntityCell(candidate);
-                    for(int dy=-2;dy<=2&&speaker==null;dy++)for(int dx=-2;dx<=2&&speaker==null;dx++)
-                    {
-                        if(Math.Max(Math.Abs(dx),Math.Abs(dy))!=2)continue;var c=zone.GetCell(at.X+dx,at.Y+dy);
-                        if(!Safe(zone,c,12,threats)||!AIHelpers.HasLineOfSight(zone,c.X,c.Y,at.X,at.Y))continue;
-                        speaker=candidate;selected=zone;approach=c;
-                    }
-                    if(speaker!=null)break;
-                }
-            }
-            Require(speaker!=null&&SariAmbience.TierFor(selected)<=2,"bounded actual quiet village with a generated contextual resident");
-            Travel(selected,approach,"actual contextual resident approach; no speaker/context/time mutation");yield return Settled();
-            yield return Approach(speaker,12);Require(Eligible(speaker,Zone)&&Context(speaker,Zone)!=null,"actual present visible speaker has live context");
-            _notes.Add("CONTEXT BEFORE WAITS "+speaker.ID+" "+speaker.BlueprintName+" "+Context(speaker,Zone));Observe("context-ready");
+            var sources=RemarkSources();Require(sources.Count>0,"bounded actual quiet village with a Scribe and usable permitted real seating");
             int before=_emissions.Count;
-            for(int waits=0;waits<120&&!_emissions.Skip(before).Any(e=>e.kind=="WorldRemark");waits++)
+            foreach(var source in sources)
             {
-                Require(Safe(Zone,At,3),"current wait body/hazards/nearby threats permit ordinary wait");
-                _notes.Add("NATIVE WAIT "+waits+" nextAmbient="+(Ambient+1)+" isolatedHash="+(Hash(Zone.ZoneID+":remark:"+(Ambient+1))%100));
-                yield return PaidWait();
+                if(_emissions.Skip(before).Any(e=>e.kind=="WorldRemark"))break;
+                if(!Safe(source.Zone,source.Approach,12)){_notes.Add("REFUSED CHANGED APPROACH "+source.Zone.ZoneID);continue;}
+                Travel(source.Zone,source.Approach,"activate actual resident routine; no speaker, seating, goal, RNG, context or time mutation");yield return Settled();
+                var speaker=source.Speaker;var brain=speaker.GetPart<BrainPart>();
+                Require(brain?.CurrentZone==Zone&&brain.Rng!=null&&_input.TurnManager.GetSavedEntries().Count(e=>ReferenceEquals(e.Entity,speaker))==1,
+                    "actual source registered once in the active scheduler");
+                _notes.Add("ACTIVATED NATURAL ROUTINE "+Zone.ZoneID+" speaker="+speaker.ID+" initialSeats="+source.Seats);
+                int paidActions=0;string previousContext=null;ObserveRoutine(speaker,0,"activated-before-any-paid-routine-turn");
+                for(int action=0;action<240&&!_emissions.Skip(before).Any(e=>e.kind=="WorldRemark");action++)
+                {
+                    Require(Safe(Zone,At,3),"current routine-observation footprint/hazards/threats permit an ordinary action");
+                    if(Zone.GetEntityCell(speaker)==null||speaker.GetStatValue("Hitpoints")<=0||CombatSystem.IsDeathHandled(speaker))
+                    {_notes.Add("NATURAL SOURCE LOST "+speaker.ID);break;}
+                    string context=Context(speaker,Zone);
+                    if(action%10==0||context!=previousContext)ObserveRoutine(speaker,action,"native-routine-progress");
+                    previousContext=context;
+                    // Follow only through the existing safe physical path. A
+                    // temporary closed route gets a real wait so the NPC can
+                    // act; it never authorizes a transfer or a forced door.
+                    var path=Eligible(speaker,Zone)?null:PathTo(c=>SpatialQuery.DistanceToCell(Zone,speaker,c.X,c.Y)<=4
+                        &&Zone.GetOccupiedCells(speaker).Any(body=>AIHelpers.HasLineOfSight(Zone,c.X,c.Y,body.X,body.Y)));
+                    _notes.Add("NATIVE ROUTINE ACTION "+action+" nextAmbient="+(Ambient+1)+" isolatedHash="+(Hash(Zone.ZoneID+":remark:"+(Ambient+1))%100)
+                        +" context="+(context??"none")+" action="+(path!=null&&path.Count>0?"safe-follow-step":"wait"));
+                    if(path!=null&&path.Count>0)yield return PaidStep(path[0].x-At.X,path[0].y-At.Y,Zone,path[0].x,path[0].y);
+                    else yield return PaidWait();
+                    paidActions++;
+                }
+                ObserveRoutine(speaker,paidActions,"source-attempt-finished");
             }
             var emission=_emissions.Skip(before).FirstOrDefault(e=>e.kind=="WorldRemark");
-            Require(emission!=null,"actual contextual line within120 native paid waits");
+            Require(emission!=null,"actual contextual line within at most3 real villages and240 paid routine actions each");
             Check("actual_contextual_remark",emission.live&&emission.eligible&&emission.contextMatches
                 &&new[]{"Scribe","Innkeeper","Farmer","Warden"}.Contains(emission.blueprint)&&emission.zone==Zone.ZoneID
                 &&emission.ambient==Player.GetIntProperty(WorldAmbience.LastMessageProperty)&&Player.GetIntProperty(WorldAmbience.HasMessageProperty)==1);

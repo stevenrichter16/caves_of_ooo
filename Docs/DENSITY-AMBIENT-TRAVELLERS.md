@@ -1,6 +1,6 @@
 # Ambient life and travelling encounters — C7
 
-Status: Sari, contextual remarks and bounded travellers are implemented, 26 September 2026. Combined standalone core/adversarial verification is122/122 GREEN; Sari previously passed root native acceptance. Traveller transition/conversation wiring is implemented; native acceptance remains. CoO-original authoring, no Qud parity claim.
+Status: Sari, contextual remarks and bounded travellers are implemented. The bounded traveller/contextual-remark native journey passed **13/13** on 27 September 2026, with zero errors and exact editor restoration. Combined standalone core/adversarial verification is122/122 GREEN; Sari previously passed root native acceptance. The native route and its limits are recorded below. CoO-original authoring, no Qud parity claim.
 
 ## Sources and non-negotiable boundaries
 
@@ -51,7 +51,7 @@ Origin/destination leads must refer to real authored places reachable on the cur
 - 🧪 Native log timing, subtlety, visibility and readability remain player-observable acceptance. Private core tests cannot establish soundscape feel or travel density.
 - ⚪ No existing saves receive new NPC kits or regenerated maps; cosmetic ambient state starts absent and is written only by new valid player actions.
 
-Implementation and evidence for all three milestones are recorded below. Native traveller and remark acceptance remain.
+Implementation and evidence for all three milestones are recorded below. The final native section closes one real traveller and Scribe-context route; it does not establish average encounter density or every voice context.
 
 ## C7a implementation and verification
 
@@ -176,8 +176,7 @@ actors, hostility, missing villages, negative/capped save counters, existing zer
 roll flags, deterministic-ID collision, walls, reserved/interior/hazard/liquid
 placement, death/removal, many-zone cap, RNG preservation, actual restock timestamp,
 physical visibility, silent creatures, shared spacing and throwing log observers.
-No Unity calls were made by this agent. Native entry/trade/reentry, actual remarks
-visibility, voice feel and density remain root acceptance gates.
+No Unity calls were made by this agent. At this core checkpoint, native entry/trade/reentry and actual remark visibility remained root gates; the later native section records their bounded completion. Broad voice feel and density are still not established by these tests.
 
 
 ## C7 integration and cold-eye review
@@ -205,7 +204,7 @@ living present players; voices require living visible/non-hostile local speakers
 traveller dialogue additionally checks the saved encounter ownership. Q3: positive
 context/placement/conversation cases have same-roll refusals for absent, dead,
 hostile, stale, blocked and copied records; save graph retains concrete stock and
-identity. The native input seam remains a separate unexecuted gate. Q4: documented
+identity. At that checkpoint the native input seam remained a separate unexecuted gate; the later native journey records actual input evidence. Q4: documented
 restock is ordinary timed restock, not permanent finite stock; creation cap is3,
 chance1/8, tiers1–3; no simulated caravans, no silent-creature voice, no Sill edits.
 Screenshots, conversational feel, subtlety and travel density are not established
@@ -241,4 +240,17 @@ The initial private test-first launcher cleanup extension named `DensityTravelle
 The private driver/launcher is now written, with zero errors in full current-runtime, editor-reference and test-reference compilation. Independent review found no concrete source-flow blocker. Before native execution, source inspection corrected one premise: ordinary Item descendants inherit Stacker. The route therefore uses an actual instance/whole stack with no compatible destination merge target, then checks exact combined IDs/counts and stack-aware payment. At that private checkpoint, the actual native journey and image review were pending; root later ran the journey below. No gameplay mechanic was changed.
 
 
-Native C7 first run `1a4e51d9fab649ee942efefca624c37f` passed the first10 actual checks (entry/scheduler, dialogue/trade, revisit and real F5-sale-F6 graph restoration), then stopped after16.903s because the harness demanded an already-live context from freshly generated inactive residents. Root reviewed the actual talk/trade/restored images and preserved exact cleanup. This is partial acceptance. The [updated source sweep](Verification/DensityCompletion/Ambience/NativeAcceptance/PLAN.md) traces genuine Scribe seating and Farmer well visits to ordinary scheduled turns. A bounded private harness repair will activate an actual usable-seating village and observe native waits/movement, without forcing NPC goals, time, probability or a remark. No gameplay change follows from this false precondition.
+Native C7 first run `1a4e51d9fab649ee942efefca624c37f` passed the first10 actual checks (entry/scheduler, dialogue/trade, revisit and real F5-sale-F6 graph restoration), then stopped after16.903s because the harness demanded an already-live context from freshly generated inactive residents. Root reviewed the actual talk/trade/restored images and preserved exact cleanup. This is partial acceptance. The [updated source sweep](Verification/DensityCompletion/Ambience/NativeAcceptance/PLAN.md) traces genuine Scribe seating and Farmer well visits to ordinary scheduled turns. The subsequent reviewed harness-only repair activated an actual usable-seating village and observed native waits/movement, without forcing NPC goals, time, probability or a remark. No gameplay change follows from this false precondition.
+
+
+## Completed bounded native journey (2026-09-27)
+
+Root ran `5cd67d81cd2c4a899f5abab2310a8996`: **13/13 required checks passed**, zero failures/unexpected errors, **37.8453338 seconds**. The [full report](Verification/DensityCompletion/Ambience/NativeAcceptance/5cd67d81cd2c4a899f5abab2310a8996/report.json), actual editor log byte range and compressed segment are preserved with [exact before/after restoration](Verification/DensityCompletion/Ambience/NativeAcceptance/5cd67d81cd2c4a899f5abab2310a8996/restoration.json). This includes the original editor scene/start scene, seed, save root, last-game preference, input setting, background flag and stopped Play state.
+
+The actual edge into `Overworld.16.5.0` created and scheduled `traveller:64:Overworld.16.5.0`. Native conversation named the real Drowned Ledger and Sumphold endpoints. Native purchase moved the same actual item `31275` for9 drams (player50→41, merchant500→509). The real edge revisit preserved consumed stock before timed restock was due. F5, a native sale of that actual item for1 dram, and F6 then restored distinct player/merchant graphs with the exact saved stock, ownership, purses, route receipts, clock and energy. No stock, currency, skills or actors were granted.
+
+After the labelled player-only transfer activated ordinary scheduling in `Overworld.16.1.0`, the driver paid **83 real routine actions**. A genuinely seated nearby Scribe `33855` emitted **“A moment for my hands.”** at ambient action95 / scheduler tick950. The selected routine candidate was Scribe `33811`; acceptance correctly joined the actual emitting owner33855 to its own current seating, visibility, eligibility, fresh diagnostic and synchronous log entry. It did not substitute the selected candidate's context or force either speaker to sit. The next **19 paid actions** produced no additional ambient remark/Sari line, preserving the shared20-action budget. No NPC goals, seating reservations, time, hash outcome or ambient counters were edited.
+
+Root [visually reviewed](Verification/DensityCompletion/Ambience/NativeAcceptance/5cd67d81cd2c4a899f5abab2310a8996/root-visual-review.json) `06-actual-contextual-remark.png`: the exact line is legible beside actual residents, with the ordinary40/40HP and41-drams HUD visible. `08-ordinary-finish.png` was mostly black and is **not accepted as scene/HUD visibility evidence**. The synchronous records and earlier context frame establish the bounded remark, not general visual quality. The other seven captures in this successful run were not all independently reviewed. This foreign-zone route is not Spread style acceptance.
+
+Q1: all13 real required gates passed, including the formerly missing context and spacing gates; the original10-check partial run remains preserved. Q2: the correction addressed inactive-source preselection in the audit, with no gameplay change. Q3: exact entry owner/stock/payment, real post-save sale, replacement graphs and fresh actual-speaker/context evidence prevent a count-only or stale-graph pass; broad silent/hostile/removed/context-absent controls remain in the existing core/native tests. Q4: this is one seeded route with disclosed player approach shortcuts and a finite routine wait, not naturally walked whole-world discovery, all four role contexts, subjective ambient density or permanently finite merchant inventory. Ordinary restock remains **more than300 scheduler ticks** and stock threshold **below3**. Native acceptance does not imply offscreen caravan simulation.
