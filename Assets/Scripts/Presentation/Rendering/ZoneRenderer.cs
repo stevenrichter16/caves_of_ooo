@@ -207,7 +207,9 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private struct ReflectionAdjacentTile
         {
-            public int X, Y;
+            public int X, Y, SourceX, SourceY;
+            public Entity Source;
+            public bool Painted;
             /// <summary>True = use WaterBankColors (east flank of a bank cell), false = WaterCoreColors (west flank of a core cell).</summary>
             public bool UseBankPalette;
         }
@@ -2259,6 +2261,16 @@ namespace CavesOfOoo.Rendering
         /// </summary>
         private void RefreshWaterCache()
         {
+            // A full repaint can change the liquid without replacing the zone.
+            // Retire fine tiles before dropping their old cache rows; otherwise
+            // they no longer have an ambient-loop entry that can clear them.
+            for (int i = 0; i < _waterTilePositions.Count; i++)
+            {
+                var old = _waterTilePositions[i];
+                var cell = CurrentZone?.GetCell(old.x, old.y);
+                if (cell == null || !cell.IsVisible || !IsAmbientWater(cell.GetTopVisibleObject()))
+                    ClearFineWaterAt(old.x, old.y);
+            }
             _waterTilePositions.Clear();
             _waterAdjacentPositions.Clear();
             _bankTilePositions.Clear();
@@ -2283,8 +2295,9 @@ namespace CavesOfOoo.Rendering
                     var render = top.GetPart<RenderPart>();
                     if (render == null) continue;
 
-                    // Water cells (RenderString "~") — both river types.
-                    if (render.RenderString == "~")
+                    // Shared tilde glyphs also mean acid, oil and vapor.
+                    // Only an actual nonempty water pool owns water animation.
+                    if (IsAmbientWater(top))
                     {
                         _waterTilePositions.Add(new Vector2Int(x, y));
 
@@ -2302,6 +2315,9 @@ namespace CavesOfOoo.Rendering
                                 {
                                     X = adjX,
                                     Y = y,
+                                    SourceX = x,
+                                    SourceY = y,
+                                    Source = top,
                                     UseBankPalette = isBank
                                 });
                             }
@@ -2330,6 +2346,18 @@ namespace CavesOfOoo.Rendering
                 _stationaryShimmerLast[i] = WaterShimmer.Unpainted;
 
             InitDebrisPool();
+        }
+
+        /// <summary>Semantic admission shared by cache construction and replay.
+        /// A changed/empty liquid or an unrelated tilde keeps its base painter.</summary>
+        private static bool IsAmbientWater(Entity owner)
+        {
+            if (owner == null) return false;
+            var render = owner.GetPart<RenderPart>();
+            var pool = owner.GetPart<LiquidPoolPart>();
+            return render != null && render.ParentEntity == owner && render.Visible
+                && render.RenderString == "~" && pool != null && pool.ParentEntity == owner
+                && pool.LiquidId == "water" && pool.Volume > 0;
         }
 
         /// <summary>
@@ -2390,11 +2418,10 @@ namespace CavesOfOoo.Rendering
                     WaterShimmer.Invalidate(_stationaryShimmerLast, i);
                     continue;
                 }
-                var render = top.GetPart<RenderPart>();
-                if (render == null || render.RenderString != "~")
+                if (!IsAmbientWater(top))
                 {
-                    // Entity (player/NPC) is on this water cell — clear fine
-                    // tiles so they don't cover the entity's glyph.
+                    // A different liquid or covering entity owns this cell now.
+                    // Never repaint its glyph/color with the cached water state.
                     ClearFineWaterAt(x, y);
                     WaterShimmer.Invalidate(_stationaryShimmerLast, i);
                     continue;
@@ -2675,8 +2702,26 @@ namespace CavesOfOoo.Rendering
             for (int i = 0; i < _waterAdjacentPositions.Count; i++)
             {
                 var adj = _waterAdjacentPositions[i];
+                Cell sourceCell = CurrentZone.GetCell(adj.SourceX, adj.SourceY);
+                Entity source = sourceCell?.GetTopVisibleObject();
+                // Reflection belongs to the exact still-visible flowing source,
+                // not merely to the flank coordinate retained by an old cache.
                 Cell cell = CurrentZone.GetCell(adj.X, adj.Y);
-                if (cell == null || !cell.IsVisible) continue;
+                if (sourceCell == null || !sourceCell.IsVisible || source != adj.Source
+                    || !IsAmbientWater(source) || !source.HasTag("FlowsSouth")
+                    || cell == null || !cell.IsVisible)
+                {
+                    if (adj.Painted)
+                    {
+                        // The source's dirty cell does not include this flank.
+                        // Restore its current baseline on the next normal dirty
+                        // pass, once; do not erase another painter's background.
+                        MarkCellDirty(adj.X, adj.Y, "WaterReflectionRetired");
+                        adj.Painted = false;
+                        _waterAdjacentPositions[i] = adj;
+                    }
+                    continue;
+                }
 
                 // Sample the same scalar field the adjacent water cell
                 // uses, so tint and wave stay in lockstep. We pass the
@@ -2706,6 +2751,11 @@ namespace CavesOfOoo.Rendering
 
                 _bgTilemap.SetTileFlags(tilePos, TileFlags.None);
                 _bgTilemap.SetColor(tilePos, tinted);
+                if (!adj.Painted)
+                {
+                    adj.Painted = true;
+                    _waterAdjacentPositions[i] = adj;
+                }
             }
         }
 

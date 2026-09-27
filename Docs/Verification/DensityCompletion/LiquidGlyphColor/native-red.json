@@ -1,0 +1,82 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "ca488e6bbc5b48f781a0c58bd3c16d12",
+  "run": {
+    "id": "2",
+    "testcasecount": "21",
+    "result": "Failed(Child)",
+    "total": "21",
+    "passed": "6",
+    "failed": "15",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 14:14:40Z",
+    "end-time": "2026-09-27 14:14:42Z",
+    "duration": "1.7820402"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.LiquidAmbientColorTests.ActualConfiguredPoursRetainExactRegistryColor(\"acid\")",
+      "message": "  Water animation must not recolor a different liquid or an unrelated tilde.\n  Expected: 0.33000001311302185d +/- 9.9999999747524271E-07d\n  But was:  0.0d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiquidAmbientColorTests.ActualConfiguredPoursRetainExactRegistryColor(\"oil\")",
+      "message": "  Water animation must not recolor a different liquid or an unrelated tilde.\n  Expected: 0.33000001311302185d +/- 9.9999999747524271E-07d\n  But was:  0.0d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiquidAmbientColorTests.ActualConfiguredPoursRetainExactRegistryColor(\"honey\")",
+      "message": "  Water animation must not recolor a different liquid or an unrelated tilde.\n  Expected: 1.0d +/- 9.9999999747524271E-07d\n  But was:  0.0d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiquidAmbientColorTests.ActualConfiguredPoursRetainExactRegistryColor(\"lava\")",
+      "message": "  Water animation must not recolor a different liquid or an unrelated tilde.\n  Expected: 1.0d +/- 9.9999999747524271E-07d\n  But was:  0.0d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiquidAmbientColorTests.ActualConfiguredPoursRetainExactRegistryColor(\"gel\")",
+      "message": "  Water animation must not recolor a different liquid or an unrelated tilde.\n  Expected: 0.0d +/- 9.9999999747524271E-07d\n  But was:  0.33000001311302185d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiquidAmbientColorTests.ActualNaturalNonwaterPoolsRetainTheirPaintedColors(\"AcidPool\")",
+      "message": "  Water animation must not recolor a different liquid or an unrelated tilde.\n  Expected: 0.33000001311302185d +/- 9.9999999747524271E-07d\n  But was:  0.0d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiquidAmbientColorTests.ActualNaturalNonwaterPoolsRetainTheirPaintedColors(\"OilSlick\")",
+      "message": "  Water animation must not recolor a different liquid or an unrelated tilde.\n  Expected: 0.33000001311302185d +/- 9.9999999747524271E-07d\n  But was:  0.0d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiquidAmbientColorTests.ASharedTildeIsNotWaterAuthority(\"no-pool\")",
+      "message": "  Water animation must not recolor a different liquid or an unrelated tilde.\n  Expected: 1.0d +/- 9.9999999747524271E-07d\n  But was:  0.67000001668930054d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiquidAmbientColorTests.ASharedTildeIsNotWaterAuthority(\"unknown-liquid\")",
+      "message": "  Water animation must not recolor a different liquid or an unrelated tilde.\n  Expected: 0.33000001311302185d +/- 9.9999999747524271E-07d\n  But was:  1.0d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiquidAmbientColorTests.ASharedTildeIsNotWaterAuthority(\"empty-water\")",
+      "message": "  Water animation must not recolor a different liquid or an unrelated tilde.\n  Expected: 0.33000001311302185d +/- 9.9999999747524271E-07d\n  But was:  1.0d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiquidAmbientColorTests.ASharedTildeIsNotWaterAuthority(\"foreign-pool\")",
+      "message": "  Water animation must not recolor a different liquid or an unrelated tilde.\n  Expected: 1.0d +/- 9.9999999747524271E-07d\n  But was:  0.67000001668930054d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiquidAmbientColorTests.CachedWaterChangedToAcidCannotRetainBlueShimmer(False,False)",
+      "message": "  Expected: 1.0d +/- 9.9999999747524271E-07d\n  But was:  0.33000001311302185d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiquidAmbientColorTests.CachedWaterChangedToAcidCannotRetainBlueShimmer(True,False)",
+      "message": "  Expected: 1.0d +/- 9.9999999747524271E-07d\n  But was:  0.33000001311302185d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiquidAmbientColorTests.CachedWaterChangedToAcidCannotRetainBlueShimmer(False,True)",
+      "message": "  Expected: 0.33000001311302185d +/- 9.9999999747524271E-07d\n  But was:  1.0d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiquidAmbientColorTests.CachedWaterChangedToAcidCannotRetainBlueShimmer(True,True)",
+      "message": "  Expected: 0.33000001311302185d +/- 9.9999999747524271E-07d\n  But was:  1.0d\n"
+    }
+  ]
+}

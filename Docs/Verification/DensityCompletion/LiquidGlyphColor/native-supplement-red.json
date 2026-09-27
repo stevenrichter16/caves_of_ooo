@@ -1,0 +1,46 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "6c7e2477befc44ea918c3ca0b3996224",
+  "run": {
+    "id": "2",
+    "testcasecount": "29",
+    "result": "Failed(Child)",
+    "total": "29",
+    "passed": "23",
+    "failed": "6",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 14:23:03Z",
+    "end-time": "2026-09-27 14:23:04Z",
+    "duration": "1.6324255"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.LiquidAmbientColorTests.RetiredFlowSourceRestoresItsActuallyPaintedFlankOnTheDirtyPath(\"acid\",False)",
+      "message": "  Retired water cannot leave its previous blue footprint.\n  Expected: same as null\n  But was:  <CP437_DB (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiquidAmbientColorTests.RetiredFlowSourceRestoresItsActuallyPaintedFlankOnTheDirtyPath(\"acid\",True)",
+      "message": "  Expected: 0.0d +/- 9.9999999747524271E-07d\n  But was:  0.039000000804662704d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiquidAmbientColorTests.RetiredFlowSourceRestoresItsActuallyPaintedFlankOnTheDirtyPath(\"empty\",False)",
+      "message": "  Retired water cannot leave its previous blue footprint.\n  Expected: same as null\n  But was:  <CP437_DB (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiquidAmbientColorTests.RetiredFlowSourceRestoresItsActuallyPaintedFlankOnTheDirtyPath(\"empty\",True)",
+      "message": "  Expected: 0.0d +/- 9.9999999747524271E-07d\n  But was:  0.039000000804662704d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiquidAmbientColorTests.RetiredFlowSourceRestoresItsActuallyPaintedFlankOnTheDirtyPath(\"removed\",False)",
+      "message": "  Retired water cannot leave its previous blue footprint.\n  Expected: same as null\n  But was:  <CP437_DB (UnityEngine.Tilemaps.Tile)>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.LiquidAmbientColorTests.RetiredFlowSourceRestoresItsActuallyPaintedFlankOnTheDirtyPath(\"removed\",True)",
+      "message": "  Expected: 0.0d +/- 9.9999999747524271E-07d\n  But was:  0.039000000804662704d\n"
+    }
+  ]
+}
