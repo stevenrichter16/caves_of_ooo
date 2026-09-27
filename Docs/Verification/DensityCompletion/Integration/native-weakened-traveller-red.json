@@ -1,0 +1,130 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "d9e6e2efce994bd9b3091ca48055606b",
+  "run": {
+    "id": "2",
+    "testcasecount": "59",
+    "result": "Failed(Child)",
+    "total": "59",
+    "passed": "32",
+    "failed": "27",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 13:46:40Z",
+    "end-time": "2026-09-27 13:46:41Z",
+    "duration": "0.9017185"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.NativeDensitySceneRestorationTests.NoPendingRestoreRemovesTheRetryWithoutOpeningAnyScene(\"DensityTravellerNativeBatch\")",
+      "message": "System.InvalidOperationException : Sequence contains no matching element"
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeDensitySceneRestorationTests.RepeatedSchedulingKeepsOneFallbackUntilTheEditorSettles(\"DensityTravellerNativeBatch\")",
+      "message": "System.InvalidOperationException : Sequence contains no matching element"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingAdversarialTests.BoundedStackTickSaveSequenceMatchesIndependentContributionModel(1)",
+      "message": "  seed1 step19\n  Expected: 10\n  But was:  5\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingAdversarialTests.BoundedStackTickSaveSequenceMatchesIndependentContributionModel(7)",
+      "message": "  seed7 step4\n  Expected: 9\n  But was:  4\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingAdversarialTests.BoundedStackTickSaveSequenceMatchesIndependentContributionModel(64)",
+      "message": "  Expected: 5\n  But was:  3\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingAdversarialTests.BoundedStackTickSaveSequenceMatchesIndependentContributionModel(1729)",
+      "message": "  seed1729 step18\n  Expected: 13\n  But was:  10\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingAdversarialTests.BoundedStackTickSaveSequenceMatchesIndependentContributionModel(4096)",
+      "message": "  Expected: 4\n  But was:  2\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingAdversarialTests.BoundedStackTickSaveSequenceMatchesIndependentContributionModel(9001)",
+      "message": "  Expected: 7\n  But was:  3\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingAdversarialTests.ForcedAndOrdinaryReapplicationShareOneContribution(False)",
+      "message": "  Expected: 6\n  But was:  2\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingAdversarialTests.ForcedAndOrdinaryReapplicationShareOneContribution(True)",
+      "message": "  Expected: 6\n  But was:  2\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingAdversarialTests.IndefiniteDurationSurvivesTicksAndRoundTripUntilExplicitRemoval",
+      "message": "System.NullReferenceException : Object reference not set to an instance of an object"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingAdversarialTests.IndependentPenaltyAddedAfterStackSurvivesExplicitRemoval(False)",
+      "message": "  Expected: 3\n  But was:  -2\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingAdversarialTests.IndependentPenaltyAddedAfterStackSurvivesExplicitRemoval(True)",
+      "message": "  Expected: 3\n  But was:  -2\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingAdversarialTests.ParchedAndBerserkContributionsSurviveWeakeningExpiry(False)",
+      "message": "  Expected: 8\n  But was:  4\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingAdversarialTests.ParchedAndBerserkContributionsSurviveWeakeningExpiry(True)",
+      "message": "  Expected: 8\n  But was:  4\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingTests.ActualBookLearnedRiteRefreshesOnlyMarkedSurvivor(True)",
+      "message": "  Expected: 3\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingTests.ExpiryAfterUpgradeRestoresExactlyOnce",
+      "message": "  Refreshed effect must survive the first tick.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingTests.LoadedEffectCanUpgradeUsingItsRestoredOwner",
+      "message": "  Expected: 5\n  But was:  2\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingTests.MinimumClampedStrengthDoesNotLoseTheActualContribution",
+      "message": "  Expected: 2\n  But was:  7\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingTests.OnHitFactoryMagnitudeFeedsTheSameUpgradeContract",
+      "message": "  Expected: 5\n  But was:  2\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingTests.ReapplicationKeepsOnlyStrongestOwnedPenalty(5)",
+      "message": "  Expected: 5\n  But was:  3\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingTests.ReapplicationRetainsLongerDurationIncludingIndefinite(1,5,5)",
+      "message": "  Expected: 5\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingTests.ReapplicationRetainsLongerDurationIncludingIndefinite(5,-1,-1)",
+      "message": "  Expected: -1\n  But was:  5\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingTests.RemovingAfterReapplicationPreservesIndependentPenaltyAndBonus(5)",
+      "message": "  Expected: 4\n  But was:  2\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingTests.SaveUpgradeAndRemovalRestoreOwnedPenaltyWithoutReapplying(5)",
+      "message": "  Expected: 9\n  But was:  6\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingTests.SaveUpgradeAndRemovalRestoreOwnedPenaltyWithoutReapplying(2)",
+      "message": "  Expected: 7\n  But was:  4\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingTests.VetoedReapplicationDoesNotMutateTheExistingEffect(False)",
+      "message": "  Expected: 5\n  But was:  2\n"
+    }
+  ]
+}

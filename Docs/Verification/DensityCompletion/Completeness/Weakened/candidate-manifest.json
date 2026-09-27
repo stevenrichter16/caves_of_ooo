@@ -1,0 +1,54 @@
+{
+  "status": "Private reviewed1source+4newfixture/meta; no shared Assets changes; native execution pending",
+  "files": [
+    {
+      "path": "Assets/Scripts/Gameplay/Effects/Concrete/WeakenedEffect.cs",
+      "source": "/tmp/coo-weakened-audit/Assets/Scripts/Gameplay/Effects/Concrete/WeakenedEffect.cs",
+      "beforeSha256": "3e449c63b35d4c6a8d66b7ef2b54ade21dfe088dd49f9bcf447c80b1335361c4",
+      "sha256": "12b0e21336b81ba86dbee247f4af0599970c5cb66839280fc65d31f7ef5f9c39"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/Effects/WeakenedStackingTests.cs",
+      "source": "/tmp/coo-weakened-audit/Assets/Tests/EditMode/Gameplay/Effects/WeakenedStackingTests.cs",
+      "beforeSha256": null,
+      "sha256": "3b0f1721390e3900c8cb32476213a6b1f4d01f364a3b9ed0c6bfc031a6aa5d26"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/Effects/WeakenedStackingTests.cs.meta",
+      "source": "/tmp/coo-weakened-audit/Assets/Tests/EditMode/Gameplay/Effects/WeakenedStackingTests.cs.meta",
+      "beforeSha256": null,
+      "sha256": "074a1a10fa19fcd24bf707091bf7dff81e050d38d2a9ff25aee28e87d4c26987"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/Effects/WeakenedStackingAdversarialTests.cs",
+      "source": "/tmp/coo-weakened-audit/Assets/Tests/EditMode/Gameplay/Effects/WeakenedStackingAdversarialTests.cs",
+      "beforeSha256": null,
+      "sha256": "b1c516ed4745b9037c0a827003982894e24c3ffd5a009a8544cb8b7eee20cbb7"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/Effects/WeakenedStackingAdversarialTests.cs.meta",
+      "source": "/tmp/coo-weakened-audit/Assets/Tests/EditMode/Gameplay/Effects/WeakenedStackingAdversarialTests.cs.meta",
+      "beforeSha256": null,
+      "sha256": "404c701a19cc3f3d72ae973788ee5ae428cfc1a8abdcfbc034e7224341694271"
+    }
+  ],
+  "sourceRed": {
+    "total": 23,
+    "passed": 11,
+    "failed": 12
+  },
+  "finalDifferential": {
+    "total": 282,
+    "beforePassed": 257,
+    "beforeFailed": 25,
+    "afterPassed": 282,
+    "afterFailed": 0,
+    "newlyFailing": 0
+  },
+  "nativeReferenceCompileErrors": 0,
+  "bounds": [
+    "No new serialized fields; old already-corrupt snapshots retained rather than guessed",
+    "Stable existing Strength stat identity; late stat creation/replacement bookkeeping not repaired",
+    "Real book/read/cast core action, no Unity keyboard/feel claim"
+  ]
+}
